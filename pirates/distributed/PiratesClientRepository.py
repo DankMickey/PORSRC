@@ -518,20 +518,6 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
             camera.setHpr(0, 0, 0)
 
         base.transitions.noTransitions()
-        if self._userLoggingOut:
-            self.detectLeaks(okTasks = [
-                'physics-avatar',
-                'memory-monitor-task',
-                'multitexFlatten'], okEvents = [
-                'destroy-ToontownLoadingScreenTitle',
-                'destroy-ToontownLoadingScreenTip',
-                'destroy-ToontownLoadingScreenWaitBar',
-                'f12',
-                'f7',
-                'close_main_window',
-                'open_main_window',
-                PiratesGlobals.LogoutHotkey])
-
         OTPClientRepository.OTPClientRepository.exitPlayingGame(self)
 
     def enterGameOff(self):
@@ -629,53 +615,23 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
     def dumpAllSubShardObjects(self):
         if self.KeepSubShardObjects:
             return
-        isNotLive = not base.cr.isLive()
-        if isNotLive:
-            try:
-                localAvatar
-            except:
-                self.notify.info('dumpAllSubShardObjects')
-            else:
-                self.notify.info('dumpAllSubShardObjects: defaultShard is %s' % localAvatar.defaultShard)
 
-            ignoredClasses = ('MagicWordManager', 'TimeManager', 'DistributedDistrict', 'FriendManager', 'NewsManager', 'ToontownMagicWordManager', 'WelcomeValleyManager', 'DistributedTrophyMgr', 'CatalogManager', 'DistributedBankMgr', 'EstateManager', 'RaceManager', 'SafeZoneManager', 'DeleteManager', 'TutorialManager', 'PiratesDistrict', 'DistributedDeliveryManager', 'DistributedPartyManager', 'AvatarFriendsManager', 'InGameNewsMgr', 'WhitelistMgr', 'TTCodeRedemptionMgr')
         messenger.send('clientCleanup')
+
         for avId, pad in self.__queryAvatarMap.items():
             pad.delayDelete.destroy()
 
         self.__queryAvatarMap = {}
-        delayDeleted = []
         doIds = self.doId2do.keys()
+
         for doId in doIds:
             obj = self.doId2do[doId]
-            if isNotLive:
-                ignoredClass = obj.__class__.__name__ in ignoredClasses
-                if not ignoredClass and obj.parentId != localAvatar.defaultShard:
-                    self.notify.info('dumpAllSubShardObjects: %s %s parent %s is not defaultShard' % (obj.__class__.__name__, obj.doId, obj.parentId))
-            if obj.parentId == localAvatar.defaultShard and obj is not localAvatar:
-                if obj.neverDisable:
-                    if isNotLive:
-                        if not ignoredClass:
-                            self.notify.warning('dumpAllSubShardObjects: neverDisable set for %s %s' % (obj.__class__.__name__, obj.doId))
-                else:
-                    self.deleteObject(doId)
-                    self._deletedSubShardDoIds.add(doId)
-                    if obj.getDelayDeleteCount() != 0:
-                        delayDeleted.append(obj)
 
-        delayDeleteLeaks = []
-        for obj in delayDeleted:
-            if obj.getDelayDeleteCount() != 0:
-                delayDeleteLeaks.append(obj)
-
-        if len(delayDeleteLeaks):
-            s = 'dumpAllSubShardObjects:'
-            for obj in delayDeleteLeaks:
-                s += '\n  could not delete %s (%s), delayDeletes=%s' % (safeRepr(obj), itype(obj), obj.getDelayDeleteNames())
-
-            self.notify.error(s)
-        if isNotLive:
-            self.notify.info('dumpAllSubShardObjects: doIds left: %s' % self.doId2do.keys())
+            if obj.parentId != localAvatar.defaultShard or obj is localAvatar or obj.neverDisable:
+                continue
+            
+            self.deleteObject(doId)
+            self._deletedSubShardDoIds.add(doId)
 
     def _removeCurrentShardInterest(self, callback):
         if self.old_setzone_interest_handle is None:

@@ -1,5 +1,4 @@
 from panda3d.core import Notify
-from direct.showbase import GarbageReport
 from otp.ai.AIBaseGlobal import *
 from otp.avatar import DistributedAvatarAI
 from otp.avatar import PlayerBase
@@ -45,8 +44,6 @@ class DistributedPlayerAI(DistributedAvatarAI.DistributedAvatarAI, PlayerBase.Pl
             del self._sentExitServerEvent
         self._doPlayerExit()
         ClsendTracker.destroy(self)
-        if __dev__:
-            GarbageReport.checkForGarbageLeaks()
         DistributedAvatarAI.DistributedAvatarAI.delete(self)
 
     def isPlayerControlled(self):

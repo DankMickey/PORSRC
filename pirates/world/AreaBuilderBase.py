@@ -916,9 +916,8 @@ class AreaBuilderBase(DirectObject.DirectObject):
             sfxNode.remove_node()
 
         self.sfxNodes = []
-        if base.config.GetBool('want-model-texture-cleanup', 1):
-            ModelPool.garbageCollect()
-            TexturePool.garbageCollect()
+        ModelPool.garbageCollect()
+        TexturePool.garbageCollect()
 
     def loadWholeModel(self, modelBaseName, altId = None):
         geom = loader.loadModel(modelBaseName)

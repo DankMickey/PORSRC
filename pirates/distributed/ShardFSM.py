@@ -2,7 +2,6 @@ from panda3d.core import HashVal, hashPrcVariables
 from direct.fsm.FSM import FSM
 from direct.task.Task import Task
 from direct.distributed import DistributedSmoothNode
-from otp.ai.GarbageLeakServerEventAggregator import GarbageLeakServerEventAggregator
 from pirates.piratesbase import PiratesGlobals
 from pirates.world.LocationConstants import LocationIds
 
@@ -83,13 +82,7 @@ class ShardFSM(FSM):
     def enterPrepareShard(self, shardId):
         self.cr.distributedDistrict = self.cr.getDo(shardId)
         DistributedSmoothNode.globalActivateSmoothing(1, 0)
-        h = HashVal()
-        hashPrcVariables(h)
-        pyc = HashVal()
-        if not __dev__:
-            self.cr.hashFiles(pyc)
 
-        self.cr.timeManager.d_setSignature(self.cr.userSignature, h.asBin(), pyc.asBin())
         if self.cr.timeManager.synchronize('startup'):
             self.acceptOnce('gotTimeSync', self.request, extraArgs = [
                 'ShardReady',
@@ -109,7 +102,6 @@ class ShardFSM(FSM):
         self.enterShardReady(shardId)
 
     def enterShardReady(self, shardId):
-        self.garbageLeakLogger = GarbageLeakServerEventAggregator(self)
         self.cr.handler = self.cr.handlePlayGame
         base.transitions.noFade()
 
@@ -131,5 +123,3 @@ class ShardFSM(FSM):
 
         taskMgr.remove('globalScaleCheck')
         self.handler = None
-        self.garbageLeakLogger.destroy()
-        del self.garbageLeakLogger

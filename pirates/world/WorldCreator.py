@@ -519,8 +519,6 @@ class WorldCreator(WorldCreatorBase.WorldCreatorBase, DirectObject.DirectObject)
             
             if not newObj:
                 newObj = gameArea.builder.areaGeometry.attachNewNode(ModelNode('npcData'))
-            else:
-                print 'ITS REAL'
 
         if objType == 'Building Exterior':
             gameArea.builder.registerMinimapObject(levelObj)

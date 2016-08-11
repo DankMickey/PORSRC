@@ -14,7 +14,6 @@ from otp.friends import PlayerFriendsManager/UD
 from otp.friends import GuildManager/AI/UD
 from otp.friends import FriendInfo
 from otp.friends import AvatarFriendInfo
-from otp.distributed import ObjectServer/AI/UD
 from otp.distributed import DistributedDistrict/AI/UD
 from otp.distributed import DistributedDirectory/AI
 from otp.snapshot import SnapshotDispatcher/AI/UD
@@ -62,45 +61,12 @@ dclass DistributedObject {
   broadcastMessage() broadcast;
 };
 
-struct OSInfo {
-  string name;
-  int16 platform;
-  int16 major;
-  int16 minor;
-};
-
-struct CPUSpeed {
-  int32/1000 maxSpeed;
-  int32/1000 currentSpeed;
-};
-
 dclass TimeManager : DistributedObject {
   requestServerTime(uint8 context) airecv clsend;
   serverTime(uint8 context, int32 timestap, uint32 timeOfDay);
   setDisconnectReason(uint8) airecv clsend;
   setExceptionInfo(string(0-1024)) airecv clsend;
-  setSignature(string(0-1024) signature, char prcHash[16],
-               char pycHash[16]) airecv clsend;
-  setFrameRate(uint16/10 fps, uint16/1000 deviation, uint16 numAvatars,
-               string(0-256) locationCode, uint32/10 timeInLocation,
-               uint32/10 timeInGame, string(0-256) gameOptionsCode,
-               uint16 vendorId, uint16 deviceId, uint32/10 processMemory,
-               uint32/10 pageFileUsage, uint32/10 physicalMemory,
-               uint32 pageFaultCount, OSInfo, CPUSpeed, uint16 cpuCores,
-               uint16 logicalCPUs, string(0-256) apiName) airecv clsend;
-  setCpuInfo(string(0-1024) infoStr, string cacheStatus) airecv clsend;
-  checkForGarbageLeaks(bool) airecv clsend;
-  setNumAIGarbageLeaks(uint32);
-  setClientGarbageLeak(uint32, string(0-1024)) airecv clsend;
-  checkAvOnDistrict(uint32 context, DoId avatar) clsend airecv;
-  checkAvOnDistrictResult(uint32 context, DoId av, bool isOnDistrict);
   inject(string) airecv clsend;
-};
-
-dclass ObjectServer {
-  setName(string) airecv ram required;
-  setDcHash(uint32) ram required;
-  setDateCreated(uint32) airecv;
 };
 
 dclass DistributedDirectory : DistributedObject {
@@ -466,7 +432,6 @@ dclass SpeedchatRelay : DistributedObject, TalkPath_account {
 
 dclass CentralLogger : DistributedObject {
   sendMessage(string(0-256), string(0-1024), uint32, uint32) clsend;
-  logAIGarbage() airecv;
 };
 
 dclass SettingsMgr : DistributedObject {
