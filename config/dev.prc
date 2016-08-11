@@ -42,6 +42,7 @@ dc-file astron/dclass/pirates.dc
 dc-file astron/dclass/otp.dc
 
 # DEVELOPER TOOLS/COMMANDS:
+garbage-collect-states #f
 want-dev #f
 want-rocketman #f
 players-invulnerable #t

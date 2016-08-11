@@ -90,27 +90,6 @@ class SeaPatch(Water):
         self.seamodel.hide(OTPRender.MainCameraBitmask)
         self.seamodel.showThrough(OTPRender.EnviroCameraBitmask)
         self.reflectStage = None
-        if False:
-            self.model = loader.loadModel('models/misc/smiley')
-            self.model.reparentTo(render)
-            self.model.setPos(0.0, 50.0, 10.0)
-            self.model.setHpr(0.0, 180.0, 0.0)
-            self.model.setBin('water', 100)
-            self.model2 = loader.loadModel('models/misc/smiley')
-            self.model2.reparentTo(render)
-            self.model2.setPos(10.0, 50.0, 15.0)
-            self.model2.setHpr(180.0, 0.0, 0.0)
-            self.model2.setBin('water', 50)
-            self.model3 = loader.loadModel('models/misc/smiley')
-            self.model3.reparentTo(render)
-            self.model3.setPos(-10.0, 50.0, 15.0)
-            self.model3.setHpr(0.0, 0.0, 0.0)
-            self.model3.setBin('water', 50)
-            stencil = StencilAttrib.make(1, StencilAttrib.SCFEqual, StencilAttrib.SOKeep, StencilAttrib.SOKeep, StencilAttrib.SOKeep, 1, mask, mask)
-            self.model.setAttrib(stencil)
-            stencil = StencilAttrib.make(1, StencilAttrib.SCFEqual, StencilAttrib.SOKeep, StencilAttrib.SOKeep, StencilAttrib.SOKeep, 0, mask, mask)
-            self.model3.setAttrib(stencil)
-
         self.flatSea = self.seamodel.find('**/flatsea')
         flat2 = self.flatSea.copyTo(self.flatSea)
         flat2.setScale(2, 2, 1)
@@ -720,60 +699,20 @@ class SeaPatch(Water):
         self.patch.setHighColor(highColor)
         self.patch.setLowColor(lowColor)
 
-    maintenanceTaskName = 'maintenanceTask'
-
     def initialize(self):
-        self.time = 0.0
-        self.cacheTime = 0.0
-        self.updateTimeInSeconds = 10.0
-        self.cacheUpdateTimeInSeconds = 60.0 * 5.0
-
+        pass
 
     def cleanup(self):
-        taskMgr.remove(self.maintenanceTaskName)
+        pass
 
-
-    def setup(self, updateTimeInSeconds, cacheUpdateTimeInSeconds, taskPriority):
-        self.updateTimeInSeconds = updateTimeInSeconds
-        self.cacheUpdateTimeInSeconds = cacheUpdateTimeInSeconds
-        taskMgr.add(self.maintenanceTask, self.maintenanceTaskName, priority = taskPriority)
-
-
-    def maintenanceFunction(self):
-        models_freed = 1
-        textures_freed = 1
-        while models_freed > 0 or textures_freed > 0:
-            models_freed = ModelPool.garbageCollect()
-            textures_freed = TexturePool.garbageCollect()
-            if models_freed > 0 or textures_freed > 0:
-                continue
-
-
-    def clearCachesFunction(self):
-        RenderState.clearCache()
-        TransformState.clearCache()
-
-
-    def maintenanceTask(self, task):
-        if task.time - self.time >= self.updateTimeInSeconds:
-            self.maintenanceFunction()
-            self.time = task.time
-
-        if task.time - self.cacheTime >= self.cacheUpdateTimeInSeconds:
-            self.clearCachesFunction()
-            self.cacheTime = task.time
-
-        return Task.cont
-
+    def setup(self, *args):
+        pass
 
     def getSpecialEffectsLevel(self):
-
         try:
-            level = base.options.getSpecialEffectsSetting()
+            return base.options.getSpecialEffectsSetting()
         except:
-            level = Options.SpecialEffectsHigh
-
-        return level
+            return Options.SpecialEffectsHigh
 
 
     def addMotionTrail(self, parent):
