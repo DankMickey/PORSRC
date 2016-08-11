@@ -43,7 +43,7 @@ dc-file astron/dclass/otp.dc
 
 # DEVELOPER TOOLS/COMMANDS:
 want-dev #f
-want-rocketman #t
+want-rocketman #f
 players-invulnerable #t
 show-understandable #f
 show-aggro-radius #f
