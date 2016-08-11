@@ -191,6 +191,7 @@ CRBootedReasons = {1: 'An unexpected problem has occurred.  Your connection has 
  153: 'The district you were playing on has been reset.  Everyone who was playing on that district has been disconnected.  However, you should be able to connect again and go right back into the game.',
  154: 'Pirates Online Retribution is temporarily closing for a scheduled maintenance.\nFor more information, please visit the Pirates Online Retribution website.',
  155: 'You were kicked by a Moderator. Behave next time!',
+ 166: 'You were disconnected to prevent a district reset.',
  288: 'Sorry, you have used up all of your available minutes this month.',
  349: 'Sorry, you have used up all of your available minutes this month.'}
 CRBootedReasonUnknownCode = 'An unexpected problem has occurred (error code %s).  Your connection has been lost, but you should be able to connect again and go right back into the game.'
