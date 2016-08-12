@@ -13,7 +13,7 @@ objectStruct = {
                         '1161805566.88Shochet': {
                             'Type': 'LOD Sphere',
                             'Hpr': Point3(0.0, 0.0, 0.0),
-                            'Pos': Point3(0.0, 0.0, 10.194000000000001),
+                            'Pos': Point3(0.0, 0.0, 10.194),
                             'Radi': [
                                 159,
                                 1159,

@@ -60,7 +60,7 @@ class AmmoPanel(DirectFrame):
         self.panel = loader.loadModel('models/gui/pir_m_gui_can_ammoShelf')
         self.panel.reparentTo(self)
         self.panel.setScale(3.0)
-        self.panel.setPos(-0.26000000000000001, 0.0, 0.0)
+        self.panel.setPos(-0.260, 0.0, 0.0)
         self.tabHandle = GuiButton.GuiButton(parent = self.panel, command = self.onTabClick, image = None, geom = (self.panel.find('**/ammoButton/idle'), self.panel.find('**/ammoButton/idle'), self.panel.find('**/ammoButton/over')), hotkeys = [
             'shift'], helpText = 'Help Text', helpDelay = 0)
         self.tabHandle.reparentTo(self.panel)
@@ -69,9 +69,9 @@ class AmmoPanel(DirectFrame):
             button = AmmoPanelButton.AmmoPanelButton(self.onAmmoClick, skillId, 0)
             button.reparentTo(self.panel)
             button.setScale(button.getScale() / 3.0)
-            button.setPos(0.0, 0.0, 0.125 - 0.050000000000000003 * (i % 6))
+            button.setPos(0.0, 0.0, 0.125 - 0.050000 * (i % 6))
             if i >= 6:
-                button.setX(button.getX() + 0.050000000000000003)
+                button.setX(button.getX() + 0.050000)
 
             self.buttons[skillId] = button
             if i == 0:
@@ -108,10 +108,10 @@ class AmmoPanel(DirectFrame):
         self.bankNoteTxt = TextNode('BankNoteText')
         self.bankNoteTxt.setFont(PiratesGlobals.getInterfaceFont())
         self.bankNoteTxt.setTextColor(PiratesGuiGlobals.TextFG1)
-        self.bankNoteTxt.setShadow(0.050000000000000003, 0.050000000000000003)
+        self.bankNoteTxt.setShadow(0.050000, 0.050000)
         self.bankNoteTxt.setAlign(TextNode.ALeft)
         bankNoteTxtNode = textPlaceHolder.attachNewNode(self.bankNoteTxt)
-        bankNoteTxtNode.setScale(0.014999999999999999)
+        bankNoteTxtNode.setScale(0.0149)
         bankNoteTxtNode.setDepthTest(False)
         bankNoteTxtNode.setDepthWrite(False)
         bankNoteTxtNode.setPos(-0.02, 0, 0)
@@ -120,10 +120,10 @@ class AmmoPanel(DirectFrame):
 
     def onTabClick(self, event = None):
         if self.state == CLOSED:
-            posInterval = self.panel.posInterval(0.25, Point3(0.10000000000000001, 0.0, 0.0))
+            posInterval = self.panel.posInterval(0.25, Point3(0.100, 0.0, 0.0))
             self.flashHandleStop()
         else:
-            posInterval = self.panel.posInterval(0.25, Point3(-0.26000000000000001, 0.0, 0.0))
+            posInterval = self.panel.posInterval(0.25, Point3(-0.260, 0.0, 0.0))
         self.state = 1 - self.state
         sequence = Sequence(posInterval)
         sequence.start()
@@ -347,7 +347,7 @@ class AmmoPanel(DirectFrame):
         if self.flashIval or self.state == OPENED:
             return None
 
-        self.flashIval = Sequence(LerpColorInterval(self.tabHandle, 0.25, color = VBase4(0.20000000000000001, 0.20000000000000001, 0.20000000000000001, 3.0), blendType = 'easeOut'), LerpColorInterval(self.tabHandle, 0.25, color = VBase4(1.0, 1.0, 1.0, 1.0), blendType = 'easeOut'))
+        self.flashIval = Sequence(LerpColorInterval(self.tabHandle, 0.25, color = VBase4(0.200, 0.200, 0.200, 3.0), blendType = 'easeOut'), LerpColorInterval(self.tabHandle, 0.25, color = VBase4(1.0, 1.0, 1.0, 1.0), blendType = 'easeOut'))
         self.flashIval.loop()
 
 

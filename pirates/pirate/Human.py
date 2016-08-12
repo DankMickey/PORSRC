@@ -452,8 +452,8 @@ class Human(HumanBase.HumanBase, Biped.Biped):
             self.eyeFSM.request('open')
 
         r = self.randGen.random()
-        if r < 0.10000000000000001:
-            t = 0.20000000000000001
+        if r < 0.100:
+            t = 0.200
         else:
             t = r * 4.0 + 1.0
         taskMgr.doMethodLater(t, self._Human__blinkCloseEyes, self._Human__blinkName)
@@ -517,7 +517,7 @@ class Human(HumanBase.HumanBase, Biped.Biped):
         if self.gender == 'f':
             idx = 1
 
-        mappedValue = (0.80000000000000004 + (1 + self.style.getBodyHeight()) * 0.20000000000000001) * BodyScales[idx][self.style.getBodyShape()]
+        mappedValue = (0.800000 + (1 + self.style.getBodyHeight()) * 0.200) * BodyScales[idx][self.style.getBodyShape()]
         return mappedValue
 
     def setupAnimDicts(cls):

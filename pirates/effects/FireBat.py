@@ -23,7 +23,7 @@ class FireBat(PooledEffect, EffectController):
         self.setFogOff()
         self.setLightOff()
         self.setColorScaleOff()
-        self.effectScale = 0.45000000000000001
+        self.effectScale = 0.450
         self.duration = 0.0
         self.f = ParticleEffect.ParticleEffect('Flame')
         self.f.reparentTo(self)
@@ -33,7 +33,7 @@ class FireBat(PooledEffect, EffectController):
         self.p0.setEmitter('DiscEmitter')
         self.f.addParticles(self.p0)
         self.p0.setPoolSize(128)
-        self.p0.setBirthRate(0.059999999999999998)
+        self.p0.setBirthRate(0.0598)
         self.p0.setLitterSize(1)
         self.p0.setLitterSpread(3)
         self.p0.setSystemLifespan(0.0)
@@ -61,7 +61,7 @@ class FireBat(PooledEffect, EffectController):
         self.p0.renderer.setNonanimatedTheta(0.0)
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPBLENDLINEAR)
         self.p0.renderer.setColorBlendMode(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne)
-        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(0.29999999999999999, 0.20000000000000001, 0.10000000000000001, 0.29999999999999999), Vec4(0.20000000000000001, 0.10000000000000001, 0.050000000000000003, 0.14999999999999999), 1)
+        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(0.299, 0.200, 0.100, 0.299), Vec4(0.200, 0.100, 0.050000, 0.149), 1)
         self.p0.renderer.setAlphaDisable(0)
         self.p0.emitter.setEmissionType(BaseParticleEmitter.ETRADIATE)
         self.p0.emitter.setAmplitude(-0.75)
@@ -74,10 +74,10 @@ class FireBat(PooledEffect, EffectController):
 
     def createTrack(self):
         self.p0.renderer.setUserAlpha(1.0)
-        self.p0.renderer.setInitialXScale(0.044999999999999998 * self.cardScale * self.effectScale)
-        self.p0.renderer.setInitialYScale(0.040000000000000001 * self.cardScale * self.effectScale)
+        self.p0.renderer.setInitialXScale(0.0448 * self.cardScale * self.effectScale)
+        self.p0.renderer.setInitialYScale(0.0400 * self.cardScale * self.effectScale)
         self.p0.renderer.setFinalXScale(0.02 * self.cardScale * self.effectScale)
-        self.p0.renderer.setFinalYScale(0.035000000000000003 * self.cardScale * self.effectScale)
+        self.p0.renderer.setFinalYScale(0.035000 * self.cardScale * self.effectScale)
         self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, 7.0 * self.effectScale))
         self.p0.emitter.setRadius(5.0 * self.effectScale)
         shrinkSize = LerpFunctionInterval(self.setNewSize, 2.5, toData = 0.001, fromData = 1.0)
@@ -89,7 +89,7 @@ class FireBat(PooledEffect, EffectController):
 
     def setNewSize(self, time):
         self.p0.renderer.setFinalXScale(0.02 * self.cardScale * self.effectScale * time)
-        self.p0.renderer.setFinalYScale(0.035000000000000003 * self.cardScale * self.effectScale * time)
+        self.p0.renderer.setFinalYScale(0.035000 * self.cardScale * self.effectScale * time)
         self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, 7.0 * self.effectScale * time))
         self.p0.renderer.setUserAlpha(2.0 * time)
 

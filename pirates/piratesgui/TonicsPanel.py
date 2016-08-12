@@ -31,7 +31,7 @@ class TonicsPanel(DirectFrame):
         self.loadGui()
         DirectFrame.__init__(self)
         self.initialiseoptions(TonicsPanel)
-        self.skillRing = SkillRing(Vec4(1, 0.80000000000000004, 0.5, 1), Vec4(0, 0, 0, 1.0))
+        self.skillRing = SkillRing(Vec4(1, 0.800000, 0.5, 1), Vec4(0, 0, 0, 1.0))
         self.skillRing.reparentTo(self)
         self.skillRing.setPos(0, 0, 0)
         self.setSkillId(self.skillId)
@@ -54,7 +54,7 @@ class TonicsPanel(DirectFrame):
             self.button.destroy()
 
         self.button = SkillpageGuiButton.SkillpageGuiButton(self.callback, self.skillId, 0)
-        self.button['geom_scale'] = 0.089999999999999997
+        self.button['geom_scale'] = 0.089
         self.button.reparentTo(self)
         self.button.resetFrameSize()
         self.button.attachQuantity(self.amt)
@@ -104,8 +104,8 @@ class TonicsPanel(DirectFrame):
                 self.button['geom_color'] = Vec4(0.5, 0.5, 0.5, 1.0)
             elif greyOut == 1:
                 self.button['geom_color'] = Vec4(0.5, 0.5, 0.5, 1.0)
-                self.skillRing.meterFaceHalf1.setColorScale(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 1.0)
-                self.skillRing.meterFaceHalf2.setColorScale(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 1.0)
+                self.skillRing.meterFaceHalf1.setColorScale(0.4, 0.4, 0.4, 1.0)
+                self.skillRing.meterFaceHalf2.setColorScale(0.4, 0.4, 0.4, 1.0)
             elif greyOut == 3:
                 self.button['geom_color'] = Vec4(0.5, 0.5, 0.5, 1.0)
             else:

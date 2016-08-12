@@ -70,11 +70,11 @@ class BossEffect(PooledEffect, EffectController):
 
     def setEffectScale(self, scale):
         self.effectScale = scale
-        self.p0.renderer.setInitialXScale(0.040000000000000001 * self.effectScale * self.cardScale)
-        self.p0.renderer.setFinalXScale(0.080000000000000002 * self.effectScale * self.cardScale)
-        self.p0.renderer.setInitialYScale(0.040000000000000001 * self.effectScale * self.cardScale)
-        self.p0.renderer.setFinalYScale(0.080000000000000002 * self.effectScale * self.cardScale)
-        self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, 0.20000000000000001 * self.effectScale))
+        self.p0.renderer.setInitialXScale(0.0400 * self.effectScale * self.cardScale)
+        self.p0.renderer.setFinalXScale(0.08 * self.effectScale * self.cardScale)
+        self.p0.renderer.setInitialYScale(0.0400 * self.effectScale * self.cardScale)
+        self.p0.renderer.setFinalYScale(0.08 * self.effectScale * self.cardScale)
+        self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, 0.200 * self.effectScale))
         self.p0.emitter.setRadius(self.effectScale)
         self.setScale(1, 1, 2)
 

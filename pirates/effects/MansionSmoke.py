@@ -40,7 +40,7 @@ class MansionSmoke(PooledEffect, EffectController):
         self.p0.setEmitter('DiscEmitter')
         self.f.addParticles(self.p0)
         self.p0.setPoolSize(32)
-        self.p0.setBirthRate(0.34999999999999998)
+        self.p0.setBirthRate(0.348)
         self.p0.setLitterSize(2)
         self.p0.setLitterSpread(0)
         self.p0.setSystemLifespan(0.0)
@@ -49,7 +49,7 @@ class MansionSmoke(PooledEffect, EffectController):
         self.p0.factory.setLifespanBase(4.0)
         self.p0.factory.setLifespanSpread(0.5)
         self.p0.factory.setMassBase(1.0)
-        self.p0.factory.setMassSpread(0.20000000000000001)
+        self.p0.factory.setMassSpread(0.200)
         self.p0.factory.setTerminalVelocityBase(400.0)
         self.p0.factory.setTerminalVelocitySpread(0.0)
         self.p0.factory.setInitialAngle(0.0)
@@ -60,7 +60,7 @@ class MansionSmoke(PooledEffect, EffectController):
         self.p0.renderer.setAlphaMode(BaseParticleRenderer.PRALPHAOUT)
         self.p0.renderer.setUserAlpha(0.5)
         self.p0.renderer.setFromNode(self.card)
-        self.p0.renderer.setColor(Vec4(0.59999999999999998, 0.59999999999999998, 0.59999999999999998, 1.0))
+        self.p0.renderer.setColor(Vec4(0.598, 0.598, 0.598, 1.0))
         self.p0.renderer.setXScaleFlag(1)
         self.p0.renderer.setYScaleFlag(1)
         self.p0.renderer.setAnimAngleFlag(1)
@@ -79,7 +79,7 @@ class MansionSmoke(PooledEffect, EffectController):
 
 
     def createTrack(self, lod = Options.SpecialEffectsHigh):
-        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.34999999999999998), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy))
+        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.348), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy))
         if self._accelerateTime > 0:
             self.startEffect.append(Func(self.accelerate, self._accelerateTime))
 
@@ -92,8 +92,8 @@ class MansionSmoke(PooledEffect, EffectController):
         self.p0.emitter.setAmplitude(6.0 * scale)
         self.p0.emitter.setAmplitudeSpread(2.0 * scale)
         self.p0.emitter.setOffsetForce(Vec3(2.0, 2.0, 15.0) * scale)
-        self.p0.renderer.setInitialXScale(0.29999999999999999 * self.cardScale * scale)
-        self.p0.renderer.setInitialYScale(0.29999999999999999 * self.cardScale * scale)
+        self.p0.renderer.setInitialXScale(0.299 * self.cardScale * scale)
+        self.p0.renderer.setInitialYScale(0.299 * self.cardScale * scale)
         self.p0.renderer.setFinalXScale(0.5 * self.cardScale * scale)
         self.p0.renderer.setFinalYScale(0.5 * self.cardScale * scale)
         self.p0.emitter.setRadius(15.0 * scale)
@@ -110,4 +110,4 @@ class MansionSmoke(PooledEffect, EffectController):
 
 
     def accelerate(self, time):
-        self.p0.accelerate(time, 1, 0.050000000000000003)
+        self.p0.accelerate(time, 1, 0.050000)

@@ -9,7 +9,7 @@ from RepairMincroGame import RepairMincroGame
 from RepairGridPiece import RepairGridPiece, GOAL_HORIZ_1, GOAL_HORIZ_2, GOAL_VERT_1, GOAL_CROSS_1_1
 from RepairGridPiece import TOP, BOTTOM, LEFT, RIGHT
 import RepairGlobals
-SPACING = 0.14999999999999999
+SPACING = 0.149
 GRID_SIZE = 4
 
 class RepairBracingGame(RepairMincroGame):
@@ -37,7 +37,7 @@ class RepairBracingGame(RepairMincroGame):
         self.model = loader.loadModel('models/gui/pir_m_gui_srp_bracing_main')
         self.background = self.model.find('**/background')
         self.background.reparentTo(self)
-        self.background.setZ(0.17499999999999999)
+        self.background.setZ(0.174)
         self.gridParent = self.attachNewNode('gridParent')
         self.grid = []
         for xpos in xrange(GRID_SIZE):
@@ -51,8 +51,8 @@ class RepairBracingGame(RepairMincroGame):
                 self.model.find('**/wood_squares').getChild(0).copyTo(tempGeom)
                 selectedOutlineGeom = NodePath('selectedOutlineGeom')
                 self.model.find('**/selected').copyTo(selectedOutlineGeom)
-                selectedOutlineGeom.setScale(0.90000000000000002)
-                piece = RepairGridPiece(name = 'piece%i' % (xpos * GRID_SIZE + ypos), parent = self.gridParent, allWoodSquaresGeom = allWoodSquaresGeom, selectedOutlineGeom = selectedOutlineGeom, scale = (0.90000000000000002, 0.90000000000000002, 0.90000000000000002), pos = (-0.22 + xpos * SPACING, 0.0, -0.029999999999999999 + ypos * SPACING), command = self.onPiecePressed, location = [
+                selectedOutlineGeom.setScale(0.9)
+                piece = RepairGridPiece(name = 'piece%i' % (xpos * GRID_SIZE + ypos), parent = self.gridParent, allWoodSquaresGeom = allWoodSquaresGeom, selectedOutlineGeom = selectedOutlineGeom, scale = (0.9, 0.9, 0.9), pos = (-0.22 + xpos * SPACING, 0.0, -0.0299 + ypos * SPACING), command = self.onPiecePressed, location = [
                     xpos,
                     ypos], clickSound = None, pressEffect = 0, geom = tempGeom, relief = None)
                 col.append(piece)

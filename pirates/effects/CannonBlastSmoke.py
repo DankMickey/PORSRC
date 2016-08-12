@@ -55,9 +55,9 @@ class CannonBlastSmoke(PooledEffect, EffectController):
         self.p0.renderer.setYScaleFlag(1)
         self.p0.renderer.setAnimAngleFlag(1)
         self.p0.renderer.setInitialXScale(0.01 * self.cardScale)
-        self.p0.renderer.setFinalXScale(0.10000000000000001 * self.cardScale)
+        self.p0.renderer.setFinalXScale(0.100 * self.cardScale)
         self.p0.renderer.setInitialYScale(0.01 * self.cardScale)
-        self.p0.renderer.setFinalYScale(0.089999999999999997 * self.cardScale)
+        self.p0.renderer.setFinalYScale(0.089 * self.cardScale)
         self.p0.renderer.setNonanimatedTheta(0.0)
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPNOBLEND)
         self.p0.renderer.setAlphaDisable(0)
@@ -71,17 +71,17 @@ class CannonBlastSmoke(PooledEffect, EffectController):
         self.p0.emitter.setEndpoint2(Point3(0.0, 6.0, 0.0))
 
 
-    def createTrack(self, duration = 0.20000000000000001):
-        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.025000000000000001), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self))
+    def createTrack(self, duration = 0.200):
+        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.0250), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self))
         self.endEffect = Sequence(Func(self.p0.setBirthRate, 100), Wait(2.5), Func(self.cleanUpEffect))
         self.track = Sequence(self.startEffect, Wait(duration), self.endEffect)
 
 
     def setEffectScale(self, effectScale):
         self.p0.renderer.setInitialXScale(0.01 * self.cardScale * effectScale)
-        self.p0.renderer.setFinalXScale(0.10000000000000001 * self.cardScale * effectScale)
+        self.p0.renderer.setFinalXScale(0.100 * self.cardScale * effectScale)
         self.p0.renderer.setInitialYScale(0.01 * self.cardScale * effectScale)
-        self.p0.renderer.setFinalYScale(0.089999999999999997 * self.cardScale * effectScale)
+        self.p0.renderer.setFinalYScale(0.089 * self.cardScale * effectScale)
         self.p0.emitter.setOffsetForce(Vec3(0, 4.0 * effectScale, 1.0 * effectScale))
         self.p0.emitter.setAmplitude(0.5 * effectScale)
         self.p0.emitter.setAmplitudeSpread(1.5 * effectScale)

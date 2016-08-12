@@ -49,7 +49,7 @@ class BlackSmoke(PooledEffect, EffectController):
         self.p0.factory.setLifespanBase(2.5)
         self.p0.factory.setLifespanSpread(1.5)
         self.p0.factory.setMassBase(1.0)
-        self.p0.factory.setMassSpread(0.20000000000000001)
+        self.p0.factory.setMassSpread(0.200)
         self.p0.factory.setTerminalVelocityBase(400.0)
         self.p0.factory.setTerminalVelocitySpread(0.0)
         self.p0.factory.setInitialAngle(0.0)
@@ -58,7 +58,7 @@ class BlackSmoke(PooledEffect, EffectController):
         self.p0.factory.setAngularVelocity(0.0)
         self.p0.factory.setAngularVelocitySpread(0.0)
         self.p0.renderer.setAlphaMode(BaseParticleRenderer.PRALPHAOUT)
-        self.p0.renderer.setUserAlpha(0.80000000000000004)
+        self.p0.renderer.setUserAlpha(0.800000)
         self.p0.renderer.setFromNode(self.card)
         self.p0.renderer.setColor(Vec4(1.0, 1.0, 1.0, 1.0))
         self.p0.renderer.setXScaleFlag(1)
@@ -66,8 +66,8 @@ class BlackSmoke(PooledEffect, EffectController):
         self.p0.renderer.setAnimAngleFlag(1)
         self.p0.renderer.setInitialXScale(0.13 * self.cardScale)
         self.p0.renderer.setInitialYScale(0.13 * self.cardScale)
-        self.p0.renderer.setFinalXScale(0.40000000000000002 * self.cardScale)
-        self.p0.renderer.setFinalYScale(0.40000000000000002 * self.cardScale)
+        self.p0.renderer.setFinalXScale(0.4 * self.cardScale)
+        self.p0.renderer.setFinalYScale(0.4 * self.cardScale)
         self.p0.renderer.setNonanimatedTheta(0.0)
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPNOBLEND)
         self.p0.renderer.setAlphaDisable(0)
@@ -105,13 +105,13 @@ class BlackSmoke(PooledEffect, EffectController):
 
 
     def accelerate(self, time):
-        self.p0.accelerate(time, 1, 0.050000000000000003)
+        self.p0.accelerate(time, 1, 0.050000)
 
 
     def setDensity(self, density):
         self.p0.emitter.setAmplitude(4.5 * density)
-        self.p0.renderer.setFinalXScale(0.59999999999999998 * density * self.cardScale)
-        self.p0.renderer.setFinalYScale(0.59999999999999998 * density * self.cardScale)
+        self.p0.renderer.setFinalXScale(0.598 * density * self.cardScale)
+        self.p0.renderer.setFinalYScale(0.598 * density * self.cardScale)
         self.p0.renderer.setUserAlpha(max(1.0 * density, 0.25))
         self.p0.emitter.setRadius(10.0 * density)
         self.p0.factory.setLifespanBase(3.0 * density + 1.0)

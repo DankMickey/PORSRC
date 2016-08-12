@@ -9,7 +9,7 @@ objectStruct = {
                     'Type': 'Island',
                     'File': 'CaveBIsland',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-200.86799999999999, 63.646000000000001, 0.0),
+                    'Pos': Point3(-200.867, 63.646, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/islands/pir_m_are_isl_perdida' } } },

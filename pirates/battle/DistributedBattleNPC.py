@@ -260,7 +260,7 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
                 sphere = loader.loadModel('models/effects/explosion_sphere')
                 sphere.reparentTo(self)
                 sphere.setTransparency(1)
-                sphere.setAlphaScale(0.29999999999999999)
+                sphere.setAlphaScale(0.299)
                 sphere.setScale(render, size)
 
         if self.shadowPlacer:
@@ -470,7 +470,7 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
                 self.cRayNode.setFinal(1)
                 self.cRayNodePath = self.attachNewNode(self.cRayNode)
                 self.lifter = CollisionHandlerGravity()
-                self.lifter.setGravity(32.173999999999999 * 4.0)
+                self.lifter.setGravity(32.173 * 4.0)
                 self.lifter.setReach(self.getFloorRayReach())
                 self.lifter.setMaxVelocity(64.0)
                 self.lifter.setInPattern('enterFloor%fn')
@@ -848,7 +848,7 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
 
     def startShuffle(self, turnAnim):
         if self.playNoticeAnims():
-            self.loop(turnAnim, blendDelay = 0.29999999999999999)
+            self.loop(turnAnim, blendDelay = 0.299)
             self.motionFSM.motionAnimFSM.interruptSplash()
 
     def playNoticeAnims(self):
@@ -861,16 +861,16 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
     def midShuffle(self):
         if self.playNoticeAnims():
             if self.noticeIdle:
-                self.loop(self.noticeIdle, blendDelay = 0.29999999999999999)
+                self.loop(self.noticeIdle, blendDelay = 0.299)
             else:
-                self.loop('idle', blendDelay = 0.29999999999999999)
+                self.loop('idle', blendDelay = 0.299)
 
     def endShuffle(self):
         idleAnimInfo = self.animInfo['LandRoam'][PiratesGlobals.STAND_INDEX]
         if self.getCurrentAnim() == idleAnimInfo[0]:
             return None
         try:
-            self.loop(idleAnimInfo[0], blendDelay = 0.29999999999999999, rate = idleAnimInfo[1])
+            self.loop(idleAnimInfo[0], blendDelay = 0.299, rate = idleAnimInfo[1])
         except TypeError:
             e = None
             self.notify.error('Invalid animation %s for %s|isInInvasion = %s|isGenerated = %s|mixer = %s' % (idleAnimInfo, `self`, self.isInInvasion(), self.isGenerated(), self._UsesAnimationMixer__mixer.__class__.__name__))
@@ -955,9 +955,9 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
 
         DistributedBattleAvatar.DistributedBattleAvatar.smoothPosition(self)
         if cantMove == False:
-            if (self.getPos(parentObj) - oldPos).length() < 0.10000000000000001:
+            if (self.getPos(parentObj) - oldPos).length() < 0.100:
                 self.motionFSM.motionAnimFSM.updateNPCAnimState(0, 0, 0)
-                if base.config.GetBool('want-npc-notice', 0) and abs(self.getH() - oldH) < 0.10000000000000001:
+                if base.config.GetBool('want-npc-notice', 0) and abs(self.getH() - oldH) < 0.100:
                     if self.moveNoticeFlag and self.lastMovedTimeStamp and globalClock.getFrameTime() - self.lastMovedTimeStamp > 0.5 and not (self.localAvatarHasBeenNoticed):
                         self.isMovingDontNotice = 0
                         self.firstNoticeLocalAvatar()
@@ -1002,7 +1002,7 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
             xDiff = abs(newPos[0] - headingNodePos[0])
             yDiff = abs(newPos[1] - headingNodePos[1])
             diffChangeLimitF = 0.01
-            diffChangeLimitH = 0.074999999999999997
+            diffChangeLimitH = 0.074
             if self.getGameState() == 'Battle':
                 diffChangeLimitH = 2.0
 
@@ -1022,7 +1022,7 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
                 speed = distMoved / deltaTime
             self.lastSmoothPosUpdateTime = animTime
             slideScale = 0.0
-            if base.config.GetBool('npc-sidestep', 0) and distMoved > 0.0050000000000000001:
+            if base.config.GetBool('npc-sidestep', 0) and distMoved > 0.00500:
                 moveVec = self.headingNode.getPos() - self.getPos(parentObj)
                 self.headingNode.reparentTo(self)
                 self.headingNode.setPos(0, 1, 0)
@@ -1037,7 +1037,7 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
                 hChange = 0.0
             else:
                 hChange = self.getH(parentObj) - oldH
-                if hChange and hChange < 0.10000000000000001 and hChange > -0.10000000000000001:
+                if hChange and hChange < 0.100 and hChange > -0.100:
                     hChange = 0.0
 
             self.motionFSM.motionAnimFSM.updateNPCAnimState(speed, hChange, slideScale)

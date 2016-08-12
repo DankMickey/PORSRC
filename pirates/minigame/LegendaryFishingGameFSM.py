@@ -99,9 +99,9 @@ class LegendaryFishingGameFSM(FSM.FSM):
     def exitStruggle(self):
         self.ignore('mouse1')
         self.gameObject.sfx['legendaryRed'].stop()
-        base.musicMgr.request(SoundGlobals.SFX_MINIGAME_FISHING_LEGENDARY_MUSIC, priority = 0, volume = 0.59999999999999998)
+        base.musicMgr.request(SoundGlobals.SFX_MINIGAME_FISHING_LEGENDARY_MUSIC, priority = 0, volume = 0.598)
         self.gameObject.lfgGui.meterFadeOutInterval.start()
-        self.gameObject.lfgGui.fishingHandleButton.setScale(0.45000000000000001)
+        self.gameObject.lfgGui.fishingHandleButton.setScale(0.450)
 
 
     def enterReelingFish(self):

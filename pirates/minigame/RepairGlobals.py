@@ -11,9 +11,9 @@ AI.goldRewardMultiplier = [
     (14.0, 3.0),
     (18.0, 2.5),
     (24.0, 2.0),
-    (36.0, 1.6000000000000001),
+    (36.0, 1.60),
     (52.0, 1.3),
-    (72.0, 1.1499999999999999)]
+    (72.0, 1.14)]
 AI.repairRewardRange = (5000, 1000)
 AI.grapeshotEffectCooldown = 2.0
 AI.grapeshotEffectProbability = 0.5
@@ -45,26 +45,26 @@ AI.repairDebuffPerModelClass = {
     25: 1.0,
     26: 1.0,
     27: 1.0 }
-AI.sailRepairPercent = 0.14999999999999999
-AI.armorRepairPercent = 0.14999999999999999
-AI.hpRepairPercent = 0.40000000000000002
+AI.sailRepairPercent = 0.149
+AI.armorRepairPercent = 0.149
+AI.hpRepairPercent = 0.4
 AI.hpTertiaryDecay = 0.0
 Common = VariableContainer()
 Common.guiShakeCooldownTime = 2.0
 Common.youWinPos = {
     'careening': (-0.12, 0.0, 0.22),
-    'pumping': (0.0, 0.0, 0.14999999999999999),
-    'sawing': (0.0, 0.0, 0.14999999999999999),
+    'pumping': (0.0, 0.0, 0.149),
+    'sawing': (0.0, 0.0, 0.149),
     'bracing': (0.0, 0.0, 0.22),
     'hammering': (0.0, 0.0, 0.38),
     'pitching': (0.0, 0.0, 0.22) }
 Common.scorePos = {
-    'careening': (-0.12, 0.0, 0.089999999999999997),
+    'careening': (-0.12, 0.0, 0.089),
     'pumping': (0.0, 0.0, 0.02),
     'sawing': (0.0, 0.0, 0.02),
-    'bracing': (0.0, 0.0, 0.089999999999999997),
+    'bracing': (0.0, 0.0, 0.089),
     'hammering': (0.0, 0.0, 0.25),
-    'pitching': (0.0, 0.0, 0.089999999999999997) }
+    'pitching': (0.0, 0.0, 0.089) }
 Common.speedThresholds = {
     'careening': [
         (5.0, 15.0),
@@ -93,65 +93,65 @@ Common.speedThresholds = {
 Careening = VariableContainer()
 Careening.barnacleCountRange = (15, 30)
 Careening.superScrubMultiplier = 4.0
-Careening.superScrubDecreaseRate = 0.40000000000000002
-Careening.superScrubIncreaseRate = 0.80000000000000004
+Careening.superScrubDecreaseRate = 0.4
+Careening.superScrubIncreaseRate = 0.800000
 Careening.barnacleHPRange = (30, 70)
 Careening.barnacleHPScaleRange = (1.0, 3.0)
-Careening.xRange = (-0.61499999999999999, 0.375)
-Careening.yRange = (-0.16500000000000001, 0.51500000000000001)
-Careening.barnacleRadius = 0.040000000000000001
+Careening.xRange = (-0.614, 0.375)
+Careening.yRange = (-0.165, 0.515)
+Careening.barnacleRadius = 0.0400
 Careening.mossPercentage = 0.75
 Careening.mossPosVariance = 0.01
-Careening.mossEdgeRestrictionAmount = 0.10000000000000001
+Careening.mossEdgeRestrictionAmount = 0.100
 Careening.showBarnacleHP = False
 Pumping = VariableContainer()
-Pumping.pumpPowerRange = (0.059999999999999998, 0.02)
-Pumping.hitRange = (0.17999999999999999, 0.17999999999999999)
+Pumping.pumpPowerRange = (0.0598, 0.02)
+Pumping.hitRange = (0.179, 0.179)
 Pumping.barStartRange = (1.2, 1.0)
 Pumping.barSpeedMin = 2.0
-Pumping.barSpeedMax = 0.29999999999999999
+Pumping.barSpeedMax = 0.299
 Pumping.barSpeedIncrease = 1.25
-Pumping.barSpeedDecrease = 0.80000000000000004
-Pumping.chainMultiplier = 0.080000000000000002
+Pumping.barSpeedDecrease = 0.800000
+Pumping.chainMultiplier = 0.08
 Sawing = VariableContainer()
 Sawing.difficultySets = ((3, 3, 1, 1), (3, 1, 1, 2), (1, 2, 1, 2), (3, 1, 2, 2), (2, 2, 1, 2), (3, 2, 1, 4), (2, 4, 3, 2), (4, 2, 1, 2), (4, 1, 1, 5), (2, 2, 4, 5))
-Sawing.waypointRange = (0.080000000000000002, 0.080000000000000002, 0.080000000000000002, 0.11, 0.10000000000000001)
-Sawing.sawlineColor = Vec4(0.75, 0.75, 0.75, 0.69999999999999996)
+Sawing.waypointRange = (0.08, 0.08, 0.08, 0.11, 0.100)
+Sawing.sawlineColor = Vec4(0.75, 0.75, 0.75, 0.696)
 Sawing.sawlineLineThickness = 4.0
 Sawing.sawlineLinespawnDist = 0.02
-Sawing.testWaypointDelta = 0.040000000000000001
-Sawing.playSawingSoundDelta = 0.10000000000000001
+Sawing.testWaypointDelta = 0.0400
+Sawing.playSawingSoundDelta = 0.100
 Sawing.totalPoints = 20.0
 Sawing.pointsPerBoard = 7.0
 Sawing.pointsLostForZone1 = 4.0
 Sawing.pointsLostForZone2 = 1.0
-Sawing.cutColor = (0.29999999999999999, 0.29999999999999999, 0.29999999999999999, 1.0)
+Sawing.cutColor = (0.299, 0.299, 0.299, 1.0)
 Sawing.zone1Color = (0.75, 0.75, 0.75, 1.0)
 Sawing.zone2Color = (0.75, 0.75, 0.75, 1.0)
 Sawing.sawTurnSpeed = 1000
 Sawing.newBoardAnimTime = 0.25
 Sawing.splitBoardAnimTime = 0.5
-Sawing.activeBoardPosition = (0.0, 0.0, 0.10000000000000001)
+Sawing.activeBoardPosition = (0.0, 0.0, 0.100)
 Sawing.boardYDist = 1.3
 from RepairGridPiece import GOAL_HORIZ_1, GOAL_HORIZ_2, GOAL_VERT_1
 Bracing = VariableContainer()
 Bracing.difficultyLevels = ((8, (GOAL_HORIZ_1,)), (7, (GOAL_HORIZ_1,)), (6, (GOAL_HORIZ_1,)), (7, (GOAL_HORIZ_1, GOAL_VERT_1)), (6, (GOAL_HORIZ_1, GOAL_VERT_1)), (5, (GOAL_HORIZ_1, GOAL_VERT_1)), (4, (GOAL_HORIZ_1, GOAL_VERT_1)), (5, (GOAL_HORIZ_1, GOAL_HORIZ_2)), (4, (GOAL_HORIZ_1, GOAL_HORIZ_2)), (3, (GOAL_HORIZ_1, GOAL_HORIZ_2)))
-Bracing.moveTime = 0.080000000000000002
-Bracing.fadeTime = 0.14999999999999999
-Bracing.movePieceThreshold = 0.080000000000000002
+Bracing.moveTime = 0.08
+Bracing.fadeTime = 0.149
+Bracing.movePieceThreshold = 0.08
 Bracing.pushPieceThreshold = 0.01
 Bracing.repairTimeframe = 20
 Hammering = VariableContainer()
-Hammering.reticleScaleRange = (0.20000000000000001, 1.0)
+Hammering.reticleScaleRange = (0.200, 1.0)
 Hammering.reticleScaleRate = 1.0
 Hammering.recoveryTime = 4.0
 Hammering.nailCountRange = (4, 8)
 Hammering.rankingThresholds = (5, 4, 3, 2, 1)
-Hammering.hitForgiveness = 0.10000000000000001
+Hammering.hitForgiveness = 0.100
 Hammering.useReticleColor = True
 Pitching = VariableContainer()
-Pitching.leakScaleRange = (0.10000000000000001, 0.27500000000000002)
-Pitching.spawnDelayRange = (0.5, 0.10000000000000001, 2.0, 1.0)
+Pitching.leakScaleRange = (0.100, 0.275)
+Pitching.spawnDelayRange = (0.5, 0.100, 2.0, 1.0)
 Pitching.leakCountRange = (16, 32)
 Pitching.maxLeaksRange = (2, 5)
 Pitching.useReticle = True

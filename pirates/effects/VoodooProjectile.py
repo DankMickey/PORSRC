@@ -28,7 +28,7 @@ class VoodooProjectile(PooledEffect, EffectController):
             VoodooProjectile.particleDummy.setColorScaleOff()
             VoodooProjectile.particleDummy.setFogOff()
 
-        self.effectColor = Vec4(0.5, 0.20000000000000001, 1, 1)
+        self.effectColor = Vec4(0.5, 0.200, 1, 1)
         self.f = ParticleEffect.ParticleEffect('VoodooProjectile')
         self.f.reparentTo(self)
         self.p0 = Particles.Particles('particles-1')
@@ -37,12 +37,12 @@ class VoodooProjectile(PooledEffect, EffectController):
         self.p0.setEmitter('DiscEmitter')
         self.f.addParticles(self.p0)
         self.motion_color = [
-            Vec4(0.5, 0.20000000000000001, 1.0, 1.0),
-            Vec4(0.5, 0.20000000000000001, 1.0, 1.0),
-            Vec4(0.5, 0.20000000000000001, 1.0, 1.0),
-            Vec4(0.5, 0.20000000000000001, 1.0, 1.0),
-            Vec4(0.5, 0.20000000000000001, 1.0, 1.0)]
-        r = 0.20000000000000001
+            Vec4(0.5, 0.200, 1.0, 1.0),
+            Vec4(0.5, 0.200, 1.0, 1.0),
+            Vec4(0.5, 0.200, 1.0, 1.0),
+            Vec4(0.5, 0.200, 1.0, 1.0),
+            Vec4(0.5, 0.200, 1.0, 1.0)]
+        r = 0.200
         vertex_list = [
             Vec4(r, 0.0, r, 1.0),
             Vec4(r, 0.0, -r, 1.0),
@@ -60,7 +60,7 @@ class VoodooProjectile(PooledEffect, EffectController):
         self.p0.setLocalVelocityFlag(1)
         self.p0.setSystemGrowsOlderFlag(0)
         self.p0.factory.setLifespanBase(0.5)
-        self.p0.factory.setLifespanSpread(0.14999999999999999)
+        self.p0.factory.setLifespanSpread(0.149)
         self.p0.factory.setMassBase(1.0)
         self.p0.factory.setMassSpread(0.0)
         self.p0.factory.setTerminalVelocityBase(400.0)
@@ -81,20 +81,20 @@ class VoodooProjectile(PooledEffect, EffectController):
         self.p0.renderer.setAnimAngleFlag(1)
         self.p0.renderer.setInitialXScale(0.01 * self.cardScale)
         self.p0.renderer.setInitialYScale(0.01 * self.cardScale)
-        self.p0.renderer.setFinalXScale(0.025000000000000001 * self.cardScale)
-        self.p0.renderer.setFinalYScale(0.025000000000000001 * self.cardScale)
+        self.p0.renderer.setFinalXScale(0.0250 * self.cardScale)
+        self.p0.renderer.setFinalYScale(0.0250 * self.cardScale)
         self.p0.renderer.setNonanimatedTheta(0.0)
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPBLENDLINEAR)
         self.p0.renderer.setAlphaDisable(0)
         self.p0.renderer.setColorBlendMode(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne)
-        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(1.0, 1.0, 1.0, 1.0), Vec4(0.5, 0.20000000000000001, 1.0, 0.25), 1)
+        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(1.0, 1.0, 1.0, 1.0), Vec4(0.5, 0.200, 1.0, 0.25), 1)
         self.p0.emitter.setEmissionType(BaseParticleEmitter.ETRADIATE)
         self.p0.emitter.setAmplitude(-0.25)
         self.p0.emitter.setAmplitudeSpread(0.25)
         self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, -2.0))
         self.p0.emitter.setExplicitLaunchVector(Vec3(1.0, 0.0, 0.0))
         self.p0.emitter.setRadiateOrigin(Point3(0.0, 0.0, 0.0))
-        self.p0.emitter.setRadius(0.10000000000000001)
+        self.p0.emitter.setRadius(0.100)
 
 
     def createTrack(self, targetPos, speed, target, motion_color):

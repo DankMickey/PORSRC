@@ -59,7 +59,7 @@ class GameOptionsGui(DirectFrame):
         self.gameOptions = gameOptions
         self.chooser = chooser
         self.pipeMenu = None
-        DirectFrame.__init__(self, relief = None, image = loader.loadModel('models/misc/fade'), image_scale = (5, 2, 2), image_color = (0, 0, 0, 0.80000000000000004), image_pos = (0.5, 0, 0.80000000000000004), state = DGG.NORMAL, pos = (x, 0.0, y), sortOrder = 20)
+        DirectFrame.__init__(self, relief = None, image = loader.loadModel('models/misc/fade'), image_scale = (5, 2, 2), image_color = (0, 0, 0, 0.800000), image_pos = (0.5, 0, 0.800000), state = DGG.NORMAL, pos = (x, 0.0, y), sortOrder = 20)
         self.initialiseoptions(GameOptionsGui)
         self.setBin('gui-fixed', 10)
         self.setupUpperFrame()
@@ -84,30 +84,30 @@ class GameOptionsGui(DirectFrame):
     def setupUpperFrame(self):
         gui_main = loader.loadModel('models/gui/gui_main')
         topImage = gui_main.find('**/game_options_panel/top')
-        topImage.setPos(0.52000000000000002, 0, -0.14999999999999999)
+        topImage.setPos(0.52, 0, -0.149)
         gui_main.remove_node()
-        x = 0.29999999999999999
-        self.upperFrame = DirectFrame(parent = self, relief = None, image = topImage, image_scale = 0.29999999999999999, pos = (x, 0, self.height - 0.26000000000000001 - PiratesGuiGlobals.TextScaleLarge * 7))
+        x = 0.299
+        self.upperFrame = DirectFrame(parent = self, relief = None, image = topImage, image_scale = 0.299, pos = (x, 0, self.height - 0.260 - PiratesGuiGlobals.TextScaleLarge * 7))
         self.upperFrame.setBin('gui-fixed', 15)
-        DirectLabel(parent = self.upperFrame, relief = None, text = PLocalizer.GameOptionsTitle, text_align = TextNode.ACenter, text_scale = PiratesGuiGlobals.TextScaleTitleSmall, text_pos = (0.51000000000000001, 0.46500000000000002), text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getInterfaceOutlineFont(), textMayChange = 1)
-        x -= 0.099000000000000005
-        y = 1.3999999999999999
-        self.displayButtonFrame = BorderFrame(parent = self, pos = (x, 0, y), frameSize = (-0.13, 0.13, -0.0625, 0.0625), showBackground = False, borderScale = 0.20000000000000001, modelName = 'general_frame_d')
+        DirectLabel(parent = self.upperFrame, relief = None, text = PLocalizer.GameOptionsTitle, text_align = TextNode.ACenter, text_scale = PiratesGuiGlobals.TextScaleTitleSmall, text_pos = (0.510, 0.465), text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getInterfaceOutlineFont(), textMayChange = 1)
+        x -= 0.0990000
+        y = 1.39
+        self.displayButtonFrame = BorderFrame(parent = self, pos = (x, 0, y), frameSize = (-0.13, 0.13, -0.0625, 0.0625), showBackground = False, borderScale = 0.200, modelName = 'general_frame_d')
         self.displayButton = DirectButton(parent = self.displayButtonFrame, text = PLocalizer.GameOptionsDisplay, text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = (1.0, 1.0, 1.0, 1.0), frameColor = (1.0, 0.0, 1.0, 0), frameSize = self.displayButtonFrame.getInnerFrameSize(), command = self.updateUI, text_pos = (0.019, -0.01), extraArgs = [
             'display'])
         self.displayButton.setBin('gui-fixed', 20)
-        y -= 0.080000000000000002
-        self.audioButtonFrame = BorderFrame(parent = self, pos = (x, 0, y), frameSize = (-0.13, 0.13, -0.0625, 0.0625), showBackground = False, borderScale = 0.20000000000000001, modelName = 'general_frame_d')
+        y -= 0.08
+        self.audioButtonFrame = BorderFrame(parent = self, pos = (x, 0, y), frameSize = (-0.13, 0.13, -0.0625, 0.0625), showBackground = False, borderScale = 0.200, modelName = 'general_frame_d')
         self.audioButton = DirectButton(parent = self.audioButtonFrame, text = PLocalizer.GameOptionsAudio, text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = (1.0, 1.0, 1.0, 1.0), frameColor = (1.0, 0.0, 1.0, 0), frameSize = self.audioButtonFrame.getInnerFrameSize(), command = self.updateUI, text_pos = (0.019, -0.01), extraArgs = [
             'audio'])
         self.audioButtonFrame.setBin('gui-fixed', 10)
-        y -= 0.080000000000000002
-        self.interfaceButtonFrame = BorderFrame(parent = self, pos = (x, 0, y), frameSize = (-0.13, 0.13, -0.0625, 0.0625), showBackground = False, borderScale = 0.20000000000000001, modelName = 'general_frame_d')
+        y -= 0.08
+        self.interfaceButtonFrame = BorderFrame(parent = self, pos = (x, 0, y), frameSize = (-0.13, 0.13, -0.0625, 0.0625), showBackground = False, borderScale = 0.200, modelName = 'general_frame_d')
         self.interfaceButton = DirectButton(parent = self.interfaceButtonFrame, text = PLocalizer.GameOptionsInterface, text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = (1.0, 1.0, 1.0, 1.0), frameColor = (1.0, 0.0, 1.0, 0), frameSize = self.interfaceButtonFrame.getInnerFrameSize(), command = self.updateUI, text_pos = (0.019, -0.01), extraArgs = [
             'interface'])
         self.interfaceButtonFrame.setBin('gui-fixed', 10)
-        y -= 0.080000000000000002
-        self.tutorialButtonFrame = BorderFrame(parent = self, pos = (x, 0, y), frameSize = (-0.13, 0.13, -0.0625, 0.0625), showBackground = False, borderScale = 0.20000000000000001, modelName = 'general_frame_d')
+        y -= 0.08
+        self.tutorialButtonFrame = BorderFrame(parent = self, pos = (x, 0, y), frameSize = (-0.13, 0.13, -0.0625, 0.0625), showBackground = False, borderScale = 0.200, modelName = 'general_frame_d')
         self.tutorialButton = DirectButton(parent = self.tutorialButtonFrame, text = PLocalizer.GameOptionsTutorial, text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = (1.0, 1.0, 1.0, 1.0), frameColor = (1.0, 0.0, 1.0, 0), frameSize = self.tutorialButtonFrame.getInnerFrameSize(), command = self.updateUI, text_pos = (0.019, -0.01), extraArgs = [
             'notify'])
         self.tutorialButtonFrame.setBin('gui-fixed', 10)
@@ -134,8 +134,8 @@ class GameOptionsGui(DirectFrame):
         main_gui.remove_node()
         x = 1.216
         y = -0.383
-        self.button = GuiButton(parent = parent, relief = None, pos = (x, 0, y), image = (generic_box, generic_box, generic_box_over, generic_box), image_scale = 0.40000000000000002, command = self.close)
-        self.xButton = OnscreenImage(parent = self.button, image = generic_x, scale = 0.20000000000000001, pos = (-0.25600000000000001, 0, 0.76600000000000001))
+        self.button = GuiButton(parent = parent, relief = None, pos = (x, 0, y), image = (generic_box, generic_box, generic_box_over, generic_box), image_scale = 0.4, command = self.close)
+        self.xButton = OnscreenImage(parent = self.button, image = generic_x, scale = 0.200, pos = (-0.256, 0, 0.766))
 
 
     def setupDisplayFrame(self):
@@ -143,19 +143,19 @@ class GameOptionsGui(DirectFrame):
         parent = self.displayFrame
         self.displayVar = [
             0]
-        x = 0.20000000000000001
-        y = 0.28000000000000003
-        sx = 0.20000000000000001
-        oy = 0.040000000000000001
-        self.displayRadios = self.createRadioButtonGroup(parent, x, y, sx, oy, self.displayVar, 0.14999999999999999, [
+        x = 0.200
+        y = 0.28000
+        sx = 0.200
+        oy = 0.0400
+        self.displayRadios = self.createRadioButtonGroup(parent, x, y, sx, oy, self.displayVar, 0.149, [
             PLocalizer.GameOptionsLow,
             PLocalizer.GameOptionsMedium,
             PLocalizer.GameOptionsHigh,
-            PLocalizer.GameOptionsCustom], 1.3999999999999999, self.displayRadioButtonCB)
+            PLocalizer.GameOptionsCustom], 1.39, self.displayRadioButtonCB)
         x = 0.16
         y -= oy * 3
-        ox = 0.040000000000000001
-        sy = -0.070000000000000007
+        ox = 0.0400
+        sy = -0.070
         if base.appRunner is None or base.appRunner.windowProperties is None:
             y += sy
             self.windowChoices = [
@@ -178,10 +178,10 @@ class GameOptionsGui(DirectFrame):
                 PLocalizer.GameOptionsFullscreenMode]
         self.windowModeRadios = self.createRadioButtonGroupVertical(parent, x, y, ox, sy, self.windowVar, 0.12, self.windowChoices, 1.2, self.windowRadioButtonCB)
 
-        x += 0.29999999999999999
+        x += 0.299
         oy = sy
         text = PLocalizer.GameOptionsEmbeddedRestriction
-        self.restrictToEmbeddedMsg = self.create_label(x + 0.050000000000000003, y + oy * len(self.windowChoices), text, parent, 0.90000000000000002, text_align = TextNode.ACenter, color = (0.69999999999999996, 0.69999999999999996, 0.69999999999999996, 1))
+        self.restrictToEmbeddedMsg = self.create_label(x + 0.050000, y + oy * len(self.windowChoices), text, parent, 0.9, text_align = TextNode.ACenter, color = (0.696, 0.696, 0.696, 1))
         if base.appRunner is not None and base.appRunner.windowProperties is not None:
             y += oy
 
@@ -204,7 +204,7 @@ class GameOptionsGui(DirectFrame):
                 return int(xs[0]) - int(ys[0])
 
         self.windowed_resolutions.sort(resolution_compare)
-        self.windowedResolutionMenu = OptionMenu(parent = parent, scale = 0.050000000000000003, pos = (x + 0.20000000000000001, 0, y), items = self.windowed_resolutions, command = self.windowedResolutionMenuCB)
+        self.windowedResolutionMenu = OptionMenu(parent = parent, scale = 0.050000, pos = (x + 0.200, 0, y), items = self.windowed_resolutions, command = self.windowedResolutionMenuCB)
         y += oy
         text = PLocalizer.GameOptionsFullscreenResolutions
         fullscreen_resolutions = []
@@ -216,10 +216,10 @@ class GameOptionsGui(DirectFrame):
             fullscreen_resolutions.append(fullscreen_resolution[0].__repr__() + 'x' + fullscreen_resolution[1].__repr__())
 
         fullscreen_resolutions.sort(resolution_compare)
-        self.fullscreenResolutionMenu = OptionMenu(parent = parent, scale = 0.050000000000000003, pos = (x + 0.20000000000000001, 0, y), items = fullscreen_resolutions, command = self.fullscreenResolutionMenuCB)
+        self.fullscreenResolutionMenu = OptionMenu(parent = parent, scale = 0.050000, pos = (x + 0.200, 0, y), items = fullscreen_resolutions, command = self.fullscreenResolutionMenuCB)
         y -= 2 * oy
         sl = 1.0
-        sc = 0.34999999999999998
+        sc = 0.348
         enableDynamicPipeSwitching = 0
         if enableDynamicPipeSwitching:
             base.makeAllPipes()
@@ -227,32 +227,32 @@ class GameOptionsGui(DirectFrame):
             for apipe in base.pipeList:
                 self.pipe_names.append(apipe.getInterfaceName())
 
-            self.pipeMenu = OptionMenu(parent = parent, scale = 0.050000000000000003, pos = (x + 0.20000000000000001, 0, y), items = self.pipe_names, command = self.pipeMenuCB)
+            self.pipeMenu = OptionMenu(parent = parent, scale = 0.050000, pos = (x + 0.200, 0, y), items = self.pipe_names, command = self.pipeMenuCB)
 
         if base.config.GetBool('enable-stereo-display', 0):
             if base.appRunner is None or base.appRunner.windowProperties is None:
-                x -= 0.40000000000000002
+                x -= 0.4
 
             text = PLocalizer.GameOptionsStereo
-            self.create_label(x + 0.14999999999999999, y, text, parent, sl)
-            self.stereoCheck = CheckButton(parent = parent, relief = None, scale = sc, pos = (x + 0.10000000000000001, 0, y + 0.014999999999999999), command = self.stereoCheckCB)
+            self.create_label(x + 0.149, y, text, parent, sl)
+            self.stereoCheck = CheckButton(parent = parent, relief = None, scale = sc, pos = (x + 0.100, 0, y + 0.0149), command = self.stereoCheckCB)
 
 
 
     def setupAudioFrame(self):
         self.audioFrame = DirectFrame(parent = self.upperFrame, relief = None)
         parent = self.audioFrame
-        x = 0.10000000000000001
-        y = 0.23000000000000001
+        x = 0.100
+        y = 0.230
         text = PLocalizer.GameOptionsSoundEffects
         self.create_label(x, y, text, parent, 1.2)
-        x += 0.33500000000000002
-        self.soundEffectCheck = CheckButton(parent = parent, relief = None, scale = 0.40000000000000002, pos = (x, 0, y + 0.014999999999999999), command = self.soundEffectCheckCB)
+        x += 0.335
+        self.soundEffectCheck = CheckButton(parent = parent, relief = None, scale = 0.4, pos = (x, 0, y + 0.0149), command = self.soundEffectCheckCB)
         x = 0.25
-        y -= 0.050000000000000003
+        y -= 0.050000
         text = PLocalizer.GameOptionsVolume
         self.create_label(x, y, text, parent)
-        x += 0.42999999999999999
+        x += 0.429
 
         def sound_volume_update_function(value):
             if self.gameOptions is not None:
@@ -274,17 +274,17 @@ class GameOptionsGui(DirectFrame):
             self.sound_volume_slider = self.create_slider(sound_volume_update_function, self.gameOptions.options.sound_volume, x, y, resolution, text, parent)
         else:
             self.sound_volume_slider = self.create_slider(sound_volume_update_function, default_value, x, y, resolution, text, parent)
-        x = 0.10000000000000001
-        y -= 0.10000000000000001
+        x = 0.100
+        y -= 0.100
         text = PLocalizer.GameOptionsMusic
         self.create_label(x, y, text, parent, 1.2)
-        x += 0.17999999999999999
-        self.musicCheck = CheckButton(parent = parent, relief = None, scale = 0.40000000000000002, pos = (x, 0, y + 0.014999999999999999), command = self.musicCheckCB)
+        x += 0.179
+        self.musicCheck = CheckButton(parent = parent, relief = None, scale = 0.4, pos = (x, 0, y + 0.0149), command = self.musicCheckCB)
         x = 0.25
-        y -= 0.050000000000000003
+        y -= 0.050000
         text = PLocalizer.GameOptionsVolume
         self.create_label(x, y, text, parent)
-        x += 0.42999999999999999
+        x += 0.429
 
         def music_volume_update_function(value):
             if self.gameOptions is not None:
@@ -306,37 +306,37 @@ class GameOptionsGui(DirectFrame):
     def setupTutorialFrame(self):
         self.tutorialFrame = DirectFrame(parent = self.upperFrame, relief = None)
         parent = self.tutorialFrame
-        x = 0.20000000000000001
-        y = 0.29999999999999999
+        x = 0.200
+        y = 0.299
         text = PLocalizer.GameOptionsContextTutPanels
         self.create_label(x, y, text, parent, 1.5)
-        y -= 0.10000000000000001
-        self.basicCheck = CheckButton(parent = parent, relief = None, scale = 0.40000000000000002, pos = (x, 0, y + 0.014999999999999999), command = self.basicCheckCB)
+        y -= 0.100
+        self.basicCheck = CheckButton(parent = parent, relief = None, scale = 0.4, pos = (x, 0, y + 0.0149), command = self.basicCheckCB)
         text = PLocalizer.GameOptionsBasic
-        self.create_label(x + 0.050000000000000003, y, text, parent)
-        y -= 0.10000000000000001
-        self.intCheck = CheckButton(parent = parent, relief = None, scale = 0.40000000000000002, pos = (x, 0, y + 0.014999999999999999), command = self.intCheckCB)
+        self.create_label(x + 0.050000, y, text, parent)
+        y -= 0.100
+        self.intCheck = CheckButton(parent = parent, relief = None, scale = 0.4, pos = (x, 0, y + 0.0149), command = self.intCheckCB)
         text = PLocalizer.GameOptionsIntermediate
-        self.create_label(x + 0.050000000000000003, y, text, parent)
-        y -= 0.10000000000000001
-        self.advCheck = CheckButton(parent = parent, relief = None, scale = 0.40000000000000002, pos = (x, 0, y + 0.014999999999999999), command = self.advCheckCB)
+        self.create_label(x + 0.050000, y, text, parent)
+        y -= 0.100
+        self.advCheck = CheckButton(parent = parent, relief = None, scale = 0.4, pos = (x, 0, y + 0.0149), command = self.advCheckCB)
         text = PLocalizer.GameOptionsAdvanced
-        self.create_label(x + 0.050000000000000003, y, text, parent)
+        self.create_label(x + 0.050000, y, text, parent)
 
 
     def setupInterfaceFrame(self):
         self.interfaceFrame = DirectFrame(parent = self.upperFrame, relief = None)
         parent = self.interfaceFrame
-        x = 0.10000000000000001
-        y = 0.40000000000000002
-        oy = -0.080000000000000002
+        x = 0.100
+        y = 0.4
+        oy = -0.08
         sl = 1.0
-        sc = 0.34999999999999998
-        ox = 0.59999999999999998
+        sc = 0.348
+        ox = 0.598
         y += oy
         text = PLocalizer.GameOptionsInvertMouseLook
         self.create_label(x, y, text, parent, sl)
-        self.invertMouseCheck = CheckButton(parent = parent, relief = None, scale = sc, pos = (x + 0.35999999999999999, 0, y + 0.014999999999999999), command = self.invertMouseCheckCB)
+        self.invertMouseCheck = CheckButton(parent = parent, relief = None, scale = sc, pos = (x + 0.359, 0, y + 0.0149), command = self.invertMouseCheckCB)
         y += oy
         text = PLocalizer.GameOptionsGUIScale
         self.create_label(x, y, text, parent, sl)
@@ -352,7 +352,7 @@ class GameOptionsGui(DirectFrame):
                 gui_manager = None
 
             if gui_manager:
-                gui_manager.setUIScale(value * 0.59999999999999998 + 0.69999999999999996)
+                gui_manager.setUIScale(value * 0.598 + 0.696)
 
 
         resolution = 0.01
@@ -378,29 +378,29 @@ class GameOptionsGui(DirectFrame):
         y += oy
         text = PLocalizer.GameOptionsRotateCompassOnLand
         self.create_label(x, y, text, parent, sl)
-        self.rotateCompassOnLandCheck = CheckButton(parent = parent, relief = None, scale = sc, pos = (x + 0.67500000000000004, 0, y + 0.014999999999999999), command = self.landMapRadarAxisCB)
+        self.rotateCompassOnLandCheck = CheckButton(parent = parent, relief = None, scale = sc, pos = (x + 0.675000, 0, y + 0.0149), command = self.landMapRadarAxisCB)
         y += oy
         text = PLocalizer.GameOptionsRotateCompassAtSea
         self.create_label(x, y, text, parent, sl)
-        self.rotateCompassAtSeaCheck = CheckButton(parent = parent, relief = None, scale = sc, pos = (x + 0.67500000000000004, 0, y + 0.014999999999999999), command = self.oceanMapRadarAxisCB)
+        self.rotateCompassAtSeaCheck = CheckButton(parent = parent, relief = None, scale = sc, pos = (x + 0.675000, 0, y + 0.0149), command = self.oceanMapRadarAxisCB)
 
 
     def setupLowerFrame(self):
-        self.lowerFrame = DirectFrame(parent = self, relief = None, pos = (0.29999999999999999, 0, self.height - 0.91000000000000003 - PiratesGuiGlobals.TextScaleLarge * 17))
+        self.lowerFrame = DirectFrame(parent = self, relief = None, pos = (0.299, 0, self.height - 0.91000 - PiratesGuiGlobals.TextScaleLarge * 17))
         gui_main = loader.loadModel('models/gui/gui_main')
         bottomImage = gui_main.find('**/game_options_panel/bottom')
-        bottomImage.setPos(0.52000000000000002, 0, 0.90000000000000002)
+        bottomImage.setPos(0.52, 0, 0.9)
         gui_main.remove_node()
-        self.customFrame = DirectFrame(parent = self.lowerFrame, relief = None, image = bottomImage, image_scale = 0.29999999999999999, frameSize = (0, self.width, 0, PiratesGuiGlobals.TextScaleLarge * 22), pos = (0, 0, 0))
+        self.customFrame = DirectFrame(parent = self.lowerFrame, relief = None, image = bottomImage, image_scale = 0.299, frameSize = (0, self.width, 0, PiratesGuiGlobals.TextScaleLarge * 22), pos = (0, 0, 0))
         self.customFrame.setBin('gui-fixed', 15)
-        x = -0.099000000000000005
-        y = 0.68999999999999995
-        self.graphicsButtonFrame = BorderFrame(parent = self.lowerFrame, pos = (x, 0, y), frameSize = (-0.13, 0.13, -0.0625, 0.0625), showBackground = False, borderScale = 0.20000000000000001, modelName = 'general_frame_d')
+        x = -0.0990000
+        y = 0.685
+        self.graphicsButtonFrame = BorderFrame(parent = self.lowerFrame, pos = (x, 0, y), frameSize = (-0.13, 0.13, -0.0625, 0.0625), showBackground = False, borderScale = 0.200, modelName = 'general_frame_d')
         self.graphicsButton = DirectButton(parent = self.graphicsButtonFrame, text = PLocalizer.GameOptionsGraphics, text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = (1.0, 1.0, 1.0, 1.0), frameColor = (1.0, 0.0, 1.0, 0), frameSize = self.graphicsButtonFrame.getInnerFrameSize(), command = self.updateUI, text_pos = (0.019, -0.01), extraArgs = [
             'graphics'])
         self.graphicsButton.setBin('gui-fixed', 20)
-        y -= 0.080000000000000002
-        self.imageButtonFrame = BorderFrame(parent = self.lowerFrame, pos = (x, 0, y), frameSize = (-0.13, 0.13, -0.0625, 0.0625), showBackground = False, borderScale = 0.20000000000000001, modelName = 'general_frame_d')
+        y -= 0.08
+        self.imageButtonFrame = BorderFrame(parent = self.lowerFrame, pos = (x, 0, y), frameSize = (-0.13, 0.13, -0.0625, 0.0625), showBackground = False, borderScale = 0.200, modelName = 'general_frame_d')
         self.imageButton = DirectButton(parent = self.imageButtonFrame, text = PLocalizer.GameOptionsImage, text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = (1.0, 1.0, 1.0, 1.0), frameColor = (1.0, 0.0, 1.0, 0), frameSize = self.imageButtonFrame.getInnerFrameSize(), command = self.updateUI, text_pos = (0.019, -0.01), extraArgs = [
             'image'])
         self.imageButtonFrame.setBin('gui-fixed', 10)
@@ -408,49 +408,49 @@ class GameOptionsGui(DirectFrame):
 
     def setupGraphicsFrame(self):
         self.graphicsFrame = DirectFrame(parent = self.customFrame, relief = None)
-        x = 0.070000000000000007
-        y = 0.68999999999999995
-        oy = -0.074999999999999997
+        x = 0.070
+        y = 0.685
+        oy = -0.074
         parent = self.graphicsFrame
         sl = 1
-        sc = 0.34999999999999998
+        sc = 0.348
         text = PLocalizer.GameOptionsCharacterDetailLevel
         self.create_label(x, y, text, parent, sl)
-        rx = 0.54000000000000004
-        sx = 0.20000000000000001
+        rx = 0.540000
+        sx = 0.200
         self.characterDetailVar = [
             0]
-        self.characterDetailRadios = self.createRadioButtonGroup(parent, rx, y, sx, 0.029999999999999999, self.characterDetailVar, 0.14999999999999999, [
+        self.characterDetailRadios = self.createRadioButtonGroup(parent, rx, y, sx, 0.0299, self.characterDetailVar, 0.149, [
             PLocalizer.GameOptionsLow,
             PLocalizer.GameOptionsMedium,
-            PLocalizer.GameOptionsHigh], 0.80000000000000004, self.characterDetailRadiosCB)
+            PLocalizer.GameOptionsHigh], 0.800000, self.characterDetailRadiosCB)
         y += oy
         text = PLocalizer.GameOptionsTerrainDetailLevel
         self.create_label(x, y, text, parent, sl)
         self.terrainDetailVar = [
             0]
-        self.terrainDetailRadios = self.createRadioButtonGroup(parent, rx, y, sx, 0.029999999999999999, self.terrainDetailVar, 0.14999999999999999, [
+        self.terrainDetailRadios = self.createRadioButtonGroup(parent, rx, y, sx, 0.0299, self.terrainDetailVar, 0.149, [
             PLocalizer.GameOptionsLow,
             PLocalizer.GameOptionsMedium,
-            PLocalizer.GameOptionsHigh], 0.80000000000000004, self.terrainDetailRadiosCB)
+            PLocalizer.GameOptionsHigh], 0.800000, self.terrainDetailRadiosCB)
         y += oy
         text = PLocalizer.GameOptionsReflections
         self.create_label(x, y, text, parent, sl)
         self.reflectionsVar = [
             0]
-        self.reflectionRadios = self.createRadioButtonGroup(parent, rx, y, sx, 0.029999999999999999, self.reflectionsVar, 0.14999999999999999, [
+        self.reflectionRadios = self.createRadioButtonGroup(parent, rx, y, sx, 0.0299, self.reflectionsVar, 0.149, [
             PLocalizer.GameOptionsOff,
             PLocalizer.GameOptionsSkyOnly,
-            PLocalizer.GameOptionsOn], 0.80000000000000004, self.reflectionRadiosCB)
+            PLocalizer.GameOptionsOn], 0.800000, self.reflectionRadiosCB)
         y += oy
         text = PLocalizer.GameOptionsSpecialEffectsLevel
         self.create_label(x, y, text, parent, sl)
         self.specialEffectsVar = [
             0]
-        self.specialEffectsRadios = self.createRadioButtonGroup(parent, rx, y, sx, 0.029999999999999999, self.specialEffectsVar, 0.14999999999999999, [
+        self.specialEffectsRadios = self.createRadioButtonGroup(parent, rx, y, sx, 0.0299, self.specialEffectsVar, 0.149, [
             PLocalizer.GameOptionsLow,
             PLocalizer.GameOptionsMedium,
-            PLocalizer.GameOptionsHigh], 0.80000000000000004, self.specialEffectsRadiosCB)
+            PLocalizer.GameOptionsHigh], 0.800000, self.specialEffectsRadiosCB)
         y += oy
         text = PLocalizer.GameOptionsTextureDetailLevel
         self.create_label(x, y, text, parent, sl)
@@ -458,65 +458,65 @@ class GameOptionsGui(DirectFrame):
             0]
         if self.gameOptions is not None and self.gameOptions.options.texture_scale_mode == False:
             sx = 0.13
-            self.textureDetailRadios = self.createRadioButtonGroup(parent, rx, y, sx, 0.029999999999999999, self.textureDetailVar, 0.14999999999999999, [
+            self.textureDetailRadios = self.createRadioButtonGroup(parent, rx, y, sx, 0.0299, self.textureDetailVar, 0.149, [
                 PLocalizer.GameOptionsLow,
                 PLocalizer.GameOptionsMedium,
                 PLocalizer.GameOptionsHigh,
-                PLocalizer.GameOptionsMaximum], 0.80000000000000004, self.textureDetailRadiosCB)
+                PLocalizer.GameOptionsMaximum], 0.800000, self.textureDetailRadiosCB)
         else:
-            self.textureDetailRadios = self.createRadioButtonGroup(parent, rx, y, sx, 0.029999999999999999, self.textureDetailVar, 0.14999999999999999, [
+            self.textureDetailRadios = self.createRadioButtonGroup(parent, rx, y, sx, 0.0299, self.textureDetailVar, 0.149, [
                 PLocalizer.GameOptionsLow,
                 PLocalizer.GameOptionsMedium,
-                PLocalizer.GameOptionsHigh], 0.80000000000000004, self.textureDetailRadiosCB)
+                PLocalizer.GameOptionsHigh], 0.800000, self.textureDetailRadiosCB)
         y += oy
         text = PLocalizer.GameOptionsTextureCompressed
         self.create_label(x, y, text, parent, sl)
-        self.compressedTextureCheck = CheckButton(parent = parent, relief = None, scale = sc, pos = (x + 0.41999999999999998, 0, y + 0.014999999999999999), command = self.compressedTextureCheckCB)
+        self.compressedTextureCheck = CheckButton(parent = parent, relief = None, scale = sc, pos = (x + 0.418, 0, y + 0.0149), command = self.compressedTextureCheckCB)
         y += oy
         text = PLocalizer.GameOptionsAggressiveMemory
         self.create_label(x, y, text, parent, sl)
-        self.aggressiveMemoryCheck = CheckButton(parent = parent, relief = None, scale = sc, pos = (x + 0.62, 0, y + 0.014999999999999999), command = self.aggressiveMemoryCheckCB)
+        self.aggressiveMemoryCheck = CheckButton(parent = parent, relief = None, scale = sc, pos = (x + 0.62, 0, y + 0.0149), command = self.aggressiveMemoryCheckCB)
         y += oy
         if self.gameOptions is not None and self.gameOptions.shader_support:
             text = PLocalizer.GameOptionsShaderLevel + ' ' + self.gameOptions.shader_model.__repr__() + ' *'
             self.create_label(x, y, text, parent, sl)
-            self.shaderLevelCheck = CheckButton(parent = parent, relief = None, scale = sc, pos = (x + 0.315, 0, y + 0.014999999999999999), command = self.shaderLevelCheckCB)
+            self.shaderLevelCheck = CheckButton(parent = parent, relief = None, scale = sc, pos = (x + 0.315, 0, y + 0.0149), command = self.shaderLevelCheckCB)
         else:
             text = PLocalizer.GameOptionsNoShader
-            self.create_label(x, y, text, parent, sl * 0.90000000000000002)
+            self.create_label(x, y, text, parent, sl * 0.9)
             self.shaderLevelCheck = None
         self.smoothEdgesCheck = None
         if base.win.getFbProperties().getMultisamples() > 1 and base.win.getPipe().getInterfaceName() == 'OpenGL':
             y += oy
             text = PLocalizer.GameOptionsSmoothEdges + ' *'
             self.create_label(x, y, text, parent, sl)
-            self.smoothEdgesCheck = CheckButton(parent = parent, relief = None, scale = sc, pos = (x + 0.315, 0, y + 0.014999999999999999), command = self.smoothEdgesCheckCB)
+            self.smoothEdgesCheck = CheckButton(parent = parent, relief = None, scale = sc, pos = (x + 0.315, 0, y + 0.0149), command = self.smoothEdgesCheckCB)
 
         y += oy
         text = PLocalizer.GameOptionsRenderedShadows
         self.create_label(x, y, text, parent, sl)
-        self.renderedShadowsCheck = CheckButton(parent = parent, relief = None, scale = sc, pos = (x + 0.38, 0, y + 0.014999999999999999), command = self.renderedShadowsCheckCB)
+        self.renderedShadowsCheck = CheckButton(parent = parent, relief = None, scale = sc, pos = (x + 0.38, 0, y + 0.0149), command = self.renderedShadowsCheckCB)
         text = PLocalizer.GameOptionsRestartRequired
         y += oy + 0.01
-        self.create_label(x, y, text, parent, 0.90000000000000002, color = (0.69999999999999996, 0.69999999999999996, 0.69999999999999996, 1))
+        self.create_label(x, y, text, parent, 0.9, color = (0.696, 0.696, 0.696, 1))
 
 
     def setupImageFrame(self):
         self.imageFrame = DirectFrame(parent = self.customFrame, relief = None)
-        x = 0.070000000000000007
-        y = 0.68999999999999995
-        oy = -0.080000000000000002
+        x = 0.070
+        y = 0.685
+        oy = -0.08
         parent = self.imageFrame
         sl = 1.0
-        sc = 0.34999999999999998
-        ox = 0.59999999999999998
+        sc = 0.348
+        ox = 0.598
         y += oy
         text = PLocalizer.GameOptionsHardwareGamma
         self.create_label(x, y, text, parent, sl)
-        self.hardwareGammaCheck = CheckButton(parent = parent, relief = None, scale = sc, pos = (x + 0.35999999999999999, 0, y + 0.014999999999999999), command = self.hardwareGammaCheckCB)
-        y += oy * 0.80000000000000004
+        self.hardwareGammaCheck = CheckButton(parent = parent, relief = None, scale = sc, pos = (x + 0.359, 0, y + 0.0149), command = self.hardwareGammaCheckCB)
+        y += oy * 0.800000
         text = PLocalizer.GameOptionsIntensity
-        self.create_label(x + 0.20000000000000001, y, text, parent, sl * 0.80000000000000004)
+        self.create_label(x + 0.200, y, text, parent, sl * 0.800000)
 
         def gamma_update_function(value):
             if self.gameOptions is not None:
@@ -537,10 +537,10 @@ class GameOptionsGui(DirectFrame):
             y += oy
             text = PLocalizer.GameOptionsHdr
             self.create_label(x, y, text, parent, sl)
-            self.hdrCheck = CheckButton(parent = parent, relief = None, scale = sc, pos = (x + 0.80000000000000004, 0, y + 0.014999999999999999), command = self.hdrCheckCB)
-            y += oy * 0.80000000000000004
+            self.hdrCheck = CheckButton(parent = parent, relief = None, scale = sc, pos = (x + 0.800000, 0, y + 0.0149), command = self.hdrCheckCB)
+            y += oy * 0.800000
             text = PLocalizer.GameOptionsIntensity
-            self.create_label(x + 0.20000000000000001, y, text, parent, sl * 0.80000000000000004)
+            self.create_label(x + 0.200, y, text, parent, sl * 0.800000)
 
             def hdr_update_function(value):
                 if self.gameOptions is not None:
@@ -559,13 +559,13 @@ class GameOptionsGui(DirectFrame):
                 self.hdr_factor_slider = self.create_slider(hdr_update_function, 1.0, x + ox, y, resolution, text, parent)
             text = PLocalizer.GameOptionsRestartRequired
             y += oy
-            self.create_label(x, y, text, parent, 0.90000000000000002, color = (0.69999999999999996, 0.69999999999999996, 0.69999999999999996, 1))
+            self.create_label(x, y, text, parent, 0.9, color = (0.696, 0.696, 0.696, 1))
 
         if base.config.GetBool('want-cpu-frequency-warning', 0):
             y += oy
             text = PLocalizer.GameOptionsCpuFrequencyWarning
             self.create_label(x, y, text, parent, sl)
-            self.cpuFrequencyWarningCheck = CheckButton(parent = parent, relief = None, scale = sc, pos = (x + 0.45000000000000001, 0, y + 0.014999999999999999), command = self.cpuFrequencyWarningCheckCB)
+            self.cpuFrequencyWarningCheck = CheckButton(parent = parent, relief = None, scale = sc, pos = (x + 0.450, 0, y + 0.0149), command = self.cpuFrequencyWarningCheckCB)
         else:
             self.cpuFrequencyWarningCheck = None
 
@@ -623,7 +623,7 @@ class GameOptionsGui(DirectFrame):
             update_function(slider['value'])
 
         charGui = loader.loadModel('models/gui/char_gui')
-        slider = DirectSlider(parent = parent, relief = None, command = update_slider, image = charGui.find('**/chargui_slider_small'), image_scale = (2.1499999999999999, 2.1499999999999999, 1.5), thumb_relief = None, thumb_image = (charGui.find('**/chargui_slider_node'), charGui.find('**/chargui_slider_node_down'), charGui.find('**/chargui_slider_node_over')), pos = (x, 0.0, y + 0.01), text_align = TextNode.ACenter, text_scale = (0.10000000000000001, 0.10000000000000001), text_pos = (0.0, 0.10000000000000001), text_fg = PiratesGuiGlobals.TextFG1, scale = 0.28000000000000003, pageSize = resolution, text = None, value = default_value)
+        slider = DirectSlider(parent = parent, relief = None, command = update_slider, image = charGui.find('**/chargui_slider_small'), image_scale = (2.14, 2.14, 1.5), thumb_relief = None, thumb_image = (charGui.find('**/chargui_slider_node'), charGui.find('**/chargui_slider_node_down'), charGui.find('**/chargui_slider_node_over')), pos = (x, 0.0, y + 0.01), text_align = TextNode.ACenter, text_scale = (0.100, 0.100), text_pos = (0.0, 0.100), text_fg = PiratesGuiGlobals.TextFG1, scale = 0.28000, pageSize = resolution, text = None, value = default_value)
         charGui.remove_node()
         slider.label = label
         slider['extraArgs'] = [
@@ -723,7 +723,7 @@ class GameOptionsGui(DirectFrame):
 
     def highlightButton(self, button):
         if button:
-            button['text_fg'] = (0.20000000000000001, 0.80000000000000004, 0.59999999999999998, 1.0)
+            button['text_fg'] = (0.200, 0.800000, 0.598, 1.0)
 
 
 
@@ -823,17 +823,17 @@ class GameOptionsGui(DirectFrame):
             self.windowModeRadios[-1].check(False)
             self.fullscreenResolutionMenu.updateState(DGG.NORMAL)
             self.windowedResolutionMenu.updateState(DGG.DISABLED)
-            self.restrictToEmbeddedMsg['text_fg'] = (1.0, 0.10000000000000001, 0.10000000000000001, 1)
+            self.restrictToEmbeddedMsg['text_fg'] = (1.0, 0.100, 0.100, 1)
         elif self.gameOptions.options.getEmbedded():
             self.windowModeRadios[-3].check(False)
             self.fullscreenResolutionMenu.updateState(DGG.DISABLED)
             self.windowedResolutionMenu.updateState(DGG.DISABLED)
-            self.restrictToEmbeddedMsg['text_fg'] = (0.69999999999999996, 0.69999999999999996, 0.69999999999999996, 1)
+            self.restrictToEmbeddedMsg['text_fg'] = (0.696, 0.696, 0.696, 1)
         else:
             self.windowModeRadios[-2].check(False)
             self.fullscreenResolutionMenu.updateState(DGG.DISABLED)
             self.windowedResolutionMenu.updateState(DGG.NORMAL)
-            self.restrictToEmbeddedMsg['text_fg'] = (1.0, 0.10000000000000001, 0.10000000000000001, 1)
+            self.restrictToEmbeddedMsg['text_fg'] = (1.0, 0.100, 0.100, 1)
         if self.pipeMenu is not None:
             self.pipeMenu.setByValue(base.pipe.getInterfaceName(), False)
 
@@ -1186,7 +1186,7 @@ class GameOptionsGui(DirectFrame):
             self.defaultDialog.destroy()
 
         self.defaultDialog = PDialog.PDialog(parent = self, text = PLocalizer.GameOptionsDefaultConfirm, style = OTPDialog.YesNo, giveMouse = False, command = self.defaultDialogCB)
-        self.defaultDialog.setPos(0.80000000000000004, 0, 1.0)
+        self.defaultDialog.setPos(0.800000, 0, 1.0)
         self.defaultDialog.setBin('gui-fixed', 20, 20)
 
 
@@ -1208,7 +1208,7 @@ class GameOptionsGui(DirectFrame):
             self.restoreDialog.destroy()
 
         self.restoreDialog = PDialog.PDialog(parent = self, text = PLocalizer.GameOptionsRestoreConfirm, style = OTPDialog.YesNo, giveMouse = False, command = self.restoreDialogCB)
-        self.restoreDialog.setPos(0.80000000000000004, 0, 1.0)
+        self.restoreDialog.setPos(0.800000, 0, 1.0)
         self.restoreDialog.setBin('gui-fixed', 20, 20)
 
 

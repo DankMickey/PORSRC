@@ -26,13 +26,13 @@ MODE_CREW_HUD = 4
 MODE_CREW_HUD_SEA = 5
 
 class PirateMemberButton(GuiButton.GuiButton):
-    memberImageColor = (Vec4(0.31, 0.29999999999999999, 0.29999999999999999, 1), Vec4(0.40999999999999998, 0.40000000000000002, 0.40000000000000002, 1), Vec4(0.40999999999999998, 0.40000000000000002, 0.40000000000000002, 1), Vec4(0.20999999999999999, 0.20000000000000001, 0.20000000000000001, 1))
+    memberImageColor = (Vec4(0.31, 0.299, 0.299, 1), Vec4(0.408, 0.4, 0.4, 1), Vec4(0.408, 0.4, 0.4, 1), Vec4(0.209, 0.200, 0.200, 1))
     OnlineTextColor = PiratesGuiGlobals.TextFG1
-    OnlineButtonColor = VBase4(0.69999999999999996, 0.69999999999999996, 0.69999999999999996, 1.0)
-    OfflineButtonColor = VBase4(0.29999999999999999, 0.29999999999999999, 0.29999999999999999, 1.0)
-    OnlineSubtextColor = (0.80000000000000004, 0.80000000000000004, 0.80000000000000004, 1)
-    OfflineTextColor = (0.45000000000000001, 0.45000000000000001, 0.45000000000000001, 1)
-    OfflineIndicatorColor = (1.0, 0.10000000000000001, 0.10000000000000001, 1.0)
+    OnlineButtonColor = VBase4(0.696, 0.696, 0.696, 1.0)
+    OfflineButtonColor = VBase4(0.299, 0.299, 0.299, 1.0)
+    OnlineSubtextColor = (0.800000, 0.800000, 0.800000, 1)
+    OfflineTextColor = (0.450, 0.450, 0.450, 1)
+    OfflineIndicatorColor = (1.0, 0.100, 0.100, 1.0)
     GFXCARD = loader.loadModel('models/gui/ship_battle')
     TOPGUI = loader.loadModel('models/gui/toplevel_gui')
     ICON = loader.loadModel('models/gui/compass_main')
@@ -78,12 +78,12 @@ class PirateMemberButton(GuiButton.GuiButton):
 
 
         if self.mode == MODE_CREW_HUD:
-            GuiButton.GuiButton.__init__(self, parent = self.owner.memberFrame.getCanvas(), text = '', text_scale = PiratesGuiGlobals.TextScaleMed, text_pos = (0.01, self.owner.memberOffset), text_align = TextNode.ALeft, text_fg = self.OfflineTextColor, text2_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, text_wordwrap = 40, image_scale = (self.owner.memberWidth, 1.0, self.owner.memberHeight * 2.6200000000000001), image_pos = (0.31, 0.0, self.owner.memberHeight * 0.5), command = self.handlePress)
-            self.hpMeter = DirectWaitBar(parent = self, relief = DGG.RAISED, state = DGG.DISABLED, borderWidth = (0.001, 0.001), range = self.maxHp, value = self.hp, frameColor = (0.050000000000000003, 0.050000000000000003, 0.050000000000000003, 1), barColor = (0.10000000000000001, 0.69999999999999996, 0.10000000000000001, 1), pos = (0.13, 0, 0.012), frameSize = (0, 0.29999999999999999, 0, 0.012999999999999999), text = '', text_align = TextNode.ACenter, text_scale = PiratesGuiGlobals.TextScaleTiny, text_fg = PiratesGuiGlobals.TextFG3, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0.14999999999999999, -0.0030000000000000001, 0), textMayChange = 1)
-            self.hpBar = OnscreenImage(parent = self, image = self.HP_IMAGE, scale = (0.23999999999999999, 1.0, 0.40000000000000002), pos = (0.27000000000000002, 0, 0.02))
+            GuiButton.GuiButton.__init__(self, parent = self.owner.memberFrame.getCanvas(), text = '', text_scale = PiratesGuiGlobals.TextScaleMed, text_pos = (0.01, self.owner.memberOffset), text_align = TextNode.ALeft, text_fg = self.OfflineTextColor, text2_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, text_wordwrap = 40, image_scale = (self.owner.memberWidth, 1.0, self.owner.memberHeight * 2.62), image_pos = (0.31, 0.0, self.owner.memberHeight * 0.5), command = self.handlePress)
+            self.hpMeter = DirectWaitBar(parent = self, relief = DGG.RAISED, state = DGG.DISABLED, borderWidth = (0.001, 0.001), range = self.maxHp, value = self.hp, frameColor = (0.050000, 0.050000, 0.050000, 1), barColor = (0.100, 0.696, 0.100, 1), pos = (0.13, 0, 0.012), frameSize = (0, 0.299, 0, 0.0129), text = '', text_align = TextNode.ACenter, text_scale = PiratesGuiGlobals.TextScaleTiny, text_fg = PiratesGuiGlobals.TextFG3, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0.149, -0.00300, 0), textMayChange = 1)
+            self.hpBar = OnscreenImage(parent = self, image = self.HP_IMAGE, scale = (0.239, 1.0, 0.4), pos = (0.27, 0, 0.02))
             self.statusLabel = DirectLabel(parent = self, relief = None, text = '', text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleSmall, text_pos = (1.53, 0.02), text_fg = self.OnlineSubtextColor, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1)
-            statusOffset = 0.34999999999999998
-            levelOffset = 0.46000000000000002
+            statusOffset = 0.348
+            levelOffset = 0.46
             self.bind(DGG.ENTER, self.highlightOnMember)
             self.bind(DGG.EXIT, self.highlightOffMember)
             if self.potentialMember:
@@ -92,12 +92,12 @@ class PirateMemberButton(GuiButton.GuiButton):
                 self.hpMeter['barColor'] = PiratesGuiGlobals.TextFG0
 
         elif self.mode == MODE_CREW_HUD_SEA:
-            GuiButton.GuiButton.__init__(self, parent = self.owner.memberFrame.getCanvas(), text = '', text_scale = PiratesGuiGlobals.TextScaleSmall, text_pos = (0.01, self.owner.memberOffset), text_align = TextNode.ALeft, text_fg = self.OfflineTextColor, text2_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, text_wordwrap = 40, image_scale = (self.owner.memberWidth, 1.0, self.owner.memberHeight * 2.6200000000000001), image_pos = (0.31, 0.0, self.owner.memberHeight * 0.5), command = self.handlePress)
-            self.hpMeter = DirectWaitBar(parent = self, relief = DGG.RAISED, state = DGG.DISABLED, borderWidth = (0.001, 0.001), range = self.maxHp, value = self.hp, frameColor = (0.050000000000000003, 0.050000000000000003, 0.050000000000000003, 1), barColor = (0.10000000000000001, 0.69999999999999996, 0.10000000000000001, 1), pos = (0.13700000000000001, 0, 0.014999999999999999), frameSize = (0, 0.28599999999999998, 0, 0.012999999999999999), text = '', text_align = TextNode.ACenter, text_scale = PiratesGuiGlobals.TextScaleTiny, text_fg = PiratesGuiGlobals.TextFG3, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0.14299999999999999, -0.0050000000000000001, 0), textMayChange = 1, scale = 0.80000000000000004)
-            self.hpBar = OnscreenImage(parent = self, image = self.HP_IMAGE, scale = (0.184, 1.0, 0.40000000000000002), pos = (0.24299999999999999, 0, 0.02))
-            self.statusLabel = DirectLabel(parent = self, relief = None, text = '', text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleSmall, text_pos = (1.53, 0.02), text_fg = self.OnlineSubtextColor, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, scale = 0.80000000000000004)
-            statusOffset = 0.34999999999999998
-            levelOffset = 0.46000000000000002
+            GuiButton.GuiButton.__init__(self, parent = self.owner.memberFrame.getCanvas(), text = '', text_scale = PiratesGuiGlobals.TextScaleSmall, text_pos = (0.01, self.owner.memberOffset), text_align = TextNode.ALeft, text_fg = self.OfflineTextColor, text2_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, text_wordwrap = 40, image_scale = (self.owner.memberWidth, 1.0, self.owner.memberHeight * 2.62), image_pos = (0.31, 0.0, self.owner.memberHeight * 0.5), command = self.handlePress)
+            self.hpMeter = DirectWaitBar(parent = self, relief = DGG.RAISED, state = DGG.DISABLED, borderWidth = (0.001, 0.001), range = self.maxHp, value = self.hp, frameColor = (0.050000, 0.050000, 0.050000, 1), barColor = (0.100, 0.696, 0.100, 1), pos = (0.137, 0, 0.0149), frameSize = (0, 0.28598, 0, 0.0129), text = '', text_align = TextNode.ACenter, text_scale = PiratesGuiGlobals.TextScaleTiny, text_fg = PiratesGuiGlobals.TextFG3, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0.142, -0.00500, 0), textMayChange = 1, scale = 0.800000)
+            self.hpBar = OnscreenImage(parent = self, image = self.HP_IMAGE, scale = (0.184, 1.0, 0.4), pos = (0.242, 0, 0.02))
+            self.statusLabel = DirectLabel(parent = self, relief = None, text = '', text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleSmall, text_pos = (1.53, 0.02), text_fg = self.OnlineSubtextColor, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, scale = 0.800000)
+            statusOffset = 0.348
+            levelOffset = 0.46
             self.bind(DGG.ENTER, self.highlightOnMember)
             self.bind(DGG.EXIT, self.highlightOffMember)
             if self.potentialMember:
@@ -106,24 +106,24 @@ class PirateMemberButton(GuiButton.GuiButton):
                 self.hpMeter['barColor'] = PiratesGuiGlobals.TextFG0
 
         else:
-            GuiButton.GuiButton.__init__(self, parent = self.owner.memberFrame.getCanvas(), text = '', text_scale = PiratesGuiGlobals.TextScaleMed, text_pos = (0.029999999999999999 - self.owner.memberWidth * 0.5, self.owner.memberOffset), text_align = TextNode.ALeft, text_fg = self.OfflineTextColor, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, text_wordwrap = 40, image_scale = (self.owner.memberWidth, 1.0, self.owner.memberHeight * 2.6200000000000001), image_pos = (0.0, 0.0, self.owner.memberHeight * 0.5), command = self.handlePress)
-            self.hpMeter = DirectWaitBar(parent = self, relief = DGG.RAISED, borderWidth = (0.0040000000000000001, 0.0040000000000000001), range = self.maxHp, value = self.hp, frameColor = (0.050000000000000003, 0.050000000000000003, 0.050000000000000003, 1), barColor = (0.10000000000000001, 0.69999999999999996, 0.10000000000000001, 1), pos = (0.01, 0, 0.012), frameSize = (0, 0.25, 0, 0.02), text = '%s/%s' % (self.hp, self.maxHp), text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleTiny, text_fg = PiratesGuiGlobals.TextFG3, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0.25600000000000001, 0, 0.0050000000000000001), textMayChange = 1)
-            self.statusLabel = DirectLabel(parent = self, relief = None, pos = (0.0, 0, 0), text = '', text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleSmall, text_pos = (0.029999999999999999, 0.02), text_fg = self.OnlineSubtextColor, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1)
-            statusOffset = 0.34999999999999998
-            levelOffset = 0.46000000000000002
+            GuiButton.GuiButton.__init__(self, parent = self.owner.memberFrame.getCanvas(), text = '', text_scale = PiratesGuiGlobals.TextScaleMed, text_pos = (0.0299 - self.owner.memberWidth * 0.5, self.owner.memberOffset), text_align = TextNode.ALeft, text_fg = self.OfflineTextColor, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, text_wordwrap = 40, image_scale = (self.owner.memberWidth, 1.0, self.owner.memberHeight * 2.62), image_pos = (0.0, 0.0, self.owner.memberHeight * 0.5), command = self.handlePress)
+            self.hpMeter = DirectWaitBar(parent = self, relief = DGG.RAISED, borderWidth = (0.00400, 0.00400), range = self.maxHp, value = self.hp, frameColor = (0.050000, 0.050000, 0.050000, 1), barColor = (0.100, 0.696, 0.100, 1), pos = (0.01, 0, 0.012), frameSize = (0, 0.25, 0, 0.02), text = '%s/%s' % (self.hp, self.maxHp), text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleTiny, text_fg = PiratesGuiGlobals.TextFG3, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0.256, 0, 0.00500), textMayChange = 1)
+            self.statusLabel = DirectLabel(parent = self, relief = None, pos = (0.0, 0, 0), text = '', text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleSmall, text_pos = (0.0299, 0.02), text_fg = self.OnlineSubtextColor, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1)
+            statusOffset = 0.348
+            levelOffset = 0.46
         self.initialiseoptions(PirateMemberButton)
         self.hpMeter.hide()
         self.statusLabel.hide()
-        self.shipIcon = DirectButton(parent = self, relief = None, image = self.SHIP_IMAGE, image0_color = VBase4(1.0, 1.0, 1.0, 1.0), image1_color = VBase4(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 1.0), image2_color = VBase4(0.0, 0.90000000000000002, 0.0, 1.0), image_scale = 0.10000000000000001, pos = (self.owner.memberWidth - statusOffset, 0, 0.035000000000000003), command = self.handleShipPress)
+        self.shipIcon = DirectButton(parent = self, relief = None, image = self.SHIP_IMAGE, image0_color = VBase4(1.0, 1.0, 1.0, 1.0), image1_color = VBase4(0.4, 0.4, 0.4, 1.0), image2_color = VBase4(0.0, 0.9, 0.0, 1.0), image_scale = 0.100, pos = (self.owner.memberWidth - statusOffset, 0, 0.035000), command = self.handleShipPress)
         self.shipIcon.shipId = None
         self.shipIcon.hide()
         self.onlineIcon = self.ONLINE_ICON.copyTo(self)
-        self.onlineIcon.setPos(self.owner.memberWidth - statusOffset, 0, 0.035000000000000003)
-        self.onlineIcon.setScale(0.20000000000000001)
+        self.onlineIcon.setPos(self.owner.memberWidth - statusOffset, 0, 0.035000)
+        self.onlineIcon.setScale(0.200)
         self.onlineIcon.hide()
-        self.offlineTimeLabel = DirectLabel(parent = self, pos = (self.owner.memberWidth - statusOffset, 0, 0.025000000000000001), relief = None, text = '', text_align = TextNode.ACenter, text_scale = PiratesGuiGlobals.TextScaleMed, text_pos = (0.0, 0.0), text_fg = self.OfflineIndicatorColor, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1)
+        self.offlineTimeLabel = DirectLabel(parent = self, pos = (self.owner.memberWidth - statusOffset, 0, 0.0250), relief = None, text = '', text_align = TextNode.ACenter, text_scale = PiratesGuiGlobals.TextScaleMed, text_pos = (0.0, 0.0), text_fg = self.OfflineIndicatorColor, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1)
         self.offlineTimeLabel.show()
-        self.levelLabel = DirectLabel(parent = self, pos = (self.owner.memberWidth - levelOffset, 0, 0.025000000000000001), relief = None, text = '22', text_align = TextNode.ACenter, text_scale = PiratesGuiGlobals.TextScaleMed, text_pos = (0.0, 0.0), text_fg = self.OfflineIndicatorColor, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1)
+        self.levelLabel = DirectLabel(parent = self, pos = (self.owner.memberWidth - levelOffset, 0, 0.0250), relief = None, text = '22', text_align = TextNode.ACenter, text_scale = PiratesGuiGlobals.TextScaleMed, text_pos = (0.0, 0.0), text_fg = self.OfflineIndicatorColor, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1)
         self.levelLabel.hide()
         self.accept('press-wheel_up-%s' % self.guiId, self.owner.mouseWheelUp)
         self.accept('press-wheel_down-%s' % self.guiId, self.owner.mouseWheelDown)
@@ -154,11 +154,11 @@ class PirateMemberButton(GuiButton.GuiButton):
         else:
             hpFraction = float(self.hpMeter['value']) / float(self.hpMeter['range'])
             if hpFraction >= 0.5:
-                self.hpMeter['barColor'] = (0.40000000000000002, 1.0, 0.40000000000000002, 1)
+                self.hpMeter['barColor'] = (0.4, 1.0, 0.4, 1)
             elif hpFraction >= 0.25:
-                self.hpMeter['barColor'] = (1.0, 1.0, 0.59999999999999998, 1)
+                self.hpMeter['barColor'] = (1.0, 1.0, 0.598, 1)
             else:
-                self.hpMeter['barColor'] = (1.0, 0.40000000000000002, 0.40000000000000002, 1)
+                self.hpMeter['barColor'] = (1.0, 0.4, 0.4, 1)
 
 
     def highlightOffMember(self, event):
@@ -170,9 +170,9 @@ class PirateMemberButton(GuiButton.GuiButton):
         else:
             hpFraction = float(self.hpMeter['value']) / float(self.hpMeter['range'])
             if hpFraction >= 0.5:
-                self.hpMeter['barColor'] = (0.10000000000000001, 0.69999999999999996, 0.10000000000000001, 1)
+                self.hpMeter['barColor'] = (0.100, 0.696, 0.100, 1)
             elif hpFraction >= 0.25:
-                self.hpMeter['barColor'] = (1.0, 1.0, 0.10000000000000001, 1)
+                self.hpMeter['barColor'] = (1.0, 1.0, 0.100, 1)
             else:
                 self.hpMeter['barColor'] = (1.0, 0.0, 0.0, 1)
 
@@ -192,16 +192,16 @@ class PirateMemberButton(GuiButton.GuiButton):
     def updateOnline(self, status):
         self.onlineIcon.show()
         if status:
-            self.onlineIcon.setColor(0.10000000000000001, 1.0, 0.10000000000000001, 0.59999999999999998)
+            self.onlineIcon.setColor(0.100, 1.0, 0.100, 0.598)
         else:
-            self.onlineIcon.setColor(0.59999999999999998, 0.10000000000000001, 0.10000000000000001, 0.59999999999999998)
+            self.onlineIcon.setColor(0.598, 0.100, 0.100, 0.598)
 
 
     def updateHUDOnline(self, status):
         if status:
             self.hpMeter['text'] = ''
             self.hpMeter['text_fg'] = PiratesGuiGlobals.TextFG3
-            self.hpMeter['barColor'] = (0.10000000000000001, 0.69999999999999996, 0.10000000000000001, 1)
+            self.hpMeter['barColor'] = (0.100, 0.696, 0.100, 1)
             text0_fg = self.OnlineTextColor
             self.hudOnline = True
         else:
@@ -224,7 +224,7 @@ class PirateMemberButton(GuiButton.GuiButton):
         else:
             self.hpMeter['text'] = ''
             self.hpMeter['text_fg'] = PiratesGuiGlobals.TextFG3
-            self.hpMeter['barColor'] = (0.10000000000000001, 0.69999999999999996, 0.10000000000000001, 1)
+            self.hpMeter['barColor'] = (0.100, 0.696, 0.100, 1)
             self.inPvp = False
         self.update()
 
@@ -239,7 +239,7 @@ class PirateMemberButton(GuiButton.GuiButton):
         else:
             self.hpMeter['text'] = ''
             self.hpMeter['text_fg'] = PiratesGuiGlobals.TextFG3
-            self.hpMeter['barColor'] = (0.10000000000000001, 0.69999999999999996, 0.10000000000000001, 1)
+            self.hpMeter['barColor'] = (0.100, 0.696, 0.100, 1)
             self.inParlorGame = False
         self.update()
 
@@ -255,9 +255,9 @@ class PirateMemberButton(GuiButton.GuiButton):
             self.hpMeter['value'] = hp
             hpFraction = float(hp) / float(maxHp)
             if hpFraction >= 0.5:
-                self.hpMeter['barColor'] = (0.10000000000000001, 0.69999999999999996, 0.10000000000000001, 1)
+                self.hpMeter['barColor'] = (0.100, 0.696, 0.100, 1)
             elif hpFraction >= 0.25:
-                self.hpMeter['barColor'] = (1.0, 1.0, 0.10000000000000001, 1)
+                self.hpMeter['barColor'] = (1.0, 1.0, 0.100, 1)
             else:
                 self.hpMeter['barColor'] = (1.0, 0.0, 0.0, 1)
 
@@ -288,7 +288,7 @@ class PirateMemberButton(GuiButton.GuiButton):
             text = friendInfo.getName()
             self.avName = text
             self.statusLabel.hide()
-            self.shipIcon.setPos(self.owner.memberWidth - 0.40000000000000002, 0, 0.035000000000000003)
+            self.shipIcon.setPos(self.owner.memberWidth - 0.4, 0, 0.035000)
             shipId = base.cr.avatarFriendsManager.getShipId(self.avId)
             if shipId:
                 self.shipIcon.shipId = shipId
@@ -302,7 +302,7 @@ class PirateMemberButton(GuiButton.GuiButton):
             text = friendInfo.playerName
             self.avName = text
             self.statusLabel.hide()
-            self.shipIcon.setPos(self.owner.memberWidth - 0.40000000000000002, 0, 0.035000000000000003)
+            self.shipIcon.setPos(self.owner.memberWidth - 0.4, 0, 0.035000)
             shipId = base.cr.playerFriendsManager.getShipId(self.playerId)
             if shipId:
                 self.shipIcon.shipId = shipId
@@ -316,7 +316,7 @@ class PirateMemberButton(GuiButton.GuiButton):
             text = (friendInfo.avatarName, friendInfo.avatarName, friendInfo.playerName, friendInfo.avatarName)
             self.avName = friendInfo.avatarName
             self.statusLabel.hide()
-            self.shipIcon.setPos(self.owner.memberWidth - 0.40000000000000002, 0, 0.035000000000000003)
+            self.shipIcon.setPos(self.owner.memberWidth - 0.4, 0, 0.035000)
             shipId = base.cr.playerFriendsManager.getShipId(self.playerId)
             if shipId:
                 self.shipIcon.shipId = shipId
@@ -334,7 +334,7 @@ class PirateMemberButton(GuiButton.GuiButton):
             self.avName = text
             self.statusLabel.hide()
             self.hpMeter.show()
-            self.shipIcon.setPos(0.39500000000000002, 0, 0.040000000000000001)
+            self.shipIcon.setPos(0.395, 0, 0.0400)
             if not self.hudOnline:
                 text0_fg = self.OfflineTextColor
             else:
@@ -343,7 +343,7 @@ class PirateMemberButton(GuiButton.GuiButton):
             if self.avId in base.cr.guildManager.id2Rank:
                 self.modeInfo[2] = base.cr.guildManager.id2Rank.get(self.avId)
 
-            self.shipIcon.setPos(self.owner.memberWidth - 0.40000000000000002, 0, 0.035000000000000003)
+            self.shipIcon.setPos(self.owner.memberWidth - 0.4, 0, 0.035000)
             if self.avId == localAvatar.doId:
                 self.accept('Guild Status Updated', self.updateGuild)
 
@@ -395,9 +395,9 @@ class PirateMemberButton(GuiButton.GuiButton):
 
 
         if self.mode == MODE_CREW_HUD:
-            self.configure(state = state, text = text, text0_fg = text0_fg, image_color = buttonColor, text_pos = (0.14000000000000001, 0.044999999999999998, 3.4500000000000002))
+            self.configure(state = state, text = text, text0_fg = text0_fg, image_color = buttonColor, text_pos = (0.140, 0.0448, 3.45))
         elif self.mode == MODE_CREW_HUD_SEA:
-            self.configure(state = state, text = text, text0_fg = text0_fg, image_color = buttonColor, text_pos = (0.14999999999999999, 0.040000000000000001, 1.5))
+            self.configure(state = state, text = text, text0_fg = text0_fg, image_color = buttonColor, text_pos = (0.149, 0.0400, 1.5))
         else:
             self.configure(state = state, text = text, text0_fg = text0_fg, image_color = buttonColor)
 
@@ -412,10 +412,10 @@ class PirateMemberButton(GuiButton.GuiButton):
     def updateOnline(self, status):
         self.onlineIcon.show()
         if status:
-            self.onlineIcon.setColor(0.10000000000000001, 1.0, 0.10000000000000001, 0.59999999999999998)
+            self.onlineIcon.setColor(0.100, 1.0, 0.100, 0.598)
             self.offlineTimeLabel['text'] = ''
         else:
-            self.onlineIcon.setColor(0.59999999999999998, 0.10000000000000001, 0.10000000000000001, 0.59999999999999998)
+            self.onlineIcon.setColor(0.598, 0.100, 0.100, 0.598)
             if self.lastOnline != None:
                 timestamp = self.lastOnline
                 now = datetime.datetime.utcnow()
@@ -435,7 +435,7 @@ class PirateMemberButton(GuiButton.GuiButton):
 
     def handleShipPress(self):
         TC = TeleportConfirm.TeleportConfirm(self.avId, self.avName)
-        TC.setPos(-0.75, 0, -0.29999999999999999)
+        TC.setPos(-0.75, 0, -0.299)
 
 
     def handlePress(self):
@@ -480,7 +480,7 @@ class PirateMemberButton(GuiButton.GuiButton):
 
 class PirateMemberList(DirectObject):
 
-    def __init__(self, numShown, parent, title = None, height = 0.59999999999999998, memberHeight = 0.065000000000000002, memberOffset = 0.021000000000000001, memberWidth = 0.45000000000000001, bottom = 0, hud = False, width = 0.47999999999999998, sort = 0):
+    def __init__(self, numShown, parent, title = None, height = 0.598, memberHeight = 0.065, memberOffset = 0.0210, memberWidth = 0.450, bottom = 0, hud = False, width = 0.478, sort = 0):
         if hasattr(self, 'initialized'):
             self.arrangeMembers()
             return None
@@ -575,7 +575,7 @@ class PirateMemberList(DirectObject):
     def setup(self):
         charGui = loader.loadModel('models/gui/char_gui')
         knob = (charGui.find('**/chargui_slider_node'), charGui.find('**/chargui_slider_node_down'), charGui.find('**/chargui_slider_node_over'))
-        self.memberFrame = DirectScrolledFrame(parent = self.baseFrame, relief = None, state = DGG.NORMAL, manageScrollBars = 0, autoHideScrollBars = 1, frameSize = (0, self.width, self.bottom, self.height), canvasSize = (0, self.width - 0.050000000000000003, self.bottom + 0.025000000000000001, self.height - 0.025000000000000001), verticalScroll_relief = None, verticalScroll_frameSize = (0, PiratesGuiGlobals.ScrollbarSize, self.bottom, self.height), verticalScroll_image = charGui.find('**/chargui_slider_small'), verticalScroll_image_scale = ((self.height - self.bottom) + 0.050000000000000003, 1, 0.75), verticalScroll_image_hpr = (0, 0, 90), verticalScroll_image_pos = (self.width - PiratesGuiGlobals.ScrollbarSize * 0.5 - 0.0, 0, (self.bottom + self.height) * 0.5), verticalScroll_image_color = (0.60999999999999999, 0.59999999999999998, 0.59999999999999998, 1), verticalScroll_thumb_image = knob, verticalScroll_thumb_relief = None, verticalScroll_thumb_image_scale = 0.29999999999999999, verticalScroll_resizeThumb = 0, horizontalScroll_relief = None, sortOrder = 5)
+        self.memberFrame = DirectScrolledFrame(parent = self.baseFrame, relief = None, state = DGG.NORMAL, manageScrollBars = 0, autoHideScrollBars = 1, frameSize = (0, self.width, self.bottom, self.height), canvasSize = (0, self.width - 0.050000, self.bottom + 0.0250, self.height - 0.0250), verticalScroll_relief = None, verticalScroll_frameSize = (0, PiratesGuiGlobals.ScrollbarSize, self.bottom, self.height), verticalScroll_image = charGui.find('**/chargui_slider_small'), verticalScroll_image_scale = ((self.height - self.bottom) + 0.050000, 1, 0.75), verticalScroll_image_hpr = (0, 0, 90), verticalScroll_image_pos = (self.width - PiratesGuiGlobals.ScrollbarSize * 0.5 - 0.0, 0, (self.bottom + self.height) * 0.5), verticalScroll_image_color = (0.609, 0.598, 0.598, 1), verticalScroll_thumb_image = knob, verticalScroll_thumb_relief = None, verticalScroll_thumb_image_scale = 0.299, verticalScroll_resizeThumb = 0, horizontalScroll_relief = None, sortOrder = 5)
         if self.hud:
             self.memberFrame['state'] = DGG.DISABLED
 
@@ -594,9 +594,9 @@ class PirateMemberList(DirectObject):
             onlineProp = 0.25
             onlineSize = onlineProp * sortButtonWidth
             levelSize = 0.0
-            sortNameButton = DirectButton(parent = self.memberFrame, relief = None, image = buttonImage, image_scale = (nameSize, 1.0, 0.14999999999999999), image0_color = VBase4(0.65000000000000002, 0.65000000000000002, 0.65000000000000002, 1), image1_color = VBase4(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 1), image2_color = VBase4(0.90000000000000002, 0.90000000000000002, 0.90000000000000002, 1), image3_color = VBase4(0.40999999999999998, 0.40000000000000002, 0.40000000000000002, 1), text = 'Name', text_align = TextNode.ACenter, text_pos = (0, -0.01), text_scale = PiratesGuiGlobals.TextScaleMed, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, pos = (nameSize * 0.5, 0, self.height + 0.040000000000000001), command = self.sortByName)
+            sortNameButton = DirectButton(parent = self.memberFrame, relief = None, image = buttonImage, image_scale = (nameSize, 1.0, 0.149), image0_color = VBase4(0.65, 0.65, 0.65, 1), image1_color = VBase4(0.4, 0.4, 0.4, 1), image2_color = VBase4(0.9, 0.9, 0.9, 1), image3_color = VBase4(0.408, 0.4, 0.4, 1), text = 'Name', text_align = TextNode.ACenter, text_pos = (0, -0.01), text_scale = PiratesGuiGlobals.TextScaleMed, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, pos = (nameSize * 0.5, 0, self.height + 0.0400), command = self.sortByName)
             sortNameButton.show()
-            sortOnlineButton = DirectButton(parent = self.memberFrame, relief = None, image = buttonImage, image_scale = (onlineSize, 1.0, 0.14999999999999999), image0_color = VBase4(0.65000000000000002, 0.65000000000000002, 0.65000000000000002, 1), image1_color = VBase4(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 1), image2_color = VBase4(0.90000000000000002, 0.90000000000000002, 0.90000000000000002, 1), image3_color = VBase4(0.40999999999999998, 0.40000000000000002, 0.40000000000000002, 1), text = 'Online', text_align = TextNode.ACenter, text_pos = (0, -0.01), text_scale = PiratesGuiGlobals.TextScaleMed, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, pos = (onlineSize * 0.5 + nameSize + levelSize, 0, self.height + 0.040000000000000001), command = self.sortByOnline)
+            sortOnlineButton = DirectButton(parent = self.memberFrame, relief = None, image = buttonImage, image_scale = (onlineSize, 1.0, 0.149), image0_color = VBase4(0.65, 0.65, 0.65, 1), image1_color = VBase4(0.4, 0.4, 0.4, 1), image2_color = VBase4(0.9, 0.9, 0.9, 1), image3_color = VBase4(0.408, 0.4, 0.4, 1), text = 'Online', text_align = TextNode.ACenter, text_pos = (0, -0.01), text_scale = PiratesGuiGlobals.TextScaleMed, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, pos = (onlineSize * 0.5 + nameSize + levelSize, 0, self.height + 0.0400), command = self.sortByOnline)
             sortOnlineButton.show()
 
         charGui.remove_node()
@@ -695,7 +695,7 @@ class PirateMemberList(DirectObject):
         if self.memberAvatarDict.get(avId) or self.memberPlayerDict.get(playerId):
             self.removeMember(avId, playerId, mode)
 
-        texcolor = (0.90000000000000002, 1, 0.90000000000000002, 1)
+        texcolor = (0.9, 1, 0.9, 1)
         fcolor = PiratesGuiGlobals.ButtonColor5
         addMe = PirateMemberButton(self, avId, playerId, mode, modeInfo)
         self.members.append(addMe)
@@ -718,7 +718,7 @@ class PirateMemberList(DirectObject):
 
     def addPotentialMember(self, avId, avName, mode):
         self.removeMember(avId, None, mode)
-        texcolor = (0.90000000000000002, 1, 0.90000000000000002, 1)
+        texcolor = (0.9, 1, 0.9, 1)
         fcolor = PiratesGuiGlobals.ButtonColor5
         addMe = PirateMemberButton(self, avId, None, mode, name = avName)
         self.members.append(addMe)
@@ -856,7 +856,7 @@ class PirateMemberList(DirectObject):
 
     def prearrangeMembers(self):
         taskMgr.remove(self.prearrangeTaskName)
-        taskMgr.doMethodLater(0.10000000000000001, self.arrangeMembers, self.prearrangeTaskName)
+        taskMgr.doMethodLater(0.100, self.arrangeMembers, self.prearrangeTaskName)
 
 
     def arrangeMembers(self, task = None):

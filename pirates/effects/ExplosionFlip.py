@@ -25,7 +25,7 @@ class ExplosionFlip(PooledEffect, EffectController):
 
 
     def createTrack(self, rate = 1):
-        self.track = Sequence(Func(self.explosion.show), Wait(0.34999999999999998), Func(self.explosion.hide), Func(self.cleanUpEffect))
+        self.track = Sequence(Func(self.explosion.show), Wait(0.348), Func(self.explosion.hide), Func(self.cleanUpEffect))
 
 
     def cleanUpEffect(self):

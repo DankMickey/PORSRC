@@ -57,8 +57,8 @@ class LavaVent(PooledEffect, EffectController):
         self.p0.renderer.setNonanimatedTheta(0.0)
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPBLENDLINEAR)
         self.p0.renderer.setAlphaDisable(0)
-        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 0.40000000000000002, Vec4(0.59999999999999998, 0.20000000000000001, 0, 1.0), Vec4(0.20000000000000001, 0.20000000000000001, 0.20000000000000001, 1.0))
-        self.p0.renderer.getColorInterpolationManager().addConstant(0.40000000000000002, 1.0, Vec4(0.20000000000000001, 0.20000000000000001, 0.20000000000000001, 1))
+        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 0.4, Vec4(0.598, 0.200, 0, 1.0), Vec4(0.200, 0.200, 0.200, 1.0))
+        self.p0.renderer.getColorInterpolationManager().addConstant(0.4, 1.0, Vec4(0.200, 0.200, 0.200, 1))
         self.p0.emitter.setEmissionType(BaseParticleEmitter.ETRADIATE)
         self.p0.emitter.setExplicitLaunchVector(Vec3(0.0, 0.0, 0.0))
         self.p0.emitter.setRadiateOrigin(Point3(0.0, 0.0, 0.0))
@@ -72,10 +72,10 @@ class LavaVent(PooledEffect, EffectController):
 
 
     def setEffectScale(self, scale):
-        self.p0.renderer.setInitialXScale(0.050000000000000003 * self.cardScale * scale)
-        self.p0.renderer.setFinalXScale(0.34999999999999998 * self.cardScale * scale)
-        self.p0.renderer.setInitialYScale(0.050000000000000003 * self.cardScale * scale)
-        self.p0.renderer.setFinalYScale(0.34999999999999998 * self.cardScale * scale)
+        self.p0.renderer.setInitialXScale(0.050000 * self.cardScale * scale)
+        self.p0.renderer.setFinalXScale(0.348 * self.cardScale * scale)
+        self.p0.renderer.setInitialYScale(0.050000 * self.cardScale * scale)
+        self.p0.renderer.setFinalYScale(0.348 * self.cardScale * scale)
         self.p0.emitter.setAmplitude(3.0 * scale)
         self.p0.emitter.setAmplitudeSpread(1.0 * scale)
         self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, 7.0) * scale)

@@ -68,7 +68,7 @@ class UniqueIdManager:
     def addUid(self, uid, objId):
         if uid != '':
             self.uid2doId[uid] = objId
-            taskMgr.doMethodLater(0.10000000000000001, self._requestUidCallbackLater, 'uidCallback-' + uid, extraArgs = [
+            taskMgr.doMethodLater(0.100, self._requestUidCallbackLater, 'uidCallback-' + uid, extraArgs = [
                 uid,
                 objId])
 
@@ -100,7 +100,7 @@ class UniqueIdManager:
                 callback(objDoId)
                 return True
             else:
-                taskMgr.doMethodLater(0.10000000000000001, self._requestUidCallbackLater, 'uidCallback-' + uid, extraArgs = [
+                taskMgr.doMethodLater(0.100, self._requestUidCallbackLater, 'uidCallback-' + uid, extraArgs = [
                     uid,
                     objDoId])
         elif self.instance:

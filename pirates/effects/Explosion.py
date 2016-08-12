@@ -75,17 +75,17 @@ class Explosion(PooledEffect, EffectController):
 
 
     def createTrack(self):
-        self.track = Sequence(Func(self.p0.setBirthRate, 0.02), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self), Wait(0.59999999999999998), Func(self.p0.setBirthRate, 100), Wait(1.25), Func(self.cleanUpEffect))
+        self.track = Sequence(Func(self.p0.setBirthRate, 0.02), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self), Wait(0.598), Func(self.p0.setBirthRate, 100), Wait(1.25), Func(self.cleanUpEffect))
 
 
     def setEffectScale(self, scale):
         self.effectScale = scale
         if self.p0:
             self.p0.renderer.setUserAlpha(self.effectScale)
-            self.p0.renderer.setInitialXScale(0.050000000000000003 * self.cardScale * self.effectScale)
+            self.p0.renderer.setInitialXScale(0.050000 * self.cardScale * self.effectScale)
             self.p0.renderer.setFinalXScale(0.12 * self.cardScale * self.effectScale)
-            self.p0.renderer.setInitialYScale(0.050000000000000003 * self.cardScale * self.effectScale)
-            self.p0.renderer.setFinalYScale(0.10000000000000001 * self.cardScale * self.effectScale)
+            self.p0.renderer.setInitialYScale(0.050000 * self.cardScale * self.effectScale)
+            self.p0.renderer.setFinalYScale(0.100 * self.cardScale * self.effectScale)
 
 
 

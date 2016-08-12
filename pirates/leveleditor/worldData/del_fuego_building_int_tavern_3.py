@@ -12,22 +12,22 @@ objectStruct = {
                     'Type': 'Door Locator Node',
                     'Name': 'door_locator',
                     'Hpr': VBase3(0.0, 0.0, 0.0),
-                    'Pos': Point3(29.010000000000002, -38.82, 0.59799999999999998),
+                    'Pos': Point3(29.010, -38.82, 0.59798),
                     'Scale': VBase3(1.0, 1.0, 1.0) },
                 '1201821491.16dxschafe': {
                     'Type': 'Door Locator Node',
                     'Name': 'door_locator_2',
                     'Hpr': VBase3(-180.0, 0.0, 0.0),
-                    'Pos': Point3(-42.936999999999998, 40.889000000000003, 1.0),
+                    'Pos': Point3(-42.9368, 40.889, 1.0),
                     'Scale': VBase3(1.0, 1.0, 1.0) },
                 '1201821619.0dxschafe': {
                     'Type': 'Townsperson',
                     'Category': 'Bartender',
                     'AnimSet': 'bar_wipe',
                     'CustomModel': 'None',
-                    'Hpr': VBase3(177.78200000000001, 0.0, 0.0),
+                    'Hpr': VBase3(177.782, 0.0, 0.0),
                     'Patrol Radius': '12.0000',
-                    'Pos': Point3(-10.795999999999999, 34.871000000000002, 1.0),
+                    'Pos': Point3(-10.795, 34.871, 1.0),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'Private Status': 'All',
@@ -115,8 +115,8 @@ objectStruct = {
         '1201821619.0dxschafe': '["Objects"]["1233252864.0akelts3"]["Objects"]["1201821619.0dxschafe"]',
         '1233252864.0akelts3': '["Objects"]["1233252864.0akelts3"]' } }
 extraInfo = {
-    'camPos': Point3(21.728000000000002, -212.875, 108.941),
-    'camHpr': VBase3(6.5701499999999999, -25.155899999999999, 0),
+    'camPos': Point3(21.728, -212.875, 108.941),
+    'camHpr': VBase3(6.57014, -25.1558, 0),
     'focalLength': 1.3999999761599999,
     'skyState': -1,
     'fog': 0 }

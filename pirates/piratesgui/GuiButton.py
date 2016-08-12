@@ -16,12 +16,12 @@ class GuiButton(DirectButton):
     redGenericButton = None
     blueGenericButton = None
 
-    def __init__(self, parent = None, hotkeys = (), hotkeyLabel = None, hotkeyLabelX = 0.091999999999999998, hotkeyArgs = True, helpText = '', helpPos = (0, 0, 0), helpDelay = PiratesGuiGlobals.HelpPopupTime, helpColorOff = False, helpLeftAlign = False, helpCenterAlign = False, **kw):
+    def __init__(self, parent = None, hotkeys = (), hotkeyLabel = None, hotkeyLabelX = 0.0918, hotkeyArgs = True, helpText = '', helpPos = (0, 0, 0), helpDelay = PiratesGuiGlobals.HelpPopupTime, helpColorOff = False, helpLeftAlign = False, helpCenterAlign = False, **kw):
         self.loadGui()
         self.helpBox = None
         self.helpWatcher = None
         self.canRepositon = False
-        optiondefs = (('relief', None, None), ('pos', (0, 0, 0), None), ('image', GuiButton.genericButton, None), ('image_scale', (0.23999999999999999, 0.22, 0.22), None), ('image_pos', (0, 0, 0), None), ('pressEffect', 0, None), ('text', '', None), ('text_font', PiratesGlobals.getInterfaceFont(), None), ('text_scale', PiratesGuiGlobals.TextScaleLarge, None), ('text0_fg', PiratesGuiGlobals.TextFG2, None), ('text1_fg', PiratesGuiGlobals.TextFG2, None), ('text2_fg', PiratesGuiGlobals.TextFG2, None), ('text3_fg', PiratesGuiGlobals.TextFG3, None), ('text_shadow', PiratesGuiGlobals.TextShadow, None), ('text_pos', (0, -0.01), None), ('text_wordwrap', 8, None), ('text_align', TextNode.ACenter, None), ('textMayChange', 1, None), ('helpText', helpText, self.helpTextUpdated), ('helpPos', helpPos, self.setHelpPos), ('helpDelay', helpDelay, None), ('helpColorOff', helpColorOff, None), ('helpLeftAlign', helpLeftAlign, None), ('helpCenterAlign', helpCenterAlign, None), ('helpBin', 'gui-popup', None), ('helpBinSort', 0, None), ('helpOpaque', 0, None), ('canReposition', False, None), ('sortOrder', 100, None), ('baseImage', None, None), ('selected', False, None), ('selectedImage', GuiButton.genericButton, None), ('state', DGG.NORMAL, self.setState))
+        optiondefs = (('relief', None, None), ('pos', (0, 0, 0), None), ('image', GuiButton.genericButton, None), ('image_scale', (0.239, 0.22, 0.22), None), ('image_pos', (0, 0, 0), None), ('pressEffect', 0, None), ('text', '', None), ('text_font', PiratesGlobals.getInterfaceFont(), None), ('text_scale', PiratesGuiGlobals.TextScaleLarge, None), ('text0_fg', PiratesGuiGlobals.TextFG2, None), ('text1_fg', PiratesGuiGlobals.TextFG2, None), ('text2_fg', PiratesGuiGlobals.TextFG2, None), ('text3_fg', PiratesGuiGlobals.TextFG3, None), ('text_shadow', PiratesGuiGlobals.TextShadow, None), ('text_pos', (0, -0.01), None), ('text_wordwrap', 8, None), ('text_align', TextNode.ACenter, None), ('textMayChange', 1, None), ('helpText', helpText, self.helpTextUpdated), ('helpPos', helpPos, self.setHelpPos), ('helpDelay', helpDelay, None), ('helpColorOff', helpColorOff, None), ('helpLeftAlign', helpLeftAlign, None), ('helpCenterAlign', helpCenterAlign, None), ('helpBin', 'gui-popup', None), ('helpBinSort', 0, None), ('helpOpaque', 0, None), ('canReposition', False, None), ('sortOrder', 100, None), ('baseImage', None, None), ('selected', False, None), ('selectedImage', GuiButton.genericButton, None), ('state', DGG.NORMAL, self.setState))
         self.defineoptions(kw, optiondefs)
         DirectButton.__init__(self, parent = parent)
         self.initialiseoptions(GuiButton)
@@ -54,7 +54,7 @@ class GuiButton(DirectButton):
         GuiButton.blueGenericButton = (gui.find('**/pir_t_gui_but_generic_blue'), gui.find('**/pir_t_gui_but_generic_blue_down'), gui.find('**/pir_t_gui_but_generic_blue_over'), gui.find('**/pir_t_gui_but_generic_blue_disabled'))
 
 
-    def setupHotkeys(self, hotkeys, hotkeyLabel, command, extraArgs, hotkeyLabelX = 0.091999999999999998, hotkeyArgs = True):
+    def setupHotkeys(self, hotkeys, hotkeyLabel, command, extraArgs, hotkeyLabelX = 0.0918, hotkeyArgs = True):
         if self.hotkeys:
             self.ignoreHotkeys()
             self.hotkeyLabel.destroy()
@@ -130,13 +130,13 @@ class GuiButton(DirectButton):
 
         helpLabel = DirectLabel(relief = None, state = DGG.DISABLED, text = self['helpText'], text_align = TextNode.ACenter, text_scale = PiratesGuiGlobals.TextScaleMicro, text_fg = PiratesGuiGlobals.TextFG1, text_wordwrap = 12, text_shadow = (0, 0, 0, 1), textMayChange = 0, sortOrder = 91)
         height = helpLabel.getHeight()
-        width = helpLabel.getWidth() + 0.050000000000000003
+        width = helpLabel.getWidth() + 0.050000
         if self['helpLeftAlign']:
             fs = [
                 0.0,
                 width,
                 -height,
-                0.044999999999999998]
+                0.0448]
             pos = [
                 width / 2.0,
                 0,
@@ -149,8 +149,8 @@ class GuiButton(DirectButton):
             fs = [
                 -(width / 2 + 0.01),
                 width / 2 + 0.01,
-                -(height / 2 + 0.014999999999999999),
-                height / 2 + 0.014999999999999999]
+                -(height / 2 + 0.0149),
+                height / 2 + 0.0149]
         else:
             fs = [
                 0.25 - width,

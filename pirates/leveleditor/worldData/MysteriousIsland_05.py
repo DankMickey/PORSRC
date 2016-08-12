@@ -15,7 +15,7 @@ objectStruct = {
     'ObjectIds': {
         '1264623798.84caoconno': '["Objects"]["1264623798.84caoconno"]' } }
 extraInfo = {
-    'camPos': Point3(-1059.51, -121.79600000000001, 99609.5),
+    'camPos': Point3(-1059.51, -121.796, 99609.5),
     'camHpr': VBase3(0, -90, 0),
     'focalLength': 1.39951908588,
     'skyState': 2,

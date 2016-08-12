@@ -379,7 +379,7 @@ class Ship(DirectObject.DirectObject):
 
     def playTakeCoverEffect(self):
         if base.options.getSpecialEffectsSetting() >= base.options.SpecialEffectsLow:
-            self.takeCoverEffect = FadingCard(loader.loadModel('models/textureCards/skillIcons').find('**/sail_take_cover'), color = Vec4(1, 1, 1, 1), fadeTime = 0.01, waitTime = 2.5, startScale = 0.94999999999999996, endScale = 1.0)
+            self.takeCoverEffect = FadingCard(loader.loadModel('models/textureCards/skillIcons').find('**/sail_take_cover'), color = Vec4(1, 1, 1, 1), fadeTime = 0.01, waitTime = 2.5, startScale = 0.946, endScale = 1.0)
             if self.takeCoverEffect:
                 self.takeCoverEffect.reparentTo(self.shipRoot)
                 self.takeCoverEffect.setPos(0, 0, self.dimensions[2] * 1.25)
@@ -389,7 +389,7 @@ class Ship(DirectObject.DirectObject):
 
     def playOpenFireEffect(self):
         if base.options.getSpecialEffectsSetting() >= base.options.SpecialEffectsLow:
-            self.openFireEffect = FadingCard(loader.loadModel('models/textureCards/skillIcons').find('**/sail_openfire2'), color = Vec4(1, 1, 1, 1), fadeTime = 0.01, waitTime = 2.5, startScale = 0.94999999999999996, endScale = 1.0)
+            self.openFireEffect = FadingCard(loader.loadModel('models/textureCards/skillIcons').find('**/sail_openfire2'), color = Vec4(1, 1, 1, 1), fadeTime = 0.01, waitTime = 2.5, startScale = 0.946, endScale = 1.0)
             if self.openFireEffect:
                 self.openFireEffect.reparentTo(self.shipRoot)
                 self.openFireEffect.setPos(0, 0, self.dimensions[2] * 1.25)

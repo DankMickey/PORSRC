@@ -32,7 +32,7 @@ class ShipPowerRecharge(PooledEffect, EffectController):
         self.p0.setEmitter('DiscEmitter')
         self.f.addParticles(self.p0)
         self.p0.setPoolSize(128)
-        self.p0.setBirthRate(0.050000000000000003)
+        self.p0.setBirthRate(0.050000)
         self.p0.setLitterSize(8)
         self.p0.setLitterSpread(0)
         self.p0.setSystemLifespan(0.0)
@@ -70,9 +70,9 @@ class ShipPowerRecharge(PooledEffect, EffectController):
 
     def createTrack(self):
         self.p0.renderer.setInitialXScale(0.01 * self.cardScale * self.effectScale)
-        self.p0.renderer.setFinalXScale(0.0050000000000000001 * self.cardScale * self.effectScale)
-        self.p0.renderer.setInitialYScale(0.0050000000000000001 * self.cardScale * self.effectScale)
-        self.p0.renderer.setFinalYScale(0.029999999999999999 * self.cardScale * self.effectScale)
+        self.p0.renderer.setFinalXScale(0.00500 * self.cardScale * self.effectScale)
+        self.p0.renderer.setInitialYScale(0.00500 * self.cardScale * self.effectScale)
+        self.p0.renderer.setFinalYScale(0.0299 * self.cardScale * self.effectScale)
         self.p0.emitter.setRadius(self.effectScale)
         self.startEffect = Sequence(Func(self.p0.clearToInitial), Func(self.p0.softStart), Func(self.f.start, self, self))
         self.endEffect = Sequence(Func(self.p0.softStop), Wait(2.0), Func(self.cleanUpEffect))

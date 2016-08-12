@@ -20,10 +20,10 @@ class LookoutRequestLVL3(DirectFrame):
             self.itemList = itemList
         else:
             self.itemList = None
-        self.activityListItems = ListFrame(0.80000000000000004, None, 'blah', self, frameColor = (0, 0, 0, 0))
-        self.activityListItems.itemBuffer = 0.040000000000000001
+        self.activityListItems = ListFrame(0.800000, None, 'blah', self, frameColor = (0, 0, 0, 0))
+        self.activityListItems.itemBuffer = 0.0400
         self.activityListItems.setup()
-        self.activityList = DirectScrolledFrame(parent = self, frameSize = (0, 0.90000000000000002, 0, 0.77000000000000002), relief = DGG.GROOVE, state = DGG.NORMAL, frameColor = (0, 0, 0, 0), borderWidth = PiratesGuiGlobals.BorderWidth, canvasSize = (0, 0.69999999999999996, 0, self.activityListItems['frameSize'][3]), verticalScroll_frameColor = PiratesGuiGlobals.ScrollbarColor, verticalScroll_borderWidth = (0.0074999999999999997, 0.0074999999999999997), verticalScroll_frameSize = (0, PiratesGuiGlobals.ScrollbarSize, 0, self.height), verticalScroll_thumb_frameColor = PiratesGuiGlobals.ButtonColor2, verticalScroll_incButton_frameColor = PiratesGuiGlobals.ButtonColor2, verticalScroll_decButton_frameColor = PiratesGuiGlobals.ButtonColor2, sortOrder = 5, pos = (0.115, 0, 0.20000000000000001))
+        self.activityList = DirectScrolledFrame(parent = self, frameSize = (0, 0.9, 0, 0.77), relief = DGG.GROOVE, state = DGG.NORMAL, frameColor = (0, 0, 0, 0), borderWidth = PiratesGuiGlobals.BorderWidth, canvasSize = (0, 0.696, 0, self.activityListItems['frameSize'][3]), verticalScroll_frameColor = PiratesGuiGlobals.ScrollbarColor, verticalScroll_borderWidth = (0.0074, 0.0074), verticalScroll_frameSize = (0, PiratesGuiGlobals.ScrollbarSize, 0, self.height), verticalScroll_thumb_frameColor = PiratesGuiGlobals.ButtonColor2, verticalScroll_incButton_frameColor = PiratesGuiGlobals.ButtonColor2, verticalScroll_decButton_frameColor = PiratesGuiGlobals.ButtonColor2, sortOrder = 5, pos = (0.115, 0, 0.200))
         self.activityListItems.reparentTo(self.activityList.getCanvas())
         self.selectedItem = None
         self.optionsPanel = None
@@ -36,8 +36,8 @@ class LookoutRequestLVL3(DirectFrame):
         (self.acceptButton, self.acceptButtonText) = self.parentPanel.parentPanel.createButtonAndText(imageInfo = {
             'textureCard': lookoutUI,
             'imageName': 'lookout_accept',
-            'buttonPos': (0.54000000000000004, 0, 0.14999999999999999),
-            'buttonScale': 0.29999999999999999,
+            'buttonPos': (0.540000, 0, 0.149),
+            'buttonScale': 0.299,
             'clickCommand': self.confirmOptions }, textInfo = PLocalizer.LookoutConfirm)
 
 
@@ -113,7 +113,7 @@ class LookoutRequestLVL3(DirectFrame):
         if self.itemList != itemList:
             self.itemList = itemList
             self.activityListItems._handleItemChange()
-            self.activityList['canvasSize'] = (0, 0.69999999999999996, 0, self.activityListItems['frameSize'][3])
+            self.activityList['canvasSize'] = (0, 0.696, 0, self.activityListItems['frameSize'][3])
 
         self.activityList.show()
         self.acceptButton.show()

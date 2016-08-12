@@ -337,8 +337,8 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
         self.lastBackRandom = randBack
         factorFront = self.frontLightColor * (0.75 + blendFront * 0.5)
         factorBack = self.backLightColor * (0.75 + blendBack * 0.5)
-        self.frontLightFlutter = self.frontLightFlutter * 0.80000000000000004 + factorFront * 0.20000000000000001
-        self.backLightFlutter = self.backLightFlutter * 0.80000000000000004 + factorBack * 0.20000000000000001
+        self.frontLightFlutter = self.frontLightFlutter * 0.800000 + factorFront * 0.200
+        self.backLightFlutter = self.backLightFlutter * 0.800000 + factorBack * 0.200
         lightValueForColor = TODGlobals.computeLightColor(self.frontLightFlutter, ambientColor, self.lightSwitch)
         frontLight.node().setColor(lightValueForColor)
         lightValueForColor = TODGlobals.computeLightColor(self.backLightFlutter, ambientColor, self.lightSwitch)
@@ -1284,7 +1284,7 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
         if envNum == 1:
             self.envSound = loader.loadSfx('audio/sfx_ocean_wind.mp3')
             self.envSound.setLoop(True)
-            self.envSound.setVolume(0.69999999999999996)
+            self.envSound.setVolume(0.696)
             self.envSound.setPlayRate(1.0)
             self.envSound.play()
             self.startAmbientSFX()
@@ -1363,9 +1363,9 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
 
         self.inAmbTime = 1
         if self.environment == TODDefs.ENV_INTERIOR:
-            self.timeVol = self.timeVol * 0.65000000000000002
+            self.timeVol = self.timeVol * 0.65
 
-        self.envSound.setVolume(0.69999999999999996 * self.timeVol)
+        self.envSound.setVolume(0.696 * self.timeVol)
         if task:
             return task.done
 
@@ -1432,10 +1432,10 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
 
     def setSaintPatricksSea(self):
         if self.use_shader:
-            self.modifyWaterColor(VBase3(0.22, 0.56000000000000005, 0.14999999999999999))
-            self.modifyWaterColorFactor(VBase3(0.40000000000000002, 1.0, 0.29999999999999999))
+            self.modifyWaterColor(VBase3(0.22, 0.560000, 0.149))
+            self.modifyWaterColorFactor(VBase3(0.4, 1.0, 0.299))
         else:
-            self.modifyWaterColor(VBase4(0.25, 0.90000000000000002, 0.20000000000000001, 1.0))
+            self.modifyWaterColor(VBase4(0.25, 0.9, 0.200, 1.0))
             self.modifyWaterColorFactor()
 
 

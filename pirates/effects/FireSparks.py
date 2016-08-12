@@ -39,7 +39,7 @@ class FireSparks(PooledEffect, EffectController):
         f0.addForce(self.noiseForce)
         self.f.addForceGroup(f0)
         self.p0.setPoolSize(64)
-        self.p0.setBirthRate(0.20000000000000001)
+        self.p0.setBirthRate(0.200)
         self.p0.setLitterSize(12)
         self.p0.setLitterSpread(0)
         self.p0.setSystemLifespan(0.0)
@@ -48,18 +48,18 @@ class FireSparks(PooledEffect, EffectController):
         self.p0.factory.setLifespanBase(1.0)
         self.p0.factory.setLifespanSpread(0.5)
         self.p0.factory.setMassBase(1.0)
-        self.p0.factory.setMassSpread(0.20000000000000001)
+        self.p0.factory.setMassSpread(0.200)
         self.p0.factory.setTerminalVelocityBase(400.0)
         self.p0.factory.setTerminalVelocitySpread(0.0)
         self.p0.renderer.setAlphaMode(BaseParticleRenderer.PRALPHAOUT)
         self.p0.renderer.setUserAlpha(1.0)
         self.p0.renderer.setFromNode(self.card)
-        self.p0.renderer.setColor(Vec4(1.0, 0.59999999999999998, 0.20000000000000001, 1.0))
+        self.p0.renderer.setColor(Vec4(1.0, 0.598, 0.200, 1.0))
         self.p0.renderer.setXScaleFlag(1)
         self.p0.renderer.setYScaleFlag(1)
         self.p0.renderer.setAnimAngleFlag(1)
-        self.p0.renderer.setInitialXScale(0.0080000000000000002 * self.cardScale)
-        self.p0.renderer.setInitialYScale(0.0080000000000000002 * self.cardScale)
+        self.p0.renderer.setInitialXScale(0.008 * self.cardScale)
+        self.p0.renderer.setInitialYScale(0.008 * self.cardScale)
         self.p0.renderer.setFinalXScale(0.016 * self.cardScale)
         self.p0.renderer.setFinalYScale(0.016 * self.cardScale)
         self.p0.renderer.setNonanimatedTheta(0.0)
@@ -84,15 +84,15 @@ class FireSparks(PooledEffect, EffectController):
 
 
     def createTrack(self, lod = None):
-        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.20000000000000001), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self))
+        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.200), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self))
         self.endEffect = Sequence(Func(self.p0.setBirthRate, 100.0), Wait(2.0), Func(self.cleanUpEffect))
         self.track = Sequence(self.startEffect, Wait(10.0), self.endEffect)
 
 
     def setScale(self, scale = VBase3(1, 1, 1)):
         self.effectScale = scale[0]
-        self.p0.renderer.setInitialXScale(0.0080000000000000002 * self.cardScale * self.effectScale)
-        self.p0.renderer.setInitialYScale(0.0080000000000000002 * self.cardScale * self.effectScale)
+        self.p0.renderer.setInitialXScale(0.008 * self.cardScale * self.effectScale)
+        self.p0.renderer.setInitialYScale(0.008 * self.cardScale * self.effectScale)
         self.p0.renderer.setFinalXScale(0.016 * self.cardScale * self.effectScale)
         self.p0.renderer.setFinalYScale(0.016 * self.cardScale * self.effectScale)
         self.p0.emitter.setOffsetForce(Vec3(2.0, 2.0, 20.0 * self.effectScale))

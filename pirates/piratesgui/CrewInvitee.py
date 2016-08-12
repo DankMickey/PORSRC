@@ -23,7 +23,7 @@ class CrewInvitee(DirectFrame):
 
     def __init__(self, avId, avName):
         guiMain = loader.loadModel('models/gui/gui_main')
-        DirectFrame.__init__(self, relief = None, pos = (-0.59999999999999998, 0, 0.46999999999999997), image = guiMain.find('**/general_frame_e'), image_pos = (0.25, 0, 0.27500000000000002), image_scale = 0.25)
+        DirectFrame.__init__(self, relief = None, pos = (-0.598, 0, 0.46), image = guiMain.find('**/general_frame_e'), image_pos = (0.25, 0, 0.275), image_scale = 0.25)
         guiMain.remove_node()
         self.initialiseoptions(CrewInvitee)
         self.avId = avId
@@ -32,7 +32,7 @@ class CrewInvitee(DirectFrame):
             self._CrewInvitee__handleNo()
             return None
 
-        self.title = DirectLabel(parent = self, relief = None, text = PLocalizer.CrewInviteeTitle, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getPirateOutlineFont(), pos = (0.25, 0, 0.41999999999999998), image = None, image_scale = 0.25)
+        self.title = DirectLabel(parent = self, relief = None, text = PLocalizer.CrewInviteeTitle, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getPirateOutlineFont(), pos = (0.25, 0, 0.418), image = None, image_scale = 0.25)
         nameArray = ('\x01CPOrangeHEAD\x01' + self.avName + '\x02', '\x01CPOrangeHEAD\x01' + self.avName + '\x02', '\x01CPOrangeOVER\x01' + self.avName + '\x02', '\x01CPOrangeHEAD\x01' + self.avName + '\x02')
         nameButton = DirectButton(parent = NodePath(), relief = None, text = nameArray, text_align = TextNode.ALeft, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 0, command = self.handleAvatarPress, extraArgs = [
             avId,
@@ -51,17 +51,17 @@ class CrewInvitee(DirectFrame):
         textRender.setShadowColor(PiratesGuiGlobals.TextShadow)
         textRender.setWordwrap(11)
         textRender.setTabWidth(1.0)
-        textRender.setShadow(0.080000000000000002, 0.080000000000000002)
+        textRender.setShadow(0.08, 0.08)
         textRender.setText(buttonText)
         textNode = self.attachNewNode(textRender.generate())
         textNode.setScale(PiratesGuiGlobals.TextScaleLarge)
-        textNode.setPos(0.25, 0, 0.32500000000000001)
+        textNode.setPos(0.25, 0, 0.325)
         self.bOk = CrewInviteeButton(text = PLocalizer.CrewInviteeOK, command = self._CrewInvitee__handleOk)
         self.bOk.reparentTo(self)
-        self.bOk.setPos(0.10000000000000001, 0, 0.050000000000000003)
+        self.bOk.setPos(0.100, 0, 0.050000)
         self.bNo = CrewInviteeButton(text = PLocalizer.CrewInviteeNo, command = self._CrewInvitee__handleNo)
         self.bNo.reparentTo(self)
-        self.bNo.setPos(0.29999999999999999, 0, 0.050000000000000003)
+        self.bNo.setPos(0.299, 0, 0.050000)
         self.accept('BandRequestCancel-%s' % (self.avId,), self._CrewInvitee__handleCancelFromAbove)
 
 

@@ -55,20 +55,20 @@ class CannonSplash(PooledEffect, EffectController):
         self.p0.factory.setLifespanBase(3.0)
         self.p0.factory.setLifespanSpread(1.0)
         self.p0.factory.setMassBase(1.0)
-        self.p0.factory.setMassSpread(0.90000000000000002)
+        self.p0.factory.setMassSpread(0.9)
         self.p0.factory.setTerminalVelocityBase(400.0)
         self.p0.factory.setTerminalVelocitySpread(0.0)
         self.p0.renderer.setAlphaMode(BaseParticleRenderer.PRALPHAOUT)
-        self.p0.renderer.setUserAlpha(0.20000000000000001)
+        self.p0.renderer.setUserAlpha(0.200)
         self.p0.renderer.setFromNode(self.card)
         self.p0.renderer.setColor(Vec4(1.0, 1.0, 1.0, 1.0))
         self.p0.renderer.setXScaleFlag(1)
         self.p0.renderer.setYScaleFlag(1)
         self.p0.renderer.setAnimAngleFlag(1)
-        self.p0.renderer.setInitialXScale(0.10000000000000001 * self.cardScale)
-        self.p0.renderer.setFinalXScale(0.69999999999999996 * self.cardScale)
-        self.p0.renderer.setInitialYScale(0.10000000000000001 * self.cardScale)
-        self.p0.renderer.setFinalYScale(0.69999999999999996 * self.cardScale)
+        self.p0.renderer.setInitialXScale(0.100 * self.cardScale)
+        self.p0.renderer.setFinalXScale(0.696 * self.cardScale)
+        self.p0.renderer.setInitialYScale(0.100 * self.cardScale)
+        self.p0.renderer.setFinalYScale(0.696 * self.cardScale)
         self.p0.renderer.setNonanimatedTheta(0.0)
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPNOBLEND)
         self.p0.renderer.setAlphaDisable(0)
@@ -94,7 +94,7 @@ class CannonSplash(PooledEffect, EffectController):
                 base.playSfx(sfx, node = self, volume = 1.0, cutoff = 1500)
 
 
-        self.track = Sequence(Func(playSplashSfx), Func(self.p0.setBirthRate, 0.050000000000000003), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Wait(0.29999999999999999), Func(self.p0.setBirthRate, 100), Wait(4.0), Func(self.cleanUpEffect))
+        self.track = Sequence(Func(playSplashSfx), Func(self.p0.setBirthRate, 0.050000), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Wait(0.299), Func(self.p0.setBirthRate, 100), Wait(4.0), Func(self.cleanUpEffect))
 
 
     def cleanUpEffect(self):

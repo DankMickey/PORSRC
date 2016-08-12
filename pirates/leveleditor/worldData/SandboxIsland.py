@@ -9,7 +9,7 @@ objectStruct = {
                     'Type': 'Player Spawn Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Index': 1,
-                    'Pos': Point3(-21.084, -112.742, 9.4659999999999993),
+                    'Pos': Point3(-21.084, -112.742, 9.4653),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'All',
                     'Visual': {
@@ -20,7 +20,7 @@ objectStruct = {
                     'Aggro Radius': '20.0000',
                     'Hpr': VBase3(-4.891, 0.0, 0.0),
                     'Location': 'Land',
-                    'Pos': Point3(6.5629999999999997, -129.477, 9.6489999999999991),
+                    'Pos': Point3(6.562, -129.477, 9.6481),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/shipparts/dingy-geometry_High' } } },

@@ -89,7 +89,7 @@ class DistributedFlamingBarrel(DistributedObject):
         self.barrelModel.remove_node()
         base.cTrav.removeCollider(self.collNode)
         self.collNode.remove_node()
-        taskMgr.doMethodLater(0.40000000000000002, self.sendUpdate, name = self.uniqueName('SendShotDown'), extraArgs = [
+        taskMgr.doMethodLater(0.4, self.sendUpdate, name = self.uniqueName('SendShotDown'), extraArgs = [
             'shotDown'])
 
 
@@ -98,7 +98,7 @@ class DistributedFlamingBarrel(DistributedObject):
         if self.smokeVfx:
             self.smokeVfx.reparentTo(self.pirateTarget)
             self.smokeVfx.setPos(self.barrelModel.getPos())
-            self.smokeVfx.setEffectScale(0.59999999999999998)
+            self.smokeVfx.setEffectScale(0.598)
             self.smokeVfx.play()
 
 
@@ -120,7 +120,7 @@ class DistributedFlamingBarrel(DistributedObject):
         effect = SimpleSmokeCloud.getEffect(unlimited = True)
         if effect:
             effect.reparentTo(self.pirateTarget)
-            effect.setEffectScale(0.59999999999999998)
+            effect.setEffectScale(0.598)
             effect.play()
 
         effect = FireballHit.getEffect()

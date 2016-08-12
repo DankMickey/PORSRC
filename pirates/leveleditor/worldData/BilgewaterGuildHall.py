@@ -8,14 +8,14 @@ objectStruct = {
                 '1141688385.8sdnaik': {
                     'Type': 'Jugs_and_Jars',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-23.853000000000002, 27.329000000000001, 0.0),
+                    'Pos': Point3(-23.853, 27.329, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/largejug_A' } },
                 '1141688408.02sdnaik': {
                     'Type': 'Jugs_and_Jars',
-                    'Hpr': VBase3(-4.2839999999999998, 0.0, 0.0),
-                    'Pos': Point3(-22.440999999999999, 27.094000000000001, 0.0),
+                    'Hpr': VBase3(-4.2838, 0.0, 0.0),
+                    'Pos': Point3(-22.440, 27.094, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/largejug_B' } } },

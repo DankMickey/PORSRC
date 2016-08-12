@@ -28,7 +28,6 @@ from otp.distributed.OtpDoGlobals import *
 from otp.distributed.TelemetryLimiter import TelemetryLimiter
 from otp.login import LoginPiratesAccount
 from otp.otpbase import OTPGlobals
-from otp.otpbase import OTPLauncherGlobals
 from otp.otpbase import OTPLocalizer
 from otp.otpgui import OTPDialog
 from otp.uberdog import OtpAvatarManager

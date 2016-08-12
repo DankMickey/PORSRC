@@ -19,7 +19,7 @@ from otp.otpbase import OTPRender
 class Wake(PooledEffect):
     MinWakeVelocity = 6.0
     FadeOutVelocity = 10.0
-    WakeFactor = 0.025000000000000001
+    WakeFactor = 0.0250
     TurnFactor = -2.0
     AvgCount = 50
     TexStage = TextureStage.getDefault()
@@ -95,13 +95,13 @@ class Wake(PooledEffect):
         wake_offset_x = 0.0
         wake_offset_y = 125.0
         wake_offset_z = 0.0
-        wake_scale = 0.59999999999999998
+        wake_scale = 0.598
         string = 'UNKNOWN'
         self.shadow_model = None
         model = ShipGlobals.getModelClass(ship.shipClass)
         if model == ShipGlobals.INTERCEPTORL1:
-            scale_x = 0.69999999999999996
-            scale_y = 0.55000000000000004
+            scale_x = 0.696
+            scale_y = 0.550000
             if hasattr(base, 'pe'):
                 shadow_offset_y = 10
             else:
@@ -111,40 +111,40 @@ class Wake(PooledEffect):
                 wake_offset_y = -16.5
             else:
                 wake_offset_y = 22.5
-            wake_scale = 0.17999999999999999
+            wake_scale = 0.179
             string = 'INTERCEPTORL1'
 
         if model == ShipGlobals.INTERCEPTORL2:
-            scale_x = 0.69999999999999996 / 0.75
-            scale_y = 0.55000000000000004 / 0.75
+            scale_x = 0.696 / 0.75
+            scale_y = 0.550000 / 0.75
             self.shadow_model = loader.loadModel('models/sea/shadow_merchant')
             if hasattr(base, 'pe'):
                 wake_offset_y = -26.5 / 0.75
             else:
                 wake_offset_y = 22.5 / 0.75
-            wake_scale = 0.17999999999999999 / 0.75
+            wake_scale = 0.179 / 0.75
             string = 'INTERCEPTORL2'
 
         if model == ShipGlobals.INTERCEPTORL3 or model == ShipGlobals.SKEL_INTERCEPTORL3:
-            scale_x = 0.69999999999999996 / 0.75 / 0.75
-            scale_y = 0.55000000000000004 / 0.75 / 0.75
+            scale_x = 0.696 / 0.75 / 0.75
+            scale_y = 0.550000 / 0.75 / 0.75
             self.shadow_model = loader.loadModel('models/sea/shadow_merchant')
             if hasattr(base, 'pe'):
                 wake_offset_y = -26.5 / 0.75 / 0.75
             else:
                 wake_offset_y = 22.5 / 0.75 / 0.75
-            wake_scale = 0.17999999999999999 / 0.75 / 0.75
+            wake_scale = 0.179 / 0.75 / 0.75
             string = 'INTERCEPTORL3'
 
         if model == ShipGlobals.QUEEN_ANNES_REVENGE:
-            scale_x = 0.69999999999999996 / 0.75 / 0.75
-            scale_y = 0.55000000000000004 / 0.75 / 0.75
+            scale_x = 0.696 / 0.75 / 0.75
+            scale_y = 0.550000 / 0.75 / 0.75
             self.shadow_model = loader.loadModel('models/sea/shadow_merchant')
             if hasattr(base, 'pe'):
                 wake_offset_y = -26.5 / 0.75 / 0.75
             else:
                 wake_offset_y = 22.5 / 0.75 / 0.75
-            wake_scale = 0.17999999999999999 / 0.75 / 0.75
+            wake_scale = 0.179 / 0.75 / 0.75
             string = 'QUEEN_ANNES_REVENGE'
 
         if model == ShipGlobals.MERCHANTL1:
@@ -152,10 +152,10 @@ class Wake(PooledEffect):
             scale_y = 1.05
             self.shadow_model = loader.loadModel('models/sea/shadow_merchant')
             if hasattr(base, 'pe'):
-                wake_offset_y = -80.0 * 0.69999999999999996
+                wake_offset_y = -80.0 * 0.696
             else:
-                wake_offset_y = 80.0 * 0.69999999999999996
-            wake_scale = 0.5 * 0.69999999999999996
+                wake_offset_y = 80.0 * 0.696
+            wake_scale = 0.5 * 0.696
             string = 'MERCHANTL1'
 
         if model == ShipGlobals.MERCHANTL2:
@@ -170,41 +170,41 @@ class Wake(PooledEffect):
             string = 'MERCHANTL2'
 
         if model == ShipGlobals.MERCHANTL3:
-            scale_x = 1.8500000000000001
-            scale_y = 1.8500000000000001
+            scale_x = 1.85
+            scale_y = 1.85
             self.shadow_model = loader.loadModel('models/sea/shadow_merchant')
             if hasattr(base, 'pe'):
-                wake_offset_y = -80.0 * 1.2333000000000001
+                wake_offset_y = -80.0 * 1.2333
             else:
-                wake_offset_y = 80.0 * 1.2333000000000001
-            wake_scale = 0.5 * 1.2333000000000001
+                wake_offset_y = 80.0 * 1.2333
+            wake_scale = 0.5 * 1.2333
             string = 'MERCHANTL3'
 
         if model == ShipGlobals.WARSHIPL1:
-            scale_x = 1.0800000000000001 * 0.75 * 0.75
+            scale_x = 1.08 * 0.75 * 0.75
             scale_y = 1.01 * 0.75 * 0.75
             self.shadow_model = loader.loadModel('models/sea/shadow_warship')
-            wake_scale = 0.59999999999999998 * 0.69999999999999996 * 0.69999999999999996
+            wake_scale = 0.598 * 0.696 * 0.696
             if hasattr(base, 'pe'):
-                wake_offset_y = -125.0 * 0.69999999999999996 * 0.69999999999999996
+                wake_offset_y = -125.0 * 0.696 * 0.696
             else:
-                wake_offset_y = 125.0 * 0.69999999999999996 * 0.69999999999999996
+                wake_offset_y = 125.0 * 0.696 * 0.696
             string = 'WARSHIPL1'
 
         if model == ShipGlobals.WARSHIPL2:
-            scale_x = 1.0800000000000001 * 0.75
+            scale_x = 1.08 * 0.75
             scale_y = 1.01 * 0.75
             self.shadow_model = loader.loadModel('models/sea/shadow_warship')
-            wake_scale = 0.59999999999999998 * 0.69999999999999996
+            wake_scale = 0.598 * 0.696
             if hasattr(base, 'pe'):
-                wake_offset_y = -125.0 * 0.69999999999999996
+                wake_offset_y = -125.0 * 0.696
             else:
-                wake_offset_y = 125.0 * 0.69999999999999996
+                wake_offset_y = 125.0 * 0.696
             string = 'WARSHIPL2'
 
         if model == ShipGlobals.SKEL_WARSHIPL3:
-            scale = 0.72499999999999998
-            scale_x = 1.0800000000000001 * scale
+            scale = 0.72498
+            scale_x = 1.08 * scale
             scale_y = 1.22 * scale
             if hasattr(base, 'pe'):
                 shadow_offset_y = 10.0
@@ -219,10 +219,10 @@ class Wake(PooledEffect):
             string = 'SKEL_WARSHIPL3'
 
         if model == ShipGlobals.WARSHIPL3:
-            scale_x = 1.0800000000000001
+            scale_x = 1.08
             scale_y = 1.05
             self.shadow_model = loader.loadModel('models/sea/shadow_warship')
-            wake_scale = 0.59999999999999998
+            wake_scale = 0.598
             if hasattr(base, 'pe'):
                 wake_offset_y = -125.0
             else:
@@ -231,17 +231,17 @@ class Wake(PooledEffect):
 
         if model == ShipGlobals.BLACK_PEARL:
             scale_x = 1.05
-            scale_y = 1.0800000000000001
+            scale_y = 1.08
             self.shadow_model = loader.loadModel('models/sea/shadow_warship')
-            wake_scale = 0.59999999999999998
+            wake_scale = 0.598
             wake_offset_y = 100.0
             string = 'BLACK_PEARL'
 
         if model == ShipGlobals.SHIP_OF_THE_LINE:
             scale_x = 1.05
-            scale_y = 1.0800000000000001
+            scale_y = 1.08
             self.shadow_model = loader.loadModel('models/sea/shadow_warship')
-            wake_scale = 0.59999999999999998
+            wake_scale = 0.598
             wake_offset_y = 100.0
             string = 'SHIP_OF_THE_LINE'
 

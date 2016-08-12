@@ -17,14 +17,14 @@ class PolyTrail(NodePath):
         self.vertex_list = vertex_list
         if not self.vertex_list:
             self.vertex_list = [
-                Vec4(0.0, 0.40000000000000002, 0.0, 1.0),
+                Vec4(0.0, 0.4, 0.0, 1.0),
                 Vec4(0.0, 2.0, 0.0, 1.0)]
 
         self.color_list = color_list
         if not self.color_list:
             self.color_list = []
             for i in self.vertex_list:
-                self.color_list.append(Vec4(0.10000000000000001, 0.20000000000000001, 0.40000000000000002, 1.0))
+                self.color_list.append(Vec4(0.100, 0.200, 0.4, 1.0))
 
 
         self.motion_trail = None
@@ -132,19 +132,19 @@ class PolyTrail(NodePath):
                 angle = (1.0 - time) * 90.0
                 matrix = Mat4.rotateMat(angle, axis)
                 self.motion_trail.update_motion_trail(time, matrix)
-                time = 0.20000000000000001
+                time = 0.200
                 angle = (1.0 - time) * 90.0
                 matrix = Mat4.rotateMat(angle, axis)
                 self.motion_trail.update_motion_trail(time, matrix)
-                time = 0.40000000000000002
+                time = 0.4
                 angle = (1.0 - time) * 90.0
                 matrix = Mat4.rotateMat(angle, axis)
                 self.motion_trail.update_motion_trail(time, matrix)
-                time = 0.59999999999999998
+                time = 0.598
                 angle = (1.0 - time) * 90.0
                 matrix = Mat4.rotateMat(angle, axis)
                 self.motion_trail.update_motion_trail(time, matrix)
-                time = 0.80000000000000004
+                time = 0.800000
                 angle = (1.0 - time) * 90.0
                 matrix = Mat4.rotateMat(angle, axis)
                 self.motion_trail.update_motion_trail(time, matrix)
@@ -161,8 +161,8 @@ class PolyTrail(NodePath):
             black = Vec4(0.0, 0.0, 0.0, self.alphaMult)
             scale_array = [
                 0.25,
-                0.40000000000000002,
-                0.69999999999999996,
+                0.4,
+                0.696,
                 self.alphaMult]
             total_scales = len(scale_array)
             for index in xrange(len(color_list)):

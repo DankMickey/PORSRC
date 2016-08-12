@@ -70,7 +70,7 @@ class VoodooStaffFire(PooledEffect, EffectController):
         self.p0.emitter.setOffsetForce(Vec3(0.0, -1.5, 2.0))
         self.p0.emitter.setExplicitLaunchVector(Vec3(1.0, 0.0, 0.0))
         self.p0.emitter.setRadiateOrigin(Point3(0.0, 0.0, 0.0))
-        self.p0.emitter.setRadius(0.29999999999999999)
+        self.p0.emitter.setRadius(0.299)
 
 
     def createTrack(self):

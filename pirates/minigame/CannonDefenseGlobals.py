@@ -6,16 +6,16 @@ from pirates.uberdog.UberDogGlobals import InventoryType
 DAZED_ENABLED = True
 PLAYER_AFK_TIMEOUT = 300
 GAME_OVER_WAIT = 30
-ENEMY_DIFFICULTY_INCREASE = 0.10000000000000001
+ENEMY_DIFFICULTY_INCREASE = 0.100
 ENEMY_LINEAR_HEALTH_DIFFICULTY = 300
-MOUSE_SENSITIVITY_H = 0.14000000000000001
-MOUSE_SENSITIVITY_P = 0.080000000000000002
+MOUSE_SENSITIVITY_H = 0.140
+MOUSE_SENSITIVITY_P = 0.08
 KEYBOARD_RATE = 250
 CANNON_HPR = (-120.38, -4.96, 0)
 SHIP_FADEIN = 4
 SHIP_FADEOUT = 4.0
 SHIP_DELAY = 1.0
-SHIP_SCALE = 0.40000000000000002
+SHIP_SCALE = 0.4
 SHIP_SINK_DURATION_SCALE = 0.5
 SHIP_STATE_NONE = 0
 SHIP_STATE_STEALING = 1
@@ -23,15 +23,15 @@ SHIP_STATE_HASTREASURE = 2
 SHIP_STATE_HASBNOTES = 3
 FLAMING_BARREL_VELOCITY = 90
 MAX_BARREL_FLIGHT_DURATION = 14.0
-BARREL_GRAVITY = 0.070000000000000007
-REPEATER_RELOAD_MODIFIER = 0.10000000000000001
-REPEATER_DAMAGE_MODIFIER = 0.10000000000000001
+BARREL_GRAVITY = 0.070
+REPEATER_RELOAD_MODIFIER = 0.100
+REPEATER_DAMAGE_MODIFIER = 0.100
 DAMAGE_TO_GOLD_RATE = 0.002
 SHIP_TREASURE_THROTTLE = 0.5
 SHIPS_PER_PATH_THRESHOLD = 3
 MIN_SHIP_HEALTH_PER_PLAYER = 900
 MINE_TREASURE_START = 1000
-MINE_TREASURE_AWARD = 0.050000000000000003
+MINE_TREASURE_AWARD = 0.050000
 RESULT_SCREEN_DURATION = 15
 VICTORY_SCREEN_DURATION = 45
 TUTORIAL_DURATION = 20
@@ -57,10 +57,10 @@ SHIP_HEALTH_COLORS = [
     (0.0, 1.0, 0.0, 1.0),
     (0.0, 1.0, 0.0, 1.0)]
 SHIP_SMOKE_SCREEN_SPEED_PERCENTAGE = 0.25
-SHIP_SMOKE_ICE_SHOT_PERCENTAGE = 0.10000000000000001
-NAVY_CANNON_EXP_PER_DAMAGE = 0.050000000000000003
-NAVY_CANNON_EXP_PER_DAMAGE_OTHER = 0.014999999999999999
-CANNON_EXP_PER_DAMAGE = 0.00059999999999999995
+SHIP_SMOKE_ICE_SHOT_PERCENTAGE = 0.100
+NAVY_CANNON_EXP_PER_DAMAGE = 0.050000
+NAVY_CANNON_EXP_PER_DAMAGE_OTHER = 0.0149
+CANNON_EXP_PER_DAMAGE = 0.000595
 BANKNOTES_PER_DAMAGE = 0.01
 waveData = [
     {
@@ -77,8 +77,8 @@ waveData = [
             1: {
                 'duration': 30,
                 'basicShips': [
-                    (LIGHTSLOOP, 0.80000000000000004),
-                    (LIGHTGALLEON, 0.20000000000000001)] } } },
+                    (LIGHTSLOOP, 0.800000),
+                    (LIGHTGALLEON, 0.200)] } } },
     {
         'maxShipsOnScreenPerPlayer': [
             3,
@@ -114,14 +114,14 @@ waveData = [
             0: {
                 'duration': 15,
                 'basicShips': [
-                    (LIGHTGALLEON, 0.20000000000000001),
-                    (LIGHTSLOOP, 0.80000000000000004)] },
+                    (LIGHTGALLEON, 0.200),
+                    (LIGHTSLOOP, 0.800000)] },
             1: {
                 'duration': 15,
                 'basicShips': [
                     (LIGHTGALLEON, 0.5),
-                    (LIGHTFRIGATE, 0.40000000000000002),
-                    (LIGHTSLOOP, 0.10000000000000001)] },
+                    (LIGHTFRIGATE, 0.4),
+                    (LIGHTSLOOP, 0.100)] },
             2: {
                 'duration': 15,
                 'basicShips': [
@@ -149,8 +149,8 @@ waveData = [
             1: {
                 'duration': 30,
                 'basicShips': [
-                    (LIGHTFRIGATE, 0.80000000000000004),
-                    (LIGHTGALLEON, 0.20000000000000001)],
+                    (LIGHTFRIGATE, 0.800000),
+                    (LIGHTGALLEON, 0.200)],
                 'bossShips': [
                     STANDARDGALLEON,
                     STANDARDGALLEON,
@@ -165,10 +165,10 @@ waveData = [
             0: {
                 'duration': 60,
                 'basicShips': [
-                    (STANDARDSLOOP, 0.40000000000000002),
-                    (LIGHTSLOOP, 0.20000000000000001),
-                    (LIGHTGALLEON, 0.20000000000000001),
-                    (LIGHTFRIGATE, 0.20000000000000001)],
+                    (STANDARDSLOOP, 0.4),
+                    (LIGHTSLOOP, 0.200),
+                    (LIGHTGALLEON, 0.200),
+                    (LIGHTFRIGATE, 0.200)],
                 'bossShips': [
                     STANDARDGALLEON,
                     STANDARDGALLEON,
@@ -186,8 +186,8 @@ waveData = [
             0: {
                 'duration': 30,
                 'basicShips': [
-                    (LIGHTSLOOP, 0.55000000000000004),
-                    (STANDARDSLOOP, 0.45000000000000001)],
+                    (LIGHTSLOOP, 0.550000),
+                    (STANDARDSLOOP, 0.450)],
                 'bossShips': [
                     STANDARDGALLEON,
                     STANDARDGALLEON] },
@@ -240,16 +240,16 @@ waveData = [
             0: {
                 'duration': 45,
                 'basicShips': [
-                    (STANDARDSLOOP, 0.65000000000000002),
-                    (LIGHTFRIGATE, 0.34999999999999998)],
+                    (STANDARDSLOOP, 0.65),
+                    (LIGHTFRIGATE, 0.348)],
                 'bossShips': [
                     WARSHIPGALLEON,
                     WARSHIPGALLEON] },
             1: {
                 'duration': 45,
                 'basicShips': [
-                    (WARSHIPSLOOP, 0.40000000000000002),
-                    (STANDARDFRIGATE, 0.59999999999999998)],
+                    (WARSHIPSLOOP, 0.4),
+                    (STANDARDFRIGATE, 0.598)],
                 'bossShips': [
                     WARSHIPGALLEON,
                     WARSHIPGALLEON,
@@ -265,18 +265,18 @@ waveData = [
             0: {
                 'duration': 15,
                 'basicShips': [
-                    (STANDARDSLOOP, 0.69999999999999996),
-                    (LIGHTGALLEON, 0.20000000000000001),
-                    (LIGHTSLOOP, 0.10000000000000001)],
+                    (STANDARDSLOOP, 0.696),
+                    (LIGHTGALLEON, 0.200),
+                    (LIGHTSLOOP, 0.100)],
                 'bossShips': [
                     WARSHIPFRIGATE,
                     WARSHIPFRIGATE] },
             1: {
                 'duration': 30,
                 'basicShips': [
-                    (STANDARDSLOOP, 0.69999999999999996),
-                    (LIGHTGALLEON, 0.20000000000000001),
-                    (LIGHTSLOOP, 0.10000000000000001)] },
+                    (STANDARDSLOOP, 0.696),
+                    (LIGHTGALLEON, 0.200),
+                    (LIGHTSLOOP, 0.100)] },
             2: {
                 'duration': 30,
                 'basicShips': [
@@ -317,9 +317,9 @@ waveData = [
             1: {
                 'duration': 60,
                 'basicShips': [
-                    (LIGHTSLOOP, 0.40000000000000002),
-                    (WARSHIPSLOOP, 0.20000000000000001),
-                    (STANDARDSLOOP, 0.40000000000000002)],
+                    (LIGHTSLOOP, 0.4),
+                    (WARSHIPSLOOP, 0.200),
+                    (STANDARDSLOOP, 0.4)],
                 'bossShips': [
                     HEAVYWARSHIPSLOOP,
                     HEAVYWARSHIPSLOOP,
@@ -342,9 +342,9 @@ waveData = [
             1: {
                 'duration': 30,
                 'basicShips': [
-                    (STANDARDGALLEON, 0.34999999999999998),
-                    (STANDARDSLOOP, 0.34999999999999998),
-                    (LIGHTFRIGATE, 0.29999999999999999)],
+                    (STANDARDGALLEON, 0.348),
+                    (STANDARDSLOOP, 0.348),
+                    (LIGHTFRIGATE, 0.299)],
                 'bossShips': [
                     WARSHIPGALLEON,
                     WARSHIPSLOOP,
@@ -352,10 +352,10 @@ waveData = [
             2: {
                 'duration': 45,
                 'basicShips': [
-                    (STANDARDGALLEON, 0.20000000000000001),
-                    (WARSHIPSLOOP, 0.20000000000000001),
-                    (LIGHTFRIGATE, 0.29999999999999999),
-                    (STANDARDSLOOP, 0.29999999999999999)],
+                    (STANDARDGALLEON, 0.200),
+                    (WARSHIPSLOOP, 0.200),
+                    (LIGHTFRIGATE, 0.299),
+                    (STANDARDSLOOP, 0.299)],
                 'bossShips': [
                     WARSHIPGALLEON,
                     HEAVYWARSHIPGALLEON] } } },
@@ -369,8 +369,8 @@ waveData = [
             0: {
                 'duration': 60,
                 'basicShips': [
-                    (STANDARDFRIGATE, 0.40000000000000002),
-                    (LIGHTFRIGATE, 0.59999999999999998)],
+                    (STANDARDFRIGATE, 0.4),
+                    (LIGHTFRIGATE, 0.598)],
                 'bossShips': [
                     WARSHIPFRIGATE,
                     HEAVYWARSHIPGALLEON] },
@@ -393,16 +393,16 @@ waveData = [
             0: {
                 'duration': 30,
                 'basicShips': [
-                    (STANDARDSLOOP, 0.29999999999999999),
-                    (STANDARDFRIGATE, 0.29999999999999999),
-                    (LIGHTGALLEON, 0.29999999999999999),
-                    (LIGHTSLOOP, 0.10000000000000001)] },
+                    (STANDARDSLOOP, 0.299),
+                    (STANDARDFRIGATE, 0.299),
+                    (LIGHTGALLEON, 0.299),
+                    (LIGHTSLOOP, 0.100)] },
             1: {
                 'duration': 45,
                 'basicShips': [
-                    (STANDARDGALLEON, 0.34999999999999998),
+                    (STANDARDGALLEON, 0.348),
                     (LIGHTFRIGATE, 0.25),
-                    (STANDARDSLOOP, 0.14999999999999999)],
+                    (STANDARDSLOOP, 0.149)],
                 'bossShips': [
                     WARSHIPSLOOP,
                     WARSHIPSLOOP] },
@@ -410,8 +410,8 @@ waveData = [
                 'duration': 60,
                 'basicShips': [
                     (STANDARDGALLEON, 0.5),
-                    (STANDARDSLOOP, 0.29999999999999999),
-                    (STANDARDFRIGATE, 0.20000000000000001)],
+                    (STANDARDSLOOP, 0.299),
+                    (STANDARDFRIGATE, 0.200)],
                 'bossShips': [
                     WARSHIPSLOOP,
                     HEAVYWARSHIPGALLEON,
@@ -422,11 +422,11 @@ waveData = [
             3: {
                 'duration': 30,
                 'basicShips': [
-                    (WARSHIPFRIGATE, 0.20000000000000001),
-                    (WARSHIPGALLEON, 0.20000000000000001),
-                    (STANDARDGALLEON, 0.20000000000000001),
-                    (LIGHTFRIGATE, 0.20000000000000001),
-                    (LIGHTSLOOP, 0.20000000000000001)],
+                    (WARSHIPFRIGATE, 0.200),
+                    (WARSHIPGALLEON, 0.200),
+                    (STANDARDGALLEON, 0.200),
+                    (LIGHTFRIGATE, 0.200),
+                    (LIGHTSLOOP, 0.200)],
                 'bossShips': [
                     HEAVYWARSHIPFRIGATE,
                     HEAVYWARSHIPSLOOP,
@@ -455,7 +455,7 @@ shipStats = {
         'speedRange': [
             10,
             12],
-        'escapeSpeedMuliplier': 0.34999999999999998,
+        'escapeSpeedMuliplier': 0.348,
         'stealingLimitRange': [
             75,
             76],
@@ -477,7 +477,7 @@ shipStats = {
         'speedRange': [
             7,
             8],
-        'escapeSpeedMuliplier': 0.34999999999999998,
+        'escapeSpeedMuliplier': 0.348,
         'stealingLimitRange': [
             100,
             101],
@@ -499,7 +499,7 @@ shipStats = {
         'speedRange': [
             8,
             9],
-        'escapeSpeedMuliplier': 0.34999999999999998,
+        'escapeSpeedMuliplier': 0.348,
         'stealingLimitRange': [
             125,
             126],
@@ -521,7 +521,7 @@ shipStats = {
         'speedRange': [
             7,
             8],
-        'escapeSpeedMuliplier': 0.34999999999999998,
+        'escapeSpeedMuliplier': 0.348,
         'stealingLimitRange': [
             75,
             76],
@@ -543,7 +543,7 @@ shipStats = {
         'speedRange': [
             4.5,
             5],
-        'escapeSpeedMuliplier': 0.34999999999999998,
+        'escapeSpeedMuliplier': 0.348,
         'stealingLimitRange': [
             100,
             101],
@@ -565,7 +565,7 @@ shipStats = {
         'speedRange': [
             5,
             6],
-        'escapeSpeedMuliplier': 0.34999999999999998,
+        'escapeSpeedMuliplier': 0.348,
         'stealingLimitRange': [
             125,
             126],
@@ -587,7 +587,7 @@ shipStats = {
         'speedRange': [
             8,
             9],
-        'escapeSpeedMuliplier': 0.34999999999999998,
+        'escapeSpeedMuliplier': 0.348,
         'stealingLimitRange': [
             75,
             76],
@@ -609,7 +609,7 @@ shipStats = {
         'speedRange': [
             5,
             6],
-        'escapeSpeedMuliplier': 0.34999999999999998,
+        'escapeSpeedMuliplier': 0.348,
         'stealingLimitRange': [
             100,
             101],
@@ -631,7 +631,7 @@ shipStats = {
         'speedRange': [
             4,
             5],
-        'escapeSpeedMuliplier': 0.34999999999999998,
+        'escapeSpeedMuliplier': 0.348,
         'stealingLimitRange': [
             125,
             126],
@@ -653,7 +653,7 @@ shipStats = {
         'speedRange': [
             7,
             8],
-        'escapeSpeedMuliplier': 0.34999999999999998,
+        'escapeSpeedMuliplier': 0.348,
         'stealingLimitRange': [
             75,
             76],
@@ -675,7 +675,7 @@ shipStats = {
         'speedRange': [
             4.5,
             5.5],
-        'escapeSpeedMuliplier': 0.34999999999999998,
+        'escapeSpeedMuliplier': 0.348,
         'stealingLimitRange': [
             100,
             101],
@@ -697,7 +697,7 @@ shipStats = {
         'speedRange': [
             4,
             5],
-        'escapeSpeedMuliplier': 0.34999999999999998,
+        'escapeSpeedMuliplier': 0.348,
         'stealingLimitRange': [
             125,
             126],

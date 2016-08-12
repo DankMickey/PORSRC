@@ -16,7 +16,7 @@ objectStruct = {
                     'CustomModel': 'None',
                     'Hpr': VBase3(23.227, 0.0, 0.0),
                     'Patrol Radius': '1.0000',
-                    'Pos': Point3(12.006, -19.911000000000001, 0.0),
+                    'Pos': Point3(12.006, -19.911, 0.0),
                     'Private Status': 'All',
                     'Respawns': True,
                     'Scale': VBase3(1.0, 1.0, 1.0),

@@ -195,7 +195,7 @@ class FishFSM(FSM.FSM):
     def enterAboutToFight(self):
         if self.fish.myData['size'] == 'small' or self.fish.myData['size'] == 'medium':
             if self.fish.myData['size'] == 'small':
-                self.fish.fishStatusIconNodePath.setScale(0.40000000000000002)
+                self.fish.fishStatusIconNodePath.setScale(0.4)
 
             self.fish.fishStatusIconNodePath.show()
             self.fish.fishStatusIconTextNode.setText('!')
@@ -282,7 +282,7 @@ class FishFSM(FSM.FSM):
 
     def enterBeingEaten(self, fishThatWillEat):
         self.fish.wrtReparentTo(fishThatWillEat.mouthJoint)
-        self.fish.fishMoveSequence = Sequence(Parallel(self.fish.posInterval(0.5, Point3(0.0, 0.0, 0.0)), self.fish.scaleInterval(0.5, Point3(0.050000000000000003, 0.050000000000000003, 0.050000000000000003))), Func(self.request, 'Offscreen'), name = '%s_MoveSequence' % self.fish.getName())
+        self.fish.fishMoveSequence = Sequence(Parallel(self.fish.posInterval(0.5, Point3(0.0, 0.0, 0.0)), self.fish.scaleInterval(0.5, Point3(0.050000, 0.050000, 0.050000))), Func(self.request, 'Offscreen'), name = '%s_MoveSequence' % self.fish.getName())
         self.fish.fishMoveSequence.start()
 
 

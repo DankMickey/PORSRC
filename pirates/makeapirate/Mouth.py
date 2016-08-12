@@ -45,19 +45,19 @@ class Mouth(DirectObject.DirectObject):
     def loadGUI(self):
         customRange = (-1.0, 1.0)
         self.pgs1 = CharGuiSlider(self.main, parent = self.jawFrame, text = PLocalizer.MouthJawWidth, command = self.updateControlShape, range = customRange)
-        self.pgs1.setPos(-0.40000000000000002, 0, -0.29999999999999999)
+        self.pgs1.setPos(-0.4, 0, -0.299)
         self.pgs2 = CharGuiSlider(self.main, parent = self.jawFrame, text = PLocalizer.MouthJawLength, command = self.updateControlShape, range = customRange)
-        self.pgs2.setPos(-0.40000000000000002, 0, -0.55000000000000004)
+        self.pgs2.setPos(-0.4, 0, -0.550000)
         self.pgs3 = CharGuiSlider(self.main, parent = self.jawFrame, text = PLocalizer.MouthJawChinAngle, command = self.updateControlShape, range = customRange)
-        self.pgs3.setPos(-0.40000000000000002, 0, -0.80000000000000004)
+        self.pgs3.setPos(-0.4, 0, -0.800000)
         self.pgs4 = CharGuiSlider(self.main, parent = self.jawFrame, text = PLocalizer.MouthJawChinSize, command = self.updateControlShape, range = customRange)
-        self.pgs4.setPos(-0.40000000000000002, 0, -1.05)
+        self.pgs4.setPos(-0.4, 0, -1.05)
         self.pgs5 = CharGuiSlider(self.main, parent = self.lipFrame, text = PLocalizer.MouthWidth, command = self.updateControlShape, range = (-0.175, 0.0))
-        self.pgs5.setPos(-0.40000000000000002, 0, -0.29999999999999999)
+        self.pgs5.setPos(-0.4, 0, -0.299)
         self.pgs6 = CharGuiSlider(self.main, parent = self.lipFrame, text = PLocalizer.MouthThickness, command = self.updateControlShape, range = (-0.35, 0.2))
-        self.pgs6.setPos(-0.40000000000000002, 0, -0.55000000000000004)
+        self.pgs6.setPos(-0.4, 0, -0.550000)
         self.pgs8 = CharGuiSlider(self.main, parent = self.cheekFrame, text = PLocalizer.CheekFat, command = self.updateControlShape, range = customRange)
-        self.pgs8.setPos(-0.40000000000000002, 0, -0.29999999999999999)
+        self.pgs8.setPos(-0.4, 0, -0.299)
         self.pgs = [
             self.pgs1,
             self.pgs2,
@@ -119,14 +119,14 @@ class Mouth(DirectObject.DirectObject):
 
 
     def setupButtons(self):
-        self.jawFrame = DirectFrame(parent = self.parent, relief = None, text = PLocalizer.MouthJawFrameTitle, text_fg = (1, 1, 1, 1), text_scale = 0.17999999999999999, text_pos = (0, -0.050000000000000003), pos = (0, 0, 0.40000000000000002), scale = 0.69999999999999996)
+        self.jawFrame = DirectFrame(parent = self.parent, relief = None, text = PLocalizer.MouthJawFrameTitle, text_fg = (1, 1, 1, 1), text_scale = 0.179, text_pos = (0, -0.050000), pos = (0, 0, 0.4), scale = 0.696)
         self.jawFrame.hide()
-        self.lipFrame = DirectFrame(parent = self.parent, relief = None, text = PLocalizer.MouthFrameTitle, text_fg = (1, 1, 1, 1), text_scale = 0.17999999999999999, text_pos = (0, -0.050000000000000003), pos = (0, 0, -0.55000000000000004), scale = 0.69999999999999996)
+        self.lipFrame = DirectFrame(parent = self.parent, relief = None, text = PLocalizer.MouthFrameTitle, text_fg = (1, 1, 1, 1), text_scale = 0.179, text_pos = (0, -0.050000), pos = (0, 0, -0.550000), scale = 0.696)
         self.lipFrame.hide()
-        self.cheekFrame = DirectFrame(parent = self.parent, relief = None, text = PLocalizer.MouthCheekFrameTitle, text_fg = (1, 1, 1, 1), text_scale = 0.17999999999999999, text_pos = (0, -0.050000000000000003), pos = (0, 0, -1.3999999999999999), scale = 0.69999999999999996)
+        self.cheekFrame = DirectFrame(parent = self.parent, relief = None, text = PLocalizer.MouthCheekFrameTitle, text_fg = (1, 1, 1, 1), text_scale = 0.179, text_pos = (0, -0.050000), pos = (0, 0, -1.39), scale = 0.696)
         self.cheekFrame.hide()
         self.teethPicker = CharGuiPicker(self.main, parent = self.parent, text = PLocalizer.MouthTeethFrame, nextCommand = self.handleNextTeeth, backCommand = self.handleLastTeeth)
-        self.teethPicker.setPos(0, 0, -0.29999999999999999)
+        self.teethPicker.setPos(0, 0, -0.299)
         self.teethPicker.hide()
 
 

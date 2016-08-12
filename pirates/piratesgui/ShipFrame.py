@@ -49,7 +49,7 @@ class ShipFrame(DirectFrame):
                 image = ShipFrame.logos.find('**/logo_spanish_flag')
 
             if image:
-                self.flag = DirectLabel(parent = self, image = image, image_scale = 0.080000000000000002, image_pos = (0.089999999999999997, 0, 0.089999999999999997))
+                self.flag = DirectLabel(parent = self, image = image, image_scale = 0.08, image_pos = (0.089, 0, 0.089))
 
 
         self.shipMeter.reparentTo(self.shipDisplay)

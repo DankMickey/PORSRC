@@ -75,10 +75,10 @@ class LavaSplats(NodePath, EffectController):
 
     def setEffectScale(self, effectScale):
         if self.p0:
-            self.p0.renderer.setInitialXScale(0.10000000000000001 * self.cardScale * effectScale)
-            self.p0.renderer.setFinalXScale(0.29999999999999999 * self.cardScale * effectScale)
-            self.p0.renderer.setInitialYScale(0.10000000000000001 * self.cardScale * effectScale)
-            self.p0.renderer.setFinalYScale(0.29999999999999999 * self.cardScale * effectScale)
+            self.p0.renderer.setInitialXScale(0.100 * self.cardScale * effectScale)
+            self.p0.renderer.setFinalXScale(0.299 * self.cardScale * effectScale)
+            self.p0.renderer.setInitialYScale(0.100 * self.cardScale * effectScale)
+            self.p0.renderer.setFinalYScale(0.299 * self.cardScale * effectScale)
             self.p0.emitter.setAmplitude(20.0 * effectScale)
             self.p0.emitter.setAmplitudeSpread(5.0 * effectScale)
             self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, 150.0) * effectScale)
@@ -87,6 +87,6 @@ class LavaSplats(NodePath, EffectController):
 
 
     def createTrack(self):
-        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.20000000000000001), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy))
+        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.200), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy))
         self.endEffect = Sequence(Func(self.p0.setBirthRate, 100), Wait(4.5), Func(self.cleanUpEffect))
         self.track = Sequence(self.startEffect, Wait(self.duration), self.endEffect)

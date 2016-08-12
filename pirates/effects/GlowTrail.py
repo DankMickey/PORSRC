@@ -41,7 +41,7 @@ class GlowTrail(PooledEffect, EffectController):
         self.p0.setLocalVelocityFlag(0)
         self.p0.setSystemGrowsOlderFlag(0)
         self.p0.factory.setLifespanBase(self.lifespan)
-        self.p0.factory.setLifespanSpread(0.10000000000000001)
+        self.p0.factory.setLifespanSpread(0.100)
         self.p0.factory.setMassBase(1.0)
         self.p0.factory.setMassSpread(0.0)
         self.p0.factory.setTerminalVelocityBase(400.0)
@@ -66,8 +66,8 @@ class GlowTrail(PooledEffect, EffectController):
 
 
     def createTrack(self):
-        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.014999999999999999), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy))
-        self.endEffect = Sequence(Func(self.p0.setBirthRate, 100.0), Wait(self.lifespan + 0.10000000000000001), Func(self.cleanUpEffect))
+        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.0149), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy))
+        self.endEffect = Sequence(Func(self.p0.setBirthRate, 100.0), Wait(self.lifespan + 0.100), Func(self.cleanUpEffect))
         self.track = Sequence(self.startEffect, Wait(1.0), self.endEffect)
 
 
@@ -84,10 +84,10 @@ class GlowTrail(PooledEffect, EffectController):
 
     def setEffectScale(self, scale):
         self.effectScale = scale
-        self.p0.renderer.setInitialXScale(0.14999999999999999 * self.cardScale * scale)
-        self.p0.renderer.setFinalXScale(0.10000000000000001 * self.cardScale * scale)
-        self.p0.renderer.setInitialYScale(0.14999999999999999 * self.cardScale * scale)
-        self.p0.renderer.setFinalYScale(0.40000000000000002 * self.cardScale * scale)
+        self.p0.renderer.setInitialXScale(0.149 * self.cardScale * scale)
+        self.p0.renderer.setFinalXScale(0.100 * self.cardScale * scale)
+        self.p0.renderer.setInitialYScale(0.149 * self.cardScale * scale)
+        self.p0.renderer.setFinalYScale(0.4 * self.cardScale * scale)
         self.p0.emitter.setAmplitude(10.0 * scale)
 
 

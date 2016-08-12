@@ -24,16 +24,16 @@ class PiratesInfo(GuiPanel.GuiPanel):
     notify = DirectNotifyGlobal.directNotify.newCategory('PiratesInfo')
 
     def __init__(self, title, messageList):
-        GuiPanel.GuiPanel.__init__(self, title, 0.80000000000000004, 0.80000000000000004)
+        GuiPanel.GuiPanel.__init__(self, title, 0.800000, 0.800000)
         self.initialiseoptions(PiratesInfo)
         self.messageList = messageList
         self.currentMessage = 0
         text = ' '
         base.me = self
-        self.message = DirectLabel(parent = self, relief = None, text = self.messageList[self.currentMessage], text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 17, pos = (0.066699999999999995, 0, 0.59999999999999998), textMayChange = 1)
+        self.message = DirectLabel(parent = self, relief = None, text = self.messageList[self.currentMessage], text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 17, pos = (0.066695, 0, 0.598), textMayChange = 1)
         self.bOk = PiratesInfoButton(text = PLocalizer.GenericConfirmOK, command = self._PiratesInfo__handleOk)
         self.bOk.reparentTo(self)
-        self.bOk.setPos(0.34999999999999998, 0, 0.050000000000000003)
+        self.bOk.setPos(0.348, 0, 0.050000)
         self.nextMessage()
         self.accept('clientLogout', self.destroy)
 

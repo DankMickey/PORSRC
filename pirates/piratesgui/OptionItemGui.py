@@ -16,7 +16,7 @@ class OptionItemGui(DirectFrame):
     TOPLEVEL_GUI_FILE = 'models/gui/toplevel_gui'
     CHAR_GUI_FILE = 'models/gui/char_gui'
 
-    def __init__(self, item, parent = None, textScale = None, itemHeight = None, frameColor = (0.10000000000000001, 0.10000000000000001, 1, 0.080000000000000002), titleWrapLen = None, **kw):
+    def __init__(self, item, parent = None, textScale = None, itemHeight = None, frameColor = (0.100, 0.100, 1, 0.08), titleWrapLen = None, **kw):
         if itemHeight == None:
             itemHeight = OptionItemGui.Height
 
@@ -24,7 +24,7 @@ class OptionItemGui(DirectFrame):
         self.defineoptions(kw, optiondefs)
         DirectFrame.__init__(self, parent)
         self.initialiseoptions(OptionItemGui)
-        self.textScale = 0.040000000000000001
+        self.textScale = 0.0400
         if textScale:
             self.textScale = textScale
 
@@ -63,7 +63,7 @@ class OptionItemGui(DirectFrame):
 
     def _createOptionEntry(self):
         if self.optionType == PiratesGuiGlobals.UIItemType_Label:
-            self.optionUI = DirectLabel(parent = self, relief = None, text = str(self.item['Value']), text_align = TextNode.ALeft, text_scale = self.textScale, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (0.29999999999999999, 0, self.getHeight() / 2))
+            self.optionUI = DirectLabel(parent = self, relief = None, text = str(self.item['Value']), text_align = TextNode.ALeft, text_scale = self.textScale, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (0.299, 0, self.getHeight() / 2))
         elif self.optionType == PiratesGuiGlobals.UIItemType_Choice:
             lookoutUI = loader.loadModel('models/gui/lookout_gui')
             check_on = lookoutUI.find('**/lookout_submit')
@@ -71,16 +71,16 @@ class OptionItemGui(DirectFrame):
             if self.value == '':
                 self.value = 0
 
-            self.optionItems = DirectCheckButton(parent = self, scale = 0.050000000000000003, indicatorValue = self.value, boxImageScale = 4, command = self.itemChecked, pos = (0.78000000000000003, 0, self.getHeight() / 2))
+            self.optionItems = DirectCheckButton(parent = self, scale = 0.050000, indicatorValue = self.value, boxImageScale = 4, command = self.itemChecked, pos = (0.78000, 0, self.getHeight() / 2))
         elif self.optionType == PiratesGuiGlobals.UIItemType_ListItem:
             lookoutUI = loader.loadModel('models/gui/lookout_gui')
             charUI = loader.loadModel(self.CHAR_GUI_FILE)
             charGui_slider = charUI.find('**/chargui_slider_large')
             charGui_slider_thumb = charUI.find('**/chargui_slider_node')
-            self.optionItems = ListFrame(0.40000000000000002, None, 'blah', self, frameColor = (0, 0, 0, 0))
-            self.optionItems.itemBuffer = 0.0080000000000000002
+            self.optionItems = ListFrame(0.4, None, 'blah', self, frameColor = (0, 0, 0, 0))
+            self.optionItems.itemBuffer = 0.008
             self.optionItems.setup()
-            self.optionUI = DirectScrolledFrame(parent = self, frameSize = (0, 0.45000000000000001, 0, 0.29999999999999999), relief = DGG.GROOVE, state = DGG.NORMAL, frameColor = (0, 0, 0, 0), borderWidth = PiratesGuiGlobals.BorderWidth, canvasSize = (0, 0.38, 0, self.optionItems['frameSize'][3]), verticalScroll_frameColor = (0, 0, 0, 0), verticalScroll_thumb_frameColor = (0, 0, 0, 0), verticalScroll_incButton_frameColor = (0, 0, 0, 0), verticalScroll_decButton_frameColor = (0, 0, 0, 0), verticalScroll_image = charGui_slider, verticalScroll_image_scale = (0.12, 1, 0.28000000000000003), verticalScroll_image_pos = (0.41949999999999998, 0, 0.14999999999999999), verticalScroll_image_hpr = (0, 0, 90), verticalScroll_frameSize = (0, PiratesGuiGlobals.ScrollbarSize, 0, OptionItemGui.Height * 3), verticalScroll_thumb_image = charGui_slider_thumb, verticalScroll_thumb_image_scale = (0.34999999999999998, 0.34999999999999998, 0.34999999999999998), sortOrder = 5, pos = (0.29999999999999999, 0, self.getHeight() / 2 - 0.14999999999999999))
+            self.optionUI = DirectScrolledFrame(parent = self, frameSize = (0, 0.450, 0, 0.299), relief = DGG.GROOVE, state = DGG.NORMAL, frameColor = (0, 0, 0, 0), borderWidth = PiratesGuiGlobals.BorderWidth, canvasSize = (0, 0.38, 0, self.optionItems['frameSize'][3]), verticalScroll_frameColor = (0, 0, 0, 0), verticalScroll_thumb_frameColor = (0, 0, 0, 0), verticalScroll_incButton_frameColor = (0, 0, 0, 0), verticalScroll_decButton_frameColor = (0, 0, 0, 0), verticalScroll_image = charGui_slider, verticalScroll_image_scale = (0.12, 1, 0.28000), verticalScroll_image_pos = (0.41948, 0, 0.149), verticalScroll_image_hpr = (0, 0, 90), verticalScroll_frameSize = (0, PiratesGuiGlobals.ScrollbarSize, 0, OptionItemGui.Height * 3), verticalScroll_thumb_image = charGui_slider_thumb, verticalScroll_thumb_image_scale = (0.348, 0.348, 0.348), sortOrder = 5, pos = (0.299, 0, self.getHeight() / 2 - 0.149))
             self.optionUI.guiItem.getVerticalSlider().clearLeftButton()
             self.optionUI.guiItem.getVerticalSlider().clearRightButton()
             self.optionUI.guiItem.getVerticalSlider().setRange(-1, 1)
@@ -108,7 +108,7 @@ class OptionItemGui(DirectFrame):
 
 
     def createNewItem(self, item, parent, itemType = None, columnWidths = [], color = None):
-        newItem = ButtonListItem(item, 0.080000000000000002, 0.38, parent, parentList = self, txtColor = color, pressEffect = False, image = GuiButton.GuiButton.genericButton, frameColor = (0, 0, 0, 0), textScale = 0.050000000000000003)
+        newItem = ButtonListItem(item, 0.08, 0.38, parent, parentList = self, txtColor = color, pressEffect = False, image = GuiButton.GuiButton.genericButton, frameColor = (0, 0, 0, 0), textScale = 0.050000)
         newItem.setup()
         return newItem
 
@@ -153,7 +153,7 @@ class OptionItemGui(DirectFrame):
 
     def createFrame(self):
         self.removeFrame()
-        self.borderFrame = BorderFrame(parent = self, pos = (0.5, 0, 0.14999999999999999), scale = (0.56999999999999995, 1, 0.33000000000000002))
+        self.borderFrame = BorderFrame(parent = self, pos = (0.5, 0, 0.149), scale = (0.565, 1, 0.33))
         self.borderFrame.setBackgroundVisible(False)
 
 

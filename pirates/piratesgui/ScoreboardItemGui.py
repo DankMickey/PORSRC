@@ -16,7 +16,7 @@ class ScoreboardItemGui(DirectFrame):
     def __init__(self, item, width, height, parent = None, **kw):
         self.width = width
         self.height = height
-        optiondefs = (('state', DGG.NORMAL, None), ('frameColor', (0.10000000000000001, 0.10000000000000001, 1, 0.080000000000000002), None), ('borderWidth', PiratesGuiGlobals.BorderWidth, None), ('frameSize', (0.0, self.width, 0.0, self.height), None), ('relief', None, None))
+        optiondefs = (('state', DGG.NORMAL, None), ('frameColor', (0.100, 0.100, 1, 0.08), None), ('borderWidth', PiratesGuiGlobals.BorderWidth, None), ('frameSize', (0.0, self.width, 0.0, self.height), None), ('relief', None, None))
         self.defineoptions(kw, optiondefs)
         DirectFrame.__init__(self, parent)
         self.initialiseoptions(ScoreboardItemGui)
@@ -124,25 +124,25 @@ class ScoreboardItemGui(DirectFrame):
 
 
     def _createIface(self):
-        self.descText = DirectLabel(parent = self, relief = None, text = self.item.get('Text'), text_align = TextNode.ALeft, text_scale = 0.050000000000000003, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (0.02, 0, self.height / 2), text_font = PiratesGlobals.getInterfaceOutlineFont())
-        self.valueText = DirectLabel(parent = self, relief = None, text = str(self.item.get('Value1')), text_align = TextNode.ALeft, text_scale = 0.050000000000000003, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (self.width * 0.65000000000000002, 0, self.height / 2), text_font = PiratesGlobals.getInterfaceOutlineFont())
+        self.descText = DirectLabel(parent = self, relief = None, text = self.item.get('Text'), text_align = TextNode.ALeft, text_scale = 0.050000, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (0.02, 0, self.height / 2), text_font = PiratesGlobals.getInterfaceOutlineFont())
+        self.valueText = DirectLabel(parent = self, relief = None, text = str(self.item.get('Value1')), text_align = TextNode.ALeft, text_scale = 0.050000, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (self.width * 0.65, 0, self.height / 2), text_font = PiratesGlobals.getInterfaceOutlineFont())
         if self.item.get('Type') == 'Title':
             self.descText['text_scale'] = 0.055
             self.descText['text_fg'] = PiratesGuiGlobals.TextFG1
             self.descText['text_font'] = PiratesGlobals.getInterfaceOutlineFont()
-            self.valueText['text_scale'] = 0.044999999999999998
+            self.valueText['text_scale'] = 0.0448
             self.valueText['text_font'] = PiratesGlobals.getInterfaceOutlineFont()
             if 'Value2' in self.item:
-                self.valueText2 = DirectLabel(parent = self, relief = None, text = str(self.item.get('Value2')), text_align = TextNode.ALeft, text_scale = 0.050000000000000003, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (self.width * 0.80000000000000004, 0, self.height / 2), text_font = PiratesGlobals.getInterfaceOutlineFont())
+                self.valueText2 = DirectLabel(parent = self, relief = None, text = str(self.item.get('Value2')), text_align = TextNode.ALeft, text_scale = 0.050000, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (self.width * 0.800000, 0, self.height / 2), text_font = PiratesGlobals.getInterfaceOutlineFont())
 
             if self.valueText2:
-                self.valueText2['text_scale'] = 0.044999999999999998
+                self.valueText2['text_scale'] = 0.0448
                 self.valueText2['text_font'] = PiratesGlobals.getInterfaceOutlineFont()
 
         elif self.item.get('Type') == 'Entry':
-            self.descText['text_pos'] = (self.width * 0.059999999999999998, 0, 0)
+            self.descText['text_pos'] = (self.width * 0.0598, 0, 0)
             if 'Value2' in self.item:
-                self.valueText2 = DirectLabel(parent = self, relief = None, text = str(self.item.get('Value2')), text_align = TextNode.ALeft, text_scale = 0.050000000000000003, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (self.width * 0.80000000000000004, 0, self.height / 2), text_font = PiratesGlobals.getInterfaceOutlineFont())
+                self.valueText2 = DirectLabel(parent = self, relief = None, text = str(self.item.get('Value2')), text_align = TextNode.ALeft, text_scale = 0.050000, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (self.width * 0.800000, 0, self.height / 2), text_font = PiratesGlobals.getInterfaceOutlineFont())
 
         elif self.item.get('Type') == 'Space':
             self.descText['text_scale'] = 0.02
@@ -150,9 +150,9 @@ class ScoreboardItemGui(DirectFrame):
             self.valueText['text_scale'] = 0.02
             self.valueText['text'] = ' '
         elif self.item.get('Type') == 'Button':
-            self.descText['text_pos'] = (self.width * 0.059999999999999998, 0, 0)
+            self.descText['text_pos'] = (self.width * 0.0598, 0, 0)
             self.valueText['text'] = ' '
-            self.button = DirectButton(parent = self, relief = DGG.RIDGE, text = self.item.get('Text'), text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, frameColor = PiratesGuiGlobals.ButtonColor1, command = self.item.get('Value2'), pos = (self.width * 0.65000000000000002, 0, self.height / 2), borderWidth = (0.01, 0.01), pad = (0.0050000000000000001, 0.0050000000000000001), textMayChange = 1)
+            self.button = DirectButton(parent = self, relief = DGG.RIDGE, text = self.item.get('Text'), text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, frameColor = PiratesGuiGlobals.ButtonColor1, command = self.item.get('Value2'), pos = (self.width * 0.65, 0, self.height / 2), borderWidth = (0.01, 0.01), pad = (0.00500, 0.00500), textMayChange = 1)
             if self.item.get('State') == 'off':
                 self.button['state'] = DGG.DISABLED
                 self.button['text_fg'] = PiratesGuiGlobals.TextFG3
@@ -167,30 +167,30 @@ class ScoreboardItemGui(DirectFrame):
 
             icon = self.icons.get(iconId)
             self.descText['geom'] = self.getCargoIcon(icon[0])
-            self.descText['geom_scale'] = 0.089999999999999997 * self.height * 10
-            self.descText['geom_pos'] = (0.050000000000000003, 0, 0.01)
-            self.descText['text_pos'] = (0.23999999999999999, 0, 0)
+            self.descText['geom_scale'] = 0.089 * self.height * 10
+            self.descText['geom_pos'] = (0.050000, 0, 0.01)
+            self.descText['text_pos'] = (0.239, 0, 0)
             self.descText['text'] = icon[1]
             self.descText['text_fg'] = PiratesGuiGlobals.TextFG2
             self.descText['text_font'] = PiratesGlobals.getInterfaceOutlineFont()
-            self.descText['text_scale'] = 0.050000000000000003 * self.height * 10
+            self.descText['text_scale'] = 0.050000 * self.height * 10
             self.descText.setTransparency(1)
             self.valueText['text'] = PLocalizer.UnknownGoldValue
             self.valueText['text_font'] = PiratesGlobals.getInterfaceOutlineFont()
-            self.valueText['text_scale'] = 0.050000000000000003 * self.height * 10
+            self.valueText['text_scale'] = 0.050000 * self.height * 10
             icon = self.icons.get(ItemId.CARGO_CRATE)
-            self.descText2 = DirectLabel(parent = self, relief = None, text = '?', text_align = TextNode.ACenter, text_scale = 0.050000000000000003 * self.height * 10, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (0.080000000000000002, 0, self.height / 2), geom = self.getCargoIcon(icon[0]), geom_scale = 0.089999999999999997 * self.height * 10, geom_pos = (0.10000000000000001, 0, 0.01), text_pos = (0.10000000000000001, 0, 0), geom_color = Vec4(0, 0, 0, 1), text_font = PiratesGlobals.getInterfaceOutlineFont())
+            self.descText2 = DirectLabel(parent = self, relief = None, text = '?', text_align = TextNode.ACenter, text_scale = 0.050000 * self.height * 10, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (0.08, 0, self.height / 2), geom = self.getCargoIcon(icon[0]), geom_scale = 0.089 * self.height * 10, geom_pos = (0.100, 0, 0.01), text_pos = (0.100, 0, 0), geom_color = Vec4(0, 0, 0, 1), text_font = PiratesGlobals.getInterfaceOutlineFont())
         elif self.item.get('Type') == 'Gold':
             amount = self.item.get('Value2')
             itemName = PLocalizer.LootGold % amount
             self.descText['geom'] = self.getGoldIcon()
-            self.descText['geom_scale'] = 0.14999999999999999 * self.height * 10
-            self.descText['geom_pos'] = (0.050000000000000003, 0, 0.01)
-            self.descText['text_pos'] = (0.23999999999999999, 0, 0)
+            self.descText['geom_scale'] = 0.149 * self.height * 10
+            self.descText['geom_pos'] = (0.050000, 0, 0.01)
+            self.descText['text_pos'] = (0.239, 0, 0)
             self.descText['text'] = itemName
             self.descText['text_fg'] = PiratesGuiGlobals.TextFG2
             self.descText['text_font'] = PiratesGlobals.getInterfaceOutlineFont()
-            self.descText['text_scale'] = 0.050000000000000003 * self.height * 10
+            self.descText['text_scale'] = 0.050000 * self.height * 10
             self.descText.setTransparency(1)
             self.valueText['text'] = ' '
         elif self.item.get('Type') == 'Weapon':
@@ -198,13 +198,13 @@ class ScoreboardItemGui(DirectFrame):
             itemName = PLocalizer.InventoryTypeNames.get(itemId)
             iconName = EconomyGlobals.getItemIcons(itemId)
             self.descText['geom'] = self.getWeaponIcon(iconName)
-            self.descText['geom_scale'] = 0.089999999999999997 * self.height * 10
-            self.descText['geom_pos'] = (0.050000000000000003, 0, 0.01)
-            self.descText['text_pos'] = (0.23999999999999999, 0, 0)
+            self.descText['geom_scale'] = 0.089 * self.height * 10
+            self.descText['geom_pos'] = (0.050000, 0, 0.01)
+            self.descText['text_pos'] = (0.239, 0, 0)
             self.descText['text'] = itemName
             self.descText['text_fg'] = PiratesGuiGlobals.TextFG2
             self.descText['text_font'] = PiratesGlobals.getInterfaceOutlineFont()
-            self.descText['text_scale'] = 0.050000000000000003 * self.height * 10
+            self.descText['text_scale'] = 0.050000 * self.height * 10
             self.descText.setTransparency(1)
             self.valueText['text'] = ' '
         elif self.item.get('Type') == 'Ammo':
@@ -213,13 +213,13 @@ class ScoreboardItemGui(DirectFrame):
             itemName = '%s %s' % (amount, PLocalizer.InventoryTypeNames.get(itemId))
             iconName = WeaponGlobals.getSkillIcon(itemId)
             self.descText['geom'] = self.getAmmoIcon(iconName)
-            self.descText['geom_scale'] = 0.089999999999999997 * self.height * 10
-            self.descText['geom_pos'] = (0.050000000000000003, 0, 0.01)
-            self.descText['text_pos'] = (0.23999999999999999, 0, 0)
+            self.descText['geom_scale'] = 0.089 * self.height * 10
+            self.descText['geom_pos'] = (0.050000, 0, 0.01)
+            self.descText['text_pos'] = (0.239, 0, 0)
             self.descText['text'] = itemName
             self.descText['text_fg'] = PiratesGuiGlobals.TextFG2
             self.descText['text_font'] = PiratesGlobals.getInterfaceOutlineFont()
-            self.descText['text_scale'] = 0.050000000000000003 * self.height * 10
+            self.descText['text_scale'] = 0.050000 * self.height * 10
             self.descText.setTransparency(1)
             self.valueText['text'] = ' '
 

@@ -19,8 +19,8 @@ class CannonCamera(CameraMode.CameraMode, NodePath, ParamObj):
             'maxH': 60.0,
             'minP': -12.0,
             'maxP': 24,
-            'sensitivityH': 0.070000000000000007,
-            'sensitivityP': 0.029999999999999999 }
+            'sensitivityH': 0.070,
+            'sensitivityP': 0.0299 }
 
     CamParentPos = (Vec3(0, -6, 3), Vec3(0, -2, 0))
 

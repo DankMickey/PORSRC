@@ -17,7 +17,7 @@ objectStruct = {
                     'DNA': '1172887552.0mike',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Patrol Radius': '12.0000',
-                    'Pos': Point3(7.6150000000000002, -1.643, 0.0),
+                    'Pos': Point3(7.6150, -1.643, 0.0),
                     'Private Status': 'All',
                     'Respawns': True,
                     'Scale': VBase3(1.0, 1.0, 1.0),

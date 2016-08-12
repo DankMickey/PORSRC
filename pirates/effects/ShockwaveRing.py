@@ -11,7 +11,7 @@ class ShockwaveRing(PooledEffect, EffectController):
     def __init__(self):
         PooledEffect.__init__(self)
         EffectController.__init__(self)
-        self.speed = 0.40000000000000002
+        self.speed = 0.4
         self.size = 40
         self.explosionSequence = 0
         self.explosion = loader.loadModel('models/effects/shockwaveRing')

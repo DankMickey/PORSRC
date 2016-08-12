@@ -33,12 +33,12 @@ class ThunderBallGlow(PooledEffect, EffectController):
 
     def createTrack(self):
         randomness = random.random() / 4.0
-        fadeIn = self.glow.colorInterval(0.25 + randomness, Vec4(0.5, 0.80000000000000004, 0.90000000000000002, 0.75), startColor = Vec4(0.5, 0.90000000000000002, 1, 1), blendType = 'easeInOut')
-        fadeOut = self.glow.colorInterval(0.25 + randomness, Vec4(0.5, 0.90000000000000002, 1, 1), startColor = Vec4(0.5, 0.80000000000000004, 0.90000000000000002, 0.75), blendType = 'easeInOut')
+        fadeIn = self.glow.colorInterval(0.25 + randomness, Vec4(0.5, 0.800000, 0.9, 0.75), startColor = Vec4(0.5, 0.9, 1, 1), blendType = 'easeInOut')
+        fadeOut = self.glow.colorInterval(0.25 + randomness, Vec4(0.5, 0.9, 1, 1), startColor = Vec4(0.5, 0.800000, 0.9, 0.75), blendType = 'easeInOut')
         self.fadePulse = Sequence(fadeIn, fadeOut)
         glowPart = self.glow.find('**/glow_aura')
-        glowPart.setColorScale(0.25, 0.20000000000000001, 0.29999999999999999, 0.75)
-        scaleUp = glowPart.scaleInterval(0.25 + randomness, 1.0, startScale = 0.80000000000000004, blendType = 'easeInOut')
+        glowPart.setColorScale(0.25, 0.200, 0.299, 0.75)
+        scaleUp = glowPart.scaleInterval(0.25 + randomness, 1.0, startScale = 0.800000, blendType = 'easeInOut')
         scaleDown = glowPart.scaleInterval(0.25 + randomness, 0.75, startScale = 1.0, blendType = 'easeInOut')
         self.track1 = Sequence(scaleDown, scaleUp)
 

@@ -27,7 +27,7 @@ shipPVPIcons = {
 founderIcons = {
     0: None,
     1: 'founders_coin' }
-standardScale = 2.2000000000000002
+standardScale = 2.2
 foundersScale = 6.0
 pvpScale = 1.8
 TestBreakpoints1 = [

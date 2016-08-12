@@ -36,7 +36,7 @@ class RepairSaw(DirectButton):
         self.sawGlow = OnscreenImage(parent = self, image = mainGui.find('**/glow'))
         self.glow = OnscreenImage(parent = self, image = mainGui.find('**/glow'))
         self.sawGlow.setR(193)
-        self.sawGlow.setPos(0.90000000000000002, 0.0, -0.16500000000000001)
+        self.sawGlow.setPos(0.9, 0.0, -0.165)
         self.sawGlow.setBin('fixed', 50)
         self.sawGlow.reparentTo(self)
         self.totalTime = 0

@@ -13,7 +13,7 @@ class ShipSelectionPanel(GuiPanel.GuiPanel):
     notify = directNotify.newCategory('ShipSelectionPanel')
     width = 1.03
     height = 1.45
-    scrollBorder = 0.050000000000000003
+    scrollBorder = 0.050000
     OWN = 0
     FRIEND = 1
     CREW = 2
@@ -41,7 +41,7 @@ class ShipSelectionPanel(GuiPanel.GuiPanel):
         self.tabFrontParent = None
         GuiPanel.GuiPanel.__init__(self, '', ShipSelectionPanel.width + self.scrollBorder, self.height, showClose = False)
         self.initialiseoptions(ShipSelectionPanel)
-        self.setPos(-1.21, 0, -0.68000000000000005)
+        self.setPos(-1.21, 0, -0.680000)
         self.createGui()
 
     def destroyGui(self):
@@ -84,7 +84,7 @@ class ShipSelectionPanel(GuiPanel.GuiPanel):
     def createGui(self):
         self.destroyGui()
         box = loader.loadModel('models/gui/gui_title_box').find('**/gui_title_box_top')
-        box.setPos(0.54000000000000004, 0, 1.3600000000000001)
+        box.setPos(0.540000, 0, 1.36)
         box.setScale(0.25)
         box.reparentTo(self)
         box.flattenStrong()
@@ -93,8 +93,8 @@ class ShipSelectionPanel(GuiPanel.GuiPanel):
 
         self.title = DirectLabel(parent = self, relief = None, text = self.titleText, text_fg = PiratesGuiGlobals.TextFG1, text_font = PiratesGlobals.getPirateFont(), text_scale = PiratesGuiGlobals.TextScaleTitleSmall, text_shadow = PiratesGuiGlobals.TextShadow, pos = (self.width * 0.5, 0, 1.343))
         self.tabBackParent = self.attachNewNode('tabBackParent')
-        self.tabBackParent.setZ(1.1100000000000001)
-        self.scrollFrame = DirectScrolledFrame(parent = self, relief = None, state = DGG.NORMAL, manageScrollBars = 0, autoHideScrollBars = 1, frameSize = (0.050000000000000003, self.width - 0.10000000000000001, 0.14000000000000001, self.height - 0.25), canvasSize = (0.050000000000000003, self.width - 0.10000000000000001, 0.14000000000000001, self.height - 0.25), verticalScroll_relief = None, verticalScroll_image = self.charGui.find('**/chargui_slider_small'), verticalScroll_frameSize = (0.0, PiratesGuiGlobals.ScrollbarSize, 0.14199999999999999, self.height - 0.26000000000000001), verticalScroll_image_scale = (self.height - 0.29999999999999999, 1, 0.75), verticalScroll_image_hpr = (0, 0, 90), verticalScroll_image_pos = (self.width - PiratesGuiGlobals.ScrollbarSize * 0.5 - 0.059999999999999998, 0, self.height * 0.46000000000000002), verticalScroll_image_color = (0.60999999999999999, 0.59999999999999998, 0.59999999999999998, 1), verticalScroll_thumb_image = (self.charGui.find('**/chargui_slider_node'), self.charGui.find('**/chargui_slider_node_down'), self.charGui.find('**/chargui_slider_node_over')), verticalScroll_thumb_relief = None, verticalScroll_thumb_image_scale = 0.40000000000000002, verticalScroll_thumb_image_pos = (-0.0050000000000000001, 0, 0), verticalScroll_resizeThumb = 0, horizontalScroll_relief = None)
+        self.tabBackParent.setZ(1.11)
+        self.scrollFrame = DirectScrolledFrame(parent = self, relief = None, state = DGG.NORMAL, manageScrollBars = 0, autoHideScrollBars = 1, frameSize = (0.050000, self.width - 0.100, 0.140, self.height - 0.25), canvasSize = (0.050000, self.width - 0.100, 0.140, self.height - 0.25), verticalScroll_relief = None, verticalScroll_image = self.charGui.find('**/chargui_slider_small'), verticalScroll_frameSize = (0.0, PiratesGuiGlobals.ScrollbarSize, 0.141, self.height - 0.260), verticalScroll_image_scale = (self.height - 0.299, 1, 0.75), verticalScroll_image_hpr = (0, 0, 90), verticalScroll_image_pos = (self.width - PiratesGuiGlobals.ScrollbarSize * 0.5 - 0.0598, 0, self.height * 0.46), verticalScroll_image_color = (0.609, 0.598, 0.598, 1), verticalScroll_thumb_image = (self.charGui.find('**/chargui_slider_node'), self.charGui.find('**/chargui_slider_node_down'), self.charGui.find('**/chargui_slider_node_over')), verticalScroll_thumb_relief = None, verticalScroll_thumb_image_scale = 0.4, verticalScroll_thumb_image_pos = (-0.00500, 0, 0), verticalScroll_resizeThumb = 0, horizontalScroll_relief = None)
         self.scrollFrame.verticalScroll.incButton.destroy()
         self.scrollFrame.verticalScroll.decButton.destroy()
         self.scrollFrame.horizontalScroll.incButton.destroy()
@@ -103,13 +103,13 @@ class ShipSelectionPanel(GuiPanel.GuiPanel):
         self.accept('press-wheel_up-%s' % self.scrollFrame.guiId, self.mouseWheelUp)
         self.accept('press-wheel_down-%s' % self.scrollFrame.guiId, self.mouseWheelDown)
         self.tabFrontParent = self.attachNewNode('tabFrontParent')
-        self.tabFrontParent.setZ(1.1100000000000001)
-        frameSize = (self.scrollFrame['frameSize'][0] + 0.01, self.scrollFrame['frameSize'][1] + 0.040000000000000001, self.scrollFrame['frameSize'][2] - 0.01, self.scrollFrame['frameSize'][3])
+        self.tabFrontParent.setZ(1.11)
+        frameSize = (self.scrollFrame['frameSize'][0] + 0.01, self.scrollFrame['frameSize'][1] + 0.0400, self.scrollFrame['frameSize'][2] - 0.01, self.scrollFrame['frameSize'][3])
         self.repackScrollFrame()
-        self.border = BorderFrame(parent = self.scrollFrame, state = DGG.DISABLED, modelName = 'general_frame_f', frameSize = frameSize, borderScale = 0.14999999999999999, showBackground = True, bgColorScale = VBase4(0, 0, 0, 1), sortOrder = -1)
+        self.border = BorderFrame(parent = self.scrollFrame, state = DGG.DISABLED, modelName = 'general_frame_f', frameSize = frameSize, borderScale = 0.149, showBackground = True, bgColorScale = VBase4(0, 0, 0, 1), sortOrder = -1)
         gui = loader.loadModel('models/gui/toplevel_gui')
         geomX = gui.find('**/generic_x')
-        self.closeButton = GuiButton.GuiButton(parent = self, pos = (self.width / 2.0, 0, 0.070000000000000007), text = PLocalizer.TableLeave, text_scale = PiratesGuiGlobals.TextScaleLarge, text_pos = (0.035000000000000003, -0.014), textMayChange = 0, geom = (geomX,) * 4, geom_pos = (-0.059999999999999998, 0, 0), geom_scale = 0.5, geom0_color = PiratesGuiGlobals.ButtonColor3[0], geom1_color = PiratesGuiGlobals.ButtonColor3[1], geom2_color = PiratesGuiGlobals.ButtonColor3[2], geom3_color = PiratesGuiGlobals.ButtonColor3[3], image3_color = (0.80000000000000004, 0.80000000000000004, 0.80000000000000004, 1), command = self.closePanel)
+        self.closeButton = GuiButton.GuiButton(parent = self, pos = (self.width / 2.0, 0, 0.070), text = PLocalizer.TableLeave, text_scale = PiratesGuiGlobals.TextScaleLarge, text_pos = (0.035000, -0.014), textMayChange = 0, geom = (geomX,) * 4, geom_pos = (-0.0598, 0, 0), geom_scale = 0.5, geom0_color = PiratesGuiGlobals.ButtonColor3[0], geom1_color = PiratesGuiGlobals.ButtonColor3[1], geom2_color = PiratesGuiGlobals.ButtonColor3[2], geom3_color = PiratesGuiGlobals.ButtonColor3[3], image3_color = (0.800000, 0.800000, 0.800000, 1), command = self.closePanel)
         self.shipBar = ShipTabBar(self.tabBackParent, self.tabFrontParent, parent = self)
         for t in self.pages:
             self.addTab(t)
@@ -120,7 +120,7 @@ class ShipSelectionPanel(GuiPanel.GuiPanel):
         if self.scrollFrame.verticalScroll.isHidden():
             return None
 
-        amountScroll = 0.050000000000000003
+        amountScroll = 0.050000
         if self.scrollFrame.verticalScroll['value'] > 0:
             self.scrollFrame.verticalScroll['value'] -= amountScroll
 
@@ -128,7 +128,7 @@ class ShipSelectionPanel(GuiPanel.GuiPanel):
         if self.scrollFrame.verticalScroll.isHidden():
             return None
 
-        amountScroll = 0.050000000000000003
+        amountScroll = 0.050000
         if self.scrollFrame.verticalScroll['value'] < 1.0:
             self.scrollFrame.verticalScroll['value'] += amountScroll
 
@@ -136,22 +136,22 @@ class ShipSelectionPanel(GuiPanel.GuiPanel):
         self.scrollFrame.getCanvas().getChildren().detach()
         frames = self.shipFrames.get(self.page, [])
         if len(frames) < 3:
-            xOffset = 0.091999999999999998
+            xOffset = 0.0918
         else:
-            xOffset = 0.080000000000000002
+            xOffset = 0.08
         padding = 0.02
         canvasHeight = self.scrollBorder - padding
         for frame in frames:
             canvasHeight += frame.getHeight() + padding
 
-        self.scrollFrame['frameSize'] = (self.scrollBorder, ShipSelectionPanel.width, 0.14000000000000001, self.height - 0.26000000000000001)
+        self.scrollFrame['frameSize'] = (self.scrollBorder, ShipSelectionPanel.width, 0.140, self.height - 0.260)
         zStep = -padding
         for frame in frames:
             frame.reparentTo(self.scrollFrame.getCanvas())
             zStep += frame.getHeight() + padding
             frame.setPos(xOffset, 0, canvasHeight - zStep)
 
-        self.scrollFrame['canvasSize'] = (self.scrollBorder, ShipSelectionPanel.width - 0.089999999999999997, self.scrollBorder, canvasHeight)
+        self.scrollFrame['canvasSize'] = (self.scrollBorder, ShipSelectionPanel.width - 0.089, self.scrollBorder, canvasHeight)
         self.scrollFrame['verticalScroll_value'] = 0
 
     def closePanel(self):
@@ -244,7 +244,7 @@ class ShipSelectionPanel(GuiPanel.GuiPanel):
 
     def addTab(self, id):
         self.shipBar.addTab(name = self.NameMap[id], command = self.setPage, extraArgs = [
-            id], textpos = (0.10000000000000001, 0.029999999999999999, 0))
+            id], textpos = (0.100, 0.0299, 0))
 
     def refreshTabStates(self):
         for (id, frames) in self.shipFrames.iteritems():

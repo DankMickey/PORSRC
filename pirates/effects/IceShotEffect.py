@@ -35,14 +35,14 @@ class IceShotEffect(PooledEffect, EffectController):
         self.p0.setRenderer('SpriteParticleRenderer')
         self.p0.setEmitter('SphereVolumeEmitter')
         self.p0.setPoolSize(128)
-        self.p0.setBirthRate(0.029999999999999999)
+        self.p0.setBirthRate(0.0299)
         self.p0.setLitterSize(25)
         self.p0.setLitterSpread(10)
         self.p0.setSystemLifespan(0.0)
         self.p0.setLocalVelocityFlag(1)
         self.p0.setSystemGrowsOlderFlag(0)
         self.p0.factory.setLifespanBase(1.0)
-        self.p0.factory.setLifespanSpread(0.14999999999999999)
+        self.p0.factory.setLifespanSpread(0.149)
         self.p0.factory.setMassBase(1.0)
         self.p0.factory.setMassSpread(0.0)
         self.p0.factory.setTerminalVelocityBase(300.0)
@@ -58,10 +58,10 @@ class IceShotEffect(PooledEffect, EffectController):
         self.p0.renderer.setXScaleFlag(0)
         self.p0.renderer.setYScaleFlag(0)
         self.p0.renderer.setAnimAngleFlag(0)
-        self.p0.renderer.setInitialXScale(0.074999999999999997 * self.spriteScale * self.cardScale)
-        self.p0.renderer.setFinalXScale(0.14999999999999999 * self.spriteScale * self.cardScale)
-        self.p0.renderer.setInitialYScale(0.074999999999999997 * self.spriteScale * self.cardScale)
-        self.p0.renderer.setFinalYScale(0.14999999999999999 * self.spriteScale * self.cardScale)
+        self.p0.renderer.setInitialXScale(0.074 * self.spriteScale * self.cardScale)
+        self.p0.renderer.setFinalXScale(0.149 * self.spriteScale * self.cardScale)
+        self.p0.renderer.setInitialYScale(0.074 * self.spriteScale * self.cardScale)
+        self.p0.renderer.setFinalYScale(0.149 * self.spriteScale * self.cardScale)
         self.p0.renderer.setNonanimatedTheta(0)
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPNOBLEND)
         self.p0.renderer.setAlphaDisable(0)
@@ -77,7 +77,7 @@ class IceShotEffect(PooledEffect, EffectController):
     def createTrack(self):
         self.spriteScale = 6.0
         self.setParticleParamters()
-        self.track = Sequence(Func(self.p0.setBirthRate, 0.02), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self), Wait(0.29999999999999999), Func(self.p0.setBirthRate, 200), Wait(1.0), Func(self.cleanUpEffect))
+        self.track = Sequence(Func(self.p0.setBirthRate, 0.02), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self), Wait(0.299), Func(self.p0.setBirthRate, 200), Wait(1.0), Func(self.cleanUpEffect))
 
 
     def cleanUpEffect(self):

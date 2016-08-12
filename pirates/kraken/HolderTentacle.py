@@ -49,7 +49,7 @@ class HolderTentacle(DistributedCreature, Monstrous):
             self.emergeIval = Sequence(Wait(random.random()), Func(self.creature.show), Func(self.play, 'emerge', blendInT = 0))
         else:
             self.setPlayRate(-1, 'emerge')
-            self.emergeIval = Sequence(Wait(random.random()), Func(self.play, 'emerge', blendOutT = 0), Wait(self.creature.getDuration('emerge') / abs(self.creature.getPlayRate('emerge')) - 0.10000000000000001), Func(self.creature.hide))
+            self.emergeIval = Sequence(Wait(random.random()), Func(self.play, 'emerge', blendOutT = 0), Wait(self.creature.getDuration('emerge') / abs(self.creature.getPlayRate('emerge')) - 0.100), Func(self.creature.hide))
         self.emergeIval.start()
 
 

@@ -17,9 +17,9 @@ objectStruct = {
                     'Category': 'Tailor',
                     'AnimSet': 'default',
                     'CustomModel': 'None',
-                    'Hpr': VBase3(-6.3170000000000002, 0.0, 0.0),
+                    'Hpr': VBase3(-6.3170, 0.0, 0.0),
                     'Patrol Radius': '12.0000',
-                    'Pos': Point3(-7.6079999999999997, -3.7170000000000001, 0.0),
+                    'Pos': Point3(-7.607, -3.717, 0.0),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'Private Status': 'All',
@@ -34,7 +34,7 @@ objectStruct = {
                     'Type': 'Door Locator Node',
                     'Name': 'door_locator',
                     'Hpr': VBase3(178.916, 0.0, 0.0),
-                    'Pos': Point3(-13.404, 47.298000000000002, 5.0380000000000003),
+                    'Pos': Point3(-13.404, 47.298, 5.0380),
                     'Scale': VBase3(1.0, 1.0, 1.0) },
                 '1201122430.39dxschafe': {
                     'Type': 'Light - Dynamic',
@@ -42,10 +42,10 @@ objectStruct = {
                     'ConeAngle': '26.3855',
                     'DropOff': '0.0000',
                     'FlickRate': '0.5000',
-                    'Hpr': VBase3(-132.80000000000001, -15.313000000000001, 2.2370000000000001),
+                    'Hpr': VBase3(-132.8, -15.313, 2.237),
                     'Intensity': '1.0723',
                     'LightType': 'SPOT',
-                    'Pos': Point3(-21.577000000000002, 16.0, 10.795999999999999),
+                    'Pos': Point3(-21.577, 16.0, 10.795),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Color': (1, 1, 1, 1),
@@ -59,7 +59,7 @@ objectStruct = {
                     'HelpID': 'NONE',
                     'Hpr': VBase3(127.926, 0.0, 0.0),
                     'Patrol Radius': '12.0000',
-                    'Pos': Point3(13.513, 41.935000000000002, 5.2649999999999997),
+                    'Pos': Point3(13.513, 41.935, 5.264),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'Respawns': True,
@@ -147,8 +147,8 @@ objectStruct = {
         '1201122430.39dxschafe': '["Objects"]["1156268617.43dzlu0"]["Objects"]["1201122430.39dxschafe"]',
         '1212432000.0WDIG1': '["Objects"]["1156268617.43dzlu0"]["Objects"]["1212432000.0WDIG1"]' } }
 extraInfo = {
-    'camPos': Point3(-3.51505, 25.1753, 18.031199999999998),
-    'camHpr': VBase3(-45.603000000000002, -20.6447, -2.7370799999999999e-006),
+    'camPos': Point3(-3.51505, 25.1753, 18.0311),
+    'camHpr': VBase3(-45.603, -20.6447, -2.73707e-006),
     'focalLength': 1.3999999761599999,
     'skyState': -1,
     'fog': 0 }

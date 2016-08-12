@@ -65,7 +65,7 @@ class LavaEruption(NodePath, EffectController):
         self.p0.renderer.setAlphaMode(BaseParticleRenderer.PRALPHAOUT)
         self.p0.renderer.setUserAlpha(1.0)
         self.p0.renderer.setFromNode(self.card)
-        self.p0.renderer.setColor(Vec4(1.0, 0.80000000000000004, 0.80000000000000004, 1.0))
+        self.p0.renderer.setColor(Vec4(1.0, 0.800000, 0.800000, 1.0))
         self.p0.renderer.setXScaleFlag(1)
         self.p0.renderer.setYScaleFlag(1)
         self.p0.renderer.setAnimAngleFlag(1)
@@ -111,7 +111,7 @@ class LavaEruption(NodePath, EffectController):
                 self.eruptionSfxIval = None
 
 
-        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.20000000000000001), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(playEruptionSfx))
+        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.200), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(playEruptionSfx))
         self.endEffect = Sequence(Func(self.p0.setBirthRate, 100), Func(stopEruptionSfx), Wait(4.5), Func(self.cleanUpEffect))
         self.track = Sequence(self.startEffect, Wait(self.duration), self.endEffect)
 

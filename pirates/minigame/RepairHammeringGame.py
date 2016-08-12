@@ -45,7 +45,7 @@ class RepairHammeringGame(RepairMincroGame):
         self.model = loader.loadModel('models/gui/pir_m_gui_srp_hammering_main')
         self.board = self.model.find('**/wood')
         self.board.reparentTo(self)
-        self.board.setPos(-0.02, -2.0, 0.080000000000000002)
+        self.board.setPos(-0.02, -2.0, 0.08)
         self.board.setScale(1.3)
         self.board.setDepthTest(True)
         self.board.setDepthWrite(True)
@@ -59,7 +59,7 @@ class RepairHammeringGame(RepairMincroGame):
 
         self.circle = aspect2d.attachNewNode('circle')
         self.circle.setHpr(0.0, 0.0, 0.0)
-        self.circle.setZ(0.20000000000000001)
+        self.circle.setZ(0.200)
         self.reticleCursorPerfect = self.model.find('**/reticleCursorPerfect')
         self.reticleCursorPerfect.reparentTo(self.circle)
         self.reticleCursor = self.model.find('**/reticleCursor')
@@ -84,12 +84,12 @@ class RepairHammeringGame(RepairMincroGame):
         self.circleDirection = GROW
         self.currentMin = 0.0
         self.circle.setScale(self.config.reticleScaleRange[1])
-        spacing = 1.6000000000000001 / (self.nailCount + 2)
+        spacing = 1.60 / (self.nailCount + 2)
         self.currentNails = []
         i = 0
         for nail in self.nails:
             if i < self.nailCount:
-                nail.setPos(-0.80000000000000004 + spacing * 1.5 + spacing * i, -2.0, 0.10000000000000001)
+                nail.setPos(-0.800000 + spacing * 1.5 + spacing * i, -2.0, 0.100)
                 nail.request('Active')
                 nail.unstash()
                 self.currentNails.append(nail)
@@ -127,7 +127,7 @@ class RepairHammeringGame(RepairMincroGame):
                     if percent >= 1.0:
                         self.perfectHammerSound.play()
                         perfectMultiplier = 2.0
-                    elif percent > 0.29999999999999999:
+                    elif percent > 0.299:
                         random.choice(self.normalHammerSounds).play()
                     else:
                         random.choice(self.weakHammerSounds).play()
@@ -167,7 +167,7 @@ class RepairHammeringGame(RepairMincroGame):
         if percent > 1.0 - self.config.hitForgiveness:
             self.reticleCursorPerfect.setColorScale(1.0, 1.0, 1.0, 1.0)
         elif self.circleDirection == SHRINK:
-            self.reticleCursorPerfect.setColorScale(0.80000000000000004, 0.5, 0.0, (-1.0 + percent + 6.0 * self.config.hitForgiveness) * (1.0 / 10.0 * self.config.hitForgiveness))
+            self.reticleCursorPerfect.setColorScale(0.800000, 0.5, 0.0, (-1.0 + percent + 6.0 * self.config.hitForgiveness) * (1.0 / 10.0 * self.config.hitForgiveness))
         else:
             self.reticleCursorPerfect.setColorScale(0.0, 0.0, 0.0, 0.0)
         self.circle.setScale(newScale)
@@ -183,9 +183,9 @@ class RepairHammeringGame(RepairMincroGame):
 
             self.circle.setPos(mpos.getX(), 0.0, mpos.getY())
             if self.hammerSwinging:
-                self.hammer.setPos(mpos.getX() - 0.059999999999999998, 0.0, mpos.getY() + 0.080000000000000002)
+                self.hammer.setPos(mpos.getX() - 0.0598, 0.0, mpos.getY() + 0.08)
             else:
-                self.hammer.setPos(mpos.getX() - 0.080000000000000002, 0.0, mpos.getY() + 0.17000000000000001)
+                self.hammer.setPos(mpos.getX() - 0.08, 0.0, mpos.getY() + 0.170)
 
         return Task.cont
 

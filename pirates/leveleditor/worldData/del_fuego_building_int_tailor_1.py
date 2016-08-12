@@ -16,7 +16,7 @@ objectStruct = {
                     'Type': 'Door Locator Node',
                     'Name': 'door_locator',
                     'Hpr': VBase3(178.916, 0.0, 0.0),
-                    'Pos': Point3(-13.404, 47.298000000000002, 5.0380000000000003),
+                    'Pos': Point3(-13.404, 47.298, 5.0380),
                     'Scale': VBase3(1.0, 1.0, 1.0) },
                 '1201227181.3dxschafe': {
                     'Type': 'Townsperson',
@@ -25,7 +25,7 @@ objectStruct = {
                     'CustomModel': 'None',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Patrol Radius': '12.0000',
-                    'Pos': Point3(-7.9530000000000003, -7.2460000000000004, 0.0),
+                    'Pos': Point3(-7.9530, -7.24600, 0.0),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'Private Status': 'All',

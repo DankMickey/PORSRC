@@ -56,20 +56,20 @@ class SkillPage(InventoryPage.InventoryPage):
         ornament.find('**/pPlane83').detachNode()
         ornament.find('**/pPlane84').detachNode()
         ornament.find('**/pPlane93').detachNode()
-        ornament.setScale(0.32500000000000001, 0, 0.32000000000000001)
-        ornament.setPos(0.54000000000000004, 0, 0.71999999999999997)
+        ornament.setScale(0.325, 0, 0.320)
+        ornament.setPos(0.540000, 0, 0.71)
         ornament.flattenStrong()
         ornament.reparentTo(self)
         self.box = loader.loadModel('models/gui/gui_title_box').find('**/gui_title_box_top')
         box = loader.loadModel('models/gui/gui_title_box').find('**/gui_title_box_top')
-        box.setPos(0.55000000000000004, 0, 1.26)
-        box.setScale(0.32500000000000001, 0.0, 0.25)
+        box.setPos(0.550000, 0, 1.26)
+        box.setScale(0.325, 0.0, 0.25)
         box.reparentTo(ornament)
         ornament.flattenStrong()
-        self.repMeter = ReputationMeter(self.getRep(), width = 0.69999999999999996)
+        self.repMeter = ReputationMeter(self.getRep(), width = 0.696)
         self.repMeter.reparentTo(self)
-        self.repMeter.setPos(0.55000000000000004, 0, 1.24)
-        self.unspent = DirectLabel(parent = self, relief = None, text = PLocalizer.SkillPageUnspentPoints % 0, text_scale = 0.040000000000000001, text_align = TextNode.ACenter, text_pos = (0, -0.01), text_fg = (1, 1, 1, 1), pos = (0.80000000000000004, 0, 0.02))
+        self.repMeter.setPos(0.550000, 0, 1.24)
+        self.unspent = DirectLabel(parent = self, relief = None, text = PLocalizer.SkillPageUnspentPoints % 0, text_scale = 0.0400, text_align = TextNode.ACenter, text_pos = (0, -0.01), text_fg = (1, 1, 1, 1), pos = (0.800000, 0, 0.02))
 
 
     def destroy(self):
@@ -153,7 +153,7 @@ class SkillPage(InventoryPage.InventoryPage):
 
 
     def createTab(self, repId):
-        newTab = self.tabBar.addTab(str(repId), frameSize = (-0.12, 0.12, -0.11, 0.11), focusSize = (-0.12, 0.12, -0.12, 0.12), heightFactor = 0.55000000000000004, command = self.update, extraArgs = [
+        newTab = self.tabBar.addTab(str(repId), frameSize = (-0.12, 0.12, -0.11, 0.11), focusSize = (-0.12, 0.12, -0.12, 0.12), heightFactor = 0.550000, command = self.update, extraArgs = [
             repId,
             1])
         if repId == InventoryType.SailingRep:
@@ -163,10 +163,10 @@ class SkillPage(InventoryPage.InventoryPage):
         asset = ReputationGlobals.RepIcons.get(repId)
         image = model.find('**/%s' % asset)
         name = PLocalizer.InventoryTypeNames[repId]
-        newTab.nameTag = DirectLabel(parent = newTab, relief = None, state = DGG.DISABLED, image = image, image_scale = 0.10000000000000001, image_color = Vec4(0.80000000000000004, 0.80000000000000004, 0.80000000000000004, 1), image_pos = Vec3(-0.14999999999999999, 0.0, 0.0), pos = (0, 0, 0))
+        newTab.nameTag = DirectLabel(parent = newTab, relief = None, state = DGG.DISABLED, image = image, image_scale = 0.100, image_color = Vec4(0.800000, 0.800000, 0.800000, 1), image_pos = Vec3(-0.149, 0.0, 0.0), pos = (0, 0, 0))
 
         def mouseOver(tab = newTab):
-            tab.nameTag.setScale(1.1000000000000001)
+            tab.nameTag.setScale(1.10)
             tab.nameTag['image_color'] = Vec4(1, 1, 1, 1)
             base.playSfx(PiratesGuiGlobals.getDefaultRolloverSound())
 
@@ -174,7 +174,7 @@ class SkillPage(InventoryPage.InventoryPage):
         def mouseOff(tab = newTab):
             if not tab['selected']:
                 tab.nameTag.setScale(1.0)
-                tab.nameTag['image_color'] = Vec4(0.80000000000000004, 0.80000000000000004, 0.80000000000000004, 1)
+                tab.nameTag['image_color'] = Vec4(0.800000, 0.800000, 0.800000, 1)
             else:
                 mouseOver(tab)
 
@@ -234,7 +234,7 @@ class SkillPage(InventoryPage.InventoryPage):
 
         self.unspent['text'] = PLocalizer.SkillPageUnspentPoints % amt
         if amt > 0:
-            self.unspent['text_fg'] = (0.80000000000000004, 1, 0.80000000000000004, 1)
+            self.unspent['text_fg'] = (0.800000, 1, 0.800000, 1)
         else:
             self.unspent['text_fg'] = (1, 1, 1, 1)
         comboSkills = RadialMenu.ComboSkills(repId, 1)
@@ -282,8 +282,8 @@ class SkillPage(InventoryPage.InventoryPage):
                 skill = self.linkedSkillIds[skill]
 
             self.createFrame(skill, skillPts, amt, showIcon)
-            x = 0.20000000000000001 + 0.17499999999999999 * count
-            y = 1.1100000000000001
+            x = 0.200 + 0.174 * count
+            y = 1.11
             self.skillFrames[skill].setPos(x, 0, y)
             if showIcon and skillPts > 1:
                 self.makeBoostDisplay(skill, skillPts - 1)
@@ -297,8 +297,8 @@ class SkillPage(InventoryPage.InventoryPage):
                 skillPts = self.localMods[skill]
 
             (xMod, yMod) = self.ringOffset(count)
-            xMod *= 0.90000000000000002
-            yMod *= 0.90000000000000002
+            xMod *= 0.9
+            yMod *= 0.9
             if not skill in activeSkills:
                 pass
             
@@ -311,8 +311,8 @@ class SkillPage(InventoryPage.InventoryPage):
                 skill = self.linkedSkillIds[skill]
 
             self.createFrame(skill, skillPts, amt, showIcon)
-            x = xMod + 0.53000000000000003
-            y = yMod + 0.61499999999999999
+            x = xMod + 0.53000
+            y = yMod + 0.614
             self.skillFrames[skill].setPos(x, 0, y)
             if showIcon and skillPts > 1:
                 self.makeBoostDisplay(skill, skillPts - 1)
@@ -342,8 +342,8 @@ class SkillPage(InventoryPage.InventoryPage):
                 skill = self.linkedSkillIds[skill]
 
             self.createFrame(skill, skillPts, amt, showIcon)
-            x = 0.20000000000000001 + 0.17499999999999999 * count
-            y = 0.14999999999999999
+            x = 0.200 + 0.174 * count
+            y = 0.149
             self.skillFrames[skill].setPos(x, 0, y)
             if showIcon and skillPts > 1:
                 self.makeBoostDisplay(skill, skillPts - 1)
@@ -368,8 +368,8 @@ class SkillPage(InventoryPage.InventoryPage):
             return None
 
         if skillId not in self.boostDisplays:
-            self.backFrames[skillId] = DirectLabel(parent = self.skillFrames[skillId], pos = (0.040000000000000001, 0, -0.040000000000000001), frameColor = (0.20999999999999999, 0.125, 0.035000000000000003, 1), frameSize = (-0.023, 0.023, -0.023, 0.023))
-            self.boostDisplays[skillId] = DirectLabel(parent = self.skillFrames[skillId], text = '', text_scale = PiratesGuiGlobals.TextScaleMed, text_pos = (0.0, -0.01), text_shadow = PiratesGuiGlobals.TextShadow, pos = (0.040000000000000001, 0, -0.040000000000000001), frameColor = (0, 0, 0, 1), frameSize = (-0.02, 0.02, -0.02, 0.02))
+            self.backFrames[skillId] = DirectLabel(parent = self.skillFrames[skillId], pos = (0.0400, 0, -0.0400), frameColor = (0.209, 0.125, 0.035000, 1), frameSize = (-0.023, 0.023, -0.023, 0.023))
+            self.boostDisplays[skillId] = DirectLabel(parent = self.skillFrames[skillId], text = '', text_scale = PiratesGuiGlobals.TextScaleMed, text_pos = (0.0, -0.01), text_shadow = PiratesGuiGlobals.TextShadow, pos = (0.0400, 0, -0.0400), frameColor = (0, 0, 0, 1), frameSize = (-0.02, 0.02, -0.02, 0.02))
             self.backFrames[skillId].setBin('gui-fixed', 4)
             self.boostDisplays[skillId].setBin('gui-fixed', 4)
 
@@ -551,19 +551,19 @@ class SkillPage(InventoryPage.InventoryPage):
 
     def ringOffset(self, num):
         if num == 0:
-            return (-0.17499999999999999, 0.17499999999999999)
+            return (-0.174, 0.174)
         elif num == 1:
             return (0.0, 0.25)
         elif num == 2:
-            return (0.17499999999999999, 0.17499999999999999)
+            return (0.174, 0.174)
         elif num == 3:
             return (0.25, 0.0)
         elif num == 4:
-            return (0.17499999999999999, -0.17499999999999999)
+            return (0.174, -0.174)
         elif num == 5:
             return (0.0, -0.25)
         elif num == 6:
-            return (-0.17499999999999999, -0.17499999999999999)
+            return (-0.174, -0.174)
         elif num == 7:
             return (-0.25, 0.0)
         else:
@@ -694,21 +694,21 @@ class SkillPage(InventoryPage.InventoryPage):
                 self.demoSeq.append(Func(self.skillFrames[comboSkills[i]].setShowIcon, True))
                 blinkInPar.append(LerpScaleInterval(self.skillFrames[comboSkills[i]], 0.5, Vec3(1.25, 1.25, 1.25)))
                 blinkOutPar.append(LerpScaleInterval(self.skillFrames[comboSkills[i]], 0.5, Vec3(1.0, 1.0, 1.0)))
-                blinkInPar2.append(LerpScaleInterval(self.skillFrames[comboSkills[i]], 0.5, Vec3(1.1000000000000001, 1.1000000000000001, 1.1000000000000001)))
+                blinkInPar2.append(LerpScaleInterval(self.skillFrames[comboSkills[i]], 0.5, Vec3(1.10, 1.10, 1.10)))
                 blinkOutPar2.append(LerpScaleInterval(self.skillFrames[comboSkills[i]], 0.5, Vec3(1.0, 1.0, 1.0)))
 
             if i < len(activeSkills):
                 self.demoSeq.append(Func(self.skillFrames[activeSkills[i]].setShowIcon, True))
                 blinkInPar.append(LerpScaleInterval(self.skillFrames[activeSkills[i]], 0.5, Vec3(1.25, 1.25, 1.25)))
                 blinkOutPar.append(LerpScaleInterval(self.skillFrames[activeSkills[i]], 0.5, Vec3(1.0, 1.0, 1.0)))
-                blinkInPar2.append(LerpScaleInterval(self.skillFrames[activeSkills[i]], 0.5, Vec3(1.1000000000000001, 1.1000000000000001, 1.1000000000000001)))
+                blinkInPar2.append(LerpScaleInterval(self.skillFrames[activeSkills[i]], 0.5, Vec3(1.10, 1.10, 1.10)))
                 blinkOutPar2.append(LerpScaleInterval(self.skillFrames[activeSkills[i]], 0.5, Vec3(1.0, 1.0, 1.0)))
 
             if i < len(passiveSkills):
                 self.demoSeq.append(Func(self.skillFrames[passiveSkills[i]].setShowIcon, True))
                 blinkInPar.append(LerpScaleInterval(self.skillFrames[passiveSkills[i]], 0.5, Vec3(1.25, 1.25, 1.25)))
                 blinkOutPar.append(LerpScaleInterval(self.skillFrames[passiveSkills[i]], 0.5, Vec3(1.0, 1.0, 1.0)))
-                blinkInPar2.append(LerpScaleInterval(self.skillFrames[passiveSkills[i]], 0.5, Vec3(1.1000000000000001, 1.1000000000000001, 1.1000000000000001)))
+                blinkInPar2.append(LerpScaleInterval(self.skillFrames[passiveSkills[i]], 0.5, Vec3(1.10, 1.10, 1.10)))
                 blinkOutPar2.append(LerpScaleInterval(self.skillFrames[passiveSkills[i]], 0.5, Vec3(1.0, 1.0, 1.0)))
 
             self.createTab(weapons[i])
@@ -716,7 +716,7 @@ class SkillPage(InventoryPage.InventoryPage):
             self.demoSeq.append(Func(self.tabBar.getTab(str(weapons[i])).show))
             blinkInPar.append(LerpScaleInterval(self.tabBar.getTab(str(weapons[i])), 0.5, Vec3(1.25, 1.25, 1.25)))
             blinkOutPar.append(LerpScaleInterval(self.tabBar.getTab(str(weapons[i])), 0.5, Vec3(1.0, 1.0, 1.0)))
-            blinkInPar2.append(LerpScaleInterval(self.tabBar.getTab(str(weapons[i])), 0.5, Vec3(1.1000000000000001, 1.1000000000000001, 1.1000000000000001)))
+            blinkInPar2.append(LerpScaleInterval(self.tabBar.getTab(str(weapons[i])), 0.5, Vec3(1.10, 1.10, 1.10)))
             blinkOutPar2.append(LerpScaleInterval(self.tabBar.getTab(str(weapons[i])), 0.5, Vec3(1.0, 1.0, 1.0)))
             blinkSeq.append(blinkInPar)
             blinkSeq.append(blinkOutPar)

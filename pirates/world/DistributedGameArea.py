@@ -738,7 +738,7 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
                 island_water_parameters.swamp_color_b = b
                 x = 0.0
                 y = 1.0
-                speed = 3.2000000000000002
+                speed = 3.2
                 island_water_parameters.swamp_direction_x = x
                 island_water_parameters.swamp_direction_y = y
                 island_water_parameters.swamp_speed = speed

@@ -246,7 +246,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
             if self.oldGravity and 0:
                 self.controlManager.get('walk').lifter.setGravity(self.oldGravity)
             else:
-                self.controlManager.get('walk').lifter.setGravity(32.173999999999999 * 2.0)
+                self.controlManager.get('walk').lifter.setGravity(32.173 * 2.0)
             self.oldGravity = None
 
 
@@ -262,7 +262,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
 
 
     def rocketGrav(self, task = None):
-        self.controlManager.get('walk').lifter.setGravity(-32.173999999999999)
+        self.controlManager.get('walk').lifter.setGravity(-32.173)
         if task:
             return task.done
 
@@ -290,8 +290,8 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
         return task.cont
 
 
-    def setupWalkControls(self, avatarRadius = 1.3999999999999999, floorOffset = OTPGlobals.FloorOffset, reach = 4.0, wallBitmask = OTPGlobals.WallBitmask, floorBitmask = OTPGlobals.FloorBitmask, ghostBitmask = OTPGlobals.GhostBitmask):
-        walkControls = PiratesGravityWalker(gravity = -32.173999999999999 * 2.0)
+    def setupWalkControls(self, avatarRadius = 1.39, floorOffset = OTPGlobals.FloorOffset, reach = 4.0, wallBitmask = OTPGlobals.WallBitmask, floorBitmask = OTPGlobals.FloorBitmask, ghostBitmask = OTPGlobals.GhostBitmask):
+        walkControls = PiratesGravityWalker(gravity = -32.173 * 2.0)
         walkControls.setWallBitMask(wallBitmask)
         walkControls.setFloorBitMask(floorBitmask)
         walkControls.initializeCollisions(self.cTrav, self, avatarRadius, floorOffset, reach)
@@ -815,7 +815,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
         self.controlManager.setTag('avId', str(self.getDoId()))
         pe = PolylightEffect.make()
         brightness = 1.25
-        darkness = 0.80000000000000004
+        darkness = 0.800000
         pe.setWeight(brightness)
         self.node().setEffect(pe)
         DistributedPlayerPirate.announceGenerate(self)
@@ -1064,14 +1064,14 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
     def setupControls(self):
         floorOffset = OTPGlobals.FloorOffset
         reach = 8.0
-        avatarRadius = 1.3999999999999999
+        avatarRadius = 1.39
         controls = BattleWalker.BattleWalker()
         controls.setWallBitMask(OTPGlobals.WallBitmask | PiratesGlobals.GoldBitmask)
         controls.setFloorBitMask(OTPGlobals.FloorBitmask)
         controls.initializeCollisions(self.cTrav, self, avatarRadius, floorOffset, reach)
         controls.setAirborneHeightFunc(self.getAirborneHeight)
         self.controlManager.add(controls, 'battle')
-        self.setupWalkControls(avatarRadius = 1.3999999999999999, floorOffset = OTPGlobals.FloorOffset, reach = reach, wallBitmask = OTPGlobals.WallBitmask | PiratesGlobals.GoldBitmask, floorBitmask = OTPGlobals.FloorBitmask, ghostBitmask = OTPGlobals.GhostBitmask)
+        self.setupWalkControls(avatarRadius = 1.39, floorOffset = OTPGlobals.FloorOffset, reach = reach, wallBitmask = OTPGlobals.WallBitmask | PiratesGlobals.GoldBitmask, floorBitmask = OTPGlobals.FloorBitmask, ghostBitmask = OTPGlobals.GhostBitmask)
         self.enableRun()
         self.startListenAutoRun()
 
@@ -1213,7 +1213,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
 
     def clearPageUpDown(self):
         if self.isPageDown or self.isPageUp:
-            self.lerpCameraFov(PiratesGlobals.DefaultCameraFov, 0.59999999999999998)
+            self.lerpCameraFov(PiratesGlobals.DefaultCameraFov, 0.598)
             self.isPageDown = 0
             self.isPageUp = 0
             self.setCameraPositionByIndex(self.cameraIndex)
@@ -1321,7 +1321,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
 
     def attackTire(self, seconds = 1.2):
         if base.cr.gameStatManager.aggroModelIndex == 1:
-            self.setTireMod(-0.40000000000000002)
+            self.setTireMod(-0.4)
             taskMgr.remove(self.uniqueName('tireTask'))
             taskMgr.doMethodLater(seconds, self.untire, self.uniqueName('tireTask'))
 
@@ -1720,7 +1720,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
             self.guiMgr.combatTray.updateBestTonic()
             if self.maxHp:
                 hpFraction = float(self.hp) / float(self.maxHp)
-                if hpFraction < 0.40000000000000002:
+                if hpFraction < 0.4:
                     self.guiMgr.gameGui.startHealthAlert()
 
     def getConeOriginNode(self):
@@ -1998,7 +1998,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
 
     def startFovWobble(self):
         self.normFov = base.camLens.getFov() * 1.0
-        self.minFov = self.normFov * 0.98999999999999999
+        self.minFov = self.normFov * 0.989
         self.maxFov = self.normFov * 1.01
         self.fovWobbleDir = 0
         self.doFovWobble()
@@ -2037,8 +2037,8 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
                 return None
         else:
             taskMgr.remove('wobbleLater')
-        minFov = self.normFov - 0.20000000000000001 * math.sqrt(iDistanceFactor)
-        maxFov = self.normFov + 0.20000000000000001 * math.sqrt(iDistanceFactor)
+        minFov = self.normFov - 0.200 * math.sqrt(iDistanceFactor)
+        maxFov = self.normFov + 0.200 * math.sqrt(iDistanceFactor)
         minRoll = 0.0 - 0.5 * math.sqrt(iDistanceFactor)
         maxRoll = 0.0 + 0.5 * math.sqrt(iDistanceFactor)
         if self.fovWobbleDir == 0:
@@ -2091,7 +2091,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
         if value:
             pass
         1
-        taskMgr.doMethodLater(0.10000000000000001, self.fakeEnemyAggroTask, 'fakeEnemyAggroTask')
+        taskMgr.doMethodLater(0.100, self.fakeEnemyAggroTask, 'fakeEnemyAggroTask')
         self.fakeEnemyAggroTask(None)
         DistributedPlayerPirate._setCreatureTransformation(self, value, effectId)
 
@@ -2281,7 +2281,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
                                             taskMgr.doMethodLater(1, checkForKickOut, 'checkForKickOut')
 
 
-                                    taskMgr.doMethodLater(0.10000000000000001, checkForKickOut, 'checkForKickOut')
+                                    taskMgr.doMethodLater(0.100, checkForKickOut, 'checkForKickOut')
                                     return None
                                 else:
                                     objRef.pistolTutorialPt1()
@@ -2473,7 +2473,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
             self.disableWaterEffect()
         else:
             speeds = self.controlManager.getSpeeds()
-            self.adjustWaterEffect(offset + 0.14999999999999999, *speeds)
+            self.adjustWaterEffect(offset + 0.149, *speeds)
 
     def handleWaterOut(self, entry):
         self.disableWaterEffect()

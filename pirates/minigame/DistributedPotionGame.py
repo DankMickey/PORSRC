@@ -19,7 +19,7 @@ class DistributedPotionGame(DistributedObject):
     def __init__(self, cr):
         DistributedObject.__init__(self, cr)
         self.colorSet = 0
-        self.fadeTime = 0.10000000000000001
+        self.fadeTime = 0.100
         self.fadeTask = None
         self.xpBonus = 0
 

@@ -40,14 +40,14 @@ class TorchFire(EffectController, NodePath):
         self.p0.setEmitter('DiscEmitter')
         self.f.addParticles(self.p0)
         self.p0.setPoolSize(8)
-        self.p0.setBirthRate(0.10000000000000001)
+        self.p0.setBirthRate(0.100)
         self.p0.setLitterSize(1)
         self.p0.setLitterSpread(0)
         self.p0.setSystemLifespan(0.0)
         self.p0.setLocalVelocityFlag(1)
         self.p0.setSystemGrowsOlderFlag(0)
         self.p0.factory.setLifespanBase(0.5)
-        self.p0.factory.setLifespanSpread(0.050000000000000003)
+        self.p0.factory.setLifespanSpread(0.050000)
         self.p0.factory.setMassBase(1.0)
         self.p0.factory.setMassSpread(0.5)
         self.p0.factory.setTerminalVelocityBase(400.0)
@@ -67,20 +67,20 @@ class TorchFire(EffectController, NodePath):
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPNOBLEND)
         self.p0.renderer.setAlphaDisable(0)
         self.p0.emitter.setEmissionType(BaseParticleEmitter.ETRADIATE)
-        self.p0.emitter.setAmplitude(0.14999999999999999)
-        self.p0.emitter.setAmplitudeSpread(0.29999999999999999)
+        self.p0.emitter.setAmplitude(0.149)
+        self.p0.emitter.setAmplitudeSpread(0.299)
         self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, 3.0))
         self.p0.emitter.setExplicitLaunchVector(Vec3(1.0, 0.0, 0.0))
         self.p0.emitter.setRadiateOrigin(Point3(0.0, 0.0, 0.0))
-        self.p0.emitter.setRadius(0.20000000000000001)
+        self.p0.emitter.setRadius(0.200)
 
 
     def createTrack(self, lod = Options.SpecialEffectsHigh):
         poolsize = int(5 + 2 * lod)
-        lifespan = 0.5 + 0.050000000000000003 * lod
+        lifespan = 0.5 + 0.050000 * lod
         self.p0.setPoolSize(poolsize)
         self.p0.factory.setLifespanBase(lifespan)
-        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.10000000000000001), Func(self.p0.setPoolSize, poolsize), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy))
+        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.100), Func(self.p0.setPoolSize, poolsize), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy))
         self.endEffect = Sequence(Func(self.p0.setBirthRate, 100.0), Wait(1.0), Func(self.cleanUpEffect))
         self.track = Sequence(self.startEffect, Wait(10.0), self.endEffect)
 

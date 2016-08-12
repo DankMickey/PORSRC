@@ -67,7 +67,7 @@ class SoulHarvest2(PooledEffect, EffectController):
 
     def createTrack(self):
         self.p0.emitter.setRadius(self.radius)
-        self.track = Sequence(Func(self.p0.setBirthRate, 0.10000000000000001), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self), Wait(3.0), Func(self.p0.setBirthRate, 100), Wait(7.0), Func(self.cleanUpEffect))
+        self.track = Sequence(Func(self.p0.setBirthRate, 0.100), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self), Wait(3.0), Func(self.p0.setBirthRate, 100), Wait(7.0), Func(self.cleanUpEffect))
 
 
     def cleanUpEffect(self):

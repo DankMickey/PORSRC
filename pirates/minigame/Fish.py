@@ -108,14 +108,14 @@ class Fish(NodePath):
     def initCollisions(self):
         self.collisionVisual = loader.loadModel('models/props/crate')
         self.collisionVisual.setTransparency(1)
-        self.collisionVisual.setColor(1.0, 1.0, 1.0, 0.29999999999999999)
+        self.collisionVisual.setColor(1.0, 1.0, 1.0, 0.299)
         self.collisionVisual.setScale(*self.myData['collisionBoxSize'])
         self.collisionVisual.setPos(*self.myData['collisionBoxOffset'])
         self.collisionVisual.reparentTo(self)
         self.collisionVisual.hide()
         self.attractionVisual = loader.loadModel('models/ammunition/cannonball')
         self.attractionVisual.setTransparency(1)
-        self.attractionVisual.setColor(0.0, 1.0, 0.0, 0.29999999999999999)
+        self.attractionVisual.setColor(0.0, 1.0, 0.0, 0.299)
         self.attractionVisual.setScale(self.myData['attractionRadius'])
         self.attractionVisual.reparentTo(self.attractionPoint)
         self.attractionVisual.hide()
@@ -196,7 +196,7 @@ class Fish(NodePath):
             animationToTurn = 'turnOpposite'
 
         durationOfFishTurn = self.myData['durationOfFishTurn']
-        self.fishMoveSequence = Parallel(Sequence(Func(self.actor.changeAnimationTo, animationToTurn, False), Wait(durationOfFishTurn), Func(self.fsm.request, nextState)), Sequence(Wait(durationOfFishTurn * 0.33000000000000002), Func(self.setXVelocity, 0.0), Wait(durationOfFishTurn * 0.66000000000000003), Func(self.setXVelocity, self.velocity[0])), name = '%s_turnAroundInterval' % self.getName())
+        self.fishMoveSequence = Parallel(Sequence(Func(self.actor.changeAnimationTo, animationToTurn, False), Wait(durationOfFishTurn), Func(self.fsm.request, nextState)), Sequence(Wait(durationOfFishTurn * 0.33), Func(self.setXVelocity, 0.0), Wait(durationOfFishTurn * 0.66000), Func(self.setXVelocity, self.velocity[0])), name = '%s_turnAroundInterval' % self.getName())
         self.velocity[0] = -self.velocity[0]
         self.fishMoveSequence.start()
 
@@ -244,7 +244,7 @@ class Fish(NodePath):
                     if self.checkForBoxOverlap(self.fishManager.uncaughtFish[i]):
                         self.closeFish.append(self.fishManager.uncaughtFish[i])
                         if FishingGlobals.wantDebugCollisionVisuals:
-                            self.collisionVisual.setColor(1, 0, 0, 0.29999999999999999)
+                            self.collisionVisual.setColor(1, 0, 0, 0.299)
 
 
                 self.checkForBoxOverlap(self.fishManager.uncaughtFish[i])
@@ -252,7 +252,7 @@ class Fish(NodePath):
 
         if len(self.closeFish) == 0:
             if FishingGlobals.wantDebugCollisionVisuals:
-                self.collisionVisual.setColor(1, 1, 1, 0.29999999999999999)
+                self.collisionVisual.setColor(1, 1, 1, 0.299)
 
 
 

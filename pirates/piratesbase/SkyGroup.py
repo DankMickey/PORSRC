@@ -76,55 +76,55 @@ class SkyGroup(NodePath):
                 VBase4(0.0, 0.0, 0.0, 1),
                 VBase4(0.0, 0.0, 0.0, 1)],
             TODGlobals.SKY_DAWN: [
-                (self.texTransparent, '', VBase4(0, 0, 0, 0), VBase4(0.80000000000000004, 0.5, 0.20000000000000001, 1)),
-                (self.texOpaque, '', VBase4(0, 0, 0, 0), VBase4(0.40000000000000002, 0.57999999999999996, 0.59999999999999998, 1)),
-                VBase4(0.80000000000000004, 0.80000000000000004, 0.59999999999999998, 1),
-                VBase4(0.28999999999999998, 0.32000000000000001, 0.44, 1)],
+                (self.texTransparent, '', VBase4(0, 0, 0, 0), VBase4(0.800000, 0.5, 0.200, 1)),
+                (self.texOpaque, '', VBase4(0, 0, 0, 0), VBase4(0.4, 0.576, 0.598, 1)),
+                VBase4(0.800000, 0.800000, 0.598, 1),
+                VBase4(0.288, 0.320, 0.44, 1)],
             TODGlobals.SKY_DAY: [
-                (self.texTransparent, '', VBase4(0, 0, 0, 0), VBase4(1, 1, 1, 0.69999999999999996)),
-                (self.texOpaque, '', VBase4(0, 0, 0, 0), VBase4(0.45000000000000001, 0.55000000000000004, 0.69999999999999996, 0)),
+                (self.texTransparent, '', VBase4(0, 0, 0, 0), VBase4(1, 1, 1, 0.696)),
+                (self.texOpaque, '', VBase4(0, 0, 0, 0), VBase4(0.450, 0.550000, 0.696, 0)),
                 VBase4(1, 1, 1, 1),
-                VBase4(0.59999999999999998, 0.69999999999999996, 0.90000000000000002, 1)],
+                VBase4(0.598, 0.696, 0.9, 1)],
             TODGlobals.SKY_DUSK: [
-                (self.texTransparent, '', VBase4(0, 0, 0, 0), VBase4(0.59999999999999998, 0.36499999999999999, 0.32500000000000001, 1)),
-                (self.texOpaque, '', VBase4(0, 0, 0, 0), VBase4(0.45000000000000001, 0.40000000000000002, 0.52000000000000002, 1)),
-                VBase4(0.75, 0.34999999999999998, 0.22, 1),
-                VBase4(0.46000000000000002, 0.38, 0.42999999999999999, 1)],
+                (self.texTransparent, '', VBase4(0, 0, 0, 0), VBase4(0.598, 0.364, 0.325, 1)),
+                (self.texOpaque, '', VBase4(0, 0, 0, 0), VBase4(0.450, 0.4, 0.52, 1)),
+                VBase4(0.75, 0.348, 0.22, 1),
+                VBase4(0.46, 0.38, 0.429, 1)],
             TODGlobals.SKY_NIGHT: [
-                (self.texStars, '', VBase4(0.10000000000000001, 0.10000000000000001, 0.10000000000000001, 0.10000000000000001), VBase4(0.35999999999999999, 0.47999999999999998, 0.73999999999999999, 0.80000000000000004)),
-                (self.texStars, '', VBase4(0, 0, 0, 0), VBase4(0.35999999999999999, 0.47999999999999998, 0.73999999999999999, 0.20000000000000001)),
-                VBase4(0.34000000000000002, 0.45000000000000001, 0.69999999999999996, 0.80000000000000004),
-                VBase4(0.11, 0.17999999999999999, 0.33000000000000002, 1)],
+                (self.texStars, '', VBase4(0.100, 0.100, 0.100, 0.100), VBase4(0.359, 0.478, 0.739, 0.800000)),
+                (self.texStars, '', VBase4(0, 0, 0, 0), VBase4(0.359, 0.478, 0.739, 0.200)),
+                VBase4(0.34, 0.450, 0.696, 0.800000),
+                VBase4(0.11, 0.179, 0.33, 1)],
             TODGlobals.SKY_STARS: [
-                (self.texStars, '', VBase4(0.84999999999999998, 0.80000000000000004, 0.5, 0.5), VBase4(1, 1, 1, 1)),
+                (self.texStars, '', VBase4(0.848, 0.800000, 0.5, 0.5), VBase4(1, 1, 1, 1)),
                 (self.texStars, '', VBase4(0, 0, 0, 0), VBase4(1, 1, 1, 1)),
-                VBase4(0.45000000000000001, 0.45000000000000001, 0.69999999999999996, 0.59999999999999998),
-                VBase4(0.089999999999999997, 0.089999999999999997, 0.23999999999999999, 1)],
+                VBase4(0.450, 0.450, 0.696, 0.598),
+                VBase4(0.089, 0.089, 0.239, 1)],
             TODGlobals.SKY_HALLOWEEN: [
-                (self.texStars, '', VBase4(0, 0, 0, 0.20000000000000001), VBase4(0.5, 0.59999999999999998, 0.14999999999999999, 1)),
-                (self.texStars, '', VBase4(0, 0, 0, 0), VBase4(1, 1, 1, 0.40000000000000002)),
-                VBase4(0.5, 0.59999999999999998, 0.14999999999999999, 1),
-                VBase4(0.10000000000000001, 0.12, 0.029999999999999999, 1)],
+                (self.texStars, '', VBase4(0, 0, 0, 0.200), VBase4(0.5, 0.598, 0.149, 1)),
+                (self.texStars, '', VBase4(0, 0, 0, 0), VBase4(1, 1, 1, 0.4)),
+                VBase4(0.5, 0.598, 0.149, 1),
+                VBase4(0.100, 0.12, 0.0299, 1)],
             TODGlobals.SKY_SWAMP: [
-                (self.texTransparent, '', VBase4(0, 0, 0, 0), VBase4(0.34999999999999998, 0.5, 0.59999999999999998, 1)),
-                (self.texOpaque, '', VBase4(0, 0, 0, 0), VBase4(0.34999999999999998, 0.5, 0.59999999999999998, 0)),
-                VBase4(0.34999999999999998, 0.5, 0.59999999999999998, 1),
-                VBase4(0.14999999999999999, 0.20000000000000001, 0.34999999999999998, 1)],
+                (self.texTransparent, '', VBase4(0, 0, 0, 0), VBase4(0.348, 0.5, 0.598, 1)),
+                (self.texOpaque, '', VBase4(0, 0, 0, 0), VBase4(0.348, 0.5, 0.598, 0)),
+                VBase4(0.348, 0.5, 0.598, 1),
+                VBase4(0.149, 0.200, 0.348, 1)],
             TODGlobals.SKY_INVASION: [
-                (self.texStars, '', VBase4(0, 0, 0, 0.20000000000000001), VBase4(0.14999999999999999, 0.17999999999999999, 0.059999999999999998, 1)),
-                (self.texStars, '', VBase4(0, 0, 0, 0), VBase4(1, 1, 1, 0.40000000000000002)),
-                VBase4(0.14999999999999999, 0.17999999999999999, 0.059999999999999998, 1),
-                VBase4(0.10000000000000001, 0.12, 0.029999999999999999, 1)],
+                (self.texStars, '', VBase4(0, 0, 0, 0.200), VBase4(0.149, 0.179, 0.0598, 1)),
+                (self.texStars, '', VBase4(0, 0, 0, 0), VBase4(1, 1, 1, 0.4)),
+                VBase4(0.149, 0.179, 0.0598, 1),
+                VBase4(0.100, 0.12, 0.0299, 1)],
             TODGlobals.SKY_OVERCAST: [
-                (self.texTransparent, '', VBase4(0.0, 0.0, 0.0, 0), VBase4(0.34000000000000002, 0.32000000000000001, 0.25, 1)),
-                (self.texOpaque, '', VBase4(0, 0, 0, 0), VBase4(0.41999999999999998, 0.41999999999999998, 0.38, 1)),
-                VBase4(0.20999999999999999, 0.20000000000000001, 0.20000000000000001, 1),
-                VBase4(0.34000000000000002, 0.32000000000000001, 0.25, 1)],
+                (self.texTransparent, '', VBase4(0.0, 0.0, 0.0, 0), VBase4(0.34, 0.320, 0.25, 1)),
+                (self.texOpaque, '', VBase4(0, 0, 0, 0), VBase4(0.418, 0.418, 0.38, 1)),
+                VBase4(0.209, 0.200, 0.200, 1),
+                VBase4(0.34, 0.320, 0.25, 1)],
             TODGlobals.SKY_OVERCASTNIGHT: [
                 (self.texTransparent, '', VBase4(0, 0, 0, 0), VBase4(0.12, 0.22, 0.25, 1)),
                 (self.texOpaque, '', VBase4(0, 0, 0, 0), VBase4(0, 0.0, 0.0, 0)),
-                VBase4(0.12, 0.20999999999999999, 0.25, 1),
-                VBase4(0.12, 0.20999999999999999, 0.25, 1)] }
+                VBase4(0.12, 0.209, 0.25, 1),
+                VBase4(0.12, 0.209, 0.25, 1)] }
         self.tsSides = []
         self.tsSides.append(self._setupTexStageA('tsSidesA'))
         self.tsSides.append(self._setupTexStageB('tsSidesB'))
@@ -179,8 +179,8 @@ class SkyGroup(NodePath):
         self.moonGlow.reparentTo(self.moonModel)
         self.moonGlow.setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne))
         self.moonGlow.setBin('background', 109, 1)
-        self.moonGlow.setPos(0, 0, -0.20000000000000001)
-        self.moonGlow.setColorScale(0.69999999999999996, 0.80000000000000004, 1, 1)
+        self.moonGlow.setPos(0, 0, -0.200)
+        self.moonGlow.setColorScale(0.696, 0.800000, 1, 1)
         self.moonGlow.setScale(5)
         self.moonGlow.findTexture('Sun').setQualityLevel(Texture.QLBest)
         self.moonModel.findTexture('Moon').setQualityLevel(Texture.QLBest)
@@ -290,7 +290,7 @@ class SkyGroup(NodePath):
             state = 0.0
 
         self.moonState = state
-        pos = 0.10000000000000001 - state * 0.80000000000000004
+        pos = 0.100 - state * 0.800000
         self.moonAlphaNode.setPos(0, pos, 0)
 
 
@@ -332,7 +332,7 @@ class SkyGroup(NodePath):
         self.sunWheelRoll.setR(aR)
         sunVecFitted = Vec3(aH, aP, aR)
         if fade:
-            ival = Sequence(LerpColorScaleInterval(self.sunTrack, duration * 0.29999999999999999, Vec4(1, 1, 1, 0)), LerpFunctionInterval(self.setSunTrueAngle, duration * 0.40000000000000002, fromData = sunVecFitted, toData = newHpr), LerpColorScaleInterval(self.sunTrack, duration * 0.29999999999999999, Vec4(1, 1, 1, 1)))
+            ival = Sequence(LerpColorScaleInterval(self.sunTrack, duration * 0.299, Vec4(1, 1, 1, 0)), LerpFunctionInterval(self.setSunTrueAngle, duration * 0.4, fromData = sunVecFitted, toData = newHpr), LerpColorScaleInterval(self.sunTrack, duration * 0.299, Vec4(1, 1, 1, 1)))
             return ival
         else:
             return LerpFunctionInterval(self.setSunTrueAngle, duration, fromData = sunVecFitted, toData = newHpr)
@@ -345,7 +345,7 @@ class SkyGroup(NodePath):
             maxDarkness = 0.5
         else:
             minHeight = 3000
-            maxDarkness = 0.40000000000000002
+            maxDarkness = 0.4
         lightHeight = abs(lightHeight)
         maxHeight = self.lightDepth
         heightDif = maxHeight - lightHeight - minHeight

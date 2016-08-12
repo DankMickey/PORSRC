@@ -28,7 +28,7 @@ class CannonSmokeSimple(PooledEffect, EffectController):
         fadeBlast = LerpColorScaleInterval(self, 0.75, Vec4(1, 1, 1, 0.0), startColorScale = Vec4(1, 1, 1, 1))
         scaleBlast = LerpScaleInterval(self.effectModel, 0.75, Vec3(10, 10, 16), startScale = Vec3(6, 6, 12))
         scaleBlast2 = LerpScaleInterval(self.smoke, 0.75, 10, startScale = 6)
-        self.track = Sequence(Wait(0.10000000000000001), Func(self.show), Parallel(fadeBlast, scaleBlast, scaleBlast2), Func(self.hide), Func(self.cleanUpEffect))
+        self.track = Sequence(Wait(0.100), Func(self.show), Parallel(fadeBlast, scaleBlast, scaleBlast2), Func(self.hide), Func(self.cleanUpEffect))
 
 
     def cleanUpEffect(self):

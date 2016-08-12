@@ -15,8 +15,8 @@ from pirates.inventory import ItemGlobals
 class BarSelectionMenu(GuiPanel.GuiPanel):
     notify = DirectNotifyGlobal.directNotify.newCategory('BarSelectionMenu')
     ICON_WIDTH = 0.13
-    HEIGHT = 0.14999999999999999
-    SelectionDelay = 0.59999999999999998
+    HEIGHT = 0.149
+    SelectionDelay = 0.598
 
     def __init__(self, items, command = None):
         GuiPanel.GuiPanel.__init__(self, None, 1.0, self.HEIGHT, showClose = 0)
@@ -29,7 +29,7 @@ class BarSelectionMenu(GuiPanel.GuiPanel):
         self.hideTask = None
         card = loader.loadModel('models/textureCards/selectionGui')
         texCard = card.find('**/main_gui_general_box_over')
-        self.cursor = DirectFrame(parent = self, state = DGG.DISABLED, relief = None, frameSize = (0, 0.080000000000000002, 0, 0.080000000000000002), pos = (0.080000000000000002, 0, 0.070000000000000007), geom = texCard, geom_scale = 0.12)
+        self.cursor = DirectFrame(parent = self, state = DGG.DISABLED, relief = None, frameSize = (0, 0.08, 0, 0.08), pos = (0.08, 0, 0.070), geom = texCard, geom_scale = 0.12)
         self.cursor.setTransparency(1)
         self.cursor.resetFrameSize()
         card.remove_node()
@@ -53,17 +53,17 @@ class BarSelectionMenu(GuiPanel.GuiPanel):
             repMeter.destroy()
 
         self.repMeters = []
-        self['frameSize'] = (0, self.ICON_WIDTH * len(self.items) + 0.040000000000000001, 0, self.HEIGHT)
-        self.setX(-((self.ICON_WIDTH * len(self.items) + 0.040000000000000001) / 2.0))
+        self['frameSize'] = (0, self.ICON_WIDTH * len(self.items) + 0.0400, 0, self.HEIGHT)
+        self.setX(-((self.ICON_WIDTH * len(self.items) + 0.0400) / 2.0))
         topGui = loader.loadModel('models/gui/toplevel_gui')
         kbButton = topGui.find('**/keyboard_button')
         for i in xrange(len(self.items)):
             if self.items[i]:
                 category = WeaponGlobals.getRepId(self.items[i][0])
-                icon = DirectFrame(parent = self, state = DGG.DISABLED, relief = None, frameSize = (0, 0.080000000000000002, 0, 0.080000000000000002), pos = (self.ICON_WIDTH * i + 0.080000000000000002, 0, 0.082000000000000003))
+                icon = DirectFrame(parent = self, state = DGG.DISABLED, relief = None, frameSize = (0, 0.08, 0, 0.08), pos = (self.ICON_WIDTH * i + 0.08, 0, 0.082000))
                 icon.setTransparency(1)
                 hotkeyText = 'F%s' % self.items[i][1]
-                hotkey = DirectFrame(parent = icon, state = DGG.DISABLED, relief = None, text = hotkeyText, text_align = TextNode.ACenter, text_scale = 0.044999999999999998, text_pos = (0, 0), text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, image = kbButton, image_scale = 0.059999999999999998, image_pos = (0, 0, 0.01), image_color = (0.5, 0.5, 0.34999999999999998, 1), pos = (0, 0, 0.080000000000000002))
+                hotkey = DirectFrame(parent = icon, state = DGG.DISABLED, relief = None, text = hotkeyText, text_align = TextNode.ACenter, text_scale = 0.0448, text_pos = (0, 0), text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, image = kbButton, image_scale = 0.0598, image_pos = (0, 0, 0.01), image_color = (0.5, 0.5, 0.348, 1), pos = (0, 0, 0.08))
                 self.hotkeys.append(hotkey)
                 category = WeaponGlobals.getRepId(self.items[i][0])
                 
@@ -71,12 +71,12 @@ class BarSelectionMenu(GuiPanel.GuiPanel):
                 if asset:
                     texCard = self.card.find('**/%s' % asset)
                     icon['geom'] = texCard
-                    icon['geom_scale'] = 0.080000000000000002
+                    icon['geom_scale'] = 0.08
 
                 icon.resetFrameSize()
                 self.icons.append(icon)
 
-                repMeter = DirectWaitBar(parent = icon, relief = DGG.SUNKEN, state = DGG.DISABLED, borderWidth = (0.002, 0.002), range = 0, value = 0, frameColor = (0.23999999999999999, 0.23999999999999999, 0.20999999999999999, 1), barColor = (0.80000000000000004, 0.80000000000000004, 0.69999999999999996, 1), pos = (-0.050000000000000003, 0, -0.052499999999999998), hpr = (0, 0, 0), frameSize = (0.0050000000000000001, 0.095000000000000001, 0, 0.012500000000000001))
+                repMeter = DirectWaitBar(parent = icon, relief = DGG.SUNKEN, state = DGG.DISABLED, borderWidth = (0.002, 0.002), range = 0, value = 0, frameColor = (0.239, 0.239, 0.209, 1), barColor = (0.800000, 0.800000, 0.696, 1), pos = (-0.050000, 0, -0.052498), hpr = (0, 0, 0), frameSize = (0.00500, 0.0950, 0, 0.0125))
                 self.repMeters.append(repMeter)
                 inv = base.localAvatar.getInventory()
                 if inv:
@@ -105,7 +105,7 @@ class BarSelectionMenu(GuiPanel.GuiPanel):
             if self.choice < 0 or self.choice > len(self.items) - 1:
                 self.choice = len(self.items) - 1
 
-        self.cursor.setPos(self.ICON_WIDTH * self.choice + 0.080000000000000002, 0, 0.071999999999999995)
+        self.cursor.setPos(self.ICON_WIDTH * self.choice + 0.08, 0, 0.0715)
         taskMgr.remove('BarSelectHideTask' + str(self.getParent()))
         self.hideTask = taskMgr.doMethodLater(self.SelectionDelay, self.confirmSelection, 'BarSelectHideTask' + str(self.getParent()), extraArgs = [])
 
@@ -125,7 +125,7 @@ class BarSelectionMenu(GuiPanel.GuiPanel):
             if self.choice > len(self.items) - 1:
                 self.choice = 0
 
-        self.cursor.setPos(self.ICON_WIDTH * self.choice + 0.080000000000000002, 0, 0.071999999999999995)
+        self.cursor.setPos(self.ICON_WIDTH * self.choice + 0.08, 0, 0.0715)
         taskMgr.remove('BarSelectHideTask' + str(self.getParent()))
         self.hideTask = taskMgr.doMethodLater(self.SelectionDelay, self.confirmSelection, 'BarSelectHideTask' + str(self.getParent()), extraArgs = [])
 
@@ -139,7 +139,7 @@ class BarSelectionMenu(GuiPanel.GuiPanel):
 
         self.show()
         self.choice = self.items.index(weaponId)
-        self.cursor.setPos(self.ICON_WIDTH * self.choice + 0.080000000000000002, 0, 0.071999999999999995)
+        self.cursor.setPos(self.ICON_WIDTH * self.choice + 0.08, 0, 0.0715)
         taskMgr.remove('BarSelectHideTask' + str(self.getParent()))
         self.hideTask = taskMgr.doMethodLater(self.SelectionDelay * 2, self.hide, 'BarSelectHideTask' + str(self.getParent()), extraArgs = [])
 

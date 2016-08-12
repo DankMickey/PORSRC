@@ -15,7 +15,7 @@ class CrewMatchInviterButton(RequestButton):
 
     def __init__(self, text, command):
         if text == PLocalizer.CrewMatchAdvancedOptionsButton or text == PLocalizer.CrewMatchSimpleOptionsButton:
-            RequestButton.__init__(self, text, command, 2.1000000000000001)
+            RequestButton.__init__(self, text, command, 2.10)
         else:
             RequestButton.__init__(self, text, command)
         self.initialiseoptions(CrewMatchInviterButton)
@@ -27,7 +27,7 @@ class CrewMatchInviter(DirectFrame):
 
     def __init__(self, currentRepLevel, advancedOptions = False):
         guiMain = loader.loadModel('models/gui/gui_main')
-        DirectFrame.__init__(self, relief = None, pos = (0.65000000000000002, 0, 0.25), image = guiMain.find('**/general_frame_e'), image_pos = (0.25, 0, 0.27500000000000002), image_scale = 0.40000000000000002)
+        DirectFrame.__init__(self, relief = None, pos = (0.65, 0, 0.25), image = guiMain.find('**/general_frame_e'), image_pos = (0.25, 0, 0.275), image_scale = 0.4)
         self.initialiseoptions(CrewMatchInviter)
         self.setBin('gui-fixed', 0)
         self.currentRepLevel = currentRepLevel
@@ -40,41 +40,41 @@ class CrewMatchInviter(DirectFrame):
         text = PLocalizer.CrewMatchInviterText
         self.advancedOptions = advancedOptions
         if not advancedOptions:
-            self.message = DirectLabel(parent = self, relief = None, text = text, text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 15, pos = (0.25, 0, 0.34999999999999998), textMayChange = 1)
-            self.rangeSlider = DirectSlider(parent = self, relief = None, range = (0, ReputationGlobals.GlobalLevelCap), value = base.localAvatar.guiMgr.crewHUD.getNotorietyMatchRange(), pageSize = 2, scale = (0.19, 0.23999999999999999, 0.23999999999999999), text = self.sliderOutputValue, text_scale = (0.20999999999999999, 0.17999999999999999, 0.17999999999999999), text_pos = (0, 0.074999999999999997), text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, textMayChange = 1, frameColor = (0.5, 0.5, 0.5, 0.29999999999999999), image = self.charGui.find('**/chargui_slider_small'), thumb_relief = None, image_scale = (2.1499999999999999, 2.1499999999999999, 1.5), thumb_image = (self.charGui.find('**/chargui_slider_node'), self.charGui.find('**/chargui_slider_node_down'), self.charGui.find('**/chargui_slider_node_over')), command = self._CrewMatchInviter__showSliderValue)
+            self.message = DirectLabel(parent = self, relief = None, text = text, text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 15, pos = (0.25, 0, 0.348), textMayChange = 1)
+            self.rangeSlider = DirectSlider(parent = self, relief = None, range = (0, ReputationGlobals.GlobalLevelCap), value = base.localAvatar.guiMgr.crewHUD.getNotorietyMatchRange(), pageSize = 2, scale = (0.19, 0.239, 0.239), text = self.sliderOutputValue, text_scale = (0.209, 0.179, 0.179), text_pos = (0, 0.074), text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, textMayChange = 1, frameColor = (0.5, 0.5, 0.5, 0.299), image = self.charGui.find('**/chargui_slider_small'), thumb_relief = None, image_scale = (2.14, 2.14, 1.5), thumb_image = (self.charGui.find('**/chargui_slider_node'), self.charGui.find('**/chargui_slider_node_down'), self.charGui.find('**/chargui_slider_node_over')), command = self._CrewMatchInviter__showSliderValue)
             self.rangeSlider.reparentTo(self)
             self.rangeSlider.setPos(0.25, 0, 0.19)
             self.bOk = CrewMatchInviterButton(text = PLocalizer.CrewInviterOK, command = self._CrewMatchInviter__handleOk)
             self.bOk.reparentTo(self)
-            self.bOk.setPos(0.10000000000000001, 0, 0)
+            self.bOk.setPos(0.100, 0, 0)
             self.bNo = CrewMatchInviterButton(text = PLocalizer.CrewMatchCancelButton, command = self._CrewMatchInviter__handleNo)
             self.bNo.reparentTo(self)
-            self.bNo.setPos(0.29999999999999999, 0, 0)
+            self.bNo.setPos(0.299, 0, 0)
             self.bAdvanced = CrewMatchInviterButton(text = PLocalizer.CrewMatchAdvancedOptionsButton, command = self._CrewMatchInviter__handleAdvanced)
             self.bAdvanced.reparentTo(self)
-            self.bAdvanced.setPos(0.20000000000000001, 0, -0.074999999999999997)
+            self.bAdvanced.setPos(0.200, 0, -0.074)
         else:
             self.messageNoto = DirectLabel(parent = self, relief = None, text = PLocalizer.CrewMatchAdvancedNotorietyRange, text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.25, 0, 0.37), textMayChange = 1)
-            self.messageSail = DirectLabel(parent = self, relief = None, text = PLocalizer.CrewMatchAdvancedMinSailSkillLevel, text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 8, pos = (0.050000000000000003, 0, 0.22), textMayChange = 1)
-            self.messageCannon = DirectLabel(parent = self, relief = None, text = PLocalizer.CrewMatchAdvancedMinCannonSkillLevel, text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 8, pos = (0.45000000000000001, 0, 0.22), textMayChange = 1)
-            self.rangeSliderNoto = DirectSlider(parent = self, relief = None, range = (0, ReputationGlobals.GlobalLevelCap), value = base.localAvatar.guiMgr.crewHUD.getNotorietyMatchRange(), pageSize = 2, scale = (0.19, 0.23999999999999999, 0.23999999999999999), text = self.sliderOutputValue, text_scale = (0.20999999999999999, 0.17999999999999999, 0.17999999999999999), text_pos = (0, 0.074999999999999997), text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, textMayChange = 1, frameColor = (0.5, 0.5, 0.5, 0.29999999999999999), image = self.charGui.find('**/chargui_slider_small'), thumb_relief = None, image_scale = (2.1499999999999999, 2.1499999999999999, 1.5), thumb_image = (self.charGui.find('**/chargui_slider_node'), self.charGui.find('**/chargui_slider_node_down'), self.charGui.find('**/chargui_slider_node_over')), command = self._CrewMatchInviter__showSliderValueNoto)
-            self.rangeSliderSail = DirectSlider(parent = self, relief = None, range = (1, ReputationGlobals.LevelCap), value = base.localAvatar.guiMgr.crewHUD.getSailingMatchRange(), pageSize = 2, scale = (0.14999999999999999, 0.23999999999999999, 0.23999999999999999), text = self.sliderOutputValue, text_scale = (0.27000000000000002, 0.17999999999999999, 0.17999999999999999), text_pos = (0, 0.074999999999999997), text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, textMayChange = 1, frameColor = (0.5, 0.5, 0.5, 0.29999999999999999), image = self.charGui.find('**/chargui_slider_small'), thumb_relief = None, image_scale = (2.1499999999999999, 2.1499999999999999, 1.5), thumb_image = (self.charGui.find('**/chargui_slider_node'), self.charGui.find('**/chargui_slider_node_down'), self.charGui.find('**/chargui_slider_node_over')), command = self._CrewMatchInviter__showSliderValueSail)
-            self.rangeSliderCannon = DirectSlider(parent = self, relief = None, range = (1, ReputationGlobals.LevelCap), value = base.localAvatar.guiMgr.crewHUD.getCannonMatchRange(), pageSize = 2, scale = (0.14999999999999999, 0.23999999999999999, 0.23999999999999999), text = self.sliderOutputValue, text_scale = (0.27000000000000002, 0.17999999999999999, 0.17999999999999999), text_pos = (0, 0.074999999999999997), text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, textMayChange = 1, frameColor = (0.5, 0.5, 0.5, 0.29999999999999999), image = self.charGui.find('**/chargui_slider_small'), thumb_relief = None, image_scale = (2.1499999999999999, 2.1499999999999999, 1.5), thumb_image = (self.charGui.find('**/chargui_slider_node'), self.charGui.find('**/chargui_slider_node_down'), self.charGui.find('**/chargui_slider_node_over')), command = self._CrewMatchInviter__showSliderValueCannon)
+            self.messageSail = DirectLabel(parent = self, relief = None, text = PLocalizer.CrewMatchAdvancedMinSailSkillLevel, text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 8, pos = (0.050000, 0, 0.22), textMayChange = 1)
+            self.messageCannon = DirectLabel(parent = self, relief = None, text = PLocalizer.CrewMatchAdvancedMinCannonSkillLevel, text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 8, pos = (0.450, 0, 0.22), textMayChange = 1)
+            self.rangeSliderNoto = DirectSlider(parent = self, relief = None, range = (0, ReputationGlobals.GlobalLevelCap), value = base.localAvatar.guiMgr.crewHUD.getNotorietyMatchRange(), pageSize = 2, scale = (0.19, 0.239, 0.239), text = self.sliderOutputValue, text_scale = (0.209, 0.179, 0.179), text_pos = (0, 0.074), text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, textMayChange = 1, frameColor = (0.5, 0.5, 0.5, 0.299), image = self.charGui.find('**/chargui_slider_small'), thumb_relief = None, image_scale = (2.14, 2.14, 1.5), thumb_image = (self.charGui.find('**/chargui_slider_node'), self.charGui.find('**/chargui_slider_node_down'), self.charGui.find('**/chargui_slider_node_over')), command = self._CrewMatchInviter__showSliderValueNoto)
+            self.rangeSliderSail = DirectSlider(parent = self, relief = None, range = (1, ReputationGlobals.LevelCap), value = base.localAvatar.guiMgr.crewHUD.getSailingMatchRange(), pageSize = 2, scale = (0.149, 0.239, 0.239), text = self.sliderOutputValue, text_scale = (0.27, 0.179, 0.179), text_pos = (0, 0.074), text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, textMayChange = 1, frameColor = (0.5, 0.5, 0.5, 0.299), image = self.charGui.find('**/chargui_slider_small'), thumb_relief = None, image_scale = (2.14, 2.14, 1.5), thumb_image = (self.charGui.find('**/chargui_slider_node'), self.charGui.find('**/chargui_slider_node_down'), self.charGui.find('**/chargui_slider_node_over')), command = self._CrewMatchInviter__showSliderValueSail)
+            self.rangeSliderCannon = DirectSlider(parent = self, relief = None, range = (1, ReputationGlobals.LevelCap), value = base.localAvatar.guiMgr.crewHUD.getCannonMatchRange(), pageSize = 2, scale = (0.149, 0.239, 0.239), text = self.sliderOutputValue, text_scale = (0.27, 0.179, 0.179), text_pos = (0, 0.074), text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, textMayChange = 1, frameColor = (0.5, 0.5, 0.5, 0.299), image = self.charGui.find('**/chargui_slider_small'), thumb_relief = None, image_scale = (2.14, 2.14, 1.5), thumb_image = (self.charGui.find('**/chargui_slider_node'), self.charGui.find('**/chargui_slider_node_down'), self.charGui.find('**/chargui_slider_node_over')), command = self._CrewMatchInviter__showSliderValueCannon)
             self.rangeSliderNoto.reparentTo(self)
             self.rangeSliderNoto.setPos(0.25, 0, 0.31)
             self.rangeSliderSail.reparentTo(self)
-            self.rangeSliderSail.setPos(0.050000000000000003, 0, 0.12)
+            self.rangeSliderSail.setPos(0.050000, 0, 0.12)
             self.rangeSliderCannon.reparentTo(self)
-            self.rangeSliderCannon.setPos(0.45000000000000001, 0, 0.12)
+            self.rangeSliderCannon.setPos(0.450, 0, 0.12)
             self.bOk = CrewMatchInviterButton(text = PLocalizer.CrewInviterOK, command = self._CrewMatchInviter__handleOk)
             self.bOk.reparentTo(self)
-            self.bOk.setPos(0.10000000000000001, 0, 0)
+            self.bOk.setPos(0.100, 0, 0)
             self.bNo = CrewMatchInviterButton(text = PLocalizer.CrewMatchCancelButton, command = self._CrewMatchInviter__handleNo)
             self.bNo.reparentTo(self)
-            self.bNo.setPos(0.29999999999999999, 0, 0)
+            self.bNo.setPos(0.299, 0, 0)
             self.bAdvanced = CrewMatchInviterButton(text = PLocalizer.CrewMatchSimpleOptionsButton, command = self._CrewMatchInviter__handleAdvanced)
             self.bAdvanced.reparentTo(self)
-            self.bAdvanced.setPos(0.20000000000000001, 0, -0.074999999999999997)
+            self.bAdvanced.setPos(0.200, 0, -0.074)
         self.accept('clientLogout', self.destroy)
 
 

@@ -70,7 +70,7 @@ class WaterRippleWake(PooledEffect, EffectController):
 
 
     def createTrack(self):
-        self.startEffect = Sequence(Func(self.p1.setBirthRate, 0.10000000000000001), Func(self.p1.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self))
+        self.startEffect = Sequence(Func(self.p1.setBirthRate, 0.100), Func(self.p1.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self))
         self.endEffect = Sequence(Func(self.p1.setBirthRate, 100.0), Wait(2.0), Func(self.p1.setBirthRate, 0.0), Func(self.cleanUpEffect))
         self.track = Sequence(self.startEffect, Wait(1.0), self.endEffect)
 

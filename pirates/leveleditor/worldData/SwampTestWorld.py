@@ -13,13 +13,13 @@ objectStruct = {
                         '1141788542.31sdnaik0': {
                             'Type': 'LOD Sphere',
                             'Hpr': Point3(0.0, 0.0, 0.0),
-                            'Pos': Point3(75.304000000000002, 51.313000000000002, 123.133),
+                            'Pos': Point3(75.304, 51.313, 123.133),
                             'Radi': [
                                 1062,
                                 1362,
                                 1662],
                             'Scale': VBase3(1.0, 1.0, 1.0) } },
-                    'Pos': Point3(-430.12299999999999, 101.06399999999999, 0.0),
+                    'Pos': Point3(-430.122, 101.063, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/islands/bilgewater_zero' } } },

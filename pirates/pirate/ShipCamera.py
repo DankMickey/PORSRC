@@ -47,12 +47,12 @@ class ShipCamera(OrbitCamera):
 
 
     def _handleWheelUp(self):
-        self.setIdealDistance(self.idealDistance - (self._maxDistance - self._minDistance) * 0.20000000000000001)
+        self.setIdealDistance(self.idealDistance - (self._maxDistance - self._minDistance) * 0.200)
         self.applyIdealDistance()
 
 
     def _handleWheelDown(self):
-        self.setIdealDistance(self.idealDistance + (self._maxDistance - self._minDistance) * 0.20000000000000001)
+        self.setIdealDistance(self.idealDistance + (self._maxDistance - self._minDistance) * 0.200)
         self.applyIdealDistance()
 
 
@@ -122,7 +122,7 @@ class ShipCamera(OrbitCamera):
             sensitivity = 0.5
             self.camTimer = -1.0
             self.setRotation(self.getRotation() - self.mouseDelta[0] * sensitivity)
-            self.setEscapement(clampScalar(self.escapement + self.mouseDelta[1] * sensitivity * 0.59999999999999998, self._minEsc, self._maxEsc))
+            self.setEscapement(clampScalar(self.escapement + self.mouseDelta[1] * sensitivity * 0.598, self._minEsc, self._maxEsc))
 
         return task.cont
 
@@ -164,9 +164,9 @@ class ShipCamera(OrbitCamera):
             projectedTarget = -1.0 * projectedTarget
 
         if projectedTarget < 0:
-            projectedTarget = -3.5 * math.pow(abs(projectedTarget), 0.59999999999999998)
+            projectedTarget = -3.5 * math.pow(abs(projectedTarget), 0.598)
         else:
-            projectedTarget = 3.5 * math.pow(abs(projectedTarget), 0.59999999999999998)
+            projectedTarget = 3.5 * math.pow(abs(projectedTarget), 0.598)
         readjustSpeed = 1.0
         if abs(headingVelocity) < 1.0:
             readjustSpeed = 0.5

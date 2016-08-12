@@ -14,7 +14,7 @@ class CannonDefenseScoreBoard(FSM, DirectFrame):
 
     def __init__(self, waveNumber, bonusRound, maxWaves, roundComplete):
         FSM.__init__(self, 'CannonDefenseScoreBoardFSM')
-        DirectFrame.__init__(self, frameSize = (0, 2.4060000000000001, 0, 1.5), pos = (-1.2, 0, -0.69999999999999996), sortOrder = 0)
+        DirectFrame.__init__(self, frameSize = (0, 2.406, 0, 1.5), pos = (-1.2, 0, -0.696), sortOrder = 0)
 
         try:
             binOrder = 0
@@ -24,12 +24,12 @@ class CannonDefenseScoreBoard(FSM, DirectFrame):
             self.setBin('gui-cannonDefense', binOrder)
             self.loadBackGround()
             actualWaveNumber = waveNumber + bonusRound * maxWaves
-            self.panel1 = CannonDefenseEndOfWavePanel(actualWaveNumber, roundComplete, 1, 2, parent = self, frameColor = (0, 0, 0, 0), frameSize = (0, 2.4060000000000001, 0, 1.5))
+            self.panel1 = CannonDefenseEndOfWavePanel(actualWaveNumber, roundComplete, 1, 2, parent = self, frameColor = (0, 0, 0, 0), frameSize = (0, 2.406, 0, 1.5))
             if roundComplete:
                 self.panel1.nextButton['command'] = self.request
                 self.panel1.nextButton['extraArgs'] = [
                     'Panel3']
-                self.panel3 = CannonDefenseGameStatsPanel(roundComplete, 2, 2, parent = self, frameColor = (0, 0, 0, 0), frameSize = (0, 2.4060000000000001, 0, 1.5))
+                self.panel3 = CannonDefenseGameStatsPanel(roundComplete, 2, 2, parent = self, frameColor = (0, 0, 0, 0), frameSize = (0, 2.406, 0, 1.5))
                 self.panel3.prevButton['command'] = self.request
                 self.panel3.prevButton['extraArgs'] = [
                     'Panel1']
@@ -45,7 +45,7 @@ class CannonDefenseScoreBoard(FSM, DirectFrame):
         self.backgroundModel = loader.loadModel('models/gui/pir_m_gui_can_reportPanel')
         self.backgroundModel.setPos(0, 0, 0)
         self.backgroundModel.wrtReparentTo(self)
-        self.backgroundModel.setScale(0.40000000000000002)
+        self.backgroundModel.setScale(0.4)
         self.backgroundModel.setDepthWrite(False)
 
 

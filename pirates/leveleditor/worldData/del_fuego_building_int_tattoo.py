@@ -12,7 +12,7 @@ objectStruct = {
                     'Type': 'Door Locator Node',
                     'Name': 'door_locator',
                     'Hpr': VBase3(-180.0, 0.0, 0.0),
-                    'Pos': Point3(-7.141, -11.488, 0.0060000000000000001),
+                    'Pos': Point3(-7.141, -11.488, 0.00600),
                     'Scale': VBase3(1.0, 1.0, 1.0) } },
             'Visual': {
                 'Model': 'models/buildings/interior_spanish_npc' } } },
@@ -89,6 +89,6 @@ objectStruct = {
         '1153434880.63dzlu0': '["Objects"]["1153434880.63dzlu0"]',
         '1201136836.84dxschafe': '["Objects"]["1153434880.63dzlu0"]["Objects"]["1201136836.84dxschafe"]' } }
 extraInfo = {
-    'camPos': Point3(-1202.78, 260.68599999999998, 149.845),
-    'camHpr': VBase3(-98.880099999999999, -28.781600000000001, 0),
+    'camPos': Point3(-1202.78, 260.685, 149.845),
+    'camHpr': VBase3(-98.8800, -28.7816, 0),
     'focalLength': 1.3999999761599999 }

@@ -59,7 +59,7 @@ class DefenseCannonballProjectileEffect(ProjectileEffect):
             s.setPos(hitObject, pos)
             s.setScale(aoeRadius)
             s.setTransparency(1)
-            s.setColorScale(1.0, 0.5, 0.5, 0.40000000000000002)
+            s.setColorScale(1.0, 0.5, 0.5, 0.4)
 
         if ammoSkillId in [
             InventoryType.DefenseCannonRoundShot,
@@ -74,7 +74,7 @@ class DefenseCannonballProjectileEffect(ProjectileEffect):
                 if explosionEffect:
                     explosionEffect.reparentTo(base.effectsRoot)
                     self.setEffectPos(explosionEffect, hitObject, pos)
-                    explosionEffect.setScale(0.80000000000000004)
+                    explosionEffect.setScale(0.800000)
                     explosionEffect.play()
 
 
@@ -90,7 +90,7 @@ class DefenseCannonballProjectileEffect(ProjectileEffect):
                     cameraShakerEffect = CameraShaker()
                     cameraShakerEffect.wrtReparentTo(hitObject)
                     cameraShakerEffect.setPos(hitObject, pos)
-                    cameraShakerEffect.shakeSpeed = 0.040000000000000001
+                    cameraShakerEffect.shakeSpeed = 0.0400
                     cameraShakerEffect.shakePower = 6.0
                     cameraShakerEffect.numShakes = 2
                     cameraShakerEffect.scalePower = 1
@@ -127,7 +127,7 @@ class DefenseCannonballProjectileEffect(ProjectileEffect):
                     cameraShakerEffect = CameraShaker()
                     cameraShakerEffect.wrtReparentTo(hitObject)
                     cameraShakerEffect.setPos(hitObject, pos)
-                    cameraShakerEffect.shakeSpeed = 0.040000000000000001
+                    cameraShakerEffect.shakeSpeed = 0.0400
                     cameraShakerEffect.shakePower = 6.0
                     cameraShakerEffect.numShakes = 2
                     cameraShakerEffect.scalePower = 1
@@ -186,7 +186,7 @@ class DefenseCannonballProjectileEffect(ProjectileEffect):
                     self.setEffectPos(effect, hitObject, pos)
                     effect.setEffectScale(1.5)
                     effect.setRadius(30.0)
-                    effect.setEffectColor(Vec4(0.80000000000000004, 0.40000000000000002, 0.20000000000000001, 1.0))
+                    effect.setEffectColor(Vec4(0.800000, 0.4, 0.200, 1.0))
                     effect.play()
 
 

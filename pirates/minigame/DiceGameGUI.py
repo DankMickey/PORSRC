@@ -15,7 +15,7 @@ import math
 
 class DiceGameGUI(DirectFrame):
     HandPos = (Vec3(-4.0, 3.5, DiceGlobals.PIT_HEIGHT), Vec3(-8.0, 0, DiceGlobals.PIT_HEIGHT), Vec3(-4.0, -4.5, DiceGlobals.PIT_HEIGHT), Vec3(0, -4.5, DiceGlobals.PIT_HEIGHT), Vec3(4.0, -4.5, DiceGlobals.PIT_HEIGHT), Vec3(8.0, 0, DiceGlobals.PIT_HEIGHT), Vec3(4.0, 3.5, DiceGlobals.PIT_HEIGHT))
-    ArrowPosHpr = ((Vec3(-0.40000000000000002, 0, 0.66000000000000003), Vec3(0, 0, 90)), (Vec3(-0.81999999999999995, 0, 0.33000000000000002), Vec3(0, 0, 90)), (Vec3(-0.5, 0, -0.080000000000000002), Vec3(0, 0, 90)), (Vec3(0, 0, -0.080000000000000002), Vec3(0, 0, 90)), (Vec3(0.5, 0, -0.080000000000000002), Vec3(0, 0, 90)), (Vec3(0.81999999999999995, 0, 0.33000000000000002), Vec3(0, 0, 90)), (Vec3(0.40000000000000002, 0, 0.66000000000000003), Vec3(0, 0, 90)))
+    ArrowPosHpr = ((Vec3(-0.4, 0, 0.66000), Vec3(0, 0, 90)), (Vec3(-0.815, 0, 0.33), Vec3(0, 0, 90)), (Vec3(-0.5, 0, -0.08), Vec3(0, 0, 90)), (Vec3(0, 0, -0.08), Vec3(0, 0, 90)), (Vec3(0.5, 0, -0.08), Vec3(0, 0, 90)), (Vec3(0.815, 0, 0.33), Vec3(0, 0, 90)), (Vec3(0.4, 0, 0.66000), Vec3(0, 0, 90)))
 
     def __init__(self, table, numDice = 12, public_roll = 1, name = 'Dice Game'):
         DirectFrame.__init__(self, relief = None)
@@ -26,22 +26,22 @@ class DiceGameGUI(DirectFrame):
         self.table = table
         self.arrow = loader.loadModel('models/gui/arrow')
         self.arrow.reparentTo(self)
-        self.arrow.setScale(0.14999999999999999)
+        self.arrow.setScale(0.149)
         self.arrow.hide()
-        self.menu = GuiTray.GuiTray(0.75, 0.20000000000000001)
-        self.menu.setPos(-0.40000000000000002, 0, -1)
+        self.menu = GuiTray.GuiTray(0.75, 0.200)
+        self.menu.setPos(-0.4, 0, -1)
         self.dice = { }
         self.diceval = []
         self.finalPos = []
         self.lerpList = []
-        self.gameLabel = DirectLabel(parent = self, relief = None, text = name, text_align = TextNode.ACenter, text_scale = 0.14999999999999999, pos = (-0.80000000000000004, 0, 0.69999999999999996), text_fg = (1, 1.0, 1.0, 1), text_shadow = (0, 0, 1.0, 1))
+        self.gameLabel = DirectLabel(parent = self, relief = None, text = name, text_align = TextNode.ACenter, text_scale = 0.149, pos = (-0.800000, 0, 0.696), text_fg = (1, 1.0, 1.0, 1), text_shadow = (0, 0, 1.0, 1))
         self.gameLabel.show()
-        self.turnStatus = DirectLabel(parent = self, relief = None, text = PLocalizer.DiceText_Wait, text_align = TextNode.ALeft, text_scale = 0.059999999999999998, pos = (0.28000000000000003, 0, 0.77000000000000002), text_fg = (1, 0.90000000000000002, 0.59999999999999998, 1), text_shadow = (1.0, 0, 1.0, 1))
+        self.turnStatus = DirectLabel(parent = self, relief = None, text = PLocalizer.DiceText_Wait, text_align = TextNode.ALeft, text_scale = 0.0598, pos = (0.28000, 0, 0.77), text_fg = (1, 0.9, 0.598, 1), text_shadow = (1.0, 0, 1.0, 1))
         self.turnStatus.show()
-        self.gameStatus = DirectLabel(parent = self, relief = None, text = '', text_align = TextNode.ALeft, text_scale = 0.059999999999999998, pos = (0.28000000000000003, 0, 0.68999999999999995), text_fg = (1, 0.90000000000000002, 0.59999999999999998, 1), text_shadow = (1.0, 0, 1.0, 1))
+        self.gameStatus = DirectLabel(parent = self, relief = None, text = '', text_align = TextNode.ALeft, text_scale = 0.0598, pos = (0.28000, 0, 0.685), text_fg = (1, 0.9, 0.598, 1), text_shadow = (1.0, 0, 1.0, 1))
         self.gameStatus.show()
-        self.mainButton = DirectButton(parent = self.menu, relief = DGG.RAISED, state = DGG.NORMAL, text = '%s %d' % (PLocalizer.DiceText_Ante, self.table.ante), text_align = TextNode.ACenter, text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = PiratesGuiGlobals.TextFG2, frameColor = (0.0, 0.80000000000000004, 0.10000000000000001, 1), frameSize = (0, 0.29999999999999999, 0, 0.12), borderWidth = PiratesGuiGlobals.BorderWidth, text_pos = (0.10000000000000001, 0.029999999999999999), textMayChange = 1, pos = (0.17999999999999999, 0, 0.050000000000000003), command = self.table.playerIsReady, extraArgs = [])
-        self.exitButton = DirectButton(parent = self.menu, relief = DGG.RAISED, text = 'X', text_align = TextNode.ACenter, text_scale = 0.040000000000000001, text_pos = (0.02, 0.01), text_fg = (0.75, 0.75, 0.75, 1), text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 0, frameColor = PiratesGuiGlobals.ButtonColor1, borderWidth = PiratesGuiGlobals.BorderWidthSmall, frameSize = (0, 0.040000000000000001, 0, 0.040000000000000001), pos = (0.75 - 0.01 - 0.040000000000000001, 0, 0.01), command = self.table.guiCallback, extraArgs = [
+        self.mainButton = DirectButton(parent = self.menu, relief = DGG.RAISED, state = DGG.NORMAL, text = '%s %d' % (PLocalizer.DiceText_Ante, self.table.ante), text_align = TextNode.ACenter, text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = PiratesGuiGlobals.TextFG2, frameColor = (0.0, 0.800000, 0.100, 1), frameSize = (0, 0.299, 0, 0.12), borderWidth = PiratesGuiGlobals.BorderWidth, text_pos = (0.100, 0.0299), textMayChange = 1, pos = (0.179, 0, 0.050000), command = self.table.playerIsReady, extraArgs = [])
+        self.exitButton = DirectButton(parent = self.menu, relief = DGG.RAISED, text = 'X', text_align = TextNode.ACenter, text_scale = 0.0400, text_pos = (0.02, 0.01), text_fg = (0.75, 0.75, 0.75, 1), text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 0, frameColor = PiratesGuiGlobals.ButtonColor1, borderWidth = PiratesGuiGlobals.BorderWidthSmall, frameSize = (0, 0.0400, 0, 0.0400), pos = (0.75 - 0.01 - 0.0400, 0, 0.01), command = self.table.guiCallback, extraArgs = [
             -1])
 
 
@@ -68,7 +68,7 @@ class DiceGameGUI(DirectFrame):
         self.mainButton['command'] = self.rollDice
         self.mainButton['extraArgs'] = []
         self.mainButton['text'] = 'ROLL DICE'
-        self.mainButton['frameColor'] = (0, 0.59999999999999998, 0.80000000000000004, 1)
+        self.mainButton['frameColor'] = (0, 0.598, 0.800000, 1)
 
 
     def rollDice(self):
@@ -94,10 +94,10 @@ class DiceGameGUI(DirectFrame):
 
     def loadDie(self, dienum):
         self.dice[dienum] = loader.loadModel('models/props/dice')
-        self.dice[dienum].setScale(0.29999999999999999)
+        self.dice[dienum].setScale(0.299)
         self.dice[dienum].reparentTo(self.table)
-        startX = 0.0 + -0.20000000000000001 * dienum + random.random() * dienum * 0.40000000000000002
-        startY = 0.0 + -0.20000000000000001 * dienum + random.random() * dienum * 0.40000000000000002
+        startX = 0.0 + -0.200 * dienum + random.random() * dienum * 0.4
+        startY = 0.0 + -0.200 * dienum + random.random() * dienum * 0.4
         pos1 = Vec3(startX, startY, DiceGlobals.PIT_HEIGHT)
         self.dice[dienum].setPos(pos1)
         self.dice[dienum].setHpr(self.randomFace())
@@ -138,8 +138,8 @@ class DiceGameGUI(DirectFrame):
         val2 -= self.MouseFinalPosY
         val2 /= DiceGlobals.MOUSE_SCALE
         speed = self.MouseTimeDiff * 10
-        if speed < 0.59999999999999998:
-            speed = 0.59999999999999998
+        if speed < 0.598:
+            speed = 0.598
 
         if speed > 2.5:
             speed = 2.5
@@ -341,10 +341,10 @@ class DiceGameGUI(DirectFrame):
         hp2 = hpr[2] - 45
         hp2 += random.random() * 90
         hpr = Vec3(hp0, hp1, hp2)
-        wait = random.random() * 0.20000000000000001
-        lerp = LerpHprInterval(self.dice[dieN], 0.20000000000000001, hpr)
+        wait = random.random() * 0.200
+        lerp = LerpHprInterval(self.dice[dieN], 0.200, hpr)
         hpr = self.dieFace(self.diceval[dieN])
-        lerp2 = LerpHprInterval(self.dice[dieN], 0.29999999999999999, hpr)
+        lerp2 = LerpHprInterval(self.dice[dieN], 0.299, hpr)
         seq = Sequence(Wait(wait), lerp, lerp2)
         seq.start()
 
@@ -404,13 +404,13 @@ class DiceGameGUI(DirectFrame):
 
     def turnStatusStep(self, task = None):
         if self.taskStep < 10:
-            self.turnStatus['text_scale'] = 0.059999999999999998 + 0.002 * self.taskStep
-            self.turnStatus['text_fg'] = (1, 0.90000000000000002, 0.59999999999999998 - self.taskStep * 0.050000000000000003, 1)
-            self.turnStatus.setPos(0.28000000000000003 - 0.01 * self.taskStep, 0, 0.77000000000000002)
+            self.turnStatus['text_scale'] = 0.0598 + 0.002 * self.taskStep
+            self.turnStatus['text_fg'] = (1, 0.9, 0.598 - self.taskStep * 0.050000, 1)
+            self.turnStatus.setPos(0.28000 - 0.01 * self.taskStep, 0, 0.77)
         elif self.taskStep < 20:
-            self.turnStatus['text_scale'] = 0.059999999999999998 + 0.002 * (19 - self.taskStep)
-            self.turnStatus['text_fg'] = (1, 0.90000000000000002, 0.59999999999999998 - (19 - self.taskStep) * 0.050000000000000003, 1)
-            self.turnStatus.setPos(0.28000000000000003 - 0.01 * (19 - self.taskStep), 0, 0.77000000000000002)
+            self.turnStatus['text_scale'] = 0.0598 + 0.002 * (19 - self.taskStep)
+            self.turnStatus['text_fg'] = (1, 0.9, 0.598 - (19 - self.taskStep) * 0.050000, 1)
+            self.turnStatus.setPos(0.28000 - 0.01 * (19 - self.taskStep), 0, 0.77)
         else:
             return Task.done
         self.taskStep += 1

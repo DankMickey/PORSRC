@@ -1203,7 +1203,7 @@ class PiratesMagicWordManager(MagicWordManager.MagicWordManager):
         else:
             currControls.pusher.clearInPatterns()
             currControls.pusher.clearOutPatterns()
-            avatarRadius = 1.3999999999999999
+            avatarRadius = 1.39
             base.shadowTrav.addCollider(currControls.cEventSphereNodePath, currControls.event)
             self.setMagicWordResponse('event sphere ON')
 

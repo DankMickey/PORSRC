@@ -57,17 +57,17 @@ class SwordFlame(PooledEffect, EffectController):
         self.p0.renderer.setAlphaMode(BaseParticleRenderer.PRALPHAINOUT)
         self.p0.renderer.setUserAlpha(1.0)
         self.p0.renderer.setFromNode(self.card)
-        self.p0.renderer.setColor(Vec4(1.0, 0.90000000000000002, 0.90000000000000002, 1.0))
+        self.p0.renderer.setColor(Vec4(1.0, 0.9, 0.9, 1.0))
         self.p0.renderer.setXScaleFlag(1)
         self.p0.renderer.setYScaleFlag(1)
         self.p0.renderer.setAnimAngleFlag(1)
         self.p0.renderer.setNonanimatedTheta(0.0)
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPBLENDLINEAR)
         self.p0.renderer.setColorBlendMode(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne)
-        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(1.0, 0.59999999999999998, 0.20000000000000001, 1.0), Vec4(0.5, 0.20000000000000001, 0.20000000000000001, 0.5), 1)
+        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(1.0, 0.598, 0.200, 1.0), Vec4(0.5, 0.200, 0.200, 0.5), 1)
         self.p0.renderer.setAlphaDisable(0)
         self.p0.emitter.setEmissionType(BaseParticleEmitter.ETRADIATE)
-        self.p0.emitter.setAmplitude(-0.20000000000000001)
+        self.p0.emitter.setAmplitude(-0.200)
         self.p0.emitter.setAmplitudeSpread(0.25)
         self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, 1.25))
         self.p0.emitter.setExplicitLaunchVector(Vec3(1.0, 0.0, 0.0))
@@ -85,12 +85,12 @@ class SwordFlame(PooledEffect, EffectController):
 
     def setCursedColor(self):
         self.p0.renderer.getColorInterpolationManager().clearToInitial()
-        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(0.75, 0.84999999999999998, 0.29999999999999999, 1.0), Vec4(0.40000000000000002, 0.84999999999999998, 0.29999999999999999, 0.5), 1)
+        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(0.75, 0.848, 0.299, 1.0), Vec4(0.4, 0.848, 0.299, 0.5), 1)
 
 
     def setDefaultColor(self):
         self.p0.renderer.getColorInterpolationManager().clearToInitial()
-        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(1.0, 0.59999999999999998, 0.20000000000000001, 1.0), Vec4(0.5, 0.20000000000000001, 0.20000000000000001, 0.5), 1)
+        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(1.0, 0.598, 0.200, 1.0), Vec4(0.5, 0.200, 0.200, 0.5), 1)
 
 
     def setScale(self, scale = VBase3(1, 1, 1)):
@@ -99,11 +99,11 @@ class SwordFlame(PooledEffect, EffectController):
 
     def setEffectScale(self, scale):
         self.effectScale = scale
-        self.p0.renderer.setInitialXScale(0.0060000000000000001 * self.cardScale * scale)
-        self.p0.renderer.setInitialYScale(0.0060000000000000001 * self.cardScale * scale)
-        self.p0.renderer.setFinalXScale(0.0030000000000000001 * self.cardScale * scale)
-        self.p0.renderer.setFinalYScale(0.0030000000000000001 * self.cardScale * scale)
-        self.p0.emitter.setAmplitude(-0.20000000000000001 * scale)
+        self.p0.renderer.setInitialXScale(0.00600 * self.cardScale * scale)
+        self.p0.renderer.setInitialYScale(0.00600 * self.cardScale * scale)
+        self.p0.renderer.setFinalXScale(0.00300 * self.cardScale * scale)
+        self.p0.renderer.setFinalYScale(0.00300 * self.cardScale * scale)
+        self.p0.emitter.setAmplitude(-0.200 * scale)
         self.p0.emitter.setAmplitudeSpread(0.25 * scale)
         self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, 1.25) * scale)
 

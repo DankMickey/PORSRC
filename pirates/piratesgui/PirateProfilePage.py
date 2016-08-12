@@ -39,24 +39,24 @@ SPEEDCHAT = 0
 class SkillFrame(DirectFrame):
 
     def __init__(self, parent, height, minigame = False):
-        DirectFrame.__init__(self, relief = None, parent = parent, frameSize = (0, 0.5, 0, 0.10000000000000001), text = '', text_scale = PiratesGuiGlobals.TextScaleSmall, text_pos = (0, 0, 0), text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, state = DGG.DISABLED, pos = (-0.12, 0, height))
+        DirectFrame.__init__(self, relief = None, parent = parent, frameSize = (0, 0.5, 0, 0.100), text = '', text_scale = PiratesGuiGlobals.TextScaleSmall, text_pos = (0, 0, 0), text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, state = DGG.DISABLED, pos = (-0.12, 0, height))
         shipgui = loader.loadModel('models/gui/ship_battle')
-        self.bar = OnscreenImage(parent = self, image = shipgui.find('**/ship_battle_speed_bar'), scale = (0.28000000000000003, 0, 0.5), pos = (0.188, 0, -0.024))
+        self.bar = OnscreenImage(parent = self, image = shipgui.find('**/ship_battle_speed_bar'), scale = (0.28000, 0, 0.5), pos = (0.188, 0, -0.024))
         if minigame:
             range = ReputationGlobals.MinigameLevelCap
         else:
             range = ReputationGlobals.LevelCap
-        self.meter = DirectWaitBar(parent = self, relief = DGG.RAISED, borderWidth = (0.002, 0.002), range = range, value = 0, frameColor = (0.050000000000000003, 0.050000000000000003, 0.050000000000000003, 1), barColor = PiratesGuiGlobals.TextFG14, pos = (0, 0, -0.029999999999999999), frameSize = (0, 0.375, 0, 0.02), text = '', text_align = TextNode.ARight, text_scale = PiratesGuiGlobals.TextScaleSmall, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0.375, 0.029999999999999999, 0), textMayChange = 1)
+        self.meter = DirectWaitBar(parent = self, relief = DGG.RAISED, borderWidth = (0.002, 0.002), range = range, value = 0, frameColor = (0.050000, 0.050000, 0.050000, 1), barColor = PiratesGuiGlobals.TextFG14, pos = (0, 0, -0.0299), frameSize = (0, 0.375, 0, 0.02), text = '', text_align = TextNode.ARight, text_scale = PiratesGuiGlobals.TextScaleSmall, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0.375, 0.0299, 0), textMayChange = 1)
 
 
 
 class SocialButton(GuiButton.GuiButton):
-    socialButtonColor = (VBase4(1, 1, 1, 1), VBase4(0.34999999999999998, 0.34999999999999998, 0.34999999999999998, 1), VBase4(1.0, 0.0, 0.0, 1))
+    socialButtonColor = (VBase4(1, 1, 1, 1), VBase4(0.348, 0.348, 0.348, 1), VBase4(1.0, 0.0, 0.0, 1))
 
     def __init__(self, parent, pos, image, command, helpText, scale):
         topgui = loader.loadModel('models/gui/toplevel_gui')
         self.mainCommand = command
-        self.circle = GuiButton.GuiButton(parent = parent, relief = None, image = (topgui.find('**/pir_t_gui_frm_base_circle'), topgui.find('**/pir_t_gui_frm_base_circle'), topgui.find('**/pir_t_gui_frm_base_circle_over'), topgui.find('**/pir_t_gui_frm_base_circle')), image_scale = 0.34999999999999998, pos = pos, command = command, helpText = helpText, helpPos = (-0.10000000000000001, 0, -0.070000000000000007), helpOpaque = 1)
+        self.circle = GuiButton.GuiButton(parent = parent, relief = None, image = (topgui.find('**/pir_t_gui_frm_base_circle'), topgui.find('**/pir_t_gui_frm_base_circle'), topgui.find('**/pir_t_gui_frm_base_circle_over'), topgui.find('**/pir_t_gui_frm_base_circle')), image_scale = 0.348, pos = pos, command = command, helpText = helpText, helpPos = (-0.100, 0, -0.070), helpOpaque = 1)
         self.button = None
         self.button2 = None
         self.button3 = None
@@ -66,21 +66,21 @@ class SocialButton(GuiButton.GuiButton):
             self.button = OnscreenImage(parent = self.circle, image = image, scale = scale, pos = (0.019, 0, 0))
             self.button2 = OnscreenImage(parent = self.circle, image = image, scale = scale, pos = (-0.019, 0, 0))
         elif helpText == PLocalizer.ProfilePageGuild:
-            self.button = OnscreenImage(parent = self.circle, image = image, scale = scale, pos = (0, 0, -0.0030000000000000001))
+            self.button = OnscreenImage(parent = self.circle, image = image, scale = scale, pos = (0, 0, -0.00300))
         elif helpText in (PLocalizer.ProfilePageIgnore, PLocalizer.ProfilePageUnignore):
             self.button = OnscreenImage(parent = self.circle, image = image, scale = scale)
-            self.button3 = GuiButton.GuiButton(parent = self.circle, relief = None, image = (topgui.find('**/pir_t_gui_but_circle_slash'), topgui.find('**/pir_t_gui_but_circle_slash'), topgui.find('**/pir_t_gui_but_circle_slash_over'), topgui.find('**/pir_t_gui_but_circle_slash')), image_scale = 0.34999999999999998, command = command, helpText = helpText, helpPos = (-0.10000000000000001, 0, -0.070000000000000007), helpOpaque = 1)
+            self.button3 = GuiButton.GuiButton(parent = self.circle, relief = None, image = (topgui.find('**/pir_t_gui_but_circle_slash'), topgui.find('**/pir_t_gui_but_circle_slash'), topgui.find('**/pir_t_gui_but_circle_slash_over'), topgui.find('**/pir_t_gui_but_circle_slash')), image_scale = 0.348, command = command, helpText = helpText, helpPos = (-0.100, 0, -0.070), helpOpaque = 1)
         else:
             self.button = OnscreenImage(parent = self.circle, image = image, scale = scale)
         breakImage = topgui.find('**/pir_t_gui_but_circle_slash')
         bsUpscale = 8.0
         if type(scale) in [
-            type(1.1000000000000001),
+            type(1.10),
             type(1)]:
             bsScale = float(scale) * bsUpscale
         else:
             bsScale = scale[0] * bsUpscale
-        self.breakSymbol = OnscreenImage(parent = self.circle, image = breakImage, scale = 0.32000000000000001, pos = (0, 0, 0))
+        self.breakSymbol = OnscreenImage(parent = self.circle, image = breakImage, scale = 0.320, pos = (0, 0, 0))
         self.breakSymbol.hide()
 
 
@@ -157,7 +157,7 @@ class SocialButton(GuiButton.GuiButton):
 
 
 class PirateProfilePage(SocialPage.SocialPage):
-    socialButtonColor = (VBase4(1, 0.90000000000000002, 0.69999999999999996, 1), VBase4(0.90000000000000002, 0.81000000000000005, 0.63, 1), VBase4(1, 0.94499999999999995, 0.73499999999999999, 1), VBase4(0.45000000000000001, 0.45000000000000001, 0.45000000000000001, 1))
+    socialButtonColor = (VBase4(1, 0.9, 0.696, 1), VBase4(0.9, 0.810000, 0.63, 1), VBase4(1, 0.94495, 0.734, 1), VBase4(0.450, 0.450, 0.450, 1))
 
     def __init__(self):
         SocialPage.SocialPage.__init__(self, 'Pirate Profile Page')
@@ -181,71 +181,71 @@ class PirateProfilePage(SocialPage.SocialPage):
             shopCoins.find('**/shopCoin_cannon')]
         shipgui = loader.loadModel('models/gui/ship_battle')
         chargui = loader.loadModel('models/gui/char_gui')
-        self.mainFrame = DirectFrame(relief = None, parent = base.a2dTopLeft, state = DGG.NORMAL, image = maingui.find('**/profile_card_main'), image_scale = 0.27500000000000002, pos = (1.5, 0, -1.0))
-        self.skillFrame = DirectFrame(relief = None, parent = self.mainFrame, state = DGG.NORMAL, image = maingui.find('**/profile_card_weapons_levels'), image_scale = 0.27500000000000002, pos = (-0.44, 0, 0))
+        self.mainFrame = DirectFrame(relief = None, parent = base.a2dTopLeft, state = DGG.NORMAL, image = maingui.find('**/profile_card_main'), image_scale = 0.275, pos = (1.5, 0, -1.0))
+        self.skillFrame = DirectFrame(relief = None, parent = self.mainFrame, state = DGG.NORMAL, image = maingui.find('**/profile_card_weapons_levels'), image_scale = 0.275, pos = (-0.44, 0, 0))
         self.skillFrameClosed = True
         self.skillFrameIval = None
-        self.skillButton = GuiButton.GuiButton(relief = None, parent = self.skillFrame, image = (maingui.find('**/side_tab'), maingui.find('**/side_tab'), maingui.find('**/side_tab_over'), maingui.find('**/side_tab')), image_scale = 0.27500000000000002, state = DGG.NORMAL, command = self.toggleSkillFrame)
-        self.skillLabel = DirectLabel(relief = None, parent = self.skillFrame, image = avatarGui.find('**/avatar_c_C_box'), image_scale = (0.40000000000000002, 0, 0.29999999999999999), text = PLocalizer.ProfilePageSkillLevels, text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, text_pos = (0, -0.01, 0), text_shadow = PiratesGuiGlobals.TextShadow, state = DGG.DISABLED, pos = (0.067000000000000004, 0, 0.44))
-        self.cannonFrame = SkillFrame(self.skillFrame, 0.35999999999999999)
+        self.skillButton = GuiButton.GuiButton(relief = None, parent = self.skillFrame, image = (maingui.find('**/side_tab'), maingui.find('**/side_tab'), maingui.find('**/side_tab_over'), maingui.find('**/side_tab')), image_scale = 0.275, state = DGG.NORMAL, command = self.toggleSkillFrame)
+        self.skillLabel = DirectLabel(relief = None, parent = self.skillFrame, image = avatarGui.find('**/avatar_c_C_box'), image_scale = (0.4, 0, 0.299), text = PLocalizer.ProfilePageSkillLevels, text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, text_pos = (0, -0.01, 0), text_shadow = PiratesGuiGlobals.TextShadow, state = DGG.DISABLED, pos = (0.0670000, 0, 0.44))
+        self.cannonFrame = SkillFrame(self.skillFrame, 0.359)
         self.cannonFrame['text'] = PLocalizer.ProfilePageCannon
-        self.sailingFrame = SkillFrame(self.skillFrame, 0.29499999999999998)
+        self.sailingFrame = SkillFrame(self.skillFrame, 0.29498)
         self.sailingFrame['text'] = PLocalizer.ProfilePageSailing
-        self.cutlassFrame = SkillFrame(self.skillFrame, 0.23000000000000001)
+        self.cutlassFrame = SkillFrame(self.skillFrame, 0.230)
         self.cutlassFrame['text'] = PLocalizer.ProfilePageCutlass
-        self.pistolFrame = SkillFrame(self.skillFrame, 0.16500000000000001)
+        self.pistolFrame = SkillFrame(self.skillFrame, 0.165)
         self.pistolFrame['text'] = PLocalizer.ProfilePagePistol
-        self.dollFrame = SkillFrame(self.skillFrame, 0.10000000000000001)
+        self.dollFrame = SkillFrame(self.skillFrame, 0.100)
         self.dollFrame['text'] = PLocalizer.ProfilePageDoll
-        self.daggerFrame = SkillFrame(self.skillFrame, 0.035000000000000003)
+        self.daggerFrame = SkillFrame(self.skillFrame, 0.035000)
         self.daggerFrame['text'] = PLocalizer.ProfilePageDagger
-        self.grenadeFrame = SkillFrame(self.skillFrame, -0.029999999999999999)
+        self.grenadeFrame = SkillFrame(self.skillFrame, -0.0299)
         self.grenadeFrame['text'] = PLocalizer.ProfilePageGrenade
-        self.staffFrame = SkillFrame(self.skillFrame, -0.095000000000000001)
+        self.staffFrame = SkillFrame(self.skillFrame, -0.0950)
         self.staffFrame['text'] = PLocalizer.ProfilePageStaff
         self.potionsFrame = SkillFrame(self.skillFrame, -0.16, minigame = True)
         self.potionsFrame['text'] = PLocalizer.ProfilePagePotions
-        self.fishingFrame = SkillFrame(self.skillFrame, -0.22500000000000001, minigame = True)
+        self.fishingFrame = SkillFrame(self.skillFrame, -0.225, minigame = True)
         self.fishingFrame['text'] = PLocalizer.ProfilePageFishing
         self.mainFrame.setBin('fixed', -1)
         self.mainFrame.hide()
         self.skillFrame.setBin('fixed', -2)
         self.skillFrame.hide()
-        self.pirateFrame = DirectFrame(parent = self.mainFrame, relief = None, state = DGG.DISABLED, scale = 0.80000000000000004, pos = (-0.44, 0, -0.20000000000000001))
-        self.founderFrame = DirectFrame(parent = self.mainFrame, relief = None, state = DGG.DISABLED, image = None, image_pos = (0, 0, 0), pos = (-0.65000000000000002, 0, 0.48999999999999999))
-        self.siegeFrame = DirectFrame(parent = self.mainFrame, relief = None, state = DGG.DISABLED, image = None, image_pos = (0, 0, 0), pos = (-0.25, 0, 0.48999999999999999))
+        self.pirateFrame = DirectFrame(parent = self.mainFrame, relief = None, state = DGG.DISABLED, scale = 0.800000, pos = (-0.44, 0, -0.200))
+        self.founderFrame = DirectFrame(parent = self.mainFrame, relief = None, state = DGG.DISABLED, image = None, image_pos = (0, 0, 0), pos = (-0.65, 0, 0.489))
+        self.siegeFrame = DirectFrame(parent = self.mainFrame, relief = None, state = DGG.DISABLED, image = None, image_pos = (0, 0, 0), pos = (-0.25, 0, 0.489))
         self.pirateLabel = OnscreenText(parent = self.mainFrame, scale = PiratesGuiGlobals.TextScaleLarge, align = TextNode.ACenter, fg = (0.5, 0.5, 0.5, 1), font = PiratesGlobals.getPirateOutlineFont(), shadow = PiratesGuiGlobals.TextShadow, mayChange = 1, pos = (-0.44, 0.495))
-        self.guildLabel = OnscreenText(parent = self.mainFrame, text = '', scale = PiratesGuiGlobals.TextScaleSmall, align = TextNode.ACenter, fg = PiratesGuiGlobals.TextFG2, shadow = PiratesGuiGlobals.TextShadow, mayChange = 1, pos = (-0.44, 0.46000000000000002))
+        self.guildLabel = OnscreenText(parent = self.mainFrame, text = '', scale = PiratesGuiGlobals.TextScaleSmall, align = TextNode.ACenter, fg = PiratesGuiGlobals.TextFG2, shadow = PiratesGuiGlobals.TextShadow, mayChange = 1, pos = (-0.44, 0.46))
         self.accountLabel = OnscreenText(parent = self.mainFrame, text = '', scale = PiratesGuiGlobals.TextScaleMed, align = TextNode.ACenter, fg = PiratesGuiGlobals.TextFG2, shadow = PiratesGuiGlobals.TextShadow, wordwrap = 9, mayChange = 1, pos = (-0.44, -0.13))
-        self.notorietyLabel = DirectLabel(relief = None, parent = self.mainFrame, image = basicgui.find('**/but_nav'), image_scale = 0.34999999999999998, text = '', text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_pos = (0, -0.01, 0), text_shadow = PiratesGuiGlobals.TextShadow, state = DGG.DISABLED, pos = (-0.63, 0, 0.40999999999999998))
-        self.hpMeter = DirectWaitBar(parent = self.mainFrame, relief = DGG.RAISED, borderWidth = (0.002, 0.002), range = 1, value = 0, frameColor = (0.050000000000000003, 0.050000000000000003, 0.050000000000000003, 1), barColor = (0.10000000000000001, 0.69999999999999996, 0.10000000000000001, 1), pos = (-0.71499999999999997, 0, 0.35699999999999998), frameSize = (0, 0.20000000000000001, 0, 0.014999999999999999), text = PLocalizer.ProfilePageHp, text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleSmall, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0, 0.02, 0), textMayChange = 1, scale = 0.80000000000000004)
-        self.hpBar = OnscreenImage(parent = self.mainFrame, image = shipgui.find('**/ship_battle_speed_bar'), scale = (0.12, 1.0, 0.29999999999999999), pos = (-0.63500000000000001, 0, 0.36299999999999999))
-        self.voodooMeter = DirectWaitBar(parent = self.mainFrame, relief = DGG.RAISED, borderWidth = (0.0030000000000000001, 0.0030000000000000001), range = 1, value = 0, frameColor = (0.050000000000000003, 0.050000000000000003, 0.050000000000000003, 1), barColor = (0.59999999999999998, 0.59999999999999998, 0.94999999999999996, 1), pos = (-0.71499999999999997, 0, 0.32100000000000001), frameSize = (0, 0.20000000000000001, 0, 0.014999999999999999), text = PLocalizer.ProfilePageVoodoo, text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleSmall, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0, 0.02, 0), textMayChange = 1, scale = 0.80000000000000004)
-        self.voodooBar = OnscreenImage(parent = self.mainFrame, image = shipgui.find('**/ship_battle_speed_bar'), scale = (0.12, 1.0, 0.29999999999999999), pos = (-0.63500000000000001, 0, 0.32700000000000001))
-        self.chatLabel = OnscreenText(parent = self.mainFrame, text = '', scale = PiratesGuiGlobals.TextScaleSmall, align = TextNode.ACenter, fg = PiratesGuiGlobals.TextFG2, shadow = PiratesGuiGlobals.TextShadow, mayChange = 1, pos = (-0.63500000000000001, 0.27500000000000002), wordwrap = 5)
-        self.xFrame = GuiButton.GuiButton(parent = self.mainFrame, relief = None, image = box, image_scale = 0.27500000000000002, command = self.hide)
-        self.xButton = OnscreenImage(parent = self.xFrame, image = x, scale = 0.14000000000000001, pos = (-0.17499999999999999, 0, 0.52600000000000002))
-        self.crewButton = SocialButton(self.mainFrame, (-0.23000000000000001, 0, 0.37), icons.find('**/pir_t_gui_gen_crew_mug'), self._PirateProfilePage__handleCrew, PLocalizer.ProfilePageCrew, 0.070000000000000007)
-        self.avatarFriendButton = SocialButton(self.mainFrame, (-0.23000000000000001, 0, 0.27000000000000002), topgui.find('**/pir_t_gui_gen_friends_pirates'), self._PirateProfilePage__handleAvatarFriend, PLocalizer.ProfilePageFriend, (0.27000000000000002, 0, 0.27000000000000002))
-        self.guildButton = SocialButton(self.mainFrame, (-0.23000000000000001, 0, 0.17000000000000001), icons.find('**/pir_t_gui_gen_guild'), self._PirateProfilePage__handleGuild, PLocalizer.ProfilePageGuild, 0.070000000000000007)
-        self.whisperButton = SocialButton(self.mainFrame, (-0.23000000000000001, 0, 0.070000000000000007), icons.find('**/pir_t_gui_gen_whisper'), self._PirateProfilePage__handleWhisper, PLocalizer.ProfilePageWhisper, 0.059999999999999998)
-        self.challengeButton = SocialButton(self.mainFrame, (-0.23000000000000001, 0, -0.029999999999999999), topgui.find('**/lookout_win_pvp_game_icon'), self._PirateProfilePage__handleChallenge, PLocalizer.ProfilePageChallenge, 0.27500000000000002)
-        self.playerFriendButton = SocialButton(self.mainFrame, (-0.23000000000000001, 0, -0.13), icons.find('**/icon_stickman'), self._PirateProfilePage__handlePlayerFriend, PLocalizer.ProfilePagePlayerFriend, (0.040000000000000001, 0, 0.050000000000000003))
-        self.problemButton = SocialButton(self.mainFrame, (-0.64000000000000001, 0, -0.13), icons.find('**/moderation'), self._PirateProfilePage__handleProblem, PLocalizer.ProfilePageProblem, 0.074999999999999997)
-        self.ignoreButton = SocialButton(self.mainFrame, (-0.64000000000000001, 0, -0.029999999999999999), icons.find('**/icon_stickman'), self._PirateProfilePage__handleIgnore, PLocalizer.ProfilePageIgnore, (0.050000000000000003, 0, 0.059999999999999998))
-        self.ignoreButtonLabel = DirectLabel(parent = self.ignoreButton.circle, relief = None, state = DGG.DISABLED, text = PLocalizer.ProfilePageIgnore, textMayChange = 1, text_font = PiratesGlobals.getInterfaceFont(), text_scale = PiratesGuiGlobals.TextScaleMed, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 14, text_pos = (0, 0.050000000000000003, 0.0), pos = (0.0, 0.0, 0.0))
-        self.loadingLabel = OnscreenText(parent = self.mainFrame, text = PLocalizer.ProfilePageLoading, scale = PiratesGuiGlobals.TextScaleTitleSmall, align = TextNode.ACenter, fg = PiratesGuiGlobals.TextFG2, shadow = PiratesGuiGlobals.TextShadow, pos = (-0.44, -0.28299999999999997))
-        self.locationTextLabel = OnscreenText(parent = self.mainFrame, text = PLocalizer.ProfilePageLocation, scale = PiratesGuiGlobals.TextScaleMed, align = TextNode.ALeft, fg = PiratesGuiGlobals.TextFG2, font = PiratesGlobals.getPirateOutlineFont(), shadow = PiratesGuiGlobals.TextShadow, pos = (-0.68999999999999995, -0.23999999999999999))
-        self.locationCircleFrame = DirectFrame(parent = self.mainFrame, relief = None, state = DGG.DISABLED, image = topgui.find('**/pir_t_gui_frm_base_circle'), image_scale = 0.32500000000000001, pos = (-0.65000000000000002, 0, -0.28499999999999998))
+        self.notorietyLabel = DirectLabel(relief = None, parent = self.mainFrame, image = basicgui.find('**/but_nav'), image_scale = 0.348, text = '', text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_pos = (0, -0.01, 0), text_shadow = PiratesGuiGlobals.TextShadow, state = DGG.DISABLED, pos = (-0.63, 0, 0.408))
+        self.hpMeter = DirectWaitBar(parent = self.mainFrame, relief = DGG.RAISED, borderWidth = (0.002, 0.002), range = 1, value = 0, frameColor = (0.050000, 0.050000, 0.050000, 1), barColor = (0.100, 0.696, 0.100, 1), pos = (-0.714, 0, 0.35698), frameSize = (0, 0.200, 0, 0.0149), text = PLocalizer.ProfilePageHp, text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleSmall, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0, 0.02, 0), textMayChange = 1, scale = 0.800000)
+        self.hpBar = OnscreenImage(parent = self.mainFrame, image = shipgui.find('**/ship_battle_speed_bar'), scale = (0.12, 1.0, 0.299), pos = (-0.635, 0, 0.362))
+        self.voodooMeter = DirectWaitBar(parent = self.mainFrame, relief = DGG.RAISED, borderWidth = (0.00300, 0.00300), range = 1, value = 0, frameColor = (0.050000, 0.050000, 0.050000, 1), barColor = (0.598, 0.598, 0.946, 1), pos = (-0.714, 0, 0.321), frameSize = (0, 0.200, 0, 0.0149), text = PLocalizer.ProfilePageVoodoo, text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleSmall, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0, 0.02, 0), textMayChange = 1, scale = 0.800000)
+        self.voodooBar = OnscreenImage(parent = self.mainFrame, image = shipgui.find('**/ship_battle_speed_bar'), scale = (0.12, 1.0, 0.299), pos = (-0.635, 0, 0.327))
+        self.chatLabel = OnscreenText(parent = self.mainFrame, text = '', scale = PiratesGuiGlobals.TextScaleSmall, align = TextNode.ACenter, fg = PiratesGuiGlobals.TextFG2, shadow = PiratesGuiGlobals.TextShadow, mayChange = 1, pos = (-0.635, 0.275), wordwrap = 5)
+        self.xFrame = GuiButton.GuiButton(parent = self.mainFrame, relief = None, image = box, image_scale = 0.275, command = self.hide)
+        self.xButton = OnscreenImage(parent = self.xFrame, image = x, scale = 0.140, pos = (-0.174, 0, 0.526))
+        self.crewButton = SocialButton(self.mainFrame, (-0.230, 0, 0.37), icons.find('**/pir_t_gui_gen_crew_mug'), self._PirateProfilePage__handleCrew, PLocalizer.ProfilePageCrew, 0.070)
+        self.avatarFriendButton = SocialButton(self.mainFrame, (-0.230, 0, 0.27), topgui.find('**/pir_t_gui_gen_friends_pirates'), self._PirateProfilePage__handleAvatarFriend, PLocalizer.ProfilePageFriend, (0.27, 0, 0.27))
+        self.guildButton = SocialButton(self.mainFrame, (-0.230, 0, 0.170), icons.find('**/pir_t_gui_gen_guild'), self._PirateProfilePage__handleGuild, PLocalizer.ProfilePageGuild, 0.070)
+        self.whisperButton = SocialButton(self.mainFrame, (-0.230, 0, 0.070), icons.find('**/pir_t_gui_gen_whisper'), self._PirateProfilePage__handleWhisper, PLocalizer.ProfilePageWhisper, 0.0598)
+        self.challengeButton = SocialButton(self.mainFrame, (-0.230, 0, -0.0299), topgui.find('**/lookout_win_pvp_game_icon'), self._PirateProfilePage__handleChallenge, PLocalizer.ProfilePageChallenge, 0.275)
+        self.playerFriendButton = SocialButton(self.mainFrame, (-0.230, 0, -0.13), icons.find('**/icon_stickman'), self._PirateProfilePage__handlePlayerFriend, PLocalizer.ProfilePagePlayerFriend, (0.0400, 0, 0.050000))
+        self.problemButton = SocialButton(self.mainFrame, (-0.640, 0, -0.13), icons.find('**/moderation'), self._PirateProfilePage__handleProblem, PLocalizer.ProfilePageProblem, 0.074)
+        self.ignoreButton = SocialButton(self.mainFrame, (-0.640, 0, -0.0299), icons.find('**/icon_stickman'), self._PirateProfilePage__handleIgnore, PLocalizer.ProfilePageIgnore, (0.050000, 0, 0.0598))
+        self.ignoreButtonLabel = DirectLabel(parent = self.ignoreButton.circle, relief = None, state = DGG.DISABLED, text = PLocalizer.ProfilePageIgnore, textMayChange = 1, text_font = PiratesGlobals.getInterfaceFont(), text_scale = PiratesGuiGlobals.TextScaleMed, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 14, text_pos = (0, 0.050000, 0.0), pos = (0.0, 0.0, 0.0))
+        self.loadingLabel = OnscreenText(parent = self.mainFrame, text = PLocalizer.ProfilePageLoading, scale = PiratesGuiGlobals.TextScaleTitleSmall, align = TextNode.ACenter, fg = PiratesGuiGlobals.TextFG2, shadow = PiratesGuiGlobals.TextShadow, pos = (-0.44, -0.282))
+        self.locationTextLabel = OnscreenText(parent = self.mainFrame, text = PLocalizer.ProfilePageLocation, scale = PiratesGuiGlobals.TextScaleMed, align = TextNode.ALeft, fg = PiratesGuiGlobals.TextFG2, font = PiratesGlobals.getPirateOutlineFont(), shadow = PiratesGuiGlobals.TextShadow, pos = (-0.685, -0.239))
+        self.locationCircleFrame = DirectFrame(parent = self.mainFrame, relief = None, state = DGG.DISABLED, image = topgui.find('**/pir_t_gui_frm_base_circle'), image_scale = 0.325, pos = (-0.65, 0, -0.28498))
         self.locationFrame = DirectFrame(parent = self.locationCircleFrame, relief = None, state = DGG.DISABLED)
-        self.islandLabel = OnscreenText(parent = self.mainFrame, text = '', scale = PiratesGuiGlobals.TextScaleMed, align = TextNode.ACenter, fg = PiratesGuiGlobals.TextFG1, font = PiratesGlobals.getPirateOutlineFont(), shadow = PiratesGuiGlobals.TextShadow, mayChange = 1, pos = (-0.46500000000000002, -0.27300000000000002))
-        self.locationLabel = OnscreenText(parent = self.mainFrame, text = '', scale = PiratesGuiGlobals.TextScaleSmall, align = TextNode.ACenter, fg = PiratesGuiGlobals.TextFG2, shadow = PiratesGuiGlobals.TextShadow, mayChange = 1, pos = (-0.46500000000000002, -0.31))
-        self.goToButton = GuiButton.GuiButton(parent = self.mainFrame, relief = None, image = (chargui.find('**/chargui_text_block_small'), chargui.find('**/chargui_text_block_small_down'), chargui.find('**/chargui_text_block_small_over'), chargui.find('**/chargui_text_block_small')), image_scale = (0.29999999999999999, 0, 0.20000000000000001), pos = (-0.25, 0, -0.28000000000000003), text = PLocalizer.ProfilePageGoto, text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0, -0.01, 0), command = self._PirateProfilePage__handleGoto)
-        self.problemFrame = DirectFrame(relief = None, parent = self.mainFrame, state = DGG.NORMAL, sortOrder = 0, image = maingui.find('**/profile_card_moderation'), image_scale = 0.27500000000000002, text = PLocalizer.ProfilePageProblem, text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_pos = (-0.82499999999999996, 0.017000000000000001, 0), text_shadow = PiratesGuiGlobals.TextShadow)
-        self.problemXFrame = GuiButton.GuiButton(parent = self.problemFrame, relief = None, image = box2, image_scale = 0.27500000000000002, command = self._PirateProfilePage__handleProblemClose)
-        self.problemXButton = OnscreenImage(parent = self.problemXFrame, image = x, scale = 0.070000000000000007, pos = (-0.74299999999999999, 0, 0.037999999999999999))
-        self.bootButton = SocialButton(self.problemFrame, (-0.82299999999999995, 0, -0.089999999999999997), icons.find('**/pir_t_gui_gen_boot'), self._PirateProfilePage__handleBoot, PLocalizer.ProfilePageBoot, (0.050000000000000003, 0, 0.074999999999999997))
-        self.reportButton = SocialButton(self.problemFrame, (-0.82299999999999995, 0, -0.23000000000000001), icons.find('**/pir_t_gui_gen_report'), self._PirateProfilePage__handleReport, PLocalizer.ProfilePageReport, (0.074999999999999997, 0, 0.065000000000000002))
+        self.islandLabel = OnscreenText(parent = self.mainFrame, text = '', scale = PiratesGuiGlobals.TextScaleMed, align = TextNode.ACenter, fg = PiratesGuiGlobals.TextFG1, font = PiratesGlobals.getPirateOutlineFont(), shadow = PiratesGuiGlobals.TextShadow, mayChange = 1, pos = (-0.465, -0.273))
+        self.locationLabel = OnscreenText(parent = self.mainFrame, text = '', scale = PiratesGuiGlobals.TextScaleSmall, align = TextNode.ACenter, fg = PiratesGuiGlobals.TextFG2, shadow = PiratesGuiGlobals.TextShadow, mayChange = 1, pos = (-0.465, -0.31))
+        self.goToButton = GuiButton.GuiButton(parent = self.mainFrame, relief = None, image = (chargui.find('**/chargui_text_block_small'), chargui.find('**/chargui_text_block_small_down'), chargui.find('**/chargui_text_block_small_over'), chargui.find('**/chargui_text_block_small')), image_scale = (0.299, 0, 0.200), pos = (-0.25, 0, -0.28000), text = PLocalizer.ProfilePageGoto, text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0, -0.01, 0), command = self._PirateProfilePage__handleGoto)
+        self.problemFrame = DirectFrame(relief = None, parent = self.mainFrame, state = DGG.NORMAL, sortOrder = 0, image = maingui.find('**/profile_card_moderation'), image_scale = 0.275, text = PLocalizer.ProfilePageProblem, text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_pos = (-0.82496, 0.0170, 0), text_shadow = PiratesGuiGlobals.TextShadow)
+        self.problemXFrame = GuiButton.GuiButton(parent = self.problemFrame, relief = None, image = box2, image_scale = 0.275, command = self._PirateProfilePage__handleProblemClose)
+        self.problemXButton = OnscreenImage(parent = self.problemXFrame, image = x, scale = 0.070, pos = (-0.742, 0, 0.0379))
+        self.bootButton = SocialButton(self.problemFrame, (-0.82295, 0, -0.089), icons.find('**/pir_t_gui_gen_boot'), self._PirateProfilePage__handleBoot, PLocalizer.ProfilePageBoot, (0.050000, 0, 0.074))
+        self.reportButton = SocialButton(self.problemFrame, (-0.82295, 0, -0.230), icons.find('**/pir_t_gui_gen_report'), self._PirateProfilePage__handleReport, PLocalizer.ProfilePageReport, (0.074, 0, 0.065))
         for frame in [
             self.mainFrame,
             self.skillFrame,
@@ -260,7 +260,7 @@ class PirateProfilePage(SocialPage.SocialPage):
         self.pirate = Human.Human()
         self.pirate.ignoreAll()
         self.pirate.mixingEnabled = False
-        self.pirate.setPos(0, 2.75, -0.67000000000000004)
+        self.pirate.setPos(0, 2.75, -0.670000)
         self.pirate.setScale(0.2475, 0.22, 0.22)
         self.pirate.setH(188)
         self.masterHuman = [
@@ -276,7 +276,7 @@ class PirateProfilePage(SocialPage.SocialPage):
         mh[0].stopBlink()
         mh[1].stopBlink()
         self.cm = CardMaker('profileCard')
-        self.cm.setFrame(-0.34000000000000002, 0.34999999999999998, 0.014999999999999999, 0.78800000000000003)
+        self.cm.setFrame(-0.34, 0.348, 0.0149, 0.78800)
         self.buffer = None
         self.lens = PerspectiveLens()
         self.lens.setNear(0.5)
@@ -285,8 +285,8 @@ class PirateProfilePage(SocialPage.SocialPage):
         self.pirate.reparentTo(self.portraitSceneGraph)
         self.bg = maingui.find('**/background_map')
         self.logo = maingui.find('**/background_logo')
-        self.bg.setScale(1.8, 1.6000000000000001, 1.6000000000000001)
-        self.bg.setPos(2.8599999999999999, 3, -0.68000000000000005)
+        self.bg.setScale(1.8, 1.60, 1.60)
+        self.bg.setPos(2.85, 3, -0.680000)
         self.bg.reparentTo(self.portraitSceneGraph)
         self.logo.reparentTo(self.bg)
 
@@ -459,7 +459,7 @@ class PirateProfilePage(SocialPage.SocialPage):
         self.islandName = loc
         self.islandLabel['text'] = loc
         self.islandLabel.setScale(PiratesGuiGlobals.TextScaleLarge)
-        self.islandLabel.setPos(-0.46500000000000002, -0.29299999999999998)
+        self.islandLabel.setPos(-0.465, -0.29298)
         self.locationLabel['text'] = ''
         self.founderFrame['image'] = None
         self.siegeFrame['image'] = None
@@ -555,7 +555,7 @@ class PirateProfilePage(SocialPage.SocialPage):
             self.TC = None
 
         self.TC = TeleportConfirm.TeleportConfirm(self.profileId, self.profileName)
-        self.TC.setPos(-0.25, 0, -0.14999999999999999)
+        self.TC.setPos(-0.25, 0, -0.149)
         self.hide()
 
 
@@ -690,7 +690,7 @@ class PirateProfilePage(SocialPage.SocialPage):
             self.ignoreButton.disable(PLocalizer.NoInteractPlayerWarning % self.profileName)
             if self.skillFrameIval and not (self.skillFrameClosed):
                 self.skillFrameIval.pause()
-                self.skillFrameIval = LerpPosInterval(self.skillFrame, 0.20000000000000001, pos = (self.skillFrame.getX() - 0.44, 0, self.skillFrame.getZ()))
+                self.skillFrameIval = LerpPosInterval(self.skillFrame, 0.200, pos = (self.skillFrame.getX() - 0.44, 0, self.skillFrame.getZ()))
                 self.skillFrameClosed = True
                 self.skillFrameIval.start()
 
@@ -755,7 +755,7 @@ class PirateProfilePage(SocialPage.SocialPage):
                         self.islandName = shard.getName()
                         self.islandLabel['text'] = self.islandName
                         self.islandLabel.setScale(PiratesGuiGlobals.TextScaleLarge)
-                        self.islandLabel.setPos(-0.46500000000000002, -0.29299999999999998)
+                        self.islandLabel.setPos(-0.465, -0.29298)
                         self.locationTextLabel.show()
 
 
@@ -821,7 +821,7 @@ class PirateProfilePage(SocialPage.SocialPage):
             self.islandLabel['text'] = PLocalizer.ProfilePageOffline
             self.locationLabel['text'] = ''
         self.islandLabel.setScale(PiratesGuiGlobals.TextScaleLarge)
-        self.islandLabel.setPos(-0.46500000000000002, -0.29299999999999998)
+        self.islandLabel.setPos(-0.465, -0.29298)
         self.locationTextLabel.show()
 
 
@@ -840,7 +840,7 @@ class PirateProfilePage(SocialPage.SocialPage):
             self.ignoreButton.disable(PLocalizer.NoInteractPlayerWarning % self.profileName)
             if self.skillFrameIval and not (self.skillFrameClosed):
                 self.skillFrameIval.pause()
-                self.skillFrameIval = LerpPosInterval(self.skillFrame, 0.20000000000000001, pos = (self.skillFrame.getX() - 0.44, 0, self.skillFrame.getZ()))
+                self.skillFrameIval = LerpPosInterval(self.skillFrame, 0.200, pos = (self.skillFrame.getX() - 0.44, 0, self.skillFrame.getZ()))
                 self.skillFrameClosed = True
                 self.skillFrameIval.start()
 
@@ -1015,10 +1015,10 @@ class PirateProfilePage(SocialPage.SocialPage):
         self.locationLabel['text'] = '\x01slant\x01%s\x02' % self.locationName
         if self.locationName == '':
             self.islandLabel.setScale(PiratesGuiGlobals.TextScaleLarge)
-            self.islandLabel.setPos(-0.46500000000000002, -0.29299999999999998)
+            self.islandLabel.setPos(-0.465, -0.29298)
         else:
             self.islandLabel.setScale(PiratesGuiGlobals.TextScaleMed)
-            self.islandLabel.setPos(-0.46500000000000002, -0.27300000000000002)
+            self.islandLabel.setPos(-0.465, -0.273)
         self.founder = founder
         av = base.cr.doId2do.get(self.profileId)
         if av:
@@ -1029,17 +1029,17 @@ class PirateProfilePage(SocialPage.SocialPage):
 
         if self.founder == 3:
             self.founderFrame['image'] = self.goldFounder
-            self.pirateLabel['fg'] = (1, 0.80000000000000004, 0.40000000000000002, 1)
+            self.pirateLabel['fg'] = (1, 0.800000, 0.4, 1)
         elif self.founder == 2:
-            self.pirateLabel['fg'] = (0.40000000000000002, 0.29999999999999999, 0.94999999999999996, 1)
+            self.pirateLabel['fg'] = (0.4, 0.299, 0.946, 1)
 
-        self.founderFrame['image_scale'] = 0.22500000000000001
+        self.founderFrame['image_scale'] = 0.225
         if self.siege:
             if self.siege == 2:
                 self.siegeFrame['image'] = self.spanishFlag
             else:
                 self.siegeFrame['image'] = self.frenchFlag
-            self.siegeFrame['image_scale'] = 0.052999999999999999
+            self.siegeFrame['image_scale'] = 0.0529
 
         self.pirate.setDNA(dna)
         self.pirate.generateHuman(dna.gender, self.masterHuman)
@@ -1098,11 +1098,11 @@ class PirateProfilePage(SocialPage.SocialPage):
         self.locationName = locationName
         self.locationFrame['image'] = self.profileIcons[profileIcon]
         if profileIcon == PiratesGuiGlobals.PROFILE_ICON_LAND:
-            self.locationFrame['image_scale'] = 0.065000000000000002
+            self.locationFrame['image_scale'] = 0.065
         elif profileIcon == PiratesGuiGlobals.PROFILE_ICON_OCEAN:
-            self.locationFrame['image_scale'] = 0.13500000000000001
+            self.locationFrame['image_scale'] = 0.135
         elif profileIcon == PiratesGuiGlobals.PROFILE_ICON_CANNON:
-            self.locationFrame['image_scale'] = 0.085000000000000006
+            self.locationFrame['image_scale'] = 0.085
 
         self.locationTextLabel.show()
         self.locationCircleFrame.show()
@@ -1112,7 +1112,7 @@ class PirateProfilePage(SocialPage.SocialPage):
 
     def copyAvatarShipInfo(self, crewState, friendState, guildState):
         self.locationFrame['image'] = self.profileIcons[PiratesGuiGlobals.PROFILE_ICON_OCEAN]
-        self.locationFrame['image_scale'] = 0.13500000000000001
+        self.locationFrame['image_scale'] = 0.135
         self.locationTextLabel.show()
         self.locationCircleFrame.show()
         self.locationFrame.show()
@@ -1237,10 +1237,10 @@ class PirateProfilePage(SocialPage.SocialPage):
             self.skillFrameIval.pause()
 
         if self.skillFrameClosed:
-            self.skillFrameIval = LerpPosInterval(self.skillFrame, 0.20000000000000001, pos = (self.skillFrame.getX() + 0.44, 0, self.skillFrame.getZ()))
+            self.skillFrameIval = LerpPosInterval(self.skillFrame, 0.200, pos = (self.skillFrame.getX() + 0.44, 0, self.skillFrame.getZ()))
             self.skillFrameClosed = False
         else:
-            self.skillFrameIval = LerpPosInterval(self.skillFrame, 0.20000000000000001, pos = (self.skillFrame.getX() - 0.44, 0, self.skillFrame.getZ()))
+            self.skillFrameIval = LerpPosInterval(self.skillFrame, 0.200, pos = (self.skillFrame.getX() - 0.44, 0, self.skillFrame.getZ()))
             self.skillFrameClosed = True
         self.skillFrameIval.start()
 

@@ -230,7 +230,7 @@ class CutCam(CutsceneActor, Actor):
         self.oldParams.FOV = base.camLens.getFov()
         self.oldParams.filmSizeHorizontal = base.camLens.getFilmSize()[0]
         self.oldParams.focalLength = base.camLens.getFocalLength()
-        base.camLens.setNear(0.29999999999999999)
+        base.camLens.setNear(0.299)
         base.camLens.setFilmSize(self.filmSizeHorizontal)
         base.camLens.setFocalLength(self.focalLength)
         parentNode = self.find('**/cutcam')
@@ -242,7 +242,7 @@ class CutCam(CutsceneActor, Actor):
             self.oldParams.state = base.localAvatar.cameraFSM.state
             base.localAvatar.cameraFSM.request('Control')
 
-        base.camLens.setNear(0.29999999999999999)
+        base.camLens.setNear(0.299)
         base.camLens.setFilmSize(self.filmSizeHorizontal)
         base.camLens.setFocalLength(self.focalLength)
         camera.reparentTo(self._parentNode)
@@ -421,7 +421,7 @@ class CutShip(CutsceneActor):
         if explosion:
             pos = node.getPos(render) + offset
             explosion.reparentTo(render)
-            explosion.setEffectScale(0.20000000000000001)
+            explosion.setEffectScale(0.200)
             explosion.setEffectRadius(4.0)
             explosion.setPos(pos)
             explosion.play()
@@ -579,7 +579,7 @@ class CutJollyRoger(CutsceneActor, JollyRoger):
         self.attuneEffect = VoodooAura.getEffect()
         if self.attuneEffect:
             self.attuneEffect.reparentTo(self.leftHandNode)
-            self.attuneEffect.setEffectColor(Vec4(0.20000000000000001, 0.10000000000000001, 0.40000000000000002, 1))
+            self.attuneEffect.setEffectColor(Vec4(0.200, 0.100, 0.4, 1))
             self.attuneEffect.setPos(0, 0, 0)
             self.attuneEffect.particleDummy.reparentTo(self.leftHandNode)
             self.attuneEffect.startLoop()
@@ -721,7 +721,7 @@ class CutWillTurner(CutsceneActor, WillTurner):
             spawnEffect.reparentTo(render)
             spawnEffect.setPos(jr1.find('**/dx_root').getPos(render))
             spawnEffect.setZ(1.75)
-            spawnEffect.setScale(0.80000000000000004)
+            spawnEffect.setScale(0.800000)
             spawnEffect.play()
 
         spawnEffect = JRSpawn.getEffect()
@@ -729,7 +729,7 @@ class CutWillTurner(CutsceneActor, WillTurner):
             spawnEffect.reparentTo(render)
             spawnEffect.setPos(jr2.find('**/dx_root').getPos(render))
             spawnEffect.setZ(1.75)
-            spawnEffect.setScale(0.80000000000000004)
+            spawnEffect.setScale(0.800000)
             spawnEffect.play()
 
 class CutElizabethSwan(CutsceneActor, ElizabethSwan):
@@ -871,7 +871,7 @@ class CutTiaDalma(CutsceneActor, TiaDalma):
         bg3.unstash()
         handNode = bg3.rightHandNode
         self.cutlassDict[2].reparentTo(handNode)
-        self.fader = Parallel(LerpFunctionInterval(bg1.setAlphaScale, 2.0, fromData = 0.0, toData = 0.59999999999999998), LerpFunctionInterval(bg2.setAlphaScale, 2.5, fromData = 0.0, toData = 0.59999999999999998), LerpFunctionInterval(bg3.setAlphaScale, 2.0, fromData = 0.0, toData = 0.59999999999999998))
+        self.fader = Parallel(LerpFunctionInterval(bg1.setAlphaScale, 2.0, fromData = 0.0, toData = 0.598), LerpFunctionInterval(bg2.setAlphaScale, 2.5, fromData = 0.0, toData = 0.598), LerpFunctionInterval(bg3.setAlphaScale, 2.0, fromData = 0.0, toData = 0.598))
         self.fader.start()
 
     def hideVisionBG(self, cutscene, cleanup):
@@ -902,11 +902,11 @@ class CutTiaDalma(CutsceneActor, TiaDalma):
         jr2 = cutscene.getActor('Skeleton-4')
         jr2.unstash()
         jr2.setTransparency(1)
-        jr2.setAlphaScale(0.69999999999999996)
+        jr2.setAlphaScale(0.696)
         jr3 = cutscene.getActor('Skeleton-5')
         jr3.unstash()
         jr3.setTransparency(1)
-        jr3.setAlphaScale(0.69999999999999996)
+        jr3.setAlphaScale(0.696)
 
     def spawnSkeleton1(self, cutscene):
         rootNode = cutscene.getActor('JollyRoger').find('**/def_root')

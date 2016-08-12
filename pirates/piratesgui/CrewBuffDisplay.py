@@ -63,14 +63,14 @@ class CrewBuffDisplay(DirectFrame):
 
 
     def loadGui(self):
-        self.dummyFrame = DirectFrame(parent = self, relief = None, pos = (-0.42999999999999999, 0, 1.3799999999999999), sortOrder = -1000)
+        self.dummyFrame = DirectFrame(parent = self, relief = None, pos = (-0.429, 0, 1.37), sortOrder = -1000)
         self.skillRingFrame = SkillRing(color = Vec4(1, 1, 0, 1))
         self.skillRingFrame.reparentTo(self.dummyFrame)
-        self.skillRingFrame.setPos(-0.089999999999999997, 0, -0.029999999999999999)
-        self.skillIconFrame = DirectFrame(parent = self.skillRingFrame, pos = (0, 0, 0), relief = None, image = self.skillIcon, image_scale = (0.14000000000000001, 1, 0.14000000000000001))
-        self.buffTitle = DirectFrame(parent = self.dummyFrame, relief = None, pos = (-0.16, 0, 0.080000000000000002), text = PLocalizer.CrewBuffCaptainOrder, text_align = TextNode.ALeft, text_scale = 0.050000000000000003, text_pos = (0, 0), text_fg = PiratesGuiGlobals.TextFG13, text_wordwrap = 15, text_shadow = (0, 0, 0, 1), textMayChange = 0, text_font = PiratesGlobals.getInterfaceFont())
+        self.skillRingFrame.setPos(-0.089, 0, -0.0299)
+        self.skillIconFrame = DirectFrame(parent = self.skillRingFrame, pos = (0, 0, 0), relief = None, image = self.skillIcon, image_scale = (0.140, 1, 0.140))
+        self.buffTitle = DirectFrame(parent = self.dummyFrame, relief = None, pos = (-0.16, 0, 0.08), text = PLocalizer.CrewBuffCaptainOrder, text_align = TextNode.ALeft, text_scale = 0.050000, text_pos = (0, 0), text_fg = PiratesGuiGlobals.TextFG13, text_wordwrap = 15, text_shadow = (0, 0, 0, 1), textMayChange = 0, text_font = PiratesGlobals.getInterfaceFont())
         self.buffNameFrame = DirectFrame(parent = self.dummyFrame, relief = None, pos = (0.0, 0, 0.0), text = self.buffName, text_align = TextNode.ALeft, text_scale = 0.047, text_pos = (0, 0), text_fg = PiratesGuiGlobals.TextFG1, text_wordwrap = 15, text_shadow = (0, 0, 0, 1), textMayChange = 0, text_font = PiratesGlobals.getInterfaceFont())
-        self.buffDescFrame = DirectFrame(parent = self.dummyFrame, relief = None, pos = (0.0, 0, -0.044999999999999998), text = self.buffDesc, text_align = TextNode.ALeft, text_scale = 0.036999999999999998, text_pos = (0, 0), text_fg = PiratesGuiGlobals.TextFG2, text_wordwrap = 15, text_shadow = (0, 0, 0, 1), textMayChange = 0, text_font = PiratesGlobals.getInterfaceFont())
+        self.buffDescFrame = DirectFrame(parent = self.dummyFrame, relief = None, pos = (0.0, 0, -0.0448), text = self.buffDesc, text_align = TextNode.ALeft, text_scale = 0.0368, text_pos = (0, 0), text_fg = PiratesGuiGlobals.TextFG2, text_wordwrap = 15, text_shadow = (0, 0, 0, 1), textMayChange = 0, text_font = PiratesGlobals.getInterfaceFont())
 
 
     def createSkillRingIval(self):
@@ -79,7 +79,7 @@ class CrewBuffDisplay(DirectFrame):
 
     def play(self):
         if not self.runInIval:
-            self.runInIval = self.dummyFrame.posInterval(0.40000000000000002, Vec3(-0.42999999999999999, 0, 1.3799999999999999), startPos = Vec3(0.0, 0, 1.3799999999999999))
+            self.runInIval = self.dummyFrame.posInterval(0.4, Vec3(-0.429, 0, 1.37), startPos = Vec3(0.0, 0, 1.37))
 
         self.runInIval.start()
         if not self.skillRingIval:

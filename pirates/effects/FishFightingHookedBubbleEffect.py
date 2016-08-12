@@ -49,7 +49,7 @@ class FishFightingHookedBubbleEffect(PooledEffect, EffectController):
 
     def setBubbleSizeBasedOnWeight(self, weight):
         bubbleMin = 0.001
-        bubbleMax = 0.0040000000000000001
+        bubbleMax = 0.00400
         bubbleSize = (bubbleMax - bubbleMin) * (weight / FishingGlobals.maxFishWeight) + bubbleMin
         self.p0.renderer.setInitialXScale(bubbleSize * self.cardScale)
         self.p0.renderer.setInitialYScale(bubbleSize * self.cardScale)

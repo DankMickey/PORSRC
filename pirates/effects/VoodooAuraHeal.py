@@ -54,16 +54,16 @@ class VoodooAuraHeal(PooledEffect, EffectController):
         self.p0.renderer.setYScaleFlag(1)
         self.p0.renderer.setAnimAngleFlag(0)
         self.p0.renderer.setInitialXScale(0.012 * self.cardScale)
-        self.p0.renderer.setFinalXScale(0.0050000000000000001 * self.cardScale)
+        self.p0.renderer.setFinalXScale(0.00500 * self.cardScale)
         self.p0.renderer.setInitialYScale(0.01 * self.cardScale)
-        self.p0.renderer.setFinalYScale(0.029999999999999999 * self.cardScale)
+        self.p0.renderer.setFinalYScale(0.0299 * self.cardScale)
         self.p0.renderer.setNonanimatedTheta(0.0)
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPBLENDLINEAR)
         self.p0.renderer.setAlphaDisable(0)
         self.p0.renderer.setColorBlendMode(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne)
         self.p0.emitter.setEmissionType(BaseParticleEmitter.ETRADIATE)
         self.p0.emitter.setAmplitude(0.0)
-        self.p0.emitter.setAmplitudeSpread(0.10000000000000001)
+        self.p0.emitter.setAmplitudeSpread(0.100)
         self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, 2.0))
         self.p0.emitter.setExplicitLaunchVector(Vec3(0.0, 0.0, 0.0))
         self.p0.emitter.setRadiateOrigin(Point3(0.0, 0.0, 0.0))
@@ -71,7 +71,7 @@ class VoodooAuraHeal(PooledEffect, EffectController):
 
 
     def createTrack(self):
-        self.startEffect = Sequence(Func(self.p0.clearToInitial), Func(self.p0.setBirthRate, 0.10000000000000001), Func(self.f.start, self, self.particleDummy))
+        self.startEffect = Sequence(Func(self.p0.clearToInitial), Func(self.p0.setBirthRate, 0.100), Func(self.f.start, self, self.particleDummy))
         self.endEffect = Sequence(Func(self.p0.setBirthRate, 100.0), Wait(1.0), Func(self.cleanUpEffect))
         self.track = Sequence(self.startEffect, Wait(1.0), self.endEffect)
 

@@ -29,7 +29,7 @@ class SkullBurst(PooledEffect, EffectController):
     def createTrack(self):
         self.effectModel.setColorScale(0, 0, 0, 0)
         self.effectModel.setScale(700 * self.effectScale)
-        fadeIn = self.effectModel.colorScaleInterval(0.20000000000000001, Vec4(self.effectColor), startColorScale = Vec4(0, 0, 0, 0), blendType = 'easeIn')
+        fadeIn = self.effectModel.colorScaleInterval(0.200, Vec4(self.effectColor), startColorScale = Vec4(0, 0, 0, 0), blendType = 'easeIn')
         fadeBlast = self.effectModel.colorScaleInterval(self.fadeTime, Vec4(0, 0, 0, 0), startColorScale = Vec4(self.effectColor), blendType = 'easeIn')
         scaleBlast = self.effectModel.scaleInterval(self.fadeTime, 850 * self.effectScale, startScale = 750 * self.effectScale, blendType = 'easeOut')
         self.track = Sequence(Wait(self.startDelay), fadeIn, Parallel(fadeBlast, scaleBlast), Func(self.cleanUpEffect))

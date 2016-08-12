@@ -33,7 +33,7 @@ from GuiTray import GuiTray
 from GuiButton import GuiButton
 import copy
 from TonicsPanel import TonicsPanel
-STAFF_INTERVAL = 0.40000000000000002
+STAFF_INTERVAL = 0.4
 AIM_ASSIST_DURATION = 2.0
 
 class WeaponButton(GuiButton):
@@ -43,8 +43,8 @@ class WeaponButton(GuiButton):
         gui = loader.loadModel('models/gui/toplevel_gui')
         button_gui = loader.loadModel('models/textureCards/skillIcons')
         buttonImage = button_gui.find('**/box_base')
-        buttonColors = ((1, 1, 1, 1), (0.80000000000000004, 0.80000000000000004, 0.80000000000000004, 1), (1.0, 1.0, 1.0, 1), (0.59999999999999998, 0.59999999999999998, 0.59999999999999998, 1))
-        optiondefs = (('relief', None, None), ('state', 'normal', None), ('frameSize', (0, 0.12, 0, 0.12), None), ('image', buttonImage, None), ('image_scale', 0.13, None), ('image_pos', (0.059999999999999998, 0, 0.059999999999999998), None), ('extraArgs', [
+        buttonColors = ((1, 1, 1, 1), (0.800000, 0.800000, 0.800000, 1), (1.0, 1.0, 1.0, 1), (0.598, 0.598, 0.598, 1))
+        optiondefs = (('relief', None, None), ('state', 'normal', None), ('frameSize', (0, 0.12, 0, 0.12), None), ('image', buttonImage, None), ('image_scale', 0.13, None), ('image_pos', (0.0598, 0, 0.0598), None), ('extraArgs', [
             0], None))
         self.defineoptions(kw, optiondefs)
         GuiButton.__init__(self, hotkeys = hotkeys, hotkeyLabel = hotkeyLabel, helpText = helpText, parent = parent)
@@ -87,8 +87,8 @@ class WeaponButton(GuiButton):
         asset = ItemGlobals.getIcon(self.weaponId)
         if asset:
             self['geom'] = card.find('**/%s' % asset)
-            self['geom_scale'] = 0.10000000000000001
-            self['geom_pos'] = (0.059999999999999998, 0, 0.059999999999999998)
+            self['geom_scale'] = 0.100
+            self['geom_pos'] = (0.0598, 0, 0.0598)
 
         self.quantLabel = DirectLabel(parent = self, relief = None, state = DGG.DISABLED)
         if EconomyGlobals.getItemCategory(self.weaponId) == ItemType.WEAPON:
@@ -126,7 +126,7 @@ class WeaponButton(GuiButton):
         if self.lastExp:
             expChange = value - self.lastExp
             if expChange:
-                localAvatar.guiMgr.gameGui.createExpAlert(expChange, 4.0, Vec3(0.625, 0.0, -0.80000000000000004), Vec3(0.0, 0.0, 0.25))
+                localAvatar.guiMgr.gameGui.createExpAlert(expChange, 4.0, Vec3(0.625, 0.0, -0.800000), Vec3(0.0, 0.0, 0.25))
 
 
         if self.weaponLeveledIval:
@@ -138,20 +138,20 @@ class WeaponButton(GuiButton):
             self.expGainIval = None
 
         if self.lastLevel != level:
-            glowColor = Vec4(0.20000000000000001, 0.20000000000000001, 0.75, 1.0)
+            glowColor = Vec4(0.200, 0.200, 0.75, 1.0)
             glowObj = self
             startColor = Vec4(1, 1, 1, 1)
             startPos = self.getPos()
-            movePos = startPos + Point3(0, 0, 0.014999999999999999)
-            self.weaponLeveledIval = Sequence(Parallel(LerpPosInterval(self, 0.20000000000000001, movePos, startPos), LerpColorScaleInterval(glowObj, 0.20000000000000001, glowColor, startColor, blendType = 'easeInOut')), Wait(0.40000000000000002), Parallel(LerpColorScaleInterval(glowObj, 3, startColor, blendType = 'easeInOut'), Sequence(LerpPosInterval(self, 0.085000000000000006, startPos, movePos), LerpPosInterval(self, 0.059999999999999998, movePos - Point3(0.0, 0.0, 0.0050000000000000001), startPos), LerpPosInterval(self, 0.035000000000000003, startPos, movePos - Point3(0.0, 0.0, 0.0050000000000000001)))))
+            movePos = startPos + Point3(0, 0, 0.0149)
+            self.weaponLeveledIval = Sequence(Parallel(LerpPosInterval(self, 0.200, movePos, startPos), LerpColorScaleInterval(glowObj, 0.200, glowColor, startColor, blendType = 'easeInOut')), Wait(0.4), Parallel(LerpColorScaleInterval(glowObj, 3, startColor, blendType = 'easeInOut'), Sequence(LerpPosInterval(self, 0.085, startPos, movePos), LerpPosInterval(self, 0.0598, movePos - Point3(0.0, 0.0, 0.00500), startPos), LerpPosInterval(self, 0.035000, startPos, movePos - Point3(0.0, 0.0, 0.00500)))))
             self.weaponLeveledIval.start()
         elif self.lastExp != value:
-            glowColor = Vec4(0.14999999999999999, 0.14999999999999999, 0.59999999999999998, 1.0)
+            glowColor = Vec4(0.149, 0.149, 0.598, 1.0)
             glowObj = self
             startColor = Vec4(1, 1, 1, 1)
             startPos = self.getPos()
             movePos = startPos + Point3(0, 0, 0.01)
-            self.expGainIval = Sequence(Parallel(LerpPosInterval(self, 0.10000000000000001, movePos, startPos), LerpColorScaleInterval(glowObj, 0.10000000000000001, glowColor, startColor, blendType = 'easeInOut')), Wait(0.10000000000000001), Parallel(LerpColorScaleInterval(glowObj, 1, startColor, glowColor, blendType = 'easeInOut'), Sequence(LerpPosInterval(self, 0.085000000000000006, startPos, movePos), LerpPosInterval(self, 0.059999999999999998, movePos - Point3(0.0, 0.0, 0.0050000000000000001), startPos), LerpPosInterval(self, 0.035000000000000003, startPos, movePos - Point3(0.0, 0.0, 0.0050000000000000001)))))
+            self.expGainIval = Sequence(Parallel(LerpPosInterval(self, 0.100, movePos, startPos), LerpColorScaleInterval(glowObj, 0.100, glowColor, startColor, blendType = 'easeInOut')), Wait(0.100), Parallel(LerpColorScaleInterval(glowObj, 1, startColor, glowColor, blendType = 'easeInOut'), Sequence(LerpPosInterval(self, 0.085, startPos, movePos), LerpPosInterval(self, 0.0598, movePos - Point3(0.0, 0.0, 0.00500), startPos), LerpPosInterval(self, 0.035000, startPos, movePos - Point3(0.0, 0.0, 0.00500)))))
             self.expGainIval.start()
 
         self.lastExp = value
@@ -253,7 +253,7 @@ class TonicButton(SkillButton):
             if tonics.get(ItemGlobals.ROAST_PORK) > 0:
                 return ItemGlobals.ROAST_PORK
 
-            idealAmount = max(0, localAvatar.getMaxHp() * 0.80000000000000004 - localAvatar.getHp())
+            idealAmount = max(0, localAvatar.getMaxHp() * 0.800000 - localAvatar.getHp())
             bestTonicId = defaultTonic
             for (tonicId, count) in sorted(tonics.iteritems()):
                 if count:
@@ -289,7 +289,7 @@ class TonicButton(SkillButton):
 
         self.disableHotkeys()
         self.enableHotkeys(newTonic)
-        self.skillButton['geom_scale'] = 0.10000000000000001
+        self.skillButton['geom_scale'] = 0.100
 
 
     def destroy(self):
@@ -310,7 +310,7 @@ class ShipRepairButton(SkillButton):
         self._skillIconName = 'sail_come_about'
         self._skillId = InventoryType.ShipRepairKit
         SkillButton.__init__(self, self._skillId, self.callback, 0, 0, showQuantity = True, showHelp = False, showRing = True, hotkey = 'T')
-        self.skillButton['geom_scale'] = 0.10000000000000001
+        self.skillButton['geom_scale'] = 0.100
         self.invReq = None
         self._buttonDisabled = False
         self._hotkeysEnabled = True
@@ -414,10 +414,10 @@ class CombatTray(GuiTray):
     notify = DirectNotifyGlobal.directNotify.newCategory('CombatTray')
     InstantCast = base.config.GetBool('instant-cast', 0)
     SkillButtonEvents = ('attack', 'mouse2', 'attack-up')
-    COMBO_WINDOW_START = 0.29999999999999999
+    COMBO_WINDOW_START = 0.299
     COMBO_WINDOW_END = 1.0
     RECOVERY_TIME = 0.75
-    WINDOW_LENGTH = 0.40000000000000002
+    WINDOW_LENGTH = 0.4
     BUTTON_MASH_WINDOW = 1.3
     BASIC_ATTACKS = (InventoryType.CutlassHack, InventoryType.PistolShoot, InventoryType.MusketShoot, InventoryType.MeleePunch, InventoryType.DaggerCut, InventoryType.GrenadeThrow, InventoryType.StaffBlast, InventoryType.DollAttune, InventoryType.DollPoke)
     IGNORES_INPUT_LOCK = (InventoryType.UseItem, InventoryType.UsePotion, EnemySkills.PISTOL_RELOAD, EnemySkills.GRENADE_RELOAD)
@@ -429,9 +429,9 @@ class CombatTray(GuiTray):
     def __init__(self, parent, **kw):
         optiondefs = (('relief', None, None),)
         self.defineoptions(kw, optiondefs)
-        GuiTray.__init__(self, parent, 0.35999999999999999, 0.12)
+        GuiTray.__init__(self, parent, 0.359, 0.12)
         self.initialiseoptions(CombatTray)
-        self.CHARGE_MODE_TIME_THRESHOLD = 0.29999999999999999
+        self.CHARGE_MODE_TIME_THRESHOLD = 0.299
         self.thresholdHit = 0
         self.aimAssistTarget = None
         self.skillTray = RadialMenu.SkillTray()
@@ -478,11 +478,11 @@ class CombatTray(GuiTray):
         icons = loader.loadModel('models/gui/gui_icons_weapon')
         icons.reparentTo(self.card)
         self.chargeCard = loader.loadModel('models/textureCards/chargeMeter')
-        self.reloadFrame = DirectFrame(parent = base.a2dBottomCenter, relief = None, state = DGG.DISABLED, image = self.card.find('**/base'), image_scale = 0.12, image_pos = (0, 0, 0.02), pos = (-0.070000000000000007, 0, 0.40000000000000002))
+        self.reloadFrame = DirectFrame(parent = base.a2dBottomCenter, relief = None, state = DGG.DISABLED, image = self.card.find('**/base'), image_scale = 0.12, image_pos = (0, 0, 0.02), pos = (-0.070, 0, 0.4))
         self.reloadFrame.hide()
-        self.chargeMeter = DirectLabel(parent = base.a2dBottomCenter, relief = None, state = DGG.DISABLED, frameColor = (1, 1, 1, 1), pos = (0.45000000000000001, 0, 0.20000000000000001), image = self.chargeCard.find('**/distance_meter'), image_scale = (0.059999999999999998, 0, 0.59999999999999998), image_pos = (-0.012, 0, 0.29999999999999999))
+        self.chargeMeter = DirectLabel(parent = base.a2dBottomCenter, relief = None, state = DGG.DISABLED, frameColor = (1, 1, 1, 1), pos = (0.450, 0, 0.200), image = self.chargeCard.find('**/distance_meter'), image_scale = (0.0598, 0, 0.598), image_pos = (-0.012, 0, 0.299))
         self.chargeMeter.setTransparency(1)
-        self.chargeMeterBar = DirectWaitBar(parent = self.chargeMeter, relief = DGG.FLAT, state = DGG.DISABLED, range = 100, value = 0, frameColor = (0, 0, 0, 1), barColor = (1, 0.20000000000000001, 0.10000000000000001, 1), pos = (-0.0050000000000000001, 0, 0.01), hpr = (0, 0, -90), frameSize = (0, 0.58299999999999996, 0, 0.014))
+        self.chargeMeterBar = DirectWaitBar(parent = self.chargeMeter, relief = DGG.FLAT, state = DGG.DISABLED, range = 100, value = 0, frameColor = (0, 0, 0, 1), barColor = (1, 0.200, 0.100, 1), pos = (-0.00500, 0, 0.01), hpr = (0, 0, -90), frameSize = (0, 0.58296, 0, 0.014))
         self.chargeMeter.hide()
         top_gui = loader.loadModel('models/gui/toplevel_gui')
         fires = [
@@ -501,7 +501,7 @@ class CombatTray(GuiTray):
         self.bloodFirePath.setZ(0.01)
         self.bloodFirePath.setScale(0.5)
         self.bloodFirePath.hide()
-        self.activeName = DirectLabel(parent = self.reloadFrame, relief = None, state = DGG.DISABLED, text = PLocalizer.UsingSkill, text_align = TextNode.ALeft, text_scale = 0.059999999999999998, pos = (0.089999999999999997, 0, 0.01), text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getPirateOutlineFont())
+        self.activeName = DirectLabel(parent = self.reloadFrame, relief = None, state = DGG.DISABLED, text = PLocalizer.UsingSkill, text_align = TextNode.ALeft, text_scale = 0.0598, pos = (0.089, 0, 0.01), text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getPirateOutlineFont())
         self.skillFrame = DirectFrame(parent = self.reloadFrame, relief = None, state = DGG.DISABLED, image = self.card.find('**/cutlass_sweep'), image_scale = 0.12, sortOrder = 20, image_pos = (0, 0, 0.02))
         self.skillFrame.setTransparency(1)
         self.skillMapping = { }
@@ -528,11 +528,11 @@ class CombatTray(GuiTray):
         weaponSlots = range(Locations.RANGE_EQUIP_WEAPONS[0], Locations.RANGE_EQUIP_WEAPONS[1] + 1)
         self.slotDisplay = InventoryUICombatTrayGrid.InventoryUICombatTrayGrid(self.inventoryUIManager, buttonSize * float(len(weaponSlots)), buttonSize * 1.0, int(len(weaponSlots)), 1, slotList = weaponSlots)
         self.slotDisplay.reparentTo(self)
-        self.slotDisplay.setPos(-0.59999999999999998, 0.0, 0.01)
+        self.slotDisplay.setPos(-0.598, 0.0, 0.01)
         self.charmDisplay = InventoryUICharmGrid.InventoryUICharmGrid(self.inventoryUIManager, buttonSize * 1.0, buttonSize * 1.0, 1, 1, slotList = [
             Locations.RANGE_EQUIP_ITEMS[0]])
         self.charmDisplay.reparentTo(self)
-        self.charmDisplay.setPos(-0.29999999999999999, 0, 0.01)
+        self.charmDisplay.setPos(-0.299, 0, 0.01)
         self.showWeapons()
         if not localAvatar.currentWeaponId:
             self.findAWeaponToEquip()
@@ -542,7 +542,7 @@ class CombatTray(GuiTray):
 
     def showCharm(self):
         if self.tonicButton:
-            self.tonicButton.setPos(-0.40000000000000002, 0, 0.080000000000000002)
+            self.tonicButton.setPos(-0.4, 0, 0.08)
 
         if self.charmDisplay:
             self.charmDisplay.show()
@@ -554,7 +554,7 @@ class CombatTray(GuiTray):
 
     def showWeapons(self):
         if self.tonicButton:
-            self.tonicButton.setPos(-(InventoryUICombatTrayGrid.TOTALWIDTH + 0.26000000000000001), 0, 0.080000000000000002)
+            self.tonicButton.setPos(-(InventoryUICombatTrayGrid.TOTALWIDTH + 0.260), 0, 0.08)
 
         if self.charmDisplay:
             self.charmDisplay.hide()
@@ -790,7 +790,7 @@ class CombatTray(GuiTray):
             self.tonicButton = TonicButton()
             self.tonicButton.reparentTo(self)
             self.tonicButton.setScale(0.87)
-            self.tonicButton.setPos(-0.66000000000000003, 0, 0.080000000000000002)
+            self.tonicButton.setPos(-0.66000, 0, 0.08)
 
 
 
@@ -822,7 +822,7 @@ class CombatTray(GuiTray):
         if not self.shipRepairButton:
             self.shipRepairButton = ShipRepairButton()
             self.shipRepairButton.detachNode()
-            self.shipRepairButton.setPos(-0.5, 0, 0.080000000000000002)
+            self.shipRepairButton.setPos(-0.5, 0, 0.08)
 
 
 
@@ -1722,7 +1722,7 @@ class CombatTray(GuiTray):
         if self.weaponMode == WeaponGlobals.FIREARM:
             self.maxCharge = WeaponGlobals.getAttackMaxCharge(InventoryType.PistolTakeAim, self.ammoSkillId)
             if blunderbuss:
-                self.maxCharge = self.maxCharge * 0.40000000000000002
+                self.maxCharge = self.maxCharge * 0.4
 
         elif self.weaponMode == WeaponGlobals.GRENADE:
             self.maxCharge = WeaponGlobals.getAttackMaxCharge(InventoryType.GrenadeLongVolley, self.ammoSkillId)
@@ -1738,9 +1738,9 @@ class CombatTray(GuiTray):
 
         self.maxCharge += self.CHARGE_MODE_TIME_THRESHOLD
         if self.weaponMode == WeaponGlobals.STAFF:
-            self.chargeMeterBar['barColor'] = Vec4(0.59999999999999998, 0.29999999999999999, 1.0, 1.0)
+            self.chargeMeterBar['barColor'] = Vec4(0.598, 0.299, 1.0, 1.0)
         else:
-            self.chargeMeterBar['barColor'] = Vec4(1.0, 0.20000000000000001, 0.10000000000000001, 1.0)
+            self.chargeMeterBar['barColor'] = Vec4(1.0, 0.200, 0.100, 1.0)
         taskMgr.add(self.buttonCharging, 'buttonCharging', priority = 40)
 
 
@@ -1845,9 +1845,9 @@ class CombatTray(GuiTray):
             self.chargeMeterBar['value'] = self.chargeTime
             if self.chargeTime >= self.maxCharge:
                 if self.weaponMode == WeaponGlobals.STAFF:
-                    self.chargeMeterBar['barColor'] = Vec4(0.69999999999999996, 0.69999999999999996, 1.0, 1.0)
+                    self.chargeMeterBar['barColor'] = Vec4(0.696, 0.696, 1.0, 1.0)
                 else:
-                    self.chargeMeterBar['barColor'] = Vec4(1.0, 0.59999999999999998, 0.29999999999999999, 1.0)
+                    self.chargeMeterBar['barColor'] = Vec4(1.0, 0.598, 0.299, 1.0)
 
         else:
             self.chargeMeterBar['value'] = 0
@@ -1868,7 +1868,7 @@ class CombatTray(GuiTray):
 
     def updateBloodFire(self, bloodFireTime):
         self.chargeMeterBar['value'] = bloodFireTime
-        self.bloodFirePath.setX(self.chargeMeterBar.getPercent() * 0.0058999999999999999)
+        self.bloodFirePath.setX(self.chargeMeterBar.getPercent() * 0.00589)
 
 
     def hideBloodFire(self):

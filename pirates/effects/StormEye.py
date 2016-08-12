@@ -47,7 +47,7 @@ class StormEye(EffectController, NodePath):
     def createTrack(self):
         fadeIn = LerpColorScaleInterval(self, 1.5, Vec4(1.0, 1.0, 1.0, 1.0), startColorScale = Vec4(1.0, 1.0, 1.0, 0.0))
         fadeOut = LerpColorScaleInterval(self, 1.5, Vec4(1.0, 1.0, 1.0, 0.0), startColorScale = Vec4(1.0, 1.0, 1.0, 1.0))
-        cloud1 = Sequence(LerpFunctionInterval(self.cloudCoverTexStageArr[1].setColor, 4.5, toData = Vec4(0.90000000000000002, 0.90000000000000002, 0.90000000000000002, 1.0), fromData = Vec4(0.75, 0.75, 0.75, 1.0)), LerpFunctionInterval(self.cloudCoverTexStageArr[1].setColor, 4.5, toData = Vec4(0.75, 0.75, 0.75, 1.0), fromData = Vec4(0.90000000000000002, 0.90000000000000002, 0.90000000000000002, 1.0)))
+        cloud1 = Sequence(LerpFunctionInterval(self.cloudCoverTexStageArr[1].setColor, 4.5, toData = Vec4(0.9, 0.9, 0.9, 1.0), fromData = Vec4(0.75, 0.75, 0.75, 1.0)), LerpFunctionInterval(self.cloudCoverTexStageArr[1].setColor, 4.5, toData = Vec4(0.75, 0.75, 0.75, 1.0), fromData = Vec4(0.9, 0.9, 0.9, 1.0)))
         cloud2 = Sequence(LerpFunctionInterval(self.cloudCoverTexStageArr[2].setColor, 2.5, toData = Vec4(1.0, 1.0, 1.0, 1.0), fromData = Vec4(0.75, 0.75, 0.75, 1.0)), LerpFunctionInterval(self.cloudCoverTexStageArr[2].setColor, 2.5, toData = Vec4(0.75, 0.75, 0.75, 1.0), fromData = Vec4(1.0, 1.0, 1.0, 1.0)))
         swirl = LerpHprInterval(self.lensNode, 10.0, Vec3(-360, 90, 0), Vec3(0, 90, 0))
         self.startEffect = Sequence(Wait(0.5), Func(cloud1.loop), Func(cloud2.loop), Func(swirl.loop), Func(self.effectModel.reparentTo, self), fadeIn)

@@ -32,7 +32,7 @@ class SimpleSmokeCloud(PooledEffect, EffectController):
         self.p0.setEmitter('SphereVolumeEmitter')
         self.f.addParticles(self.p0)
         self.p0.setPoolSize(3)
-        self.p0.setBirthRate(0.10000000000000001)
+        self.p0.setBirthRate(0.100)
         self.p0.setLitterSize(1)
         self.p0.setLitterSpread(0)
         self.p0.setSystemLifespan(0.0)
@@ -65,14 +65,14 @@ class SimpleSmokeCloud(PooledEffect, EffectController):
 
 
     def createTrack(self):
-        self.track = Sequence(Wait(0.10000000000000001), Func(self.p0.setBirthRate, 0.10000000000000001), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Wait(1.0), Func(self.p0.setBirthRate, 100), Wait(3.0), Func(self.cleanUpEffect))
+        self.track = Sequence(Wait(0.100), Func(self.p0.setBirthRate, 0.100), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Wait(1.0), Func(self.p0.setBirthRate, 100), Wait(3.0), Func(self.cleanUpEffect))
 
 
     def setEffectScale(self, scale):
-        self.p0.renderer.setInitialXScale(0.050000000000000003 * self.cardScale * scale)
+        self.p0.renderer.setInitialXScale(0.050000 * self.cardScale * scale)
         self.p0.renderer.setFinalXScale(0.25 * self.cardScale * scale)
-        self.p0.renderer.setInitialYScale(0.050000000000000003 * self.cardScale * scale)
-        self.p0.renderer.setFinalYScale(0.29999999999999999 * self.cardScale * scale)
+        self.p0.renderer.setInitialYScale(0.050000 * self.cardScale * scale)
+        self.p0.renderer.setFinalYScale(0.299 * self.cardScale * scale)
         self.p0.emitter.setAmplitude(6.0 * scale)
         self.p0.emitter.setAmplitudeSpread(2.0 * scale)
         self.p0.emitter.setOffsetForce(Vec3(2.5, 2.5, 5.0) * scale)

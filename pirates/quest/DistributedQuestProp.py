@@ -299,7 +299,7 @@ class DistributedQuestProp(DistributedBattleable.DistributedBattleable, Lootable
             self.openAnim = cb.bindAnim(ab, -1)
             self.openAnim.pose(0)
             self.openSound = loadSfx(SoundGlobals.SFX_FX_OPEN_CHEST_02)
-            self.openSound.setVolume(0.80000000000000004)
+            self.openSound.setVolume(0.800000)
 
 
 

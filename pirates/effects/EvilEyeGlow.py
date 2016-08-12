@@ -30,8 +30,8 @@ class EvilEyeGlow(PooledEffect, EffectController):
 
 
     def createTrack(self, lod = None):
-        scaleUpHalo = self.glow.scaleInterval(0.14999999999999999, 1.0, startScale = 0.90000000000000002, blendType = 'easeInOut')
-        scaleDownHalo = self.glow.scaleInterval(0.14999999999999999, 0.90000000000000002, startScale = 1.0, blendType = 'easeInOut')
+        scaleUpHalo = self.glow.scaleInterval(0.149, 1.0, startScale = 0.9, blendType = 'easeInOut')
+        scaleDownHalo = self.glow.scaleInterval(0.149, 0.9, startScale = 1.0, blendType = 'easeInOut')
         self.scaleIval = Sequence(scaleDownHalo, scaleUpHalo)
         self.startEffect = Sequence(Func(self.scaleIval.loop))
         self.endEffect = Sequence(Func(self.scaleIval.finish))

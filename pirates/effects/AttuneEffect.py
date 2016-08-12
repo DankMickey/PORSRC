@@ -33,7 +33,7 @@ class AttuneEffect(PooledEffect, EffectController):
         self.p0.setEmitter('DiscEmitter')
         self.f.addParticles(self.p0)
         self.p0.setPoolSize(64)
-        self.p0.setBirthRate(0.029999999999999999)
+        self.p0.setBirthRate(0.0299)
         self.p0.setLitterSize(1)
         self.p0.setLitterSpread(0)
         self.p0.setSystemLifespan(0.0)
@@ -58,7 +58,7 @@ class AttuneEffect(PooledEffect, EffectController):
         self.p0.renderer.setInitialZScale(1.0)
         self.p0.renderer.setFinalZScale(4.0)
         self.p0.emitter.setEmissionType(BaseParticleEmitter.ETRADIATE)
-        self.p0.emitter.setAmplitude(0.20000000000000001)
+        self.p0.emitter.setAmplitude(0.200)
         self.p0.emitter.setAmplitudeSpread(0.0)
         self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, -0.5))
         self.p0.emitter.setExplicitLaunchVector(Vec3(1.0, 0.0, 0.0))
@@ -68,7 +68,7 @@ class AttuneEffect(PooledEffect, EffectController):
 
     def createTrack(self):
         posIval = LerpPosInterval(self, 0.75, Point3(0, 0, 0.5))
-        self.startEffect = Sequence(Func(self.p0.clearToInitial), Func(self.p0.setBirthRate, 0.01), Func(self.p0.factory.setLifespanBase, 0.75), Func(self.particleDummy.reparentTo, render), Func(self.f.start, self, self.particleDummy), posIval, Func(self.p0.setBirthRate, 0.029999999999999999), Func(self.p0.factory.setLifespanBase, 1.75), Wait(1.0), Func(self.particleDummy.wrtReparentTo, self))
+        self.startEffect = Sequence(Func(self.p0.clearToInitial), Func(self.p0.setBirthRate, 0.01), Func(self.p0.factory.setLifespanBase, 0.75), Func(self.particleDummy.reparentTo, render), Func(self.f.start, self, self.particleDummy), posIval, Func(self.p0.setBirthRate, 0.0299), Func(self.p0.factory.setLifespanBase, 1.75), Wait(1.0), Func(self.particleDummy.wrtReparentTo, self))
         self.endEffect = Sequence(Func(self.p0.setBirthRate, 100.0), Wait(3.0), Func(self.p0.setBirthRate, 0.0), Func(self.cleanUpEffect))
         self.track = Sequence(self.startEffect, Wait(2.0), self.endEffect)
 
@@ -76,8 +76,8 @@ class AttuneEffect(PooledEffect, EffectController):
     def setEffectColor(self, color):
         self.effectColor = color
         self.p0.renderer.getColorInterpolationManager().clearToInitial()
-        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 0.20000000000000001, Vec4(0, 0, 0, 0.5), Vec4(0, 0, 0, 1), 1)
-        self.p0.renderer.getColorInterpolationManager().addLinear(0.20000000000000001, 1.0, Vec4(0, 0, 0, 0.75), self.effectColor, 1)
+        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 0.200, Vec4(0, 0, 0, 0.5), Vec4(0, 0, 0, 1), 1)
+        self.p0.renderer.getColorInterpolationManager().addLinear(0.200, 1.0, Vec4(0, 0, 0, 0.75), self.effectColor, 1)
 
 
     def cleanUpEffect(self):

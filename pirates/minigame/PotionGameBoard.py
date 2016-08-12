@@ -25,7 +25,7 @@ class PotionGameBoard(DirectFrame):
         cm = CardMaker('card')
         cm.setFrame(0, 0, 1.0, 1.0)
         self.background = self.attachNewNode(cm.generate())
-        self.background.setColor(0.20000000000000001, 0.20000000000000001, 0.20000000000000001, 1)
+        self.background.setColor(0.200, 0.200, 0.200, 1)
         self.potionGame = potionGame
         self.pieceDropped = False
         self.pieceFlipped = False
@@ -154,7 +154,7 @@ class PotionGameBoard(DirectFrame):
             self.pieceNotDropped = True
             self.leftPlayerPiece.setY(-5)
             self.rightPlayerPiece.setY(-5)
-            self.potionGame.animationList.append(Sequence(Parallel(LerpPosInterval(self.leftPlayerPiece, duration = 0.10000000000000001, pos = (self.leftPlayerPiece.getX(), self.leftPlayerPiece.getY(), self.leftPlayerPiece.getZ() - 0.050000000000000003)), LerpPosInterval(self.rightPlayerPiece, duration = 0.10000000000000001, pos = (self.rightPlayerPiece.getX(), self.rightPlayerPiece.getY(), self.rightPlayerPiece.getZ() - 0.050000000000000003))), Parallel(LerpPosInterval(self.leftPlayerPiece, duration = 0.10000000000000001, pos = (self.leftPlayerPiece.getX(), self.leftPlayerPiece.getY(), self.leftPlayerPiece.getZ())), LerpPosInterval(self.rightPlayerPiece, duration = 0.10000000000000001, pos = (self.rightPlayerPiece.getX(), self.rightPlayerPiece.getY(), self.rightPlayerPiece.getZ()))), Func(self.leftPlayerPiece.setY, 0), Func(self.rightPlayerPiece.setY, 0)))
+            self.potionGame.animationList.append(Sequence(Parallel(LerpPosInterval(self.leftPlayerPiece, duration = 0.100, pos = (self.leftPlayerPiece.getX(), self.leftPlayerPiece.getY(), self.leftPlayerPiece.getZ() - 0.050000)), LerpPosInterval(self.rightPlayerPiece, duration = 0.100, pos = (self.rightPlayerPiece.getX(), self.rightPlayerPiece.getY(), self.rightPlayerPiece.getZ() - 0.050000))), Parallel(LerpPosInterval(self.leftPlayerPiece, duration = 0.100, pos = (self.leftPlayerPiece.getX(), self.leftPlayerPiece.getY(), self.leftPlayerPiece.getZ())), LerpPosInterval(self.rightPlayerPiece, duration = 0.100, pos = (self.rightPlayerPiece.getX(), self.rightPlayerPiece.getY(), self.rightPlayerPiece.getZ()))), Func(self.leftPlayerPiece.setY, 0), Func(self.rightPlayerPiece.setY, 0)))
             self.potionGame.gameFSM.request('Anim')
 
 
@@ -179,10 +179,10 @@ class PotionGameBoard(DirectFrame):
 
     def showSoulXP(self, Xloc, Zloc, count):
         xpAmt = PotionGlobals.BONUS_XP_AMT[count]
-        xpLabel = DirectLabel(parent = aspect2d, relief = None, text = '+ ' + str(xpAmt) + ' ' + PLocalizer.PotionGui['XPLabel'], text_scale = PiratesGuiGlobals.TextScaleTitleLarge, text_font = PiratesGlobals.getPirateOutlineFont(), text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 37, pos = (Xloc, 0, Zloc - 0.10000000000000001), textMayChange = 0)
+        xpLabel = DirectLabel(parent = aspect2d, relief = None, text = '+ ' + str(xpAmt) + ' ' + PLocalizer.PotionGui['XPLabel'], text_scale = PiratesGuiGlobals.TextScaleTitleLarge, text_font = PiratesGlobals.getPirateOutlineFont(), text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 37, pos = (Xloc, 0, Zloc - 0.100), textMayChange = 0)
         xpLabel.setTransparency(True)
         xpLabel.stash()
-        return Sequence(Func(xpLabel.unstash), Parallel(LerpPosInterval(xpLabel, duration = 2.5, pos = (Xloc, 0.0, Zloc + 0.29999999999999999), blendType = 'easeOut'), LerpColorScaleInterval(xpLabel, duration = 1.5, colorScale = (1, 1, 1, 0), blendType = 'easeIn')), Func(xpLabel.remove_node))
+        return Sequence(Func(xpLabel.unstash), Parallel(LerpPosInterval(xpLabel, duration = 2.5, pos = (Xloc, 0.0, Zloc + 0.299), blendType = 'easeOut'), LerpColorScaleInterval(xpLabel, duration = 1.5, colorScale = (1, 1, 1, 0), blendType = 'easeIn')), Func(xpLabel.remove_node))
 
 
     def findGroups(self):
@@ -329,9 +329,9 @@ class PotionGameBoard(DirectFrame):
             if mergePiece is not None:
                 rotQuat = Quat()
                 rotQuat.setHpr((piece.getH(), piece.getP() + 90, piece.getR()))
-                outInterval = Parallel(LerpQuatInterval(piece.background, duration = 0.40000000000000002, quat = rotQuat, blendType = 'easeIn'), piece.moveToBoardSlow(mergePiece.column, mergePiece.row))
+                outInterval = Parallel(LerpQuatInterval(piece.background, duration = 0.4, quat = rotQuat, blendType = 'easeIn'), piece.moveToBoardSlow(mergePiece.column, mergePiece.row))
             else:
-                outInterval = LerpColorInterval(piece.background, duration = 0.59999999999999998, color = (1, 1, 1, 0))
+                outInterval = LerpColorInterval(piece.background, duration = 0.598, color = (1, 1, 1, 0))
 
             s = Sequence(Func(piece.setY, 5), outInterval)
             if piece not in self.upgradeList:
@@ -362,7 +362,7 @@ class PotionGameBoard(DirectFrame):
                                         rotQuat.setHpr((piece.getH(), piece.getP() + 90, piece.getR()))
                                         rotQuat2.setHpr((piece.getH(), piece.getP() + 270, piece.getR()))
                                         rotQuat3.setHpr((piece.getH(), piece.getP() + 360, piece.getR()))
-                                        self.potionGame.animationList.append(Sequence(Func(piece.setY, -10), LerpQuatInterval(piece.background, duration = 0.40000000000000002, quat = rotQuat, blendType = 'easeIn'), Func(piece.upgrade), Parallel(piece.moveToBoardSlow(columnIndex, rowIndex), LerpQuatInterval(piece.background, duration = 0.40000000000000002, quat = rotQuat3, startQuat = rotQuat2, blendType = 'easeOut')), Func(piece.setY, 0)))
+                                        self.potionGame.animationList.append(Sequence(Func(piece.setY, -10), LerpQuatInterval(piece.background, duration = 0.4, quat = rotQuat, blendType = 'easeIn'), Func(piece.upgrade), Parallel(piece.moveToBoardSlow(columnIndex, rowIndex), LerpQuatInterval(piece.background, duration = 0.4, quat = rotQuat3, startQuat = rotQuat2, blendType = 'easeOut')), Func(piece.setY, 0)))
                                         self.delayDropped = True
                                         self.upgradeList.remove(piece)
                                     except:
@@ -383,8 +383,8 @@ class PotionGameBoard(DirectFrame):
                 rotQuat2.setHpr((piece.getH(), piece.getP() + 270, piece.getR()))
                 rotQuat3.setHpr((piece.getH(), piece.getP() + 360, piece.getR()))
                 piece.setY(-10)
-                OutSeq = LerpQuatInterval(piece.background, duration = 0.40000000000000002, quat = rotQuat3, startQuat = rotQuat2, blendType = 'easeOut')
-                self.potionGame.animationList.append(Sequence(LerpQuatInterval(piece.background, duration = 0.40000000000000002, quat = rotQuat, blendType = 'easeIn'), Func(piece.upgrade), OutSeq, Func(piece.setY, 0)))
+                OutSeq = LerpQuatInterval(piece.background, duration = 0.4, quat = rotQuat3, startQuat = rotQuat2, blendType = 'easeOut')
+                self.potionGame.animationList.append(Sequence(LerpQuatInterval(piece.background, duration = 0.4, quat = rotQuat, blendType = 'easeIn'), Func(piece.upgrade), OutSeq, Func(piece.setY, 0)))
             except:
                 print "Exception 3 in upgradePieces! piece is %s" % piece
 
@@ -417,7 +417,7 @@ class PotionGameBoard(DirectFrame):
                         self.potionGame.animationList.append(Sequence(self.dragPiece.moveToBoard(self.dragPiece.column, self.dragPiece.row), Func(self.dragPiece.setY, 0)))
                         self.dragPiece = None
 
-                    if screenx > 0 and screeny > -0.80000000000000004 and screenx < 0.88 and screeny < 0.92000000000000004:
+                    if screenx > 0 and screeny > -0.800000 and screenx < 0.88 and screeny < 0.920000:
                         self.moveDown()
 
 
@@ -434,7 +434,7 @@ class PotionGameBoard(DirectFrame):
                             for ingredient in self.potionGame.currentRecipe.ingredients:
                                 if not (ingredient.completed) and not dragHandled:
                                     ingredientDist = (ingredient.getPos() - recipePos).length()
-                                    if ingredientDist < 0.20000000000000001:
+                                    if ingredientDist < 0.200:
                                         neededIngredient.completed = True
                                         self.dragPiece.wrtReparentTo(self.potionGame.currentRecipe)
                                         self.boardPieces[self.dragPiece.column][self.dragPiece.row] = None
@@ -444,16 +444,16 @@ class PotionGameBoard(DirectFrame):
                                         self.experementMatched = True
                                         self.potionGame.gameFSM.request('Anim')
 
-                                ingredientDist < 0.20000000000000001
+                                ingredientDist < 0.200
 
                         else:
                             for ingredient in self.potionGame.currentRecipe.ingredients:
                                 if not ingredient.completed:
                                     ingredientDist = (ingredient.getPos() - recipePos).length()
-                                    if ingredientDist < 0.20000000000000001:
+                                    if ingredientDist < 0.200:
                                         self.experementFailed = True
 
-                                ingredientDist < 0.20000000000000001
+                                ingredientDist < 0.200
 
 
 

@@ -1,23 +1,23 @@
 from pandac.PandaModules import Point3, VBase3, Vec4, Vec3
 objectStruct = {
     'AmbientColors': {
-        0: Vec4(0.207843, 0.24313699999999999, 0.44705899999999998, 1),
-        2: Vec4(0.66666700000000001, 0.72156900000000002, 0.792157, 1),
-        4: Vec4(0.72156900000000002, 0.611765, 0.61960800000000005, 1),
-        6: Vec4(0.207843, 0.24313699999999999, 0.44705899999999998, 1),
-        8: Vec4(0.38431399999999999, 0.41960799999999998, 0.56470600000000004, 1) },
+        0: Vec4(0.207843, 0.243136, 0.447058, 1),
+        2: Vec4(0.666667, 0.721569, 0.792157, 1),
+        4: Vec4(0.721569, 0.611765, 0.619608, 1),
+        6: Vec4(0.207843, 0.243136, 0.447058, 1),
+        8: Vec4(0.384313, 0.419607, 0.564706, 1) },
     'DirectionalColors': {
-        0: Vec4(0.95686300000000002, 0.90980399999999995, 0.89411799999999997, 1),
+        0: Vec4(0.956863, 0.909803, 0.894117, 1),
         2: Vec4(1, 1, 1, 1),
-        4: Vec4(0.439216, 0.17647099999999999, 0, 1),
-        6: Vec4(0.51372600000000002, 0.48235299999999998, 0.63921600000000001, 1),
-        8: Vec4(0.44705899999999998, 0.439216, 0.53725500000000004, 1) },
+        4: Vec4(0.439216, 0.176470, 0, 1),
+        6: Vec4(0.513726, 0.482352, 0.639216, 1),
+        8: Vec4(0.447058, 0.439216, 0.537255, 1) },
     'FogColors': {
-        0: Vec4(0.17254900000000001, 0.180392, 0.29019600000000001, 1),
-        2: Vec4(0.89411799999999997, 0.89411799999999997, 1, 1),
-        4: Vec4(0.231373, 0.20392199999999999, 0.18431400000000001, 1),
-        6: Vec4(0.17254900000000001, 0.180392, 0.29019600000000001, 1),
-        8: Vec4(0.129412, 0.13725499999999999, 0.20392199999999999, 1) },
+        0: Vec4(0.172549, 0.180392, 0.290196, 1),
+        2: Vec4(0.894117, 0.894117, 1, 1),
+        4: Vec4(0.231373, 0.203921, 0.184314, 1),
+        6: Vec4(0.172549, 0.180392, 0.290196, 1),
+        8: Vec4(0.129412, 0.137254, 0.203921, 1) },
     'FogRanges': {
         0: 0.000699999975040555,
         2: 0.00019999999494757503,
@@ -39,15 +39,15 @@ objectStruct = {
                     'Objects': {
                         '1157060429.94sdnaik': {
                             'Type': 'LOD Sphere',
-                            'Hpr': VBase3(136.46700000000001, 0.0, 0.0),
-                            'Pos': Point3(524.74199999999996, 2115.7649999999999, 580.947),
+                            'Hpr': VBase3(136.467, 0.0, 0.0),
+                            'Pos': Point3(524.741, 2115.7649999999999, 580.947),
                             'Radi': [
                                 4500.0,
                                 5000.0,
                                 7500.0],
                             'Scale': VBase3(1.0, 1.0, 1.0),
                             'VisSize': '' } },
-                    'Pos': Point3(-186.05099999999999, 1925.5360000000001, 0.0),
+                    'Pos': Point3(-186.050, 1925.536, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Undockable': False,
                     'VisSize': '',
@@ -64,7 +64,7 @@ objectStruct = {
                         '1158214327.11sdnaik': {
                             'Type': 'LOD Sphere',
                             'Hpr': Point3(0.0, 0.0, 0.0),
-                            'Pos': Point3(-166.29400000000001, -732.31299999999999, 210.85300000000001),
+                            'Pos': Point3(-166.294, -732.312, 210.853),
                             'Radi': [
                                 2700.0,
                                 3200.0,
@@ -89,7 +89,7 @@ objectStruct = {
                         '1158296490.13sdnaik': {
                             'Type': 'LOD Sphere',
                             'Hpr': Point3(0.0, 0.0, 0.0),
-                            'Pos': Point3(-40.881999999999998, 79.287000000000006, 47.831000000000003),
+                            'Pos': Point3(-40.8818, 79.287, 47.831),
                             'Radi': [
                                 700.0,
                                 1100.0,
@@ -97,7 +97,7 @@ objectStruct = {
                             'Scale': VBase3(1.0, 1.0, 1.0),
                             'VisSize': '' } },
                     'Phase': 1,
-                    'Pos': Point3(20199.543000000001, 24930.109, 0.0),
+                    'Pos': Point3(20199.543, 24930.109, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Undockable': False,
                     'VisSize': '',
@@ -115,7 +115,7 @@ objectStruct = {
                         '1162600600.5sdnaik': {
                             'Type': 'LOD Sphere',
                             'Hpr': Point3(0.0, 0.0, 0.0),
-                            'Pos': Point3(-96.153000000000006, -25.370000000000001, 136.44300000000001),
+                            'Pos': Point3(-96.153, -25.37, 136.443),
                             'Radi': [
                                 1550.0,
                                 2100.0,
@@ -141,7 +141,7 @@ objectStruct = {
                         '1163119750.53sdnaik': {
                             'Type': 'LOD Sphere',
                             'Hpr': Point3(0.0, 0.0, 0.0),
-                            'Pos': Point3(154.73500000000001, 0.0, 121.512),
+                            'Pos': Point3(154.735, 0.0, 121.512),
                             'Radi': [
                                 2200.0,
                                 2700.0,
@@ -166,7 +166,7 @@ objectStruct = {
                         '1161664293.39sdnaik': {
                             'Type': 'LOD Sphere',
                             'Hpr': Point3(0.0, 0.0, 0.0),
-                            'Pos': Point3(-3.6440000000000001, 24.436, -0.33000000000000002),
+                            'Pos': Point3(-3.644, 24.436, -0.33),
                             'Radi': [
                                 800.0,
                                 1200.0,
@@ -174,7 +174,7 @@ objectStruct = {
                             'Scale': VBase3(1.0, 1.0, 1.0),
                             'VisSize': '' } },
                     'Phase': 1,
-                    'Pos': Point3(656.26099999999997, 21799.171999999999, 0.0),
+                    'Pos': Point3(656.260, 21799.171999999999, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Undockable': False,
                     'VisSize': '',
@@ -191,7 +191,7 @@ objectStruct = {
                         '1164760719.72sdnaik': {
                             'Type': 'LOD Sphere',
                             'Hpr': Point3(0.0, 0.0, 0.0),
-                            'Pos': Point3(-51.332999999999998, -49.722000000000001, 287.08300000000003),
+                            'Pos': Point3(-51.3328, -49.722, 287.083),
                             'Radi': [
                                 800.0,
                                 1300.0,
@@ -199,7 +199,7 @@ objectStruct = {
                             'Scale': VBase3(1.0, 1.0, 1.0),
                             'VisSize': '' } },
                     'Phase': 1,
-                    'Pos': Point3(9109.2710000000006, 7179.4650000000001, 0.0),
+                    'Pos': Point3(9109.271, 7179.465, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Undockable': False,
                     'VisSize': '',
@@ -215,7 +215,7 @@ objectStruct = {
                         '1173381974.5sdnaik': {
                             'Type': 'LOD Sphere',
                             'Hpr': Point3(0.0, 0.0, 0.0),
-                            'Pos': Point3(616.47400000000005, 321.01799999999997, -18.170999999999999),
+                            'Pos': Point3(616.474, 321.017, -18.170),
                             'Radi': [
                                 1800.0,
                                 2300.0,
@@ -223,7 +223,7 @@ objectStruct = {
                             'Scale': VBase3(1.0, 1.0, 1.0),
                             'VisSize': '' } },
                     'Phase': 1,
-                    'Pos': Point3(-16722.863000000001, -10071.313, 0.0),
+                    'Pos': Point3(-16722.863, -10071.313, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Undockable': False,
                     'Visual': {
@@ -239,7 +239,7 @@ objectStruct = {
                         '1164763977.22sdnaik': {
                             'Type': 'LOD Sphere',
                             'Hpr': Point3(0.0, 0.0, 0.0),
-                            'Pos': Point3(-29.059000000000001, 204.24000000000001, 439.62799999999999),
+                            'Pos': Point3(-29.059, 204.24, 439.627),
                             'Radi': [
                                 1300.0,
                                 1800.0,
@@ -247,7 +247,7 @@ objectStruct = {
                             'Scale': VBase3(1.0, 1.0, 1.0),
                             'VisSize': '' } },
                     'Phase': 1,
-                    'Pos': Point3(-20199.960999999999, 18180.18, 0.32000000000000001),
+                    'Pos': Point3(-20199.960999999999, 18180.18, 0.320),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Undockable': False,
                     'VisSize': '',
@@ -265,7 +265,7 @@ objectStruct = {
                         '1164763735.42sdnaik': {
                             'Type': 'LOD Sphere',
                             'Hpr': Point3(0.0, 0.0, 0.0),
-                            'Pos': Point3(-40.881999999999998, 79.287000000000006, 47.831000000000003),
+                            'Pos': Point3(-40.8818, 79.287, 47.831),
                             'Radi': [
                                 650.0,
                                 1100.0,
@@ -290,7 +290,7 @@ objectStruct = {
                         '1164760526.77sdnaik': {
                             'Type': 'LOD Sphere',
                             'Hpr': Point3(0.0, 0.0, 0.0),
-                            'Pos': Point3(19.047000000000001, 304.65800000000002, 475.38400000000001),
+                            'Pos': Point3(19.047, 304.658, 475.384),
                             'Radi': [
                                 700.0,
                                 1100.0,
@@ -315,7 +315,7 @@ objectStruct = {
                         '1173382432.38sdnaik': {
                             'Type': 'LOD Sphere',
                             'Hpr': Point3(0.0, 0.0, 0.0),
-                            'Pos': Point3(82.897999999999996, 17.675000000000001, 160.28100000000001),
+                            'Pos': Point3(82.8976, 17.675, 160.281),
                             'Radi': [
                                 1200.0,
                                 1600.0,
@@ -323,7 +323,7 @@ objectStruct = {
                             'Scale': VBase3(1.0, 1.0, 1.0),
                             'VisSize': '' } },
                     'Phase': 1,
-                    'Pos': Point3(13299.626, -10296.977000000001, 0.0),
+                    'Pos': Point3(13299.626, -10296.977, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Undockable': False,
                     'VisSize': '',
@@ -340,15 +340,15 @@ objectStruct = {
                     'Spawnables': 'NAVY_KINGFISHER',
                     'Team': 'default',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' } },
                 '1185235968.0dxschafe1': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-20005.879000000001, 15829.349, 0.0),
+                    'Pos': Point3(-20005.879, 15829.349, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1185236224.0dxschafe': {
                     'Type': 'Ship Movement Node',
@@ -356,7 +356,7 @@ objectStruct = {
                     'Pos': Point3(-24653.134999999998, -1986.28, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1185236224.0dxschafe3': {
                     'Type': 'Ship Spawn Node',
@@ -368,15 +368,15 @@ objectStruct = {
                     'Spawnables': 'EITC_BARRACUDA',
                     'Team': 'default',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' } },
                 '1185236480.0dxschafe': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(18753.035, -13291.299999999999, 0.0),
+                    'Pos': Point3(18753.035, -13291.2, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1185236480.0dxschafe1': {
                     'Type': 'Ship Spawn Node',
@@ -388,7 +388,7 @@ objectStruct = {
                     'Spawnables': 'NAVY_MAN_O_WAR',
                     'Team': 'default',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' } },
                 '1185236736.0dxschafe': {
                     'Type': 'Ship Spawn Node',
@@ -400,7 +400,7 @@ objectStruct = {
                     'Spawnables': 'EITC_SENTINEL',
                     'Team': 'default',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' } },
                 '1185236864.0dxschafe': {
                     'Type': 'Ship Movement Node',
@@ -409,7 +409,7 @@ objectStruct = {
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1185237120.0dxschafe': {
                     'Type': 'Ship Movement Node',
@@ -417,39 +417,39 @@ objectStruct = {
                     'Pos': Point3(-25238.758000000002, -5313.116, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1185237120.0dxschafe1': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-10399.860000000001, -20861.782999999999, 39.996000000000002),
+                    'Pos': Point3(-10399.86, -20861.782999999999, 39.996),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1185237120.0dxschafe2': {
                     'Type': 'Ship Spawn Node',
                     'Flagship': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Level': '3',
-                    'Pos': Point3(-9856.5959999999995, -17695.881000000001, 0.0),
+                    'Pos': Point3(-9856.5959999999995, -17695.881, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'NAVY_COLOSSUS',
                     'Team': 'default',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' } },
                 '1185237248.0dxschafe': {
                     'Type': 'Ship Spawn Node',
                     'Flagship': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Level': '3',
-                    'Pos': Point3(22025.379000000001, -9170.4770000000008, 0.0040000000000000001),
+                    'Pos': Point3(22025.379, -9170.4770000000008, 0.00400),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'EITC_CORVETTE',
                     'Team': 'default',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' } },
                 '1196970035.53sdnaik': {
                     'Type': 'Island',
@@ -461,8 +461,8 @@ objectStruct = {
                     'Objects': {
                         '1196970432.69sdnaik': {
                             'Type': 'LOD Sphere',
-                            'Hpr': VBase3(-24.178000000000001, 0.0, 0.0),
-                            'Pos': Point3(-1.631, -36.853999999999999, 0.254),
+                            'Hpr': VBase3(-24.178, 0.0, 0.0),
+                            'Pos': Point3(-1.631, -36.853, 0.254),
                             'Radi': [
                                 600.0,
                                 1100.0,
@@ -488,7 +488,7 @@ objectStruct = {
                         '1196970440.66sdnaik': {
                             'Type': 'LOD Sphere',
                             'Hpr': VBase3(155.709, 0.0, 0.0),
-                            'Pos': Point3(70.641000000000005, -22.088000000000001, 0.0),
+                            'Pos': Point3(70.6410, -22.088, 0.0),
                             'Radi': [
                                 600.0,
                                 1100.0,
@@ -496,7 +496,7 @@ objectStruct = {
                             'Scale': VBase3(1.0, 1.0, 1.0),
                             'VisSize': '' } },
                     'PVPTeam': 1,
-                    'Pos': Point3(25429.918000000001, 11463.407999999999, 0.0),
+                    'Pos': Point3(25429.918, 11463.407999999999, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Undockable': False,
                     'VisSize': '',
@@ -513,7 +513,7 @@ objectStruct = {
                         '1210981042.09kmuller': {
                             'Type': 'LOD Sphere',
                             'Hpr': Point3(0.0, 0.0, 0.0),
-                            'Pos': Point3(68.293999999999997, 79.498000000000005, 0.0),
+                            'Pos': Point3(68.293, 79.4980, 0.0),
                             'Radi': [
                                 300.0,
                                 1000.0,
@@ -531,13 +531,13 @@ objectStruct = {
                     'Type': 'Island',
                     'File': 'pvp_rock_med_1',
                     'Environment': 'Interior',
-                    'Hpr': VBase3(-22.620000000000001, 0.0, 0.0),
+                    'Hpr': VBase3(-22.62, 0.0, 0.0),
                     'Minimap': False,
                     'Objects': {
                         '1210981113.03kmuller': {
                             'Type': 'LOD Sphere',
                             'Hpr': Point3(0.0, 0.0, 0.0),
-                            'Pos': Point3(47.430999999999997, 46.448999999999998, 0.0),
+                            'Pos': Point3(47.430, 46.4488, 0.0),
                             'Radi': [
                                 300.0,
                                 1000.0,
@@ -555,13 +555,13 @@ objectStruct = {
                     'Type': 'Island',
                     'File': 'pvp_rock_big_3',
                     'Environment': 'Interior',
-                    'Hpr': VBase3(333.57900000000001, 0.0, 0.0),
+                    'Hpr': VBase3(333.579, 0.0, 0.0),
                     'Minimap': False,
                     'Objects': {
                         '1210981144.78kmuller': {
                             'Type': 'LOD Sphere',
                             'Hpr': Point3(0.0, 0.0, 0.0),
-                            'Pos': Point3(50.723999999999997, -12.372, 0.0),
+                            'Pos': Point3(50.723, -12.372, 0.0),
                             'Radi': [
                                 300.0,
                                 1000.0,
@@ -579,20 +579,20 @@ objectStruct = {
                     'Type': 'Island',
                     'File': 'pvp_rock_med_2',
                     'Environment': 'Interior',
-                    'Hpr': VBase3(163.40100000000001, 0.0, 0.0),
+                    'Hpr': VBase3(163.401, 0.0, 0.0),
                     'Minimap': False,
                     'Objects': {
                         '1210981205.23kmuller': {
                             'Type': 'LOD Sphere',
                             'Hpr': Point3(0.0, 0.0, 0.0),
-                            'Pos': Point3(20.789000000000001, 44.606999999999999, 0.0),
+                            'Pos': Point3(20.789, 44.606, 0.0),
                             'Radi': [
                                 500.0,
                                 1000.0,
                                 3000.0],
-                            'Scale': VBase3(0.51100000000000001, 0.51100000000000001, 0.51100000000000001),
+                            'Scale': VBase3(0.511, 0.511, 0.511),
                             'VisSize': '' } },
-                    'Pos': Point3(28189.699000000001, 7544.893, 0.0),
+                    'Pos': Point3(28189.699, 7544.893, 0.0),
                     'Scale': VBase3(1.956, 1.956, 1.956),
                     'Undockable': True,
                     'VisSize': '',
@@ -603,13 +603,13 @@ objectStruct = {
                     'Type': 'Island',
                     'File': 'pvp_rock_big_2',
                     'Environment': 'Interior',
-                    'Hpr': VBase3(140.53299999999999, 0.0, 0.0),
+                    'Hpr': VBase3(140.532, 0.0, 0.0),
                     'Minimap': False,
                     'Objects': {
                         '1210981266.57kmuller': {
                             'Type': 'LOD Sphere',
                             'Hpr': Point3(0.0, 0.0, 0.0),
-                            'Pos': Point3(50.723999999999997, -12.372, 0.0),
+                            'Pos': Point3(50.723, -12.372, 0.0),
                             'Radi': [
                                 400.0,
                                 1000.0,
@@ -633,14 +633,14 @@ objectStruct = {
                         '1210981190.74kmuller': {
                             'Type': 'LOD Sphere',
                             'Hpr': Point3(0.0, 0.0, 0.0),
-                            'Pos': Point3(11.657, 10.593999999999999, 0.0),
+                            'Pos': Point3(11.657, 10.593, 0.0),
                             'Radi': [
                                 100.0,
                                 400.0,
                                 1200.0],
                             'Scale': VBase3(1.0, 1.0, 1.0),
                             'VisSize': '' } },
-                    'Pos': Point3(24676.653999999999, 6182.3959999999997, 0.0),
+                    'Pos': Point3(24676.653999999999, 6182.395, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Undockable': True,
                     'VisSize': '',
@@ -652,24 +652,24 @@ objectStruct = {
                     'Flagship': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Level': '3',
-                    'Pos': Point3(14231.834999999999, 30915.141, 0.0040000000000000001),
+                    'Pos': Point3(14231.834999999999, 30915.141, 0.00400),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'SKEL_SHADOW_CROW_FR',
                     'Team': 'default',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' } },
                 '1210197760.0WDIG': {
                     'Type': 'Ship Spawn Node',
                     'Flagship': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Level': '3',
-                    'Pos': Point3(26959.833999999999, 31042.932000000001, 0.0),
+                    'Pos': Point3(26959.833999999999, 31042.932, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'SKEL_HELLHOUND_FR',
                     'Team': 'default',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' } },
                 '1210197760.0WDIG0': {
                     'Type': 'Ship Spawn Node',
@@ -681,51 +681,51 @@ objectStruct = {
                     'Spawnables': 'SKEL_BLOOD_SCOURGE_FR',
                     'Team': 'default',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' } },
                 '1210197760.0WDIG1': {
                     'Type': 'Ship Spawn Node',
                     'Flagship': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Level': '3',
-                    'Pos': Point3(8032.6440000000002, -5340.0349999999999, 39.991999999999997),
+                    'Pos': Point3(8032.644, -5340.0349999999999, 39.991),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'SKEL_SHADOW_CROW_SP',
                     'Team': 'default',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' } },
                 '1210197760.0WDIG2': {
                     'Type': 'Ship Spawn Node',
                     'Flagship': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Level': '3',
-                    'Pos': Point3(18731.025000000001, -5261.0079999999998, -0.0040000000000000001),
+                    'Pos': Point3(18731.025, -5261.0079999999998, -0.00400),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'SKEL_HELLHOUND_SP',
                     'Team': 'default',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' } },
                 '1210197760.0WDIG3': {
                     'Type': 'Ship Spawn Node',
                     'Flagship': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Level': '3',
-                    'Pos': Point3(13163.561, -15632.860000000001, 0.0),
+                    'Pos': Point3(13163.561, -15632.86, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'SKEL_BLOOD_SCOURGE_SP',
                     'Team': 'default',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' } },
                 '1210197760.0WDIG4': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(24100.469000000001, 29200.008000000002, 0.0),
+                    'Pos': Point3(24100.469, 29200.008000000002, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1210197760.0WDIG5': {
                     'Type': 'Ship Movement Node',
@@ -733,51 +733,51 @@ objectStruct = {
                     'Pos': Point3(24590.800999999999, 20762.210999999999, 39.988),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1210197888.0WDIG': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(18258.734, 20859.678, 39.991999999999997),
+                    'Pos': Point3(18258.734, 20859.678, 39.991),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1210197888.0WDIG0': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(15509.665000000001, -7156.3699999999999, 40.0),
+                    'Pos': Point3(15509.665, -7156.36, 40.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1210197888.0WDIG1': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(15791.191000000001, -12857.672, -0.012),
+                    'Pos': Point3(15791.191, -12857.672, -0.012),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1210197888.0WDIG2': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(8795.9609999999993, -8645.3709999999992, 39.996000000000002),
+                    'Pos': Point3(8795.9609999999993, -8645.3709999999992, 39.996),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1233100928.0akelts': {
                     'Type': 'Island',
                     'Name': 'Padres Del Fuego',
                     'File': 'DelFuegoIsland',
-                    'Hpr': VBase3(-59.143999999999998, 0.0, 0.0),
+                    'Hpr': VBase3(-59.1438, 0.0, 0.0),
                     'Objects': {
                         '1142029069.97sdnaik': {
                             'Type': 'LOD Sphere',
-                            'Hpr': VBase3(96.557000000000002, 0.0, 0.0),
-                            'Pos': Point3(-444.14800000000002, -440.05700000000002, 454.45699999999999),
+                            'Hpr': VBase3(96.557, 0.0, 0.0),
+                            'Pos': Point3(-444.148, -440.057, 454.456),
                             'Radi': [
                                 2000.0,
                                 2600.0,
@@ -785,18 +785,18 @@ objectStruct = {
                             'Scale': VBase3(1.0, 1.0, 1.0),
                             'VisSize': '' } },
                     'Phase': 1,
-                    'Pos': Point3(8757.1000000000004, -24577.305, 0.0),
+                    'Pos': Point3(8757.10, -24577.305, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/islands/pir_m_are_isl_delFuego' } },
                 '1264194816.0kanpatel': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(17948.599999999999, -11892.882, 0.0),
+                    'Pos': Point3(17948.5, -11892.882, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0.0, 0.0, 1.0),
+                        'Color': (0.65, 0.0, 0.0, 1.0),
                         'Model': 'models/misc/smiley' } },
                 '1264194816.0kanpatel0': {
                     'Type': 'Ship Movement Node',
@@ -806,61 +806,61 @@ objectStruct = {
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264194944.0kanpatel': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(8615.0470000000005, -12498.264999999999, 40.008000000000003),
+                    'Pos': Point3(8615.0470000000005, -12498.264999999999, 40.008),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264194944.0kanpatel0': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-2018.2529999999999, -9970.6790000000001, 40.008000000000003),
+                    'Pos': Point3(-2018.2529999999999, -9970.679, 40.008),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264194944.0kanpatel1': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-5417.4210000000003, -7878.8819999999996, 40.008000000000003),
+                    'Pos': Point3(-5417.4210000000003, -7878.8819999999996, 40.008),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264194944.0kanpatel2': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-7247.7449999999999, -3869.6089999999999, 40.008000000000003),
+                    'Pos': Point3(-7247.7449999999999, -3869.6089999999999, 40.008),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264195072.0kanpatel': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-7509.2169999999996, 2057.1529999999998, 40.008000000000003),
+                    'Pos': Point3(-7509.2169999999996, 2057.1529999999998, 40.008),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264195072.0kanpatel0': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-6116.7160000000003, 7115.2309999999998, 0.0080000000000000002),
+                    'Pos': Point3(-6116.7160000000003, 7115.2309999999998, 0.008),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264195072.0kanpatel1': {
                     'Type': 'Ship Movement Node',
@@ -869,43 +869,43 @@ objectStruct = {
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264195072.0kanpatel2': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-4721.6260000000002, 18014.386999999999, 0.0080000000000000002),
+                    'Pos': Point3(-4721.626, 18014.386999999999, 0.008),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264195072.0kanpatel3': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-7596.3760000000002, 22103.539000000001, 40.008000000000003),
+                    'Pos': Point3(-7596.376, 22103.539, 40.008),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264195072.0kanpatel4': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-11954.285, 26199.976999999999, 40.008000000000003),
+                    'Pos': Point3(-11954.285, 26199.976999999999, 40.008),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264195200.0kanpatel0': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-20154.824000000001, 29872.664000000001, 0.0),
+                    'Pos': Point3(-20154.824, 29872.664, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264195968.0kanpatel': {
                     'Type': 'Ship Movement Node',
@@ -915,44 +915,44 @@ objectStruct = {
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264196096.0kanpatel': {
                     'Type': 'Ship Movement Node',
                     'Name': 'TF_PADRES',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-100.77500000000001, -21911.348000000002, 40.008000000000003),
+                    'Pos': Point3(-100.775, -21911.348000000002, 40.008),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264196096.0kanpatel0': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-4110.049, -17989.226999999999, 40.008000000000003),
+                    'Pos': Point3(-4110.049, -17989.226999999999, 40.008),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264196096.0kanpatel1': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-8032.1670000000004, -13979.951999999999, 40.008000000000003),
+                    'Pos': Point3(-8032.1670000000004, -13979.951999999999, 40.008),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264196096.0kanpatel2': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-10734.073, -9883.5149999999994, 40.008000000000003),
+                    'Pos': Point3(-10734.073, -9883.5149999999994, 40.008),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264196224.0kanpatel': {
                     'Type': 'Ship Movement Node',
@@ -961,16 +961,16 @@ objectStruct = {
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264196224.0kanpatel0': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-11954.285, 836.93799999999999, 40.008000000000003),
+                    'Pos': Point3(-11954.285, 836.937, 40.008),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264196224.0kanpatel1': {
                     'Type': 'Ship Movement Node',
@@ -979,16 +979,16 @@ objectStruct = {
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264196224.0kanpatel2': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-15353.454, 9988.5480000000007, 40.008000000000003),
+                    'Pos': Point3(-15353.454, 9988.5480000000007, 40.008),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264196224.0kanpatel3': {
                     'Type': 'Ship Movement Node',
@@ -997,25 +997,25 @@ objectStruct = {
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264196224.0kanpatel4': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-25376.643, 17048.363000000001, 40.008000000000003),
+                    'Pos': Point3(-25376.643, 17048.363, 40.008),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264196352.0kanpatel': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-29048.528999999999, 22025.273000000001, 0.0),
+                    'Pos': Point3(-29048.528999999999, 22025.273, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264196352.0kanpatel0': {
                     'Type': 'Ship Movement Node',
@@ -1024,72 +1024,72 @@ objectStruct = {
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264196352.0kanpatel3': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-29658.879000000001, 29959.851999999999, 0.0),
+                    'Pos': Point3(-29658.879, 29959.851999999999, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264196864.0kanpatel': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(29894.07, -4001.8980000000001, 0.0),
+                    'Pos': Point3(29894.07, -4001.898, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264196864.0kanpatel0': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(24740.074000000001, 14.989000000000001, 0.0040000000000000001),
+                    'Pos': Point3(24740.074, 14.989, 0.00400),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264196864.0kanpatel1': {
                     'Type': 'Ship Movement Node',
                     'Name': 'TF_C',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(19952.059000000001, 2101.1750000000002, 40.0),
+                    'Pos': Point3(19952.059, 2101.175, 40.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264196992.0kanpatel0': {
                     'Type': 'Ship Movement Node',
                     'Name': 'TF_C',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(12159.232, 3342.1529999999998, 0.0040000000000000001),
+                    'Pos': Point3(12159.232, 3342.1529999999998, 0.00400),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264196992.0kanpatel1': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(5976.9899999999998, 4854.6260000000002, 40.003999999999998),
+                    'Pos': Point3(5976.98, 4854.626, 40.0038),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264196992.0kanpatel2': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(1189.9870000000001, 8644.8230000000003, 0.0040000000000000001),
+                    'Pos': Point3(1189.987, 8644.8230000000003, 0.00400),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264196992.0kanpatel3': {
                     'Type': 'Ship Movement Node',
@@ -1098,34 +1098,34 @@ objectStruct = {
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264196992.0kanpatel4': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-1617.306, 20861.758000000002, 0.0040000000000000001),
+                    'Pos': Point3(-1617.306, 20861.758000000002, 0.00400),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264196992.0kanpatel5': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-4216.6540000000005, 26216.41, 0.0080000000000000002),
+                    'Pos': Point3(-4216.6540000000005, 26216.41, 0.008),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264196992.0kanpatel6': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-7958.9290000000001, 29929.738000000001, 0.0040000000000000001),
+                    'Pos': Point3(-7958.929, 29929.738, 0.00400),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264197376.0kanpatel': {
                     'Type': 'Ship Movement Node',
@@ -1134,16 +1134,16 @@ objectStruct = {
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264197376.0kanpatel0': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-19893.243999999999, -19958.254000000001, 0.0080000000000000002),
+                    'Pos': Point3(-19893.243999999999, -19958.254, 0.008),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264197376.0kanpatel1': {
                     'Type': 'Ship Movement Node',
@@ -1152,16 +1152,16 @@ objectStruct = {
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264197504.0kanpatel': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-8990.9060000000009, -10014.253000000001, 40.008000000000003),
+                    'Pos': Point3(-8990.9060000000009, -10014.253, 40.008),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264197504.0kanpatel0': {
                     'Type': 'Ship Movement Node',
@@ -1170,16 +1170,16 @@ objectStruct = {
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264197504.0kanpatel1': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-9252.3850000000002, 6022.8519999999999, 40.008000000000003),
+                    'Pos': Point3(-9252.385, 6022.8519999999999, 40.008),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264197504.0kanpatel2': {
                     'Type': 'Ship Movement Node',
@@ -1188,7 +1188,7 @@ objectStruct = {
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264197632.0kanpatel': {
                     'Type': 'Ship Movement Node',
@@ -1197,16 +1197,16 @@ objectStruct = {
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264197632.0kanpatel0': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(5913.1419999999998, 22147.116999999998, 40.008000000000003),
+                    'Pos': Point3(5913.1419999999998, 22147.116999999998, 40.008),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264197632.0kanpatel1': {
                     'Type': 'Ship Movement Node',
@@ -1215,16 +1215,16 @@ objectStruct = {
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264198016.0kanpatel': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-10036.806, -28143.155999999999, 40.008000000000003),
+                    'Pos': Point3(-10036.806, -28143.155999999999, 40.008),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264198016.0kanpatel0': {
                     'Type': 'Ship Movement Node',
@@ -1233,79 +1233,79 @@ objectStruct = {
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264198016.0kanpatel1': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(2079.4409999999998, -17952.809000000001, 0.0080000000000000002),
+                    'Pos': Point3(2079.4409999999998, -17952.809, 0.008),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264198016.0kanpatel2': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(6000.299, -11931.736999999999, 40.008000000000003),
+                    'Pos': Point3(6000.299, -11931.736999999999, 40.008),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264198016.0kanpatel3': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(10183.891, -3826.0189999999998, 40.008000000000003),
+                    'Pos': Point3(10183.891, -3826.0189999999998, 40.008),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264198016.0kanpatel4': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(13931.691999999999, 4105.375, 40.008000000000003),
+                    'Pos': Point3(13931.691999999999, 4105.375, 40.008),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264198144.0kanpatel0': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(15943.161, 12390.423000000001, 0.0),
+                    'Pos': Point3(15943.161, 12390.423, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264198144.0kanpatel1': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(20642.868999999999, 19881.004000000001, 40.008000000000003),
+                    'Pos': Point3(20642.868999999999, 19881.004, 40.008),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264198144.0kanpatel2': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(25883.184000000001, 26602.914000000001, 0.0),
+                    'Pos': Point3(25883.184, 26602.914, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264198144.0kanpatel3': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(30068.456999999999, 29916.261999999999, -0.0080000000000000002),
+                    'Pos': Point3(30068.456999999999, 29916.261999999999, -0.008),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264198272.0kanpatel': {
                     'Type': 'Ship Movement Node',
@@ -1314,52 +1314,52 @@ objectStruct = {
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264198400.0kanpatel': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-21018.736000000001, -8096.7809999999999, 40.008000000000003),
+                    'Pos': Point3(-21018.736, -8096.7809999999999, 40.008),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264198400.0kanpatel0': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-14743.349, -4000.3429999999998, 40.008000000000003),
+                    'Pos': Point3(-14743.349, -4000.3429999999998, 40.008),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264198400.0kanpatel1': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-10476.377, 1014.4299999999999, 0.0),
+                    'Pos': Point3(-10476.377, 1014.42, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264198400.0kanpatel2': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-10040.411, 6071.6400000000003, 0.0),
+                    'Pos': Point3(-10040.411, 6071.64, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264198400.0kanpatel3': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-12958.66, 10216.030000000001, 0.0),
+                    'Pos': Point3(-12958.66, 10216.03, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264198400.0kanpatel4': {
                     'Type': 'Ship Movement Node',
@@ -1368,25 +1368,25 @@ objectStruct = {
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264198400.0kanpatel5': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-7000.9099999999999, 22147.118999999999, 0.0),
+                    'Pos': Point3(-7000.90, 22147.118999999999, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264198400.0kanpatel6': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-1000.54, 27000.150000000001, 0.0),
+                    'Pos': Point3(-1000.54, 27000.15, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1264198400.0kanpatel7': {
                     'Type': 'Ship Movement Node',
@@ -1395,19 +1395,19 @@ objectStruct = {
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1271348547.01akelts': {
                     'Type': 'Island',
                     'Name': "Raven's Cove",
                     'File': 'RavensCoveIsland',
                     'Environment': 'OpenSky',
-                    'Hpr': VBase3(-45.723999999999997, 0.0, 0.0),
+                    'Hpr': VBase3(-45.723, 0.0, 0.0),
                     'Minimap': False,
                     'Objects': {
                         '1264624863.65caoconno': {
                             'Type': 'LOD Sphere',
-                            'Hpr': VBase3(-89.652000000000001, 0.0, 0.0),
+                            'Hpr': VBase3(-89.652, 0.0, 0.0),
                             'Pos': Point3(0.0, 0.0, 0.0),
                             'Radi': [
                                 1300.0,
@@ -1415,7 +1415,7 @@ objectStruct = {
                                 7000.0],
                             'Scale': VBase3(1.0, 1.0, 1.0),
                             'VisSize': '' } },
-                    'Pos': Point3(-31670.057000000001, 12398.319, 0.0),
+                    'Pos': Point3(-31670.057, 12398.319, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Undockable': False,
                     'VisSize': '',
@@ -1425,29 +1425,29 @@ objectStruct = {
                 '1301961642.84jloehrle': {
                     'Type': 'Ship Movement Node',
                     'Hpr': VBase3(0.0, 0.0, 0.0),
-                    'Pos': Point3(499.57799999999997, -18144.456999999999, 39.994),
+                    'Pos': Point3(499.577, -18144.456999999999, 39.994),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1301961658.36jloehrle': {
                     'Type': 'Ship Movement Node',
                     'Hpr': VBase3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-5394.6459999999997, -13968.187, 39.996000000000002),
+                    'Pos': Point3(-5394.645, -13968.187, 39.996),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1301961787.78jloehrle': {
                     'Type': 'Ship Movement Node',
-                    'Hpr': VBase3(-45.723999999999997, 0.0, 0.0),
-                    'Pos': Point3(-13357.119000000001, -14372.964, 0.0060000000000000001),
+                    'Hpr': VBase3(-45.723, 0.0, 0.0),
+                    'Pos': Point3(-13357.119, -14372.964, 0.00600),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1301961875.5jloehrle': {
                     'Type': 'Ship Movement Node',
@@ -1456,133 +1456,133 @@ objectStruct = {
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1301961893.49jloehrle': {
                     'Type': 'Ship Movement Node',
-                    'Hpr': VBase3(-45.723999999999997, 0.0, 0.0),
-                    'Pos': Point3(-23662.166000000001, -5910.7550000000001, 0.0),
+                    'Hpr': VBase3(-45.723, 0.0, 0.0),
+                    'Pos': Point3(-23662.166, -5910.755, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1301961921.19jloehrle': {
                     'Type': 'Ship Movement Node',
-                    'Hpr': VBase3(-45.723999999999997, 0.0, 0.0),
+                    'Hpr': VBase3(-45.723, 0.0, 0.0),
                     'Pos': Point3(-10665.203, -4943.3469999999998, 40.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1301961947.74jloehrle': {
                     'Type': 'Ship Movement Node',
                     'Hpr': VBase3(0.0, 0.0, 0.0),
-                    'Pos': Point3(538.59799999999996, -12235.405000000001, 0.0),
+                    'Pos': Point3(538.597, -12235.405, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1302027202.34jloehrle': {
                     'Type': 'Ship Movement Node',
                     'Hpr': VBase3(0.0, 0.0, 0.0),
-                    'Pos': Point3(14559.385, 11029.280000000001, -0.0040000000000000001),
+                    'Pos': Point3(14559.385, 11029.28, -0.00400),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1302027210.82jloehrle': {
                     'Type': 'Ship Movement Node',
                     'Hpr': VBase3(0.0, 0.0, 0.0),
-                    'Pos': Point3(5122.2439999999997, 12460.487999999999, 39.996000000000002),
+                    'Pos': Point3(5122.243, 12460.487999999999, 39.996),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1302027247.31jloehrle': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(4148.2830000000004, 18201.813999999998, -0.0040000000000000001),
+                    'Pos': Point3(4148.2830000000004, 18201.813999999998, -0.00400),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1302027276.39jloehrle': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(7703.3540000000003, 24400.418000000001, 39.991999999999997),
+                    'Pos': Point3(7703.3540000000003, 24400.418, 39.991),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1302027297.28jloehrle': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(17793.634999999998, 29823.190999999999, -0.0040000000000000001),
+                    'Pos': Point3(17793.634999999998, 29823.190999999999, -0.00400),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1302027328.71jloehrle': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(25174.353999999999, 28335.57, -0.0040000000000000001),
+                    'Pos': Point3(25174.353999999999, 28335.57, -0.00400),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1302027345.21jloehrle': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(24028.978999999999, 18421.740000000002, -0.0080000000000000002),
+                    'Pos': Point3(24028.978999999999, 18421.74, -0.008),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1302027700.44jloehrle': {
                     'Type': 'Ship Movement Node',
                     'Hpr': VBase3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-24435.403999999999, 3179.0659999999998, -0.0080000000000000002),
+                    'Pos': Point3(-24435.403999999999, 3179.0659999999998, -0.008),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1302027714.3jloehrle': {
                     'Type': 'Ship Movement Node',
                     'Hpr': VBase3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-17657.785, 11250.237999999999, -0.0040000000000000001),
+                    'Pos': Point3(-17657.785, 11250.237999999999, -0.00400),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1302027734.68jloehrle': {
                     'Type': 'Ship Movement Node',
                     'Hpr': VBase3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-12281.977000000001, 19226.276999999998, -0.012),
+                    'Pos': Point3(-12281.977, 19226.276999999998, -0.012),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1302027809.08jloehrle': {
                     'Type': 'Ship Movement Node',
                     'Hpr': VBase3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-15691.225, 26470.641, -0.0080000000000000002),
+                    'Pos': Point3(-15691.225, 26470.641, -0.008),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1302027835.68jloehrle': {
                     'Type': 'Ship Movement Node',
@@ -1591,7 +1591,7 @@ objectStruct = {
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1302027852.97jloehrle': {
                     'Type': 'Ship Movement Node',
@@ -1600,7 +1600,7 @@ objectStruct = {
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1302027866.65jloehrle': {
                     'Type': 'Ship Movement Node',
@@ -1609,16 +1609,16 @@ objectStruct = {
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1302027883.94jloehrle': {
                     'Type': 'Ship Movement Node',
                     'Hpr': VBase3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-25928.664000000001, 7070.7659999999996, 0.0),
+                    'Pos': Point3(-25928.664, 7070.7659999999996, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } } } } },
     'Ocean Areas': [
         [
@@ -2335,13 +2335,13 @@ objectStruct = {
         '1302027866.65jloehrle': '["Objects"]["1141410776.53sdnaik"]["Objects"]["1302027866.65jloehrle"]',
         '1302027883.94jloehrle': '["Objects"]["1141410776.53sdnaik"]["Objects"]["1302027883.94jloehrle"]' } }
 extraInfo = {
-    'camPos': Point3(-33114.699999999997, -40175.199999999997, 54648.800000000003),
-    'camHpr': VBase3(-11.9216, -46.934399999999997, 0),
+    'camPos': Point3(-33114.6, -40175.1, 54648.8),
+    'camHpr': VBase3(-11.9216, -46.9343, 0),
     'focalLength': 1.3999999761599999,
     'skyState': 2,
     'fog': 0,
     'cameraSettings': {
         'overhead': {
-            'camPos': Point3(-1059.51, -121.79600000000001, 99609.5),
+            'camPos': Point3(-1059.51, -121.796, 99609.5),
             'camHpr': VBase3(0, -90, 0),
             'focalLength': 1.3999999761599999 } } }

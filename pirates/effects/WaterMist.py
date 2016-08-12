@@ -42,7 +42,7 @@ class WaterMist(PooledEffect, EffectController):
         self.p0.factory.setTerminalVelocityBase(400.0)
         self.p0.factory.setTerminalVelocitySpread(0.0)
         self.p0.renderer.setAlphaMode(BaseParticleRenderer.PRALPHAINOUT)
-        self.p0.renderer.setUserAlpha(0.40000000000000002)
+        self.p0.renderer.setUserAlpha(0.4)
         self.p0.renderer.setFromNode(self.card)
         self.p0.renderer.setColor(Vec4(1.0, 1.0, 1.0, 1.0))
         self.p0.renderer.setXScaleFlag(1)
@@ -67,10 +67,10 @@ class WaterMist(PooledEffect, EffectController):
 
     def setEffectScale(self, scale):
         self.effectScale = scale
-        self.p0.renderer.setInitialXScale(0.20000000000000001 * self.cardScale * scale)
-        self.p0.renderer.setFinalXScale(0.29999999999999999 * self.cardScale * scale)
-        self.p0.renderer.setInitialYScale(0.20000000000000001 * self.cardScale * scale)
-        self.p0.renderer.setFinalYScale(0.29999999999999999 * self.cardScale * scale)
+        self.p0.renderer.setInitialXScale(0.200 * self.cardScale * scale)
+        self.p0.renderer.setFinalXScale(0.299 * self.cardScale * scale)
+        self.p0.renderer.setInitialYScale(0.200 * self.cardScale * scale)
+        self.p0.renderer.setFinalYScale(0.299 * self.cardScale * scale)
         self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, 6.0 * scale))
         self.p0.emitter.setRadius(20.0 * scale)
 

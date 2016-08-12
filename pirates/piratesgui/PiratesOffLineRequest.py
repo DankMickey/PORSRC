@@ -71,7 +71,7 @@ class PiratesOffLineRequest(GuiPanel.GuiPanel):
 
     def __init__(self, title, message, tokenString = None, preExistPerm = 0):
         if tokenString:
-            GuiPanel.GuiPanel.__init__(self, title, 0.66000000000000003, 0.79000000000000004, 0, '', pos = (0.65000000000000002, 0, -0.82999999999999996))
+            GuiPanel.GuiPanel.__init__(self, title, 0.66000, 0.790000, 0, '', pos = (0.65, 0, -0.826))
         else:
             GuiPanel.GuiPanel.__init__(self, title, 0.5, 0.5)
         self.initialiseoptions(PiratesOffLineRequest)
@@ -84,26 +84,26 @@ class PiratesOffLineRequest(GuiPanel.GuiPanel):
         text = message
         self.main = None
         if not tokenString:
-            self.message = DirectLabel(parent = self, relief = None, text = message, text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.25, 0, 0.34999999999999998), textMayChange = 1)
+            self.message = DirectLabel(parent = self, relief = None, text = message, text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.25, 0, 0.348), textMayChange = 1)
         else:
-            self.message = DirectLabel(parent = self, relief = None, text = message, text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 16, pos = (0.33000000000000002, 0, 0.68000000000000005), textMayChange = 1)
+            self.message = DirectLabel(parent = self, relief = None, text = message, text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 16, pos = (0.33, 0, 0.680000), textMayChange = 1)
         if tokenString != None:
-            self.tokenMessage = DirectLabel(parent = self, relief = None, text = tokenString, text_scale = PiratesGuiGlobals.TextScaleTitleMed, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.33000000000000002, 0, 0.55000000000000004), textMayChange = 1)
+            self.tokenMessage = DirectLabel(parent = self, relief = None, text = tokenString, text_scale = PiratesGuiGlobals.TextScaleTitleMed, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.33, 0, 0.550000), textMayChange = 1)
 
         self.bOk = PiratesOffLineConfirmButton(text = PLocalizer.GenericConfirmOK, command = self._PiratesOffLineRequest__handleOk)
         self.bOk.reparentTo(self)
         if not tokenString:
-            self.bOk.setPos(0.20000000000000001, 0, 0.050000000000000003)
+            self.bOk.setPos(0.200, 0, 0.050000)
         else:
-            self.bOk.setPos(0.29999999999999999, 0, 0.050000000000000003)
+            self.bOk.setPos(0.299, 0, 0.050000)
         if tokenString:
-            self.cBox1 = self.makeCheckbox((0.215, 0, 0.46000000000000002), PLocalizer.GuildInviteSingleButton, self._PiratesOffLineRequest__handleSet, 1, [
+            self.cBox1 = self.makeCheckbox((0.215, 0, 0.46), PLocalizer.GuildInviteSingleButton, self._PiratesOffLineRequest__handleSet, 1, [
                 1])
             self.cBox1.reparentTo(self)
-            self.cBox2 = self.makeCheckbox((0.215, 0, 0.36499999999999999), PLocalizer.GuildInviteLimitedButton, self._PiratesOffLineRequest__handleSet, 0, [
+            self.cBox2 = self.makeCheckbox((0.215, 0, 0.364), PLocalizer.GuildInviteLimitedButton, self._PiratesOffLineRequest__handleSet, 0, [
                 2])
             self.cBox2.reparentTo(self)
-            self.cBox3 = self.makeCheckbox((0.215, 0, 0.17499999999999999), PLocalizer.GuildInviteUnlimitedButton, self._PiratesOffLineRequest__handleSet, 0, [
+            self.cBox3 = self.makeCheckbox((0.215, 0, 0.174), PLocalizer.GuildInviteUnlimitedButton, self._PiratesOffLineRequest__handleSet, 0, [
                 3])
             self.cBox3.reparentTo(self)
             if self.preExistPerm:
@@ -117,11 +117,11 @@ class PiratesOffLineRequest(GuiPanel.GuiPanel):
                 self.cBox2['indicatorValue'] = 1
                 self.currentCodeOption = 2
 
-            self.rotateSlider = DirectSlider(parent = self, relief = None, range = (1, 100), value = 10, pageSize = 2, scale = 0.25, text = self.sliderOutputValue, text_scale = 0.17999999999999999, text_pos = (0, 0.074999999999999997), text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, textMayChange = 1, frameColor = (0.5, 0.5, 0.5, 0.29999999999999999), image = self.charGui.find('**/chargui_slider_small'), thumb_relief = None, image_scale = (2.1499999999999999, 2.1499999999999999, 1.5), thumb_image = (self.charGui.find('**/chargui_slider_node'), self.charGui.find('**/chargui_slider_node_down'), self.charGui.find('**/chargui_slider_node_over')), command = self._PiratesOffLineRequest__showSliderValue)
+            self.rotateSlider = DirectSlider(parent = self, relief = None, range = (1, 100), value = 10, pageSize = 2, scale = 0.25, text = self.sliderOutputValue, text_scale = 0.179, text_pos = (0, 0.074), text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, textMayChange = 1, frameColor = (0.5, 0.5, 0.5, 0.299), image = self.charGui.find('**/chargui_slider_small'), thumb_relief = None, image_scale = (2.14, 2.14, 1.5), thumb_image = (self.charGui.find('**/chargui_slider_node'), self.charGui.find('**/chargui_slider_node_down'), self.charGui.find('**/chargui_slider_node_over')), command = self._PiratesOffLineRequest__showSliderValue)
             self.rotateSlider.reparentTo(self)
-            self.rotateSlider.setPos(0.33000000000000002, 0, 0.27000000000000002)
+            self.rotateSlider.setPos(0.33, 0, 0.27)
 
-        xFrame = DirectFrame(parent = self, relief = None, state = DGG.DISABLED, image = self.topGui.find('**/generic_box'), image_scale = 0.14999999999999999, image_pos = (0, 0, 0), pos = (0.62, 0, 0.75))
+        xFrame = DirectFrame(parent = self, relief = None, state = DGG.DISABLED, image = self.topGui.find('**/generic_box'), image_scale = 0.149, image_pos = (0, 0, 0), pos = (0.62, 0, 0.75))
         xButton = XButton(xFrame, self, self.topGui.find('**/generic_x'), 0.25)
         self.setBin('gui-popup', 0)
         self.accept('clientLogout', self.destroy)
@@ -215,7 +215,7 @@ class PiratesOffLineRequest(GuiPanel.GuiPanel):
             self.topGui.find('**/generic_check'),
             self.topGui.find('**/generic_check'),
             None]
-        c = DirectCheckButton(parent = self, relief = None, scale = 0.064000000000000001, boxBorder = 0.080000000000000002, boxRelief = None, boxImage = geomCheck, boxImageScale = 6.0, boxImageColor = VBase4(0, 1, 0, 1), pos = pos, text = text, text_fg = (1, 1, 1, 1), text_scale = 0.59999999999999998, text_pos = (-0.5, 0, -2.7999999999999998), indicator_pos = (-1, 0, 0.14999999999999999), command = command, text_align = TextNode.ALeft, indicatorValue = initialState, extraArgs = extraArgs, text0_fg = PiratesGuiGlobals.TextFG2, text1_fg = PiratesGuiGlobals.TextFG3, text2_fg = PiratesGuiGlobals.TextFG1, text3_fg = PiratesGuiGlobals.TextFG9, text_shadow = PiratesGuiGlobals.TextShadow, image = buttonImage, image_pos = (1.8, 0, 0.14999999999999999), image_scale = (7.5, 1, 3.5))
+        c = DirectCheckButton(parent = self, relief = None, scale = 0.0640, boxBorder = 0.08, boxRelief = None, boxImage = geomCheck, boxImageScale = 6.0, boxImageColor = VBase4(0, 1, 0, 1), pos = pos, text = text, text_fg = (1, 1, 1, 1), text_scale = 0.598, text_pos = (-0.5, 0, -2.78), indicator_pos = (-1, 0, 0.149), command = command, text_align = TextNode.ALeft, indicatorValue = initialState, extraArgs = extraArgs, text0_fg = PiratesGuiGlobals.TextFG2, text1_fg = PiratesGuiGlobals.TextFG3, text2_fg = PiratesGuiGlobals.TextFG1, text3_fg = PiratesGuiGlobals.TextFG9, text_shadow = PiratesGuiGlobals.TextShadow, image = buttonImage, image_pos = (1.8, 0, 0.149), image_scale = (7.5, 1, 3.5))
         c.setIndicatorValue()
         return c
 

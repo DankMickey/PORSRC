@@ -16,7 +16,7 @@ BOSS_NPC_LIST = {
         'Skills': [],
         'SkillLevel': 0,
         'GoldScale': 2,
-        'ModelScale': 1.1000000000000001,
+        'ModelScale': 1.10,
         'DamageScale': 1,
         'ArmorScale': 1.0,
         'HighlightColor': VBase3(1) },
@@ -175,7 +175,7 @@ BOSS_NPC_LIST = {
         'HpScale': 5,
         'MpScale': 3,
         'GoldScale': 2,
-        'ModelScale': 1.1000000000000001,
+        'ModelScale': 1.10,
         'DamageScale': 1.5,
         'HighlightColor': VBase3(0, 1, 0.5) },
     '1219277508.79mtucker': {
@@ -278,5 +278,5 @@ BOSS_NPC_LIST = {
         'GoldScale': 2,
         'ModelScale': 2,
         'DamageScale': 1,
-        'ArmorScale': 0.10000000000000001,
+        'ArmorScale': 0.100,
         'HighlightColor': VBase3(0, 1, 0.5) } }

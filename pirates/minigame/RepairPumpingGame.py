@@ -52,14 +52,14 @@ class RepairPumpingGame(RepairMincroGame):
         RepairMincroGame._initVisuals(self)
         self.model = loader.loadModel('models/gui/pir_m_gui_srp_pumping_main')
         self.visual = self.attachNewNode('visual')
-        self.visual.setPos(-0.25, 0.0, 0.074999999999999997)
+        self.visual.setPos(-0.25, 0.0, 0.074)
         goalTopLoc = self.model.find('**/locator_top')
         goalTopLoc.reparentTo(self.visual)
         goalBottomLoc = self.model.find('**/locator_bottom')
         goalBottomLoc.reparentTo(self.visual)
         self.goalPositions = (goalBottomLoc.getPos(self), goalTopLoc.getPos(self))
-        self.greatLabel = DirectLabel(text = PLocalizer.Minigame_Repair_Pumping_Great, text_fg = (0.20000000000000001, 0.80000000000000004, 0.29999999999999999, 1.0), text_pos = (0.0, 0.59999999999999998), text_align = TextNode.ACenter, text_font = PiratesGlobals.getPirateFont(), relief = None, text_shadow = (0.0, 0.0, 0.0, 1.0), scale = (0.080000000000000002, 0.080000000000000002, 0.080000000000000002), pos = (-0.46500000000000002, 0.0, 0.0), parent = self)
-        self.failLabel = DirectLabel(text = PLocalizer.Minigame_Repair_Pumping_Fail, text_fg = (0.80000000000000004, 0.20000000000000001, 0.29999999999999999, 1.0), text_pos = (0.0, 0.59999999999999998), text_align = TextNode.ARight, text_font = PiratesGlobals.getPirateFont(), text_shadow = (0.0, 0.0, 0.0, 1.0), relief = None, scale = (0.080000000000000002, 0.080000000000000002, 0.080000000000000002), pos = (-0.625, 0.0, 0.0), parent = self)
+        self.greatLabel = DirectLabel(text = PLocalizer.Minigame_Repair_Pumping_Great, text_fg = (0.200, 0.800000, 0.299, 1.0), text_pos = (0.0, 0.598), text_align = TextNode.ACenter, text_font = PiratesGlobals.getPirateFont(), relief = None, text_shadow = (0.0, 0.0, 0.0, 1.0), scale = (0.08, 0.08, 0.08), pos = (-0.465, 0.0, 0.0), parent = self)
+        self.failLabel = DirectLabel(text = PLocalizer.Minigame_Repair_Pumping_Fail, text_fg = (0.800000, 0.200, 0.299, 1.0), text_pos = (0.0, 0.598), text_align = TextNode.ARight, text_font = PiratesGlobals.getPirateFont(), text_shadow = (0.0, 0.0, 0.0, 1.0), relief = None, scale = (0.08, 0.08, 0.08), pos = (-0.625, 0.0, 0.0), parent = self)
         self.shipBackground = self.model.find('**/static_ship_background')
         self.shipBackground.reparentTo(self.visual)
         self.waterMeter = self.model.find('**/sprite_waterBottom')
@@ -87,16 +87,16 @@ class RepairPumpingGame(RepairMincroGame):
         self.ghostLine = self.visual.attachNewNode('ghostLine')
         self.pumpLine.getChild(0).copyTo(self.ghostLine)
         self.ghostLine.setScale(self.pumpLine.getScale())
-        self.ghostLine.setColor(1.0, 0.20000000000000001, 0.20000000000000001, 1.0)
+        self.ghostLine.setColor(1.0, 0.200, 0.200, 1.0)
         self.shipForground = self.model.find('**/static_ship_foreground')
         self.shipForground.reparentTo(self.visual)
         cm = CardMaker('cardMaker')
-        cm.setFrame(-0.33000000000000002, 0.33000000000000002, 0.0, 1.0)
+        cm.setFrame(-0.33, 0.33, 0.0, 1.0)
         self.goalBox.setZ(self.goalPositions[TOP].getZ())
         self.goalBoxStartScale = self.goalBox.getSz()
         self.enableGoalBox()
-        self.pumpWaterUpLerp = LerpFunc(self.setPumpWater, fromData = -0.10000000000000001, toData = 1.0, duration = 0.5)
-        self.pumpWaterDownLerp = LerpFunc(self.setPumpWater, fromData = 1.0, toData = -0.10000000000000001, duration = 0.5)
+        self.pumpWaterUpLerp = LerpFunc(self.setPumpWater, fromData = -0.100, toData = 1.0, duration = 0.5)
+        self.pumpWaterDownLerp = LerpFunc(self.setPumpWater, fromData = 1.0, toData = -0.100, duration = 0.5)
         self.model.remove_node()
         del self.model
 
@@ -143,7 +143,7 @@ class RepairPumpingGame(RepairMincroGame):
         self.currentBarRate = self.config.barStartRange[0] - dif * percent
         dif = self.config.hitRange[0] - self.config.hitRange[1]
         self.hitRange = self.config.hitRange[0] - dif * percent
-        self.goalBox.setSz((self.hitRange / 0.17999999999999999) * self.goalBoxStartScale)
+        self.goalBox.setSz((self.hitRange / 0.179) * self.goalBoxStartScale)
 
     def setGoalIndex(self, goalIndex):
         self.goalIndex = goalIndex
@@ -188,11 +188,11 @@ class RepairPumpingGame(RepairMincroGame):
         return Task.cont
 
     def enableGoalBox(self):
-        self.goalBox.setColor(0.20000000000000001, 1.0, 0.20000000000000001, 0.59999999999999998)
+        self.goalBox.setColor(0.200, 1.0, 0.200, 0.598)
         self.goalBoxEnabled = 1
 
     def disableGoalBox(self):
-        self.goalBox.setColor(1.0, 0.20000000000000001, 0.20000000000000001, 0.29999999999999999)
+        self.goalBox.setColor(1.0, 0.200, 0.200, 0.299)
         self.goalBoxEnabled = 0
 
     def isLineInBox(self):

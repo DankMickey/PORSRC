@@ -22,8 +22,8 @@ from pirates.audio import SoundGlobals
 from pirates.audio.SoundGlobals import loadSfx
 
 class LootPopupPanel(StackMessage, DirectObject.DirectObject):
-    width = 0.80000000000000004
-    height = 0.20000000000000001
+    width = 0.800000
+    height = 0.200
     lootSfx = None
     BountyTex = None
     CoinTex = None
@@ -170,7 +170,7 @@ class LootPopupPanel(StackMessage, DirectObject.DirectObject):
                     textInfo = PLocalizer.CollectionPopupDuplicateText % (itemName, rarityText, value)
                 pic_name = CollectionMap.Assets[itemId]
                 lootIcon = LootPopupPanel.TreasureGui.find('**/%s*' % pic_name)
-                iconScale = 0.34999999999999998
+                iconScale = 0.348
             elif itemType == ItemId.CLOTHING:
                 (clothingId, colorId) = quantity
                 if clothingId in ClothingGlobals.quest_items:
@@ -184,7 +184,7 @@ class LootPopupPanel(StackMessage, DirectObject.DirectObject):
                     lootIcon = LootPopupPanel.TailorGui.find('**/icon_shop_tailor_hat')
                 elif clothingType == 1:
                     lootIcon = loader.loadModel('models/gui/char_gui').find('**/chargui_cloth')
-                    iconScale = 0.29999999999999999
+                    iconScale = 0.299
                 elif clothingType == 2:
                     lootIcon = LootPopupPanel.TailorGui.find('**/icon_shop_tailor_vest')
                 elif clothingType == 3:
@@ -201,7 +201,7 @@ class LootPopupPanel(StackMessage, DirectObject.DirectObject):
                 textInfo = PLocalizer.InventoryTypeNames.get(quantity)
                 pic_name = ''
                 lootIcon = PlayingCardGlobals.getImage('standard', PlayingCardGlobals.getSuit(quantity), PlayingCardGlobals.getRank(quantity))
-                iconScale = 0.20000000000000001
+                iconScale = 0.200
             elif itemType == ItemId.GOLD:
                 textInfo = PLocalizer.LootGold % str(quantity)
                 potionPercent = PotionGlobals.getGoldBoostEffectPercent(localAvatar)
@@ -212,53 +212,53 @@ class LootPopupPanel(StackMessage, DirectObject.DirectObject):
                     textInfo += '\n + ' + PLocalizer.LootGoldPotionBoost % str(potionGold)
 
                 lootIcon = self.icons.get(itemType)[0]
-                iconScale = 0.27000000000000002
+                iconScale = 0.27
             elif itemType == ItemId.BOUNTY:
                 textInfo = PLocalizer.LootBounty % str(quantity)
                 lootIcon = self.icons.get(itemType)[0]
-                iconScale = 0.27000000000000002
+                iconScale = 0.27
             elif itemType == ItemId.CARGO_CRATE:
                 if quantity == 1:
                     textInfo = PLocalizer.CargoCrate % quantity
                 else:
                     textInfo = PLocalizer.CargoCrateP % quantity
                 lootIcon = self.icons.get(itemType)[0]
-                iconScale = 0.089999999999999997
+                iconScale = 0.089
             elif itemType == ItemId.CARGO_CHEST:
                 if quantity == 1:
                     textInfo = PLocalizer.CargoChest % quantity
                 else:
                     textInfo = PLocalizer.CargoChestP % quantity
                 lootIcon = self.icons.get(itemType)[0]
-                iconScale = 0.089999999999999997
+                iconScale = 0.089
             elif itemType == ItemId.CARGO_SKCHEST:
                 if quantity == 1:
                     textInfo = PLocalizer.CargoSkChest % quantity
                 else:
                     textInfo = PLocalizer.CargoSkChestP % quantity
                 lootIcon = self.icons.get(itemType)[0]
-                iconScale = 0.089999999999999997
+                iconScale = 0.089
             elif itemType == ItemId.CARGO_LOOTSAC:
                 if quantity == 1:
                     textInfo = PLocalizer.LootSac % quantity
                 else:
                     textInfo = PLocalizer.LootSacP % quantity
                 lootIcon = self.icons.get(itemType)[0]
-                iconScale = 0.089999999999999997
+                iconScale = 0.089
             elif itemType == ItemId.CARGO_LOOTCHEST:
                 if quantity == 1:
                     textInfo = PLocalizer.LootChest % quantity
                 else:
                     textInfo = PLocalizer.LootChestP % quantity
                 lootIcon = self.icons.get(itemType)[0]
-                iconScale = 0.089999999999999997
+                iconScale = 0.089
             elif itemType == ItemId.CARGO_LOOTSKCHEST:
                 if quantity == 1:
                     textInfo = PLocalizer.LootSkChest % quantity
                 else:
                     textInfo = PLocalizer.LootSkChestP % quantity
                 lootIcon = self.icons.get(itemType)[0]
-                iconScale = 0.089999999999999997
+                iconScale = 0.089
             elif itemType == ItemId.QUEST_DROP_JEWEL:
                 textInfo = None
                 type = None
@@ -268,16 +268,16 @@ class LootPopupPanel(StackMessage, DirectObject.DirectObject):
                 textInfo = PLocalizer.getItemName(quantity)
                 if type == ItemGlobals.BROW:
                     lootIcon = LootPopupPanel.JewelerIconsB.find('**/icon_shop_tailor_brow')
-                    iconScale = (-0.14000000000000001, 0.14000000000000001, 0.14000000000000001)
+                    iconScale = (-0.140, 0.140, 0.140)
                 elif type == ItemGlobals.EAR:
                     lootIcon = LootPopupPanel.JewelerIconsA.find('**/chargui_ears')
-                    iconScale = (-0.34999999999999998, 0.34999999999999998, 0.34999999999999998)
+                    iconScale = (-0.348, 0.348, 0.348)
                 elif type == ItemGlobals.NOSE:
                     lootIcon = LootPopupPanel.JewelerIconsA.find('**/chargui_nose')
-                    iconScale = (0.34999999999999998, 0.34999999999999998, 0.34999999999999998)
+                    iconScale = (0.348, 0.348, 0.348)
                 elif type == ItemGlobals.MOUTH:
                     lootIcon = LootPopupPanel.JewelerIconsA.find('**/chargui_mouth')
-                    iconScale = (0.32500000000000001, 0.32500000000000001, 0.32500000000000001)
+                    iconScale = (0.325, 0.325, 0.325)
                 elif type == ItemGlobals.LHAND:
                     lootIcon = LootPopupPanel.JewelerIconsB.find('**/icon_shop_tailor_hand')
                     iconScale = (0.125, 0.125, 0.125)
@@ -292,18 +292,18 @@ class LootPopupPanel(StackMessage, DirectObject.DirectObject):
                 textInfo = PLocalizer.getItemName(quantity)
                 if type == ItemGlobals.CHEST:
                     lootIcon = LootPopupPanel.TattooIcons.find('**/icon_shop_tailor_chest_male')
-                    iconScale = 0.10000000000000001
+                    iconScale = 0.100
                 elif type == ItemGlobals.ARM:
                     lootIcon = LootPopupPanel.TattooIcons.find('**/icon_shop_tailor_arm')
-                    iconScale = 0.10000000000000001
+                    iconScale = 0.100
                 elif type == ItemGlobals.FACE:
                     lootIcon = LootPopupPanel.TattooIcons.find('**/icon_shop_tailor_face_male')
-                    iconScale = 0.10000000000000001
+                    iconScale = 0.100
                 else:
                     lootIcon = None
             elif itemType == ItemId.QUEST_DROP_WEAPON:
                 weaponId = quantity
-                iconScale = 0.10000000000000001
+                iconScale = 0.100
                 textInfo = None
                 lootIcon = None
                 iconName = getItemIcons(weaponId)
@@ -312,7 +312,7 @@ class LootPopupPanel(StackMessage, DirectObject.DirectObject):
                     textInfo = PLocalizer.InventoryTypeNames.get(weaponId)
 
 
-            entry = DirectFrame(parent = self, relief = None, geom = lootIcon, geom_scale = iconScale, text = textInfo, text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG0, text_pos = (0.070000000000000007, 0.01), text_font = PiratesGlobals.getInterfaceFont())
+            entry = DirectFrame(parent = self, relief = None, geom = lootIcon, geom_scale = iconScale, text = textInfo, text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG0, text_pos = (0.070, 0.01), text_font = PiratesGlobals.getInterfaceFont())
             entry.setTransparency(1)
             self.loot.append(entry)
 
@@ -322,16 +322,16 @@ class LootPopupPanel(StackMessage, DirectObject.DirectObject):
     def repackPanels(self):
         invHeight = len(self.loot)
         i = 0
-        z = 0.10000000000000001
-        iconXOffset = 0.089999999999999997
+        z = 0.100
+        iconXOffset = 0.089
         addHeight = (invHeight - 1) * z
         for i in xrange(invHeight):
             iconZOffset = z * (i + 1) - 0.01 - self.height - addHeight
             self.loot[i].setPos(iconXOffset, 0, iconZOffset)
 
-        self.titleLabel.setPos(0.040000000000000001, 0, -0.059999999999999998)
+        self.titleLabel.setPos(0.0400, 0, -0.0598)
         self['frameSize'] = (0, self.width, -(self.height) - addHeight, 0)
-        self.cornerGeom.setPos(0.068000000000000005, 0, -0.066000000000000003)
+        self.cornerGeom.setPos(0.0680000, 0, -0.066000)
         self.resetFrameSize()
 
 

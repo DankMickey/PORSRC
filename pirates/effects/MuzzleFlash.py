@@ -16,13 +16,13 @@ class MuzzleFlash(PooledEffect, EffectController):
         EffectController.__init__(self)
         self.setColorScaleOff()
         self.startCol = Vec4(0.5, 0.5, 0.5, 1)
-        self.fadeTime = 0.14999999999999999
+        self.fadeTime = 0.149
         self.flash = loader.loadModel('models/effects/lanternGlow')
         self.flash.node().setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne))
         self.flash.setDepthWrite(0)
         self.flash.setFogOff()
         self.flash.setColorScale(self.startCol)
-        self.flash.setBillboardPointEye(0.20000000000000001)
+        self.flash.setBillboardPointEye(0.200)
         self.flash.setBin('fixed', 120)
         self.flash.setScale(25)
         self.flash.reparentTo(self)

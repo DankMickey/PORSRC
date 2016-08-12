@@ -8,7 +8,7 @@ class StatRowGui(DirectFrame):
     Width = PiratesGuiGlobals.TMCompletePanelWidth - PiratesGuiGlobals.GridSize
     Height = PiratesGuiGlobals.TMCompletePageHeight / 7
 
-    def __init__(self, item, columnHeadings, parent = None, textScale = None, itemHeight = None, itemWidth = None, itemWidths = [], txtColor = None, frameColor = (1, 1, 1, 0.050000000000000003), **kw):
+    def __init__(self, item, columnHeadings, parent = None, textScale = None, itemHeight = None, itemWidth = None, itemWidths = [], txtColor = None, frameColor = (1, 1, 1, 0.050000), **kw):
         if itemHeight == None:
             itemHeight = self.Height
 
@@ -21,7 +21,7 @@ class StatRowGui(DirectFrame):
         self.defineoptions(kw, optiondefs)
         DirectFrame.__init__(self, parent)
         self.initialiseoptions(StatRowGui)
-        self.textScale = 0.044999999999999998
+        self.textScale = 0.0448
         if textScale:
             self.textScale = textScale
 

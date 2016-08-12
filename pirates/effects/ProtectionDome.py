@@ -18,8 +18,8 @@ class ProtectionDome(PooledEffect, EffectController):
         self.duration = 10.0
         self.inner = self.effectModel.find('**/inner')
         self.outer = self.effectModel.find('**/outer')
-        self.inner.setColorScale(0.75, 1, 1, 0.29999999999999999)
-        self.outer.setColorScale(0.20000000000000001, 0.5, 0.80000000000000004, 0.20000000000000001)
+        self.inner.setColorScale(0.75, 1, 1, 0.299)
+        self.outer.setColorScale(0.200, 0.5, 0.800000, 0.200)
         self.effectModel.node().setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne))
 
 

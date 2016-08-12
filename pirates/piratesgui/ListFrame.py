@@ -32,7 +32,7 @@ class ListFrame(DirectFrame, DirectObject):
         self.resizeItemHeights = False
         self.pendingObjRequests = []
         self.itemBuffer = 0
-        self.topBuffer = 0.014999999999999999
+        self.topBuffer = 0.0149
 
 
     def setup(self):

@@ -45,21 +45,21 @@ class Nose(DirectObject.DirectObject):
 
     def loadGUI(self):
         self.pgs1 = CharGuiSlider(self.main, parent = self.noseFrame, text = PLocalizer.NoseBridgeWidth, range=(-0.2, 0.8), command = self.updateControlShape)
-        self.pgs1.setPos(-0.40000000000000002, 0, -0.29999999999999999)
+        self.pgs1.setPos(-0.4, 0, -0.299)
         self.pgs2 = CharGuiSlider(self.main, parent = self.noseFrame, text = PLocalizer.NoseNostrilWidth, range=(0.0, 0.1), command = self.updateControlShape)
-        self.pgs2.setPos(-0.40000000000000002, 0, -0.55000000000000004)
+        self.pgs2.setPos(-0.4, 0, -0.550000)
         self.pgs3 = CharGuiSlider(self.main, parent = self.noseFrame, text = PLocalizer.NoseLength, range=(-0.5, 0.5), command = self.updateControlShape)
-        self.pgs3.setPos(-0.40000000000000002, 0, -0.80000000000000004)
+        self.pgs3.setPos(-0.4, 0, -0.800000)
         self.pgs4 = CharGuiSlider(self.main, parent = self.noseFrame, text = PLocalizer.NoseBump, range=(-0.5, 0.5), command = self.updateControlShape)
-        self.pgs4.setPos(-0.40000000000000002, 0, -1.05)
+        self.pgs4.setPos(-0.4, 0, -1.05)
         self.pgs5 = CharGuiSlider(self.main, parent = self.noseFrame, text = PLocalizer.NoseNostrilAngle, range=(-0.5, 0.5), command = self.updateControlShape)
-        self.pgs5.setPos(-0.40000000000000002, 0, -1.3)
+        self.pgs5.setPos(-0.4, 0, -1.3)
         self.pgs6 = CharGuiSlider(self.main, parent = self.noseFrame, text = PLocalizer.NoseNostrilHeight, range=(-0.2,0.2), command = self.updateControlShape)
-        self.pgs6.setPos(-0.40000000000000002, 0, -1.55)
+        self.pgs6.setPos(-0.4, 0, -1.55)
         self.pgs7 = CharGuiSlider(self.main, parent = self.noseFrame, text = PLocalizer.NoseBridgeBroke, range=(-1.0, 1.0), command = self.updateControlShape)
-        self.pgs7.setPos(-0.40000000000000002, 0, -1.8)
+        self.pgs7.setPos(-0.4, 0, -1.8)
         self.pgs8 = CharGuiSlider(self.main, parent = self.noseFrame, text = PLocalizer.NoseNostrilBroke, range=(-1.0, 1.0), command = self.updateControlShape)
-        self.pgs8.setPos(-0.40000000000000002, 0, -2.0499999999999998)
+        self.pgs8.setPos(-0.4, 0, -2.0498)
         self.pgs = [
             self.pgs1,
             self.pgs2,
@@ -123,7 +123,7 @@ class Nose(DirectObject.DirectObject):
 
 
     def setupButtons(self):
-        self.noseFrame = DirectFrame(parent = self.parent, relief = None, text = PLocalizer.NoseFrameTitle, text_fg = (1, 1, 1, 1), text_scale = 0.17999999999999999, text_pos = (0, -0.050000000000000003), pos = (0, 0, 0.20000000000000001), scale = 0.69999999999999996)
+        self.noseFrame = DirectFrame(parent = self.parent, relief = None, text = PLocalizer.NoseFrameTitle, text_fg = (1, 1, 1, 1), text_scale = 0.179, text_pos = (0, -0.050000), pos = (0, 0, 0.200), scale = 0.696)
         self.noseFrame.hide()
 
 

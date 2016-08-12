@@ -19,7 +19,7 @@ objectStruct = {
                     'CustomModel': 'None',
                     'Hpr': VBase3(33.497, 0.0, 0.0),
                     'Patrol Radius': '12.0000',
-                    'Pos': Point3(-6.484, -2.8359999999999999, 0.0),
+                    'Pos': Point3(-6.484, -2.8359, 0.0),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'Private Status': 'All',
@@ -32,7 +32,7 @@ objectStruct = {
                     'Type': 'Door Locator Node',
                     'Name': 'door_locator',
                     'Hpr': VBase3(178.916, 0.0, 0.0),
-                    'Pos': Point3(-13.404, 47.298000000000002, 5.0380000000000003),
+                    'Pos': Point3(-13.404, 47.298, 5.0380),
                     'Scale': VBase3(1.0, 1.0, 1.0) } },
             'Visual': {
                 'Model': 'models/buildings/interior_spanish_store' } } },

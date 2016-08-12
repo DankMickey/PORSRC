@@ -16,9 +16,9 @@ class Subtitler(DirectObject.DirectObject):
         DirectObject.DirectObject.__init__(self)
         self.event = None
         self.sfx = None
-        self.text = DirectLabel(parent = render2d, relief = None, text = '', text_align = TextNode.ACenter, text_scale = 0.055, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, text_font = PiratesGlobals.getPirateFont(), pos = (0, 0, -0.90000000000000002), sortOrder = 80)
-        self.confirmButton = DialogButton(parent = base.a2dBottomRight, pos = (-0.14999999999999999, 0, 0.095000000000000001), text = PLocalizer.MakeAPirateNext, text_scale = 0.050000000000000003, text_pos = (0.040000000000000001, -0.017999999999999999), text_fg = PiratesGuiGlobals.TextFG2, textMayChange = 1, command = self.advancePageNumber, sortOrder = 90, buttonStyle = DialogButton.YES)
-        self.EscText = DirectLabel(parent = render2d, relief = None, text = '', text_align = TextNode.ALeft, text_scale = 0.055, text_fg = PiratesGuiGlobals.TextFG9, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, text_font = PiratesGlobals.getPirateFont(), pos = (-0.92000000000000004, 0, 0.88), sortOrder = 80)
+        self.text = DirectLabel(parent = render2d, relief = None, text = '', text_align = TextNode.ACenter, text_scale = 0.055, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, text_font = PiratesGlobals.getPirateFont(), pos = (0, 0, -0.9), sortOrder = 80)
+        self.confirmButton = DialogButton(parent = base.a2dBottomRight, pos = (-0.149, 0, 0.0950), text = PLocalizer.MakeAPirateNext, text_scale = 0.050000, text_pos = (0.0400, -0.0179), text_fg = PiratesGuiGlobals.TextFG2, textMayChange = 1, command = self.advancePageNumber, sortOrder = 90, buttonStyle = DialogButton.YES)
+        self.EscText = DirectLabel(parent = render2d, relief = None, text = '', text_align = TextNode.ALeft, text_scale = 0.055, text_fg = PiratesGuiGlobals.TextFG9, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, text_font = PiratesGlobals.getPirateFont(), pos = (-0.920000, 0, 0.88), sortOrder = 80)
         base.transitions.loadLetterbox()
         self.text.setScale(aspect2d, 1)
         self.accept('aspectRatioChanged', self.text.setScale, [
@@ -114,11 +114,11 @@ class Subtitler(DirectObject.DirectObject):
             callback(*args)
 
         for i in xrange(len(options)):
-            optionButton = GuiButton(parent = base.a2dBottomRight, pos = (-0.14999999999999999 - (len(options) - 1 - i) * 0.25, 0, 0.095000000000000001), text = str(options[i]), text_pos = (0, -0.012500000000000001), text_scale = 0.050000000000000003, text_fg = PiratesGuiGlobals.TextFG2, textMayChange = 1, command = optionCallback, extraArgs = [
+            optionButton = GuiButton(parent = base.a2dBottomRight, pos = (-0.149 - (len(options) - 1 - i) * 0.25, 0, 0.0950), text = str(options[i]), text_pos = (0, -0.0125), text_scale = 0.050000, text_fg = PiratesGuiGlobals.TextFG2, textMayChange = 1, command = optionCallback, extraArgs = [
                 options[i]] + extraArgs, sortOrder = 90)
             if self.specialButtonImage:
                 optionButton['image'] = self.specialButtonImage
-                optionButton['image_scale'] = (0.59999999999999998, 0.59999999999999998, 0.59999999999999998)
+                optionButton['image_scale'] = (0.598, 0.598, 0.598)
 
             optionButton.hide()
             self._Subtitler__optionButtons.append(optionButton)

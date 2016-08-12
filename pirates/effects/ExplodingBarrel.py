@@ -62,7 +62,7 @@ class ExplodingBarrel(NodePath):
 
         cameraShakerEffect = CameraShaker()
         cameraShakerEffect.reparentTo(self)
-        cameraShakerEffect.shakeSpeed = 0.059999999999999998
+        cameraShakerEffect.shakeSpeed = 0.0598
         cameraShakerEffect.shakePower = 4.0
         cameraShakerEffect.scalePower = True
         cameraShakerEffect.numShakes = 2

@@ -12,7 +12,7 @@ from pirates.piratesbase import PLocalizer
 class ChestTab(LeftTab):
 
     def __init__(self, tabBar, name, **kw):
-        optiondefs = (('modelName', 'general_frame_d', None), ('borderScale', 0.38, None), ('bgBuffer', 0.14999999999999999, None), ('frameSize', (-0.125, 0.125, -0.10000000000000001, 0.10000000000000001), None), ('unfocusSize', (0, 0, 0, 0), None), ('focusSize', (-0.125, 0.125, -0.11, 0.11), None), ('heightFactor', 0.59999999999999998, None), ('mouseEntered', None, None), ('mouseLeft', None, None))
+        optiondefs = (('modelName', 'general_frame_d', None), ('borderScale', 0.38, None), ('bgBuffer', 0.149, None), ('frameSize', (-0.125, 0.125, -0.100, 0.100), None), ('unfocusSize', (0, 0, 0, 0), None), ('focusSize', (-0.125, 0.125, -0.11, 0.11), None), ('heightFactor', 0.598, None), ('mouseEntered', None, None), ('mouseLeft', None, None))
         self.defineoptions(kw, optiondefs)
         LeftTab.__init__(self, tabBar, name)
         self.initialiseoptions(ChestTab)
@@ -36,7 +36,7 @@ class ChestTabBar(TabBar):
             name = self.tabOrder[self.activeIndex]
             tab = self.tabs[name]
             tab.reparentTo(self.fParent)
-            tab.setX(-0.64000000000000001)
+            tab.setX(-0.640)
             tab['frameSize'] = tab['focusSize']
 
 
@@ -49,7 +49,7 @@ class ChestTabBar(TabBar):
 class ChestPanel(DirectFrame):
 
     def __init__(self, parent, **kw):
-        optiondefs = (('relief', None, None), ('state', DGG.NORMAL, None), ('frameSize', (-0.55000000000000004, 0.55000000000000004, -0.81999999999999995, 0.71999999999999997), None), ('pos', (1, 0, 0), None))
+        optiondefs = (('relief', None, None), ('state', DGG.NORMAL, None), ('frameSize', (-0.550000, 0.550000, -0.815, 0.71), None), ('pos', (1, 0, 0), None))
         self.defineoptions(kw, optiondefs)
         DirectFrame.__init__(self, parent=parent)
         self.initialiseoptions(ChestPanel)
@@ -57,7 +57,7 @@ class ChestPanel(DirectFrame):
         self.setupLayers()
         self.hideIval = None
         self.showIval = None
-        self.destZ = 0.80000000000000004
+        self.destZ = 0.800000
         self.active = False
         self.currPageIndex = None
         self.pages = []
@@ -95,7 +95,7 @@ class ChestPanel(DirectFrame):
             self.b.remove_node()
 
         gui = loader.loadModel('models/gui/gui_sea_chest')
-        scale = 0.32000000000000001
+        scale = 0.320
         self.sideTentacle = self.attachNewNode('sideTentacle')
         self.sideTentacle.setScale(scale)
         gui.find('**/side_tentacle').copyTo(self.sideTentacle)
@@ -112,17 +112,17 @@ class ChestPanel(DirectFrame):
         geom.setScale(scale)
         self.frontTabParent = self.attachNewNode('frontTab', sort = 2)
         mainGui = loader.loadModel('models/gui/gui_main')
-        self.titleLabel = DirectFrame(relief = None, parent = self, textMayChange = 1, image = mainGui.find('**/title_bar_08'), image_scale = 0.2, image_pos = (0, 0, -0.315), text = PLocalizer.InventoryPageTitle, text_fg = (1, 1, 1, 1), text_font = PiratesGlobals.getPirateBoldOutlineFont(), text_scale = 0.070000000000000007, text_align = TextNode.ACenter, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0.0, 0.0), pos = (0, 0, 0.66000000000000003))
+        self.titleLabel = DirectFrame(relief = None, parent = self, textMayChange = 1, image = mainGui.find('**/title_bar_08'), image_scale = 0.2, image_pos = (0, 0, -0.315), text = PLocalizer.InventoryPageTitle, text_fg = (1, 1, 1, 1), text_font = PiratesGlobals.getPirateBoldOutlineFont(), text_scale = 0.070, text_align = TextNode.ACenter, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0.0, 0.0), pos = (0, 0, 0.66000))
         self.titleLabel.setBin('gui-popup', 80)
 
 
-    def _getShowIval(self, time = 0.20000000000000001):
-        self.showIval = Sequence(Func(localAvatar.guiMgr.moveLookoutPopup, True), Func(self.show), self.posInterval(time, Point3(-0.55000000000000004, 0, self.destZ), blendType = 'easeOut'), Func(self.slideOpenCallback))
+    def _getShowIval(self, time = 0.200):
+        self.showIval = Sequence(Func(localAvatar.guiMgr.moveLookoutPopup, True), Func(self.show), self.posInterval(time, Point3(-0.550000, 0, self.destZ), blendType = 'easeOut'), Func(self.slideOpenCallback))
         return self.showIval
 
 
-    def _getHideIval(self, time = 0.20000000000000001):
-        self.hideIval = Sequence(Func(self.slideCloseCallback), self.posInterval(time, Point3(-0.55000000000000004, 0, -1.8), blendType = 'easeIn'), Func(self.hide), Func(localAvatar.guiMgr.moveLookoutPopup, False))
+    def _getHideIval(self, time = 0.200):
+        self.hideIval = Sequence(Func(self.slideCloseCallback), self.posInterval(time, Point3(-0.550000, 0, -1.8), blendType = 'easeIn'), Func(self.hide), Func(localAvatar.guiMgr.moveLookoutPopup, False))
         return self.hideIval
 
 
@@ -140,7 +140,7 @@ class ChestPanel(DirectFrame):
     def setZLoc(self, z):
         self.destZ = z
         if self.showIval:
-            self.showIval[2].setEndPos(Point3(-0.55000000000000004, 0, z))
+            self.showIval[2].setEndPos(Point3(-0.550000, 0, z))
 
 
 

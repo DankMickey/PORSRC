@@ -201,10 +201,10 @@ class BattleAvatarGameFSM(FSM.FSM):
 
 
 
-        self.av.loop('injured_idle', blendDelay = 0.14999999999999999)
+        self.av.loop('injured_idle', blendDelay = 0.149)
         if timeStamp < 2.0:
             self.av.play('injured_fall')
-            self.injuredSoundSequence = Sequence(Wait(0.65000000000000002), Func(startSFX))
+            self.injuredSoundSequence = Sequence(Wait(0.65), Func(startSFX))
             self.injuredSoundSequence.start()
         else:
             self.injuredSoundSequence = None
@@ -244,8 +244,8 @@ class BattleAvatarGameFSM(FSM.FSM):
                 self.av.b_setGameState('LandRoam')
 
 
-        self.av.loop('idle', blendDelay = 0.14999999999999999)
-        self.injuredTrack = Parallel(healedSoundInterval, Sequence(self.av.actorInterval('injured_standup', blendInT = 0.14999999999999999, blendOutT = 0.14999999999999999), Func(gotoRoam)))
+        self.av.loop('idle', blendDelay = 0.149)
+        self.injuredTrack = Parallel(healedSoundInterval, Sequence(self.av.actorInterval('injured_standup', blendInT = 0.149, blendOutT = 0.149), Func(gotoRoam)))
         self.injuredTrack.start()
 
 
@@ -387,7 +387,7 @@ class BattleAvatarGameFSM(FSM.FSM):
     def enterStealing(self, extraArgs = []):
         self.shovel = loader.loadModel('models/handheld/shovel_high')
         self.shovel.reparentTo(self.av.leftHandNode)
-        self.shovel.setPos(0.29999999999999999, 0, -0.29999999999999999)
+        self.shovel.setPos(0.299, 0, -0.299)
         self.av.loop('shovel')
 
 
@@ -428,8 +428,8 @@ class BattleAvatarGameFSM(FSM.FSM):
                 self.av.healingBottleEffect = HealPotion.getEffect()
                 if self.av.healingBottleEffect:
                     self.av.healingBottleEffect.reparentTo(handNode)
-                    self.av.healingBottleEffect.setEffectColor(Vec4(0.29999999999999999, 1, 1, 0.29999999999999999))
-                    self.av.healingBottleEffect.setPos(0, 0.40000000000000002, -0.14999999999999999)
+                    self.av.healingBottleEffect.setEffectColor(Vec4(0.299, 1, 1, 0.299))
+                    self.av.healingBottleEffect.setPos(0, 0.4, -0.149)
                     self.av.healingBottleEffect.startLoop()
 
 
@@ -507,7 +507,7 @@ class BattleAvatarGameFSM(FSM.FSM):
         self.treasureChest.reparentTo(self.av)
         self.treasureChest.setTransform(PiratesGlobals.treasureSwimTransform)
         self.treasureChest.setZ(1.3)
-        self.treasureChest.setScale(0.40000000000000002)
+        self.treasureChest.setScale(0.4)
 
 
     def exitWaterTreasureRoam(self):
@@ -718,7 +718,7 @@ class BattleAvatarGameFSM(FSM.FSM):
             ropeAnchorNode = ship.getRopeAnchorNode(self.av, ropeEndNode)
             ropeMidNode = ship.attachNewNode('ropeMidNode')
             midNodeStartPos = (ropeAnchorNode.getPos(ship) + ropeEndNode.getPos(ship)) * 0.5
-            midNodeStartPos.setX(midNodeStartPos.getX() * 0.80000000000000004)
+            midNodeStartPos.setX(midNodeStartPos.getX() * 0.800000)
             ropeMidNode.setPos(midNodeStartPos)
             midNodeEndPos = (ropeAnchorNode.getPos(ship) + deckPos) * 0.5
             midNodeEndPos.setX(midNodeEndPos.getX() * 1.2)
@@ -745,7 +745,7 @@ class BattleAvatarGameFSM(FSM.FSM):
 
             boardAnimDur = self.av.getDuration('rope_board')
             boardingRopeH = ShipGlobals.getBoardingRopeH(ship.modelClass)
-            boardingInterval = Sequence(Func(ropeEndNode.wrtReparentTo, self.av), Sequence(Wait(tWaitToAttachRope - tRopeSwingDown), Parallel(ActorInterval(self.av, grabAnim), LerpPosInterval(ropeEndNode, tRopeSwingDown, Point3(1.0, 0, 1.0)))), Func(self.av.lookAt, ship), Func(setupRope, rightHand), Parallel(ProjectileInterval(self.av, startPos = startingPos, endPos = endPos, duration = boardAnimDur, gravityMult = boardingRopeH), ProjectileInterval(ropeMidNode, startPos = midNodeStartPos, endPos = midNodeEndPos, duration = boardAnimDur), Sequence(Wait(0.20000000000000001), Func(ship.boardingInit, self.av, ship)), Sequence(Wait(boardAnimDur - 0.20000000000000001), Func(rope.detachNode)), self.av.actorInterval('rope_board', playRate = 1.0)), Parallel(self.av.actorInterval('rope_dismount', endFrame = 24), Sequence(Wait(0.5), Func(ropeMidNode.detachNode), Func(ship.boardingFinish, self.av, deckPos))))
+            boardingInterval = Sequence(Func(ropeEndNode.wrtReparentTo, self.av), Sequence(Wait(tWaitToAttachRope - tRopeSwingDown), Parallel(ActorInterval(self.av, grabAnim), LerpPosInterval(ropeEndNode, tRopeSwingDown, Point3(1.0, 0, 1.0)))), Func(self.av.lookAt, ship), Func(setupRope, rightHand), Parallel(ProjectileInterval(self.av, startPos = startingPos, endPos = endPos, duration = boardAnimDur, gravityMult = boardingRopeH), ProjectileInterval(ropeMidNode, startPos = midNodeStartPos, endPos = midNodeEndPos, duration = boardAnimDur), Sequence(Wait(0.200), Func(ship.boardingInit, self.av, ship)), Sequence(Wait(boardAnimDur - 0.200), Func(rope.detachNode)), self.av.actorInterval('rope_board', playRate = 1.0)), Parallel(self.av.actorInterval('rope_dismount', endFrame = 24), Sequence(Wait(0.5), Func(ropeMidNode.detachNode), Func(ship.boardingFinish, self.av, deckPos))))
             self.swingTrack = boardingInterval
             self.swingTrack.start(ts)
         else:
@@ -1022,7 +1022,7 @@ class BattleAvatarGameFSM(FSM.FSM):
             self.repairingSfxTrack.pause()
 
         self.av.play('repairfloor_outof')
-        self.putAwayHammerTrack = Sequence(Wait(2.7999999999999998), Func(self.repairHammer.detachNode))
+        self.putAwayHammerTrack = Sequence(Wait(2.78), Func(self.repairHammer.detachNode))
         self.putAwayHammerTrack.start()
         self.av.motionFSM.unlock()
 
@@ -1083,9 +1083,9 @@ class BattleAvatarGameFSM(FSM.FSM):
     def enterBeginFeast(self, extraArgs = []):
         self.torch = loader.loadModel('models/props/torch')
         self.torch.reparentTo(self.av.rightHandNode)
-        self.torch.setPos(0.20000000000000001, -0.20000000000000001, -0.10000000000000001)
+        self.torch.setPos(0.200, -0.200, -0.100)
         self.torch.setHpr(0, -110, 0)
-        self.torch.setScale(0.59999999999999998)
+        self.torch.setScale(0.598)
         SmallFire = SmallFire
         import pirates.effects.SmallFire
         self.fireEffect = SmallFire()

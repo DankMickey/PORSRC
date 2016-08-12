@@ -191,10 +191,10 @@ class MinimapShop(MinimapObject):
 
 
     def _addedToMap(self, map):
-        self.mapGeom.setScale(aspect2d, 0.059999999999999998)
+        self.mapGeom.setScale(aspect2d, 0.0598)
         overlayNode = map.getOverlayNode()
         transform = self.mapGeom.getTransform(overlayNode)
-        self.button = GuiButton(parent = overlayNode, state = DGG.NORMAL, image = self.mapGeom, pos = transform.getPos(), image_hpr = transform.getHpr(), image_scale = transform.getScale(), helpText = MinimapShop.HELP_DICT[self.shopType], helpPos = (-0.27000000000000002, 0, 0.070000000000000007), helpDelay = 0, helpOpaque = True, sortOrder = MinimapShop.SORT)
+        self.button = GuiButton(parent = overlayNode, state = DGG.NORMAL, image = self.mapGeom, pos = transform.getPos(), image_hpr = transform.getHpr(), image_scale = transform.getScale(), helpText = MinimapShop.HELP_DICT[self.shopType], helpPos = (-0.27, 0, 0.070), helpDelay = 0, helpOpaque = True, sortOrder = MinimapShop.SORT)
         self.button.setAlphaScale(1, 1)
         self.mapGeom.detachNode()
 
@@ -232,7 +232,7 @@ class MinimapCapturePoint(MinimapObject):
         self.hp = 0
         self.maxHp = 0
         whiteColor = (1.0, 1.0, 1.0, 1.0)
-        self.blinker = Sequence(Func(self.setBarColor, whiteColor), Wait(0.20000000000000001), Func(self.setBarColor), Wait(0.20000000000000001), Func(self.setBarColor, whiteColor), Wait(0.20000000000000001), Func(self.setBarColor), Wait(0.20000000000000001), Func(self.setBarColor, whiteColor), Wait(0.20000000000000001), Func(self.setBarColor), Wait(0.20000000000000001), Func(self.setBarColor, whiteColor), Wait(0.20000000000000001), Func(self.setBarColor), Wait(0.20000000000000001), Func(self.setBarColor, whiteColor), Wait(0.20000000000000001), Func(self.setBarColor), Wait(0.20000000000000001), Func(self.setBarColor, whiteColor), Wait(0.20000000000000001), Func(self.setBarColor), Wait(0.20000000000000001), Func(self.setBarColor, whiteColor), Wait(0.20000000000000001), Func(self.setBarColor), Wait(0.20000000000000001), Func(self.setBarColor, whiteColor), Wait(0.20000000000000001), Func(self.setBarColor), Wait(0.20000000000000001), Func(self.setBarColor, whiteColor), Wait(0.20000000000000001), Func(self.setBarColor), Wait(0.20000000000000001), Func(self.setBarColor, whiteColor), Wait(0.20000000000000001), Func(self.setBarColor))
+        self.blinker = Sequence(Func(self.setBarColor, whiteColor), Wait(0.200), Func(self.setBarColor), Wait(0.200), Func(self.setBarColor, whiteColor), Wait(0.200), Func(self.setBarColor), Wait(0.200), Func(self.setBarColor, whiteColor), Wait(0.200), Func(self.setBarColor), Wait(0.200), Func(self.setBarColor, whiteColor), Wait(0.200), Func(self.setBarColor), Wait(0.200), Func(self.setBarColor, whiteColor), Wait(0.200), Func(self.setBarColor), Wait(0.200), Func(self.setBarColor, whiteColor), Wait(0.200), Func(self.setBarColor), Wait(0.200), Func(self.setBarColor, whiteColor), Wait(0.200), Func(self.setBarColor), Wait(0.200), Func(self.setBarColor, whiteColor), Wait(0.200), Func(self.setBarColor), Wait(0.200), Func(self.setBarColor, whiteColor), Wait(0.200), Func(self.setBarColor), Wait(0.200), Func(self.setBarColor, whiteColor), Wait(0.200), Func(self.setBarColor))
 
 
     def setHp(self, hp, maxHp):
@@ -287,9 +287,9 @@ class MinimapCapturePoint(MinimapObject):
                 else:
                     hpFraction = float(self.hp) / float(self.maxHp)
                 if hpFraction >= 0.5:
-                    color = (0.10000000000000001, 0.69999999999999996, 0.10000000000000001, 1)
+                    color = (0.100, 0.696, 0.100, 1)
                 elif hpFraction >= 0.25:
-                    color = (1.0, 1.0, 0.10000000000000001, 1)
+                    color = (1.0, 1.0, 0.100, 1)
                 else:
                     color = (1.0, 0.0, 0.0, 1)
 
@@ -302,11 +302,11 @@ class MinimapCapturePoint(MinimapObject):
 
 
     def _addedToMap(self, map):
-        self.mapGeom.setScale(aspect2d, 0.29999999999999999)
+        self.mapGeom.setScale(aspect2d, 0.299)
         overlayNode = map.getOverlayNode()
         worldNode = map.getWorldNode()
         transform = self.mapGeom.getTransform(overlayNode)
-        self.hpMeter = HpMeter(width = 0.40000000000000002, parent = overlayNode)
+        self.hpMeter = HpMeter(width = 0.4, parent = overlayNode)
         self.hpMeter.setP(-90)
         if self.zone != InvasionGlobals.getTotalCapturePoints(self.holidayId):
             self.hpMeter.setPos(transform.getPos() + (50, 0, 0))
@@ -315,7 +315,7 @@ class MinimapCapturePoint(MinimapObject):
         self.hpMeter.setScale(transform.getScale())
         self.hpMeter['sortOrder'] = MinimapCapturePoint.SORT
         self.hpMeter.setAlphaScale(1, 1)
-        self.hpMeter.categoryLabel['text_scale'] = 0.10000000000000001
+        self.hpMeter.categoryLabel['text_scale'] = 0.100
         self.hpMeter.update(1, 1)
         topGui = loader.loadModel('models/gui/toplevel_gui')
         if self.zone != InvasionGlobals.getTotalCapturePoints(self.holidayId):
@@ -324,7 +324,7 @@ class MinimapCapturePoint(MinimapObject):
         self.barricadeDestroyed = OnscreenImage(parent = overlayNode, image = topGui.find('**/pir_t_gui_gen_Xred'), scale = transform.getScale() * 4.0, pos = transform.getPos(), hpr = (0, -90, 0))
         self.barricadeDestroyed.hide()
         topGui.remove_node()
-        self.mouseOver = GuiButton(parent = self.hpMeter, relief = None, state = DGG.NORMAL, scale = 3.0, image = None, frameSize = (-0.10000000000000001, 0.14999999999999999, -0.029999999999999999, 0.029999999999999999), helpText = PLocalizer.CapturePointNames[self.holidayId][self.zone], helpPos = (0.10000000000000001, 0, -0.080000000000000002), helpDelay = 0, helpOpaque = True, sortOrder = MinimapShop.SORT)
+        self.mouseOver = GuiButton(parent = self.hpMeter, relief = None, state = DGG.NORMAL, scale = 3.0, image = None, frameSize = (-0.100, 0.149, -0.0299, 0.0299), helpText = PLocalizer.CapturePointNames[self.holidayId][self.zone], helpPos = (0.100, 0, -0.08), helpDelay = 0, helpOpaque = True, sortOrder = MinimapShop.SORT)
 
 
     def _removedFromMap(self, map):

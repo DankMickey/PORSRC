@@ -29,7 +29,7 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-385.23099999999999, 130.977, 9.5210000000000008),
+                    'Pos': Point3(-385.230, 130.977, 9.5210000000000008),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/gen_tree_a' } },
@@ -37,7 +37,7 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-180.24000000000001, 388.19499999999999, 7.4939999999999998),
+                    'Pos': Point3(-180.24, 388.194, 7.4938),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/gen_tree_a' } },
@@ -45,7 +45,7 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-401.923, 213.53800000000001, 10.347),
+                    'Pos': Point3(-401.923, 213.538, 10.347),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/gen_tree_b' } },
@@ -53,7 +53,7 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-308.93299999999999, 340.30099999999999, 12.173),
+                    'Pos': Point3(-308.932, 340.300, 12.173),
                     'Scale': VBase3(1.589, 1.589, 1.589),
                     'Visual': {
                         'Model': 'models/vegetation/gen_tree_canopy' } },
@@ -61,7 +61,7 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Hpr': VBase3(-135.53, 0.0, 0.0),
-                    'Pos': Point3(-326.38299999999998, 289.24299999999999, 16.140999999999998),
+                    'Pos': Point3(-326.382, 289.242, 16.1408),
                     'Scale': VBase3(1.589, 1.589, 1.589),
                     'Visual': {
                         'Model': 'models/vegetation/gen_tree_canopy' } },
@@ -69,7 +69,7 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-456.41500000000002, 183.601, 7.3890000000000002),
+                    'Pos': Point3(-456.415, 183.601, 7.3890),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/gen_tree_c' } },
@@ -77,8 +77,8 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-475.64499999999998, 0.32200000000000001, 7.8099999999999996),
-                    'Scale': VBase3(1.1439999999999999, 1.1439999999999999, 1.1439999999999999),
+                    'Pos': Point3(-475.644, 0.322, 7.8096),
+                    'Scale': VBase3(1.1439, 1.1439, 1.1439),
                     'Visual': {
                         'Color': (0.79607844352722168, 0.7764706015586853, 0.70196080207824707, 1.0),
                         'Model': 'models/vegetation/gen_tree_d' } },
@@ -86,7 +86,7 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': VBase3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-305.84800000000001, 233.369, 8.2859999999999996),
+                    'Pos': Point3(-305.848, 233.369, 8.2856),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/gen_tree_b' } },
@@ -94,15 +94,15 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-499.08100000000002, 230.03, 5.4450000000000003),
+                    'Pos': Point3(-499.081, 230.03, 5.4450),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/gen_tree_d' } },
                 '1161392018.65kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-45.057000000000002, 0.0, 0.0),
-                    'Pos': Point3(-461.21199999999999, 311.47399999999999, 2.7229999999999999),
+                    'Hpr': VBase3(-45.057, 0.0, 0.0),
+                    'Pos': Point3(-461.211, 311.473, 2.7229),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/gen_tree_b' } },
@@ -110,15 +110,15 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-348.90699999999998, 423.85000000000002, 5.7439999999999998),
+                    'Pos': Point3(-348.906, 423.85, 5.7438),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_a' } },
                 '1161392095.0kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-63.134999999999998, 0.0, 0.0),
-                    'Pos': Point3(-307.47699999999998, 449.875, 5.1429999999999998),
+                    'Hpr': VBase3(-63.1348, 0.0, 0.0),
+                    'Pos': Point3(-307.476, 449.875, 5.1428),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_e' } },
@@ -126,23 +126,23 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-395.36000000000001, 388.68200000000002, 3.1280000000000001),
+                    'Pos': Point3(-395.36, 388.682, 3.128),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_c' } },
                 '1161392155.73kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-51.725999999999999, 0.0, -19.492999999999999),
-                    'Pos': Point3(-378.55099999999999, 396.70800000000003, 6.8070000000000004),
+                    'Hpr': VBase3(-51.725, 0.0, -19.492),
+                    'Pos': Point3(-378.550, 396.708, 6.80700),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_c' } },
                 '1161392197.73kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-18.164000000000001, 0.0, 0.0),
-                    'Pos': Point3(-356.59699999999998, 420.28899999999999, 6.2649999999999997),
+                    'Hpr': VBase3(-18.164, 0.0, 0.0),
+                    'Pos': Point3(-356.596, 420.288, 6.264),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_d' } },
@@ -150,23 +150,23 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-344.54199999999997, 428.69900000000001, 5.2110000000000003),
-                    'Scale': VBase3(0.66000000000000003, 0.66000000000000003, 0.66000000000000003),
+                    'Pos': Point3(-344.541, 428.699, 5.2110),
+                    'Scale': VBase3(0.66000, 0.66000, 0.66000),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
                 '1161392238.01kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-320.96300000000002, 444.65300000000002, 4.8109999999999999),
+                    'Pos': Point3(-320.963, 444.653, 4.8109),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
                 '1161392307.59kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-44.301000000000002, 0.0, 0.0),
-                    'Pos': Point3(-329.39800000000002, 438.43200000000002, 5.6680000000000001),
+                    'Hpr': VBase3(-44.301, 0.0, 0.0),
+                    'Pos': Point3(-329.398, 438.432, 5.668),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
@@ -174,23 +174,23 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-283.291, 472.358, 3.7999999999999998),
+                    'Pos': Point3(-283.291, 472.358, 3.78),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_f' } },
                 '1161392359.84kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': False,
-                    'Hpr': VBase3(47.948999999999998, 0.0, 0.0),
-                    'Pos': Point3(-280.92700000000002, 459.28699999999998, 5.6639999999999997),
-                    'Scale': VBase3(0.69399999999999995, 0.69399999999999995, 0.69399999999999995),
+                    'Hpr': VBase3(47.9488, 0.0, 0.0),
+                    'Pos': Point3(-280.927, 459.286, 5.663),
+                    'Scale': VBase3(0.69395, 0.69395, 0.69395),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
                 '1161392384.8kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-72.182000000000002, 0.0, 0.0),
-                    'Pos': Point3(-292.42700000000002, 448.04399999999998, 7.0529999999999999),
+                    'Hpr': VBase3(-72.182, 0.0, 0.0),
+                    'Pos': Point3(-292.427, 448.043, 7.0529),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_half_a' } },
@@ -198,7 +198,7 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Hpr': VBase3(-176.88, 0.0, 0.0),
-                    'Pos': Point3(-252.62899999999999, 422.60399999999998, 7.8949999999999996),
+                    'Pos': Point3(-252.628, 422.603, 7.8946),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_half_a' } },
@@ -207,22 +207,22 @@ objectStruct = {
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Pos': Point3(-412.524, 108.762, 10.045),
-                    'Scale': VBase3(0.89300000000000002, 0.89300000000000002, 0.89300000000000002),
+                    'Scale': VBase3(0.893, 0.893, 0.893),
                     'Visual': {
                         'Model': 'models/vegetation/gen_tree_b' } },
                 '1161392530.87kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
-                    'Hpr': VBase3(55.018000000000001, 0.0, 0.0),
-                    'Pos': Point3(-501.98599999999999, 65.963999999999999, 8.5009999999999994),
+                    'Hpr': VBase3(55.018, 0.0, 0.0),
+                    'Pos': Point3(-501.985, 65.963, 8.5004),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/gen_tree_b' } },
                 '1161392580.42kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
-                    'Hpr': VBase3(0.0, 0.0, 0.085000000000000006),
-                    'Pos': Point3(-226.935, 332.77699999999999, 10.917999999999999),
+                    'Hpr': VBase3(0.0, 0.0, 0.085),
+                    'Pos': Point3(-226.935, 332.776, 10.917),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/gen_tree_d' } },
@@ -230,32 +230,32 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-367.29899999999998, 109.5, 8.6110000000000007),
+                    'Pos': Point3(-367.298, 109.5, 8.611),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/palm_tree_a' } },
                 '1161392642.31kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-0.39800000000000002, -8.5920000000000005, 2.423),
-                    'Pos': Point3(-366.70800000000003, 109.072, 7.8099999999999996),
-                    'Scale': VBase3(1.1419999999999999, 1.1419999999999999, 1.1419999999999999),
+                    'Hpr': VBase3(-0.398, -8.59200, 2.423),
+                    'Pos': Point3(-366.708, 109.072, 7.8096),
+                    'Scale': VBase3(1.1419, 1.1419, 1.1419),
                     'Visual': {
                         'Model': 'models/vegetation/bush_e' } },
                 '1161392692.76kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(0.0, -5.6390000000000002, 0.0),
-                    'Pos': Point3(-406.99799999999999, 66.867999999999995, 7.1769999999999996),
-                    'Scale': VBase3(1.1499999999999999, 1.1499999999999999, 1.1499999999999999),
+                    'Hpr': VBase3(0.0, -5.6390, 0.0),
+                    'Pos': Point3(-406.997, 66.8675, 7.1766),
+                    'Scale': VBase3(1.14, 1.14, 1.14),
                     'Visual': {
                         'Model': 'models/vegetation/bush_e' } },
                 '1161392707.03kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': VBase3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-406.68900000000002, 66.867999999999995, 7.1769999999999996),
-                    'Scale': VBase3(0.85699999999999998, 0.85699999999999998, 0.85699999999999998),
+                    'Pos': Point3(-406.689, 66.8675, 7.1766),
+                    'Scale': VBase3(0.85698, 0.85698, 0.85698),
                     'Visual': {
                         'Model': 'models/vegetation/palm_tree_c' } },
                 '1161392839.59kmuller': {
@@ -263,8 +263,8 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': '',
                     'Hpr': VBase3(-103.911, 0.0, 0.0),
-                    'Pos': Point3(-459.30200000000002, -72.123999999999995, 11.898),
-                    'Scale': VBase3(0.40699999999999997, 0.40699999999999997, 0.40699999999999997),
+                    'Pos': Point3(-459.302, -72.1235, 11.898),
+                    'Scale': VBase3(0.406, 0.406, 0.406),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/vegetation/bush_leaves' } },
@@ -272,39 +272,39 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-352.43400000000003, 84.876000000000005, 6.9089999999999998),
+                    'Pos': Point3(-352.434, 84.8760, 6.9088),
                     'Scale': VBase3(0.44, 0.44, 0.44),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_e' } },
                 '1161392974.9kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-7.4569999999999999, 0.0, 2.109),
-                    'Pos': Point3(-312.81400000000002, 101.431, 7.085),
+                    'Hpr': VBase3(-7.4569, 0.0, 2.109),
+                    'Pos': Point3(-312.814, 101.431, 7.085),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_c' } },
                 '1161393001.05kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(63.819000000000003, 1.6639999999999999, 0.67700000000000005),
-                    'Pos': Point3(-307.52999999999997, 94.528000000000006, 4.9729999999999999),
+                    'Hpr': VBase3(63.819, 1.6639, 0.677000),
+                    'Pos': Point3(-307.52, 94.528, 4.9729),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_i' } },
                 '1161393017.31kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-7.4569999999999999, 0.0, 2.109),
-                    'Pos': Point3(-306.334, 84.016999999999996, 3.8140000000000001),
+                    'Hpr': VBase3(-7.4569, 0.0, 2.109),
+                    'Pos': Point3(-306.334, 84.0166, 3.814),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_b' } },
                 '1161393082.5kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-33.203000000000003, 2.4940000000000002, -0.73999999999999999),
-                    'Pos': Point3(-405.40100000000001, 61.603999999999999, 10.246),
+                    'Hpr': VBase3(-33.203, 2.4940, -0.739),
+                    'Pos': Point3(-405.401, 61.603, 10.246),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_c' } },
@@ -313,7 +313,7 @@ objectStruct = {
                     'DisableCollision': True,
                     'Holiday': '',
                     'Hpr': VBase3(102.069, 0.0, 0.0),
-                    'Pos': Point3(-409.072, 73.174999999999997, 9.6910000000000007),
+                    'Pos': Point3(-409.072, 73.174, 9.691),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -322,23 +322,23 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': VBase3(0.0, 0.0, 0.501),
-                    'Pos': Point3(-505.536, 109.372, 5.7880000000000003),
+                    'Pos': Point3(-505.536, 109.372, 5.7880),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_a' } },
                 '1161393330.23kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-0.53400000000000003, -0.0050000000000000001, 0.501),
-                    'Pos': Point3(-507.202, 120.864, 6.3490000000000002),
+                    'Hpr': VBase3(-0.53400, -0.00500, 0.501),
+                    'Pos': Point3(-507.202, 120.864, 6.3490),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
                 '1161393342.72kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-36.481999999999999, -0.29799999999999999, 0.40300000000000002),
-                    'Pos': Point3(-523.56399999999996, 104.75, 5.391),
+                    'Hpr': VBase3(-36.481, -0.297, 0.403),
+                    'Pos': Point3(-523.563, 104.75, 5.391),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_e' } },
@@ -346,7 +346,7 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-515.98500000000001, 115.075, 5.3259999999999996),
+                    'Pos': Point3(-515.985, 115.075, 5.3256),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_c' } },
@@ -354,9 +354,9 @@ objectStruct = {
                     'Type': 'Tree - Animated',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(-70.542000000000002, 0.0, 0.0),
-                    'Pos': Point3(-422.48099999999999, 186.47200000000001, 8.1150000000000002),
-                    'Scale': VBase3(1.6339999999999999, 1.6339999999999999, 1.6339999999999999),
+                    'Hpr': VBase3(-70.542, 0.0, 0.0),
+                    'Pos': Point3(-422.480, 186.472, 8.1150),
+                    'Scale': VBase3(1.6339, 1.6339, 1.6339),
                     'SubObjs': {
                         'Top Model': {
                             'Visual': {
@@ -378,8 +378,8 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': '',
                     'Hpr': VBase3(-103.208, 0.0, 0.0),
-                    'Pos': Point3(-424.74200000000002, 184.24100000000001, 7.2809999999999997),
-                    'Scale': VBase3(0.64500000000000002, 0.64500000000000002, 0.64500000000000002),
+                    'Pos': Point3(-424.742, 184.241, 7.280),
+                    'Scale': VBase3(0.645, 0.645, 0.645),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/vegetation/bush_i' } },
@@ -387,8 +387,8 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(0.28100000000000003, 0.0, 0.0),
-                    'Pos': Point3(-414.54300000000001, 181.04400000000001, 7.444),
+                    'Hpr': VBase3(0.28100, 0.0, 0.0),
+                    'Pos': Point3(-414.543, 181.044, 7.444),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -396,8 +396,8 @@ objectStruct = {
                 '1161393753.36kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
-                    'Hpr': VBase3(0.28100000000000003, 0.0, 0.0),
-                    'Pos': Point3(-546.05899999999997, -68.075000000000003, 3.8359999999999999),
+                    'Hpr': VBase3(0.28100, 0.0, 0.0),
+                    'Pos': Point3(-546.058, -68.075, 3.8359),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_c' } },
@@ -405,8 +405,8 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Holiday': '',
-                    'Hpr': VBase3(0.28100000000000003, 0.0, 0.0),
-                    'Pos': Point3(-510.13499999999999, -43.049999999999997, 5.8170000000000002),
+                    'Hpr': VBase3(0.28100, 0.0, 0.0),
+                    'Pos': Point3(-510.134, -43.04, 5.8170),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -415,8 +415,8 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Holiday': '',
-                    'Hpr': VBase3(0.28100000000000003, 0.0, 0.0),
-                    'Pos': Point3(-505.322, -161.511, 5.2469999999999999),
+                    'Hpr': VBase3(0.28100, 0.0, 0.0),
+                    'Pos': Point3(-505.322, -161.511, 5.2469),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -425,8 +425,8 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Holiday': '',
-                    'Hpr': VBase3(0.28100000000000003, 0.0, 0.0),
-                    'Pos': Point3(-431.59199999999998, -144.92099999999999, 9.3390000000000004),
+                    'Hpr': VBase3(0.28100, 0.0, 0.0),
+                    'Pos': Point3(-431.591, -144.920, 9.33900),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -435,8 +435,8 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Holiday': '',
-                    'Hpr': VBase3(0.28100000000000003, 0.0, 0.0),
-                    'Pos': Point3(-436.04899999999998, -75.900999999999996, 10.596),
+                    'Hpr': VBase3(0.28100, 0.0, 0.0),
+                    'Pos': Point3(-436.048, -75.9006, 10.596),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -445,8 +445,8 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Holiday': '',
-                    'Hpr': VBase3(-61.640000000000001, 0.0, 0.0),
-                    'Pos': Point3(-437.54700000000003, -117.40300000000001, 9.7479999999999993),
+                    'Hpr': VBase3(-61.64, 0.0, 0.0),
+                    'Pos': Point3(-437.547, -117.403, 9.7473),
                     'Scale': VBase3(1.224, 1.224, 1.224),
                     'VisSize': '',
                     'Visual': {
@@ -456,7 +456,7 @@ objectStruct = {
                     'DisableCollision': True,
                     'Holiday': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-440.64800000000002, -133.28700000000001, 10.228),
+                    'Pos': Point3(-440.648, -133.287, 10.228),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -465,7 +465,7 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Hpr': VBase3(-110.011, 0.0, -0.25),
-                    'Pos': Point3(-436.85199999999998, -142.93600000000001, 10.855),
+                    'Pos': Point3(-436.851, -142.936, 10.855),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_f' } },
@@ -473,15 +473,15 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-542.31899999999996, -68.057000000000002, 4.0609999999999999),
+                    'Pos': Point3(-542.318, -68.057, 4.0609),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_d' } },
                 '1161393935.25kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-33.417000000000002, -1.806, 0.0),
-                    'Pos': Point3(-521.57100000000003, -18.573, 7.1689999999999996),
+                    'Hpr': VBase3(-33.417, -1.806, 0.0),
+                    'Pos': Point3(-521.571, -18.573, 7.1686),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
@@ -490,8 +490,8 @@ objectStruct = {
                     'DisableCollision': True,
                     'Holiday': '',
                     'Hpr': VBase3(0.0, 0.0, 0.159),
-                    'Pos': Point3(-535.101, -60.219000000000001, 1.119),
-                    'Scale': VBase3(1.0029999999999999, 1.0029999999999999, 1.0029999999999999),
+                    'Pos': Point3(-535.101, -60.219, 1.119),
+                    'Scale': VBase3(1.0029, 1.0029, 1.0029),
                     'SubObjs': {
                         'Top Model': {
                             'Visual': {
@@ -502,27 +502,27 @@ objectStruct = {
                                 'Holiday': '',
                                 'Model': 'models/vegetation/palm_leaf_c_hi',
                                 'PartName': 'leaf',
-                                'Scale': VBase3(1.7549999999999999, 1.7549999999999999, 1.7549999999999999),
+                                'Scale': VBase3(1.7549, 1.7549, 1.7549),
                                 'VisSize': '' } } },
                     'VisSize': '',
                     'Visual': {
                         'Animate': 'models/vegetation/palm_trunk_a_idle',
                         'Model': 'models/vegetation/palm_trunk_a_hi',
                         'PartName': 'trunk',
-                        'Scale': VBase3(1.0029999999999999, 1.0029999999999999, 1.0029999999999999) } },
+                        'Scale': VBase3(1.0029, 1.0029, 1.0029) } },
                 '1161394111.76kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Hpr': VBase3(-115.027, 0.0, 0.0),
-                    'Pos': Point3(-535.08600000000001, -59.216999999999999, 3.5880000000000001),
-                    'Scale': VBase3(0.90200000000000002, 0.90200000000000002, 0.90200000000000002),
+                    'Pos': Point3(-535.086, -59.216, 3.588),
+                    'Scale': VBase3(0.902, 0.902, 0.902),
                     'Visual': {
                         'Model': 'models/vegetation/bush_i' } },
                 '1161394224.18kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(145.68799999999999, 0.0, 0.0),
-                    'Pos': Point3(-433.75999999999999, -74.974999999999994, 11.677),
+                    'Hpr': VBase3(145.687, 0.0, 0.0),
+                    'Pos': Point3(-433.75, -74.9744, 11.677),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_g' } },
@@ -530,8 +530,8 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Holiday': '',
-                    'Hpr': VBase3(135.28899999999999, 1.359, 0.0),
-                    'Pos': Point3(-435.88600000000002, -82.170000000000002, 11.138),
+                    'Hpr': VBase3(135.288, 1.359, 0.0),
+                    'Pos': Point3(-435.886, -82.170, 11.138),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -540,8 +540,8 @@ objectStruct = {
                     'Type': 'Tree - Animated',
                     'DisableCollision': True,
                     'Hpr': VBase3(-26.465, 0.0, 0.0),
-                    'Pos': Point3(-425.15899999999999, -124.17100000000001, 10.843999999999999),
-                    'Scale': VBase3(0.69799999999999995, 0.69799999999999995, 0.69799999999999995),
+                    'Pos': Point3(-425.158, -124.171, 10.843),
+                    'Scale': VBase3(0.69795, 0.69795, 0.69795),
                     'SubObjs': {
                         'Top Model': {
                             'Visual': {
@@ -551,7 +551,7 @@ objectStruct = {
                                     'def_trunk_attach'],
                                 'Model': 'models/vegetation/palm_leaf_b_hi',
                                 'PartName': 'leaf',
-                                'Scale': VBase3(2.2400000000000002, 2.2400000000000002, 2.2400000000000002) } } },
+                                'Scale': VBase3(2.24, 2.24, 2.24) } } },
                     'Visual': {
                         'Animate': 'models/vegetation/palm_trunk_a_idle',
                         'Model': 'models/vegetation/palm_trunk_a_hi',
@@ -561,7 +561,7 @@ objectStruct = {
                     'DisableCollision': True,
                     'Holiday': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-464.73399999999998, -174.06100000000001, 7.1420000000000003),
+                    'Pos': Point3(-464.733, -174.061, 7.1420),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'SubObjs': {
                         'Top Model': {
@@ -584,7 +584,7 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': '',
                     'Hpr': VBase3(0.0, 1.829, 0.0),
-                    'Pos': Point3(539.34000000000003, -133.19499999999999, 13.667999999999999),
+                    'Pos': Point3(539.34, -133.194, 13.667),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -592,24 +592,24 @@ objectStruct = {
                 '1161395268.2kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-110.29300000000001, -3.4889999999999999, 0.040000000000000001),
-                    'Pos': Point3(496.11700000000002, -131.94499999999999, 20.817),
+                    'Hpr': VBase3(-110.293, -3.4889, 0.0400),
+                    'Pos': Point3(496.117, -131.944, 20.817),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_half_c' } },
                 '1161395324.95kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
-                    'Hpr': VBase3(37.624000000000002, 0.0, 0.0),
-                    'Pos': Point3(481.89600000000002, -126.962, 21.486000000000001),
+                    'Hpr': VBase3(37.624, 0.0, 0.0),
+                    'Pos': Point3(481.896, -126.962, 21.486),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_leaves' } },
                 '1161395361.09kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-1.1060000000000001, 0.193, 0.0),
-                    'Pos': Point3(458.654, -125.17, 24.949000000000002),
+                    'Hpr': VBase3(-1.106, 0.193, 0.0),
+                    'Pos': Point3(458.654, -125.17, 24.949),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
@@ -617,24 +617,24 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(441.137, -86.040000000000006, 24.369),
+                    'Pos': Point3(441.137, -86.04, 24.369),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_a' } },
                 '1161395498.83kmuller': {
                     'Type': 'Rock',
                     'DisableCollision': True,
-                    'Hpr': VBase3(65.328999999999994, 2.1030000000000002, 1.7509999999999999),
-                    'Pos': Point3(446.012, -65.043999999999997, 23.260999999999999),
-                    'Scale': VBase3(2.3889999999999998, 2.3889999999999998, 2.3889999999999998),
+                    'Hpr': VBase3(65.3284, 2.1030, 1.7509),
+                    'Pos': Point3(446.012, -65.043, 23.260),
+                    'Scale': VBase3(2.3888, 2.3888, 2.3888),
                     'Visual': {
                         'Color': (0.40000000596046448, 0.40000000596046448, 0.40000000596046448, 1.0),
                         'Model': 'models/props/rock_group_3_sphere' } },
                 '1161395524.81kmuller': {
                     'Type': 'Rock',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-26.265000000000001, 2.8730000000000002, -0.056000000000000001),
-                    'Pos': Point3(462.44400000000002, -25.664000000000001, 23.332999999999998),
+                    'Hpr': VBase3(-26.265, 2.8730, -0.0560),
+                    'Pos': Point3(462.444, -25.664, 23.3328),
                     'Scale': VBase3(1.383, 1.383, 1.383),
                     'Visual': {
                         'Color': (0.40000000596046448, 0.40000000596046448, 0.40000000596046448, 1.0),
@@ -643,7 +643,7 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(463.22699999999998, -22.135999999999999, 24.327999999999999),
+                    'Pos': Point3(463.226, -22.135, 24.327),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_b' } },
@@ -651,7 +651,7 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(459.98700000000002, -36.283999999999999, 22.986999999999998),
+                    'Pos': Point3(459.987, -36.283, 22.9868),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_a' } },
@@ -659,8 +659,8 @@ objectStruct = {
                     'Type': 'Tree - Animated',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-400.97899999999998, -37.009, 11.506),
-                    'Scale': VBase3(1.3320000000000001, 1.3320000000000001, 1.3320000000000001),
+                    'Pos': Point3(-400.978, -37.009, 11.506),
+                    'Scale': VBase3(1.332, 1.332, 1.332),
                     'SubObjs': {
                         'Top Model': {
                             'Visual': {
@@ -678,8 +678,8 @@ objectStruct = {
                     'Type': 'Tree - Animated',
                     'DisableCollision': True,
                     'Holiday': '',
-                    'Hpr': VBase3(83.944000000000003, 0.0, 0.0),
-                    'Pos': Point3(-391.125, -3.3330000000000002, 11.635999999999999),
+                    'Hpr': VBase3(83.944, 0.0, 0.0),
+                    'Pos': Point3(-391.125, -3.3330, 11.635),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'SubObjs': {
                         'Top Model': {
@@ -701,9 +701,9 @@ objectStruct = {
                     'Type': 'Tree - Animated',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(146.21700000000001, 0.0, 0.0),
-                    'Pos': Point3(-429.75599999999997, -40.206000000000003, 11.204000000000001),
-                    'Scale': VBase3(1.1359999999999999, 1.1359999999999999, 1.1359999999999999),
+                    'Hpr': VBase3(146.217, 0.0, 0.0),
+                    'Pos': Point3(-429.755, -40.206, 11.204),
+                    'Scale': VBase3(1.1359, 1.1359, 1.1359),
                     'SubObjs': {
                         'Top Model': {
                             'Visual': {
@@ -724,9 +724,9 @@ objectStruct = {
                 '1161623304.31kmuller': {
                     'Type': 'Tree - Animated',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-97.841999999999999, 0.0, 0.0),
-                    'Pos': Point3(-522.09900000000005, -91.481999999999999, 5.1500000000000004),
-                    'Scale': VBase3(1.3380000000000001, 1.3380000000000001, 1.3380000000000001),
+                    'Hpr': VBase3(-97.841, 0.0, 0.0),
+                    'Pos': Point3(-522.099, -91.481, 5.15000),
+                    'Scale': VBase3(1.338, 1.338, 1.338),
                     'SubObjs': {
                         'Top Model': {
                             'Visual': {
@@ -744,7 +744,7 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-424.51799999999997, -48.618000000000002, 12.433999999999999),
+                    'Pos': Point3(-424.517, -48.618, 12.433),
                     'Scale': VBase3(1.258, 1.258, 1.258),
                     'Visual': {
                         'Model': 'models/vegetation/gen_tree_a' } },
@@ -752,7 +752,7 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-393.09699999999998, -37.640000000000001, 11.125999999999999),
+                    'Pos': Point3(-393.096, -37.64, 11.125),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_b' } },
@@ -761,7 +761,7 @@ objectStruct = {
                     'DisableCollision': True,
                     'Holiday': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-395.81200000000001, -8.1389999999999993, 11.878),
+                    'Pos': Point3(-395.812, -8.1383, 11.878),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -770,8 +770,8 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Holiday': '',
-                    'Hpr': VBase3(-84.843999999999994, 0.0, 0.0),
-                    'Pos': Point3(-415.10500000000002, 5.1529999999999996, 11.613),
+                    'Hpr': VBase3(-84.8434, 0.0, 0.0),
+                    'Pos': Point3(-415.105, 5.1526, 11.613),
                     'Scale': VBase3(1.224, 1.224, 1.224),
                     'VisSize': '',
                     'Visual': {
@@ -779,40 +779,40 @@ objectStruct = {
                 '1161623684.34kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-91.569000000000003, -2.0979999999999999, 0.217),
-                    'Pos': Point3(-404.02600000000001, 2.4100000000000001, 12.863),
+                    'Hpr': VBase3(-91.569, -2.0979, 0.217),
+                    'Pos': Point3(-404.026, 2.41, 12.863),
                     'Scale': VBase3(1.127, 1.127, 1.127),
                     'Visual': {
                         'Model': 'models/vegetation/bush_c' } },
                 '1161623723.55kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-44.948999999999998, -1.284, 1.6739999999999999),
-                    'Pos': Point3(-413.05700000000002, -11.086, 13.116),
+                    'Hpr': VBase3(-44.9488, -1.284, 1.6739),
+                    'Pos': Point3(-413.057, -11.086, 13.116),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
                 '1161623747.28kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-64.944000000000003, -1.7789999999999999, 1.1339999999999999),
-                    'Pos': Point3(-388.09399999999999, -27.782, 11.385999999999999),
+                    'Hpr': VBase3(-64.944, -1.7789, 1.1339),
+                    'Pos': Point3(-388.093, -27.782, 11.385),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
                 '1161623774.47kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-33.417000000000002, -1.806, 0.0),
-                    'Pos': Point3(-531.25699999999995, -23.817, 6.4859999999999998),
+                    'Hpr': VBase3(-33.417, -1.806, 0.0),
+                    'Pos': Point3(-531.256, -23.817, 6.4858),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_b' } },
                 '1161623778.2kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(18.923999999999999, -1.1040000000000001, 1.4299999999999999),
-                    'Pos': Point3(-529.08100000000002, -10.154999999999999, 6.516),
+                    'Hpr': VBase3(18.923, -1.104, 1.42),
+                    'Pos': Point3(-529.081, -10.154, 6.516),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_c' } },
@@ -820,8 +820,8 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Holiday': '',
-                    'Hpr': VBase3(0.28100000000000003, 0.0, 0.0),
-                    'Pos': Point3(-535.29100000000005, -19.303000000000001, 4.9109999999999996),
+                    'Hpr': VBase3(0.28100, 0.0, 0.0),
+                    'Pos': Point3(-535.291, -19.303, 4.9106),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -829,8 +829,8 @@ objectStruct = {
                 '1161623900.31kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(176.714, 1.5620000000000001, -0.90600000000000003),
-                    'Pos': Point3(-538.19200000000001, -11.942, 5.7969999999999997),
+                    'Hpr': VBase3(176.714, 1.562, -0.90600),
+                    'Pos': Point3(-538.192, -11.942, 5.796),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_b' } },
@@ -838,8 +838,8 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Holiday': '',
-                    'Hpr': VBase3(136.62200000000001, 1.7789999999999999, 0.312),
-                    'Pos': Point3(-535.96600000000001, -3.2389999999999999, 5.641),
+                    'Hpr': VBase3(136.622, 1.7789, 0.312),
+                    'Pos': Point3(-535.966, -3.2389, 5.641),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -847,16 +847,16 @@ objectStruct = {
                 '1161623964.28kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-133.35900000000001, 0.312, -1.7789999999999999),
-                    'Pos': Point3(-506.25999999999999, 65.998000000000005, 6.7519999999999998),
+                    'Hpr': VBase3(-133.359, 0.312, -1.7789),
+                    'Pos': Point3(-506.25, 65.9980, 6.7518),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_f' } },
                 '1161623979.22kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(76.908000000000001, 0.627, 1.694),
-                    'Pos': Point3(-499.00999999999999, 68.900999999999996, 8.4429999999999996),
+                    'Hpr': VBase3(76.908, 0.627, 1.694),
+                    'Pos': Point3(-499.00, 68.9006, 8.4426),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_f' } },
@@ -864,8 +864,8 @@ objectStruct = {
                     'Type': 'Rock',
                     'DisableCollision': True,
                     'Holiday': '',
-                    'Hpr': VBase3(33.387, -2.089, -3.1659999999999999),
-                    'Pos': Point3(-509.93799999999999, 71.914000000000001, 6.609),
+                    'Hpr': VBase3(33.387, -2.089, -3.1659),
+                    'Pos': Point3(-509.937, 71.914, 6.609),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -874,24 +874,24 @@ objectStruct = {
                 '1161624136.55kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-93.965000000000003, -3.4609999999999999, 2.2629999999999999),
-                    'Pos': Point3(-516.99099999999999, 71.373000000000005, 6.0650000000000004),
-                    'Scale': VBase3(0.65600000000000003, 0.65600000000000003, 0.65600000000000003),
+                    'Hpr': VBase3(-93.965, -3.4609, 2.2629),
+                    'Pos': Point3(-516.990, 71.3730, 6.06500),
+                    'Scale': VBase3(0.65600, 0.65600, 0.65600),
                     'Visual': {
                         'Model': 'models/vegetation/bush_f' } },
                 '1161624254.58kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(3.0009999999999999, 0.0, 0.0),
-                    'Pos': Point3(-497.84899999999999, 63.463000000000001, 8.7579999999999991),
+                    'Hpr': VBase3(3.0009, 0.0, 0.0),
+                    'Pos': Point3(-497.848, 63.463, 8.7571),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_b' } },
                 '1161624469.33kmuller': {
                     'Type': 'Rock',
                     'DisableCollision': True,
-                    'Hpr': VBase3(58.622, -3.2389999999999999, -1.9730000000000001),
-                    'Pos': Point3(-528.49000000000001, 115.56399999999999, 5.4560000000000004),
+                    'Hpr': VBase3(58.622, -3.2389, -1.973),
+                    'Pos': Point3(-528.49, 115.563, 5.45600),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Color': (0.85000002384185791, 0.81999999284744263, 0.73000001907348633, 1.0),
@@ -900,7 +900,7 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-534.17899999999997, 107.41800000000001, 5.3239999999999998),
+                    'Pos': Point3(-534.178, 107.418, 5.3238),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_f' } },
@@ -908,7 +908,7 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-505.77499999999998, 202.959, 5.3499999999999996),
+                    'Pos': Point3(-505.774, 202.959, 5.3496),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_leaves' } },
@@ -916,64 +916,64 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-513.58299999999997, 193.62, 5.4580000000000002),
+                    'Pos': Point3(-513.582, 193.62, 5.4580),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_d' } },
                 '1161624550.8kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(144.48599999999999, 0.20999999999999999, -0.029000000000000001),
-                    'Pos': Point3(-500.41800000000001, 225.02199999999999, 5.2089999999999996),
-                    'Scale': VBase3(0.68799999999999994, 0.68799999999999994, 0.68799999999999994),
+                    'Hpr': VBase3(144.485, 0.209, -0.0290),
+                    'Pos': Point3(-500.418, 225.021, 5.2086),
+                    'Scale': VBase3(0.68794, 0.68794, 0.68794),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
                 '1161624604.56kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
-                    'Hpr': VBase3(0.0, 0.0, 0.69699999999999995),
-                    'Pos': Point3(-504.93099999999998, 164.40899999999999, 6.0640000000000001),
+                    'Hpr': VBase3(0.0, 0.0, 0.69695),
+                    'Pos': Point3(-504.930, 164.408, 6.064),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_a' } },
                 '1161624612.89kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-21.478999999999999, 0.0, 0.0),
-                    'Pos': Point3(-519.71699999999998, 167.77600000000001, 4.2999999999999998),
+                    'Hpr': VBase3(-21.478, 0.0, 0.0),
+                    'Pos': Point3(-519.716, 167.776, 4.28),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
                 '1161624825.05kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-51.198999999999998, 0.0, 0.0),
-                    'Pos': Point3(-477.291, 177.50700000000001, 6.9880000000000004),
+                    'Hpr': VBase3(-51.1988, 0.0, 0.0),
+                    'Pos': Point3(-477.291, 177.507, 6.98800),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_half_c' } },
                 '1161624848.11kmuller': {
                     'Type': 'Log_Stack',
                     'DisableCollision': True,
-                    'Hpr': VBase3(79.340000000000003, 0.0, 0.0),
-                    'Pos': Point3(-472.24700000000001, 184.749, 7.0430000000000001),
-                    'Scale': VBase3(1.9159999999999999, 1.9159999999999999, 1.9159999999999999),
+                    'Hpr': VBase3(79.340, 0.0, 0.0),
+                    'Pos': Point3(-472.247, 184.749, 7.043),
+                    'Scale': VBase3(1.9159, 1.9159, 1.9159),
                     'Visual': {
                         'Model': 'models/vegetation/gen_log01' } },
                 '1161624904.92kmuller': {
                     'Type': 'Log_Stack',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-171.93600000000001, 0.0, 0.0),
-                    'Pos': Point3(-453.97300000000001, 180.62200000000001, 6.9180000000000001),
-                    'Scale': VBase3(1.0629999999999999, 1.0629999999999999, 1.0629999999999999),
+                    'Hpr': VBase3(-171.936, 0.0, 0.0),
+                    'Pos': Point3(-453.973, 180.622, 6.918),
+                    'Scale': VBase3(1.0629, 1.0629, 1.0629),
                     'Visual': {
                         'Model': 'models/vegetation/gen_log_group01' } },
                 '1161625053.08kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Holiday': '',
-                    'Hpr': VBase3(-149.54900000000001, 0.0, 0.0),
-                    'Pos': Point3(-508.61599999999999, -144.261, 4.399),
+                    'Hpr': VBase3(-149.549, 0.0, 0.0),
+                    'Pos': Point3(-508.615, -144.261, 4.399),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -982,8 +982,8 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Holiday': '',
-                    'Hpr': VBase3(42.646999999999998, 0.0, 0.0),
-                    'Pos': Point3(-513.74199999999996, -151.14699999999999, 5.9000000000000004),
+                    'Hpr': VBase3(42.6468, 0.0, 0.0),
+                    'Pos': Point3(-513.741, -151.146, 5.90000),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -991,64 +991,64 @@ objectStruct = {
                 '1161625128.38kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
-                    'Hpr': VBase3(0.28100000000000003, 0.0, 0.0),
-                    'Pos': Point3(-519.69200000000001, -137.471, 4.6749999999999998),
-                    'Scale': VBase3(0.65800000000000003, 0.65800000000000003, 0.65800000000000003),
+                    'Hpr': VBase3(0.28100, 0.0, 0.0),
+                    'Pos': Point3(-519.692, -137.471, 4.6748),
+                    'Scale': VBase3(0.65800, 0.65800, 0.65800),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
                 '1161625567.86kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(64.346000000000004, 0.0, 0.0),
-                    'Pos': Point3(-424.37400000000002, -134.417, 10.022),
-                    'Scale': VBase3(0.64500000000000002, 0.64500000000000002, 0.64500000000000002),
+                    'Hpr': VBase3(64.3460, 0.0, 0.0),
+                    'Pos': Point3(-424.374, -134.417, 10.022),
+                    'Scale': VBase3(0.645, 0.645, 0.645),
                     'Visual': {
                         'Model': 'models/vegetation/bush_i' } },
                 '1161626498.5kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-65.138000000000005, 0.0, 0.0),
-                    'Pos': Point3(-325.23700000000002, 87.579999999999998, 6.9909999999999997),
-                    'Scale': VBase3(0.79900000000000004, 0.79900000000000004, 0.79900000000000004),
+                    'Hpr': VBase3(-65.1380, 0.0, 0.0),
+                    'Pos': Point3(-325.237, 87.578, 6.990),
+                    'Scale': VBase3(0.799000, 0.799000, 0.799000),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_e' } },
                 '1161626553.55kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-65.138000000000005, 0.0, 0.0),
-                    'Pos': Point3(-297.89100000000002, 91.661000000000001, 7.1100000000000003),
-                    'Scale': VBase3(0.79900000000000004, 0.79900000000000004, 0.79900000000000004),
+                    'Hpr': VBase3(-65.1380, 0.0, 0.0),
+                    'Pos': Point3(-297.891, 91.661, 7.1100),
+                    'Scale': VBase3(0.799000, 0.799000, 0.799000),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
                 '1161626597.52kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-355.63600000000002, 79.120999999999995, 7.8760000000000003),
-                    'Scale': VBase3(0.96599999999999997, 0.96599999999999997, 0.96599999999999997),
+                    'Pos': Point3(-355.636, 79.1205, 7.8760),
+                    'Scale': VBase3(0.965, 0.965, 0.965),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_c' } },
                 '1161626625.41kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-356.40199999999999, 78.099999999999994, 7.0860000000000003),
-                    'Scale': VBase3(0.65600000000000003, 0.65600000000000003, 0.65600000000000003),
+                    'Pos': Point3(-356.401, 78.094, 7.0860),
+                    'Scale': VBase3(0.65600, 0.65600, 0.65600),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
                 '1161626703.97kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-425.12599999999998, -86.421999999999997, 11.382),
+                    'Pos': Point3(-425.125, -86.421, 11.382),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_a' } },
                 '1161626711.73kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': False,
-                    'Hpr': VBase3(26.466999999999999, -3.8999999999999999, 1.9339999999999999),
-                    'Pos': Point3(-424.97399999999999, -74.647999999999996, 9.2789999999999999),
+                    'Hpr': VBase3(26.466, -3.89, 1.9339),
+                    'Pos': Point3(-424.973, -74.6476, 9.2789),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_c' } },
@@ -1056,7 +1056,7 @@ objectStruct = {
                     'Type': 'Tree - Animated',
                     'DisableCollision': True,
                     'Hpr': VBase3(29.532, 0.0, 0.0),
-                    'Pos': Point3(-422.19499999999999, -113.241, 11.685),
+                    'Pos': Point3(-422.194, -113.241, 11.685),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'SubObjs': {
                         'Top Model': {
@@ -1075,9 +1075,9 @@ objectStruct = {
                     'Type': 'Tree - Animated',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(42.945999999999998, -2.7869999999999999, 0.92400000000000004),
-                    'Pos': Point3(-406.15199999999999, -117.113, 9.0489999999999995),
-                    'Scale': VBase3(0.59599999999999997, 0.59599999999999997, 0.59599999999999997),
+                    'Hpr': VBase3(42.9458, -2.7869, 0.924000),
+                    'Pos': Point3(-406.151, -117.113, 9.0485),
+                    'Scale': VBase3(0.595, 0.595, 0.595),
                     'SubObjs': {
                         'Top Model': {
                             'Visual': {
@@ -1097,8 +1097,8 @@ objectStruct = {
                 '1161630127.56kmuller': {
                     'Type': 'Tree - Animated',
                     'DisableCollision': True,
-                    'Hpr': VBase3(47.831000000000003, 0.0, 0.0),
-                    'Pos': Point3(-341.91300000000001, 27.004999999999999, 7.6989999999999998),
+                    'Hpr': VBase3(47.831, 0.0, 0.0),
+                    'Pos': Point3(-341.913, 27.004, 7.6988),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'SubObjs': {
                         'Top Model': {
@@ -1109,7 +1109,7 @@ objectStruct = {
                                     'def_trunk_attach'],
                                 'Model': 'models/vegetation/palm_leaf_c_hi',
                                 'PartName': 'leaf',
-                                'Scale': VBase3(1.5249999999999999, 1.5249999999999999, 1.5249999999999999) } } },
+                                'Scale': VBase3(1.5249, 1.5249, 1.5249) } } },
                     'Visual': {
                         'Animate': 'models/vegetation/palm_trunk_a_idle',
                         'Model': 'models/vegetation/palm_trunk_a_hi',
@@ -1118,8 +1118,8 @@ objectStruct = {
                     'Type': 'Log_Stack',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(0.0070000000000000001, -0.10000000000000001, 4.1909999999999998),
-                    'Pos': Point3(-360.37200000000001, 19.045000000000002, 10.647),
+                    'Hpr': VBase3(0.00700, -0.100, 4.1908),
+                    'Pos': Point3(-360.372, 19.045, 10.647),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -1128,23 +1128,23 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-331.37799999999999, 24.571000000000002, 7.6630000000000003),
+                    'Pos': Point3(-331.377, 24.571, 7.6630),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_e' } },
                 '1161630262.78kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(27.420000000000002, 0.0, 2.6200000000000001),
-                    'Pos': Point3(-342.16399999999999, 17.401, 8.5410000000000004),
+                    'Hpr': VBase3(27.420, 0.0, 2.62),
+                    'Pos': Point3(-342.163, 17.401, 8.54100),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
                 '1161630299.42kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-78.275999999999996, 0.0, 0.0),
-                    'Pos': Point3(-432.57299999999998, -51.442999999999998, 12.054),
+                    'Hpr': VBase3(-78.2756, 0.0, 0.0),
+                    'Pos': Point3(-432.572, -51.4428, 12.054),
                     'Scale': VBase3(0.496, 0.496, 0.496),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_e' } },
@@ -1152,73 +1152,73 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Holiday': '',
-                    'Hpr': VBase3(41.93, -5.4119999999999999, 0.0),
-                    'Pos': Point3(-468.00200000000001, -178.03, 5.9000000000000004),
-                    'Scale': VBase3(0.91900000000000004, 0.91900000000000004, 0.91900000000000004),
+                    'Hpr': VBase3(41.93, -5.4119, 0.0),
+                    'Pos': Point3(-468.002, -178.03, 5.90000),
+                    'Scale': VBase3(0.919000, 0.919000, 0.919000),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_b' } },
                 '1161630413.0kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
-                    'Hpr': VBase3(41.93, -5.4119999999999999, 0.0),
-                    'Pos': Point3(-553.86000000000001, -101.336, 3.206),
-                    'Scale': VBase3(0.79200000000000004, 0.79200000000000004, 0.79200000000000004),
+                    'Hpr': VBase3(41.93, -5.4119, 0.0),
+                    'Pos': Point3(-553.86, -101.336, 3.206),
+                    'Scale': VBase3(0.792000, 0.792000, 0.792000),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_b' } },
                 '1161630441.08kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(101.623, 0.19500000000000001, 0.0),
-                    'Pos': Point3(-420.76100000000002, -117.746, 10.339),
-                    'Scale': VBase3(0.64500000000000002, 0.64500000000000002, 0.64500000000000002),
+                    'Hpr': VBase3(101.623, 0.195, 0.0),
+                    'Pos': Point3(-420.761, -117.746, 10.339),
+                    'Scale': VBase3(0.645, 0.645, 0.645),
                     'Visual': {
                         'Model': 'models/vegetation/bush_i' } },
                 '1161630580.23kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Hpr': VBase3(-94.747, 0.0, 0.0),
-                    'Pos': Point3(-386.53899999999999, 250.25399999999999, 9.9339999999999993),
+                    'Pos': Point3(-386.538, 250.253, 9.9333),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_half_d' } },
                 '1161630618.66kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-94.753, 1.821, 0.40400000000000003),
-                    'Pos': Point3(-391.29399999999998, 249.69800000000001, 9.5489999999999995),
+                    'Hpr': VBase3(-94.753, 1.821, 0.40400),
+                    'Pos': Point3(-391.293, 249.698, 9.5485),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_half_c' } },
                 '1161630672.95kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-63.026000000000003, 2.2320000000000002, -0.11799999999999999),
-                    'Pos': Point3(-420.69099999999997, 247.191, 8.3520000000000003),
+                    'Hpr': VBase3(-63.026, 2.2320, -0.117),
+                    'Pos': Point3(-420.690, 247.191, 8.3520),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_half_c' } },
                 '1161630787.45kmuller': {
                     'Type': 'Log_Stack',
                     'DisableCollision': False,
-                    'Hpr': VBase3(47.387999999999998, 1.6100000000000001, -1.7490000000000001),
-                    'Pos': Point3(-436.87700000000001, 230.36699999999999, 8.2010000000000005),
+                    'Hpr': VBase3(47.3878, 1.61, -1.749),
+                    'Pos': Point3(-436.877, 230.366, 8.20100),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/gen_log_group03' } },
                 '1161630816.92kmuller': {
                     'Type': 'Rock',
                     'DisableCollision': False,
-                    'Hpr': VBase3(49.859000000000002, -4.867, -2.0129999999999999),
-                    'Pos': Point3(-447.50999999999999, 225.44, 7.0819999999999999),
-                    'Scale': VBase3(1.3260000000000001, 1.3260000000000001, 1.3260000000000001),
+                    'Hpr': VBase3(49.859, -4.867, -2.0129),
+                    'Pos': Point3(-447.50, 225.44, 7.0819),
+                    'Scale': VBase3(1.326, 1.326, 1.326),
                     'Visual': {
                         'Model': 'models/props/rock_group_4_sphere' } },
                 '1161631318.23kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-121.27800000000001, 372.38, 18.818999999999999),
+                    'Pos': Point3(-121.278, 372.38, 18.818),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/gen_tree_canopy' } },
@@ -1226,23 +1226,23 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Hpr': VBase3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-60.048999999999999, 412.322, 8.7599999999999998),
-                    'Scale': VBase3(1.5649999999999999, 1.5649999999999999, 1.5649999999999999),
+                    'Pos': Point3(-60.048, 412.322, 8.7598),
+                    'Scale': VBase3(1.5649, 1.5649, 1.5649),
                     'Visual': {
                         'Model': 'models/vegetation/gen_tree_canopy' } },
                 '1161631385.63kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-97.149000000000001, 0.0, -0.55800000000000005),
-                    'Pos': Point3(-36.865000000000002, 478.65199999999999, 5.9909999999999997),
+                    'Hpr': VBase3(-97.149, 0.0, -0.558000),
+                    'Pos': Point3(-36.865, 478.651, 5.990),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_half_a' } },
                 '1161631432.64kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
-                    'Hpr': VBase3(0.0, 0.097000000000000003, 0.0),
-                    'Pos': Point3(-60.335999999999999, 488.30000000000001, 5.3719999999999999),
+                    'Hpr': VBase3(0.0, 0.097000, 0.0),
+                    'Pos': Point3(-60.335, 488.3, 5.3719),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_e' } },
@@ -1250,7 +1250,7 @@ objectStruct = {
                     'Type': 'Rock',
                     'DisableCollision': True,
                     'Hpr': VBase3(0.0, 0.0, -1.728),
-                    'Pos': Point3(-73.893000000000001, 485.09500000000003, 5.6580000000000004),
+                    'Pos': Point3(-73.893, 485.095, 5.65800),
                     'Scale': VBase3(1.514, 1.514, 1.514),
                     'Visual': {
                         'Color': (0.89999997615814209, 0.89999997615814209, 0.69999998807907104, 1.0),
@@ -1270,7 +1270,7 @@ objectStruct = {
                                     'def_trunk_attach'],
                                 'Model': 'models/vegetation/palm_leaf_c_hi',
                                 'PartName': 'leaf',
-                                'Scale': VBase3(1.4139999999999999, 1.4139999999999999, 1.4139999999999999) } } },
+                                'Scale': VBase3(1.4139, 1.4139, 1.4139) } } },
                     'Visual': {
                         'Animate': 'models/vegetation/palm_trunk_a_idle',
                         'Model': 'models/vegetation/palm_trunk_a_hi',
@@ -1278,8 +1278,8 @@ objectStruct = {
                 '1161631613.47kmuller': {
                     'Type': 'Tree - Animated',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-78.415000000000006, 0.0, 0.0),
-                    'Pos': Point3(-5.2149999999999999, 469.57299999999998, 5.8680000000000003),
+                    'Hpr': VBase3(-78.415, 0.0, 0.0),
+                    'Pos': Point3(-5.2149, 469.572, 5.8680),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'SubObjs': {
                         'Top Model': {
@@ -1297,8 +1297,8 @@ objectStruct = {
                 '1161631659.8kmuller': {
                     'Type': 'Rock',
                     'DisableCollision': False,
-                    'Hpr': VBase3(34.066000000000003, -0.96799999999999997, -2.7890000000000001),
-                    'Pos': Point3(-11.111000000000001, 482.65600000000001, 6.1349999999999998),
+                    'Hpr': VBase3(34.066, -0.967, -2.789),
+                    'Pos': Point3(-11.111, 482.656, 6.1348),
                     'Scale': VBase3(1.514, 1.514, 1.514),
                     'Visual': {
                         'Color': (0.89999997615814209, 0.89999997615814209, 0.69999998807907104, 1.0),
@@ -1307,8 +1307,8 @@ objectStruct = {
                     'Type': 'Tree - Animated',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(80.777000000000001, 474.79399999999998, 7.5960000000000001),
-                    'Scale': VBase3(1.2010000000000001, 1.2010000000000001, 1.2010000000000001),
+                    'Pos': Point3(80.777, 474.793, 7.596),
+                    'Scale': VBase3(1.201, 1.201, 1.201),
                     'SubObjs': {
                         'Top Model': {
                             'Visual': {
@@ -1326,8 +1326,8 @@ objectStruct = {
                 '1161631765.0kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-137.62799999999999, 0.0, 0.0),
-                    'Pos': Point3(79.709999999999994, 486.53399999999999, 6.21),
+                    'Hpr': VBase3(-137.627, 0.0, 0.0),
+                    'Pos': Point3(79.704, 486.533, 6.21),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
@@ -1335,8 +1335,8 @@ objectStruct = {
                     'Type': 'Rock',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(34.066000000000003, -0.96799999999999997, -1.431),
-                    'Pos': Point3(71.932000000000002, 504.01400000000001, 4.1799999999999997),
+                    'Hpr': VBase3(34.066, -0.967, -1.431),
+                    'Pos': Point3(71.932, 504.014, 4.17),
                     'Scale': VBase3(1.514, 1.514, 1.514),
                     'VisSize': '',
                     'Visual': {
@@ -1345,8 +1345,8 @@ objectStruct = {
                 '1161631826.61kmuller': {
                     'Type': 'Rock',
                     'DisableCollision': True,
-                    'Hpr': VBase3(17.939, -1.2130000000000001, 0.70999999999999996),
-                    'Pos': Point3(91.150999999999996, 528.62699999999995, 2.9289999999999998),
+                    'Hpr': VBase3(17.939, -1.213, 0.706),
+                    'Pos': Point3(91.1506, 528.626, 2.9288),
                     'Scale': VBase3(1.514, 1.514, 1.514),
                     'Visual': {
                         'Color': (0.89999997615814209, 0.89999997615814209, 0.69999998807907104, 1.0),
@@ -1355,8 +1355,8 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Holiday': '',
-                    'Hpr': VBase3(17.603999999999999, 0.0, 0.0),
-                    'Pos': Point3(80.888999999999996, 517.19200000000001, 3.9049999999999998),
+                    'Hpr': VBase3(17.603, 0.0, 0.0),
+                    'Pos': Point3(80.8886, 517.192, 3.9048),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -1365,23 +1365,23 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(80.061000000000007, 525.84699999999998, 3.149),
+                    'Pos': Point3(80.061, 525.846, 3.149),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_a' } },
                 '1161631940.0kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(48.738999999999997, -2.0910000000000002, 1.3100000000000001),
-                    'Pos': Point3(144.19200000000001, 514.41800000000001, 9.7870000000000008),
+                    'Hpr': VBase3(48.738, -2.0910, 1.31),
+                    'Pos': Point3(144.192, 514.418, 9.7870000000000008),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_half_c' } },
                 '1161631985.33kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-109.41500000000001, 1.454, -1.994),
-                    'Pos': Point3(131.59399999999999, 523.12800000000004, 6.4039999999999999),
+                    'Hpr': VBase3(-109.415, 1.454, -1.994),
+                    'Pos': Point3(131.593, 523.128, 6.4039),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_half_a' } },
@@ -1389,8 +1389,8 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Holiday': '',
-                    'Hpr': VBase3(-109.41500000000001, 1.454, -1.994),
-                    'Pos': Point3(164.613, 502.96499999999997, 11.179),
+                    'Hpr': VBase3(-109.415, 1.454, -1.994),
+                    'Pos': Point3(164.613, 502.964, 11.179),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -1398,8 +1398,8 @@ objectStruct = {
                 '1161632052.55kmuller': {
                     'Type': 'Rock',
                     'DisableCollision': True,
-                    'Hpr': VBase3(0.0, -1.881, 3.4020000000000001),
-                    'Pos': Point3(204.00800000000001, 488.20400000000001, 11.823),
+                    'Hpr': VBase3(0.0, -1.881, 3.402),
+                    'Pos': Point3(204.008, 488.204, 11.823),
                     'Scale': VBase3(1.677, 1.677, 1.677),
                     'Visual': {
                         'Color': (1.0, 0.95999997854232788, 0.75, 1.0),
@@ -1407,24 +1407,24 @@ objectStruct = {
                 '1161632116.55kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-96.606999999999999, 0.0, 0.0),
-                    'Pos': Point3(201.49700000000001, 487.34899999999999, 10.034000000000001),
+                    'Hpr': VBase3(-96.606, 0.0, 0.0),
+                    'Pos': Point3(201.497, 487.348, 10.034),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_leaves' } },
                 '1161632171.05kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
-                    'Hpr': VBase3(49.121000000000002, 0.0, 0.0),
-                    'Pos': Point3(232.471, 467.762, 9.0180000000000007),
+                    'Hpr': VBase3(49.121, 0.0, 0.0),
+                    'Pos': Point3(232.471, 467.762, 9.018),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_e' } },
                 '1161632181.36kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
-                    'Hpr': VBase3(49.121000000000002, 0.0, -0.41099999999999998),
-                    'Pos': Point3(242.50700000000001, 463.01499999999999, 8.0800000000000001),
+                    'Hpr': VBase3(49.121, 0.0, -0.41098),
+                    'Pos': Point3(242.507, 463.014, 8.08),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
@@ -1432,8 +1432,8 @@ objectStruct = {
                     'Type': 'Rock',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(-45.984999999999999, -3.7530000000000001, 1.012),
-                    'Pos': Point3(344.77600000000001, 390.24599999999998, 10.984999999999999),
+                    'Hpr': VBase3(-45.984, -3.753, 1.012),
+                    'Pos': Point3(344.776, 390.245, 10.984),
                     'Scale': VBase3(1.677, 1.677, 1.677),
                     'VisSize': '',
                     'Visual': {
@@ -1443,9 +1443,9 @@ objectStruct = {
                     'Type': 'Rock',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(-50.244, -17.248999999999999, 0.752),
-                    'Pos': Point3(366.988, 377.06999999999999, 9.5700000000000003),
-                    'Scale': VBase3(1.3280000000000001, 1.3280000000000001, 1.3280000000000001),
+                    'Hpr': VBase3(-50.244, -17.248, 0.752),
+                    'Pos': Point3(366.988, 377.06, 9.5700),
+                    'Scale': VBase3(1.328, 1.328, 1.328),
                     'VisSize': '',
                     'Visual': {
                         'Color': (1.0, 0.95999997854232788, 0.75, 1.0),
@@ -1453,9 +1453,9 @@ objectStruct = {
                 '1161632287.66kmuller': {
                     'Type': 'Rock',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-50.259, -16.265999999999998, 0.67400000000000004),
-                    'Pos': Point3(385.072, 349.95699999999999, 12.929),
-                    'Scale': VBase3(1.3280000000000001, 1.3280000000000001, 1.3280000000000001),
+                    'Hpr': VBase3(-50.259, -16.2658, 0.674000),
+                    'Pos': Point3(385.072, 349.956, 12.929),
+                    'Scale': VBase3(1.328, 1.328, 1.328),
                     'Visual': {
                         'Color': (1.0, 0.95999997854232788, 0.75, 1.0),
                         'Model': 'models/props/rock_group_2_sphere' } },
@@ -1463,8 +1463,8 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(52.171999999999997, 0.0, 1.046),
-                    'Pos': Point3(375.01799999999997, 372.721, 10.047000000000001),
+                    'Hpr': VBase3(52.171, 0.0, 1.046),
+                    'Pos': Point3(375.017, 372.721, 10.047),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -1474,7 +1474,7 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': '',
                     'Hpr': VBase3(0.0, 0.19, 0.0),
-                    'Pos': Point3(347.81099999999998, 386.51100000000002, 11.461),
+                    'Pos': Point3(347.810, 386.511, 11.461),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -1482,33 +1482,33 @@ objectStruct = {
                 '1161632404.11kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-131.846, 2.27, -0.36099999999999999),
-                    'Pos': Point3(396.20100000000002, 339.98099999999999, 13.260999999999999),
+                    'Hpr': VBase3(-131.846, 2.27, -0.360),
+                    'Pos': Point3(396.201, 339.980, 13.260),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_c' } },
                 '1161632408.77kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(0.0, -8.3469999999999995, 0.0),
-                    'Pos': Point3(379.18900000000002, 359.71199999999999, 12.737),
+                    'Hpr': VBase3(0.0, -8.3465, 0.0),
+                    'Pos': Point3(379.189, 359.711, 12.737),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_f' } },
                 '1161632448.08kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(35.078000000000003, -2.2919999999999998, -0.16200000000000001),
-                    'Pos': Point3(387.73599999999999, 337.67500000000001, 13.093),
-                    'Scale': VBase3(0.96199999999999997, 0.96199999999999997, 0.96199999999999997),
+                    'Hpr': VBase3(35.078, -2.2918, -0.162),
+                    'Pos': Point3(387.735, 337.675, 13.093),
+                    'Scale': VBase3(0.961, 0.961, 0.961),
                     'Visual': {
                         'Model': 'models/vegetation/bush_f' } },
                 '1161632555.11kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(21.806999999999999, -1.3959999999999999, 0.0),
-                    'Pos': Point3(443.91800000000001, 293.26499999999999, 11.462),
+                    'Hpr': VBase3(21.806, -1.3959, 0.0),
+                    'Pos': Point3(443.918, 293.264, 11.462),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -1518,7 +1518,7 @@ objectStruct = {
                     'DisableCollision': True,
                     'Holiday': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(453.02699999999999, 284.178, 12.121),
+                    'Pos': Point3(453.026, 284.178, 12.121),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -1527,8 +1527,8 @@ objectStruct = {
                     'Type': 'Tree - Animated',
                     'DisableCollision': True,
                     'Hpr': VBase3(38.555, 0.0, 0.0),
-                    'Pos': Point3(447.40300000000002, 283.20299999999997, 11.33),
-                    'Scale': VBase3(1.2589999999999999, 1.2589999999999999, 1.2589999999999999),
+                    'Pos': Point3(447.403, 283.202, 11.33),
+                    'Scale': VBase3(1.2589, 1.2589, 1.2589),
                     'SubObjs': {
                         'Top Model': {
                             'Visual': {
@@ -1546,8 +1546,8 @@ objectStruct = {
                     'Type': 'Tree - Animated',
                     'DisableCollision': False,
                     'Hpr': VBase3(38.555, 0.0, 0.0),
-                    'Pos': Point3(-488.00599999999997, 139.858, 6.9880000000000004),
-                    'Scale': VBase3(1.2589999999999999, 1.2589999999999999, 1.2589999999999999),
+                    'Pos': Point3(-488.005, 139.858, 6.98800),
+                    'Scale': VBase3(1.2589, 1.2589, 1.2589),
                     'SubObjs': {
                         'Top Model': {
                             'Visual': {
@@ -1565,15 +1565,15 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-122.59399999999999, 274.73700000000002, 6.21),
+                    'Pos': Point3(-122.593, 274.737, 6.21),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_c' } },
                 '1161635589.28kmuller': {
                     'Type': 'Tree - Animated',
                     'DisableCollision': True,
-                    'Hpr': VBase3(41.835000000000001, 2.1339999999999999, 10.473000000000001),
-                    'Pos': Point3(-85.572000000000003, 282.77999999999997, 4.9969999999999999),
+                    'Hpr': VBase3(41.835, 2.1339, 10.473),
+                    'Pos': Point3(-85.572, 282.77, 4.9969),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'SubObjs': {
                         'Top Model': {
@@ -1591,9 +1591,9 @@ objectStruct = {
                 '1161635620.69kmuller': {
                     'Type': 'Tree - Animated',
                     'DisableCollision': True,
-                    'Hpr': VBase3(99.257000000000005, -2.1139999999999999, -2.972),
-                    'Pos': Point3(-93.189999999999998, 285.12700000000001, 5.6429999999999998),
-                    'Scale': VBase3(1.2989999999999999, 1.2989999999999999, 1.2989999999999999),
+                    'Hpr': VBase3(99.2570, -2.1139, -2.972),
+                    'Pos': Point3(-93.188, 285.127, 5.6428),
+                    'Scale': VBase3(1.2989, 1.2989, 1.2989),
                     'SubObjs': {
                         'Top Model': {
                             'Visual': {
@@ -1611,7 +1611,7 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-101.539, 274.36799999999999, 5.2510000000000003),
+                    'Pos': Point3(-101.539, 274.367, 5.2510),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_e' } },
@@ -1619,23 +1619,23 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': VBase3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-74.462000000000003, 287.63600000000002, 5.5190000000000001),
+                    'Pos': Point3(-74.462, 287.636, 5.519),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
                 '1161635764.13kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-41.561999999999998, -0.097000000000000003, 0.023),
-                    'Pos': Point3(-80.906000000000006, 280.27800000000002, 5.9619999999999997),
+                    'Hpr': VBase3(-41.5618, -0.097000, 0.023),
+                    'Pos': Point3(-80.906, 280.278, 5.961),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_d' } },
                 '1161635809.02kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-117.93300000000001, 0.0, 0.0),
-                    'Pos': Point3(-94.390000000000001, 269.58699999999999, 5.4429999999999996),
+                    'Hpr': VBase3(-117.933, 0.0, 0.0),
+                    'Pos': Point3(-94.39, 269.586, 5.4426),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_f' } },
@@ -1643,47 +1643,47 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(13.443, 348.36500000000001, 5.1689999999999996),
+                    'Pos': Point3(13.443, 348.365, 5.1686),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
                 '1161635865.5kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-123.732, -4.2679999999999998, -1.8500000000000001),
-                    'Pos': Point3(6.2590000000000003, 327.81599999999997, 5.2599999999999998),
+                    'Hpr': VBase3(-123.732, -4.2678, -1.85),
+                    'Pos': Point3(6.2590, 327.815, 5.2598),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
                 '1161635894.25kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(72.786000000000001, 1.998, 0.56299999999999994),
-                    'Pos': Point3(13.526999999999999, 332.37400000000002, 4.9950000000000001),
-                    'Scale': VBase3(1.1479999999999999, 1.0169999999999999, 1.0169999999999999),
+                    'Hpr': VBase3(72.786, 1.998, 0.56294),
+                    'Pos': Point3(13.526, 332.374, 4.995),
+                    'Scale': VBase3(1.1479, 1.0169, 1.0169),
                     'Visual': {
                         'Model': 'models/vegetation/bush_g' } },
                 '1161635968.47kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(32.704000000000001, 1.167, 1.7170000000000001),
-                    'Pos': Point3(22.364999999999998, 432.27499999999998, 5.8680000000000003),
+                    'Hpr': VBase3(32.704, 1.167, 1.717),
+                    'Pos': Point3(22.3648, 432.274, 5.8680),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
                 '1161636011.75kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(54.747999999999998, 0.76300000000000001, -1.2250000000000001),
-                    'Pos': Point3(127.634, 407.58699999999999, 17.617000000000001),
+                    'Hpr': VBase3(54.7478, 0.763, -1.225),
+                    'Pos': Point3(127.634, 407.586, 17.617),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
                 '1161636039.95kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(41.067999999999998, -1.4199999999999999, -0.503),
-                    'Pos': Point3(113.44, 414.96899999999999, 15.545),
+                    'Hpr': VBase3(41.0678, -1.41, -0.503),
+                    'Pos': Point3(113.44, 414.968, 15.545),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_c' } },
@@ -1692,7 +1692,7 @@ objectStruct = {
                     'DisableCollision': True,
                     'Holiday': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(124.139, 398.87700000000001, 15.278),
+                    'Pos': Point3(124.139, 398.877, 15.278),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -1701,8 +1701,8 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(0.0, 4.0880000000000001, 0.0),
-                    'Pos': Point3(147.81800000000001, 392.87, 17.335000000000001),
+                    'Hpr': VBase3(0.0, 4.088, 0.0),
+                    'Pos': Point3(147.818, 392.87, 17.335),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -1710,48 +1710,48 @@ objectStruct = {
                 '1161636114.63kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': False,
-                    'Hpr': VBase3(0.0, 4.0880000000000001, -1.71),
-                    'Pos': Point3(102.218, 422.56999999999999, 14.234),
+                    'Hpr': VBase3(0.0, 4.088, -1.71),
+                    'Pos': Point3(102.218, 422.56, 14.234),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
                 '1161636136.03kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
-                    'Hpr': VBase3(0.0, 4.0880000000000001, -1.71),
-                    'Pos': Point3(101.559, 429.45299999999997, 14.452999999999999),
+                    'Hpr': VBase3(0.0, 4.088, -1.71),
+                    'Pos': Point3(101.559, 429.452, 14.452),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_b' } },
                 '1161636173.89kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': False,
-                    'Hpr': VBase3(0.0, 4.0880000000000001, -4.4690000000000003),
-                    'Pos': Point3(76.058000000000007, 465.476, 8.6080000000000005),
+                    'Hpr': VBase3(0.0, 4.088, -4.4690),
+                    'Pos': Point3(76.058, 465.476, 8.60800),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_b' } },
                 '1161636204.55kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-34.369999999999997, 1.7809999999999999, -4.3639999999999999),
-                    'Pos': Point3(87.866, 438.81299999999999, 10.516999999999999),
-                    'Scale': VBase3(0.81200000000000006, 0.81200000000000006, 0.81200000000000006),
+                    'Hpr': VBase3(-34.36, 1.7809, -4.3639),
+                    'Pos': Point3(87.866, 438.812, 10.516),
+                    'Scale': VBase3(0.812, 0.812, 0.812),
                     'Visual': {
                         'Model': 'models/vegetation/bush_i' } },
                 '1161636249.17kmuller': {
                     'Type': 'Log_Stack',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(84.286000000000001, 439.096, 15.243),
-                    'Scale': VBase3(3.4020000000000001, 3.4020000000000001, 3.4020000000000001),
+                    'Pos': Point3(84.286, 439.096, 15.243),
+                    'Scale': VBase3(3.402, 3.402, 3.402),
                     'Visual': {
                         'Model': 'models/vegetation/gen_log01' } },
                 '1161636347.7kmuller': {
                     'Type': 'Tree - Animated',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-49.899000000000001, 6.1890000000000001, 0.0),
-                    'Pos': Point3(81.304000000000002, 460.01900000000001, 9.3789999999999996),
+                    'Hpr': VBase3(-49.899, 6.189, 0.0),
+                    'Pos': Point3(81.304, 460.019, 9.3786),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'SubObjs': {
                         'Top Model': {
@@ -1769,9 +1769,9 @@ objectStruct = {
                 '1161636372.58kmuller': {
                     'Type': 'Tree - Animated',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-170.16499999999999, -3.1280000000000001, 5.3419999999999996),
-                    'Pos': Point3(69.972999999999999, 476.00200000000001, 6.5960000000000001),
-                    'Scale': VBase3(0.66800000000000004, 0.66800000000000004, 0.66800000000000004),
+                    'Hpr': VBase3(-170.164, -3.128, 5.3416),
+                    'Pos': Point3(69.972, 476.002, 6.596),
+                    'Scale': VBase3(0.668000, 0.668000, 0.668000),
                     'SubObjs': {
                         'Top Model': {
                             'Visual': {
@@ -1789,9 +1789,9 @@ objectStruct = {
                     'Type': 'Tree - Animated',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(-121.14700000000001, 5.1900000000000004, 8.6760000000000002),
-                    'Pos': Point3(68.177000000000007, 463.05399999999997, 7.79),
-                    'Scale': VBase3(0.42299999999999999, 0.42299999999999999, 0.42299999999999999),
+                    'Hpr': VBase3(-121.147, 5.19000, 8.6760),
+                    'Pos': Point3(68.177, 463.053, 7.79),
+                    'Scale': VBase3(0.422, 0.422, 0.422),
                     'SubObjs': {
                         'Top Model': {
                             'Visual': {
@@ -1802,7 +1802,7 @@ objectStruct = {
                                 'Holiday': '',
                                 'Model': 'models/vegetation/palm_leaf_a_hi',
                                 'PartName': 'leaf',
-                                'Scale': VBase3(1.7330000000000001, 1.7330000000000001, 1.7330000000000001),
+                                'Scale': VBase3(1.733, 1.733, 1.733),
                                 'VisSize': '' } } },
                     'VisSize': '',
                     'Visual': {
@@ -1813,23 +1813,23 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': VBase3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-139.93899999999999, 279.64800000000002, 6.5949999999999998),
+                    'Pos': Point3(-139.938, 279.648, 6.5948),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_e' } },
                 '1161636554.28kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(0.0, 0.0, 3.4319999999999999),
-                    'Pos': Point3(-130.68199999999999, 262.286, 7.0270000000000001),
+                    'Hpr': VBase3(0.0, 0.0, 3.4319),
+                    'Pos': Point3(-130.681, 262.286, 7.027),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
                 '1161636579.33kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(125.547, 2.7930000000000001, -1.994),
-                    'Pos': Point3(-112.0, 268.02600000000001, 5.8479999999999999),
+                    'Hpr': VBase3(125.547, 2.793, -1.994),
+                    'Pos': Point3(-112.0, 268.026, 5.8479),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
@@ -1837,23 +1837,23 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-95.498999999999995, 252.33000000000001, 4.8639999999999999),
-                    'Scale': VBase3(0.80500000000000005, 0.80500000000000005, 0.80500000000000005),
+                    'Pos': Point3(-95.4985, 252.33, 4.8639),
+                    'Scale': VBase3(0.805000, 0.805000, 0.805000),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
                 '1161636658.77kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(11.904, 336.173, 5.1689999999999996),
+                    'Pos': Point3(11.904, 336.173, 5.1686),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_c' } },
                 '1161636699.64kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': False,
-                    'Hpr': VBase3(61.670999999999999, 2.23, 0.0),
-                    'Pos': Point3(27.768999999999998, 357.62700000000001, 4.8869999999999996),
+                    'Hpr': VBase3(61.670, 2.23, 0.0),
+                    'Pos': Point3(27.7688, 357.627, 4.8866),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_b' } },
@@ -1861,7 +1861,7 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Hpr': VBase3(120.164, 0.0, 0.88),
-                    'Pos': Point3(-55.536999999999999, 301.36500000000001, 5.2830000000000004),
+                    'Pos': Point3(-55.536, 301.365, 5.28300),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_half_a' } },
@@ -1869,23 +1869,23 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-5.8310000000000004, 321.12099999999998, 5.242),
+                    'Pos': Point3(-5.83100, 321.120, 5.242),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
                 '1161636778.73kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-93.263999999999996, -0.13100000000000001, 21.344999999999999),
-                    'Pos': Point3(-15.445, 315.75, 4.8259999999999996),
-                    'Scale': VBase3(0.54600000000000004, 0.54600000000000004, 0.54600000000000004),
+                    'Hpr': VBase3(-93.2636, -0.131, 21.344),
+                    'Pos': Point3(-15.445, 315.75, 4.8256),
+                    'Scale': VBase3(0.546000, 0.546000, 0.546000),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
                 '1161636828.08kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(0.10100000000000001, 366.82900000000001, 5.3780000000000001),
+                    'Pos': Point3(0.101, 366.829, 5.378),
                     'Scale': VBase3(1.345, 1.345, 1.345),
                     'Visual': {
                         'Model': 'models/vegetation/palm_tree_d' } },
@@ -1893,24 +1893,24 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-10.994, 348.09699999999998, 5.306),
+                    'Pos': Point3(-10.994, 348.096, 5.306),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/palm_tree_c' } },
                 '1161636920.89kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-117.28400000000001, 0.0, 0.0),
-                    'Pos': Point3(-21.055, 348.09699999999998, 9.766),
+                    'Hpr': VBase3(-117.284, 0.0, 0.0),
+                    'Pos': Point3(-21.055, 348.096, 9.766),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/palm_tree_b' } },
                 '1161636975.52kmuller': {
                     'Type': 'Tree - Animated',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-78.415000000000006, 0.0, 0.0),
-                    'Pos': Point3(21.170999999999999, 416.00099999999998, 5.4020000000000001),
-                    'Scale': VBase3(1.3220000000000001, 1.3220000000000001, 1.3220000000000001),
+                    'Hpr': VBase3(-78.415, 0.0, 0.0),
+                    'Pos': Point3(21.170, 416.000, 5.402),
+                    'Scale': VBase3(1.322, 1.322, 1.322),
                     'SubObjs': {
                         'Top Model': {
                             'Visual': {
@@ -1927,8 +1927,8 @@ objectStruct = {
                 '1161637012.27kmuller': {
                     'Type': 'Tree - Animated',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-78.415000000000006, -19.715, 0.0),
-                    'Pos': Point3(-7.2999999999999998, 433.00999999999999, 19.120999999999999),
+                    'Hpr': VBase3(-78.415, -19.715, 0.0),
+                    'Pos': Point3(-7.28, 433.00, 19.120),
                     'Scale': VBase3(1.202, 1.202, 1.202),
                     'SubObjs': {
                         'Top Model': {
@@ -1946,8 +1946,8 @@ objectStruct = {
                 '1161637128.22kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-97.114000000000004, 0.0, 0.0),
-                    'Pos': Point3(100.688, 529.85400000000004, 0.71399999999999997),
+                    'Hpr': VBase3(-97.1140, 0.0, 0.0),
+                    'Pos': Point3(100.688, 529.854, 0.713),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_leaves' } },
@@ -1955,7 +1955,7 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(144.71600000000001, 442.73899999999998, 19.266999999999999),
+                    'Pos': Point3(144.716, 442.738, 19.266),
                     'Scale': VBase3(1.373, 1.373, 1.373),
                     'Visual': {
                         'Color': (0.60000002384185791, 0.60000002384185791, 0.60000002384185791, 1.0),
@@ -1963,8 +1963,8 @@ objectStruct = {
                 '1161637224.89kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-31.478000000000002, 0.0, 5.3639999999999999),
-                    'Pos': Point3(206.864, 412.20600000000002, 21.716999999999999),
+                    'Hpr': VBase3(-31.478, 0.0, 5.3639),
+                    'Pos': Point3(206.864, 412.206, 21.716),
                     'Scale': VBase3(1.151, 1.151, 1.151),
                     'Visual': {
                         'Color': (0.60000002384185791, 0.60000002384185791, 0.60000002384185791, 1.0),
@@ -1973,9 +1973,9 @@ objectStruct = {
                     'Type': 'Rock',
                     'DisableCollision': True,
                     'Holiday': '',
-                    'Hpr': VBase3(-178.59299999999999, 8.8520000000000003, -17.326000000000001),
-                    'Pos': Point3(511.12400000000002, 221.38900000000001, 8.2989999999999995),
-                    'Scale': VBase3(1.8260000000000001, 1.8260000000000001, 1.8260000000000001),
+                    'Hpr': VBase3(-178.592, 8.8520, -17.326),
+                    'Pos': Point3(511.124, 221.389, 8.2985),
+                    'Scale': VBase3(1.826, 1.826, 1.826),
                     'VisSize': '',
                     'Visual': {
                         'Color': (1.0, 0.95999997854232788, 0.75, 1.0),
@@ -1983,9 +1983,9 @@ objectStruct = {
                 '1161637280.8kmuller': {
                     'Type': 'Rock',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-36.255000000000003, -17.547000000000001, 8.3949999999999996),
-                    'Pos': Point3(536.96199999999999, 194.94900000000001, 6.79),
-                    'Scale': VBase3(1.8260000000000001, 1.8260000000000001, 1.8260000000000001),
+                    'Hpr': VBase3(-36.255, -17.547, 8.3946),
+                    'Pos': Point3(536.961, 194.949, 6.79),
+                    'Scale': VBase3(1.826, 1.826, 1.826),
                     'Visual': {
                         'Color': (1.0, 0.95999997854232788, 0.75, 1.0),
                         'Model': 'models/props/rock_group_3_sphere' } },
@@ -1993,23 +1993,23 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Hpr': VBase3(61.506, 0.0, 0.0),
-                    'Pos': Point3(522.779, 209.34399999999999, 7.2779999999999996),
+                    'Pos': Point3(522.779, 209.343, 7.2776),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_b' } },
                 '1161637338.72kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(0.0, -3.0129999999999999, 16.154),
-                    'Pos': Point3(563.16099999999994, 137.51499999999999, 9.4320000000000004),
+                    'Hpr': VBase3(0.0, -3.0129, 16.154),
+                    'Pos': Point3(563.16099999999994, 137.514, 9.43200),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
                 '1161637378.22kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(0.0, -2.2549999999999999, 0.0),
-                    'Pos': Point3(564.73900000000003, 127.05800000000001, 6.5880000000000001),
+                    'Hpr': VBase3(0.0, -2.2549, 0.0),
+                    'Pos': Point3(564.739, 127.058, 6.588),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_c' } },
@@ -2017,64 +2017,64 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(438.87700000000001, 262.49000000000001, 22.547000000000001),
-                    'Scale': VBase3(1.4319999999999999, 1.4319999999999999, 1.4319999999999999),
+                    'Pos': Point3(438.877, 262.49, 22.547),
+                    'Scale': VBase3(1.4319, 1.4319, 1.4319),
                     'Visual': {
                         'Model': 'models/vegetation/palm_tree_d' } },
                 '1161637540.2kmuller': {
                     'Type': 'Rock',
                     'DisableCollision': True,
-                    'Hpr': VBase3(120.42100000000001, 19.373000000000001, -0.91500000000000004),
+                    'Hpr': VBase3(120.421, 19.373, -0.915000),
                     'Pos': Point3(487.548, 245.261, 11.129),
-                    'Scale': VBase3(1.6220000000000001, 1.6220000000000001, 1.6220000000000001),
+                    'Scale': VBase3(1.622, 1.622, 1.622),
                     'Visual': {
                         'Color': (1.0, 0.95999997854232788, 0.75, 1.0),
                         'Model': 'models/props/rock_group_5_sphere' } },
                 '1161637615.08kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-51.826000000000001, 0.0, 0.0),
-                    'Pos': Point3(491.08199999999999, 233.749, 7.4950000000000001),
+                    'Hpr': VBase3(-51.826, 0.0, 0.0),
+                    'Pos': Point3(491.081, 233.749, 7.495),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_i' } },
                 '1161637681.59kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(77.254000000000005, 0.0, 4.0419999999999998),
-                    'Pos': Point3(479.11000000000001, 249.65799999999999, 11.122999999999999),
+                    'Hpr': VBase3(77.2540, 0.0, 4.0418),
+                    'Pos': Point3(479.11, 249.657, 11.122),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
                 '1161637758.28kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
-                    'Hpr': VBase3(0.0, 0.0, 6.7039999999999997),
-                    'Pos': Point3(575.30899999999997, 89.453000000000003, 11.425000000000001),
+                    'Hpr': VBase3(0.0, 0.0, 6.703),
+                    'Pos': Point3(575.308, 89.453, 11.425),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_a' } },
                 '1161637795.86kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
-                    'Hpr': VBase3(0.246, -2.089, 6.7089999999999996),
-                    'Pos': Point3(585.21000000000004, 74.712999999999994, 10.347),
-                    'Scale': VBase3(0.84799999999999998, 0.84799999999999998, 0.84799999999999998),
+                    'Hpr': VBase3(0.246, -2.089, 6.7086),
+                    'Pos': Point3(585.210, 74.7124, 10.347),
+                    'Scale': VBase3(0.84798, 0.84798, 0.84798),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_e' } },
                 '1161637987.72kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(0.17000000000000001, -6.5060000000000002, 4.6319999999999997),
-                    'Pos': Point3(580.23299999999995, 86.367000000000004, 9.7929999999999993),
+                    'Hpr': VBase3(0.170, -6.5060, 4.631),
+                    'Pos': Point3(580.232, 86.3670, 9.7923),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_d' } },
                 '1161638086.88kmuller': {
                     'Type': 'Rock',
                     'DisableCollision': True,
-                    'Hpr': VBase3(0.38300000000000001, -2.149, 10.102),
-                    'Pos': Point3(574.14499999999998, 95.338999999999999, 10.58),
+                    'Hpr': VBase3(0.383, -2.149, 10.102),
+                    'Pos': Point3(574.144, 95.338, 10.58),
                     'Scale': VBase3(4.702, 4.702, 4.702),
                     'Visual': {
                         'Model': 'models/props/rock_4_sphere' } },
@@ -2082,7 +2082,7 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(0.0, -0.064000000000000001, 0.0),
+                    'Hpr': VBase3(0.0, -0.0640, 0.0),
                     'Pos': Point3(106.601, 289.755, 12.183),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
@@ -2092,8 +2092,8 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(-0.021000000000000001, -4.0250000000000004, -7.5739999999999998),
-                    'Pos': Point3(89.861999999999995, 294.45600000000002, 10.965999999999999),
+                    'Hpr': VBase3(-0.0210, -4.02500, -7.5738),
+                    'Pos': Point3(89.8615, 294.456, 10.965),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -2102,9 +2102,9 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(-57.859999999999999, 4.3120000000000003, -5.468),
-                    'Pos': Point3(75.960999999999999, 273.791, 7.7969999999999997),
-                    'Scale': VBase3(0.69899999999999995, 0.69899999999999995, 0.69899999999999995),
+                    'Hpr': VBase3(-57.859, 4.3120, -5.468),
+                    'Pos': Point3(75.960, 273.791, 7.796),
+                    'Scale': VBase3(0.69895, 0.69895, 0.69895),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/vegetation/bush_i' } },
@@ -2113,26 +2113,26 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': '',
                     'Hpr': VBase3(0.0, 0.0, 0.0),
-                    'Pos': Point3(65.689999999999998, 283.03199999999998, 11.98),
-                    'Scale': VBase3(1.4259999999999999, 1.4259999999999999, 1.4259999999999999),
+                    'Pos': Point3(65.688, 283.031, 11.98),
+                    'Scale': VBase3(1.4259, 1.4259, 1.4259),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/vegetation/gen_tree_d' } },
                 '1161638376.7kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-57.859999999999999, 4.3120000000000003, -5.468),
-                    'Pos': Point3(68.927000000000007, 297.31299999999999, 7.5289999999999999),
-                    'Scale': VBase3(1.0009999999999999, 1.0009999999999999, 1.0009999999999999),
+                    'Hpr': VBase3(-57.859, 4.3120, -5.468),
+                    'Pos': Point3(68.927, 297.312, 7.5289),
+                    'Scale': VBase3(1.0009, 1.0009, 1.0009),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
                 '1161638420.27kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(0.058999999999999997, 1.5649999999999999, -2.1520000000000001),
-                    'Pos': Point3(42.170999999999999, 291.30900000000003, 4.2629999999999999),
-                    'Scale': VBase3(0.84699999999999998, 0.84699999999999998, 0.84699999999999998),
+                    'Hpr': VBase3(0.058, 1.5649, -2.152),
+                    'Pos': Point3(42.170, 291.309, 4.2629),
+                    'Scale': VBase3(0.84698, 0.84698, 0.84698),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_e' } },
@@ -2140,7 +2140,7 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(30.123999999999999, 261.137, 3.871),
+                    'Pos': Point3(30.123, 261.137, 3.871),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_b' } },
@@ -2148,25 +2148,25 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(0.058999999999999997, 1.5649999999999999, -2.1520000000000001),
-                    'Pos': Point3(66.944000000000003, 273.63299999999998, 6.7850000000000001),
-                    'Scale': VBase3(0.44700000000000001, 0.44700000000000001, 0.44700000000000001),
+                    'Hpr': VBase3(0.058, 1.5649, -2.152),
+                    'Pos': Point3(66.944, 273.632, 6.785),
+                    'Scale': VBase3(0.447, 0.447, 0.447),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
                 '1161638737.06kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': False,
-                    'Hpr': VBase3(0.19400000000000001, 5.1609999999999996, -5.8639999999999999),
-                    'Pos': Point3(61.457999999999998, 305.38, 7.1319999999999997),
-                    'Scale': VBase3(0.57399999999999995, 0.57399999999999995, 0.57399999999999995),
+                    'Hpr': VBase3(0.194, 5.1606, -5.8639),
+                    'Pos': Point3(61.4578, 305.38, 7.131),
+                    'Scale': VBase3(0.57395, 0.57395, 0.57395),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
                 '1161638853.13kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(39.887999999999998, 261.82999999999998, 3.9380000000000002),
+                    'Pos': Point3(39.8878, 261.828, 3.9380),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_c' } },
@@ -2174,7 +2174,7 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(104.878, 263.93599999999998, 14.413),
+                    'Pos': Point3(104.878, 263.935, 14.413),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/gen_tree_a' } },
@@ -2183,7 +2183,7 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(124.003, 279.50299999999999, 12.444000000000001),
+                    'Pos': Point3(124.003, 279.502, 12.444),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -2192,7 +2192,7 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(225.191, 288.48599999999999, 19.827000000000002),
+                    'Pos': Point3(225.191, 288.485, 19.827),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/gen_tree_a' } },
@@ -2200,15 +2200,15 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(262.69299999999998, 338.21600000000001, 23.713999999999999),
-                    'Scale': VBase3(0.82599999999999996, 0.82599999999999996, 0.82599999999999996),
+                    'Pos': Point3(262.692, 338.216, 23.713),
+                    'Scale': VBase3(0.82596, 0.82596, 0.82596),
                     'Visual': {
                         'Model': 'models/vegetation/gen_tree_b' } },
                 '1161641077.38kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(205.374, 359.04700000000003, 20.933),
+                    'Pos': Point3(205.374, 359.047, 20.933),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Color': (0.75, 0.93000000715255737, 1.0, 1.0),
@@ -2216,17 +2216,17 @@ objectStruct = {
                 '1161641110.08kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': False,
-                    'Hpr': VBase3(59.725999999999999, 0.0, 0.0),
-                    'Pos': Point3(317.517, 300.87799999999999, 23.872),
-                    'Scale': VBase3(0.94299999999999995, 0.94299999999999995, 0.94299999999999995),
+                    'Hpr': VBase3(59.725, 0.0, 0.0),
+                    'Pos': Point3(317.517, 300.877, 23.872),
+                    'Scale': VBase3(0.94295, 0.94295, 0.94295),
                     'Visual': {
                         'Model': 'models/vegetation/gen_tree_b' } },
                 '1161641169.05kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
                     'Hpr': VBase3(-61.122, 0.0, 0.0),
-                    'Pos': Point3(318.03699999999998, 300.67599999999999, 22.905000000000001),
-                    'Scale': VBase3(0.46100000000000002, 0.46100000000000002, 0.46100000000000002),
+                    'Pos': Point3(318.036, 300.675, 22.905),
+                    'Scale': VBase3(0.461, 0.461, 0.461),
                     'Visual': {
                         'Model': 'models/vegetation/bush_i' } },
                 '1161641215.92kmuller': {
@@ -2234,8 +2234,8 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': '',
                     'Hpr': VBase3(-59.872, 0.0, 0.0),
-                    'Pos': Point3(323.47399999999999, 294.52300000000002, 22.388000000000002),
-                    'Scale': VBase3(0.46100000000000002, 0.46100000000000002, 0.46100000000000002),
+                    'Pos': Point3(323.473, 294.523, 22.388),
+                    'Scale': VBase3(0.461, 0.461, 0.461),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
@@ -2244,8 +2244,8 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(315.03800000000001, 291.81700000000001, 21.834),
-                    'Scale': VBase3(0.33800000000000002, 0.33800000000000002, 0.33800000000000002),
+                    'Pos': Point3(315.038, 291.817, 21.834),
+                    'Scale': VBase3(0.338, 0.338, 0.338),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
@@ -2254,8 +2254,8 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(308.14100000000002, 300.63, 22.553000000000001),
-                    'Scale': VBase3(0.34599999999999997, 0.34599999999999997, 0.34599999999999997),
+                    'Pos': Point3(308.141, 300.63, 22.553),
+                    'Scale': VBase3(0.345, 0.345, 0.345),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
@@ -2264,8 +2264,8 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(309.34699999999998, 294.09199999999998, 21.939),
-                    'Scale': VBase3(0.77700000000000002, 0.77700000000000002, 0.77700000000000002),
+                    'Pos': Point3(309.346, 294.091, 21.939),
+                    'Scale': VBase3(0.777, 0.777, 0.777),
                     'VisSize': '',
                     'Visual': {
                         'Color': (1.0, 0.95999997854232788, 0.75, 1.0),
@@ -2273,56 +2273,56 @@ objectStruct = {
                 '1161641527.13kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-65.081999999999994, 0.97699999999999998, 0.0),
-                    'Pos': Point3(262.81900000000002, 331.28699999999998, 22.606000000000002),
-                    'Scale': VBase3(0.64100000000000001, 0.64100000000000001, 0.64100000000000001),
+                    'Hpr': VBase3(-65.0814, 0.97698, 0.0),
+                    'Pos': Point3(262.819, 331.286, 22.606),
+                    'Scale': VBase3(0.641, 0.641, 0.641),
                     'Visual': {
                         'Model': 'models/vegetation/bush_i' } },
                 '1161641553.83kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-128.37799999999999, 0.439, 2.996),
-                    'Pos': Point3(255.48599999999999, 327.74000000000001, 22.251000000000001),
-                    'Scale': VBase3(0.64100000000000001, 0.64100000000000001, 0.64100000000000001),
+                    'Hpr': VBase3(-128.377, 0.439, 2.996),
+                    'Pos': Point3(255.485, 327.74, 22.251),
+                    'Scale': VBase3(0.641, 0.641, 0.641),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
                 '1161641589.41kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(112.657, -0.14199999999999999, -1.462),
-                    'Pos': Point3(225.726, 283.298, 19.844000000000001),
-                    'Scale': VBase3(0.64100000000000001, 0.64100000000000001, 0.64100000000000001),
+                    'Hpr': VBase3(112.657, -0.141, -1.462),
+                    'Pos': Point3(225.726, 283.298, 19.844),
+                    'Scale': VBase3(0.641, 0.641, 0.641),
                     'Visual': {
                         'Model': 'models/vegetation/bush_c' } },
                 '1161641644.95kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Hpr': VBase3(-158.155, -1.464, 0.122),
-                    'Pos': Point3(230.464, 290.41699999999997, 19.91),
-                    'Scale': VBase3(0.64100000000000001, 0.64100000000000001, 0.64100000000000001),
+                    'Pos': Point3(230.464, 290.416, 19.91),
+                    'Scale': VBase3(0.641, 0.641, 0.641),
                     'Visual': {
                         'Model': 'models/vegetation/bush_c' } },
                 '1161641683.7kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-34.823999999999998, 0.87, 2.9169999999999998),
-                    'Pos': Point3(228.054, 286.66399999999999, 19.869),
-                    'Scale': VBase3(0.64100000000000001, 0.64100000000000001, 0.64100000000000001),
+                    'Hpr': VBase3(-34.8238, 0.87, 2.9168),
+                    'Pos': Point3(228.054, 286.663, 19.869),
+                    'Scale': VBase3(0.641, 0.641, 0.641),
                     'Visual': {
                         'Model': 'models/vegetation/bush_f' } },
                 '1161641777.33kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(81.215999999999994, 0.0, 0.0),
-                    'Pos': Point3(199.55799999999999, 379.61900000000003, 21.693999999999999),
+                    'Hpr': VBase3(81.2154, 0.0, 0.0),
+                    'Pos': Point3(199.557, 379.619, 21.693),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_half_a' } },
                 '1161641815.17kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(91.578999999999994, 0.0, 0.0),
-                    'Pos': Point3(238.74799999999999, 376.21199999999999, 22.553000000000001),
+                    'Hpr': VBase3(91.5784, 0.0, 0.0),
+                    'Pos': Point3(238.747, 376.211, 22.553),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_half_a' } },
@@ -2330,47 +2330,47 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Hpr': VBase3(-102.889, 0.0, 0.0),
-                    'Pos': Point3(224.977, 373.69600000000003, 23.434000000000001),
+                    'Pos': Point3(224.977, 373.696, 23.434),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_d' } },
                 '1161641976.05kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(61.027999999999999, 0.0, 0.0),
-                    'Pos': Point3(182.23599999999999, 384.28199999999998, 20.827000000000002),
+                    'Hpr': VBase3(61.027, 0.0, 0.0),
+                    'Pos': Point3(182.235, 384.281, 20.827),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_half_a' } },
                 '1161641995.27kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-56.283999999999999, 0.0, 0.0),
-                    'Pos': Point3(186.495, 375.99400000000003, 20.757000000000001),
+                    'Hpr': VBase3(-56.283, 0.0, 0.0),
+                    'Pos': Point3(186.495, 375.994, 20.757),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_b' } },
                 '1161642020.33kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-115.67100000000001, 0.0, 0.0),
-                    'Pos': Point3(202.46299999999999, 357.47500000000002, 19.792999999999999),
-                    'Scale': VBase3(0.78600000000000003, 0.78600000000000003, 0.78600000000000003),
+                    'Hpr': VBase3(-115.671, 0.0, 0.0),
+                    'Pos': Point3(202.462, 357.475, 19.792),
+                    'Scale': VBase3(0.78600, 0.78600, 0.78600),
                     'Visual': {
                         'Model': 'models/vegetation/bush_f' } },
                 '1161642081.88kmuller': {
                     'Type': 'Log_Stack',
                     'DisableCollision': True,
-                    'Hpr': VBase3(104.488, -1.5840000000000001, 2.1800000000000002),
-                    'Pos': Point3(172.298, 386.08600000000001, 20.117999999999999),
+                    'Hpr': VBase3(104.488, -1.584, 2.18),
+                    'Pos': Point3(172.298, 386.086, 20.117),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/gen_log_group02' } },
                 '1161642120.55kmuller': {
                     'Type': 'Log_Stack',
                     'DisableCollision': True,
-                    'Hpr': VBase3(54.911000000000001, -0.372, 7.8849999999999998),
-                    'Pos': Point3(247.78100000000001, 368.74700000000001, 22.536999999999999),
+                    'Hpr': VBase3(54.911, -0.372, 7.8848),
+                    'Pos': Point3(247.781, 368.747, 22.536),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/gen_log_group03' } },
@@ -2379,7 +2379,7 @@ objectStruct = {
                     'DisableCollision': True,
                     'Holiday': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(209.036, 482.28800000000001, 11.743),
+                    'Pos': Point3(209.036, 482.288, 11.743),
                     'Scale': VBase3(1.343, 1.343, 1.343),
                     'VisSize': '',
                     'Visual': {
@@ -2388,32 +2388,32 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(241.02199999999999, 392.63099999999997, 5.8810000000000002),
-                    'Scale': VBase3(0.56399999999999995, 0.56399999999999995, 0.56399999999999995),
+                    'Pos': Point3(241.021, 392.630, 5.8810),
+                    'Scale': VBase3(0.56395, 0.56395, 0.56395),
                     'Visual': {
                         'Model': 'models/vegetation/palm_tree_e' } },
                 '1161642324.17kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(188.511, 473.24700000000001, 10.23),
-                    'Scale': VBase3(0.90500000000000003, 0.90500000000000003, 0.90500000000000003),
+                    'Pos': Point3(188.511, 473.247, 10.23),
+                    'Scale': VBase3(0.90500, 0.90500, 0.90500),
                     'Visual': {
                         'Model': 'models/vegetation/palm_tree_a' } },
                 '1161642366.94kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
-                    'Hpr': VBase3(22.376999999999999, 3.839, 0.0),
-                    'Pos': Point3(249.15899999999999, 392.084, 20.678999999999998),
-                    'Scale': VBase3(0.97499999999999998, 0.97499999999999998, 0.97499999999999998),
+                    'Hpr': VBase3(22.376, 3.839, 0.0),
+                    'Pos': Point3(249.158, 392.084, 20.6788),
+                    'Scale': VBase3(0.97498, 0.97498, 0.97498),
                     'Visual': {
                         'Model': 'models/vegetation/palm_tree_c' } },
                 '1161642421.0kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(-26.376000000000001, -0.11700000000000001, -0.058000000000000003),
-                    'Pos': Point3(328.60500000000002, 401.78300000000002, 14.843),
+                    'Hpr': VBase3(-26.376, -0.117, -0.058000),
+                    'Pos': Point3(328.605, 401.783, 14.843),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -2422,15 +2422,15 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': VBase3(148.566, 0.0, 0.0),
-                    'Pos': Point3(503.91199999999998, 218.244, 12.393000000000001),
+                    'Pos': Point3(503.911, 218.244, 12.393),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/gen_tree_trunk_only' } },
                 '1161642552.13kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-4.0720000000000001, 0.91800000000000004, 1.294),
-                    'Pos': Point3(579.596, 58.796999999999997, 13.670999999999999),
+                    'Hpr': VBase3(-4.072, 0.918000, 1.294),
+                    'Pos': Point3(579.596, 58.796, 13.670),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_c' } },
@@ -2438,15 +2438,15 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Hpr': VBase3(12.067, 0.0, 0.0),
-                    'Pos': Point3(588.20699999999999, 49.473999999999997, 13.407999999999999),
-                    'Scale': VBase3(0.68000000000000005, 0.68000000000000005, 0.68000000000000005),
+                    'Pos': Point3(588.206, 49.473, 13.407),
+                    'Scale': VBase3(0.680000, 0.680000, 0.680000),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
                 '1161642624.13kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Hpr': VBase3(0.0, 6.875, 0.0),
-                    'Pos': Point3(533.76700000000005, -117.548, 17.684000000000001),
+                    'Pos': Point3(533.767, -117.548, 17.684),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
@@ -2454,7 +2454,7 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(525.33100000000002, -126.337, 15.1),
+                    'Pos': Point3(525.331, -126.337, 15.1),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_e' } },
@@ -2462,7 +2462,7 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Holiday': '',
-                    'Hpr': VBase3(-0.108, 4.0869999999999997, 1.5089999999999999),
+                    'Hpr': VBase3(-0.108, 4.086, 1.5089),
                     'Pos': Point3(547.495, -113.69, 15.459),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
@@ -2472,7 +2472,7 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(548.05499999999995, -94.846999999999994, 18.404),
+                    'Pos': Point3(548.054, -94.8464, 18.404),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_c' } },
@@ -2480,46 +2480,46 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(474.42500000000001, -131.488, 22.596),
+                    'Pos': Point3(474.425, -131.488, 22.596),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_e' } },
                 '1161642971.39kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-1.1060000000000001, 0.0, 0.0),
-                    'Pos': Point3(466.39100000000002, -126.86, 24.155000000000001),
+                    'Hpr': VBase3(-1.106, 0.0, 0.0),
+                    'Pos': Point3(466.391, -126.86, 24.155),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_a' } },
                 '1161643034.38kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
-                    'Hpr': VBase3(0.0, 3.2469999999999999, 0.0),
-                    'Pos': Point3(496.54300000000001, -85.802999999999997, 24.369),
+                    'Hpr': VBase3(0.0, 3.2469, 0.0),
+                    'Pos': Point3(496.543, -85.802, 24.369),
                     'Scale': VBase3(1.405, 1.405, 1.405),
                     'Visual': {
                         'Model': 'models/vegetation/palm_tree_d' } },
                 '1161643077.77kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': False,
-                    'Hpr': VBase3(0.0, 3.2469999999999999, 0.0),
-                    'Pos': Point3(437.28500000000003, -72.718000000000004, 22.864000000000001),
-                    'Scale': VBase3(1.1379999999999999, 1.1379999999999999, 1.1379999999999999),
+                    'Hpr': VBase3(0.0, 3.2469, 0.0),
+                    'Pos': Point3(437.285, -72.7180, 22.864),
+                    'Scale': VBase3(1.1379, 1.1379, 1.1379),
                     'Visual': {
                         'Model': 'models/vegetation/palm_tree_f' } },
                 '1161643123.0kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-1.1060000000000001, 0.0, 0.0),
-                    'Pos': Point3(434.35000000000002, -80.628, 23.614999999999998),
+                    'Hpr': VBase3(-1.106, 0.0, 0.0),
+                    'Pos': Point3(434.35, -80.628, 23.6148),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
                 '1161643143.13kmuller': {
                     'Type': 'Tree - Animated',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-16.899000000000001, 2.1150000000000002, -1.5369999999999999),
+                    'Hpr': VBase3(-16.899, 2.1150, -1.5369),
                     'Pos': Point3(451.286, -114.152, 23.648),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'SubObjs': {
@@ -2539,9 +2539,9 @@ objectStruct = {
                     'Type': 'Tree - Animated',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(135.13499999999999, -9.9220000000000006, 16.276),
-                    'Pos': Point3(445.48000000000002, -143.994, 22.922999999999998),
-                    'Scale': VBase3(0.82599999999999996, 0.82599999999999996, 0.82599999999999996),
+                    'Hpr': VBase3(135.134, -9.922, 16.276),
+                    'Pos': Point3(445.48, -143.994, 22.9228),
+                    'Scale': VBase3(0.82596, 0.82596, 0.82596),
                     'SubObjs': {
                         'Top Model': {
                             'Visual': {
@@ -2558,28 +2558,28 @@ objectStruct = {
                         'Animate': 'models/vegetation/fern_trunk_a_idle',
                         'Model': 'models/vegetation/fern_trunk_b_hi',
                         'PartName': 'trunk',
-                        'Scale': VBase3(0.82599999999999996, 0.82599999999999996, 0.82599999999999996) } },
+                        'Scale': VBase3(0.82596, 0.82596, 0.82596) } },
                 '1161643312.77kmuller': {
                     'Type': 'Rock',
                     'DisableCollision': False,
                     'Hpr': VBase3(179.328, 0.0, 0.0),
-                    'Pos': Point3(447.01600000000002, -115.15300000000001, 25.484999999999999),
+                    'Pos': Point3(447.016, -115.153, 25.484),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/rock_group_1_floor' } },
                 '1161643344.88kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-142.86600000000001, 0.0, 0.0),
-                    'Pos': Point3(447.37200000000001, -92.177000000000007, 26.173999999999999),
+                    'Hpr': VBase3(-142.866, 0.0, 0.0),
+                    'Pos': Point3(447.372, -92.177, 26.173),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_c' } },
                 '1161643367.52kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-145.83199999999999, -0.025999999999999999, 0.503),
-                    'Pos': Point3(452.23099999999999, -99.772999999999996, 25.672999999999998),
+                    'Hpr': VBase3(-145.831, -0.0259, 0.503),
+                    'Pos': Point3(452.230, -99.7726, 25.6728),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_f' } },
@@ -2587,7 +2587,7 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(526.15300000000002, 98.236999999999995, 31.013999999999999),
+                    'Pos': Point3(526.153, 98.2365, 31.013),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/gen_tree_canopy' } },
@@ -2595,55 +2595,55 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(534.74199999999996, 34.079000000000001, 21.187000000000001),
+                    'Pos': Point3(534.741, 34.079, 21.187),
                     'Scale': VBase3(1.262, 1.262, 1.262),
                     'Visual': {
                         'Model': 'models/vegetation/gen_tree_canopy' } },
                 '1161643534.28kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-36.646999999999998, 0.0, 0.0),
-                    'Pos': Point3(438.40199999999999, 152.47200000000001, 20.869),
-                    'Scale': VBase3(0.53100000000000003, 0.53100000000000003, 0.53100000000000003),
+                    'Hpr': VBase3(-36.6468, 0.0, 0.0),
+                    'Pos': Point3(438.401, 152.472, 20.869),
+                    'Scale': VBase3(0.53100, 0.53100, 0.53100),
                     'Visual': {
                         'Model': 'models/vegetation/bush_i' } },
                 '1161643559.09kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(5.7759999999999998, 0.0, 0.0),
-                    'Pos': Point3(454.30900000000003, 149.727, 21.902999999999999),
-                    'Scale': VBase3(0.53100000000000003, 0.53100000000000003, 0.53100000000000003),
+                    'Hpr': VBase3(5.7758, 0.0, 0.0),
+                    'Pos': Point3(454.309, 149.727, 21.902),
+                    'Scale': VBase3(0.53100, 0.53100, 0.53100),
                     'Visual': {
                         'Model': 'models/vegetation/bush_i' } },
                 '1161643607.13kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-48.607999999999997, 0.0, 2.3140000000000001),
-                    'Pos': Point3(462.14699999999999, 145.61799999999999, 21.295000000000002),
-                    'Scale': VBase3(1.5429999999999999, 1.5429999999999999, 1.5429999999999999),
+                    'Hpr': VBase3(-48.607, 0.0, 2.314),
+                    'Pos': Point3(462.146, 145.617, 21.295),
+                    'Scale': VBase3(1.5429, 1.5429, 1.5429),
                     'Visual': {
                         'Model': 'models/vegetation/bush_b' } },
                 '1161643655.59kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-48.607999999999997, 0.0, 2.3140000000000001),
-                    'Pos': Point3(508.43099999999998, 108.73, 19.827000000000002),
-                    'Scale': VBase3(1.5429999999999999, 1.5429999999999999, 1.5429999999999999),
+                    'Hpr': VBase3(-48.607, 0.0, 2.314),
+                    'Pos': Point3(508.430, 108.73, 19.827),
+                    'Scale': VBase3(1.5429, 1.5429, 1.5429),
                     'Visual': {
                         'Model': 'models/vegetation/bush_b' } },
                 '1161643657.73kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-108.069, 0.20200000000000001, 1.1759999999999999),
-                    'Pos': Point3(450.51400000000001, 142.214, 22.105),
-                    'Scale': VBase3(0.48999999999999999, 0.48999999999999999, 0.48999999999999999),
+                    'Hpr': VBase3(-108.069, 0.202, 1.1759),
+                    'Pos': Point3(450.514, 142.214, 22.105),
+                    'Scale': VBase3(0.489, 0.489, 0.489),
                     'Visual': {
                         'Model': 'models/vegetation/bush_d' } },
                 '1161643697.36kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-1.5149999999999999, 0.0, 0.0),
-                    'Pos': Point3(441.86599999999999, 180.94999999999999, 22.998999999999999),
+                    'Hpr': VBase3(-1.5149, 0.0, 0.0),
+                    'Pos': Point3(441.865, 180.94, 22.998),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
@@ -2651,15 +2651,15 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Hpr': VBase3(164.054, 0.0, 0.0),
-                    'Pos': Point3(433.93700000000001, 167.77000000000001, 22.413),
+                    'Pos': Point3(433.937, 167.77, 22.413),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
                 '1161643726.44kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
-                    'Hpr': VBase3(57.012999999999998, 0.0, 0.0),
-                    'Pos': Point3(445.69099999999997, 164.41200000000001, 21.356999999999999),
+                    'Hpr': VBase3(57.0128, 0.0, 0.0),
+                    'Pos': Point3(445.690, 164.412, 21.356),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/gen_tree_b' } },
@@ -2667,7 +2667,7 @@ objectStruct = {
                     'Type': 'Rock',
                     'DisableCollision': True,
                     'Hpr': VBase3(-19.198, 0.0, 0.0),
-                    'Pos': Point3(462.42899999999997, 141.70400000000001, 21.446000000000002),
+                    'Pos': Point3(462.428, 141.704, 21.446),
                     'Scale': VBase3(1.268, 1.268, 1.268),
                     'Visual': {
                         'Model': 'models/props/rock_group_3_floor' } },
@@ -2675,9 +2675,9 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Holiday': '',
-                    'Hpr': VBase3(30.981999999999999, 0.0, 0.0),
-                    'Pos': Point3(-248.01300000000001, 289.03899999999999, 11.935),
-                    'Scale': VBase3(1.4450000000000001, 1.4450000000000001, 1.4450000000000001),
+                    'Hpr': VBase3(30.981, 0.0, 0.0),
+                    'Pos': Point3(-248.013, 289.038, 11.935),
+                    'Scale': VBase3(1.445, 1.445, 1.445),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/vegetation/gen_tree_a' } },
@@ -2685,9 +2685,9 @@ objectStruct = {
                     'Type': 'Rock',
                     'DisableCollision': True,
                     'Holiday': '',
-                    'Hpr': VBase3(22.710000000000001, 0.0, 0.0),
-                    'Pos': Point3(-248.71700000000001, 301.44799999999998, 9.4819999999999993),
-                    'Scale': VBase3(1.3400000000000001, 1.3400000000000001, 1.3400000000000001),
+                    'Hpr': VBase3(22.71, 0.0, 0.0),
+                    'Pos': Point3(-248.717, 301.447, 9.4813),
+                    'Scale': VBase3(1.34, 1.34, 1.34),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/props/rock_group_5_sphere' } },
@@ -2695,7 +2695,7 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-250.619, 314.06099999999998, 11.872999999999999),
+                    'Pos': Point3(-250.619, 314.060, 11.872),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
@@ -2704,7 +2704,7 @@ objectStruct = {
                     'DisableCollision': True,
                     'Holiday': '',
                     'Hpr': VBase3(172.732, 0.0, 0.0),
-                    'Pos': Point3(-253.405, 336.93099999999998, 10.532999999999999),
+                    'Pos': Point3(-253.405, 336.930, 10.532),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -2713,8 +2713,8 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Holiday': '',
-                    'Hpr': VBase3(-23.562000000000001, 0.0, 0.0),
-                    'Pos': Point3(-263.76100000000002, 274.34500000000003, 11.031000000000001),
+                    'Hpr': VBase3(-23.562, 0.0, 0.0),
+                    'Pos': Point3(-263.761, 274.345, 11.031),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -2724,8 +2724,8 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-257.11900000000003, 231.488, 9.3130000000000006),
-                    'Scale': VBase3(1.1639999999999999, 1.1639999999999999, 1.1639999999999999),
+                    'Pos': Point3(-257.119, 231.488, 9.313),
+                    'Scale': VBase3(1.1639, 1.1639, 1.1639),
                     'VisSize': '',
                     'Visual': {
                         'Color': (0.75, 0.93000000715255737, 1.0, 1.0),
@@ -2733,9 +2733,9 @@ objectStruct = {
                 '1161644282.7kmuller': {
                     'Type': 'Tree - Animated',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-42.729999999999997, 0.0, 0.0),
-                    'Pos': Point3(-374.23399999999998, 32.566000000000003, 8.8460000000000001),
-                    'Scale': VBase3(0.73399999999999999, 0.73399999999999999, 0.73399999999999999),
+                    'Hpr': VBase3(-42.72, 0.0, 0.0),
+                    'Pos': Point3(-374.233, 32.566, 8.846),
+                    'Scale': VBase3(0.733, 0.733, 0.733),
                     'SubObjs': {
                         'Top Model': {
                             'Visual': {
@@ -2749,14 +2749,14 @@ objectStruct = {
                         'Animate': 'models/vegetation/tree_b_trunk_idle',
                         'Model': 'models/vegetation/tree_b_trunk_hi',
                         'PartName': 'trunk',
-                        'Scale': VBase3(1.0840000000000001, 1.0840000000000001, 1.0840000000000001) } },
+                        'Scale': VBase3(1.084, 1.084, 1.084) } },
                 '1161644370.08kmuller': {
                     'Type': 'Tree - Animated',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(-42.729999999999997, 0.0, 0.0),
-                    'Pos': Point3(-516.66700000000003, -68.075000000000003, 5.3209999999999997),
-                    'Scale': VBase3(0.97099999999999997, 0.97099999999999997, 0.97099999999999997),
+                    'Hpr': VBase3(-42.72, 0.0, 0.0),
+                    'Pos': Point3(-516.667, -68.075, 5.320),
+                    'Scale': VBase3(0.970, 0.970, 0.970),
                     'SubObjs': {
                         'Top Model': {
                             'Visual': {
@@ -2773,45 +2773,45 @@ objectStruct = {
                         'Animate': 'models/vegetation/tree_b_trunk_idle',
                         'Model': 'models/vegetation/tree_b_trunk_hi',
                         'PartName': 'trunk',
-                        'Scale': VBase3(0.97099999999999997, 0.97099999999999997, 0.97099999999999997) } },
+                        'Scale': VBase3(0.970, 0.970, 0.970) } },
                 '1161644551.31kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-118.67100000000001, 0.0, 0.0),
-                    'Pos': Point3(-419.55099999999999, -44.466000000000001, 11.603),
+                    'Hpr': VBase3(-118.671, 0.0, 0.0),
+                    'Pos': Point3(-419.550, -44.466, 11.603),
                     'Scale': VBase3(0.746, 0.746, 0.746),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
                 '1161644599.88kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
-                    'Hpr': VBase3(18.399000000000001, -0.035999999999999997, -0.108),
-                    'Pos': Point3(-363.47000000000003, 19.738, 8.9510000000000005),
-                    'Scale': VBase3(0.77900000000000003, 0.77900000000000003, 0.77900000000000003),
+                    'Hpr': VBase3(18.399, -0.035, -0.108),
+                    'Pos': Point3(-363.47, 19.738, 8.95100),
+                    'Scale': VBase3(0.77900, 0.77900, 0.77900),
                     'Visual': {
                         'Model': 'models/vegetation/bush_leaves' } },
                 '1161644650.91kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
-                    'Hpr': VBase3(18.399000000000001, -0.035999999999999997, -0.108),
-                    'Pos': Point3(-374.33800000000002, 32.445, 9.4849999999999994),
-                    'Scale': VBase3(0.42899999999999999, 0.42899999999999999, 0.42899999999999999),
+                    'Hpr': VBase3(18.399, -0.035, -0.108),
+                    'Pos': Point3(-374.338, 32.445, 9.4844),
+                    'Scale': VBase3(0.428, 0.428, 0.428),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
                 '1161644848.69kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-29.829999999999998, 0.0, 0.57299999999999995),
-                    'Pos': Point3(-416.91899999999998, -129.62799999999999, 10.109),
-                    'Scale': VBase3(1.5680000000000001, 1.5680000000000001, 1.5680000000000001),
+                    'Hpr': VBase3(-29.828, 0.0, 0.57295),
+                    'Pos': Point3(-416.918, -129.627, 10.109),
+                    'Scale': VBase3(1.568, 1.568, 1.568),
                     'Visual': {
                         'Model': 'models/vegetation/bush_f' } },
                 '1161644883.22kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-463.55399999999997, -179.44, 6.6159999999999997),
-                    'Scale': VBase3(0.61599999999999999, 0.61599999999999999, 0.61599999999999999),
+                    'Pos': Point3(-463.553, -179.44, 6.615),
+                    'Scale': VBase3(0.615, 0.615, 0.615),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
                 '1161644912.0kmuller': {
@@ -2819,32 +2819,32 @@ objectStruct = {
                     'DisableCollision': True,
                     'Holiday': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-559.63400000000001, -94.760000000000005, 1.915),
-                    'Scale': VBase3(0.80700000000000005, 0.80700000000000005, 0.80700000000000005),
+                    'Pos': Point3(-559.634, -94.7600, 1.915),
+                    'Scale': VBase3(0.807000, 0.807000, 0.807000),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
                 '1161644923.73kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
-                    'Hpr': VBase3(30.120000000000001, 0.0, -4.399),
-                    'Pos': Point3(-559.85699999999997, -104.05200000000001, 2.3759999999999999),
+                    'Hpr': VBase3(30.12, 0.0, -4.399),
+                    'Pos': Point3(-559.856, -104.052, 2.3759),
                     'Scale': VBase3(0.497, 0.497, 0.497),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
                 '1161644945.09kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': False,
-                    'Hpr': VBase3(30.120000000000001, 0.0, -4.399),
-                    'Pos': Point3(-527.03899999999999, -149.48099999999999, 4.3529999999999998),
-                    'Scale': VBase3(0.42399999999999999, 0.42399999999999999, 0.42399999999999999),
+                    'Hpr': VBase3(30.12, 0.0, -4.399),
+                    'Pos': Point3(-527.038, -149.480, 4.3528),
+                    'Scale': VBase3(0.423, 0.423, 0.423),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
                 '1161644978.38kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-137.06200000000001, 458.96100000000001, 6.6200000000000001),
+                    'Pos': Point3(-137.062, 458.961, 6.62),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_a' } },
@@ -2852,7 +2852,7 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-147.666, 458.96100000000001, 8.1660000000000004),
+                    'Pos': Point3(-147.666, 458.961, 8.16600),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_c' } },
@@ -2861,8 +2861,8 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': '',
                     'Hpr': VBase3(0.0, 0.0, -1.728),
-                    'Pos': Point3(-97.566000000000003, 529.726, 2.681),
-                    'Scale': VBase3(0.51400000000000001, 0.51400000000000001, 0.51400000000000001),
+                    'Pos': Point3(-97.566, 529.726, 2.681),
+                    'Scale': VBase3(0.514, 0.514, 0.514),
                     'VisSize': '',
                     'Visual': {
                         'Color': (0.89999997615814209, 0.89999997615814209, 0.69999998807907104, 1.0),
@@ -2871,7 +2871,7 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-132.74799999999999, 437.36399999999998, 13.598000000000001),
+                    'Pos': Point3(-132.747, 437.363, 13.598),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/palm_tree_d' } },
@@ -2879,15 +2879,15 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-169.62299999999999, 407.36700000000002, 7.1630000000000003),
+                    'Pos': Point3(-169.622, 407.367, 7.1630),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/gen_tree_trunk_only_tall' } },
                 '1161645999.52kmuller': {
                     'Type': 'Log_Stack',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-0.16600000000000001, 4.343, 2.1850000000000001),
-                    'Pos': Point3(-167.869, 420.899, 7.8259999999999996),
+                    'Hpr': VBase3(-0.166, 4.343, 2.185),
+                    'Pos': Point3(-167.869, 420.899, 7.8256),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/gen_log_group01' } },
@@ -2895,31 +2895,31 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Hpr': VBase3(-46.192, 0.0, 0.0),
-                    'Pos': Point3(-169.625, 413.11399999999998, 7.6970000000000001),
+                    'Pos': Point3(-169.625, 413.113, 7.697),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
                 '1161646181.47kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(144.34200000000001, 0.0, 0.0),
-                    'Pos': Point3(-159.23699999999999, 423.51999999999998, 7.8540000000000001),
-                    'Scale': VBase3(1.0, 1.2350000000000001, 1.0),
+                    'Hpr': VBase3(144.342, 0.0, 0.0),
+                    'Pos': Point3(-159.236, 423.518, 7.854),
+                    'Scale': VBase3(1.0, 1.235, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_f' } },
                 '1161646261.3kmuller': {
                     'Type': 'Rock',
                     'DisableCollision': True,
-                    'Hpr': VBase3(24.251999999999999, -0.315, 2.504),
-                    'Pos': Point3(-432.45800000000003, 336.59199999999998, 3.6520000000000001),
-                    'Scale': VBase3(1.6830000000000001, 1.6830000000000001, 1.6830000000000001),
+                    'Hpr': VBase3(24.251, -0.315, 2.504),
+                    'Pos': Point3(-432.458, 336.591, 3.652),
+                    'Scale': VBase3(1.683, 1.683, 1.683),
                     'Visual': {
                         'Model': 'models/props/rock_group_3_sphere' } },
                 '1161646295.84kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Hpr': VBase3(125.715, 0.0, 0.0),
-                    'Pos': Point3(-426.10500000000002, 340.81200000000001, 4.6959999999999997),
+                    'Pos': Point3(-426.105, 340.812, 4.695),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_f' } },
@@ -2927,15 +2927,15 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Hpr': VBase3(117.587, 0.0, 0.0),
-                    'Pos': Point3(-450.173, 318.47699999999998, 4.5469999999999997),
+                    'Pos': Point3(-450.173, 318.476, 4.546),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_d' } },
                 '1161646687.34kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-177.68799999999999, 0.48999999999999999, 11.949999999999999),
-                    'Pos': Point3(-456.74900000000002, 293.88099999999997, 6.8680000000000003),
+                    'Hpr': VBase3(-177.687, 0.489, 11.949),
+                    'Pos': Point3(-456.749, 293.880, 6.8680),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_b' } },
@@ -2943,7 +2943,7 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-479.23899999999998, 267.37200000000001, 4.6580000000000004),
+                    'Pos': Point3(-479.238, 267.372, 4.65800),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/gen_tree_trunk_only_tall' } },
@@ -2951,39 +2951,39 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-487.00700000000001, 254.95500000000001, 5.2699999999999996),
+                    'Pos': Point3(-487.007, 254.955, 5.2696),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_a' } },
                 '1161646823.23kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': False,
-                    'Hpr': VBase3(168.38300000000001, 0.0, 0.0),
-                    'Pos': Point3(-474.99400000000003, 272.154, 5.8170000000000002),
-                    'Scale': VBase3(0.78400000000000003, 0.78400000000000003, 0.78400000000000003),
+                    'Hpr': VBase3(168.383, 0.0, 0.0),
+                    'Pos': Point3(-474.994, 272.154, 5.8170),
+                    'Scale': VBase3(0.78400, 0.78400, 0.78400),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_e' } },
                 '1161646845.98kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': VBase3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-395.33300000000003, 380.548, 3.7240000000000002),
-                    'Scale': VBase3(1.0169999999999999, 1.0169999999999999, 1.0169999999999999),
+                    'Pos': Point3(-395.333, 380.548, 3.7240),
+                    'Scale': VBase3(1.0169, 1.0169, 1.0169),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_a' } },
                 '1161646900.27kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-392.74200000000002, 395.07499999999999, 3.4809999999999999),
-                    'Scale': VBase3(0.73299999999999998, 0.73299999999999998, 0.73299999999999998),
+                    'Pos': Point3(-392.742, 395.074, 3.4809),
+                    'Scale': VBase3(0.73298, 0.73298, 0.73298),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
                 '1161647027.58kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': VBase3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-299.30099999999999, 450.95100000000002, 5.0590000000000002),
+                    'Pos': Point3(-299.300, 450.951, 5.0590),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_c' } },
@@ -2991,7 +2991,7 @@ objectStruct = {
                     'Type': 'Tree - Animated',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-270.428, 452.16300000000001, 6.6799999999999997),
+                    'Pos': Point3(-270.428, 452.163, 6.67),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'SubObjs': {
                         'Top Model': {
@@ -3010,8 +3010,8 @@ objectStruct = {
                     'Type': 'Tree - Animated',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-217.06700000000001, 349.50900000000001, 9.7859999999999996),
-                    'Scale': VBase3(1.1399999999999999, 1.1399999999999999, 1.1399999999999999),
+                    'Pos': Point3(-217.067, 349.509, 9.7856),
+                    'Scale': VBase3(1.13, 1.13, 1.13),
                     'SubObjs': {
                         'Top Model': {
                             'Visual': {
@@ -3028,8 +3028,8 @@ objectStruct = {
                 '1161647150.47kmuller': {
                     'Type': 'Tree - Animated',
                     'DisableCollision': True,
-                    'Hpr': VBase3(73.659999999999997, -5.5819999999999999, 0.0),
-                    'Pos': Point3(-224.297, 364.37599999999998, 9.1170000000000009),
+                    'Hpr': VBase3(73.65, -5.5819, 0.0),
+                    'Pos': Point3(-224.297, 364.375, 9.1170000000000009),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'SubObjs': {
                         'Top Model': {
@@ -3044,52 +3044,52 @@ objectStruct = {
                         'Animate': 'models/vegetation/palm_trunk_a_idle',
                         'Model': 'models/vegetation/palm_trunk_a_hi',
                         'PartName': 'trunk',
-                        'Scale': VBase3(1.3049999999999999, 1.3049999999999999, 1.3049999999999999) } },
+                        'Scale': VBase3(1.3049, 1.3049, 1.3049) } },
                 '1161647232.02kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
-                    'Hpr': VBase3(0.0, 0.28199999999999997, 1.446),
-                    'Pos': Point3(-218.047, 357.84800000000001, 9.2780000000000005),
-                    'Scale': VBase3(0.65600000000000003, 0.65600000000000003, 0.65600000000000003),
+                    'Hpr': VBase3(0.0, 0.281, 1.446),
+                    'Pos': Point3(-218.047, 357.848, 9.27800),
+                    'Scale': VBase3(0.65600, 0.65600, 0.65600),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
                 '1161647256.38kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': False,
-                    'Hpr': VBase3(0.0, 0.28199999999999997, 1.446),
-                    'Pos': Point3(-156.74100000000001, 289.33499999999998, 7.8550000000000004),
-                    'Scale': VBase3(0.65600000000000003, 0.65600000000000003, 0.65600000000000003),
+                    'Hpr': VBase3(0.0, 0.281, 1.446),
+                    'Pos': Point3(-156.741, 289.334, 7.85500),
+                    'Scale': VBase3(0.65600, 0.65600, 0.65600),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
                 '1161647279.41kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
                     'Hpr': VBase3(-13.653, 0.0, 0.0),
-                    'Pos': Point3(-179.27199999999999, 384.91899999999998, 7.7160000000000002),
-                    'Scale': VBase3(0.42999999999999999, 0.42999999999999999, 0.42999999999999999),
+                    'Pos': Point3(-179.271, 384.918, 7.7160),
+                    'Scale': VBase3(0.429, 0.429, 0.429),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
                 '1161647304.95kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-13.653, -0.36899999999999999, 0.0),
-                    'Pos': Point3(-182.803, 392.024, 7.2720000000000002),
-                    'Scale': VBase3(0.88600000000000001, 0.88600000000000001, 0.88600000000000001),
+                    'Hpr': VBase3(-13.653, -0.368, 0.0),
+                    'Pos': Point3(-182.803, 392.024, 7.2720),
+                    'Scale': VBase3(0.886, 0.886, 0.886),
                     'Visual': {
                         'Model': 'models/vegetation/bush_b' } },
                 '1161647391.44kmuller': {
                     'Type': 'Log_Stack',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(71.433999999999997, 542.83100000000002, 2.9390000000000001),
+                    'Pos': Point3(71.433, 542.831, 2.939),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/gen_log_group02' } },
                 '1161647410.3kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
-                    'Hpr': VBase3(0.0, 1.4279999999999999, 0.0),
-                    'Pos': Point3(579.01300000000003, 7.7240000000000002, 14.099),
+                    'Hpr': VBase3(0.0, 1.4279, 0.0),
+                    'Pos': Point3(579.013, 7.7240, 14.099),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_d' } },
@@ -3105,7 +3105,7 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-256.00299999999999, 213.70599999999999, 8.7170000000000005),
+                    'Pos': Point3(-256.002, 213.705, 8.71700),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_b' } },
@@ -3114,7 +3114,7 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(450.98399999999998, 2.0169999999999999, 23.202999999999999),
+                    'Pos': Point3(450.983, 2.0169, 23.202),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'SubObjs': {
                         'Top Model': {
@@ -3135,8 +3135,8 @@ objectStruct = {
                 '1161648378.22kmuller': {
                     'Type': 'Tree - Animated',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-55.584000000000003, 0.0, 2.6230000000000002),
-                    'Pos': Point3(436.43599999999998, 16.077000000000002, 23.177),
+                    'Hpr': VBase3(-55.584, 0.0, 2.6230),
+                    'Pos': Point3(436.435, 16.077, 23.177),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'SubObjs': {
                         'Top Model': {
@@ -3154,9 +3154,9 @@ objectStruct = {
                 '1161648388.45kmuller': {
                     'Type': 'Tree - Animated',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-55.584000000000003, 0.0, 2.6230000000000002),
-                    'Pos': Point3(431.86599999999999, 99.501999999999995, 21.998999999999999),
-                    'Scale': VBase3(0.77800000000000002, 0.77800000000000002, 0.77800000000000002),
+                    'Hpr': VBase3(-55.584, 0.0, 2.6230),
+                    'Pos': Point3(431.865, 99.5015, 21.998),
+                    'Scale': VBase3(0.778, 0.778, 0.778),
                     'SubObjs': {
                         'Top Model': {
                             'Visual': {
@@ -3175,8 +3175,8 @@ objectStruct = {
                     'Type': 'Tree - Animated',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(429.39299999999997, 10.641999999999999, 22.062000000000001),
-                    'Scale': VBase3(0.83399999999999996, 0.83399999999999996, 0.83399999999999996),
+                    'Pos': Point3(429.392, 10.641, 22.062),
+                    'Scale': VBase3(0.83396, 0.83396, 0.83396),
                     'SubObjs': {
                         'Top Model': {
                             'Visual': {
@@ -3193,16 +3193,16 @@ objectStruct = {
                 '1161648466.48kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
-                    'Hpr': VBase3(0.0, 4.4489999999999998, 1.5800000000000001),
-                    'Pos': Point3(433.84300000000002, 82.037000000000006, 22.661000000000001),
-                    'Scale': VBase3(0.56000000000000005, 0.56000000000000005, 0.56000000000000005),
+                    'Hpr': VBase3(0.0, 4.4488, 1.58),
+                    'Pos': Point3(433.843, 82.037, 22.661),
+                    'Scale': VBase3(0.560000, 0.560000, 0.560000),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_c' } },
                 '1161648482.95kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(426.51100000000002, 94.301000000000002, 22.588999999999999),
+                    'Pos': Point3(426.511, 94.301, 22.588),
                     'Scale': VBase3(1.022, 1.022, 1.022),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_e' } },
@@ -3210,7 +3210,7 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': False,
                     'Hpr': VBase3(12.259, 0.0, 0.0),
-                    'Pos': Point3(433.69200000000001, 90.555999999999997, 23.77),
+                    'Pos': Point3(433.692, 90.555, 23.77),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
@@ -3218,7 +3218,7 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(338.61000000000001, 201.90199999999999, 21.103999999999999),
+                    'Pos': Point3(338.61, 201.901, 21.103),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_c' } },
@@ -3226,7 +3226,7 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(320.28300000000002, 205.56, 20.295000000000002),
+                    'Pos': Point3(320.283, 205.56, 20.295),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_a' } },
@@ -3234,15 +3234,15 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(329.01600000000002, 198.715, 18.794),
+                    'Pos': Point3(329.016, 198.715, 18.794),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_e' } },
                 '1161648680.56kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-39.040999999999997, 0.0, 0.0),
-                    'Pos': Point3(334.23399999999998, 211.428, 20.475000000000001),
+                    'Hpr': VBase3(-39.040, 0.0, 0.0),
+                    'Pos': Point3(334.233, 211.428, 20.475),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_c' } },
@@ -3251,7 +3251,7 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(306.44999999999999, 195.66900000000001, 17.838999999999999),
+                    'Pos': Point3(306.44, 195.669, 17.838),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -3262,15 +3262,15 @@ objectStruct = {
                     'Holiday': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Pos': Point3(308.721, 170.786, 15.724),
-                    'Scale': VBase3(0.60099999999999998, 0.60099999999999998, 0.60099999999999998),
+                    'Scale': VBase3(0.60098, 0.60098, 0.60098),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
                 '1161648748.08kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-103.84399999999999, 0.0, 0.0),
-                    'Pos': Point3(303.32400000000001, 171.38200000000001, 16.495000000000001),
+                    'Hpr': VBase3(-103.843, 0.0, 0.0),
+                    'Pos': Point3(303.324, 171.382, 16.495),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_b' } },
@@ -3278,23 +3278,23 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(369.79700000000003, 159.45500000000001, 20.515999999999998),
+                    'Pos': Point3(369.797, 159.455, 20.5158),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/gen_tree_d' } },
                 '1161648804.92kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
-                    'Hpr': VBase3(92.147000000000006, 0.0, 0.0),
-                    'Pos': Point3(368.36500000000001, 158.56800000000001, 20.515999999999998),
-                    'Scale': VBase3(0.76900000000000002, 0.76900000000000002, 0.76900000000000002),
+                    'Hpr': VBase3(92.147, 0.0, 0.0),
+                    'Pos': Point3(368.365, 158.568, 20.5158),
+                    'Scale': VBase3(0.769, 0.769, 0.769),
                     'Visual': {
                         'Model': 'models/vegetation/bush_c' } },
                 '1161648866.86kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(388.62, 97.536000000000001, 19.972000000000001),
+                    'Pos': Point3(388.62, 97.536, 19.972),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/gen_tree_a' } },
@@ -3302,8 +3302,8 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(-3.2949999999999999, 0.0, 0.0),
-                    'Pos': Point3(260.68900000000002, 241.17500000000001, 17.471),
+                    'Hpr': VBase3(-3.2949, 0.0, 0.0),
+                    'Pos': Point3(260.689, 241.175, 17.471),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -3313,8 +3313,8 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(259.108, 213.70699999999999, 15.061),
-                    'Scale': VBase3(0.79800000000000004, 0.79800000000000004, 0.79800000000000004),
+                    'Pos': Point3(259.108, 213.706, 15.061),
+                    'Scale': VBase3(0.798000, 0.798000, 0.798000),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_b' } },
@@ -3323,7 +3323,7 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(251.059, 224.75, 15.489000000000001),
+                    'Pos': Point3(251.059, 224.75, 15.489),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -3332,8 +3332,8 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(50.319000000000003, 0.0, 0.0),
-                    'Pos': Point3(261.66899999999998, 217.70400000000001, 16.533000000000001),
+                    'Hpr': VBase3(50.319, 0.0, 0.0),
+                    'Pos': Point3(261.668, 217.704, 16.533),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -3342,8 +3342,8 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(47.436, -0.56200000000000006, 0.0),
-                    'Pos': Point3(310.04000000000002, 211.87299999999999, 20.052),
+                    'Hpr': VBase3(47.436, -0.562, 0.0),
+                    'Pos': Point3(310.04, 211.872, 20.052),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -3357,15 +3357,15 @@ objectStruct = {
                         '1252606998.18caoconno': {
                             'Type': 'Collision Barrier',
                             'DisableCollision': False,
-                            'GridPos': Point3(144.083, 202.11699999999999, 6.2489999999999997),
+                            'GridPos': Point3(144.083, 202.116, 6.248),
                             'Holiday': '',
                             'Hpr': Point3(0.0, 0.0, 0.0),
-                            'Pos': Point3(1.6080000000000001, 2.5590000000000002, -0.57899999999999996),
+                            'Pos': Point3(1.608, 2.5590, -0.57896),
                             'Scale': VBase3(1.0, 1.0, 1.0),
                             'VisSize': '',
                             'Visual': {
                                 'Model': 'models/misc/pir_m_prp_lev_cambarrier_sphere' } } },
-                    'Pos': Point3(142.47499999999999, 199.55799999999999, 6.8280000000000003),
+                    'Pos': Point3(142.474, 199.557, 6.8280),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -3375,8 +3375,8 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(-0.19400000000000001, 0.0, 0.0),
-                    'Pos': Point3(-189.01599999999999, 246.93600000000001, 6.6260000000000003),
+                    'Hpr': VBase3(-0.194, 0.0, 0.0),
+                    'Pos': Point3(-189.015, 246.936, 6.6260),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -3385,23 +3385,23 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-190.155, 243.19399999999999, 6.992),
-                    'Scale': VBase3(0.58299999999999996, 0.58299999999999996, 0.58299999999999996),
+                    'Pos': Point3(-190.155, 243.193, 6.992),
+                    'Scale': VBase3(0.58296, 0.58296, 0.58296),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
                 '1161649272.86kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-186.36600000000001, 247.178, 7.9020000000000001),
+                    'Pos': Point3(-186.366, 247.178, 7.902),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_f' } },
                 '1161649321.05kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
-                    'Hpr': VBase3(0.0, 3.0459999999999998, 0.0),
-                    'Pos': Point3(-191.42099999999999, 262.93700000000001, 8.9480000000000004),
+                    'Hpr': VBase3(0.0, 3.0458, 0.0),
+                    'Pos': Point3(-191.420, 262.937, 8.94800),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_d' } },
@@ -3409,7 +3409,7 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-246.239, 172.97300000000001, 7.8780000000000001),
+                    'Pos': Point3(-246.239, 172.973, 7.878),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_c' } },
@@ -3417,7 +3417,7 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-245.41, 165.876, 6.6139999999999999),
+                    'Pos': Point3(-245.41, 165.876, 6.6139),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_e' } },
@@ -3425,7 +3425,7 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-209.58699999999999, 165.876, 6.2169999999999996),
+                    'Pos': Point3(-209.586, 165.876, 6.2166),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
@@ -3433,7 +3433,7 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-548.447, 20.780000000000001, 4.2489999999999997),
+                    'Pos': Point3(-548.447, 20.78, 4.248),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_b' } },
@@ -3442,7 +3442,7 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': '',
                     'Hpr': VBase3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-549.97000000000003, 24.818999999999999, 4.2220000000000004),
+                    'Pos': Point3(-549.97, 24.818, 4.22200),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -3451,7 +3451,7 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-535.06100000000004, -7.5759999999999996, 5.4500000000000002),
+                    'Pos': Point3(-535.061, -7.5756, 5.45),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_c' } },
@@ -3459,7 +3459,7 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-167.57900000000001, 349.04000000000002, 9.1319999999999997),
+                    'Pos': Point3(-167.579, 349.04, 9.131),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_c' } },
@@ -3467,23 +3467,23 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-203.797, 165.876, 3.7189999999999999),
-                    'Scale': VBase3(0.82799999999999996, 0.82799999999999996, 0.82799999999999996),
+                    'Pos': Point3(-203.797, 165.876, 3.7189),
+                    'Scale': VBase3(0.82796, 0.82796, 0.82796),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_c' } },
                 '1161649723.22kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Hpr': VBase3(55.933, 0.0, 0.0),
-                    'Pos': Point3(-202.34200000000001, 148.27799999999999, 4.3150000000000004),
-                    'Scale': VBase3(0.76200000000000001, 0.76200000000000001, 0.76200000000000001),
+                    'Pos': Point3(-202.342, 148.277, 4.31500),
+                    'Scale': VBase3(0.762, 0.762, 0.762),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
                 '1161649749.33kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Hpr': VBase3(55.933, 0.0, 0.0),
-                    'Pos': Point3(-326.43200000000002, 168.09299999999999, 9.1809999999999992),
+                    'Pos': Point3(-326.432, 168.092, 9.1802),
                     'Scale': VBase3(0.313, 0.313, 0.313),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
@@ -3491,7 +3491,7 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-289.053, 217.37, 10.960000000000001),
+                    'Pos': Point3(-289.053, 217.37, 10.96),
                     'Scale': VBase3(0.995, 0.995, 0.995),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
@@ -3499,8 +3499,8 @@ objectStruct = {
                     'Type': 'Tree - Animated',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(12.782999999999999, -2.3460000000000001, -3.9279999999999999),
-                    'Pos': Point3(-485.09199999999998, -108.01300000000001, 7.0730000000000004),
+                    'Hpr': VBase3(12.782, -2.346, -3.9279),
+                    'Pos': Point3(-485.091, -108.013, 7.07300),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'SubObjs': {
                         'Top Model': {
@@ -3521,8 +3521,8 @@ objectStruct = {
                 '1161649885.75kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-34.539000000000001, 0.0, 0.0),
-                    'Pos': Point3(-463.822, -72.341999999999999, 10.010999999999999),
+                    'Hpr': VBase3(-34.539, 0.0, 0.0),
+                    'Pos': Point3(-463.822, -72.341, 10.010),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_b' } },
@@ -3531,7 +3531,7 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-467.30700000000002, -72.543000000000006, 9.5850000000000009),
+                    'Pos': Point3(-467.307, -72.543, 9.5850000000000009),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -3540,8 +3540,8 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(-0.023, -0.81999999999999995, -1.6140000000000001),
-                    'Pos': Point3(422.66300000000001, 16.768999999999998, 20.087),
+                    'Hpr': VBase3(-0.023, -0.815, -1.614),
+                    'Pos': Point3(422.663, 16.7688, 20.087),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -3550,7 +3550,7 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(417.02199999999999, 6.2699999999999996, 19.760999999999999),
+                    'Pos': Point3(417.021, 6.2696, 19.760),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
@@ -3558,23 +3558,23 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(388.06900000000002, 93.197000000000003, 19.588000000000001),
-                    'Scale': VBase3(0.40600000000000003, 0.40600000000000003, 0.40600000000000003),
+                    'Pos': Point3(388.069, 93.197, 19.588),
+                    'Scale': VBase3(0.40600, 0.40600, 0.40600),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
                 '1161650073.41kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-96.213999999999999, 4.6230000000000002, 3.5920000000000001),
-                    'Pos': Point3(361.36500000000001, 89.715999999999994, 15.462),
-                    'Scale': VBase3(0.40600000000000003, 0.40600000000000003, 0.40600000000000003),
+                    'Hpr': VBase3(-96.213, 4.6230, 3.592),
+                    'Pos': Point3(361.365, 89.7154, 15.462),
+                    'Scale': VBase3(0.40600, 0.40600, 0.40600),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
                 '1161650091.78kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(362.47000000000003, 95.638000000000005, 15.147),
+                    'Pos': Point3(362.47, 95.6380, 15.147),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_b' } },
@@ -3582,7 +3582,7 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(430.19900000000001, 52.100000000000001, 23.859000000000002),
+                    'Pos': Point3(430.199, 52.1, 23.859),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
@@ -3591,16 +3591,16 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': '',
                     'Hpr': VBase3(-103.628, 0.0, 0.0),
-                    'Pos': Point3(417.08999999999997, 53.771999999999998, 22.004000000000001),
-                    'Scale': VBase3(0.80800000000000005, 0.80800000000000005, 0.80800000000000005),
+                    'Pos': Point3(417.08, 53.7718, 22.004),
+                    'Scale': VBase3(0.808000, 0.808000, 0.808000),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
                 '1161650188.94kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': False,
-                    'Hpr': VBase3(0.0, -0.81799999999999995, 0.0),
-                    'Pos': Point3(421.238, 42.340000000000003, 22.004000000000001),
+                    'Hpr': VBase3(0.0, -0.81795, 0.0),
+                    'Pos': Point3(421.238, 42.340, 22.004),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_e' } },
@@ -3608,8 +3608,8 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Holiday': '',
-                    'Hpr': VBase3(0.0, -0.81799999999999995, 0.0),
-                    'Pos': Point3(476.73700000000002, 56.195999999999998, 23.622),
+                    'Hpr': VBase3(0.0, -0.81795, 0.0),
+                    'Pos': Point3(476.737, 56.1958, 23.622),
                     'Scale': VBase3(0.504, 0.504, 0.504),
                     'VisSize': '',
                     'Visual': {
@@ -3617,32 +3617,32 @@ objectStruct = {
                 '1161650287.73kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
-                    'Hpr': VBase3(163.13499999999999, 5.1879999999999997, -0.35799999999999998),
-                    'Pos': Point3(476.024, 65.978999999999999, 24.66),
+                    'Hpr': VBase3(163.134, 5.187, -0.35798),
+                    'Pos': Point3(476.024, 65.978, 24.66),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_half_c' } },
                 '1161650322.05kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-145.88800000000001, 0.0, 0.0),
-                    'Pos': Point3(475.02300000000002, 61.631999999999998, 25.021999999999998),
+                    'Hpr': VBase3(-145.888, 0.0, 0.0),
+                    'Pos': Point3(475.023, 61.6318, 25.0218),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_f' } },
                 '1161650482.33kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-139.18700000000001, 0.0, 0.0),
-                    'Pos': Point3(394.38200000000001, 258.23899999999998, 20.282),
+                    'Hpr': VBase3(-139.187, 0.0, 0.0),
+                    'Pos': Point3(394.382, 258.238, 20.282),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
                 '1161650504.25kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
-                    'Hpr': VBase3(65.530000000000001, 0.0, 13.539),
-                    'Pos': Point3(408.95600000000002, 230.905, 20.649000000000001),
+                    'Hpr': VBase3(65.53, 0.0, 13.539),
+                    'Pos': Point3(408.956, 230.905, 20.649),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
@@ -3650,8 +3650,8 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Holiday': '',
-                    'Hpr': VBase3(64.040999999999997, 0.0, 0.0),
-                    'Pos': Point3(366.34500000000003, 295.67399999999998, 21.940999999999999),
+                    'Hpr': VBase3(64.040, 0.0, 0.0),
+                    'Pos': Point3(366.345, 295.673, 21.940),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -3660,8 +3660,8 @@ objectStruct = {
                     'Type': 'Rock',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(0.0, 0.0, -2.6070000000000002),
-                    'Pos': Point3(128.64599999999999, 264.71699999999998, 12.146000000000001),
+                    'Hpr': VBase3(0.0, 0.0, -2.6070),
+                    'Pos': Point3(128.645, 264.716, 12.146),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -3671,7 +3671,7 @@ objectStruct = {
                     'Type': 'Player Spawn Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Index': -1,
-                    'Pos': Point3(-14.398, 252.37899999999999, 11.218999999999999),
+                    'Pos': Point3(-14.398, 252.378, 11.218),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'All',
                     'Visual': {
@@ -3680,31 +3680,31 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-322.69, 82.084000000000003, 7.2080000000000002),
-                    'Scale': VBase3(0.60399999999999998, 0.60399999999999998, 0.60399999999999998),
+                    'Pos': Point3(-322.69, 82.084, 7.2080),
+                    'Scale': VBase3(0.60398, 0.60398, 0.60398),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
                 '1163027635.35kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(114.40300000000001, 0.0, 0.0),
-                    'Pos': Point3(-325.01100000000002, 95.703999999999994, 7.516),
-                    'Scale': VBase3(0.61699999999999999, 0.61699999999999999, 0.61699999999999999),
+                    'Hpr': VBase3(114.403, 0.0, 0.0),
+                    'Pos': Point3(-325.011, 95.7034, 7.516),
+                    'Scale': VBase3(0.616, 0.616, 0.616),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
                 '1163027818.64kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-70.081000000000003, 0.0, 0.0),
-                    'Pos': Point3(-332.11700000000002, 158.71100000000001, 9.4760000000000009),
-                    'Scale': VBase3(0.56499999999999995, 0.56499999999999995, 0.56499999999999995),
+                    'Hpr': VBase3(-70.081, 0.0, 0.0),
+                    'Pos': Point3(-332.117, 158.711, 9.4760000000000009),
+                    'Scale': VBase3(0.56495, 0.56495, 0.56495),
                     'Visual': {
                         'Model': 'models/vegetation/bush_f' } },
                 '1163027874.21kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-57.722999999999999, 0.0, 0.0),
-                    'Pos': Point3(-300.49799999999999, 211.68899999999999, 11.537000000000001),
+                    'Hpr': VBase3(-57.722, 0.0, 0.0),
+                    'Pos': Point3(-300.497, 211.688, 11.537),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_c' } },
@@ -3712,15 +3712,15 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Hpr': VBase3(27.695, 0.0, 0.0),
-                    'Pos': Point3(-295.27199999999999, 212.589, 11.332000000000001),
-                    'Scale': VBase3(0.52200000000000002, 0.52200000000000002, 0.52200000000000002),
+                    'Pos': Point3(-295.271, 212.589, 11.332),
+                    'Scale': VBase3(0.522, 0.522, 0.522),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
                 '1163028184.78kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-20.766999999999999, 0.0, 0.0),
-                    'Pos': Point3(-335.524, 165.233, 9.6609999999999996),
+                    'Hpr': VBase3(-20.766, 0.0, 0.0),
+                    'Pos': Point3(-335.524, 165.233, 9.6606),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
@@ -3728,31 +3728,31 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': False,
                     'Hpr': VBase3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-339.23099999999999, 217.99700000000001, 11.234),
+                    'Pos': Point3(-339.230, 217.997, 11.234),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_leaves' } },
                 '1163028376.46kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
-                    'Hpr': VBase3(55.503999999999998, 0.215, 0.0),
-                    'Pos': Point3(-453.49200000000002, 221.209, 7.0220000000000002),
-                    'Scale': VBase3(1.3220000000000001, 1.3220000000000001, 1.3220000000000001),
+                    'Hpr': VBase3(55.5038, 0.215, 0.0),
+                    'Pos': Point3(-453.492, 221.209, 7.0220),
+                    'Scale': VBase3(1.322, 1.322, 1.322),
                     'Visual': {
                         'Model': 'models/vegetation/bush_g' } },
                 '1163028470.85kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Hpr': VBase3(-114.535, 0.0, 0.0),
-                    'Pos': Point3(-522.47400000000005, 110.825, 5.5590000000000002),
+                    'Pos': Point3(-522.474, 110.825, 5.5590),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_g' } },
                 '1163028593.54kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(20.367000000000001, -1.0680000000000001, 1.4570000000000001),
-                    'Pos': Point3(-504.53899999999999, 70.126999999999995, 8.2460000000000004),
+                    'Hpr': VBase3(20.367, -1.068, 1.457),
+                    'Pos': Point3(-504.538, 70.1265, 8.24600),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_b' } },
@@ -3761,8 +3761,8 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': '',
                     'Hpr': VBase3(0.0, 0.0, -1.349),
-                    'Pos': Point3(-584.55399999999997, -83.539000000000001, 1.139),
-                    'Scale': VBase3(1.4530000000000001, 1.4530000000000001, 1.4530000000000001),
+                    'Pos': Point3(-584.553, -83.539, 1.139),
+                    'Scale': VBase3(1.453, 1.453, 1.453),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/props/rock_group_4_sphere' } },
@@ -3771,7 +3771,7 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': '',
                     'Hpr': VBase3(0.0, 0.0, -8.9440000000000008),
-                    'Pos': Point3(-587.18100000000004, -136.334, 0.54200000000000004),
+                    'Pos': Point3(-587.181, -136.334, 0.542000),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -3780,16 +3780,16 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-591.17700000000002, -135.47300000000001, 0.11799999999999999),
-                    'Scale': VBase3(0.49399999999999999, 0.49399999999999999, 0.49399999999999999),
+                    'Pos': Point3(-591.177, -135.473, 0.117),
+                    'Scale': VBase3(0.493, 0.493, 0.493),
                     'Visual': {
                         'Model': 'models/vegetation/bush_b' } },
                 '1163028859.39kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': False,
-                    'Hpr': VBase3(0.0, 0.0, -0.90800000000000003),
-                    'Pos': Point3(-582.62599999999998, -89.533000000000001, 1.667),
-                    'Scale': VBase3(0.40699999999999997, 0.40699999999999997, 0.40699999999999997),
+                    'Hpr': VBase3(0.0, 0.0, -0.90800),
+                    'Pos': Point3(-582.625, -89.533, 1.667),
+                    'Scale': VBase3(0.406, 0.406, 0.406),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_b' } },
                 '1163028944.04kmuller': {
@@ -3797,8 +3797,8 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-472.11399999999998, 8.3040000000000003, 9.9589999999999996),
-                    'Scale': VBase3(0.52400000000000002, 0.52400000000000002, 0.52400000000000002),
+                    'Pos': Point3(-472.113, 8.3040, 9.9586),
+                    'Scale': VBase3(0.524, 0.524, 0.524),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/vegetation/bush_b' } },
@@ -3806,9 +3806,9 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(124.43899999999999, 0.0, 0.0),
-                    'Pos': Point3(-471.90100000000001, 9.8780000000000001, 9.5139999999999993),
-                    'Scale': VBase3(0.70199999999999996, 0.70199999999999996, 0.70199999999999996),
+                    'Hpr': VBase3(124.438, 0.0, 0.0),
+                    'Pos': Point3(-471.901, 9.878, 9.5133),
+                    'Scale': VBase3(0.70196, 0.70196, 0.70196),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/vegetation/bush_f' } },
@@ -3816,15 +3816,15 @@ objectStruct = {
                     'Type': 'Rock',
                     'DisableCollision': True,
                     'Hpr': VBase3(145.643, 0.0, 0.0),
-                    'Pos': Point3(-416.166, 65.337999999999994, 9.4600000000000009),
+                    'Pos': Point3(-416.166, 65.3374, 9.4600000000000009),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/rock_group_2_sphere' } },
                 '1163029043.15kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-104.66200000000001, 0.0, 0.0),
-                    'Pos': Point3(-415.34800000000001, 61.929000000000002, 9.5809999999999995),
+                    'Hpr': VBase3(-104.662, 0.0, 0.0),
+                    'Pos': Point3(-415.348, 61.929, 9.5805),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_f' } },
@@ -3832,71 +3832,71 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-414.99700000000001, 69.876999999999995, 9.173),
-                    'Scale': VBase3(0.44600000000000001, 0.44600000000000001, 0.44600000000000001),
+                    'Pos': Point3(-414.997, 69.8765, 9.173),
+                    'Scale': VBase3(0.446, 0.446, 0.446),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_b' } },
                 '1163029556.82kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-88.736999999999995, 0.0, 0.0),
-                    'Pos': Point3(-139.523, 268.86900000000003, 6.6529999999999996),
-                    'Scale': VBase3(1.2649999999999999, 1.2649999999999999, 1.2649999999999999),
+                    'Hpr': VBase3(-88.7365, 0.0, 0.0),
+                    'Pos': Point3(-139.523, 268.869, 6.6526),
+                    'Scale': VBase3(1.2649, 1.2649, 1.2649),
                     'Visual': {
                         'Model': 'models/vegetation/bush_b' } },
                 '1163029642.09kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
-                    'Hpr': VBase3(169.18000000000001, 0.0, 0.0),
-                    'Pos': Point3(-249.50700000000001, 391.738, 8.3829999999999991),
-                    'Scale': VBase3(0.69399999999999995, 0.69399999999999995, 0.69399999999999995),
+                    'Hpr': VBase3(169.18, 0.0, 0.0),
+                    'Pos': Point3(-249.507, 391.738, 8.3821),
+                    'Scale': VBase3(0.69395, 0.69395, 0.69395),
                     'Visual': {
                         'Model': 'models/vegetation/bush_leaves' } },
                 '1163029691.51kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Hpr': VBase3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-190.00999999999999, 321.04399999999998, 9.4269999999999996),
+                    'Pos': Point3(-190.00, 321.043, 9.4266),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_b' } },
                 '1163029698.06kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(167.55000000000001, 0.0, 0.0),
-                    'Pos': Point3(-193.702, 323.10700000000003, 7.6440000000000001),
+                    'Hpr': VBase3(167.55, 0.0, 0.0),
+                    'Pos': Point3(-193.702, 323.107, 7.644),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_b' } },
                 '1163029734.06kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(42.468000000000004, 0.0, 0.0),
-                    'Pos': Point3(-193.685, 317.84199999999998, 8.125),
+                    'Hpr': VBase3(42.4680, 0.0, 0.0),
+                    'Pos': Point3(-193.685, 317.841, 8.125),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_b' } },
                 '1163029813.76kmuller': {
                     'Type': 'Rock',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-72.481999999999999, 0.0, 0.0),
-                    'Pos': Point3(-251.74000000000001, 435.15499999999997, 7.3049999999999997),
-                    'Scale': VBase3(1.3560000000000001, 1.3560000000000001, 1.3560000000000001),
+                    'Hpr': VBase3(-72.481, 0.0, 0.0),
+                    'Pos': Point3(-251.74, 435.154, 7.304),
+                    'Scale': VBase3(1.356, 1.356, 1.356),
                     'Visual': {
                         'Model': 'models/props/rock_group_3_sphere' } },
                 '1163029881.93kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(79.870999999999995, 0.0, 0.40100000000000002),
-                    'Pos': Point3(-259.59899999999999, 441.36500000000001, 7.6120000000000001),
+                    'Hpr': VBase3(79.8705, 0.0, 0.401),
+                    'Pos': Point3(-259.598, 441.365, 7.612),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_f' } },
                 '1163029911.78kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(79.870999999999995, 0.0, 0.40100000000000002),
-                    'Pos': Point3(-220.15799999999999, 365.12700000000001, 8.8510000000000009),
+                    'Hpr': VBase3(79.8705, 0.0, 0.401),
+                    'Pos': Point3(-220.157, 365.127, 8.8510000000000009),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_f' } },
@@ -3904,8 +3904,8 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-227.654, 333.98000000000002, 7.1680000000000001),
-                    'Scale': VBase3(0.48699999999999999, 0.48699999999999999, 0.48699999999999999),
+                    'Pos': Point3(-227.654, 333.98, 7.168),
+                    'Scale': VBase3(0.486, 0.486, 0.486),
                     'Visual': {
                         'Model': 'models/vegetation/bush_i' } },
                 '1163029963.21kmuller': {
@@ -3913,7 +3913,7 @@ objectStruct = {
                     'DisableCollision': True,
                     'Holiday': '',
                     'Hpr': VBase3(-2.254, 0.0, 0.0),
-                    'Pos': Point3(-252.68700000000001, 305.97199999999998, 10.919),
+                    'Pos': Point3(-252.687, 305.971, 10.919),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -3921,8 +3921,8 @@ objectStruct = {
                 '1163030023.87kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
-                    'Hpr': VBase3(137.77699999999999, 1.637, 0.0),
-                    'Pos': Point3(-253.53800000000001, 228.04499999999999, 8.9380000000000006),
+                    'Hpr': VBase3(137.776, 1.637, 0.0),
+                    'Pos': Point3(-253.538, 228.044, 8.938),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_c' } },
@@ -3930,7 +3930,7 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Hpr': VBase3(-10.898, 0.0, 0.0),
-                    'Pos': Point3(-319.98899999999998, 100.74299999999999, 7.0119999999999996),
+                    'Pos': Point3(-319.988, 100.742, 7.0116),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_b' } },
@@ -3939,8 +3939,8 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-409.27699999999999, 103.747, 9.0329999999999995),
-                    'Scale': VBase3(0.41499999999999998, 0.41499999999999998, 0.41499999999999998),
+                    'Pos': Point3(-409.276, 103.747, 9.0325),
+                    'Scale': VBase3(0.41498, 0.41498, 0.41498),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
@@ -3949,8 +3949,8 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-412.58100000000002, 111.399, 8.8399999999999999),
-                    'Scale': VBase3(0.41499999999999998, 0.41499999999999998, 0.41499999999999998),
+                    'Pos': Point3(-412.581, 111.399, 8.83),
+                    'Scale': VBase3(0.41498, 0.41498, 0.41498),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
@@ -3959,7 +3959,7 @@ objectStruct = {
                     'DisableCollision': True,
                     'Holiday': '',
                     'Hpr': VBase3(-12.068, 0.0, 0.0),
-                    'Pos': Point3(-257.78800000000001, 282.10899999999998, 10.988),
+                    'Pos': Point3(-257.788, 282.108, 10.988),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -3968,7 +3968,7 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Hpr': VBase3(-12.068, 0.0, 0.0),
-                    'Pos': Point3(-254.04400000000001, 287.12, 11.202),
+                    'Pos': Point3(-254.044, 287.12, 11.202),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_b' } },
@@ -3984,15 +3984,15 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-279.27800000000002, 124.486, 7.0759999999999996),
-                    'Scale': VBase3(0.54300000000000004, 0.54300000000000004, 0.54300000000000004),
+                    'Pos': Point3(-279.278, 124.486, 7.0756),
+                    'Scale': VBase3(0.543000, 0.543000, 0.543000),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
                 '1163030301.96kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
                     'Hpr': VBase3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-275.779, 127.111, 7.3099999999999996),
+                    'Pos': Point3(-275.779, 127.111, 7.3096),
                     'Scale': VBase3(0.624, 0.624, 0.624),
                     'Visual': {
                         'Model': 'models/vegetation/bush_b' } },
@@ -4002,8 +4002,8 @@ objectStruct = {
                     'Holiday': '',
                     'Hpr': VBase3(0.0, 0.0, 0.0),
                     'Objects': { },
-                    'Pos': Point3(-350.05900000000003, -154.59700000000001, 6.3470000000000004),
-                    'Scale': VBase3(0.64300000000000002, 0.64300000000000002, 0.64300000000000002),
+                    'Pos': Point3(-350.059, -154.597, 6.34700),
+                    'Scale': VBase3(0.643, 0.643, 0.643),
                     'VisSize': '',
                     'Visual': {
                         'Color': (0.99215686321258545, 0.90980392694473267, 0.78823530673980713, 1.0),
@@ -4012,10 +4012,10 @@ objectStruct = {
                     'Type': 'Rock',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(136.36799999999999, 0.55400000000000005, 10.731999999999999),
+                    'Hpr': VBase3(136.367, 0.554000, 10.731),
                     'Objects': { },
-                    'Pos': Point3(-349.745, -159.16999999999999, 6.0179999999999998),
-                    'Scale': VBase3(0.64300000000000002, 0.64300000000000002, 0.64300000000000002),
+                    'Pos': Point3(-349.745, -159.16, 6.0178),
+                    'Scale': VBase3(0.643, 0.643, 0.643),
                     'VisSize': '',
                     'Visual': {
                         'Color': (0.99215686321258545, 0.90980392694473267, 0.78823530673980713, 1.0),
@@ -4024,17 +4024,17 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-351.73200000000003, -160.31999999999999, 6.9340000000000002),
-                    'Scale': VBase3(0.38300000000000001, 0.38300000000000001, 0.38300000000000001),
+                    'Pos': Point3(-351.732, -160.31, 6.9340),
+                    'Scale': VBase3(0.383, 0.383, 0.383),
                     'Visual': {
                         'Model': 'models/vegetation/palm_tree_b' } },
                 '1163030587.81kmuller': {
                     'Type': 'Rock',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(0.0, 0.0, -1.3009999999999999),
-                    'Pos': Point3(-413.69499999999999, -242.762, 5.2859999999999996),
-                    'Scale': VBase3(2.4740000000000002, 2.4740000000000002, 2.4740000000000002),
+                    'Hpr': VBase3(0.0, 0.0, -1.3009),
+                    'Pos': Point3(-413.694, -242.762, 5.2856),
+                    'Scale': VBase3(2.4740, 2.4740, 2.4740),
                     'VisSize': '',
                     'Visual': {
                         'Color': (0.99215686321258545, 0.90980392694473267, 0.78823530673980713, 1.0),
@@ -4043,8 +4043,8 @@ objectStruct = {
                     'Type': 'Rock',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(41.363999999999997, 0.0, 0.0),
-                    'Pos': Point3(-399.50200000000001, -259.60000000000002, 4.5229999999999997),
+                    'Hpr': VBase3(41.363, 0.0, 0.0),
+                    'Pos': Point3(-399.502, -259.60, 4.522),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -4053,31 +4053,31 @@ objectStruct = {
                     'Type': 'Tree',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-421.07900000000001, -252.529, 5.3339999999999996),
-                    'Scale': VBase3(0.35999999999999999, 0.35999999999999999, 0.35999999999999999),
+                    'Pos': Point3(-421.079, -252.529, 5.3336),
+                    'Scale': VBase3(0.359, 0.359, 0.359),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
                 '1163030819.04kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-82.510000000000005, 0.0, 0.0),
-                    'Pos': Point3(-489.96699999999998, 167.06200000000001, 6.4989999999999997),
+                    'Hpr': VBase3(-82.5100, 0.0, 0.0),
+                    'Pos': Point3(-489.966, 167.062, 6.498),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_half_c' } },
                 '1163030957.45kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-90.084000000000003, 0.0, 0.0),
-                    'Pos': Point3(-385.82999999999998, 397.93000000000001, 4.6139999999999999),
+                    'Hpr': VBase3(-90.084, 0.0, 0.0),
+                    'Pos': Point3(-385.828, 397.93, 4.6139),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_b' } },
                 '1163030994.46kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(136.10400000000001, 0.0, 15.976000000000001),
-                    'Pos': Point3(-369.54000000000002, 396.73899999999998, 8.8659999999999997),
+                    'Hpr': VBase3(136.104, 0.0, 15.976),
+                    'Pos': Point3(-369.54, 396.738, 8.865),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_b' } },
@@ -4085,80 +4085,80 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Hpr': VBase3(106.889, 0.0, 0.0),
-                    'Pos': Point3(-314.27499999999998, 436.56700000000001, 5.4560000000000004),
+                    'Pos': Point3(-314.274, 436.567, 5.45600),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
                 '1163031145.74kmuller': {
                     'Type': 'Tree',
                     'DisableCollision': True,
-                    'Hpr': VBase3(47.948999999999998, 0.0, 0.0),
-                    'Pos': Point3(-85.453999999999994, 477.77999999999997, 5.5709999999999997),
-                    'Scale': VBase3(0.69399999999999995, 0.69399999999999995, 0.69399999999999995),
+                    'Hpr': VBase3(47.9488, 0.0, 0.0),
+                    'Pos': Point3(-85.4534, 477.77, 5.570),
+                    'Scale': VBase3(0.69395, 0.69395, 0.69395),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
                 '1163032336.96kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(17.277999999999999, 0.0, 0.0),
-                    'Pos': Point3(117.38200000000001, 403.92899999999997, 15.593),
-                    'Scale': VBase3(0.58799999999999997, 0.58799999999999997, 0.58799999999999997),
+                    'Hpr': VBase3(17.277, 0.0, 0.0),
+                    'Pos': Point3(117.382, 403.928, 15.593),
+                    'Scale': VBase3(0.587, 0.587, 0.587),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
                 '1163032489.82kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(23.209, 422.63400000000001, 5.6020000000000003),
-                    'Scale': VBase3(0.61799999999999999, 0.61799999999999999, 0.61799999999999999),
+                    'Pos': Point3(23.209, 422.634, 5.6020),
+                    'Scale': VBase3(0.617, 0.617, 0.617),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
                 '1163032576.57kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-0.96899999999999997, 464.72000000000003, 5.7249999999999996),
-                    'Scale': VBase3(0.46300000000000002, 0.46300000000000002, 0.46300000000000002),
+                    'Pos': Point3(-0.968, 464.72, 5.7246),
+                    'Scale': VBase3(0.463, 0.463, 0.463),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
                 '1163032609.32kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-12.413, 467.26299999999998, 5.5629999999999997),
-                    'Scale': VBase3(0.61399999999999999, 0.61399999999999999, 0.61399999999999999),
+                    'Pos': Point3(-12.413, 467.262, 5.562),
+                    'Scale': VBase3(0.613, 0.613, 0.613),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
                 '1163032649.84kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-17.802, 474.16199999999998, 3.6789999999999998),
-                    'Scale': VBase3(0.61399999999999999, 0.61399999999999999, 0.61399999999999999),
+                    'Pos': Point3(-17.802, 474.161, 3.6788),
+                    'Scale': VBase3(0.613, 0.613, 0.613),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
                 '1163032688.82kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(20.567, 1.4610000000000001, -10.426),
-                    'Pos': Point3(-12.449999999999999, 478.88600000000002, 4.758),
-                    'Scale': VBase3(0.84499999999999997, 0.84499999999999997, 0.84499999999999997),
+                    'Hpr': VBase3(20.567, 1.461, -10.426),
+                    'Pos': Point3(-12.449, 478.886, 4.758),
+                    'Scale': VBase3(0.844, 0.844, 0.844),
                     'Visual': {
                         'Model': 'models/vegetation/bush_b' } },
                 '1163032832.4kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
-                    'Hpr': VBase3(54.152999999999999, 0.0, 0.0),
+                    'Hpr': VBase3(54.152, 0.0, 0.0),
                     'Pos': Point3(-232.018, 311.108, 9.048),
-                    'Scale': VBase3(0.65300000000000002, 0.65300000000000002, 0.65300000000000002),
+                    'Scale': VBase3(0.653, 0.653, 0.653),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
                 '1163032950.17kmuller': {
                     'Type': 'Rock',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(0.0, -4.1299999999999999, 3.198),
-                    'Pos': Point3(29.885000000000002, 266.27499999999998, 3.6040000000000001),
+                    'Hpr': VBase3(0.0, -4.12, 3.198),
+                    'Pos': Point3(29.885, 266.274, 3.604),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -4167,8 +4167,8 @@ objectStruct = {
                     'Type': 'Rock',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(33.063000000000002, -0.71599999999999997, -1.1000000000000001),
-                    'Pos': Point3(63.981999999999999, 277.73500000000001, 6.2610000000000001),
+                    'Hpr': VBase3(33.063, -0.715, -1.10),
+                    'Pos': Point3(63.981, 277.735, 6.261),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -4178,7 +4178,7 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': '',
                     'Hpr': VBase3(0.0, 0.0, -7.992),
-                    'Pos': Point3(108.232, 298.19600000000003, 13.275),
+                    'Pos': Point3(108.232, 298.196, 13.275),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -4186,8 +4186,8 @@ objectStruct = {
                 '1163033640.31kmuller': {
                     'Type': 'Log_Stack',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-0.13800000000000001, 2.5430000000000001, 3.1120000000000001),
-                    'Pos': Point3(443.14999999999998, -68.640000000000001, 23.646000000000001),
+                    'Hpr': VBase3(-0.138, 2.543, 3.112),
+                    'Pos': Point3(443.148, -68.64, 23.646),
                     'Scale': VBase3(0.378, 0.378, 0.378),
                     'Visual': {
                         'Model': 'models/vegetation/gen_log_group03' } },
@@ -4195,15 +4195,15 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(458.22399999999999, -41.863, 22.692),
-                    'Scale': VBase3(0.46600000000000003, 0.46600000000000003, 0.46600000000000003),
+                    'Pos': Point3(458.223, -41.863, 22.692),
+                    'Scale': VBase3(0.46600, 0.46600, 0.46600),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
                 '1163033725.46kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Hpr': VBase3(-22.898, 0.0, 0.0),
-                    'Pos': Point3(456.65800000000002, -31.074999999999999, 23.332000000000001),
+                    'Pos': Point3(456.658, -31.074, 23.332),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_b' } },
@@ -4211,48 +4211,48 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': False,
                     'Hpr': VBase3(0.0, 0.0, 0.0),
-                    'Pos': Point3(473.27499999999998, 28.952000000000002, 21.908999999999999),
+                    'Pos': Point3(473.274, 28.952, 21.908),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_leaves' } },
                 '1163033794.64kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
-                    'Hpr': VBase3(22.567, 3.2639999999999998, -2.21),
-                    'Pos': Point3(474.43900000000002, 17.831, 23.640999999999998),
-                    'Scale': VBase3(0.52300000000000002, 0.52300000000000002, 0.52300000000000002),
+                    'Hpr': VBase3(22.567, 3.2638, -2.21),
+                    'Pos': Point3(474.439, 17.831, 23.6408),
+                    'Scale': VBase3(0.523, 0.523, 0.523),
                     'Visual': {
                         'Model': 'models/vegetation/bush_leaves' } },
                 '1163033870.67kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-62.965000000000003, 0.0, 0.0),
-                    'Pos': Point3(453.81200000000001, 143.15799999999999, 21.678000000000001),
-                    'Scale': VBase3(0.65200000000000002, 0.65200000000000002, 0.65200000000000002),
+                    'Hpr': VBase3(-62.965, 0.0, 0.0),
+                    'Pos': Point3(453.812, 143.157, 21.678),
+                    'Scale': VBase3(0.652, 0.652, 0.652),
                     'Visual': {
                         'Model': 'models/vegetation/bush_b' } },
                 '1163033890.93kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Hpr': VBase3(115.306, 0.0, 0.0),
-                    'Pos': Point3(441.69299999999998, 144.86699999999999, 21.766999999999999),
-                    'Scale': VBase3(0.65200000000000002, 0.65200000000000002, 0.65200000000000002),
+                    'Pos': Point3(441.692, 144.866, 21.766),
+                    'Scale': VBase3(0.652, 0.652, 0.652),
                     'Visual': {
                         'Model': 'models/vegetation/bush_b' } },
                 '1163033997.49kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-0.055, 5.4139999999999997, 0.58499999999999996),
-                    'Pos': Point3(343.11700000000002, 240.51599999999999, 18.242000000000001),
-                    'Scale': VBase3(0.71699999999999997, 0.71699999999999997, 0.71699999999999997),
+                    'Hpr': VBase3(-0.055, 5.413, 0.58496),
+                    'Pos': Point3(343.117, 240.515, 18.242),
+                    'Scale': VBase3(0.716, 0.716, 0.716),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
                 '1163034026.87kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-0.055, 5.4139999999999997, 0.58499999999999996),
-                    'Pos': Point3(348.084, 276.01299999999998, 21.670000000000002),
-                    'Scale': VBase3(0.47399999999999998, 0.47399999999999998, 0.47399999999999998),
+                    'Hpr': VBase3(-0.055, 5.413, 0.58496),
+                    'Pos': Point3(348.084, 276.012, 21.670),
+                    'Scale': VBase3(0.47398, 0.47398, 0.47398),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
                 '1169081738.45mike': {
@@ -4265,14 +4265,14 @@ objectStruct = {
                     'GhostColor': 'None',
                     'GhostFX': 0,
                     'Greeting Animation': '',
-                    'GridPos': Point3(-353.44200000000001, -153.678, 7.1660000000000004),
-                    'Hpr': VBase3(-74.283000000000001, 0.0, 0.0),
+                    'GridPos': Point3(-353.442, -153.678, 7.16600),
+                    'Hpr': VBase3(-74.283, 0.0, 0.0),
                     'Instanced World': 'None',
                     'Level': '37',
                     'Notice Animation 1': '',
                     'Notice Animation 2': '',
                     'Patrol Radius': '12.0000',
-                    'Pos': Point3(-357.99200000000002, -151.10900000000001, 7.399),
+                    'Pos': Point3(-357.992, -151.109, 7.399),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -4295,7 +4295,7 @@ objectStruct = {
                     'Type': 'Player Spawn Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Index': 1,
-                    'Pos': Point3(106.14400000000001, 188.21199999999999, 4.2430000000000003),
+                    'Pos': Point3(106.144, 188.211, 4.2430),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'All',
                     'Visual': {
@@ -4304,8 +4304,8 @@ objectStruct = {
                 '1172171409.62kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': False,
-                    'Hpr': VBase3(82.754000000000005, 0.0, 0.0),
-                    'Pos': Point3(556.56500000000005, -67.391999999999996, 14.132999999999999),
+                    'Hpr': VBase3(82.7540, 0.0, 0.0),
+                    'Pos': Point3(556.565, -67.3916, 14.132),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_i' } },
@@ -4319,7 +4319,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(-425.57299999999998, 207.94499999999999, 8.4090000000000007),
+                    'Pos': Point3(-425.572, 207.944, 8.409),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'Priority': '1',
@@ -4338,7 +4338,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.80000000000000004, 0.20000000000000001, 0.65000000000000002, 1.0),
+                        'Color': (0.800000, 0.200, 0.65, 1.0),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0,
@@ -4352,7 +4352,7 @@ objectStruct = {
                     'Patrol Radius': '16.9096',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(324.30900000000003, 46.814999999999998, 7.2560000000000002),
+                    'Pos': Point3(324.309, 46.8148, 7.2560),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -4369,7 +4369,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -4382,7 +4382,7 @@ objectStruct = {
                     'Patrol Radius': '17.0241',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(531.83399999999995, -148.494, 12.446),
+                    'Pos': Point3(531.833, -148.494, 12.446),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -4399,7 +4399,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -4412,7 +4412,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(166.184, 516.95600000000002, 7.0419999999999998),
+                    'Pos': Point3(166.184, 516.956, 7.0418),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -4429,7 +4429,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -4442,7 +4442,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': '52',
                     'Pause Duration': '12',
-                    'Pos': Point3(-99.390000000000001, 552.61500000000001, 1.5940000000000001),
+                    'Pos': Point3(-99.39, 552.615, 1.594),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -4459,7 +4459,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -4472,7 +4472,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': '48',
                     'Pause Duration': '12',
-                    'Pos': Point3(-528.52800000000002, -337.11200000000002, 0.16200000000000001),
+                    'Pos': Point3(-528.528, -337.112, 0.162),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -4489,7 +4489,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -4502,7 +4502,7 @@ objectStruct = {
                     'Patrol Radius': '17.1386',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(385.899, -212.113, 17.780999999999999),
+                    'Pos': Point3(385.899, -212.113, 17.780),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -4519,7 +4519,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -4532,7 +4532,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(363.173, 237.386, 20.725000000000001),
+                    'Pos': Point3(363.173, 237.386, 20.725),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -4549,7 +4549,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -4562,7 +4562,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(-293.34399999999999, 179.98099999999999, 9.8339999999999996),
+                    'Pos': Point3(-293.343, 179.980, 9.8336),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -4579,7 +4579,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -4587,8 +4587,8 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Holiday': '',
-                    'Hpr': VBase3(9.5679999999999996, -7.2720000000000002, 0.0),
-                    'Pos': Point3(499.93700000000001, 228.947, 10.436),
+                    'Hpr': VBase3(9.5676, -7.2720, 0.0),
+                    'Pos': Point3(499.937, 228.947, 10.436),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -4596,45 +4596,45 @@ objectStruct = {
                 '1175288432.66kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(34.405999999999999, 0.0, 0.0),
-                    'Pos': Point3(519.22699999999998, 207.33799999999999, 8.9369999999999994),
+                    'Hpr': VBase3(34.405, 0.0, 0.0),
+                    'Pos': Point3(519.226, 207.337, 8.9364),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_d' } },
                 '1175288534.09kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(47.353999999999999, 0.0, 0.0),
-                    'Pos': Point3(520.84299999999996, 217.15700000000001, 6.5830000000000002),
-                    'Scale': VBase3(0.79700000000000004, 0.79700000000000004, 0.79700000000000004),
+                    'Hpr': VBase3(47.353, 0.0, 0.0),
+                    'Pos': Point3(520.842, 217.157, 6.5830),
+                    'Scale': VBase3(0.797000, 0.797000, 0.797000),
                     'Visual': {
                         'Model': 'models/vegetation/bush_f' } },
                 '1175288625.44kmuller': {
                     'Type': 'Rock',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(544.02800000000002, -103.815, 18.965),
-                    'Scale': VBase3(2.4790000000000001, 2.4790000000000001, 2.4790000000000001),
+                    'Pos': Point3(544.028, -103.815, 18.965),
+                    'Scale': VBase3(2.479, 2.479, 2.479),
                     'Visual': {
                         'Color': (0.69999998807907104, 0.69999998807907104, 0.69999998807907104, 1.0),
                         'Model': 'models/props/rock_1_sphere' } },
                 '1175288684.33kmuller': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-85.013999999999996, 0.0, 0.0),
-                    'Pos': Point3(517.25800000000004, -124.91800000000001, 19.613),
-                    'Scale': VBase3(1.6679999999999999, 1.6679999999999999, 1.6679999999999999),
+                    'Hpr': VBase3(-85.0136, 0.0, 0.0),
+                    'Pos': Point3(517.258, -124.918, 19.613),
+                    'Scale': VBase3(1.6679, 1.6679, 1.6679),
                     'Visual': {
                         'Model': 'models/vegetation/bush_f' } },
                 '1176253312.0mike': {
                     'Type': 'Port Collision Sphere',
                     'Name': 'RumrunnerPort',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(3.0939999999999999, -2.5270000000000001, -49.75),
+                    'Pos': Point3(3.0939, -2.527, -49.75),
                     'Scale': VBase3(667.62, 667.62, 667.62),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.5, 0.5, 1.0, 0.20000000000000001),
+                        'Color': (0.5, 0.5, 1.0, 0.200),
                         'Model': 'models/misc/smiley' } },
                 '1182807296.0dxschafe': {
                     'Type': 'Spawn Node',
@@ -4645,7 +4645,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(461.702, 95.793000000000006, 22.998000000000001),
+                    'Pos': Point3(461.702, 95.793, 22.998),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -4662,7 +4662,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.0, 0.0, 0.65000000000000002, 1.0),
+                        'Color': (0.0, 0.0, 0.65, 1.0),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -4675,7 +4675,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(-445.12299999999999, 70.123000000000005, 9.141),
+                    'Pos': Point3(-445.122, 70.1230, 9.141),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -4692,60 +4692,60 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
                 '1182807424.0dxschafe': {
                     'Type': 'Object Spawn Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-241.97399999999999, 121.459, 6.3339999999999996),
+                    'Pos': Point3(-241.973, 121.459, 6.3336),
                     'Priority': '1',
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'SpawnDelay': '20',
                     'Spawnables': 'Buried Treasure',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.80000000000000004, 0.20000000000000001, 0.65000000000000002, 1),
+                        'Color': (0.800000, 0.200, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'startingDepth': '12' },
                 '1182807552.0dxschafe': {
                     'Type': 'Object Spawn Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-452.89800000000002, -6.6379999999999999, 10.824),
+                    'Pos': Point3(-452.898, -6.6379, 10.824),
                     'Priority': '1',
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'SpawnDelay': '20',
                     'Spawnables': 'Buried Treasure',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.80000000000000004, 0.20000000000000001, 0.65000000000000002, 1),
+                        'Color': (0.800000, 0.200, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'startingDepth': '12' },
                 '1182807552.0dxschafe0': {
                     'Type': 'Object Spawn Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(267.91800000000001, 293.55000000000001, 21.231000000000002),
+                    'Pos': Point3(267.918, 293.55, 21.231),
                     'Priority': '1',
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'SpawnDelay': '20',
                     'Spawnables': 'Buried Treasure',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.80000000000000004, 0.20000000000000001, 0.65000000000000002, 1),
+                        'Color': (0.800000, 0.200, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'startingDepth': '12' },
                 '1182807552.0dxschafe2': {
                     'Type': 'Object Spawn Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(401.911, 62.640999999999998, 21.635999999999999),
+                    'Pos': Point3(401.911, 62.6408, 21.635),
                     'Priority': '1',
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'SpawnDelay': '20',
                     'Spawnables': 'Buried Treasure',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.0, 0.0, 0.65000000000000002, 1.0),
+                        'Color': (0.0, 0.0, 0.65, 1.0),
                         'Model': 'models/misc/smiley' },
                     'startingDepth': '12' },
                 '1184722725.9kmuller': {
@@ -4753,80 +4753,80 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-465.28899999999999, -177.196, 9.4049999999999994),
-                    'Scale': VBase3(1.1679999999999999, 1.1679999999999999, 1.1679999999999999),
+                    'Pos': Point3(-465.288, -177.196, 9.4044),
+                    'Scale': VBase3(1.1679, 1.1679, 1.1679),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_sphere' } },
                 '1184722819.31kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-63.840000000000003, 0.0, 0.0),
-                    'Pos': Point3(-517.07100000000003, -151.59700000000001, 8.2919999999999998),
-                    'Scale': VBase3(3.6429999999999998, 1.841, 1.841),
+                    'Hpr': VBase3(-63.840, 0.0, 0.0),
+                    'Pos': Point3(-517.071, -151.597, 8.2918),
+                    'Scale': VBase3(3.6428, 1.841, 1.841),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184722843.21kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(22.138000000000002, 0.0, 0.0),
-                    'Pos': Point3(-504.40699999999998, -165.501, 8.2889999999999997),
-                    'Scale': VBase3(1.1020000000000001, 1.044, 1.758),
+                    'Hpr': VBase3(22.138, 0.0, 0.0),
+                    'Pos': Point3(-504.406, -165.501, 8.288),
+                    'Scale': VBase3(1.102, 1.044, 1.758),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184722876.89kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(105.52500000000001, 0.0, 0.0),
-                    'Pos': Point3(-503.26600000000002, -149.93899999999999, 7.3780000000000001),
-                    'Scale': VBase3(2.8639999999999999, 2.2200000000000002, 2.2200000000000002),
+                    'Hpr': VBase3(105.525, 0.0, 0.0),
+                    'Pos': Point3(-503.266, -149.938, 7.378),
+                    'Scale': VBase3(2.8639, 2.22, 2.22),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184722906.37kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(176.74299999999999, 0.0, 0.0),
-                    'Pos': Point3(-515.96000000000004, -135.75299999999999, 9.3079999999999998),
-                    'Scale': VBase3(1.857, 1.6839999999999999, 1.8200000000000001),
+                    'Hpr': VBase3(176.742, 0.0, 0.0),
+                    'Pos': Point3(-515.960, -135.752, 9.3078),
+                    'Scale': VBase3(1.857, 1.6839, 1.82),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184722982.45kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-557.58000000000004, -98.616, 8.3629999999999995),
-                    'Scale': VBase3(1.4099999999999999, 1.4099999999999999, 1.4099999999999999),
+                    'Pos': Point3(-557.580, -98.616, 8.3625),
+                    'Scale': VBase3(1.40, 1.40, 1.40),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_sphere' } },
                 '1184723074.56kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-27.716000000000001, 0.0, 0.0),
-                    'Pos': Point3(-535.5, -58.674999999999997, 7.7549999999999999),
-                    'Scale': VBase3(3.016, 6.0039999999999996, 2.2330000000000001),
+                    'Hpr': VBase3(-27.716, 0.0, 0.0),
+                    'Pos': Point3(-535.5, -58.674, 7.7549),
+                    'Scale': VBase3(3.016, 6.0036, 2.233),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_cube' } },
                 '1184723133.56kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Hpr': VBase3(65.634, 0.0, 0.0),
-                    'Pos': Point3(-538.702, -80.100999999999999, 8.4930000000000003),
-                    'Scale': VBase3(1.244, 1.0, 2.0699999999999998),
+                    'Pos': Point3(-538.702, -80.100, 8.4930),
+                    'Scale': VBase3(1.244, 1.0, 2.0698),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184723158.06kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-66.501999999999995, 0.0, 0.0),
-                    'Pos': Point3(-545.04999999999995, -77.105000000000004, 7.9279999999999999),
-                    'Scale': VBase3(1.907, 2.1960000000000002, 2.1960000000000002),
+                    'Hpr': VBase3(-66.5015, 0.0, 0.0),
+                    'Pos': Point3(-545.045, -77.1050, 7.9279),
+                    'Scale': VBase3(1.907, 2.1960, 2.1960),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184723219.03kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-509.71499999999997, -45.631, 10.487),
+                    'Pos': Point3(-509.714, -45.631, 10.487),
                     'Scale': VBase3(1.552, 1.552, 1.552),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_sphere' } },
@@ -4834,103 +4834,103 @@ objectStruct = {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-526.28599999999994, -12.603999999999999, 8.3640000000000008),
+                    'Pos': Point3(-526.28599999999994, -12.603, 8.3640000000000008),
                     'Scale': VBase3(2.996, 2.996, 2.996),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_sphere' } },
                 '1184723378.08kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-25.449999999999999, 0.0, 0.0),
-                    'Pos': Point3(-505.964, 68.299999999999997, 7.2119999999999997),
-                    'Scale': VBase3(5.0099999999999998, 2.585, 1.8979999999999999),
+                    'Hpr': VBase3(-25.449, 0.0, 0.0),
+                    'Pos': Point3(-505.964, 68.2, 7.211),
+                    'Scale': VBase3(5.0098, 2.585, 1.8979),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_cube' } },
                 '1184723592.48kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(25.864999999999998, 0.0, 0.0),
-                    'Pos': Point3(-517.33299999999997, 111.697, 3.5619999999999998),
-                    'Scale': VBase3(6.6639999999999997, 4.1319999999999997, 2.1600000000000001),
+                    'Hpr': VBase3(25.8648, 0.0, 0.0),
+                    'Pos': Point3(-517.332, 111.697, 3.5618),
+                    'Scale': VBase3(6.663, 4.131, 2.16),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_cube' } },
                 '1184723789.12kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-87.528999999999996, 0.0, 0.0),
-                    'Pos': Point3(-453.327, 310.59899999999999, 5.524),
-                    'Scale': VBase3(2.149, 2.0649999999999999, 2.0649999999999999),
+                    'Hpr': VBase3(-87.5286, 0.0, 0.0),
+                    'Pos': Point3(-453.327, 310.598, 5.524),
+                    'Scale': VBase3(2.149, 2.0649, 2.0649),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184723815.15kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-139.83799999999999, 0.0, 0.0),
-                    'Pos': Point3(-440.11399999999998, 332.96600000000001, 1.917),
-                    'Scale': VBase3(3.6760000000000002, 2.302, 2.8140000000000001),
+                    'Hpr': VBase3(-139.837, 0.0, 0.0),
+                    'Pos': Point3(-440.113, 332.966, 1.917),
+                    'Scale': VBase3(3.6760, 2.302, 2.814),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184724025.76kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Hpr': VBase3(-101.989, 0.0, 0.0),
-                    'Pos': Point3(-397.923, 383.99099999999999, 3.419),
-                    'Scale': VBase3(3.1099999999999999, 1.601, 2.129),
+                    'Pos': Point3(-397.923, 383.990, 3.419),
+                    'Scale': VBase3(3.10, 1.601, 2.129),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184724067.9kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-176.46799999999999, 0.0, 0.0),
-                    'Pos': Point3(-381.71100000000001, 399.90300000000002, 2.101),
-                    'Scale': VBase3(2.6440000000000001, 2.4220000000000002, 2.4220000000000002),
+                    'Hpr': VBase3(-176.467, 0.0, 0.0),
+                    'Pos': Point3(-381.711, 399.903, 2.101),
+                    'Scale': VBase3(2.644, 2.4220, 2.4220),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184724164.98kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Hpr': VBase3(-157.053, 0.0, 0.0),
-                    'Pos': Point3(-350.83300000000003, 427.20499999999998, 4.569),
+                    'Pos': Point3(-350.833, 427.204, 4.569),
                     'Scale': VBase3(1.994, 1.347, 1.696),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184724198.76kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-99.073999999999998, 0.0, 0.0),
-                    'Pos': Point3(-361.47699999999998, 414.964, 4.7770000000000001),
-                    'Scale': VBase3(1.736, 1.5469999999999999, 1.8009999999999999),
+                    'Hpr': VBase3(-99.0738, 0.0, 0.0),
+                    'Pos': Point3(-361.476, 414.964, 4.777),
+                    'Scale': VBase3(1.736, 1.5469, 1.8009),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184724237.43kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Hpr': VBase3(158.773, 0.0, 0.0),
-                    'Pos': Point3(-340.548, 430.60500000000002, 5.5800000000000001),
-                    'Scale': VBase3(0.29299999999999998, 1.0, 1.5049999999999999),
+                    'Pos': Point3(-340.548, 430.605, 5.58),
+                    'Scale': VBase3(0.29298, 1.0, 1.5049),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184724386.87kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(178.71899999999999, 0.0, 0.0),
-                    'Pos': Point3(-301.43000000000001, 453.47000000000003, 4.6470000000000002),
-                    'Scale': VBase3(2.4510000000000001, 1.6719999999999999, 1.6719999999999999),
+                    'Hpr': VBase3(178.718, 0.0, 0.0),
+                    'Pos': Point3(-301.43, 453.47, 4.6470),
+                    'Scale': VBase3(2.451, 1.6719, 1.6719),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184724425.39kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-151.25299999999999, 0.0, 0.0),
-                    'Pos': Point3(-325.23700000000002, 447.19299999999998, 4.077),
-                    'Scale': VBase3(2.7719999999999998, 1.605, 1.774),
+                    'Hpr': VBase3(-151.252, 0.0, 0.0),
+                    'Pos': Point3(-325.237, 447.192, 4.077),
+                    'Scale': VBase3(2.7718, 1.605, 1.774),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184724469.96kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-89.194999999999993, 0.0, 0.0),
-                    'Pos': Point3(-337.29199999999997, 435.483, 4.423),
+                    'Hpr': VBase3(-89.1943, 0.0, 0.0),
+                    'Pos': Point3(-337.291, 435.483, 4.423),
                     'Scale': VBase3(1.044, 1.0, 1.734),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
@@ -4938,159 +4938,159 @@ objectStruct = {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Hpr': VBase3(22.948, 0.0, 0.0),
-                    'Pos': Point3(-254.90299999999999, 431.37599999999998, 6.1660000000000004),
-                    'Scale': VBase3(2.258, 6.048, 1.5980000000000001),
+                    'Pos': Point3(-254.902, 431.375, 6.16600),
+                    'Scale': VBase3(2.258, 6.048, 1.598),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_cube' } },
                 '1184724616.51kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(18.963999999999999, 0.0, 0.0),
-                    'Pos': Point3(-219.63200000000001, 358.33999999999997, 8.6720000000000006),
-                    'Scale': VBase3(1.671, 4.7539999999999996, 1.2829999999999999),
+                    'Hpr': VBase3(18.963, 0.0, 0.0),
+                    'Pos': Point3(-219.632, 358.33, 8.672),
+                    'Scale': VBase3(1.671, 4.7536, 1.2829),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_cube' } },
                 '1184724744.23kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-192.08199999999999, 322.29000000000002, 10.167999999999999),
-                    'Scale': VBase3(1.2210000000000001, 1.2210000000000001, 1.2210000000000001),
+                    'Pos': Point3(-192.081, 322.29, 10.167),
+                    'Scale': VBase3(1.221, 1.221, 1.221),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_sphere' } },
                 '1184725094.43kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-71.632999999999996, 0.0, 0.0),
-                    'Pos': Point3(-500.11000000000001, 225.94499999999999, 3.694),
-                    'Scale': VBase3(1.8540000000000001, 2.2589999999999999, 1.4379999999999999),
+                    'Hpr': VBase3(-71.6326, 0.0, 0.0),
+                    'Pos': Point3(-500.11, 225.944, 3.694),
+                    'Scale': VBase3(1.854, 2.2589, 1.4379),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_cube' } },
                 '1184725214.53kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Hpr': VBase3(28.305, 0.0, 0.0),
-                    'Pos': Point3(-488.29700000000003, 172.86199999999999, 5.9939999999999998),
-                    'Scale': VBase3(8.9060000000000006, 2.8540000000000001, 1.0),
+                    'Pos': Point3(-488.297, 172.861, 5.9938),
+                    'Scale': VBase3(8.906, 2.854, 1.0),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_cube' } },
                 '1184725425.34kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(32.027999999999999, 0.0, 0.0),
-                    'Pos': Point3(-383.065, 246.12700000000001, 9.1679999999999993),
-                    'Scale': VBase3(0.70899999999999996, 1.0, 1.512),
+                    'Hpr': VBase3(32.027, 0.0, 0.0),
+                    'Pos': Point3(-383.065, 246.127, 9.1673),
+                    'Scale': VBase3(0.70896, 1.0, 1.512),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184725493.96kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(29.803000000000001, 0.0, 0.0),
-                    'Pos': Point3(-296.49099999999999, 213.57499999999999, 9.9870000000000001),
-                    'Scale': VBase3(4.6079999999999997, 1.8340000000000001, 1.4650000000000001),
+                    'Hpr': VBase3(29.803, 0.0, 0.0),
+                    'Pos': Point3(-296.490, 213.574, 9.987),
+                    'Scale': VBase3(4.607, 1.834, 1.465),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_cube' } },
                 '1184725592.2kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(98.082999999999998, 0.0, 0.0),
-                    'Pos': Point3(-244.89699999999999, 304.84100000000001, 11.239000000000001),
-                    'Scale': VBase3(2.6509999999999998, 1.7470000000000001, 1.7470000000000001),
+                    'Hpr': VBase3(98.0828, 0.0, 0.0),
+                    'Pos': Point3(-244.896, 304.841, 11.239),
+                    'Scale': VBase3(2.6508, 1.747, 1.747),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184725631.37kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(43.164000000000001, 0.0, 0.0),
-                    'Pos': Point3(-253.76499999999999, 281.96899999999999, 10.022),
-                    'Scale': VBase3(3.0219999999999998, 1.887, 1.887),
+                    'Hpr': VBase3(43.164, 0.0, 0.0),
+                    'Pos': Point3(-253.764, 281.968, 10.022),
+                    'Scale': VBase3(3.0218, 1.887, 1.887),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184725661.5kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(170.15700000000001, 0.0, 0.0),
-                    'Pos': Point3(-250.49700000000001, 318.96699999999998, 12.087),
-                    'Scale': VBase3(0.81799999999999995, 0.81799999999999995, 1.6000000000000001),
+                    'Hpr': VBase3(170.157, 0.0, 0.0),
+                    'Pos': Point3(-250.497, 318.966, 12.087),
+                    'Scale': VBase3(0.81795, 0.81795, 1.60),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184725751.67kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Hpr': VBase3(-12.792, 0.0, 0.0),
-                    'Pos': Point3(-169.17500000000001, 414.875, 5.5309999999999997),
-                    'Scale': VBase3(2.0190000000000001, 3.4209999999999998, 1.778),
+                    'Pos': Point3(-169.175, 414.875, 5.530),
+                    'Scale': VBase3(2.019, 3.4208, 1.778),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_cube' } },
                 '1184725818.53kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-71.664000000000001, 483.25, 3.3279999999999998),
-                    'Scale': VBase3(6.5570000000000004, 3.4220000000000002, 1.6990000000000001),
+                    'Pos': Point3(-71.664, 483.25, 3.3278),
+                    'Scale': VBase3(6.55700, 3.4220, 1.699),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_cube' } },
                 '1184725906.48kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Hpr': VBase3(103.523, 0.0, 0.0),
-                    'Pos': Point3(-9.0470000000000006, 473.58100000000002, 5.2229999999999999),
-                    'Scale': VBase3(1.907, 1.5609999999999999, 1.5609999999999999),
+                    'Pos': Point3(-9.047, 473.581, 5.2229),
+                    'Scale': VBase3(1.907, 1.5609, 1.5609),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184725933.23kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-99.632000000000005, 0.0, 0.0),
-                    'Pos': Point3(-20.393999999999998, 475.13999999999999, 5.8550000000000004),
-                    'Scale': VBase3(1.347, 1.0, 1.2210000000000001),
+                    'Hpr': VBase3(-99.6320, 0.0, 0.0),
+                    'Pos': Point3(-20.3938, 475.13, 5.85500),
+                    'Scale': VBase3(1.347, 1.0, 1.221),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184725957.68kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Hpr': VBase3(27.253, 0.0, 0.0),
-                    'Pos': Point3(-3.8090000000000002, 466.08800000000002, 5.0650000000000004),
-                    'Scale': VBase3(1.974, 2.3719999999999999, 1.3919999999999999),
+                    'Pos': Point3(-3.8090, 466.088, 5.06500),
+                    'Scale': VBase3(1.974, 2.3719, 1.3919),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_cube' } },
                 '1184726011.78kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-6.4020000000000001, 0.0, 0.0),
-                    'Pos': Point3(19.577000000000002, 426.69299999999998, 3.137),
-                    'Scale': VBase3(3.9820000000000002, 5.2930000000000001, 1.9810000000000001),
+                    'Hpr': VBase3(-6.402, 0.0, 0.0),
+                    'Pos': Point3(19.577, 426.692, 3.137),
+                    'Scale': VBase3(3.9820, 5.293, 1.981),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_cube' } },
                 '1184726128.03kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(9.1959999999999997, 0.0, 0.0),
-                    'Pos': Point3(-5.2060000000000004, 318.06299999999999, 4.0049999999999999),
-                    'Scale': VBase3(3.9910000000000001, 1.5109999999999999, 1.5109999999999999),
+                    'Hpr': VBase3(9.195, 0.0, 0.0),
+                    'Pos': Point3(-5.20600, 318.062, 4.0049),
+                    'Scale': VBase3(3.991, 1.5109, 1.5109),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184726158.84kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(74.078000000000003, 0.0, 0.0),
-                    'Pos': Point3(18.675000000000001, 336.142, 3.7930000000000001),
-                    'Scale': VBase3(3.125, 1.4379999999999999, 1.4379999999999999),
+                    'Hpr': VBase3(74.078, 0.0, 0.0),
+                    'Pos': Point3(18.675, 336.142, 3.793),
+                    'Scale': VBase3(3.125, 1.4379, 1.4379),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184726216.56kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(148.56999999999999, 0.0, 0.0),
-                    'Pos': Point3(18.402999999999999, 353.483, 4.9459999999999997),
+                    'Hpr': VBase3(148.56, 0.0, 0.0),
+                    'Pos': Point3(18.402, 353.483, 4.945),
                     'Scale': VBase3(1.081, 1.081, 1.147),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184726373.03kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-65.665000000000006, 0.0, 0.0),
-                    'Pos': Point3(-141.584, 268.37299999999999, 5.8029999999999999),
+                    'Hpr': VBase3(-65.665, 0.0, 0.0),
+                    'Pos': Point3(-141.584, 268.372, 5.8029),
                     'Scale': VBase3(3.173, 1.429, 1.429),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
@@ -5098,151 +5098,151 @@ objectStruct = {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-130.578, 254.75200000000001, 6.327),
-                    'Scale': VBase3(1.0, 1.0, 1.3160000000000001),
+                    'Pos': Point3(-130.578, 254.752, 6.327),
+                    'Scale': VBase3(1.0, 1.0, 1.316),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184726422.58kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(47.707999999999998, 0.0, 0.0),
-                    'Pos': Point3(-121.98399999999999, 259.64600000000002, 6.1829999999999998),
-                    'Scale': VBase3(1.2330000000000001, 1.2330000000000001, 1.2330000000000001),
+                    'Hpr': VBase3(47.7078, 0.0, 0.0),
+                    'Pos': Point3(-121.983, 259.646, 6.1828),
+                    'Scale': VBase3(1.233, 1.233, 1.233),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184726453.67kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(9.7159999999999993, 0.0, 0.0),
-                    'Pos': Point3(-102.79600000000001, 264.83800000000002, 4.6509999999999998),
-                    'Scale': VBase3(3.6419999999999999, 1.698, 1.698),
+                    'Hpr': VBase3(9.7153, 0.0, 0.0),
+                    'Pos': Point3(-102.796, 264.838, 4.6508),
+                    'Scale': VBase3(3.6419, 1.698, 1.698),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184726482.75kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(53.973999999999997, 0.0, 0.0),
-                    'Pos': Point3(-74.605999999999995, 283.19200000000001, 5.3540000000000001),
-                    'Scale': VBase3(3.8980000000000001, 1.514, 1.514),
+                    'Hpr': VBase3(53.973, 0.0, 0.0),
+                    'Pos': Point3(-74.6055, 283.192, 5.354),
+                    'Scale': VBase3(3.898, 1.514, 1.514),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184726671.14kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-177.15700000000001, 0.0, 0.0),
-                    'Pos': Point3(88.879000000000005, 530.44600000000003, 3.468),
-                    'Scale': VBase3(2.27, 1.9079999999999999, 1.9079999999999999),
+                    'Hpr': VBase3(-177.157, 0.0, 0.0),
+                    'Pos': Point3(88.8790, 530.446, 3.468),
+                    'Scale': VBase3(2.27, 1.9079, 1.9079),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184726713.33kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-99.671000000000006, 0.0, 0.0),
-                    'Pos': Point3(76.456999999999994, 522.29499999999996, 3.8029999999999999),
-                    'Scale': VBase3(1.538, 1.7769999999999999, 1.7769999999999999),
+                    'Hpr': VBase3(-99.671, 0.0, 0.0),
+                    'Pos': Point3(76.4564, 522.294, 3.8029),
+                    'Scale': VBase3(1.538, 1.7769, 1.7769),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184726731.46kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-45.186999999999998, 0.0, 0.0),
-                    'Pos': Point3(79.299999999999997, 510.91800000000001, 4.4080000000000004),
-                    'Scale': VBase3(1.208, 1.208, 1.6759999999999999),
+                    'Hpr': VBase3(-45.1868, 0.0, 0.0),
+                    'Pos': Point3(79.2, 510.918, 4.40800),
+                    'Scale': VBase3(1.208, 1.208, 1.6759),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184726870.58kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-50.914999999999999, 0.0, 0.0),
-                    'Pos': Point3(387.41500000000002, 347.35399999999998, 11.601000000000001),
-                    'Scale': VBase3(6.9219999999999997, 2.4199999999999999, 1.5880000000000001),
+                    'Hpr': VBase3(-50.914, 0.0, 0.0),
+                    'Pos': Point3(387.415, 347.353, 11.601),
+                    'Scale': VBase3(6.921, 2.41, 1.588),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_cube' } },
                 '1184726979.06kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(41.110999999999997, 0.0, 0.0),
-                    'Pos': Point3(509.69400000000002, 222.68100000000001, 4.5970000000000004),
-                    'Scale': VBase3(1.915, 18.363, 2.3180000000000001),
+                    'Hpr': VBase3(41.110, 0.0, 0.0),
+                    'Pos': Point3(509.694, 222.681, 4.59700),
+                    'Scale': VBase3(1.915, 18.363, 2.318),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_cube' } },
                 '1184727026.01kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(27.545000000000002, 0.0, 0.0),
-                    'Pos': Point3(519.10299999999995, 221.81100000000001, 2.5579999999999998),
-                    'Scale': VBase3(2.1339999999999999, 2.8380000000000001, 1.843),
+                    'Hpr': VBase3(27.545, 0.0, 0.0),
+                    'Pos': Point3(519.102, 221.811, 2.5578),
+                    'Scale': VBase3(2.1339, 2.838, 1.843),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_cube' } },
                 '1184727059.43kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(42.261000000000003, 0.0, 0.0),
-                    'Pos': Point3(494.80200000000002, 248.73599999999999, 6.7089999999999996),
+                    'Hpr': VBase3(42.261, 0.0, 0.0),
+                    'Pos': Point3(494.802, 248.735, 6.7086),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_cube' } },
                 '1184727098.54kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-3.5590000000000002, 0.0, 0.0),
-                    'Pos': Point3(562.34900000000005, 133.917, 3.6309999999999998),
-                    'Scale': VBase3(2.8029999999999999, 4.5460000000000003, 2.1059999999999999),
+                    'Hpr': VBase3(-3.5590, 0.0, 0.0),
+                    'Pos': Point3(562.349, 133.917, 3.6308),
+                    'Scale': VBase3(2.8029, 4.5460, 2.1059),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_cube' } },
                 '1184727173.58kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Hpr': VBase3(16.721, 0.0, 0.0),
-                    'Pos': Point3(577.04700000000003, 82.739000000000004, 7.5869999999999997),
-                    'Scale': VBase3(3.476, 6.8310000000000004, 2.1240000000000001),
+                    'Pos': Point3(577.047, 82.7390, 7.586),
+                    'Scale': VBase3(3.476, 6.83100, 2.124),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_cube' } },
                 '1184727278.25kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(93.355999999999995, 0.0, 0.0),
-                    'Pos': Point3(550.697, -101.224, 16.297999999999998),
-                    'Scale': VBase3(3.036, 2.0259999999999998, 2.0259999999999998),
+                    'Hpr': VBase3(93.3555, 0.0, 0.0),
+                    'Pos': Point3(550.697, -101.224, 16.2978),
+                    'Scale': VBase3(3.036, 2.0258, 2.0258),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184727301.01kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(35.390999999999998, 0.0, 0.0),
-                    'Pos': Point3(538.83299999999997, -125.051, 16.863),
-                    'Scale': VBase3(3.2650000000000001, 1.946, 1.946),
+                    'Hpr': VBase3(35.3908, 0.0, 0.0),
+                    'Pos': Point3(538.832, -125.051, 16.863),
+                    'Scale': VBase3(3.265, 1.946, 1.946),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184727336.87kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Hpr': VBase3(-19.311, 0.0, 0.0),
-                    'Pos': Point3(518.149, -131.536, 17.911999999999999),
-                    'Scale': VBase3(1.762, 1.556, 1.7490000000000001),
+                    'Pos': Point3(518.149, -131.536, 17.911),
+                    'Scale': VBase3(1.762, 1.556, 1.749),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184727401.68kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Hpr': VBase3(-31.494, 0.0, 0.0),
-                    'Pos': Point3(469.73099999999999, -128.29499999999999, 21.780000000000001),
-                    'Scale': VBase3(5.4240000000000004, 2.7839999999999998, 1.5680000000000001),
+                    'Pos': Point3(469.730, -128.294, 21.78),
+                    'Scale': VBase3(5.42400, 2.7838, 1.568),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_cube' } },
                 '1184727484.29kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-141.41499999999999, 0.0, 0.0),
-                    'Pos': Point3(447.06099999999998, -61.084000000000003, 22.327000000000002),
-                    'Scale': VBase3(2.8250000000000002, 2.3900000000000001, 2.3900000000000001),
+                    'Hpr': VBase3(-141.414, 0.0, 0.0),
+                    'Pos': Point3(447.060, -61.084, 22.327),
+                    'Scale': VBase3(2.8250, 2.39, 2.39),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184727541.9kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-48.070999999999998, 0.0, 0.0),
-                    'Pos': Point3(437.839, -90.003, 24.021000000000001),
+                    'Hpr': VBase3(-48.0708, 0.0, 0.0),
+                    'Pos': Point3(437.839, -90.003, 24.021),
                     'Scale': VBase3(2.125, 1.302, 1.302),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
@@ -5250,48 +5250,48 @@ objectStruct = {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Hpr': VBase3(-110.384, 0.0, 0.0),
-                    'Pos': Point3(432.52800000000002, -77.959000000000003, 23.030000000000001),
-                    'Scale': VBase3(0.96199999999999997, 1.0, 1.349),
+                    'Pos': Point3(432.528, -77.959, 23.03),
+                    'Scale': VBase3(0.961, 1.0, 1.349),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184727596.61kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-36.212000000000003, 0.0, 0.0),
-                    'Pos': Point3(449.00400000000002, -101.748, 25.216999999999999),
+                    'Hpr': VBase3(-36.212, 0.0, 0.0),
+                    'Pos': Point3(449.004, -101.748, 25.216),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184728190.17kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-4.6520000000000001, 0.0, 0.0),
-                    'Pos': Point3(459.71100000000001, -34.570999999999998, 22.024000000000001),
-                    'Scale': VBase3(1.4219999999999999, 4.2119999999999997, 1.3089999999999999),
+                    'Hpr': VBase3(-4.652, 0.0, 0.0),
+                    'Pos': Point3(459.711, -34.5708, 22.024),
+                    'Scale': VBase3(1.4219, 4.211, 1.3089),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_cube' } },
                 '1184728360.46kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-20.088999999999999, 0.0, 0.0),
-                    'Pos': Point3(450.98200000000003, 164.488, 18.381),
-                    'Scale': VBase3(9.1240000000000006, 9.1690000000000005, 2.7120000000000002),
+                    'Hpr': VBase3(-20.088, 0.0, 0.0),
+                    'Pos': Point3(450.982, 164.488, 18.381),
+                    'Scale': VBase3(9.124, 9.16900, 2.7120),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_cube' } },
                 '1184728489.93kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-36.682000000000002, 0.0, 0.0),
-                    'Pos': Point3(260.15800000000002, 329.93799999999999, 19.780000000000001),
-                    'Scale': VBase3(3.6389999999999998, 4.3040000000000003, 1.7869999999999999),
+                    'Hpr': VBase3(-36.682, 0.0, 0.0),
+                    'Pos': Point3(260.158, 329.937, 19.78),
+                    'Scale': VBase3(3.6388, 4.3040, 1.7869),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_cube' } },
                 '1184728562.89kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Hpr': VBase3(-27.663, 0.0, 0.0),
-                    'Pos': Point3(227.21600000000001, 287.23099999999999, 19.085999999999999),
-                    'Scale': VBase3(1.952, 2.8359999999999999, 1.0),
+                    'Pos': Point3(227.216, 287.230, 19.085),
+                    'Scale': VBase3(1.952, 2.8359, 1.0),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_cube' } },
                 '1184728731.76kmuller': {
@@ -5299,24 +5299,24 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': '',
                     'Hpr': VBase3(-11.317, 0.0, 0.0),
-                    'Pos': Point3(210.20400000000001, 379.577, 17.873999999999999),
-                    'Scale': VBase3(17.273, 3.2200000000000002, 2.129),
+                    'Pos': Point3(210.204, 379.577, 17.873),
+                    'Scale': VBase3(17.273, 3.22, 2.129),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_cube' } },
                 '1184728873.36kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(29.443000000000001, 0.0, 0.0),
-                    'Pos': Point3(117.473, 407.52199999999999, 13.981),
-                    'Scale': VBase3(1.8979999999999999, 7.5960000000000001, 1.8979999999999999),
+                    'Hpr': VBase3(29.443, 0.0, 0.0),
+                    'Pos': Point3(117.473, 407.521, 13.981),
+                    'Scale': VBase3(1.8979, 7.596, 1.8979),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_cube' } },
                 '1184728907.7kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(39.743000000000002, 0.0, 0.0),
-                    'Pos': Point3(131.86199999999999, 402.30700000000002, 17.670000000000002),
+                    'Hpr': VBase3(39.743, 0.0, 0.0),
+                    'Pos': Point3(131.861, 402.307, 17.670),
                     'Scale': VBase3(1.278, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
@@ -5324,8 +5324,8 @@ objectStruct = {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(-96.567999999999998, 0.0, 0.0),
-                    'Pos': Point3(100.89, 431.05099999999999, 13.276),
+                    'Hpr': VBase3(-96.5678, 0.0, 0.0),
+                    'Pos': Point3(100.89, 431.050, 13.276),
                     'Scale': VBase3(1.248, 1.248, 1.248),
                     'VisSize': '',
                     'Visual': {
@@ -5333,80 +5333,80 @@ objectStruct = {
                 '1184729046.67kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(0.0, 0.0, 0.076999999999999999),
-                    'Pos': Point3(-431.334, -125.732, 8.5449999999999999),
-                    'Scale': VBase3(4.3090000000000002, 4.3090000000000002, 4.3090000000000002),
+                    'Hpr': VBase3(0.0, 0.0, 0.0769),
+                    'Pos': Point3(-431.334, -125.732, 8.5449),
+                    'Scale': VBase3(4.3090, 4.3090, 4.3090),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_sphere' } },
                 '1184729104.61kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(19.876000000000001, 0.0, 0.0),
-                    'Pos': Point3(-423.87700000000001, -50.493000000000002, 11.843999999999999),
+                    'Hpr': VBase3(19.876, 0.0, 0.0),
+                    'Pos': Point3(-423.877, -50.493, 11.843),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184729123.83kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-165.28200000000001, 0.0, 0.0),
-                    'Pos': Point3(-428.12700000000001, -45.878, 12.125),
+                    'Hpr': VBase3(-165.282, 0.0, 0.0),
+                    'Pos': Point3(-428.127, -45.878, 12.125),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184729154.31kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-19.239999999999998, 0.0, 0.0),
-                    'Pos': Point3(-433.88999999999999, -79.924999999999997, 10.94),
-                    'Scale': VBase3(2.121, 3.3250000000000002, 1.411),
+                    'Hpr': VBase3(-19.238, 0.0, 0.0),
+                    'Pos': Point3(-433.88, -79.924, 10.94),
+                    'Scale': VBase3(2.121, 3.3250, 1.411),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_cube' } },
                 '1184729255.42kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-410.03199999999998, 66.644000000000005, 10.465),
-                    'Scale': VBase3(2.3580000000000001, 2.3580000000000001, 2.3580000000000001),
+                    'Pos': Point3(-410.031, 66.6440, 10.465),
+                    'Scale': VBase3(2.358, 2.358, 2.358),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_sphere' } },
                 '1184729312.64kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-355.11599999999999, 80.355999999999995, 7.5800000000000001),
+                    'Pos': Point3(-355.115, 80.3555, 7.58),
                     'Scale': VBase3(1.452, 1.452, 1.452),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_sphere' } },
                 '1184729351.95kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(17.318000000000001, 0.0, 0.0),
-                    'Pos': Point3(-310.88099999999997, 82.120999999999995, 6.3979999999999997),
-                    'Scale': VBase3(3.3330000000000002, 1.8100000000000001, 1.8100000000000001),
+                    'Hpr': VBase3(17.318, 0.0, 0.0),
+                    'Pos': Point3(-310.880, 82.1205, 6.397),
+                    'Scale': VBase3(3.3330, 1.81, 1.81),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184729411.68kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-149.51900000000001, 0.0, 0.0),
-                    'Pos': Point3(-321.70100000000002, 101.27200000000001, 5.5350000000000001),
-                    'Scale': VBase3(2.1909999999999998, 1.73, 1.73),
+                    'Hpr': VBase3(-149.519, 0.0, 0.0),
+                    'Pos': Point3(-321.701, 101.272, 5.535),
+                    'Scale': VBase3(2.1908, 1.73, 1.73),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184729446.83kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(177.78299999999999, 0.0, 0.0),
-                    'Pos': Point3(-306.82100000000003, 106.47, 8.093),
-                    'Scale': VBase3(1.1970000000000001, 1.1120000000000001, 1.1120000000000001),
+                    'Hpr': VBase3(177.782, 0.0, 0.0),
+                    'Pos': Point3(-306.821, 106.47, 8.093),
+                    'Scale': VBase3(1.197, 1.112, 1.112),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1184729464.9kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Hpr': VBase3(118.779, 0.0, 0.0),
-                    'Pos': Point3(-298.61500000000001, 101.21299999999999, 7.5869999999999997),
+                    'Pos': Point3(-298.615, 101.212, 7.586),
                     'Scale': VBase3(1.175, 1.175, 1.175),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
@@ -5414,32 +5414,32 @@ objectStruct = {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-409.96600000000001, -4.1079999999999997, 9.5749999999999993),
+                    'Pos': Point3(-409.966, -4.107, 9.5743),
                     'Scale': VBase3(3.375, 3.375, 3.375),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_sphere' } },
                 '1184729602.09kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-6.2199999999999998, 0.0, 0.0),
-                    'Pos': Point3(-392.94400000000002, -6.7930000000000001, 10.804),
-                    'Scale': VBase3(1.266, 2.1419999999999999, 1.0),
+                    'Hpr': VBase3(-6.2198, 0.0, 0.0),
+                    'Pos': Point3(-392.944, -6.793, 10.804),
+                    'Scale': VBase3(1.266, 2.1419, 1.0),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_cube' } },
                 '1184729632.76kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(26.712, -0.86699999999999999, -2.8490000000000002),
-                    'Pos': Point3(-391.97699999999998, -30.870000000000001, 9.3710000000000004),
-                    'Scale': VBase3(5.0940000000000003, 2.782, 2.3860000000000001),
+                    'Hpr': VBase3(26.712, -0.866, -2.8490),
+                    'Pos': Point3(-391.976, -30.87, 9.37100),
+                    'Scale': VBase3(5.0940, 2.782, 2.386),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_cube' } },
                 '1184729829.2kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-337.66800000000001, 19.736999999999998, 6.4130000000000003),
-                    'Scale': VBase3(2.2210000000000001, 2.2210000000000001, 2.2210000000000001),
+                    'Pos': Point3(-337.668, 19.7368, 6.4130),
+                    'Scale': VBase3(2.221, 2.221, 2.221),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_sphere' } },
                 '1184892672.0dxschafe': {
@@ -5456,7 +5456,7 @@ objectStruct = {
                     'Type': 'Player Spawn Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Index': -1,
-                    'Pos': Point3(180.828, 159.499, 4.3330000000000002),
+                    'Pos': Point3(180.828, 159.499, 4.3330),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'All',
                     'Visual': {
@@ -5466,7 +5466,7 @@ objectStruct = {
                     'Type': 'Player Spawn Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Index': -1,
-                    'Pos': Point3(11.212999999999999, 556.60199999999998, 2.306),
+                    'Pos': Point3(11.212, 556.601, 2.306),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'All',
                     'Visual': {
@@ -5476,7 +5476,7 @@ objectStruct = {
                     'Type': 'Player Spawn Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Index': -1,
-                    'Pos': Point3(-208.83099999999999, 503.39999999999998, 5.8929999999999998),
+                    'Pos': Point3(-208.830, 503.38, 5.8928),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'All',
                     'VisSize': '',
@@ -5487,7 +5487,7 @@ objectStruct = {
                     'Type': 'Player Spawn Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Index': -1,
-                    'Pos': Point3(-239.17699999999999, -84.158000000000001, 2.1589999999999998),
+                    'Pos': Point3(-239.176, -84.158, 2.1588),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'All',
                     'Visual': {
@@ -5497,7 +5497,7 @@ objectStruct = {
                     'Type': 'Player Spawn Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Index': -1,
-                    'Pos': Point3(355.73200000000003, -86.537999999999997, 13.233000000000001),
+                    'Pos': Point3(355.732, -86.537, 13.233),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'All',
                     'Visual': {
@@ -5506,18 +5506,18 @@ objectStruct = {
                 '1184892672.0dxschafe5': {
                     'Type': 'Dinghy',
                     'Aggro Radius': 20,
-                    'Hpr': VBase3(-1.9550000000000001, 3.9550000000000001, 0.13500000000000001),
+                    'Hpr': VBase3(-1.955, 3.955, 0.135),
                     'Location': 'Water',
-                    'Pos': Point3(-32.421999999999997, 155.22900000000001, 0.72099999999999997),
+                    'Pos': Point3(-32.421, 155.229, 0.720),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/shipparts/dingy-geometry_High' } },
                 '1184892928.0dxschafe': {
                     'Type': 'Dinghy',
                     'Aggro Radius': 20,
-                    'Hpr': VBase3(138.53399999999999, 4.6150000000000002, -2.6429999999999998),
+                    'Hpr': VBase3(138.533, 4.6150, -2.6428),
                     'Location': 'Water',
-                    'Pos': Point3(37.168999999999997, 581.82899999999995, 0.50600000000000001),
+                    'Pos': Point3(37.168, 581.828, 0.506),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/shipparts/dingy-geometry_High' } },
@@ -5526,15 +5526,15 @@ objectStruct = {
                     'File': 'rumrunner_interior_cellar',
                     'ExtUid': '1185994805.82kmuller0',
                     'Holiday': '',
-                    'Hpr': VBase3(-77.665999999999997, -86.879000000000005, 50.503999999999998),
+                    'Hpr': VBase3(-77.665, -86.8790, 50.5038),
                     'Objects': {
                         '1244504960.0jloehrle0': {
                             'Type': 'Door Locator Node',
                             'Name': 'door_locator',
                             'Hpr': VBase3(90.0, 0.0, -90.0),
-                            'Pos': Point3(-2.9940000000000002, -0.11700000000000001, 0.091999999999999998),
+                            'Pos': Point3(-2.9940, -0.117, 0.0918),
                             'Scale': VBase3(1.0, 1.0, 1.0) } },
-                    'Pos': Point3(-468.71300000000002, -91.0, 9.0399999999999991),
+                    'Pos': Point3(-468.713, -91.0, 9.0391),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -5546,8 +5546,8 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(172.029, 6.2539999999999996, 0.0),
-                    'Pos': Point3(-450.09399999999999, 303.29000000000002, 5.8700000000000001),
+                    'Hpr': VBase3(172.029, 6.2536, 0.0),
+                    'Pos': Point3(-450.093, 303.29, 5.87),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -5555,24 +5555,24 @@ objectStruct = {
                 '1187809959.48akelts': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(36.460999999999999, 0.0, 0.0),
-                    'Pos': Point3(-442.37700000000001, 225.39699999999999, 7.4219999999999997),
-                    'Scale': VBase3(0.32400000000000001, 1.0, 1.327),
+                    'Hpr': VBase3(36.460, 0.0, 0.0),
+                    'Pos': Point3(-442.377, 225.396, 7.421),
+                    'Scale': VBase3(0.324, 1.0, 1.327),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1187810017.5akelts': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(54.162999999999997, 0.0, 0.0),
-                    'Pos': Point3(-352.822, 423.90800000000002, 6.7699999999999996),
+                    'Hpr': VBase3(54.162, 0.0, 0.0),
+                    'Pos': Point3(-352.822, 423.908, 6.7696),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_h' } },
                 '1187810049.41akelts': {
                     'Type': 'Bush',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-43.719000000000001, 0.0, 0.0),
-                    'Pos': Point3(-336.98000000000002, 429.22899999999998, 6.8650000000000002),
+                    'Hpr': VBase3(-43.719, 0.0, 0.0),
+                    'Pos': Point3(-336.98, 429.228, 6.8650),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_d' } },
@@ -5580,15 +5580,15 @@ objectStruct = {
                     'Type': 'Bush',
                     'DisableCollision': True,
                     'Hpr': VBase3(128.614, 0.0, 0.0),
-                    'Pos': Point3(-352.30700000000002, 416.03100000000001, 8.3239999999999998),
-                    'Scale': VBase3(0.69199999999999995, 0.69199999999999995, 0.69199999999999995),
+                    'Pos': Point3(-352.307, 416.031, 8.3238),
+                    'Scale': VBase3(0.69195, 0.69195, 0.69195),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
                 '1187810258.39akelts': {
                     'Type': 'Bush',
                     'DisableCollision': False,
                     'Hpr': VBase3(-25.706, 0.0, 0.0),
-                    'Pos': Point3(-482.60899999999998, 272.60599999999999, 4.7519999999999998),
+                    'Pos': Point3(-482.608, 272.605, 4.7518),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_d' } },
@@ -5596,12 +5596,12 @@ objectStruct = {
                     'Type': 'Spawn Node',
                     'AnimSet': 'default',
                     'AuraFX': 'None',
-                    'Hpr': VBase3(177.61000000000001, 0.0, 0.0),
+                    'Hpr': VBase3(177.61, 0.0, 0.0),
                     'Min Population': '1',
                     'Patrol Radius': '20.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(-209.911, 286.05599999999998, 8.7669999999999995),
+                    'Pos': Point3(-209.911, 286.055, 8.7665),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -5618,7 +5618,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -5631,7 +5631,7 @@ objectStruct = {
                     'Patrol Radius': '20.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(-542.90599999999995, -238.29400000000001, 1.3660000000000001),
+                    'Pos': Point3(-542.905, -238.294, 1.366),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -5648,7 +5648,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -5661,7 +5661,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(-254.21000000000001, 477.68099999999998, 5.0110000000000001),
+                    'Pos': Point3(-254.21, 477.680, 5.011),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -5678,7 +5678,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -5686,12 +5686,12 @@ objectStruct = {
                     'Type': 'Spawn Node',
                     'AnimSet': 'default',
                     'AuraFX': 'None',
-                    'Hpr': VBase3(326.62200000000001, 0.0, 0.0),
+                    'Hpr': VBase3(326.622, 0.0, 0.0),
                     'Min Population': '1',
                     'Patrol Radius': '12.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(292.54700000000003, 443.98599999999999, 7.1520000000000001),
+                    'Pos': Point3(292.547, 443.985, 7.152),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -5708,7 +5708,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -5721,7 +5721,7 @@ objectStruct = {
                     'Patrol Radius': '20.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(-574.14800000000002, -164.59, 1.401),
+                    'Pos': Point3(-574.148, -164.59, 1.401),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -5738,7 +5738,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -5751,7 +5751,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(-423.07100000000003, -279.11700000000002, 4.5800000000000001),
+                    'Pos': Point3(-423.071, -279.117, 4.58),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -5768,7 +5768,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -5781,7 +5781,7 @@ objectStruct = {
                     'Patrol Radius': '20.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(-197.71700000000001, 20.989000000000001, 1.9970000000000001),
+                    'Pos': Point3(-197.717, 20.989, 1.997),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -5798,7 +5798,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -5811,7 +5811,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': '50',
                     'Pause Duration': '5',
-                    'Pos': Point3(261.89499999999998, 107.598, 6.9939999999999998),
+                    'Pos': Point3(261.894, 107.598, 6.9938),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -5828,7 +5828,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -5841,7 +5841,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': '50',
                     'Pause Duration': '10',
-                    'Pos': Point3(458.27600000000001, -197.75, 17.550999999999998),
+                    'Pos': Point3(458.276, -197.75, 17.5508),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -5858,7 +5858,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -5871,7 +5871,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(460.339, 310.18299999999999, 3.5409999999999999),
+                    'Pos': Point3(460.339, 310.182, 3.5409),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -5888,7 +5888,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -5896,12 +5896,12 @@ objectStruct = {
                     'Type': 'Spawn Node',
                     'AnimSet': 'default',
                     'AuraFX': 'None',
-                    'Hpr': VBase3(326.62200000000001, 0.0, 0.0),
+                    'Hpr': VBase3(326.622, 0.0, 0.0),
                     'Min Population': '1',
                     'Patrol Radius': '12.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(534.09699999999998, 213.65199999999999, 3.8319999999999999),
+                    'Pos': Point3(534.096, 213.651, 3.8319),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -5918,7 +5918,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -5931,7 +5931,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(602.27200000000005, 48.335000000000001, 7.8259999999999996),
+                    'Pos': Point3(602.272, 48.335, 7.8256),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -5948,7 +5948,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -5956,12 +5956,12 @@ objectStruct = {
                     'Type': 'Spawn Node',
                     'AnimSet': 'default',
                     'AuraFX': 'None',
-                    'Hpr': VBase3(326.62200000000001, 0.0, 0.0),
+                    'Hpr': VBase3(326.622, 0.0, 0.0),
                     'Min Population': '1',
                     'Patrol Radius': '15.7651',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(423.44799999999998, -32.746000000000002, 20.564),
+                    'Pos': Point3(423.447, -32.746, 20.564),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -5978,7 +5978,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -5986,12 +5986,12 @@ objectStruct = {
                     'Type': 'Spawn Node',
                     'AnimSet': 'default',
                     'AuraFX': 'None',
-                    'Hpr': VBase3(319.37299999999999, 0.0, 0.0),
+                    'Hpr': VBase3(319.372, 0.0, 0.0),
                     'Min Population': '1',
                     'Patrol Radius': '12.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(-232.376, 383.69299999999998, 8.7959999999999994),
+                    'Pos': Point3(-232.376, 383.692, 8.7954),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -6008,7 +6008,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -6021,7 +6021,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(294.209, 321.19099999999997, 21.696999999999999),
+                    'Pos': Point3(294.209, 321.190, 21.696),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -6038,7 +6038,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -6051,7 +6051,7 @@ objectStruct = {
                     'Patrol Radius': '14.3916',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(362.73200000000003, -159.22300000000001, 14.603999999999999),
+                    'Pos': Point3(362.732, -159.223, 14.603),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -6068,7 +6068,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -6081,7 +6081,7 @@ objectStruct = {
                     'Patrol Radius': '20.0000',
                     'Pause Chance': '100',
                     'Pause Duration': '30',
-                    'Pos': Point3(167.13399999999999, 224.80199999999999, 12.550000000000001),
+                    'Pos': Point3(167.133, 224.801, 12.55),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -6098,7 +6098,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -6111,7 +6111,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(-524.55799999999999, 212.012, 3.169),
+                    'Pos': Point3(-524.557, 212.012, 3.169),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -6128,7 +6128,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -6141,7 +6141,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(-440.42899999999997, 361.00900000000001, 1.4530000000000001),
+                    'Pos': Point3(-440.428, 361.009, 1.453),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -6158,7 +6158,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -6171,7 +6171,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(-582.87599999999998, 17.167999999999999, 2.097),
+                    'Pos': Point3(-582.875, 17.167, 2.097),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -6188,7 +6188,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -6201,7 +6201,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(-333.517, -283.92399999999998, 2.1739999999999999),
+                    'Pos': Point3(-333.517, -283.923, 2.1739),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -6218,7 +6218,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -6231,7 +6231,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(-419.22300000000001, -213.54499999999999, 7.2400000000000002),
+                    'Pos': Point3(-419.223, -213.544, 7.24),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -6248,7 +6248,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -6261,7 +6261,7 @@ objectStruct = {
                     'Patrol Radius': '20.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(-285.87900000000002, -147.69999999999999, 3.5680000000000001),
+                    'Pos': Point3(-285.879, -147.69, 3.568),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -6278,7 +6278,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -6291,7 +6291,7 @@ objectStruct = {
                     'Patrol Radius': '20.0000',
                     'Pause Chance': '48',
                     'Pause Duration': '14',
-                    'Pos': Point3(-303.62599999999998, -201.387, 3.2759999999999998),
+                    'Pos': Point3(-303.625, -201.387, 3.2758),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -6308,7 +6308,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -6321,7 +6321,7 @@ objectStruct = {
                     'Patrol Radius': '17.1386',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(-181.08799999999999, 467.50999999999999, 6.7380000000000004),
+                    'Pos': Point3(-181.087, 467.50, 6.73800),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -6338,7 +6338,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -6351,7 +6351,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(-151.351, 526.44299999999998, 2.8839999999999999),
+                    'Pos': Point3(-151.351, 526.442, 2.8839),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -6368,7 +6368,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -6381,7 +6381,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(-370.04300000000001, 428.49900000000002, 2.8410000000000002),
+                    'Pos': Point3(-370.043, 428.499, 2.8410),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -6398,7 +6398,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -6411,7 +6411,7 @@ objectStruct = {
                     'Patrol Radius': '20.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(-276.64400000000001, -22.971, 4.9779999999999998),
+                    'Pos': Point3(-276.644, -22.971, 4.9778),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -6428,7 +6428,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -6441,7 +6441,7 @@ objectStruct = {
                     'Patrol Radius': '17.9398',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(-169.20699999999999, 201.54300000000001, 6.1379999999999999),
+                    'Pos': Point3(-169.206, 201.543, 6.1379),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -6458,7 +6458,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -6471,7 +6471,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': '47',
                     'Pause Duration': '5',
-                    'Pos': Point3(290.089, 199.137, 17.181000000000001),
+                    'Pos': Point3(290.089, 199.137, 17.181),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -6488,7 +6488,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -6501,7 +6501,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': '51',
                     'Pause Duration': '14',
-                    'Pos': Point3(-449.40600000000001, 150.678, 7.4829999999999997),
+                    'Pos': Point3(-449.406, 150.678, 7.482),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -6518,7 +6518,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -6531,7 +6531,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(-507.50400000000002, -98.810000000000002, 6.4889999999999999),
+                    'Pos': Point3(-507.504, -98.810, 6.4889),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -6548,7 +6548,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -6561,7 +6561,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': '46',
                     'Pause Duration': '17',
-                    'Pos': Point3(-466.68400000000003, -131.15600000000001, 8.2769999999999992),
+                    'Pos': Point3(-466.684, -131.156, 8.2762),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -6578,7 +6578,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -6591,7 +6591,7 @@ objectStruct = {
                     'Patrol Radius': '17.1386',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(201.083, 335.76600000000002, 19.329999999999998),
+                    'Pos': Point3(201.083, 335.766, 19.328),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -6608,7 +6608,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -6621,7 +6621,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(462.95400000000001, 43.067, 24.707000000000001),
+                    'Pos': Point3(462.954, 43.067, 24.707),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -6638,7 +6638,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -6651,7 +6651,7 @@ objectStruct = {
                     'Patrol Radius': '17.3675',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(402.37900000000002, 27.785, 19.251000000000001),
+                    'Pos': Point3(402.379, 27.785, 19.251),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -6668,7 +6668,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -6681,7 +6681,7 @@ objectStruct = {
                     'Patrol Radius': '17.3675',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(241.023, 258.709, 18.245000000000001),
+                    'Pos': Point3(241.023, 258.709, 18.245),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -6698,7 +6698,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -6711,7 +6711,7 @@ objectStruct = {
                     'Patrol Radius': '17.9398',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(339.03500000000003, 99.372, 13.279),
+                    'Pos': Point3(339.035, 99.372, 13.279),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -6728,7 +6728,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -6741,7 +6741,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(94.426000000000002, 402.62400000000002, 13.194000000000001),
+                    'Pos': Point3(94.426, 402.624, 13.194),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -6758,7 +6758,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -6771,7 +6771,7 @@ objectStruct = {
                     'Patrol Radius': '17.3675',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(79.281999999999996, 316.33800000000002, 11.257),
+                    'Pos': Point3(79.2816, 316.338, 11.257),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -6788,7 +6788,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -6801,7 +6801,7 @@ objectStruct = {
                     'Patrol Radius': '16.7952',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(-359.70800000000003, -52.256999999999998, 9.6039999999999992),
+                    'Pos': Point3(-359.708, -52.2568, 9.6032),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -6818,7 +6818,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -6831,7 +6831,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(-501.952, 28.442, 7.3099999999999996),
+                    'Pos': Point3(-501.952, 28.442, 7.3096),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -6848,7 +6848,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -6861,7 +6861,7 @@ objectStruct = {
                     'Patrol Radius': '20.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(-490.589, -238.322, 4.4660000000000002),
+                    'Pos': Point3(-490.589, -238.322, 4.4660),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -6878,7 +6878,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -6891,7 +6891,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(-398.72699999999998, -242.99799999999999, 5.6040000000000001),
+                    'Pos': Point3(-398.726, -242.997, 5.604),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -6908,7 +6908,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -6921,7 +6921,7 @@ objectStruct = {
                     'Patrol Radius': '17.9398',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(-273.15499999999997, 70.897999999999996, 5.7060000000000004),
+                    'Pos': Point3(-273.154, 70.8976, 5.70600),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropFXLeft': 'None',
@@ -6938,7 +6938,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
@@ -6949,7 +6949,7 @@ objectStruct = {
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Level': '37',
                     'Patrol Radius': '12.0000',
-                    'Pos': Point3(431.00299999999999, -155.006, 23.170000000000002),
+                    'Pos': Point3(431.002, -155.006, 23.170),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'Respawns': True,
@@ -6962,158 +6962,158 @@ objectStruct = {
                     'Type': 'Door Locator Node',
                     'Name': 'door_locator',
                     'Hpr': VBase3(90.0, 0.0, -90.0),
-                    'Pos': Point3(-2.9940000000000002, -0.11700000000000001, 0.091999999999999998),
+                    'Pos': Point3(-2.9940, -0.117, 0.0918),
                     'Scale': VBase3(1.0, 1.0, 1.0) },
                 '1244570112.0jloehrle': {
                     'Type': 'Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Pause Chance': '50',
                     'Pause Duration': '5',
-                    'Pos': Point3(167.72200000000001, 165.19499999999999, 3.0470000000000002),
+                    'Pos': Point3(167.722, 165.194, 3.0470),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1244570112.0jloehrle0': {
                     'Type': 'Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Pause Chance': '50',
                     'Pause Duration': '5',
-                    'Pos': Point3(242.965, 179.22900000000001, 13.576000000000001),
+                    'Pos': Point3(242.965, 179.229, 13.576),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1244572672.0jloehrle': {
                     'Type': 'Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Pause Chance': '51',
                     'Pause Duration': '12',
-                    'Pos': Point3(394.238, -173.374, 24.899000000000001),
+                    'Pos': Point3(394.238, -173.374, 24.899),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1244572672.0jloehrle0': {
                     'Type': 'Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Pause Chance': '48',
                     'Pause Duration': '12',
-                    'Pos': Point3(419.06, -119.958, 22.204000000000001),
+                    'Pos': Point3(419.06, -119.958, 22.204),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1244572800.0jloehrle': {
                     'Type': 'Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Pause Chance': '45',
                     'Pause Duration': '9',
-                    'Pos': Point3(-519.36699999999996, -290.23200000000003, 4.0300000000000002),
+                    'Pos': Point3(-519.366, -290.232, 4.03),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1244572800.0jloehrle0': {
                     'Type': 'Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Pause Chance': '49',
                     'Pause Duration': '14',
-                    'Pos': Point3(-437.21699999999998, -350.02199999999999, 4.8140000000000001),
+                    'Pos': Point3(-437.216, -350.021, 4.814),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0.0, 0.0, 1.0),
+                        'Color': (0.65, 0.0, 0.0, 1.0),
                         'Model': 'models/misc/smiley' } },
                 '1244572928.0jloehrle0': {
                     'Type': 'Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Pause Chance': '43',
                     'Pause Duration': '9',
-                    'Pos': Point3(-112.419, 482.44, 6.1699999999999999),
+                    'Pos': Point3(-112.419, 482.44, 6.16),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1244572928.0jloehrle1': {
                     'Type': 'Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Pause Chance': '48',
                     'Pause Duration': '10',
-                    'Pos': Point3(-67.179000000000002, 517.68200000000002, 4.2629999999999999),
+                    'Pos': Point3(-67.179, 517.682, 4.2629),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1244573056.0jloehrle': {
                     'Type': 'Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Pause Chance': '49',
                     'Pause Duration': '12',
-                    'Pos': Point3(-363.52100000000002, 142.01400000000001, 10.140000000000001),
+                    'Pos': Point3(-363.521, 142.014, 10.14),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1244573056.0jloehrle0': {
                     'Type': 'Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Pause Chance': '52',
                     'Pause Duration': '10',
-                    'Pos': Point3(-387.54700000000003, 81.840000000000003, 9.9740000000000002),
+                    'Pos': Point3(-387.547, 81.840, 9.9740),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1244573184.0jloehrle': {
                     'Type': 'Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Pause Chance': '47',
                     'Pause Duration': '9',
-                    'Pos': Point3(-446.67000000000002, -55.902000000000001, 13.698),
+                    'Pos': Point3(-446.67, -55.902, 13.698),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1244573184.0jloehrle0': {
                     'Type': 'Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Pause Chance': '25',
                     'Pause Duration': '30',
-                    'Pos': Point3(396.93400000000003, 183.523, 22.056000000000001),
+                    'Pos': Point3(396.934, 183.523, 22.056),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1244573184.0jloehrle1': {
                     'Type': 'Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Pause Chance': '49',
                     'Pause Duration': '10',
-                    'Pos': Point3(365.14499999999998, 134.41900000000001, 20.518000000000001),
+                    'Pos': Point3(365.144, 134.419, 20.518),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.65000000000000002, 0, 0, 1),
+                        'Color': (0.65, 0, 0, 1),
                         'Model': 'models/misc/smiley' } },
                 '1252605982.37caoconno': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Holiday': '',
                     'Hpr': VBase3(177.922, 0.0, 0.0),
-                    'Pos': Point3(473.94900000000001, 258.48700000000002, 10.266999999999999),
-                    'Scale': VBase3(1.6930000000000001, 1.6930000000000001, 2.512),
+                    'Pos': Point3(473.949, 258.487, 10.266),
+                    'Scale': VBase3(1.693, 1.693, 2.512),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
@@ -7121,9 +7121,9 @@ objectStruct = {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(91.135000000000005, 0.0, 0.0),
-                    'Pos': Point3(542.96100000000001, 186.65600000000001, 6.4950000000000001),
-                    'Scale': VBase3(1.0, 1.0, 2.5449999999999999),
+                    'Hpr': VBase3(91.1350, 0.0, 0.0),
+                    'Pos': Point3(542.961, 186.656, 6.495),
+                    'Scale': VBase3(1.0, 1.0, 2.5449),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
@@ -7132,8 +7132,8 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': '',
                     'Hpr': VBase3(136.661, 0.0, 0.0),
-                    'Pos': Point3(575.79100000000005, 102.886, 10.513999999999999),
-                    'Scale': VBase3(1.0, 1.0, 2.2349999999999999),
+                    'Pos': Point3(575.791, 102.886, 10.513),
+                    'Scale': VBase3(1.0, 1.0, 2.2349),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
@@ -7142,8 +7142,8 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': '',
                     'Hpr': VBase3(113.408, 0.0, 0.0),
-                    'Pos': Point3(582.327, 16.184000000000001, 13.156000000000001),
-                    'Scale': VBase3(0.75, 1.0, 1.8839999999999999),
+                    'Pos': Point3(582.327, 16.184, 13.156),
+                    'Scale': VBase3(0.75, 1.0, 1.8839),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
@@ -7151,8 +7151,8 @@ objectStruct = {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(156.66200000000001, 0.0, 0.0),
-                    'Pos': Point3(439.72699999999998, 293.113, 13.534000000000001),
+                    'Hpr': VBase3(156.662, 0.0, 0.0),
+                    'Pos': Point3(439.726, 293.113, 13.534),
                     'Scale': VBase3(1.0, 1.0, 2.367),
                     'VisSize': '',
                     'Visual': {
@@ -7161,8 +7161,8 @@ objectStruct = {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(150.52199999999999, 0.0, 0.0),
-                    'Pos': Point3(451.22399999999999, 288.53500000000003, 10.616),
+                    'Hpr': VBase3(150.521, 0.0, 0.0),
+                    'Pos': Point3(451.223, 288.535, 10.616),
                     'Scale': VBase3(1.0, 1.0, 2.75),
                     'VisSize': '',
                     'Visual': {
@@ -7171,9 +7171,9 @@ objectStruct = {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(86.825000000000003, 0.0, 0.0),
-                    'Pos': Point3(455.16699999999997, 279.262, 10.907),
-                    'Scale': VBase3(1.3839999999999999, 1.0, 3.2879999999999998),
+                    'Hpr': VBase3(86.825, 0.0, 0.0),
+                    'Pos': Point3(455.166, 279.262, 10.907),
+                    'Scale': VBase3(1.3839, 1.0, 3.2878),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
@@ -7181,8 +7181,8 @@ objectStruct = {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(89.519000000000005, 0.0, 0.0),
-                    'Pos': Point3(400.94499999999999, 334.12200000000001, 11.500999999999999),
+                    'Hpr': VBase3(89.5190, 0.0, 0.0),
+                    'Pos': Point3(400.944, 334.122, 11.500),
                     'Scale': VBase3(1.0, 1.0, 2.431),
                     'VisSize': '',
                     'Visual': {
@@ -7191,9 +7191,9 @@ objectStruct = {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(82.944000000000003, 0.0, 0.0),
-                    'Pos': Point3(350.94999999999999, 380.62299999999999, 11.109),
-                    'Scale': VBase3(1.0, 1.0, 2.5760000000000001),
+                    'Hpr': VBase3(82.944, 0.0, 0.0),
+                    'Pos': Point3(350.94, 380.622, 11.109),
+                    'Scale': VBase3(1.0, 1.0, 2.576),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
@@ -7201,9 +7201,9 @@ objectStruct = {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(-177.84299999999999, 0.0, 0.0),
-                    'Pos': Point3(332.86799999999999, 395.80000000000001, 12.462999999999999),
-                    'Scale': VBase3(1.0, 1.0, 2.0219999999999998),
+                    'Hpr': VBase3(-177.842, 0.0, 0.0),
+                    'Pos': Point3(332.867, 395.8, 12.462),
+                    'Scale': VBase3(1.0, 1.0, 2.0218),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
@@ -7212,8 +7212,8 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(67.957999999999998, 462.92599999999999, 8.8279999999999994),
-                    'Scale': VBase3(0.17899999999999999, 0.17899999999999999, 0.42199999999999999),
+                    'Pos': Point3(67.9578, 462.925, 8.8274),
+                    'Scale': VBase3(0.178, 0.178, 0.421),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_tube' } },
@@ -7222,8 +7222,8 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': '',
                     'Hpr': VBase3(0.0, 0.0, 0.0),
-                    'Pos': Point3(69.734999999999999, 475.67200000000003, 7.3470000000000004),
-                    'Scale': VBase3(0.29999999999999999, 0.29999999999999999, 0.88300000000000001),
+                    'Pos': Point3(69.734, 475.672, 7.34700),
+                    'Scale': VBase3(0.299, 0.299, 0.883),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_sphere' } },
@@ -7232,7 +7232,7 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(84.445999999999998, 458.20499999999998, 10.593),
+                    'Pos': Point3(84.4458, 458.204, 10.593),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -7241,9 +7241,9 @@ objectStruct = {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(-55.848999999999997, 0.0, 0.0),
-                    'Pos': Point3(77.480999999999995, 461.32400000000001, 8.8699999999999992),
-                    'Scale': VBase3(0.77500000000000002, 1.0, 1.1279999999999999),
+                    'Hpr': VBase3(-55.848, 0.0, 0.0),
+                    'Pos': Point3(77.4805, 461.324, 8.8692),
+                    'Scale': VBase3(0.775, 1.0, 1.1279),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
@@ -7251,9 +7251,9 @@ objectStruct = {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(-98.754000000000005, 0.0, 0.0),
-                    'Pos': Point3(76.933000000000007, 475.041, 6.1040000000000001),
-                    'Scale': VBase3(1.641, 1.0, 2.2810000000000001),
+                    'Hpr': VBase3(-98.7540, 0.0, 0.0),
+                    'Pos': Point3(76.933, 475.041, 6.104),
+                    'Scale': VBase3(1.641, 1.0, 2.281),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
@@ -7261,9 +7261,9 @@ objectStruct = {
                     'Type': 'Holiday',
                     'DisableCollision': False,
                     'Holiday': 'WinterFestival',
-                    'Hpr': VBase3(0.0, 0.0, -2.9860000000000002),
-                    'Pos': Point3(54.777999999999999, 204.03700000000001, 3.508),
-                    'Scale': VBase3(1.1519999999999999, 1.1519999999999999, 1.1519999999999999),
+                    'Hpr': VBase3(0.0, 0.0, -2.9860),
+                    'Pos': Point3(54.777, 204.037, 3.508),
+                    'Scale': VBase3(1.1519, 1.1519, 1.1519),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/props/pir_m_prp_hol_snowman_jolly_decapitated_winter09' } },
@@ -7272,8 +7272,8 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': 'WinterFestival',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(55.683999999999997, 197.60300000000001, 3.6890000000000001),
-                    'Scale': VBase3(1.6339999999999999, 1.6339999999999999, 1.266),
+                    'Pos': Point3(55.683, 197.603, 3.689),
+                    'Scale': VBase3(1.6339, 1.6339, 1.266),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/props/pir_m_prp_hol_sandpile02_winter09' } },
@@ -7282,7 +7282,7 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': 'WinterFestival',
                     'Hpr': VBase3(103.307, 0.0, 0.0),
-                    'Pos': Point3(45.331000000000003, 201.185, 2.3980000000000001),
+                    'Pos': Point3(45.331, 201.185, 2.398),
                     'Scale': VBase3(1.496, 1.496, 1.496),
                     'VisSize': '',
                     'Visual': {
@@ -8025,8 +8025,8 @@ objectStruct = {
         '1257278950.17caoconno': '["Objects"]["1161282725.84kmuller"]["Objects"]["1257278950.17caoconno"]',
         '1257284080.48caoconno': '["Objects"]["1161282725.84kmuller"]["Objects"]["1257284080.48caoconno"]' } }
 extraInfo = {
-    'camPos': Point3(197.066, 91.080699999999993, 158.05199999999999),
-    'camHpr': VBase3(-71.422499999999999, -41.9634, 0),
+    'camPos': Point3(197.066, 91.080699999999993, 158.051),
+    'camHpr': VBase3(-71.4224, -41.9634, 0),
     'focalLength': 0.63999998569500005,
     'skyState': 2,
     'fog': 0 }

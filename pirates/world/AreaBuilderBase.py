@@ -180,10 +180,10 @@ class AreaBuilderBase(DirectObject.DirectObject):
         dna.body.color = 0
         dna.body.shape = 3
         dna.body.height = random.choice([
-            0.80000000000000004,
-            0.90000000000000002,
+            0.800000,
+            0.9,
             1,
-            1.1000000000000001,
+            1.10,
             1.2])
         dna.clothes.shirt = 0
         dna.clothes.vest = 0

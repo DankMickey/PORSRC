@@ -34,7 +34,7 @@ class PowderKegWaterSplash(PooledEffect, EffectController):
         self.p1.setLocalVelocityFlag(1)
         self.p1.setSystemGrowsOlderFlag(0)
         self.p1.factory.setLifespanBase(0.5)
-        self.p1.factory.setLifespanSpread(0.14999999999999999)
+        self.p1.factory.setLifespanSpread(0.149)
         self.p1.factory.setMassBase(1.0)
         self.p1.factory.setMassSpread(0.0)
         self.p1.factory.setTerminalVelocityBase(400.0)
@@ -65,10 +65,10 @@ class PowderKegWaterSplash(PooledEffect, EffectController):
 
     def setEffectScale(self, scale):
         self.effectScale = scale
-        self.p1.renderer.setInitialXScale(0.025000000000000001 * self.cardScale * scale)
-        self.p1.renderer.setFinalXScale(0.14999999999999999 * self.cardScale * scale)
-        self.p1.renderer.setInitialYScale(0.050000000000000003 * self.cardScale * scale)
-        self.p1.renderer.setFinalYScale(0.10000000000000001 * self.cardScale * scale)
+        self.p1.renderer.setInitialXScale(0.0250 * self.cardScale * scale)
+        self.p1.renderer.setFinalXScale(0.149 * self.cardScale * scale)
+        self.p1.renderer.setInitialYScale(0.050000 * self.cardScale * scale)
+        self.p1.renderer.setFinalYScale(0.100 * self.cardScale * scale)
         self.p1.emitter.setOffsetForce(Vec3(0.0, 0.0, 15.0 * scale))
         self.p1.emitter.setRadius(20.0 * scale)
 

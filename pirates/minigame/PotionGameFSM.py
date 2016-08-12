@@ -226,11 +226,11 @@ class PotionGameFSM(MinigameFSM):
         if len(self.gameObject.animationList) > 0:
             if self.gameObject.gameBoard.pieceDropped:
                 self.gameObject.gameBoard.pieceDropped = False
-                self.gameObject.animationList.append(Sequence(Wait(0.29999999999999999), Func(self.playDrop)))
+                self.gameObject.animationList.append(Sequence(Wait(0.299), Func(self.playDrop)))
 
             if self.gameObject.gameBoard.delayDropped:
                 self.gameObject.gameBoard.delayDropped = False
-                self.gameObject.animationList.append(Sequence(Wait(0.80000000000000004), Func(self.playSoftDrop)))
+                self.gameObject.animationList.append(Sequence(Wait(0.800000), Func(self.playSoftDrop)))
 
             if self.gameObject.gameBoard.pieceFlipped:
                 self.gameObject.gameBoard.pieceFlipped = False
@@ -246,19 +246,19 @@ class PotionGameFSM(MinigameFSM):
 
             if self.gameObject.soulMade:
                 self.gameObject.soulMade = False
-                self.gameObject.animationList.append(Sequence(Wait(0.10000000000000001), Func(self.playSoulMade)))
+                self.gameObject.animationList.append(Sequence(Wait(0.100), Func(self.playSoulMade)))
 
             if self.gameObject.soulMatch:
                 self.gameObject.soulMatch = False
-                self.gameObject.animationList.append(Sequence(Wait(0.10000000000000001), Func(self.playSoulMatch)))
+                self.gameObject.animationList.append(Sequence(Wait(0.100), Func(self.playSoulMatch)))
 
             if self.matchMade:
                 self.matchMade = False
-                self.gameObject.animationList.append(Sequence(Wait(0.10000000000000001), Func(self.playMatch)))
+                self.gameObject.animationList.append(Sequence(Wait(0.100), Func(self.playMatch)))
 
             if self.ingredientMade:
                 self.ingredientMade = False
-                self.gameObject.animationList.append(Sequence(Wait(0.10000000000000001), Func(self.playFill)))
+                self.gameObject.animationList.append(Sequence(Wait(0.100), Func(self.playFill)))
 
             self.animSeq = Sequence(Parallel(*self.gameObject.animationList), Func(self.request, 'Eval'))
             self.animSeq.start()

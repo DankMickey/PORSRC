@@ -35,7 +35,7 @@ class LavaSmoke(PooledEffect, EffectController):
         self.p0.setEmitter('SphereVolumeEmitter')
         self.f.addParticles(self.p0)
         self.p0.setPoolSize(18)
-        self.p0.setBirthRate(0.29999999999999999)
+        self.p0.setBirthRate(0.299)
         self.p0.setLitterSize(2)
         self.p0.setLitterSpread(0)
         self.p0.setSystemLifespan(0.0)
@@ -57,8 +57,8 @@ class LavaSmoke(PooledEffect, EffectController):
         self.p0.renderer.setNonanimatedTheta(0.0)
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPBLENDLINEAR)
         self.p0.renderer.setAlphaDisable(0)
-        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 0.40000000000000002, Vec4(0.59999999999999998, 0.29999999999999999, 0.29999999999999999, 1.0), Vec4(0.10000000000000001, 0.10000000000000001, 0.10000000000000001, 1.0))
-        self.p0.renderer.getColorInterpolationManager().addConstant(0.40000000000000002, 1.0, Vec4(0.10000000000000001, 0.10000000000000001, 0.10000000000000001, 1))
+        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 0.4, Vec4(0.598, 0.299, 0.299, 1.0), Vec4(0.100, 0.100, 0.100, 1.0))
+        self.p0.renderer.getColorInterpolationManager().addConstant(0.4, 1.0, Vec4(0.100, 0.100, 0.100, 1))
         self.p0.emitter.setEmissionType(BaseParticleEmitter.ETRADIATE)
         self.p0.emitter.setExplicitLaunchVector(Vec3(0.0, 0.0, 0.0))
         self.p0.emitter.setRadiateOrigin(Point3(0.0, 0.0, 0.0))
@@ -66,16 +66,16 @@ class LavaSmoke(PooledEffect, EffectController):
 
 
     def createTrack(self, lod = Options.SpecialEffectsHigh):
-        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.29999999999999999), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self))
+        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.299), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self))
         self.endEffect = Sequence(Func(self.p0.setBirthRate, 100.0), Wait(2.0), Func(self.cleanUpEffect))
         self.track = Sequence(self.startEffect, Wait(10.0), self.endEffect)
 
 
     def setEffectScale(self, scale):
-        self.p0.renderer.setInitialXScale(0.10000000000000001 * self.cardScale * scale)
-        self.p0.renderer.setFinalXScale(0.40000000000000002 * self.cardScale * scale)
-        self.p0.renderer.setInitialYScale(0.10000000000000001 * self.cardScale * scale)
-        self.p0.renderer.setFinalYScale(0.40000000000000002 * self.cardScale * scale)
+        self.p0.renderer.setInitialXScale(0.100 * self.cardScale * scale)
+        self.p0.renderer.setFinalXScale(0.4 * self.cardScale * scale)
+        self.p0.renderer.setInitialYScale(0.100 * self.cardScale * scale)
+        self.p0.renderer.setFinalYScale(0.4 * self.cardScale * scale)
         self.p0.emitter.setAmplitude(3.0 * scale)
         self.p0.emitter.setAmplitudeSpread(1.5 * scale)
         self.p0.emitter.setOffsetForce(Vec3(1.0, 1.0, 10.0) * scale)

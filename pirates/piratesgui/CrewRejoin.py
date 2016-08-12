@@ -23,7 +23,7 @@ class CrewRejoin(DirectFrame):
 
     def __init__(self, avId, isManager, version):
         guiMain = loader.loadModel('models/gui/gui_main')
-        DirectFrame.__init__(self, relief = None, pos = (-0.25, 0, -0.14999999999999999), image = guiMain.find('**/general_frame_e'), image_pos = (0.25, 0, 0.27500000000000002), image_scale = 0.25)
+        DirectFrame.__init__(self, relief = None, pos = (-0.25, 0, -0.149), image = guiMain.find('**/general_frame_e'), image_pos = (0.25, 0, 0.275), image_scale = 0.25)
         self.initialiseoptions(CrewRejoin)
         self.avId = avId
         self.isManager = isManager
@@ -34,20 +34,20 @@ class CrewRejoin(DirectFrame):
 
         titleUI = loader.loadModel('models/gui/ship_battle')
         guiMain = loader.loadModel('models/gui/gui_main')
-        self.title = DirectLabel(parent = self, relief = None, text = PLocalizer.CrewRejoinTitle, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getPirateOutlineFont(), pos = (0.25, 0, 0.41999999999999998), image_scale = 0.25)
+        self.title = DirectLabel(parent = self, relief = None, text = PLocalizer.CrewRejoinTitle, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getPirateOutlineFont(), pos = (0.25, 0, 0.418), image_scale = 0.25)
         if version == 2:
             text = PLocalizer.CrewRejoinParlorInvitation
         elif version == 1:
             text = PLocalizer.CrewRejoinPVPInvitation
         else:
             text = PLocalizer.CrewRejoinInvitation
-        self.message = DirectLabel(parent = self, relief = None, text = text, text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.25, 0, 0.32500000000000001), textMayChange = 1)
+        self.message = DirectLabel(parent = self, relief = None, text = text, text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.25, 0, 0.325), textMayChange = 1)
         self.bOk = CrewRejoinButton(text = PLocalizer.CrewRejoinOK, command = self._CrewRejoin__handleOk)
         self.bOk.reparentTo(self)
-        self.bOk.setPos(0.10000000000000001, 0, 0.050000000000000003)
+        self.bOk.setPos(0.100, 0, 0.050000)
         self.bNo = CrewRejoinButton(text = PLocalizer.CrewRejoinNo, command = self._CrewRejoin__handleNo)
         self.bNo.reparentTo(self)
-        self.bNo.setPos(0.29999999999999999, 0, 0.050000000000000003)
+        self.bNo.setPos(0.299, 0, 0.050000)
         self.accept('BandRejoinCancel-%s' % (self.avId,), self._CrewRejoin__handleCancelFromAbove)
 
 

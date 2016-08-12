@@ -225,7 +225,7 @@ class Glow(DirectObject):
         distance = self.current_time * self.speed
         if self.hdr:
             if self.glitter:
-                maximum_range = 0.14000000000000001
+                maximum_range = 0.140
                 factor = 1.0 + (random.random() * maximum_range - maximum_range / 2.0)
             else:
                 angle = distance % 360.0
@@ -548,7 +548,7 @@ class Blur(DirectObject):
         hdr_factor = 1.0
         parameters2.set(hdr_factor, 0.0, 0.0, 0.0)
         factor = 0.5 / self.factor_scale
-        factor2 = 0.59999999999999998 / self.factor_scale
+        factor2 = 0.598 / self.factor_scale
         minimum_exposure = 1.0 / self.minimum_exposure_scale
         maximum_exposure = 1.5 / self.maximum_exposure_scale
         factors.set(factor, factor2, minimum_exposure, maximum_exposure)

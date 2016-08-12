@@ -10,13 +10,13 @@ from pirates.piratesbase import PiratesGlobals
 
 class ComboMeter(DirectObject.DirectObject):
     COMBO_METER_RESET = 2.0
-    COMBO_NUM_SCALE = 0.14000000000000001
-    BACKSTAB_SCALE = 0.089999999999999997
+    COMBO_NUM_SCALE = 0.140
+    BACKSTAB_SCALE = 0.089
     TEXT_COLOR = PiratesGuiGlobals.TextFG1
     TEAM_COMBO_TEXT_COLOR = PiratesGuiGlobals.TextFG4
     SUB_TEXT_COLOR = PiratesGuiGlobals.TextFG2
     NUMBER_COLOR = PiratesGuiGlobals.TextFG1
-    BACKSTAB_COLOR = Vec4(0.80000000000000004, 0.40000000000000002, 0.20000000000000001, 1)
+    BACKSTAB_COLOR = Vec4(0.800000, 0.4, 0.200, 1)
 
     def __init__(self):
         DirectObject.DirectObject.__init__(self)
@@ -24,9 +24,9 @@ class ComboMeter(DirectObject.DirectObject):
         self.totalDamage = 0
         self.text = DirectLabel(parent = base.a2dTopLeft, relief = None, text = PLocalizer.HitCombo, text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleTitleLarge, text_fg = self.TEXT_COLOR, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (0.5, 0, -0.5), text_font = PiratesGlobals.getPirateOutlineFont())
         self.text.setTransparency(1)
-        self.subText = DirectLabel(parent = self.text, relief = None, text = PLocalizer.Damage, text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleTitleSmall, text_fg = self.SUB_TEXT_COLOR, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (0.089999999999999997, 0, -0.070000000000000007), text_font = PiratesGlobals.getPirateOutlineFont())
-        self.comboCounter = DirectLabel(parent = self.text, relief = None, text = '', text_align = TextNode.ARight, text_scale = self.COMBO_NUM_SCALE, text_fg = self.NUMBER_COLOR, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (-0.025999999999999999, 0, -0.01), text_font = PiratesGlobals.getPirateOutlineFont())
-        self.backstabText = DirectLabel(parent = base.a2dTopLeft, relief = None, text = 'Backstab!', text_align = TextNode.ALeft, text_scale = self.BACKSTAB_SCALE, text_fg = self.BACKSTAB_COLOR, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (1.165, 0, -0.96999999999999997), text_font = PiratesGlobals.getPirateOutlineFont())
+        self.subText = DirectLabel(parent = self.text, relief = None, text = PLocalizer.Damage, text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleTitleSmall, text_fg = self.SUB_TEXT_COLOR, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (0.089, 0, -0.070), text_font = PiratesGlobals.getPirateOutlineFont())
+        self.comboCounter = DirectLabel(parent = self.text, relief = None, text = '', text_align = TextNode.ARight, text_scale = self.COMBO_NUM_SCALE, text_fg = self.NUMBER_COLOR, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (-0.0259, 0, -0.01), text_font = PiratesGlobals.getPirateOutlineFont())
+        self.backstabText = DirectLabel(parent = base.a2dTopLeft, relief = None, text = 'Backstab!', text_align = TextNode.ALeft, text_scale = self.BACKSTAB_SCALE, text_fg = self.BACKSTAB_COLOR, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (1.165, 0, -0.96), text_font = PiratesGlobals.getPirateOutlineFont())
         self.text.hide()
         self.backstabText.hide()
         self.faderIn = None
@@ -86,13 +86,13 @@ class ComboMeter(DirectObject.DirectObject):
         if self.combo < value:
             self.combo = value
             self.comboCounter['text'] = str(self.combo)
-            color = Vec4(0.59999999999999998 + value * 0.10000000000000001, 1.0 - value * 0.10000000000000001, 0, 1)
+            color = Vec4(0.598 + value * 0.100, 1.0 - value * 0.100, 0, 1)
             self.comboCounter['text_fg'] = color
             if self.animIval:
                 self.animIval.finish()
                 self.animIval = None
 
-            scaleIval = self.comboCounter.scaleInterval(0.20000000000000001, 1.0, startScale = 2.0, blendType = 'easeIn')
+            scaleIval = self.comboCounter.scaleInterval(0.200, 1.0, startScale = 2.0, blendType = 'easeIn')
             self.animIval = Parallel(scaleIval)
             self.animIval.start()
 
@@ -114,7 +114,7 @@ class ComboMeter(DirectObject.DirectObject):
             self.backstabAnimIval.finish()
             self.backstabAnimIval = None
 
-        scaleIval = self.backstabText.scaleInterval(0.20000000000000001, 1.0, startScale = 2.0, blendType = 'easeIn')
+        scaleIval = self.backstabText.scaleInterval(0.200, 1.0, startScale = 2.0, blendType = 'easeIn')
         self.backstabAnimIval = Parallel(scaleIval)
         self.backstabAnimIval.start()
         taskMgr.remove(self._ComboMeter__getResetBackstab())

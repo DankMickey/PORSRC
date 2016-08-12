@@ -9,19 +9,19 @@ objectStruct = {
                     'Type': 'Locator Node',
                     'Name': 'portal_interior_1',
                     'Hpr': VBase3(90.0, 0.0, 0.0),
-                    'Pos': Point3(520.90899999999999, -421.17599999999999, 52.838000000000001),
+                    'Pos': Point3(520.908, -421.175, 52.838),
                     'Scale': VBase3(1.0, 1.0, 1.0) },
                 '1163718959.64sdnaik': {
                     'Type': 'Locator Node',
                     'Name': 'portal_interior_2',
                     'Hpr': VBase3(-90.0, 0.0, 0.0),
-                    'Pos': Point3(513.096, 103.973, 87.855999999999995),
+                    'Pos': Point3(513.096, 103.973, 87.8555),
                     'Scale': VBase3(1.0, 1.0, 1.0) },
                 '1163718959.66sdnaik': {
                     'Type': 'Locator Node',
                     'Name': 'portal_interior_3',
-                    'Hpr': VBase3(1.1879999999999999, -1.45, -0.33800000000000002),
-                    'Pos': Point3(105.468, -363.34500000000003, 0.35799999999999998),
+                    'Hpr': VBase3(1.1879, -1.45, -0.338),
+                    'Pos': Point3(105.468, -363.345, 0.35798),
                     'Scale': VBase3(1.0, 1.0, 1.0) } },
             'Visual': {
                 'Model': 'models/caves/cave_a_zero' } } },

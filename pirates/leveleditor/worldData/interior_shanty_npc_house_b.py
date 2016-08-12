@@ -10,16 +10,16 @@ objectStruct = {
                     'Type': 'Furniture',
                     'DisableCollision': False,
                     'Hpr': VBase3(2.145, 0.0, 0.0),
-                    'Pos': Point3(-1.873, -5.2880000000000003, -0.154),
+                    'Pos': Point3(-1.873, -5.2880, -0.154),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
-                        'Color': (0.76000000000000001, 0.63, 0.63, 1.0),
+                        'Color': (0.760, 0.63, 0.63, 1.0),
                         'Model': 'models/props/table_shanty_2' } },
                 '1165344324.52kmuller': {
                     'Type': 'Furniture',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-45.131, 3.722, -3.6190000000000002),
-                    'Pos': Point3(-1.3640000000000001, 0.47099999999999997, -0.11600000000000001),
+                    'Hpr': VBase3(-45.131, 3.722, -3.6190),
+                    'Pos': Point3(-1.364, 0.470, -0.116),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Color': (1.0, 0.85000002384185791, 0.88999998569488525, 1.0),
@@ -27,14 +27,14 @@ objectStruct = {
                 '1165344556.34kmuller': {
                     'Type': 'Furniture',
                     'DisableCollision': False,
-                    'Hpr': VBase3(88.433999999999997, 0.0, 0.0),
+                    'Hpr': VBase3(88.433, 0.0, 0.0),
                     'Objects': {
                         '1257796843.25caoconno': {
                             'Type': 'Holiday',
                             'DisableCollision': False,
                             'Holiday': 'WinterFestival',
-                            'Hpr': VBase3(0.746, 0.0, 41.100999999999999),
-                            'Pos': Point3(5.9530000000000003, 0.34699999999999998, 7.8849999999999998),
+                            'Hpr': VBase3(0.746, 0.0, 41.100),
+                            'Pos': Point3(5.9530, 0.34698, 7.8848),
                             'Scale': VBase3(1.0, 1.0, 1.0),
                             'VisSize': '',
                             'Visual': {
@@ -43,13 +43,13 @@ objectStruct = {
                             'Type': 'Holiday',
                             'DisableCollision': False,
                             'Holiday': 'WinterFestival',
-                            'Hpr': VBase3(2.1880000000000002, 2.0430000000000001, 40.716000000000001),
-                            'Pos': Point3(5.9509999999999996, 0.34100000000000003, 7.8869999999999996),
+                            'Hpr': VBase3(2.1880, 2.043, 40.716),
+                            'Pos': Point3(5.9506, 0.34100, 7.8866),
                             'Scale': VBase3(1.0, 1.0, 1.0),
                             'VisSize': '',
                             'Visual': {
                                 'Model': 'models/props/pir_m_prp_hol_candycane_winter09' } } },
-                    'Pos': Point3(-18.324999999999999, -5.5229999999999997, 0.0),
+                    'Pos': Point3(-18.324, -5.522, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Color': (0.80000001192092896, 0.68999999761581421, 0.62000000476837158, 1.0),
@@ -57,34 +57,34 @@ objectStruct = {
                 '1165344792.45kmuller': {
                     'Type': 'Furniture',
                     'DisableCollision': False,
-                    'Hpr': VBase3(87.025999999999996, 0.0, 0.0),
-                    'Pos': Point3(3.702, -5.8220000000000001, -0.058999999999999997),
+                    'Hpr': VBase3(87.0256, 0.0, 0.0),
+                    'Pos': Point3(3.702, -5.822, -0.058),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
-                        'Color': (1.0, 0.84999999999999998, 0.89000000000000001, 1.0),
+                        'Color': (1.0, 0.848, 0.890, 1.0),
                         'Model': 'models/props/bench_shanty_2' } },
                 '1166055838.34kmuller': {
                     'Type': 'Wall_Hangings',
                     'DisableCollision': False,
-                    'Hpr': VBase3(89.829999999999998, 0.0, 0.0),
-                    'Pos': Point3(-19.983000000000001, -6.6159999999999997, 8.0190000000000001),
+                    'Hpr': VBase3(89.828, 0.0, 0.0),
+                    'Pos': Point3(-19.983, -6.615, 8.019),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/Map_01_unframed' } },
                 '1166130817.64kmuller': {
                     'Type': 'Furniture',
                     'DisableCollision': False,
-                    'Hpr': VBase3(87.025999999999996, 0.0, 0.0),
-                    'Pos': Point3(-4.7539999999999996, -5.3819999999999997, -0.154),
-                    'Scale': VBase3(1.0009999999999999, 1.0009999999999999, 1.0009999999999999),
+                    'Hpr': VBase3(87.0256, 0.0, 0.0),
+                    'Pos': Point3(-4.7536, -5.381, -0.154),
+                    'Scale': VBase3(1.0009, 1.0009, 1.0009),
                     'Visual': {
-                        'Color': (0.84999999999999998, 0.73999999999999999, 0.79000000000000004, 1.0),
+                        'Color': (0.848, 0.739, 0.790000, 1.0),
                         'Model': 'models/props/bench_shanty_2' } },
                 '1166130858.42kmuller': {
                     'Type': 'Furniture',
                     'DisableCollision': False,
-                    'Hpr': VBase3(96.219999999999999, 0.23499999999999999, 0.50900000000000001),
-                    'Pos': Point3(-0.60899999999999999, -10.763, 0.33200000000000002),
+                    'Hpr': VBase3(96.219, 0.234, 0.509),
+                    'Pos': Point3(-0.608, -10.763, 0.332),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Color': (0.75999999046325684, 0.75999999046325684, 0.69999998807907104, 1.0),
@@ -93,23 +93,23 @@ objectStruct = {
                     'Type': 'LaundryRope',
                     'DisableCollision': False,
                     'Hpr': VBase3(-24.584, 0.0, 0.0),
-                    'Pos': Point3(12.688000000000001, 24.692, -5.4770000000000003),
+                    'Pos': Point3(12.688, 24.692, -5.4770),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/LaundryRope' } },
                 '1166131071.71kmuller': {
                     'Type': 'Bucket',
                     'DisableCollision': False,
-                    'Hpr': VBase3(35.240000000000002, 3.4660000000000002, -2.4460000000000002),
-                    'Pos': Point3(18.515000000000001, 20.408999999999999, 0.0),
+                    'Hpr': VBase3(35.240, 3.4660, -2.4460),
+                    'Pos': Point3(18.515, 20.408, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/washtub' } },
                 '1166131830.51kmuller': {
                     'Type': 'Tools',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-0.376, -4.6619999999999999, 4.742),
-                    'Pos': Point3(-6.0110000000000001, 11.734, 0.16800000000000001),
+                    'Hpr': VBase3(-0.376, -4.6619, 4.742),
+                    'Pos': Point3(-6.011, 11.734, 0.168),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Color': (0.76999998092651367, 0.75, 0.73000001907348633, 1.0),
@@ -117,24 +117,24 @@ objectStruct = {
                 '1166132516.06kmuller': {
                     'Type': 'Baskets',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-43.987000000000002, 0.0, 0.0),
+                    'Hpr': VBase3(-43.987, 0.0, 0.0),
                     'Pos': Point3(19.041, -5.375, 0.0),
-                    'Scale': VBase3(1.7749999999999999, 1.7749999999999999, 1.7749999999999999),
+                    'Scale': VBase3(1.7749, 1.7749, 1.7749),
                     'Visual': {
                         'Model': 'models/props/crab_pot' } },
                 '1166132600.56kmuller': {
                     'Type': 'Bucket',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(8.5419999999999998, -25.98, 0.092999999999999999),
-                    'Scale': VBase3(0.67600000000000005, 0.67600000000000005, 0.67600000000000005),
+                    'Pos': Point3(8.5418, -25.98, 0.0929),
+                    'Scale': VBase3(0.676000, 0.676000, 0.676000),
                     'Visual': {
                         'Model': 'models/props/bucket_handles' } },
                 '1166132865.18kmuller': {
                     'Type': 'ChickenCage',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-17.672999999999998, -13.339, 0.034000000000000002),
+                    'Pos': Point3(-17.6728, -13.339, 0.034),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/ChickenCage' } },
@@ -142,7 +142,7 @@ objectStruct = {
                     'Type': 'Animal',
                     'Hpr': VBase3(0.0, 0.0, 0.0),
                     'Patrol Radius': '1.0000',
-                    'Pos': Point3(-17.559000000000001, -13.569000000000001, 0.40600000000000003),
+                    'Pos': Point3(-17.559, -13.569, 0.40600),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'Respawns': True,
@@ -153,24 +153,24 @@ objectStruct = {
                 '1166133856.57kmuller': {
                     'Type': 'Prop_Groups',
                     'DisableCollision': False,
-                    'Hpr': VBase3(89.350999999999999, 0.0, 0.0),
+                    'Hpr': VBase3(89.350, 0.0, 0.0),
                     'Pos': Point3(-15.962, -20.852, 0.106),
-                    'Scale': VBase3(0.85499999999999998, 0.85499999999999998, 0.85499999999999998),
+                    'Scale': VBase3(0.85498, 0.85498, 0.85498),
                     'Visual': {
                         'Model': 'models/props/prop_group_B' } },
                 '1166135474.96kmuller': {
                     'Type': 'Tools',
                     'DisableCollision': False,
-                    'Hpr': VBase3(180.0, 6.5960000000000001, 171.649),
-                    'Pos': Point3(19.923999999999999, -2.2149999999999999, 4.423),
+                    'Hpr': VBase3(180.0, 6.596, 171.649),
+                    'Pos': Point3(19.923, -2.2149, 4.423),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/rake' } },
                 '1166135589.98kmuller': {
                     'Type': 'Ship_Props',
                     'DisableCollision': False,
-                    'Hpr': VBase3(88.475999999999999, 0.0, 0.0),
-                    'Pos': Point3(20.013000000000002, -8.1829999999999998, 10.185),
+                    'Hpr': VBase3(88.475, 0.0, 0.0),
+                    'Pos': Point3(20.013, -8.1828, 10.185),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/wheel_wallprop' } },
@@ -178,16 +178,16 @@ objectStruct = {
                     'Type': 'Trunks',
                     'DisableCollision': True,
                     'Hpr': VBase3(-102.146, 0.0, 0.0),
-                    'Pos': Point3(18.702000000000002, -11.07, 0.050999999999999997),
+                    'Pos': Point3(18.702, -11.07, 0.050),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
-                        'Color': (0.81000000000000005, 1.0, 1.0, 1.0),
+                        'Color': (0.810000, 1.0, 1.0, 1.0),
                         'Model': 'models/props/Trunk_square' } },
                 '1166135716.21kmuller': {
                     'Type': 'Trunks',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-88.289000000000001, 0.0, 0.0),
-                    'Pos': Point3(18.576000000000001, -7.9850000000000003, 0.045999999999999999),
+                    'Hpr': VBase3(-88.289, 0.0, 0.0),
+                    'Pos': Point3(18.576, -7.9850, 0.0459),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Color': (0.85000002384185791, 0.81999999284744263, 0.73000001907348633, 1.0),
@@ -195,8 +195,8 @@ objectStruct = {
                 '1166135765.92kmuller': {
                     'Type': 'Trunks',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-88.289000000000001, -0.186, 0.0),
-                    'Pos': Point3(18.838999999999999, -8.9190000000000005, 2.0249999999999999),
+                    'Hpr': VBase3(-88.289, -0.186, 0.0),
+                    'Pos': Point3(18.838, -8.91900, 2.0249),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Color': (1.0, 1.0, 0.60000002384185791, 1.0),
@@ -204,8 +204,8 @@ objectStruct = {
                 '1166137677.04kmuller': {
                     'Type': 'Prop_Groups',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-133.68299999999999, 0.0, 0.0),
-                    'Pos': Point3(12.789, -20.122, 0.0030000000000000001),
+                    'Hpr': VBase3(-133.682, 0.0, 0.0),
+                    'Pos': Point3(12.789, -20.122, 0.00300),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/prop_group01' } },
@@ -213,16 +213,16 @@ objectStruct = {
                     'Type': 'Crate',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(16.748000000000001, -24.760000000000002, 0.0),
+                    'Pos': Point3(16.748, -24.760, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
-                        'Color': (0.82999999999999996, 0.69999999999999996, 0.71999999999999997, 1.0),
+                        'Color': (0.826, 0.696, 0.71, 1.0),
                         'Model': 'models/props/crates_group_1' } },
                 '1167157033.71kmuller': {
                     'Type': 'Furniture',
                     'DisableCollision': True,
-                    'Hpr': VBase3(92.239999999999995, 0.0, 0.0),
-                    'Pos': Point3(-18.472999999999999, 8.266, 0.053999999999999999),
+                    'Hpr': VBase3(92.235, 0.0, 0.0),
+                    'Pos': Point3(-18.472, 8.266, 0.0539),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Color': (0.69999998807907104, 0.69999998807907104, 0.69999998807907104, 1.0),
@@ -231,31 +231,31 @@ objectStruct = {
                     'Type': 'Jugs_and_Jars',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-18.763000000000002, 7.3810000000000002, 2.9399999999999999),
+                    'Pos': Point3(-18.763, 7.3810, 2.93),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/bottle_green' } },
                 '1167157149.32kmuller': {
                     'Type': 'Jugs_and_Jars',
                     'DisableCollision': False,
-                    'Hpr': VBase3(73.305999999999997, 0.0, 0.0),
-                    'Pos': Point3(-17.989999999999998, 9.7460000000000004, 2.7749999999999999),
+                    'Hpr': VBase3(73.305, 0.0, 0.0),
+                    'Pos': Point3(-17.988, 9.74600, 2.7749),
                     'Scale': VBase3(0.501, 0.501, 0.501),
                     'Visual': {
                         'Model': 'models/props/jug_hanging' } },
                 '1167157231.2kmuller': {
                     'Type': 'Paddle',
                     'DisableCollision': False,
-                    'Hpr': VBase3(89.284999999999997, -9.3490000000000002, -0.053999999999999999),
-                    'Pos': Point3(-18.829999999999998, -1.2430000000000001, -0.22800000000000001),
-                    'Scale': VBase3(1.8580000000000001, 1.8580000000000001, 1.8580000000000001),
+                    'Hpr': VBase3(89.284, -9.3490, -0.0539),
+                    'Pos': Point3(-18.828, -1.243, -0.228),
+                    'Scale': VBase3(1.858, 1.858, 1.858),
                     'Visual': {
                         'Model': 'models/props/paddle_A' } },
                 '1167159781.48kmuller': {
                     'Type': 'Furniture',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-91.037999999999997, 0.0, 0.0),
-                    'Pos': Point3(18.734000000000002, 4.1970000000000001, 0.0),
+                    'Hpr': VBase3(-91.037, 0.0, 0.0),
+                    'Pos': Point3(18.734, 4.197, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Color': (0.79000002145767212, 0.77999997138977051, 0.69999998807907104, 1.0),
@@ -264,8 +264,8 @@ objectStruct = {
                     'Type': 'Interior_furnishings',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(90.015000000000001, 0.0, 0.0),
-                    'Pos': Point3(-14.561999999999999, 11.977, 0.0),
+                    'Hpr': VBase3(90.015, 0.0, 0.0),
+                    'Pos': Point3(-14.561, 11.977, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -274,24 +274,24 @@ objectStruct = {
                     'Type': 'Interior_furnishings',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-9.9710000000000001, 10.411, 0.0),
-                    'Scale': VBase3(1.1930000000000001, 1.1930000000000001, 1.1930000000000001),
+                    'Pos': Point3(-9.971, 10.411, 0.0),
+                    'Scale': VBase3(1.193, 1.193, 1.193),
                     'Visual': {
                         'Model': 'models/props/stove_potbelly' } },
                 '1167970427.75kmuller': {
                     'Type': 'Light_Fixtures',
                     'DisableCollision': False,
-                    'Hpr': VBase3(90.055999999999997, 0.0, 0.0),
-                    'Pos': Point3(-1.7130000000000001, 12.461, 8.5),
+                    'Hpr': VBase3(90.055, 0.0, 0.0),
+                    'Pos': Point3(-1.713, 12.461, 8.5),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/lamp_candle' } },
                 '1167970512.58kmuller': {
                     'Type': 'Log_Stack',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-92.489999999999995, 0.0, 0.0),
-                    'Pos': Point3(-18.173999999999999, 4.7990000000000004, 0.0),
-                    'Scale': VBase3(0.69099999999999995, 0.69099999999999995, 0.69099999999999995),
+                    'Hpr': VBase3(-92.485, 0.0, 0.0),
+                    'Pos': Point3(-18.173, 4.79900, 0.0),
+                    'Scale': VBase3(0.69095, 0.69095, 0.69095),
                     'Visual': {
                         'Color': (0.44999998807907104, 0.46000000834465027, 0.50999999046325684, 1.0),
                         'Model': 'models/props/Log_stack_a' } },
@@ -299,23 +299,23 @@ objectStruct = {
                     'Type': 'Sack',
                     'DisableCollision': True,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(3.1949999999999998, 27.599, -0.058999999999999997),
+                    'Pos': Point3(3.1948, 27.599, -0.058),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/sack_6stack' } },
                 '1167970625.67kmuller': {
                     'Type': 'Light_Fixtures',
                     'DisableCollision': False,
-                    'Hpr': VBase3(89.712999999999994, 0.0, 0.0),
-                    'Pos': Point3(-17.681000000000001, -0.61499999999999999, 10.943),
+                    'Hpr': VBase3(89.7124, 0.0, 0.0),
+                    'Pos': Point3(-17.681, -0.614, 10.943),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/lamp_candle' } },
                 '1167970646.1kmuller': {
                     'Type': 'Light_Fixtures',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-90.850999999999999, 0.0, 0.0),
-                    'Pos': Point3(17.899999999999999, -0.19500000000000001, 9.6950000000000003),
+                    'Hpr': VBase3(-90.850, 0.0, 0.0),
+                    'Pos': Point3(17.8, -0.195, 9.6950),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/lamp_candle' } },
@@ -326,10 +326,10 @@ objectStruct = {
                     'DropOff': '19.0909',
                     'FlickRate': 0.5,
                     'Flickering': False,
-                    'Hpr': VBase3(91.212999999999994, -27.126999999999999, -179.178),
+                    'Hpr': VBase3(91.2124, -27.126, -179.178),
                     'Intensity': '1.2121',
                     'LightType': 'SPOT',
-                    'Pos': Point3(25.675000000000001, -19.783999999999999, 8.7769999999999992),
+                    'Pos': Point3(25.675, -19.783, 8.7762),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Color': (1.0, 0.87000000476837158, 0.72000002861022949, 1.0),
@@ -341,10 +341,10 @@ objectStruct = {
                     'DropOff': '16.3636',
                     'FlickRate': 0.5,
                     'Flickering': False,
-                    'Hpr': VBase3(85.549000000000007, -31.672000000000001, -178.78899999999999),
+                    'Hpr': VBase3(85.549, -31.672, -178.788),
                     'Intensity': '1.4545',
                     'LightType': 'SPOT',
-                    'Pos': Point3(29.780000000000001, 9.4559999999999995, 12.446999999999999),
+                    'Pos': Point3(29.78, 9.4555, 12.446),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Color': (1.0, 0.87000000476837158, 0.72000002861022949, 1.0),
@@ -356,10 +356,10 @@ objectStruct = {
                     'DropOff': '0.0000',
                     'FlickRate': 0.5,
                     'Flickering': True,
-                    'Hpr': VBase3(0.0, 0.0, -2.2749999999999999),
+                    'Hpr': VBase3(0.0, 0.0, -2.2749),
                     'Intensity': '0.0303',
                     'LightType': 'AMBIENT',
-                    'Pos': Point3(-6.6779999999999999, 17.878, 7.2370000000000001),
+                    'Pos': Point3(-6.6779, 17.878, 7.237),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Color': (1, 1, 1, 1),
@@ -371,10 +371,10 @@ objectStruct = {
                     'DropOff': '2.7273',
                     'FlickRate': 0.5,
                     'Flickering': False,
-                    'Hpr': VBase3(141.547, -88.295000000000002, -49.746000000000002),
+                    'Hpr': VBase3(141.547, -88.295, -49.746),
                     'Intensity': '0.9091',
                     'LightType': 'SPOT',
-                    'Pos': Point3(3.2160000000000002, -0.26300000000000001, 31.117000000000001),
+                    'Pos': Point3(3.2160, -0.263, 31.117),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Color': (0.87000000476837158, 1.0, 1.0, 1.0),
@@ -389,7 +389,7 @@ objectStruct = {
                     'Hpr': VBase3(0.0, 0.0, 0.0),
                     'Intensity': '0.1515',
                     'LightType': 'AMBIENT',
-                    'Pos': Point3(-4.351, -5.8259999999999996, 8.8320000000000007),
+                    'Pos': Point3(-4.351, -5.8256, 8.832),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Color': (0.62000000476837158, 0.74000000953674316, 0.62999999523162842, 1.0),
@@ -398,16 +398,16 @@ objectStruct = {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-19.137, 6.0540000000000003, -0.35799999999999998),
-                    'Scale': VBase3(1.0, 2.3359999999999999, 1.0),
+                    'Pos': Point3(-19.137, 6.0540, -0.35798),
+                    'Scale': VBase3(1.0, 2.3359, 1.0),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_cube' } },
                 '1185408052.75kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Hpr': VBase3(111.084, 0.0, 0.0),
-                    'Pos': Point3(-6.8230000000000004, -28.771000000000001, -0.224),
-                    'Scale': VBase3(0.52600000000000002, 1.0, 1.585),
+                    'Pos': Point3(-6.82300, -28.771, -0.224),
+                    'Scale': VBase3(0.526, 1.0, 1.585),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1185408099.87kmuller': {
@@ -416,15 +416,15 @@ objectStruct = {
                     'Holiday': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Pos': Point3(-18.311, -14.725, -1.321),
-                    'Scale': VBase3(1.0, 1.0, 2.1800000000000002),
+                    'Scale': VBase3(1.0, 1.0, 2.18),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_cube' } },
                 '1185408199.58kmuller': {
                     'Type': 'Furniture',
                     'DisableCollision': True,
-                    'Hpr': VBase3(-0.13200000000000001, 0.0, 0.0),
-                    'Pos': Point3(-15.564, 25.579000000000001, 0.0),
+                    'Hpr': VBase3(-0.132, 0.0, 0.0),
+                    'Pos': Point3(-15.564, 25.579, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/bed_shantyB' } },
@@ -436,12 +436,12 @@ objectStruct = {
                         '1185408375.03kmuller': {
                             'Type': 'Jugs_and_Jars',
                             'DisableCollision': False,
-                            'Hpr': VBase3(-158.87100000000001, 0.0, 0.0),
-                            'Pos': Point3(-1.3580000000000001, -0.67700000000000005, 2.7989999999999999),
+                            'Hpr': VBase3(-158.871, 0.0, 0.0),
+                            'Pos': Point3(-1.358, -0.677000, 2.7989),
                             'Scale': VBase3(1.0, 1.0, 1.0),
                             'Visual': {
                                 'Model': 'models/props/waterpitcher' } } },
-                    'Pos': Point3(11.833, -28.693999999999999, 0.0),
+                    'Pos': Point3(11.833, -28.693, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Color': (0.34999999403953552, 0.34999999403953552, 0.40999999642372131, 1.0),
@@ -450,47 +450,47 @@ objectStruct = {
                     'Type': 'Tools',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(18.533000000000001, -20.381, 0.0),
+                    'Pos': Point3(18.533, -20.381, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/butter_churn' } },
                 '1185408515.58kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-176.74799999999999, 0.0, 0.0),
-                    'Pos': Point3(20.143999999999998, -15.07, -0.63100000000000001),
-                    'Scale': VBase3(0.35999999999999999, 1.0, 1.0),
+                    'Hpr': VBase3(-176.747, 0.0, 0.0),
+                    'Pos': Point3(20.1438, -15.07, -0.631),
+                    'Scale': VBase3(0.359, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1185408562.87kmuller': {
                     'Type': 'Tools',
                     'DisableCollision': False,
-                    'Hpr': VBase3(0.0, 35.594999999999999, -10.598000000000001),
-                    'Pos': Point3(8.4619999999999997, -27.123999999999999, 0.029000000000000001),
+                    'Hpr': VBase3(0.0, 35.594, -10.598),
+                    'Pos': Point3(8.461, -27.123, 0.0290),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/broom' } },
                 '1185408657.03kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-98.007000000000005, 0.0, 0.0),
-                    'Pos': Point3(7.7300000000000004, -27.364000000000001, -0.10100000000000001),
-                    'Scale': VBase3(0.55100000000000005, 1.0, 1.0),
+                    'Hpr': VBase3(-98.0070, 0.0, 0.0),
+                    'Pos': Point3(7.73000, -27.364, -0.101),
+                    'Scale': VBase3(0.551000, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1185408806.71kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(19.553999999999998, 3.6659999999999999, -0.16500000000000001),
-                    'Scale': VBase3(1.0, 1.2949999999999999, 1.7689999999999999),
+                    'Pos': Point3(19.5538, 3.6659, -0.165),
+                    'Scale': VBase3(1.0, 1.2949, 1.7689),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_cube' } },
                 '1185408860.26kmuller': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(20.074000000000002, -8.5579999999999998, 0.0),
+                    'Pos': Point3(20.074, -8.5578, 0.0),
                     'Scale': VBase3(1.0, 1.667, 1.0),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_cube' } },
@@ -498,8 +498,8 @@ objectStruct = {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-16.736000000000001, 25.815000000000001, -0.71499999999999997),
-                    'Scale': VBase3(1.361, 1.8029999999999999, 2.0950000000000002),
+                    'Pos': Point3(-16.736, 25.815, -0.714),
+                    'Scale': VBase3(1.361, 1.8029, 2.0950),
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_cube' } },
                 '1185409015.65kmuller': {
@@ -507,8 +507,8 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-1.6040000000000001, 28.25, -0.32800000000000001),
-                    'Scale': VBase3(3.0680000000000001, 1.2629999999999999, 1.734),
+                    'Pos': Point3(-1.604, 28.25, -0.328),
+                    'Scale': VBase3(3.068, 1.2629, 1.734),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_cube' } },
@@ -516,15 +516,15 @@ objectStruct = {
                     'Type': 'Door Locator Node',
                     'Name': 'door_locator',
                     'Hpr': VBase3(0.0, 0.0, 0.0),
-                    'Pos': Point3(0.047, -29.861000000000001, 0.067000000000000004),
+                    'Pos': Point3(0.047, -29.861, 0.0670000),
                     'Scale': VBase3(1.0, 1.0, 1.0) },
                 '1228170667.7kmuller': {
                     'Type': 'Holiday',
                     'DisableCollision': False,
                     'Holiday': 'WinterFestival',
                     'Hpr': VBase3(-147.374, 1.702, 0.0),
-                    'Pos': Point3(-8.7799999999999994, 12.025, 7.516),
-                    'Scale': VBase3(1.3859999999999999, 1.3859999999999999, 1.3859999999999999),
+                    'Pos': Point3(-8.7794, 12.025, 7.516),
+                    'Scale': VBase3(1.3859, 1.3859, 1.3859),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/props/pir_m_prp_hol_decoStocking03_winter09' } },
@@ -533,8 +533,8 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': 'WinterFestival',
                     'Hpr': VBase3(-26.747, -2.266, 0.0),
-                    'Pos': Point3(-11.617000000000001, 11.993, 7.7709999999999999),
-                    'Scale': VBase3(1.3859999999999999, 1.3859999999999999, 1.3859999999999999),
+                    'Pos': Point3(-11.617, 11.993, 7.7709),
+                    'Scale': VBase3(1.3859, 1.3859, 1.3859),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/props/pir_m_prp_hol_decoStocking02_winter09' } },
@@ -543,7 +543,7 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': 'WinterFestival',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(18.422000000000001, 5.5970000000000004, 5.548),
+                    'Pos': Point3(18.422, 5.59700, 5.548),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -554,8 +554,8 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': 'WinterFestival',
                     'Hpr': VBase3(-14.653, 0.0, 0.0),
-                    'Pos': Point3(18.294, 3.1949999999999998, 2.6320000000000001),
-                    'Scale': VBase3(0.79300000000000004, 0.79300000000000004, 0.79300000000000004),
+                    'Pos': Point3(18.294, 3.1948, 2.632),
+                    'Scale': VBase3(0.793000, 0.793000, 0.793000),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/props/pir_m_prp_hol_decoGift01_winter08' } },
@@ -564,8 +564,8 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': 'WinterFestival',
                     'Hpr': VBase3(37.436, 0.0, 0.0),
-                    'Pos': Point3(18.492000000000001, 4.5830000000000002, 2.593),
-                    'Scale': VBase3(1.0489999999999999, 1.0489999999999999, 1.0489999999999999),
+                    'Pos': Point3(18.492, 4.5830, 2.593),
+                    'Scale': VBase3(1.0489, 1.0489, 1.0489),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/props/pir_m_prp_hol_decoGift02_winter08' } },
@@ -573,8 +573,8 @@ objectStruct = {
                     'Type': 'Holiday',
                     'DisableCollision': False,
                     'Holiday': 'WinterFestival',
-                    'Hpr': VBase3(-91.661000000000001, 0.0, 0.0),
-                    'Pos': Point3(19.574000000000002, -8.1630000000000003, 7.6340000000000003),
+                    'Hpr': VBase3(-91.661, 0.0, 0.0),
+                    'Pos': Point3(19.574, -8.1630, 7.6340),
                     'Scale': VBase3(1.526, 1.526, 1.526),
                     'VisSize': '',
                     'Visual': {
@@ -583,8 +583,8 @@ objectStruct = {
                     'Type': 'Holiday',
                     'DisableCollision': False,
                     'Holiday': 'WinterFestival',
-                    'Hpr': VBase3(-87.122, 2.0430000000000001, 40.716000000000001),
-                    'Pos': Point3(18.719999999999999, -0.84099999999999997, 8.1430000000000007),
+                    'Hpr': VBase3(-87.122, 2.043, 40.716),
+                    'Pos': Point3(18.719, -0.840, 8.143),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -593,8 +593,8 @@ objectStruct = {
                     'Type': 'Holiday',
                     'DisableCollision': False,
                     'Holiday': 'WinterFestival',
-                    'Hpr': VBase3(-88.790000000000006, 0.0, 0.0),
-                    'Pos': Point3(18.638000000000002, -0.17100000000000001, 7.7080000000000002),
+                    'Hpr': VBase3(-88.79, 0.0, 0.0),
+                    'Pos': Point3(18.638, -0.171, 7.7080),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -603,8 +603,8 @@ objectStruct = {
                     'Type': 'Holiday',
                     'DisableCollision': False,
                     'Holiday': 'WinterFestival',
-                    'Hpr': VBase3(88.953999999999994, 0.0, 0.0),
-                    'Pos': Point3(-18.446999999999999, -0.23699999999999999, 7.4509999999999996),
+                    'Hpr': VBase3(88.9534, 0.0, 0.0),
+                    'Pos': Point3(-18.446, -0.236, 7.4506),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -613,8 +613,8 @@ objectStruct = {
                     'Type': 'Holiday',
                     'DisableCollision': False,
                     'Holiday': 'WinterFestival',
-                    'Hpr': VBase3(93.614000000000004, 0.0, 39.463000000000001),
-                    'Pos': Point3(18.631, 0.36699999999999999, 8.109),
+                    'Hpr': VBase3(93.6140, 0.0, 39.463),
+                    'Pos': Point3(18.631, 0.366, 8.109),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -623,8 +623,8 @@ objectStruct = {
                     'Type': 'Holiday',
                     'DisableCollision': False,
                     'Holiday': 'WinterFestival',
-                    'Hpr': VBase3(-88.641999999999996, 0.0, 39.463000000000001),
-                    'Pos': Point3(-18.460999999999999, -0.77500000000000002, 7.8529999999999998),
+                    'Hpr': VBase3(-88.6416, 0.0, 39.463),
+                    'Pos': Point3(-18.460, -0.775, 7.8528),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -633,8 +633,8 @@ objectStruct = {
                     'Type': 'Holiday',
                     'DisableCollision': False,
                     'Holiday': 'WinterFestival',
-                    'Hpr': VBase3(-88.641999999999996, 0.0, 39.463000000000001),
-                    'Pos': Point3(-18.460999999999999, -0.77500000000000002, 7.8529999999999998),
+                    'Hpr': VBase3(-88.6416, 0.0, 39.463),
+                    'Pos': Point3(-18.460, -0.775, 7.8528),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -643,8 +643,8 @@ objectStruct = {
                     'Type': 'Holiday',
                     'DisableCollision': False,
                     'Holiday': 'WinterFestival',
-                    'Hpr': VBase3(88.953999999999994, 0.0, 0.0),
-                    'Pos': Point3(-18.446999999999999, -0.23699999999999999, 7.4509999999999996),
+                    'Hpr': VBase3(88.9534, 0.0, 0.0),
+                    'Pos': Point3(-18.446, -0.236, 7.4506),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -653,8 +653,8 @@ objectStruct = {
                     'Type': 'Holiday',
                     'DisableCollision': False,
                     'Holiday': 'WinterFestival',
-                    'Hpr': VBase3(-1.881, 2.0430000000000001, 40.716000000000001),
-                    'Pos': Point3(-2.6850000000000001, 11.691000000000001, 7.3049999999999997),
+                    'Hpr': VBase3(-1.881, 2.043, 40.716),
+                    'Pos': Point3(-2.685, 11.691, 7.304),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -663,8 +663,8 @@ objectStruct = {
                     'Type': 'Holiday',
                     'DisableCollision': False,
                     'Holiday': 'WinterFestival',
-                    'Hpr': VBase3(178.85499999999999, 0.0, 39.463000000000001),
-                    'Pos': Point3(-3.8959999999999999, 11.702, 7.2709999999999999),
+                    'Hpr': VBase3(178.854, 0.0, 39.463),
+                    'Pos': Point3(-3.8959, 11.702, 7.2709),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -674,7 +674,7 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': 'WinterFestival',
                     'Hpr': VBase3(-3.548, 0.0, 0.0),
-                    'Pos': Point3(-3.359, 11.664, 6.8689999999999998),
+                    'Pos': Point3(-3.359, 11.664, 6.8688),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -758,8 +758,8 @@ objectStruct = {
         '1257797342.74caoconno': '["Objects"]["1156371286.47dzzz0"]["Objects"]["1257797342.74caoconno"]',
         '1257797342.75caoconno': '["Objects"]["1156371286.47dzzz0"]["Objects"]["1257797342.75caoconno"]' } }
 extraInfo = {
-    'camPos': Point3(38.497199999999999, 15.2174, 22.106999999999999),
-    'camHpr': VBase3(119.723, -14.212400000000001, 0),
+    'camPos': Point3(38.4971, 15.2174, 22.106),
+    'camHpr': VBase3(119.723, -14.2124, 0),
     'focalLength': 0.65799999237100004,
     'skyState': -1,
     'fog': 0 }

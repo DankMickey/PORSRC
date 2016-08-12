@@ -18,7 +18,7 @@ objectStruct = {
                     'Type': 'Locator Node',
                     'Name': 'portal_connector_2',
                     'Hpr': VBase3(90.0, 0.0, 0.0),
-                    'Pos': Point3(-94.385000000000005, 149.18899999999999, 0.0),
+                    'Pos': Point3(-94.3850, 149.188, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0) } },
             'Visual': {
                 'Model': 'models/tunnels/tunnel_jungle' } } },

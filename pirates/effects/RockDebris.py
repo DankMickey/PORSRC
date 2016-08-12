@@ -28,7 +28,7 @@ class RockDebris(PooledEffect):
         self.debris = loader.loadModel(filePrefix)
         self.debris.reparentTo(self.transNode)
         self.debris.setScale(0.5)
-        self.debris.setColorScale(0.80000000000000004, 0.80000000000000004, 0.80000000000000004, 1.0)
+        self.debris.setColorScale(0.800000, 0.800000, 0.800000, 1.0)
         self.weaponHitEvent = 'weaponHit' + str(id(self))
         self.accept(self.weaponHitEvent, self.weaponHitObject)
         self.collSphere = CollisionSphere(0, 0, 0, self.collSphereRadius)
@@ -52,14 +52,14 @@ class RockDebris(PooledEffect):
             playProjectile = ProjectileInterval(self.transNode, startPos = self.startPos, startVel = self.startVel, endZ = self.endPlaneZ, gravityMult = 4.0)
             self.playProjectile = playProjectile
         except StandardError:
-            playProjectile = Wait(0.20000000000000001)
+            playProjectile = Wait(0.200)
             self.playProjectile = None
 
         randomNumX = random.uniform(360, 2880)
         randomNumY = random.uniform(360, 2880)
         randomNumZ = random.uniform(360, 2880)
         self.playRotate = self.debris.hprInterval(6, Point3(randomNumX, randomNumY, randomNumZ))
-        enableColl = Sequence(Wait(0.20000000000000001), Func(self.cnode.setFromCollideMask, PiratesGlobals.TargetBitmask))
+        enableColl = Sequence(Wait(0.200), Func(self.cnode.setFromCollideMask, PiratesGlobals.TargetBitmask))
         playDebris = Parallel(playProjectile, enableColl)
         self.track = Sequence(Func(self.transNode.reparentTo, self), playDebris, Func(self.cleanUpEffect))
 

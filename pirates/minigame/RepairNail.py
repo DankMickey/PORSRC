@@ -5,7 +5,7 @@ from pirates.piratesbase import PLocalizer
 from pirates.piratesbase import PiratesGlobals
 import RepairGlobals
 NAIL_COLLIDE_MASK = 8
-HAMMERED_DEPTH = -0.17000000000000001
+HAMMERED_DEPTH = -0.170
 
 class RepairNail(NodePath, FSM.FSM):
 
@@ -35,13 +35,13 @@ class RepairNail(NodePath, FSM.FSM):
         self.nailModel.setDepthWrite(True)
         self.shadow = self.nailModel.find('**/shadow')
         self.shadow.reparentTo(self)
-        self.shadow.setPos(0.0, -0.040000000000000001, 0.02)
+        self.shadow.setPos(0.0, -0.0400, 0.02)
         self.shadow.setDepthTest(True)
         self.shadow.setDepthWrite(True)
         self.shadow.setScale(2.0)
         self.shadow.setTransparency(1)
-        self.shadow.setSa(0.59999999999999998)
-        self.resultLabel = DirectLabel(text = '', relief = None, text_fg = (1.0, 1.0, 1.0, 1.0), text_shadow = (0.0, 0.0, 0.0, 1.0), text_font = PiratesGlobals.getPirateFont(), scale = (0.050000000000000003, 0.050000000000000003, 0.050000000000000003), pos = (0.0, 0.0, -0.089999999999999997), parent = self)
+        self.shadow.setSa(0.598)
+        self.resultLabel = DirectLabel(text = '', relief = None, text_fg = (1.0, 1.0, 1.0, 1.0), text_shadow = (0.0, 0.0, 0.0, 1.0), text_font = PiratesGlobals.getPirateFont(), scale = (0.050000, 0.050000, 0.050000), pos = (0.0, 0.0, -0.089), parent = self)
 
     def remove_node(self):
         self.visual.remove_node()
@@ -50,8 +50,8 @@ class RepairNail(NodePath, FSM.FSM):
         NodePath.remove_node(self)
 
     def setShadow(self, percent):
-        self.shadow.setScale(percent * 1.0 + 1.3999999999999999)
-        self.shadow.setSa(1.0 - percent * 0.20000000000000001 + 0.20000000000000001)
+        self.shadow.setScale(percent * 1.0 + 1.39)
+        self.shadow.setSa(1.0 - percent * 0.200 + 0.200)
 
     def hitNail(self, percentage):
         self.remainingPercent = max(0.0, self.remainingPercent - percentage)

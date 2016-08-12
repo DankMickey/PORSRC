@@ -29,7 +29,7 @@ class EnergySpiral(PooledEffect, EffectController):
     def createTrack(self):
         textureStage = self.effectModel.findAllTextureStages()[0]
         self.effectModel.setTexOffset(textureStage, 0.0, 1.0)
-        self.effectModel.setScale(0.40000000000000002, 0.5, 0.5)
+        self.effectModel.setScale(0.4, 0.5, 0.5)
         duration = 6.0
         self.setColorScale(1.0, 1.0, 1.0, 0.0)
         fadeIn = LerpColorScaleInterval(self, 1.0, Vec4(1.0, 1.0, 1.0, 1.0), startColorScale = Vec4(0.0, 0.0, 0.0, 0.0))
@@ -44,7 +44,7 @@ class EnergySpiral(PooledEffect, EffectController):
 
 
     def setEffectColor(self, color):
-        self.effectColor = (Vec4(1, 1, 1, 1) - (Vec4(1, 1, 1, 1) - color) / 4.0) + Vec4(0.10000000000000001, 0.10000000000000001, 0, 1)
+        self.effectColor = (Vec4(1, 1, 1, 1) - (Vec4(1, 1, 1, 1) - color) / 4.0) + Vec4(0.100, 0.100, 0, 1)
         self.effectModel.setColorScale(self.effectColor)
 
 

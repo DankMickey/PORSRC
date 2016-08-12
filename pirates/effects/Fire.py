@@ -76,7 +76,7 @@ class Fire(PooledEffect, EffectController):
         self.p0.renderer.setNonanimatedTheta(0.0)
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPBLENDLINEAR)
         self.p0.renderer.setColorBlendMode(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne)
-        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(1.0, 0.59999999999999998, 0.20000000000000001, 1.0), Vec4(0.5, 0.20000000000000001, 0.20000000000000001, 0.5), 1)
+        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(1.0, 0.598, 0.200, 1.0), Vec4(0.5, 0.200, 0.200, 0.5), 1)
         self.p0.renderer.setAlphaDisable(0)
         self.p0.emitter.setEmissionType(BaseParticleEmitter.ETRADIATE)
         self.p0.emitter.setAmplitude(-0.75)
@@ -148,10 +148,10 @@ class Fire(PooledEffect, EffectController):
 
     def setEffectScale(self, scale):
         self.effectScale = scale
-        self.p0.renderer.setInitialXScale(0.050000000000000003 * self.cardScale * self.effectScale)
-        self.p0.renderer.setInitialYScale(0.050000000000000003 * self.cardScale * self.effectScale)
-        self.p0.renderer.setFinalXScale(0.029999999999999999 * self.cardScale * self.effectScale)
-        self.p0.renderer.setFinalYScale(0.044999999999999998 * self.cardScale * self.effectScale)
+        self.p0.renderer.setInitialXScale(0.050000 * self.cardScale * self.effectScale)
+        self.p0.renderer.setInitialYScale(0.050000 * self.cardScale * self.effectScale)
+        self.p0.renderer.setFinalXScale(0.0299 * self.cardScale * self.effectScale)
+        self.p0.renderer.setFinalYScale(0.0448 * self.cardScale * self.effectScale)
         self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, 15.0 * self.effectScale))
         self.p0.emitter.setRadius(6.0 * self.effectScale)
 

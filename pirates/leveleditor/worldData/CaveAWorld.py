@@ -13,13 +13,13 @@ objectStruct = {
                         '1173476857.61sdnaik': {
                             'Type': 'LOD Sphere',
                             'Hpr': Point3(0.0, 0.0, 0.0),
-                            'Pos': Point3(-16.196000000000002, -200.09100000000001, -16.353000000000002),
+                            'Pos': Point3(-16.196, -200.091, -16.353),
                             'Radi': [
                                 2658,
                                 3658,
                                 4658],
                             'Scale': VBase3(1.0, 1.0, 1.0) } },
-                    'Pos': Point3(-140.64099999999999, 184.738, 0.0),
+                    'Pos': Point3(-140.640, 184.738, 0.0),
                     'Visual': {
                         'Model': 'models/islands/pir_m_are_isl_tormenta' } } },
             'Visual': { } } },

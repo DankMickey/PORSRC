@@ -54,15 +54,15 @@ class MusketSmoke(PooledEffect, EffectController):
         self.p0.factory.setAngularVelocity(40.0)
         self.p0.factory.setAngularVelocitySpread(20.0)
         self.p0.renderer.setAlphaMode(BaseParticleRenderer.PRALPHAOUT)
-        self.p0.renderer.setUserAlpha(0.59999999999999998)
+        self.p0.renderer.setUserAlpha(0.598)
         self.p0.renderer.setFromNode(self.card)
         self.p0.renderer.setColor(Vec4(1.0, 1.0, 1.0, 1.0))
         self.p0.renderer.setXScaleFlag(1)
         self.p0.renderer.setYScaleFlag(1)
         self.p0.renderer.setAnimAngleFlag(1)
-        self.p0.renderer.setInitialXScale(0.0060000000000000001 * self.cardScale)
+        self.p0.renderer.setInitialXScale(0.00600 * self.cardScale)
         self.p0.renderer.setFinalXScale(0.02 * self.cardScale)
-        self.p0.renderer.setInitialYScale(0.0060000000000000001 * self.cardScale)
+        self.p0.renderer.setInitialYScale(0.00600 * self.cardScale)
         self.p0.renderer.setFinalYScale(0.02 * self.cardScale)
         self.p0.renderer.setNonanimatedTheta(0.0)
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPNOBLEND)
@@ -74,7 +74,7 @@ class MusketSmoke(PooledEffect, EffectController):
         self.p0.emitter.setExplicitLaunchVector(Vec3(1.0, 0.0, 0.0))
         self.p0.emitter.setRadiateOrigin(Point3(0.0, 0.0, 0.0))
         self.p0.emitter.setRadius(0.5)
-        self.track = Sequence(Func(self.p0.setBirthRate, 0.02), Func(self.p0.clearToInitial), Func(self.f.reparentTo, self), Wait(0.29999999999999999), Func(self.p0.setBirthRate, 100), Wait(1.5), Func(self.cleanUpEffect))
+        self.track = Sequence(Func(self.p0.setBirthRate, 0.02), Func(self.p0.clearToInitial), Func(self.f.reparentTo, self), Wait(0.299), Func(self.p0.setBirthRate, 100), Wait(1.5), Func(self.cleanUpEffect))
 
 
     def cleanUpEffect(self):

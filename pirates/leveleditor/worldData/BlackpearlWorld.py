@@ -14,7 +14,7 @@ objectStruct = {
                         '1171940948.2sdnaik': {
                             'Type': 'LOD Sphere',
                             'Hpr': Point3(0.0, 0.0, 0.0),
-                            'Pos': Point3(0.0, 0.0, 210.85300000000001),
+                            'Pos': Point3(0.0, 0.0, 210.853),
                             'Radi': [
                                 9000.0,
                                 25000.0,
@@ -28,8 +28,8 @@ objectStruct = {
                     'Type': 'Avoid Sphere',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Object Avoided': '1171761224.13sdnaik',
-                    'Pos': Point3(200.69800000000001, -2705.7730000000001, 0.0),
-                    'Scale': VBase3(4778.8509999999997, 4778.8509999999997, 4778.8509999999997) } },
+                    'Pos': Point3(200.698, -2705.773, 0.0),
+                    'Scale': VBase3(4778.850, 4778.850, 4778.850) } },
             'Visual': { } } },
     'Layers': { },
     'ObjectIds': {
@@ -37,6 +37,6 @@ objectStruct = {
         '1171761224.13sdnaik': '["Objects"]["1171761196.78sdnaik"]["Objects"]["1171761224.13sdnaik"]',
         '1171940948.2sdnaik': '["Objects"]["1171761196.78sdnaik"]["Objects"]["1171761224.13sdnaik"]["Objects"]["1171940948.2sdnaik"]' } }
 extraInfo = {
-    'camPos': Point3(-10992.9, 77281.300000000003, 67183.300000000003),
-    'camHpr': VBase3(-170.958, -41.258400000000002, 0),
+    'camPos': Point3(-10992.9, 77281.3, 67183.3),
+    'camHpr': VBase3(-170.958, -41.2584, 0),
     'focalLength': 1.3999999761599999 }

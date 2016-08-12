@@ -35,15 +35,15 @@ class LookoutRequestLVL2(DirectFrame, InventoryRequestGameType):
                 {
                     'Text': GameTypeGlobals.getGameTypeString(PiratesGlobals.GAME_STYLE_POKER, 'style'),
                     'Value': PiratesGlobals.GAME_STYLE_POKER }]
-        self.activityListItems = ListFrame(0.80000000000000004, None, 'blah', self, frameColor = (0, 0, 0, 0))
+        self.activityListItems = ListFrame(0.800000, None, 'blah', self, frameColor = (0, 0, 0, 0))
         self.activityListItems.setup()
         if self.parentPanel.UI_VERSION == 0:
-            size = (0, 0.81999999999999995, 0, 0.45000000000000001)
-            pos = (0.14999999999999999, 0, 0.55000000000000004)
+            size = (0, 0.815, 0, 0.450)
+            pos = (0.149, 0, 0.550000)
         else:
-            size = (0, 0.81999999999999995, 0, 0.75)
-            pos = (0.14999999999999999, 0, 0.20000000000000001)
-        self.activityList = DirectScrolledFrame(parent = self, frameSize = size, relief = DGG.GROOVE, state = DGG.NORMAL, frameColor = (0, 0, 0, 0), borderWidth = PiratesGuiGlobals.BorderWidth, canvasSize = (0, 0.69999999999999996, 0, self.activityListItems['frameSize'][3]), verticalScroll_frameColor = PiratesGuiGlobals.ScrollbarColor, verticalScroll_borderWidth = (0.0074999999999999997, 0.0074999999999999997), verticalScroll_frameSize = (0, PiratesGuiGlobals.ScrollbarSize, 0, self.height), verticalScroll_thumb_frameColor = PiratesGuiGlobals.ButtonColor2, verticalScroll_incButton_frameColor = PiratesGuiGlobals.ButtonColor2, verticalScroll_decButton_frameColor = PiratesGuiGlobals.ButtonColor2, sortOrder = 5, pos = pos)
+            size = (0, 0.815, 0, 0.75)
+            pos = (0.149, 0, 0.200)
+        self.activityList = DirectScrolledFrame(parent = self, frameSize = size, relief = DGG.GROOVE, state = DGG.NORMAL, frameColor = (0, 0, 0, 0), borderWidth = PiratesGuiGlobals.BorderWidth, canvasSize = (0, 0.696, 0, self.activityListItems['frameSize'][3]), verticalScroll_frameColor = PiratesGuiGlobals.ScrollbarColor, verticalScroll_borderWidth = (0.0074, 0.0074), verticalScroll_frameSize = (0, PiratesGuiGlobals.ScrollbarSize, 0, self.height), verticalScroll_thumb_frameColor = PiratesGuiGlobals.ButtonColor2, verticalScroll_incButton_frameColor = PiratesGuiGlobals.ButtonColor2, verticalScroll_decButton_frameColor = PiratesGuiGlobals.ButtonColor2, sortOrder = 5, pos = pos)
         if self.parentPanel.UI_VERSION == 0:
             self.createListFrame(self.activityList)
 
@@ -51,7 +51,7 @@ class LookoutRequestLVL2(DirectFrame, InventoryRequestGameType):
         self.selectedItem = None
         self.optionsPanel = None
         self.optionsButton = None
-        self.rankingDisplay = DirectLabel(parent = self.getParent(), relief = None, text = PLocalizer.Ranking, text_align = TextNode.ALeft, text_scale = 0.050000000000000003, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (0.28999999999999998, 0, -0.55000000000000004))
+        self.rankingDisplay = DirectLabel(parent = self.getParent(), relief = None, text = PLocalizer.Ranking, text_align = TextNode.ALeft, text_scale = 0.050000, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (0.288, 0, -0.550000))
         self.rankingDisplay.hide()
         self.setParentPanel(parentPanel)
         self.storedOptions = { }
@@ -59,7 +59,7 @@ class LookoutRequestLVL2(DirectFrame, InventoryRequestGameType):
 
 
     def createListFrame(self, list, lookoutUI = None):
-        self.activityListBorderFrame = BorderFrame(parent = list, pos = (0.40000000000000002, 0, 0.25), scale = (0.80000000000000004, 1, 0.45000000000000001))
+        self.activityListBorderFrame = BorderFrame(parent = list, pos = (0.4, 0, 0.25), scale = (0.800000, 1, 0.450))
         self.activityListBorderFrame.setBackgroundVisible(False)
 
 
@@ -69,12 +69,12 @@ class LookoutRequestLVL2(DirectFrame, InventoryRequestGameType):
 
         if parentInfo == None:
             parent = self.parentPanel
-            buttonPos = (0.42999999999999999, 0, 0.14999999999999999)
-            buttonScale = 0.29999999999999999
+            buttonPos = (0.429, 0, 0.149)
+            buttonScale = 0.299
         else:
             parent = parentInfo.get('parent')
-            buttonPos = parentInfo.get('pos', (0.42999999999999999, 0, 0.14999999999999999))
-            buttonScale = parentInfo.get('scale', 0.29999999999999999)
+            buttonPos = parentInfo.get('pos', (0.429, 0, 0.149))
+            buttonScale = parentInfo.get('scale', 0.299)
         (optionsButton, optionsButtonText) = self.parentPanel.createButtonAndText(imageInfo = {
             'parent': parent,
             'textureCard': lookoutUI,
@@ -154,7 +154,7 @@ class LookoutRequestLVL2(DirectFrame, InventoryRequestGameType):
 
     def createNewItem(self, item, parent, itemType = None, columnWidths = [], color = None):
         if self.parentPanel.UI_VERSION == 0:
-            newItem = ButtonListItem(item, 0.080000000000000002, 0.75, parent, parentList = self, txtColor = color, pressEffect = False, frameColor = (0, 0, 0, 0))
+            newItem = ButtonListItem(item, 0.08, 0.75, parent, parentList = self, txtColor = color, pressEffect = False, frameColor = (0, 0, 0, 0))
         else:
             newItem = LookoutListItem(item, self.parentPanel.TOPLEVEL_GUI_FILE, 0.16, 0.75, parent, parentList = self, txtColor = color, pressEffect = False, frameColor = (0, 0, 0, 0), wantFrame = True)
             if self.parentPanel.invited == None:
@@ -163,8 +163,8 @@ class LookoutRequestLVL2(DirectFrame, InventoryRequestGameType):
                     if itemList and len(itemList) > 0:
                         parentInfo = {
                             'parent': newItem,
-                            'pos': (0.67500000000000004, 0, 0.105),
-                            'scale': 0.17999999999999999 }
+                            'pos': (0.675000, 0, 0.105),
+                            'scale': 0.179 }
                         self.createOptionsButton(parentInfo = parentInfo)
 
 
@@ -264,7 +264,7 @@ class LookoutRequestLVL2(DirectFrame, InventoryRequestGameType):
 
         def gotOptions(itemList):
             if itemList and len(itemList) > 0:
-                self.optionsPanel = LookoutRequestLVL3(PLocalizer.LookoutOptionsTitle, titleTextScale = 0.050000000000000003, itemList = itemList, optionsFor = selectedItem.value)
+                self.optionsPanel = LookoutRequestLVL3(PLocalizer.LookoutOptionsTitle, titleTextScale = 0.050000, itemList = itemList, optionsFor = selectedItem.value)
                 self.optionsPanel.reparentTo(self.parentPanel)
                 self.optionsPanel.setPos(0, 0, 0)
                 self.optionsPanel.setParentPanel(self)

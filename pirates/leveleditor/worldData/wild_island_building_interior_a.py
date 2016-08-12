@@ -8,14 +8,14 @@ objectStruct = {
                 '1157578928.58sdnaik': {
                     'Type': 'Crate',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-9.0939999999999994, -18.896999999999998, 1.2450000000000001),
+                    'Pos': Point3(-9.0934, -18.8968, 1.245),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/crate' } },
                 '1157578938.84sdnaik': {
                     'Type': 'Crate',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-9.6600000000000001, -23.718, 1.228),
+                    'Pos': Point3(-9.66, -23.718, 1.228),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/crate' } } },

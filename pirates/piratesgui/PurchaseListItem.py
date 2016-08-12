@@ -54,37 +54,37 @@ class PurchaseListItem(InventoryListItem):
         self.itemCount += 1
         self.itemQuantity = self.quantity
         self.itemCost = self.price
-        self.picture = DirectFrame(parent = self, relief = None, state = DGG.DISABLED, pos = (0.035000000000000003, 0, 0.025000000000000001))
-        self.quantityLabel = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, text = str(self.quantity), text_fg = PiratesGuiGlobals.TextFG2, text_scale = PiratesGuiGlobals.TextScaleSmall * PLocalizer.getHeadingScale(2), text_align = TextNode.ARight, text_wordwrap = 11, pos = (0.1225, 0, 0.014999999999999999))
+        self.picture = DirectFrame(parent = self, relief = None, state = DGG.DISABLED, pos = (0.035000, 0, 0.0250))
+        self.quantityLabel = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, text = str(self.quantity), text_fg = PiratesGuiGlobals.TextFG2, text_scale = PiratesGuiGlobals.TextScaleSmall * PLocalizer.getHeadingScale(2), text_align = TextNode.ARight, text_wordwrap = 11, pos = (0.1225, 0, 0.0149))
         if len(self.name) >= 39:
             textScale = PiratesGuiGlobals.TextScaleMicro * PLocalizer.getHeadingScale(2)
         elif len(self.name) >= 35:
             textScale = PiratesGuiGlobals.TextScaleTiny * PLocalizer.getHeadingScale(2)
         else:
             textScale = PiratesGuiGlobals.TextScaleSmall * PLocalizer.getHeadingScale(2)
-        self.nameTag = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, text = self.name, text_fg = PiratesGuiGlobals.TextFG2, text_scale = textScale, text_align = TextNode.ALeft, pos = (0.13, 0, 0.014999999999999999))
-        self.costText = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, image = InventoryListItem.coinImage, image_scale = 0.12, image_pos = Vec3(-0.0050000000000000001, 0, 0.012500000000000001), text = str(self.price), text_fg = PiratesGuiGlobals.TextFG2, text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ARight, text_wordwrap = 11, text_pos = (-0.029999999999999999, 0, 0), pos = (self.width - 0.035000000000000003, 0, 0.014999999999999999), text_font = PiratesGlobals.getInterfaceFont())
+        self.nameTag = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, text = self.name, text_fg = PiratesGuiGlobals.TextFG2, text_scale = textScale, text_align = TextNode.ALeft, pos = (0.13, 0, 0.0149))
+        self.costText = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, image = InventoryListItem.coinImage, image_scale = 0.12, image_pos = Vec3(-0.00500, 0, 0.0125), text = str(self.price), text_fg = PiratesGuiGlobals.TextFG2, text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ARight, text_wordwrap = 11, text_pos = (-0.0299, 0, 0), pos = (self.width - 0.035000, 0, 0.0149), text_font = PiratesGlobals.getInterfaceFont())
         itemClass = EconomyGlobals.getItemCategory(itemId)
         itemType = EconomyGlobals.getItemType(itemId)
         if itemType == ItemType.FISHING_ROD or itemType == ItemType.FISHING_LURE:
             asset = EconomyGlobals.getItemIcons(itemId)
             if asset:
                 self.picture['geom'] = PurchaseListItem.fishingIcons.find('**/%s*' % asset)
-                self.picture['geom_scale'] = 0.040000000000000001
+                self.picture['geom_scale'] = 0.0400
                 self.picture['geom_pos'] = (0, 0, 0)
 
         elif itemClass == ItemType.WEAPON or itemClass == ItemType.POUCH:
             asset = EconomyGlobals.getItemIcons(itemId)
             if asset:
                 self.picture['geom'] = InventoryListItem.weaponIcons.find('**/%s*' % asset)
-                self.picture['geom_scale'] = 0.040000000000000001
+                self.picture['geom_scale'] = 0.0400
                 self.picture['geom_pos'] = (0, 0, 0)
 
         elif itemClass == ItemType.CONSUMABLE:
             asset = EconomyGlobals.getItemIcons(itemId)
             if asset:
                 self.picture['geom'] = InventoryListItem.skillIcons.find('**/%s*' % asset)
-                self.picture['geom_scale'] = 0.040000000000000001
+                self.picture['geom_scale'] = 0.0400
                 self.picture['geom_pos'] = (0, 0, 0)
 
 
@@ -95,13 +95,13 @@ class PurchaseListItem(InventoryListItem):
                     asset = WeaponGlobals.getSkillIcon(skillId)
                     if asset:
                         self.picture['geom'] = InventoryListItem.skillIcons.find('**/%s' % asset)
-                        self.picture['geom_scale'] = 0.059999999999999998
+                        self.picture['geom_scale'] = 0.0598
                         self.picture['geom_pos'] = (0, 0, 0)
 
 
             elif InventoryType.SmallBottle <= itemId and itemId <= InventoryType.LargeBottle:
                 self.picture['geom'] = self.topGui.find('**/main_gui_ship_bottle')
-                self.picture['geom_scale'] = 0.10000000000000001
+                self.picture['geom_scale'] = 0.100
                 self.picture['geom_pos'] = (0, 0, 0)
 
         self.flattenStrong()

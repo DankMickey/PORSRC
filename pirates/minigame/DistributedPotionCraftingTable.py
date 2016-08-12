@@ -33,9 +33,9 @@ class DistributedPotionCraftingTable(DistributedInteractive):
         self.setAllowInteract(1)
         self.effect = PotionTableSmoke.getEffect()
         if self.effect:
-            self.effect.setPos(1.3, 0.10000000000000001, 3.5)
+            self.effect.setPos(1.3, 0.100, 3.5)
             self.effect.setEffectScale(0.25)
-            self.effect.setEffectColor(Vec4(0.59999999999999998, 0.40000000000000002, 1.0, 1.0))
+            self.effect.setEffectColor(Vec4(0.598, 0.4, 1.0, 1.0))
             self.effect.reparentTo(self)
             self.effect.play()
 

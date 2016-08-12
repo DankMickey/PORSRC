@@ -14,13 +14,13 @@ objectStruct = {
                         '1176267365.83sdnaik': {
                             'Type': 'LOD Sphere',
                             'Hpr': Point3(0.0, 0.0, 0.0),
-                            'Pos': Point3(-40.881999999999998, 79.287000000000006, 47.831000000000003),
+                            'Pos': Point3(-40.8818, 79.287, 47.831),
                             'Radi': [
                                 4000,
                                 8000,
                                 16000],
                             'Scale': VBase3(1.0, 1.0, 1.0) } },
-                    'Pos': Point3(48.484999999999999, 62.68, 0.0),
+                    'Pos': Point3(48.484, 62.68, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/islands/pir_m_are_isl_driftwood' } } },

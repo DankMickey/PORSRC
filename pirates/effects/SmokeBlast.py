@@ -66,13 +66,13 @@ class SmokeBlast(PooledEffect, EffectController):
 
 
     def createTrack(self):
-        self.track = Sequence(Func(self.p0.setBirthRate, 0.050000000000000003), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self), Wait(1.0), Func(self.p0.setBirthRate, 100), Wait(3.0), Func(self.cleanUpEffect))
+        self.track = Sequence(Func(self.p0.setBirthRate, 0.050000), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self), Wait(1.0), Func(self.p0.setBirthRate, 100), Wait(3.0), Func(self.cleanUpEffect))
 
 
     def setEffectScale(self, scale):
-        self.p0.renderer.setInitialXScale(0.14999999999999999 * self.cardScale * scale)
+        self.p0.renderer.setInitialXScale(0.149 * self.cardScale * scale)
         self.p0.renderer.setFinalXScale(0.25 * self.cardScale * scale)
-        self.p0.renderer.setInitialYScale(0.14999999999999999 * self.cardScale * scale)
+        self.p0.renderer.setInitialYScale(0.149 * self.cardScale * scale)
         self.p0.renderer.setFinalYScale(0.25 * self.cardScale * scale)
         self.p0.emitter.setAmplitude(-2.0 * scale)
         self.p0.emitter.setAmplitudeSpread(1.0 * scale)

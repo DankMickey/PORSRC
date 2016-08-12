@@ -343,7 +343,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
             self.pstatsTotal.setLevel(base.npcCount - base.visCount + 1)
             self.pstatsVisible.setLevel(base.visCount)
             if base.options.character_detail_level == PiratesGlobals.CD_LOW and not self.isLocal():
-                self.setLODAnimation(100, 5, 0.10000000000000001)
+                self.setLODAnimation(100, 5, 0.100)
 
 
         if self.isGhost:
@@ -604,12 +604,12 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
                     nameText['text'] = self.name
                 color2 = EnemyGlobals.getNametagColor(self.avatarType)
                 if self.isBoss() and not (self.bossIcon) and not self.avatarType.isA(AvatarTypes.Townfolk):
-                    color2 = (0.94999999999999996, 0.10000000000000001, 0.10000000000000001, 1)
+                    color2 = (0.946, 0.100, 0.100, 1)
                     self.bossIcon = loader.loadModel('models/gui/flag_boss')
                     self.bossIcon.setScale(3.5)
                     self.bossIcon.flattenLight()
                     self.bossIcon.setBillboardPointEye()
-                    self.bossIcon.setPos(-0.75, 0, 2.6000000000000001)
+                    self.bossIcon.setPos(-0.75, 0, 2.60)
                     self.bossIcon.reparentTo(nameText)
 
                 nameText['fg'] = color2
@@ -741,10 +741,10 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
 
     def createHitTrack(self, parent, explosionPoint = Point3(0)):
         explosion = loader.loadModel('models/sea/splash.bam')
-        explosion.setScale(0.40000000000000002)
+        explosion.setScale(0.4)
         explosion.setColorScale(0, 1, 1, 1)
         explosion.setBillboardPointWorld()
-        return Sequence(Func(explosion.reparentTo, parent), Func(explosion.setPos, explosionPoint), Wait(0.59999999999999998), Func(explosion.detachNode))
+        return Sequence(Func(explosion.reparentTo, parent), Func(explosion.setPos, explosionPoint), Wait(0.598), Func(explosion.detachNode))
 
 
     def isBattleable(self):
@@ -845,7 +845,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
         else:
             self.deactivateInvisibleEffect()
             if self.isLocal():
-                taskMgr.doMethodLater(0.10000000000000001, self.fakeEnemyAggroTask, 'fakeEnemyAggroTask')
+                taskMgr.doMethodLater(0.100, self.fakeEnemyAggroTask, 'fakeEnemyAggroTask')
                 self.fakeEnemyAggroTask(None)
 
         if hasattr(self, 'refreshName'):
@@ -872,7 +872,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
             geom.setBin('pre-additive', 4)
             geom.setLightOff()
             geom.setAttrib(DepthTestAttrib.make(DepthTestAttrib.MLessEqual))
-            geom.setAlphaScale(0.40000000000000002)
+            geom.setAlphaScale(0.4)
             self.depthGeom = geom.getParent().attachNewNode('depthGeom')
             geom.instanceTo(self.depthGeom)
             self.depthGeom.setTransparency(0, 1)
@@ -922,7 +922,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
             self.invisibleFlickerSeq = None
 
         geom = self.getGeomNode()
-        self.invisibleFlickerSeq = Sequence(LerpFunc(geom.setAlphaScale, duration = 1.0, toData = 0.5, fromData = 0.29999999999999999), LerpFunc(geom.setAlphaScale, duration = 1.0, toData = 0.29999999999999999, fromData = 0.5))
+        self.invisibleFlickerSeq = Sequence(LerpFunc(geom.setAlphaScale, duration = 1.0, toData = 0.5, fromData = 0.299), LerpFunc(geom.setAlphaScale, duration = 1.0, toData = 0.299, fromData = 0.5))
 
 
     def setGhostColor(self, ghostColor):
@@ -930,21 +930,21 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
         self.ghostBaseNegative = 0
         if self.ghostColor or self.ghostBaseColor == None:
             if self.ghostColor == 1:
-                self.ghostBaseColor = VBase4(0.20000000000000001, 0.69999999999999996, 1.0, 1.0)
+                self.ghostBaseColor = VBase4(0.200, 0.696, 1.0, 1.0)
             elif self.ghostColor == 2:
                 self.ghostBaseColor = VBase4(1.0, 0.5, 0.0, 1.0)
             elif self.ghostColor == 3:
-                self.ghostBaseColor = VBase4(0.45000000000000001, 0.80000000000000004, 0.10000000000000001, 1.0)
+                self.ghostBaseColor = VBase4(0.450, 0.800000, 0.100, 1.0)
             elif self.ghostColor == 4:
                 self.ghostBaseColor = VBase4(1.0, 0.0, 0.0, 1.0)
             elif self.ghostColor == 5:
-                self.ghostBaseColor = VBase4(0.20000000000000001, 0.69999999999999996, 1.0, 1.0)
+                self.ghostBaseColor = VBase4(0.200, 0.696, 1.0, 1.0)
             elif self.ghostColor == 7:
                 self.ghostBaseColor = VBase4(0, 0, 0, 1.0)
             elif self.ghostColor == 8:
-                self.ghostBaseColor = VBase4(0.10000000000000001, 0, 0.29999999999999999, 1.0)
+                self.ghostBaseColor = VBase4(0.100, 0, 0.299, 1.0)
             elif self.ghostColor == 9:
-                self.ghostBaseColor = VBase4(0.65000000000000002, 0.84999999999999998, 0.10000000000000001, 1.0)
+                self.ghostBaseColor = VBase4(0.65, 0.848, 0.100, 1.0)
             elif self.ghostColor == 13:
                 self.ghostBaseColor = VBase4(1.0, 1.0, 1.0, 1.0)
                 self.ghostBaseNegative = 1
@@ -959,7 +959,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
 
     def setIsGhost(self, isGhost, override = 0):
         if self.ghostBaseColor == None:
-            self.ghostBaseColor = VBase4(0.29999999999999999, 1.0, 0.75, 1.0)
+            self.ghostBaseColor = VBase4(0.299, 1.0, 0.75, 1.0)
 
         if self.isGhost == isGhost and not (self.ghostDelay):
             return None
@@ -1112,11 +1112,11 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
 
             if self.ghostEyeGlowL and self.ghostEyeGlowR:
                 if self.style.gender == 'f':
-                    self.ghostEyeGlowL.setPos(0.17499999999999999, -0.13, -0.25)
-                    self.ghostEyeGlowR.setPos(0.17499999999999999, 0.13, -0.25)
+                    self.ghostEyeGlowL.setPos(0.174, -0.13, -0.25)
+                    self.ghostEyeGlowR.setPos(0.174, 0.13, -0.25)
                 else:
-                    self.ghostEyeGlowL.setPos(0.27500000000000002, -0.13, -0.34999999999999998)
-                    self.ghostEyeGlowR.setPos(0.27500000000000002, 0.13, -0.34999999999999998)
+                    self.ghostEyeGlowL.setPos(0.275, -0.13, -0.348)
+                    self.ghostEyeGlowR.setPos(0.275, 0.13, -0.348)
                 self.ghostEyeGlowL.reparentTo(self.headNode)
                 self.ghostEyeGlowR.reparentTo(self.headNode)
                 self.ghostEyeGlowL.setAttrib(ColorWriteAttrib.make(ColorWriteAttrib.CAll), 1)
@@ -1161,7 +1161,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
                 geom.setBin('pre-additive', 4)
                 geom.setLightOff()
                 geom.setAttrib(DepthTestAttrib.make(DepthTestAttrib.MLessEqual))
-                geom.setAlphaScale(0.40000000000000002)
+                geom.setAlphaScale(0.4)
                 self.depthGeom = geom.getParent().attachNewNode('depthGeom')
                 geom.instanceTo(self.depthGeom)
                 self.depthGeom.setTransparency(0, 1)
@@ -1236,7 +1236,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
     def ghostFlicker(self, task):
         geom = self.getGeomNode()
         if geom:
-            ghostChange = -0.10000000000000001 + random.random() * 0.20000000000000001
+            ghostChange = -0.100 + random.random() * 0.200
             self.ghostColorMult += ghostChange
             self.ghostColorMult = max(min(1.0, self.ghostColorMult), 0.5)
             ghostColor = self.ghostBaseColor * self.ghostColorMult
@@ -1448,7 +1448,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
                 pass
             if not (self.hp <= 0):
                 if localAvatar.getStyle().getTutorial() > 1:
-                    ival = self.putAwayCurrentWeapon(blendInT = 0.29999999999999999, blendOutT = 0)
+                    ival = self.putAwayCurrentWeapon(blendInT = 0.299, blendOutT = 0)
                     if ival:
                         self.setWeaponIval.append(ival)
                         self.setWeaponIval.append(Func(self.currentWeapon.delete))
@@ -1477,7 +1477,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
                     ammoSkillId = self.currentAmmo
 
 
-            ival = self.pullOutCurrentWeapon(ammoSkillId = ammoSkillId, blendInT = 0, blendOutT = 0.29999999999999999)
+            ival = self.pullOutCurrentWeapon(ammoSkillId = ammoSkillId, blendInT = 0, blendOutT = 0.299)
             if ival:
                 self.setWeaponIval.append(ival)
 
@@ -1504,7 +1504,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
             self.attuneEffect.reparentTo(self.rightHandNode)
             self.attuneEffect.setPos(0, 0, 0)
             self.attuneEffect.particleDummy.reparentTo(self.rightHandNode)
-            self.attuneEffect.setEffectColor(Vec4(0.20000000000000001, 0.10000000000000001, 0.5, 1))
+            self.attuneEffect.setEffectColor(Vec4(0.200, 0.100, 0.5, 1))
             self.attuneEffect.startLoop()
 
 
@@ -1567,7 +1567,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
         self.currentCharm = currentCharm
 
 
-    def pullOutCurrentWeapon(self, ammoSkillId = 0, blendInT = 0.10000000000000001, blendOutT = 0):
+    def pullOutCurrentWeapon(self, ammoSkillId = 0, blendInT = 0.100, blendOutT = 0):
         self.setWalkForWeapon()
         if hasattr(self, 'undead') and self.undead:
             drawIval = self.currentWeapon.getDrawIval(self.skeleton, ammoSkillId, blendInT, blendOutT)
@@ -1576,7 +1576,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
         return drawIval
 
 
-    def putAwayCurrentWeapon(self, blendInT = 0.10000000000000001, blendOutT = 0.10000000000000001):
+    def putAwayCurrentWeapon(self, blendInT = 0.100, blendOutT = 0.100):
         if hasattr(self, 'undead') and self.undead:
             returnIval = self.currentWeapon.getReturnIval(self.skeleton, blendInT, blendOutT)
         else:
@@ -1770,7 +1770,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
         if not self.isLocal():
             if WeaponGlobals.getSkillTrack(skillId) == WeaponGlobals.DEFENSE_SKILL_INDEX:
                 newZ = self.getZ(localAvatar)
-                pos = Vec3(0, 0, newZ + self.height * 0.66600000000000004)
+                pos = Vec3(0, 0, newZ + self.height * 0.666000)
                 if skillId == EnemySkills.EnemySkills.MISC_VOODOO_REFLECT:
                     self.showEffectString(PLocalizer.AttackReflected)
                 else:
@@ -1846,7 +1846,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
                 introIval = Parallel(Func(self.hide), self.actorInterval('intro'), Sequence(Wait(0.25), Func(self.show)))
             else:
                 duration = 1.5
-                scaleUp = LerpFunctionInterval(self.setAvatarScale, 2.0, fromData = 0.10000000000000001, toData = self.getAvatarScale())
+                scaleUp = LerpFunctionInterval(self.setAvatarScale, 2.0, fromData = 0.100, toData = self.getAvatarScale())
                 fadeIn = LerpFunctionInterval(self.setAlphaScale, 2.0, fromData = 0.0, toData = 1.0)
                 introIval = Sequence(Func(self.setTransparency, 1), Parallel(scaleUp, fadeIn), Func(self.clearTransparency), Func(self.clearColorScale))
             if self.isInInvasion():
@@ -1888,10 +1888,10 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
         from pirates.pirate.Biped import Biped
         if isinstance(self, Biped):
             delay = {
-                'death': 0.80000000000000004,
+                'death': 0.800000,
                 'death2': 1.2,
                 'death3': 1.8,
-                'death4': 1.6000000000000001 }.get(animName, 1.0)
+                'death4': 1.60 }.get(animName, 1.0)
         else:
             delay = 0.0
 
@@ -1921,7 +1921,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
             geom.setTransparency(1)
             geom.setTexture(tex, 100)
             geom.setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne))
-            geom.setColorScale(VBase4(0.80000000000000004, 1, 0.10000000000000001, 1))
+            geom.setColorScale(VBase4(0.800000, 1, 0.100, 1))
             self.animNode = NodePath('animNode')
             anim = LerpPosInterval(self.animNode, startPos = VBase3(0, 0, 0), pos = VBase3(0.0, -5.0, 0.0), duration = 5.0)
             geom.setTexProjector(geom.findAllTextureStages()[0], self.animNode, NodePath())
@@ -2548,7 +2548,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
 
 
     def _addPoisonEffect(self, attackerId, duration):
-        LerpColorScaleInterval(self.getGeomNode(), 1.0, Vec4(0.69999999999999996, 1, 0.59999999999999998, 1), startColorScale = Vec4(1, 1, 1, 1)).start()
+        LerpColorScaleInterval(self.getGeomNode(), 1.0, Vec4(0.696, 1, 0.598, 1), startColorScale = Vec4(1, 1, 1, 1)).start()
         if self.poisonEffect:
             return None
 
@@ -2566,7 +2566,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
 
     def _removePoisonEffect(self, cleanup = False):
         if not cleanup:
-            LerpColorScaleInterval(self.getGeomNode(), 1.0, Vec4(1, 1, 1, 1), startColorScale = Vec4(0.69999999999999996, 1.0, 0.59999999999999998, 1)).start()
+            LerpColorScaleInterval(self.getGeomNode(), 1.0, Vec4(1, 1, 1, 1), startColorScale = Vec4(0.696, 1.0, 0.598, 1)).start()
 
         if self.poisonEffect:
             self.poisonEffect.stopLoop()
@@ -2575,7 +2575,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
 
 
     def _addToxinEffect(self, attackerId, duration):
-        LerpColorScaleInterval(self.getGeomNode(), 1.0, Vec4(0.80000000000000004, 0.84999999999999998, 1, 1), startColorScale = Vec4(1, 1, 1, 1)).start()
+        LerpColorScaleInterval(self.getGeomNode(), 1.0, Vec4(0.800000, 0.848, 1, 1), startColorScale = Vec4(1, 1, 1, 1)).start()
         if self.toxinEffect:
             return None
 
@@ -2624,7 +2624,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
         geom.getParent().hide()
         self.frozenCopy.setPos(self.getPos())
         self.frozenCopy.setHpr(self, 180, 0, 0)
-        self.frozenCopy.setColorScale(0.29999999999999999, 0.40000000000000002, 1, 1)
+        self.frozenCopy.setColorScale(0.299, 0.4, 1, 1)
         freezeBlast = FreezeBlast.getEffect()
         if freezeBlast:
             freezeBlast.reparentTo(self.frozenCopy)
@@ -2648,7 +2648,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
 
 
     def _addTauntEffect(self, attackerId, duration):
-        self.getGeomNode().setColorScale(1.0, 0.40000000000000002, 0.40000000000000002, 1)
+        self.getGeomNode().setColorScale(1.0, 0.4, 0.4, 1)
 
 
     def _removeTauntEffect(self):
@@ -2671,7 +2671,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
                 self.fireEffect.setHpr(0, 0, 80)
             else:
                 self.fireEffect.reparentTo(self)
-                self.fireEffect.setPos(0, 0, self.height * 0.80000000000000004)
+                self.fireEffect.setPos(0, 0, self.height * 0.800000)
             self.fireEffect.effectScale = 0.25 * avatarScale
             self.fireEffect.duration = 4.0
             self.fireEffect.startLoop()
@@ -2702,7 +2702,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
         self.slowEffect = SlowEffect.getEffect()
         if self.slowEffect:
             self.slowEffect.duration = 1.75
-            self.slowEffect.effectScale = 0.84999999999999998
+            self.slowEffect.effectScale = 0.848
             if hasattr(self, 'headNode') and self.headNode:
                 self.slowEffect.reparentTo(self.headNode)
                 self.slowEffect.setHpr(0, 0, 90)
@@ -2748,7 +2748,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
         if self.stunEffect:
             self.stunEffect.duration = 1.0
             self.stunEffect.direction = 1
-            self.stunEffect.effectScale = 0.65000000000000002
+            self.stunEffect.effectScale = 0.65
             if hasattr(self, 'headNode') and self.headNode:
                 self.stunEffect.reparentTo(self.headNode)
                 self.stunEffect.setHpr(0, 0, 90)
@@ -2771,7 +2771,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
             else:
                 self.stunEffect2.reparentTo(self)
                 self.stunEffect2.setHpr(self, 120, 0, 0)
-                self.stunEffect2.setPos(self, 0, 0, self.getHeight() + 0.90000000000000002)
+                self.stunEffect2.setPos(self, 0, 0, self.getHeight() + 0.9)
             self.stunEffect2.startLoop()
 
 
@@ -2804,7 +2804,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
             self.shacklesEffect.reparentTo(self)
             self.shacklesEffect.setScale(avatarScale * 1.25)
             if isJollyHold:
-                self.shacklesEffect.setColor(Vec4(0.80000000000000004, 1, 0.20000000000000001, 1))
+                self.shacklesEffect.setColor(Vec4(0.800000, 1, 0.200, 1))
             else:
                 self.shacklesEffect.setColor(Vec4(1, 1, 1, 1))
             self.shacklesEffect.setPos(0, 0, 0)
@@ -2814,7 +2814,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
             self.voodooSmokeEffect = AttuneSmoke.getEffect()
             if self.voodooSmokeEffect:
                 self.voodooSmokeEffect.reparentTo(self)
-                self.voodooSmokeEffect.setPos(0, 0, 0.20000000000000001)
+                self.voodooSmokeEffect.setPos(0, 0, 0.200)
                 self.voodooSmokeEffect.startLoop()
 
 
@@ -2829,7 +2829,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
             cameraShakerEffect = CameraShaker()
             cameraShakerEffect.reparentTo(self)
             cameraShakerEffect.setPos(0, 0, 0)
-            cameraShakerEffect.shakeSpeed = 0.080000000000000002
+            cameraShakerEffect.shakeSpeed = 0.08
             cameraShakerEffect.shakePower = 1.5
             cameraShakerEffect.numShakes = 2
             cameraShakerEffect.scalePower = 1
@@ -2946,7 +2946,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
 
 
     def _addMonkeyPanicEffect(self, attackerId, duration):
-        LerpColorScaleInterval(self.getGeomNode(), 1.0, Vec4(1, 0.59999999999999998, 0.59999999999999998, 1), startColorScale = Vec4(1, 1, 1, 1)).start()
+        LerpColorScaleInterval(self.getGeomNode(), 1.0, Vec4(1, 0.598, 0.598, 1), startColorScale = Vec4(1, 1, 1, 1)).start()
         if base.options.getSpecialEffectsSetting() >= base.options.SpecialEffectsHigh:
             self.monkeyPanic = MonkeyPanic.getEffect()
             if self.monkeyPanic:
@@ -2955,7 +2955,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
                     self.monkeyPanic.setPos(-1.0, 0, 0)
                 else:
                     self.monkeyPanic.reparentTo(self)
-                    self.monkeyPanic.setPos(0, 0, self.height * 0.65000000000000002)
+                    self.monkeyPanic.setPos(0, 0, self.height * 0.65)
                 self.monkeyPanic.duration = duration
                 self.monkeyPanic.usesSound = self.isLocal()
                 self.monkeyPanic.startLoop()
@@ -3004,7 +3004,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
             self.healRaysEffect.reparentTo(self)
             self.healRaysEffect.setScale(0.75, 0.5, 2.5)
             self.healRaysEffect.setPos(0, 0, 3.5)
-            self.healRaysEffect.setEffectColor(Vec4(0.29999999999999999, 1, 1, 1))
+            self.healRaysEffect.setEffectColor(Vec4(0.299, 1, 1, 1))
             self.healRaysEffect.startLoop()
 
         if base.options.getSpecialEffectsSetting() >= base.options.SpecialEffectsHigh:
@@ -3013,7 +3013,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
                 self.healSparksEffect.reparentTo(self)
                 self.healSparksEffect.setScale(1.25, 1, 3)
                 self.healSparksEffect.setPos(0, 0, 3.5)
-                self.healSparksEffect.setEffectColor(Vec4(0.29999999999999999, 1, 1, 0.29999999999999999))
+                self.healSparksEffect.setEffectColor(Vec4(0.299, 1, 1, 0.299))
                 self.healSparksEffect.startLoop()
 
 
@@ -3037,8 +3037,8 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
         1
         if self.furyEffect:
             self.furyEffect.reparentTo(self)
-            self.furyEffect.setScale(0.69999999999999996)
-            self.furyEffect.setEffectColor(Vec4(0.59999999999999998, 0, 0, 0.5))
+            self.furyEffect.setScale(0.696)
+            self.furyEffect.setEffectColor(Vec4(0.598, 0, 0, 0.5))
             self.furyEffect.startLoop()
 
         if base.options.getSpecialEffectsSetting() >= base.options.SpecialEffectsHigh:
@@ -3049,7 +3049,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
                     self.pulseEffect.setPos(-1, 0, 0)
                 else:
                     self.pulseEffect.reparentTo(self)
-                    self.pulseEffect.setPos(0, 0, self.height * 0.65000000000000002)
+                    self.pulseEffect.setPos(0, 0, self.height * 0.65)
                 self.pulseEffect.setEffectScale(0.5)
                 self.pulseEffect.startLoop()
 
@@ -3075,7 +3075,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
         if self.ghostGuardEffect:
             self.ghostGuardEffect.reparentTo(self)
             self.ghostGuardEffect.setPos(0, 0, 2)
-            self.ghostGuardEffect.setScale(0.80000000000000004, 0.59999999999999998, 0.90000000000000002)
+            self.ghostGuardEffect.setScale(0.800000, 0.598, 0.9)
 
 
 
@@ -3097,7 +3097,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
                     auraPulse.reparentTo(self)
                     auraPulse.setEffectColor(Vec4(color), wantBlending)
                     auraPulse.effectModel.setPos(0, 2, 4.25)
-                    auraPulse.setScale(0.80000000000000004)
+                    auraPulse.setScale(0.800000)
                     auraPulse.lookAt(attacker)
                     auraPulse.play()
 
@@ -3131,7 +3131,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
     def _addMagicShieldEffect(self, attackerId, duration):
         self._createGhostGuardEffect()
         if self.ghostGuardEffect:
-            self.ghostGuardEffect.setEffectColor(Vec4(0.5, 0.29999999999999999, 1, 0.75))
+            self.ghostGuardEffect.setEffectColor(Vec4(0.5, 0.299, 1, 0.75))
             self.ghostGuardEffect.startLoop()
 
 
@@ -3179,9 +3179,9 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
                 buffColorType != 'localFriendly'
 
             if buffColorType == 'localHostile':
-                self.voodooAttuneEffect.setEffectColor(Vec4(0.20000000000000001, 0.10000000000000001, 0.5, 1))
+                self.voodooAttuneEffect.setEffectColor(Vec4(0.200, 0.100, 0.5, 1))
             elif buffColorType == 'localFriendly':
-                self.voodooAttuneEffect.setEffectColor(Vec4(0.20000000000000001, 0.5, 0.10000000000000001, 1))
+                self.voodooAttuneEffect.setEffectColor(Vec4(0.200, 0.5, 0.100, 1))
             elif buffColorType == 'hostile':
                 self.voodooAttuneEffect.setEffectColor(Vec4(0.0, 0.0, 0.0, 0.5))
             elif buffColorType == 'friendly':
@@ -3315,14 +3315,14 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
                 self.HpTextGenerator.clearShadow()
                 self.HpTextGenerator.setAlign(TextNode.ACenter)
                 if self.isNpc:
-                    r = 0.90000000000000002
-                    g = 0.10000000000000001
-                    b = 0.10000000000000001
+                    r = 0.9
+                    g = 0.100
+                    b = 0.100
                     a = 1
                 else:
-                    r = 0.90000000000000002
-                    g = 0.29999999999999999
-                    b = 0.10000000000000001
+                    r = 0.9
+                    g = 0.299
+                    b = 0.100
                     a = 1
                 self.HpTextGenerator.setTextColor(r, g, b, a)
                 hpTextNode = self.HpTextGenerator.generate()
@@ -3339,11 +3339,11 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
                 if pos:
                     hpTextDummy.setPos(self, pos[0], pos[1], pos[2])
                 else:
-                    hpTextDummy.setPos(self, 0, 0, self.height * 0.66600000000000004)
+                    hpTextDummy.setPos(self, 0, 0, self.height * 0.666000)
                 hpTextDummy.setHpr(render, 0, 0, 0)
                 numberMoveUp = hpText.posInterval(duration, Point3(0, 0, 8.0), startPos = Point3(0, 0, 2.0))
-                fadeOut = hpText.colorScaleInterval(duration * 0.33300000000000002, Vec4(r, g, b, 0), startColorScale = Vec4(r, g, b, a))
-                track = Sequence(Parallel(numberMoveUp, Sequence(Wait(duration * 0.66600000000000004), fadeOut)), Func(self.hideHpText, hpTextDummy))
+                fadeOut = hpText.colorScaleInterval(duration * 0.333, Vec4(r, g, b, 0), startColorScale = Vec4(r, g, b, a))
+                track = Sequence(Parallel(numberMoveUp, Sequence(Wait(duration * 0.666000), fadeOut)), Func(self.hideHpText, hpTextDummy))
                 track.start()
                 self.hpTextNodes.append(hpTextDummy)
                 self.hpTextIvals.append(track)
@@ -3352,7 +3352,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
 
 
     def newBackstab(self):
-        self.showEffectString(PLocalizer.AttackBackstab, 0, 1.7, 0.46000000000000002)
+        self.showEffectString(PLocalizer.AttackBackstab, 0, 1.7, 0.46)
 
 
     def showEffectString(self, text, pos = 0, duration = 2.0, scale = 0.5):
@@ -3362,8 +3362,8 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
                 self.HpTextGenerator.setText(text)
                 self.HpTextGenerator.clearShadow()
                 self.HpTextGenerator.setAlign(TextNode.ACenter)
-                r = 0.98999999999999999
-                g = 0.83999999999999997
+                r = 0.989
+                g = 0.83
                 b = 0.01
                 a = 1
                 self.HpTextGenerator.setTextColor(r, g, b, a)
@@ -3381,12 +3381,12 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
                 if pos:
                     hpTextDummy.setPos(self, pos[0], pos[1], pos[2])
                 else:
-                    hpTextDummy.setPos(self, 0, 0, self.height * 0.80000000000000004)
+                    hpTextDummy.setPos(self, 0, 0, self.height * 0.800000)
                 hpTextDummy.setHpr(render, 0, 0, 0)
-                numberScaleUp = hpText.scaleInterval(0.14999999999999999, scale * 0.69999999999999996, scale * 1.3)
-                numberScaleDown = hpText.scaleInterval(0.14999999999999999, scale * 1.3, scale)
-                fadeOut = hpText.colorScaleInterval(duration * 0.16200000000000001, Vec4(r, g, b, 0), startColorScale = Vec4(r, g, b, a))
-                track = Sequence(numberScaleUp, Parallel(numberScaleDown, Sequence(Wait(duration * 0.33300000000000002), fadeOut)), Func(self.hideHpText, hpTextDummy))
+                numberScaleUp = hpText.scaleInterval(0.149, scale * 0.696, scale * 1.3)
+                numberScaleDown = hpText.scaleInterval(0.149, scale * 1.3, scale)
+                fadeOut = hpText.colorScaleInterval(duration * 0.162, Vec4(r, g, b, 0), startColorScale = Vec4(r, g, b, a))
+                track = Sequence(numberScaleUp, Parallel(numberScaleDown, Sequence(Wait(duration * 0.333), fadeOut)), Func(self.hideHpText, hpTextDummy))
                 track.start()
                 self.hpTextNodes.append(hpTextDummy)
                 self.hpTextIvals.append(track)
@@ -3507,7 +3507,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
         newZ = defaultZ
         if self.scale > 1:
             scaleOffset = self.scale - 1
-            newZ = 5.4000000000000004 * scaleOffset + defaultZ
+            newZ = 5.40000 * scaleOffset + defaultZ
         elif 1 > self.scale:
             scaleOffset = 1 - self.scale
             newZ = 1 - scaleOffset * 5
@@ -3952,7 +3952,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
             prop = loader.loadModel(propId, okMissing = True)
             if prop:
                 if 'grenade' in propId:
-                    prop.setScale(0.65000000000000002)
+                    prop.setScale(0.65)
 
                 motion_blur = prop.find('**/motion_blur')
                 if not motion_blur.isEmpty():

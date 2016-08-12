@@ -5,7 +5,7 @@ import gc
 
 class SceneBuffer(DirectObject):
 
-    def __init__(self, name, size = Vec2(512, 512) * 2.0, camAspectRatio = 1.0, clearColor = Vec4(0.84999999999999998, 0.84999999999999998, 0.84999999999999998, 1.0), sceneGraph = None):
+    def __init__(self, name, size = Vec2(512, 512) * 2.0, camAspectRatio = 1.0, clearColor = Vec4(0.848, 0.848, 0.848, 1.0), sceneGraph = None):
         DirectObject.__init__(self)
         self.name = name
         self.size = size

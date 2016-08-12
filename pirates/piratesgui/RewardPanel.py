@@ -63,7 +63,7 @@ TextDict = {
 class RewardPanel(PDialog):
 
     def __init__(self, parent = None, type = PiratesGuiGlobals.REWARD_PANEL_BLACK_PEARL, doneCallback = None, **kw):
-        optiondefs = (('pad', (0.55000000000000004, 0.47499999999999998), self.resetFrameSize), ('pos', (0.40000000000000002, 0, 0), None))
+        optiondefs = (('pad', (0.550000, 0.47498), self.resetFrameSize), ('pos', (0.4, 0, 0), None))
         self.defineoptions(kw, optiondefs)
         PDialog.__init__(self, parent)
         self.type = type
@@ -84,10 +84,10 @@ class RewardPanel(PDialog):
             background = skillIcons.find('**/base_over')
             icon = skillIcons.find('**/' + TextDict[type]['icon'])
         icon.reparentTo(background)
-        self.congratsText = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, textMayChange = 1, text = PLocalizer.RewardCongratulations, text_font = PiratesGlobals.getInterfaceOutlineFont(), text_align = TextNode.ACenter, text_scale = 0.12, text_fg = PiratesGuiGlobals.TextFG1, pos = (0.0, 0, 0.34000000000000002))
-        self.completeText = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, textMayChange = 1, text = TextDict[type]['title'], text_font = PiratesGlobals.getInterfaceOutlineFont(), text_align = TextNode.ACenter, text_scale = 0.050000000000000003, text_fg = PiratesGuiGlobals.TextFG2, pos = (0, 0, 0.26000000000000001))
-        self.iconLabel = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, geom = background, geom_scale = 0.29999999999999999, text = TextDict[type]['summary'], text_font = PiratesGlobals.getInterfaceFont(), text_align = TextNode.ACenter, text_scale = 0.040000000000000001, text_fg = PiratesGuiGlobals.TextFG1, text_pos = (0, 0.20000000000000001), pos = (0, 0, -0.029999999999999999))
-        self.descriptionText = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, textMayChange = 1, text = TextDict[type]['description'], text_font = PiratesGlobals.getInterfaceFont(), text_align = TextNode.ACenter, text_scale = 0.037999999999999999, text_fg = PiratesGuiGlobals.TextFG1, pos = (0, 0, -0.26000000000000001))
+        self.congratsText = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, textMayChange = 1, text = PLocalizer.RewardCongratulations, text_font = PiratesGlobals.getInterfaceOutlineFont(), text_align = TextNode.ACenter, text_scale = 0.12, text_fg = PiratesGuiGlobals.TextFG1, pos = (0.0, 0, 0.34))
+        self.completeText = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, textMayChange = 1, text = TextDict[type]['title'], text_font = PiratesGlobals.getInterfaceOutlineFont(), text_align = TextNode.ACenter, text_scale = 0.050000, text_fg = PiratesGuiGlobals.TextFG2, pos = (0, 0, 0.260))
+        self.iconLabel = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, geom = background, geom_scale = 0.299, text = TextDict[type]['summary'], text_font = PiratesGlobals.getInterfaceFont(), text_align = TextNode.ACenter, text_scale = 0.0400, text_fg = PiratesGuiGlobals.TextFG1, text_pos = (0, 0.200), pos = (0, 0, -0.0299))
+        self.descriptionText = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, textMayChange = 1, text = TextDict[type]['description'], text_font = PiratesGlobals.getInterfaceFont(), text_align = TextNode.ACenter, text_scale = 0.0379, text_fg = PiratesGuiGlobals.TextFG1, pos = (0, 0, -0.260))
         self.nextButton = GuiButton.GuiButton(parent = self, state = DGG.NORMAL, text = PLocalizer.lOk, textMayChange = 1, text_scale = PiratesGuiGlobals.TextScaleMed, text_pos = (0, -0.01), pos = (0, 0, -0.5), command = self.doneCallback)
         self.borderFrame['borderScale'] = 1
         self.setupCustomReward()
@@ -121,22 +121,22 @@ class RewardPanel(PDialog):
         maxLevel = ReputationGlobals.GlobalLevelCap
         if level < maxLevel:
             textStr = PLocalizer.RewardNotorietyLessThanMax % (level, maxLevel)
-            textScale = 0.050000000000000003
+            textScale = 0.050000
             labelY = 0.37
-            buttonY = 0.10000000000000001
+            buttonY = 0.100
         else:
             textStr = PLocalizer.RewardNotorietyAtMax % maxLevel
-            textScale = 0.040000000000000001
+            textScale = 0.0400
             self.congratsText.show()
             labelY = 0.25
             buttonY = 0.13
         self.notorietyText = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, textMayChange = 1, text = textStr, text_font = PiratesGlobals.getInterfaceOutlineFont(), text_align = TextNode.ACenter, text_scale = textScale, text_fg = PiratesGuiGlobals.TextFG1, pos = (0, 0, labelY))
         self.notorietyText.hide()
         if level < maxLevel:
-            self.todoText = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, textMayChange = 1, text = PLocalizer.RewardTodo, text_font = PiratesGlobals.getInterfaceOutlineFont(), text_align = TextNode.ACenter, text_scale = 0.035000000000000003, text_fg = PiratesGuiGlobals.TextFG1, pos = (0, 0, 0.19))
+            self.todoText = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, textMayChange = 1, text = PLocalizer.RewardTodo, text_font = PiratesGlobals.getInterfaceOutlineFont(), text_align = TextNode.ACenter, text_scale = 0.035000, text_fg = PiratesGuiGlobals.TextFG1, pos = (0, 0, 0.19))
             self.todoText.hide()
         else:
-            self.stayTunedText = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, textMayChange = 1, text = PLocalizer.RewardStayTuned, text_font = PiratesGlobals.getInterfaceOutlineFont(), text_align = TextNode.ACenter, text_scale = 0.035000000000000003, text_fg = PiratesGuiGlobals.TextFG1, pos = (0, 0, -0.40999999999999998))
+            self.stayTunedText = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, textMayChange = 1, text = PLocalizer.RewardStayTuned, text_font = PiratesGlobals.getInterfaceOutlineFont(), text_align = TextNode.ACenter, text_scale = 0.035000, text_fg = PiratesGuiGlobals.TextFG1, pos = (0, 0, -0.408))
             self.stayTunedText.hide()
         weapons = [
             [
@@ -182,7 +182,7 @@ class RewardPanel(PDialog):
                     state = 1
 
 
-            cb = self.makeCheckbox((0, 0, buttonY - 0.065000000000000002 * i), PLocalizer.InventoryTypeNames[weaponId], None, state, [
+            cb = self.makeCheckbox((0, 0, buttonY - 0.065 * i), PLocalizer.InventoryTypeNames[weaponId], None, state, [
                 3], levelText)
             cb['indicatorValue'] = state
             cb.hide()
@@ -217,8 +217,8 @@ class RewardPanel(PDialog):
             charGui.find('**/generic_check'),
             charGui.find('**/generic_check'),
             None]
-        c = DirectCheckButton(parent = self, relief = None, scale = 0.064000000000000001, boxBorder = 0.080000000000000002, boxRelief = None, boxImage = geomCheck, boxImageScale = 6, boxImageColor = VBase4(0, 1, 0, 1), pos = pos, text = text, text_fg = PiratesGuiGlobals.TextFG1, text_scale = 0.5, text_pos = (-2.3999999999999999, 0, -2.7999999999999998), text_align = TextNode.ALeft, text_font = PiratesGlobals.getInterfaceOutlineFont(), indicator_pos = (2.2000000000000002, 0, 0.14999999999999999), command = command, indicatorValue = initialState, extraArgs = extraArgs, text0_fg = PiratesGuiGlobals.TextFG1, text1_fg = PiratesGuiGlobals.TextFG1, text2_fg = PiratesGuiGlobals.TextFG1, text3_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, image = buttonImage, image_pos = (0, 0, 0.14999999999999999), image_scale = (6, 1, 2.4500000000000002), state = DGG.DISABLED)
-        l = DirectLabel(parent = c, text = levelText, text_font = PiratesGlobals.getInterfaceFont(), text_scale = 0.5, text_align = TextNode.ALeft, frameColor = (0.80000000000000004, 0.69999999999999996, 0.5, 1), pos = (-0.29999999999999999, 0, 0))
+        c = DirectCheckButton(parent = self, relief = None, scale = 0.0640, boxBorder = 0.08, boxRelief = None, boxImage = geomCheck, boxImageScale = 6, boxImageColor = VBase4(0, 1, 0, 1), pos = pos, text = text, text_fg = PiratesGuiGlobals.TextFG1, text_scale = 0.5, text_pos = (-2.39, 0, -2.78), text_align = TextNode.ALeft, text_font = PiratesGlobals.getInterfaceOutlineFont(), indicator_pos = (2.2, 0, 0.149), command = command, indicatorValue = initialState, extraArgs = extraArgs, text0_fg = PiratesGuiGlobals.TextFG1, text1_fg = PiratesGuiGlobals.TextFG1, text2_fg = PiratesGuiGlobals.TextFG1, text3_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, image = buttonImage, image_pos = (0, 0, 0.149), image_scale = (6, 1, 2.45), state = DGG.DISABLED)
+        l = DirectLabel(parent = c, text = levelText, text_font = PiratesGlobals.getInterfaceFont(), text_scale = 0.5, text_align = TextNode.ALeft, frameColor = (0.800000, 0.696, 0.5, 1), pos = (-0.299, 0, 0))
         c.setIndicatorValue()
         del charGui
         return c

@@ -31,17 +31,17 @@ class LookoutListItem(ButtonListItem.ButtonListItem):
     def _createIface(self):
         xOff = 0.02
         wordwrap = 20
-        yOff = 0.065000000000000002
+        yOff = 0.065
         if self.imageRef:
-            self.icon = OnscreenImage(image = self.imageRef, pos = (0.10000000000000001, 0, 0.082000000000000003), scale = (0.59999999999999998, 0.59999999999999998, 0.59999999999999998), parent = self)
-            xOff = 0.20000000000000001
+            self.icon = OnscreenImage(image = self.imageRef, pos = (0.100, 0, 0.082000), scale = (0.598, 0.598, 0.598), parent = self)
+            xOff = 0.200
             wordwrap = 15
 
         if self.descText:
-            self.desc = DirectLabel(parent = self, state = DGG.DISABLED, relief = None, text = self.descText, text_align = TextNode.ALeft, text_scale = 0.029999999999999999, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = wordwrap, textMayChange = 1, pos = (xOff + 0.01, 0, 0.055))
-            yOff = 0.095000000000000001
+            self.desc = DirectLabel(parent = self, state = DGG.DISABLED, relief = None, text = self.descText, text_align = TextNode.ALeft, text_scale = 0.0299, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = wordwrap, textMayChange = 1, pos = (xOff + 0.01, 0, 0.055))
+            yOff = 0.0950
 
-        self.title = DirectLabel(parent = self, state = DGG.DISABLED, relief = None, text = self.item, text_align = TextNode.ALeft, text_scale = 0.070000000000000007, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (xOff, 0, yOff))
+        self.title = DirectLabel(parent = self, state = DGG.DISABLED, relief = None, text = self.item, text_align = TextNode.ALeft, text_scale = 0.070, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (xOff, 0, yOff))
         if self.wantFrame:
             self.createListFrame()
 
@@ -79,9 +79,9 @@ class LookoutListItem(ButtonListItem.ButtonListItem):
 
     def createListFrame(self):
         self.clearListFrame()
-        self.activityListBorderFrame = BorderFrame(parent = self, pos = (0.375, 0, 0.082000000000000003), scale = (0.75, 1, 0.16500000000000001), borderScale = 0.20000000000000001)
+        self.activityListBorderFrame = BorderFrame(parent = self, pos = (0.375, 0, 0.082000), scale = (0.75, 1, 0.165), borderScale = 0.200)
         self.activityListBorderFrame.setBackgroundVisible(False)
-        self.activityListBorderFrame.setColorScale(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 1)
+        self.activityListBorderFrame.setColorScale(0.4, 0.4, 0.4, 1)
 
 
     def clearListFrame(self):
@@ -103,7 +103,7 @@ class LookoutListItem(ButtonListItem.ButtonListItem):
 
     def mouseLeave(self, event):
         if self.wantFrame and self.activityListBorderFrame:
-            self.activityListBorderFrame.setColorScale(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 1)
-            self.activityListBorderFrame['borderScale'] = 0.20000000000000001
+            self.activityListBorderFrame.setColorScale(0.4, 0.4, 0.4, 1)
+            self.activityListBorderFrame['borderScale'] = 0.200
         else:
             self.clearListFrame()

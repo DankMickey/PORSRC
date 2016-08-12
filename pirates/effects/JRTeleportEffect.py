@@ -53,7 +53,7 @@ class JRTeleportEffect(PooledEffect, EffectController):
         f1.addForce(force1)
         self.f.addForceGroup(f1)
         self.p0.setPoolSize(256)
-        self.p0.setBirthRate(0.050000000000000003)
+        self.p0.setBirthRate(0.050000)
         self.p0.setLitterSize(24)
         self.p0.setLitterSpread(8)
         self.p0.setSystemLifespan(0.0)
@@ -81,8 +81,8 @@ class JRTeleportEffect(PooledEffect, EffectController):
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPBLENDLINEAR)
         self.p0.renderer.setAlphaDisable(0)
         self.p0.renderer.setColorBlendMode(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne)
-        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 0.59999999999999998, Vec4(1.0, 1.0, 0.20000000000000001, 1.0), Vec4(0.80000000000000004, 0.59999999999999998, 0.25, 0.75), 1)
-        self.p0.renderer.getColorInterpolationManager().addLinear(0.59999999999999998, 1.0, Vec4(0.80000000000000004, 0.59999999999999998, 0.25, 0.75), Vec4(0.5, 0.25, 0.0, 0.0), 1)
+        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 0.598, Vec4(1.0, 1.0, 0.200, 1.0), Vec4(0.800000, 0.598, 0.25, 0.75), 1)
+        self.p0.renderer.getColorInterpolationManager().addLinear(0.598, 1.0, Vec4(0.800000, 0.598, 0.25, 0.75), Vec4(0.5, 0.25, 0.0, 0.0), 1)
         self.p0.emitter.setEmissionType(BaseParticleEmitter.ETRADIATE)
         self.p0.emitter.setExplicitLaunchVector(Vec3(1.0, 0.0, 0.0))
         self.p0.emitter.setRadiateOrigin(Point3(0.0, 0.0, -5.0))
@@ -115,8 +115,8 @@ class JRTeleportEffect(PooledEffect, EffectController):
         self.p1.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPBLENDLINEAR)
         self.p1.renderer.setAlphaDisable(0)
         self.p1.renderer.setColorBlendMode(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne)
-        self.p1.renderer.getColorInterpolationManager().addLinear(0.0, 0.5, Vec4(1.0, 1.0, 0.20000000000000001, 1.0), Vec4(0.80000000000000004, 0.59999999999999998, 0.25, 0.75), 1)
-        self.p1.renderer.getColorInterpolationManager().addLinear(0.5, 1.0, Vec4(0.80000000000000004, 0.59999999999999998, 0.25, 0.75), Vec4(0.5, 0.25, 0.0, 0.5), 1)
+        self.p1.renderer.getColorInterpolationManager().addLinear(0.0, 0.5, Vec4(1.0, 1.0, 0.200, 1.0), Vec4(0.800000, 0.598, 0.25, 0.75), 1)
+        self.p1.renderer.getColorInterpolationManager().addLinear(0.5, 1.0, Vec4(0.800000, 0.598, 0.25, 0.75), Vec4(0.5, 0.25, 0.0, 0.5), 1)
         self.p1.emitter.setEmissionType(BaseParticleEmitter.ETRADIATE)
         self.p1.emitter.setExplicitLaunchVector(Vec3(1.0, 0.0, 0.0))
         self.p1.emitter.setRadiateOrigin(Point3(0.0, 0.0, 0.0))
@@ -124,7 +124,7 @@ class JRTeleportEffect(PooledEffect, EffectController):
 
 
     def createTrack(self):
-        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.10000000000000001), Func(self.p0.clearToInitial), Func(self.p1.setBirthRate, 0.02), Func(self.p1.clearToInitial), Func(self.f.start, self, self.particleDummy))
+        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.100), Func(self.p0.clearToInitial), Func(self.p1.setBirthRate, 0.02), Func(self.p1.clearToInitial), Func(self.f.start, self, self.particleDummy))
         self.endEffect = Sequence(Func(self.p0.setBirthRate, 100), Func(self.p1.setBirthRate, 100), Wait(2.0), Func(self.cleanUpEffect))
         self.track = Sequence(self.startEffect, Wait(self.duration), self.endEffect)
 
@@ -138,19 +138,19 @@ class JRTeleportEffect(PooledEffect, EffectController):
     def setEffectScale(self, scale):
         self.effectScale = scale
         if self.p0:
-            self.p0.renderer.setInitialXScale(0.025000000000000001 * self.effectScale * self.cardScale)
-            self.p0.renderer.setFinalXScale(0.014999999999999999 * self.effectScale * self.cardScale)
-            self.p0.renderer.setInitialYScale(0.014999999999999999 * self.effectScale * self.cardScale)
-            self.p0.renderer.setFinalYScale(0.050000000000000003 * self.effectScale * self.cardScale)
+            self.p0.renderer.setInitialXScale(0.0250 * self.effectScale * self.cardScale)
+            self.p0.renderer.setFinalXScale(0.0149 * self.effectScale * self.cardScale)
+            self.p0.renderer.setInitialYScale(0.0149 * self.effectScale * self.cardScale)
+            self.p0.renderer.setFinalYScale(0.050000 * self.effectScale * self.cardScale)
             self.p0.emitter.setAmplitude(self.effectScale)
             self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, -1.5) * self.effectScale)
             self.p0.emitter.setRadius(self.effectScale)
 
         if self.p1:
-            self.p1.renderer.setInitialXScale(0.014999999999999999 * self.effectScale * self.cardScale)
-            self.p1.renderer.setFinalXScale(0.029999999999999999 * self.effectScale * self.cardScale)
-            self.p1.renderer.setInitialYScale(0.014999999999999999 * self.effectScale * self.cardScale)
-            self.p1.renderer.setFinalYScale(0.050000000000000003 * self.effectScale * self.cardScale)
+            self.p1.renderer.setInitialXScale(0.0149 * self.effectScale * self.cardScale)
+            self.p1.renderer.setFinalXScale(0.0299 * self.effectScale * self.cardScale)
+            self.p1.renderer.setInitialYScale(0.0149 * self.effectScale * self.cardScale)
+            self.p1.renderer.setFinalYScale(0.050000 * self.effectScale * self.cardScale)
             self.p1.emitter.setAmplitude(self.effectScale)
             self.p1.emitter.setOffsetForce(Vec3(0.0, 0.0, -3.0) * self.effectScale)
             self.p1.emitter.setRadius(self.effectScale * 1.25)

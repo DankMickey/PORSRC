@@ -42,7 +42,7 @@ class Holder(Creature, TentacleUtils):
                 Holder.sfx[name] = loader.loadSfx('audio/' + Holder.SfxNames[name])
 
 
-        self.hitIval = Sequence(self.colorScaleInterval(0.29999999999999999, (1, 0, 0, 1), (1, 1, 1, 1)), self.colorScaleInterval(0.29999999999999999, (1, 1, 1, 1), (1, 0, 0, 1)))
+        self.hitIval = Sequence(self.colorScaleInterval(0.299, (1, 0, 0, 1), (1, 1, 1, 1)), self.colorScaleInterval(0.299, (1, 1, 1, 1), (1, 0, 0, 1)))
 
 
     def announceGenerate(self):

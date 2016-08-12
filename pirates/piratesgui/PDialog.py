@@ -22,11 +22,11 @@ class PDialog(DirectDialog):
             PDialog.checkButton = (buttons.find('**/lookout_submit'), buttons.find('**/lookout_submit_down'), buttons.find('**/lookout_submit_over'))
             PDialog.cancelButton = (buttons.find('**/lookout_close_window'), buttons.find('**/lookout_close_window_down'), buttons.find('**/lookout_close_window_over'))
             for button in PDialog.checkButton:
-                button.setScale(0.20000000000000001)
+                button.setScale(0.200)
                 button.flattenStrong()
 
             for button in self.cancelButton:
-                button.setScale(0.20000000000000001)
+                button.setScale(0.200)
                 button.flattenStrong()
 
             PDialog.loadedAssets = True
@@ -87,7 +87,7 @@ class PDialog(DirectDialog):
         else:
             self.notify.error('No such style as: ' + str(self.style))
         self.borderFrame = BorderFrame.BorderFrame(borderScale = 0.5)
-        optiondefs = (('image', self.borderFrame, None), ('relief', None, None), ('buttonImageList', buttonImage, DGG.INITOPT), ('buttonTextList', buttonText, DGG.INITOPT), ('buttonValueList', buttonValue, DGG.INITOPT), ('buttonPadSF', 2.2000000000000002, DGG.INITOPT), ('title_text', '', None), ('title_text_font', DGG.getDefaultFont(), None), ('title_text_wordwrap', 12, None), ('title_text_scale', PiratesGuiGlobals.TextScaleTitleSmall, None), ('title_text_fg', PiratesGuiGlobals.TextFG1, None), ('title_text_shadow', PiratesGuiGlobals.TextShadow, None), ('title_text_align', TextNode.ACenter, None), ('text_font', DGG.getDefaultFont(), None), ('text_wordwrap', 12, None), ('text_scale', PiratesGuiGlobals.TextScaleLarge, None), ('text_fg', PiratesGuiGlobals.TextFG1, None), ('text_shadow', PiratesGuiGlobals.TextShadow, None), ('text_align', TextNode.ALeft, None), ('button_pad', (0, 0), None), ('button_relief', None, None), ('button_text_pos', (0, -0.080000000000000002), None), ('button_text_fg', PiratesGuiGlobals.TextFG1, None), ('button_text_shadow', PiratesGuiGlobals.TextShadow, None), ('button_text_scale', PiratesGuiGlobals.TextScaleLarge, None), ('fadeScreen', 0.5, None), ('image_color', (1, 1, 1, 1), None), ('destroyedCallback', None, None))
+        optiondefs = (('image', self.borderFrame, None), ('relief', None, None), ('buttonImageList', buttonImage, DGG.INITOPT), ('buttonTextList', buttonText, DGG.INITOPT), ('buttonValueList', buttonValue, DGG.INITOPT), ('buttonPadSF', 2.2, DGG.INITOPT), ('title_text', '', None), ('title_text_font', DGG.getDefaultFont(), None), ('title_text_wordwrap', 12, None), ('title_text_scale', PiratesGuiGlobals.TextScaleTitleSmall, None), ('title_text_fg', PiratesGuiGlobals.TextFG1, None), ('title_text_shadow', PiratesGuiGlobals.TextShadow, None), ('title_text_align', TextNode.ACenter, None), ('text_font', DGG.getDefaultFont(), None), ('text_wordwrap', 12, None), ('text_scale', PiratesGuiGlobals.TextScaleLarge, None), ('text_fg', PiratesGuiGlobals.TextFG1, None), ('text_shadow', PiratesGuiGlobals.TextShadow, None), ('text_align', TextNode.ALeft, None), ('button_pad', (0, 0), None), ('button_relief', None, None), ('button_text_pos', (0, -0.08), None), ('button_text_fg', PiratesGuiGlobals.TextFG1, None), ('button_text_shadow', PiratesGuiGlobals.TextShadow, None), ('button_text_scale', PiratesGuiGlobals.TextScaleLarge, None), ('fadeScreen', 0.5, None), ('image_color', (1, 1, 1, 1), None), ('destroyedCallback', None, None))
         self.defineoptions(kw, optiondefs)
         DirectDialog.__init__(self, parent)
 

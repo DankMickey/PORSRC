@@ -34,7 +34,7 @@ class PiratesTimerHourglass(OTPTimer.OTPTimer):
     def getImage(self):
         if PiratesTimerHourglass.ClockImage == None:
             model = loader.loadModel('models/gui/toplevel_gui')
-            model.setScale(0.80000000000000004)
+            model.setScale(0.800000)
             model.flattenLight()
             PiratesTimerHourglass.ClockImage = model.find('**/sandclock')
             model.remove_node()
@@ -77,10 +77,10 @@ class PiratesTimerHourglass(OTPTimer.OTPTimer):
         if currTime > 60 and self.showMinutes:
             t = time.gmtime(currTime)
             timeStr = '%s:%s' % (t[4], str(t[5]).zfill(2))
-            self['text_scale'] = 0.29999999999999999
+            self['text_scale'] = 0.299
         else:
             timeStr = str(currTime + 1)
-            self['text_scale'] = 0.29999999999999999
+            self['text_scale'] = 0.299
         timeStrLen = len(timeStr)
         self['text'] = ''
         if currTime <= 5:
@@ -88,21 +88,21 @@ class PiratesTimerHourglass(OTPTimer.OTPTimer):
         else:
             self['text_fg'] = self.vFontColor
         if len(timeStr) == 1:
-            self['text_scale'] = 0.34000000000000002
-            self['text_pos'] = (-0.025000000000000001, -0.125)
+            self['text_scale'] = 0.34
+            self['text_pos'] = (-0.0250, -0.125)
         elif len(timeStr) == 2:
-            self['text_scale'] = 0.27000000000000002
-            self['text_pos'] = (-0.025000000000000001, -0.10000000000000001)
+            self['text_scale'] = 0.27
+            self['text_pos'] = (-0.0250, -0.100)
         elif len(timeStr) == 3:
-            self['text_scale'] = 0.20000000000000001
-            self['text_pos'] = (-0.01, -0.080000000000000002)
+            self['text_scale'] = 0.200
+            self['text_pos'] = (-0.01, -0.08)
 
         self['text'] = timeStr
 
 
     def createTimerText(self, titleText, titleFg, infoText):
-        self.titleText = DirectFrame(parent = self, relief = None, text = titleText, text_align = TextNode.ACenter, text_scale = 0.14999999999999999, text_fg = titleFg, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getPirateOutlineFont(), textMayChange = 1, text_wordwrap = 6, pos = (0, 0, 0.69999999999999996))
-        self.infoText = DirectFrame(parent = self, relief = None, text = infoText, text_align = TextNode.ACenter, text_scale = 0.14000000000000001, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getPirateOutlineFont(), textMayChange = 1, text_wordwrap = 6, pos = (0, 0, -0.75))
+        self.titleText = DirectFrame(parent = self, relief = None, text = titleText, text_align = TextNode.ACenter, text_scale = 0.149, text_fg = titleFg, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getPirateOutlineFont(), textMayChange = 1, text_wordwrap = 6, pos = (0, 0, 0.696))
+        self.infoText = DirectFrame(parent = self, relief = None, text = infoText, text_align = TextNode.ACenter, text_scale = 0.140, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getPirateOutlineFont(), textMayChange = 1, text_wordwrap = 6, pos = (0, 0, -0.75))
 
 
     def createCancelButton(self, cancelCallback, cancelText):
@@ -112,4 +112,4 @@ class PiratesTimerHourglass(OTPTimer.OTPTimer):
         if not base.localAvatar.isCrewCaptain():
             return None
 
-        self.cancelButton = GuiButton.GuiButton(helpText = cancelText, command = cancelCallback, borderWidth = PiratesGuiGlobals.BorderWidth, text = PLocalizer.Cancel, frameColor = PiratesGuiGlobals.ButtonColor3, text_fg = PiratesGuiGlobals.TextFG2, text_pos = (0, 0.014999999999999999), frameSize = (-0.089999999999999997, 0.089999999999999997, -0.014999999999999999, 0.065000000000000002), text_scale = PiratesGuiGlobals.TextScaleLarge, pad = (0.01, 0.01), parent = self, pos = (0, 0, -1.55), scale = 2.2999999999999998)
+        self.cancelButton = GuiButton.GuiButton(helpText = cancelText, command = cancelCallback, borderWidth = PiratesGuiGlobals.BorderWidth, text = PLocalizer.Cancel, frameColor = PiratesGuiGlobals.ButtonColor3, text_fg = PiratesGuiGlobals.TextFG2, text_pos = (0, 0.0149), frameSize = (-0.089, 0.089, -0.0149, 0.065), text_scale = PiratesGuiGlobals.TextScaleLarge, pad = (0.01, 0.01), parent = self, pos = (0, 0, -1.55), scale = 2.28)

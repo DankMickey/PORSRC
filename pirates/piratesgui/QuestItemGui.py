@@ -10,14 +10,14 @@ from GuiButton import GuiButton
 
 class QuestItemGui(InventoryItemGui):
     Width = PiratesGuiGlobals.InventoryPageWidth - PiratesGuiGlobals.GridSize
-    Height = 0.20000000000000001
+    Height = 0.200
 
     def __init__(self, quest):
         self.loadGui()
         questScroll = self.topGui.find('**/main_gui_quest_scroll')
         data = (UberDogGlobals.InventoryCategory.QUESTS, quest.getDoId())
         self.quest = quest
-        InventoryItemGui.__init__(self, data, image = questScroll, image_color = (0.69999999999999996, 0.69999999999999996, 0.69999999999999996, 1))
+        InventoryItemGui.__init__(self, data, image = questScroll, image_color = (0.696, 0.696, 0.696, 1))
         self.initialiseoptions(QuestItemGui)
         self.accept(self.quest.getChangeEvent(), self._handleQuestChange)
 
@@ -33,7 +33,7 @@ class QuestItemGui(InventoryItemGui):
         reward = self.quest.getRewardText()
         if len(reward) > 1:
             if self.quest.isCompleteWithBonus():
-                textFg = (0.10000000000000001, 0.80000000000000004, 0.10000000000000001, 1)
+                textFg = (0.100, 0.800000, 0.100, 1)
                 text = PLocalizer.QuestItemGuiCompleteFormat % {
                     'desc': self.quest.getStatusText(),
                     'return': self.quest.getReturnText(),
@@ -44,7 +44,7 @@ class QuestItemGui(InventoryItemGui):
                     'desc': self.quest.getStatusText(),
                     'reward': reward }
         elif self.quest.isCompleteWithBonus():
-            textFg = (0.10000000000000001, 0.80000000000000004, 0.10000000000000001, 1)
+            textFg = (0.100, 0.800000, 0.100, 1)
             text = PLocalizer.QuestItemGuiCompleteFormatNoReward % {
                 'desc': self.quest.getStatusText(),
                 'return': self.quest.getReturnText() }
@@ -52,12 +52,12 @@ class QuestItemGui(InventoryItemGui):
             textFg = PiratesGuiGlobals.TextFG2
             text = PLocalizer.QuestItemGuiIncompleteFormatNoReward % {
                 'desc': self.quest.getStatusText() }
-        self.descText = DirectLabel(parent = self, relief = None, text = text, text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = textFg, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (-0.10000000000000001, 0, 0.10000000000000001))
-        bWidth = 0.20000000000000001
-        bHeight = 0.050000000000000003
-        bBorder = 0.0050000000000000001
+        self.descText = DirectLabel(parent = self, relief = None, text = text, text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = textFg, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (-0.100, 0, 0.100))
+        bWidth = 0.200
+        bHeight = 0.050000
+        bBorder = 0.00500
         if self.quest.isDroppable():
-            self.dropButton = GuiButton(parent = self, text = PLocalizer.Drop, pos = (0.80000000000000004, 0, -0.02), command = self._dropQuest)
+            self.dropButton = GuiButton(parent = self, text = PLocalizer.Drop, pos = (0.800000, 0, -0.02), command = self._dropQuest)
         else:
             self.dropButton = None
         self.shareButton = None

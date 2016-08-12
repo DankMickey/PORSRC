@@ -141,7 +141,7 @@ class ProjectileEffect:
             s.setPos(hitObject, pos)
             s.setScale(aoeRadius)
             s.setTransparency(1)
-            s.setColorScale(1.0, 0.5, 0.5, 0.40000000000000002)
+            s.setColorScale(1.0, 0.5, 0.5, 0.4)
 
         if ammoSkillId in [
             InventoryType.CannonRoundShot,
@@ -167,7 +167,7 @@ class ProjectileEffect:
                 if explosionEffect:
                     explosionEffect.reparentTo(base.effectsRoot)
                     explosionEffect.setPos(hitObject, pos)
-                    explosionEffect.setScale(0.80000000000000004)
+                    explosionEffect.setScale(0.800000)
                     explosionEffect.play()
 
 
@@ -183,7 +183,7 @@ class ProjectileEffect:
                     cameraShakerEffect = CameraShaker()
                     cameraShakerEffect.wrtReparentTo(hitObject)
                     cameraShakerEffect.setPos(hitObject, pos)
-                    cameraShakerEffect.shakeSpeed = 0.040000000000000001
+                    cameraShakerEffect.shakeSpeed = 0.0400
                     cameraShakerEffect.shakePower = 6.0
                     cameraShakerEffect.numShakes = 2
                     cameraShakerEffect.scalePower = 1
@@ -218,7 +218,7 @@ class ProjectileEffect:
                     cameraShakerEffect = CameraShaker()
                     cameraShakerEffect.wrtReparentTo(hitObject)
                     cameraShakerEffect.setPos(hitObject, pos)
-                    cameraShakerEffect.shakeSpeed = 0.040000000000000001
+                    cameraShakerEffect.shakeSpeed = 0.0400
                     cameraShakerEffect.shakePower = 6.0
                     cameraShakerEffect.numShakes = 2
                     cameraShakerEffect.scalePower = 1
@@ -251,14 +251,14 @@ class ProjectileEffect:
                 flashEffect.wrtReparentTo(base.effectsRoot)
                 flashEffect.setScale(600)
                 flashEffect.setPos(hitObject, pos)
-                flashEffect.effectColor = Vec4(0.5, 0.80000000000000004, 1, 1)
-                flashEffect.fadeTime = 0.29999999999999999
+                flashEffect.effectColor = Vec4(0.5, 0.800000, 1, 1)
+                flashEffect.fadeTime = 0.299
                 flashEffect.play()
                 if localAvatar.ship and hitObject == localAvatar.ship:
                     cameraShakerEffect = CameraShaker()
                     cameraShakerEffect.wrtReparentTo(hitObject)
                     cameraShakerEffect.setPos(hitObject, pos)
-                    cameraShakerEffect.shakeSpeed = 0.059999999999999998
+                    cameraShakerEffect.shakeSpeed = 0.0598
                     cameraShakerEffect.shakePower = 4.0
                     cameraShakerEffect.numShakes = 2
                     cameraShakerEffect.scalePower = 1
@@ -278,7 +278,7 @@ class ProjectileEffect:
             flashEffect.wrtReparentTo(base.effectsRoot)
             flashEffect.setScale(300)
             flashEffect.setPos(hitObject, pos)
-            flashEffect.effectColor = Vec4(0.5, 0.80000000000000004, 1, 1)
+            flashEffect.effectColor = Vec4(0.5, 0.800000, 1, 1)
             flashEffect.fadeTime = 0.25
             flashEffect.play()
         elif ammoSkillId == InventoryType.GrenadeExplosion:
@@ -312,14 +312,14 @@ class ProjectileEffect:
                     flashEffect.reparentTo(base.effectsRoot)
                     flashEffect.flash.setScale(100)
                     flashEffect.setPos(hitObject, pos)
-                    flashEffect.startCol = Vec4(0.69999999999999996, 0.69999999999999996, 0.69999999999999996, 1)
-                    flashEffect.fadeTime = 0.20000000000000001
+                    flashEffect.startCol = Vec4(0.696, 0.696, 0.696, 1)
+                    flashEffect.fadeTime = 0.200
                     flashEffect.play()
 
                 cameraShakerEffect = CameraShaker()
                 cameraShakerEffect.reparentTo(hitObject)
                 cameraShakerEffect.setPos(hitObject, pos)
-                cameraShakerEffect.shakeSpeed = 0.040000000000000001
+                cameraShakerEffect.shakeSpeed = 0.0400
                 cameraShakerEffect.shakePower = 6.0
                 cameraShakerEffect.numShakes = 2
                 cameraShakerEffect.scalePower = 1
@@ -361,14 +361,14 @@ class ProjectileEffect:
                     flashEffect.reparentTo(base.effectsRoot)
                     flashEffect.flash.setScale(100)
                     flashEffect.setPos(hitObject, pos)
-                    flashEffect.startCol = Vec4(0.69999999999999996, 0.69999999999999996, 0.69999999999999996, 1)
-                    flashEffect.fadeTime = 0.20000000000000001
+                    flashEffect.startCol = Vec4(0.696, 0.696, 0.696, 1)
+                    flashEffect.fadeTime = 0.200
                     flashEffect.play()
 
                 cameraShakerEffect = CameraShaker()
                 cameraShakerEffect.reparentTo(hitObject)
                 cameraShakerEffect.setPos(hitObject, pos)
-                cameraShakerEffect.shakeSpeed = 0.040000000000000001
+                cameraShakerEffect.shakeSpeed = 0.0400
                 cameraShakerEffect.shakePower = 3.0
                 cameraShakerEffect.numShakes = 2
                 cameraShakerEffect.scalePower = 1
@@ -409,7 +409,7 @@ class ProjectileEffect:
                 cameraShakerEffect = CameraShaker()
                 cameraShakerEffect.wrtReparentTo(hitObject)
                 cameraShakerEffect.setPos(hitObject, pos)
-                cameraShakerEffect.shakeSpeed = 0.059999999999999998
+                cameraShakerEffect.shakeSpeed = 0.0598
                 cameraShakerEffect.shakePower = 4.0
                 cameraShakerEffect.numShakes = 2
                 cameraShakerEffect.scalePower = 1
@@ -428,7 +428,7 @@ class ProjectileEffect:
                         debrisEffect.reparentTo(base.effectsRoot)
                         debrisEffect.setPos(hitObject, pos)
                         debrisEffect.offsetEndPlaneZFrom(hitObject.getZ())
-                        debrisEffect.debris.setScale(0.80000000000000004)
+                        debrisEffect.debris.setScale(0.800000)
                         debrisEffect.radiusDist = 30
                         debrisEffect.minHeight = 30
                         debrisEffect.maxHeight = 120
@@ -443,8 +443,8 @@ class ProjectileEffect:
                     flashEffect.reparentTo(base.effectsRoot)
                     flashEffect.flash.setScale(200)
                     flashEffect.setPos(hitObject, pos)
-                    flashEffect.startCol = Vec4(0.69999999999999996, 0.69999999999999996, 0.69999999999999996, 1)
-                    flashEffect.fadeTime = 0.20000000000000001
+                    flashEffect.startCol = Vec4(0.696, 0.696, 0.696, 1)
+                    flashEffect.fadeTime = 0.200
                     flashEffect.play()
 
 
@@ -462,8 +462,8 @@ class ProjectileEffect:
                 flashEffect.wrtReparentTo(base.effectsRoot)
                 flashEffect.flash.setScale(100)
                 flashEffect.setPos(hitObject, pos)
-                flashEffect.startCol = Vec4(0.69999999999999996, 0.69999999999999996, 0.69999999999999996, 1)
-                flashEffect.fadeTime = 0.20000000000000001
+                flashEffect.startCol = Vec4(0.696, 0.696, 0.696, 1)
+                flashEffect.fadeTime = 0.200
                 flashEffect.play()
                 self.playSfx(ammoSkillId, flashEffect)
 
@@ -478,7 +478,7 @@ class ProjectileEffect:
                 cameraShakerEffect = CameraShaker()
                 cameraShakerEffect.wrtReparentTo(hitObject)
                 cameraShakerEffect.setPos(hitObject, pos)
-                cameraShakerEffect.shakeSpeed = 0.040000000000000001
+                cameraShakerEffect.shakeSpeed = 0.0400
                 cameraShakerEffect.shakePower = 2.0
                 cameraShakerEffect.numShakes = 2
                 cameraShakerEffect.scalePower = 1
@@ -521,7 +521,7 @@ class ProjectileEffect:
                 cameraShakerEffect = CameraShaker()
                 cameraShakerEffect.wrtReparentTo(hitObject)
                 cameraShakerEffect.setPos(hitObject, pos)
-                cameraShakerEffect.shakeSpeed = 0.040000000000000001
+                cameraShakerEffect.shakeSpeed = 0.0400
                 cameraShakerEffect.shakePower = 2.0
                 cameraShakerEffect.numShakes = 2
                 cameraShakerEffect.scalePower = 1
@@ -602,7 +602,7 @@ class ProjectileEffect:
                 cameraShakerEffect = CameraShaker()
                 cameraShakerEffect.wrtReparentTo(hitObject)
                 cameraShakerEffect.setPos(hitObject, pos)
-                cameraShakerEffect.shakeSpeed = 0.059999999999999998
+                cameraShakerEffect.shakeSpeed = 0.0598
                 cameraShakerEffect.shakePower = 6.0
                 cameraShakerEffect.numShakes = 3
                 cameraShakerEffect.scalePower = 1

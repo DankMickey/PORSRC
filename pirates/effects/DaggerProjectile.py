@@ -18,19 +18,19 @@ class DaggerProjectile(PooledEffect, EffectController):
         self.rotDummy = self.attachNewNode('rotDummy')
         self.knifeModel = loader.loadModel('models/handheld/dagger_high')
         self.knifeModel.reparentTo(self.rotDummy)
-        self.knifeModel.setY(-0.59999999999999998)
+        self.knifeModel.setY(-0.598)
         self.knifeModel.setR(180)
         self.motion_color = [
-            Vec4(0.5, 0.59999999999999998, 0.80000000000000004, 1.0),
-            Vec4(0.5, 0.59999999999999998, 0.80000000000000004, 1.0)]
+            Vec4(0.5, 0.598, 0.800000, 1.0),
+            Vec4(0.5, 0.598, 0.800000, 1.0)]
         vertex_list = [
             Vec4(0.0, 1.0, 0.0, 1.0),
             Vec4(0.0, -1.0, 0.0, 1.0)]
         self.motion_trail = PolyTrail.PolyTrail(None, vertex_list, self.motion_color)
         self.motion_trail.reparentTo(self)
         vertex_list = [
-            Vec4(0.29999999999999999, 0.0, 0.0, 1.0),
-            Vec4(-0.29999999999999999, 0.0, 0.0, 1.0)]
+            Vec4(0.299, 0.0, 0.0, 1.0),
+            Vec4(-0.299, 0.0, 0.0, 1.0)]
         self.motion_trail2 = PolyTrail.PolyTrail(None, vertex_list, self.motion_color)
         self.motion_trail2.reparentTo(self)
         self.motion_trail.node().setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne))

@@ -47,8 +47,8 @@ class ShipShoppingPanel(ShipSelectionPanel):
                             button['text_fg'] = PiratesGuiGlobals.TextFG1
                             button['image_color'] = VBase4(1.0, 1.0, 1.0, 1.0)
                         else:
-                            button['text_fg'] = VBase4(0.29999999999999999, 0.25, 0.20000000000000001, 1.0)
-                            button['image_color'] = VBase4(0.80000000000000004, 0.80000000000000004, 0.80000000000000004, 1.0)
+                            button['text_fg'] = VBase4(0.299, 0.25, 0.200, 1.0)
+                            button['image_color'] = VBase4(0.800000, 0.800000, 0.800000, 1.0)
                         button['state'] = repairButtonState
                         continue
 

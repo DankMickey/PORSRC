@@ -264,13 +264,13 @@ class DynamicLight(NodePath):
             def flickerFunc():
                 fromData = self.intensity
                 originalA = self.baseIntensity
-                offset = originalA * 0.10000000000000001 * self.flickRate
-                range = originalA * 0.40000000000000002 * self.flickRate
+                offset = originalA * 0.100 * self.flickRate
+                range = originalA * 0.4 * self.flickRate
                 tgtA = originalA + (random.random() * range - offset)
                 tgtA = max(0.0, tgtA)
                 tgtA = min(3.0, tgtA)
                 toData = tgtA
-                duration = 0.050000000000000003 + random.random() * 0.20000000000000001
+                duration = 0.050000 + random.random() * 0.200
                 if self.attenIval:
                     self.attenIval.finish()
 

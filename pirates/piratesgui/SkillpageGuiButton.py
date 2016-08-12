@@ -305,11 +305,11 @@ class SkillpageGuiButton(DirectButton):
         stats = [int(stat + 0.01) for stat in stats]
 
         if self.skillRank:
-            self.rankText = DirectFrame(parent = self, relief = None, text = ('\x01goldsmallCaps\x01' + PLocalizer.Rank + ' %d' + '\x02') % self.skillRank, text_align = TextNode.ARight, text_scale = PiratesGuiGlobals.TextScaleSmall, text_fg = PiratesGuiGlobals.TextFG2, text_wordwrap = 15, text_shadow = (0, 0, 0, 1), pos = (0.45000000000000001, 0, 0), textMayChange = 1, sortOrder = 92, state = DGG.DISABLED)
+            self.rankText = DirectFrame(parent = self, relief = None, text = ('\x01goldsmallCaps\x01' + PLocalizer.Rank + ' %d' + '\x02') % self.skillRank, text_align = TextNode.ARight, text_scale = PiratesGuiGlobals.TextScaleSmall, text_fg = PiratesGuiGlobals.TextFG2, text_wordwrap = 15, text_shadow = (0, 0, 0, 1), pos = (0.450, 0, 0), textMayChange = 1, sortOrder = 92, state = DGG.DISABLED)
 
         self.helpText = DirectFrame(parent = self, relief = None, text = skillDesc % tuple(stats), text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleSmall, text_fg = PiratesGuiGlobals.TextFG2, text_wordwrap = 15, text_shadow = (0, 0, 0, 1), textMayChange = 1, sortOrder = 91, state = DGG.DISABLED)
         height = -(self.helpText.getHeight() + 0.01)
-        self.helpBox = BorderFrame(parent = self, frameSize = (-0.040000000000000001, 0.5, height, 0.050000000000000003), pos = (0, 0, -0.12), sortOrder = 90, state = DGG.DISABLED)
+        self.helpBox = BorderFrame(parent = self, frameSize = (-0.0400, 0.5, height, 0.050000), pos = (0, 0, -0.12), sortOrder = 90, state = DGG.DISABLED)
         self.helpBox.setBin('gui-fixed', 4)
         self.helpText.reparentTo(self.helpBox)
         if self.skillRank:
@@ -341,4 +341,4 @@ class SkillpageGuiButton(DirectButton):
         if self.quantity:
             self.quantity['text'] = 'x%s' % quantity
         else:
-            self.quantity = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, text = 'x%s' % quantity, frameColor = (0, 0, 0, 1), frameSize = (-0.01, 0.02, -0.01, 0.025000000000000001), text_scale = 0.0275, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.029999999999999999, 0.0, 0.029999999999999999), text_font = PiratesGlobals.getPirateBoldOutlineFont())
+            self.quantity = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, text = 'x%s' % quantity, frameColor = (0, 0, 0, 1), frameSize = (-0.01, 0.02, -0.01, 0.0250), text_scale = 0.0275, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.0299, 0.0, 0.0299), text_font = PiratesGlobals.getPirateBoldOutlineFont())

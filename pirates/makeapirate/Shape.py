@@ -51,18 +51,18 @@ class Shape(DirectObject.DirectObject):
             sliderRange = (-1.0, 1.0)
 
         self.pgsScale = CharGuiSlider(self.main, parent = self.headFrame, text = PLocalizer.BodyHeadScale, command = self.updateHeadSlider, range = sliderRange)
-        self.pgsScale.setPos(-0.40000000000000002, 0, -0.20000000000000001)
+        self.pgsScale.setPos(-0.4, 0, -0.200)
         self.pgsScale['extraArgs'] = [
             self.pgsScale,
             0,
             0]
         self.pgs1 = CharGuiSlider(self.main, parent = self.headFrame, text = PLocalizer.ShapeHeadWidth, command = self.updateControlShape, range = sliderRange)
-        self.pgs1.setPos(-0.40000000000000002, 0, -0.45000000000000001)
+        self.pgs1.setPos(-0.4, 0, -0.450)
         self.pgs2 = CharGuiSlider(self.main, parent = self.headFrame, text = PLocalizer.ShapeHeadHeight, command = self.updateControlShape, range = sliderRange)
-        self.pgs2.setPos(-0.40000000000000002, 0, -0.69999999999999996)
+        self.pgs2.setPos(-0.4, 0, -0.696)
         customRange = (0.0, 1.0)
         self.pgs3 = CharGuiSlider(self.main, parent = self.headFrame, text = PLocalizer.ShapeHeadRoundness, command = self.updateControlShape, range = customRange)
-        self.pgs3.setPos(-0.40000000000000002, 0, -0.94999999999999996)
+        self.pgs3.setPos(-0.4, 0, -0.946)
         self.pgs = [
             self.pgs1,
             self.pgs2,
@@ -129,7 +129,7 @@ class Shape(DirectObject.DirectObject):
         self.texturePicker = CharGuiPicker(self.main, parent = self.parent, text = PLocalizer.ShapeTextureFrameTitle, nextCommand = self.handleNextTexture, backCommand = self.handleLastTexture)
         self.texturePicker.setPos(0, 0, 0)
         self.texturePicker.hide()
-        self.headFrame = DirectFrame(parent = self.parent, relief = None, pos = (0, 0, -0.29999999999999999), scale = 0.69999999999999996)
+        self.headFrame = DirectFrame(parent = self.parent, relief = None, pos = (0, 0, -0.299), scale = 0.696)
         self.headFrame.hide()
 
 
@@ -208,7 +208,7 @@ class Shape(DirectObject.DirectObject):
 
     def updateHeadSlider(self, pgs, extraArgs1 = None, extraArgs2 = None):
         value = pgs.node().getValue()
-        mappedValue = 0.90000000000000002 + (1 + value) * 0.10000000000000001
+        mappedValue = 0.9 + (1 + value) * 0.100
         if extraArgs1 == 0:
             self.avatar.pirate.setHeadSize(value)
 

@@ -15,7 +15,7 @@ class XButton(GuiButton.GuiButton):
         GuiButton.GuiButton.__init__(self, parent)
         self.initialiseoptions(XButton)
         mainGui = loader.loadModel('models/gui/gui_main')
-        self.glow = OnscreenImage(parent = self, image = mainGui.find('**/icon_glow'), scale = 0.27500000000000002, color = (1.0, 1.0, 1.0, 0.40000000000000002))
+        self.glow = OnscreenImage(parent = self, image = mainGui.find('**/icon_glow'), scale = 0.275, color = (1.0, 1.0, 1.0, 0.4))
         self.glow.hide()
         mainGui.remove_node()
         self.bind(DGG.ENTER, self.highlightOn)
@@ -39,7 +39,7 @@ class IgnoreCheck(CheckButton.CheckButton):
         CheckButton.CheckButton.__init__(self, parent)
         self.initialiseoptions(IgnoreCheck)
         mainGui = loader.loadModel('models/gui/gui_main')
-        self.glow = OnscreenImage(parent = self, image = mainGui.find('**/icon_glow'), scale = 0.22, color = (1.0, 1.0, 1.0, 0.59999999999999998))
+        self.glow = OnscreenImage(parent = self, image = mainGui.find('**/icon_glow'), scale = 0.22, color = (1.0, 1.0, 1.0, 0.598))
         self.glow.hide()
         mainGui.remove_node()
         self.bind(DGG.ENTER, self.highlightOn)
@@ -49,8 +49,8 @@ class IgnoreCheck(CheckButton.CheckButton):
     def setValue(self):
         CheckButton.CheckButton.setValue(self)
         self['geom_hpr'] = (0, 0, 45)
-        self['geom_pos'] = (0.02, 0, 0.029999999999999999)
-        self['geom_scale'] = 0.40000000000000002
+        self['geom_pos'] = (0.02, 0, 0.0299)
+        self['geom_scale'] = 0.4
         if hasattr(self, 'glow'):
             self.glow.hide()
 
@@ -61,8 +61,8 @@ class IgnoreCheck(CheckButton.CheckButton):
         if not self['value']:
             self['geom'] = self['checkedGeom']
             self['geom_hpr'] = (0, 0, 45)
-            self['geom_pos'] = (0.02, 0, 0.029999999999999999)
-            self['geom_scale'] = 0.40000000000000002
+            self['geom_pos'] = (0.02, 0, 0.0299)
+            self['geom_scale'] = 0.4
 
 
 
@@ -79,7 +79,7 @@ class ContextualTutorialPanel(DirectFrame):
     def __init__(self):
         topGui = loader.loadModel('models/gui/toplevel_gui')
         mainGui = loader.loadModel('models/gui/gui_main')
-        DirectFrame.__init__(self, parent = base.a2dBottomRight, relief = None, pos = (-0.34000000000000002, 0, 0.40000000000000002), frameSize = (-0.25, 0.25, -0.25, 0.25), image = topGui.find('**/pir_t_gui_gen_parchment'), image_scale = (0.315, 0, 0.42499999999999999))
+        DirectFrame.__init__(self, parent = base.a2dBottomRight, relief = None, pos = (-0.34, 0, 0.4), frameSize = (-0.25, 0.25, -0.25, 0.25), image = topGui.find('**/pir_t_gui_gen_parchment'), image_scale = (0.315, 0, 0.424))
         self.initialiseoptions(ContextualTutorialPanel)
         self.filled = False
         self.contextId = 0
@@ -89,10 +89,10 @@ class ContextualTutorialPanel(DirectFrame):
         self.titleLabels = { }
         self.messageLabels = { }
         self.noHintsLabels = { }
-        self.bg = OnscreenImage(parent = self, image = mainGui.find('**/background/background_logo'), scale = 0.22, color = (0.42699999999999999, 0.25900000000000001, 0.16800000000000001, 0.40000000000000002), pos = (-0.050000000000000003, 0, 0.10000000000000001))
-        self.closeButton = XButton(parent = self, relief = None, pos = (0.25, 0, 0.14999999999999999), image = topGui.find('**/pir_t_gui_gen_Xred'), image_scale = 0.40000000000000002, command = self.closePanel)
+        self.bg = OnscreenImage(parent = self, image = mainGui.find('**/background/background_logo'), scale = 0.22, color = (0.426, 0.259, 0.168, 0.4), pos = (-0.050000, 0, 0.100))
+        self.closeButton = XButton(parent = self, relief = None, pos = (0.25, 0, 0.149), image = topGui.find('**/pir_t_gui_gen_Xred'), image_scale = 0.4, command = self.closePanel)
         self.noHints = False
-        self.noHintsCheck = IgnoreCheck(parent = self, relief = None, image = topGui.find('**/pir_t_gui_gen_box_empty'), checkedGeom = topGui.find('**/pir_t_gui_gen_Check_Red'), pos = (-0.17000000000000001, 0, -0.12), command = self.noHintsCheckCB)
+        self.noHintsCheck = IgnoreCheck(parent = self, relief = None, image = topGui.find('**/pir_t_gui_gen_box_empty'), checkedGeom = topGui.find('**/pir_t_gui_gen_Check_Red'), pos = (-0.170, 0, -0.12), command = self.noHintsCheckCB)
         mainGui.remove_node()
         topGui.remove_node()
         self.hide()
@@ -201,13 +201,13 @@ class ContextualTutorialPanel(DirectFrame):
             if not title:
                 return False
 
-            titleLabel = DirectLabel(parent = self, relief = None, text = title, text_align = TextNode.ACenter, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_fg = (0.59999999999999998, 0.0, 0.0, 1.0), text_font = PiratesGlobals.getPirateOutlineFont(), text_wordwrap = 8, textMayChange = 1, pos = (0.0, 0, 0.13))
-            messageLabel = DirectLabel(parent = self, relief = None, text = message, text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleMed, text_fg = PiratesGuiGlobals.TextFG0, text_font = PiratesGlobals.getPirateFont(), text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 14, textMayChange = 1, pos = (-0.20000000000000001, 0, 0.070000000000000007))
+            titleLabel = DirectLabel(parent = self, relief = None, text = title, text_align = TextNode.ACenter, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_fg = (0.598, 0.0, 0.0, 1.0), text_font = PiratesGlobals.getPirateOutlineFont(), text_wordwrap = 8, textMayChange = 1, pos = (0.0, 0, 0.13))
+            messageLabel = DirectLabel(parent = self, relief = None, text = message, text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleMed, text_fg = PiratesGuiGlobals.TextFG0, text_font = PiratesGlobals.getPirateFont(), text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 14, textMayChange = 1, pos = (-0.200, 0, 0.070))
             titleBounds = titleLabel.getBounds()
             messageBounds = messageLabel.getBounds()
-            messageLabel.setZ(0.040000000000000001 + titleBounds[2] - (messageBounds[3] + messageBounds[2]) * 0.5)
-            if titleBounds[3] - titleBounds[2] > 0.089999999999999997:
-                messageLabel.setZ(messageLabel.getZ() + 0.012500000000000001)
+            messageLabel.setZ(0.0400 + titleBounds[2] - (messageBounds[3] + messageBounds[2]) * 0.5)
+            if titleBounds[3] - titleBounds[2] > 0.089:
+                messageLabel.setZ(messageLabel.getZ() + 0.0125)
 
             self.filled = True
             self.titleLabels[newData] = titleLabel
@@ -229,7 +229,7 @@ class ContextualTutorialPanel(DirectFrame):
             text = ''
         else:
             text = PLocalizer.ContextPanelNoMoreHints % PLocalizer.ContextPanelTypes[type]
-        noHintsLabel = DirectLabel(parent = self, relief = None, text = text, text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleSmall, text_fg = PiratesGuiGlobals.TextFG0, textMayChange = 1, pos = (-0.14000000000000001, 0, -0.12))
+        noHintsLabel = DirectLabel(parent = self, relief = None, text = text, text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleSmall, text_fg = PiratesGuiGlobals.TextFG0, textMayChange = 1, pos = (-0.140, 0, -0.12))
         if contextId in (InventoryType.ChatPreferences, InventoryType.CursedBlades):
             self.noHintsCheck.hide()
             noHintsLabel.hide()

@@ -15,7 +15,7 @@ objectStruct = {
                     'AnimSet': 'bar_wipe',
                     'CustomModel': 'None',
                     'DNA': '1157098120.05jasyeung',
-                    'Hpr': VBase3(43.418999999999997, 0.0, 0.0),
+                    'Hpr': VBase3(43.418, 0.0, 0.0),
                     'Patrol Radius': '12.0000',
                     'Pos': Point3(16.378, -15.048, 0.0),
                     'Private Status': 'All',

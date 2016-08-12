@@ -19,21 +19,21 @@ class DialMeter(DirectFrame):
 
         self.meterFace = self.MeterFull.copyTo(self)
         self.meterFace.setTransparency(1)
-        self.meterFace.setScale(1.1499999999999999)
+        self.meterFace.setScale(1.14)
         self.meterFace.flattenStrong()
         self.meterFace.setColor(self['baseColor'])
         self.meterFaceHalf1 = self.MeterHalf.copyTo(self)
         self.meterFaceHalf1.setTransparency(1)
-        self.meterFaceHalf1.setScale(1.1000000000000001)
+        self.meterFaceHalf1.setScale(1.10)
         self.meterFaceHalf1.flattenStrong()
         self.meterFaceHalf1.setColor(self['meterColor'])
         self.meterFaceHalf1.setY(-0.01)
         self.meterFaceHalf2 = self.MeterHalf.copyTo(self)
         self.meterFaceHalf2.setTransparency(1)
-        self.meterFaceHalf2.setScale(1.1000000000000001)
+        self.meterFaceHalf2.setScale(1.10)
         self.meterFaceHalf2.flattenStrong()
         self.meterFaceHalf2.setColor(self['baseColor'])
-        self.meterFaceHalf2.setY(-0.014999999999999999)
+        self.meterFaceHalf2.setY(-0.0149)
         if self['wantCover']:
             cover = self.MeterFull.copyTo(self)
             cover.setColor(self['baseColor'])
@@ -60,7 +60,7 @@ class DialMeter(DirectFrame):
         elif progress == 1 and self['completeColor']:
             meterColor = self['completeColor']
         elif progress <= self['dangerRatio']:
-            meterColor = Vec4(0.80000000000000004, 0.0, 0.0, 1.0)
+            meterColor = Vec4(0.800000, 0.0, 0.0, 1.0)
         else:
             meterColor = self['meterColor']
         self.meterFaceHalf1.clearColorScale()

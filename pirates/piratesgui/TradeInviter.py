@@ -54,29 +54,29 @@ class TradeInviter(SocialPage.SocialPage):
             State.State('down', self.enterDown, self.exitDown),
             State.State('cancel', self.enterCancel, self.exitCancel)], 'off', 'off')
         guiMain = loader.loadModel('models/gui/gui_main')
-        self.box = OnscreenImage(parent = self, pos = (0.25, 0, 0.27500000000000002), image = guiMain.find('**/general_frame_e'), scale = 0.25)
-        self.title = DirectLabel(parent = self, relief = None, text = PLocalizer.TradeInviterTitle, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getPirateOutlineFont(), pos = (0.25, 0, 0.41999999999999998), image = None, image_scale = 0.25)
-        self.message = DirectLabel(parent = self, relief = None, text = '', text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.25, 0, 0.32500000000000001), textMayChange = 1)
+        self.box = OnscreenImage(parent = self, pos = (0.25, 0, 0.275), image = guiMain.find('**/general_frame_e'), scale = 0.25)
+        self.title = DirectLabel(parent = self, relief = None, text = PLocalizer.TradeInviterTitle, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getPirateOutlineFont(), pos = (0.25, 0, 0.418), image = None, image_scale = 0.25)
+        self.message = DirectLabel(parent = self, relief = None, text = '', text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.25, 0, 0.325), textMayChange = 1)
         self.context = None
         self.bOk = TradeInviterButton(text = PLocalizer.TradeInviterOK, command = self._TradeInviter__handleOk)
         self.bOk.reparentTo(self)
-        self.bOk.setPos(0.20000000000000001, 0, 0.050000000000000003)
+        self.bOk.setPos(0.200, 0, 0.050000)
         self.bOk.hide()
         self.bCancel = TradeInviterButton(text = PLocalizer.TradeInviterCancel, command = self._TradeInviter__handleCancel)
         self.bCancel.reparentTo(self)
-        self.bCancel.setPos(0.20000000000000001, 0, 0.050000000000000003)
+        self.bCancel.setPos(0.200, 0, 0.050000)
         self.bCancel.hide()
         self.bStop = TradeInviterButton(text = PLocalizer.TradeInviterStopTrading, command = self._TradeInviter__handleStop)
         self.bStop.reparentTo(self)
-        self.bStop.setPos(0.20000000000000001, 0, 0.14999999999999999)
+        self.bStop.setPos(0.200, 0, 0.149)
         self.bStop.hide()
         self.bYes = TradeInviterButton(text = PLocalizer.TradeInviterYes, command = self._TradeInviter__handleYes)
         self.bYes.reparentTo(self)
-        self.bYes.setPos(0.10000000000000001, 0, 0.050000000000000003)
+        self.bYes.setPos(0.100, 0, 0.050000)
         self.bYes.hide()
         self.bNo = TradeInviterButton(text = PLocalizer.TradeInviterNo, command = self._TradeInviter__handleNo)
         self.bNo.reparentTo(self)
-        self.bNo.setPos(0.29999999999999999, 0, 0.050000000000000003)
+        self.bNo.setPos(0.299, 0, 0.050000)
         self.bNo.hide()
         self.fsm.enterInitialState()
         if self.avId == None:
@@ -210,7 +210,7 @@ class TradeInviter(SocialPage.SocialPage):
 
     def enterAlreadyTrading(self):
         self.message['text'] = PLocalizer.TradeInviterAlready % self.avName
-        self['text_pos'] = (0.0, 0.20000000000000001)
+        self['text_pos'] = (0.0, 0.200)
         self.context = None
         self.bStop.show()
         self.bCancel.show()
@@ -225,7 +225,7 @@ class TradeInviter(SocialPage.SocialPage):
 
     def enterAlreadyInvited(self):
         self.message['text'] = PLocalizer.TradeInviterAlreadyInvited % self.avName
-        self['text_pos'] = (0.0, 0.20000000000000001)
+        self['text_pos'] = (0.0, 0.200)
         self.context = None
         self.bStop.show()
         self.bCancel.show()

@@ -31,27 +31,27 @@ class LegendaryFishingGameGUI:
         self.fishActor = None
         self.actorAnim = { }
         self.scaleSize = {
-            InventoryType.Collection_Set11_Part1: 0.059999999999999998,
+            InventoryType.Collection_Set11_Part1: 0.0598,
             InventoryType.Collection_Set11_Part2: 0.055,
             InventoryType.Collection_Set11_Part3: 0.12,
-            InventoryType.Collection_Set11_Part4: 0.086999999999999994,
-            InventoryType.Collection_Set11_Part5: 0.080000000000000002 }
-        self.meterFrame = DirectFrame(parent = self.leftBaseNode, frameSize = (-0.29999999999999999, 0.29999999999999999, -1.0, 0.0), frameColor = (1.0, 1.0, 1.0, 0.0), relief = None, state = DGG.DISABLED, pos = (1.0, 0.0, -0.45000000000000001), hpr = (0, 0, 0), scale = (1.3, 0.0, 1.3), image = self.guiImage.find('**/pir_t_gui_fsh_meter'), image_scale = (0.20000000000000001, 0.0, 0.80000000000000004), image_pos = (0, 0, 0), text = '', textMayChange = 1, text_scale = PiratesGuiGlobals.TextScaleTitleLarge, text_pos = (-0.55000000000000004, 0.10000000000000001), text_shadow = PiratesGuiGlobals.TextShadow)
+            InventoryType.Collection_Set11_Part4: 0.0864,
+            InventoryType.Collection_Set11_Part5: 0.08 }
+        self.meterFrame = DirectFrame(parent = self.leftBaseNode, frameSize = (-0.299, 0.299, -1.0, 0.0), frameColor = (1.0, 1.0, 1.0, 0.0), relief = None, state = DGG.DISABLED, pos = (1.0, 0.0, -0.450), hpr = (0, 0, 0), scale = (1.3, 0.0, 1.3), image = self.guiImage.find('**/pir_t_gui_fsh_meter'), image_scale = (0.200, 0.0, 0.800000), image_pos = (0, 0, 0), text = '', textMayChange = 1, text_scale = PiratesGuiGlobals.TextScaleTitleLarge, text_pos = (-0.550000, 0.100), text_shadow = PiratesGuiGlobals.TextShadow)
         self.UICompoments['meterFrame'] = self.meterFrame
-        self.fishingRod = DirectFrame(parent = self.meterFrame, frameSize = (-0.29999999999999999, 0.29999999999999999, -1.0, 0.0), relief = None, state = DGG.DISABLED, pos = FishingGlobals.fishingRodScreenPosition, image = self.guiImage.find('**/pir_t_gui_fsh_fullRod'), image_scale = (1.0, 0.0, 0.125), image_pos = (0.20000000000000001, 0, 0))
+        self.fishingRod = DirectFrame(parent = self.meterFrame, frameSize = (-0.299, 0.299, -1.0, 0.0), relief = None, state = DGG.DISABLED, pos = FishingGlobals.fishingRodScreenPosition, image = self.guiImage.find('**/pir_t_gui_fsh_fullRod'), image_scale = (1.0, 0.0, 0.125), image_pos = (0.200, 0, 0))
         self.fishingRod.setR(FishingGlobals.fishingRodInitSlope)
         self.UICompoments['fishingRod'] = self.fishingRod
         base.loadingScreen.tick()
-        self.fishingHandleBaseFrame = DirectFrame(parent = self.uiBaseNode, frameSize = (-0.29999999999999999, 0.29999999999999999, -1.5, 1.5), frameColor = (1.0, 1.0, 1.0, 0.0), relief = None, state = DGG.DISABLED, pos = (0.0, 0.0, 0.0), hpr = (0, 0, 0), scale = (0.71999999999999997, 0.0, 0.71999999999999997), image = self.guiImage.find('**/pir_t_gui_fsh_partialRod'), image_scale = (3.7999999999999998, 0.0, 1.8999999999999999), image_pos = (0, 0, 0), image_hpr = (0.0, 0.0, 0))
+        self.fishingHandleBaseFrame = DirectFrame(parent = self.uiBaseNode, frameSize = (-0.299, 0.299, -1.5, 1.5), frameColor = (1.0, 1.0, 1.0, 0.0), relief = None, state = DGG.DISABLED, pos = (0.0, 0.0, 0.0), hpr = (0, 0, 0), scale = (0.71, 0.0, 0.71), image = self.guiImage.find('**/pir_t_gui_fsh_partialRod'), image_scale = (3.78, 0.0, 1.89), image_pos = (0, 0, 0), image_hpr = (0.0, 0.0, 0))
         self.fishingHandleBaseFrame.hide()
         self.UICompoments['fishingHandleBaseFrame'] = self.fishingHandleBaseFrame
-        self.fishingHandle = DirectFrame(parent = self.fishingHandleBaseFrame, frameSize = (-0.080000000000000002, 0.080000000000000002, -0.20000000000000001, 0.20000000000000001), relief = None, state = DGG.DISABLED, pos = (-0.10000000000000001, 0.0, -0.050000000000000003), hpr = (0, 0, 0), image = self.guiImage.find('**/pir_t_gui_fsh_handleArm'), image_scale = (1.0, 0.0, 1.0), image_pos = (-0.042000000000000003, 0, -0.115), image_hpr = (0.0, 0.0, 0))
+        self.fishingHandle = DirectFrame(parent = self.fishingHandleBaseFrame, frameSize = (-0.08, 0.08, -0.200, 0.200), relief = None, state = DGG.DISABLED, pos = (-0.100, 0.0, -0.050000), hpr = (0, 0, 0), image = self.guiImage.find('**/pir_t_gui_fsh_handleArm'), image_scale = (1.0, 0.0, 1.0), image_pos = (-0.042000, 0, -0.115), image_hpr = (0.0, 0.0, 0))
         self.UICompoments['fishingHandle'] = self.fishingHandle
-        self.arrowImage = DirectFrame(parent = self.fishingHandleBaseFrame, frameSize = (-0.40000000000000002, 0.40000000000000002, -0.40000000000000002, 0.40000000000000002), relief = None, state = DGG.DISABLED, pos = (0.0, 0.0, 0.0), hpr = (0, 0, 0), scale = (1.2, 0.0, 1.2), image = self.guiImage.find('**/pir_t_gui_fsh_arrow'), image_scale = (1.0, 0.0, 1.0), image_pos = (0.0, 0, 0.0), image_hpr = (0.0, 0.0, 0.0))
+        self.arrowImage = DirectFrame(parent = self.fishingHandleBaseFrame, frameSize = (-0.4, 0.4, -0.4, 0.4), relief = None, state = DGG.DISABLED, pos = (0.0, 0.0, 0.0), hpr = (0, 0, 0), scale = (1.2, 0.0, 1.2), image = self.guiImage.find('**/pir_t_gui_fsh_arrow'), image_scale = (1.0, 0.0, 1.0), image_pos = (0.0, 0, 0.0), image_hpr = (0.0, 0.0, 0.0))
         self.arrowImage.hide()
         self.UICompoments['arrowImage'] = self.arrowImage
         btnGeom = (self.guiImage.find('**/pir_t_gui_fsh_handle'), self.guiImage.find('**/pir_t_gui_fsh_handle'), self.guiImage.find('**/pir_t_gui_fsh_handleOn'))
-        self.fishingHandleButton = GuiButton(pos = (-0.29999999999999999, 0, -0.55000000000000004), hpr = (0, 0, 0), scale = 0.45000000000000001, image = btnGeom, image_pos = (0, 0, 0), image_scale = 1.0, sortOrder = 2)
+        self.fishingHandleButton = GuiButton(pos = (-0.299, 0, -0.550000), hpr = (0, 0, 0), scale = 0.450, image = btnGeom, image_pos = (0, 0, 0), image_scale = 1.0, sortOrder = 2)
         self.fishingHandleButton.bind(DGG.B1PRESS, self.handleButtonClicked)
         self.fishingHandleButton.reparentTo(self.fishingHandle)
         self.UICompoments['fishingHandleButton'] = self.fishingHandleButton
@@ -63,8 +63,8 @@ class LegendaryFishingGameGUI:
         self.lineOneTransitTextNode.setAlign(TextNode.ACenter)
         self.lineOneTransitTextNode.setTextColor(1.0, 1.0, 1.0, 0.5)
         self.lineOneTransitTextNodePath = NodePath(self.lineOneTransitTextNode)
-        self.lineOneTransitTextNodePath.setPos(0.0, 0.0, -0.80000000000000004)
-        self.lineOneTransitTextNodePath.setScale(0.34999999999999998, 0.34999999999999998, 0.34999999999999998)
+        self.lineOneTransitTextNodePath.setPos(0.0, 0.0, -0.800000)
+        self.lineOneTransitTextNodePath.setScale(0.348, 0.348, 0.348)
         self.lineOneTransitTextNodePath.reparentTo(self.uiBaseNode)
         self.lineOneTransitTextNodePath.hide()
         self.UICompoments['lineOneTransitText'] = self.lineOneTransitTextNodePath
@@ -74,7 +74,7 @@ class LegendaryFishingGameGUI:
         self.lineTwoTransitTextNode.setAlign(TextNode.ACenter)
         self.lineTwoTransitTextNode.setTextColor(1.0, 1.0, 1.0, 0.5)
         self.lineTwoTransitTextNodePath = NodePath(self.lineTwoTransitTextNode)
-        self.lineTwoTransitTextNodePath.setPos(-0.40000000000000002, 0.0, -0.94999999999999996)
+        self.lineTwoTransitTextNodePath.setPos(-0.4, 0.0, -0.946)
         self.lineTwoTransitTextNodePath.setScale(0.12, 0.12, 0.12)
         self.lineTwoTransitTextNodePath.reparentTo(self.uiBaseNode)
         self.lineTwoTransitTextNodePath.hide()
@@ -82,27 +82,27 @@ class LegendaryFishingGameGUI:
         base.loadingScreen.tick()
         self.test_guiImage = loader.loadModel('models/gui/toplevel_gui')
         self.buttonIcon = (self.test_guiImage.find('**/treasure_chest_closed'), self.test_guiImage.find('**/treasure_chest_closed'), self.test_guiImage.find('**/treasure_chest_closed_over'))
-        self.winImagePanel = GuiPanel.GuiPanel('', 2.6000000000000001, 1.8999999999999999, True)
-        self.winImagePanel.setPos(-1.3, 0.0, -0.94999999999999996)
+        self.winImagePanel = GuiPanel.GuiPanel('', 2.60, 1.89, True)
+        self.winImagePanel.setPos(-1.3, 0.0, -0.946)
         self.winImagePanel.reparentTo(self.uiBaseNode)
-        self.winImagePanel.background = OnscreenImage(parent = self.winImagePanel, scale = (2.3999999999999999, 0, 1.8), image = self.guiImage.find('**/pir_t_gui_fsh_posterBackground'), hpr = (0, 0, 0), pos = (1.3, 0, 0.94999999999999996))
+        self.winImagePanel.background = OnscreenImage(parent = self.winImagePanel, scale = (2.39, 0, 1.8), image = self.guiImage.find('**/pir_t_gui_fsh_posterBackground'), hpr = (0, 0, 0), pos = (1.3, 0, 0.946))
         self.winImagePanel.setBin('gui-popup', -4)
         self.winTitleTextNode = TextNode('winTitleTextNode')
         self.winTitleTextNode.setText('Congratulations!')
         self.winTitleTextNode.setAlign(TextNode.ACenter)
         self.winTitleTextNode.setFont(PiratesGlobals.getPirateFont())
-        self.winTitleTextNode.setTextColor(0.23000000000000001, 0.089999999999999997, 0.029999999999999999, 1.0)
+        self.winTitleTextNode.setTextColor(0.230, 0.089, 0.0299, 1.0)
         self.winTitleTextNodePath = NodePath(self.winTitleTextNode)
-        self.winTitleTextNodePath.setPos(1.3500000000000001, 0.0, 1.6699999999999999)
-        self.winTitleTextNodePath.setScale(0.17999999999999999)
+        self.winTitleTextNodePath.setPos(1.35, 0.0, 1.66)
+        self.winTitleTextNodePath.setScale(0.179)
         self.winTitleTextNodePath.reparentTo(self.winImagePanel)
         self.wholeStoryTextNode = TextNode('storyTextNode')
         self.wholeStoryTextNode.setText('')
         self.wholeStoryTextNode.setWordwrap(19.0)
-        self.wholeStoryTextNode.setTextColor(0.23000000000000001, 0.089999999999999997, 0.029999999999999999, 1.0)
+        self.wholeStoryTextNode.setTextColor(0.230, 0.089, 0.0299, 1.0)
         self.wholeStoryTextNodePath = NodePath(self.wholeStoryTextNode)
-        self.wholeStoryTextNodePath.setPos(0.33000000000000002, 0.0, 1.6399999999999999)
-        self.wholeStoryTextNodePath.setScale(0.050000000000000003)
+        self.wholeStoryTextNodePath.setPos(0.33, 0.0, 1.63)
+        self.wholeStoryTextNodePath.setScale(0.050000)
         self.wholeStoryTextNodePath.reparentTo(self.winImagePanel)
         self.winImagePanel.closeButton['command'] = self.closeDialogGotNextState
         self.winImagePanel.closeButton['extraArgs'] = [
@@ -112,14 +112,14 @@ class LegendaryFishingGameGUI:
         self.UICompoments['winImagePanel'] = self.winImagePanel
         self.winImagePanel.hide()
         self.luiCloseDialogSequence = Sequence()
-        self.arrowImageRotationInterval = LerpHprInterval(self.arrowImage, 2.2000000000000002, self.arrowImage.getHpr() + Point3(0.0, 0.0, 280.0), self.arrowImage.getHpr())
+        self.arrowImageRotationInterval = LerpHprInterval(self.arrowImage, 2.2, self.arrowImage.getHpr() + Point3(0.0, 0.0, 280.0), self.arrowImage.getHpr())
         self.luiArrowRotatingSequence = Sequence(Func(self.showGui, [
-            'arrowImage']), Parallel(Func(self.arrowImageRotationInterval.start), Wait(2.2000000000000002)), Func(self.hideGui, [
+            'arrowImage']), Parallel(Func(self.arrowImageRotationInterval.start), Wait(2.2)), Func(self.hideGui, [
             'arrowImage']), Func(self.arrowImage.setHpr, self.arrowImage.getHpr() + Point3(0.0, 0.0, 5.0)), name = self.gameObject.distributedFishingSpot.uniqueName('luiArrowRotatingSequence'))
         self.lineOneColorChange = LerpColorScaleInterval(self.lineOneTransitTextNodePath, FishingGlobals.legendaryTransitionTextDuration, (1.0, 1.0, 1.0, 0.0), (1.0, 1.0, 1.0, 1.0), blendType = 'easeOut')
-        self.lineOnePosChange = LerpPosInterval(self.lineOneTransitTextNodePath, FishingGlobals.legendaryTransitionTextDuration, (0.0, 0.0, -0.20000000000000001), (0.0, 0.0, -0.80000000000000004), blendType = 'easeOut')
+        self.lineOnePosChange = LerpPosInterval(self.lineOneTransitTextNodePath, FishingGlobals.legendaryTransitionTextDuration, (0.0, 0.0, -0.200), (0.0, 0.0, -0.800000), blendType = 'easeOut')
         self.lineTwoCholorChange = LerpColorScaleInterval(self.lineTwoTransitTextNodePath, FishingGlobals.legendaryTransitionTextDuration, (1.0, 1.0, 1.0, 1.0), (1.0, 1.0, 1.0, 1.0), blendType = 'easeOut')
-        self.lineTwoPosChange = LerpPosInterval(self.lineTwoTransitTextNodePath, FishingGlobals.legendaryTransitionTextDuration, (0.0, 0.0, -0.32000000000000001), (0.0, 0.0, -0.94999999999999996), blendType = 'easeOut')
+        self.lineTwoPosChange = LerpPosInterval(self.lineTwoTransitTextNodePath, FishingGlobals.legendaryTransitionTextDuration, (0.0, 0.0, -0.320), (0.0, 0.0, -0.946), blendType = 'easeOut')
         self.transitionTextMovingSequence = Sequence(Func(self.lineOneTransitTextNodePath.show), Func(self.lineTwoTransitTextNodePath.show), Parallel(self.lineOnePosChange, self.lineTwoPosChange, self.lineOneColorChange, self.lineTwoCholorChange), Func(self.lineOneTransitTextNodePath.hide), Func(self.lineTwoTransitTextNodePath.hide), name = self.gameObject.distributedFishingSpot.uniqueName('transitionTextMovingSequence'))
         self.meterFadeInInterval = Sequence(Func(self.meterFrame.show), LerpColorScaleInterval(self.meterFrame, FishingGlobals.legendaryTransitionTextDuration, colorScale = (1.0, 1.0, 1.0, 1.0), startColorScale = (1.0, 1.0, 1.0, 0.0), blendType = 'easeOut'), name = 'FadeInLegendaryMeter')
         self.meterFadeOutInterval = Sequence(LerpColorScaleInterval(self.meterFrame, FishingGlobals.legendaryTransitionTextDuration, colorScale = (1.0, 1.0, 1.0, 0.0), startColorScale = (1.0, 1.0, 1.0, 1.0), blendType = 'easeOut'), Func(self.meterFrame.hide), name = 'FadeOutLegendaryMeter')
@@ -266,7 +266,7 @@ class LegendaryFishingGameGUI:
             self.fishActor.destroy()
             self.fishActor = None
 
-        self.luiCloseDialogSequence = Sequence(Func(self.gameObject.distributedFishingSpot.fadeOut), Wait(0.40000000000000002), Func(self.UICompoments[object].hide), Func(self.gameObject.lfgFsm.request, targetState), name = self.gameObject.distributedFishingSpot.uniqueName('luiCloseDialogSequence'))
+        self.luiCloseDialogSequence = Sequence(Func(self.gameObject.distributedFishingSpot.fadeOut), Wait(0.4), Func(self.UICompoments[object].hide), Func(self.gameObject.lfgFsm.request, targetState), name = self.gameObject.distributedFishingSpot.uniqueName('luiCloseDialogSequence'))
         self.luiCloseDialogSequence.start()
 
 

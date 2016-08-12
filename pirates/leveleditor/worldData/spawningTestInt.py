@@ -7,9 +7,9 @@ objectStruct = {
             'Objects': {
                 '1161665992.14jubutler': {
                     'Type': 'Player Spawn Node',
-                    'Hpr': VBase3(42.469999999999999, 0.0, 0.0),
+                    'Hpr': VBase3(42.469, 0.0, 0.0),
                     'Index': -1,
-                    'Pos': Point3(2.855, -7.3209999999999997, -1.5),
+                    'Pos': Point3(2.855, -7.320, -1.5),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'All',
                     'TEST': '',
@@ -18,7 +18,7 @@ objectStruct = {
                 '1161666006.37jubutler': {
                     'Type': 'Bush',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-7.5380000000000003, 4.657, -1.5),
+                    'Pos': Point3(-7.5380, 4.657, -1.5),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/bush_a' } },
@@ -27,7 +27,7 @@ objectStruct = {
                     'Category': 'Commoner',
                     'CustomModel': 'None',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-21.751000000000001, -11.859, -0.0),
+                    'Pos': Point3(-21.751, -11.859, -0.0),
                     'Private Status': 'All',
                     'Respawns': True,
                     'Scale': VBase3(1.0, 1.0, 1.0),

@@ -24,7 +24,7 @@ class GhostAura(PooledEffect, EffectController):
         self.setFogOff()
         self.setLightOff()
         self.setColorScaleOff()
-        self.effectScale = 0.59999999999999998
+        self.effectScale = 0.598
         self.duration = 1.0
         self.f = ParticleEffect.ParticleEffect('GhostAura')
         self.f.reparentTo(self)
@@ -34,14 +34,14 @@ class GhostAura(PooledEffect, EffectController):
         self.p0.setEmitter('BoxEmitter')
         self.f.addParticles(self.p0)
         self.p0.setPoolSize(48)
-        self.p0.setBirthRate(0.074999999999999997)
+        self.p0.setBirthRate(0.074)
         self.p0.setLitterSize(2)
         self.p0.setLitterSpread(0)
         self.p0.setSystemLifespan(0.0)
         self.p0.setLocalVelocityFlag(1)
         self.p0.setSystemGrowsOlderFlag(0)
         self.p0.setFloorZ(-1.0)
-        self.p0.factory.setLifespanBase(1.1000000000000001)
+        self.p0.factory.setLifespanBase(1.10)
         self.p0.factory.setLifespanSpread(0.25)
         self.p0.factory.setMassBase(1.0)
         self.p0.factory.setMassSpread(0.0)
@@ -65,7 +65,7 @@ class GhostAura(PooledEffect, EffectController):
         self.p0.renderer.setAlphaDisable(0)
         self.p0.emitter.setEmissionType(BaseParticleEmitter.ETRADIATE)
         self.p0.emitter.setAmplitude(-0.5)
-        self.p0.emitter.setAmplitudeSpread(0.17999999999999999)
+        self.p0.emitter.setAmplitudeSpread(0.179)
         self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, 0.0))
         self.p0.emitter.setExplicitLaunchVector(Vec3(1.0, 0.0, 0.0))
         self.p0.emitter.setRadiateOrigin(Point3(0.0, 0.0, 5.0))
@@ -79,7 +79,7 @@ class GhostAura(PooledEffect, EffectController):
             self.transparency = 0.5
             self.p0.setPoolSize(72)
             self.p0.setLitterSize(3)
-            self.p0.setBirthRate(0.074999999999999997)
+            self.p0.setBirthRate(0.074)
         else:
             self.transparency = 1.0
             self.p0.setPoolSize(48)
@@ -115,7 +115,7 @@ class GhostAura(PooledEffect, EffectController):
         self.p0.emitter.setMinBound(Point3(-1.0, -1.0, -0.5))
         self.p0.emitter.setMaxBound(Point3(1.0, 1.0, 7.0))
         self.p0.emitter.setAmplitude(-0.5)
-        self.p0.emitter.setAmplitudeSpread(0.17999999999999999)
+        self.p0.emitter.setAmplitudeSpread(0.179)
         self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, 0.0))
         self.p0.setPoolSize(48)
         self.p0.setLitterSize(2)
@@ -123,12 +123,12 @@ class GhostAura(PooledEffect, EffectController):
             self.transparency = 0.25
             self.p0.setPoolSize(48)
             self.p0.setLitterSize(2)
-            self.p0.setBirthRate(0.074999999999999997)
+            self.p0.setBirthRate(0.074)
         else:
             self.transparency = 0.5
             self.p0.setPoolSize(48)
             self.p0.setLitterSize(1)
-            self.p0.setBirthRate(0.074999999999999997)
+            self.p0.setBirthRate(0.074)
         self.p0.renderer.setUserAlpha(self.transparency)
 
 
@@ -140,17 +140,17 @@ class GhostAura(PooledEffect, EffectController):
 
     def createTrack(self):
         self.p0.renderer.setUserAlpha(self.transparency)
-        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.050000000000000003), Func(self.p0.clearToInitial), Func(self.f.start, self, self))
+        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.050000), Func(self.p0.clearToInitial), Func(self.f.start, self, self))
         self.endEffect = Sequence(Func(self.p0.setBirthRate, 100.0), Wait(2.0), Func(self.cleanUpEffect))
         self.track = Sequence(self.startEffect, Wait(self.duration), self.endEffect)
 
 
     def setEffectScale(self, scale):
         self.effectScale = scale
-        self.p0.renderer.setInitialXScale(0.044999999999999998 * self.cardScale * self.effectScale)
-        self.p0.renderer.setInitialYScale(0.040000000000000001 * self.cardScale * self.effectScale)
-        self.p0.renderer.setFinalXScale(0.014999999999999999 * self.cardScale * self.effectScale)
-        self.p0.renderer.setFinalYScale(0.029999999999999999 * self.cardScale * self.effectScale)
+        self.p0.renderer.setInitialXScale(0.0448 * self.cardScale * self.effectScale)
+        self.p0.renderer.setInitialYScale(0.0400 * self.cardScale * self.effectScale)
+        self.p0.renderer.setFinalXScale(0.0149 * self.cardScale * self.effectScale)
+        self.p0.renderer.setFinalYScale(0.0299 * self.cardScale * self.effectScale)
         self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, 0.0 * self.effectScale))
 
 

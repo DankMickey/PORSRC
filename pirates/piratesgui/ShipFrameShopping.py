@@ -25,7 +25,7 @@ class ShipFrameShopping(ShipFrameSelect):
         else:
             self.button['state'] = DGG.NORMAL
         if shipOV.Hp <= 0:
-            self['shipColorScale'] = VBase4(1, 0.40000000000000002, 0.40000000000000002, 1)
+            self['shipColorScale'] = VBase4(1, 0.4, 0.4, 1)
 
         if self['mode'] == 'repair':
             self.button['text'] = PLocalizer.InteractRepair

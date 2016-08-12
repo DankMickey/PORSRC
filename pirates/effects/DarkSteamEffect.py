@@ -49,7 +49,7 @@ class DarkSteamEffect(PooledEffect, EffectController):
         self.p0.renderer.setAlphaMode(BaseParticleRenderer.PRALPHAINOUT)
         self.p0.renderer.setUserAlpha(0.25)
         self.p0.renderer.setFromNode(self.card)
-        self.p0.renderer.setColor(Vec4(0.59999999999999998, 0.59999999999999998, 0.59999999999999998, 1.0))
+        self.p0.renderer.setColor(Vec4(0.598, 0.598, 0.598, 1.0))
         self.p0.renderer.setXScaleFlag(1)
         self.p0.renderer.setYScaleFlag(1)
         self.p0.renderer.setAnimAngleFlag(0)

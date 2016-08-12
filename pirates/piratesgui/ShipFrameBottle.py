@@ -11,7 +11,7 @@ from pirates.piratesgui.ShipStatFrame import ShipStatFrame
 class ShipFrameBottle(ShipFrame):
 
     def __init__(self, parent, **kw):
-        optiondefs = (('frameSize', (0, 0.90000000000000002, 0.0, 0.53000000000000003), None), ('frameColor', PiratesGuiGlobals.ButtonColor1, None), ('relief', DGG.FLAT, None), ('shipPos', VBase3(0.57999999999999996, 0, 0.13), None), ('shipHpr', VBase3(-70, 6, 15), None), ('shipScale', VBase3(0.65000000000000002), None), ('inBottle', True, self.setInBottle))
+        optiondefs = (('frameSize', (0, 0.9, 0.0, 0.53000), None), ('frameColor', PiratesGuiGlobals.ButtonColor1, None), ('relief', DGG.FLAT, None), ('shipPos', VBase3(0.576, 0, 0.13), None), ('shipHpr', VBase3(-70, 6, 15), None), ('shipScale', VBase3(0.65), None), ('inBottle', True, self.setInBottle))
         self.nameLabel = None
         self.classLabel = None
         self.statFrame = None
@@ -43,10 +43,10 @@ class ShipFrameBottle(ShipFrame):
     def createGui(self):
         ShipFrame.createGui(self)
         if self['shipName']:
-            self.nameLabel = DirectLabel(parent = self, relief = DGG.FLAT, state = DGG.DISABLED, text = self['shipName'], text_font = PiratesGlobals.getInterfaceFont(), text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleMed, text_pos = (0.040000000000000001, 0.014999999999999999), text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, frameColor = PiratesGuiGlobals.ButtonColor1[3], frameSize = (self['frameSize'][0] + 0.02, self['frameSize'][1] - 0.02, 0, 0.050000000000000003), pos = (0, 0, self['frameSize'][3] - 0.059999999999999998))
+            self.nameLabel = DirectLabel(parent = self, relief = DGG.FLAT, state = DGG.DISABLED, text = self['shipName'], text_font = PiratesGlobals.getInterfaceFont(), text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleMed, text_pos = (0.0400, 0.0149), text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, frameColor = PiratesGuiGlobals.ButtonColor1[3], frameSize = (self['frameSize'][0] + 0.02, self['frameSize'][1] - 0.02, 0, 0.050000), pos = (0, 0, self['frameSize'][3] - 0.0598))
 
         if self['shipClass']:
-            self.classLabel = DirectLabel(parent = self.nameLabel, relief = None, state = DGG.DISABLED, text = PLocalizer.ShipClassNames.get(self['shipClass']), text_scale = PiratesGuiGlobals.TextScaleMed, text_align = TextNode.ARight, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = (0, 0, 0, 1), text_wordwrap = 15, textMayChange = 0, text_pos = (self.nameLabel['frameSize'][1] - 0.02, 0.014999999999999999), text_font = PiratesGlobals.getInterfaceFont())
+            self.classLabel = DirectLabel(parent = self.nameLabel, relief = None, state = DGG.DISABLED, text = PLocalizer.ShipClassNames.get(self['shipClass']), text_scale = PiratesGuiGlobals.TextScaleMed, text_align = TextNode.ARight, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = (0, 0, 0, 1), text_wordwrap = 15, textMayChange = 0, text_pos = (self.nameLabel['frameSize'][1] - 0.02, 0.0149), text_font = PiratesGlobals.getInterfaceFont())
 
 
 
@@ -77,7 +77,7 @@ class ShipFrameBottle(ShipFrame):
 
 
     def enableStatsOV(self, shipOv):
-        self.statFrame = ShipStatFrame(self, shipOv, pos = (0.20999999999999999, 0, 0.029999999999999999))
+        self.statFrame = ShipStatFrame(self, shipOv, pos = (0.209, 0, 0.0299))
         self._ShipFrameBottle__enableStats()
 
 

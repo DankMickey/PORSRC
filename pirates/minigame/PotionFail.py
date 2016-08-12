@@ -8,14 +8,14 @@ class PotionFail(GuiPanel):
 
     def __init__(self, potionGame):
         self.potionGame = potionGame
-        GuiPanel.__init__(self, PLocalizer.PotionGui['FailTitle'], 1, 0.40000000000000002, showClose = False, titleSize = 1.5)
+        GuiPanel.__init__(self, PLocalizer.PotionGui['FailTitle'], 1, 0.4, showClose = False, titleSize = 1.5)
         self.setPos((-0.5, 0, 0))
         self.bQuit = RequestButton(width = 2.0, text = PLocalizer.PotionGui['StopButton'], command = self.quit)
         self.bQuit.reparentTo(self)
-        self.bQuit.setPos(0.25, 0, 0.050000000000000003)
+        self.bQuit.setPos(0.25, 0, 0.050000)
         self.bPlayAgain = RequestButton(width = 2.0, text = PLocalizer.PotionGui['PlayAgainButton'], command = self.playAgain)
         self.bPlayAgain.reparentTo(self)
-        self.bPlayAgain.setPos(0.65000000000000002, 0, 0.050000000000000003)
+        self.bPlayAgain.setPos(0.65, 0, 0.050000)
         self.message = None
         self.message2 = None
         self.message3 = None
@@ -43,7 +43,7 @@ class PotionFail(GuiPanel):
             self.message = DirectLabel(parent = self, relief = None, text = self.messageText, text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 17, pos = (0.5, 0, 0.25), textMayChange = 0)
         else:
             self.messageText = PLocalizer.PotionGui['IngredientCount'] + ' : ' + str(self.potionGame.currentRecipe.ingredientsMade)
-            self.message = DirectLabel(parent = self, relief = None, text = self.messageText, text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 17, pos = (0.5, 0, 0.28000000000000003), textMayChange = 0)
+            self.message = DirectLabel(parent = self, relief = None, text = self.messageText, text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 17, pos = (0.5, 0, 0.28000), textMayChange = 0)
             effBonus = 0
             xpEarned = 0
             if self.potionGame.currentRecipe.tilesUsed > 0:
@@ -51,9 +51,9 @@ class PotionFail(GuiPanel):
                 xpEarned = int(math.ceil(float(self.potionGame.currentRecipe.ingredientsMade) * float(self.potionGame.currentRecipe.ingredientsMade) / 10.0 * float(self.potionGame.currentRecipe.tilesUsed)))
 
             self.messageText2 = PLocalizer.PotionGui['Efficiency'] + ' : ' + str(effBonus) + '%'
-            self.message2 = DirectLabel(parent = self, relief = None, text = self.messageText2, text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 17, pos = (0.5, 0, 0.23999999999999999), textMayChange = 0)
+            self.message2 = DirectLabel(parent = self, relief = None, text = self.messageText2, text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 17, pos = (0.5, 0, 0.239), textMayChange = 0)
             self.messageText3 = PLocalizer.PotionGui['XPEarned'] + ' : ' + str(xpEarned)
-            self.message3 = DirectLabel(parent = self, relief = None, text = self.messageText3, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 17, pos = (0.5, 0, 0.17999999999999999), textMayChange = 0)
+            self.message3 = DirectLabel(parent = self, relief = None, text = self.messageText3, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 17, pos = (0.5, 0, 0.179), textMayChange = 0)
         self.unstash()
         self.potionGame.closeCurrentDialog = self.cleanUp
         self.potionGame.disableButtons()

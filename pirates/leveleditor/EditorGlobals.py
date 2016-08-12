@@ -202,7 +202,7 @@ def CreateEffectProjector(type = 'CausticsProjector', drawIcon = True):
 
     if drawIcon and projector:
         newModel = loader.loadModel('models/misc/smiley')
-        newModel.setColor(0, 0.65000000000000002, 0, 1)
+        newModel.setColor(0, 0.65, 0, 1)
         newModel.reparentTo(projector)
 
     return projector

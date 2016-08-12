@@ -28,7 +28,7 @@ class ShipDeployPanel(ShipSelectionPanel):
             text = PLocalizer.DinghyNeedFirstShip % PLocalizer.LocationNames[QuestConstants.LocationIds.PORT_ROYAL_ISLAND]
         else:
             text = PLocalizer.DinghyNeedShip
-        self.noShipHint = DirectLabel(parent = self, relief = None, text = text, text_font = PiratesGlobals.getPirateFont(), text_scale = 0.080000000000000002, text_fg = PiratesGuiGlobals.TextFG1, text_wordwrap = 10, textMayChange = 1, pos = (0.55000000000000004, 0, 0.80000000000000004))
+        self.noShipHint = DirectLabel(parent = self, relief = None, text = text, text_font = PiratesGlobals.getPirateFont(), text_scale = 0.08, text_fg = PiratesGuiGlobals.TextFG1, text_wordwrap = 10, textMayChange = 1, pos = (0.550000, 0, 0.800000))
 
 
     def setPage(self, pageId):

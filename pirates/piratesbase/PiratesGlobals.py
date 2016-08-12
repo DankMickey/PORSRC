@@ -103,15 +103,15 @@ FRENCH_UNDEAD_TEAM_STR = 'French Undead'
 SPANISH_UNDEAD_TEAM_STR = 'Spanish Undead'
 VOODOO_ZOMBIE_TEAM_STR = 'Juju Sailors'
 BOUNTY_HUNTER_TEAM_STR = 'Bounty Hunters'
-PLAYER_NAMETAG = (1, 0.80000000000000004, 0.5, 1)
-UNDEAD_NAMETAG = (0.59999999999999998, 0.59999999999999998, 0.59999999999999998, 1)
-NAVY_NAMETAG = (1, 0.20000000000000001, 0.20000000000000001, 1)
-FRENCH_NAMETAG = (0.10000000000000001, 0.10000000000000001, 0.44, 1.0)
-SPANISH_NAMETAG = (0.84999999999999998, 0.65000000000000002, 0.13, 1.0)
+PLAYER_NAMETAG = (1, 0.800000, 0.5, 1)
+UNDEAD_NAMETAG = (0.598, 0.598, 0.598, 1)
+NAVY_NAMETAG = (1, 0.200, 0.200, 1)
+FRENCH_NAMETAG = (0.100, 0.100, 0.44, 1.0)
+SPANISH_NAMETAG = (0.848, 0.65, 0.13, 1.0)
 NAMETAG_WORDWRAP = 100
 MAX_COMBAT_DAMAGE = 999
-AI_BROADCAST_PERIOD = config.GetDouble('smooth-lag', 0.20000000000000001) * 0.90000000000000002
-AI_MOVEMENT_PERIOD = AI_BROADCAST_PERIOD * 0.90000000000000002
+AI_BROADCAST_PERIOD = config.GetDouble('smooth-lag', 0.200) * 0.9
+AI_MOVEMENT_PERIOD = AI_BROADCAST_PERIOD * 0.9
 AI_EXAMINE_EVERY = config.GetInt('ai-examine-every', 2)
 IDLES_DONT_EXAMINE = [
     VILLAGER_TEAM,
@@ -212,7 +212,7 @@ DisconnectSwitchShards = 4
 DisconnectGraphicsError = 5
 DatabaseDialogTimeout = 20.0
 DatabaseGiveupTimeout = 45.0
-FloorOffset = 0.025000000000000001
+FloorOffset = 0.0250
 InterfaceOutlineFont = None
 PirateFont = None
 PirateOutlineFont = None
@@ -333,10 +333,10 @@ HideGuiHotkey = 'f12'
 TreasureHotkey = 'u'
 TreasureHotkey2 = 'shift-u'
 GlobalDialogColor = (1, 1, 0.75, 1)
-DefaultBackgroundColor = (0.29999999999999999, 0.29999999999999999, 0.29999999999999999, 1)
+DefaultBackgroundColor = (0.299, 0.299, 0.299, 1)
 DynamicZonesBegin = 61000
 DynamicZonesEnd = 1 << 20
-ToonStandableGround = 0.70699999999999996
+ToonStandableGround = 0.70696
 SPEED_NORMAL_INDEX = 0
 SPEED_BATTLE_INDEX = 1
 SPEED_FAST_INDEX = 2
@@ -388,17 +388,17 @@ SPIN_LEFT_INDEX = 12
 SPIN_RIGHT_INDEX = 13
 SWIM_WALK_TRANSITION_TIME = 0.5
 AnimScaleTable = {
-    'models/char/mp_walk_gp8': 0.34999999999999998,
-    'models/char/mp_walk_gp4': 0.34999999999999998,
-    'models/char/mp_walk': 0.10000000000000001,
-    'models/char/mp_bayonet_walk': 0.20000000000000001,
-    'models/char/mp_run_gp8': 0.097100000000000006,
-    'models/char/mp_run': 0.029999999999999999,
-    'models/char/mp_bayonet_run_mtm': 0.029999999999999999,
-    'models/char/mp_bayonet_run': 0.029999999999999999,
-    'models/char/mp_run_mtm': 0.029999999999999999,
-    'models/char/mp_run_mtp': 0.029999999999999999,
-    'models/char/mp_run_mmi': 0.029999999999999999 }
+    'models/char/mp_walk_gp8': 0.348,
+    'models/char/mp_walk_gp4': 0.348,
+    'models/char/mp_walk': 0.100,
+    'models/char/mp_bayonet_walk': 0.200,
+    'models/char/mp_run_gp8': 0.0971,
+    'models/char/mp_run': 0.0299,
+    'models/char/mp_bayonet_run_mtm': 0.0299,
+    'models/char/mp_bayonet_run': 0.0299,
+    'models/char/mp_run_mtm': 0.0299,
+    'models/char/mp_run_mtp': 0.0299,
+    'models/char/mp_run_mmi': 0.0299 }
 
 def GetAnimScale(animName):
     return AnimScaleTable.get(animName)
@@ -916,17 +916,17 @@ DEFAULT_AMBIENT_VOLUME_MIDDLE = DEFAULT_AMBIENT_VOLUME * 0.5
 DEFAULT_AMBIENT_VOLUME_NEAR = DEFAULT_AMBIENT_VOLUME * 0.75
 treasureCarryTransforms = {
     'm': [
-        TransformState.makePosHprScale(Vec3(0.050000000000000003, 0, -1.1000000000000001), Vec3(0, 0, -90), Vec3(0.5, 0.5, 0.5)),
-        TransformState.makePosHprScale(Vec3(0.050000000000000003, 0, -0.96999999999999997), Vec3(0, 0, -90), Vec3(0.46999999999999997, 0.46999999999999997, 0.46999999999999997)),
-        TransformState.makePosHprScale(Vec3(0.050000000000000003, 0, -1.1200000000000001), Vec3(0, 0, -90), Vec3(0.53000000000000003, 0.53000000000000003, 0.53000000000000003)),
-        TransformState.makePosHprScale(Vec3(0.050000000000000003, 0, -1.03), Vec3(0, 0, -90), Vec3(0.47999999999999998, 0.47999999999999998, 0.47999999999999998)),
-        TransformState.makePosHprScale(Vec3(0.050000000000000003, 0, -1.3), Vec3(0, 0, -90), Vec3(0.63, 0.63, 0.63))],
+        TransformState.makePosHprScale(Vec3(0.050000, 0, -1.10), Vec3(0, 0, -90), Vec3(0.5, 0.5, 0.5)),
+        TransformState.makePosHprScale(Vec3(0.050000, 0, -0.96), Vec3(0, 0, -90), Vec3(0.46, 0.46, 0.46)),
+        TransformState.makePosHprScale(Vec3(0.050000, 0, -1.12), Vec3(0, 0, -90), Vec3(0.53000, 0.53000, 0.53000)),
+        TransformState.makePosHprScale(Vec3(0.050000, 0, -1.03), Vec3(0, 0, -90), Vec3(0.478, 0.478, 0.478)),
+        TransformState.makePosHprScale(Vec3(0.050000, 0, -1.3), Vec3(0, 0, -90), Vec3(0.63, 0.63, 0.63))],
     'f': [
-        TransformState.makePosHprScale(Vec3(0.050000000000000003, 0, -0.96999999999999997), Vec3(0, 0, -90), Vec3(0.46999999999999997, 0.46999999999999997, 0.46999999999999997)),
-        TransformState.makePosHprScale(Vec3(0.050000000000000003, 0, -0.96999999999999997), Vec3(0, 0, -90), Vec3(0.46999999999999997, 0.46999999999999997, 0.46999999999999997)),
-        TransformState.makePosHprScale(Vec3(0.050000000000000003, 0, -0.96999999999999997), Vec3(0, 0, -90), Vec3(0.46999999999999997, 0.46999999999999997, 0.46999999999999997)),
-        TransformState.makePosHprScale(Vec3(-0.10000000000000001, 0, -0.96999999999999997), Vec3(0, 0, -90), Vec3(0.41999999999999998, 0.41999999999999998, 0.41999999999999998)),
-        TransformState.makePosHprScale(Vec3(0.050000000000000003, 0, -0.96999999999999997), Vec3(0, 0, -90), Vec3(0.46999999999999997, 0.46999999999999997, 0.46999999999999997))] }
+        TransformState.makePosHprScale(Vec3(0.050000, 0, -0.96), Vec3(0, 0, -90), Vec3(0.46, 0.46, 0.46)),
+        TransformState.makePosHprScale(Vec3(0.050000, 0, -0.96), Vec3(0, 0, -90), Vec3(0.46, 0.46, 0.46)),
+        TransformState.makePosHprScale(Vec3(0.050000, 0, -0.96), Vec3(0, 0, -90), Vec3(0.46, 0.46, 0.46)),
+        TransformState.makePosHprScale(Vec3(-0.100, 0, -0.96), Vec3(0, 0, -90), Vec3(0.418, 0.418, 0.418)),
+        TransformState.makePosHprScale(Vec3(0.050000, 0, -0.96), Vec3(0, 0, -90), Vec3(0.46, 0.46, 0.46))] }
 treasureSwimTransform = TransformState.makePosHprScale(Vec3(0, 0, 5), Vec3(0, 0, 0), Vec3(0.5, 0.5, 0.5))
 PORT_ROYAL_DEFAULTS = 100
 PORT_ROYAL_ALL = 101
@@ -1008,7 +1008,7 @@ INVIS_BOARDING = BitMask32.bit(1)
 CANNON_DEFENSE_SKILLS = []
 DAZED_DURATION = 5.0
 DAZED_SHAKEOFF_THRESHOLD = 10
-DAZED_BUTTON_INCREMENT = 0.40000000000000002
+DAZED_BUTTON_INCREMENT = 0.4
 ANY_LOCATION_SPAWN_INDEX = -1
 START_ISLAND_SPAWN_INDEX = 0
 SHIP_DOCKING_SPAWN_INDEX = 1
@@ -1027,4 +1027,4 @@ def flattenOrdered(root):
 
 INTERACT_TYPES_WITHOUT_FORCE_POS = [
     'barrel_hide']
-POPULATION_FACTOR = 0.20000000000000001
+POPULATION_FACTOR = 0.200

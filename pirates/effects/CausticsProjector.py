@@ -55,7 +55,7 @@ class CausticsProjector(NodePath):
             CausticsProjector.globalGeomList.append(geom)
 
         if not CausticsProjector.swapTexIval:
-            CausticsProjector.swapTexIval = Sequence(Func(self.swapTexture), Wait(0.10000000000000001))
+            CausticsProjector.swapTexIval = Sequence(Func(self.swapTexture), Wait(0.100))
             CausticsProjector.swapTexIval.loop()
 
 

@@ -76,9 +76,9 @@ class RepairCareeningGame(RepairMincroGame):
         self.scrubMeterFrame = self.model.find('**/scrubMeterFrame')
         self.scrubMeterFrame.setBin('fixed', 34)
         self.scrubPowerMeter.reparentTo(self)
-        self.scrubPowerMeter.setPos(0.68000000000000005, 0.0, 0.20000000000000001)
+        self.scrubPowerMeter.setPos(0.680000, 0.0, 0.200)
         self.scrubPowerMeter.setSz(1.25)
-        self.pushLabel = DirectLabel(text = PLocalizer.Minigame_Repair_Careening_Power, pos = (0.68000000000000005, 0.0, -0.27000000000000002), text_fg = (1.0, 1.0, 1.0, 1.0), text_shadow = (0.0, 0.0, 0.0, 1.0), text_font = PiratesGlobals.getPirateFont(), scale = (0.080000000000000002, 0.080000000000000002, 0.080000000000000002), parent = self, relief = None)
+        self.pushLabel = DirectLabel(text = PLocalizer.Minigame_Repair_Careening_Power, pos = (0.680000, 0.0, -0.27), text_fg = (1.0, 1.0, 1.0, 1.0), text_shadow = (0.0, 0.0, 0.0, 1.0), text_font = PiratesGlobals.getPirateFont(), scale = (0.08, 0.08, 0.08), parent = self, relief = None)
 
     def reset(self):
         RepairMincroGame.reset(self)
@@ -222,7 +222,7 @@ class RepairCareeningGame(RepairMincroGame):
 
             if self.isMouseDown and self.scrubMeterBar.getSz() > 0:
                 randomR = random.random() * 40.0 - 20.0
-                randomScale = random.random() * 0.29999999999999999
+                randomScale = random.random() * 0.299
                 self.brush.setScale(1.2 + randomScale)
                 self.brush.setHpr(0, 0, randomR)
                 self.brush.setPos(mpos.getX(), 0.0, mpos.getY())

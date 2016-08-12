@@ -182,7 +182,7 @@ class Kraken(DistributedCreature, Monstrous):
             frameTime = globalClock.getFrameTime()
             dt = globalClock.getFrameTime() - self.dampen[1]
             self.dampen[1] = frameTime
-            dampen = max(0, self.dampen[0] - dt * 0.33300000000000002)
+            dampen = max(0, self.dampen[0] - dt * 0.333)
 
         self.dampen[0] = dampen
         period = 5
@@ -241,7 +241,7 @@ class Kraken(DistributedCreature, Monstrous):
     def setupSmoothing(self):
         self.activateSmoothing(1, 0)
         self.smoother.setDelay(OTPGlobals.NetworkLatency * 1.5)
-        broadcastPeriod = 0.20000000000000001
+        broadcastPeriod = 0.200
         self.smoother.setMaxPositionAge(broadcastPeriod * 1.25 * 10)
         self.smoother.setExpectedBroadcastPeriod(broadcastPeriod)
         self.smoother.setDefaultToStandingStill(False)

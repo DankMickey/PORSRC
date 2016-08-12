@@ -56,14 +56,14 @@ class CannonDefenseFSM(FSM):
     def enterTutorial(self):
         self._gameDO.disableCannonFire()
         if localAvatar.cannon and hasattr(localAvatar.cannon.cgui, 'flashHelpButton'):
-            localAvatar.cannon.cgui.flashHelpButton(0.20000000000000001, 10)
+            localAvatar.cannon.cgui.flashHelpButton(0.200, 10)
             if localAvatar.cannon.ammoPanel.state == pirates.minigame.AmmoPanel.CLOSED:
                 localAvatar.cannon.ammoPanel.onTabClick()
 
 
         self._countDownUI = CannonDefenseCountdownUI()
         self._countDownUI.reparentTo(base.a2dTopCenter)
-        self._countDownUI.setPos(0.0, 0, -0.23000000000000001)
+        self._countDownUI.setPos(0.0, 0, -0.230)
 
 
     def exitTutorial(self):
@@ -87,10 +87,10 @@ class CannonDefenseFSM(FSM):
         self._gameDO.disableCannonInput()
         self._resultScreen = CannonDefenseScoreBoard(self._gameDO.getWaveNumber() + 1, self._gameDO.getBonusSet(), self._gameDO.getNumWaves(), RoundCompleteFlags.WAVE_COMPLETE)
         self._resultScreen.setupPanel1(self._gameDO.endOfWaveData)
-        self._resultScreen.setScale(0.84999999999999998)
+        self._resultScreen.setScale(0.848)
         self._resultScreen.reparentTo(base.a2dRightCenter)
-        self._resultScreen.setX(-2.2999999999999998)
-        self._resultScreen.setZ(-0.59999999999999998)
+        self._resultScreen.setX(-2.28)
+        self._resultScreen.setZ(-0.598)
         if localAvatar.cannon and hasattr(localAvatar.cannon, 'ammoPanel'):
             if localAvatar.cannon.ammoPanel.state == pirates.minigame.AmmoPanel.CLOSED:
                 localAvatar.cannon.ammoPanel.onTabClick()
@@ -185,7 +185,7 @@ class CannonDefenseFSM(FSM):
 
     def _CannonDefenseFSM__createWaitingLabel(self):
         self._CannonDefenseFSM__destroyWaitingLabel()
-        self._CannonDefenseFSM__lblwaitingFor = OnscreenText(parent = base.a2dTopCenter, pos = (0.0, -0.13), text = PLocalizer.CannonDefense['Waiting'], font = PiratesGlobals.getPirateOutlineFont(), scale = 0.089999999999999997, align = TextNode.ACenter, shadow = PiratesGuiGlobals.TextShadow, fg = PiratesGuiGlobals.TextFG1)
+        self._CannonDefenseFSM__lblwaitingFor = OnscreenText(parent = base.a2dTopCenter, pos = (0.0, -0.13), text = PLocalizer.CannonDefense['Waiting'], font = PiratesGlobals.getPirateOutlineFont(), scale = 0.089, align = TextNode.ACenter, shadow = PiratesGuiGlobals.TextShadow, fg = PiratesGuiGlobals.TextFG1)
 
 
     def _CannonDefenseFSM__destroyWaitingLabel(self):

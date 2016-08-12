@@ -61,7 +61,7 @@ class CurseHit(PooledEffect, EffectController):
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPBLENDLINEAR)
         self.p0.renderer.setAlphaDisable(0)
         self.p0.renderer.setColorBlendMode(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingColor, ColorBlendAttrib.OOneMinusIncomingAlpha)
-        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(0.80391999999999997, 1.0, 0.0, 1.0), Vec4(0.0, 0.0, 0.0, 0.0), 1)
+        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(0.80391, 1.0, 0.0, 1.0), Vec4(0.0, 0.0, 0.0, 0.0), 1)
         self.p0.emitter.setEmissionType(BaseParticleEmitter.ETRADIATE)
         self.p0.emitter.setAmplitude(1.0)
         self.p0.emitter.setAmplitudeSpread(0.0)

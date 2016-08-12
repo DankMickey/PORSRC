@@ -49,14 +49,14 @@ class StackMessage(BorderFrame):
             StackMessage.lootSfx = loadSfx(SoundGlobals.SFX_GUI_LOOT)
             StackMessage.lootSfx.setVolume(0.75)
 
-        optiondefs = (('relief', None, None), ('frameSize', (0, 0.80000000000000004, -0.17999999999999999, 0), None), ('state', DGG.DISABLED, None), ('time', 7, None), ('priority', 0, None), ('modelName', 'general_frame_b', None), ('borderScale', 0.69999999999999996, None), ('icon', (), self.setIcon), ('buttonStyle', None, None), ('noCallback', None, None), ('yesCallback', None, None), ('cancelCallback', None, None))
+        optiondefs = (('relief', None, None), ('frameSize', (0, 0.800000, -0.179, 0), None), ('state', DGG.DISABLED, None), ('time', 7, None), ('priority', 0, None), ('modelName', 'general_frame_b', None), ('borderScale', 0.696, None), ('icon', (), self.setIcon), ('buttonStyle', None, None), ('noCallback', None, None), ('yesCallback', None, None), ('cancelCallback', None, None))
         self.defineoptions(kwargs, optiondefs, dynamicGroups = ())
         BorderFrame.__init__(self, parent)
         self.initialiseoptions(StackMessage)
         self.ival = None
         self.cornerGeom = self.corner.copyTo(self)
-        self.cornerGeom.setScale(0.40000000000000002)
-        self.cornerGeom.setPos(0.068000000000000005, 0, -0.066000000000000003)
+        self.cornerGeom.setScale(0.4)
+        self.cornerGeom.setPos(0.0680000, 0, -0.066000)
         self.cornerGeom.setColorScale(*PiratesGuiGlobals.TextFG1)
         self.setTransparency(True)
 
@@ -121,11 +121,11 @@ class StackMessage(BorderFrame):
     def setText(self):
         BorderFrame.setText(self)
         lines = self.component('text0').textNode.getHeight()
-        textSpace = (0.034799999999999998 * lines - 0.0276) * self['text_scale'][1] / 0.035000000000000003
+        textSpace = (0.034798 * lines - 0.0276) * self['text_scale'][1] / 0.035000
         if textSpace > 100:
             textSpace = 0.0
 
-        self['frameSize'] = (0, 0.80000000000000004, -0.028000000000000001 - 0.043999999999999997 - 0.043999999999999997 - max(0.042000000000000003, textSpace), 0)
+        self['frameSize'] = (0, 0.800000, -0.0280 - 0.043 - 0.043 - max(0.042000, textSpace), 0)
 
 
     def setIcon(self):
@@ -144,21 +144,21 @@ class StackMessage(BorderFrame):
         icon = self['icon']
         if icon:
             (category, detail) = icon
-            imagePos = (0.10000000000000001, 0, -0.080000000000000002)
+            imagePos = (0.100, 0, -0.08)
             extraArgs = []
             if category == 'gold':
                 image = StackMessage.CoinTex
-                imageScale = 0.27000000000000002
+                imageScale = 0.27
                 command = localAvatar.guiMgr.showCollectionMain
             elif category == 'skills':
                 image = StackMessage.SkillTex
-                imageScale = 0.27000000000000002
+                imageScale = 0.27
                 command = localAvatar.guiMgr.showSkillPage
             elif category == 'reputation':
                 repId = detail
                 if repId == InventoryType.OverallRep:
                     model = StackMessage.TopLevel
-                    imageScale = 0.089999999999999997
+                    imageScale = 0.089
                 elif repId == InventoryType.SailingRep:
                     model = StackMessage.SkillIcons
                     imageScale = 0.12
@@ -172,32 +172,32 @@ class StackMessage(BorderFrame):
                 suit = PlayingCardGlobals.getSuit(detail)
                 rank = PlayingCardGlobals.getRank(detail)
                 image = PlayingCardGlobals.getImage('standard', suit, rank)
-                imageScale = 0.20000000000000001
+                imageScale = 0.200
                 command = localAvatar.guiMgr.showCollectionMain
             elif category == 'collect':
                 name = CollectionMap.Assets[detail]
                 image = StackMessage.TreasureGui.find('**/%s*' % name)
-                imageScale = 0.34999999999999998
+                imageScale = 0.348
                 command = localAvatar.guiMgr.showCollectionMain
             elif category == 'quests':
                 image = StackMessage.QuestTex
-                imageScale = 0.17999999999999999
+                imageScale = 0.179
                 command = localAvatar.guiMgr.showQuestPanel
             elif category == 'crew':
                 image = StackMessage.CrewTex
-                imageScale = 0.10000000000000001
+                imageScale = 0.100
                 command = localAvatar.guiMgr.socialPanel.show
             elif category == 'friends':
                 image = StackMessage.FriendTex
-                imageScale = (0.059999999999999998, 0, 0.070000000000000007)
+                imageScale = (0.0598, 0, 0.070)
                 command = localAvatar.guiMgr.socialPanel.show
             elif category == 'guild':
                 image = StackMessage.GuildTex
-                imageScale = 0.080000000000000002
+                imageScale = 0.08
                 command = localAvatar.guiMgr.socialPanel.show
             elif category == 'lookout':
                 image = StackMessage.LookoutTex
-                imageScale = 0.17999999999999999
+                imageScale = 0.179
                 command = localAvatar.guiMgr.showLookoutPanel
             elif category == 'weapon':
                 image = StackMessage.WeaponTex
@@ -213,30 +213,30 @@ class StackMessage(BorderFrame):
                 elif detail == ItemId.GOLD:
                     pass
 
-                imageScale = 0.34999999999999998
+                imageScale = 0.348
                 command = localAvatar.guiMgr.showShipPanel
             elif category == 'admin':
                 image = StackMessage.AdminTex
-                imageScale = 0.29999999999999999
+                imageScale = 0.299
                 command = None
             elif category == 'hat':
                 image = StackMessage.HatTex
                 imageScale = 0.16
-                imagePos = (0.10000000000000001, 0, -0.12)
+                imagePos = (0.100, 0, -0.12)
                 command = None
             elif category == 'tattoo':
                 image = StackMessage.TattooTex
                 imageScale = 0.12
-                imagePos = (0.10000000000000001, 0, -0.10000000000000001)
+                imagePos = (0.100, 0, -0.100)
                 command = None
             elif category == 'pork':
                 image = StackMessage.PorkChunkTex
-                imageScale = 0.10000000000000001
-                imagePos = (0.10000000000000001, 0, -0.080000000000000002)
+                imageScale = 0.100
+                imagePos = (0.100, 0, -0.08)
                 command = None
             elif category == 'ship':
                 image = StackMessage.ShipTex
-                imageScale = 0.17999999999999999
+                imageScale = 0.179
                 command = None
             elif category == 'jolly':
                 image = StackMessage.JollyTex
@@ -245,8 +245,8 @@ class StackMessage(BorderFrame):
 
             self.circle = DirectButton(parent = self, relief = None, image = StackMessage.CircleTex, image_scale = 0.5, pos = imagePos, command = command, extraArgs = extraArgs)
             if category == 'friends':
-                self.icon = OnscreenImage(parent = self.circle, image = image, scale = imageScale, pos = (0.028000000000000001, 0, 0))
-                self.icon2 = OnscreenImage(parent = self.circle, image = image, scale = imageScale, pos = (-0.028000000000000001, 0, 0))
+                self.icon = OnscreenImage(parent = self.circle, image = image, scale = imageScale, pos = (0.0280, 0, 0))
+                self.icon2 = OnscreenImage(parent = self.circle, image = image, scale = imageScale, pos = (-0.0280, 0, 0))
             else:
                 self.icon = OnscreenImage(parent = self.circle, image = image, scale = imageScale)
 
@@ -303,16 +303,16 @@ class ModalStackMessage(StackMessage):
 
     def setupButtons(self):
         if self['buttonStyle'] == OTPDialog.YesNo:
-            self.yesButton = GuiButton(parent = self, image_scale = (0.22, 0.22, 0.14999999999999999), pos = (0.27500000000000002, 0, -0.10000000000000001), text = PLocalizer.DialogYes, command = self.handleYes)
-            self.noButton = GuiButton(parent = self, image_scale = (0.22, 0.22, 0.14999999999999999), pos = (0.55000000000000004, 0, -0.10000000000000001), text = PLocalizer.DialogNo, command = self.handleNo)
+            self.yesButton = GuiButton(parent = self, image_scale = (0.22, 0.22, 0.149), pos = (0.275, 0, -0.100), text = PLocalizer.DialogYes, command = self.handleYes)
+            self.noButton = GuiButton(parent = self, image_scale = (0.22, 0.22, 0.149), pos = (0.550000, 0, -0.100), text = PLocalizer.DialogNo, command = self.handleNo)
             self.adjustFrameForButtons()
         elif self['buttonStyle'] == OTPDialog.CancelOnly:
             lookoutUI = loader.loadModel('models/gui/lookout_gui')
-            self.cancelButton = DirectButton(parent = self, relief = None, image = (lookoutUI.find('**/lookout_close_window'), lookoutUI.find('**/lookout_close_window_down'), lookoutUI.find('**/lookout_close_window_over'), lookoutUI.find('**/lookout_close_window_disabled')), pos = (0.75, 0, -0.050000000000000003), scale = 0.12, command = self.handleCancel)
+            self.cancelButton = DirectButton(parent = self, relief = None, image = (lookoutUI.find('**/lookout_close_window'), lookoutUI.find('**/lookout_close_window_down'), lookoutUI.find('**/lookout_close_window_over'), lookoutUI.find('**/lookout_close_window_disabled')), pos = (0.75, 0, -0.050000), scale = 0.12, command = self.handleCancel)
         elif self['buttonStyle'] == OTPDialog.TwoChoice:
-            self.boardButton = GuiButton(parent = self, image_scale = (0.14999999999999999, 0.22, 0.14999999999999999), pos = (0.55000000000000004, 0, -0.10000000000000001), text = PLocalizer.BoardShip, command = self.handleYes)
+            self.boardButton = GuiButton(parent = self, image_scale = (0.149, 0.22, 0.149), pos = (0.550000, 0, -0.100), text = PLocalizer.BoardShip, command = self.handleYes)
             lookoutUI = loader.loadModel('models/gui/lookout_gui')
-            self.cancelButton = DirectButton(parent = self, relief = None, image = (lookoutUI.find('**/lookout_close_window'), lookoutUI.find('**/lookout_close_window_down'), lookoutUI.find('**/lookout_close_window_over'), lookoutUI.find('**/lookout_close_window_disabled')), pos = (0.75, 0, -0.050000000000000003), scale = 0.12, command = self.handleCancel)
+            self.cancelButton = DirectButton(parent = self, relief = None, image = (lookoutUI.find('**/lookout_close_window'), lookoutUI.find('**/lookout_close_window_down'), lookoutUI.find('**/lookout_close_window_over'), lookoutUI.find('**/lookout_close_window_disabled')), pos = (0.75, 0, -0.050000), scale = 0.12, command = self.handleCancel)
             self['frameSize'] = (self['frameSize'][0], self['frameSize'][1], self['frameSize'][2] + 0.01, self['frameSize'][3])
             self.adjustFrameForButtons()
 
@@ -320,7 +320,7 @@ class ModalStackMessage(StackMessage):
 
     def adjustFrameForButtons(self):
         zOffset = self['frameSize'][2]
-        self['frameSize'] = (self['frameSize'][0], self['frameSize'][1], zOffset - 0.059999999999999998, self['frameSize'][3])
+        self['frameSize'] = (self['frameSize'][0], self['frameSize'][1], zOffset - 0.0598, self['frameSize'][3])
         if self['buttonStyle'] == OTPDialog.YesNo:
             self.yesButton.setZ(zOffset)
             self.noButton.setZ(zOffset)
@@ -383,7 +383,7 @@ class MessageStackPanel(DirectFrame):
     popupSfx = None
 
     def __init__(self, parent = None, **kwargs):
-        optiondefs = (('relief', None, None), ('state', DGG.DISABLED, None), ('maxMessages', 3, self.setMaxMessages), ('messageBorder', 0.0050000000000000001, self.setMessageBorder), ('posLerpTime', 0.25, self.setPosLerpTime), ('fadeLerpTime', 0.25, self.setFadeLerpTime))
+        optiondefs = (('relief', None, None), ('state', DGG.DISABLED, None), ('maxMessages', 3, self.setMaxMessages), ('messageBorder', 0.00500, self.setMessageBorder), ('posLerpTime', 0.25, self.setPosLerpTime), ('fadeLerpTime', 0.25, self.setFadeLerpTime))
         self.defineoptions(kwargs, optiondefs, dynamicGroups = ('posLerpTime', 'fadeLerpTime', 'messageBorder'))
         DirectFrame.__init__(self, parent)
         self.initialiseoptions(MessageStackPanel)
@@ -604,7 +604,7 @@ class MessageStackPanel(DirectFrame):
         if self.lastMessage == t2:
             return None
 
-        msg = StackMessage(parent = self, text = t2, text_wordwrap = 15.5, text_align = TextNode.ALeft, text_scale = 0.035000000000000003, text_fg = color, text_pos = (0.17000000000000001, -0.071999999999999995, 0), textMayChange = 1, time = seconds, priority = priority, icon = icon, modelName = modelName)
+        msg = StackMessage(parent = self, text = t2, text_wordwrap = 15.5, text_align = TextNode.ALeft, text_scale = 0.035000, text_fg = color, text_pos = (0.170, -0.0715, 0), textMayChange = 1, time = seconds, priority = priority, icon = icon, modelName = modelName)
         if name and playerName:
             buttonText = text % playerName
         else:
@@ -642,11 +642,11 @@ class MessageStackPanel(DirectFrame):
             textRender.setShadowColor(PiratesGuiGlobals.TextShadow)
             textRender.setWordwrap(15.5)
             textRender.setTabWidth(1.0)
-            textRender.setShadow(0.080000000000000002, 0.080000000000000002)
+            textRender.setShadow(0.08, 0.08)
             textRender.setText(buttonText)
             x = msg.attachNewNode(textRender.generate())
-            x.setScale(0.035000000000000003)
-            x.setPos(0.16700000000000001, 0, -0.072999999999999995)
+            x.setScale(0.035000)
+            x.setPos(0.167, 0, -0.0725)
 
         self.addMessage(msg)
         self.lastMessage = t2
@@ -661,7 +661,7 @@ class MessageStackPanel(DirectFrame):
         if self.lastMessage == text:
             return None
 
-        msg = ModalStackMessage(parent = self, buttonStyle = buttonStyle, noCallback = noCallback, yesCallback = yesCallback, cancelCallback = cancelCallback, text = text, text_wordwrap = 15.5, text_align = TextNode.ALeft, text_scale = 0.035000000000000003, text_fg = color, text_pos = (0.17000000000000001, -0.071999999999999995, 0), textMayChange = 1, time = seconds, priority = priority, icon = icon, modelName = modelName)
+        msg = ModalStackMessage(parent = self, buttonStyle = buttonStyle, noCallback = noCallback, yesCallback = yesCallback, cancelCallback = cancelCallback, text = text, text_wordwrap = 15.5, text_align = TextNode.ALeft, text_scale = 0.035000, text_fg = color, text_pos = (0.170, -0.0715, 0), textMayChange = 1, time = seconds, priority = priority, icon = icon, modelName = modelName)
         if name:
             msg['text_fg'] = (0, 0, 0, 0)
             nameArray = ('\x01CPOrangeHEAD\x01' + name + '\x02', '\x01CPOrangeHEAD\x01' + name + '\x02', '\x01CPOrangeOVER\x01' + name + '\x02', '\x01CPOrangeHEAD\x01' + name + '\x02')
@@ -681,11 +681,11 @@ class MessageStackPanel(DirectFrame):
             textRender.setShadowColor(PiratesGuiGlobals.TextShadow)
             textRender.setWordwrap(15.5)
             textRender.setTabWidth(1.0)
-            textRender.setShadow(0.080000000000000002, 0.080000000000000002)
+            textRender.setShadow(0.08, 0.08)
             textRender.setText(buttonText)
             x = msg.attachNewNode(textRender.generate())
-            x.setScale(0.034500000000000003, 1.0, 0.035000000000000003)
-            x.setPos(0.16700000000000001, 0, -0.072999999999999995)
+            x.setScale(0.034500, 1.0, 0.035000)
+            x.setPos(0.167, 0, -0.0725)
 
         self.addMessage(msg)
         self.lastMessage = text

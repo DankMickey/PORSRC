@@ -11,7 +11,7 @@ from pirates.piratesbase import PiratesGlobals
 class InteractGUI(DirectFrame):
 
     def __init__(self):
-        DirectFrame.__init__(self, relief = None, sortOrder = 3, pos = (-0.5, 0, -0.40000000000000002))
+        DirectFrame.__init__(self, relief = None, sortOrder = 3, pos = (-0.5, 0, -0.4))
         self.optionButtons = []
         self.initialiseoptions(InteractGUI)
 
@@ -35,7 +35,7 @@ class InteractGUI(DirectFrame):
     def setOptions(self, title, optionIds, statusCodes, optionCallback, bribeType):
         z = 1.0
         self.destroyOptionButtons()
-        self.title = DirectLabel(parent = self, relief = None, text = title, text_align = TextNode.ACenter, text_scale = 0.070000000000000007, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (0, 0, z - 0.080000000000000002), text_font = PiratesGlobals.getPirateOutlineFont())
+        self.title = DirectLabel(parent = self, relief = None, text = title, text_align = TextNode.ACenter, text_scale = 0.070, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (0, 0, z - 0.08), text_font = PiratesGlobals.getPirateOutlineFont())
         gui = loader.loadModel('models/gui/avatar_chooser_rope')
         topPanel = gui.find('**/avatar_c_A_top')
         topPanelOver = gui.find('**/avatar_c_A_top_over')
@@ -52,18 +52,18 @@ class InteractGUI(DirectFrame):
 
             if i == 0:
                 image = (topPanel, topPanel, topPanelOver, topPanel)
-                textPos = (0, -0.029999999999999999)
+                textPos = (0, -0.0299)
                 z -= 0.19
             elif i == len(optionIds) - 1:
                 image = (bottomPanel, bottomPanel, bottomPanelOver, bottomPanel)
-                textPos = (0, 0.033000000000000002)
+                textPos = (0, 0.033)
                 if i == 1:
-                    z -= 0.16500000000000001
+                    z -= 0.165
                 else:
                     z -= 0.155
             else:
                 image = (middlePanel, middlePanel, middlePanelOver, middlePanel)
-                textPos = (0, -0.014999999999999999)
+                textPos = (0, -0.0149)
                 if i == 1:
                     z -= 0.11
                 else:
@@ -74,14 +74,14 @@ class InteractGUI(DirectFrame):
                 imageColor = (1, 1, 1, 1)
             elif statusCode == InteractGlobals.DISABLED:
                 state = DGG.DISABLED
-                textFg = (0.29999999999999999, 0.25, 0.20000000000000001, 1)
-                imageColor = (0.80000000000000004, 0.80000000000000004, 0.80000000000000004, 1)
+                textFg = (0.299, 0.25, 0.200, 1)
+                imageColor = (0.800000, 0.800000, 0.800000, 1)
             elif statusCode == InteractGlobals.HIGHLIGHT:
                 state = DGG.NORMAL
                 textFg = PiratesGuiGlobals.TextFG2
                 imageColor = (1, 1, 1, 1)
 
-            optionButton = DirectButton(parent = self, relief = None, state = state, pressEffect = 0, text = optionName, text_fg = textFg, text_shadow = PiratesGuiGlobals.TextShadow, text_align = TextNode.ACenter, text_scale = 0.050000000000000003, text_pos = textPos, image = image, image_scale = 0.40000000000000002, image_color = imageColor, pos = (0, 0, z), command = optionCallback, extraArgs = [
+            optionButton = DirectButton(parent = self, relief = None, state = state, pressEffect = 0, text = optionName, text_fg = textFg, text_shadow = PiratesGuiGlobals.TextShadow, text_align = TextNode.ACenter, text_scale = 0.050000, text_pos = textPos, image = image, image_scale = 0.4, image_color = imageColor, pos = (0, 0, z), command = optionCallback, extraArgs = [
                 optionId])
             self.optionButtons.append(optionButton)
 

@@ -76,12 +76,12 @@ class FishManager:
     def doShaders(self):
         self.objectsWithCaustics.setShader(self.causticsShader)
         self.objectsWithCaustics.setShaderInput('caustics', self.causticsTexture)
-        self.objectsWithCaustics.setShaderInput('causticsParams', Vec4(5.3300000000000001, 0.0234325112498, 0.010589092533, 0.20000000000000001))
-        self.objectsWithCaustics.setShaderInput('causticsParams2', Vec4(2.8795310000000001, -0.035686130000000003, 0.027589099999999998, 0.20000000000000001))
-        self.objectsWithCaustics.setShaderInput('causticsParams3', Vec4(3.7854611, 0.037037029999999999, 0.047619047619047616, 0.20000000000000001))
-        self.objectsWithCaustics.setShaderInput('fogInfo', Vec4(0.0, FishingGlobals.fogDarkness, 0.69999999999999996, 0.0))
+        self.objectsWithCaustics.setShaderInput('causticsParams', Vec4(5.33, 0.0234325112498, 0.010589092533, 0.200))
+        self.objectsWithCaustics.setShaderInput('causticsParams2', Vec4(2.879531, -0.035686130000000003, 0.0275890, 0.200))
+        self.objectsWithCaustics.setShaderInput('causticsParams3', Vec4(3.7854611, 0.037037029999999999, 0.047619047619047616, 0.200))
+        self.objectsWithCaustics.setShaderInput('fogInfo', Vec4(0.0, FishingGlobals.fogDarkness, 0.696, 0.0))
         self.objectsWithCaustics.setShaderInput('fogColor', FishingGlobals.waterFogColor)
-        self.objectsWithCaustics.setShaderInput('causticsToWorldScale', Vec4(1.0 / 30.100000000000001, 1.0 / 30.100000000000001, 0.0, 0.0))
+        self.objectsWithCaustics.setShaderInput('causticsToWorldScale', Vec4(1.0 / 30.1, 1.0 / 30.1, 0.0, 0.0))
         self.objectsWithCaustics.setShaderInput('sunWorldLocation', Vec4(0.0, 0.0, 100.0, 1.0))
 
 

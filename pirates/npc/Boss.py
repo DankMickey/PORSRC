@@ -92,12 +92,12 @@ class Boss(BossBase):
         if not self.instanceNode:
             self.setupBoss(isUndead)
 
-        color = Vec4(0.25, 0.80000000000000004, 0.0, 1.0)
+        color = Vec4(0.25, 0.800000, 0.0, 1.0)
         if not isUndead:
             color = Vec4(1.0, 1.0, 0.0, 1.0)
 
-        startScale = Vec3(1.0249999999999999, 1.0249999999999999, 1.01)
-        endScale = Vec3(1.1499999999999999, 1.1000000000000001, 1.01)
+        startScale = Vec3(1.0249, 1.0249, 1.01)
+        endScale = Vec3(1.14, 1.10, 1.01)
         if base.options.getCharacterDetailSetting() > 0 or self.getName() == 'Jolly Roger':
             self.effectIval = Sequence(LerpScaleInterval(self.instanceNode, 0.5, endScale, startScale = startScale), LerpScaleInterval(self.instanceNode, 0.5, startScale, startScale = endScale))
             self.effectIval.loop()
@@ -162,7 +162,7 @@ EffectModifiers = {
         0.75,
         Point3(0.75, 0, 0)],
     AvatarTypes.Bat: [
-        0.59999999999999998,
+        0.598,
         Point3(0, 0, 0)],
     AvatarTypes.Crab: [
         1.0,
@@ -171,14 +171,14 @@ EffectModifiers = {
         2.5,
         Point3(2.5, 0, 0)],
     AvatarTypes.Scorpion: [
-        0.29999999999999999,
+        0.299,
         Point3(0, 0, 0)],
     AvatarTypes.Stump: [
         1.25,
         Point3(0, 0, 0)],
     AvatarTypes.Wasp: [
         0.25,
-        Point3(-0.10000000000000001, 0, 0)],
+        Point3(-0.100, 0, 0)],
     AvatarTypes.Townfolk: [
         1.0,
         Point3(-1.3, 0, 0)] }

@@ -33,13 +33,13 @@ STATE_MOTION = {
     'StrafeRightDiagReverse': PiratesGlobals.STRAFE_RIGHT_DIAG_REV_INDEX,
     'Airborne': PiratesGlobals.OVER_SOLID_INDEX }
 IDLE_SPLASH_ANIMS = [
-    ('idle_head_scratch_side', 1.3999999999999999),
+    ('idle_head_scratch_side', 1.39),
     ('idle_head_scratch', 1.0)]
 IDLE_SPLASH_PLAY = config.GetBool('want-splash-anims', 0)
 IDLE_SPLASH_DELAY = config.GetInt('splash-anims-delay', 60)
 
 class MotionAnimFSM(FSM):
-    BLENDAMT = 0.40000000000000002
+    BLENDAMT = 0.4
     GROUNDSTATE = Enum('OverSolid, OverWater')
     ANIMSTATE = Enum('Land, Jump')
     notify = directNotify.newCategory('MotionAnimFSM')
@@ -134,9 +134,9 @@ class MotionAnimFSM(FSM):
                 animSpeedScale = PiratesGlobals.GetAnimScale(animFileName)
                 if animSpeedScale == None:
                     if currAnimName == 'walk' or currAnimName == 'bayonet_walk':
-                        animSpeedScale = 0.24399999999999999
+                        animSpeedScale = 0.243
                     else:
-                        animSpeedScale = 0.029999999999999999
+                        animSpeedScale = 0.0299
 
                 newScale = moveSpeed * animSpeedScale
                 avScale = EnemyGlobals.getEnemyScale(self.av)
@@ -149,7 +149,7 @@ class MotionAnimFSM(FSM):
                 else:
                     animIdx = PiratesGlobals.RUN_INDEX
                 currPlayRate = self.av.getPlayRate(self.animInfo[animIdx][0])
-                if currPlayRate == None or abs(currPlayRate - newScale) < 0.074999999999999997:
+                if currPlayRate == None or abs(currPlayRate - newScale) < 0.074:
                     return None
 
                 if animIdx == PiratesGlobals.WALK_INDEX:
@@ -157,7 +157,7 @@ class MotionAnimFSM(FSM):
                 else:
                     newAnimInfo = ((self.animInfo[PiratesGlobals.STAND_INDEX][0], self.animInfo[PiratesGlobals.STAND_INDEX][1]), (self.animInfo[PiratesGlobals.WALK_INDEX][0], self.animInfo[PiratesGlobals.WALK_INDEX][1]), (self.animInfo[PiratesGlobals.RUN_INDEX][0], newScale)) + self.animInfo[3:]
                 if slideSpeed:
-                    slideSpeed = max(slideSpeed, 0.45000000000000001)
+                    slideSpeed = max(slideSpeed, 0.450)
                     newAnimInfo = ((self.animInfo[PiratesGlobals.STAND_INDEX][0], self.animInfo[PiratesGlobals.STAND_INDEX][1]), (self.animInfo[PiratesGlobals.WALK_INDEX][0], self.animInfo[PiratesGlobals.WALK_INDEX][1]), (self.animInfo[PiratesGlobals.RUN_INDEX][0], self.animInfo[PiratesGlobals.RUN_INDEX][1]), (self.animInfo[PiratesGlobals.REVERSE_INDEX][0], self.animInfo[PiratesGlobals.REVERSE_INDEX][1]), (self.animInfo[PiratesGlobals.STRAFE_LEFT_INDEX][0], slideSpeed), (self.animInfo[PiratesGlobals.STRAFE_RIGHT_INDEX][0], slideSpeed)) + self.animInfo[6:]
 
                 self.av.motionFSM.setAnimInfo(newAnimInfo, reset = False)
@@ -202,7 +202,7 @@ class MotionAnimFSM(FSM):
                     state = 'WalkForward'
             else:
                 state = 'Idle'
-            zeroSpeedLimit = 0.10000000000000001
+            zeroSpeedLimit = 0.100
             if globalClock.getFrameTime() - self.zeroSpeedTimer < zeroSpeedLimit and self.motionFSMLag:
                 if state != self.state and self.state != 'Idle':
                     return None
@@ -365,7 +365,7 @@ class MotionAnimFSM(FSM):
                 animInfo = ItemGlobals.getJumpAnimInfo(self.av.getCurrentWeapon())
                 startFrame = animInfo[3] + 1
                 endFrame = startFrame + 5
-                self.landRunIval = Sequence(self.av.actorInterval(animInfo[0], startFrame = startFrame, endFrame = endFrame, blendInT = 0.0, blendOutT = 0.14999999999999999), Func(self.trackAnimToSpeed, None, 1))
+                self.landRunIval = Sequence(self.av.actorInterval(animInfo[0], startFrame = startFrame, endFrame = endFrame, blendInT = 0.0, blendOutT = 0.149), Func(self.trackAnimToSpeed, None, 1))
 
             self.landRunIval.start()
         finally:
@@ -997,7 +997,7 @@ class MotionFSM(FSM):
             self.av.disableWaterEffect()
 
         if self.__inwater:
-            offset = (waterZ - avZ) + 0.14999999999999999
+            offset = (waterZ - avZ) + 0.149
             speeds = self.av.controlManager.getSpeeds()
             self.av.adjustWaterEffect(offset, *speeds)
 

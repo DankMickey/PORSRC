@@ -10,7 +10,7 @@ objectStruct = {
                     'File': 'ParlorInterior',
                     'ExtUid': '1161805620.28Shochet0',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(1.347, 8.3520000000000003, 47.838000000000001),
+                    'Pos': Point3(1.347, 8.3520, 47.838),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Name': '',

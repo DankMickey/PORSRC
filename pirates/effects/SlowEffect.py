@@ -30,9 +30,9 @@ class SlowEffect(PooledEffect, EffectController):
             self.effectModel.setTexOffset(textureStage, 0.0, 1.0)
 
         self.setColorScale(1.0, 1.0, 1.0, 0.0)
-        fadeIn = LerpColorScaleInterval(self, 0.5, Vec4(1, 1, 1, 0.69999999999999996), startColorScale = Vec4(0, 0, 0, 0))
-        fadeOut = LerpColorScaleInterval(self, 0.5, Vec4(0, 0, 0, 0), startColorScale = Vec4(1, 1, 1, 0.69999999999999996))
-        pulseFadeOut = LerpColorScaleInterval(self.effectModel, self.duration / 2.25, Vec4(1, 1, 1, 0.29999999999999999), startColorScale = Vec4(1, 1, 1, 1))
+        fadeIn = LerpColorScaleInterval(self, 0.5, Vec4(1, 1, 1, 0.696), startColorScale = Vec4(0, 0, 0, 0))
+        fadeOut = LerpColorScaleInterval(self, 0.5, Vec4(0, 0, 0, 0), startColorScale = Vec4(1, 1, 1, 0.696))
+        pulseFadeOut = LerpColorScaleInterval(self.effectModel, self.duration / 2.25, Vec4(1, 1, 1, 0.299), startColorScale = Vec4(1, 1, 1, 1))
         pulseFadeIn = LerpColorScaleInterval(self.effectModel, self.duration / 1.75, Vec4(1, 1, 1, 1), startColorScale = Vec4(1, 1, 1, 0.25))
         fade = Sequence(pulseFadeIn, pulseFadeOut)
         rotateOne = LerpHprInterval(self.effectModel, self.duration / 3.0, Vec3(0, -25, 25), startHpr = Vec3(0, 25, -25), blendType = 'easeOut')

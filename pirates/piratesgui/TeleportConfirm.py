@@ -26,7 +26,7 @@ class TeleportConfirm(SocialPage.SocialPage):
     def __init__(self, avId, avName):
         SocialPage.SocialPage.__init__(self, 'TeleportConfirm')
         self.initialiseoptions(TeleportConfirm)
-        self.setPos(-0.25, 0, -0.14999999999999999)
+        self.setPos(-0.25, 0, -0.149)
         self.avId = avId
         self.avName = avName
         if base.cr.avatarFriendsManager.checkIgnored(self.avId):
@@ -34,16 +34,16 @@ class TeleportConfirm(SocialPage.SocialPage):
             return None
 
         guiMain = loader.loadModel('models/gui/gui_main')
-        self.box = OnscreenImage(parent = self, pos = (0.25, 0, 0.27500000000000002), image = guiMain.find('**/general_frame_e'), scale = 0.25)
-        self.title = DirectLabel(parent = self, relief = None, text = PLocalizer.TeleportConfirmTitle, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getPirateOutlineFont(), pos = (0.25, 0, 0.41999999999999998))
+        self.box = OnscreenImage(parent = self, pos = (0.25, 0, 0.275), image = guiMain.find('**/general_frame_e'), scale = 0.25)
+        self.title = DirectLabel(parent = self, relief = None, text = PLocalizer.TeleportConfirmTitle, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getPirateOutlineFont(), pos = (0.25, 0, 0.418))
         text = PLocalizer.TeleportConfirmMessage % self.avName
-        self.message = DirectLabel(parent = self, relief = None, text = text, text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.25, 0, 0.32500000000000001), textMayChange = 1)
+        self.message = DirectLabel(parent = self, relief = None, text = text, text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.25, 0, 0.325), textMayChange = 1)
         self.bOk = TeleportConfirmButton(text = PLocalizer.TeleportConfirmOK, command = self._TeleportConfirm__handleOk)
         self.bOk.reparentTo(self)
-        self.bOk.setPos(0.10000000000000001, 0, 0.050000000000000003)
+        self.bOk.setPos(0.100, 0, 0.050000)
         self.bNo = TeleportConfirmButton(text = PLocalizer.TeleportConfirmNo, command = self._TeleportConfirm__handleNo)
         self.bNo.reparentTo(self)
-        self.bNo.setPos(0.29999999999999999, 0, 0.050000000000000003)
+        self.bNo.setPos(0.299, 0, 0.050000)
         av = base.cr.getDo(avId)
         if av:
             self.accept(av.getDisableEvent(), self._TeleportConfirm__handleAvatarLeft)

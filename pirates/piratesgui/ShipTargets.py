@@ -82,7 +82,7 @@ class ShipTargets:
                 return None
 
             targetPanel.reparentTo(base.a2dTopCenter)
-            targetPanel.setPos(-0.20000000000000001, 0, -0.10000000000000001)
+            targetPanel.setPos(-0.200, 0, -0.100)
             targetPanel.setScale(1.0)
             self.primary = targetPanel
 
@@ -96,8 +96,8 @@ class ShipTargets:
                 return None
 
             targetPanel.reparentTo(base.a2dTopCenter)
-            targetPanel.setPos(-0.16, 0, -0.28000000000000003)
-            targetPanel.setScale(0.80000000000000004)
+            targetPanel.setPos(-0.16, 0, -0.28000)
+            targetPanel.setScale(0.800000)
             self.secondary = targetPanel
 
         self.secondary.show()

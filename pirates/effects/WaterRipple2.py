@@ -37,7 +37,7 @@ class WaterRipple2(PooledEffect, EffectController):
         self.p0.emitter.setRadius(0.25)
         self.f.addParticles(self.p0)
         self.p0.setPoolSize(8)
-        self.p0.setBirthRate(0.29999999999999999)
+        self.p0.setBirthRate(0.299)
         self.p0.setLitterSize(1)
         self.p0.setLitterSpread(0)
         self.p0.setSystemLifespan(0.0)
@@ -65,8 +65,8 @@ class WaterRipple2(PooledEffect, EffectController):
 
 
     def createTrack(self):
-        self.disturb = Sequence(Func(self.p0.setEmitter, 'DiscEmitter'), Func(self.p0.setBirthRate, 0.40000000000000002), Func(self.p0.factory.setLifespanBase, 2.0), Wait(1.0), Func(self.p0.setEmitter, 'PointEmitter'), Func(self.p0.setBirthRate, 0.5), Func(self.p0.factory.setLifespanBase, 3.5))
-        self.startEffect = Sequence(Func(self.p0.clearToInitial), Func(self.p0.setBirthRate, 0.40000000000000002), Func(self.f.start, self, self.particleDummy))
+        self.disturb = Sequence(Func(self.p0.setEmitter, 'DiscEmitter'), Func(self.p0.setBirthRate, 0.4), Func(self.p0.factory.setLifespanBase, 2.0), Wait(1.0), Func(self.p0.setEmitter, 'PointEmitter'), Func(self.p0.setBirthRate, 0.5), Func(self.p0.factory.setLifespanBase, 3.5))
+        self.startEffect = Sequence(Func(self.p0.clearToInitial), Func(self.p0.setBirthRate, 0.4), Func(self.f.start, self, self.particleDummy))
         self.endEffect = Sequence(Func(self.p0.setBirthRate, 100.0), Wait(3.0), Func(self.p0.setBirthRate, 0.0), Func(self.cleanUpEffect))
         self.track = Sequence(self.startEffect, Wait(2.0), self.endEffect)
 

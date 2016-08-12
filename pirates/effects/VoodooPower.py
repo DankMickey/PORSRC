@@ -55,8 +55,8 @@ class VoodooPower(PooledEffect, EffectController):
         self.p0.setSystemLifespan(0.0)
         self.p0.setLocalVelocityFlag(1)
         self.p0.setSystemGrowsOlderFlag(0)
-        self.p0.factory.setLifespanBase(0.20000000000000001)
-        self.p0.factory.setLifespanSpread(0.050000000000000003)
+        self.p0.factory.setLifespanBase(0.200)
+        self.p0.factory.setLifespanSpread(0.050000)
         self.p0.factory.setMassBase(1.0)
         self.p0.factory.setMassSpread(0.0)
         self.p0.factory.setTerminalVelocityBase(400.0)
@@ -70,7 +70,7 @@ class VoodooPower(PooledEffect, EffectController):
         self.p0.renderer.setUserAlpha(0.25)
         self.p0.renderer.setColorBlendMode(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne)
         self.p0.renderer.setColorBlendMode(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingColor, ColorBlendAttrib.OOneMinusIncomingAlpha)
-        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(1.0, 1.0, 1.0, 0.5), Vec4(0.75, 0.59999999999999998, 1.0, 0.75), 1)
+        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(1.0, 1.0, 1.0, 0.5), Vec4(0.75, 0.598, 1.0, 0.75), 1)
         self.p0.renderer.setFromNode(self.card)
         self.p0.renderer.setColor(Vec4(1.0, 1.0, 1.0, 1.0))
         self.p0.renderer.setXScaleFlag(1)
@@ -97,7 +97,7 @@ class VoodooPower(PooledEffect, EffectController):
         self.p1.setLocalVelocityFlag(1)
         self.p1.setSystemGrowsOlderFlag(0)
         self.p1.factory.setLifespanBase(0.75)
-        self.p1.factory.setLifespanSpread(0.10000000000000001)
+        self.p1.factory.setLifespanSpread(0.100)
         self.p1.factory.setMassBase(1.0)
         self.p1.factory.setMassSpread(0.0)
         self.p1.factory.setTerminalVelocityBase(400.0)
@@ -110,15 +110,15 @@ class VoodooPower(PooledEffect, EffectController):
         self.p1.renderer.setAlphaMode(BaseParticleRenderer.PRALPHAINOUT)
         self.p1.renderer.setUserAlpha(1.0)
         self.p1.renderer.setColorBlendMode(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne)
-        self.p1.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(0.10000000000000001, 0.20000000000000001, 1.0, 0.0), Vec4(0.10000000000000001, 0.20000000000000001, 0.75, 1.0), 1)
+        self.p1.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(0.100, 0.200, 1.0, 0.0), Vec4(0.100, 0.200, 0.75, 1.0), 1)
         self.p1.renderer.setFromNode(self.card2)
         self.p1.renderer.setColor(Vec4(1.0, 1.0, 1.0, 1.0))
         self.p1.renderer.setXScaleFlag(1)
         self.p1.renderer.setYScaleFlag(1)
         self.p1.renderer.setAnimAngleFlag(1)
-        self.p1.renderer.setInitialXScale(0.14999999999999999 * self.card2Scale)
+        self.p1.renderer.setInitialXScale(0.149 * self.card2Scale)
         self.p1.renderer.setFinalXScale(0.0001 * self.card2Scale)
-        self.p1.renderer.setInitialYScale(0.14999999999999999 * self.card2Scale)
+        self.p1.renderer.setInitialYScale(0.149 * self.card2Scale)
         self.p1.renderer.setFinalYScale(0.0001 * self.card2Scale)
         self.p1.renderer.setNonanimatedTheta(0.0)
         self.p1.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPBLENDLINEAR)
@@ -149,29 +149,29 @@ class VoodooPower(PooledEffect, EffectController):
         self.p2.renderer.setXScaleFlag(1)
         self.p2.renderer.setYScaleFlag(1)
         self.p2.renderer.setAnimAngleFlag(0)
-        self.p2.renderer.setInitialXScale(0.0050000000000000001 * self.card2Scale)
+        self.p2.renderer.setInitialXScale(0.00500 * self.card2Scale)
         self.p2.renderer.setFinalXScale(0.012 * self.card2Scale)
-        self.p2.renderer.setInitialYScale(0.0050000000000000001 * self.card2Scale)
+        self.p2.renderer.setInitialYScale(0.00500 * self.card2Scale)
         self.p2.renderer.setFinalYScale(0.012 * self.card2Scale)
         self.p2.renderer.setNonanimatedTheta(0.0)
         self.p2.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPBLENDLINEAR)
         self.p2.renderer.setAlphaDisable(0)
-        self.p2.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(0.84999999999999998, 0.75, 0.90000000000000002, 0.59999999999999998), Vec4(0.0, 0.0, 0.0, 0.75), 1)
+        self.p2.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(0.848, 0.75, 0.9, 0.598), Vec4(0.0, 0.0, 0.0, 0.75), 1)
         self.p2.emitter.setEmissionType(BaseParticleEmitter.ETRADIATE)
-        self.p2.emitter.setAmplitude(0.20000000000000001)
+        self.p2.emitter.setAmplitude(0.200)
         self.p2.emitter.setAmplitudeSpread(0.0)
         self.p2.emitter.setOffsetForce(Vec3(0.0, 0.0, 0.0))
         self.p2.emitter.setExplicitLaunchVector(Vec3(1.0, 0.0, 0.0))
         self.p2.emitter.setRadiateOrigin(Point3(0.0, 0.0, 0.0))
-        self.p2.emitter.setRadius(0.14999999999999999)
+        self.p2.emitter.setRadius(0.149)
 
 
     def createTrack(self):
-        self.scale = 0.10000000000000001
+        self.scale = 0.100
         self.p0.renderer.setInitialXScale(0.0001 * self.cardScale)
         self.p0.renderer.setInitialYScale(0.0001 * self.cardScale)
-        self.expandIval = Sequence(Func(self.resize), Wait(0.59999999999999998))
-        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.01), Func(self.p0.clearToInitial), Func(self.f.start, self, self), Func(self.expandIval.loop), Wait(2.0), Func(self.p1.setBirthRate, 0.10000000000000001), Func(self.p1.clearToInitial), Func(self.p2.setBirthRate, 0.029999999999999999), Func(self.p2.clearToInitial), Wait(3.5), Func(self.expandIval.pause))
+        self.expandIval = Sequence(Func(self.resize), Wait(0.598))
+        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.01), Func(self.p0.clearToInitial), Func(self.f.start, self, self), Func(self.expandIval.loop), Wait(2.0), Func(self.p1.setBirthRate, 0.100), Func(self.p1.clearToInitial), Func(self.p2.setBirthRate, 0.0299), Func(self.p2.clearToInitial), Wait(3.5), Func(self.expandIval.pause))
         self.endEffect = Sequence(Func(self.expandIval.pause), Func(self.p0.setBirthRate, 100.0), Func(self.p1.setBirthRate, 100.0), Func(self.p2.setBirthRate, 100.0), Wait(2.0), Func(self.cleanUpEffect))
         self.track = Sequence(self.startEffect, Wait(0.5), self.endEffect)
 
@@ -179,8 +179,8 @@ class VoodooPower(PooledEffect, EffectController):
     def resize(self):
         if self.p0:
             self.p0.renderer.setFinalXScale(0.02 * self.scale * self.cardScale)
-            self.p0.renderer.setFinalYScale(0.029999999999999999 * self.scale * self.cardScale)
-            self.scale += 0.10000000000000001
+            self.p0.renderer.setFinalYScale(0.0299 * self.scale * self.cardScale)
+            self.scale += 0.100
 
 
 
@@ -189,7 +189,7 @@ class VoodooPower(PooledEffect, EffectController):
         self.p0.renderer.getColorInterpolationManager().clearToInitial()
         self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(1, 1, 1, 0.5), self.effectColor, 1)
         self.p1.renderer.getColorInterpolationManager().clearToInitial()
-        self.p1.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(0.10000000000000001, 0.20000000000000001, 1.0, 0.0), self.effectColor + Vec4(-0.20000000000000001, -0.10000000000000001, 0, 0.5), 1)
+        self.p1.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(0.100, 0.200, 1.0, 0.0), self.effectColor + Vec4(-0.200, -0.100, 0, 0.5), 1)
         self.p2.renderer.getColorInterpolationManager().clearToInitial()
         self.p2.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, self.effectColor, Vec4(0.0, 0.0, 0.0, 0.75), 1)
 

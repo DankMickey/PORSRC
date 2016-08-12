@@ -563,7 +563,7 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
                 joint = self.islandShoreWave.find('**/uvj_LavaCool1')
                 lavaCoolRoot.setTexProjector(lavaCoolRoot.findTextureStage('default'), joint, parent)
 
-            self.islandShoreWave.setPlayRate(0.80000000000000004, 'idle')
+            self.islandShoreWave.setPlayRate(0.800000, 'idle')
             OTPRender.renderReflection(False, self.islandShoreWave, 'p_island_shore', None)
             alpha_test_attrib = AlphaTestAttrib.make(RenderAttrib.MAlways, 0)
             self.islandShoreWave.setAttrib(alpha_test_attrib, 100)

@@ -11,7 +11,7 @@ class SkullFlash(PooledEffect, EffectController):
     def __init__(self):
         PooledEffect.__init__(self)
         EffectController.__init__(self)
-        self.fadeTime = 0.14999999999999999
+        self.fadeTime = 0.149
         self.startDelay = 0.0
         self.effectColor = Vec4(1, 1, 1, 1)
         model = loader.loadModel('models/effects/fireworkCards')

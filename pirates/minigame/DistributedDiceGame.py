@@ -123,7 +123,7 @@ class DistributedDiceGame(DistributedGameTable.DistributedGameTable):
             else:
                 self.sendUpdate('playerIsReady', [])
                 self.gui.mainButton['state'] = DGG.DISABLED
-                self.gui.mainButton['frameColor'] = (0, 0.40000000000000002, 0.050000000000000003, 1)
+                self.gui.mainButton['frameColor'] = (0, 0.4, 0.050000, 1)
                 self.gameState = DiceGlobals.DSTATE_DOROLL
 
 
@@ -134,7 +134,7 @@ class DistributedDiceGame(DistributedGameTable.DistributedGameTable):
         self.dicevals.clear()
         self.extraGuiReset()
         self.gui.mainButton['state'] = DGG.DISABLED
-        self.gui.mainButton['frameColor'] = (0, 0.29999999999999999, 0.40000000000000002, 1)
+        self.gui.mainButton['frameColor'] = (0, 0.299, 0.4, 1)
 
 
     def yourTurn(self, activeSeat):
@@ -197,7 +197,7 @@ class DistributedDiceGame(DistributedGameTable.DistributedGameTable):
         self.gui.mainButton['state'] = DGG.NORMAL
         self.gui.mainButton['text'] = 'READY'
         self.gui.mainButton['command'] = self.playerIsReady
-        self.gui.mainButton['frameColor'] = (0, 0.40000000000000002, 0.10000000000000001, 1)
+        self.gui.mainButton['frameColor'] = (0, 0.4, 0.100, 1)
         self.gui.mainButton.show()
         self.gui.resetGui()
         self.dicevals.clear()

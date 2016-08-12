@@ -41,7 +41,7 @@ class CaveEffects(EnvironmentEffects.EnvironmentEffects):
         if self.parent.uniqueId in self.WaterCaves:
             if base.config.GetBool('want-shaders', 1) and base.win and base.win.getGsg() and base.win.getGsg().getShaderModel() >= GraphicsStateGuardian.SM20:
                 self.water = Swamp('models/caves/cave_a_water', self.parent, reflection, None, None, shader_water_color)
-                self.water.reflection_factor = 0.29999999999999999
+                self.water.reflection_factor = 0.299
                 self.water.set_reflection_parameters_np()
             else:
                 water = loader.loadModel('models/caves/cave_a_water')
@@ -63,7 +63,7 @@ class CaveEffects(EnvironmentEffects.EnvironmentEffects):
                 l2 = LerpScaleInterval(self.water.seamodel, 2, Vec3(1.0, 1.0, 1.0), Vec3(1.006, 1.006, 1.0), blendType = 'easeInOut')
                 seq = Sequence(l1, l2)
                 seq.loop()
-                self.water.reflection_factor = 0.29999999999999999
+                self.water.reflection_factor = 0.299
                 self.water.set_reflection_parameters_np()
             else:
                 water = loader.loadModel(self.modelPrefix + 'lava')

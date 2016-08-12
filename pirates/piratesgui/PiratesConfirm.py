@@ -23,7 +23,7 @@ class PiratesConfirm(DirectFrame):
 
     def __init__(self, title, message, command, avId = None, tattoo = None, barber = None, titleScale = PiratesGuiGlobals.TextScaleExtraLarge):
         guiMain = loader.loadModel('models/gui/gui_main')
-        DirectFrame.__init__(self, relief = None, pos = (-0.59999999999999998, 0, 0.46999999999999997), image = guiMain.find('**/general_frame_e'), image_pos = (0.25, 0, 0.27500000000000002), image_scale = 0.25)
+        DirectFrame.__init__(self, relief = None, pos = (-0.598, 0, 0.46), image = guiMain.find('**/general_frame_e'), image_pos = (0.25, 0, 0.275), image_scale = 0.25)
         self.initialiseoptions(PiratesConfirm)
         self.command = command
         self.avId = avId
@@ -33,15 +33,15 @@ class PiratesConfirm(DirectFrame):
             self._PiratesConfirm__handleNo()
             return None
 
-        self.title = DirectLabel(parent = self, relief = None, text = title, text_scale = titleScale, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getPirateOutlineFont(), pos = (0.25, 0, 0.41999999999999998), image = None, image_scale = 0.25)
+        self.title = DirectLabel(parent = self, relief = None, text = title, text_scale = titleScale, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getPirateOutlineFont(), pos = (0.25, 0, 0.418), image = None, image_scale = 0.25)
         text = message
-        self.message = DirectLabel(parent = self, relief = None, text = message, text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.25, 0, 0.32500000000000001), textMayChange = 1)
+        self.message = DirectLabel(parent = self, relief = None, text = message, text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.25, 0, 0.325), textMayChange = 1)
         self.bOk = PiratesConfirmButton(text = PLocalizer.GenericConfirmOK, command = self._PiratesConfirm__handleOk)
         self.bOk.reparentTo(self)
-        self.bOk.setPos(0.10000000000000001, 0, 0.050000000000000003)
+        self.bOk.setPos(0.100, 0, 0.050000)
         self.bNo = PiratesConfirmButton(text = PLocalizer.GenericConfirmNo, command = self._PiratesConfirm__handleNo)
         self.bNo.reparentTo(self)
-        self.bNo.setPos(0.29999999999999999, 0, 0.050000000000000003)
+        self.bNo.setPos(0.299, 0, 0.050000)
         self.accept('clientLogout', self.destroy)
 
 

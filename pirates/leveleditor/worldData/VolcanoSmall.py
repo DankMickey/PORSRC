@@ -8,48 +8,48 @@ objectStruct = {
                 '1141152834.22sdnaik': {
                     'Type': 'Player Spawn Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-1063.7449999999999, 126.44, 37.438000000000002),
+                    'Pos': Point3(-1063.7449999999999, 126.44, 37.438),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'All' },
                 '1141152853.94sdnaik': {
                     'Type': 'Rock',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-1081.125, 172.46000000000001, 35.776000000000003),
+                    'Pos': Point3(-1081.125, 172.46, 35.776),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/zz_dont_use_rock_Dk_1F' } },
                 '1141152869.14sdnaik': {
                     'Type': 'Tree',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-1090.4169999999999, 161.58799999999999, 35.530000000000001),
+                    'Pos': Point3(-1090.4169999999999, 161.587, 35.53),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
                 '1141152872.45sdnaik': {
                     'Type': 'Tree',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-1060.2670000000001, 207.79400000000001, 36.171999999999997),
+                    'Pos': Point3(-1060.267, 207.794, 36.171),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/gen_tree_a' } },
                 '1141152875.91sdnaik': {
                     'Type': 'Tree',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-1087.229, 189.73400000000001, 35.171999999999997),
+                    'Pos': Point3(-1087.229, 189.734, 35.171),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/gen_tree_a' } },
                 '1141152887.72sdnaik': {
                     'Type': 'TreeBase',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-1019.9690000000001, 111.098, 39.804000000000002),
+                    'Pos': Point3(-1019.969, 111.098, 39.804),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/TreeBase' } },
                 '1141152908.36sdnaik': {
                     'Type': 'Tree - Animated',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-1021.245, 112.36799999999999, 44.250999999999998),
+                    'Pos': Point3(-1021.245, 112.367, 44.2508),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'SubObjs': [
                         {

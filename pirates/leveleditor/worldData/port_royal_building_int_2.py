@@ -10,7 +10,7 @@ objectStruct = {
                     'Type': 'Townsperson',
                     'Category': 'Commoner',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(201.69999999999999, 26.992000000000001, 1.266),
+                    'Pos': Point3(201.69, 26.992, 1.266),
                     'Respawns': True,
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Start State': 'Walk',

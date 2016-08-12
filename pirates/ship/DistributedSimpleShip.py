@@ -1376,7 +1376,7 @@ class DistributedSimpleShip(DistributedMovingObject, Teamable, DistributedFlagsh
 
 
 
-    def getRope(self, thickness = 0.14999999999999999):
+    def getRope(self, thickness = 0.149):
         rope = Rope.Rope()
         rope.ropeNode.setRenderMode(RopeNode.RMTube)
         rope.ropeNode.setNumSlices(10)
@@ -3683,7 +3683,7 @@ class DistributedSimpleShip(DistributedMovingObject, Teamable, DistributedFlagsh
     def setupSmoothing(self):
         self.activateSmoothing(1, 0)
         self.smoother.setDelay(OTPGlobals.NetworkLatency * 1.5)
-        broadcastPeriod = 0.29999999999999999
+        broadcastPeriod = 0.299
         self.smoother.setMaxPositionAge(broadcastPeriod * 1.25 * 10)
         self.smoother.setExpectedBroadcastPeriod(broadcastPeriod)
         self.smoother.setDefaultToStandingStill(False)

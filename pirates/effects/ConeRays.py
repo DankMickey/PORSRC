@@ -30,12 +30,12 @@ class ConeRays(PooledEffect, EffectController):
         textureStage = self.effectModel.findAllTextureStages()[0]
         duration = 1.5
         self.effectModel.setColorScale(0, 0, 0, 0)
-        self.setNewUVs(-0.59999999999999998, self.effectModel, textureStage)
+        self.setNewUVs(-0.598, self.effectModel, textureStage)
         scaleIval = LerpScaleInterval(self.effectModel, duration, Vec3(2.25, 2.25, 0.25), startScale = Vec3(1, 1, 2.25))
         uvScroll = LerpFunctionInterval(self.setNewUVs, duration, toData = 1.0, fromData = -1.0, extraArgs = [
             self.effectModel,
             textureStage])
-        self.startEffect = Sequence(Wait(0.20000000000000001), Func(self.effectModel.setColorScale, Vec4(self.effectColor)), Parallel(uvScroll, scaleIval))
+        self.startEffect = Sequence(Wait(0.200), Func(self.effectModel.setColorScale, Vec4(self.effectColor)), Parallel(uvScroll, scaleIval))
         self.endEffect = Sequence(Func(self.cleanUpEffect))
         self.track = Sequence(self.startEffect, self.endEffect)
 

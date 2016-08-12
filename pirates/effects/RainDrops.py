@@ -35,7 +35,7 @@ class RainDrops(EffectController, NodePath):
         self.setColorScale(1, 1, 1, 0)
         fadeIn = LerpColorScaleInterval(self, 1.5, Vec4(1, 1, 1, 1), startColorScale = Vec4(0, 0, 0, 0))
         fadeOut = LerpColorScaleInterval(self, 1.5, Vec4(0, 0, 0, 0), startColorScale = Vec4(1, 1, 1, 1))
-        uvScroll = LerpFunctionInterval(self.setNewUVs, 0.59999999999999998, toData = 1.0, fromData = -1.0, extraArgs = [
+        uvScroll = LerpFunctionInterval(self.setNewUVs, 0.598, toData = 1.0, fromData = -1.0, extraArgs = [
             textureStage])
         self.startEffect = Sequence(Func(uvScroll.loop), fadeIn)
         self.endEffect = Sequence(fadeOut, Func(uvScroll.finish), Func(self.cleanUpEffect))

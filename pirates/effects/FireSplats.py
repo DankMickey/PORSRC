@@ -50,7 +50,7 @@ class FireSplats(PooledEffect, EffectController):
         self.p0.factory.setInitialAngle(0.0)
         self.p0.factory.setInitialAngleSpread(360.0)
         self.p0.factory.setLifespanBase(1.0)
-        self.p0.factory.setLifespanSpread(0.29999999999999999)
+        self.p0.factory.setLifespanSpread(0.299)
         self.p0.factory.setMassBase(1.0)
         self.p0.factory.setMassSpread(0.0)
         self.p0.factory.setTerminalVelocityBase(400.0)
@@ -65,7 +65,7 @@ class FireSplats(PooledEffect, EffectController):
         self.p0.renderer.setNonanimatedTheta(0.0)
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPBLENDLINEAR)
         self.p0.renderer.setColorBlendMode(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne)
-        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(1.0, 0.40000000000000002, 0.20000000000000001, 1.0), Vec4(0.34999999999999998, 0.0, 0.0, 0.0), 1)
+        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(1.0, 0.4, 0.200, 1.0), Vec4(0.348, 0.0, 0.0, 0.0), 1)
         self.p0.renderer.setAlphaDisable(0)
         self.p0.emitter.setEmissionType(BaseParticleEmitter.ETRADIATE)
         self.p0.emitter.setAmplitude(-1.0)
@@ -92,10 +92,10 @@ class FireSplats(PooledEffect, EffectController):
 
     def setScale(self, scale = VBase3(1, 1, 1)):
         self.effectScale = scale[0]
-        self.p0.renderer.setInitialXScale(0.040000000000000001 * self.cardScale * self.effectScale)
-        self.p0.renderer.setInitialYScale(0.040000000000000001 * self.cardScale * self.effectScale)
-        self.p0.renderer.setFinalXScale(0.029999999999999999 * self.cardScale * self.effectScale)
-        self.p0.renderer.setFinalYScale(0.059999999999999998 * self.cardScale * self.effectScale)
+        self.p0.renderer.setInitialXScale(0.0400 * self.cardScale * self.effectScale)
+        self.p0.renderer.setInitialYScale(0.0400 * self.cardScale * self.effectScale)
+        self.p0.renderer.setFinalXScale(0.0299 * self.cardScale * self.effectScale)
+        self.p0.renderer.setFinalYScale(0.0598 * self.cardScale * self.effectScale)
         self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, 18.0 * self.effectScale))
         self.p0.emitter.setRadius(5.0 * self.effectScale)
 

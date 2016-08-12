@@ -40,4 +40,4 @@ class ShipItemList(InventoryItemList.InventoryItemList):
             self.panels[i].setPos(0.01, 0, -z * (i + 1))
             self.panels[i].origionalPos = self.panels[i].getPos(render2d)
 
-        self['canvasSize'] = (0, PiratesGuiGlobals.ShipItemGuiWidth - 0.089999999999999997, -z * (i + 1), 0)
+        self['canvasSize'] = (0, PiratesGuiGlobals.ShipItemGuiWidth - 0.089, -z * (i + 1), 0)

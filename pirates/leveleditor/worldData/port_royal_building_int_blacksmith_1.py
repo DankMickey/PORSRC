@@ -20,9 +20,9 @@ objectStruct = {
                     'CustomModel': 'None',
                     'HelpID': 'NONE',
                     'Holiday': '',
-                    'Hpr': VBase3(-169.86099999999999, 0.0, 0.0),
+                    'Hpr': VBase3(-169.860, 0.0, 0.0),
                     'Patrol Radius': '12.0000',
-                    'Pos': Point3(6.6639999999999997, 17.591000000000001, 0.0),
+                    'Pos': Point3(6.663, 17.591, 0.0),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'Private Status': 'All',
@@ -38,8 +38,8 @@ objectStruct = {
                     'Type': 'Interior_furnishings',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(4.9950000000000001, 0.0, 0.0),
-                    'Pos': Point3(6.1799999999999997, 15.212999999999999, 0.0),
+                    'Hpr': VBase3(4.995, 0.0, 0.0),
+                    'Pos': Point3(6.17, 15.212, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -48,7 +48,7 @@ objectStruct = {
                     'Type': 'Door Locator Node',
                     'Name': 'door_locator',
                     'Hpr': VBase3(-180.0, 0.0, 0.0),
-                    'Pos': Point3(-2.3849999999999998, -6.6859999999999999, 0.99199999999999999),
+                    'Pos': Point3(-2.3848, -6.6859, 0.991),
                     'Scale': VBase3(1.0, 1.0, 1.0) },
                 '1213222099.15aapatel': {
                     'Type': 'Townsperson',
@@ -58,7 +58,7 @@ objectStruct = {
                     'HelpID': 'NONE',
                     'Hpr': VBase3(-149.0, 0.0, 0.0),
                     'Patrol Radius': '12.0000',
-                    'Pos': Point3(-5.0300000000000002, 7.9969999999999999, 0.0),
+                    'Pos': Point3(-5.03, 7.9969, 0.0),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'Private Status': 'All',
@@ -148,8 +148,8 @@ objectStruct = {
         '1213222075.18aapatel': '["Objects"]["1153423464.2dzlu0"]["Objects"]["1213222075.18aapatel"]',
         '1213222099.15aapatel': '["Objects"]["1153423464.2dzlu0"]["Objects"]["1213222099.15aapatel"]' } }
 extraInfo = {
-    'camPos': Point3(229.535, -262.21100000000001, 21.9176),
-    'camHpr': VBase3(87.296499999999995, -28.126000000000001, 0),
+    'camPos': Point3(229.535, -262.211, 21.9176),
+    'camHpr': VBase3(87.2964, -28.126, 0),
     'focalLength': 1.3999999761599999,
     'skyState': -1,
     'fog': 0 }

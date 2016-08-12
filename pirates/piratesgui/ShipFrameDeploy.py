@@ -37,11 +37,11 @@ class ShipFrameDeploy(ShipFrameSelect):
         if hp <= 0:
             self.button['state'] = DGG.DISABLED
             stateStr = 'red%s' % (PLocalizer.ShipSunk,)
-            self['shipColorScale'] = VBase4(0.80000000000000004, 0.29999999999999999, 0.29999999999999999, 1)
+            self['shipColorScale'] = VBase4(0.800000, 0.299, 0.299, 1)
         elif crew >= hullInfo['maxCrew']:
             self.button['state'] = DGG.DISABLED
             stateStr = 'red%s' % (PLocalizer.ShipFull,)
-            self['shipColorScale'] = VBase4(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 1)
+            self['shipColorScale'] = VBase4(0.4, 0.4, 0.4, 1)
         else:
             self.button['state'] = DGG.NORMAL
         if typeStr:
@@ -62,23 +62,23 @@ class ShipFrameDeploy(ShipFrameSelect):
             self.button['state'] = DGG.DISABLED
             self.button['text'] = PLocalizer.DeployShip
             stateStr = 'Ired%s' % PLocalizer.ShipSunk
-            self['shipColorScale'] = VBase4(1, 0.40000000000000002, 0.40000000000000002, 1)
+            self['shipColorScale'] = VBase4(1, 0.4, 0.4, 1)
             self.button['image3_color'] = VBase4(*PiratesGuiGlobals.ButtonColor3[2])
-            self.button['geom3_color'] = VBase4(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 0.40000000000000002)
-            self.button['text3_color'] = VBase4(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 0.40000000000000002)
+            self.button['geom3_color'] = VBase4(0.4, 0.4, 0.4, 0.4)
+            self.button['text3_color'] = VBase4(0.4, 0.4, 0.4, 0.4)
             self.button['helpText'] = PLocalizer.ShipSunk
         elif len(shipOV.crew) >= shipOV.maxCrew:
             self.button['state'] = DGG.DISABLED
             self.button['text'] = PLocalizer.BoardShip
             self.button['helpText'] = PLocalizer.ShipFull
             stateStr = 'red%s' % (PLocalizer.ShipFull,)
-            self['shipColorScale'] = VBase4(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 1)
+            self['shipColorScale'] = VBase4(0.4, 0.4, 0.4, 1)
         elif localAvatar.getActiveShipId() and shipOV.doId != localAvatar.getActiveShipId():
             self.button['state'] = DGG.DISABLED
             self.button['text'] = PLocalizer.DeployShip
             self.button['helpText'] = PLocalizer.OtherShipOut
             stateStr = 'Ired%s' % PLocalizer.OtherShipOut
-            self['shipColorScale'] = VBase4(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 1)
+            self['shipColorScale'] = VBase4(0.4, 0.4, 0.4, 1)
         elif shipOV.state in 'Off':
             self.button['state'] = DGG.NORMAL
             self.button['text'] = PLocalizer.DeployShip

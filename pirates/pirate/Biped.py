@@ -413,7 +413,7 @@ class Biped(UsesAnimationMixer, Avatar, UsesEffectNode):
 
 
     def isInFov(self, target):
-        k = 0.66579999999999995
+        k = 0.66575
         relPos = target.getPos(self)
         if relPos[1] > 0:
             tan = relPos[0] / relPos[1]
@@ -468,7 +468,7 @@ class Biped(UsesAnimationMixer, Avatar, UsesEffectNode):
             self.lerpHeadTrack.pause()
             self.lerpHeadTrac3dk = None
 
-        t = 0.20000000000000001 + random.random() * 0.80000000000000004
+        t = 0.200 + random.random() * 0.800000
         self.lerpHeadTrack = LerpHprInterval(self.headNode, t, newHpr, blendType = 'easeInOut')
         self.lerpHeadTrack.start()
         task.delayTime = 3.0 + random.random() * 4.0

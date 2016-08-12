@@ -85,7 +85,7 @@ class WeaponPage(InventoryPage.InventoryPage):
             key = None
             panel = WeaponPanel.WeaponPanel((weaponId, quantity), key)
             panel.reparentTo(self)
-            panel.setZ(PiratesGuiGlobals.InventoryPanelHeight - 0.17999999999999999 - zIndex * panel.height)
+            panel.setZ(PiratesGuiGlobals.InventoryPanelHeight - 0.179 - zIndex * panel.height)
             zIndex += 1
             repCat = WeaponGlobals.getRepId(weaponId)
             self.weaponPanels[repCat] = panel
@@ -95,7 +95,7 @@ class WeaponPage(InventoryPage.InventoryPage):
         repIcon_gui = loader.loadModel('models/textureCards/skillIcons')
         repIcon = repIcon_gui.find('**/box_base')
         if config.GetBool('want-fishing-game', 0):
-            self.fishingIcon = GuiButton(pos = (0.16600000000000001, 0, 0.044999999999999998 + (PiratesGuiGlobals.InventoryPanelHeight - 0.17999999999999999) - zIndex * panel.height), helpText = PLocalizer.FishingRepDescription, helpOpaque = True, image = (repIcon, repIcon, repIcon, repIcon), image_scale = (0.14399999999999999, 0.14399999999999999, 0.14399999999999999))
+            self.fishingIcon = GuiButton(pos = (0.166, 0, 0.0448 + (PiratesGuiGlobals.InventoryPanelHeight - 0.179) - zIndex * panel.height), helpText = PLocalizer.FishingRepDescription, helpOpaque = True, image = (repIcon, repIcon, repIcon, repIcon), image_scale = (0.143, 0.143, 0.143))
             fishIconCard = loader.loadModel('models/textureCards/fishing_icons')
             inv = localAvatar.getInventory()
             fishingChangeMsg = InventoryGlobals.getCategoryQuantChangeMsg(inv.doId, InventoryType.FishingRod)
@@ -114,29 +114,29 @@ class WeaponPage(InventoryPage.InventoryPage):
             if rodLvl >= 1:
                 self.fishingIcon['geom'] = fishIconCard.find('**/' + rodIcon)
 
-            self.fishingIcon['geom_scale'] = 0.10000000000000001
+            self.fishingIcon['geom_scale'] = 0.100
             self.fishingIcon['geom_pos'] = (0, 0, 0)
             self.fishingIcon.reparentTo(self)
             fishingRepValue = localAvatar.getInventory().getReputation(InventoryType.FishingRep)
-            self.fishingRepMeter = ReputationMeter(InventoryType.FishingRep, width = 0.66000000000000003)
-            self.fishingRepMeter.setPos(0.62, 0, 0.041000000000000002 + (PiratesGuiGlobals.InventoryPanelHeight - 0.17999999999999999) - zIndex * panel.height)
+            self.fishingRepMeter = ReputationMeter(InventoryType.FishingRep, width = 0.66000)
+            self.fishingRepMeter.setPos(0.62, 0, 0.041 + (PiratesGuiGlobals.InventoryPanelHeight - 0.179) - zIndex * panel.height)
             self.fishingRepMeter.update(fishingRepValue)
             self.fishingRepMeter.reparentTo(self)
             self.fishingRepMeter.flattenLight()
-            self.fishingPoleName = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, text = rodText, text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, pos = (0.28999999999999998, 0, -0.0050000000000000001 + (PiratesGuiGlobals.InventoryPanelHeight - 0.17999999999999999) - 7 * panel.height), text_font = PiratesGlobals.getInterfaceFont())
+            self.fishingPoleName = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, text = rodText, text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, pos = (0.288, 0, -0.00500 + (PiratesGuiGlobals.InventoryPanelHeight - 0.179) - 7 * panel.height), text_font = PiratesGlobals.getInterfaceFont())
             self.fishingPoleName.reparentTo(self)
             zIndex += 1
 
         iconCard = loader.loadModel('models/textureCards/skillIcons')
         if config.GetBool('want-potion-game', 0):
-            self.potionIcon = GuiButton(pos = (0.16600000000000001, 0, 0.044999999999999998 + (PiratesGuiGlobals.InventoryPanelHeight - 0.17999999999999999) - zIndex * panel.height), helpText = PLocalizer.PotionRepDescription, helpOpaque = True, image = (repIcon, repIcon, repIcon, repIcon), image_scale = (0.14399999999999999, 0.14399999999999999, 0.14399999999999999))
+            self.potionIcon = GuiButton(pos = (0.166, 0, 0.0448 + (PiratesGuiGlobals.InventoryPanelHeight - 0.179) - zIndex * panel.height), helpText = PLocalizer.PotionRepDescription, helpOpaque = True, image = (repIcon, repIcon, repIcon, repIcon), image_scale = (0.143, 0.143, 0.143))
             self.potionIcon['geom'] = iconCard.find('**/pir_t_gui_pot_base')
-            self.potionIcon['geom_scale'] = 0.10000000000000001
+            self.potionIcon['geom_scale'] = 0.100
             self.potionIcon['geom_pos'] = (0, 0, 0)
             self.potionIcon.reparentTo(self)
             potionRepValue = localAvatar.getInventory().getReputation(InventoryType.PotionsRep)
-            self.potionRepMeter = ReputationMeter(InventoryType.PotionsRep, width = 0.66000000000000003)
-            self.potionRepMeter.setPos(0.62, 0, 0.041000000000000002 + (PiratesGuiGlobals.InventoryPanelHeight - 0.17999999999999999) - zIndex * panel.height)
+            self.potionRepMeter = ReputationMeter(InventoryType.PotionsRep, width = 0.66000)
+            self.potionRepMeter.setPos(0.62, 0, 0.041 + (PiratesGuiGlobals.InventoryPanelHeight - 0.179) - zIndex * panel.height)
             self.potionRepMeter.update(potionRepValue)
             self.potionRepMeter.reparentTo(self)
             self.potionRepMeter.flattenLight()
@@ -157,7 +157,7 @@ class WeaponPage(InventoryPage.InventoryPage):
                 tonicId = InventoryType.PotionMinigamePotions[i]
                 if items.get(tonicId):
                     button = SkillButton(tonicId, self.tonicCallback, items.get(tonicId), showQuantity = True, showHelp = True, showRing = True)
-                    button.skillButton['geom_scale'] = 0.080000000000000002
+                    button.skillButton['geom_scale'] = 0.08
                     x = 0.16 * (count % 6) + -1.2
                     z = 1.0 - int(count / 6) * 0.16
                     button.setPos(x, 0, z)

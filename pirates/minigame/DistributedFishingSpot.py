@@ -189,7 +189,7 @@ class DistributedFishingSpot(DistributedInteractive.DistributedInteractive, Loot
         self.prevCamPos = base.cam.getPos()
         self.prevCamHpr = base.cam.getHpr()
         if not base.transitions.fadeOutActive():
-            self.loadingSequence = Sequence(Func(self.fadeOut), Wait(self.fadeTime + 0.10000000000000001), Func(self.checkAndLoadFishingGame), Wait(1.5), Func(self.requestPlayerIdleState), Func(self.fadeIn))
+            self.loadingSequence = Sequence(Func(self.fadeOut), Wait(self.fadeTime + 0.100), Func(self.checkAndLoadFishingGame), Wait(1.5), Func(self.requestPlayerIdleState), Func(self.fadeIn))
             self.loadingSequence.start()
         else:
             print '--------------------- DistributedFishingSpot : Trouble fading out!'

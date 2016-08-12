@@ -41,7 +41,7 @@ class DesolationSmoke(PooledEffect, EffectController):
         self.p0.factory.setLifespanBase(1.5)
         self.p0.factory.setLifespanSpread(0.5)
         self.p0.factory.setMassBase(1.0)
-        self.p0.factory.setMassSpread(0.20000000000000001)
+        self.p0.factory.setMassSpread(0.200)
         self.p0.factory.setTerminalVelocityBase(400.0)
         self.p0.factory.setTerminalVelocitySpread(0.0)
         self.p0.renderer.setAlphaMode(BaseParticleRenderer.PRALPHAOUT)
@@ -51,10 +51,10 @@ class DesolationSmoke(PooledEffect, EffectController):
         self.p0.renderer.setXScaleFlag(1)
         self.p0.renderer.setYScaleFlag(1)
         self.p0.renderer.setAnimAngleFlag(1)
-        self.p0.renderer.setInitialXScale(0.050000000000000003 * self.cardScale)
-        self.p0.renderer.setFinalXScale(0.20000000000000001 * self.cardScale)
-        self.p0.renderer.setInitialYScale(0.050000000000000003 * self.cardScale)
-        self.p0.renderer.setFinalYScale(0.20000000000000001 * self.cardScale)
+        self.p0.renderer.setInitialXScale(0.050000 * self.cardScale)
+        self.p0.renderer.setFinalXScale(0.200 * self.cardScale)
+        self.p0.renderer.setInitialYScale(0.050000 * self.cardScale)
+        self.p0.renderer.setFinalYScale(0.200 * self.cardScale)
         self.p0.renderer.setNonanimatedTheta(0.0)
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPNOBLEND)
         self.p0.renderer.setAlphaDisable(0)
@@ -69,7 +69,7 @@ class DesolationSmoke(PooledEffect, EffectController):
         self.p0.emitter.setAmplitude(20.0)
         self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, 3.0))
         self.p0.emitter.setRadius(1.5)
-        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.01), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self), Wait(0.10000000000000001), Func(self.reconfigure))
+        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.01), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self), Wait(0.100), Func(self.reconfigure))
         self.endEffect = Sequence(Func(self.p0.setBirthRate, 100.0), Wait(4.0), Func(self.cleanUpEffect))
         self.track = Sequence(self.startEffect, Wait(3.5), self.endEffect)
 
@@ -79,7 +79,7 @@ class DesolationSmoke(PooledEffect, EffectController):
 
 
     def reconfigure(self):
-        self.p0.setBirthRate(0.20000000000000001)
+        self.p0.setBirthRate(0.200)
         self.p0.setLitterSize(16)
         self.p0.emitter.setAmplitude(3.0)
         self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, 5.0))

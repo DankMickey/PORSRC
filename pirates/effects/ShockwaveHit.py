@@ -11,7 +11,7 @@ class ShockwaveHit(PooledEffect, EffectController):
     def __init__(self):
         PooledEffect.__init__(self)
         EffectController.__init__(self)
-        self.speed = 0.20000000000000001
+        self.speed = 0.200
         self.size = 8
         self.explosionSequence = 0
         self.currentType = 'Hit'
@@ -53,8 +53,8 @@ class ShockwaveHit(PooledEffect, EffectController):
     def createTrack(self):
         self.explosion.setScale(1)
         self.explosion.setColorScale(1, 1, 1, 1)
-        fadeBlast = self.explosion.colorScaleInterval(self.speed * 0.66000000000000003, Vec4(0, 0, 0, 0), startColorScale = Vec4(1, 1, 1, 1))
-        waitFade = Sequence(Wait(self.speed * 0.33000000000000002), fadeBlast)
+        fadeBlast = self.explosion.colorScaleInterval(self.speed * 0.66000, Vec4(0, 0, 0, 0), startColorScale = Vec4(1, 1, 1, 1))
+        waitFade = Sequence(Wait(self.speed * 0.33), fadeBlast)
         scaleBlast = self.explosion.scaleInterval(self.speed, self.size, blendType = 'easeIn')
         self.track = Sequence(Func(self.explosion.show), Parallel(scaleBlast, waitFade), Func(self.explosion.hide), Func(self.cleanUpEffect))
 

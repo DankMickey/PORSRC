@@ -170,8 +170,8 @@ class DistributedGameTable(DistributedInteractive.DistributedInteractive):
                     node = lod.node()
                     if node:
                         self.seatLodNodeArray.append(node)
-                stool.setY(-0.90000000000000002)
-                stool.setZ(0.050000000000000003)
+                stool.setY(-0.9)
+                stool.setZ(0.050000)
                 stool.flattenStrong()
                 stool.reparentTo(seatNode)
                 cardPos = NodePath('pocketCard-%s' % i)

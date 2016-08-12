@@ -37,7 +37,7 @@ class SmokeExplosion(PooledEffect, EffectController):
         f0.addForce(force0)
         self.f.addForceGroup(f0)
         self.p0.setPoolSize(64)
-        self.p0.setBirthRate(0.29999999999999999)
+        self.p0.setBirthRate(0.299)
         self.p0.setLitterSize(6)
         self.p0.setLitterSpread(2)
         self.p0.setSystemLifespan(0.0)
@@ -62,9 +62,9 @@ class SmokeExplosion(PooledEffect, EffectController):
         self.p0.renderer.setXScaleFlag(1)
         self.p0.renderer.setYScaleFlag(1)
         self.p0.renderer.setAnimAngleFlag(1)
-        self.p0.renderer.setInitialXScale(0.074999999999999997 * self.spriteScale * self.cardScale)
+        self.p0.renderer.setInitialXScale(0.074 * self.spriteScale * self.cardScale)
         self.p0.renderer.setFinalXScale(0.25 * self.spriteScale * self.cardScale)
-        self.p0.renderer.setInitialYScale(0.074999999999999997 * self.spriteScale * self.cardScale)
+        self.p0.renderer.setInitialYScale(0.074 * self.spriteScale * self.cardScale)
         self.p0.renderer.setFinalYScale(0.25 * self.spriteScale * self.cardScale)
         self.p0.renderer.setNonanimatedTheta(0.0)
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPNOBLEND)
@@ -79,7 +79,7 @@ class SmokeExplosion(PooledEffect, EffectController):
 
 
     def createTrack(self):
-        self.track = Sequence(Func(self.p0.setBirthRate, 0.02), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self), Wait(0.29999999999999999), Func(self.p0.setBirthRate, 100), Wait(7.0), Func(self.cleanUpEffect))
+        self.track = Sequence(Func(self.p0.setBirthRate, 0.02), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self), Wait(0.299), Func(self.p0.setBirthRate, 100), Wait(7.0), Func(self.cleanUpEffect))
 
 
     def cleanUpEffect(self):

@@ -20,16 +20,16 @@ class ChatPanel(DirectFrame, FSM):
     NumVisible = 10
     WrapWidth = 22
     WrapWidthSmall = 28
-    TextScale = 0.035000000000000003
-    TextScaleSmall = 0.028000000000000001
-    FadeTime = 0.29999999999999999
+    TextScale = 0.035000
+    TextScaleSmall = 0.0280
+    FadeTime = 0.299
     TextFadeDelay = 120
     TextFadeTime = 5
     widthBase = 21.25
     widthVarience = 12.0
 
     def __init__(self, chatManager, whiteListEntry):
-        optiondefs = (('relief', None, None), ('state', DGG.NORMAL, self.setState), ('frameSize', (0, 0.90000000000000002, 0, 0.59999999999999998), None), ('frameColor', (1, 0, 1, 0.20000000000000001), None))
+        optiondefs = (('relief', None, None), ('state', DGG.NORMAL, self.setState), ('frameSize', (0, 0.9, 0, 0.598), None), ('frameColor', (1, 0, 1, 0.200), None))
         self.defineoptions({ }, optiondefs)
         DirectFrame.__init__(self, parent = NodePath())
         self.initialiseoptions(ChatPanel)
@@ -44,7 +44,7 @@ class ChatPanel(DirectFrame, FSM):
         self.wrappedText = []
         self.chatFont = PiratesGlobals.getInterfaceFont()
         self.nameFont = PiratesGlobals.getInterfaceFont()
-        self.shadowOffset = (0.089999999999999997, 0.089999999999999997)
+        self.shadowOffset = (0.089, 0.089)
         self.shadowColor = (0.0, 0.0, 0.0, 1.0)
         self.fontColorStyle = 1
         if base.config.GetBool('want-random-chatStyle', 0):
@@ -55,7 +55,7 @@ class ChatPanel(DirectFrame, FSM):
                 PiratesGlobals.getInterfaceFont(),
                 PiratesGlobals.getInterfaceOutlineFont()])
             self.shadowOffset = random.choice([
-                (0.089999999999999997, 0.089999999999999997),
+                (0.089, 0.089),
                 (0.0, 0.0)])
             self.fontColorStyle = random.choice([
                 0,
@@ -160,7 +160,7 @@ class ChatPanel(DirectFrame, FSM):
         self.hideNode = self.attachNewNode('hideNode')
         cm = CardMaker('shortBg')
         cm.setColor(0, 0, 0, 1)
-        cm.setFrame(0.0050000000000000001, 0.89500000000000002, 0.089999999999999997, 0.59499999999999997)
+        cm.setFrame(0.00500, 0.895, 0.089, 0.594)
         self.shortBg = self.hideNode.attachNewNode(cm.generate())
         self.shortBg.setTransparency(1)
         self.shortBg.setColor(0, 0, 0, 1)
@@ -170,15 +170,15 @@ class ChatPanel(DirectFrame, FSM):
         top = guib.find('**/pPlane8').copyTo(self.shortBorder)
         top.setZ(-0.75)
         mid = guib.find('**/pPlane9').copyTo(self.shortBorder)
-        mid.setScale(1, 1, 0.68000000000000005)
-        mid.setZ(-0.40000000000000002)
+        mid.setScale(1, 1, 0.680000)
+        mid.setZ(-0.4)
         guib.find('**/pPlane10').copyTo(self.shortBorder)
         top = guib.find('**/pPlane26').copyTo(self.shortBorder)
         top.setZ(-0.75)
         mid = guib.find('**/pPlane27').copyTo(self.shortBorder)
-        mid.setScale(1, 1, 0.68000000000000005)
-        mid.setZ(-0.40000000000000002)
-        self.shortBorder.setScale(0.20000000000000001)
+        mid.setScale(1, 1, 0.680000)
+        mid.setZ(-0.4)
+        self.shortBorder.setScale(0.200)
         self.shortBorder.setPos(0.5, 0, 0.375)
         self.shortBorder.flattenStrong()
         buttonGeom = NodePath('Close')
@@ -186,15 +186,15 @@ class ChatPanel(DirectFrame, FSM):
         guib.find('**/pPlane31').copyTo(buttonGeom)
         guib.find('**/pPlane32').copyTo(buttonGeom)
         buttonGeom.flattenStrong()
-        self.sCloseButton = DirectButton(parent = self.shortBorder, relief = None, frameColor = (1, 1, 1, 1), pad = (-0.02, -0.02), borderWidth = (0, 0), geom = buttonGeom, pos = (0.5, 0, 0.22500000000000001), scale = 0.20000000000000001, rolloverSound = None, command = self.chatManager.deactivateChat)
+        self.sCloseButton = DirectButton(parent = self.shortBorder, relief = None, frameColor = (1, 1, 1, 1), pad = (-0.02, -0.02), borderWidth = (0, 0), geom = buttonGeom, pos = (0.5, 0, 0.225), scale = 0.200, rolloverSound = None, command = self.chatManager.deactivateChat)
         buttonGeom = NodePath('Max')
         guib.find('**/pPlane22').copyTo(buttonGeom)
         guib.find('**/pPlane23').copyTo(buttonGeom)
         buttonGeom.flattenStrong()
-        self.maxButton = DirectButton(parent = self.shortBorder, relief = None, frameColor = (1, 1, 1, 1), pad = (-0.02, -0.02), borderWidth = (0, 0), geom = buttonGeom, pos = (0.5, 0, 0.22500000000000001), scale = 0.20000000000000001, rolloverSound = None, command = self.request, extraArgs = [
+        self.maxButton = DirectButton(parent = self.shortBorder, relief = None, frameColor = (1, 1, 1, 1), pad = (-0.02, -0.02), borderWidth = (0, 0), geom = buttonGeom, pos = (0.5, 0, 0.225), scale = 0.200, rolloverSound = None, command = self.request, extraArgs = [
             'Tall'])
         cm.setName('tallBg')
-        cm.setFrame(0.0050000000000000001, 0.89500000000000002, 0.089999999999999997, 1.3600000000000001)
+        cm.setFrame(0.00500, 0.895, 0.089, 1.36)
         self.tallBg = self.hideNode.attachNewNode(cm.generate())
         self.tallBg.setColor(0, 0, 0, 1)
         self.tallBg.setTransparency(1)
@@ -206,7 +206,7 @@ class ChatPanel(DirectFrame, FSM):
         guic.find('**/pPlane10').copyTo(self.tallBorder)
         guic.find('**/pPlane26').copyTo(self.tallBorder)
         guic.find('**/pPlane27').copyTo(self.tallBorder)
-        self.tallBorder.setScale(0.20000000000000001)
+        self.tallBorder.setScale(0.200)
         self.tallBorder.setPos(0.5, 0, 0.375)
         self.tallBorder.flattenStrong()
         buttonGeom = NodePath('Close')
@@ -214,12 +214,12 @@ class ChatPanel(DirectFrame, FSM):
         guic.find('**/pPlane31').copyTo(buttonGeom)
         guic.find('**/pPlane32').copyTo(buttonGeom)
         buttonGeom.flattenStrong()
-        self.tCloseButton = DirectButton(parent = self.tallBorder, relief = None, frameColor = (1, 1, 1, 1), pad = (-0.02, -0.02), borderWidth = (0, 0), geom = buttonGeom, pos = (0.5, 0, 0.375), scale = 0.20000000000000001, rolloverSound = None, command = self.chatManager.deactivateChat)
+        self.tCloseButton = DirectButton(parent = self.tallBorder, relief = None, frameColor = (1, 1, 1, 1), pad = (-0.02, -0.02), borderWidth = (0, 0), geom = buttonGeom, pos = (0.5, 0, 0.375), scale = 0.200, rolloverSound = None, command = self.chatManager.deactivateChat)
         buttonGeom = NodePath('Min')
         guic.find('**/pPlane28').copyTo(buttonGeom)
         guic.find('**/pPlane29').copyTo(buttonGeom)
         buttonGeom.flattenStrong()
-        self.minButton = DirectButton(parent = self.tallBorder, relief = None, frameColor = (1, 1, 1, 1), pad = (-0.02, -0.02), borderWidth = (0, 0), geom = buttonGeom, pos = (0.54800000000000004, 0, 0.375), scale = 0.20000000000000001, rolloverSound = None, command = self.request, extraArgs = [
+        self.minButton = DirectButton(parent = self.tallBorder, relief = None, frameColor = (1, 1, 1, 1), pad = (-0.02, -0.02), borderWidth = (0, 0), geom = buttonGeom, pos = (0.548000, 0, 0.375), scale = 0.200, rolloverSound = None, command = self.request, extraArgs = [
             'Short'])
         self.chatTextRender = TextNode('chatTextRender')
         self.chatTextRender.setFont(self.chatFont)
@@ -230,7 +230,7 @@ class ChatPanel(DirectFrame, FSM):
         self.chatDisplayNP.setColorScale(1, 1, 1, 1)
         self.chatDisplayNP.showThrough()
         self._ChatPanel__showLines()
-        self.slider = DirectScrollBar(parent = self, relief = None, manageButtons = 0, resizeThumb = 0, frameSize = (-0.0060000000000000001, 0.0060000000000000001, -0.080000000000000002, 0.080000000000000002), image = charGui.find('**/chargui_slider_small'), image_scale = (0.17999999999999999, 0.035000000000000003, 0.070000000000000007), image_hpr = (0, 0, 90), thumb_image = (charGui.find('**/chargui_slider_node'), charGui.find('**/chargui_slider_node_down'), charGui.find('**/chargui_slider_node_over')), thumb_image_scale = 0.074999999999999997, thumb_relief = None, decButton_pos = Vec3(0, 0, -0.082500000000000004), decButton_image = (tGui.find('**/triangle'), tGui.find('**/triangle_down'), tGui.find('**/triangle_over')), decButton_image_hpr = (0, 0, 90), decButton_scale = (0.080000000000000002, 1.0, 0.125), decButton_image_scale = 0.074999999999999997, decButton_relief = None, incButton_pos = Vec3(0.00025000000000000001, 0, 0.082500000000000004), incButton_image = (tGui.find('**/triangle'), tGui.find('**/triangle_down'), tGui.find('**/triangle_over')), incButton_image_hpr = (0, 0, -90), incButton_scale = (0.080000000000000002, 1.0, 0.125), incButton_image_scale = 0.074999999999999997, incButton_relief = None, scale = 5.7000000000000002, pos = (0.051999999999999998, 0, 0.69999999999999996), value = 0, range = (0, self.NumVisible), scrollSize = 1, pageSize = 1, orientation = DGG.VERTICAL_INVERTED, command = self.scrollList)
+        self.slider = DirectScrollBar(parent = self, relief = None, manageButtons = 0, resizeThumb = 0, frameSize = (-0.00600, 0.00600, -0.08, 0.08), image = charGui.find('**/chargui_slider_small'), image_scale = (0.179, 0.035000, 0.070), image_hpr = (0, 0, 90), thumb_image = (charGui.find('**/chargui_slider_node'), charGui.find('**/chargui_slider_node_down'), charGui.find('**/chargui_slider_node_over')), thumb_image_scale = 0.074, thumb_relief = None, decButton_pos = Vec3(0, 0, -0.0825000), decButton_image = (tGui.find('**/triangle'), tGui.find('**/triangle_down'), tGui.find('**/triangle_over')), decButton_image_hpr = (0, 0, 90), decButton_scale = (0.08, 1.0, 0.125), decButton_image_scale = 0.074, decButton_relief = None, incButton_pos = Vec3(0.000250, 0, 0.0825000), incButton_image = (tGui.find('**/triangle'), tGui.find('**/triangle_down'), tGui.find('**/triangle_over')), incButton_image_hpr = (0, 0, -90), incButton_scale = (0.08, 1.0, 0.125), incButton_image_scale = 0.074, incButton_relief = None, scale = 5.7, pos = (0.0518, 0, 0.696), value = 0, range = (0, self.NumVisible), scrollSize = 1, pageSize = 1, orientation = DGG.VERTICAL_INVERTED, command = self.scrollList)
         self.slider.hide()
         self.slider.setName('chatPanel.slider')
         if hasattr(self, 'chatBar'):
@@ -400,7 +400,7 @@ class ChatPanel(DirectFrame, FSM):
         self.startFadeOutIval()
         self.startFadeTextTimer()
         self.NumVisible = 10
-        (self.chatDisplayNP.setPos(0.089999999999999997, 0, 0.20000000000000001 + 9.1430000000000007 * self.currentFontSize),)
+        (self.chatDisplayNP.setPos(0.089, 0, 0.200 + 9.143 * self.currentFontSize),)
         self.index = 0
         self.slider['value'] = self.index
         self.updateDisplay()
@@ -420,7 +420,7 @@ class ChatPanel(DirectFrame, FSM):
         self.shortBorder.show()
         self.tallBg.hide()
         self.tallBorder.hide()
-        (self.chatDisplayNP.setPos(0.089999999999999997, 0, 0.20000000000000001 + 9.1430000000000007 * self.currentFontSize),)
+        (self.chatDisplayNP.setPos(0.089, 0, 0.200 + 9.143 * self.currentFontSize),)
         self.preferredMode = 'Short'
         self.NumVisible = 10
         self.index = 0
@@ -439,7 +439,7 @@ class ChatPanel(DirectFrame, FSM):
         self.shortBg.hide()
         self.shortBorder.hide()
         self.slider.show()
-        (self.chatDisplayNP.setPos(0.089999999999999997, 0, 0.20000000000000001 + 31.143000000000001 * self.currentFontSize),)
+        (self.chatDisplayNP.setPos(0.089, 0, 0.200 + 31.143 * self.currentFontSize),)
         self.preferredMode = 'Tall'
         self.NumVisible = 32
         self.index = 0
@@ -785,7 +785,7 @@ class ChatPanel(DirectFrame, FSM):
             self.index = 0
             return None
 
-        maxRange = self.runningLineCount - int(self.NumVisible * 0.66000000000000003)
+        maxRange = self.runningLineCount - int(self.NumVisible * 0.66000)
         maxRange = max(maxRange, 0)
         if maxRange:
             if self.getCurrentOrNextState() == 'Tall':

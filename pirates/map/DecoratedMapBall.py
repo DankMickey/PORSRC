@@ -335,13 +335,13 @@ class DecoratedMapBall(MapBall):
             desiredPos = dart.getDefaultPos()
             (newPos, theta) = self.clampSpherePtToHorizon(desiredPos)
             framePos = self._transSphereToFramePt(newPos)
-            if -1.1000000000000001 < framePos[0]:
+            if -1.10 < framePos[0]:
                 pass
-            framePos[0] < 1.1000000000000001
+            framePos[0] < 1.10
             if 1:
-                if -1.1000000000000001 < framePos[1]:
+                if -1.10 < framePos[1]:
                     pass
-                framePos[1] < 1.1000000000000001
+                framePos[1] < 1.10
                 if 1:
                     dart.setEdgeMode(False)
                     dart.setPos(newPos)
@@ -660,7 +660,7 @@ class DecoratedMapBall(MapBall):
 
 
 
-    def addDart(self, id, worldPos, color = Vec4(0.20000000000000001, 1, 0.59999999999999998, 1.0)):
+    def addDart(self, id, worldPos, color = Vec4(0.200, 1, 0.598, 1.0)):
         name = 'dart-' + str(id)
         info = (DecorTypes.Dart, (name, self, self.mapPosToSpherePt(worldPos), color, 0.001), {
             'pos': worldPos })
@@ -706,39 +706,39 @@ class DecoratedMapBall(MapBall):
         if __dev__ and 0:
             self.decorInfo = {
                 'BilgeWater': (DecorTypes.TextIsland, ('BilgeWater', 'models/worldmap/world_map_island_3d', self.cam, 0.001, 1.0, 1), {
-                    'pos': Point2(-0.10000000000000001, -0.10000000000000001) * 20000 }),
+                    'pos': Point2(-0.100, -0.100) * 20000 }),
                 'Tortuga': (DecorTypes.TextIsland, ('Tortuga', 'models/worldmap/world_map_island_3d', self.cam, 0.001, 1.0, 2), {
-                    'pos': Point2(0.20000000000000001, 0.20000000000000001) * 20000 }),
+                    'pos': Point2(0.200, 0.200) * 20000 }),
                 'swirl': (DecorTypes.Swirl, ('models/worldmap/swirl', 1.0, 2), {
                     'pos': Point2(0.0, 0.0) * 20000 }),
                 'ship': (DecorTypes.BillboardModel, ('ship', 'models/worldmap/world_map_ship', self.cam, 0.0, 1.0 / 80), {
-                    'pos': Point2(0.20000000000000001, 0.0) * 20000 }),
+                    'pos': Point2(0.200, 0.0) * 20000 }),
                 'monster': (DecorTypes.BillboardModel, ('monster', 'models/worldmap/world_map_monster01', self.cam, 0.001, 1.0 / 200), {
-                    'pos': Point2(0.0, 0.10000000000000001) * 20000 }),
+                    'pos': Point2(0.0, 0.100) * 20000 }),
                 'BilgeWater2': (DecorTypes.TextIsland, ('BilgeWater2', 'models/worldmap/world_map_island_3d', self.cam, 0.001, 1.0, 1), {
-                    'pos': Point2(0.25, -0.14999999999999999) * 20000 }),
+                    'pos': Point2(0.25, -0.149) * 20000 }),
                 'Tortuga2': (DecorTypes.TextIsland, ('Tortuga2', 'models/worldmap/world_map_island_3d', self.cam, 0.001, 1.0, 2), {
-                    'pos': Point2(-0.40000000000000002, -0.40000000000000002) * 20000 }),
+                    'pos': Point2(-0.4, -0.4) * 20000 }),
                 'BilgeWater3': (DecorTypes.TextIsland, ('BilgeWater3', 'models/worldmap/world_map_island_3d', self.cam, 0.001, 1.0, 1), {
-                    'pos': Point2(0.14999999999999999, -0.25) * 20000 }),
+                    'pos': Point2(0.149, -0.25) * 20000 }),
                 'Tortuga3': (DecorTypes.TextIsland, ('Tortuga3', 'models/worldmap/world_map_island_3d', self.cam, 0.001, 1.0, 2), {
-                    'pos': Point2(0.20000000000000001, -0.14999999999999999) * 20000 }),
+                    'pos': Point2(0.200, -0.149) * 20000 }),
                 'BilgeWater3': (DecorTypes.TextIsland, ('BilgeWater3', 'models/worldmap/world_map_island_3d', self.cam, 0.001, 1.0, 1), {
-                    'pos': Point2(-0.29999999999999999, 0.10000000000000001) * 20000 }),
+                    'pos': Point2(-0.299, 0.100) * 20000 }),
                 'Tortuga3': (DecorTypes.TextIsland, ('Tortuga3', 'models/worldmap/world_map_island_3d', self.cam, 0.001, 1.0, 2), {
-                    'pos': Point2(0.29999999999999999, 0.25) * 20000 }),
+                    'pos': Point2(0.299, 0.25) * 20000 }),
                 'BilgeWater4': (DecorTypes.TextIsland, ('BilgeWater4', 'models/worldmap/world_map_island_3d', self.cam, 0.001, 1.5, 1), {
-                    'pos': Point2(-0.10000000000000001, 0.29999999999999999) * 20000 }),
+                    'pos': Point2(-0.100, 0.299) * 20000 }),
                 'Tortuga4': (DecorTypes.TextIsland, ('Tortuga4', 'models/worldmap/world_map_island_3d', self.cam, 0.001, 1.0, 2), {
-                    'pos': Point2(0.40000000000000002, 0.40000000000000002) * 20000 }),
+                    'pos': Point2(0.4, 0.4) * 20000 }),
                 'BilgeWater5': (DecorTypes.TextIsland, ('BilgeWater4', 'models/worldmap/world_map_island_3d', self.cam, 0.001, 1.0, 1), {
-                    'pos': Point2(0.40000000000000002, -0.40000000000000002) * 20000 }),
+                    'pos': Point2(0.4, -0.4) * 20000 }),
                 'Tortuga5': (DecorTypes.TextIsland, ('Tortuga4', 'models/worldmap/world_map_island_3d', self.cam, 0.001, 1.0, 2), {
-                    'pos': Point2(-0.40000000000000002, 0.40000000000000002) * 20000 }) }
+                    'pos': Point2(-0.4, 0.4) * 20000 }) }
             self.decorInfo = {
                 'BilgeWater': (DecorTypes.TextIsland, ('BilgeWater', 'models/worldmap/world_map_island_3d', self.cam, 0.001, 1.0, 1), {
-                    'pos': Point2(-0.10000000000000001, -0.10000000000000001) * 20000 }),
-                'smiley': (DecorTypes.Model, ('smiley', 'models/misc/smiley', 0.0050000000000000001), {
+                    'pos': Point2(-0.100, -0.100) * 20000 }),
+                'smiley': (DecorTypes.Model, ('smiley', 'models/misc/smiley', 0.00500), {
                     'pos': Point2(0) }) }
         else:
             self.decorInfo = { }

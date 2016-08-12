@@ -737,7 +737,7 @@ class Options(OptionSpace):
             value = 1.0
 
         config_variable.setValue(value)
-        if value < 0.29999999999999999:
+        if value < 0.299:
             limit = 32
         elif value < 0.75:
             limit = 64
@@ -751,7 +751,7 @@ class Options(OptionSpace):
 
 
     def getGUIScale(self):
-        return self.gui_scale * 0.59999999999999998 + 0.69999999999999996
+        return self.gui_scale * 0.598 + 0.696
 
 
     def default(self):
@@ -3761,7 +3761,7 @@ class GameOptions(BorderFrame):
     def highlight_button(self, button):
         if button:
             button.setAlphaScale(self.selected_color)
-            button['text_fg'] = (0.20000000000000001, 0.80000000000000004, 0.59999999999999998, 1.0)
+            button['text_fg'] = (0.200, 0.800000, 0.598, 1.0)
             button['selected'] = True
 
 
@@ -3769,14 +3769,14 @@ class GameOptions(BorderFrame):
     def inactive_highlight_button(self, button):
         if button:
             button.setAlphaScale(self.selected_color)
-            button['text_fg'] = (0.10000000000000001, 0.40000000000000002, 0.29999999999999999, 1.0)
+            button['text_fg'] = (0.100, 0.4, 0.299, 1.0)
 
 
 
     def inactive_button(self, button):
         if button:
             button.setAlphaScale(self.selected_color)
-            button['text_fg'] = (0.20000000000000001, 0.20000000000000001, 0.20000000000000001, 1.0)
+            button['text_fg'] = (0.200, 0.200, 0.200, 1.0)
 
 
 
@@ -4265,7 +4265,7 @@ class GameOptions(BorderFrame):
 
 
     def open_key_mappings_page(self):
-        self.controlsFrame = BorderFrame(parent = self, relief = None, frameSize = (0, self.width - 0.14999999999999999, 0, PiratesGuiGlobals.TextScaleLarge * 2.5), pos = (0.080000000000000002, 0, self.height - 0.14999999999999999 - PiratesGuiGlobals.TextScaleLarge * 2.5))
+        self.controlsFrame = BorderFrame(parent = self, relief = None, frameSize = (0, self.width - 0.149, 0, PiratesGuiGlobals.TextScaleLarge * 2.5), pos = (0.08, 0, self.height - 0.149 - PiratesGuiGlobals.TextScaleLarge * 2.5))
 
 
     def gamma_off_button_function(self):

@@ -28,7 +28,7 @@ from pirates.piratesgui import MessageGlobals
 class ShipStatusDisplay(GuiTray.GuiTray):
 
     def __init__(self, parent, shipId, **kw):
-        optiondefs = (('relief', None, None), ('pos', (-0.029999999999999999, 0, -0.55000000000000004), None), ('shipId', shipId, None), ('shipName', ('', 0), self.applyShipName), ('shipClass', '', self.applyShipClass), ('shipHp', (0, 0), self.applyShipHp), ('shipSp', (0, 0), self.applyShipSp), ('shipCargo', (0, 0), self.applyShipCargo), ('oldCargo', 0, None), ('shipCrew', (0, 0), self.applyShipCrew), ('oldCrew', 0, None), ('ownShip', 0, None))
+        optiondefs = (('relief', None, None), ('pos', (-0.0299, 0, -0.550000), None), ('shipId', shipId, None), ('shipName', ('', 0), self.applyShipName), ('shipClass', '', self.applyShipClass), ('shipHp', (0, 0), self.applyShipHp), ('shipSp', (0, 0), self.applyShipSp), ('shipCargo', (0, 0), self.applyShipCargo), ('oldCargo', 0, None), ('shipCrew', (0, 0), self.applyShipCrew), ('oldCrew', 0, None), ('ownShip', 0, None))
         self.defineoptions(kw, optiondefs)
         GuiTray.GuiTray.__init__(self, parent, 0.5, 0.5)
         self.invReq = None
@@ -89,41 +89,41 @@ class ShipStatusDisplay(GuiTray.GuiTray):
 
     def loadGUI(self):
         shipcard = loader.loadModel('models/gui/ship_battle')
-        self.nameBox = DirectFrame(parent = self, relief = None, pos = (0.058000000000000003, 0, -0.0064999999999999997), text = PLocalizer.ShipName, text_align = TextNode.ALeft, text_scale = 0.044999999999999998, text_pos = (0, -0.01), text_fg = PiratesGuiGlobals.TextFG1, text_wordwrap = 15, text_shadow = (0, 0, 0, 1), textMayChange = 1, text_font = PiratesGlobals.getInterfaceFont())
+        self.nameBox = DirectFrame(parent = self, relief = None, pos = (0.058000, 0, -0.0064), text = PLocalizer.ShipName, text_align = TextNode.ALeft, text_scale = 0.0448, text_pos = (0, -0.01), text_fg = PiratesGuiGlobals.TextFG1, text_wordwrap = 15, text_shadow = (0, 0, 0, 1), textMayChange = 1, text_font = PiratesGlobals.getInterfaceFont())
         tex = shipcard.find('**/ship_battle_speed_bar*')
-        self.hpFrame = DirectFrame(parent = self, pos = (0.46500000000000002, 0, 0.14000000000000001), relief = None, image = tex, image_scale = (0.29999999999999999, 1, 0.59999999999999998))
-        self.hpMeter = DirectWaitBar(parent = self.hpFrame, relief = DGG.RAISED, range = 100, value = 100, borderWidth = (0.002, 0.002), frameColor = (0, 0, 0, 1), barColor = (0.10000000000000001, 0.69999999999999996, 0.10000000000000001, 1), frameSize = (-0.27000000000000002, 0.13100000000000001, -0.01, 0.01), pos = (0.069000000000000006, 0, 0.0), text = PLocalizer.Hull, text_scale = PiratesGuiGlobals.TextScaleLarge * 0.75, text_align = TextNode.ALeft, text_pos = (0.16, -0.012), text_fg = PiratesGuiGlobals.TextFG1, text_shadow = (0, 0, 0, 1), text_font = PiratesGlobals.getInterfaceFont())
-        self.hpMeterChange = DirectFrame(parent = self.hpFrame, relief = DGG.FLAT, borderWidth = (0.0040000000000000001, 0.0040000000000000001), frameColor = (1.0, 0.0, 0.0, 1.0), sortOrder = 0)
+        self.hpFrame = DirectFrame(parent = self, pos = (0.465, 0, 0.140), relief = None, image = tex, image_scale = (0.299, 1, 0.598))
+        self.hpMeter = DirectWaitBar(parent = self.hpFrame, relief = DGG.RAISED, range = 100, value = 100, borderWidth = (0.002, 0.002), frameColor = (0, 0, 0, 1), barColor = (0.100, 0.696, 0.100, 1), frameSize = (-0.27, 0.131, -0.01, 0.01), pos = (0.069, 0, 0.0), text = PLocalizer.Hull, text_scale = PiratesGuiGlobals.TextScaleLarge * 0.75, text_align = TextNode.ALeft, text_pos = (0.16, -0.012), text_fg = PiratesGuiGlobals.TextFG1, text_shadow = (0, 0, 0, 1), text_font = PiratesGlobals.getInterfaceFont())
+        self.hpMeterChange = DirectFrame(parent = self.hpFrame, relief = DGG.FLAT, borderWidth = (0.00400, 0.00400), frameColor = (1.0, 0.0, 0.0, 1.0), sortOrder = 0)
         self.hpMeterChange.setBin('gui-fixed', 0)
         self.hpMeterChange.hide()
-        self.hpMeterDownIval = Sequence(Func(self.hpMeterChange.show), Wait(0.10000000000000001), LerpColorInterval(self.hpMeterChange, 0.5, color = VBase4(0.69999999999999996, 0.10000000000000001, 0.10000000000000001, 1.0), blendType = 'easeOut'), LerpColorInterval(self.hpMeterChange, 0.25, color = VBase4(0.0, 0.0, 0.0, 1.0), blendType = 'easeOut'), Func(self.hpMeterChange.hide))
-        self.hpMeterUpGreenIval = Sequence(Func(self.hpMeterChange.show), Wait(0.10000000000000001), LerpColorInterval(self.hpMeterChange, 0.75, color = VBase4(0.10000000000000001, 0.69999999999999996, 0.10000000000000001, 1.0)), Func(self.hpMeterChange.hide))
-        self.hpMeterUpRedIval = Sequence(Func(self.hpMeterChange.show), Wait(0.10000000000000001), LerpColorInterval(self.hpMeterChange, 0.75, color = VBase4(1.0, 0.0, 0.0, 1.0)), Func(self.hpMeterChange.hide))
-        self.hpMeterUpYellowIval = Sequence(Func(self.hpMeterChange.show), Wait(0.10000000000000001), LerpColorInterval(self.hpMeterChange, 0.75, color = VBase4(1.0, 1.0, 0.10000000000000001, 1.0)), Func(self.hpMeterChange.hide))
-        self.spFrame = DirectFrame(parent = self, pos = (0.45500000000000002, 0, 0.115), relief = None, image = tex, image_scale = (0.29999999999999999, 1, 0.52000000000000002))
+        self.hpMeterDownIval = Sequence(Func(self.hpMeterChange.show), Wait(0.100), LerpColorInterval(self.hpMeterChange, 0.5, color = VBase4(0.696, 0.100, 0.100, 1.0), blendType = 'easeOut'), LerpColorInterval(self.hpMeterChange, 0.25, color = VBase4(0.0, 0.0, 0.0, 1.0), blendType = 'easeOut'), Func(self.hpMeterChange.hide))
+        self.hpMeterUpGreenIval = Sequence(Func(self.hpMeterChange.show), Wait(0.100), LerpColorInterval(self.hpMeterChange, 0.75, color = VBase4(0.100, 0.696, 0.100, 1.0)), Func(self.hpMeterChange.hide))
+        self.hpMeterUpRedIval = Sequence(Func(self.hpMeterChange.show), Wait(0.100), LerpColorInterval(self.hpMeterChange, 0.75, color = VBase4(1.0, 0.0, 0.0, 1.0)), Func(self.hpMeterChange.hide))
+        self.hpMeterUpYellowIval = Sequence(Func(self.hpMeterChange.show), Wait(0.100), LerpColorInterval(self.hpMeterChange, 0.75, color = VBase4(1.0, 1.0, 0.100, 1.0)), Func(self.hpMeterChange.hide))
+        self.spFrame = DirectFrame(parent = self, pos = (0.455, 0, 0.115), relief = None, image = tex, image_scale = (0.299, 1, 0.52))
         speedArrow = loader.loadModel('models/gui/toplevel_gui').find('**/generic_arrow')
-        self.speedMeter = DirectWaitBar(parent = self.spFrame, relief = DGG.RAISED, range = 100, value = 100, borderWidth = (0.002, 0.002), frameColor = (0, 0, 0, 1), barColor = (0.69999999999999996, 0.69999999999999996, 0.10000000000000001, 1), frameSize = (-0.27000000000000002, 0.13200000000000001, -0.0080000000000000002, 0.0080000000000000002), pos = (0.069000000000000006, 0, 0.0), text = PLocalizer.Speed, text_scale = PiratesGuiGlobals.TextScaleLarge * 0.75, text_align = TextNode.ALeft, text_pos = (0.16, -0.0080000000000000002), text_fg = PiratesGuiGlobals.TextFG1, text_shadow = (0, 0, 0, 1), text_font = PiratesGlobals.getInterfaceFont(), geom = speedArrow, geom_pos = (-0.25, 0, -0.01), geom_hpr = (0, 0, 90), geom_scale = (0.40000000000000002, 0.40000000000000002, 0.25))
-        self.knotSpeed = DirectFrame(parent = self.spFrame, relief = None, state = DGG.DISABLED, pos = (-0.095000000000000001, 0, -0.055), text = PLocalizer.Knots % 0, text_align = TextNode.ACenter, text_scale = 0.040000000000000001, text_pos = (0.10000000000000001, -0.01), text_fg = PiratesGuiGlobals.TextFG1, text_wordwrap = 15, text_shadow = (0, 0, 0, 1), textMayChange = 1, text_font = PiratesGlobals.getInterfaceFont())
+        self.speedMeter = DirectWaitBar(parent = self.spFrame, relief = DGG.RAISED, range = 100, value = 100, borderWidth = (0.002, 0.002), frameColor = (0, 0, 0, 1), barColor = (0.696, 0.696, 0.100, 1), frameSize = (-0.27, 0.132, -0.008, 0.008), pos = (0.069, 0, 0.0), text = PLocalizer.Speed, text_scale = PiratesGuiGlobals.TextScaleLarge * 0.75, text_align = TextNode.ALeft, text_pos = (0.16, -0.008), text_fg = PiratesGuiGlobals.TextFG1, text_shadow = (0, 0, 0, 1), text_font = PiratesGlobals.getInterfaceFont(), geom = speedArrow, geom_pos = (-0.25, 0, -0.01), geom_hpr = (0, 0, 90), geom_scale = (0.4, 0.4, 0.25))
+        self.knotSpeed = DirectFrame(parent = self.spFrame, relief = None, state = DGG.DISABLED, pos = (-0.0950, 0, -0.055), text = PLocalizer.Knots % 0, text_align = TextNode.ACenter, text_scale = 0.0400, text_pos = (0.100, -0.01), text_fg = PiratesGuiGlobals.TextFG1, text_wordwrap = 15, text_shadow = (0, 0, 0, 1), textMayChange = 1, text_font = PiratesGlobals.getInterfaceFont())
         circlecard = loader.loadModel('models/textureCards/skillIcons')
         base1 = circlecard.find('**/base')
         base2 = circlecard.find('**/base_over')
         base3 = circlecard.find('**/base_down')
-        self.cargoMeter = GuiButton.GuiButton(parent = self, frameSize = (-0.045312499999999999, 0.045312499999999999, -0.045312499999999999, 0.045312499999999999), pos = (0.33000000000000002, 0, 0.20999999999999999), helpText = PLocalizer.CargoIconHelp, helpPos = (0.053999999999999999, 0, -0.10000000000000001), helpOpaque = 1, command = self.toggleCargo, image = (base1, base3, base2), image_scale = 0.10000000000000001, scale = 0.90000000000000002, relief = None)
+        self.cargoMeter = GuiButton.GuiButton(parent = self, frameSize = (-0.0453124, 0.0453124, -0.0453124, 0.0453124), pos = (0.33, 0, 0.209), helpText = PLocalizer.CargoIconHelp, helpPos = (0.0539, 0, -0.100), helpOpaque = 1, command = self.toggleCargo, image = (base1, base3, base2), image_scale = 0.100, scale = 0.9, relief = None)
         tex = loader.loadModel('models/gui/toplevel_gui').find('**/icon_crate')
-        self.cargoLabel = DirectLabel(parent = self.cargoMeter, relief = None, state = DGG.DISABLED, image = tex, image_scale = 0.050000000000000003, image_color = (1, 1, 1, 0.80000000000000004), text = '0/0', text_scale = 0.044999999999999998, text_align = TextNode.ACenter, text_pos = (0.0044999999999999997, -0.025000000000000001), text_fg = PiratesGuiGlobals.TextFG1, text_shadow = (0, 0, 0, 1), text_font = PiratesGlobals.getInterfaceFont())
-        self.crewMeter = GuiButton.GuiButton(parent = self, relief = None, frameSize = (-0.045312499999999999, 0.045312499999999999, -0.045312499999999999, 0.045312499999999999), pos = (0.46000000000000002, 0, 0.20999999999999999), helpText = PLocalizer.CrewIconHelp, helpPos = (-0.050000000000000003, 0, -0.10000000000000001), helpOpaque = 1, image = base1, image_scale = 0.10000000000000001, scale = 0.90000000000000002)
+        self.cargoLabel = DirectLabel(parent = self.cargoMeter, relief = None, state = DGG.DISABLED, image = tex, image_scale = 0.050000, image_color = (1, 1, 1, 0.800000), text = '0/0', text_scale = 0.0448, text_align = TextNode.ACenter, text_pos = (0.0044, -0.0250), text_fg = PiratesGuiGlobals.TextFG1, text_shadow = (0, 0, 0, 1), text_font = PiratesGlobals.getInterfaceFont())
+        self.crewMeter = GuiButton.GuiButton(parent = self, relief = None, frameSize = (-0.0453124, 0.0453124, -0.0453124, 0.0453124), pos = (0.46, 0, 0.209), helpText = PLocalizer.CrewIconHelp, helpPos = (-0.050000, 0, -0.100), helpOpaque = 1, image = base1, image_scale = 0.100, scale = 0.9)
         icons = loader.loadModel('models/textureCards/icons')
         tex = icons.find('**/icon_stickman')
-        self.crewLabel = DirectLabel(parent = self.crewMeter, relief = None, state = DGG.DISABLED, image = tex, image_scale = 0.080000000000000002, image_color = (1, 1, 1, 0.80000000000000004), text = '0/0', text_scale = 0.044999999999999998, text_align = TextNode.ACenter, text_pos = (0.0044999999999999997, -0.025000000000000001), text_fg = PiratesGuiGlobals.TextFG1, text_shadow = (0, 0, 0, 1), text_font = PiratesGlobals.getInterfaceFont())
+        self.crewLabel = DirectLabel(parent = self.crewMeter, relief = None, state = DGG.DISABLED, image = tex, image_scale = 0.08, image_color = (1, 1, 1, 0.800000), text = '0/0', text_scale = 0.0448, text_align = TextNode.ACenter, text_pos = (0.0044, -0.0250), text_fg = PiratesGuiGlobals.TextFG1, text_shadow = (0, 0, 0, 1), text_font = PiratesGlobals.getInterfaceFont())
         self.crewLabel.setTransparency(1, 1)
         gui = loader.loadModel('models/gui/avatar_chooser_rope')
-        self.openPortLabel = DirectLabel(parent = base.a2dTopRight, relief = None, image = gui.find('**/avatar_c_A_middle'), image_scale = 0.29999999999999999, pos = (-0.23000000000000001, 0, -0.5), state = DGG.DISABLED, text = '', text_scale = 0.040000000000000001, text_align = TextNode.ACenter, text_pos = (0.0, -0.01), text_fg = PiratesGuiGlobals.TextFG2, text_shadow = (0, 0, 0, 1), text_font = PiratesGlobals.getPirateBoldOutlineFont())
+        self.openPortLabel = DirectLabel(parent = base.a2dTopRight, relief = None, image = gui.find('**/avatar_c_A_middle'), image_scale = 0.299, pos = (-0.230, 0, -0.5), state = DGG.DISABLED, text = '', text_scale = 0.0400, text_align = TextNode.ACenter, text_pos = (0.0, -0.01), text_fg = PiratesGuiGlobals.TextFG2, text_shadow = (0, 0, 0, 1), text_font = PiratesGlobals.getPirateBoldOutlineFont())
         self.openPortLabel.hide()
         self.setupPermissionUI()
-        self.statusEffectsPanel = StatusEffectsPanel.StatusEffectsPanel(parent = self, pos = (0.29999999999999999, 0, 0.29999999999999999))
-        self.statusEffectsPanel.iconScale = 0.65000000000000002
-        self.armorGui = ShipArmorGui(self, pos = (0.14999999999999999, 0.14999999999999999, 0.14999999999999999))
-        self.threatFrame = DirectFrame(parent = self, pos = (0.14999999999999999, 0, 0.155), relief = None, image = None, image_scale = 0.13500000000000001)
+        self.statusEffectsPanel = StatusEffectsPanel.StatusEffectsPanel(parent = self, pos = (0.299, 0, 0.299))
+        self.statusEffectsPanel.iconScale = 0.65
+        self.armorGui = ShipArmorGui(self, pos = (0.149, 0.149, 0.149))
+        self.threatFrame = DirectFrame(parent = self, pos = (0.149, 0, 0.155), relief = None, image = None, image_scale = 0.135)
         self.accept('LocalAvatar_Ship_ThreatLevel_Update', self.setThreatLevel)
         self.accept('LocalAvatar_Ship_OpenPort_Update', self.setOpenPort)
         self.accept('settingLocalShip', self.handleLocalShipSet)
@@ -223,7 +223,7 @@ class ShipStatusDisplay(GuiTray.GuiTray):
             threatImage = threatCard.find('**/%s*' % threatIconName)
 
         self.threatFrame['image'] = threatImage
-        self.threatFrame['image_scale'] = 0.13500000000000001
+        self.threatFrame['image_scale'] = 0.135
         threatDescription = HighSeasGlobals.getThreatLevelDescription(threatLevel, 0)
         if threatDescription and not quiet:
             base.localAvatar.guiMgr.queueInstructionMessageFront(threatDescription[0], threatDescription[1], threatImage, 1.0, messageCategory = MessageGlobals.MSG_CAT_THREAT_LEVEL)
@@ -240,9 +240,9 @@ class ShipStatusDisplay(GuiTray.GuiTray):
             base1 = circlecard.find('**/base')
             base2 = circlecard.find('**/base_over')
             base3 = circlecard.find('**/base_down')
-            self.permissionButton = GuiButton.GuiButton(parent = self, relief = None, state = DGG.NORMAL, frameSize = (-0.045312499999999999, 0.045312499999999999, -0.045312499999999999, 0.045312499999999999), pos = (0.58999999999999997, 0, 0.20999999999999999), helpText = text, helpPos = (-0.17999999999999999, 0, -0.10000000000000001), helpOpaque = 1, image = (base1, base3, base2), image_scale = 0.10000000000000001, command = self.handlePermissionButton, scale = 0.90000000000000002)
+            self.permissionButton = GuiButton.GuiButton(parent = self, relief = None, state = DGG.NORMAL, frameSize = (-0.0453124, 0.0453124, -0.0453124, 0.0453124), pos = (0.58, 0, 0.209), helpText = text, helpPos = (-0.179, 0, -0.100), helpOpaque = 1, image = (base1, base3, base2), image_scale = 0.100, command = self.handlePermissionButton, scale = 0.9)
             tex = loader.loadModel('models/gui/toplevel_gui').find('**/gui_boarding')
-            self.permissionLabel = DirectLabel(parent = self.permissionButton, relief = None, state = DGG.DISABLED, image = tex, image_scale = 0.14999999999999999, image_color = (1, 1, 1, 0.80000000000000004))
+            self.permissionLabel = DirectLabel(parent = self.permissionButton, relief = None, state = DGG.DISABLED, image = tex, image_scale = 0.149, image_color = (1, 1, 1, 0.800000))
             self.permissionLabel.setTransparency(1, 1)
 
 
@@ -302,7 +302,7 @@ class ShipStatusDisplay(GuiTray.GuiTray):
 
         self.lootPanel = LootPopupPanel.LootPopupPanel()
         self.lootPanel.reparentTo(self)
-        self.lootPanel.setPos(0.050000000000000003, 0, 0)
+        self.lootPanel.setPos(0.050000, 0, 0)
         self.lootPanel.hide()
 
 
@@ -371,9 +371,9 @@ class ShipStatusDisplay(GuiTray.GuiTray):
 
         hpFraction = float(hp) / float(maxHp)
         if hpFraction >= 0.5:
-            barColor = (0.10000000000000001, 0.69999999999999996, 0.10000000000000001, 1)
+            barColor = (0.100, 0.696, 0.100, 1)
         elif hpFraction >= 0.25:
-            barColor = (1.0, 1.0, 0.10000000000000001, 1)
+            barColor = (1.0, 1.0, 0.100, 1)
         else:
             barColor = (1.0, 0.0, 0.0, 1)
         self.hpMeter['barColor'] = barColor
@@ -402,11 +402,11 @@ class ShipStatusDisplay(GuiTray.GuiTray):
             change = float(prevValue - hp)
             valueScale = float(hp) / float(maxHp)
             changeScale = float(change) / float(maxHp)
-            frameRight = float(changeScale * 0.39900000000000002)
-            frameLeft = float(valueScale * 0.39900000000000002)
+            frameRight = float(changeScale * 0.399)
+            frameLeft = float(valueScale * 0.399)
             frameX = frameLeft - 0.001
-            self.hpMeterChange.setPos(frameX - 0.19950000000000001, 0.0, 0.0)
-            self.hpMeterChange['frameSize'] = (0.0, frameRight, -0.010999999999999999, 0.0080000000000000002)
+            self.hpMeterChange.setPos(frameX - 0.1995, 0.0, 0.0)
+            self.hpMeterChange['frameSize'] = (0.0, frameRight, -0.0109, 0.008)
             if currentTime is None:
                 self.hpMeterDownIval.start()
                 return None
@@ -420,18 +420,18 @@ class ShipStatusDisplay(GuiTray.GuiTray):
             change = float(hp - prevValue)
             valueScale = float(hp) / float(maxHp)
             changeScale = float(change) / float(maxHp)
-            frameRight = float(changeScale * 0.39900000000000002)
-            frameLeft = float(valueScale * 0.39900000000000002)
-            if frameLeft < 0.025000000000000001:
+            frameRight = float(changeScale * 0.399)
+            frameLeft = float(valueScale * 0.399)
+            if frameLeft < 0.0250:
                 return None
 
             frameX = frameLeft - frameRight
-            self.hpMeterChange.setPos(frameX - 0.19450000000000001, 0.0, 0.0)
-            if frameLeft > 0.39900000000000002:
-                diff = frameLeft - 0.39900000000000002
+            self.hpMeterChange.setPos(frameX - 0.1945, 0.0, 0.0)
+            if frameLeft > 0.399:
+                diff = frameLeft - 0.399
                 frameRight = float(frameRight - diff)
 
-            self.hpMeterChange['frameSize'] = (0.0, frameRight, -0.010999999999999999, 0.0080000000000000002)
+            self.hpMeterChange['frameSize'] = (0.0, frameRight, -0.0109, 0.008)
             if hpFraction >= 0.5:
                 self.hpMeterUpGreenIval.start()
             elif hpFraction >= 0.25:
@@ -461,10 +461,10 @@ class ShipStatusDisplay(GuiTray.GuiTray):
             if len(cargo) >= maxCargo:
                 self.cargoLabel['text_fg'] = (1, 0, 0, 1)
             elif len(cargo) >= int(maxCargo * 0.75):
-                self.cargoLabel['text_fg'] = (1, 0.80000000000000004, 0, 1)
+                self.cargoLabel['text_fg'] = (1, 0.800000, 0, 1)
             else:
                 self.cargoLabel['text_fg'] = (1, 1, 1, 1)
-            scaleAnim = self.cargoMeter.scaleInterval(0.5, Point3(0.90000000000000002), startScale = Point3(1.5), blendType = 'easeIn')
+            scaleAnim = self.cargoMeter.scaleInterval(0.5, Point3(0.9), startScale = Point3(1.5), blendType = 'easeIn')
             scaleAnim.start()
             if self.lootPanel and not self.lootPanel.isHidden():
                 self.lootPanel.showLoot(cargo)
@@ -487,13 +487,13 @@ class ShipStatusDisplay(GuiTray.GuiTray):
                 self.crewLabel['text_fg'] = (1, 0, 0, 1)
             else:
                 self.crewLabel['text_fg'] = (1, 1, 1, 1)
-            scaleAnim = self.crewMeter.scaleInterval(0.5, VBase3(0.90000000000000002), startScale = VBase3(1.5), blendType = 'easeIn')
+            scaleAnim = self.crewMeter.scaleInterval(0.5, VBase3(0.9), startScale = VBase3(1.5), blendType = 'easeIn')
             scaleAnim.start()
 
 
 
     def setShipSpeed(self, speed, maxSpeed):
-        self.knotSpeed['text'] = PLocalizer.Knots % abs(int(speed * 0.20999999999999999))
+        self.knotSpeed['text'] = PLocalizer.Knots % abs(int(speed * 0.209))
         minP = -0.25
         maxP = 0.125
         percent = min(1.0, max(0.0, float(speed) / float(maxSpeed)))
@@ -560,7 +560,7 @@ class ShipStatusDisplay(GuiTray.GuiTray):
 
     def enableAnchorButton(self):
         if not self.anchorButton:
-            self.anchorButton = AnchorButton.AnchorButton(parent = base.a2dBottomCenter, helpText = PLocalizer.AnchorButtonHelp, image_scale = 0.17999999999999999, pos = (0, 0, 0.34000000000000002), scale = 1.2, command = self.handleAnchorButton)
+            self.anchorButton = AnchorButton.AnchorButton(parent = base.a2dBottomCenter, helpText = PLocalizer.AnchorButtonHelp, image_scale = 0.179, pos = (0, 0, 0.34), scale = 1.2, command = self.handleAnchorButton)
 
         self.anchorButton.show()
 

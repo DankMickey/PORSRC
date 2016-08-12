@@ -25,8 +25,8 @@ class PistolShot(PooledEffect, EffectController):
         self.flame.reparentTo(self)
         model = loader.loadModel('models/effects/particleMaps')
         self.flash = model.find('**/particleGlow')
-        self.flash.setBillboardPointWorld(0.20000000000000001)
-        self.flash.setColorScale(1, 0.80000000000000004, 0.80000000000000004, 0.80000000000000004)
+        self.flash.setBillboardPointWorld(0.200)
+        self.flash.setColorScale(1, 0.800000, 0.800000, 0.800000)
         self.flash.reparentTo(self)
         self.setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne))
         self.setDepthWrite(0)
@@ -35,8 +35,8 @@ class PistolShot(PooledEffect, EffectController):
 
 
     def createTrack(self):
-        scaleFlame = self.flame.scaleInterval(0.080000000000000002, Vec3(1, 1, 4), startScale = Vec3(5, 5, 8))
-        scaleFlash = self.flash.scaleInterval(0.059999999999999998, 5, startScale = 14)
+        scaleFlame = self.flame.scaleInterval(0.08, Vec3(1, 1, 4), startScale = Vec3(5, 5, 8))
+        scaleFlash = self.flash.scaleInterval(0.0598, 5, startScale = 14)
         self.track = Sequence(Func(self.flame.show), Func(self.flash.show), Parallel(scaleFlame, scaleFlash), Func(self.flame.hide), Func(self.flash.hide), Func(self.cleanUpEffect))
 
 

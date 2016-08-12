@@ -16,17 +16,17 @@ class PVPPanel(BorderFrame.BorderFrame):
     def __init__(self, name, holder = None):
         w = PiratesGuiGlobals.PVPPanelWidth
         h = PiratesGuiGlobals.PVPPanelHeight
-        BorderFrame.BorderFrame.__init__(self, relief = None, frameSize = (0.0, w, 0.0, h), modelName = 'pir_m_gui_frm_subframe', imageColorScale = VBase4(0.75, 0.75, 0.90000000000000002, 0.75))
-        self.secondLayer = BorderFrame.BorderFrame(parent = self, relief = None, frameSize = (0.0, w, 0.0, h), modelName = 'pir_m_gui_frm_subframe', imageColorScale = VBase4(0.75, 0.75, 0.90000000000000002, 0.75))
+        BorderFrame.BorderFrame.__init__(self, relief = None, frameSize = (0.0, w, 0.0, h), modelName = 'pir_m_gui_frm_subframe', imageColorScale = VBase4(0.75, 0.75, 0.9, 0.75))
+        self.secondLayer = BorderFrame.BorderFrame(parent = self, relief = None, frameSize = (0.0, w, 0.0, h), modelName = 'pir_m_gui_frm_subframe', imageColorScale = VBase4(0.75, 0.75, 0.9, 0.75))
         self.initialiseoptions(PVPPanel)
         if holder:
-            self['frameSize'] = (0.0, w, 0.0 - len(holder.getItemList()) * 0.050000000000000003, h)
-            self.secondLayer['frameSize'] = (0.0, w, 0.0 - len(holder.getItemList()) * 0.050000000000000003, h)
+            self['frameSize'] = (0.0, w, 0.0 - len(holder.getItemList()) * 0.050000, h)
+            self.secondLayer['frameSize'] = (0.0, w, 0.0 - len(holder.getItemList()) * 0.050000, h)
 
         self.list = ListFrame(PiratesGuiGlobals.PVPPageWidth, None, name, holder, frameColor = (0, 0, 0, 0))
         self.list.setup()
         self.list.reparentTo(self)
-        self.list.setPos(0.0050000000000000001, 0.20000000000000001, 0.0 - len(holder.getItemList()) * 0.050000000000000003)
+        self.list.setPos(0.00500, 0.200, 0.0 - len(holder.getItemList()) * 0.050000)
         self.renownDisplay = None
         if base.config.GetBool('want-land-infamy', 0) and not (self.renownDisplay):
             self.renownDisplay = PVPRankGui.PVPRankGui(parent = base.a2dBottomRight, displayType = PVPRankGui.LAND_RENOWN_DISPLAY)
@@ -83,5 +83,5 @@ class PVPPanel(BorderFrame.BorderFrame):
             self.pvpTeamGraphic = Beacon.getBeaconModel()
             self.pvpTeamGraphic.reparentTo(self)
             self.pvpTeamGraphic.setColor(PVPGlobals.getTeamColor(team))
-            self.pvpTeamGraphic.setScale(0.23000000000000001)
+            self.pvpTeamGraphic.setScale(0.230)
             self.pvpTeamGraphic.setPos(0.13, 0, 0.13)

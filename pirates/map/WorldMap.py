@@ -13,7 +13,7 @@ class WorldMap(DirectFrame):
     def __init__(self, parent, **kwargs):
         cm = CardMaker('Portrait')
         cm.setFrame(Vec4(-1, 1, -1, 1))
-        b = SceneBuffer('worldmap-buffer', size = (512, 512), clearColor = Vec4(0.84999999999999998))
+        b = SceneBuffer('worldmap-buffer', size = (512, 512), clearColor = Vec4(0.848))
         b.camLens.setNear(0.001)
         b.camLens.setFar(5.0)
         b.camera.node().getDisplayRegion(0).setIncompleteRender(False)
@@ -27,7 +27,7 @@ class WorldMap(DirectFrame):
         self.setTransparency(1)
         self.radius = 1.0
         self.camY = [
-            -0.29999999999999999,
+            -0.299,
             0.25]
         self.tiltLimit = [ x * math.pi / 180 for x in (27, 33) ]
         self.mapBall = DecoratedMapBall('WorldMapArcBall', self, self.tiltLimit[1], mapSize = 242000, radius = self.radius, scrollFactor = 0.125, camera = b.camera, keepUpright = 1, mouseDownEvent = self.getMouseDownEvent(), mouseUpEvent = self.getMouseUpEvent())
@@ -146,11 +146,11 @@ class WorldMap(DirectFrame):
 
 
     def mouseWheelUp(self, *args, **kwargs):
-        self.setZoom(self._zoom + 0.050000000000000003)
+        self.setZoom(self._zoom + 0.050000)
 
 
     def mouseWheelDown(self, *args, **kwargs):
-        self.setZoom(self._zoom - 0.050000000000000003)
+        self.setZoom(self._zoom - 0.050000)
 
 
     def handleEdgeDartClicked(self, dartPos):
@@ -230,7 +230,7 @@ class WorldMap(DirectFrame):
             self.mapConfig.show()
             return None
 
-        self.mapConfig = MapConfig(relief = DGG.FLAT, frameSize = (-0.02, 0.81999999999999995, -1, 1), frameColor = (1, 1, 1, 1), pos = (0.69999999999999996, 0, 0.0), scale = 0.75)
+        self.mapConfig = MapConfig(relief = DGG.FLAT, frameSize = (-0.02, 0.815, -1, 1), frameColor = (1, 1, 1, 1), pos = (0.696, 0, 0.0), scale = 0.75)
         self.mapConfig.camSlider['command'] = self.buffer.camera.setY
         self.mapConfig.worldPSlider['command'] = self.ballRoot.setP
         self.mapConfig.worldDecorScaleSlider['command'] = self.mapBall.setDecorScale
@@ -297,7 +297,7 @@ class WorldMap(DirectFrame):
         side.camera.setH(90)
         shot = NodePath(cm.generate())
         shot.setTexture(side.getTexture(), 1)
-        df = DirectFrame(geom = shot, relief = None, parent = aspect2d, scale = 0.5, pos = (0.83299999999999996, 0, -0.5), text = 'side', text_scale = 0.10000000000000001, text_pos = (-0.75, 0.75, 0), text_fg = (1, 1, 1, 1))
+        df = DirectFrame(geom = shot, relief = None, parent = aspect2d, scale = 0.5, pos = (0.83296, 0, -0.5), text = 'side', text_scale = 0.100, text_pos = (-0.75, 0.75, 0), text_fg = (1, 1, 1, 1))
         self.collisionBufferFrames.append((side, df))
         top = SceneBuffer('top-buffer', size = (512, 512), clearColor = Vec4(0, 0, 0, 1), sceneGraph = self.render)
         top.camera.setPos(0, 1, 4)
@@ -305,7 +305,7 @@ class WorldMap(DirectFrame):
         cm.setName('Top')
         shot = NodePath(cm.generate())
         shot.setTexture(top.getTexture(), 1)
-        df = DirectFrame(geom = shot, relief = None, parent = aspect2d, scale = 0.5, pos = (0.83299999999999996, 0, 0.5), text = 'top', text_scale = 0.10000000000000001, text_pos = (-0.75, 0.75, 0), text_fg = (1, 1, 1, 1))
+        df = DirectFrame(geom = shot, relief = None, parent = aspect2d, scale = 0.5, pos = (0.83296, 0, 0.5), text = 'top', text_scale = 0.100, text_pos = (-0.75, 0.75, 0), text_fg = (1, 1, 1, 1))
         self.collisionBufferFrames.append((top, df))
         self.mapBall.traverser.showCollisions(self.render)
         colNodes = self.render.findAllMatches('**/camRayNode')
@@ -313,7 +313,7 @@ class WorldMap(DirectFrame):
         colNodes = self.render.findAllMatches('**/mouseRayNode')
         colNodes.show()
         self.setPos(-0.5, 0, 0)
-        self.setScale(0.82499999999999996)
+        self.setScale(0.82496)
 
 
     def hideCollisionDebug(self):
@@ -345,7 +345,7 @@ class WorldMap(DirectFrame):
 
 
     def addQuestDart(self, questId, worldPos):
-        self.mapBall.addDart(questId, worldPos, Vec4(0.69999999999999996, 0.69999999999999996, 0, 1))
+        self.mapBall.addDart(questId, worldPos, Vec4(0.696, 0.696, 0, 1))
 
 
     def updateQuestDart(self, questId, worldPos):

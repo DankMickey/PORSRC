@@ -10,8 +10,8 @@ objectStruct = {
                     'Type': 'Building Exterior',
                     'File': 'JailInterior',
                     'ExtUid': '1168046330.44joswilso0',
-                    'Hpr': VBase3(-55.249000000000002, 0.0, 0.0),
-                    'Pos': Point3(-38.176000000000002, 23.332000000000001, 46.716000000000001),
+                    'Hpr': VBase3(-55.249, 0.0, 0.0),
+                    'Pos': Point3(-38.176, 23.332, 46.716),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Name': '',

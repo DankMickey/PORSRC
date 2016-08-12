@@ -55,7 +55,7 @@ class StormRing(EffectController, NodePath):
         self.p0.renderer.setInitialXScale(1.0 * self.cardScale)
         self.p0.renderer.setFinalXScale(0.5 * self.cardScale)
         self.p0.renderer.setInitialYScale(0.5 * self.cardScale)
-        self.p0.renderer.setFinalYScale(0.45000000000000001 * self.cardScale)
+        self.p0.renderer.setFinalYScale(0.450 * self.cardScale)
         self.p0.renderer.setAlphaDisable(0)
         self.p0.emitter.setEmissionType(BaseParticleEmitter.ETEXPLICIT)
         self.p0.emitter.setAmplitude(3.0)

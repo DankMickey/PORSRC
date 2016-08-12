@@ -13,10 +13,10 @@ objectStruct = {
                     'DropOff': '0.0000',
                     'FlickRate': 0.5,
                     'Flickering': True,
-                    'Hpr': VBase3(87.519000000000005, -45.223999999999997, 175.351),
+                    'Hpr': VBase3(87.5190, -45.223, 175.351),
                     'Intensity': '0.8182',
                     'LightType': 'DIRECTIONAL',
-                    'Pos': Point3(41.719999999999999, -9.3059999999999992, 17.541),
+                    'Pos': Point3(41.719, -9.3052, 17.541),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Color': (1, 1, 1, 1),
@@ -31,7 +31,7 @@ objectStruct = {
                     'Hpr': VBase3(0.0, 0.0, 0.0),
                     'Intensity': '0.2424',
                     'LightType': 'AMBIENT',
-                    'Pos': Point3(-4.6159999999999997, -11.430999999999999, 0.69399999999999995),
+                    'Pos': Point3(-4.615, -11.430, 0.69395),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Color': (1, 1, 1, 1),
@@ -40,7 +40,7 @@ objectStruct = {
                     'Type': 'Door Locator Node',
                     'Name': 'door_locator',
                     'Hpr': VBase3(90.0, 0.0, 0.0),
-                    'Pos': Point3(41.985999999999997, -7.423, 0.079000000000000001),
+                    'Pos': Point3(41.985, -7.423, 0.0790),
                     'Scale': VBase3(1.0, 1.0, 1.0) },
                 '1257812160.42caoconno': {
                     'Type': 'Holiday',
@@ -48,7 +48,7 @@ objectStruct = {
                     'Holiday': 'WinterFestival',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Pos': Point3(31.259, 21.692, 10.433),
-                    'Scale': VBase3(1.9750000000000001, 1.9750000000000001, 1.9750000000000001),
+                    'Scale': VBase3(1.975, 1.975, 1.975),
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/props/pir_m_prp_hol_decoBow_winter08' } },
@@ -56,8 +56,8 @@ objectStruct = {
                     'Type': 'Holiday',
                     'DisableCollision': False,
                     'Holiday': 'WinterFestival',
-                    'Hpr': VBase3(-179.32599999999999, 0.0, 0.0),
-                    'Pos': Point3(28.431999999999999, -30.789000000000001, 10.618),
+                    'Hpr': VBase3(-179.325, 0.0, 0.0),
+                    'Pos': Point3(28.431, -30.789, 10.618),
                     'Scale': VBase3(2.161, 2.161, 2.161),
                     'VisSize': '',
                     'Visual': {
@@ -66,8 +66,8 @@ objectStruct = {
                     'Type': 'Holiday',
                     'DisableCollision': False,
                     'Holiday': 'WinterFestival',
-                    'Hpr': VBase3(-88.924000000000007, 0.0, 0.0),
-                    'Pos': Point3(41.292999999999999, -7.4470000000000001, 15.385999999999999),
+                    'Hpr': VBase3(-88.924, 0.0, 0.0),
+                    'Pos': Point3(41.292, -7.447, 15.385),
                     'Scale': VBase3(1.675, 1.675, 1.675),
                     'VisSize': '',
                     'Visual': {

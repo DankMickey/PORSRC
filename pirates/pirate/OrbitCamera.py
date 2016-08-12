@@ -136,7 +136,7 @@ class OrbitCamera(CameraMode.CameraMode, NodePath, ParamObj):
         escapement = clampScalar(escapement, self._minEsc, self._maxEsc)
         if duration is None:
             diff = abs(curEsc - escapement)
-            speed = (max(curEsc, self._maxEsc) - min(curEsc, self._minEsc)) * 0.025000000000000001
+            speed = (max(curEsc, self._maxEsc) - min(curEsc, self._minEsc)) * 0.0250
             duration = diff / speed
 
         self._stopEscapementLerp()
@@ -349,7 +349,7 @@ class OrbitCamera(CameraMode.CameraMode, NodePath, ParamObj):
         elif self._rotateToRearEnabled and self.getAutoFaceForward():
             relH = reduceAngle(self.getH(self.subject))
             absRelH = abs(relH)
-            if absRelH < 0.10000000000000001:
+            if absRelH < 0.100:
                 self.setRotation(0.0)
                 self._stopRotateToRearIval()
                 self._lockAtRear = True

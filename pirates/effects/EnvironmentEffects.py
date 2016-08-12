@@ -95,9 +95,9 @@ class EnvironmentEffects(DirectObject):
         'hanging_pot': [
             ('Hpr', 2, Point3(20, 20, 0), Point3(-20, -20, 0))],
         'lightstream': [
-            ('UVOverlayScroll', 40, 0.14999999999999999, 0.29999999999999999, 'models/effects/cloudOverlay'),
+            ('UVOverlayScroll', 40, 0.149, 0.299, 'models/effects/cloudOverlay'),
             ('UVScroll', 1200, 1, 0),
-            ('DelayColorFade', 2, Vec4(0.29999999999999999, 0.29999999999999999, 0.40000000000000002, 1), Vec4(0.59999999999999998, 0.59999999999999998, 0.69999999999999996, 1), 10),
+            ('DelayColorFade', 2, Vec4(0.299, 0.299, 0.4, 1), Vec4(0.598, 0.598, 0.696, 1), 10),
             'Unlit'] }
 
     def __init__(self, parent, modelPath):

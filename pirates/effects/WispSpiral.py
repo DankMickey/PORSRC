@@ -17,9 +17,9 @@ class WispSpiral(PooledEffect, EffectController):
         self.numWisps = 6
         self.wisps = []
         self.setColorScaleOff()
-        self.startCol = Vec4(1.0, 1.0, 1.0, 0.20000000000000001)
+        self.startCol = Vec4(1.0, 1.0, 1.0, 0.200)
         self.fadeTime = 4.0
-        self.startScale = Vec3(1.0, 1.0, 0.10000000000000001)
+        self.startScale = Vec3(1.0, 1.0, 0.100)
         self.endScale = Vec3(3.0, 3.0, 4.0)
         self.flashDummy = self.attachNewNode('FlashDummy')
         self.flashDummy.reparentTo(self)

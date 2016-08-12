@@ -30,11 +30,11 @@ class PotionRecipePicker(DirectFrame):
         guiAssets = loader.loadModel('models/minigames/pir_m_gui_pot_textureCard')
         parch = guiAssets.find('**/pir_t_gui_pot_scroll')
         parch.setTransparency(1, 1)
-        parch.setScale(1.8999999999999999, 1, 3.3999999999999999)
+        parch.setScale(1.89, 1, 3.39)
         parch.setPos(0.5, 0, 0.0)
         parch.copyTo(self.background)
-        self.title = DirectLabel(parent = self.background, relief = None, text = PLocalizer.PotionGui['RecipeList'], text_scale = PiratesGuiGlobals.TextScaleTitleSmall, text_align = TextNode.ACenter, text_fg = PotionGlobals.TextColor, text_wordwrap = 30, pos = (0.56999999999999995, 0, 0.77000000000000002), textMayChange = 0)
-        self.recipeList = DirectScrolledList(parent = self, numItemsVisible = 23, pos = (0.25, 0, -0.40000000000000002), decButton_pos = (0.71999999999999997, 0.0, 1.04), incButton_pos = (0.71999999999999997, 0.0, -0.17999999999999999), decButton_hpr = (0, 0.0, 0), incButton_hpr = (0, 0.0, 180), itemFrame_pos = (0, 0, 1.1000000000000001), decButton_scale = 0.070000000000000007, decButton_image = (guiAssets.find('**/pir_t_gui_pot_scrollbutton'), guiAssets.find('**/pir_t_gui_pot_scrollbuttonOn'), guiAssets.find('**/pir_t_gui_pot_scrollbuttonOn'), guiAssets.find('**/pir_t_gui_pot_scrollbuttonDisable')), decButton_image_scale = (2.0, 2.0, 2.0), decButton_relief = None, incButton_scale = 0.070000000000000007, incButton_image = (guiAssets.find('**/pir_t_gui_pot_scrollbutton'), guiAssets.find('**/pir_t_gui_pot_scrollbuttonOn'), guiAssets.find('**/pir_t_gui_pot_scrollbuttonOn'), guiAssets.find('**/pir_t_gui_pot_scrollbuttonDisable')), incButton_image_scale = (2.0, 2.0, 2.0), incButton_relief = None, itemFrame_scale = 1.0, forceHeight = 0.061600000000000002)
+        self.title = DirectLabel(parent = self.background, relief = None, text = PLocalizer.PotionGui['RecipeList'], text_scale = PiratesGuiGlobals.TextScaleTitleSmall, text_align = TextNode.ACenter, text_fg = PotionGlobals.TextColor, text_wordwrap = 30, pos = (0.565, 0, 0.77), textMayChange = 0)
+        self.recipeList = DirectScrolledList(parent = self, numItemsVisible = 23, pos = (0.25, 0, -0.4), decButton_pos = (0.71, 0.0, 1.04), incButton_pos = (0.71, 0.0, -0.179), decButton_hpr = (0, 0.0, 0), incButton_hpr = (0, 0.0, 180), itemFrame_pos = (0, 0, 1.10), decButton_scale = 0.070, decButton_image = (guiAssets.find('**/pir_t_gui_pot_scrollbutton'), guiAssets.find('**/pir_t_gui_pot_scrollbuttonOn'), guiAssets.find('**/pir_t_gui_pot_scrollbuttonOn'), guiAssets.find('**/pir_t_gui_pot_scrollbuttonDisable')), decButton_image_scale = (2.0, 2.0, 2.0), decButton_relief = None, incButton_scale = 0.070, incButton_image = (guiAssets.find('**/pir_t_gui_pot_scrollbutton'), guiAssets.find('**/pir_t_gui_pot_scrollbuttonOn'), guiAssets.find('**/pir_t_gui_pot_scrollbuttonOn'), guiAssets.find('**/pir_t_gui_pot_scrollbuttonDisable')), incButton_image_scale = (2.0, 2.0, 2.0), incButton_relief = None, itemFrame_scale = 1.0, forceHeight = 0.0616)
         self.buttons = []
         self.inactiveButtons = []
         self.updateList()
@@ -98,26 +98,26 @@ class PotionRecipePicker(DirectFrame):
                     iconTextColor = PiratesGuiGlobals.TextFG1
                 guiAssets = loader.loadModel('models/minigames/pir_m_gui_pot_textureCard')
                 buttonImage = guiAssets.find('**/pir_t_gui_pot_seal').copyTo(NodePath())
-                buttonImageScale = 0.080000000000000002
+                buttonImageScale = 0.08
                 buttonText = DirectLabel(parent = buttonImage, relief = None, text = iconText, text_scale = PiratesGuiGlobals.TextScaleLarge / buttonImageScale, text_font = PiratesGlobals.getPirateOutlineFont(), text_align = TextNode.ACenter, text_fg = iconTextColor, text_shadow = PiratesGuiGlobals.TextFG14, hpr = (0, 0, 20), pos = (-0.25, 0, 0), textMayChange = 0)
                 guiAssets.remove_node()
 
             if recipe.enabled and recipe.available:
-                button = GuiButton.GuiButton(text = (text, text, text, text), canReposition = True, text_wordwrap = 0, image_scale = buttonImageScale, image_pos = (-0.040000000000000001, 0.0, 0.01), image = (buttonImage, buttonImage, buttonImage, buttonImage), text0_fg = PotionGlobals.TextColor, text1_fg = PiratesGuiGlobals.TextFG0, text2_fg = PiratesGuiGlobals.TextFG15, text3_fg = PotionGlobals.TextColorDisabled, text_align = TextNode.ALeft, text_shadow = None, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, command = self.potionGame.selectRecipe, state = DGG.NORMAL, extraArgs = [
+                button = GuiButton.GuiButton(text = (text, text, text, text), canReposition = True, text_wordwrap = 0, image_scale = buttonImageScale, image_pos = (-0.0400, 0.0, 0.01), image = (buttonImage, buttonImage, buttonImage, buttonImage), text0_fg = PotionGlobals.TextColor, text1_fg = PiratesGuiGlobals.TextFG0, text2_fg = PiratesGuiGlobals.TextFG15, text3_fg = PotionGlobals.TextColorDisabled, text_align = TextNode.ALeft, text_shadow = None, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, command = self.potionGame.selectRecipe, state = DGG.NORMAL, extraArgs = [
                     recipe])
                 button.bind(DGG.ENTER, recipe.showDetails)
                 button.bind(DGG.EXIT, recipe.hideDetails)
                 if button['image'][0]:
-                    button['image_pos'] = (button.getBounds()[1] + 0.074999999999999997, 0, 0.01)
+                    button['image_pos'] = (button.getBounds()[1] + 0.074, 0, 0.01)
 
                 self.buttons.append(button)
             else:
-                button = GuiButton.GuiButton(text = (text, text, text, text), canReposition = True, text_wordwrap = 0, image_scale = buttonImageScale, image_pos = (-0.040000000000000001, 0.0, 0.01), image = (buttonImage, buttonImage, buttonImage, buttonImage), text0_fg = PotionGlobals.TextColorDisabled, text1_fg = PotionGlobals.TextColorDisabled, text2_fg = PotionGlobals.TextColorDisabled, text3_fg = PotionGlobals.TextColorDisabled, text_shadow = None, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_align = TextNode.ALeft, state = DGG.NORMAL, extraArgs = [
+                button = GuiButton.GuiButton(text = (text, text, text, text), canReposition = True, text_wordwrap = 0, image_scale = buttonImageScale, image_pos = (-0.0400, 0.0, 0.01), image = (buttonImage, buttonImage, buttonImage, buttonImage), text0_fg = PotionGlobals.TextColorDisabled, text1_fg = PotionGlobals.TextColorDisabled, text2_fg = PotionGlobals.TextColorDisabled, text3_fg = PotionGlobals.TextColorDisabled, text_shadow = None, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_align = TextNode.ALeft, state = DGG.NORMAL, extraArgs = [
                     recipe])
                 button.bind(DGG.ENTER, recipe.showDetails)
                 button.bind(DGG.EXIT, recipe.hideDetails)
                 if button['image'][0]:
-                    button['image_pos'] = (button.getBounds()[1] + 0.074999999999999997, 0, 0.01)
+                    button['image_pos'] = (button.getBounds()[1] + 0.074, 0, 0.01)
 
                 self.inactiveButtons.append(button)
             self.recipeList.addItem(button)

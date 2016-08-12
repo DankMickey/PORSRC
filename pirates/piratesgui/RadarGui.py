@@ -83,7 +83,7 @@ class RadarGui(GuiTray, FSM):
     DEMO_ENEMY = 1
 
     def __init__(self, parent, av, radius = 200.0, **kw):
-        GuiTray.__init__(self, parent, 0.40000000000000002, 0.40000000000000002)
+        GuiTray.__init__(self, parent, 0.4, 0.4)
         FSM.__init__(self, 'RadarGui')
         self.initialiseoptions(RadarGui)
         self.av = av
@@ -92,9 +92,9 @@ class RadarGui(GuiTray, FSM):
         self.demoTunnel = None
         self.demoQuest = None
         self.demoNpc = { }
-        guiScale = 0.14999999999999999
-        self.rWidth = (self.width - 0.10000000000000001) / guiScale
-        self.rHeight = (self.height - 0.10000000000000001) / guiScale
+        guiScale = 0.149
+        self.rWidth = (self.width - 0.100) / guiScale
+        self.rHeight = (self.height - 0.100) / guiScale
         self._RadarGui__normalizeWithRadius()
         self.camToAvAngle = 0.0
         self.relNode = render.attachNewNode('radarGuiRelNode')
@@ -103,7 +103,7 @@ class RadarGui(GuiTray, FSM):
         self.guiTop.setScale(guiScale)
         self.guiTop.setPos(self._RadarGui__dX, 0, self._RadarGui__dZ)
         self.background = self.model.find('**/background')
-        self.background.setColorScale(1, 1, 1, 0.59999999999999998)
+        self.background.setColorScale(1, 1, 1, 0.598)
         self.mapRoot = self.background.attachNewNode('minimap-root')
         self.mapRoot.setScissor(Point3(-1, 1, 0), Point3(1, -1, 0))
         self.mapRoot.setP(90)
@@ -126,11 +126,11 @@ class RadarGui(GuiTray, FSM):
         self.north.reparentTo(self.dial)
         self.arrow = loader.loadModel('models/gui/compass_arrow')
         self.arrow.getChild(0).getChild(0).setHpr(90, 0, 90)
-        self.arrow.getChild(0).getChild(0).setY(0.20000000000000001)
+        self.arrow.getChild(0).getChild(0).setY(0.200)
         objectiveGrey = self.model.find('**/icon_objective_grey')
         objectiveGrey.copyTo(self.arrow)
         objectiveGrey.setScale(0.5)
-        self.arrow.find('**/icon_objective_grey').setScale(0.80000000000000004)
+        self.arrow.find('**/icon_objective_grey').setScale(0.800000)
         self.rectangle = NodePath('rectangle')
         rectangleGeom = self.model.find('**/icon_rectangle_hollow')
         rectangleGeom.setHpr(90, 0, 0)
@@ -141,12 +141,12 @@ class RadarGui(GuiTray, FSM):
         self.dial.reparentTo(self.guiTop)
         self.edge = self.guiTop.attachNewNode('edge')
         self.objTop = self.guiTop.attachNewNode('compassObjTop')
-        self.zoomInButton = DirectButton(parent = self, relief = None, scale = 0.20000000000000001, pos = (0.25, 0, 0.25), image = (self.model.find('**/zoomin_button'), self.model.find('**/zoomin_button'), self.model.find('**/zoomin_button_over')), command = self.zoomIn)
-        self.zoomOutButton = DirectButton(parent = self, relief = None, scale = 0.20000000000000001, pos = (0.25, 0, 0.25), image = (self.model.find('**/zoomout_button'), self.model.find('**/zoomout_button'), self.model.find('**/zoomout_button_over')), command = self.zoomOut)
+        self.zoomInButton = DirectButton(parent = self, relief = None, scale = 0.200, pos = (0.25, 0, 0.25), image = (self.model.find('**/zoomin_button'), self.model.find('**/zoomin_button'), self.model.find('**/zoomin_button_over')), command = self.zoomIn)
+        self.zoomOutButton = DirectButton(parent = self, relief = None, scale = 0.200, pos = (0.25, 0, 0.25), image = (self.model.find('**/zoomout_button'), self.model.find('**/zoomout_button'), self.model.find('**/zoomout_button_over')), command = self.zoomOut)
         self.zoomInButton.flattenStrong()
         self.zoomOutButton.flattenStrong()
         guiMain = loader.loadModel('models/gui/gui_main')
-        self.minimapButton = DirectButton(parent = self, relief = None, scale = 0.25, pos = (0.11, 0, 0.28999999999999998), image = (guiMain.find('**/minimap_button'), guiMain.find('**/minimap_button'), guiMain.find('**/minimap_button_over')), command = self.handleMinimapButton)
+        self.minimapButton = DirectButton(parent = self, relief = None, scale = 0.25, pos = (0.11, 0, 0.288), image = (guiMain.find('**/minimap_button'), guiMain.find('**/minimap_button'), guiMain.find('**/minimap_button_over')), command = self.handleMinimapButton)
         self.minimapButton.hide()
         self.modelDict = {
             RADAR_OBJ_TYPE_DEFAULT: [
@@ -173,7 +173,7 @@ class RadarGui(GuiTray, FSM):
         self.exitSphereEvent = 'exitradarSphere'
         self.zoomFSM = RadarZoomFSM(self)
         self.effectIvals = []
-        self.locationLabel = DirectLabel(parent = self, relief = None, text = '', text_font = PiratesGlobals.getPirateOutlineFont(), text_fg = (1.0, 1.0, 1.0, 1.0), text_shadow = (0, 0, 0, 1), text_scale = 0.040000000000000001, text_pos = (0.20000000000000001, -0.025000000000000001), text_wordwrap = 7)
+        self.locationLabel = DirectLabel(parent = self, relief = None, text = '', text_font = PiratesGlobals.getPirateOutlineFont(), text_fg = (1.0, 1.0, 1.0, 1.0), text_shadow = (0, 0, 0, 1), text_scale = 0.0400, text_pos = (0.200, -0.0250), text_wordwrap = 7)
         self.locationLabel.hide()
         self.flashCleanupTasks = { }
         self.minimapObjects = []
@@ -940,7 +940,7 @@ class RadarGui(GuiTray, FSM):
             return None
 
         self.ring.show()
-        self.ringIval = Sequence(LerpColorScaleInterval(self.ring, 0.75, Vec4(1, 1, 0.29999999999999999, 1), startColorScale = Vec4(1, 1, 0.29999999999999999, 0.5)), LerpColorScaleInterval(self.ring, 0.75, Vec4(1, 1, 0.29999999999999999, 0.5), startColorScale = Vec4(1, 1, 0.29999999999999999, 1)))
+        self.ringIval = Sequence(LerpColorScaleInterval(self.ring, 0.75, Vec4(1, 1, 0.299, 1), startColorScale = Vec4(1, 1, 0.299, 0.5)), LerpColorScaleInterval(self.ring, 0.75, Vec4(1, 1, 0.299, 0.5), startColorScale = Vec4(1, 1, 0.299, 1)))
         self.ringIval.loop()
 
 
@@ -1039,7 +1039,7 @@ class MinimapDemoNpc(MinimapDemoObject):
 
     def _addedToMap(self, map):
         if self.type == RadarGui.DEMO_FRIEND:
-            self.mapGeom.setColorScale(VBase4(0.10000000000000001, 0.5, 1.0, 0.69999999999999996), 1)
+            self.mapGeom.setColorScale(VBase4(0.100, 0.5, 1.0, 0.696), 1)
         elif self.type == RadarGui.DEMO_ENEMY:
             self.mapGeom.setColorScale(VBase4(1.0, 0.0, 0.0, 1), 1)
 
@@ -1069,7 +1069,7 @@ class MinimapDemoQuest(MinimapDemoObject):
         MinimapDemoObject.__init__(self, 'quest', worldNode, MinimapDemoQuest.ICON)
         self.outOfRangeGeom = NodePath('outOfRange')
         arrow = MinimapDemoQuest.ARROW.copyTo(self.outOfRangeGeom)
-        arrow.setPosHpr(1.1000000000000001, 0, 0, 0, 0, 90)
+        arrow.setPosHpr(1.10, 0, 0, 0, 0, 90)
 
 
     def _addedToMap(self, map):

@@ -23,7 +23,7 @@ objectStruct = {
                     'AnimSet': 'default',
                     'CustomModel': 'None',
                     'HelpID': 'NONE',
-                    'Hpr': VBase3(-176.81700000000001, 0.0, 0.0),
+                    'Hpr': VBase3(-176.817, 0.0, 0.0),
                     'Patrol Radius': '12.0000',
                     'Pos': Point3(-5.665, 11.706, 0.0),
                     'PoseAnim': '',
@@ -38,8 +38,8 @@ objectStruct = {
                     'TrailFX': 'None' },
                 '1179365632.0dchiappe': {
                     'Type': 'Interactive Prop',
-                    'Hpr': VBase3(66.578999999999994, 0.0, 0.0),
-                    'Pos': Point3(-9.1649999999999991, 0.438, 0.0),
+                    'Hpr': VBase3(66.5784, 0.0, 0.0),
+                    'Pos': Point3(-9.1641, 0.438, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/shop_bsmith_anvilblock_interactive' },
@@ -49,7 +49,7 @@ objectStruct = {
                     'Type': 'Door Locator Node',
                     'Name': 'door_locator',
                     'Hpr': VBase3(0.0, 0.0, 0.0),
-                    'Pos': Point3(0.047, -29.861000000000001, 0.067000000000000004),
+                    'Pos': Point3(0.047, -29.861, 0.0670000),
                     'Scale': VBase3(1.0, 1.0, 1.0) },
                 '1213737632.73aapatel': {
                     'Type': 'Townsperson',
@@ -59,7 +59,7 @@ objectStruct = {
                     'HelpID': 'NONE',
                     'Hpr': VBase3(164.792, 0.0, 0.0),
                     'Patrol Radius': '12.0000',
-                    'Pos': Point3(10.217000000000001, 10.409000000000001, 0.0),
+                    'Pos': Point3(10.217, 10.409, 0.0),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'Private Status': 'All',
@@ -149,8 +149,8 @@ objectStruct = {
         '1213737590.51aapatel': '["Objects"]["1156279185.81dzlu0"]["Objects"]["1213737590.51aapatel"]',
         '1213737632.73aapatel': '["Objects"]["1156279185.81dzlu0"]["Objects"]["1213737632.73aapatel"]' } }
 extraInfo = {
-    'camPos': Point3(2.7331500000000002, -10.383100000000001, 5.6987399999999999),
-    'camHpr': VBase3(-22.920200000000001, -2.56088, 0),
+    'camPos': Point3(2.73315, -10.3831, 5.69873),
+    'camHpr': VBase3(-22.9202, -2.56088, 0),
     'focalLength': 1.3999999761599999,
     'skyState': -1,
     'fog': 0 }

@@ -48,7 +48,7 @@ class GreenBlood(PooledEffect, EffectController):
 
     def createTrack(self, rate = 1):
         self.p0.setPoolSize(16)
-        self.p0.setBirthRate(0.40000000000000002)
+        self.p0.setBirthRate(0.4)
         self.p0.setLitterSize(1)
         self.p0.setLitterSpread(0)
         self.p0.setSystemLifespan(0.0)
@@ -57,8 +57,8 @@ class GreenBlood(PooledEffect, EffectController):
         self.p0.setFloorZ(-5.0)
         self.p0.factory.setLifespanBase(3.0)
         self.p0.factory.setLifespanSpread(0.0)
-        self.p0.factory.setMassBase(0.45000000000000001)
-        self.p0.factory.setMassSpread(0.20000000000000001)
+        self.p0.factory.setMassBase(0.450)
+        self.p0.factory.setMassSpread(0.200)
         self.p0.factory.setTerminalVelocityBase(400.0)
         self.p0.factory.setTerminalVelocitySpread(0.0)
         self.p0.renderer.setAlphaMode(BaseParticleRenderer.PRALPHAUSER)
@@ -68,10 +68,10 @@ class GreenBlood(PooledEffect, EffectController):
         self.p0.renderer.setXScaleFlag(1)
         self.p0.renderer.setYScaleFlag(1)
         self.p0.renderer.setAnimAngleFlag(1)
-        self.p0.renderer.setInitialXScale(0.17499999999999999 * self.cardScale)
-        self.p0.renderer.setFinalXScale(0.29999999999999999 * self.cardScale)
-        self.p0.renderer.setInitialYScale(0.17499999999999999 * self.cardScale)
-        self.p0.renderer.setFinalYScale(0.29999999999999999 * self.cardScale)
+        self.p0.renderer.setInitialXScale(0.174 * self.cardScale)
+        self.p0.renderer.setFinalXScale(0.299 * self.cardScale)
+        self.p0.renderer.setInitialYScale(0.174 * self.cardScale)
+        self.p0.renderer.setFinalYScale(0.299 * self.cardScale)
         self.p0.renderer.setNonanimatedTheta(0.0)
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPNOBLEND)
         self.p0.renderer.setAlphaDisable(0)
@@ -83,7 +83,7 @@ class GreenBlood(PooledEffect, EffectController):
         self.p0.emitter.setRadiateOrigin(Point3(0.0, 0.0, 0.5))
         self.p0.emitter.setRadius(2.0)
         sfx = random.choice(self.splashSfx)
-        particleSpray = Sequence(Func(self.p0.setBirthRate, 0.40000000000000002), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self), Wait(0.29999999999999999), Func(self.p0.setBirthRate, 100), Wait(3.0), Func(self.cleanUpEffect))
+        particleSpray = Sequence(Func(self.p0.setBirthRate, 0.4), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self), Wait(0.299), Func(self.p0.setBirthRate, 100), Wait(3.0), Func(self.cleanUpEffect))
         self.track = Parallel(particleSpray, Func(base.playSfx, sfx, volume = 1, node = self))
 
 

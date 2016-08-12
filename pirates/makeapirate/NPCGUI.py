@@ -20,8 +20,8 @@ class NPCGUI(DirectFrame, StateData.StateData):
         self.charGui = loader.loadModel('models/gui/char_gui')
 
 
-    def _makeButton(self, text, command, pos, parent, text_scale = (0.20000000000000001, 0.20000000000000001, 0.20000000000000001)):
-        b = DirectButton(parent = parent, image_scale = 1.3, relief = None, image = (self.charGui.find('**/chargui_frame02'), self.charGui.find('**/chargui_frame02_down'), self.charGui.find('**/chargui_frame02_over')), text = text, text_pos = (0, -0.050000000000000003, 0), text_fg = (1, 1, 1, 1), text_align = TextNode.ACenter, text_scale = text_scale, command = command, pos = pos)
+    def _makeButton(self, text, command, pos, parent, text_scale = (0.200, 0.200, 0.200)):
+        b = DirectButton(parent = parent, image_scale = 1.3, relief = None, image = (self.charGui.find('**/chargui_frame02'), self.charGui.find('**/chargui_frame02_down'), self.charGui.find('**/chargui_frame02_over')), text = text, text_pos = (0, -0.050000, 0), text_fg = (1, 1, 1, 1), text_align = TextNode.ACenter, text_scale = text_scale, command = command, pos = pos)
         return b
 
 
@@ -60,7 +60,7 @@ class NPCGUI(DirectFrame, StateData.StateData):
 
 
     def loadShapeGUI(self):
-        self.shapeFrameTitle = DirectFrame(parent = self.parent, pos = (0, 0, 0.80000000000000004), scale = (0.66000000000000003, 0.40000000000000002, 0.53000000000000003))
+        self.shapeFrameTitle = DirectFrame(parent = self.parent, pos = (0, 0, 0.800000), scale = (0.66000, 0.4, 0.53000))
         self.shapeFrameTitle.hide()
 
 
@@ -89,15 +89,15 @@ class NPCGUI(DirectFrame, StateData.StateData):
 
 
     def setupButtons(self):
-        self.gp1Button = self._makeButton(text = PLocalizer.SkeletonGP1, command = self.handleGP1, pos = (-0.94999999999999996, 0, -2.0), parent = self.shapeFrameTitle)
-        self.gp2Button = self._makeButton(text = PLocalizer.SkeletonGP2, command = self.handleGP2, pos = (-0.94999999999999996, 0, -2.5), parent = self.shapeFrameTitle)
-        self.gp4Button = self._makeButton(text = PLocalizer.SkeletonGP4, command = self.handleGP4, pos = (-0.94999999999999996, 0, -3.0), parent = self.shapeFrameTitle)
-        self.gp8Button = self._makeButton(text = PLocalizer.SkeletonGP8, command = self.handleGP8, pos = (-0.94999999999999996, 0, -3.5), parent = self.shapeFrameTitle)
-        self.djcrButton = self._makeButton(text = PLocalizer.SkeletonDJ1, command = self.handlecr, pos = (0.050000000000000003, 0, -1.75), parent = self.shapeFrameTitle)
-        self.djjmButton = self._makeButton(text = PLocalizer.SkeletonDJ2, command = self.handlejm, pos = (0.050000000000000003, 0, -2.25), parent = self.shapeFrameTitle, text_scale = (0.17999999999999999, 0.20000000000000001, 0.20000000000000001))
-        self.djkoButton = self._makeButton(text = PLocalizer.SkeletonDJ3, command = self.handleko, pos = (0.050000000000000003, 0, -2.75), parent = self.shapeFrameTitle)
-        self.djpaButton = self._makeButton(text = PLocalizer.SkeletonDJ4, command = self.handlepa, pos = (0.050000000000000003, 0, -3.25), parent = self.shapeFrameTitle)
-        self.djtwButton = self._makeButton(text = PLocalizer.SkeletonDJ5, command = self.handletw, pos = (0.050000000000000003, 0, -3.75), parent = self.shapeFrameTitle)
+        self.gp1Button = self._makeButton(text = PLocalizer.SkeletonGP1, command = self.handleGP1, pos = (-0.946, 0, -2.0), parent = self.shapeFrameTitle)
+        self.gp2Button = self._makeButton(text = PLocalizer.SkeletonGP2, command = self.handleGP2, pos = (-0.946, 0, -2.5), parent = self.shapeFrameTitle)
+        self.gp4Button = self._makeButton(text = PLocalizer.SkeletonGP4, command = self.handleGP4, pos = (-0.946, 0, -3.0), parent = self.shapeFrameTitle)
+        self.gp8Button = self._makeButton(text = PLocalizer.SkeletonGP8, command = self.handleGP8, pos = (-0.946, 0, -3.5), parent = self.shapeFrameTitle)
+        self.djcrButton = self._makeButton(text = PLocalizer.SkeletonDJ1, command = self.handlecr, pos = (0.050000, 0, -1.75), parent = self.shapeFrameTitle)
+        self.djjmButton = self._makeButton(text = PLocalizer.SkeletonDJ2, command = self.handlejm, pos = (0.050000, 0, -2.25), parent = self.shapeFrameTitle, text_scale = (0.179, 0.200, 0.200))
+        self.djkoButton = self._makeButton(text = PLocalizer.SkeletonDJ3, command = self.handleko, pos = (0.050000, 0, -2.75), parent = self.shapeFrameTitle)
+        self.djpaButton = self._makeButton(text = PLocalizer.SkeletonDJ4, command = self.handlepa, pos = (0.050000, 0, -3.25), parent = self.shapeFrameTitle)
+        self.djtwButton = self._makeButton(text = PLocalizer.SkeletonDJ5, command = self.handletw, pos = (0.050000, 0, -3.75), parent = self.shapeFrameTitle)
         self.sp1Button = self._makeButton(text = PLocalizer.SkeletonSP1, command = self.handlesp1, pos = (1.05, 0, -1), parent = self.shapeFrameTitle)
         self.sp2Button = self._makeButton(text = PLocalizer.SkeletonSP2, command = self.handlesp2, pos = (1.05, 0, -1.5), parent = self.shapeFrameTitle)
         self.sp3Button = self._makeButton(text = PLocalizer.SkeletonSP3, command = self.handlesp3, pos = (1.05, 0, -2), parent = self.shapeFrameTitle)

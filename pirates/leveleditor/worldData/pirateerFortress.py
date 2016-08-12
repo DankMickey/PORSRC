@@ -20,7 +20,7 @@ objectStruct = {
                     'Event Type': 'Port',
                     'Extra Param': 'Dock',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(378.01299999999998, -249.79900000000001, -7.8449999999999998),
+                    'Pos': Point3(378.012, -249.799, -7.8448),
                     'Scale': VBase3(160, 160, 160) } },
             'Visual': {
                 'Model': 'models/islands/pvpFortress' } } },

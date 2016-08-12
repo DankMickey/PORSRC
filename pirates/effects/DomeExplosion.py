@@ -25,7 +25,7 @@ class DomeExplosion(PooledEffect, EffectController):
 
     def createTrack(self, rate = 1):
         self.explosion.setScale(1)
-        self.explosion.setColorScale(0, 0, 0, 0.65000000000000002)
+        self.explosion.setColorScale(0, 0, 0, 0.65)
         fadeBlast = self.explosion.colorScaleInterval(self.speed * 0.5, Vec4(0, 0, 0, 0))
         waitFade = Sequence(Wait(self.speed * 0.5), fadeBlast)
         scaleUp = self.explosion.scaleInterval(self.speed, self.size, startScale = 0.0, blendType = 'easeIn', other = render)

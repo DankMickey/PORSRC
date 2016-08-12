@@ -136,7 +136,7 @@ class LocalPirateGameFSM(PlayerPirateGameFSM):
         self.av.controlManager.setSpeeds(*PiratesGlobals.PirateSpeeds[self.av.speedIndex])
         self.av.guiMgr.request('Interface')
         self.av.controlManager.use('walk', self.av)
-        self.av.controlManager.get('walk').lifter.setGravity(32.173999999999999 * 2.0)
+        self.av.controlManager.get('walk').lifter.setGravity(32.173 * 2.0)
         self.av.collisionsOn()
         self.av.startListenAutoRun()
         self.av.setLifterDelayFrames(3)
@@ -187,7 +187,7 @@ class LocalPirateGameFSM(PlayerPirateGameFSM):
 
     def exitWaterRoam(self):
         self.ignore('localAvatarExitWater')
-        self.av.controlManager.get('walk').lifter.setGravity(32.173999999999999 * 2.0)
+        self.av.controlManager.get('walk').lifter.setGravity(32.173 * 2.0)
         self.av.physControls.enableJump()
         self.av.stopBobSwimTask()
         self.av.stopListenAutoRun()
@@ -365,7 +365,7 @@ class LocalPirateGameFSM(PlayerPirateGameFSM):
         self.ignore('localAvatarExitWater')
         self.av.stopBobSwimTask()
         self.av.guiMgr.request('Interface')
-        self.av.controlManager.get('walk').lifter.setGravity(32.173999999999999 * 2.0)
+        self.av.controlManager.get('walk').lifter.setGravity(32.173 * 2.0)
         self.av.physControls.enableJump()
         base.cr.interactionMgr.stop()
         self.av.b_clearTeleportFlag(PiratesGlobals.TFInWater)
@@ -651,7 +651,7 @@ class LocalPirateGameFSM(PlayerPirateGameFSM):
         dummy = localAvatar.attachNewNode('dummy')
         dummy.setPos(localAvatar.headNode.getX(localAvatar) - 8, localAvatar.headNode.getY(localAvatar) + 10, localAvatar.headNode.getZ(localAvatar) + 2)
         dummy.wrtReparentTo(render)
-        dummy.lookAt(localAvatar, localAvatar.headNode.getX(localAvatar), localAvatar.headNode.getY(localAvatar), localAvatar.headNode.getZ(localAvatar) * 0.80000000000000004)
+        dummy.lookAt(localAvatar, localAvatar.headNode.getX(localAvatar), localAvatar.headNode.getY(localAvatar), localAvatar.headNode.getZ(localAvatar) * 0.800000)
         camPos = dummy.getPos()
         camHpr = dummy.getHpr()
         dummy.detachNode()
@@ -682,15 +682,15 @@ class LocalPirateGameFSM(PlayerPirateGameFSM):
             dummy = localAvatar.attachNewNode('dummy')
             dummy.setPos(localAvatar.headNode.getX(localAvatar), localAvatar.headNode.getY(localAvatar) + 11, localAvatar.headNode.getZ(localAvatar) + 2)
             dummy.wrtReparentTo(render)
-            dummy.lookAt(localAvatar, localAvatar.headNode.getX(localAvatar), localAvatar.headNode.getY(localAvatar), localAvatar.headNode.getZ(localAvatar) * 0.80000000000000004)
+            dummy.lookAt(localAvatar, localAvatar.headNode.getX(localAvatar), localAvatar.headNode.getY(localAvatar), localAvatar.headNode.getZ(localAvatar) * 0.800000)
             camHpr = dummy.getHpr()
             dummy.detachNode()
-            self.camIval.append(Wait(duration * 0.90000000000000002))
+            self.camIval.append(Wait(duration * 0.9))
             self.camIval.append(Parallel(camera.posHprInterval(0.5, pos = camPos, hpr = camHpr, blendType = 'easeOut'), Func(createRewardPanel, panelType)))
         else:
             self.camIval.append(Wait(duration))
             self.camIval.append(Func(self.handleExitOOBEmote))
-        base.musicMgr.request(SoundGlobals.MUSIC_REWARD_WEAPON, priority = 4, looping = 0, volume = 0.59999999999999998)
+        base.musicMgr.request(SoundGlobals.MUSIC_REWARD_WEAPON, priority = 4, looping = 0, volume = 0.598)
         self.av.cameraFSM.request('Control')
         self.camIval.start()
 
@@ -794,7 +794,7 @@ class LocalPirateGameFSM(PlayerPirateGameFSM):
             dummy = npc.attachNewNode('dummy')
             dummy.setPos(npc.headNode.getX(npc), npc.headNode.getY(npc) + 4.5, npc.headNode.getZ(npc) + 1)
             dummy.wrtReparentTo(render)
-            dummy.lookAt(npc, npc.headNode.getX(npc), npc.headNode.getY(npc), npc.headNode.getZ(npc) * 0.94999999999999996)
+            dummy.lookAt(npc, npc.headNode.getX(npc), npc.headNode.getY(npc), npc.headNode.getZ(npc) * 0.946)
             if hasMenu:
                 dummy.setH(dummy, 15)
 
@@ -901,7 +901,7 @@ class LocalPirateGameFSM(PlayerPirateGameFSM):
         self.av.guiMgr._hideCursor()
         self.av.motionFSM.off()
         base.transitions.letterboxOff()
-        if base.camLens.getAspectRatio() < 1.6000000000000001:
+        if base.camLens.getAspectRatio() < 1.60:
             base.transitions.letterboxOn()
 
         self.av.stopAutoRun()
@@ -1335,7 +1335,7 @@ class LocalPirateGameFSM(PlayerPirateGameFSM):
         speed = PiratesGlobals.PirateSpeeds[self.av.speedIndex][0]
         duration = distance / speed
         self.av.startPosHprBroadcast()
-        moveSequence = Sequence(Parallel(self.moveForwardInterval(distance), Sequence(Wait(duration - 0.80000000000000004), Func(base.transitions.fadeOut, 0.75), Wait(0.75))), Func(base.cr.loadingScreen.show, waitForLocation = True), Func(messenger.send, 'EnterTunnelFinished'))
+        moveSequence = Sequence(Parallel(self.moveForwardInterval(distance), Sequence(Wait(duration - 0.800000), Func(base.transitions.fadeOut, 0.75), Wait(0.75))), Func(base.cr.loadingScreen.show, waitForLocation = True), Func(messenger.send, 'EnterTunnelFinished'))
         cameraY = camera.getY()
         if cameraY < 13:
             cameraY = 13
@@ -1434,7 +1434,7 @@ class LocalPirateGameFSM(PlayerPirateGameFSM):
         self.av.b_setTeleportFlag(PiratesGlobals.TFPotionCrafting)
         base.transitions.setFadeColor(0, 0, 0)
         if not base.transitions.fadeOutActive():
-            base.transitions.fadeOut(0.10000000000000001, Func(self.turnCamNodesOff))
+            base.transitions.fadeOut(0.100, Func(self.turnCamNodesOff))
 
 
 
@@ -1473,7 +1473,7 @@ class LocalPirateGameFSM(PlayerPirateGameFSM):
         self.av.b_clearTeleportFlag(PiratesGlobals.TFPotionCrafting)
         base.cr.loadingScreen.hide()
         base.transitions.setFadeColor(0, 0, 0)
-        base.transitions.fadeIn(0.10000000000000001)
+        base.transitions.fadeIn(0.100)
         PlayerPirateGameFSM.exitPotionCrafting(self)
 
 
@@ -1541,8 +1541,8 @@ class LocalPirateGameFSM(PlayerPirateGameFSM):
         self.av.cameraFSM.request('Control')
         camParent = self.av.getShip().getModelRoot()
         camera.wrtReparentTo(camParent)
-        pos = camParent.getRelativePoint(tentacle.creature, Point3(120, 120, 0) * 0.59999999999999998)
-        pos.setZ(80 * 0.59999999999999998)
+        pos = camParent.getRelativePoint(tentacle.creature, Point3(120, 120, 0) * 0.598)
+        pos.setZ(80 * 0.598)
         self.camIval = self.lookMoveCameraSequence(2, pos)
 
 

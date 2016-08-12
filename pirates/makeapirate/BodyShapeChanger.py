@@ -13,10 +13,10 @@ from otp.otpgui import OTPDialog
 class BodyShapeChanger(BorderFrame):
 
     def __init__(self, **kw):
-        self.sizeX = 0.80000000000000004
-        self.sizeZ = 0.90000000000000002
+        self.sizeX = 0.800000
+        self.sizeZ = 0.9
         textScale = PiratesGuiGlobals.TextScaleTitleSmall
-        optiondefs = (('state', DGG.DISABLED, None), ('frameSize', (-0.0 * self.sizeX, 1.0 * self.sizeX, -0.0 * self.sizeZ, 1.0 * self.sizeZ), None), ('text', PLocalizer.BodyShapeUpdate, None), ('text_align', TextNode.ACenter, None), ('text_font', PiratesGlobals.getPirateBoldOutlineFont(), None), ('text_fg', (1, 1, 1, 1), None), ('text_shadow', PiratesGuiGlobals.TextShadow, None), ('textMayChange', 1, None), ('text_scale', textScale, None), ('text_pos', (self.sizeX * 0.5, self.sizeZ * 0.94999999999999996 - textScale), None))
+        optiondefs = (('state', DGG.DISABLED, None), ('frameSize', (-0.0 * self.sizeX, 1.0 * self.sizeX, -0.0 * self.sizeZ, 1.0 * self.sizeZ), None), ('text', PLocalizer.BodyShapeUpdate, None), ('text_align', TextNode.ACenter, None), ('text_font', PiratesGlobals.getPirateBoldOutlineFont(), None), ('text_fg', (1, 1, 1, 1), None), ('text_shadow', PiratesGuiGlobals.TextShadow, None), ('textMayChange', 1, None), ('text_scale', textScale, None), ('text_pos', (self.sizeX * 0.5, self.sizeZ * 0.946 - textScale), None))
         self.defineoptions(kw, optiondefs)
         BorderFrame.__init__(self)
         self.initialiseoptions(BodyShapeChanger)
@@ -47,19 +47,19 @@ class BodyShapeChanger(BorderFrame):
     def setup(self):
         self.isSetup = 1
         self.setBin('gui-fixed', 0)
-        self.messageLabel = DirectLabel(parent = self, relief = None, text = PLocalizer.BodyChangeText, text_font = PiratesGlobals.getPirateBoldOutlineFont(), text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = PiratesGuiGlobals.TextFG2, text_wordwrap = 18, text_shadow = PiratesGuiGlobals.TextShadow, pos = (self.sizeX * 0.050000000000000003, 0.0, self.sizeZ * 0.80000000000000004))
+        self.messageLabel = DirectLabel(parent = self, relief = None, text = PLocalizer.BodyChangeText, text_font = PiratesGlobals.getPirateBoldOutlineFont(), text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = PiratesGuiGlobals.TextFG2, text_wordwrap = 18, text_shadow = PiratesGuiGlobals.TextShadow, pos = (self.sizeX * 0.050000, 0.0, self.sizeZ * 0.800000))
         Gui = loader.loadModel('models/gui/toplevel_gui')
         buttonImage = (Gui.find('**/generic_button'), Gui.find('**/generic_button_down'), Gui.find('**/generic_button_over'), Gui.find('**/generic_button_disabled'))
-        self.confirmButton = DirectButton(parent = self, relief = None, image = buttonImage, image_scale = (0.41999999999999998, 1.0, 0.22), image0_color = VBase4(0.65000000000000002, 0.65000000000000002, 0.65000000000000002, 1), image1_color = VBase4(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 1), image2_color = VBase4(0.90000000000000002, 0.90000000000000002, 0.90000000000000002, 1), image3_color = VBase4(0.40999999999999998, 0.40000000000000002, 0.40000000000000002, 1), text = PLocalizer.BodyTypeCommit, text_font = PiratesGlobals.getPirateBoldOutlineFont(), text_align = TextNode.ACenter, text_pos = (0, -0.01), text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, pos = (self.sizeX * 0.5, 0, 0.17000000000000001), command = self.confirmBody)
-        self.cancelButton = DirectButton(parent = self, relief = None, image = buttonImage, image_scale = (0.41999999999999998, 1.0, 0.22), image0_color = VBase4(0.65000000000000002, 0.65000000000000002, 0.65000000000000002, 1), image1_color = VBase4(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 1), image2_color = VBase4(0.90000000000000002, 0.90000000000000002, 0.90000000000000002, 1), image3_color = VBase4(0.40999999999999998, 0.40000000000000002, 0.40000000000000002, 1), text = PLocalizer.BodyTypeLater, text_font = PiratesGlobals.getPirateBoldOutlineFont(), text_align = TextNode.ACenter, text_pos = (0, -0.01), text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, pos = (self.sizeX * 0.5, 0, 0.070000000000000007), command = self.cancelBody)
+        self.confirmButton = DirectButton(parent = self, relief = None, image = buttonImage, image_scale = (0.418, 1.0, 0.22), image0_color = VBase4(0.65, 0.65, 0.65, 1), image1_color = VBase4(0.4, 0.4, 0.4, 1), image2_color = VBase4(0.9, 0.9, 0.9, 1), image3_color = VBase4(0.408, 0.4, 0.4, 1), text = PLocalizer.BodyTypeCommit, text_font = PiratesGlobals.getPirateBoldOutlineFont(), text_align = TextNode.ACenter, text_pos = (0, -0.01), text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, pos = (self.sizeX * 0.5, 0, 0.170), command = self.confirmBody)
+        self.cancelButton = DirectButton(parent = self, relief = None, image = buttonImage, image_scale = (0.418, 1.0, 0.22), image0_color = VBase4(0.65, 0.65, 0.65, 1), image1_color = VBase4(0.4, 0.4, 0.4, 1), image2_color = VBase4(0.9, 0.9, 0.9, 1), image3_color = VBase4(0.408, 0.4, 0.4, 1), text = PLocalizer.BodyTypeLater, text_font = PiratesGlobals.getPirateBoldOutlineFont(), text_align = TextNode.ACenter, text_pos = (0, -0.01), text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, pos = (self.sizeX * 0.5, 0, 0.070), command = self.cancelBody)
         self.confirmButton['state'] = DGG.DISABLED
         main_gui = loader.loadModel('models/gui/gui_main')
         generic_x = main_gui.find('**/x2')
         generic_box = main_gui.find('**/exit_button')
         generic_box_over = main_gui.find('**/exit_button_over')
         main_gui.remove_node()
-        closeButton = GuiButton.GuiButton(parent = self, relief = None, pos = (1.0, 0, 0.059999999999999998), image = (generic_box, generic_box, generic_box_over, generic_box), image_scale = 0.40000000000000002, command = self.cancelBody)
-        xButton = OnscreenImage(parent = closeButton, image = generic_x, scale = 0.20000000000000001, pos = (-0.25600000000000001, 0, 0.76600000000000001))
+        closeButton = GuiButton.GuiButton(parent = self, relief = None, pos = (1.0, 0, 0.0598), image = (generic_box, generic_box, generic_box_over, generic_box), image_scale = 0.4, command = self.cancelBody)
+        xButton = OnscreenImage(parent = closeButton, image = generic_x, scale = 0.200, pos = (-0.256, 0, 0.766))
         choices = None
         self.originalBody = localAvatar.getStyle().getBodyShape()
         self.bodyChoice = None
@@ -71,7 +71,7 @@ class BodyShapeChanger(BorderFrame):
 
         xCount = 0
         for choice in choices:
-            choiceButton = DirectButton(parent = self, relief = None, image = buttonImage, image_scale = (0.12, 1.0, 0.22), image0_color = VBase4(0.65000000000000002, 0.65000000000000002, 0.65000000000000002, 1), image1_color = VBase4(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 1), image2_color = VBase4(0.90000000000000002, 0.90000000000000002, 0.90000000000000002, 1), image3_color = VBase4(0.40999999999999998, 0.40000000000000002, 0.40000000000000002, 1), text = '%s' % (xCount + 1), text_font = PiratesGlobals.getPirateBoldOutlineFont(), text_align = TextNode.ACenter, text_pos = (0, -0.01), text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, pos = (0.10000000000000001 + 0.14000000000000001 * xCount, 0, 0.27000000000000002), command = self.chooseType, extraArgs = [
+            choiceButton = DirectButton(parent = self, relief = None, image = buttonImage, image_scale = (0.12, 1.0, 0.22), image0_color = VBase4(0.65, 0.65, 0.65, 1), image1_color = VBase4(0.4, 0.4, 0.4, 1), image2_color = VBase4(0.9, 0.9, 0.9, 1), image3_color = VBase4(0.408, 0.4, 0.4, 1), text = '%s' % (xCount + 1), text_font = PiratesGlobals.getPirateBoldOutlineFont(), text_align = TextNode.ACenter, text_pos = (0, -0.01), text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, pos = (0.100 + 0.140 * xCount, 0, 0.27), command = self.chooseType, extraArgs = [
                 choice])
             xCount += 1
 

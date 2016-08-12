@@ -61,7 +61,7 @@ class FireworkSparkles(PooledEffect, EffectController):
         self.p0.renderer.setNonanimatedTheta(0.0)
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPBLENDLINEAR)
         self.p0.renderer.setAlphaDisable(0)
-        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 0.10000000000000001, Vec4(0, 0, 0, 0), self.effectColor, 1)
+        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 0.100, Vec4(0, 0, 0, 0), self.effectColor, 1)
         self.p0.emitter.setEmissionType(BaseParticleEmitter.ETRADIATE)
         self.p0.emitter.setAmplitudeSpread(0.0)
         self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, 0.0))
@@ -72,7 +72,7 @@ class FireworkSparkles(PooledEffect, EffectController):
 
 
     def createTrack(self):
-        self.track = Sequence(Wait(self.startDelay), Func(self.p0.setBirthRate, 0.029999999999999999), Func(self.p0.clearToInitial), Func(self.f.start, self, self), Wait(0.29999999999999999), Func(self.p0.setBirthRate, 100.0), Wait(2.5), Func(self.cleanUpEffect))
+        self.track = Sequence(Wait(self.startDelay), Func(self.p0.setBirthRate, 0.0299), Func(self.p0.clearToInitial), Func(self.f.start, self, self), Wait(0.299), Func(self.p0.setBirthRate, 100.0), Wait(2.5), Func(self.cleanUpEffect))
 
 
     def setEffectScale(self, scale):

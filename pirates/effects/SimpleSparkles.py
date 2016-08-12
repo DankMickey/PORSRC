@@ -76,15 +76,15 @@ class SimpleSparkles(PooledEffect, EffectController):
 
 
     def createTrack(self):
-        self.track = Sequence(Func(self.p0.setBirthRate, 0.029999999999999999), Func(self.p0.clearToInitial), Func(self.f.start, self, self), Wait(1.0), Func(self.p0.setBirthRate, 100.0), Wait(2.5), Func(self.cleanUpEffect))
+        self.track = Sequence(Func(self.p0.setBirthRate, 0.0299), Func(self.p0.clearToInitial), Func(self.f.start, self, self), Wait(1.0), Func(self.p0.setBirthRate, 100.0), Wait(2.5), Func(self.cleanUpEffect))
 
 
     def setEffectScale(self, scale):
         self.effectScale = scale
-        self.p0.renderer.setInitialXScale(0.80000000000000004 * self.cardScale * scale)
-        self.p0.renderer.setFinalXScale(0.40000000000000002 * self.cardScale * scale)
-        self.p0.renderer.setInitialYScale(0.80000000000000004 * self.cardScale * scale)
-        self.p0.renderer.setFinalYScale(0.40000000000000002 * self.cardScale * scale)
+        self.p0.renderer.setInitialXScale(0.800000 * self.cardScale * scale)
+        self.p0.renderer.setFinalXScale(0.4 * self.cardScale * scale)
+        self.p0.renderer.setInitialYScale(0.800000 * self.cardScale * scale)
+        self.p0.renderer.setFinalYScale(0.4 * self.cardScale * scale)
         self.p0.emitter.setAmplitude(30.0 * scale)
         self.p0.emitter.setRadius(75.0 * scale)
 

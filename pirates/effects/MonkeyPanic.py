@@ -55,7 +55,7 @@ class MonkeyPanic(PooledEffect, EffectController):
         self.p0.renderer.setAlphaMode(BaseParticleRenderer.PRALPHAINOUT)
         self.p0.renderer.setUserAlpha(0.5)
         self.p0.renderer.setFromNode(self.card)
-        self.p0.renderer.setColor(Vec4(1.0, 0.20000000000000001, 0.10000000000000001, 1.0))
+        self.p0.renderer.setColor(Vec4(1.0, 0.200, 0.100, 1.0))
         self.p0.renderer.setXScaleFlag(1)
         self.p0.renderer.setYScaleFlag(1)
         self.p0.renderer.setAnimAngleFlag(1)
@@ -72,18 +72,18 @@ class MonkeyPanic(PooledEffect, EffectController):
     def createTrack(self):
         self.heartBeatSfx = loadSfx(SoundGlobals.SFX_MISC_HEART_BEAT_LOOP)
         self.intensity = 1.0
-        decreaseFactor = min(0.93000000000000005 + self.duration * 0.0025000000000000001, 1.0)
+        decreaseFactor = min(0.930000 + self.duration * 0.00250, 1.0)
 
         def lowerIntensity():
             self.intensity = self.intensity * decreaseFactor
             self.setEffectScale(self.intensity)
-            self.p0.renderer.setUserAlpha(0.59999999999999998 * self.intensity)
+            self.p0.renderer.setUserAlpha(0.598 * self.intensity)
             self.heartSfxIval.volume = self.intensity
 
 
         def activate():
             if self.usesSound:
-                self.heartSfxIval = SoundInterval(self.heartBeatSfx, duration = 0.90000000000000002)
+                self.heartSfxIval = SoundInterval(self.heartBeatSfx, duration = 0.9)
                 self.soundIval = Parallel(Sequence(Func(lowerIntensity), Func(self.p0.setBirthRate, 0.25), Wait(0.5), Func(self.p0.setBirthRate, 10.0)), self.heartSfxIval)
                 self.soundIval.loop()
 
@@ -107,12 +107,12 @@ class MonkeyPanic(PooledEffect, EffectController):
 
 
     def setEffectScale(self, scale):
-        self.p0.renderer.setInitialXScale(0.00050000000000000001 * self.cardScale * scale)
-        self.p0.renderer.setFinalXScale(0.074999999999999997 * self.cardScale * scale)
-        self.p0.renderer.setInitialYScale(0.00050000000000000001 * self.cardScale * scale)
-        self.p0.renderer.setFinalYScale(0.074999999999999997 * self.cardScale * scale)
+        self.p0.renderer.setInitialXScale(0.000500 * self.cardScale * scale)
+        self.p0.renderer.setFinalXScale(0.074 * self.cardScale * scale)
+        self.p0.renderer.setInitialYScale(0.000500 * self.cardScale * scale)
+        self.p0.renderer.setFinalYScale(0.074 * self.cardScale * scale)
         self.p0.emitter.setAmplitude(0.0 * scale)
-        self.p0.emitter.setAmplitudeSpread(0.10000000000000001 * scale)
+        self.p0.emitter.setAmplitudeSpread(0.100 * scale)
         self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, 0.5) * scale)
         self.p0.emitter.setRadius(0.25 * scale)
 

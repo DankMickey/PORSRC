@@ -12,7 +12,7 @@ class BorderFrame(DirectFrame):
     def __init__(self, parent = None, **kw):
         if parent is None:
             parent = aspect2d
-        optiondefs = (('relief', None, None), ('borderScale', 0.29999999999999999, self.setBorderScale), ('bgBuffer', 0.025000000000000001, self.setBgBuffer), ('bgColorScale', VBase4(1, 1, 1, 1), self.setBgColorScale), ('bgTransparency', 0, self.setBgTransparent), ('imageColorScale', VBase4(1, 1, 1, 1), None), ('cornerWidth', 0.14999999999999999, None), ('draggable', 0, None), ('frameSize', (-0.5, 0.5, -0.5, 0.5), self.setFrameSize), ('modelName', 'general_frame_f', None), ('showHeadBoard', False, None), ('nameTag', '', None), ('state', DGG.NORMAL, self.setState), ('showBackground', True, None), ('flatten', 1, None))
+        optiondefs = (('relief', None, None), ('borderScale', 0.299, self.setBorderScale), ('bgBuffer', 0.0250, self.setBgBuffer), ('bgColorScale', VBase4(1, 1, 1, 1), self.setBgColorScale), ('bgTransparency', 0, self.setBgTransparent), ('imageColorScale', VBase4(1, 1, 1, 1), None), ('cornerWidth', 0.149, None), ('draggable', 0, None), ('frameSize', (-0.5, 0.5, -0.5, 0.5), self.setFrameSize), ('modelName', 'general_frame_f', None), ('showHeadBoard', False, None), ('nameTag', '', None), ('state', DGG.NORMAL, self.setState), ('showBackground', True, None), ('flatten', 1, None))
         self.pieces = None
         self.guiComponents = { }
         self.nameTag = None
@@ -74,7 +74,7 @@ class BorderFrame(DirectFrame):
             if self['nameTag'] and self.nameTag:
                 PiratesGlobals = PiratesGlobals
                 import pirates.piratesbase
-                self.nameTagLabel = DirectLabel(parent = self.nameTag, relief = None, pos = (0, 0, 0.050000000000000003), text = self['nameTag'], text_scale = 0.20000000000000001, text_font = PiratesGlobals.getPirateBoldOutlineFont(), text_fg = (1, 1, 1, 1), text_shadow = PiratesGuiGlobals.TextShadow, text_align = TextNode.ACenter, textMayChange = 1)
+                self.nameTagLabel = DirectLabel(parent = self.nameTag, relief = None, pos = (0, 0, 0.050000), text = self['nameTag'], text_scale = 0.200, text_font = PiratesGlobals.getPirateBoldOutlineFont(), text_fg = (1, 1, 1, 1), text_shadow = PiratesGuiGlobals.TextShadow, text_align = TextNode.ACenter, textMayChange = 1)
 
     def copyFlattenedChild(self, node, parent):
         if not node:
@@ -263,9 +263,9 @@ class BorderFrame(DirectFrame):
             x = newPos[0]
             y = newPos[1]
             z = newPos[2]
-            x = x - x % 0.050000000000000003
+            x = x - x % 0.050000
             y = 0
-            z = z - z % 0.050000000000000003
+            z = z - z % 0.050000
             frameSize = self['frameSize']
             if frameSize:
                 w = frameSize[1] - frameSize[0]

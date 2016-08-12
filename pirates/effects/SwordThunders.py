@@ -25,7 +25,7 @@ class SwordThunders(PooledEffect, EffectController):
 
 
     def createTrack(self):
-        flipIval = Sequence(Func(self.effectModel.setR, 0), Wait(0.10000000000000001), Func(self.effectModel.setR, 90), Wait(0.10000000000000001), Func(self.effectModel.setR, 180), Wait(0.10000000000000001), Func(self.effectModel.setR, 270), Wait(0.10000000000000001))
+        flipIval = Sequence(Func(self.effectModel.setR, 0), Wait(0.100), Func(self.effectModel.setR, 90), Wait(0.100), Func(self.effectModel.setR, 180), Wait(0.100), Func(self.effectModel.setR, 270), Wait(0.100))
         flipIval2 = Sequence(Func(self.effectModel2.setR, 90), Wait(0.12), Func(self.effectModel2.setR, 180), Wait(0.12), Func(self.effectModel2.setR, 270), Wait(0.12), Func(self.effectModel2.setR, 0), Wait(0.12))
         self.startEffect = Sequence(Func(flipIval.loop), Func(flipIval2.loop))
         self.endEffect = Sequence(Func(flipIval.pause), Func(flipIval2.pause), Func(self.cleanUpEffect))

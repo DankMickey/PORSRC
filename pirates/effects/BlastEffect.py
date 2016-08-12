@@ -9,7 +9,7 @@ class BlastEffect(NodePath, EffectController):
     def __init__(self):
         NodePath.__init__(self, 'BlastEffect')
         EffectController.__init__(self)
-        self.fadeTime = 0.14999999999999999
+        self.fadeTime = 0.149
         self.effectColor = Vec4(1, 1, 1, 1)
         model = loader.loadModel('models/effects/particleCards')
         self.effectModel = model.find('**/particleBlast')

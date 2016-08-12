@@ -45,21 +45,21 @@ class RockShower(PooledEffect, EffectController):
         self.p0.setFloorZ(-5.0)
         self.p0.factory.setLifespanBase(3.0)
         self.p0.factory.setLifespanSpread(0.0)
-        self.p0.factory.setMassBase(0.45000000000000001)
-        self.p0.factory.setMassSpread(0.10000000000000001)
+        self.p0.factory.setMassBase(0.450)
+        self.p0.factory.setMassSpread(0.100)
         self.p0.factory.setTerminalVelocityBase(400.0)
         self.p0.factory.setTerminalVelocitySpread(0.0)
         self.p0.renderer.setAlphaMode(BaseParticleRenderer.PRALPHAUSER)
         self.p0.renderer.setUserAlpha(1.0)
         self.p0.renderer.setFromNode(self.card)
-        self.p0.renderer.setColor(Vec4(0.29999999999999999, 0.20000000000000001, 0, 1))
+        self.p0.renderer.setColor(Vec4(0.299, 0.200, 0, 1))
         self.p0.renderer.setXScaleFlag(1)
         self.p0.renderer.setYScaleFlag(1)
         self.p0.renderer.setAnimAngleFlag(1)
         self.p0.renderer.setInitialXScale(0.02 * self.cardScale)
-        self.p0.renderer.setFinalXScale(0.050000000000000003 * self.cardScale)
+        self.p0.renderer.setFinalXScale(0.050000 * self.cardScale)
         self.p0.renderer.setInitialYScale(0.02 * self.cardScale)
-        self.p0.renderer.setFinalYScale(0.050000000000000003 * self.cardScale)
+        self.p0.renderer.setFinalYScale(0.050000 * self.cardScale)
         self.p0.renderer.setNonanimatedTheta(0.0)
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPNOBLEND)
         self.p0.renderer.setAlphaDisable(0)
@@ -69,7 +69,7 @@ class RockShower(PooledEffect, EffectController):
         self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, 38.0))
         self.p0.emitter.setExplicitLaunchVector(Vec3(1.0, 0.0, 0.0))
         self.p0.emitter.setRadiateOrigin(Point3(0.0, 0.0, 1.0))
-        self.p0.emitter.setRadius(0.20000000000000001)
+        self.p0.emitter.setRadius(0.200)
         self.p0.emitter.setOuterAngle(45.0)
         self.p0.emitter.setInnerAngle(0.0)
         self.p0.emitter.setOuterMagnitude(5.0)
@@ -78,7 +78,7 @@ class RockShower(PooledEffect, EffectController):
 
 
     def createTrack(self):
-        self.track = Sequence(Func(self.p0.setBirthRate, 0.01), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self), Wait(0.29999999999999999), Func(self.p0.setBirthRate, 100), Wait(3.0), Func(self.cleanUpEffect))
+        self.track = Sequence(Func(self.p0.setBirthRate, 0.01), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self), Wait(0.299), Func(self.p0.setBirthRate, 100), Wait(3.0), Func(self.cleanUpEffect))
 
 
     def cleanUpEffect(self):

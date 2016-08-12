@@ -284,7 +284,7 @@ class DistributedJollyRoger(DistributedBattleNPC.DistributedBattleNPC, JollyRoge
             geom.setTransparency(1)
             geom.setTexture(tex, 100)
             geom.setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne))
-            geom.setColorScale(VBase4(0.80000000000000004, 1, 0.10000000000000001, 1))
+            geom.setColorScale(VBase4(0.800000, 1, 0.100, 1))
             self.animNode = NodePath('animNode')
             anim = LerpPosInterval(self.animNode, startPos = VBase3(0, 0, 0), pos = VBase3(0.0, -5.0, 0.0), duration = 5.0)
             geom.setTexProjector(geom.findAllTextureStages()[0], self.animNode, NodePath())

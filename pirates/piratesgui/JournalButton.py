@@ -20,9 +20,9 @@ class JournalButton(GuiButton.GuiButton):
         GuiButton.GuiButton.__init__(self, hotkeys = hotkeys, hotkeyLabel = hotkeyLabel, helpText = helpText, parent = parent)
         self.initialiseoptions(JournalButton)
         self.questCounter = 0
-        self.infoText = DirectFrame(parent = self, relief = None, text = PLocalizer.JournalButtonInfo, text_align = TextNode.ACenter, text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getPirateBoldOutlineFont(), textMayChange = 1, pos = (0, 0, 0.10000000000000001))
-        self.numberText = DirectFrame(parent = self, relief = None, text = str(self.questCounter), text_align = TextNode.ACenter, text_scale = 0.080000000000000002, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getPirateOutlineFont(), textMayChange = 1, pos = (0, 0, -0.01))
-        self.hotkeyLabel = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, text = hotkeyLabel, text_font = PiratesGlobals.getPirateBoldOutlineFont(), text_align = TextNode.ARight, text_scale = PiratesGuiGlobals.TextScaleSmall, text_pos = (0.10000000000000001, -0.040000000000000001), text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 0)
+        self.infoText = DirectFrame(parent = self, relief = None, text = PLocalizer.JournalButtonInfo, text_align = TextNode.ACenter, text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getPirateBoldOutlineFont(), textMayChange = 1, pos = (0, 0, 0.100))
+        self.numberText = DirectFrame(parent = self, relief = None, text = str(self.questCounter), text_align = TextNode.ACenter, text_scale = 0.08, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getPirateOutlineFont(), textMayChange = 1, pos = (0, 0, -0.01))
+        self.hotkeyLabel = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, text = hotkeyLabel, text_font = PiratesGlobals.getPirateBoldOutlineFont(), text_align = TextNode.ARight, text_scale = PiratesGuiGlobals.TextScaleSmall, text_pos = (0.100, -0.0400), text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 0)
 
 
     def addNewQuest(self):

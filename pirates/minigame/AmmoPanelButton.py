@@ -36,7 +36,7 @@ class AmmoPanelButton(DirectButton):
             asset = None
             geom = None
 
-        DirectButton.__init__(self, relief = None, pos = (0, 0, 0), text = '?', text_scale = 0.10000000000000001, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0.0050000000000000001, -0.035000000000000003), text_align = TextNode.ACenter, image = AmmoPanelButton.Image, image_scale = 0.12, geom = geom, geom_scale = 0.12, command = callback, textMayChange = 1, sortOrder = 70, extraArgs = [
+        DirectButton.__init__(self, relief = None, pos = (0, 0, 0), text = '?', text_scale = 0.100, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0.00500, -0.035000), text_align = TextNode.ACenter, image = AmmoPanelButton.Image, image_scale = 0.12, geom = geom, geom_scale = 0.12, command = callback, textMayChange = 1, sortOrder = 70, extraArgs = [
             skillId])
         self.initialiseoptions(AmmoPanelButton)
         self.bind(DGG.ENTER, self.showDetails)
@@ -49,7 +49,7 @@ class AmmoPanelButton(DirectButton):
 
         globalPos = self.getPos(base.a2dLeftCenter)
         self.infoBox = None
-        self.infoBox = BorderFrame(parent = base.a2dLeftCenter, frameSize = (-0.040000000000000001, 0.5, -0.25, 0.050000000000000003), pos = (globalPos.getX() + 0.12, 0, globalPos.getZ()), state = DGG.DISABLED)
+        self.infoBox = BorderFrame(parent = base.a2dLeftCenter, frameSize = (-0.0400, 0.5, -0.25, 0.050000), pos = (globalPos.getX() + 0.12, 0, globalPos.getZ()), state = DGG.DISABLED)
         self.label = DirectLabel(parent = self.infoBox, relief = None, text = PLocalizer.CannonDefenseAmmoDesc % (PLocalizer.makeHeadingString(PLocalizer.InventoryTypeNames[self.skillId], 2), self.cost, self.amount, PLocalizer.CannonDefenseAmmoTypeDesc[self.skillId]), text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = PiratesGuiGlobals.TextFG2, text_wordwrap = 12, textMayChange = 1)
         if self.locked:
             self.label['text'] = PLocalizer.CannonDefenseAmmoUnlockedAt % CannonDefenseGlobals.getLevelUnlockedAt(self.skillId)
@@ -95,12 +95,12 @@ class AmmoPanelButton(DirectButton):
 
     def disablePurchase(self):
         self.purchaseable = False
-        self.setAlphaScale(0.40000000000000002)
+        self.setAlphaScale(0.4)
 
 
     def flash(self):
         if self.flashIval:
             self.flashIval.pause()
 
-        self.flashIval = Sequence(LerpColorInterval(self, 0.25, color = VBase4(0.69999999999999996, 0.10000000000000001, 0.10000000000000001, 1.0), blendType = 'easeOut'), LerpColorInterval(self, 0.25, color = VBase4(1.0, 1.0, 1.0, 1.0), blendType = 'easeOut'))
+        self.flashIval = Sequence(LerpColorInterval(self, 0.25, color = VBase4(0.696, 0.100, 0.100, 1.0), blendType = 'easeOut'), LerpColorInterval(self, 0.25, color = VBase4(1.0, 1.0, 1.0, 1.0), blendType = 'easeOut'))
         self.flashIval.start()

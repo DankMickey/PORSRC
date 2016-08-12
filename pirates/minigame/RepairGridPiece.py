@@ -24,7 +24,7 @@ TOP = 0
 BOTTOM = 1
 LEFT = 2
 RIGHT = 3
-SPACING = 0.14999999999999999
+SPACING = 0.149
 
 class RepairGridPiece(DirectButton, FSM.FSM):
 

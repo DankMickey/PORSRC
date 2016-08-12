@@ -80,12 +80,12 @@ class PulseEffect(PooledEffect, EffectController):
 
 
     def setEffectScale(self, scale):
-        self.p0.renderer.setInitialXScale(0.00050000000000000001 * self.cardScale * scale)
-        self.p0.renderer.setFinalXScale(0.074999999999999997 * self.cardScale * scale)
-        self.p0.renderer.setInitialYScale(0.00050000000000000001 * self.cardScale * scale)
-        self.p0.renderer.setFinalYScale(0.074999999999999997 * self.cardScale * scale)
+        self.p0.renderer.setInitialXScale(0.000500 * self.cardScale * scale)
+        self.p0.renderer.setFinalXScale(0.074 * self.cardScale * scale)
+        self.p0.renderer.setInitialYScale(0.000500 * self.cardScale * scale)
+        self.p0.renderer.setFinalYScale(0.074 * self.cardScale * scale)
         self.p0.emitter.setAmplitude(0.0 * scale)
-        self.p0.emitter.setAmplitudeSpread(0.10000000000000001 * scale)
+        self.p0.emitter.setAmplitudeSpread(0.100 * scale)
         self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, 0.5) * scale)
         self.p0.emitter.setRadius(0.25 * scale)
 

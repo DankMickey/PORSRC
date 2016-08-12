@@ -12,20 +12,20 @@ import random
 
 class RoundshotProjectile(EffectController, NodePath):
     motion_color = [
-        Vec4(0.5, 0.59999999999999998, 0.80000000000000004, 1.0),
-        Vec4(0.5, 0.59999999999999998, 0.80000000000000004, 1.0),
-        Vec4(0.5, 0.59999999999999998, 0.80000000000000004, 1.0)]
+        Vec4(0.5, 0.598, 0.800000, 1.0),
+        Vec4(0.5, 0.598, 0.800000, 1.0),
+        Vec4(0.5, 0.598, 0.800000, 1.0)]
     vertex_list = [
-        Vec4(0.20000000000000001, 0, 0.10000000000000001, 1.0),
-        Vec4(-0.20000000000000001, 0, -0.10000000000000001, 1.0),
-        Vec4(0, 0, 0.20000000000000001, 1.0)]
+        Vec4(0.200, 0, 0.100, 1.0),
+        Vec4(-0.200, 0, -0.100, 1.0),
+        Vec4(0, 0, 0.200, 1.0)]
 
     def __init__(self):
         NodePath.__init__(self, 'RoundshotProjectile')
         EffectController.__init__(self)
         self.shot = loader.loadModel('models/ammunition/cannonball')
         self.shot.reparentTo(self)
-        self.shot.setScale(0.34999999999999998)
+        self.shot.setScale(0.348)
         self.motion_trail = PolyTrail.PolyTrail(None, self.vertex_list, self.motion_color)
         self.motion_trail.setUnmodifiedVertexColors(self.motion_color)
         self.motion_trail.motion_trail.geom_node_path.setTwoSided(False)

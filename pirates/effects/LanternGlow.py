@@ -23,18 +23,18 @@ class LanternGlow(PooledEffect, EffectController):
         self.glow.setFogOff()
         self.glow.reparentTo(self)
         self.glow.setScale(1.0)
-        self.glow.setPos(Vec3(0, 0, -0.14999999999999999))
+        self.glow.setPos(Vec3(0, 0, -0.149))
         self.glowHalo = loader.loadModel('models/effects/gypsyBallGlow').find('**/glow_aura')
         self.glowHalo.reparentTo(self.glow)
-        self.glowHalo.setColorScale(0.80000000000000004, 0.69999999999999996, 0.29999999999999999, 0.10000000000000001)
+        self.glowHalo.setColorScale(0.800000, 0.696, 0.299, 0.100)
         self.glowHalo.setScale(0.5)
         self.fadeIval = None
         self.scaleIval = None
 
 
     def createTrack(self, lod = None):
-        scaleUpHalo = self.glow.scaleInterval(0.14999999999999999, 1.0, startScale = 0.90000000000000002, blendType = 'easeInOut')
-        scaleDownHalo = self.glow.scaleInterval(0.14999999999999999, 0.90000000000000002, startScale = 1.0, blendType = 'easeInOut')
+        scaleUpHalo = self.glow.scaleInterval(0.149, 1.0, startScale = 0.9, blendType = 'easeInOut')
+        scaleDownHalo = self.glow.scaleInterval(0.149, 0.9, startScale = 1.0, blendType = 'easeInOut')
         self.scaleIval = Sequence(scaleDownHalo, scaleUpHalo)
         self.startEffect = Sequence(Func(self.scaleIval.loop))
         self.endEffect = Sequence(Func(self.scaleIval.finish))

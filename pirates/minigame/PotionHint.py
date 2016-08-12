@@ -16,10 +16,10 @@ class XButton(GuiButton.GuiButton):
         self.initialiseoptions(XButton)
         mainGui = loader.loadModel('models/gui/gui_main')
         if close:
-            glowscale = (0.40000000000000002, 0.40000000000000002, 0.40000000000000002)
+            glowscale = (0.4, 0.4, 0.4)
         else:
-            glowscale = (0.59999999999999998, 0.40000000000000002, 0.40000000000000002)
-        self.glow = OnscreenImage(parent = self, image = mainGui.find('**/icon_glow'), scale = glowscale, color = (1.0, 1.0, 1.0, 0.40000000000000002))
+            glowscale = (0.598, 0.4, 0.4)
+        self.glow = OnscreenImage(parent = self, image = mainGui.find('**/icon_glow'), scale = glowscale, color = (1.0, 1.0, 1.0, 0.4))
         self.glow.hide()
         mainGui.remove_node()
         self.bind(DGG.ENTER, self.highlightOn)
@@ -43,7 +43,7 @@ class IgnoreCheck(CheckButton.CheckButton):
         CheckButton.CheckButton.__init__(self, parent)
         self.initialiseoptions(IgnoreCheck)
         mainGui = loader.loadModel('models/gui/gui_main')
-        self.glow = OnscreenImage(parent = self, image = mainGui.find('**/icon_glow'), scale = 0.33000000000000002, color = (1.0, 1.0, 1.0, 0.59999999999999998))
+        self.glow = OnscreenImage(parent = self, image = mainGui.find('**/icon_glow'), scale = 0.33, color = (1.0, 1.0, 1.0, 0.598))
         self.glow.hide()
         mainGui.remove_node()
         self.bind(DGG.ENTER, self.highlightOn)
@@ -53,8 +53,8 @@ class IgnoreCheck(CheckButton.CheckButton):
     def setValue(self):
         CheckButton.CheckButton.setValue(self)
         self['geom_hpr'] = (0, 0, 45)
-        self['geom_pos'] = (0.029999999999999999, 0, 0.044999999999999998)
-        self['geom_scale'] = 0.59999999999999998
+        self['geom_pos'] = (0.0299, 0, 0.0448)
+        self['geom_scale'] = 0.598
         if hasattr(self, 'glow'):
             self.glow.hide()
 
@@ -65,8 +65,8 @@ class IgnoreCheck(CheckButton.CheckButton):
         if not self['value']:
             self['geom'] = self['checkedGeom']
             self['geom_hpr'] = (0, 0, 45)
-            self['geom_pos'] = (0.029999999999999999, 0, 0.044999999999999998)
-            self['geom_scale'] = 0.59999999999999998
+            self['geom_pos'] = (0.0299, 0, 0.0448)
+            self['geom_scale'] = 0.598
 
 
 
@@ -87,16 +87,16 @@ class PotionHint(DirectFrame):
         DirectFrame.__init__(self, parent = potionGame.dialogs, relief = None)
         self.glow = OnscreenImage(parent = self, image = mainGui.find('**/icon_glow'), color = (0.0, 0.0, 0.0, 1.0), scale = (12.0, 1.0, 8.0))
         parch = topGui.find('**/pir_t_gui_gen_parchment')
-        parch.setScale(0.47249999999999998, 1.0, 0.63749999999999996)
+        parch.setScale(0.47248, 1.0, 0.63746)
         self.background = parch.copyTo(self)
-        self.titleLabel = DirectLabel(parent = self, relief = None, text = PLocalizer.PotionGui['HintTitle'], text_align = TextNode.ACenter, text_scale = PiratesGuiGlobals.TextScaleTitleSmall, text_fg = (0.59999999999999998, 0.0, 0.0, 1.0), text_font = PiratesGlobals.getPirateOutlineFont(), text_wordwrap = 24, textMayChange = 0, pos = (0.0, 0, 0.20000000000000001))
-        self.toggleLabel = DirectLabel(parent = self, relief = None, text = PLocalizer.PotionGui['HintToggle'], text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleMed, text_fg = PiratesGuiGlobals.TextFG0, text_wordwrap = 24, textMayChange = 0, pos = (-0.20000000000000001, 0, -0.13))
-        self.bClose = XButton(parent = self, relief = None, pos = (0.41999999999999998, 0, 0.23999999999999999), image = topGui.find('**/pir_t_gui_gen_Xred'), image_scale = 0.59999999999999998, command = self.showNextMessage)
+        self.titleLabel = DirectLabel(parent = self, relief = None, text = PLocalizer.PotionGui['HintTitle'], text_align = TextNode.ACenter, text_scale = PiratesGuiGlobals.TextScaleTitleSmall, text_fg = (0.598, 0.0, 0.0, 1.0), text_font = PiratesGlobals.getPirateOutlineFont(), text_wordwrap = 24, textMayChange = 0, pos = (0.0, 0, 0.200))
+        self.toggleLabel = DirectLabel(parent = self, relief = None, text = PLocalizer.PotionGui['HintToggle'], text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleMed, text_fg = PiratesGuiGlobals.TextFG0, text_wordwrap = 24, textMayChange = 0, pos = (-0.200, 0, -0.13))
+        self.bClose = XButton(parent = self, relief = None, pos = (0.418, 0, 0.239), image = topGui.find('**/pir_t_gui_gen_Xred'), image_scale = 0.598, command = self.showNextMessage)
         self.bClose.stash()
         self.noHintsCheck = IgnoreCheck(parent = self, relief = None, image = topGui.find('**/pir_t_gui_gen_box_empty'), image_scale = 0.75, checkedGeom = topGui.find('**/pir_t_gui_gen_Check_Red'), pos = (-0.25, 0, -0.12), command = self.noHintsCheckCB)
-        self.bAccept = XButton(text = PLocalizer.PotionGui['HintAccept'], image = (None, None, None, None), text0_fg = PiratesGuiGlobals.TextFG23, text1_fg = PiratesGuiGlobals.TextFG23, text2_fg = PiratesGuiGlobals.TextFG23, text3_fg = PiratesGuiGlobals.TextFG9, text_pos = (0.029999999999999999, 0, -0.02), text_font = PiratesGlobals.getPirateOutlineFont(), text_shadow = PiratesGuiGlobals.TextShadow, text_align = TextNode.ARight, close = False, text_scale = PiratesGuiGlobals.TextScaleTitleSmall, command = self.showNextMessage)
+        self.bAccept = XButton(text = PLocalizer.PotionGui['HintAccept'], image = (None, None, None, None), text0_fg = PiratesGuiGlobals.TextFG23, text1_fg = PiratesGuiGlobals.TextFG23, text2_fg = PiratesGuiGlobals.TextFG23, text3_fg = PiratesGuiGlobals.TextFG9, text_pos = (0.0299, 0, -0.02), text_font = PiratesGlobals.getPirateOutlineFont(), text_shadow = PiratesGuiGlobals.TextShadow, text_align = TextNode.ARight, close = False, text_scale = PiratesGuiGlobals.TextScaleTitleSmall, command = self.showNextMessage)
         self.bAccept.reparentTo(self)
-        self.bAccept.setPos(0.41999999999999998, 0, 0.22)
+        self.bAccept.setPos(0.418, 0, 0.22)
         self.bAccept.stash()
         self.message = None
         self.showHints = True
@@ -159,7 +159,7 @@ class PotionHint(DirectFrame):
                 self.message.remove_node()
 
             self.messageText = self.messageQueue.pop()
-            self.message = DirectLabel(parent = self, relief = None, text = self.messageText, text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG0, text_shadow = None, text_wordwrap = 32, pos = (0.02, 0, 0.10000000000000001), textMayChange = 0)
+            self.message = DirectLabel(parent = self, relief = None, text = self.messageText, text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG0, text_shadow = None, text_wordwrap = 32, pos = (0.02, 0, 0.100), textMayChange = 0)
             if len(self.messageQueue) > 0:
                 self.bAccept.unstash()
                 self.bClose.stash()

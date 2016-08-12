@@ -43,7 +43,7 @@ class WindWave(PooledEffect, EffectController):
 
     def setNewUVs(self, offset, ts):
         self.inner.setTexOffset(ts, 0.0, -offset)
-        self.outer.setTexOffset(ts, offset / 1.1000000000000001, 0.0)
+        self.outer.setTexOffset(ts, offset / 1.10, 0.0)
 
 
     def cleanUpEffect(self):

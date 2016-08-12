@@ -42,7 +42,7 @@ class SheetFrame(ListFrame.ListFrame):
         numRows = len(itemList)
         if numRows > 0:
             numColumns = len(itemList[0])
-            column1Width = 0.55000000000000004
+            column1Width = 0.550000
             columnWidth = (self.getWidth() - column1Width) / (numColumns - 1)
             revealTime = 0
             self.createListItem(itemList[0], itemType = PiratesGuiGlobals.UIListItemType_ColumHeadings, columnWidths = [

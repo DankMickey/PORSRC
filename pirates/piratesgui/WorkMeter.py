@@ -17,11 +17,11 @@ class WorkMeter(DirectFrame):
         if self.Card == None:
             self.Card = loader.loadModel('models/gui/ship_battle')
 
-        DirectFrame.__init__(self, relief = None, parent = NodePath(), image = self.Card.find('**/ship_battle_speed_bar*'), image_scale = (0.5, 1, 0.80000000000000004), pos = (0, 0, 0.089999999999999997))
+        DirectFrame.__init__(self, relief = None, parent = NodePath(), image = self.Card.find('**/ship_battle_speed_bar*'), image_scale = (0.5, 1, 0.800000), pos = (0, 0, 0.089))
         self.initialiseoptions(WorkMeter)
         self.setName(self.uniqueName('workMeter'))
         self.duration = 0.0
-        self.meter = DirectWaitBar(parent = self, relief = DGG.FLAT, text = '', text_pos = (0, 0.040000000000000001), text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 0, range = 1.0, value = 0.0, frameColor = Vec4(0.20000000000000001, 0.16, 0.10000000000000001, 1), barColor = Vec4(1, 0.80000000000000004, 0.5, 1), pos = (0, 0, 0), frameSize = (-0.33000000000000002, 0.33000000000000002, -0.012500000000000001, 0.012500000000000001))
+        self.meter = DirectWaitBar(parent = self, relief = DGG.FLAT, text = '', text_pos = (0, 0.0400), text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 0, range = 1.0, value = 0.0, frameColor = Vec4(0.200, 0.16, 0.100, 1), barColor = Vec4(1, 0.800000, 0.5, 1), pos = (0, 0, 0), frameSize = (-0.33, 0.33, -0.0125, 0.0125))
         self.flattenStrong()
         self.reparentTo(base.a2dBottomCenter)
 

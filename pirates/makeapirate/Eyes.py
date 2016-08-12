@@ -47,13 +47,13 @@ class Eyes(DirectObject.DirectObject):
     def loadGUI(self):
         customRrange = (-1.0, 1.0)
         self.pgs1 = CharGuiSlider(self.main, parent = self.browFrame, text = PLocalizer.EyeBrowProtruding, range = (0.0, 1.0), command = self.updateControlShape)
-        self.pgs1.setPos(-0.40000000000000002, 0, -0.29999999999999999)
+        self.pgs1.setPos(-0.4, 0, -0.299)
         self.pgs6 = CharGuiSlider(self.main, parent = self.eyeFrame, text = PLocalizer.EyeCorner, command = self.updateControlShape, range = (-0.25, 0.25))
-        self.pgs6.setPos(-0.40000000000000002, 0, -0.29999999999999999)
+        self.pgs6.setPos(-0.4, 0, -0.299)
         self.pgs7 = CharGuiSlider(self.main, parent = self.eyeFrame, text = PLocalizer.EyeOpeningSize, range = (0, 0.075), command = self.updateControlShape)
-        self.pgs7.setPos(-0.40000000000000002, 0, -0.55000000000000004)
+        self.pgs7.setPos(-0.4, 0, -0.550000)
         self.pgs8 = CharGuiSlider(self.main, parent = self.eyeFrame, text = PLocalizer.EyeSpacing, range = (-0.5, 0.5), command = self.updateControlShape)
-        self.pgs8.setPos(-0.40000000000000002, 0, -0.80000000000000004)
+        self.pgs8.setPos(-0.4, 0, -0.800000)
         self.pgs = [
             self.pgs1,
             self.pgs6,
@@ -102,12 +102,12 @@ class Eyes(DirectObject.DirectObject):
 
 
     def setupButtons(self):
-        self.browFrame = DirectFrame(parent = self.parent, relief = None, text = PLocalizer.EyeBrowFrameTitle, text_fg = (1, 1, 1, 1), text_scale = 0.17999999999999999, text_pos = (0, -0.050000000000000003), pos = (0, 0, -0.10000000000000001), scale = 0.69999999999999996)
+        self.browFrame = DirectFrame(parent = self.parent, relief = None, text = PLocalizer.EyeBrowFrameTitle, text_fg = (1, 1, 1, 1), text_scale = 0.179, text_pos = (0, -0.050000), pos = (0, 0, -0.100), scale = 0.696)
         self.browFrame.hide()
-        self.eyeFrame = DirectFrame(parent = self.parent, relief = None, text = PLocalizer.EyeFrameTitle, text_fg = (1, 1, 1, 1), text_scale = 0.17999999999999999, text_pos = (0, -0.050000000000000003), pos = (0, 0, -1.1000000000000001), scale = 0.69999999999999996)
+        self.eyeFrame = DirectFrame(parent = self.parent, relief = None, text = PLocalizer.EyeFrameTitle, text_fg = (1, 1, 1, 1), text_scale = 0.179, text_pos = (0, -0.050000), pos = (0, 0, -1.10), scale = 0.696)
         self.eyeFrame.hide()
         self.colorPicker = CharGuiPicker(self.main, parent = self.parent, text = PLocalizer.EyesColorFrameTitle, nextCommand = self.handleNextColor, backCommand = self.handleLastColor)
-        self.colorPicker.setPos(0, 0, 0.20000000000000001)
+        self.colorPicker.setPos(0, 0, 0.200)
         self.colorPicker.hide()
 
 

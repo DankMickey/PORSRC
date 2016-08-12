@@ -128,7 +128,7 @@ class BuffIcon(DirectFrame):
         self.initialiseoptions(BuffIcon)
         if not self.Background:
             self.Background = loader.loadModel('models/gui/lookout_gui').find('**/lookout_submit')
-            self.Background.setScale(0.33000000000000002)
+            self.Background.setScale(0.33)
 
         if not self.Card:
             self.Card = loader.loadModel('models/textureCards/buff_icons')
@@ -136,7 +136,7 @@ class BuffIcon(DirectFrame):
         self.myIcon = None
         self.detailFrame = None
         self.dial = None
-        self.iconScale = 0.070000000000000007
+        self.iconScale = 0.070
         self.effectId = effectId
         self.maxDuration = duration
         self.timeLeft = duration
@@ -150,7 +150,7 @@ class BuffIcon(DirectFrame):
 
     def makeIcons(self):
         self.Background.copyTo(self)
-        self.dial = DialMeter(parent = self, meterColor = Vec4(0.29999999999999999, 0.0, 0.80000000000000004, 1), baseColor = Vec4(0, 0, 0, 1), scale = 0.17000000000000001, sortOrder = 0)
+        self.dial = DialMeter(parent = self, meterColor = Vec4(0.299, 0.0, 0.800000, 1), baseColor = Vec4(0, 0, 0, 1), scale = 0.170, sortOrder = 0)
         if self.effectId in buffTable:
             info = buffTable.get(self.effectId)
         else:
@@ -165,7 +165,7 @@ class BuffIcon(DirectFrame):
         if self.detailFrame:
             return None
 
-        normalScale = 0.97307200000000005
+        normalScale = 0.973072
         parent = self.getParent()
         if parent:
             for i in xrange(0, 2):
@@ -186,8 +186,8 @@ class BuffIcon(DirectFrame):
             text = buffTable[WeaponGlobals.C_UNKNOWN_EFFECT][1] + PLocalizer.BuffDuration % durationStr
         self.detailBox = DirectLabel(state = DGG.DISABLED, relief = None, text = text, text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleExtraLarge * normalScale / parentScale, text_fg = (1, 1, 1, 1), text_wordwrap = 15, text_shadow = (0, 0, 0, 1), textMayChange = 1)
         height = -(self.detailBox.getHeight() + 0.01)
-        width = max(0.25, self.detailBox.getWidth() + 0.040000000000000001)
-        self.detailFrame = BorderFrame(parent = self.myIcon, state = DGG.DISABLED, frameSize = (-0.040000000000000001, width, height, 0.070000000000000007), pos = (0.050000000000000003, 0, -0.050000000000000003))
+        width = max(0.25, self.detailBox.getWidth() + 0.0400)
+        self.detailFrame = BorderFrame(parent = self.myIcon, state = DGG.DISABLED, frameSize = (-0.0400, width, height, 0.070), pos = (0.050000, 0, -0.050000))
         self.detailBox.reparentTo(self.detailFrame)
         self.detailFrame.setBin('gui-popup', 0)
         self.detailFrame.hide()

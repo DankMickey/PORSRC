@@ -83,7 +83,7 @@ class DistributedNPCSkeleton(DistributedBattleNPC.DistributedBattleNPC, Skeleton
 
     def startShuffle(self, turnAnim):
         if self.playNoticeAnims():
-            self.loop(turnAnim, blendDelay = 0.14999999999999999)
+            self.loop(turnAnim, blendDelay = 0.149)
 
     def getTurnAnim(self, noticeDif):
         if self.avatarType.getTrack() in [0]:
@@ -99,7 +99,7 @@ class DistributedNPCSkeleton(DistributedBattleNPC.DistributedBattleNPC, Skeleton
             else:
                 reaction = self.getNoticeAnimation()
             if reaction:
-                self.play(reaction, blendInT = 0.29999999999999999, blendOutT = 0.29999999999999999)
+                self.play(reaction, blendInT = 0.299, blendOutT = 0.299)
 
     def presetNoticeAnimation(self):
         self.preselectedReaction = self.getNoticeAnimation()

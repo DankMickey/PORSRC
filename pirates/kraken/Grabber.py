@@ -63,7 +63,7 @@ class Grabber(Creature, TentacleUtils):
         self.joints = None
         self.idle = None
         self.iTask = None
-        self.hitIval = Sequence(self.colorScaleInterval(0.29999999999999999, (1, 0, 0, 1), (1, 1, 1, 1)), self.colorScaleInterval(0.29999999999999999, (1, 1, 1, 1), (1, 0, 0, 1)))
+        self.hitIval = Sequence(self.colorScaleInterval(0.299, (1, 0, 0, 1), (1, 1, 1, 1)), self.colorScaleInterval(0.299, (1, 1, 1, 1), (1, 0, 0, 1)))
         self.generateCreature()
         self.target = loader.loadModel('models/misc/smiley')
         self.target.reparentTo(self.getGrabTargetNode())

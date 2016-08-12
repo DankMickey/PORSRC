@@ -64,8 +64,8 @@ class WeaponPanel(DirectFrame):
         repCategory = ItemGlobals.getItemRepId(itemId)
         if quantity:
             repValue = localAvatar.getInventory().getReputation(repCategory)
-            self.repMeter = ReputationMeter(repCategory, width = 0.66000000000000003)
-            self.repMeter.setPos(0.62, 0, 0.041000000000000002)
+            self.repMeter = ReputationMeter(repCategory, width = 0.66000)
+            self.repMeter.setPos(0.62, 0, 0.041)
             self.repMeter.update(repValue)
             self.repMeter.reparentTo(self)
             self.repMeter.flattenLight()
@@ -73,26 +73,26 @@ class WeaponPanel(DirectFrame):
             hotkeys = ()
             desc = PLocalizer.WeaponDescriptions.get(itemId)
             helpText = PLocalizer.InventoryTypeNames[repCategory]
-            self.weaponButton = CombatTray.WeaponButton(hotkeys = hotkeys, hotkeyLabel = hotkeyLabel, helpOpaque = True, helpText = helpText, parent = self, showQuant = 0, pos = (0.10000000000000001, 0, -0.02), scale = 1.1000000000000001)
+            self.weaponButton = CombatTray.WeaponButton(hotkeys = hotkeys, hotkeyLabel = hotkeyLabel, helpOpaque = True, helpText = helpText, parent = self, showQuant = 0, pos = (0.100, 0, -0.02), scale = 1.10)
             self.weaponButton.ignoreHotkeys()
             self.weaponButton.setWeaponId(itemId)
             self.weaponButton['extraArgs'] = [
                 itemId]
             self.weaponButton.helpDelay = 0
-            self.weaponButton.helpPos = (0.12, 0, -0.040000000000000001)
-            self.desc = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, text = PLocalizer.WeaponAlreadyUnlocked, text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, pos = (0.28999999999999998, 0, -0.0050000000000000001), text_font = PiratesGlobals.getInterfaceFont())
+            self.weaponButton.helpPos = (0.12, 0, -0.0400)
+            self.desc = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, text = PLocalizer.WeaponAlreadyUnlocked, text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, pos = (0.288, 0, -0.00500), text_font = PiratesGlobals.getInterfaceFont())
         else:
             self.repMeter = None
             name = PLocalizer.makeHeadingString(PLocalizer.InventoryTypeNames[repCategory], 2)
-            self.categoryLabel = DirectLabel(parent = self, relief = None, text = name, text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ALeft, text_shadow = PiratesGuiGlobals.TextShadow, pos = (0.28999999999999998, 0, 0.059999999999999998), textMayChange = 0)
-            self.weaponButton = CombatTray.WeaponButton(parent = self, state = DGG.DISABLED, showQuant = 0, scale = 1.1000000000000001)
-            self.weaponButton.setPos(0.10000000000000001, 0, -0.02)
+            self.categoryLabel = DirectLabel(parent = self, relief = None, text = name, text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ALeft, text_shadow = PiratesGuiGlobals.TextShadow, pos = (0.288, 0, 0.0598), textMayChange = 0)
+            self.weaponButton = CombatTray.WeaponButton(parent = self, state = DGG.DISABLED, showQuant = 0, scale = 1.10)
+            self.weaponButton.setPos(0.100, 0, -0.02)
             self.weaponButton.setWeaponId(itemId)
             self.weaponButton.helpDelay = 0
-            self.weaponButton.helpPos = (0.12, 0, -0.040000000000000001)
+            self.weaponButton.helpPos = (0.12, 0, -0.0400)
             unlockDesc = PLocalizer.WeaponUnlockText[repCategory]
-            self.desc = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, text = unlockDesc, text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, pos = (0.28999999999999998, 0, 0.025000000000000001), text_font = PiratesGlobals.getInterfaceFont())
-            self.setColorScale(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 1, 1)
+            self.desc = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, text = unlockDesc, text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, pos = (0.288, 0, 0.0250), text_font = PiratesGlobals.getInterfaceFont())
+            self.setColorScale(0.4, 0.4, 0.4, 1, 1)
 
 
     def destroy(self):

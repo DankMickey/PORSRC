@@ -15,15 +15,15 @@ from pirates.uberdog.UberDogGlobals import InventoryType
 class TradeOfferFrame(DirectFrame):
 
     def __init__(self, avName, w, h, isLocal, tradePanel):
-        DirectFrame.__init__(self, parent = tradePanel, relief = DGG.RIDGE, state = DGG.NORMAL, frameColor = PiratesGuiGlobals.FrameColor, borderWidth = PiratesGuiGlobals.BorderWidth, frameSize = (0, w, 0, h), text = avName, text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0.01, h - 0.040000000000000001))
+        DirectFrame.__init__(self, parent = tradePanel, relief = DGG.RIDGE, state = DGG.NORMAL, frameColor = PiratesGuiGlobals.FrameColor, borderWidth = PiratesGuiGlobals.BorderWidth, frameSize = (0, w, 0, h), text = avName, text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0.01, h - 0.0400))
         self.initialiseoptions(TradeOfferFrame)
         self.isLocal = isLocal
         self.tradePanel = tradePanel
-        self.itemsLabel = DirectLabel(parent = self, relief = None, text = PLocalizer.NoItems, text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.02, 0, h - 0.20000000000000001), textMayChange = 1)
+        self.itemsLabel = DirectLabel(parent = self, relief = None, text = PLocalizer.NoItems, text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.02, 0, h - 0.200), textMayChange = 1)
         if self.isLocal:
-            self.goldButton = DirectButton(parent = self, relief = DGG.RAISED, borderWidth = PiratesGuiGlobals.BorderWidthSmall, frameSize = (0, w - 0.040000000000000001, 0, 0.040000000000000001), pos = (0.02, 0, h - 0.10000000000000001), text = PLocalizer.TradeAddGold, text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0.029999999999999999, 0.01), frameColor = PiratesGuiGlobals.ButtonColor2, command = self.tradePanel.addGold)
+            self.goldButton = DirectButton(parent = self, relief = DGG.RAISED, borderWidth = PiratesGuiGlobals.BorderWidthSmall, frameSize = (0, w - 0.0400, 0, 0.0400), pos = (0.02, 0, h - 0.100), text = PLocalizer.TradeAddGold, text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0.0299, 0.01), frameColor = PiratesGuiGlobals.ButtonColor2, command = self.tradePanel.addGold)
 
-        self.readyButton = DirectButton(parent = self, borderWidth = PiratesGuiGlobals.BorderWidthSmall, frameSize = (0, w - 0.040000000000000001, 0, 0.040000000000000001), pos = (0.02, 0, 0.02), text = PLocalizer.TradeReady, text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0.029999999999999999, 0.01), frameColor = PiratesGuiGlobals.ButtonColor2)
+        self.readyButton = DirectButton(parent = self, borderWidth = PiratesGuiGlobals.BorderWidthSmall, frameSize = (0, w - 0.0400, 0, 0.0400), pos = (0.02, 0, 0.02), text = PLocalizer.TradeReady, text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0.0299, 0.01), frameColor = PiratesGuiGlobals.ButtonColor2)
         if self.isLocal:
             self.readyButton['command'] = self.tradePanel.toggleReady
             self.readyButton['state'] = DGG.NORMAL
@@ -42,14 +42,14 @@ class TradeOfferFrame(DirectFrame):
 class TradePanel(GuiPanel.GuiPanel):
 
     def __init__(self, trade):
-        GuiPanel.GuiPanel.__init__(self, PLocalizer.TradePanelTitle, 0.80000000000000004, 1)
+        GuiPanel.GuiPanel.__init__(self, PLocalizer.TradePanelTitle, 0.800000, 1)
         self.initialiseoptions(TradePanel)
         self.trade = trade
         localName = localAvatar.getName()
-        self.localOffer = TradeOfferFrame(localName, 0.40000000000000002 - 0.02, 0.94999999999999996 - 0.02, 1, self)
-        self.localOffer.setPos(0.40999999999999998, 0, 0.01)
+        self.localOffer = TradeOfferFrame(localName, 0.4 - 0.02, 0.946 - 0.02, 1, self)
+        self.localOffer.setPos(0.408, 0, 0.01)
         otherName = 'Other'
-        self.otherOffer = TradeOfferFrame(otherName, 0.40000000000000002 - 0.02, 0.94999999999999996 - 0.02, 0, self)
+        self.otherOffer = TradeOfferFrame(otherName, 0.4 - 0.02, 0.946 - 0.02, 0, self)
         self.otherOffer.setPos(0.01, 0, 0.01)
         self.accept(PiratesGlobals.TradeChangedEvent, self.updateTrade)
         self.accept(PiratesGlobals.TradeFinishedEvent, self.finishedTrade)

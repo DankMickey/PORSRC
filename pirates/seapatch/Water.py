@@ -42,15 +42,15 @@ class Water(DirectObject):
         self.water_color_texture = None
         self.water_alpha_texture = None
         self.water_speed = 10.0
-        self.water_direction_x = 0.70709999999999995
-        self.water_direction_y = 0.70709999999999995
+        self.water_direction_x = 0.70705
+        self.water_direction_y = 0.70705
         self.water_direction = Vec2(self.water_direction_x, self.water_direction_y)
         self.ds_increment = 1.0 / 128.0
-        self.p_increment = 0.00050000000000000001
-        self.reflection_increment = 0.0050000000000000001
+        self.p_increment = 0.000500
+        self.reflection_increment = 0.00500
         self.xyz_increment = 100.0
         self.uv_increment = 0.01
-        self.uv_increment2 = 0.0050000000000000001
+        self.uv_increment2 = 0.00500
         self.clear_color = None
         if self.enable_water_panel:
             from pirates.seapatch import WaterPanel
@@ -213,7 +213,7 @@ class Water(DirectObject):
             update_function(slider['value'])
 
         def create_slider(update_function, default_value, x, y, resolution, label):
-            slider = DirectSlider(parent = None, command = update_slider, thumb_relief = DGG.FLAT, pos = (x, 0.0, y), text_align = TextNode.ARight, text_scale = (0.10000000000000001, 0.10000000000000001), text_pos = (0.5, 0.10000000000000001), scale = 0.5, pageSize = resolution, text = 'default', value = default_value)
+            slider = DirectSlider(parent = None, command = update_slider, thumb_relief = DGG.FLAT, pos = (x, 0.0, y), text_align = TextNode.ARight, text_scale = (0.100, 0.100), text_pos = (0.5, 0.100), scale = 0.5, pageSize = resolution, text = 'default', value = default_value)
             slider.label = label
             slider['extraArgs'] = [
                 slider,
@@ -296,10 +296,10 @@ class Water(DirectObject):
             self.set_alpha_map_parameters_np()
 
         if self.enable_ui and self.enable_parameter_keys:
-            x = -0.80000000000000004
-            y = 0.80000000000000004
-            x_increment = 1.1000000000000001
-            y_increment = -0.14999999999999999
+            x = -0.800000
+            y = 0.800000
+            x_increment = 1.10
+            y_increment = -0.149
             resolution = 0.02
             default_value = 0.5
             self.red_slider = create_slider(update_water_r, self.water_r / 255.0, x, y, resolution, 'water red')
@@ -327,7 +327,7 @@ class Water(DirectObject):
             self.water_direction_y_slider['range'] = (-1.0, 1.0)
             y += y_increment
             x += x_increment
-            y = 0.80000000000000004
+            y = 0.800000
             map_x_range = 100000.0
             map_y_range = 100000.0
             map_x_scale_range = 10000.0
@@ -1085,10 +1085,10 @@ class Water(DirectObject):
         self.s = 0.5
         self.p = 20.0
         self.set_light_parameters_np()
-        self.px = 0.080000000000000002
+        self.px = 0.08
         self.py = 0.0
         self.ps = 1.0
-        self.reflection_factor = 0.20000000000000001
+        self.reflection_factor = 0.200
         self.set_reflection_parameters_np()
         if True:
             self.water_r = 17
@@ -1138,8 +1138,8 @@ class Water(DirectObject):
         self.set_water_color_add_np()
 
     def setting_1(self):
-        self.d = 0.34999999999999998
-        self.s = 0.10000000000000001
+        self.d = 0.348
+        self.s = 0.100
         self.p = 20.0
         self.set_light_parameters()
         self.x = 0.0
@@ -1149,7 +1149,7 @@ class Water(DirectObject):
 
     def setting_2(self):
         self.d = 0.5
-        self.s = 0.34999999999999998
+        self.s = 0.348
         self.p = 20.0
         self.set_light_parameters()
         self.x = 0.0
@@ -1159,7 +1159,7 @@ class Water(DirectObject):
 
     def setting_3(self):
         self.d = 0.5
-        self.s = 0.34999999999999998
+        self.s = 0.348
         self.p = 20.0
         self.set_light_parameters()
         self.x = 0.0
@@ -1169,7 +1169,7 @@ class Water(DirectObject):
 
     def setting_4(self):
         self.d = 1.0
-        self.s = 0.34999999999999998
+        self.s = 0.348
         self.p = 20.0
         self.set_light_parameters()
         self.x = 0.0
@@ -1210,9 +1210,9 @@ class Water(DirectObject):
         self.set_specular_color()
 
     def setting_8(self):
-        self.px = 0.035000000000000003
-        self.py = 0.035000000000000003
-        self.reflection_factor = 0.20000000000000001
+        self.px = 0.035000
+        self.py = 0.035000
+        self.reflection_factor = 0.200
         self.set_reflection_parameters()
 
     def update_water(self, time):

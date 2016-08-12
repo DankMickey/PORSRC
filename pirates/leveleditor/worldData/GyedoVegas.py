@@ -23,18 +23,18 @@ objectStruct = {
                     'Spawnables': 'Merchant',
                     'Team': '2',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' } },
                 '1170402362.67Shochet': {
                     'Type': 'Ship Spawn Node',
                     'Flagship': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Level': '3',
-                    'Pos': Point3(333.601, -1679.8800000000001, 0.0),
+                    'Pos': Point3(333.601, -1679.88, 0.0),
                     'Spawnables': 'Warship',
                     'Team': '1',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' } } },
             'Visual': { } } },
     'Layers': { },

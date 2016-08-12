@@ -15,7 +15,7 @@ objectStruct = {
                     'SpawnDelay': '20',
                     'Spawnables': 'Team 2',
                     'Visual': {
-                        'Color': (0.80000000000000004, 0.20000000000000001, 0.65000000000000002, 1),
+                        'Color': (0.800000, 0.200, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'startingDepth': '12' },
                 '1171689216.0jubutler': {
@@ -28,7 +28,7 @@ objectStruct = {
                     'SpawnDelay': '20',
                     'Spawnables': 'Team 2',
                     'Visual': {
-                        'Color': (0.80000000000000004, 0.20000000000000001, 0.65000000000000002, 1),
+                        'Color': (0.800000, 0.200, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'startingDepth': '12' },
                 '1171689216.0jubutler0': {
@@ -41,7 +41,7 @@ objectStruct = {
                     'SpawnDelay': '20',
                     'Spawnables': 'Team 1',
                     'Visual': {
-                        'Color': (0.80000000000000004, 0.20000000000000001, 0.65000000000000002, 1),
+                        'Color': (0.800000, 0.200, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'startingDepth': '12' },
                 '1171689216.0jubutler1': {
@@ -54,7 +54,7 @@ objectStruct = {
                     'SpawnDelay': '20',
                     'Spawnables': 'Team 1',
                     'Visual': {
-                        'Color': (0.80000000000000004, 0.20000000000000001, 0.65000000000000002, 1),
+                        'Color': (0.800000, 0.200, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'startingDepth': '12' } },
             'Visual': { } } },

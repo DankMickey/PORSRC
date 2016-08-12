@@ -19,7 +19,7 @@ objectStruct = {
                     'CustomModel': 'None',
                     'Hpr': VBase3(-122.551, 0.0, 0.0),
                     'Patrol Radius': '12.0000',
-                    'Pos': Point3(23.213000000000001, 5.3570000000000002, 0.0),
+                    'Pos': Point3(23.213, 5.3570, 0.0),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'Private Status': 'All',
@@ -32,7 +32,7 @@ objectStruct = {
                     'Type': 'Door Locator Node',
                     'Name': 'door_locator',
                     'Hpr': VBase3(-180.0, 0.0, 0.0),
-                    'Pos': Point3(0.16200000000000001, -4.3540000000000001, 0.59899999999999998),
+                    'Pos': Point3(0.162, -4.354, 0.59898),
                     'Scale': VBase3(1.0, 1.0, 1.0) } },
             'Visual': {
                 'Model': 'models/buildings/interior_shanty_store' } } },
@@ -110,6 +110,6 @@ objectStruct = {
         '1196898944.0dxschafe': '["Objects"]["1171316864.0dxschafe0"]["Objects"]["1196898944.0dxschafe"]',
         '1201041698.69dxschafe': '["Objects"]["1171316864.0dxschafe0"]["Objects"]["1201041698.69dxschafe"]' } }
 extraInfo = {
-    'camPos': Point3(-368.14999999999998, -624.51700000000005, 65.907700000000006),
-    'camHpr': VBase3(176.22800000000001, -35.278700000000001, 1.43803e-006),
+    'camPos': Point3(-368.148, -624.517, 65.9077),
+    'camHpr': VBase3(176.228, -35.2787, 1.43803e-006),
     'focalLength': 1.3999999761599999 }

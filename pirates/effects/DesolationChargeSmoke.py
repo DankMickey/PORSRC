@@ -43,7 +43,7 @@ class DesolationChargeSmoke(PooledEffect, EffectController):
         self.p0.factory.setLifespanBase(1.5)
         self.p0.factory.setLifespanSpread(0.25)
         self.p0.factory.setMassBase(1.0)
-        self.p0.factory.setMassSpread(0.20000000000000001)
+        self.p0.factory.setMassSpread(0.200)
         self.p0.factory.setTerminalVelocityBase(400.0)
         self.p0.factory.setTerminalVelocitySpread(0.0)
         self.p0.renderer.setAlphaMode(BaseParticleRenderer.PRALPHAOUT)
@@ -66,7 +66,7 @@ class DesolationChargeSmoke(PooledEffect, EffectController):
         self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, 0.0))
         self.p0.emitter.setExplicitLaunchVector(Vec3(1.0, 0.0, 0.0))
         self.p0.emitter.setRadiateOrigin(Point3(0.0, 0.0, 10.0))
-        self.p0.emitter.setRadius(0.10000000000000001)
+        self.p0.emitter.setRadius(0.100)
 
 
     def createTrack(self):

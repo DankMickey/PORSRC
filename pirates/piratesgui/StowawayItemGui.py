@@ -32,19 +32,19 @@ class StowawayItemGui(StowawayListItem):
         LocationIds.CUBA_ISLAND: (0, 90, 0),
         LocationIds.DEL_FUEGO_ISLAND: (0, 90, 0) }
     islandScaleLookup = {
-        LocationIds.PORT_ROYAL_ISLAND: 0.14999999999999999,
-        LocationIds.TORTUGA_ISLAND: 0.17999999999999999,
-        LocationIds.CUBA_ISLAND: 0.40000000000000002,
-        LocationIds.DEL_FUEGO_ISLAND: 0.27500000000000002 }
+        LocationIds.PORT_ROYAL_ISLAND: 0.149,
+        LocationIds.TORTUGA_ISLAND: 0.179,
+        LocationIds.CUBA_ISLAND: 0.4,
+        LocationIds.DEL_FUEGO_ISLAND: 0.275 }
     islandPosLookup = {
-        LocationIds.PORT_ROYAL_ISLAND: (0.070000000000000007, 0, 0.070000000000000007),
-        LocationIds.TORTUGA_ISLAND: (0.059999999999999998, 0, 0.050000000000000003),
-        LocationIds.CUBA_ISLAND: (0.10000000000000001, 0, 0.070000000000000007),
-        LocationIds.DEL_FUEGO_ISLAND: (0.070000000000000007, 0, 0.070000000000000007) }
+        LocationIds.PORT_ROYAL_ISLAND: (0.070, 0, 0.070),
+        LocationIds.TORTUGA_ISLAND: (0.0598, 0, 0.050000),
+        LocationIds.CUBA_ISLAND: (0.100, 0, 0.070),
+        LocationIds.DEL_FUEGO_ISLAND: (0.070, 0, 0.070) }
     islandColorScaleLookup = {
         LocationIds.PORT_ROYAL_ISLAND: (1, 1, 1, 1),
         LocationIds.TORTUGA_ISLAND: (1, 1, 1, 1),
-        LocationIds.CUBA_ISLAND: (0.59999999999999998, 1.0, 0.90000000000000002, 1),
+        LocationIds.CUBA_ISLAND: (0.598, 1.0, 0.9, 1),
         LocationIds.DEL_FUEGO_ISLAND: (1, 1, 1, 1) }
 
     def __init__(self, data, trade = 0, buy = 0, sell = 0, use = 0, weapon = 0, isDisabled = 0, **kw):
@@ -55,7 +55,7 @@ class StowawayItemGui(StowawayListItem):
             buttonRelief = DGG.RIDGE
             buttonState = DGG.DISABLED
         self.loadGui()
-        optiondefs = (('relief', None, None), ('state', buttonState, None), ('frameSize', (0, self.width, 0, self.height), None), ('image', StowawayItemGui.genericButton, None), ('image_scale', (0.54000000000000004, 1, 0.41999999999999998), None), ('image_pos', (0.26000000000000001, 0, 0.080000000000000002), None), ('pressEffect', 0, None), ('command', self.sendEvents, None))
+        optiondefs = (('relief', None, None), ('state', buttonState, None), ('frameSize', (0, self.width, 0, self.height), None), ('image', StowawayItemGui.genericButton, None), ('image_scale', (0.540000, 1, 0.418), None), ('image_pos', (0.260, 0, 0.08), None), ('pressEffect', 0, None), ('command', self.sendEvents, None))
         self.defineoptions(kw, optiondefs)
         StowawayListItem.__init__(self, data, trade = trade, buy = buy, sell = sell, use = use, weapon = weapon, isDisabled = isDisabled, width = self.width, height = self.height)
         self.initialiseoptions(StowawayItemGui)
@@ -74,11 +74,11 @@ class StowawayItemGui(StowawayListItem):
     def createGui(self):
         itemId = self.data[0]
         self.picture = DirectFrame(parent = self, relief = None, state = DGG.DISABLED, pos = (0.01, 0, 0.01))
-        self.nameTag = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, text = self.name, text_scale = PiratesGuiGlobals.TextScaleSmall * PLocalizer.getHeadingScale(2), text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, pos = (0.050000000000000003, 0, 0.089999999999999997), text_font = PiratesGlobals.getInterfaceFont())
+        self.nameTag = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, text = self.name, text_scale = PiratesGuiGlobals.TextScaleSmall * PLocalizer.getHeadingScale(2), text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, pos = (0.050000, 0, 0.089), text_font = PiratesGlobals.getInterfaceFont())
         itemTypeFormatted = ''
-        self.itemTypeName = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, text = itemTypeFormatted, text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getInterfaceFont(), pos = (0.050000000000000003, 0, 0.065000000000000002))
-        self.miscText = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, text = '', text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.050000000000000003, 0, 0.025000000000000001))
-        self.costText = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, image = StowawayListItem.coinImage, image_scale = 0.12, image_pos = Vec3(-0.01, 0, 0.01), text = str(self.price), text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ARight, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, text_pos = (-0.029999999999999999, 0, 0), pos = (self.width - 0.035000000000000003, 0, 0.089999999999999997), text_font = PiratesGlobals.getInterfaceFont())
+        self.itemTypeName = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, text = itemTypeFormatted, text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getInterfaceFont(), pos = (0.050000, 0, 0.065))
+        self.miscText = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, text = '', text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.050000, 0, 0.0250))
+        self.costText = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, image = StowawayListItem.coinImage, image_scale = 0.12, image_pos = Vec3(-0.01, 0, 0.01), text = str(self.price), text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ARight, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, text_pos = (-0.0299, 0, 0), pos = (self.width - 0.035000, 0, 0.089), text_font = PiratesGlobals.getInterfaceFont())
         self.picture['geom'] = loader.loadModel(StowawayItemGui.islandModelLookup[itemId])
         self.picture['geom_scale'] = StowawayItemGui.islandScaleLookup[itemId]
         self.picture['geom_pos'] = StowawayItemGui.islandPosLookup[itemId]
@@ -89,7 +89,7 @@ class StowawayItemGui(StowawayListItem):
 
     def highlightRed(self, text = ''):
         self['state'] = DGG.DISABLED
-        self['image_color'] = Vec4(0.55000000000000004, 0.55000000000000004, 0.5, 1)
+        self['image_color'] = Vec4(0.550000, 0.550000, 0.5, 1)
         self.available = False
         self.highlightBox(text, Vec4(0.75, 0.5, 0.5, 1), PiratesGuiGlobals.TextFG6)
 
@@ -165,8 +165,8 @@ class StowawayItemGui(StowawayListItem):
                 newPos = self.getPos(aspect2d)
                 x = newPos[0]
                 z = newPos[2]
-                x = x - x % 0.050000000000000003
-                z = z - z % 0.050000000000000003
+                x = x - x % 0.050000
+                z = z - z % 0.050000
                 x = min(1.3 - self.width, max(-1.3, x))
                 z = min(1 - self.height, max(-1, z))
                 self.setPos(aspect2d, x, 0.0, z)

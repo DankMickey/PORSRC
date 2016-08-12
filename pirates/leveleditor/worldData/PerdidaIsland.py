@@ -31,7 +31,7 @@ objectStruct = {
                     'Type': 'Player Spawn Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Index': -1,
-                    'Pos': Point3(118.402, -248.26900000000001, 25.736000000000001),
+                    'Pos': Point3(118.402, -248.269, 25.736),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'All',
                     'Visual': {
@@ -40,43 +40,43 @@ objectStruct = {
                     'Type': 'Port Collision Sphere',
                     'Name': 'PerdidaIslandPort',
                     'Hpr': VBase3(0.0, 0.0, 0.0),
-                    'Pos': Point3(275.01799999999997, -486.32600000000002, 10.287000000000001),
-                    'Scale': VBase3(967.35000000000002, 967.35000000000002, 967.35000000000002),
+                    'Pos': Point3(275.017, -486.326, 10.287),
+                    'Scale': VBase3(967.35, 967.35, 967.35),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.5, 0.5, 1.0, 0.20000000000000001),
+                        'Color': (0.5, 0.5, 1.0, 0.200),
                         'Model': 'models/misc/smiley' } },
                 '1172209667.91sdnaik': {
                     'Type': 'Locator Node',
                     'Name': 'portal_exterior_1',
                     'Hpr': VBase3(-31.913, 0.0, 0.0),
-                    'Pos': Point3(184.428, -35.578000000000003, 27.183),
+                    'Pos': Point3(184.428, -35.578, 27.183),
                     'Scale': VBase3(1.0, 1.0, 1.0) },
                 '1172209670.05sdnaik': {
                     'Type': 'Locator Node',
                     'Name': 'portal_exterior_2',
-                    'Hpr': VBase3(-178.30699999999999, 0.0, 0.0),
-                    'Pos': Point3(-60.087000000000003, -6.6360000000000001, 26.715),
+                    'Hpr': VBase3(-178.306, 0.0, 0.0),
+                    'Pos': Point3(-60.087, -6.636, 26.715),
                     'Scale': VBase3(1.0, 1.0, 1.0) },
                 '1172209713.31sdnaik': {
                     'Type': 'Connector Tunnel',
                     'File': 'peridida_island_tunnel_jungle_2',
-                    'Hpr': VBase3(-89.135999999999996, 0.0, 0.0),
+                    'Hpr': VBase3(-89.1356, 0.0, 0.0),
                     'Objects': {
                         '1172209713.33sdnaik': {
                             'Type': 'Locator Node',
                             'Name': 'portal_connector_1',
-                            'Hpr': VBase3(-90.188999999999993, 0.0, 0.0),
+                            'Hpr': VBase3(-90.1883, 0.0, 0.0),
                             'Pos': Point3(0.0, 0.0, 0.0),
                             'Scale': VBase3(1.0, 1.0, 1.0) },
                         '1172209713.34sdnaik': {
                             'Type': 'Locator Node',
                             'Name': 'portal_connector_2',
-                            'GridPos': Point3(-193.631, 93.468000000000004, 26.68),
-                            'Hpr': VBase3(88.722999999999999, 0.0, 0.0),
-                            'Pos': Point3(-94.897999999999996, 150.0, 0.0),
+                            'GridPos': Point3(-193.631, 93.4680, 26.68),
+                            'Hpr': VBase3(88.722, 0.0, 0.0),
+                            'Pos': Point3(-94.8976, 150.0, 0.0),
                             'Scale': VBase3(1.0, 1.0, 1.0) } },
-                    'Pos': Point3(-167.584, -24.483000000000001, 198.64599999999999),
+                    'Pos': Point3(-167.584, -24.483, 198.645),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/tunnels/tunnel_jungle' } },
@@ -88,17 +88,17 @@ objectStruct = {
                         '1172209837.83sdnaik': {
                             'Type': 'Locator Node',
                             'Name': 'portal_connector_1',
-                            'Hpr': VBase3(-90.188999999999993, 0.0, 0.0),
+                            'Hpr': VBase3(-90.1883, 0.0, 0.0),
                             'Pos': Point3(0.0, 0.0, 0.0),
                             'Scale': VBase3(1.0, 1.0, 1.0) },
                         '1172209837.84sdnaik': {
                             'Type': 'Locator Node',
                             'Name': 'portal_connector_2',
-                            'GridPos': Point3(82.783000000000001, 210.05600000000001, 96.465000000000003),
-                            'Hpr': VBase3(88.722999999999999, 0.0, 0.0),
-                            'Pos': Point3(-94.897999999999996, 150.0, 0.0),
+                            'GridPos': Point3(82.783, 210.056, 96.465),
+                            'Hpr': VBase3(88.722, 0.0, 0.0),
+                            'Pos': Point3(-94.8976, 150.0, 0.0),
                             'Scale': VBase3(1.0, 1.0, 1.0) } },
-                    'Pos': Point3(177.16800000000001, 60.866999999999997, 160.49700000000001),
+                    'Pos': Point3(177.168, 60.866, 160.497),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/tunnels/tunnel_jungle' } },
@@ -110,26 +110,26 @@ objectStruct = {
                         '1172209955.28sdnaik': {
                             'Type': 'Locator Node',
                             'Name': 'portal_interior_1',
-                            'GridPos': Point3(212.316, 894.50900000000001, 192.78399999999999),
+                            'GridPos': Point3(212.316, 894.509, 192.783),
                             'Hpr': VBase3(-90.0, 0.0, 0.0),
-                            'Pos': Point3(498.11399999999998, 427.80799999999999, 45.335999999999999),
+                            'Pos': Point3(498.113, 427.807, 45.335),
                             'Scale': VBase3(1.0, 1.0, 1.0) },
                         '1172209955.33sdnaik': {
                             'Type': 'Locator Node',
                             'Name': 'portal_interior_2',
-                            'GridPos': Point3(-604.75699999999995, -99.066999999999993, 148.12299999999999),
+                            'GridPos': Point3(-604.756, -99.0663, 148.122),
                             'Hpr': VBase3(124.91, 0.0, 0.0),
-                            'Pos': Point3(-318.959, -565.76800000000003, 0.67500000000000004),
+                            'Pos': Point3(-318.959, -565.768, 0.675000),
                             'Scale': VBase3(1.0, 1.0, 1.0) } },
-                    'Pos': Point3(-669.37099999999998, 710.16499999999996, 147.447),
+                    'Pos': Point3(-669.370, 710.164, 147.447),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/jungles/jungle_b_zero' } },
                 '1179876726.07Aholdun': {
                     'Type': 'Player Spawn Node',
-                    'Hpr': VBase3(76.941999999999993, 0.0, 0.0),
+                    'Hpr': VBase3(76.9413, 0.0, 0.0),
                     'Index': -1,
-                    'Pos': Point3(240.464, -64.959999999999994, 24.219999999999999),
+                    'Pos': Point3(240.464, -64.954, 24.219),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'All',
                     'Visual': {
@@ -139,7 +139,7 @@ objectStruct = {
                     'Type': 'Player Spawn Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Index': -1,
-                    'Pos': Point3(206.672, -142.25899999999999, 26.332000000000001),
+                    'Pos': Point3(206.672, -142.258, 26.332),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'All',
                     'Visual': {
@@ -147,9 +147,9 @@ objectStruct = {
                         'Model': 'models/misc/smiley' } },
                 '1179876927.93Aholdun': {
                     'Type': 'Player Spawn Node',
-                    'Hpr': VBase3(38.640000000000001, 0.0, 0.0),
+                    'Hpr': VBase3(38.64, 0.0, 0.0),
                     'Index': -1,
-                    'Pos': Point3(-20.702999999999999, -213.22499999999999, 26.486000000000001),
+                    'Pos': Point3(-20.702, -213.224, 26.486),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'All',
                     'Visual': {
@@ -159,7 +159,7 @@ objectStruct = {
                     'Type': 'Player Spawn Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Index': -1,
-                    'Pos': Point3(-20.702999999999999, -213.22499999999999, 26.486000000000001),
+                    'Pos': Point3(-20.702, -213.224, 26.486),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'All',
                     'Visual': {
@@ -167,9 +167,9 @@ objectStruct = {
                         'Model': 'models/misc/smiley' } },
                 '1179876937.1Aholdun': {
                     'Type': 'Player Spawn Node',
-                    'Hpr': VBase3(-42.909999999999997, 0.0, 0.0),
+                    'Hpr': VBase3(-42.90, 0.0, 0.0),
                     'Index': -1,
-                    'Pos': Point3(-175.75200000000001, -145.00800000000001, 26.547999999999998),
+                    'Pos': Point3(-175.752, -145.008, 26.5478),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'All',
                     'Visual': {
@@ -179,7 +179,7 @@ objectStruct = {
                     'Type': 'Player Spawn Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Index': -1,
-                    'Pos': Point3(-218.72300000000001, -18.047000000000001, 15.723000000000001),
+                    'Pos': Point3(-218.723, -18.047, 15.723),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'All',
                     'Visual': {
@@ -189,7 +189,7 @@ objectStruct = {
                     'Type': 'Player Spawn Node',
                     'Hpr': VBase3(-148.261, 0.0, 0.0),
                     'Index': -1,
-                    'Pos': Point3(-157.37100000000001, 98.271000000000001, 5.1059999999999999),
+                    'Pos': Point3(-157.371, 98.271, 5.1059),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'All',
                     'Visual': {
@@ -197,9 +197,9 @@ objectStruct = {
                         'Model': 'models/misc/smiley' } },
                 '1179877091.16Aholdun': {
                     'Type': 'Player Spawn Node',
-                    'Hpr': VBase3(48.813000000000002, 0.0, 0.0),
+                    'Hpr': VBase3(48.813, 0.0, 0.0),
                     'Index': -1,
-                    'Pos': Point3(312.72699999999998, -184.24100000000001, 12.685),
+                    'Pos': Point3(312.726, -184.241, 12.685),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'All',
                     'Visual': {
@@ -209,7 +209,7 @@ objectStruct = {
                     'Type': 'Player Spawn Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Index': -1,
-                    'Pos': Point3(134.56200000000001, -371.01400000000001, 11.640000000000001),
+                    'Pos': Point3(134.562, -371.014, 11.64),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'All',
                     'Visual': {
@@ -220,12 +220,12 @@ objectStruct = {
                     'Aggro Radius': '14.1566',
                     'AnimSet': 'default',
                     'GridPos': Point3(-124.498, 43.061, 22.994),
-                    'Hpr': VBase3(-89.135999999999996, 0.0, 0.0),
+                    'Hpr': VBase3(-89.1356, 0.0, 0.0),
                     'Min Population': '1',
                     'Patrol Radius': '12.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(-127.17400000000001, 68.25, 19.239000000000001),
+                    'Pos': Point3(-127.174, 68.25, 19.239),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropLeft': 'None',
@@ -240,7 +240,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' } },
                 '1179877536.51Aholdun': {
                     'Type': 'Spawn Node',
@@ -250,7 +250,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(11.457000000000001, -268.44600000000003, 25.143999999999998),
+                    'Pos': Point3(11.457, -268.446, 25.1438),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropLeft': 'None',
@@ -265,7 +265,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' } },
                 '1179877565.4Aholdun': {
                     'Type': 'Spawn Node',
@@ -275,7 +275,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(280.45299999999997, -106.017, 20.952000000000002),
+                    'Pos': Point3(280.452, -106.017, 20.952),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropLeft': 'None',
@@ -290,7 +290,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' } },
                 '1179877599.51Aholdun': {
                     'Type': 'Spawn Node',
@@ -300,7 +300,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(170.11699999999999, -301.81200000000001, 18.603999999999999),
+                    'Pos': Point3(170.116, -301.812, 18.603),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropLeft': 'None',
@@ -315,7 +315,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' } },
                 '1179877641.49Aholdun': {
                     'Type': 'Spawn Node',
@@ -325,7 +325,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(-253.29400000000001, -126.518, 16.588000000000001),
+                    'Pos': Point3(-253.294, -126.518, 16.588),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropLeft': 'None',
@@ -340,17 +340,17 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' } },
                 '1179877662.26Aholdun': {
                     'Type': 'Spawn Node',
                     'AnimSet': 'default',
-                    'Hpr': VBase3(-122.93600000000001, 0.0, 0.0),
+                    'Hpr': VBase3(-122.936, 0.0, 0.0),
                     'Min Population': '1',
                     'Patrol Radius': '12.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(58.725999999999999, -176.184, 26.475000000000001),
+                    'Pos': Point3(58.725, -176.184, 26.475),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropLeft': 'None',
@@ -365,7 +365,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' } },
                 '1179877716.65Aholdun': {
                     'Type': 'Spawn Node',
@@ -375,7 +375,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(-54.462000000000003, -144.77199999999999, 26.539000000000001),
+                    'Pos': Point3(-54.462, -144.771, 26.539),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropLeft': 'None',
@@ -390,7 +390,7 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' } },
                 '1182806528.0dxschafe': {
                     'Type': 'Spawn Node',
@@ -400,7 +400,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(-172.00999999999999, -197.67599999999999, 19.045000000000002),
+                    'Pos': Point3(-172.00, -197.675, 19.045),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropLeft': 'None',
@@ -415,13 +415,13 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' } },
                 '1184893696.0dxschafe': {
                     'Type': 'Player Spawn Node',
-                    'Hpr': VBase3(-99.680999999999997, 0.0, 0.0),
+                    'Hpr': VBase3(-99.680, 0.0, 0.0),
                     'Index': 1,
-                    'Pos': Point3(-260.012, -55.546999999999997, 8.5570000000000004),
+                    'Pos': Point3(-260.012, -55.546, 8.55700),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'All',
                     'Visual': {
@@ -431,7 +431,7 @@ objectStruct = {
                     'Type': 'Player Spawn Node',
                     'Hpr': VBase3(0.0, 0.0, 0.0),
                     'Index': 1,
-                    'Pos': Point3(-76.629999999999995, -272.03500000000003, 11.833),
+                    'Pos': Point3(-76.625, -272.035, 11.833),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'All',
                     'Visual': {
@@ -441,7 +441,7 @@ objectStruct = {
                     'Type': 'Player Spawn Node',
                     'Hpr': VBase3(26.23, 0.0, 0.0),
                     'Index': 1,
-                    'Pos': Point3(247.45699999999999, -267.29700000000003, 11.066000000000001),
+                    'Pos': Point3(247.456, -267.297, 11.066),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'All',
                     'Visual': {
@@ -450,18 +450,18 @@ objectStruct = {
                 '1184893696.0dxschafe2': {
                     'Type': 'Dinghy',
                     'Aggro Radius': '20.0000',
-                    'Hpr': VBase3(0.0, 0.025000000000000001, 0.0),
+                    'Hpr': VBase3(0.0, 0.0250, 0.0),
                     'Location': 'Water',
-                    'Pos': Point3(223.39699999999999, -363.93200000000002, 0.63900000000000001),
+                    'Pos': Point3(223.396, -363.932, 0.639),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/shipparts/dingy-geometry_High' } },
                 '1184893696.0dxschafe3': {
                     'Type': 'Dinghy',
                     'Aggro Radius': '20.0000',
-                    'Hpr': VBase3(0.042999999999999997, -1.8100000000000001, -0.92700000000000005),
+                    'Hpr': VBase3(0.042, -1.81, -0.927000),
                     'Location': 'Water',
-                    'Pos': Point3(-229.59899999999999, 51.703000000000003, 0.94099999999999995),
+                    'Pos': Point3(-229.598, 51.703, 0.94095),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/shipparts/dingy-geometry_High' } },
@@ -473,7 +473,7 @@ objectStruct = {
                     'Patrol Radius': '12.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(63.451999999999998, -337.291, 20.074000000000002),
+                    'Pos': Point3(63.4518, -337.291, 20.074),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'PropLeft': 'None',
@@ -488,14 +488,14 @@ objectStruct = {
                     'TrailRight': 'None',
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' } },
                 '1235067135.13caoconno': {
                     'Type': 'Collision Barrier',
                     'DisableCollision': False,
                     'Holiday': '',
-                    'Hpr': VBase3(-79.540999999999997, 0.0, 0.0),
-                    'Pos': Point3(-71.081999999999994, -41.881, 26.588999999999999),
+                    'Hpr': VBase3(-79.540, 0.0, 0.0),
+                    'Pos': Point3(-71.0814, -41.881, 26.588),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -546,8 +546,8 @@ objectStruct = {
         '1192813568.0dxschafe': '["Objects"]["1164157132.99dzlu"]["Objects"]["1192813568.0dxschafe"]',
         '1235067135.13caoconno': '["Objects"]["1164157132.99dzlu"]["Objects"]["1235067135.13caoconno"]' } }
 extraInfo = {
-    'camPos': Point3(69.689099999999996, -877.279, 982.13300000000004),
-    'camHpr': VBase3(5.4634600000000004, -57.417400000000001, 0),
+    'camPos': Point3(69.6890, -877.279, 982.133),
+    'camHpr': VBase3(5.46346, -57.4174, 0),
     'focalLength': 1.3999999761599999,
     'skyState': 2,
     'fog': 0 }

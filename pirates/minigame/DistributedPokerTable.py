@@ -187,7 +187,7 @@ class DistributedPokerTable(DistributedGameTable.DistributedGameTable, PokerBase
 
 
     def balanceLeft(self):
-        self.fulcrumPos = self.fulcrumPos - 0.0050000000000000001
+        self.fulcrumPos = self.fulcrumPos - 0.00500
         if self.fulcrumPos < 0:
             self.fulcrumPos = 0
 
@@ -198,14 +198,14 @@ class DistributedPokerTable(DistributedGameTable.DistributedGameTable, PokerBase
             self.gui.balanceR.setX((0.5 - self.fulcrumPos) / 2.0)
             self.gui.balance.setX(self.fulcrumPos - 0.25)
             self.gui.fulcrum.setX(self.fulcrumPos - 0.25)
-            self.gui.weightR.setX(0.5 - self.fulcrumPos - 0.029999999999999999)
-            self.gui.weightL.setX(-(self.fulcrumPos - 0.029999999999999999))
+            self.gui.weightR.setX(0.5 - self.fulcrumPos - 0.0299)
+            self.gui.weightL.setX(-(self.fulcrumPos - 0.0299))
 
         self.acceptOnce('y', self.balanceLeft)
 
 
     def balanceRight(self):
-        self.fulcrumPos = self.fulcrumPos + 0.0050000000000000001
+        self.fulcrumPos = self.fulcrumPos + 0.00500
         if self.fulcrumPos > 0.5:
             self.fulcrumPos = 0.5
 
@@ -216,54 +216,54 @@ class DistributedPokerTable(DistributedGameTable.DistributedGameTable, PokerBase
             self.gui.balanceR.setX((0.5 - self.fulcrumPos) / 2.0)
             self.gui.balance.setX(self.fulcrumPos - 0.25)
             self.gui.fulcrum.setX(self.fulcrumPos - 0.25)
-            self.gui.weightR.setX(0.5 - self.fulcrumPos - 0.029999999999999999)
-            self.gui.weightL.setX(-(self.fulcrumPos - 0.029999999999999999))
+            self.gui.weightR.setX(0.5 - self.fulcrumPos - 0.0299)
+            self.gui.weightL.setX(-(self.fulcrumPos - 0.0299))
 
         self.acceptOnce('u', self.balanceRight)
 
 
     def addMassLeft(self):
-        self.leftMass = self.leftMass + 0.10000000000000001
+        self.leftMass = self.leftMass + 0.100
         if self.isLocalAvatarSeated():
             oldscale = self.gui.weightL.getScale()
-            self.gui.weightL.setScale(0.029999999999999999, 1, 0.050000000000000003 * self.leftMass)
-            self.gui.weightL.setZ(0.050000000000000003 * self.leftMass + 0.01)
+            self.gui.weightL.setScale(0.0299, 1, 0.050000 * self.leftMass)
+            self.gui.weightL.setZ(0.050000 * self.leftMass + 0.01)
 
         self.acceptOnce('h', self.addMassLeft)
 
 
     def subMassLeft(self):
-        self.leftMass = self.leftMass - 0.10000000000000001
+        self.leftMass = self.leftMass - 0.100
         if self.leftMass <= 0:
-            self.leftMass = 0.10000000000000001
+            self.leftMass = 0.100
 
         if self.isLocalAvatarSeated():
             oldscale = self.gui.weightL.getScale()
-            self.gui.weightL.setScale(0.029999999999999999, 1, 0.050000000000000003 * self.leftMass)
-            self.gui.weightL.setZ(0.050000000000000003 * self.leftMass + 0.01)
+            self.gui.weightL.setScale(0.0299, 1, 0.050000 * self.leftMass)
+            self.gui.weightL.setZ(0.050000 * self.leftMass + 0.01)
 
         self.acceptOnce('n', self.subMassLeft)
 
 
     def addMassRight(self):
-        self.rightMass = self.rightMass + 0.10000000000000001
+        self.rightMass = self.rightMass + 0.100
         if self.isLocalAvatarSeated():
             oldscale = self.gui.weightR.getScale()
-            self.gui.weightR.setScale(0.029999999999999999, 1, 0.050000000000000003 * self.rightMass)
-            self.gui.weightR.setZ(0.050000000000000003 * self.rightMass + 0.01)
+            self.gui.weightR.setScale(0.0299, 1, 0.050000 * self.rightMass)
+            self.gui.weightR.setZ(0.050000 * self.rightMass + 0.01)
 
         self.acceptOnce('j', self.addMassRight)
 
 
     def subMassRight(self):
-        self.rightMass = self.rightMass - 0.10000000000000001
+        self.rightMass = self.rightMass - 0.100
         if self.rightMass <= 0:
-            self.rightMass = 0.10000000000000001
+            self.rightMass = 0.100
 
         if self.isLocalAvatarSeated():
             oldscale = self.gui.weightR.getScale()
-            self.gui.weightR.setScale(0.029999999999999999, 1, 0.050000000000000003 * self.rightMass)
-            self.gui.weightR.setZ(0.050000000000000003 * self.rightMass + 0.01)
+            self.gui.weightR.setScale(0.0299, 1, 0.050000 * self.rightMass)
+            self.gui.weightR.setZ(0.050000 * self.rightMass + 0.01)
 
         self.acceptOnce('m', self.subMassRight)
 
@@ -271,7 +271,7 @@ class DistributedPokerTable(DistributedGameTable.DistributedGameTable, PokerBase
     def createGui(self):
         if not self.hasGui:
             if self.getGameVariation() == PiratesGlobals.PARLORGAME_VARIATION_UNDEAD:
-                base.musicMgr.request(SoundGlobals.MUSIC_TORMENTA, priority = 1, volume = 0.59999999999999998)
+                base.musicMgr.request(SoundGlobals.MUSIC_TORMENTA, priority = 1, volume = 0.598)
 
             self.gui = PokerTableGUI.PokerTableGUI(self, self.maxCommunityCards, self.maxHandCards)
             self.gui.setTableState(self.round, self.buttonSeat, self.communityCards, self.playerHands, self.totalWinningsArray)
@@ -300,17 +300,17 @@ class DistributedPokerTable(DistributedGameTable.DistributedGameTable, PokerBase
             self.leftMass = 1
             self.rightMass = 1
             self.balanceM = 0
-            self.gravity = 9.8000000000000007
+            self.gravity = 9.8
             self.fulcrumPos = 0.25
-            self.friction = 0.10000000000000001
-            self.springConst = 0.050000000000000003
+            self.friction = 0.100
+            self.springConst = 0.050000
             self.isStopped = True
 
         self.cameraNode = NodePath('CameraNode')
         camera.reparentTo(self.cameraNode)
         self.cameraNode.setPosHpr(0, 0.75, 22, 0, -45, 0)
         camera.setHpr(0, 0, 0)
-        camera.setPos(-(self.sittingOffset), 4.9000000000000004, -11)
+        camera.setPos(-(self.sittingOffset), 4.90000, -11)
         base.camLens.setMinFov(60)
         self.cameraNode.reparentTo(localAvatar)
         if self.wantMeter == 1:
@@ -539,8 +539,8 @@ class DistributedPokerTable(DistributedGameTable.DistributedGameTable, PokerBase
                             title = ''
                             text = PLocalizer.TableWinGold % totalWinningsArray[i]
                             color = Vec4(1.0, 1.0, 1.0, 1.0)
-                            color = Vec4(0.20000000000000001, 0.80000000000000004, 0.40000000000000002, 1.0)
-                            position = Vec3(0.0, 0.0, -0.65000000000000002)
+                            color = Vec4(0.200, 0.800000, 0.4, 1.0)
+                            position = Vec3(0.0, 0.0, -0.65)
                             self.gui.showWinText(text, color, position)
 
                         if total_active == 1:
@@ -553,9 +553,9 @@ class DistributedPokerTable(DistributedGameTable.DistributedGameTable, PokerBase
                         self.playActorAnimation(actor, 'cards_set_down_lose')
                         if i == self.localAvatarSeat:
                             text = PLocalizer.PokerYouLost
-                            color = Vec4(0.69999999999999996, 0.69999999999999996, 0.69999999999999996, 1.0)
-                            color = Vec4(0.20000000000000001, 0.40000000000000002, 0.80000000000000004, 1.0)
-                            position = Vec3(0.0, 0.0, -0.65000000000000002)
+                            color = Vec4(0.696, 0.696, 0.696, 1.0)
+                            color = Vec4(0.200, 0.4, 0.800000, 1.0)
+                            position = Vec3(0.0, 0.0, -0.65)
                             self.gui.showWinText(text, color, position)
 
 
@@ -803,7 +803,7 @@ class DistributedPokerTable(DistributedGameTable.DistributedGameTable, PokerBase
                 string = PLocalizer.PokerSwapFailureMessage
             self.swapResultDialog = PDialog.PDialog(text = string, style = OTPDialog.Acknowledge, giveMouse = False, command = self.swapResultCallback)
             position = self.swapResultDialog.getPos()
-            position.setZ(position[2] + 0.34999999999999998)
+            position.setZ(position[2] + 0.348)
             self.swapResultDialog.setPos(position)
             self.setDialogBin(self.swapResultDialog)
             if self.isLocalAvatarSeated() and self.isLocalAvatarPlaying():
@@ -828,16 +828,16 @@ class DistributedPokerTable(DistributedGameTable.DistributedGameTable, PokerBase
                 else:
                     self.leftMass = self.leftMass * multiplier
                 if self.isLocalAvatarSeated():
-                    self.gui.weightL.setScale(0.029999999999999999, 1, 0.050000000000000003 * self.leftMass)
-                    self.gui.weightL.setZ(0.050000000000000003 * self.leftMass + 0.01)
+                    self.gui.weightL.setScale(0.0299, 1, 0.050000 * self.leftMass)
+                    self.gui.weightL.setZ(0.050000 * self.leftMass + 0.01)
 
             elif self.handValue < 500:
                 self.rightMass = self.rightMass / multiplier
             else:
                 self.rightMass = self.rightMass * multiplier
             if self.isLocalAvatarSeated():
-                self.gui.weightR.setScale(0.029999999999999999, 1, 0.050000000000000003 * self.rightMass)
-                self.gui.weightR.setZ(0.050000000000000003 * self.rightMass + 0.01)
+                self.gui.weightR.setScale(0.0299, 1, 0.050000 * self.rightMass)
+                self.gui.weightR.setZ(0.050000 * self.rightMass + 0.01)
 
 
 
@@ -935,11 +935,11 @@ class DistributedPokerTable(DistributedGameTable.DistributedGameTable, PokerBase
 
         dealerSeat = self.SeatInfo[-1]
         getCards = self.dealer.actorInterval('into_deal', mixingWanted = False)
-        dealOutwards = self.dealer.actorInterval('deal', endFrame = 10, playRate = 1.3999999999999999, mixingWanted = False)
+        dealOutwards = self.dealer.actorInterval('deal', endFrame = 10, playRate = 1.39, mixingWanted = False)
         dealInwards = self.dealer.actorInterval('deal', startFrame = 10, playRate = 2.0, mixingWanted = False)
-        dealLeftOutwards = self.dealer.actorInterval('deal_left', endFrame = 7, playRate = 1.3999999999999999, mixingWanted = False)
+        dealLeftOutwards = self.dealer.actorInterval('deal_left', endFrame = 7, playRate = 1.39, mixingWanted = False)
         dealLeftInwards = self.dealer.actorInterval('deal_left', startFrame = 7, playRate = 2.0, mixingWanted = False)
-        dealRightOutwards = self.dealer.actorInterval('deal_right', endFrame = 7, playRate = 1.3999999999999999, mixingWanted = False)
+        dealRightOutwards = self.dealer.actorInterval('deal_right', endFrame = 7, playRate = 1.39, mixingWanted = False)
         dealRightInwards = self.dealer.actorInterval('deal_right', startFrame = 7, playRate = 2.0, mixingWanted = False)
         cardNum = 0
         dealtCards = []
@@ -1087,9 +1087,9 @@ class DistributedPokerTable(DistributedGameTable.DistributedGameTable, PokerBase
     def playerExpired(self):
         if self.getGameVariation() == PiratesGlobals.PARLORGAME_VARIATION_UNDEAD:
             text = PLocalizer.PokerYouLost
-            color = Vec4(0.69999999999999996, 0.69999999999999996, 0.69999999999999996, 1.0)
-            color = Vec4(0.20000000000000001, 0.40000000000000002, 0.80000000000000004, 1.0)
-            position = Vec3(0.0, 0.0, -0.65000000000000002)
+            color = Vec4(0.696, 0.696, 0.696, 1.0)
+            color = Vec4(0.200, 0.4, 0.800000, 1.0)
+            position = Vec3(0.0, 0.0, -0.65)
             self.gui.showWinText(text, color, position)
             DelayedCall(Functor(base.transitions.fadeOut), delay = 3.0)
             localAvatar.guiMgr.gameGui.hide()
@@ -1105,4 +1105,4 @@ class DistributedPokerTable(DistributedGameTable.DistributedGameTable, PokerBase
         localAvatar.showHpText(amount, pos = [
             1.75,
             0,
-            2], scale = 0.40000000000000002)
+            2], scale = 0.4)

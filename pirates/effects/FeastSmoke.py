@@ -45,7 +45,7 @@ class FeastSmoke(PooledEffect, EffectController):
         self.p0.factory.setLifespanBase(25.0)
         self.p0.factory.setLifespanSpread(5.0)
         self.p0.factory.setMassBase(1.0)
-        self.p0.factory.setMassSpread(0.20000000000000001)
+        self.p0.factory.setMassSpread(0.200)
         self.p0.factory.setTerminalVelocityBase(400.0)
         self.p0.factory.setTerminalVelocitySpread(0.0)
         self.p0.factory.setInitialAngle(0.0)
@@ -54,7 +54,7 @@ class FeastSmoke(PooledEffect, EffectController):
         self.p0.factory.setAngularVelocity(0.0)
         self.p0.factory.setAngularVelocitySpread(0.0)
         self.p0.renderer.setAlphaMode(BaseParticleRenderer.PRALPHAOUT)
-        self.p0.renderer.setUserAlpha(0.80000000000000004)
+        self.p0.renderer.setUserAlpha(0.800000)
         self.p0.renderer.setFromNode(self.card)
         self.p0.renderer.setColor(Vec4(1.0, 1.0, 1.0, 1.0))
         self.p0.renderer.setXScaleFlag(1)
@@ -96,8 +96,8 @@ class FeastSmoke(PooledEffect, EffectController):
 
     def setScale(self, scale = VBase3(1, 1, 1)):
         self.effectScale = scale[0]
-        self.p0.renderer.setInitialXScale(0.29999999999999999 * self.cardScale * self.effectScale)
-        self.p0.renderer.setInitialYScale(0.29999999999999999 * self.cardScale * self.effectScale)
+        self.p0.renderer.setInitialXScale(0.299 * self.cardScale * self.effectScale)
+        self.p0.renderer.setInitialYScale(0.299 * self.cardScale * self.effectScale)
         self.p0.renderer.setFinalXScale(1.0 * self.cardScale * self.effectScale)
         self.p0.renderer.setFinalYScale(1.0 * self.cardScale * self.effectScale)
         self.p0.emitter.setOffsetForce(Vec3(4.0, 4.0, 50.0 * self.effectScale))

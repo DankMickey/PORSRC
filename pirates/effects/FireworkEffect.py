@@ -232,7 +232,7 @@ class FireworkEffect(NodePath):
                 secondaryBlast.reparentTo(self.effectsNode)
                 secondaryBlast.setScale(250 * self.scale)
                 secondaryBlast.setEffectColor(self.primaryColor)
-                secondaryBlast.fadeTime = 0.29999999999999999
+                secondaryBlast.fadeTime = 0.299
                 self.burstEffectsIval.append(secondaryBlast.getTrack())
                 self.burstEffects.append(secondaryBlast)
 
@@ -279,9 +279,9 @@ class FireworkEffect(NodePath):
                     explosion = PeonyEffect.getEffect()
                     if explosion:
                         explosion.reparentTo(self.effectsNode)
-                        explosion.setEffectScale(self.scale * 0.80000000000000004)
+                        explosion.setEffectScale(self.scale * 0.800000)
                         explosion.setEffectColor(self.primaryColor)
-                        explosion.startDelay = 0.14999999999999999
+                        explosion.startDelay = 0.149
                         explosion.setR(220)
                         self.burstEffectsIval.append(explosion.getTrack())
                         self.burstEffects.append(explosion)
@@ -341,9 +341,9 @@ class FireworkEffect(NodePath):
                     sparkles = FireworkSparkles.getEffect()
                     if sparkles:
                         sparkles.reparentTo(self.effectsNode)
-                        sparkles.setEffectScale(self.scale * 0.80000000000000004)
+                        sparkles.setEffectScale(self.scale * 0.800000)
                         sparkles.setEffectColor(self.primaryColor)
-                        sparkles.startDelay = 0.20000000000000001
+                        sparkles.startDelay = 0.200
                         self.burstEffectsIval.append(sparkles.getTrack())
                         self.burstEffects.append(sparkles)
 
@@ -397,7 +397,7 @@ class FireworkEffect(NodePath):
                     explosion.reparentTo(self.effectsNode)
                     explosion.setEffectScale(self.scale)
                     explosion.setEffectColor(self.primaryColor)
-                    self.burstEffectsIval.append(Sequence(Wait(0.10000000000000001), explosion.getTrack()))
+                    self.burstEffectsIval.append(Sequence(Wait(0.100), explosion.getTrack()))
                     self.burstEffects.append(explosion)
 
                 if base.options.getSpecialEffectsSetting() >= base.options.SpecialEffectsMedium:
@@ -414,7 +414,7 @@ class FireworkEffect(NodePath):
                     explosion.reparentTo(self.effectsNode)
                     explosion.setEffectScale(self.scale)
                     explosion.setEffectColor(self.primaryColor)
-                    explosion.startDelay = 0.10000000000000001
+                    explosion.startDelay = 0.100
                     self.burstEffectsIval.append(explosion.getTrack())
                     self.burstEffects.append(explosion)
 
@@ -423,7 +423,7 @@ class FireworkEffect(NodePath):
                     skullFlash.reparentTo(self.effectsNode)
                     skullFlash.setScale(650 * self.scale)
                     skullFlash.fadeTime = 0.75
-                    skullFlash.startDelay = 0.080000000000000002
+                    skullFlash.startDelay = 0.08
                     self.burstEffectsIval.append(skullFlash.getTrack())
                     self.burstEffects.append(skullFlash)
 
@@ -441,7 +441,7 @@ class FireworkEffect(NodePath):
                         sparkles.reparentTo(self.effectsNode)
                         sparkles.setEffectScale(self.scale)
                         sparkles.setRadius(400 * self.scale)
-                        sparkles.startDelay = 0.10000000000000001
+                        sparkles.startDelay = 0.100
                         sparkles.setEffectColor(self.secondaryColor)
                         self.burstEffectsIval.append(sparkles.getTrack())
                         self.burstEffects.append(sparkles)

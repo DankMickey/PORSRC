@@ -35,12 +35,12 @@ class ShipTargetPanel(GuiTray.GuiTray):
     def createGui(self):
         self.shipcard = loader.loadModel('models/gui/ship_battle')
         tex = self.shipcard.find('**/ship_battle_speed_bar*')
-        self.hpFrame = DirectFrame(parent = self, pos = (0.26900000000000002, 0, -0.0050000000000000001), relief = None, image = tex, image_scale = (0.29999999999999999, 1, 0.59999999999999998))
-        self.hpMeter = DirectWaitBar(parent = self.hpFrame, relief = DGG.RAISED, borderWidth = (0.002, 0.002), range = self.ship.maxHp, value = self.ship.Hp, frameColor = (0, 0, 0, 1), barColor = (0.10000000000000001, 0.69999999999999996, 0.10000000000000001, 1), frameSize = (-0.27000000000000002, 0.13100000000000001, -0.01, 0.01), pos = (0.069000000000000006, 0, 0.0), text = PLocalizer.Hull, text_scale = PiratesGuiGlobals.TextScaleLarge * 0.75, text_align = TextNode.ALeft, text_pos = (0.16, -0.012), text_fg = PiratesGuiGlobals.TextFG1, text_shadow = (0, 0, 0, 1), text_font = PiratesGlobals.getInterfaceFont())
-        self.spFrame = DirectFrame(parent = self, pos = (0.26600000000000001, 0, -0.029999999999999999), relief = None, image = tex, image_scale = (0.29999999999999999, 1, 0.52000000000000002))
-        self.speedMeter = DirectWaitBar(parent = self.spFrame, relief = DGG.RAISED, borderWidth = (0.002, 0.002), range = self.ship.maxSp, value = self.ship.Sp, frameColor = (0, 0, 0, 1), barColor = (0.69999999999999996, 0.69999999999999996, 0.10000000000000001, 1), frameSize = (-0.27000000000000002, 0.13200000000000001, -0.0080000000000000002, 0.0080000000000000002), pos = (0.069000000000000006, 0, 0.0), text = PLocalizer.Speed, text_scale = PiratesGuiGlobals.TextScaleLarge * 0.75, text_align = TextNode.ALeft, text_pos = (0.16, -0.0080000000000000002), text_fg = PiratesGuiGlobals.TextFG1, text_shadow = (0, 0, 0, 1), text_font = PiratesGlobals.getInterfaceFont())
+        self.hpFrame = DirectFrame(parent = self, pos = (0.269, 0, -0.00500), relief = None, image = tex, image_scale = (0.299, 1, 0.598))
+        self.hpMeter = DirectWaitBar(parent = self.hpFrame, relief = DGG.RAISED, borderWidth = (0.002, 0.002), range = self.ship.maxHp, value = self.ship.Hp, frameColor = (0, 0, 0, 1), barColor = (0.100, 0.696, 0.100, 1), frameSize = (-0.27, 0.131, -0.01, 0.01), pos = (0.069, 0, 0.0), text = PLocalizer.Hull, text_scale = PiratesGuiGlobals.TextScaleLarge * 0.75, text_align = TextNode.ALeft, text_pos = (0.16, -0.012), text_fg = PiratesGuiGlobals.TextFG1, text_shadow = (0, 0, 0, 1), text_font = PiratesGlobals.getInterfaceFont())
+        self.spFrame = DirectFrame(parent = self, pos = (0.266, 0, -0.0299), relief = None, image = tex, image_scale = (0.299, 1, 0.52))
+        self.speedMeter = DirectWaitBar(parent = self.spFrame, relief = DGG.RAISED, borderWidth = (0.002, 0.002), range = self.ship.maxSp, value = self.ship.Sp, frameColor = (0, 0, 0, 1), barColor = (0.696, 0.696, 0.100, 1), frameSize = (-0.27, 0.132, -0.008, 0.008), pos = (0.069, 0, 0.0), text = PLocalizer.Speed, text_scale = PiratesGuiGlobals.TextScaleLarge * 0.75, text_align = TextNode.ALeft, text_pos = (0.16, -0.008), text_fg = PiratesGuiGlobals.TextFG1, text_shadow = (0, 0, 0, 1), text_font = PiratesGlobals.getInterfaceFont())
         tex = self.shipcard.find('**/ship_battle_dish02*')
-        self.nameBox = DirectFrame(parent = self, relief = None, text = self.ship.getName(), text_align = TextNode.ALeft, text_scale = 0.044999999999999998, text_pos = (0.074999999999999997, -0.085000000000000006), text_fg = (1, 0, 0, 1), text_shadow = (0, 0, 0, 1), text_font = PiratesGlobals.getInterfaceFont())
+        self.nameBox = DirectFrame(parent = self, relief = None, text = self.ship.getName(), text_align = TextNode.ALeft, text_scale = 0.0448, text_pos = (0.074, -0.085), text_fg = (1, 0, 0, 1), text_shadow = (0, 0, 0, 1), text_font = PiratesGlobals.getInterfaceFont())
         color = EnemyGlobals.getShipNametagColor(self.ship.getTeam())
         self.nameBox['text_fg'] = color
         if self.ship.getSiegeTeam():
@@ -50,7 +50,7 @@ class ShipTargetPanel(GuiTray.GuiTray):
             else:
                 flagPath = '**/ship_pvp_icon_spanish'
             flag = gui.find(flagPath)
-            flag.setScale(0.050000000000000003)
+            flag.setScale(0.050000)
         else:
             flagPath = EnemyGlobals.getTeamIconModelPath(self.ship.getTeam())
             flagModel = loader.loadModel('models/gui/flag_icons')
@@ -63,7 +63,7 @@ class ShipTargetPanel(GuiTray.GuiTray):
             flag.reparentTo(self.nameBox)
             flag.setPos(0.11, 0, 0.055)
 
-        self.armorGui = ShipArmorGui(self, pos = (0.0, 0.0, 0.0), scale = 0.69999999999999996)
+        self.armorGui = ShipArmorGui(self, pos = (0.0, 0.0, 0.0), scale = 0.696)
 
 
     def destroy(self):

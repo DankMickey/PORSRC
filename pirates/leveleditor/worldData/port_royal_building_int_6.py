@@ -17,9 +17,9 @@ objectStruct = {
                     'Category': 'Commoner',
                     'AnimSet': 'idleC',
                     'CustomModel': 'None',
-                    'Hpr': VBase3(70.099999999999994, 0.0, 0.0),
+                    'Hpr': VBase3(70.094, 0.0, 0.0),
                     'Patrol Radius': '12.0000',
-                    'Pos': Point3(7.6600000000000001, -3.9670000000000001, 0.0),
+                    'Pos': Point3(7.66, -3.967, 0.0),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'Private Status': 'All',
@@ -34,7 +34,7 @@ objectStruct = {
                     'Type': 'Door Locator Node',
                     'Name': 'door_locator',
                     'Hpr': VBase3(-180.0, 0.0, 0.0),
-                    'Pos': Point3(-13.419, 47.560000000000002, 5.3090000000000002),
+                    'Pos': Point3(-13.419, 47.560, 5.3090),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'TargetUIDs': [] },
                 '1201109074.66dxschafe': {
@@ -42,9 +42,9 @@ objectStruct = {
                     'Category': 'Jeweler',
                     'AnimSet': 'default',
                     'CustomModel': 'None',
-                    'Hpr': VBase3(99.807000000000002, 0.0, 0.0),
+                    'Hpr': VBase3(99.807, 0.0, 0.0),
                     'Patrol Radius': '1.0000',
-                    'Pos': Point3(9.2989999999999995, 40.271000000000001, 5.2649999999999997),
+                    'Pos': Point3(9.2985, 40.271, 5.264),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'Private Status': 'All',
@@ -58,26 +58,26 @@ objectStruct = {
                 '1201110056.77dxschafe': {
                     'Type': 'Furniture',
                     'DisableCollision': False,
-                    'Hpr': VBase3(91.390000000000001, 0.0, 0.0),
+                    'Hpr': VBase3(91.39, 0.0, 0.0),
                     'Objects': { },
-                    'Pos': Point3(-9.2219999999999995, -5.3150000000000004, 0.0),
-                    'Scale': VBase3(1.2230000000000001, 1.2230000000000001, 1.2230000000000001),
+                    'Pos': Point3(-9.2215, -5.31500, 0.0),
+                    'Scale': VBase3(1.223, 1.223, 1.223),
                     'Visual': {
                         'Model': 'models/props/bench_bank' } },
                 '1201110107.2dxschafe': {
                     'Type': 'Furniture',
                     'DisableCollision': False,
-                    'Hpr': VBase3(56.854999999999997, 0.0, 0.0),
+                    'Hpr': VBase3(56.854, 0.0, 0.0),
                     'Objects': { },
-                    'Pos': Point3(-6.1150000000000002, 0.14899999999999999, 0.0),
+                    'Pos': Point3(-6.1150, 0.148, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/chair_bank' } },
                 '1201110157.89dxschafe': {
                     'Type': 'Furniture',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-133.70099999999999, 0.0, 0.0),
-                    'Pos': Point3(-2.948, -6.7770000000000001, 0.0),
+                    'Hpr': VBase3(-133.700, 0.0, 0.0),
+                    'Pos': Point3(-2.948, -6.777, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/chair_bank' } },
@@ -85,7 +85,7 @@ objectStruct = {
                     'Type': 'Interior_furnishings',
                     'DisableCollision': False,
                     'Hpr': VBase3(-42.262, 0.0, 0.0),
-                    'Pos': Point3(-6.0010000000000003, -2.6120000000000001, 2.7810000000000001),
+                    'Pos': Point3(-6.0010, -2.612, 2.781),
                     'Scale': VBase3(2.214, 2.214, 2.214),
                     'Visual': {
                         'Color': (1.0, 0.80000001192092896, 0.60000002384185791, 1.0),
@@ -94,16 +94,16 @@ objectStruct = {
                     'Type': 'Furniture',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-5.5270000000000001, -4.9420000000000002, 0.0),
-                    'Scale': VBase3(0.95799999999999996, 1.925, 0.95799999999999996),
+                    'Pos': Point3(-5.527, -4.9420, 0.0),
+                    'Scale': VBase3(0.95796, 1.925, 0.95796),
                     'Visual': {
-                        'Color': (0.90000000000000002, 0.80000000000000004, 0.90000000000000002, 1.0),
+                        'Color': (0.9, 0.800000, 0.9, 1.0),
                         'Model': 'models/props/table_bar_square' } },
                 '1201111368.09dxschafe': {
                     'Type': 'Jugs_and_Jars',
                     'DisableCollision': False,
-                    'Hpr': VBase3(14.228999999999999, 0.0, 0.0),
-                    'Pos': Point3(-4.6500000000000004, -7.0750000000000002, 2.8029999999999999),
+                    'Hpr': VBase3(14.228, 0.0, 0.0),
+                    'Pos': Point3(-4.65000, -7.0750, 2.8029),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/winebottle_B' } } },
@@ -191,8 +191,8 @@ objectStruct = {
         '1201111177.05dxschafe': '["Objects"]["1155773612.45fxlara0"]["Objects"]["1201111177.05dxschafe"]',
         '1201111368.09dxschafe': '["Objects"]["1155773612.45fxlara0"]["Objects"]["1201111368.09dxschafe"]' } }
 extraInfo = {
-    'camPos': Point3(-186.47999999999999, -10.3483, 23.1248),
-    'camHpr': VBase3(-84.331599999999995, -0.69922399999999996, -1.60094e-006),
+    'camPos': Point3(-186.47, -10.3483, 23.1248),
+    'camHpr': VBase3(-84.3315, -0.699223, -1.60094e-006),
     'focalLength': 1.3999999761599999,
     'skyState': -1,
     'fog': 0 }

@@ -12,12 +12,12 @@ from pirates.uberdog.UberDogGlobals import InventoryType
 from pirates.effects.LureGlow import LureGlow
 import FishingGlobals
 _glowColors = {
-    InventoryType.FishingRodStall: (1.0, 1.0, 0.59999999999999998, 0.69999999999999996),
-    InventoryType.FishingRodPull: (0.69999999999999996, 0.69999999999999996, 1.0, 0.69999999999999996),
-    InventoryType.FishingRodHeal: (0.59999999999999998, 1.0, 0.59999999999999998, 0.69999999999999996),
-    InventoryType.FishingRodTug: (1.0, 0.59999999999999998, 0.59999999999999998, 0.69999999999999996),
-    InventoryType.FishingRodSink: (1.0, 0.59999999999999998, 1.0, 0.69999999999999996),
-    InventoryType.FishingRodOceanEye: (1.0, 1.0, 1.0, 0.69999999999999996) }
+    InventoryType.FishingRodStall: (1.0, 1.0, 0.598, 0.696),
+    InventoryType.FishingRodPull: (0.696, 0.696, 1.0, 0.696),
+    InventoryType.FishingRodHeal: (0.598, 1.0, 0.598, 0.696),
+    InventoryType.FishingRodTug: (1.0, 0.598, 0.598, 0.696),
+    InventoryType.FishingRodSink: (1.0, 0.598, 1.0, 0.696),
+    InventoryType.FishingRodOceanEye: (1.0, 1.0, 1.0, 0.696) }
 
 class FishLure(NodePath):
 
@@ -49,7 +49,7 @@ class FishLure(NodePath):
     def initCollision(self):
         self.lureCollisionVisual = loader.loadModel('models/ammunition/cannonball')
         self.lureCollisionVisual.setTransparency(1)
-        self.lureCollisionVisual.setColor(0.0, 0.0, 1.0, 0.29999999999999999)
+        self.lureCollisionVisual.setColor(0.0, 0.0, 1.0, 0.299)
         self.lureCollisionVisual.setScale(self.lureAttractRadius)
         self.lureCollisionVisual.reparentTo(self)
         self.lureCollisionVisual.hide()
@@ -58,7 +58,7 @@ class FishLure(NodePath):
     def initLureHelpText(self):
         self.helpTextNode = TextNode('fishBitingIcon')
         self.helpTextNodePath = NodePath(self.helpTextNode)
-        self.helpTextNodePath.setPos(0.0, 0.0, 0.69999999999999996)
+        self.helpTextNodePath.setPos(0.0, 0.0, 0.696)
         self.helpTextNode.setText(' ')
         self.helpTextNode.setAlign(TextNode.ACenter)
         self.helpTextNode.setFont(PiratesGlobals.getPirateFont())

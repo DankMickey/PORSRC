@@ -109,16 +109,16 @@ class DistributedNPCNavySailor(DistributedBattleNPC.DistributedBattleNPC, NavySa
 
     def startShuffle(self, turnAnim):
         if self.playNoticeAnims():
-            self.loop(turnAnim, partName = 'legs', blendDelay = 0.14999999999999999)
+            self.loop(turnAnim, partName = 'legs', blendDelay = 0.149)
 
 
 
     def midShuffle(self):
         if self.playNoticeAnims():
             if self.currentWeapon and self.currentWeapon.getName() == 'bayonet':
-                self.loop('idle', partName = 'legs', blendDelay = 0.29999999999999999)
+                self.loop('idle', partName = 'legs', blendDelay = 0.299)
             else:
-                self.loop('idle', blendDelay = 0.29999999999999999)
+                self.loop('idle', blendDelay = 0.299)
 
 
 
@@ -131,7 +131,7 @@ class DistributedNPCNavySailor(DistributedBattleNPC.DistributedBattleNPC, NavySa
             else:
                 reaction = self.getNoticeAnimation()
             if reaction:
-                self.play(reaction, blendInT = 0.29999999999999999, blendOutT = 0.29999999999999999)
+                self.play(reaction, blendInT = 0.299, blendOutT = 0.299)
 
 
 

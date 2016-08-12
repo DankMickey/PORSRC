@@ -14,8 +14,8 @@ objectStruct = {
                     'Category': 'Cast',
                     'AnimSet': 'sit_write',
                     'CustomModel': 'models/char/es_2000',
-                    'Hpr': VBase3(-27.527999999999999, 0.0, 0.0),
-                    'Pos': Point3(-0.10100000000000001, -8.0860000000000003, -0.028000000000000001),
+                    'Hpr': VBase3(-27.527, 0.0, 0.0),
+                    'Pos': Point3(-0.101, -8.0860, -0.0280),
                     'Private Status': 'All',
                     'Respawns': True,
                     'Scale': VBase3(1.0, 1.0, 1.0),
@@ -23,9 +23,9 @@ objectStruct = {
                     'Team': 'Villager' },
                 '1176937728.0dxschafe': {
                     'Type': 'Interactive Prop',
-                    'Hpr': VBase3(179.86600000000001, 0.0, 0.0),
+                    'Hpr': VBase3(179.866, 0.0, 0.0),
                     'Objects': { },
-                    'Pos': Point3(0.27400000000000002, -9.202, 0.0),
+                    'Pos': Point3(0.274, -9.202, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/chair_fancy' },

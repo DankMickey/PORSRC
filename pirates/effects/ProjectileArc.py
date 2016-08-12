@@ -48,7 +48,7 @@ class ProjectileArc(DirectObject, NodePath):
 
     def createTrack(self, rate = 1):
         if self.wantColl:
-            enableColl = Sequence(Wait(0.20000000000000001), Func(self.cnode.setFromCollideMask, PiratesGlobals.TargetBitmask))
+            enableColl = Sequence(Wait(0.200), Func(self.cnode.setFromCollideMask, PiratesGlobals.TargetBitmask))
 
         self.playProjectile = ProjectileInterval(self.transNode, startPos = self.startPos, startVel = self.startVel, endZ = self.endPlaneZ, gravityMult = self.gravityMult)
         if self.wantColl:

@@ -23,8 +23,8 @@ class LightningStrike(PooledEffect, EffectController):
                 self.soundFx.append(loadSfx(audio))
 
 
-        self.fadeTime = 0.14000000000000001
-        self.waitTime = 0.20000000000000001
+        self.fadeTime = 0.140
+        self.waitTime = 0.200
         self.startScale = 1.0
         self.endScale = 1.01
         self.fadeColor = Vec4(1.0, 1.0, 1.0, 1.0)

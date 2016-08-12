@@ -251,6 +251,6 @@ class Grass(DirectObject, NodePath):
         for i in xrange(self.numClumps):
             clump = self.clumps[i]
             hiFreq = 1.0 * math.sin(math.pi * i * t)
-            lowFreq = 3.0 * math.sin(0.10000000000000001 * math.pi * t) + 3.0
+            lowFreq = 3.0 * math.sin(0.100 * math.pi * t) + 3.0
             p = hiFreq + lowFreq
             clump.setP(p)

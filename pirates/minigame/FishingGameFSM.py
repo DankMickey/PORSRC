@@ -390,7 +390,7 @@ class FishingGameFSM(FSM.FSM):
         if self.gameObject.fishManager.activeFish.myData['size'] in [
             'small',
             'medium']:
-            self.animationSequence = Sequence(Wait(0.40000000000000002), Func(localAvatar.loop, 'fsh_smallSuccess'), Wait(localAvatar.getDuration('fsh_smallSuccess')), Func(localAvatar.loop, 'fsh_idle'), Wait(1.0))
+            self.animationSequence = Sequence(Wait(0.4), Func(localAvatar.loop, 'fsh_smallSuccess'), Wait(localAvatar.getDuration('fsh_smallSuccess')), Func(localAvatar.loop, 'fsh_idle'), Wait(1.0))
             self.animationSequence.loop()
         else:
             localAvatar.loop('fsh_bigSuccess')
@@ -533,7 +533,7 @@ class FishingGameFSM(FSM.FSM):
 
     def enterLegendaryFish(self):
         base.musicMgr.requestFadeOut(SoundGlobals.MUSIC_MINIGAME_FISHING)
-        base.musicMgr.request(SoundGlobals.SFX_MINIGAME_FISHING_LEGENDARY_MUSIC, priority = 2, volume = 0.59999999999999998)
+        base.musicMgr.request(SoundGlobals.SFX_MINIGAME_FISHING_LEGENDARY_MUSIC, priority = 2, volume = 0.598)
 
 
     def exitLegendaryFish(self):

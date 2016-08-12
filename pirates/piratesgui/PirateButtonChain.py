@@ -37,15 +37,15 @@ class PirateButtonChain:
         bottomPanelOver = gui.find('**/avatar_c_A_bottom_over')
         self.bottomButton = (bottomPanel, bottomPanel, bottomPanelOver, bottomPanel)
         self.iScale = 0.25
-        self.gScale = (self.width * 0.65000000000000002, 0.0, 0.28000000000000003)
-        self.tPos = (0.0, -0.014999999999999999, 0.0)
-        self.tBPos = (0.0, 0.025000000000000001, 0.0)
-        self.iPos = (0.10000000000000001, 0, -0.0)
+        self.gScale = (self.width * 0.65, 0.0, 0.28000)
+        self.tPos = (0.0, -0.0149, 0.0)
+        self.tBPos = (0.0, 0.0250, 0.0)
+        self.iPos = (0.100, 0, -0.0)
         self.offX = self.width * 0.5
-        self.topZ = 0.080000000000000002
-        self.midZ = 0.074999999999999997
+        self.topZ = 0.08
+        self.midZ = 0.074
         self.endZ = 0.11
-        self.startZ = -0.029999999999999999
+        self.startZ = -0.0299
 
 
     def show(self):

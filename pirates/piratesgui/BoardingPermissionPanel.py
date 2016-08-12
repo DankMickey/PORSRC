@@ -15,12 +15,12 @@ class BoardingPermissionPanel(GuiPanel):
 
     def __init__(self, parent, *args, **kw):
         self.guiSetup = False
-        optiondefs = (('parent', parent, None), ('pos', (-0.57999999999999996, 0, -0.089999999999999997), None), ('command', None, None), ('extraArgs', [], None), ('ownShip', 0, None))
+        optiondefs = (('parent', parent, None), ('pos', (-0.576, 0, -0.089), None), ('command', None, None), ('extraArgs', [], None), ('ownShip', 0, None))
         self.defineoptions(kw, optiondefs)
-        GuiPanel.__init__(self, title = PLocalizer.BoardPermTitle, h = 0.80000000000000004, w = 0.5, titleSize = 1.5, showClose = False)
+        GuiPanel.__init__(self, title = PLocalizer.BoardPermTitle, h = 0.800000, w = 0.5, titleSize = 1.5, showClose = False)
         self.initialiseoptions(BoardingPermissionPanel)
         self.titleLabel['text_align'] = TextNode.ACenter
-        self.titleLabel.setPos(0.23000000000000001, 0, 0.71999999999999997)
+        self.titleLabel.setPos(0.230, 0, 0.71)
         self.setupGui()
 
 
@@ -37,12 +37,12 @@ class BoardingPermissionPanel(GuiPanel):
     def setupGui(self):
         self.destroyGui()
         if not self.guiSetup:
-            self.button = DialogButton(parent = self, buttonStyle = DialogButton.NO, pos = (0.25, 0, 0.080000000000000002), text = PLocalizer.lClose, helpPos = (-0.40000000000000002, 0, 0.029999999999999999), helpDelay = 0.29999999999999999, command = self['command'], extraArgs = self['extraArgs'])
-            self.background = BorderFrame(parent = self, pos = (0.050000000000000003, 0, 0.050000000000000003), frameSize = [
+            self.button = DialogButton(parent = self, buttonStyle = DialogButton.NO, pos = (0.25, 0, 0.08), text = PLocalizer.lClose, helpPos = (-0.4, 0, 0.0299), helpDelay = 0.299, command = self['command'], extraArgs = self['extraArgs'])
+            self.background = BorderFrame(parent = self, pos = (0.050000, 0, 0.050000), frameSize = [
                 0.0,
-                0.40000000000000002,
-                0.10000000000000001,
-                0.59999999999999998], bgColorScale = VBase4(0, 0, 0, 0.75), bgTransparency = 1, flatten = 0)
+                0.4,
+                0.100,
+                0.598], bgColorScale = VBase4(0, 0, 0, 0.75), bgTransparency = 1, flatten = 0)
             if self['ownShip']:
                 state = DGG.NORMAL
             else:
@@ -62,17 +62,17 @@ class BoardingPermissionPanel(GuiPanel):
                 'parent': self.background,
                 'state': state,
                 'relief': None,
-                'pos': (0.059999999999999998, 0, 0.53000000000000003),
-                'scale': 0.29999999999999999,
+                'pos': (0.0598, 0, 0.53000),
+                'scale': 0.299,
                 'text': PLocalizer.CrewBoardingAccessAllowFriends,
                 'value': friendState,
-                'text_pos': (0.16700000000000001, -0.059999999999999998, 0),
+                'text_pos': (0.167, -0.0598, 0),
                 'text0_fg': PiratesGuiGlobals.TextFG1,
                 'text1_fg': PiratesGuiGlobals.TextFG1,
                 'text2_fg': PiratesGuiGlobals.TextFG1,
                 'text3_fg': PiratesGuiGlobals.TextFG9,
                 'text_font': PiratesGlobals.getInterfaceFont(),
-                'text_scale': 0.14999999999999999,
+                'text_scale': 0.149,
                 'text_shadow': (0, 0, 0, 1),
                 'text_align': TextNode.ALeft,
                 'command': self.allowFriends }

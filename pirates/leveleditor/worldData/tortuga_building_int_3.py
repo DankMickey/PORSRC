@@ -15,8 +15,8 @@ objectStruct = {
                 '1172091897.53kmuller': {
                     'Type': 'Interior_furnishings',
                     'DisableCollision': False,
-                    'Hpr': VBase3(90.558000000000007, 0.0, 0.0),
-                    'Pos': Point3(8.1289999999999996, 13.077999999999999, 0.0),
+                    'Hpr': VBase3(90.558, 0.0, 0.0),
+                    'Pos': Point3(8.1286, 13.077, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/interior_wall_shanty' } },
@@ -27,7 +27,7 @@ objectStruct = {
                     'CustomModel': 'None',
                     'Hpr': VBase3(122.968, 0.0, 0.0),
                     'Patrol Radius': '12.0000',
-                    'Pos': Point3(8.7789999999999999, -14.866, 0.0),
+                    'Pos': Point3(8.7789, -14.866, 0.0),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'Private Status': 'All',
@@ -40,7 +40,7 @@ objectStruct = {
                     'Type': 'Door Locator Node',
                     'Name': 'door_locator',
                     'Hpr': VBase3(0.0, 0.0, 0.0),
-                    'Pos': Point3(0.047, -29.861000000000001, 0.067000000000000004),
+                    'Pos': Point3(0.047, -29.861, 0.0670000),
                     'Scale': VBase3(1.0, 1.0, 1.0) },
                 '1201118516.17dxschafe': {
                     'Type': 'Light - Dynamic',
@@ -48,10 +48,10 @@ objectStruct = {
                     'ConeAngle': '60.0000',
                     'DropOff': '73.7349',
                     'FlickRate': '0.5000',
-                    'Hpr': VBase3(100.319, 2.9780000000000002, 3.46),
+                    'Hpr': VBase3(100.319, 2.9780, 3.46),
                     'Intensity': '0.2410',
                     'LightType': 'POINT',
-                    'Pos': Point3(6.0659999999999998, -16.350999999999999, 3.8730000000000002),
+                    'Pos': Point3(6.0658, -16.350, 3.8730),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Color': (1, 1, 1, 1),
@@ -62,10 +62,10 @@ objectStruct = {
                     'ConeAngle': '60.0000',
                     'DropOff': '0.0000',
                     'FlickRate': '0.5000',
-                    'Hpr': VBase3(-57.191000000000003, 50.590000000000003, 3.327),
+                    'Hpr': VBase3(-57.191, 50.590, 3.327),
                     'Intensity': '0.3735',
                     'LightType': 'SPOT',
-                    'Pos': Point3(6.2270000000000003, -16.477, 1.5069999999999999),
+                    'Pos': Point3(6.2270, -16.477, 1.5069),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Color': (1, 1, 1, 1),
@@ -76,10 +76,10 @@ objectStruct = {
                     'ConeAngle': '60.0000',
                     'DropOff': '0.0000',
                     'FlickRate': '0.5000',
-                    'Hpr': VBase3(68.504000000000005, -4.5720000000000001, -6.851),
+                    'Hpr': VBase3(68.5040, -4.572, -6.851),
                     'Intensity': '1.0241',
                     'LightType': 'SPOT',
-                    'Pos': Point3(17.641999999999999, -20.817, 7.3079999999999998),
+                    'Pos': Point3(17.641, -20.817, 7.3078),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Color': (1, 1, 1, 1),
@@ -164,6 +164,6 @@ objectStruct = {
         '1201125071.14dxschafe': '["Objects"]["1156270917.73dzlu0"]["Objects"]["1201125071.14dxschafe"]',
         '1201125244.02dxschafe': '["Objects"]["1156270917.73dzlu0"]["Objects"]["1201125244.02dxschafe"]' } }
 extraInfo = {
-    'camPos': Point3(-33.8949, -67.163700000000006, 42.203499999999998),
-    'camHpr': VBase3(-25.373000000000001, -20.671399999999998, 0),
+    'camPos': Point3(-33.8949, -67.1637, 42.2034),
+    'camHpr': VBase3(-25.373, -20.6713, 0),
     'focalLength': 1.3999999761599999 }

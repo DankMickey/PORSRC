@@ -132,7 +132,7 @@ class DistributedBlackjackTable(DistributedGameTable.DistributedGameTable):
         camera.reparentTo(self.cameraNode)
         self.cameraNode.setPosHpr(0, 0.75, 22, 0, -45, 0)
         camera.setHpr(0, 0, 0)
-        camera.setPos(-(self.sittingOffset), 4.9000000000000004, -11)
+        camera.setPos(-(self.sittingOffset), 4.90000, -11)
         base.camLens.setMinFov(60)
         self.cameraNode.reparentTo(localAvatar)
         self.chips = 0
@@ -304,7 +304,7 @@ class DistributedBlackjackTable(DistributedGameTable.DistributedGameTable):
             self.swapResultDialog = PDialog.PDialog(text = string, style = OTPDialog.Acknowledge, giveMouse = False, command = self.swapResultCallback)
             self.setDialogBin(self.swapResultDialog)
             position = self.swapResultDialog.getPos()
-            position.setZ(position[2] + 0.34999999999999998)
+            position.setZ(position[2] + 0.348)
             self.swapResultDialog.setPos(position)
             self.gui.updateSplitAndDoubleDown(hand)
             self.gui.updatePlayButtions()
@@ -352,7 +352,7 @@ class DistributedBlackjackTable(DistributedGameTable.DistributedGameTable):
                         if i == self.localAvatarSeat:
                             text = PLocalizer.TableWinGold % win
                             color = Vec4(1.0, 1.0, 1.0, 1.0)
-                            color = Vec4(0.20000000000000001, 0.80000000000000004, 0.20000000000000001, 1.0)
+                            color = Vec4(0.200, 0.800000, 0.200, 1.0)
                             self.gui.showWinText(text, color)
                 else:
                     actor = self.actors[i]
@@ -360,8 +360,8 @@ class DistributedBlackjackTable(DistributedGameTable.DistributedGameTable):
                         if i == self.localAvatarSeat:
                             if self.gui.bid:
                                 text = PLocalizer.BlackjackDealerWins
-                                color = Vec4(0.69999999999999996, 0.69999999999999996, 0.69999999999999996, 1.0)
-                                color = Vec4(0.20000000000000001, 0.20000000000000001, 0.80000000000000004, 1.0)
+                                color = Vec4(0.696, 0.696, 0.696, 1.0)
+                                color = Vec4(0.200, 0.200, 0.800000, 1.0)
                                 self.gui.showWinText(text, color)
                 if results[i] == PlayingCardGlobals.PlayerCaughtCheating:
                     actor = self.actors[i]

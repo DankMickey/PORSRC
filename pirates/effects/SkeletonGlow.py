@@ -16,7 +16,7 @@ class SkeletonGlow(PooledEffect, EffectController):
         EffectController.__init__(self)
         self.setColorScaleOff()
         self.setBillboardPointEye(billboardOffset)
-        self.glowColor = Vec4(0.80000000000000004, 0.80000000000000004, 0.80000000000000004, 1)
+        self.glowColor = Vec4(0.800000, 0.800000, 0.800000, 1)
         self.pulseRate = 1.0
         self.glow = loader.loadModel('models/effects/skeletonHeart')
         self.glow.setFogOff()
@@ -29,10 +29,10 @@ class SkeletonGlow(PooledEffect, EffectController):
 
     def createTracks(self):
         randomness = random.random() / 20
-        pulseUp = self.glow.scaleInterval(0.029999999999999999 + randomness, 2, startScale = 1.3)
-        pulseDown = self.glow.scaleInterval(0.029999999999999999 + randomness, 1.3, startScale = 2)
-        fadeIn = self.glow.colorInterval(0.029999999999999999 + randomness, Vec4(1, 1, 1, 1), startColor = self.glowColor)
-        fadeOut = self.glow.colorInterval(0.029999999999999999 + randomness, self.glowColor, startColor = Vec4(1, 1, 1, 1))
+        pulseUp = self.glow.scaleInterval(0.0299 + randomness, 2, startScale = 1.3)
+        pulseDown = self.glow.scaleInterval(0.0299 + randomness, 1.3, startScale = 2)
+        fadeIn = self.glow.colorInterval(0.0299 + randomness, Vec4(1, 1, 1, 1), startColor = self.glowColor)
+        fadeOut = self.glow.colorInterval(0.0299 + randomness, self.glowColor, startColor = Vec4(1, 1, 1, 1))
         self.track = Sequence(Wait(self.pulseRate), Parallel(fadeIn, pulseUp), Parallel(fadeOut, pulseDown))
 
 
@@ -45,7 +45,7 @@ class SkeletonGlow(PooledEffect, EffectController):
             self.pulseRate = 0.5
         elif hpPercent < 0.25:
             self.glow.find('**/+SwitchNode').node().setVisibleChild(2)
-            self.pulseRate = 0.10000000000000001
+            self.pulseRate = 0.100
 
         self.stop()
         self.createTracks()

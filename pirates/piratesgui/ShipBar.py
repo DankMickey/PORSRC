@@ -13,12 +13,12 @@ from pirates.piratesgui.TabBar import TopTab, TabBar
 class ShipTab(TopTab):
 
     def __init__(self, tabBar, name, **kw):
-        optiondefs = (('modelName', 'general_frame_c', None), ('frameSize', (0, 0.20499999999999999, 0.0, 0.10000000000000001), None), ('borderScale', 0.13500000000000001, None), ('bgBuffer', 0.14000000000000001, None), ('showBackground', True, None), ('bgColorScale', VBase4(0, 0, 0, 1), None), ('flatten', 0, None), ('label', '', None), ('textMayChange', 0, None), ('textpos', (0.10000000000000001, 0.025000000000000001, 0), None))
+        optiondefs = (('modelName', 'general_frame_c', None), ('frameSize', (0, 0.204, 0.0, 0.100), None), ('borderScale', 0.135, None), ('bgBuffer', 0.140, None), ('showBackground', True, None), ('bgColorScale', VBase4(0, 0, 0, 1), None), ('flatten', 0, None), ('label', '', None), ('textMayChange', 0, None), ('textpos', (0.100, 0.0250, 0), None))
         self.defineoptions(kw, optiondefs)
         TopTab.__init__(self, tabBar, name)
         self.initialiseoptions(ShipTab)
         self.guiComponents['background'].setTransparency(0, 1)
-        self.label = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, text = name, text_pos = self['textpos'], text_scale = 0.050000000000000003, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getInterfaceFont(), textMayChange = 1)
+        self.label = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, text = name, text_pos = self['textpos'], text_scale = 0.050000, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getInterfaceFont(), textMayChange = 1)
 
 
     def setTextBright(self, bright):
@@ -45,7 +45,7 @@ class ShipTabBar(TabBar):
     def refreshTabs(self):
         for (x, name) in enumerate(self.tabOrder):
             tab = self.tabs[name]
-            tab.setPos(0.080000000000000002 + 0.17999999999999999 * (x + self.offset), 0, 0.059999999999999998)
+            tab.setPos(0.08 + 0.179 * (x + self.offset), 0, 0.0598)
             if tab.getParent() != self.bParent:
                 tab.reparentTo(self.bParent)
                 continue
@@ -55,4 +55,4 @@ class ShipTabBar(TabBar):
             name = self.tabOrder[self.activeIndex]
             tab = self.tabs[name]
             tab.reparentTo(self.fParent)
-            tab.setZ(0.076999999999999999)
+            tab.setZ(0.0769)

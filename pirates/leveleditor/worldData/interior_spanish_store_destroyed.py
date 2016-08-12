@@ -10,7 +10,7 @@ objectStruct = {
                     'DisableCollision': False,
                     'Holiday': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(4.9500000000000002, 10.08, -0.0),
+                    'Pos': Point3(4.95, 10.08, -0.0),
                     'Scale': Point3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
@@ -21,8 +21,8 @@ objectStruct = {
         '1276101352.0caoconno': '["Objects"]["1276101352.0caoconno"]',
         '1276101582.69caoconno': '["Objects"]["1276101352.0caoconno"]["Objects"]["1276101582.69caoconno"]' } }
 extraInfo = {
-    'camPos': Point3(18.689499999999999, -47.908900000000003, 13.296900000000001),
-    'camHpr': VBase3(16.902200000000001, -4.7111799999999997, 0),
+    'camPos': Point3(18.6894, -47.9089, 13.2969),
+    'camHpr': VBase3(16.9022, -4.71117, 0),
     'focalLength': 1.3999999761599999,
     'skyState': 2,
     'fog': 0 }

@@ -54,13 +54,13 @@ class LockGUI(DirectFrame):
         self.layerImage.setPos(0, 50, 0)
         self.layerImage.setScale(1.0)
         self.layerImage.show()
-        self.mechLabel = DirectLabel(parent = self, relief = None, text = PLocalizer.LockMechanism, text_align = TextNode.ALeft, text_scale = 0.089999999999999997, pos = (-0.40000000000000002, 0, -0.69999999999999996), text_fg = (1, 0.90000000000000002, 0.59999999999999998, 1), text_shadow = (0, 0, 0, 1))
+        self.mechLabel = DirectLabel(parent = self, relief = None, text = PLocalizer.LockMechanism, text_align = TextNode.ALeft, text_scale = 0.089, pos = (-0.4, 0, -0.696), text_fg = (1, 0.9, 0.598, 1), text_shadow = (0, 0, 0, 1))
         self.mechNode = self.attachNewNode('mechNode')
         self.mechNode.setScale(0.5)
-        self.mechNode.setPos(0, 0, 0.20000000000000001)
+        self.mechNode.setPos(0, 0, 0.200)
         self.mechImage = PlayingCard.PlayingCardNodePath('standard', 13)
         self.mechImage.reparentTo(self.mechNode)
-        self.mechImage.setPos(0.59999999999999998, 0, -1.72)
+        self.mechImage.setPos(0.598, 0, -1.72)
         self.mechImage.show()
         self.mechTool = PlayingCard.PlayingCardNodePath('standard', 13)
         self.mechTool.reparentTo(self.mechNode)
@@ -72,9 +72,9 @@ class LockGUI(DirectFrame):
         self.lockImage[self.currentLayer].setPos(LockGlobals.LockXPos, 0, LockGlobals.LockZPos)
         self.setLockMech(random.randint(0, LockGlobals.MaxTool))
         self.lockImage[self.currentLayer].show()
-        self.mechLeftButton = DirectButton(parent = self, relief = DGG.RAISED, text = '<', text_align = TextNode.ACenter, text_scale = 0.050000000000000003, text_pos = (0.02, 0.01), text_fg = (0, 0, 0, 1), text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 0, frameColor = PiratesGuiGlobals.ButtonColor2, borderWidth = PiratesGuiGlobals.BorderWidthSmall, frameSize = (0, 0.050000000000000003, 0, 0.050000000000000003), pos = (0.13, 0, -0.69999999999999996), command = self.table.guiCallback, extraArgs = [
+        self.mechLeftButton = DirectButton(parent = self, relief = DGG.RAISED, text = '<', text_align = TextNode.ACenter, text_scale = 0.050000, text_pos = (0.02, 0.01), text_fg = (0, 0, 0, 1), text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 0, frameColor = PiratesGuiGlobals.ButtonColor2, borderWidth = PiratesGuiGlobals.BorderWidthSmall, frameSize = (0, 0.050000, 0, 0.050000), pos = (0.13, 0, -0.696), command = self.table.guiCallback, extraArgs = [
             LockGlobals.LGUI_MECHLEFT])
-        self.mechRightButton = DirectButton(parent = self, relief = DGG.RAISED, text = '>', text_align = TextNode.ACenter, text_scale = 0.050000000000000003, text_pos = (0.02, 0.01), text_fg = (0, 0, 0, 1), text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 0, frameColor = PiratesGuiGlobals.ButtonColor2, borderWidth = PiratesGuiGlobals.BorderWidthSmall, frameSize = (0, 0.050000000000000003, 0, 0.050000000000000003), pos = (0.41999999999999998, 0, -0.69999999999999996), command = self.table.guiCallback, extraArgs = [
+        self.mechRightButton = DirectButton(parent = self, relief = DGG.RAISED, text = '>', text_align = TextNode.ACenter, text_scale = 0.050000, text_pos = (0.02, 0.01), text_fg = (0, 0, 0, 1), text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 0, frameColor = PiratesGuiGlobals.ButtonColor2, borderWidth = PiratesGuiGlobals.BorderWidthSmall, frameSize = (0, 0.050000, 0, 0.050000), pos = (0.418, 0, -0.696), command = self.table.guiCallback, extraArgs = [
             LockGlobals.LGUI_MECHRIGHT])
         self.timer = PiratesTimer.PiratesTimer()
         self.timer.posInTopRightCorner()
@@ -107,7 +107,7 @@ class LockGUI(DirectFrame):
         print 'LockGUI:gameTimerExpired'
         if self.toolState != LockGlobals.LSTATE_OPEN:
             self.toolState = LockGlobals.LSTATE_DONE
-            self.solveLabel = DirectLabel(parent = self, relief = None, text = PLocalizer.LockpickFailed, text_align = TextNode.ACenter, text_scale = 0.20000000000000001, pos = (0, 0, 0), text_fg = (1, 1, 1, 1), text_shadow = (0, 0, 0, 1))
+            self.solveLabel = DirectLabel(parent = self, relief = None, text = PLocalizer.LockpickFailed, text_align = TextNode.ACenter, text_scale = 0.200, pos = (0, 0, 0), text_fg = (1, 1, 1, 1), text_shadow = (0, 0, 0, 1))
             self.solveLabel.show()
 
 
@@ -133,16 +133,16 @@ class LockGUI(DirectFrame):
         if self.toolState == LockGlobals.LSTATE_ACTIVE:
             self.mechMove()
         elif self.toolState == LockGlobals.LSTATE_TRY:
-            if self.mechZPos < LockGlobals.LockZPos - 0.29999999999999999:
+            if self.mechZPos < LockGlobals.LockZPos - 0.299:
                 self.mechZPos += 0.01
-            elif self.lockMech != self.mechVal and self.mechXPos > 0.050000000000000003 or self.mechXPos < -0.050000000000000003:
+            elif self.lockMech != self.mechVal and self.mechXPos > 0.050000 or self.mechXPos < -0.050000:
                 self.toolState = LockGlobals.LSTATE_FAIL
                 base.playSfx(self.missSound)
-            elif self.mechZPos < LockGlobals.LockXPos - 0.10000000000000001:
+            elif self.mechZPos < LockGlobals.LockXPos - 0.100:
                 self.mechZPos += 0.01
             else:
                 self.layerOpen()
-                self.lockSpeed += 0.10000000000000001 * random.randint(0, 8)
+                self.lockSpeed += 0.100 * random.randint(0, 8)
         elif self.toolState == LockGlobals.LSTATE_FAIL:
             if self.mechZPos > LockGlobals.StartZPos:
                 self.mechZPos -= 0.01
@@ -153,14 +153,14 @@ class LockGUI(DirectFrame):
                 self.mechZPos -= 0.01
 
             if self.layerZPos < LockGlobals.LayerZPos:
-                self.layerZPos += 0.014999999999999999
+                self.layerZPos += 0.0149
             elif self.layerXPos > LockGlobals.LayerXPos + self.currentLayer * 0.25:
-                self.layerXPos -= 0.014999999999999999
+                self.layerXPos -= 0.0149
 
             if self.lockXPos > LockGlobals.LockXPos:
-                self.lockXPos -= 0.014999999999999999
+                self.lockXPos -= 0.0149
             elif self.lockZPos > LockGlobals.LockZPos:
-                self.lockZPos -= 0.014999999999999999
+                self.lockZPos -= 0.0149
             else:
                 self.toolState = LockGlobals.LSTATE_ACTIVE
             if self.mechZPos > LockGlobals.StartZPos:
@@ -176,9 +176,9 @@ class LockGUI(DirectFrame):
     def lockOpen(self, name):
         print 'LockGUI:lockOpen'
         self.timer.stop()
-        self.solveLabel = DirectLabel(parent = self, relief = None, text = PLocalizer.UnlockedBy, text_align = TextNode.ACenter, text_scale = 0.20000000000000001, pos = (0, 0, 0), text_fg = (1, 1, 1, 1), text_shadow = (0, 0, 0, 1))
+        self.solveLabel = DirectLabel(parent = self, relief = None, text = PLocalizer.UnlockedBy, text_align = TextNode.ACenter, text_scale = 0.200, pos = (0, 0, 0), text_fg = (1, 1, 1, 1), text_shadow = (0, 0, 0, 1))
         self.solveLabel.show()
-        self.solveLabel2 = DirectLabel(parent = self, relief = None, text = name, text_align = TextNode.ACenter, text_scale = 0.20000000000000001, pos = (0, 0, -0.29999999999999999), text_fg = (1, 1, 1, 1), text_shadow = (0, 0, 0, 1))
+        self.solveLabel2 = DirectLabel(parent = self, relief = None, text = name, text_align = TextNode.ACenter, text_scale = 0.200, pos = (0, 0, -0.299), text_fg = (1, 1, 1, 1), text_shadow = (0, 0, 0, 1))
         self.solveLabel2.show()
         self.toolState = LockGlobals.LSTATE_OPEN
 

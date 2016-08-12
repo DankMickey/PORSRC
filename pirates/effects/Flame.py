@@ -61,7 +61,7 @@ class Flame(PooledEffect, EffectController):
         self.p0.renderer.setNonanimatedTheta(0.0)
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPBLENDLINEAR)
         self.p0.renderer.setColorBlendMode(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne)
-        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(1.0, 0.59999999999999998, 0.20000000000000001, 1.0), Vec4(0.59999999999999998, 0.20000000000000001, 0.20000000000000001, 0.5), 1)
+        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(1.0, 0.598, 0.200, 1.0), Vec4(0.598, 0.200, 0.200, 0.5), 1)
         self.p0.renderer.setAlphaDisable(0)
         self.p0.emitter.setEmissionType(BaseParticleEmitter.ETRADIATE)
         self.p0.emitter.setAmplitude(-0.75)
@@ -83,21 +83,21 @@ class Flame(PooledEffect, EffectController):
 
     def setCursedColor(self):
         self.p0.renderer.getColorInterpolationManager().clearToInitial()
-        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(0.75, 0.84999999999999998, 0.29999999999999999, 1.0), Vec4(0.40000000000000002, 0.84999999999999998, 0.29999999999999999, 0.5), 1)
+        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(0.75, 0.848, 0.299, 1.0), Vec4(0.4, 0.848, 0.299, 0.5), 1)
 
 
     def setDefaultColor(self):
         self.p0.renderer.getColorInterpolationManager().clearToInitial()
-        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(1.0, 0.59999999999999998, 0.20000000000000001, 1.0), Vec4(0.5, 0.20000000000000001, 0.20000000000000001, 0.5), 1)
+        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(1.0, 0.598, 0.200, 1.0), Vec4(0.5, 0.200, 0.200, 0.5), 1)
 
 
     def resetEffect(self):
         if self.p0:
             self.p0.renderer.setUserAlpha(1.0)
-            self.p0.renderer.setInitialXScale(0.044999999999999998 * self.cardScale * self.effectScale)
-            self.p0.renderer.setInitialYScale(0.040000000000000001 * self.cardScale * self.effectScale)
+            self.p0.renderer.setInitialXScale(0.0448 * self.cardScale * self.effectScale)
+            self.p0.renderer.setInitialYScale(0.0400 * self.cardScale * self.effectScale)
             self.p0.renderer.setFinalXScale(0.02 * self.cardScale * self.effectScale)
-            self.p0.renderer.setFinalYScale(0.035000000000000003 * self.cardScale * self.effectScale)
+            self.p0.renderer.setFinalYScale(0.035000 * self.cardScale * self.effectScale)
             self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, 15.0 * self.effectScale))
             self.p0.emitter.setRadius(5.0 * self.effectScale)
 
@@ -106,7 +106,7 @@ class Flame(PooledEffect, EffectController):
     def setNewSize(self, time):
         if self.p0:
             self.p0.renderer.setFinalXScale(0.02 * self.cardScale * self.effectScale * time)
-            self.p0.renderer.setFinalYScale(0.035000000000000003 * self.cardScale * self.effectScale * time)
+            self.p0.renderer.setFinalYScale(0.035000 * self.cardScale * self.effectScale * time)
             self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, 15.0 * self.effectScale * time))
             self.p0.renderer.setUserAlpha(2.0 * time)
 

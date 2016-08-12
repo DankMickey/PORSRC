@@ -11,7 +11,7 @@ objectStruct = {
                     'Category': 'Blackjack',
                     'BetMultiplier': '1',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-4.6879999999999997, 7.5170000000000003, 4.6299999999999999),
+                    'Pos': Point3(-4.687, 7.5170, 4.62),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/Cardtable_HalfCircle' } } },
@@ -23,6 +23,6 @@ objectStruct = {
         '1155772882.54fxlara0': '["Objects"]["1155772882.54fxlara0"]',
         '1169081206.61mike': '["Objects"]["1155772882.54fxlara0"]["Objects"]["1169081206.61mike"]' } }
 extraInfo = {
-    'camPos': Point3(-49.291899999999998, 21.063500000000001, 16.395099999999999),
-    'camHpr': VBase3(-127.41800000000001, -7.9578499999999996, 0),
+    'camPos': Point3(-49.2918, 21.0635, 16.3950),
+    'camHpr': VBase3(-127.418, -7.95784, 0),
     'focalLength': 1.3999999761599999 }

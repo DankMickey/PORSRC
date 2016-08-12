@@ -25,7 +25,7 @@ class ScatterShot(PooledEffect, EffectController):
         self.flame.reparentTo(self)
         self.flash = model.find('**/particleSpark')
         self.flash.setBillboardPointWorld()
-        self.flash.setColorScale(1, 0.69999999999999996, 0.59999999999999998, 1)
+        self.flash.setColorScale(1, 0.696, 0.598, 1)
         self.flash.reparentTo(self)
         self.setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne))
         self.setDepthWrite(0)
@@ -34,8 +34,8 @@ class ScatterShot(PooledEffect, EffectController):
 
 
     def createTrack(self):
-        scaleFlame = self.flame.scaleInterval(0.10000000000000001, Vec3(2, 2, 4), startScale = Vec3(6, 6, 8))
-        scaleFlash = self.flash.scaleInterval(0.074999999999999997, 5, startScale = 15)
+        scaleFlame = self.flame.scaleInterval(0.100, Vec3(2, 2, 4), startScale = Vec3(6, 6, 8))
+        scaleFlash = self.flash.scaleInterval(0.074, 5, startScale = 15)
         self.track = Sequence(Func(self.flame.show), Func(self.flash.show), Parallel(scaleFlame, scaleFlash), Func(self.flame.hide), Func(self.flash.hide), Func(self.cleanUpEffect))
 
 

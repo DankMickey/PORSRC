@@ -128,10 +128,10 @@ class DistributedNPCTownfolk(DistributedBattleNPC.DistributedBattleNPC, Distribu
             self.nametagIconGlow.setColorScaleOff()
             self.nametagIconGlow.setFogOff()
             self.nametagIconGlow.setLightOff()
-            self.nametagIconGlow.setPos(0, -0.050000000000000003, 3.2000000000000002)
+            self.nametagIconGlow.setPos(0, -0.050000, 3.2)
             self.nametagIconGlow.setDepthWrite(0)
             self.nametagIconGlow.node().setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne))
-            self.nametagIconGlow.setColor(0.84999999999999998, 0.84999999999999998, 0.84999999999999998, 0.84999999999999998)
+            self.nametagIconGlow.setColor(0.848, 0.848, 0.848, 0.848)
 
 
 
@@ -205,7 +205,7 @@ class DistributedNPCTownfolk(DistributedBattleNPC.DistributedBattleNPC, Distribu
 
     def startShuffle(self, turnAnim):
         if self.playNoticeAnims():
-            self.loop(turnAnim, blendDelay = 0.29999999999999999)
+            self.loop(turnAnim, blendDelay = 0.299)
             self.motionFSM.motionAnimFSM.interruptSplash()
 
 
@@ -219,7 +219,7 @@ class DistributedNPCTownfolk(DistributedBattleNPC.DistributedBattleNPC, Distribu
             else:
                 reaction = self.getNoticeAnimation()
             if reaction:
-                self.play(reaction, blendInT = 0.29999999999999999, blendOutT = 0.29999999999999999)
+                self.play(reaction, blendInT = 0.299, blendOutT = 0.299)
 
 
 
@@ -387,7 +387,7 @@ class DistributedNPCTownfolk(DistributedBattleNPC.DistributedBattleNPC, Distribu
             loop = 'idle'
             if self.usableAnimInfo():
                 idleAnimInfo = self.animInfo['LandRoam'][PiratesGlobals.STAND_INDEX]
-                self.loop(idleAnimInfo[0], blendDelay = 0.29999999999999999, rate = idleAnimInfo[1])
+                self.loop(idleAnimInfo[0], blendDelay = 0.299, rate = idleAnimInfo[1])
             else:
                 self.loop('idle')
 
@@ -396,9 +396,9 @@ class DistributedNPCTownfolk(DistributedBattleNPC.DistributedBattleNPC, Distribu
     def endShuffle(self):
         if self.playNoticeAnims():
             if self.noticeIdle and self.getCurrentAnim != self.noticeIdle:
-                self.loop(self.noticeIdle, blendDelay = 0.29999999999999999)
+                self.loop(self.noticeIdle, blendDelay = 0.299)
             elif self.getCurrentAnim() != 'idle':
-                self.loop('idle', blendDelay = 0.29999999999999999)
+                self.loop('idle', blendDelay = 0.299)
 
 
 
@@ -739,7 +739,7 @@ class DistributedNPCTownfolk(DistributedBattleNPC.DistributedBattleNPC, Distribu
 
         self.interactGUI.hide()
         uid = localAvatar.getParentObj().getUniqueId()
-        self.confirmDialog = LegendaryTellGUI(1.24, 1.3700000000000001, uid)
+        self.confirmDialog = LegendaryTellGUI(1.24, 1.37, uid)
         self.confirmDialog.setCallBack(self.finishTellLegendaryFishStory)
 
 
@@ -783,7 +783,7 @@ class DistributedNPCTownfolk(DistributedBattleNPC.DistributedBattleNPC, Distribu
                 'gold': gold }, style = OTPDialog.CancelOnly, command = self._DistributedNPCTownfolk__handleBribeConfirmation)
         gui = loader.loadModel('models/gui/toplevel_gui')
         goldCoin = gui.find('**/treasure_w_coin*')
-        self.confirmDialog.goldLabel = DirectLabel(parent = self.confirmDialog, relief = 0, text = PLocalizer.BribeConfirmYourGold % avGold, text_align = TextNode.ALeft, text_scale = 0.035000000000000003, text_pos = (0.0, 0.0), text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 0, image = goldCoin, image_scale = 0.22, image_pos = (-0.040000000000000001, 0, 0.01), pos = (-0.080000000000000002, 0, -0.12))
+        self.confirmDialog.goldLabel = DirectLabel(parent = self.confirmDialog, relief = 0, text = PLocalizer.BribeConfirmYourGold % avGold, text_align = TextNode.ALeft, text_scale = 0.035000, text_pos = (0.0, 0.0), text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 0, image = goldCoin, image_scale = 0.22, image_pos = (-0.0400, 0, 0.01), pos = (-0.08, 0, -0.12))
 
 
     def _DistributedNPCTownfolk__handleBribeConfirmation(self, value):
@@ -1268,7 +1268,7 @@ class DistributedNPCTownfolk(DistributedBattleNPC.DistributedBattleNPC, Distribu
                     np = self.headNode.attachNewNode('interactCamNode')
                     np.setPos(1, 0, -4.5)
                 np.wrtReparentTo(render)
-                np.lookAt(self, self.headNode.getX(self), self.headNode.getY(self), self.headNode.getZ(self) * 0.94999999999999996)
+                np.lookAt(self, self.headNode.getX(self), self.headNode.getY(self), self.headNode.getZ(self) * 0.946)
                 if hasMenu:
                     np.setH(np.getH() + 15)
 
@@ -1293,9 +1293,9 @@ class DistributedNPCTownfolk(DistributedBattleNPC.DistributedBattleNPC, Distribu
 
                     if self.isMixing():
                         if chosenAnimInto == chosenAnim:
-                            self.animIval = Sequence(Wait(0.20000000000000001), Func(self.loop, chosenAnim))
+                            self.animIval = Sequence(Wait(0.200), Func(self.loop, chosenAnim))
                         else:
-                            self.animIval = Sequence(Wait(0.20000000000000001), Func(self.play, chosenAnimInto), Func(self.loop, chosenAnim))
+                            self.animIval = Sequence(Wait(0.200), Func(self.play, chosenAnimInto), Func(self.loop, chosenAnim))
                     elif chosenAnimInto == chosenAnim:
                         self.animIval = Sequence(Func(self.loop, chosenAnim))
                     else:
@@ -1337,13 +1337,13 @@ class DistributedNPCTownfolk(DistributedBattleNPC.DistributedBattleNPC, Distribu
                         self.lockFSM = True
                         if self.isMixing():
                             if chosenAnimOutof == self.interactAnim:
-                                self.animIval = Sequence(Wait(0.20000000000000001), Func(self.loop, self.interactAnim))
+                                self.animIval = Sequence(Wait(0.200), Func(self.loop, self.interactAnim))
                             else:
-                                self.animIval = Sequence(Wait(0.20000000000000001), Func(self.play, chosenAnimOutof), Func(self.loop, self.interactAnim))
+                                self.animIval = Sequence(Wait(0.200), Func(self.play, chosenAnimOutof), Func(self.loop, self.interactAnim))
                         elif chosenAnimOutof == self.interactAnim:
                             self.animIval = Sequence(Func(self.loop, self.interactAnim))
                         else:
-                            self.animIval = Sequence(Wait(0.20000000000000001), Func(self.play, chosenAnimOutof), Wait(duration), Func(self.loop, self.interactAnim))
+                            self.animIval = Sequence(Wait(0.200), Func(self.play, chosenAnimOutof), Wait(duration), Func(self.loop, self.interactAnim))
                         self.animIval.start()
 
 
@@ -1817,4 +1817,4 @@ class DistributedNPCTownfolk(DistributedBattleNPC.DistributedBattleNPC, Distribu
 
 
 class MinimapTownfolk(DistributedBattleAvatar.MinimapBattleAvatar):
-    DEFAULT_COLOR = VBase4(0.10000000000000001, 1.0, 0.10000000000000001, 0.69999999999999996)
+    DEFAULT_COLOR = VBase4(0.100, 1.0, 0.100, 0.696)

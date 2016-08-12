@@ -25,7 +25,7 @@ class MuzzleFlame(PooledEffect, EffectController):
         self.flame.setPos(0, 0, 1.5)
         self.flash = model.find('**/particleSpark')
         self.flash.setBillboardPointWorld()
-        self.flash.setColorScale(1, 0.59999999999999998, 0.59999999999999998, 1)
+        self.flash.setColorScale(1, 0.598, 0.598, 1)
         self.flash.reparentTo(self)
         self.setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne))
         self.setDepthWrite(0)
@@ -34,8 +34,8 @@ class MuzzleFlame(PooledEffect, EffectController):
 
 
     def createTrack(self):
-        scaleFlame = self.flame.scaleInterval(0.29999999999999999, Vec3(2, 2, 4), startScale = Vec3(5, 5, 8))
-        scaleFlash = self.flash.scaleInterval(0.20000000000000001, 5, startScale = 15)
+        scaleFlame = self.flame.scaleInterval(0.299, Vec3(2, 2, 4), startScale = Vec3(5, 5, 8))
+        scaleFlash = self.flash.scaleInterval(0.200, 5, startScale = 15)
         self.track = Sequence(Func(self.flame.show), Func(self.flash.show), Parallel(scaleFlame, scaleFlash), Func(self.flame.hide), Func(self.flash.hide), Func(self.cleanUpEffect))
 
 

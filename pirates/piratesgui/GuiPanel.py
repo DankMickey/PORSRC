@@ -36,7 +36,7 @@ class GuiPanel(BorderFrame):
             wordwrap = 10
 
         if title:
-            self.titleLabel = DirectLabel(parent = self, relief = None, pos = (0.050000000000000003, 0, h - PiratesGuiGlobals.TextScaleSmall * 2.5), text = title, text_align = TextNode.ALeft, text_scale = titleFont, text_pos = (0.014999999999999999, 0.014999999999999999), text_fg = textColor, text_shadow = textShadow, text_font = PiratesGlobals.getPirateOutlineFont(), textMayChange = 1, text_wordwrap = wordwrap, sortOrder = 21)
+            self.titleLabel = DirectLabel(parent = self, relief = None, pos = (0.050000, 0, h - PiratesGuiGlobals.TextScaleSmall * 2.5), text = title, text_align = TextNode.ALeft, text_scale = titleFont, text_pos = (0.0149, 0.0149), text_fg = textColor, text_shadow = textShadow, text_font = PiratesGlobals.getPirateOutlineFont(), textMayChange = 1, text_wordwrap = wordwrap, sortOrder = 21)
         else:
             self.titleLabel = None
         if showClose:

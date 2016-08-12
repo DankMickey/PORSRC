@@ -279,7 +279,7 @@ class AnimationMixer:
     sectionNames = [None]
     partNameLists = {None: []}
     AnimRankings = {}
-    defaultBlendT = 0.14999999999999999
+    defaultBlendT = 0.149
 
     def __init__(self, actor):
         self.actor = actor

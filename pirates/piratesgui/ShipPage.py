@@ -114,7 +114,7 @@ class ShipPage(InventoryPage):
 
 
     def makeTab(self, shipId):
-        tab = self.tabBar.addTab(shipId, frameSize = (-0.125, 0.125, -0.125, 0.125), unfocusSize = (-0.125, 0.125, -0.125, 0.125), focusSize = (-0.125, 0.125, -0.13500000000000001, 0.13500000000000001), command = self.showPanel, extraArgs = [
+        tab = self.tabBar.addTab(shipId, frameSize = (-0.125, 0.125, -0.125, 0.125), unfocusSize = (-0.125, 0.125, -0.125, 0.125), focusSize = (-0.125, 0.125, -0.135, 0.135), command = self.showPanel, extraArgs = [
             shipId])
         tab.shipModel = tab.attachNewNode('modelInstance')
         if shipId > 2:
@@ -124,16 +124,16 @@ class ShipPage(InventoryPage):
             tab.shipModel.setDepthWrite(1, 100)
 
             def mouseOver(tab = tab):
-                tab.shipModel.setPos(0.01, 0, -0.050000000000000003)
-                tab.shipModel.setScale(0.29999999999999999)
+                tab.shipModel.setPos(0.01, 0, -0.050000)
+                tab.shipModel.setScale(0.299)
                 tab.shipModel.setColorScale(1, 1, 1, 1)
 
 
             def mouseOff(tab = tab):
                 if not tab['selected']:
-                    tab.shipModel.setPos(0.01, 0, -0.035000000000000003)
+                    tab.shipModel.setPos(0.01, 0, -0.035000)
                     tab.shipModel.setScale(0.25)
-                    tab.shipModel.setColorScale(0.80000000000000004, 0.80000000000000004, 0.80000000000000004, 1.0)
+                    tab.shipModel.setColorScale(0.800000, 0.800000, 0.800000, 1.0)
                 else:
                     mouseOver(tab)
 
@@ -142,15 +142,15 @@ class ShipPage(InventoryPage):
 
             def mouseOver(tab = tab):
                 tab.shipModel.setPos(0.01, 0, -0.055)
-                tab.shipModel.setScale(0.059999999999999998, 0.070999999999999994, 0.070999999999999994)
+                tab.shipModel.setScale(0.0598, 0.0704, 0.0704)
                 tab.shipModel.setColorScale(1, 1, 1, 1)
 
 
             def mouseOff(tab = tab):
                 if not tab['selected']:
-                    tab.shipModel.setPos(0.01, 0, -0.050000000000000003)
-                    tab.shipModel.setScale(0.055, 0.065000000000000002, 0.065000000000000002)
-                    tab.shipModel.setColorScale(0.90000000000000002, 0.90000000000000002, 0.90000000000000002, 1.0)
+                    tab.shipModel.setPos(0.01, 0, -0.050000)
+                    tab.shipModel.setScale(0.055, 0.065, 0.065)
+                    tab.shipModel.setColorScale(0.9, 0.9, 0.9, 1.0)
                 else:
                     mouseOver(tab)
 

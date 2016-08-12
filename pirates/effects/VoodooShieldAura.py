@@ -54,17 +54,17 @@ class VoodooShieldAura(PooledEffect, EffectController):
         self.p0.renderer.setYScaleFlag(1)
         self.p0.renderer.setAnimAngleFlag(0)
         self.p0.renderer.setInitialXScale(0.02 * self.cardScale)
-        self.p0.renderer.setFinalXScale(0.040000000000000001 * self.cardScale)
-        self.p0.renderer.setInitialYScale(0.059999999999999998 * self.cardScale)
-        self.p0.renderer.setFinalYScale(0.029999999999999999 * self.cardScale)
+        self.p0.renderer.setFinalXScale(0.0400 * self.cardScale)
+        self.p0.renderer.setInitialYScale(0.0598 * self.cardScale)
+        self.p0.renderer.setFinalYScale(0.0299 * self.cardScale)
         self.p0.renderer.setNonanimatedTheta(0.0)
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPBLENDLINEAR)
         self.p0.renderer.setAlphaDisable(0)
         self.p0.renderer.setColorBlendMode(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne)
-        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(0, 0.20000000000000001, 1, 0.29999999999999999), Vec4(0.80000000000000004, 0.90000000000000002, 1, 0.29999999999999999), 1)
+        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(0, 0.200, 1, 0.299), Vec4(0.800000, 0.9, 1, 0.299), 1)
         self.p0.emitter.setEmissionType(BaseParticleEmitter.ETRADIATE)
         self.p0.emitter.setAmplitude(0.0)
-        self.p0.emitter.setAmplitudeSpread(0.10000000000000001)
+        self.p0.emitter.setAmplitudeSpread(0.100)
         self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, -1.5))
         self.p0.emitter.setExplicitLaunchVector(Vec3(0.0, 0.0, 0.0))
         self.p0.emitter.setRadiateOrigin(Point3(0.0, 0.0, 0.0))
@@ -72,7 +72,7 @@ class VoodooShieldAura(PooledEffect, EffectController):
 
 
     def createTrack(self):
-        self.startEffect = Sequence(Func(self.p0.clearToInitial), Func(self.p0.setBirthRate, 0.029999999999999999), Func(self.f.start, self, self.particleDummy))
+        self.startEffect = Sequence(Func(self.p0.clearToInitial), Func(self.p0.setBirthRate, 0.0299), Func(self.f.start, self, self.particleDummy))
         self.endEffect = Sequence(Func(self.p0.setBirthRate, 100.0), Wait(1.0), Func(self.cleanUpEffect))
         self.track = Sequence(self.startEffect, Wait(2.0), self.endEffect)
 

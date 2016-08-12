@@ -14,7 +14,7 @@ class CannonDefenseHUD:
         self.goldRemainingUI = CannonDefenseGoldRemaingUI()
         self.timeRemainingUI = CannonDefenseTimeRemainingUI()
         self.timeRemainingUI.setWaveNumber(1)
-        self.goldRemainingUI.mineCounter.setPos(0.025000000000000001, 0, -0.035000000000000003)
+        self.goldRemainingUI.mineCounter.setPos(0.0250, 0, -0.035000)
         self.timeRemainingUI.timeRemaining.setPos(-0.01, 0, 0)
 
 

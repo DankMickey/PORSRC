@@ -46,8 +46,8 @@ class HealPotion(PooledEffect, EffectController):
         self.p0.setSystemLifespan(0.0)
         self.p0.setLocalVelocityFlag(1)
         self.p0.setSystemGrowsOlderFlag(0)
-        self.p0.factory.setLifespanBase(0.80000000000000004)
-        self.p0.factory.setLifespanSpread(0.10000000000000001)
+        self.p0.factory.setLifespanBase(0.800000)
+        self.p0.factory.setLifespanSpread(0.100)
         self.p0.factory.setMassBase(1.0)
         self.p0.factory.setMassSpread(0.0)
         self.p0.factory.setTerminalVelocityBase(400.0)
@@ -60,9 +60,9 @@ class HealPotion(PooledEffect, EffectController):
         self.p0.renderer.setYScaleFlag(1)
         self.p0.renderer.setAnimAngleFlag(0)
         self.p0.renderer.setInitialXScale(0.002 * self.cardScale)
-        self.p0.renderer.setFinalXScale(0.0030000000000000001 * self.cardScale)
+        self.p0.renderer.setFinalXScale(0.00300 * self.cardScale)
         self.p0.renderer.setInitialYScale(0.002 * self.cardScale)
-        self.p0.renderer.setFinalYScale(0.0040000000000000001 * self.cardScale)
+        self.p0.renderer.setFinalYScale(0.00400 * self.cardScale)
         self.p0.renderer.setNonanimatedTheta(0.0)
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPBLENDLINEAR)
         self.p0.renderer.setAlphaDisable(0)
@@ -73,7 +73,7 @@ class HealPotion(PooledEffect, EffectController):
         self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, 0.0))
         self.p0.emitter.setExplicitLaunchVector(Vec3(0.0, 0.0, 0.0))
         self.p0.emitter.setRadiateOrigin(Point3(0.0, 0.0, 0.0))
-        self.p0.emitter.setRadius(0.10000000000000001)
+        self.p0.emitter.setRadius(0.100)
 
 
     def createTrack(self):

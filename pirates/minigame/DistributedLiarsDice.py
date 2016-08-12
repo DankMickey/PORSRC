@@ -37,39 +37,39 @@ class DistributedLiarsDice(DistributedDiceGame.DistributedDiceGame):
         self.challSeq = { }
         self.cheatDetect = 0
         self.mojoDetect = 0
-        self.checkButton = DirectButton(parent = self.gui, relief = DGG.RAISED, state = DGG.DISABLED, text = 'CALL BLUFF', text_align = TextNode.ACenter, text_scale = 0.080000000000000002, text_fg = (0.5, 0.5, 0.40000000000000002, 1), frameColor = (1, 0.90000000000000002, 0.59999999999999998, 1), frameSize = (0, 0.46999999999999997, 0, 0.12), borderWidth = PiratesGuiGlobals.BorderWidth, text_pos = (0.23000000000000001, 0.033000000000000002), textMayChange = 1, pos = (-0.23000000000000001, 0, -0.31), command = self.guiCallback, extraArgs = [
+        self.checkButton = DirectButton(parent = self.gui, relief = DGG.RAISED, state = DGG.DISABLED, text = 'CALL BLUFF', text_align = TextNode.ACenter, text_scale = 0.08, text_fg = (0.5, 0.5, 0.4, 1), frameColor = (1, 0.9, 0.598, 1), frameSize = (0, 0.46, 0, 0.12), borderWidth = PiratesGuiGlobals.BorderWidth, text_pos = (0.230, 0.033), textMayChange = 1, pos = (-0.230, 0, -0.31), command = self.guiCallback, extraArgs = [
             'call bluff'])
         self.checkButton.hide()
-        self.claimButton = DirectButton(parent = self.gui, relief = DGG.RAISED, state = DGG.DISABLED, text = 'MAKE CLAIM', text_align = TextNode.ACenter, text_scale = 0.080000000000000002, text_fg = PiratesGuiGlobals.TextFG2, frameColor = (0.20000000000000001, 0.59999999999999998, 0.10000000000000001, 1), frameSize = (0, 0.46999999999999997, 0, 0.12), borderWidth = PiratesGuiGlobals.BorderWidth, text_pos = (0.23000000000000001, 0.033000000000000002), textMayChange = 1, pos = (-0.23000000000000001, 0, -0.02), command = self.guiCallback, extraArgs = [
+        self.claimButton = DirectButton(parent = self.gui, relief = DGG.RAISED, state = DGG.DISABLED, text = 'MAKE CLAIM', text_align = TextNode.ACenter, text_scale = 0.08, text_fg = PiratesGuiGlobals.TextFG2, frameColor = (0.200, 0.598, 0.100, 1), frameSize = (0, 0.46, 0, 0.12), borderWidth = PiratesGuiGlobals.BorderWidth, text_pos = (0.230, 0.033), textMayChange = 1, pos = (-0.230, 0, -0.02), command = self.guiCallback, extraArgs = [
             'make claim'])
         self.claimButton.hide()
-        self.mojoButton = DirectButton(parent = self.gui, relief = DGG.RAISED, state = DGG.DISABLED, text = 'USE MOJO', text_align = TextNode.ACenter, text_scale = 0.080000000000000002, text_fg = (0.20000000000000001, 0.34999999999999998, 0.59999999999999998, 1), frameColor = (0.40000000000000002, 0.59999999999999998, 1.0, 1), frameSize = (0, 0.45000000000000001, 0, 0.12), borderWidth = PiratesGuiGlobals.BorderWidth, text_pos = (0.23000000000000001, 0.033000000000000002), textMayChange = 1, pos = (0.69999999999999996, 0, -0.40000000000000002), command = self.guiCallback, extraArgs = [
+        self.mojoButton = DirectButton(parent = self.gui, relief = DGG.RAISED, state = DGG.DISABLED, text = 'USE MOJO', text_align = TextNode.ACenter, text_scale = 0.08, text_fg = (0.200, 0.348, 0.598, 1), frameColor = (0.4, 0.598, 1.0, 1), frameSize = (0, 0.450, 0, 0.12), borderWidth = PiratesGuiGlobals.BorderWidth, text_pos = (0.230, 0.033), textMayChange = 1, pos = (0.696, 0, -0.4), command = self.guiCallback, extraArgs = [
             'mojo'])
         self.mojoButton.hide()
-        self.catchCheat = DirectButton(parent = self.gui, relief = DGG.RAISED, state = DGG.DISABLED, text = 'CATCH CHEATER', text_align = TextNode.ACenter, text_scale = 0.040000000000000001, text_fg = (0.80000000000000004, 0.40000000000000002, 0.40000000000000002, 1), frameColor = (0.59999999999999998, 0.29999999999999999, 0.29999999999999999, 1), frameSize = (0, 0.45000000000000001, 0, 0.12), borderWidth = PiratesGuiGlobals.BorderWidth, text_pos = (0.23000000000000001, 0.033000000000000002), textMayChange = 1, pos = (0.83999999999999997, 0, 0.83999999999999997), command = self.guiCallback, extraArgs = [
+        self.catchCheat = DirectButton(parent = self.gui, relief = DGG.RAISED, state = DGG.DISABLED, text = 'CATCH CHEATER', text_align = TextNode.ACenter, text_scale = 0.0400, text_fg = (0.800000, 0.4, 0.4, 1), frameColor = (0.598, 0.299, 0.299, 1), frameSize = (0, 0.450, 0, 0.12), borderWidth = PiratesGuiGlobals.BorderWidth, text_pos = (0.230, 0.033), textMayChange = 1, pos = (0.83, 0, 0.83), command = self.guiCallback, extraArgs = [
             'catch cheat'])
         self.catchCheat.hide()
-        self.cheatButton = DirectButton(parent = self.gui, relief = DGG.RAISED, state = DGG.DISABLED, text = 'CHEAT', text_align = TextNode.ACenter, text_scale = 0.080000000000000002, text_fg = (0.69999999999999996, 0.40000000000000002, 0.29999999999999999, 1), frameColor = (1, 0.69999999999999996, 0.5, 1), frameSize = (0, 0.45000000000000001, 0, 0.12), borderWidth = PiratesGuiGlobals.BorderWidth, text_pos = (0.23000000000000001, 0.033000000000000002), textMayChange = 1, pos = (-1.1000000000000001, 0, -0.40000000000000002), command = self.guiCallback, extraArgs = [
+        self.cheatButton = DirectButton(parent = self.gui, relief = DGG.RAISED, state = DGG.DISABLED, text = 'CHEAT', text_align = TextNode.ACenter, text_scale = 0.08, text_fg = (0.696, 0.4, 0.299, 1), frameColor = (1, 0.696, 0.5, 1), frameSize = (0, 0.450, 0, 0.12), borderWidth = PiratesGuiGlobals.BorderWidth, text_pos = (0.230, 0.033), textMayChange = 1, pos = (-1.10, 0, -0.4), command = self.guiCallback, extraArgs = [
             'cheat'])
         self.cheatButton.hide()
-        self.diceNumText = DirectLabel(parent = self.gui, relief = None, text = 'Num Dice', text_align = TextNode.ALeft, text_scale = 0.10000000000000001, pos = (-0.40000000000000002, 0, -0.5), text_fg = (1, 0.90000000000000002, 0.59999999999999998, 1), text_shadow = (0, 0, 0, 1))
+        self.diceNumText = DirectLabel(parent = self.gui, relief = None, text = 'Num Dice', text_align = TextNode.ALeft, text_scale = 0.100, pos = (-0.4, 0, -0.5), text_fg = (1, 0.9, 0.598, 1), text_shadow = (0, 0, 0, 1))
         self.diceNumText.hide()
-        self.diceNumLabel = DirectLabel(parent = self.gui, relief = None, text = '1', text_align = TextNode.ALeft, text_scale = 0.20000000000000001, pos = (-0.28000000000000003, 0, -0.69999999999999996), text_fg = (1, 0.90000000000000002, 0.59999999999999998, 1), text_shadow = (0, 0, 0, 1))
+        self.diceNumLabel = DirectLabel(parent = self.gui, relief = None, text = '1', text_align = TextNode.ALeft, text_scale = 0.200, pos = (-0.28000, 0, -0.696), text_fg = (1, 0.9, 0.598, 1), text_shadow = (0, 0, 0, 1))
         self.diceNumLabel.hide()
-        self.diceValText = DirectLabel(parent = self.gui, relief = None, text = 'Value', text_align = TextNode.ALeft, text_scale = 0.10000000000000001, pos = (0.27000000000000002, 0, -0.5), text_fg = (1, 0.90000000000000002, 0.59999999999999998, 1), text_shadow = (0, 0, 0, 1))
+        self.diceValText = DirectLabel(parent = self.gui, relief = None, text = 'Value', text_align = TextNode.ALeft, text_scale = 0.100, pos = (0.27, 0, -0.5), text_fg = (1, 0.9, 0.598, 1), text_shadow = (0, 0, 0, 1))
         self.diceValText.hide()
-        self.diceValLabel = DirectLabel(parent = self.gui, relief = None, text = '1', text_align = TextNode.ALeft, text_scale = 0.20000000000000001, pos = (0.33000000000000002, 0, -0.69999999999999996), text_fg = (1, 0.90000000000000002, 0.59999999999999998, 1), text_shadow = (0, 0, 0, 1))
+        self.diceValLabel = DirectLabel(parent = self.gui, relief = None, text = '1', text_align = TextNode.ALeft, text_scale = 0.200, pos = (0.33, 0, -0.696), text_fg = (1, 0.9, 0.598, 1), text_shadow = (0, 0, 0, 1))
         self.diceValLabel.hide()
-        self.diceUpButton = DirectButton(parent = self.gui, relief = DGG.RAISED, text = '>', text_align = TextNode.ACenter, text_scale = 0.050000000000000003, text_pos = (0.02, 0.01), text_fg = (0, 0, 0, 1), text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 0, frameColor = PiratesGuiGlobals.ButtonColor2, borderWidth = PiratesGuiGlobals.BorderWidthSmall, frameSize = (0, 0.050000000000000003, 0, 0.050000000000000003), pos = (-0.10000000000000001, 0, -0.68999999999999995), command = self.guiCallback, extraArgs = [
+        self.diceUpButton = DirectButton(parent = self.gui, relief = DGG.RAISED, text = '>', text_align = TextNode.ACenter, text_scale = 0.050000, text_pos = (0.02, 0.01), text_fg = (0, 0, 0, 1), text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 0, frameColor = PiratesGuiGlobals.ButtonColor2, borderWidth = PiratesGuiGlobals.BorderWidthSmall, frameSize = (0, 0.050000, 0, 0.050000), pos = (-0.100, 0, -0.685), command = self.guiCallback, extraArgs = [
             'dice up'])
         self.diceUpButton.hide()
-        self.diceDownButton = DirectButton(parent = self.gui, relief = DGG.RAISED, text = '<', text_align = TextNode.ACenter, text_scale = 0.050000000000000003, text_pos = (0.02, 0.01), text_fg = (0, 0, 0, 1), text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 0, frameColor = PiratesGuiGlobals.ButtonColor2, borderWidth = PiratesGuiGlobals.BorderWidthSmall, frameSize = (0, 0.050000000000000003, 0, 0.050000000000000003), pos = (-0.38, 0, -0.68999999999999995), command = self.guiCallback, extraArgs = [
+        self.diceDownButton = DirectButton(parent = self.gui, relief = DGG.RAISED, text = '<', text_align = TextNode.ACenter, text_scale = 0.050000, text_pos = (0.02, 0.01), text_fg = (0, 0, 0, 1), text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 0, frameColor = PiratesGuiGlobals.ButtonColor2, borderWidth = PiratesGuiGlobals.BorderWidthSmall, frameSize = (0, 0.050000, 0, 0.050000), pos = (-0.38, 0, -0.685), command = self.guiCallback, extraArgs = [
             'dice down'])
         self.diceDownButton.hide()
-        self.valueUpButton = DirectButton(parent = self.gui, relief = DGG.RAISED, text = '>', text_align = TextNode.ACenter, text_scale = 0.050000000000000003, text_pos = (0.02, 0.01), text_fg = (0, 0, 0, 1), text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 0, frameColor = PiratesGuiGlobals.ButtonColor2, borderWidth = PiratesGuiGlobals.BorderWidthSmall, frameSize = (0, 0.050000000000000003, 0, 0.050000000000000003), pos = (0.51000000000000001, 0, -0.68999999999999995), command = self.guiCallback, extraArgs = [
+        self.valueUpButton = DirectButton(parent = self.gui, relief = DGG.RAISED, text = '>', text_align = TextNode.ACenter, text_scale = 0.050000, text_pos = (0.02, 0.01), text_fg = (0, 0, 0, 1), text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 0, frameColor = PiratesGuiGlobals.ButtonColor2, borderWidth = PiratesGuiGlobals.BorderWidthSmall, frameSize = (0, 0.050000, 0, 0.050000), pos = (0.510, 0, -0.685), command = self.guiCallback, extraArgs = [
             'value up'])
         self.valueUpButton.hide()
-        self.valueDownButton = DirectButton(parent = self.gui, relief = DGG.RAISED, text = '<', text_align = TextNode.ACenter, text_scale = 0.050000000000000003, text_pos = (0.02, 0.01), text_fg = (0, 0, 0, 1), text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 0, frameColor = PiratesGuiGlobals.ButtonColor2, borderWidth = PiratesGuiGlobals.BorderWidthSmall, frameSize = (0, 0.050000000000000003, 0, 0.050000000000000003), pos = (0.26000000000000001, 0, -0.68999999999999995), command = self.guiCallback, extraArgs = [
+        self.valueDownButton = DirectButton(parent = self.gui, relief = DGG.RAISED, text = '<', text_align = TextNode.ACenter, text_scale = 0.050000, text_pos = (0.02, 0.01), text_fg = (0, 0, 0, 1), text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 0, frameColor = PiratesGuiGlobals.ButtonColor2, borderWidth = PiratesGuiGlobals.BorderWidthSmall, frameSize = (0, 0.050000, 0, 0.050000), pos = (0.260, 0, -0.685), command = self.guiCallback, extraArgs = [
             'value down'])
         self.valueDownButton.hide()
 
@@ -117,7 +117,7 @@ class DistributedLiarsDice(DistributedDiceGame.DistributedDiceGame):
                 self.sendChat(DiceGlobals.CHAT_DICEUP)
                 self.betDice += 1
                 if self.betDice == 10:
-                    self.diceNumLabel.setPos(-0.34000000000000002, 0, -0.69999999999999996)
+                    self.diceNumLabel.setPos(-0.34, 0, -0.696)
 
                 self.diceNumLabel['text'] = '%d' % self.betDice
 
@@ -127,7 +127,7 @@ class DistributedLiarsDice(DistributedDiceGame.DistributedDiceGame):
                 self.sendChat(DiceGlobals.CHAT_DICEDOWN)
                 self.betDice -= 1
                 if self.betDice == 9:
-                    self.diceNumLabel.setPos(-0.28000000000000003, 0, -0.69999999999999996)
+                    self.diceNumLabel.setPos(-0.28000, 0, -0.696)
 
                 self.diceNumLabel['text'] = '%d' % self.betDice
                 if self.betDice == self.oldDice and self.betValue < self.oldValue:
@@ -182,17 +182,17 @@ class DistributedLiarsDice(DistributedDiceGame.DistributedDiceGame):
             self.valueUpButton.show()
             self.valueUpButton['state'] = DGG.NORMAL
             self.checkButton.show()
-            self.checkButton['frameColor'] = (1, 0.90000000000000002, 0.59999999999999998, 1)
+            self.checkButton['frameColor'] = (1, 0.9, 0.598, 1)
             self.checkButton['state'] = DGG.NORMAL
             self.claimButton.show()
-            self.claimButton['frameColor'] = (0.20000000000000001, 0.59999999999999998, 0.10000000000000001, 1)
+            self.claimButton['frameColor'] = (0.200, 0.598, 0.100, 1)
             self.claimButton['state'] = DGG.NORMAL
             self.mojoButton.show()
             self.mojoButton['state'] = DGG.NORMAL
-            self.mojoButton['frameColor'] = (0.40000000000000002, 0.59999999999999998, 1.0, 1)
+            self.mojoButton['frameColor'] = (0.4, 0.598, 1.0, 1)
             self.cheatButton.show()
             self.cheatButton['state'] = DGG.NORMAL
-            self.cheatButton['frameColor'] = (1, 0.69999999999999996, 0.5, 1)
+            self.cheatButton['frameColor'] = (1, 0.696, 0.5, 1)
             self.gui.mainButton['state'] = DGG.DISABLED
 
 
@@ -225,10 +225,10 @@ class DistributedLiarsDice(DistributedDiceGame.DistributedDiceGame):
             self.diceValText.hide()
             self.diceNumLabel.hide()
             self.diceValLabel.hide()
-            self.diceValLabel.setPos(0.33000000000000002, 0, -0.69999999999999996)
-            self.diceValText.setPos(0.27000000000000002, 0, -0.5)
-            self.diceNumText.setPos(-0.40000000000000002, 0, -0.5)
-            self.diceNumLabel.setPos(-0.28000000000000003, 0, -0.69999999999999996)
+            self.diceValLabel.setPos(0.33, 0, -0.696)
+            self.diceValText.setPos(0.27, 0, -0.5)
+            self.diceNumText.setPos(-0.4, 0, -0.5)
+            self.diceNumLabel.setPos(-0.28000, 0, -0.696)
             self.diceNumLabel['text'] = '%d' % self.betDice
             self.diceValLabel['text'] = '%d' % self.betValue
 
@@ -239,14 +239,14 @@ class DistributedLiarsDice(DistributedDiceGame.DistributedDiceGame):
         self.diceDownButton['state'] = DGG.DISABLED
         self.valueDownButton['state'] = DGG.DISABLED
         self.valueUpButton['state'] = DGG.DISABLED
-        self.checkButton['frameColor'] = (1, 0.90000000000000002, 0.59999999999999998, 0.5)
+        self.checkButton['frameColor'] = (1, 0.9, 0.598, 0.5)
         self.checkButton['state'] = DGG.DISABLED
-        self.claimButton['frameColor'] = (0.20000000000000001, 0.59999999999999998, 0.10000000000000001, 0.5)
+        self.claimButton['frameColor'] = (0.200, 0.598, 0.100, 0.5)
         self.claimButton['state'] = DGG.DISABLED
-        self.mojoButton['frameColor'] = (0.40000000000000002, 0.59999999999999998, 1.0, 0.5)
+        self.mojoButton['frameColor'] = (0.4, 0.598, 1.0, 0.5)
         self.mojoButton['state'] = DGG.DISABLED
         self.cheatButton['state'] = DGG.DISABLED
-        self.cheatButton['frameColor'] = (1, 0.69999999999999996, 0.5, 0.5)
+        self.cheatButton['frameColor'] = (1, 0.696, 0.5, 0.5)
 
 
     def useMojo(self):
@@ -293,13 +293,13 @@ class DistributedLiarsDice(DistributedDiceGame.DistributedDiceGame):
             self.catchCheat['state'] = DGG.NORMAL
             rndr = random.randint(1, 4)
             if rndr == 1:
-                self.catchCheat.setPos(0.83999999999999997, 0, 0.83999999999999997)
+                self.catchCheat.setPos(0.83, 0, 0.83)
             elif rndr == 2:
-                self.catchCheat.setPos(-0.83999999999999997, 0, 0.83999999999999997)
+                self.catchCheat.setPos(-0.83, 0, 0.83)
             elif rndr == 3:
-                self.catchCheat.setPos(0.83999999999999997, 0, -0.83999999999999997)
+                self.catchCheat.setPos(0.83, 0, -0.83)
             else:
-                self.catchCheat.setPos(-0.83999999999999997, 0, -0.83999999999999997)
+                self.catchCheat.setPos(-0.83, 0, -0.83)
             self.catchCheat.show()
             taskMgr.doMethodLater(catchTime, self.doneCheating, 'doneCheat')
 
@@ -369,9 +369,9 @@ class DistributedLiarsDice(DistributedDiceGame.DistributedDiceGame):
         self.diceNumLabel['text'] = '%d' % self.betDice
         self.diceValLabel['text'] = '%d' % self.betValue
         if self.betDice > 9:
-            self.diceNumLabel.setPos(-0.34000000000000002, 0, -0.69999999999999996)
+            self.diceNumLabel.setPos(-0.34, 0, -0.696)
         else:
-            self.diceNumLabel.setPos(-0.28000000000000003, 0, -0.69999999999999996)
+            self.diceNumLabel.setPos(-0.28000, 0, -0.696)
 
 
     def gotCaught(self, seat, name):
@@ -401,10 +401,10 @@ class DistributedLiarsDice(DistributedDiceGame.DistributedDiceGame):
         print 'Entering displayChallenge with %d dice' % len(self.challDice)
         self.animPlaying = 1
         self.extraGuiReset()
-        self.diceNumText.setPos(0.59999999999999998, 0, 0.40000000000000002)
-        self.diceNumLabel.setPos(0.69999999999999996, 0, 0.20000000000000001)
-        self.diceValText.setPos(0.60999999999999999, 0, 0.0)
-        self.diceValLabel.setPos(0.69999999999999996, 0, -0.20000000000000001)
+        self.diceNumText.setPos(0.598, 0, 0.4)
+        self.diceNumLabel.setPos(0.696, 0, 0.200)
+        self.diceValText.setPos(0.609, 0, 0.0)
+        self.diceValLabel.setPos(0.696, 0, -0.200)
         self.diceValLabel.show()
         self.diceValText.show()
         self.diceNumLabel.show()
@@ -420,13 +420,13 @@ class DistributedLiarsDice(DistributedDiceGame.DistributedDiceGame):
             for i in xrange(len(dlist)):
                 counter += 1
                 die = loader.loadModel('models/props/dice')
-                die.setScale(0.29999999999999999)
+                die.setScale(0.299)
                 die.reparentTo(self)
                 die.setHpr(self.gui.dieFace(dlist[i]))
                 die.setPos(self.gui.HandPos[who])
                 self.challDice.append(die)
                 self.challDice[len(self.challDice) - 1].show()
-                pos = Vec3(-5.0 + 1.2 * counter, -6.4000000000000004 + 0.90000000000000002 * who, DiceGlobals.PIT_HEIGHT + 5)
+                pos = Vec3(-5.0 + 1.2 * counter, -6.40000 + 0.9 * who, DiceGlobals.PIT_HEIGHT + 5)
                 lerp = LerpPosInterval(self.challDice[len(self.challDice) - 1], 3.0, pos, blendType = 'easeOut')
                 if curCount == 0:
                     self.challSeq[curCount] = Sequence(lerp)
@@ -453,10 +453,10 @@ class DistributedLiarsDice(DistributedDiceGame.DistributedDiceGame):
 
     def hiliteDice(self, dieN):
         retic = loader.loadModel('models/misc/sphere')
-        retic.setColorScale(0.10000000000000001, 0.69999999999999996, 1.0, 1)
+        retic.setColorScale(0.100, 0.696, 1.0, 1)
         retic.setScale(0.5, 0.5, 0.25)
         pos = self.challDice[dieN].getPos()
-        pos2 = Vec3(pos[0], pos[1], pos[2] - 0.20000000000000001)
+        pos2 = Vec3(pos[0], pos[1], pos[2] - 0.200)
         retic.reparentTo(self)
         retic.setPos(pos2)
         retic.show()
@@ -474,7 +474,7 @@ class DistributedLiarsDice(DistributedDiceGame.DistributedDiceGame):
         if self.animPlaying == 2:
             if self.gui:
                 self.gui.mainButton['state'] = DGG.NORMAL
-                self.gui.mainButton['frameColor'] = (0.0, 0.80000000000000004, 0.10000000000000001, 1)
+                self.gui.mainButton['frameColor'] = (0.0, 0.800000, 0.100, 1)
 
 
         self.animPlaying = 0
@@ -482,10 +482,10 @@ class DistributedLiarsDice(DistributedDiceGame.DistributedDiceGame):
         self.diceValText.hide()
         self.diceNumLabel.hide()
         self.diceNumText.hide()
-        self.diceValLabel.setPos(0.33000000000000002, 0, -0.69999999999999996)
-        self.diceValText.setPos(0.27000000000000002, 0, -0.5)
-        self.diceNumText.setPos(-0.40000000000000002, 0, -0.5)
-        self.diceNumLabel.setPos(-0.28000000000000003, 0, -0.69999999999999996)
+        self.diceValLabel.setPos(0.33, 0, -0.696)
+        self.diceValText.setPos(0.27, 0, -0.5)
+        self.diceNumText.setPos(-0.4, 0, -0.5)
+        self.diceNumLabel.setPos(-0.28000, 0, -0.696)
         self.diceNumLabel['text'] = '%d' % 1
         self.diceValLabel['text'] = '%d' % 1
 
@@ -495,7 +495,7 @@ class DistributedLiarsDice(DistributedDiceGame.DistributedDiceGame):
         if self.animPlaying:
             self.animPlaying = 2
             self.gui.mainButton['state'] = DGG.DISABLED
-            self.gui.mainButton['frameColor'] = (0.0, 0.40000000000000002, 0.050000000000000003, 1)
+            self.gui.mainButton['frameColor'] = (0.0, 0.4, 0.050000, 1)
         else:
             self.gui.mainButton['state'] = DGG.NORMAL
-            self.gui.mainButton['frameColor'] = (0.0, 0.80000000000000004, 0.10000000000000001, 1)
+            self.gui.mainButton['frameColor'] = (0.0, 0.800000, 0.100, 1)

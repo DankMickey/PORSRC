@@ -37,7 +37,7 @@ class DustCloud(PooledEffect, EffectController):
         f0.addForce(force0)
         self.f.addForceGroup(f0)
         self.p0.setPoolSize(64)
-        self.p0.setBirthRate(0.29999999999999999)
+        self.p0.setBirthRate(0.299)
         self.p0.setLitterSize(8)
         self.p0.setLitterSpread(2)
         self.p0.setSystemLifespan(0.0)
@@ -46,8 +46,8 @@ class DustCloud(PooledEffect, EffectController):
         self.p0.setFloorZ(-5.0)
         self.p0.factory.setLifespanBase(6.0)
         self.p0.factory.setLifespanSpread(2.0)
-        self.p0.factory.setMassBase(0.29999999999999999)
-        self.p0.factory.setMassSpread(0.20000000000000001)
+        self.p0.factory.setMassBase(0.299)
+        self.p0.factory.setMassSpread(0.200)
         self.p0.factory.setTerminalVelocityBase(400.0)
         self.p0.factory.setTerminalVelocitySpread(0.0)
         self.p0.renderer.setAlphaMode(BaseParticleRenderer.PRALPHAOUT)
@@ -58,9 +58,9 @@ class DustCloud(PooledEffect, EffectController):
         self.p0.renderer.setYScaleFlag(1)
         self.p0.renderer.setAnimAngleFlag(1)
         self.p0.renderer.setInitialXScale(0.02 * self.cardScale)
-        self.p0.renderer.setFinalXScale(0.69999999999999996 * self.cardScale)
+        self.p0.renderer.setFinalXScale(0.696 * self.cardScale)
         self.p0.renderer.setInitialYScale(0.02 * self.cardScale)
-        self.p0.renderer.setFinalYScale(0.69999999999999996 * self.cardScale)
+        self.p0.renderer.setFinalYScale(0.696 * self.cardScale)
         self.p0.renderer.setNonanimatedTheta(0.0)
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPNOBLEND)
         self.p0.renderer.setAlphaDisable(0)
@@ -79,7 +79,7 @@ class DustCloud(PooledEffect, EffectController):
 
 
     def createTrack(self, rate = 1):
-        self.track = Sequence(Func(self.p0.setBirthRate, 0.20000000000000001), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self), Wait(0.29999999999999999), Func(self.p0.setBirthRate, 100), Wait(8.0), Func(self.cleanUpEffect))
+        self.track = Sequence(Func(self.p0.setBirthRate, 0.200), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self), Wait(0.299), Func(self.p0.setBirthRate, 100), Wait(8.0), Func(self.cleanUpEffect))
 
 
     def cleanUpEffect(self):

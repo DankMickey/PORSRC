@@ -8,7 +8,7 @@ from pirates.uberdog import InventoryRequestBase
 class InventoryPage(DirectFrame, InventoryRequestBase.InventoryRequestBase):
 
     def __init__(self):
-        DirectFrame.__init__(self, parent = NodePath(), relief = None, state = DGG.DISABLED, frameColor = PiratesGuiGlobals.FrameColor, borderWidth = PiratesGuiGlobals.BorderWidth, frameSize = (0.0, PiratesGuiGlobals.InventoryPageWidth, 0.0, PiratesGuiGlobals.InventoryPageHeight), pos = (-0.54000000000000004, 0, -0.71999999999999997))
+        DirectFrame.__init__(self, parent = NodePath(), relief = None, state = DGG.DISABLED, frameColor = PiratesGuiGlobals.FrameColor, borderWidth = PiratesGuiGlobals.BorderWidth, frameSize = (0.0, PiratesGuiGlobals.InventoryPageWidth, 0.0, PiratesGuiGlobals.InventoryPageHeight), pos = (-0.540000, 0, -0.71))
         InventoryRequestBase.InventoryRequestBase.__init__(self)
         self.initialiseoptions(InventoryPage)
         self.currentRep = None

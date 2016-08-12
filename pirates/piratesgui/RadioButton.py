@@ -11,7 +11,7 @@ class RadioButton(DirectButton):
         icon_torus = gui_main.find('**/icon_torus')
         icon_torus_over = gui_main.find('**/icon_torus_over')
         gui_main.remove_node()
-        optiondefs = (('geom', None, None), ('checkedGeom', icon_sphere, None), ('image', (icon_torus, icon_torus, icon_torus_over, icon_torus), None), ('geom_color', VBase4(1, 1, 1, 1), None), ('image_scale', 1.3999999999999999, None), ('variable', [], None), ('value', [], None), ('others', [], None), ('relief', None, None), ('isChecked', False, None))
+        optiondefs = (('geom', None, None), ('checkedGeom', icon_sphere, None), ('image', (icon_torus, icon_torus, icon_torus_over, icon_torus), None), ('geom_color', VBase4(1, 1, 1, 1), None), ('image_scale', 1.39, None), ('variable', [], None), ('value', [], None), ('others', [], None), ('relief', None, None), ('isChecked', False, None))
         self.defineoptions(kw, optiondefs)
         DirectButton.__init__(self, parent)
         self.initialiseoptions(RadioButton)

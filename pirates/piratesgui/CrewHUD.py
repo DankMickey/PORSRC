@@ -73,7 +73,7 @@ class HoverFrame(DirectFrame):
 
     def __init__(self, parent = None, hoverText = '', hoverPos = (0, 0, 0), **kw):
         self.helpBox = None
-        optiondefs = (('relief', None, None), ('pos', (0, 0, 0), None), ('image', None, None), ('image_scale', (0.23999999999999999, 0.22, 0.22), None), ('image_pos', (0, 0, 0), None), ('hoverText', hoverText, self.hoverTextUpdated), ('hoverPos', hoverPos, None))
+        optiondefs = (('relief', None, None), ('pos', (0, 0, 0), None), ('image', None, None), ('image_scale', (0.239, 0.22, 0.22), None), ('image_pos', (0, 0, 0), None), ('hoverText', hoverText, self.hoverTextUpdated), ('hoverPos', hoverPos, None))
         self.defineoptions(kw, optiondefs)
         DirectFrame.__init__(self, parent = parent)
         self.initialiseoptions(HoverFrame)
@@ -84,12 +84,12 @@ class HoverFrame(DirectFrame):
     def createHelpBox(self):
         helpLabel = DirectLabel(relief = None, state = DGG.DISABLED, text = self['hoverText'], text_align = TextNode.ACenter, text_scale = PiratesGuiGlobals.TextScaleMed, text_fg = PiratesGuiGlobals.TextFG1, text_wordwrap = 12, text_shadow = (0, 0, 0, 1), textMayChange = 0, sortOrder = 91)
         height = helpLabel.getHeight()
-        width = helpLabel.getWidth() + 0.050000000000000003
+        width = helpLabel.getWidth() + 0.050000
         fs = [
             0.25 - width,
             0.25,
             -height,
-            0.044999999999999998]
+            0.0448]
         pos = [
             0.25 - width / 2.0,
             0,
@@ -133,10 +133,10 @@ class CrewHUD(SocialPage.SocialPage):
         self.crew = { }
         self.mainFrame = DirectFrame(relief = None, parent = base.a2dTopLeft, frameSize = (0, 0.5, 0, 1.5), state = DGG.DISABLED, sortOrder = 0)
         self.mainFrameSea = DirectFrame(relief = None, parent = base.a2dTopLeft, frameSize = (0, 0.5, 0, 1), state = DGG.DISABLED, sortOrder = 0)
-        self.mainFrame.setPos(-0.056666399999999999, 0, -1.9299999999999999)
-        self.mainFrameSea.setPos(-0.056666399999999999, 0, -1.7266699999999999)
-        self.hudLabel = DirectLabel(relief = None, parent = self.mainFrame, text = PLocalizer.CrewHUDNoCrew, text_scale = PiratesGuiGlobals.TextScaleTitleSmall, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, text_pos = (0.28999999999999998, 1.5600000000000001, 0), text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, state = DGG.DISABLED)
-        self.hudLabelSea = DirectLabel(relief = None, parent = self.mainFrameSea, text = PLocalizer.CrewHUDNoCrew, text_scale = PiratesGuiGlobals.TextScaleTitleSmall, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, text_pos = (0.28999999999999998, 1.0549999999999999, 0), text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, state = DGG.DISABLED)
+        self.mainFrame.setPos(-0.0566663, 0, -1.92)
+        self.mainFrameSea.setPos(-0.0566663, 0, -1.72666)
+        self.hudLabel = DirectLabel(relief = None, parent = self.mainFrame, text = PLocalizer.CrewHUDNoCrew, text_scale = PiratesGuiGlobals.TextScaleTitleSmall, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, text_pos = (0.288, 1.56, 0), text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, state = DGG.DISABLED)
+        self.hudLabelSea = DirectLabel(relief = None, parent = self.mainFrameSea, text = PLocalizer.CrewHUDNoCrew, text_scale = PiratesGuiGlobals.TextScaleTitleSmall, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, text_pos = (0.288, 1.0549, 0), text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, state = DGG.DISABLED)
         self.lookoutGui = loader.loadModel('models/gui/lookout_gui')
         self.topGui = loader.loadModel('models/gui/toplevel_gui')
         self.icons = loader.loadModel('models/textureCards/icons')
@@ -144,21 +144,21 @@ class CrewHUD(SocialPage.SocialPage):
         self.flagLogos = loader.loadModel('models/textureCards/sailLogo')
         self.spanishFlag = self.flagLogos.find('**/logo_spanish_flag')
         self.frenchFlag = self.flagLogos.find('**/logo_french_flag')
-        self.lookoutFrame = OnscreenImage(parent = self.mainFrame, image = self.topGui.find('**/telescope_button'), scale = (0.20000000000000001, 0, -0.20000000000000001), pos = (0.59999999999999998, 0, 1.5800000000000001))
-        self.lookoutButton = GuiButton.GuiButton(parent = self.mainFrame, text = '', image_scale = 0.29999999999999999, image_pos = (0.59999999999999998, 0, 1.5800000000000001), command = self.toggleCrewLookout, image = (self.topGui.find('**/pir_t_gui_but_circle_slash'), self.topGui.find('**/pir_t_gui_but_circle_slash'), self.topGui.find('**/pir_t_gui_but_circle_slash_over'), self.topGui.find('**/pir_t_gui_but_circle_slash')), helpText = PLocalizer.CrewLookingForButton, helpPos = (0.69999999999999996, 0, 1.53), helpOpaque = 1)
-        self.leaveCrewFrame = OnscreenImage(parent = self.mainFrame, image = self.icons.find('**/pir_t_gui_gen_crew_mug'), scale = 0.059999999999999998, pos = (0.69999999999999996, 0, 1.5800000000000001))
-        self.leaveCrewButton = GuiButton.GuiButton(parent = self.mainFrame, command = self.leaveCrew, image = (self.topGui.find('**/pir_t_gui_but_circle_slash'), self.topGui.find('**/pir_t_gui_but_circle_slash'), self.topGui.find('**/pir_t_gui_but_circle_slash_over'), self.topGui.find('**/pir_t_gui_but_circle_slash')), image_scale = 0.29999999999999999, image_pos = (0.69999999999999996, 0, 1.5800000000000001), helpText = PLocalizer.CrewPageLeaveCrew, helpPos = (0.69999999999999996, 0, 1.53), helpOpaque = 1)
-        self.startCrewFrame = OnscreenImage(parent = base.a2dTopLeft, image = self.topGui.find('**/telescope_button'), scale = (0.20000000000000001, 0, -0.20000000000000001), pos = (0.050000000000000003, 0, -0.34999999999999998))
-        self.startCrewButton = GuiButton.GuiButton(parent = base.a2dTopLeft, image_scale = 0.29999999999999999, image_pos = (0.050000000000000003, 0, -0.34999999999999998), command = self.toggleStartACrew, image = (self.topGui.find('**/pir_t_gui_but_circle_slash'), self.topGui.find('**/pir_t_gui_but_circle_slash'), self.topGui.find('**/pir_t_gui_but_circle_slash_over'), self.topGui.find('**/pir_t_gui_but_circle_slash')), helpText = PLocalizer.CrewStartACrewButton, helpPos = (0.10000000000000001, 0, -0.40000000000000002), helpOpaque = 1, helpBin = None)
-        self.lookoutFrameSea = OnscreenImage(parent = self.mainFrameSea, image = self.topGui.find('**/telescope_button'), scale = (0.20000000000000001, 0, -0.20000000000000001), pos = (0.59999999999999998, 0, 1.075))
-        self.lookoutButtonSea = GuiButton.GuiButton(parent = self.mainFrameSea, text = '', image_scale = 0.29999999999999999, image_pos = (0.59999999999999998, 0, 1.075), command = self.toggleCrewLookout, image = (self.topGui.find('**/pir_t_gui_but_circle_slash'), self.topGui.find('**/pir_t_gui_but_circle_slash'), self.topGui.find('**/pir_t_gui_but_circle_slash_over'), self.topGui.find('**/pir_t_gui_but_circle_slash')), helpText = PLocalizer.CrewLookingForButton, helpPos = (0.69999999999999996, 0, 1.0249999999999999), helpOpaque = 1)
-        self.leaveCrewFrameSea = OnscreenImage(parent = self.mainFrameSea, image = self.icons.find('**/pir_t_gui_gen_crew_mug'), scale = 0.059999999999999998, pos = (0.69999999999999996, 0, 1.075))
-        self.leaveCrewButtonSea = GuiButton.GuiButton(parent = self.mainFrameSea, text = '', image_scale = 0.29999999999999999, image_pos = (0.69999999999999996, 0, 1.075), command = self.leaveCrew, image = (self.topGui.find('**/pir_t_gui_but_circle_slash'), self.topGui.find('**/pir_t_gui_but_circle_slash'), self.topGui.find('**/pir_t_gui_but_circle_slash_over'), self.topGui.find('**/pir_t_gui_but_circle_slash')), helpText = PLocalizer.CrewPageLeaveCrew, helpPos = (0.69999999999999996, 0, 1.0249999999999999), helpOpaque = 1)
-        self.startCrewFrameSea = OnscreenImage(parent = base.a2dTopLeft, image = self.topGui.find('**/telescope_button'), scale = (0.20000000000000001, 0, -0.20000000000000001), pos = (0.050000000000000003, 0, -0.65000000000000002))
-        self.startCrewButtonSea = GuiButton.GuiButton(parent = base.a2dTopLeft, image_scale = 0.29999999999999999, image_pos = (0.050000000000000003, 0, -0.65000000000000002), command = self.toggleStartACrew, image = (self.topGui.find('**/pir_t_gui_but_circle_slash'), self.topGui.find('**/pir_t_gui_but_circle_slash'), self.topGui.find('**/pir_t_gui_but_circle_slash_over'), self.topGui.find('**/pir_t_gui_but_circle_slash')), helpText = PLocalizer.CrewStartACrewButton, helpPos = (0.10000000000000001, 0, -0.59999999999999998), helpOpaque = 1)
-        self.membersList = PirateMemberList.PirateMemberList(12, self.mainFrame, 'FOOLIO HC', height = 1.5475000000000001, memberHeight = 0.080000000000000002, memberWidth = 0.80000000000000004, memberOffset = 0.20000000000000001, bottom = 0.073999999999999996, width = 1.0, hud = True)
+        self.lookoutFrame = OnscreenImage(parent = self.mainFrame, image = self.topGui.find('**/telescope_button'), scale = (0.200, 0, -0.200), pos = (0.598, 0, 1.58))
+        self.lookoutButton = GuiButton.GuiButton(parent = self.mainFrame, text = '', image_scale = 0.299, image_pos = (0.598, 0, 1.58), command = self.toggleCrewLookout, image = (self.topGui.find('**/pir_t_gui_but_circle_slash'), self.topGui.find('**/pir_t_gui_but_circle_slash'), self.topGui.find('**/pir_t_gui_but_circle_slash_over'), self.topGui.find('**/pir_t_gui_but_circle_slash')), helpText = PLocalizer.CrewLookingForButton, helpPos = (0.696, 0, 1.53), helpOpaque = 1)
+        self.leaveCrewFrame = OnscreenImage(parent = self.mainFrame, image = self.icons.find('**/pir_t_gui_gen_crew_mug'), scale = 0.0598, pos = (0.696, 0, 1.58))
+        self.leaveCrewButton = GuiButton.GuiButton(parent = self.mainFrame, command = self.leaveCrew, image = (self.topGui.find('**/pir_t_gui_but_circle_slash'), self.topGui.find('**/pir_t_gui_but_circle_slash'), self.topGui.find('**/pir_t_gui_but_circle_slash_over'), self.topGui.find('**/pir_t_gui_but_circle_slash')), image_scale = 0.299, image_pos = (0.696, 0, 1.58), helpText = PLocalizer.CrewPageLeaveCrew, helpPos = (0.696, 0, 1.53), helpOpaque = 1)
+        self.startCrewFrame = OnscreenImage(parent = base.a2dTopLeft, image = self.topGui.find('**/telescope_button'), scale = (0.200, 0, -0.200), pos = (0.050000, 0, -0.348))
+        self.startCrewButton = GuiButton.GuiButton(parent = base.a2dTopLeft, image_scale = 0.299, image_pos = (0.050000, 0, -0.348), command = self.toggleStartACrew, image = (self.topGui.find('**/pir_t_gui_but_circle_slash'), self.topGui.find('**/pir_t_gui_but_circle_slash'), self.topGui.find('**/pir_t_gui_but_circle_slash_over'), self.topGui.find('**/pir_t_gui_but_circle_slash')), helpText = PLocalizer.CrewStartACrewButton, helpPos = (0.100, 0, -0.4), helpOpaque = 1, helpBin = None)
+        self.lookoutFrameSea = OnscreenImage(parent = self.mainFrameSea, image = self.topGui.find('**/telescope_button'), scale = (0.200, 0, -0.200), pos = (0.598, 0, 1.075))
+        self.lookoutButtonSea = GuiButton.GuiButton(parent = self.mainFrameSea, text = '', image_scale = 0.299, image_pos = (0.598, 0, 1.075), command = self.toggleCrewLookout, image = (self.topGui.find('**/pir_t_gui_but_circle_slash'), self.topGui.find('**/pir_t_gui_but_circle_slash'), self.topGui.find('**/pir_t_gui_but_circle_slash_over'), self.topGui.find('**/pir_t_gui_but_circle_slash')), helpText = PLocalizer.CrewLookingForButton, helpPos = (0.696, 0, 1.0249), helpOpaque = 1)
+        self.leaveCrewFrameSea = OnscreenImage(parent = self.mainFrameSea, image = self.icons.find('**/pir_t_gui_gen_crew_mug'), scale = 0.0598, pos = (0.696, 0, 1.075))
+        self.leaveCrewButtonSea = GuiButton.GuiButton(parent = self.mainFrameSea, text = '', image_scale = 0.299, image_pos = (0.696, 0, 1.075), command = self.leaveCrew, image = (self.topGui.find('**/pir_t_gui_but_circle_slash'), self.topGui.find('**/pir_t_gui_but_circle_slash'), self.topGui.find('**/pir_t_gui_but_circle_slash_over'), self.topGui.find('**/pir_t_gui_but_circle_slash')), helpText = PLocalizer.CrewPageLeaveCrew, helpPos = (0.696, 0, 1.0249), helpOpaque = 1)
+        self.startCrewFrameSea = OnscreenImage(parent = base.a2dTopLeft, image = self.topGui.find('**/telescope_button'), scale = (0.200, 0, -0.200), pos = (0.050000, 0, -0.65))
+        self.startCrewButtonSea = GuiButton.GuiButton(parent = base.a2dTopLeft, image_scale = 0.299, image_pos = (0.050000, 0, -0.65), command = self.toggleStartACrew, image = (self.topGui.find('**/pir_t_gui_but_circle_slash'), self.topGui.find('**/pir_t_gui_but_circle_slash'), self.topGui.find('**/pir_t_gui_but_circle_slash_over'), self.topGui.find('**/pir_t_gui_but_circle_slash')), helpText = PLocalizer.CrewStartACrewButton, helpPos = (0.100, 0, -0.598), helpOpaque = 1)
+        self.membersList = PirateMemberList.PirateMemberList(12, self.mainFrame, 'FOOLIO HC', height = 1.5475, memberHeight = 0.08, memberWidth = 0.800000, memberOffset = 0.200, bottom = 0.0736, width = 1.0, hud = True)
         self.membersList.setPos(-0.38, 0, 0)
-        self.membersListSea = PirateMemberList.PirateMemberList(12, self.mainFrameSea, 'FOOLIO HC', height = 1.0475000000000001, memberHeight = 0.065000000000000002, memberWidth = 0.80000000000000004, memberOffset = 0.20000000000000001, bottom = 0.073999999999999996, width = 1.0, hud = True)
+        self.membersListSea = PirateMemberList.PirateMemberList(12, self.mainFrameSea, 'FOOLIO HC', height = 1.0475, memberHeight = 0.065, memberWidth = 0.800000, memberOffset = 0.200, bottom = 0.0736, width = 1.0, hud = True)
         self.membersListSea.setPos(-0.38, 0, 0)
         self.weaponCard = loader.loadModel('models/gui/gui_icons_weapon')
         self.card = loader.loadModel('models/textureCards/skillIcons')
@@ -256,22 +256,22 @@ class CrewHUD(SocialPage.SocialPage):
             button['image'] = None
             buttonSea = self.membersListSea.addMember(avId + self.debugCount, None, PirateMemberList.MODE_CREW_HUD_SEA, member)
             buttonSea['image'] = None
-            reloadFrame = DirectFrame(parent = button, relief = None, state = DGG.DISABLED, image = self.topGui.find('**/pir_t_gui_frm_base_circle'), image_scale = 0.29999999999999999, image_pos = (0, 0, 0.02), pos = (0.089999999999999997, 0, 0.01))
+            reloadFrame = DirectFrame(parent = button, relief = None, state = DGG.DISABLED, image = self.topGui.find('**/pir_t_gui_frm_base_circle'), image_scale = 0.299, image_pos = (0, 0, 0.02), pos = (0.089, 0, 0.01))
             button.reloadFrame = reloadFrame
             reloadFrameSea = GuiButton.GuiButton(parent = buttonSea, relief = None, state = DGG.DISABLED, image = self.topGui.find('**/pir_t_gui_frm_base_circle'), image_scale = 0.25, image_pos = (0, 0, 0.02), pos = (0.11, 0, 0.01))
             buttonSea.reloadFrame = reloadFrameSea
-            skillFrame = DirectFrame(parent = reloadFrame, relief = None, state = DGG.DISABLED, image = self.icons.find('**/pir_t_gui_gen_land'), image_scale = 0.059999999999999998, image_pos = (0, 0, 0.02), text = '', text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_font = PiratesGlobals.getPirateOutlineFont(), text_pos = (0, 0.01, 0))
-            skillFrameSea = DirectFrame(parent = reloadFrameSea, relief = None, state = DGG.DISABLED, image = self.icons.find('**/pir_t_gui_gen_land'), image_scale = 0.050000000000000003, image_pos = (0, 0, 0.02), text = '', text_scale = PiratesGuiGlobals.TextScaleTiny, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_font = PiratesGlobals.getPirateOutlineFont(), text_pos = (0, 0.01, 0))
-            leaderFrame = HoverFrame(parent = reloadFrame, relief = None, state = DGG.NORMAL, image = self.scCard.find('**/emotionIcon'), image_scale = 0.040000000000000001, image_pos = (0.029999999999999999, 0, -0.01), hoverText = PLocalizer.CrewHUDLeader, hoverPos = (0.0, 0, -0.10000000000000001))
-            leaderFrameSea = HoverFrame(parent = reloadFrameSea, relief = None, state = DGG.NORMAL, image = self.scCard.find('**/emotionIcon'), image_scale = 0.029999999999999999, image_pos = (0.014999999999999999, 0, -0.0050000000000000001), hoverText = PLocalizer.CrewHUDLeader, hoverPos = (0.0, 0, -0.10000000000000001))
-            siegeFrame = HoverFrame(parent = button, relief = None, state = DGG.NORMAL, image = self.spanishFlag, image_scale = 0.02, image_pos = (0.16, 0, 0.001), hoverPos = (0.10000000000000001, 0, -0.10000000000000001))
-            siegeFrameSea = HoverFrame(parent = buttonSea, relief = None, state = DGG.NORMAL, image = self.spanishFlag, image_scale = 0.014999999999999999, image_pos = (0.155, 0, 0.0050000000000000001), hoverPos = (0.10000000000000001, 0, -0.10000000000000001))
-            xFrame = DirectFrame(parent = button, relief = None, state = DGG.DISABLED, image = self.topGui.find('**/generic_box'), image_scale = 0.14999999999999999, image_pos = (0, 0, 0), pos = (0.55000000000000004, 0, 0.050000000000000003))
+            skillFrame = DirectFrame(parent = reloadFrame, relief = None, state = DGG.DISABLED, image = self.icons.find('**/pir_t_gui_gen_land'), image_scale = 0.0598, image_pos = (0, 0, 0.02), text = '', text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_font = PiratesGlobals.getPirateOutlineFont(), text_pos = (0, 0.01, 0))
+            skillFrameSea = DirectFrame(parent = reloadFrameSea, relief = None, state = DGG.DISABLED, image = self.icons.find('**/pir_t_gui_gen_land'), image_scale = 0.050000, image_pos = (0, 0, 0.02), text = '', text_scale = PiratesGuiGlobals.TextScaleTiny, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_font = PiratesGlobals.getPirateOutlineFont(), text_pos = (0, 0.01, 0))
+            leaderFrame = HoverFrame(parent = reloadFrame, relief = None, state = DGG.NORMAL, image = self.scCard.find('**/emotionIcon'), image_scale = 0.0400, image_pos = (0.0299, 0, -0.01), hoverText = PLocalizer.CrewHUDLeader, hoverPos = (0.0, 0, -0.100))
+            leaderFrameSea = HoverFrame(parent = reloadFrameSea, relief = None, state = DGG.NORMAL, image = self.scCard.find('**/emotionIcon'), image_scale = 0.0299, image_pos = (0.0149, 0, -0.00500), hoverText = PLocalizer.CrewHUDLeader, hoverPos = (0.0, 0, -0.100))
+            siegeFrame = HoverFrame(parent = button, relief = None, state = DGG.NORMAL, image = self.spanishFlag, image_scale = 0.02, image_pos = (0.16, 0, 0.001), hoverPos = (0.100, 0, -0.100))
+            siegeFrameSea = HoverFrame(parent = buttonSea, relief = None, state = DGG.NORMAL, image = self.spanishFlag, image_scale = 0.0149, image_pos = (0.155, 0, 0.00500), hoverPos = (0.100, 0, -0.100))
+            xFrame = DirectFrame(parent = button, relief = None, state = DGG.DISABLED, image = self.topGui.find('**/generic_box'), image_scale = 0.149, image_pos = (0, 0, 0), pos = (0.550000, 0, 0.050000))
             xButton = XButton(self, avId, xFrame, self.topGui.find('**/generic_x'), 0.25, button)
-            xFrameSea = DirectFrame(parent = buttonSea, relief = None, state = DGG.DISABLED, image = self.topGui.find('**/generic_box'), image_scale = 0.10000000000000001, image_pos = (0, 0, 0), pos = (0.45000000000000001, 0, 0.050000000000000003))
-            xButtonSea = XButton(self, avId, xFrameSea, self.topGui.find('**/generic_x'), 0.17000000000000001, buttonSea)
-            clampFrame = DirectFrame(parent = button, relief = None, state = DGG.NORMAL, image = self.clamp, image_scale = 0.40000000000000002, image_pos = (0.35999999999999999, 0, 0.02))
-            clampFrameSea = DirectFrame(parent = buttonSea, relief = None, state = DGG.NORMAL, image = self.clamp, image_scale = 0.34999999999999998, image_pos = (0.315, 0, 0.02))
+            xFrameSea = DirectFrame(parent = buttonSea, relief = None, state = DGG.DISABLED, image = self.topGui.find('**/generic_box'), image_scale = 0.100, image_pos = (0, 0, 0), pos = (0.450, 0, 0.050000))
+            xButtonSea = XButton(self, avId, xFrameSea, self.topGui.find('**/generic_x'), 0.170, buttonSea)
+            clampFrame = DirectFrame(parent = button, relief = None, state = DGG.NORMAL, image = self.clamp, image_scale = 0.4, image_pos = (0.359, 0, 0.02))
+            clampFrameSea = DirectFrame(parent = buttonSea, relief = None, state = DGG.NORMAL, image = self.clamp, image_scale = 0.348, image_pos = (0.315, 0, 0.02))
             skillFrame.setTransparency(1)
             skillFrameSea.setTransparency(1)
             skillFrame.hide()
@@ -331,16 +331,16 @@ class CrewHUD(SocialPage.SocialPage):
             button['image'] = None
             buttonSea = self.membersListSea.addPotentialMember(avId, avName, PirateMemberList.MODE_CREW_HUD_SEA)
             buttonSea['image'] = None
-            reloadFrame = DirectFrame(parent = button, relief = None, state = DGG.DISABLED, image = self.topGui.find('**/pir_t_gui_frm_base_circle'), image_scale = 0.29999999999999999, image_pos = (0, 0, 0.02), pos = (0.089999999999999997, 0, 0.01))
+            reloadFrame = DirectFrame(parent = button, relief = None, state = DGG.DISABLED, image = self.topGui.find('**/pir_t_gui_frm_base_circle'), image_scale = 0.299, image_pos = (0, 0, 0.02), pos = (0.089, 0, 0.01))
             button.reloadFrame = reloadFrame
             reloadFrameSea = DirectFrame(parent = buttonSea, relief = None, state = DGG.DISABLED, image = self.topGui.find('**/pir_t_gui_frm_base_circle'), image_scale = 0.25, image_pos = (0, 0, 0.02), pos = (0.11, 0, 0.01))
             buttonSea.reloadFrame = reloadFrameSea
-            skillFrame = DirectFrame(parent = reloadFrame, relief = None, state = DGG.DISABLED, image = self.topGui.find('**/quest_pending_icon'), image_scale = 0.20000000000000001, image_pos = (0, 0, 0.02))
-            skillFrameSea = DirectFrame(parent = reloadFrameSea, relief = None, state = DGG.DISABLED, image = self.topGui.find('**/quest_pending_icon'), image_scale = 0.17000000000000001, image_pos = (0, 0, 0.02))
-            xFrame = DirectFrame(parent = button, relief = None, state = DGG.DISABLED, image = self.topGui.find('**/generic_box'), image_scale = 0.14999999999999999, image_pos = (0, 0, 0), pos = (0.55000000000000004, 0, 0.050000000000000003))
+            skillFrame = DirectFrame(parent = reloadFrame, relief = None, state = DGG.DISABLED, image = self.topGui.find('**/quest_pending_icon'), image_scale = 0.200, image_pos = (0, 0, 0.02))
+            skillFrameSea = DirectFrame(parent = reloadFrameSea, relief = None, state = DGG.DISABLED, image = self.topGui.find('**/quest_pending_icon'), image_scale = 0.170, image_pos = (0, 0, 0.02))
+            xFrame = DirectFrame(parent = button, relief = None, state = DGG.DISABLED, image = self.topGui.find('**/generic_box'), image_scale = 0.149, image_pos = (0, 0, 0), pos = (0.550000, 0, 0.050000))
             xButton = XButton(self, avId, xFrame, self.topGui.find('**/generic_x'), 0.25, button)
-            xFrameSea = DirectFrame(parent = buttonSea, relief = None, state = DGG.DISABLED, image = self.topGui.find('**/generic_box'), image_scale = 0.10000000000000001, image_pos = (0, 0, 0), pos = (0.45000000000000001, 0, 0.050000000000000003))
-            xButtonSea = XButton(self, avId, xFrameSea, self.topGui.find('**/generic_x'), 0.17000000000000001, buttonSea)
+            xFrameSea = DirectFrame(parent = buttonSea, relief = None, state = DGG.DISABLED, image = self.topGui.find('**/generic_box'), image_scale = 0.100, image_pos = (0, 0, 0), pos = (0.450, 0, 0.050000))
+            xButtonSea = XButton(self, avId, xFrameSea, self.topGui.find('**/generic_x'), 0.170, buttonSea)
             skillFrame.setTransparency(1)
             skillFrameSea.setTransparency(1)
             self.crew[avId] = [
@@ -487,11 +487,11 @@ class CrewHUD(SocialPage.SocialPage):
                 if action in [
                     0]:
                     skillFrame['image'] = self.icons.find('**/%s' % newIcon)
-                    skillFrame['image_scale'] = 0.059999999999999998
+                    skillFrame['image_scale'] = 0.0598
                 elif action in [
                     8]:
                     skillFrame['image'] = self.card.find('**/%s' % newIcon)
-                    skillFrame['image_scale'] = 0.070000000000000007
+                    skillFrame['image_scale'] = 0.070
                 elif action in [
                     9,
                     10,
@@ -501,24 +501,24 @@ class CrewHUD(SocialPage.SocialPage):
                     if action == 9:
                         skillFrame['image_scale'] = 0.125
                     elif action == 10:
-                        skillFrame['image_scale'] = 0.20000000000000001
+                        skillFrame['image_scale'] = 0.200
                     elif action == 11:
-                        skillFrame['image_scale'] = 0.29999999999999999
+                        skillFrame['image_scale'] = 0.299
                     elif action == 13:
                         skillFrame['image_scale'] = 0.5
 
                 else:
                     skillFrame['image'] = self.weaponCard.find('**/%s' % newIcon)
-                    skillFrame['image_scale'] = 0.059999999999999998
+                    skillFrame['image_scale'] = 0.0598
                 skillFrame['image_pos'] = (0, 0, 0.02)
                 if action in [
                     0]:
                     skillFrameSea['image'] = self.icons.find('**/%s' % newIcon)
-                    skillFrameSea['image_scale'] = 0.050000000000000003
+                    skillFrameSea['image_scale'] = 0.050000
                 elif action in [
                     8]:
                     skillFrameSea['image'] = self.card.find('**/%s' % newIcon)
-                    skillFrameSea['image_scale'] = 0.059999999999999998
+                    skillFrameSea['image_scale'] = 0.0598
                 elif action in [
                     9,
                     10,
@@ -526,17 +526,17 @@ class CrewHUD(SocialPage.SocialPage):
                     13]:
                     skillFrameSea['image'] = self.topGui.find('**/%s' % newIcon)
                     if action == 9:
-                        skillFrameSea['image_scale'] = 0.10000000000000001
+                        skillFrameSea['image_scale'] = 0.100
                     elif action == 10:
-                        skillFrameSea['image_scale'] = 0.17000000000000001
+                        skillFrameSea['image_scale'] = 0.170
                     elif action == 11:
                         skillFrameSea['image_scale'] = 0.25
                     elif action == 13:
-                        skillFrameSea['image_scale'] = 0.40000000000000002
+                        skillFrameSea['image_scale'] = 0.4
 
                 else:
                     skillFrameSea['image'] = self.weaponCard.find('**/%s' % newIcon)
-                    skillFrameSea['image_scale'] = 0.050000000000000003
+                    skillFrameSea['image_scale'] = 0.050000
                 skillFrameSea['image_pos'] = (0, 0, 0.02)
             skillFrame.show()
             skillFrameSea.show()
@@ -1002,12 +1002,12 @@ class CrewHUD(SocialPage.SocialPage):
                 hudButton[0].updateHUDOnline(0)
                 hudButton[3].updateHUDOnline(0)
                 hudButton[2]['image'] = self.lookoutGui.find('**/lookout_skip')
-                hudButton[2]['image_scale'] = 0.20000000000000001
+                hudButton[2]['image_scale'] = 0.200
                 hudButton[2]['image_pos'] = (0, 0, 0.02)
                 hudButton[2]['text'] = ''
                 hudButton[2].show()
                 hudButton[5]['image'] = self.lookoutGui.find('**/lookout_skip')
-                hudButton[5]['image_scale'] = 0.20000000000000001
+                hudButton[5]['image_scale'] = 0.200
                 hudButton[5]['image_pos'] = (0, 0, 0.02)
                 hudButton[5]['text'] = ''
                 hudButton[6].hide()
@@ -1040,12 +1040,12 @@ class CrewHUD(SocialPage.SocialPage):
                 hudButton[0].updatePVP(1)
                 hudButton[3].updatePVP(1)
                 hudButton[2]['image'] = self.topGui.find('**/%s' % HUD_ICONS[11])
-                hudButton[2]['image_scale'] = 0.29999999999999999
+                hudButton[2]['image_scale'] = 0.299
                 hudButton[2]['image_pos'] = (0, 0, 0.02)
                 hudButton[2]['text'] = ''
                 hudButton[2].show()
                 hudButton[5]['image'] = self.topGui.find('**/%s' % HUD_ICONS[11])
-                hudButton[5]['image_scale'] = 0.14999999999999999
+                hudButton[5]['image_scale'] = 0.149
                 hudButton[5]['image_pos'] = (0, 0, 0.02)
                 hudButton[5]['text'] = ''
                 hudButton[6].hide()
@@ -1076,12 +1076,12 @@ class CrewHUD(SocialPage.SocialPage):
                 hudButton[0].updateParlor(1)
                 hudButton[3].updateParlor(1)
                 hudButton[2]['image'] = self.topGui.find('**/%s' % HUD_ICONS[10])
-                hudButton[2]['image_scale'] = 0.29999999999999999
+                hudButton[2]['image_scale'] = 0.299
                 hudButton[2]['image_pos'] = (0, 0, 0.02)
                 hudButton[2]['text'] = ''
                 hudButton[2].show()
                 hudButton[5]['image'] = self.topGui.find('**/%s' % HUD_ICONS[10])
-                hudButton[5]['image_scale'] = 0.14999999999999999
+                hudButton[5]['image_scale'] = 0.149
                 hudButton[5]['image_pos'] = (0, 0, 0.02)
                 hudButton[5]['text'] = ''
                 hudButton[6].hide()

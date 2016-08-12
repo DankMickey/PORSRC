@@ -10,40 +10,40 @@ objectStruct = {
                 '1172185301.05sdnaik': {
                     'Type': 'Locator Node',
                     'Name': 'portal_interior_1',
-                    'Hpr': VBase3(-92.813999999999993, 0.0, 0.0),
-                    'Pos': Point3(408.10199999999998, 203.83500000000001, 1.9379999999999999),
+                    'Hpr': VBase3(-92.8133, 0.0, 0.0),
+                    'Pos': Point3(408.101, 203.835, 1.9379),
                     'Scale': VBase3(1.0, 1.0, 1.0) },
                 '1172185301.08sdnaik': {
                     'Type': 'Locator Node',
                     'Name': 'portal_interior_2',
-                    'Hpr': VBase3(-0.23400000000000001, -0.24399999999999999, 0.73899999999999999),
-                    'Pos': Point3(-535.08500000000004, 236.44399999999999, 77.638000000000005),
+                    'Hpr': VBase3(-0.234, -0.243, 0.738),
+                    'Pos': Point3(-535.085, 236.443, 77.6380),
                     'Scale': VBase3(1.0, 1.0, 1.0) },
                 '1172893180.14kmuller': {
                     'Type': 'Tunnel Cap',
-                    'Hpr': VBase3(-89.933000000000007, 0.0, 0.0),
-                    'Pos': Point3(-530.76400000000001, 233.107, 82.679000000000002),
+                    'Hpr': VBase3(-89.933, 0.0, 0.0),
+                    'Pos': Point3(-530.764, 233.107, 82.679),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/tunnels/tunnelcap_cave_interior' } },
                 '1172893192.18kmuller': {
                     'Type': 'Tunnel Cap',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-476.04300000000001, 262.70100000000002, 122.229),
+                    'Pos': Point3(-476.043, 262.701, 122.229),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/tunnels/tunnelcap_cave_interior' } },
                 '1172893216.81kmuller': {
                     'Type': 'Tunnel Cap',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-436.77100000000002, 259.36799999999999, 146.30099999999999),
+                    'Pos': Point3(-436.771, 259.367, 146.300),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/tunnels/tunnelcap_cave_interior' } },
                 '1172893544.75kmuller': {
                     'Type': 'Tunnel Cap',
-                    'Hpr': VBase3(-29.141999999999999, 0.38, 0.0),
-                    'Pos': Point3(408.78500000000003, 196.489, 3.052),
+                    'Hpr': VBase3(-29.141, 0.38, 0.0),
+                    'Pos': Point3(408.785, 196.489, 3.052),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Color': (0.60000002384185791, 0.60000002384185791, 0.60000002384185791, 1.0),
@@ -54,10 +54,10 @@ objectStruct = {
                     'ConeAngle': '120.0000',
                     'DropOff': '6.8182',
                     'Flickering': False,
-                    'Hpr': VBase3(-110.238, -3.3799999999999999, 94.314999999999998),
+                    'Hpr': VBase3(-110.238, -3.37, 94.3148),
                     'Intensity': '1.5758',
                     'LightType': 'SPOT',
-                    'Pos': Point3(-538.19000000000005, 242.893, 99.248000000000005),
+                    'Pos': Point3(-538.190, 242.893, 99.2480),
                     'Visual': {
                         'Color': (1, 1, 1, 1),
                         'Model': 'models/props/light_tool_bulb' } },
@@ -67,10 +67,10 @@ objectStruct = {
                     'ConeAngle': '120.0000',
                     'DropOff': '2.7273',
                     'Flickering': False,
-                    'Hpr': VBase3(42.451999999999998, 40.036999999999999, -92.620000000000005),
+                    'Hpr': VBase3(42.4518, 40.036, -92.6200),
                     'Intensity': '1.4545',
                     'LightType': 'SPOT',
-                    'Pos': Point3(-301.72000000000003, -166.09399999999999, 66.363),
+                    'Pos': Point3(-301.72, -166.093, 66.363),
                     'Visual': {
                         'Color': (1, 1, 1, 1),
                         'Model': 'models/props/light_tool_bulb' } },
@@ -83,7 +83,7 @@ objectStruct = {
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Intensity': '0.1515',
                     'LightType': 'AMBIENT',
-                    'Pos': Point3(66.477000000000004, -201.119, 35.177),
+                    'Pos': Point3(66.4770, -201.119, 35.177),
                     'Visual': {
                         'Color': (1, 1, 1, 1),
                         'Model': 'models/props/light_tool_bulb' } } },

@@ -47,19 +47,19 @@ class RepairPitchingGame(RepairMincroGame):
         self.bucketIdle = self.model.find('**/pitchCursor/idle')
         self.bucketIdle.reparentTo(base.a2dBackground)
         self.bucketIdle.setBin('fixed', 45)
-        self.bucketIdle.setScale(1.3500000000000001)
+        self.bucketIdle.setScale(1.35)
         self.bucketIdle.stash()
         self.bucket = self.bucketIdle.copyTo(NodePath())
         self.bucket.reparentTo(base.a2dBackground)
         self.bucket.setHpr(0, 0, 90)
         self.bucket.setBin('fixed', 45)
-        self.bucket.setScale(1.3500000000000001)
+        self.bucket.setScale(1.35)
         self.bucket.stash()
         self.missPatch = NodePath('dummy')
         self.missPatchAsset = self.model.find('**/miss')
         self.missPatchAsset.reparentTo(self.missPatch)
         self.missPatch.reparentTo(self)
-        self.missPatch.setScale(1.1000000000000001)
+        self.missPatch.setScale(1.10)
         self.missPatch.stash()
         self.missSeq = None
         index = 1
@@ -84,9 +84,9 @@ class RepairPitchingGame(RepairMincroGame):
                 self.missSeq.finish()
 
             self.missPatch.unstash()
-            self.missPatch.setPos(mpos.getX(), 0.0, mpos.getY() + 0.20000000000000001)
+            self.missPatch.setPos(mpos.getX(), 0.0, mpos.getY() + 0.200)
             self.missPatchAsset.setPos(0.0, 0.0, 0.0)
-            self.missSeq = Sequence(Parallel(LerpPosInterval(self.missPatch, duration = 1.5, blendType = 'easeIn', pos = (mpos.getX(), 0.0, mpos.getY() - 0.14999999999999999)), LerpPosInterval(self.missPatchAsset, duration = 1.5, blendType = 'easeOut', pos = (0.20000000000000001, 0.0, 0.0)), LerpColorScaleInterval(self.missPatch, duration = 1.5, blendType = 'easeIn', startColorScale = (1.0, 1.0, 1.0, 1.0), colorScale = (1.0, 1.0, 1.0, 0.0))), Func(self.missPatch.stash))
+            self.missSeq = Sequence(Parallel(LerpPosInterval(self.missPatch, duration = 1.5, blendType = 'easeIn', pos = (mpos.getX(), 0.0, mpos.getY() - 0.149)), LerpPosInterval(self.missPatchAsset, duration = 1.5, blendType = 'easeOut', pos = (0.200, 0.0, 0.0)), LerpColorScaleInterval(self.missPatch, duration = 1.5, blendType = 'easeIn', startColorScale = (1.0, 1.0, 1.0, 1.0), colorScale = (1.0, 1.0, 1.0, 0.0))), Func(self.missPatch.stash))
             self.missSeq.start()
 
     def reset(self):
@@ -147,7 +147,7 @@ class RepairPitchingGame(RepairMincroGame):
                 leak = leakSet.pop()
                 leak.destroy()
 
-    _MIN_DIST = 0.20000000000000001
+    _MIN_DIST = 0.200
     _MAX_TRIES = 10
 
     def placeLeak(self, leak):
@@ -229,17 +229,17 @@ class RepairPitchingGame(RepairMincroGame):
             mpos = Point3(mpos.getX(), mpos.getY(), 0.0)
             mpos = aspect2d.getRelativePoint(render2d, mpos)
             if self.config.useReticle:
-                activeXOffset = -0.14000000000000001
+                activeXOffset = -0.140
                 activeYOffset = 0.02
-                idleXOffset = -0.17000000000000001
-                idleYOffset = -0.080000000000000002
+                idleXOffset = -0.170
+                idleYOffset = -0.08
                 self.crossHair.unstash()
                 self.crossHair.setPos(mpos.getX(), 0.0, mpos.getY())
             else:
-                activeXOffset = -0.059999999999999998
-                activeYOffset = 0.070000000000000007
-                idleXOffset = -0.080000000000000002
-                idleYOffset = -0.029999999999999999
+                activeXOffset = -0.0598
+                activeYOffset = 0.070
+                idleXOffset = -0.08
+                idleYOffset = -0.0299
                 self.crossHair.stash()
             if self.bucketPouring:
                 self.bucketIdle.stash()

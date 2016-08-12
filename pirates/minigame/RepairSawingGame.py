@@ -77,13 +77,13 @@ class RepairSawingGame(RepairMincroGame):
         self.model = loader.loadModel('models/gui/pir_m_gui_srp_sawing_main')
         sawModel = self.model.find('**/saw')
         sawModel.setR(193)
-        sawModel.setPos(0.90000000000000002, 0.0, -0.16500000000000001)
+        sawModel.setPos(0.9, 0.0, -0.165)
         sawModel.setBin('gui-popup', 0)
-        self.sawButton = RepairSaw(parent = self, clickDownCommand = self.sawAttachedToMouse, clickUpCommand = self.sawRemovedFromMouse, geom = sawModel, text_pos = (0.20000000000000001, -0.29999999999999999), text_fg = (1, 0, 0, 1), scale = (0.29999999999999999, 0.29999999999999999, 0.29999999999999999), relief = None, pressEffect = 0, frameSize = (-0.050000000000000003, 1.05, -0.29999999999999999, 0.050000000000000003), rolloverSound = None, clickSound = None)
+        self.sawButton = RepairSaw(parent = self, clickDownCommand = self.sawAttachedToMouse, clickUpCommand = self.sawRemovedFromMouse, geom = sawModel, text_pos = (0.200, -0.299), text_fg = (1, 0, 0, 1), scale = (0.299, 0.299, 0.299), relief = None, pressEffect = 0, frameSize = (-0.050000, 1.05, -0.299, 0.050000), rolloverSound = None, clickSound = None)
         self.sawingLine = RepairSawingLine(self, self.config.sawlineLineThickness, self.config.sawlineColor, self.config.sawlineLinespawnDist)
-        self.progressDescriptionLabel = DirectLabel(text = PLocalizer.Minigame_Repair_Sawing_Description, text_fg = (1.0, 1.0, 1.0, 1.0), text_pos = (0.0, 0.0), text_shadow = (0.0, 0.0, 0.0, 1.0), text_font = PiratesGlobals.getPirateFont(), text_align = TextNode.ARight, relief = None, scale = (0.080000000000000002, 0.080000000000000002, 0.080000000000000002), pos = (-0.20000000000000001, 0.0, 0.5), parent = self)
-        self.progressLabel = DirectLabel(text = PLocalizer.Minigame_Repair_Sawing_Thresholds[3], text_fg = (1.0, 1.0, 1.0, 1.0), text_pos = (0.0, 0.0), text_shadow = (0.0, 0.0, 0.0, 1.0), text_font = PiratesGlobals.getPirateFont(), text_align = TextNode.ALeft, relief = None, scale = (0.080000000000000002, 0.080000000000000002, 0.080000000000000002), pos = (-0.17999999999999999, 0.0, 0.5), parent = self)
-        self.boardDestroyedLabel = DirectLabel(text = PLocalizer.Minigame_Repair_Sawing_Board_Destroyed, text_fg = (1.0, 0.0, 0.0, 1.0), text_pos = (0.0, 0.0), text_font = PiratesGlobals.getPirateFont(), text_shadow = (0.0, 0.0, 0.0, 1.0), relief = None, scale = (0.10000000000000001, 0.10000000000000001, 0.10000000000000001), pos = (0.0, 0.0, 0.10000000000000001), parent = self)
+        self.progressDescriptionLabel = DirectLabel(text = PLocalizer.Minigame_Repair_Sawing_Description, text_fg = (1.0, 1.0, 1.0, 1.0), text_pos = (0.0, 0.0), text_shadow = (0.0, 0.0, 0.0, 1.0), text_font = PiratesGlobals.getPirateFont(), text_align = TextNode.ARight, relief = None, scale = (0.08, 0.08, 0.08), pos = (-0.200, 0.0, 0.5), parent = self)
+        self.progressLabel = DirectLabel(text = PLocalizer.Minigame_Repair_Sawing_Thresholds[3], text_fg = (1.0, 1.0, 1.0, 1.0), text_pos = (0.0, 0.0), text_shadow = (0.0, 0.0, 0.0, 1.0), text_font = PiratesGlobals.getPirateFont(), text_align = TextNode.ALeft, relief = None, scale = (0.08, 0.08, 0.08), pos = (-0.179, 0.0, 0.5), parent = self)
+        self.boardDestroyedLabel = DirectLabel(text = PLocalizer.Minigame_Repair_Sawing_Board_Destroyed, text_fg = (1.0, 0.0, 0.0, 1.0), text_pos = (0.0, 0.0), text_font = PiratesGlobals.getPirateFont(), text_shadow = (0.0, 0.0, 0.0, 1.0), relief = None, scale = (0.100, 0.100, 0.100), pos = (0.0, 0.0, 0.100), parent = self)
         self.boardDestroyedLabel.setBin('fixed', 38)
         self.boardDestroyedLabel.stash()
 
@@ -264,7 +264,7 @@ class RepairSawingGame(RepairMincroGame):
             self.notify.error('No copies of board type %i in the boardsPool!' % boardType)
         self.onDeckBoardIndex = boardType
         self.onDeckBoard.setScale(0.25)
-        self.onDeckBoard.setPos(0.5, -2.0, 0.56000000000000005)
+        self.onDeckBoard.setPos(0.5, -2.0, 0.560000)
         self.onDeckBoard.unstash()
 
     def loadNewBoard(self):
@@ -325,7 +325,7 @@ class RepairSawingGame(RepairMincroGame):
         self.hitZone1Penalty = False
         self.hitZone2Penalty = False
         self.lastMousePos = None
-        self.moveDiffForSound = self.config.playSawingSoundDelta + 0.10000000000000001
+        self.moveDiffForSound = self.config.playSawingSoundDelta + 0.100
         self.newBoardSequence = Sequence(Parallel(self.currentBoard.posInterval(self.config.newBoardAnimTime, Point3(*self.config.activeBoardPosition)), self.currentBoard.scaleInterval(self.config.newBoardAnimTime, 1.0)), name = 'RepairSawingGame.newBoardSequence')
         if self.state in [
             'Game']:
@@ -451,7 +451,7 @@ class RepairSawingGame(RepairMincroGame):
         return waypointsHit
 
     def updateSawLine(self, pos):
-        if pos.getX() < -0.63300000000000001 or pos.getX() > 0.63300000000000001:
+        if pos.getX() < -0.633 or pos.getX() > 0.633:
             self.sawingLine.reset()
             return
 

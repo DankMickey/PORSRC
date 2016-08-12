@@ -9,7 +9,7 @@ objectStruct = {
                     'Type': 'Island',
                     'File': 'QuestTestIsland',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-322.45299999999997, 95.183000000000007, 8.2539999999999996),
+                    'Pos': Point3(-322.452, 95.183, 8.2536),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/islands/bilgewater_zero' } } },

@@ -34,7 +34,7 @@ class WaspCloud(PooledEffect, EffectController):
         f0.addForce(force0)
         self.f.addForceGroup(f0)
         self.p0.setPoolSize(64)
-        self.p0.setBirthRate(0.050000000000000003)
+        self.p0.setBirthRate(0.050000)
         self.p0.setLitterSize(10)
         self.p0.setLitterSpread(0)
         self.p0.setSystemLifespan(0.0)
@@ -83,7 +83,7 @@ class WaspCloud(PooledEffect, EffectController):
         fadeIn = self.particleDummy.colorInterval(1.0, Vec4(1, 1, 1, 1), startColor = Vec4(0.0, 0.0, 0.0, 1))
         fadeOut = self.particleDummy.colorInterval(0.5, Vec4(0, 0, 0, 1), startColor = Vec4(1, 1, 1, 1))
         self.setScale(0.5, 1, 1)
-        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.050000000000000003), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self), fadeIn)
+        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.050000), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self), fadeIn)
         self.endEffect = Sequence(Func(self.wrtReparentTo, render), Parallel(fadeOut, Func(self.p0.setBirthRate, 100)), Wait(2.0), Func(self.cleanUpEffect))
         self.track = Sequence(self.startEffect, Wait(2.0), self.endEffect)
 

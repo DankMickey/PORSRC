@@ -91,7 +91,7 @@ class LureHittingWaterBubbleEffect(PooledEffect, EffectController):
 
     def createTrack(self):
         self.setParticleOptions()
-        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.10000000000000001), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy))
+        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.100), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy))
         self.endEffect = Sequence(Func(self.p0.setBirthRate, 20.0), Wait(10.0), Func(self.cleanUpEffect))
         self.track = Sequence(self.startEffect, Wait(1.0), self.endEffect)
 

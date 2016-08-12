@@ -47,8 +47,8 @@ class TentacleFire(PooledEffect, EffectController):
         self.p0.setLocalVelocityFlag(1)
         self.p0.setSystemGrowsOlderFlag(0)
         self.p0.setFloorZ(-1.0)
-        self.p0.factory.setLifespanBase(0.59999999999999998)
-        self.p0.factory.setLifespanSpread(0.20000000000000001)
+        self.p0.factory.setLifespanBase(0.598)
+        self.p0.factory.setLifespanSpread(0.200)
         self.p0.factory.setMassBase(1.0)
         self.p0.factory.setMassSpread(0.0)
         self.p0.factory.setTerminalVelocityBase(400.0)
@@ -68,7 +68,7 @@ class TentacleFire(PooledEffect, EffectController):
         self.p0.renderer.setNonanimatedTheta(0.0)
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPNOBLEND)
         self.p0.renderer.setColorBlendMode(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne)
-        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(1.0, 0.59999999999999998, 0.20000000000000001, 1.0), Vec4(0.5, 0.20000000000000001, 0.20000000000000001, 0.5), 1)
+        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(1.0, 0.598, 0.200, 1.0), Vec4(0.5, 0.200, 0.200, 0.5), 1)
         self.p0.renderer.setAlphaDisable(0)
         self.p0.emitter.setEmissionType(BaseParticleEmitter.ETRADIATE)
         self.p0.emitter.setAmplitude(-1.0)
@@ -92,9 +92,9 @@ class TentacleFire(PooledEffect, EffectController):
 
     def setEffectScale(self, scale):
         self.effectScale = scale
-        self.p0.renderer.setInitialXScale(0.059999999999999998 * self.cardScale * scale)
-        self.p0.renderer.setInitialYScale(0.059999999999999998 * self.cardScale * scale)
-        self.p0.renderer.setFinalXScale(0.040000000000000001 * self.cardScale * scale)
+        self.p0.renderer.setInitialXScale(0.0598 * self.cardScale * scale)
+        self.p0.renderer.setInitialYScale(0.0598 * self.cardScale * scale)
+        self.p0.renderer.setFinalXScale(0.0400 * self.cardScale * scale)
         self.p0.renderer.setFinalYScale(0.055 * self.cardScale * scale)
 
 

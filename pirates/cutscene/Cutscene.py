@@ -121,7 +121,7 @@ class Cutscene(NodePath, DirectObject):
     def setShowTimer(self, showTimer):
         if showTimer:
             if not hasattr(self, 'timer'):
-                self.timer = DirectLabel(parent = render2d, pos = (0.0, 0, 0.90000000000000002), frameSize = (0, 0.16, 0, 0.12), text = '0.0', text_align = TextNode.ARight, text_scale = 0.050000000000000003, text_pos = (0.14999999999999999, 0.050000000000000003), text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1)
+                self.timer = DirectLabel(parent = render2d, pos = (0.0, 0, 0.9), frameSize = (0, 0.16, 0, 0.12), text = '0.0', text_align = TextNode.ARight, text_scale = 0.050000, text_pos = (0.149, 0.050000), text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1)
 
         elif hasattr(self, 'timer'):
             self.timer.removeNode()
@@ -193,15 +193,15 @@ class Cutscene(NodePath, DirectObject):
             self.setPos(render, 0, 0, 0)
 
         if self._data.id == CutsceneData.Cutscene1_1_5_a:
-            self.setPos(render, 1.5, 34.837000000000003, 1.0820000000000001)
+            self.setPos(render, 1.5, 34.837, 1.082)
         elif self._data.id == CutsceneData.Cutscene1_1_5_b:
-            self.setPos(render, 1.5, 34.837000000000003, 1.0820000000000001)
+            self.setPos(render, 1.5, 34.837, 1.082)
         elif self._data.id == CutsceneData.Cutscene1_1_5_c:
-            self.setPos(render, 1.5, 34.837000000000003, 1.0820000000000001)
+            self.setPos(render, 1.5, 34.837, 1.082)
         elif self._data.id == CutsceneData.Cutscene2_2:
-            self.setPos(-393.0, -487.0, 5.4059999999999997)
+            self.setPos(-393.0, -487.0, 5.405)
         elif self._data.id == CutsceneData.Cutscene3_1:
-            self.setPos(253.226, -430.15499999999997, 1.2410000000000001)
+            self.setPos(253.226, -430.154, 1.241)
             self.setH(120.39)
 
     def _loadActors(self):
@@ -255,7 +255,7 @@ class Cutscene(NodePath, DirectObject):
         for actor in self._actors:
             actor.startCutscene(self._locators)
 
-        CameraShaker.setCutsceneScale(0.10000000000000001)
+        CameraShaker.setCutsceneScale(0.100)
         self.acceptOnce('escape', self._skip)
         if self.startedCallback:
             self.startedCallback()

@@ -31,7 +31,7 @@ class InventoryItemGui(InventoryListItem):
             buttonRelief = DGG.RIDGE
             buttonState = DGG.DISABLED
         self.loadGui()
-        optiondefs = (('relief', None, None), ('state', buttonState, None), ('frameSize', (0, self.width, 0, self.height), None), ('image', InventoryItemGui.genericButton, None), ('image_scale', (0.54000000000000004, 1, 0.41999999999999998), None), ('image_pos', (0.26000000000000001, 0, 0.080000000000000002), None), ('pressEffect', 0, None), ('command', self.sendEvents, None))
+        optiondefs = (('relief', None, None), ('state', buttonState, None), ('frameSize', (0, self.width, 0, self.height), None), ('image', InventoryItemGui.genericButton, None), ('image_scale', (0.540000, 1, 0.418), None), ('image_pos', (0.260, 0, 0.08), None), ('pressEffect', 0, None), ('command', self.sendEvents, None))
         self.defineoptions(kw, optiondefs)
         InventoryListItem.__init__(self, data, trade = trade, buy = buy, sell = sell, use = use, weapon = weapon, isDisabled = isDisabled, width = self.width, height = self.height)
         self.initialiseoptions(InventoryItemGui)
@@ -52,22 +52,22 @@ class InventoryItemGui(InventoryListItem):
 
         self.helpFrame = None
         self.cm = CardMaker('itemCard')
-        self.cm.setFrame(-0.29999999999999999, 0.29999999999999999, -0.089999999999999997, 0.089999999999999997)
+        self.cm.setFrame(-0.299, 0.299, -0.089, 0.089)
         self.buffer = None
         self.lens = PerspectiveLens()
         self.lens.setNear(0.5)
-        self.lens.setAspectRatio(0.59999999999999998 / 0.17999999999999999)
+        self.lens.setAspectRatio(0.598 / 0.179)
         self.realItem = None
         self.itemCard = None
         self.portraitSceneGraph = NodePath('PortraitSceneGraph')
         detailGui = loader.loadModel('models/gui/gui_card_detail')
         self.bg = detailGui.find('**/color')
         self.bg.setScale(4)
-        self.bg.setPos(0, 17, -6.2999999999999998)
+        self.bg.setPos(0, 17, -6.28)
         self.glow = detailGui.find('**/glow')
         self.glow.setScale(3)
-        self.glow.setPos(0, 17, -6.2999999999999998)
-        self.glow.setColor(1, 1, 1, 0.80000000000000004)
+        self.glow.setPos(0, 17, -6.28)
+        self.glow.setColor(1, 1, 1, 0.800000)
         self.setBin('gui-fixed', 4)
         self.accept('open_main_window', self.createBuffer)
         self.accept('aspectRatioChanged', self.createBuffer)
@@ -97,8 +97,8 @@ class InventoryItemGui(InventoryListItem):
             self.itemTypeFormatted = PLocalizer.makeHeadingString(PLocalizer.ShipCannonShort, 1)
         else:
             self.itemTypeFormatted = PLocalizer.makeHeadingString(self.itemType, 1)
-        self.itemTypeName = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, text = self.itemTypeFormatted, text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getInterfaceFont(), pos = (0.16, 0, 0.065000000000000002))
-        self.miscText = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, text = '', text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.16, 0, 0.025000000000000001))
+        self.itemTypeName = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, text = self.itemTypeFormatted, text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getInterfaceFont(), pos = (0.16, 0, 0.065))
+        self.miscText = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, text = '', text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.16, 0, 0.0250))
         if self.minLvl > 0:
             repId = WeaponGlobals.getRepId(itemId)
             if repId:
@@ -116,9 +116,9 @@ class InventoryItemGui(InventoryListItem):
         if self.buy:
             self.checkPlayerInventory(itemId)
 
-        self.costText = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, image = InventoryListItem.coinImage, image_scale = 0.12, image_pos = Vec3(-0.01, 0, 0.01), text = str(self.price), text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ARight, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, text_pos = (-0.029999999999999999, 0, 0), pos = (self.width - 0.035000000000000003, 0, 0.065000000000000002), text_font = PiratesGlobals.getInterfaceFont())
+        self.costText = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, image = InventoryListItem.coinImage, image_scale = 0.12, image_pos = Vec3(-0.01, 0, 0.01), text = str(self.price), text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ARight, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, text_pos = (-0.0299, 0, 0), pos = (self.width - 0.035000, 0, 0.065), text_font = PiratesGlobals.getInterfaceFont())
         if self.quantity and self.quantity > 1:
-            self.quantityLabel = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, text = str(self.quantity), frameColor = (0, 0, 0, 1), frameSize = (-0.01, 0.02, -0.01, 0.025000000000000001), text_scale = 0.0275, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.02, 0, 0.025000000000000001), text_font = PiratesGlobals.getPirateBoldOutlineFont())
+            self.quantityLabel = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, text = str(self.quantity), frameColor = (0, 0, 0, 1), frameSize = (-0.01, 0.02, -0.01, 0.0250), text_scale = 0.0275, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.02, 0, 0.0250), text_font = PiratesGlobals.getPirateBoldOutlineFont())
 
         geomParams = InventoryItemGui.getGeomParams(itemId)
         self.picture = DirectFrame(parent = self, relief = None, state = DGG.DISABLED, geom = geomParams['geom'], geom_pos = geomParams['geom_pos'], geom_scale = geomParams['geom_scale'], pos = (0.01, 0, 0.01))
@@ -137,7 +137,7 @@ class InventoryItemGui(InventoryListItem):
                     geomParams['geom'] = InventoryItemGui.weaponIcons.find('**/%s' % ItemGlobals.getIcon(itemId))
 
             geomParams['geom_scale'] = 0.11
-            geomParams['geom_pos'] = (0.080000000000000002, 0, 0.068000000000000005)
+            geomParams['geom_pos'] = (0.08, 0, 0.0680000)
         else:
             itemClass = EconomyGlobals.getItemCategory(itemId)
             itemType = EconomyGlobals.getItemType(itemId)
@@ -146,21 +146,21 @@ class InventoryItemGui(InventoryListItem):
                 if asset:
                     geomParams['geom'] = InventoryItemGui.fishingIcons.find('**/%s*' % asset)
                     geomParams['geom_scale'] = 0.11
-                    geomParams['geom_pos'] = (0.080000000000000002, 0, 0.068000000000000005)
+                    geomParams['geom_pos'] = (0.08, 0, 0.0680000)
 
             elif itemClass == ItemType.WEAPON and itemClass == ItemType.POUCH or itemClass == ItemType.AMMO:
                 asset = EconomyGlobals.getItemIcons(itemId)
                 if asset:
                     geomParams['geom'] = InventoryItemGui.weaponIcons.find('**/%s*' % asset)
                     geomParams['geom_scale'] = 0.11
-                    geomParams['geom_pos'] = (0.080000000000000002, 0, 0.068000000000000005)
+                    geomParams['geom_pos'] = (0.08, 0, 0.0680000)
 
             elif itemClass == ItemType.CONSUMABLE:
                 asset = EconomyGlobals.getItemIcons(itemId)
                 if asset:
                     geomParams['geom'] = InventoryItemGui.skillIcons.find('**/%s*' % asset)
                     geomParams['geom_scale'] = 0.11
-                    geomParams['geom_pos'] = (0.080000000000000002, 0, 0.068000000000000005)
+                    geomParams['geom_pos'] = (0.08, 0, 0.0680000)
 
 
         if not InventoryType.begin_WeaponCannonAmmo <= itemId or itemId <= InventoryType.end_WeaponCannonAmmo:
@@ -170,14 +170,14 @@ class InventoryItemGui(InventoryListItem):
                     asset = WeaponGlobals.getSkillIcon(skillId)
                     if asset:
                         geomParams['geom'] = InventoryListItem.skillIcons.find('**/%s' % asset)
-                        geomParams['geom_scale'] = 0.14999999999999999
-                        geomParams['geom_pos'] = (0.069000000000000006, 0, 0.069000000000000006)
+                        geomParams['geom_scale'] = 0.149
+                        geomParams['geom_pos'] = (0.069, 0, 0.069)
 
 
             elif InventoryType.SmallBottle <= itemId and itemId <= InventoryType.LargeBottle:
                 geomParams['geom'] = InventoryListItem.topGui.find('**/main_gui_ship_bottle')
-                geomParams['geom_scale'] = 0.10000000000000001
-                geomParams['geom_pos'] = (0.069000000000000006, 0, 0.069000000000000006)
+                geomParams['geom_scale'] = 0.100
+                geomParams['geom_pos'] = (0.069, 0, 0.069)
 
         return geomParams
 
@@ -358,7 +358,7 @@ class InventoryItemGui(InventoryListItem):
 
     def highlightRed(self, text = ''):
         self['state'] = DGG.DISABLED
-        self['image_color'] = Vec4(0.55000000000000004, 0.55000000000000004, 0.5, 1)
+        self['image_color'] = Vec4(0.550000, 0.550000, 0.5, 1)
         self.available = False
         self.highlightBox(text, Vec4(0.75, 0.5, 0.5, 1), PiratesGuiGlobals.TextFG6)
 
@@ -400,8 +400,8 @@ class InventoryItemGui(InventoryListItem):
             self.SkillIcons = loader.loadModel('models/textureCards/skillIcons')
             self.BuffIcons = loader.loadModel('models/textureCards/buff_icons')
             border = self.SkillIcons.find('**/base')
-            halfWidth = 0.29999999999999999
-            halfHeight = 0.20000000000000001
+            halfWidth = 0.299
+            halfHeight = 0.200
             textScale = PiratesGuiGlobals.TextScaleMed
             titleScale = PiratesGuiGlobals.TextScaleTitleSmall
             titleNameScale = PiratesGuiGlobals.TextScaleExtraLarge
@@ -409,8 +409,8 @@ class InventoryItemGui(InventoryListItem):
             iconScalar = 1.5
             borderScaler = 0.25
             splitHeight = 0.01
-            vMargin = 0.029999999999999999
-            runningVertPosition = 0.29999999999999999
+            vMargin = 0.0299
+            runningVertPosition = 0.299
             runningSize = 0.0
             labels = []
             titleColor = PiratesGuiGlobals.TextFG6
@@ -433,13 +433,13 @@ class InventoryItemGui(InventoryListItem):
 
             titleLabel = DirectLabel(parent = self, relief = None, text = PLocalizer.getItemName(itemId), text_scale = titleNameScale, text_fg = titleColor, text_shadow = PiratesGuiGlobals.TextShadow, text_align = TextNode.ACenter, pos = (0.0, 0.0, runningVertPosition), text_pos = (0.0, -textScale))
             self.bg.setColor(titleColor)
-            tHeight = 0.070000000000000007
+            tHeight = 0.070
             titleLabel.setZ(runningVertPosition)
             runningVertPosition -= tHeight
             runningSize += tHeight
             labels.append(titleLabel)
             subtitleLabel = DirectLabel(parent = self, relief = None, text = '\x01slant\x01%s\x02 %s' % (rarityText, subtypeText), text_scale = subtitleScale, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_align = TextNode.ACenter, pos = (0.0, 0.0, runningVertPosition), text_pos = (0.0, -textScale))
-            subtHeight = 0.050000000000000003
+            subtHeight = 0.050000
             subtitleLabel.setZ(subtHeight * 0.5 + runningVertPosition)
             runningVertPosition -= subtHeight
             runningSize += subtHeight
@@ -470,48 +470,48 @@ class InventoryItemGui(InventoryListItem):
                         self.realItem.setPos(posHpr[0], posHpr[1], posHpr[2])
                         self.realItem.setHpr(posHpr[3], posHpr[4], posHpr[5])
                     elif itemType == ItemGlobals.SWORD:
-                        self.realItem.setPos(-1.5, 3.0, -0.29999999999999999)
+                        self.realItem.setPos(-1.5, 3.0, -0.299)
                         self.realItem.setHpr(90, 170, -90)
                     elif itemSubtype in (ItemGlobals.MUSKET, ItemGlobals.BAYONET):
-                        self.realItem.setPos(-1.2, 3.0, -0.10000000000000001)
+                        self.realItem.setPos(-1.2, 3.0, -0.100)
                         self.realItem.setHpr(0, 135, 10)
                     elif itemSubtype == ItemGlobals.BLUNDERBUSS:
-                        self.realItem.setPos(-0.29999999999999999, 2.0, 0.0)
+                        self.realItem.setPos(-0.299, 2.0, 0.0)
                         self.realItem.setHpr(0, 90, 0)
                     elif itemType == ItemGlobals.GUN:
-                        self.realItem.setPos(-0.5, 2.0, -0.20000000000000001)
+                        self.realItem.setPos(-0.5, 2.0, -0.200)
                         self.realItem.setHpr(0, 90, 0)
                     elif itemType == ItemGlobals.DOLL:
-                        self.realItem.setPos(0.0, 1.8999999999999999, -0.10000000000000001)
+                        self.realItem.setPos(0.0, 1.89, -0.100)
                         self.realItem.setHpr(0, 90, 180)
                     elif itemType == ItemGlobals.DAGGER:
-                        self.realItem.setPos(-1.0, 2.0, -0.29999999999999999)
+                        self.realItem.setPos(-1.0, 2.0, -0.299)
                         self.realItem.setHpr(90, 170, -90)
                     elif itemType == ItemGlobals.GRENADE:
-                        self.realItem.setPos(0.0, 3.5, -0.20000000000000001)
+                        self.realItem.setPos(0.0, 3.5, -0.200)
                         self.realItem.setHpr(0, 0, 0)
                     elif itemType == ItemGlobals.STAFF:
-                        self.realItem.setPos(-0.40000000000000002, 3.0, -0.29999999999999999)
+                        self.realItem.setPos(-0.4, 3.0, -0.299)
                         self.realItem.setHpr(-90, 15, -90)
                     elif itemSubtype == ItemGlobals.RAM:
-                        self.realItem.setPos(-1.5, 1.5, -0.59999999999999998)
+                        self.realItem.setPos(-1.5, 1.5, -0.598)
                         self.realItem.setHpr(70, 160, -90)
                     elif itemType == ItemGlobals.POTION:
-                        self.realItem.setPos(0.0, 2.5, -0.40000000000000002)
+                        self.realItem.setPos(0.0, 2.5, -0.4)
                         self.realItem.setHpr(45, 0, 0)
                     else:
-                        self.realItem.setPos(0.0, 1.5, -0.059999999999999998)
+                        self.realItem.setPos(0.0, 1.5, -0.0598)
                         self.realItem.setHpr(0, 90, 0)
                     self.realItem.reparentTo(self.portraitSceneGraph)
 
 
-            iHeight = 0.17499999999999999
+            iHeight = 0.174
             self.createBuffer()
-            self.itemCard.setZ(runningVertPosition - 0.059999999999999998)
+            self.itemCard.setZ(runningVertPosition - 0.0598)
             runningVertPosition -= iHeight
             runningSize += iHeight
             labels.append(self.itemCard)
-            goldLabel = DirectLabel(parent = self, relief = None, image = coinImage, image_scale = 0.12, image_pos = Vec3(0.025000000000000001, 0, -0.02), text = str(int(ItemGlobals.getGoldCost(itemId) * ItemGlobals.GOLD_SALE_MULTIPLIER)), text_scale = subtitleScale, text_align = TextNode.ARight, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, pos = (halfWidth - 0.050000000000000003, 0.0, runningVertPosition + 0.080000000000000002), text_pos = (0.0, -textScale))
+            goldLabel = DirectLabel(parent = self, relief = None, image = coinImage, image_scale = 0.12, image_pos = Vec3(0.0250, 0, -0.02), text = str(int(ItemGlobals.getGoldCost(itemId) * ItemGlobals.GOLD_SALE_MULTIPLIER)), text_scale = subtitleScale, text_align = TextNode.ARight, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, pos = (halfWidth - 0.050000, 0.0, runningVertPosition + 0.08), text_pos = (0.0, -textScale))
             labels.append(goldLabel)
             infoText = PLocalizer.ItemAttackStrength % '\x01%s\x01%s\x02' % (itemColor, ItemGlobals.getPower(itemId))
             if itemType == ItemGlobals.GUN:
@@ -520,7 +520,7 @@ class InventoryItemGui(InventoryListItem):
 
             if itemType != ItemGlobals.POTION:
                 infoLabel = DirectLabel(parent = self, relief = None, text = infoText, text_scale = textScale, text_align = TextNode.ACenter, pos = (0.0, 0.0, runningVertPosition), text_pos = (0.0, -textScale))
-                iHeight = 0.080000000000000002
+                iHeight = 0.08
                 runningVertPosition -= iHeight
                 runningSize += iHeight
                 labels.append(infoLabel)
@@ -531,8 +531,8 @@ class InventoryItemGui(InventoryListItem):
 
             if specialAttack:
                 attackIcon = self.SkillIcons.find('**/%s' % WeaponGlobals.getSkillIcon(specialAttack))
-                specialAttackNameLabel = DirectLabel(parent = self, relief = None, image = border, image_scale = 0.10000000000000001, geom = attackIcon, geom_scale = 0.10000000000000001, image_pos = (-0.070000000000000007, 0.0, -0.050000000000000003), geom_pos = (-0.070000000000000007, 0.0, -0.050000000000000003), text = PLocalizer.getInventoryTypeName(specialAttack), text_scale = PiratesGuiGlobals.TextScaleLarge, text_wordwrap = halfWidth * 2.0 * (0.90000000000000002 / titleScale), text_align = TextNode.ALeft, text_fg = titleColor, text_font = PiratesGlobals.getInterfaceOutlineFont(), text_shadow = PiratesGuiGlobals.TextShadow, pos = (-halfWidth + 0.12 + textScale * 0.5, 0.0, runningVertPosition), text_pos = (0.0, -textScale))
-                specialAttackRankLabel = DirectLabel(parent = self, relief = None, text = PLocalizer.ItemRank % ItemGlobals.getSpecialAttackRank(itemId), text_scale = textScale, text_wordwrap = halfWidth * 2.0 * (0.90000000000000002 / titleScale), text_align = TextNode.ARight, pos = (halfWidth - textScale * 0.5, 0.0, runningVertPosition), text_pos = (0.0, -textScale))
+                specialAttackNameLabel = DirectLabel(parent = self, relief = None, image = border, image_scale = 0.100, geom = attackIcon, geom_scale = 0.100, image_pos = (-0.070, 0.0, -0.050000), geom_pos = (-0.070, 0.0, -0.050000), text = PLocalizer.getInventoryTypeName(specialAttack), text_scale = PiratesGuiGlobals.TextScaleLarge, text_wordwrap = halfWidth * 2.0 * (0.9 / titleScale), text_align = TextNode.ALeft, text_fg = titleColor, text_font = PiratesGlobals.getInterfaceOutlineFont(), text_shadow = PiratesGuiGlobals.TextShadow, pos = (-halfWidth + 0.12 + textScale * 0.5, 0.0, runningVertPosition), text_pos = (0.0, -textScale))
+                specialAttackRankLabel = DirectLabel(parent = self, relief = None, text = PLocalizer.ItemRank % ItemGlobals.getSpecialAttackRank(itemId), text_scale = textScale, text_wordwrap = halfWidth * 2.0 * (0.9 / titleScale), text_align = TextNode.ARight, pos = (halfWidth - textScale * 0.5, 0.0, runningVertPosition), text_pos = (0.0, -textScale))
                 specialAttackType = WeaponGlobals.getSkillTrack(specialAttack)
                 if specialAttackType == WeaponGlobals.BREAK_ATTACK_SKILL_INDEX:
                     specialAttackTypeText = PLocalizer.BreakAttackSkill
@@ -540,11 +540,11 @@ class InventoryItemGui(InventoryListItem):
                     specialAttackTypeText = PLocalizer.DefenseSkill
                 else:
                     specialAttackTypeText = PLocalizer.WeaponSkill
-                specialAttackTypeLabel = DirectLabel(parent = self, relief = None, text = specialAttackTypeText, text_scale = 0.033500000000000002, text_wordwrap = halfWidth * 2.7999999999999998 * (0.90000000000000002 / titleScale), text_align = TextNode.ALeft, pos = (-halfWidth + 0.12 + textScale * 0.5, 0.0, runningVertPosition - PiratesGuiGlobals.TextScaleLarge), text_pos = (0.0, -textScale))
+                specialAttackTypeLabel = DirectLabel(parent = self, relief = None, text = specialAttackTypeText, text_scale = 0.0335, text_wordwrap = halfWidth * 2.78 * (0.9 / titleScale), text_align = TextNode.ALeft, pos = (-halfWidth + 0.12 + textScale * 0.5, 0.0, runningVertPosition - PiratesGuiGlobals.TextScaleLarge), text_pos = (0.0, -textScale))
                 specialAttackInfo = PLocalizer.SkillDescriptions.get(specialAttack)
                 specialAttackDescriptionText = specialAttackInfo[1]
-                specialAttackDescriptionLabel = DirectLabel(parent = self, relief = None, text = specialAttackDescriptionText, text_scale = textScale, text_wordwrap = halfWidth * 2.7999999999999998 * (0.90000000000000002 / titleScale), text_align = TextNode.ALeft, pos = (-halfWidth + 0.12 + textScale * 0.5, 0.0, runningVertPosition - specialAttackNameLabel.getHeight() + specialAttackTypeLabel.getHeight() - 0.059999999999999998), text_pos = (0.0, -textScale))
-                saHeight = specialAttackNameLabel.getHeight() + specialAttackTypeLabel.getHeight() + specialAttackDescriptionLabel.getHeight() - 0.040000000000000001
+                specialAttackDescriptionLabel = DirectLabel(parent = self, relief = None, text = specialAttackDescriptionText, text_scale = textScale, text_wordwrap = halfWidth * 2.78 * (0.9 / titleScale), text_align = TextNode.ALeft, pos = (-halfWidth + 0.12 + textScale * 0.5, 0.0, runningVertPosition - specialAttackNameLabel.getHeight() + specialAttackTypeLabel.getHeight() - 0.0598), text_pos = (0.0, -textScale))
+                saHeight = specialAttackNameLabel.getHeight() + specialAttackTypeLabel.getHeight() + specialAttackDescriptionLabel.getHeight() - 0.0400
                 runningVertPosition -= saHeight
                 runningSize += saHeight
                 labels.append(specialAttackNameLabel)
@@ -558,13 +558,13 @@ class InventoryItemGui(InventoryListItem):
                 if not attributeIcon:
                     attributeIcon = self.BuffIcons.find('**/%s' % ItemGlobals.getAttributeIcon(attributes[i][0]))
 
-                attributeNameLabel = DirectLabel(parent = self, relief = None, image = border, image_scale = 0.050000000000000003, geom = attributeIcon, geom_scale = 0.050000000000000003, image_pos = (-0.070000000000000007, 0.0, -0.029999999999999999), geom_pos = (-0.070000000000000007, 0.0, -0.029999999999999999), text = PLocalizer.getItemAttributeName(attributes[i][0]), text_scale = PiratesGuiGlobals.TextScaleLarge, text_wordwrap = halfWidth * 2.0 * (0.90000000000000002 / titleScale), text_align = TextNode.ALeft, text_fg = titleColor, text_font = PiratesGlobals.getInterfaceOutlineFont(), text_shadow = PiratesGuiGlobals.TextShadow, pos = (-halfWidth + 0.12 + textScale * 0.5, 0.0, runningVertPosition), text_pos = (0.0, -textScale))
-                attributeRankLabel = DirectLabel(parent = self, relief = None, text = PLocalizer.ItemRank % attributes[i][1], text_scale = textScale, text_wordwrap = halfWidth * 2.0 * (0.90000000000000002 / titleScale), text_align = TextNode.ARight, pos = (halfWidth - textScale * 0.5, 0.0, runningVertPosition), text_pos = (0.0, -textScale))
-                if attributeNameLabel.getHeight() > 0.074999999999999997:
-                    attributeNameSpace = 0.080000000000000002
+                attributeNameLabel = DirectLabel(parent = self, relief = None, image = border, image_scale = 0.050000, geom = attributeIcon, geom_scale = 0.050000, image_pos = (-0.070, 0.0, -0.0299), geom_pos = (-0.070, 0.0, -0.0299), text = PLocalizer.getItemAttributeName(attributes[i][0]), text_scale = PiratesGuiGlobals.TextScaleLarge, text_wordwrap = halfWidth * 2.0 * (0.9 / titleScale), text_align = TextNode.ALeft, text_fg = titleColor, text_font = PiratesGlobals.getInterfaceOutlineFont(), text_shadow = PiratesGuiGlobals.TextShadow, pos = (-halfWidth + 0.12 + textScale * 0.5, 0.0, runningVertPosition), text_pos = (0.0, -textScale))
+                attributeRankLabel = DirectLabel(parent = self, relief = None, text = PLocalizer.ItemRank % attributes[i][1], text_scale = textScale, text_wordwrap = halfWidth * 2.0 * (0.9 / titleScale), text_align = TextNode.ARight, pos = (halfWidth - textScale * 0.5, 0.0, runningVertPosition), text_pos = (0.0, -textScale))
+                if attributeNameLabel.getHeight() > 0.074:
+                    attributeNameSpace = 0.08
                 else:
                     attributeNameSpace = PiratesGuiGlobals.TextScaleLarge
-                attributeDescriptionLabel = DirectLabel(parent = self, relief = None, text = PLocalizer.getItemAttributeDescription(attributes[i][0]), text_scale = textScale, text_wordwrap = halfWidth * 2.7999999999999998 * (0.90000000000000002 / titleScale), text_align = TextNode.ALeft, pos = (-halfWidth + 0.12 + textScale * 0.5, 0.0, runningVertPosition - attributeNameSpace), text_pos = (0.0, -textScale))
+                attributeDescriptionLabel = DirectLabel(parent = self, relief = None, text = PLocalizer.getItemAttributeDescription(attributes[i][0]), text_scale = textScale, text_wordwrap = halfWidth * 2.78 * (0.9 / titleScale), text_align = TextNode.ALeft, pos = (-halfWidth + 0.12 + textScale * 0.5, 0.0, runningVertPosition - attributeNameSpace), text_pos = (0.0, -textScale))
                 aHeight = attributeNameLabel.getHeight() + attributeDescriptionLabel.getHeight()
                 runningVertPosition -= aHeight + splitHeight
                 runningSize += aHeight + splitHeight
@@ -575,8 +575,8 @@ class InventoryItemGui(InventoryListItem):
             skillBoosts = ItemGlobals.getSkillBoosts(itemId)
             for i in xrange(0, len(skillBoosts)):
                 boostIcon = self.SkillIcons.find('**/%s' % WeaponGlobals.getSkillIcon(skillBoosts[i][0]))
-                boostNameLabel = DirectLabel(parent = self, relief = None, image = border, image_scale = 0.050000000000000003, geom = boostIcon, geom_scale = 0.050000000000000003, image_pos = (-0.070000000000000007, 0.0, -0.029999999999999999), geom_pos = (-0.070000000000000007, 0.0, -0.029999999999999999), text = PLocalizer.ItemBoost % PLocalizer.getInventoryTypeName(skillBoosts[i][0]), text_scale = textScale, text_wordwrap = halfWidth * 2.0 * (0.90000000000000002 / titleScale), text_align = TextNode.ALeft, pos = (-halfWidth + 0.12 + textScale * 0.5, 0.0, runningVertPosition), text_pos = (0.0, -textScale))
-                boostRankLabel = DirectLabel(parent = self, relief = None, text = '+%s' % str(skillBoosts[i][1]), text_scale = textScale, text_wordwrap = halfWidth * 2.0 * (0.90000000000000002 / titleScale), text_align = TextNode.ARight, pos = (halfWidth - textScale * 0.5, 0.0, runningVertPosition), text_pos = (0.0, -textScale))
+                boostNameLabel = DirectLabel(parent = self, relief = None, image = border, image_scale = 0.050000, geom = boostIcon, geom_scale = 0.050000, image_pos = (-0.070, 0.0, -0.0299), geom_pos = (-0.070, 0.0, -0.0299), text = PLocalizer.ItemBoost % PLocalizer.getInventoryTypeName(skillBoosts[i][0]), text_scale = textScale, text_wordwrap = halfWidth * 2.0 * (0.9 / titleScale), text_align = TextNode.ALeft, pos = (-halfWidth + 0.12 + textScale * 0.5, 0.0, runningVertPosition), text_pos = (0.0, -textScale))
+                boostRankLabel = DirectLabel(parent = self, relief = None, text = '+%s' % str(skillBoosts[i][1]), text_scale = textScale, text_wordwrap = halfWidth * 2.0 * (0.9 / titleScale), text_align = TextNode.ARight, pos = (halfWidth - textScale * 0.5, 0.0, runningVertPosition), text_pos = (0.0, -textScale))
                 bHeight = boostNameLabel.getHeight()
                 runningVertPosition -= bHeight + splitHeight
                 runningSize += bHeight + splitHeight
@@ -585,7 +585,7 @@ class InventoryItemGui(InventoryListItem):
 
             description = PLocalizer.getItemFlavorText(itemId)
             if description != '':
-                descriptionLabel = DirectLabel(parent = self, relief = None, text = description, text_scale = textScale, text_wordwrap = halfWidth * 2.0 * (0.94999999999999996 / textScale), text_align = TextNode.ALeft, pos = (-halfWidth + textScale * 0.5, 0.0, runningVertPosition), text_pos = (0.0, -textScale))
+                descriptionLabel = DirectLabel(parent = self, relief = None, text = description, text_scale = textScale, text_wordwrap = halfWidth * 2.0 * (0.946 / textScale), text_align = TextNode.ALeft, pos = (-halfWidth + textScale * 0.5, 0.0, runningVertPosition), text_pos = (0.0, -textScale))
                 dHeight = descriptionLabel.getHeight() + 0.02
                 runningVertPosition -= dHeight
                 runningSize += dHeight
@@ -604,7 +604,7 @@ class InventoryItemGui(InventoryListItem):
                 if weaponLevel < weaponReq:
                     weaponColor = PiratesGuiGlobals.TextFG6
                 else:
-                    weaponColor = (0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 1.0)
+                    weaponColor = (0.4, 0.4, 0.4, 1.0)
                     weaponText = PLocalizer.ItemLevelRequirement % (weaponReq, PLocalizer.getItemTypeName(itemType))
             elif trainingAmt == 0:
                 weaponColor = PiratesGuiGlobals.TextFG6
@@ -633,73 +633,73 @@ class InventoryItemGui(InventoryListItem):
             panels = self.helpFrame.attachNewNode('panels')
             topPanel = panels.attachNewNode('middlePanel')
             detailGui.find('**/top_panel').copyTo(topPanel)
-            topPanel.setScale(0.080000000000000002)
+            topPanel.setScale(0.08)
             topPanel.reparentTo(self.helpFrame)
             middlePanel = panels.attachNewNode('middlePanel')
             detailGui.find('**/middle_panel').copyTo(middlePanel)
-            middlePanel.setScale(0.080000000000000002)
+            middlePanel.setScale(0.08)
             middlePanel.reparentTo(self.helpFrame)
             placement = 0
             i = 0
-            heightMax = -0.080000000000000002
+            heightMax = -0.08
             currentHeight = runningVertPosition
             while currentHeight < heightMax:
                 middlePanel = panels.attachNewNode('middlePanel%s' % 1)
                 detailGui.find('**/middle_panel').copyTo(middlePanel)
-                middlePanel.setScale(0.080000000000000002)
+                middlePanel.setScale(0.08)
                 middlePanel.reparentTo(self.helpFrame)
-                if currentHeight + 0.20000000000000001 >= heightMax:
+                if currentHeight + 0.200 >= heightMax:
                     difference = heightMax - currentHeight
-                    placement += (0.16800000000000001 / 0.20000000000000001) * difference
+                    placement += (0.168 / 0.200) * difference
                     currentHeight += difference
                 else:
-                    placement += 0.16800000000000001
-                    currentHeight += 0.20000000000000001
+                    placement += 0.168
+                    currentHeight += 0.200
                 middlePanel.setZ(-placement)
                 i += 1
             bottomPanel = panels.attachNewNode('bottomPanel')
             detailGui.find('**/bottom_panel').copyTo(bottomPanel)
-            bottomPanel.setScale(0.080000000000000002)
+            bottomPanel.setScale(0.08)
             bottomPanel.setZ(-placement)
             bottomPanel.reparentTo(self.helpFrame)
             colorPanel = panels.attachNewNode('colorPanel')
             detailGui.find('**/color').copyTo(colorPanel)
-            colorPanel.setScale(0.080000000000000002)
+            colorPanel.setScale(0.08)
             colorPanel.setColor(titleColor)
             colorPanel.reparentTo(self.helpFrame)
             lineBreakTopPanel = panels.attachNewNode('lineBreakTopPanel')
             detailGui.find('**/line_break_top').copyTo(lineBreakTopPanel)
-            lineBreakTopPanel.setScale(0.080000000000000002, 0.080000000000000002, 0.070000000000000007)
-            lineBreakTopPanel.setZ(0.0080000000000000002)
+            lineBreakTopPanel.setScale(0.08, 0.08, 0.070)
+            lineBreakTopPanel.setZ(0.008)
             lineBreakTopPanel.reparentTo(self.helpFrame)
             if itemType != ItemGlobals.POTION:
                 lineBreakBottomPanel = panels.attachNewNode('lineBreakBottomPanel')
                 detailGui.find('**/line_break_bottom').copyTo(lineBreakBottomPanel)
-                lineBreakBottomPanel.setScale(0.080000000000000002, 0.080000000000000002, 0.070000000000000007)
-                lineBreakBottomPanel.setZ(-0.014999999999999999)
+                lineBreakBottomPanel.setScale(0.08, 0.08, 0.070)
+                lineBreakBottomPanel.setZ(-0.0149)
                 lineBreakBottomPanel.reparentTo(self.helpFrame)
 
             panels.flattenStrong()
             self.helpFrame['frameSize'] = (-halfWidth, halfWidth, -(runningSize + vMargin), vMargin)
-            totalHeight = self.helpFrame.getHeight() - 0.10000000000000001
+            totalHeight = self.helpFrame.getHeight() - 0.100
             for label in labels:
                 label.reparentTo(self.helpFrame)
 
             self.helpFrame.setBin('gui-fixed', 4)
-            self.helpFrame.setPos(self, 0.55000000000000004, 0, -0.29999999999999999)
+            self.helpFrame.setPos(self, 0.550000, 0, -0.299)
             zOffset = -0.5 - self.helpFrame.getPos(aspect2d)[2]
             if zOffset >= 0.0:
-                self.helpFrame.setPos(self, 0.55000000000000004, 0, zOffset - 0.29999999999999999)
+                self.helpFrame.setPos(self, 0.550000, 0, zOffset - 0.299)
 
         else:
             weaponInfo = PLocalizer.WeaponDescriptions.get(self.data[0])
             weaponDesc = weaponInfo
             self.helpText = DirectFrame(parent = self, relief = None, text = weaponDesc, state = DGG.DISABLED, text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleSmall, text_fg = PiratesGuiGlobals.TextFG2, text_wordwrap = 13, textMayChange = 0, sortOrder = 91)
             height = -self.helpText.getHeight()
-            self.helpFrame = BorderFrame(parent = aspect2d, state = DGG.DISABLED, frameSize = (-0.029999999999999999, 0.42999999999999999, height, 0.050000000000000003), sortOrder = 90, borderScale = 0.20000000000000001)
+            self.helpFrame = BorderFrame(parent = aspect2d, state = DGG.DISABLED, frameSize = (-0.0299, 0.429, height, 0.050000), sortOrder = 90, borderScale = 0.200)
             self.helpText.reparentTo(self.helpFrame)
             self.helpFrame.setBin('gui-fixed', 4)
-            self.helpFrame.setPos(self, 0.25, 0, -0.035000000000000003)
+            self.helpFrame.setPos(self, 0.25, 0, -0.035000)
 
 
     def destroy(self):
@@ -757,8 +757,8 @@ class InventoryItemGui(InventoryListItem):
                 newPos = self.getPos(aspect2d)
                 x = newPos[0]
                 z = newPos[2]
-                x = x - x % 0.050000000000000003
-                z = z - z % 0.050000000000000003
+                x = x - x % 0.050000
+                z = z - z % 0.050000
                 x = min(1.3 - self.width, max(-1.3, x))
                 z = min(1 - self.height, max(-1, z))
                 self.setPos(aspect2d, x, 0.0, z)

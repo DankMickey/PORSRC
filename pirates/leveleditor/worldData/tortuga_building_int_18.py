@@ -11,7 +11,7 @@ objectStruct = {
                 '1175037824.0dxschafe': {
                     'Type': 'Searchable Container',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-11.494, 7.9980000000000002, 0.0),
+                    'Pos': Point3(-11.494, 7.9980, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/cabinet_fancy_low' },
@@ -26,7 +26,7 @@ objectStruct = {
                     'DNA': '1181593472.0dxschafe',
                     'Hpr': VBase3(131.697, 0.0, 0.0),
                     'Patrol Radius': '12.0000',
-                    'Pos': Point3(12.574999999999999, 13.186999999999999, 0.0),
+                    'Pos': Point3(12.574, 13.186, 0.0),
                     'Private Status': 'All',
                     'Respawns': True,
                     'Scale': VBase3(1.0, 1.0, 1.0),

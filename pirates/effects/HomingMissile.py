@@ -24,8 +24,8 @@ class HomingMissile(PooledEffect, EffectController):
         self.wantTrail = 1
         self.particleEffect = None
         self.motion_color = [
-            Vec4(0.5, 0.59999999999999998, 0.80000000000000004, 1.0),
-            Vec4(0.5, 0.59999999999999998, 0.80000000000000004, 1.0)]
+            Vec4(0.5, 0.598, 0.800000, 1.0),
+            Vec4(0.5, 0.598, 0.800000, 1.0)]
         vertex_list = [
             Vec4(0.0, 1.0, 0.0, 1.0),
             Vec4(0.0, -1.0, 0.0, 1.0)]
@@ -59,7 +59,7 @@ class HomingMissile(PooledEffect, EffectController):
 
         self.startEffect.append(Func(taskMgr.add, self._HomingMissile__moveMissile, PythonUtil.uniqueName('homingMissileTask')))
         self.endEffect.append(Func(self.cleanUpEffect))
-        self.track = Sequence(self.startEffect, Wait(self.duration * 0.98999999999999999), self.endEffect)
+        self.track = Sequence(self.startEffect, Wait(self.duration * 0.989), self.endEffect)
 
 
     def _HomingMissile__moveMissile(self, task):

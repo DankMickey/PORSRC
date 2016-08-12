@@ -32,15 +32,15 @@ Center = [
 
 def ImageScale(repId):
     if repId == InventoryType.PistolRep:
-        return 0.20000000000000001
+        return 0.200
     elif repId == InventoryType.SailingRep:
-        return 0.13500000000000001
+        return 0.135
     elif repId == InventoryType.CannonRep:
-        return 0.14000000000000001
+        return 0.140
     elif repId == InventoryType.GrenadeRep:
         return 0.12
     else:
-        return 0.14000000000000001
+        return 0.140
 
 
 def getSkillIconName(skillId, frame):
@@ -354,19 +354,19 @@ def getWeaponSkill(repId = None):
 
 def InnerRingOffset(num):
     if num == 1:
-        return (-0.17499999999999999, 0.17499999999999999)
+        return (-0.174, 0.174)
     elif num == 2:
         return (0.0, 0.25)
     elif num == 3:
-        return (0.17499999999999999, 0.17499999999999999)
+        return (0.174, 0.174)
     elif num == 4:
         return (0.25, 0.0)
     elif num == 5:
-        return (0.17499999999999999, -0.17499999999999999)
+        return (0.174, -0.174)
     elif num == 6:
         return (0.0, -0.25)
     elif num == 7:
-        return (-0.17499999999999999, -0.17499999999999999)
+        return (-0.174, -0.174)
     elif num == 8:
         return (-0.25, 0.0)
 
@@ -426,8 +426,8 @@ class RadialMenu:
         self.ammoAmt = { }
         self.rstatus = { }
         self.rstatus[0] = 0
-        self.rframe[0] = SkillRing(Vec4(1, 0.80000000000000004, 0.5, 1), Vec4(0, 0, 0, 1.0))
-        skillRing = SkillRing(Vec4(1, 0.80000000000000004, 0.5, 1), Vec4(0, 0, 0, 1.0))
+        self.rframe[0] = SkillRing(Vec4(1, 0.800000, 0.5, 1), Vec4(0, 0, 0, 1.0))
+        skillRing = SkillRing(Vec4(1, 0.800000, 0.5, 1), Vec4(0, 0, 0, 1.0))
         skillRing.reparentTo(aspect2d)
         skillRing.setPos(0.01, 0, 0.01)
         if not self.SkillIcons:
@@ -439,19 +439,19 @@ class RadialMenu:
             asset = getSkillIconName(self.rep, 1)
         else:
             asset = getSkillIconName(self.rep, 0)
-        self.radial[0] = DirectFrame(parent = aspect2d, relief = None, image = self.SkillIcons.find('**/%s' % asset), image_scale = ImageScale(self.rep), image_pos = (0.059999999999999998, 0, 0.059999999999999998), pos = (-0.050000000000000003, 0, -0.050000000000000003), sortOrder = 10)
+        self.radial[0] = DirectFrame(parent = aspect2d, relief = None, image = self.SkillIcons.find('**/%s' % asset), image_scale = ImageScale(self.rep), image_pos = (0.0598, 0, 0.0598), pos = (-0.050000, 0, -0.050000), sortOrder = 10)
         self.radial[0].setTransparency(1)
         self.radialSkillMap = ActiveSkills(self.rep, 2)
         self.numberOfItems = len(self.radialSkillMap)
         for i in xrange(self.numberOfItems):
             (x, y) = InnerRingOffset(i + 1)
             self.rstatus[i + 1] = 0
-            self.rframe[i + 1] = SkillRing(Vec4(1, 0.80000000000000004, 0.5, 1), Vec4(0, 0, 0, 1.0))
-            skillRing = SkillRing(Vec4(1, 0.80000000000000004, 0.5, 1), Vec4(0, 0, 0, 1.0))
+            self.rframe[i + 1] = SkillRing(Vec4(1, 0.800000, 0.5, 1), Vec4(0, 0, 0, 1.0))
+            skillRing = SkillRing(Vec4(1, 0.800000, 0.5, 1), Vec4(0, 0, 0, 1.0))
             skillRing.reparentTo(aspect2d)
             skillRing.setPos(0.01 + x, 0, 0.01 + y)
             asset = getSkillIconName(self.radialSkillMap[i], 0)
-            self.radial[i + 1] = DirectFrame(parent = aspect2d, relief = None, image = self.SkillIcons.find('**/%s' % asset), image_pos = (0.059999999999999998, 0, 0.059999999999999998), image_scale = ImageScale(self.rep), sortOrder = 100, pos = (-0.050000000000000003 + x, 0, -0.050000000000000003 + y))
+            self.radial[i + 1] = DirectFrame(parent = aspect2d, relief = None, image = self.SkillIcons.find('**/%s' % asset), image_pos = (0.0598, 0, 0.0598), image_scale = ImageScale(self.rep), sortOrder = 100, pos = (-0.050000 + x, 0, -0.050000 + y))
             self.radial[i + 1].setTransparency(1)
             if self.weaponMode in (WeaponGlobals.FIREARM, WeaponGlobals.THROWING, WeaponGlobals.CANNON, WeaponGlobals.GRENADE):
                 inv = localAvatar.getInventory()
@@ -464,12 +464,12 @@ class RadialMenu:
                     ammoAmt = inv.getStackQuantity(ammoInvId)
                     ammoMax = inv.getStackLimit(ammoInvId)
                     amtstr = '%d' % ammoAmt
-                self.ammoAmt[i + 1] = DirectLabel(parent = aspect2d, relief = None, text = amtstr, text_align = TextNode.ACenter, text_scale = 0.029999999999999999, text_fg = (0.69999999999999996, 1.0, 1.0, 1), text_font = PiratesGlobals.getPirateBoldOutlineFont(), pos = (x + 0.059999999999999998, 0, y + 0.040000000000000001), textMayChange = 1)
+                self.ammoAmt[i + 1] = DirectLabel(parent = aspect2d, relief = None, text = amtstr, text_align = TextNode.ACenter, text_scale = 0.0299, text_fg = (0.696, 1.0, 1.0, 1), text_font = PiratesGlobals.getPirateBoldOutlineFont(), pos = (x + 0.0598, 0, y + 0.0400), textMayChange = 1)
                 continue
 
         self.mouseBasePosX = base.win.getXSize() / 2
         self.mouseBasePosY = base.win.getYSize() / 2
-        self.radialHelp = DirectLabel(parent = aspect2d, relief = None, text = '', text_align = TextNode.ACenter, text_scale = 0.040000000000000001, text_fg = (0.94999999999999996, 1.0, 1.0, 1), text_shadow = PiratesGuiGlobals.TextShadow, pos = (0, 0, 0), textMayChange = 1)
+        self.radialHelp = DirectLabel(parent = aspect2d, relief = None, text = '', text_align = TextNode.ACenter, text_scale = 0.0400, text_fg = (0.946, 1.0, 1.0, 1), text_shadow = PiratesGuiGlobals.TextShadow, pos = (0, 0, 0), textMayChange = 1)
         self.radialHelp.hide()
         self.radial[0].show()
         self.rframe[0].show()
@@ -493,7 +493,7 @@ class RadialMenu:
             else:
                 self.radialHelp['text'] = PLocalizer.InventoryTypeNames[self.radialSkillMap[hLItem - 1]]
                 basePos = self.radial[hLItem].getPos()
-                self.radialHelp.setPos(basePos[0] + 0.059999999999999998, basePos[1], basePos[2] - 0.040000000000000001)
+                self.radialHelp.setPos(basePos[0] + 0.0598, basePos[1], basePos[2] - 0.0400)
                 self.radialHelp.show()
             if self.hiLiteItem != -1:
                 self.rframe[self.hiLiteItem].rollover(False)
@@ -559,13 +559,13 @@ class RadialMenu:
             if self.rstatus[count] != greyOut:
                 self.rstatus[count] = greyOut
                 if greyOut == 2:
-                    self.radial[count].setColorScale(0.69999999999999996, 0.69999999999999996, 0.69999999999999996, 1.0)
+                    self.radial[count].setColorScale(0.696, 0.696, 0.696, 1.0)
                 elif greyOut == 1:
-                    self.radial[count].setColorScale(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 1.0)
-                    self.rframe[count].meterFaceHalf1.setColorScale(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 1.0)
-                    self.rframe[count].meterFaceHalf2.setColorScale(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 1.0)
+                    self.radial[count].setColorScale(0.4, 0.4, 0.4, 1.0)
+                    self.rframe[count].meterFaceHalf1.setColorScale(0.4, 0.4, 0.4, 1.0)
+                    self.rframe[count].meterFaceHalf2.setColorScale(0.4, 0.4, 0.4, 1.0)
                 elif greyOut == 3:
-                    self.radial[count].setColorScale(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 1.0)
+                    self.radial[count].setColorScale(0.4, 0.4, 0.4, 1.0)
                 else:
                     self.radial[count].setColorScale(1, 1, 1, 1)
                     self.radial[count].setAlphaScale(1)
@@ -636,9 +636,9 @@ class SkillTray:
         self.numberOfItems = 0
         self.repMeter = None
         self.skillRechargedSound = loadSfx(SoundGlobals.SFX_GUI_SKILL_RECHARGED)
-        self.skillTray = DirectFrame(parent = base.a2dBottomCenter, pos = (0, 0, -0.14000000000000001), scale = 0.85999999999999999, sortOrder = 2)
+        self.skillTray = DirectFrame(parent = base.a2dBottomCenter, pos = (0, 0, -0.140), scale = 0.859, sortOrder = 2)
         self.hide()
-        self.defaultMoveUp = 0.27000000000000002
+        self.defaultMoveUp = 0.27
         self.currentMoveUp = 0
         self.skillTrayz = self.skillTray.getZ()
         self.showSkillTrayIval = None
@@ -778,8 +778,8 @@ class SkillTray:
         self.numberOfItems = len(self.traySkillMap)
         self.skillTray.setX(0)
         if self.rep != InventoryType.DefenseCannonRep:
-            self.repMeter = ReputationMeter(self.rep, width = 0.69999999999999996)
-            self.repMeter.setScale(1.1499999999999999, 1.1499999999999999, 1.1499999999999999)
+            self.repMeter = ReputationMeter(self.rep, width = 0.696)
+            self.repMeter.setScale(1.14, 1.14, 1.14)
             self.repMeter.reparentTo(self.skillTray)
             self.repMeter.setCategory(self.rep)
 
@@ -794,7 +794,7 @@ class SkillTray:
         offset = 0.0
         for i in xrange(self.numberOfItems):
             if self.origMap[i][1] == False:
-                button = DirectButton(parent = self.skillTray, relief = None, state = DGG.DISABLED, image = self.SkillIcons.find('**/base'), image_pos = (0.0, 0.0, 0.059999999999999998), image_scale = 0.12, image_color = (0.20000000000000001, 0.20000000000000001, 0.20000000000000001, 0.55000000000000004), sortOrder = 100, pos = (x, 0, -0.0))
+                button = DirectButton(parent = self.skillTray, relief = None, state = DGG.DISABLED, image = self.SkillIcons.find('**/base'), image_pos = (0.0, 0.0, 0.0598), image_scale = 0.12, image_color = (0.200, 0.200, 0.200, 0.550000), sortOrder = 100, pos = (x, 0, -0.0))
                 button.setTransparency(1)
                 button.showQuantity = False
                 button.greyOut = -1
@@ -802,10 +802,10 @@ class SkillTray:
                 button.skillStatus = False
 
                 self.tray[i + 1] = button
-                x = x + 0.14999999999999999
+                x = x + 0.149
                 if i < self.numberOfItems - 1:
                     offset = offset + 0.01
-                    self.skillTray.setX(self.skillTray.getX() - 0.074999999999999997)
+                    self.skillTray.setX(self.skillTray.getX() - 0.074)
 
             i < self.numberOfItems - 1
             if self.origMap[i][1] == True:
@@ -832,11 +832,11 @@ class SkillTray:
                 button.skillStatus = True
 
                 if showRing:
-                    button.skillRing.meterFaceHalf1.setScale(0.95999999999999996)
-                    button.skillRing.meterFaceHalf2.setScale(0.95999999999999996)
+                    button.skillRing.meterFaceHalf1.setScale(0.956)
+                    button.skillRing.meterFaceHalf2.setScale(0.956)
 
                 button.reparentTo(self.skillTray)
-                button.setPos(x, 0, 0.070000000000000007)
+                button.setPos(x, 0, 0.070)
                 self.tray[i + 1] = button
                 if weaponMode in (WeaponGlobals.CANNON, WeaponGlobals.FIREARM, WeaponGlobals.GRENADE, WeaponGlobals.STAFF):
                     lastAmmo = localAvatar.guiMgr.combatTray.lastAmmoSkillId.get(localAvatar.currentWeaponId)
@@ -860,12 +860,12 @@ class SkillTray:
                         button.showQuantity = True
                         button.updateQuantity(ammoAmt)
 
-                x = x + 0.17000000000000001
+                x = x + 0.170
                 if i < self.numberOfItems - 1:
                     if weaponMode == WeaponGlobals.DEFENSE_CANNON:
-                        self.skillTray.setX(self.skillTray.getX() - 0.072499999999999995)
+                        self.skillTray.setX(self.skillTray.getX() - 0.072495)
                     else:
-                        self.skillTray.setX(self.skillTray.getX() - 0.085000000000000006)
+                        self.skillTray.setX(self.skillTray.getX() - 0.085)
 
             i < self.numberOfItems - 1
 
@@ -876,7 +876,7 @@ class SkillTray:
 
         self.updateSkillTrayStates()
         if weaponMode == WeaponGlobals.DEFENSE_CANNON:
-            self.setMoveUpValue(0.34499999999999997)
+            self.setMoveUpValue(0.344)
         else:
             self.resetMoveUpVale()
         self.showSkillTray()
@@ -941,8 +941,8 @@ class SkillTray:
                     if greyOut == 1:
                         self.tray[i + 1].setGeomColor(0.5, 0.5, 0.5, 1.0)
                         if self.tray[i + 1].showRing:
-                            self.tray[i + 1].skillRing.meterFaceHalf1.setColorScale(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 1.0)
-                            self.tray[i + 1].skillRing.meterFaceHalf2.setColorScale(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 1.0)
+                            self.tray[i + 1].skillRing.meterFaceHalf1.setColorScale(0.4, 0.4, 0.4, 1.0)
+                            self.tray[i + 1].skillRing.meterFaceHalf2.setColorScale(0.4, 0.4, 0.4, 1.0)
 
                     elif greyOut == 2:
                         self.tray[i + 1].setGeomColor(0.5, 0.5, 0.5, 1.0)
@@ -993,8 +993,8 @@ class SkillTray:
                         if newAmt == 0:
                             self.tray[i + 1].setGeomColor(0.5, 0.5, 0.5, 1.0)
                             if self.tray[i + 1].showRing:
-                                self.tray[i + 1].skillRing.meterFaceHalf1.setColorScale(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 1.0)
-                                self.tray[i + 1].skillRing.meterFaceHalf2.setColorScale(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 1.0)
+                                self.tray[i + 1].skillRing.meterFaceHalf1.setColorScale(0.4, 0.4, 0.4, 1.0)
+                                self.tray[i + 1].skillRing.meterFaceHalf2.setColorScale(0.4, 0.4, 0.4, 1.0)
 
 
                         return None

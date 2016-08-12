@@ -13,8 +13,8 @@ class ExplosionTip(PooledEffect, EffectController):
         PooledEffect.__init__(self)
         EffectController.__init__(self)
         self.size = 4.0
-        self.speed = 0.80000000000000004
-        self.speedSpread = 0.40000000000000002
+        self.speed = 0.800000
+        self.speedSpread = 0.4
         self.parts = []
         for i in xrange(self.NUM_PARTS):
             explosion = loader.loadModel('models/effects/dirt_trail')

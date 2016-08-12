@@ -40,15 +40,15 @@ questTitle2.setGlyphScale(1.2)
 tpMgr.setProperties('questTitle2', questTitle2)
 questPercent = TextProperties()
 questPercent.setTextColor(*PiratesGuiGlobals.TextFG27)
-questPercent.setGlyphScale(0.80000000000000004)
+questPercent.setGlyphScale(0.800000)
 tpMgr.setProperties('questPercent', questPercent)
 questNew = TextProperties()
 questNew.setTextColor(*PiratesGuiGlobals.TextFG4)
-questNew.setGlyphScale(0.80000000000000004)
+questNew.setGlyphScale(0.800000)
 tpMgr.setProperties('questNew', questNew)
 questComplete = TextProperties()
 questComplete.setTextColor(*PiratesGuiGlobals.TextFG4)
-questComplete.setGlyphScale(0.80000000000000004)
+questComplete.setGlyphScale(0.800000)
 tpMgr.setProperties('questComplete', questComplete)
 questObj = TextProperties()
 questObj.setFont(PiratesGlobals.getPirateOutlineFont())
@@ -68,20 +68,20 @@ class QuestPage(InventoryPage.InventoryPage):
         InventoryPage.InventoryPage.__init__(self)
         self.initialiseoptions(QuestPage)
         self.detailId = None
-        self.titleBorder = BorderFrame.BorderFrame(parent = self, frameSize = (-0.02, 0.96999999999999997, -0.02, 0.56000000000000005))
-        self.titleBorder.setPos(0.065000000000000002, 0, -0.01)
+        self.titleBorder = BorderFrame.BorderFrame(parent = self, frameSize = (-0.02, 0.96, -0.02, 0.560000))
+        self.titleBorder.setPos(0.065, 0, -0.01)
         self.titleBorder.background.setColor(10, 100, 57, 1)
         self.titleBorder.resetDecorations()
         self.titleList = QuestTitleList.QuestTitleList()
         self.titleList.reparentTo(self.titleBorder)
-        self.titleList.setPos(0.0050000000000000001, 0, 0)
-        self.detailFrame = QuestDetailGUI(parent = self, pos = (0.54000000000000004, 0, 1.006))
-        self.dropButton = GuiButton.GuiButton(parent = self, state = DGG.DISABLED, text = PLocalizer.DropQuest, textMayChange = 0, text_scale = PiratesGuiGlobals.TextScaleLarge, text_pos = (0, -0.014), pos = (0.91000000000000003, 0, 0.60499999999999998), image = GuiButton.GuiButton.redGenericButton, image_scale = 0.59999999999999998, command = self.dropQuest, helpText = PLocalizer.DropQuestHelp, helpDelay = PiratesGuiGlobals.HelpPopupTime, helpPos = (-0.33500000000000002, 0, 0.125))
+        self.titleList.setPos(0.00500, 0, 0)
+        self.detailFrame = QuestDetailGUI(parent = self, pos = (0.540000, 0, 1.006))
+        self.dropButton = GuiButton.GuiButton(parent = self, state = DGG.DISABLED, text = PLocalizer.DropQuest, textMayChange = 0, text_scale = PiratesGuiGlobals.TextScaleLarge, text_pos = (0, -0.014), pos = (0.91000, 0, 0.60498), image = GuiButton.GuiButton.redGenericButton, image_scale = 0.598, command = self.dropQuest, helpText = PLocalizer.DropQuestHelp, helpDelay = PiratesGuiGlobals.HelpPopupTime, helpPos = (-0.335, 0, 0.125))
         gui = loader.loadModel('models/gui/compass_main')
         objectiveGrey = gui.find('**/icon_objective_grey')
-        self.trackButton = GuiButton.GuiButton(parent = self, state = DGG.DISABLED, text = PLocalizer.TrackQuest, textMayChange = 0, text_pos = (0.035000000000000003, -0.014), text_scale = PiratesGuiGlobals.TextScaleLarge, pos = (0.66000000000000003, 0, 0.60499999999999998), command = self.trackQuest, helpText = PLocalizer.TrackQuestHelp, helpDelay = PiratesGuiGlobals.HelpPopupTime, helpPos = (-0.080000000000000002, 0, 0.125), image = GuiButton.GuiButton.redGenericButton, image_scale = 0.59999999999999998, geom = objectiveGrey, geom_color = Vec4(1, 1, 0, 1), geom_scale = 0.20000000000000001, geom_pos = (-0.070000000000000007, 0, -0.002))
+        self.trackButton = GuiButton.GuiButton(parent = self, state = DGG.DISABLED, text = PLocalizer.TrackQuest, textMayChange = 0, text_pos = (0.035000, -0.014), text_scale = PiratesGuiGlobals.TextScaleLarge, pos = (0.66000, 0, 0.60498), command = self.trackQuest, helpText = PLocalizer.TrackQuestHelp, helpDelay = PiratesGuiGlobals.HelpPopupTime, helpPos = (-0.08, 0, 0.125), image = GuiButton.GuiButton.redGenericButton, image_scale = 0.598, geom = objectiveGrey, geom_color = Vec4(1, 1, 0, 1), geom_scale = 0.200, geom_pos = (-0.070, 0, -0.002))
         self.specialInfoPanel = { }
-        self.specialButton = GuiButton.GuiButton(parent = self, state = DGG.NORMAL, text = '', textMayChange = 1, text_scale = PiratesGuiGlobals.TextScaleLarge, text_pos = (0, -0.014), pos = (0.17000000000000001, 0, 0.60499999999999998), image = GuiButton.GuiButton.redGenericButton, image_scale = 0.59999999999999998, command = self.showSpecialInfo, helpText = PLocalizer.DropQuestHelp, helpDelay = PiratesGuiGlobals.HelpPopupTime, helpPos = (-0.33500000000000002, 0, 0.125))
+        self.specialButton = GuiButton.GuiButton(parent = self, state = DGG.NORMAL, text = '', textMayChange = 1, text_scale = PiratesGuiGlobals.TextScaleLarge, text_pos = (0, -0.014), pos = (0.170, 0, 0.60498), image = GuiButton.GuiButton.redGenericButton, image_scale = 0.598, command = self.showSpecialInfo, helpText = PLocalizer.DropQuestHelp, helpDelay = PiratesGuiGlobals.HelpPopupTime, helpPos = (-0.335, 0, 0.125))
         self.specialButton.hide()
         self.accept('questGuiSelect', self.showQuestDetails)
         self.accept('localAvatarQuestComplete', self.updateQuestDetails)
@@ -258,7 +258,7 @@ class QuestPage(InventoryPage.InventoryPage):
                         for currTm in tms:
                             if currTm.mapId == tmId:
                                 currTm.sendUpdate('requestIsEnabled')
-                                self.addTreasureMapButtons(currTm, 0.60199999999999998)
+                                self.addTreasureMapButtons(currTm, 0.60198)
                                 break
                                 continue
 
@@ -271,14 +271,14 @@ class QuestPage(InventoryPage.InventoryPage):
 
     def addTreasureMapButtons(self, tm, buttonOffset):
         self.removeTreasureMapButtons()
-        helpPos = (-0.26000000000000001, 0, 0.095000000000000001)
+        helpPos = (-0.260, 0, 0.0950)
         if __debug__ and base.config.GetBool('enable-bp-solo', False):
-            self.tmButtonQuick = GuiButton.GuiButton(parent = self, text = PLocalizer.PlayTMNow, text_align = TextNode.ACenter, text_scale = PiratesGuiGlobals.TextScaleLarge, text_pos = (0.0, -0.01), text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 40, image_scale = (0.45000000000000001, 1, 0.23999999999999999), command = self.startTreasureMap, extraArgs = [
-                tm], pos = (0.29999999999999999, 0, buttonOffset), helpText = PLocalizer.PlayTMNowHelp, helpPos = helpPos)
-            searchPos = (0.77500000000000002, 0, buttonOffset)
+            self.tmButtonQuick = GuiButton.GuiButton(parent = self, text = PLocalizer.PlayTMNow, text_align = TextNode.ACenter, text_scale = PiratesGuiGlobals.TextScaleLarge, text_pos = (0.0, -0.01), text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 40, image_scale = (0.450, 1, 0.239), command = self.startTreasureMap, extraArgs = [
+                tm], pos = (0.299, 0, buttonOffset), helpText = PLocalizer.PlayTMNowHelp, helpPos = helpPos)
+            searchPos = (0.775, 0, buttonOffset)
         else:
-            searchPos = (0.55000000000000004, 0, buttonOffset)
-        self.tmButtonSearch = GuiButton.GuiButton(parent = self, text = PLocalizer.PlayTMLookout, text_align = TextNode.ACenter, text_scale = PiratesGuiGlobals.TextScaleLarge, text_pos = (0.0, -0.01), text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 40, image_scale = (0.45000000000000001, 1, 0.23999999999999999), command = self.startTreasureMap, extraArgs = [
+            searchPos = (0.550000, 0, buttonOffset)
+        self.tmButtonSearch = GuiButton.GuiButton(parent = self, text = PLocalizer.PlayTMLookout, text_align = TextNode.ACenter, text_scale = PiratesGuiGlobals.TextScaleLarge, text_pos = (0.0, -0.01), text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 40, image_scale = (0.450, 1, 0.239), command = self.startTreasureMap, extraArgs = [
             tm,
             False], pos = searchPos, helpText = PLocalizer.PlayTMLookoutHelp, helpPos = helpPos)
         if base.cr.teleportMgr.inInstanceType == PiratesGlobals.INSTANCE_TM:

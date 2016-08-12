@@ -17,9 +17,9 @@ objectStruct = {
                     'Category': 'Jeweler',
                     'AnimSet': 'default',
                     'CustomModel': 'None',
-                    'Hpr': VBase3(-137.99100000000001, 0.0, 0.0),
+                    'Hpr': VBase3(-137.991, 0.0, 0.0),
                     'Patrol Radius': '12.0000',
-                    'Pos': Point3(13.339, 6.4240000000000004, 0.0),
+                    'Pos': Point3(13.339, 6.42400, 0.0),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'Private Status': 'All',
@@ -32,7 +32,7 @@ objectStruct = {
                     'Type': 'Door Locator Node',
                     'Name': 'door_locator',
                     'Hpr': VBase3(90.0, 0.0, 0.0),
-                    'Pos': Point3(41.985999999999997, -7.423, 0.079000000000000001),
+                    'Pos': Point3(41.985, -7.423, 0.0790),
                     'Scale': VBase3(1.0, 1.0, 1.0) },
                 '1201122739.06dxschafe': {
                     'Type': 'Light - Dynamic',
@@ -40,10 +40,10 @@ objectStruct = {
                     'ConeAngle': '60.0000',
                     'DropOff': '0.0000',
                     'FlickRate': '0.5000',
-                    'Hpr': VBase3(104.166, -24.966000000000001, -1.3029999999999999),
+                    'Hpr': VBase3(104.166, -24.966, -1.3029),
                     'Intensity': '0.7711',
                     'LightType': 'SPOT',
-                    'Pos': Point3(25.832999999999998, 5.0590000000000002, 11.106),
+                    'Pos': Point3(25.8328, 5.0590, 11.106),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Color': (1, 1, 1, 1),
@@ -125,6 +125,6 @@ objectStruct = {
         '1201041268.69dxschafe': '["Objects"]["1156279216.23dzlu0"]["Objects"]["1201041268.69dxschafe"]',
         '1201122739.06dxschafe': '["Objects"]["1156279216.23dzlu0"]["Objects"]["1201122739.06dxschafe"]' } }
 extraInfo = {
-    'camPos': Point3(59.772500000000001, -13.2216, 32.223199999999999),
-    'camHpr': VBase3(70.389399999999995, -36.123100000000001, -2.1139499999999999e-006),
+    'camPos': Point3(59.7725, -13.2216, 32.2231),
+    'camHpr': VBase3(70.3893, -36.1231, -2.11394e-006),
     'focalLength': 1.3999999761599999 }

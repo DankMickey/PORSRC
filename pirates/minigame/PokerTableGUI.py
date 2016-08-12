@@ -30,30 +30,30 @@ class PokerStatusPanel(DirectFrame):
         self.arrow = loader.loadModel('models/gui/compass_arrow')
         self.arrow.reparentTo(self)
         self.arrow.setScale(0.25)
-        self.arrow.setPosHpr(0, 0, 0.14999999999999999, 0, 0, 180)
+        self.arrow.setPosHpr(0, 0, 0.149, 0, 0, 180)
         self.arrow.hide()
         self.hand = []
         self.cardScaler = self.attachNewNode('cardScaler')
         self.cardScaler.setScale(0.5)
         for i in xrange(maxHandCards):
-            left = 0.059999999999999998 * maxHandCards * 0.5
+            left = 0.0598 * maxHandCards * 0.5
             card = PlayingCard.PlayingCardNodePath('standard', PlayingCardGlobals.Unknown)
             card.reparentTo(self.cardScaler)
-            card.setPos(i * 0.059999999999999998 - left, 0, 0)
+            card.setPos(i * 0.0598 - left, 0, 0)
             card.hide()
             self.hand.append(card)
 
-        self.actionLabel = DirectLabel(parent = self, relief = None, text = '', text_align = TextNode.ACenter, text_scale = 0.040000000000000001, pos = (0, 0, 0.14999999999999999), text_fg = (1, 1, 1, 1), text_shadow = (0, 0, 0, 1))
-        self.handNameLabel = DirectLabel(parent = self, relief = None, text = '', text_align = TextNode.ACenter, text_scale = 0.040000000000000001, pos = (0, 0, -0.13), text_fg = (1, 1, 1, 1), text_shadow = (0, 0, 0, 1))
+        self.actionLabel = DirectLabel(parent = self, relief = None, text = '', text_align = TextNode.ACenter, text_scale = 0.0400, pos = (0, 0, 0.149), text_fg = (1, 1, 1, 1), text_shadow = (0, 0, 0, 1))
+        self.handNameLabel = DirectLabel(parent = self, relief = None, text = '', text_align = TextNode.ACenter, text_scale = 0.0400, pos = (0, 0, -0.13), text_fg = (1, 1, 1, 1), text_shadow = (0, 0, 0, 1))
         self.dealerButton = loader.loadModel('models/gui/dealer_button')
         self.dealerButton.reparentTo(self)
         self.dealerButton.setPos(-0.12, 0, 0)
-        self.dealerButton.setScale(0.080000000000000002)
+        self.dealerButton.setScale(0.08)
         self.dealerButton.hide()
-        self.anteLabel = DirectLabel(parent = self.dealerButton, relief = None, text = '', text_align = TextNode.ACenter, text_scale = 0.80000000000000004, pos = (0, 0, -0.29999999999999999), text_fg = (0, 0, 0, 1))
+        self.anteLabel = DirectLabel(parent = self.dealerButton, relief = None, text = '', text_align = TextNode.ACenter, text_scale = 0.800000, pos = (0, 0, -0.299), text_fg = (0, 0, 0, 1))
         self.anteLabel.setColor(0, 0, 0, 1, 100)
         self.actionLabel.setTransparency(1)
-        self.fadeActionLabel = Sequence(Func(self.actionLabel.show), LerpColorScaleInterval(self.actionLabel, 0.10000000000000001, Vec4(1, 1, 1, 1), Vec4(1, 1, 1, 0)), Wait(2.0), LerpColorScaleInterval(self.actionLabel, 1.0, Vec4(1, 1, 1, 0), Vec4(1, 1, 1, 1)), Func(self.actionLabel.hide))
+        self.fadeActionLabel = Sequence(Func(self.actionLabel.show), LerpColorScaleInterval(self.actionLabel, 0.100, Vec4(1, 1, 1, 1), Vec4(1, 1, 1, 0)), Wait(2.0), LerpColorScaleInterval(self.actionLabel, 1.0, Vec4(1, 1, 1, 0), Vec4(1, 1, 1, 1)), Func(self.actionLabel.hide))
         self.handId = PlayingCardGlobals.Nothing
         self.sortedCards = None
 
@@ -92,7 +92,7 @@ class PokerTellMeter(DirectFrame):
 
 
 class PokerTableGUI(DirectFrame, TableGUI):
-    HandPos = (Vec3(0, 0, 0.40000000000000002), Vec3(0.38, 0, 0.33000000000000002), Vec3(0.65000000000000002, 0, 0.10000000000000001), Vec3(0.45000000000000001, 0, -0.26000000000000001), Vec3(0, 0, -0.29999999999999999), Vec3(-0.45000000000000001, 0, -0.26000000000000001), Vec3(-0.65000000000000002, 0, 0.10000000000000001), Vec3(-0.38, 0, 0.33000000000000002))
+    HandPos = (Vec3(0, 0, 0.4), Vec3(0.38, 0, 0.33), Vec3(0.65, 0, 0.100), Vec3(0.450, 0, -0.260), Vec3(0, 0, -0.299), Vec3(-0.450, 0, -0.260), Vec3(-0.65, 0, 0.100), Vec3(-0.38, 0, 0.33))
     LocalAvatarGuiIndex = 4
 
     def __init__(self, table, maxCommunityCards, maxHandCards):
@@ -107,14 +107,14 @@ class PokerTableGUI(DirectFrame, TableGUI):
         self.playerActions = []
         width = 1.0
         self.menu = BorderFrame(parent = base.a2dBottomCenter, frameSize = (-width / 2.0, width / 2.0, 0, 0.25), pos = (0, 0, 0))
-        self.disableReason = DirectLabel(parent = self.menu, text = '', text_align = TextNode.ACenter, text_scale = 0.040000000000000001, pos = (0, 0, 0.17499999999999999), text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1)
+        self.disableReason = DirectLabel(parent = self.menu, text = '', text_align = TextNode.ACenter, text_scale = 0.0400, pos = (0, 0, 0.174), text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1)
         self.disableReason.hide()
         self.initializeTableInterface()
-        x = -0.35999999999999999
-        y = 0.17749999999999999
-        x_increment = 0.23999999999999999
+        x = -0.359
+        y = 0.17749
+        x_increment = 0.239
         helpText = PLocalizer.TableCardsHelp
-        helpPos = (0.0, 0.0, 0.23999999999999999)
+        helpPos = (0.0, 0.0, 0.239)
         text = PLocalizer.PokerCheat1
         button = GuiButton(parent = self.menu, command = self.cardIndexSelection, helpText = helpText, helpPos = helpPos, pos = (x, 0, y), canReposition = True)
         self.setButtonSettings2Lines(button, (x, 0, y), text, [
@@ -147,9 +147,9 @@ class PokerTableGUI(DirectFrame, TableGUI):
         self.buttonArray = self.buttonArray + [
             button]
         x = x + x_increment
-        x = -0.35999999999999999
-        y = 0.070000000000000007
-        x_increment = 0.23999999999999999
+        x = -0.359
+        y = 0.070
+        x_increment = 0.239
         x = x + x_increment
         x = x + x_increment
         x = x + x_increment
@@ -161,18 +161,18 @@ class PokerTableGUI(DirectFrame, TableGUI):
         self.buttonArray = self.buttonArray + [
             button]
         x = x + x_increment
-        self.potSizeLabel = DirectLabel(parent = self, relief = None, text = '', text_align = TextNode.ACenter, text_scale = 0.050000000000000003, pos = (-0.14999999999999999, 0.0, 0.17000000000000001), text_fg = (1, 0.90000000000000002, 0.59999999999999998, 1), text_shadow = (0, 0, 0, 1))
+        self.potSizeLabel = DirectLabel(parent = self, relief = None, text = '', text_align = TextNode.ACenter, text_scale = 0.050000, pos = (-0.149, 0.0, 0.170), text_fg = (1, 0.9, 0.598, 1), text_shadow = (0, 0, 0, 1))
         if table.wantMeter == 1:
             cardMaker = CardMaker('tellMeter')
             cardMaker.setFrame(-1, 1, -1, 1)
-            self.meterMax = 0.20000000000000001
+            self.meterMax = 0.200
             self.meterBorder = NodePath(cardMaker.generate())
             self.meterBorder.setColor(1, 1, 0, 1)
-            self.meterBorder.setScale(0.20000000000000001, 1, 0.02)
+            self.meterBorder.setScale(0.200, 1, 0.02)
             self.meterBorder.reparentTo(aspect2d)
             self.meter = NodePath(cardMaker.generate())
             self.meter.setColor(1, 0, 0, 1)
-            self.meter.setScale(0.20000000000000001, 1, 0.050000000000000003)
+            self.meter.setScale(0.200, 1, 0.050000)
             self.meter.reparentTo(aspect2d)
 
         if table.wantMeter == 2:
@@ -191,18 +191,18 @@ class PokerTableGUI(DirectFrame, TableGUI):
             self.balanceR.setPos(0.125, 0, 0)
             self.balanceR.reparentTo(self.balance)
             self.fulcrum = loader.loadModel('models/props/winebottle_B')
-            self.fulcrum.setScale(0.20000000000000001)
-            self.fulcrum.setZ(-0.20999999999999999)
+            self.fulcrum.setScale(0.200)
+            self.fulcrum.setZ(-0.209)
             self.fulcrum.reparentTo(aspect2d)
             self.weightR = NodePath(cardMaker.generate())
             self.weightR.setColor(0, 0, 1, 1)
-            self.weightR.setScale(0.029999999999999999, 1, 0.050000000000000003)
-            self.weightR.setPos(0.22, 0, 0.059999999999999998)
+            self.weightR.setScale(0.0299, 1, 0.050000)
+            self.weightR.setPos(0.22, 0, 0.0598)
             self.weightR.reparentTo(self.balance)
             self.weightL = NodePath(cardMaker.generate())
             self.weightL.setColor(0, 0, 1, 1)
-            self.weightL.setScale(0.029999999999999999, 1, 0.050000000000000003)
-            self.weightL.setPos(-0.22, 0, 0.059999999999999998)
+            self.weightL.setScale(0.0299, 1, 0.050000)
+            self.weightL.setPos(-0.22, 0, 0.0598)
             self.weightL.reparentTo(self.balance)
             self.balance.hide()
             self.fulcrum.hide()
@@ -210,12 +210,12 @@ class PokerTableGUI(DirectFrame, TableGUI):
         self.communityCardNode = NodePath('communityCards')
         self.communityCardNode.reparentTo(self)
         self.communityCardNode.setScale(0.5)
-        self.communityCardNode.setPos(0, 0, 0.040000000000000001)
+        self.communityCardNode.setPos(0, 0, 0.0400)
         self.communityCards = []
         for i in xrange(self.maxCommunityCards):
             card = PlayingCard.PlayingCardNodePath('standard', PlayingCardGlobals.Unknown)
             card.reparentTo(self.communityCardNode)
-            card.setPos(i * 0.29999999999999999 - 0.59999999999999998, 0, 0)
+            card.setPos(i * 0.299 - 0.598, 0, 0)
             card.hide()
             self.communityCards.append(card)
 
@@ -230,10 +230,10 @@ class PokerTableGUI(DirectFrame, TableGUI):
         self.localStatusPanel = self.playerStatusPanels[self.LocalAvatarGuiIndex]
         gui = loader.loadModel('models/gui/toplevel_gui')
         goldCoin = gui.find('**/treasure_w_coin*')
-        scale = 0.32000000000000001
+        scale = 0.320
         currentMoney = self.table.getPlayerChips()
-        x_increment = 0.23999999999999999
-        self.moneyDisplay = DirectLabel(parent = self.menu, relief = None, pos = (-0.29999999999999999 + x_increment, 0, 0.074999999999999997), geom = goldCoin, geom_scale = (scale, scale, scale), geom_pos = (0, 0, 0), text = '%s' % currentMoney, text_align = TextNode.ALeft, text_scale = 0.040000000000000001, text_pos = (0.050000000000000003, -0.01), text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, scale = 1.1000000000000001)
+        x_increment = 0.239
+        self.moneyDisplay = DirectLabel(parent = self.menu, relief = None, pos = (-0.299 + x_increment, 0, 0.074), geom = goldCoin, geom_scale = (scale, scale, scale), geom_pos = (0, 0, 0), text = '%s' % currentMoney, text_align = TextNode.ALeft, text_scale = 0.0400, text_pos = (0.050000, -0.01), text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, scale = 1.10)
         self.accept(InventoryGlobals.getCategoryQuantChangeMsg(localAvatar.getInventoryId(), InventoryType.ItemTypeMoney), self.setMoney)
         this = self
         identifier = 0
@@ -490,7 +490,7 @@ class PokerTableGUI(DirectFrame, TableGUI):
                 card.turnUp()
 
             if allUnknown:
-                panel.cardScaler.setScale(0.40000000000000002)
+                panel.cardScaler.setScale(0.4)
             else:
                 panel.cardScaler.setScale(0.5)
             if newHand and PlayingCardGlobals.Unknown not in newHand:

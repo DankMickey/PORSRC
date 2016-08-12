@@ -25,7 +25,7 @@ class MusketShot(PooledEffect, EffectController):
         self.flame.setPos(0, 0, 0.5)
         self.flame.reparentTo(self)
         self.flash = model.find('**/particleSpark')
-        self.flash.setBillboardPointWorld(0.20000000000000001)
+        self.flash.setBillboardPointWorld(0.200)
         self.flash.reparentTo(self)
         self.setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne))
         self.hide(OTPRender.ShadowCameraBitmask)
@@ -35,9 +35,9 @@ class MusketShot(PooledEffect, EffectController):
 
 
     def createTrack(self):
-        scaleFlame = self.flame.scaleInterval(0.059999999999999998, Vec3(1, 1, 4), startScale = Vec3(5, 5, 8))
-        scaleFlash = self.flash.scaleInterval(0.040000000000000001, 1.5, startScale = 3)
-        fadeFlash = LerpColorScaleInterval(self, 0.20000000000000001, Vec4(0.40000000000000002, 0.10000000000000001, 0.10000000000000001, 1), startColorScale = Vec4(1, 1, 1, 1))
+        scaleFlame = self.flame.scaleInterval(0.0598, Vec3(1, 1, 4), startScale = Vec3(5, 5, 8))
+        scaleFlash = self.flash.scaleInterval(0.0400, 1.5, startScale = 3)
+        fadeFlash = LerpColorScaleInterval(self, 0.200, Vec4(0.4, 0.100, 0.100, 1), startColorScale = Vec4(1, 1, 1, 1))
         self.track = Sequence(Func(self.flame.show), Func(self.flash.show), Parallel(scaleFlame, scaleFlash, fadeFlash), Func(self.flame.hide), Func(self.flash.hide), Func(self.cleanUpEffect))
 
 

@@ -17,7 +17,7 @@ class ResultsFrame(DirectFrame):
     def __init__(self, *args, **kwargs):
         DirectFrame.__init__(self, *args, **kwargs)
         self.initialiseoptions(ResultsFrame)
-        self.textLabel = DirectLabel(parent = self, relief = None, pos = (0, 0, 0.5), scale = 0.20000000000000001, text = '')
+        self.textLabel = DirectLabel(parent = self, relief = None, pos = (0, 0, 0.5), scale = 0.200, text = '')
 
 
 

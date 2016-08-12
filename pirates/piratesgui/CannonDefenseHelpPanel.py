@@ -11,7 +11,7 @@ class CannonDefenseHelpPanel(NodePath):
     def __init__(self, headerTxt, bodyTxt, wordWrap, width, height):
         NodePath.__init__(self, 'Panel')
         self.setTransparency(TransparencyAttrib.MAlpha)
-        self.background = BorderFrame(parent = self, frameSize = (-0.02, width, 0, height), pos = (0, 0, -height + 0.059999999999999998), state = DGG.DISABLED, frameColor = (0, 0, 0, 0), bgTransparency = 1)
+        self.background = BorderFrame(parent = self, frameSize = (-0.02, width, 0, height), pos = (0, 0, -height + 0.0598), state = DGG.DISABLED, frameColor = (0, 0, 0, 0), bgTransparency = 1)
         self._CannonDefenseHelpPanel__createHeaderText(self, headerTxt)
         self._CannonDefenseHelpPanel__createArrow()
         if bodyTxt:
@@ -33,7 +33,7 @@ class CannonDefenseHelpPanel(NodePath):
         header.setAlign(TextNode.ALeft)
         header.setText(text)
         headerNode = parent.attachNewNode(header)
-        headerNode.setScale(0.065000000000000002)
+        headerNode.setScale(0.065)
         headerNode.setZ(0.0)
         headerNode.setDepthTest(False)
 
@@ -46,6 +46,6 @@ class CannonDefenseHelpPanel(NodePath):
         body.setWordwrap(wordWrap)
         body.setText(text)
         bodyNode = parent.attachNewNode(body)
-        bodyNode.setScale(0.050000000000000003)
-        bodyNode.setZ(-0.070000000000000007)
+        bodyNode.setScale(0.050000)
+        bodyNode.setZ(-0.070)
         bodyNode.setDepthTest(False)

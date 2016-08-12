@@ -13,19 +13,19 @@ objectStruct = {
                     'Type': 'Locator Node',
                     'Name': 'portal_interior_1',
                     'Hpr': VBase3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-648.274, -263.40600000000001, 69.974999999999994),
+                    'Pos': Point3(-648.274, -263.406, 69.9744),
                     'Scale': VBase3(1.0, 1.0, 1.0) },
                 '1170793216.0jubutler0': {
                     'Type': 'Locator Node',
                     'Name': 'portal_interior_2',
-                    'Hpr': VBase3(107.90300000000001, 0.0, 0.0),
-                    'Pos': Point3(304.67899999999997, -408.08699999999999, 115.30500000000001),
+                    'Hpr': VBase3(107.903, 0.0, 0.0),
+                    'Pos': Point3(304.678, -408.086, 115.305),
                     'Scale': VBase3(1.0, 1.0, 1.0) },
                 '1170793216.0jubutler1': {
                     'Type': 'Player Spawn Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Index': -1,
-                    'Pos': Point3(263.48500000000001, -376.47000000000003, 114.252),
+                    'Pos': Point3(263.485, -376.47, 114.252),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'Team 1',
                     'Visual': {
@@ -35,7 +35,7 @@ objectStruct = {
                     'Type': 'Player Spawn Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Index': -1,
-                    'Pos': Point3(364.51600000000002, -327.959, 108.81999999999999),
+                    'Pos': Point3(364.516, -327.959, 108.81),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'Team 1',
                     'Visual': {
@@ -45,7 +45,7 @@ objectStruct = {
                     'Type': 'Player Spawn Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Index': -1,
-                    'Pos': Point3(239.666, -360.48899999999998, 115.196),
+                    'Pos': Point3(239.666, -360.488, 115.196),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'Team 1',
                     'Visual': {
@@ -55,7 +55,7 @@ objectStruct = {
                     'Type': 'Player Spawn Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Index': -1,
-                    'Pos': Point3(349.20600000000002, -345.08999999999997, 110.111),
+                    'Pos': Point3(349.206, -345.08, 110.111),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'Team 1',
                     'Visual': {
@@ -65,7 +65,7 @@ objectStruct = {
                     'Type': 'Player Spawn Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Index': -1,
-                    'Pos': Point3(-431.18799999999999, -334.827, 93.162999999999997),
+                    'Pos': Point3(-431.187, -334.827, 93.162),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'Team 2',
                     'Visual': {
@@ -75,7 +75,7 @@ objectStruct = {
                     'Type': 'Player Spawn Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Index': -1,
-                    'Pos': Point3(-512.73199999999997, -294.315, 85.293999999999997),
+                    'Pos': Point3(-512.731, -294.315, 85.293),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'Team 2',
                     'Visual': {
@@ -85,7 +85,7 @@ objectStruct = {
                     'Type': 'Player Spawn Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Index': -1,
-                    'Pos': Point3(-488.88, -330.34100000000001, 86.347999999999999),
+                    'Pos': Point3(-488.88, -330.341, 86.347),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'Team 2',
                     'Visual': {
@@ -95,7 +95,7 @@ objectStruct = {
                     'Type': 'Player Spawn Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Index': -1,
-                    'Pos': Point3(-374.60199999999998, -316.16800000000001, 101.045),
+                    'Pos': Point3(-374.601, -316.168, 101.045),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'Team 2',
                     'Visual': {
@@ -104,8 +104,8 @@ objectStruct = {
                 '1172637470.97HP_Administrator': {
                     'Type': 'Jungle_Props_large',
                     'DisableCollision': False,
-                    'Hpr': VBase3(-154.58699999999999, 0.0, 0.0),
-                    'Pos': Point3(304.863, -400.34100000000001, 115.009),
+                    'Hpr': VBase3(-154.586, 0.0, 0.0),
+                    'Pos': Point3(304.863, -400.341, 115.009),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/cliff_jungle_high' } },
@@ -113,7 +113,7 @@ objectStruct = {
                     'Type': 'Jungle_Props_large',
                     'DisableCollision': False,
                     'Hpr': VBase3(105.176, 0.0, 0.0),
-                    'Pos': Point3(-640.05899999999997, -254.172, 71.102000000000004),
+                    'Pos': Point3(-640.058, -254.172, 71.1020),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/cliff_jungle_low' } } },

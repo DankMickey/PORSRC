@@ -37,7 +37,7 @@ class HealSmoke(PooledEffect, EffectController):
         self.p0.setSystemLifespan(0.0)
         self.p0.setLocalVelocityFlag(0)
         self.p0.setSystemGrowsOlderFlag(0)
-        self.p0.factory.setLifespanBase(0.59999999999999998)
+        self.p0.factory.setLifespanBase(0.598)
         self.p0.factory.setLifespanSpread(0.5)
         self.p0.factory.setMassBase(1.0)
         self.p0.factory.setMassSpread(0.0)
@@ -53,7 +53,7 @@ class HealSmoke(PooledEffect, EffectController):
         self.p0.renderer.setInitialXScale(0.02 * self.cardScale)
         self.p0.renderer.setFinalXScale(0.01 * self.cardScale)
         self.p0.renderer.setInitialYScale(0.01 * self.cardScale)
-        self.p0.renderer.setFinalYScale(0.059999999999999998 * self.cardScale)
+        self.p0.renderer.setFinalYScale(0.0598 * self.cardScale)
         self.p0.renderer.setNonanimatedTheta(0.0)
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPBLENDLINEAR)
         self.p0.renderer.setAlphaDisable(0)
@@ -68,7 +68,7 @@ class HealSmoke(PooledEffect, EffectController):
 
 
     def createTrack(self):
-        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.040000000000000001), Func(self.p0.clearToInitial), Func(self.f.start, self, self))
+        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.0400), Func(self.p0.clearToInitial), Func(self.f.start, self, self))
         self.endEffect = Sequence(Func(self.p0.setBirthRate, 100), Wait(3.0), Func(self.cleanUpEffect))
         self.track = Sequence(self.startEffect, Wait(3.0), self.endEffect)
 

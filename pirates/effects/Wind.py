@@ -13,10 +13,10 @@ class Wind(PooledEffect, EffectController):
     def __init__(self):
         PooledEffect.__init__(self)
         EffectController.__init__(self)
-        self.fadeTime = 0.69999999999999996
+        self.fadeTime = 0.696
         self.startScale = Vec3(0.5, 1.0, 0.5)
         self.endScale = Vec3(2.0, 1.0, 2.0)
-        self.fadeColor = Vec4(0.80000000000000004, 0.80000000000000004, 0.80000000000000004, 0.5)
+        self.fadeColor = Vec4(0.800000, 0.800000, 0.800000, 0.5)
         self.flashDummy = self.attachNewNode('FlashDummy')
         self.flashDummy.reparentTo(self)
         self.flashDummy.hide()

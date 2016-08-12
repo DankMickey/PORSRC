@@ -9,13 +9,13 @@ objectStruct = {
                     'Type': 'Locator Node',
                     'Name': 'portal_interior_1',
                     'Hpr': VBase3(-90.0, 0.0, 0.0),
-                    'Pos': Point3(498.11399999999998, 427.80799999999999, 45.335999999999999),
+                    'Pos': Point3(498.113, 427.807, 45.335),
                     'Scale': VBase3(1.0, 1.0, 1.0) },
                 '1163719030.0sdnaik': {
                     'Type': 'Locator Node',
                     'Name': 'portal_interior_2',
                     'Hpr': VBase3(121.61, 0.0, 0.0),
-                    'Pos': Point3(-318.959, -565.76800000000003, 0.67500000000000004),
+                    'Pos': Point3(-318.959, -565.768, 0.675000),
                     'Scale': VBase3(1.0, 1.0, 1.0) } },
             'Visual': {
                 'Model': 'models/jungles/jungle_b_zero' } } },

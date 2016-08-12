@@ -21,7 +21,7 @@ class AmmoSkillButton(SkillButton.SkillButton):
             showQuantity = False
 
         SkillButton.SkillButton.__init__(self, skillId, callback, quantity, skillRank, showQuantity, showHelp, showRing, hotkey, name, showIcon, rechargeSkillId, assocAmmo)
-        self.toggleFrame['image_scale'] = 0.55000000000000004
+        self.toggleFrame['image_scale'] = 0.550000
         self.toolTipBox = None
         self.slotId = slotId
         self._initButtons()
@@ -30,7 +30,7 @@ class AmmoSkillButton(SkillButton.SkillButton):
 
     def _initButtons(self):
         self.sellButtonModel = loader.loadModel('models/gui/pir_m_gui_can_buttonSell')
-        self.sellButton = GuiButton(parent = self, image = (self.sellButtonModel.find('**/idle'), self.sellButtonModel.find('**/idle'), self.sellButtonModel.find('**/over')), image_scale = 1, scale = 0.40000000000000002, sortOrder = 100, pos = (0, 0, -0.125), command = self.onSellClick)
+        self.sellButton = GuiButton(parent = self, image = (self.sellButtonModel.find('**/idle'), self.sellButtonModel.find('**/idle'), self.sellButtonModel.find('**/over')), image_scale = 1, scale = 0.4, sortOrder = 100, pos = (0, 0, -0.125), command = self.onSellClick)
         self.sellButton.bind(DGG.ENTER, self.showToolTip)
         self.sellButton.bind(DGG.EXIT, self.hideToolTip)
 
@@ -61,7 +61,7 @@ class AmmoSkillButton(SkillButton.SkillButton):
         width = self.label.getWidth()
         toolTipScale = 2.5
         self.toolTipBox = None
-        self.toolTipBox = BorderFrame(parent = self.sellButton, frameSize = (-0.01, width, height, 0.050000000000000003), scale = toolTipScale, pos = (-(width * toolTipScale * 0.5), 0, height * toolTipScale * 2.25), state = DGG.DISABLED)
+        self.toolTipBox = BorderFrame(parent = self.sellButton, frameSize = (-0.01, width, height, 0.050000), scale = toolTipScale, pos = (-(width * toolTipScale * 0.5), 0, height * toolTipScale * 2.25), state = DGG.DISABLED)
         self.label.reparentTo(self.toolTipBox)
 
 

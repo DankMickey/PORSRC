@@ -74,7 +74,7 @@ class MysticFire(PooledEffect, EffectController):
         self.p0.renderer.setNonanimatedTheta(0.0)
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPBLENDLINEAR)
         self.p0.renderer.setColorBlendMode(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne)
-        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(0.75, 0.84999999999999998, 0.29999999999999999, 1.0), Vec4(0.40000000000000002, 0.84999999999999998, 0.29999999999999999, 0.5), 1)
+        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(0.75, 0.848, 0.299, 1.0), Vec4(0.4, 0.848, 0.299, 0.5), 1)
         self.p0.renderer.setAlphaDisable(0)
         self.p0.emitter.setEmissionType(BaseParticleEmitter.ETRADIATE)
         self.p0.emitter.setAmplitude(-1)
@@ -96,10 +96,10 @@ class MysticFire(PooledEffect, EffectController):
 
     def setEffectScale(self, scale):
         self.effectScale = scale
-        self.p0.renderer.setInitialXScale(0.050000000000000003 * self.cardScale * self.effectScale)
-        self.p0.renderer.setInitialYScale(0.050000000000000003 * self.cardScale * self.effectScale)
-        self.p0.renderer.setFinalXScale(0.029999999999999999 * self.cardScale * self.effectScale)
-        self.p0.renderer.setFinalYScale(0.044999999999999998 * self.cardScale * self.effectScale)
+        self.p0.renderer.setInitialXScale(0.050000 * self.cardScale * self.effectScale)
+        self.p0.renderer.setInitialYScale(0.050000 * self.cardScale * self.effectScale)
+        self.p0.renderer.setFinalXScale(0.0299 * self.cardScale * self.effectScale)
+        self.p0.renderer.setFinalYScale(0.0448 * self.cardScale * self.effectScale)
         self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, 15.0 * self.effectScale))
         self.p0.emitter.setAmplitude(-1 * self.effectScale)
         self.p0.emitter.setAmplitudeSpread(0.25 * self.effectScale)

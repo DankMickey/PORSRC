@@ -11,21 +11,21 @@ objectStruct = {
                 '1167174504.17kmuller': {
                     'Type': 'Furniture',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-1.0269999999999999, 46.210000000000001, 5.2649999999999997),
+                    'Pos': Point3(-1.0269, 46.21, 5.264),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/bookshelf_spanish' } },
                 '1167174514.03kmuller': {
                     'Type': 'Furniture',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(7.835, 46.149000000000001, 5.2649999999999997),
+                    'Pos': Point3(7.835, 46.149, 5.264),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/bookshelf_spanish' } },
                 '1169082812.19sdnaik': {
                     'Type': 'Furniture',
-                    'Hpr': VBase3(179.21700000000001, 0.0, 0.0),
-                    'Pos': Point3(13.823, -22.513999999999999, 0.0),
+                    'Hpr': VBase3(179.217, 0.0, 0.0),
+                    'Pos': Point3(13.823, -22.513, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/bookshelf_spanish' } } },

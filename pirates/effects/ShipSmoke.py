@@ -37,23 +37,23 @@ class ShipSmoke(PooledEffect, EffectController):
         self.p0.setEmitter('LineEmitter')
         self.f.addParticles(self.p0)
         self.p0.setPoolSize(16)
-        self.p0.setBirthRate(0.20000000000000001)
+        self.p0.setBirthRate(0.200)
         self.p0.setLitterSize(2)
         self.p0.setLitterSpread(0)
         self.p0.setSystemLifespan(0.0)
         self.p0.setLocalVelocityFlag(1)
         self.p0.setSystemGrowsOlderFlag(0)
         self.p0.setFloorZ(-10.0)
-        self.p0.factory.setLifespanBase(0.80000000000000004)
+        self.p0.factory.setLifespanBase(0.800000)
         self.p0.factory.setLifespanSpread(0.25)
         self.p0.factory.setMassBase(1.0)
-        self.p0.factory.setMassSpread(0.20000000000000001)
+        self.p0.factory.setMassSpread(0.200)
         self.p0.factory.setTerminalVelocityBase(400.0)
         self.p0.factory.setTerminalVelocitySpread(0.0)
         self.p0.renderer.setAlphaMode(BaseParticleRenderer.PRALPHAOUT)
         self.p0.renderer.setUserAlpha(1.0)
         self.p0.renderer.setFromNode(self.card)
-        self.p0.renderer.setColor(Vec4(0.29999999999999999, 0.29999999999999999, 0.29999999999999999, 1.0))
+        self.p0.renderer.setColor(Vec4(0.299, 0.299, 0.299, 1.0))
         self.p0.renderer.setXScaleFlag(1)
         self.p0.renderer.setYScaleFlag(1)
         self.p0.renderer.setAnimAngleFlag(1)
@@ -67,7 +67,7 @@ class ShipSmoke(PooledEffect, EffectController):
 
 
     def createTrack(self, lod = Options.SpecialEffectsHigh):
-        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.20000000000000001), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy))
+        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.200), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy))
         self.endEffect = Sequence(Func(self.p0.setBirthRate, 100.0), Wait(2.0), Func(self.cleanUpEffect))
         self.track = Sequence(self.startEffect, Wait(10.0), self.endEffect)
 
@@ -77,10 +77,10 @@ class ShipSmoke(PooledEffect, EffectController):
 
 
     def setEffectScale(self, scale):
-        self.p0.renderer.setInitialXScale(0.029999999999999999 * self.cardScale * scale)
-        self.p0.renderer.setInitialYScale(0.014999999999999999 * self.cardScale * scale)
-        self.p0.renderer.setFinalXScale(0.050000000000000003 * self.cardScale * scale)
-        self.p0.renderer.setFinalYScale(0.050000000000000003 * self.cardScale * scale)
+        self.p0.renderer.setInitialXScale(0.0299 * self.cardScale * scale)
+        self.p0.renderer.setInitialYScale(0.0149 * self.cardScale * scale)
+        self.p0.renderer.setFinalXScale(0.050000 * self.cardScale * scale)
+        self.p0.renderer.setFinalYScale(0.050000 * self.cardScale * scale)
         self.p0.emitter.setAmplitude(0.5 * scale)
         self.p0.emitter.setAmplitudeSpread(0.25 * scale)
         self.p0.emitter.setOffsetForce(Vec3(0.5, 0.5, 5.0) * scale)

@@ -30,8 +30,8 @@ class HitPulse(PooledEffect, EffectController):
         textureStage = self.effectModel.findAllTextureStages()[0]
         duration = 1.25
         scaleIval = LerpScaleInterval(self.effectModel, duration, 6.0, startScale = 3.0)
-        fadeIn = LerpColorScaleInterval(self.effectModel, 0.29999999999999999, self.effectColor, startColorScale = (0, 0, 0, 0))
-        uvScroll = LerpFunctionInterval(self.setNewUVs, duration, toData = 0.75, fromData = 0.29999999999999999, extraArgs = [
+        fadeIn = LerpColorScaleInterval(self.effectModel, 0.299, self.effectColor, startColorScale = (0, 0, 0, 0))
+        uvScroll = LerpFunctionInterval(self.setNewUVs, duration, toData = 0.75, fromData = 0.299, extraArgs = [
             self.effectModel,
             textureStage])
         self.startEffect = Sequence(Parallel(fadeIn, uvScroll, scaleIval))

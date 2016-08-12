@@ -316,7 +316,7 @@ objectStruct = {
                             'Hpr': VBase3(0.0, 0.0, 0.0),
                             'Intensity': '0.5542',
                             'LightType': 'POINT',
-                            'Pos': Point3(15.496, -87.537999999999997, 27.463000000000001),
+                            'Pos': Point3(15.496, -87.537, 27.463),
                             'Scale': VBase3(1.0, 1.0, 1.0),
                             'VisSize': '',
                             'VisZone': '0_1228350346.09akelts',
@@ -774,19 +774,19 @@ objectStruct = {
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Intensity': '0.6988',
                     'LightType': 'POINT',
-                    'Pos': Point3(-461.20600000000002, 190.102, 97.236000000000004),
-                    'Scale': VBase3(3.3559999999999999, 3.3559999999999999, 3.3559999999999999),
+                    'Pos': Point3(-461.206, 190.102, 97.2360),
+                    'Scale': VBase3(3.3559, 3.3559, 3.3559),
                     'VisSize': '',
                     'VisZone': '0_1228350346.09akelts',
                     'Visual': {
-                        'Color': (0.78000000000000003, 0.48999999999999999, 0.21568627450980393, 1.0),
+                        'Color': (0.78000, 0.489, 0.21568627450980393, 1.0),
                         'Model': 'models/props/light_tool_bulb_modular' } },
                 '1235673216.0akelts': {
                     'Type': 'Locator Node',
                     'Name': 'portal_interior_1',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Parent Uid': '1228348366.44akelts',
-                    'Pos': Point3(-1402.864, -256.87700000000001, 93.700999999999993),
+                    'Pos': Point3(-1402.864, -256.877, 93.7003),
                     'Scale': VBase3(1.0, 1.0, 1.0) } },
             'Visual': {
                 'Model': 'models/misc/pir_m_are_cav_startingPlane' } } },
@@ -1234,8 +1234,8 @@ objectStruct = {
         '1235518848.0akelts': '["Objects"]["1228348366.44akelts"]["Objects"]["1228350346.09akelts"]["Objects"]["1235518848.0akelts"]',
         '1235673216.0akelts': '["Objects"]["1228348366.44akelts"]["Objects"]["1235673216.0akelts"]' } }
 extraInfo = {
-    'camPos': Point3(-2439.1199999999999, 158.20099999999999, 912.33199999999999),
-    'camHpr': VBase3(-113.92400000000001, -30.761099999999999, 0),
+    'camPos': Point3(-2439.11, 158.200, 912.331),
+    'camHpr': VBase3(-113.924, -30.7610, 0),
     'focalLength': 1.3999999761599999,
     'skyState': 2,
     'fog': 0 }

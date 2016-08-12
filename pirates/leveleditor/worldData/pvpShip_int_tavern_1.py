@@ -11,14 +11,14 @@ objectStruct = {
                 '1203471263.94akelts': {
                     'Type': 'Door Locator Node',
                     'Name': 'door_locator',
-                    'Hpr': VBase3(-179.82900000000001, 0.0, 0.0),
-                    'Pos': Point3(-0.498, -4.4790000000000001, 0.95199999999999996),
+                    'Hpr': VBase3(-179.829, 0.0, 0.0),
+                    'Pos': Point3(-0.498, -4.479, 0.95196),
                     'Scale': VBase3(1.0, 1.0, 1.0) },
                 '1203471263.95akelts': {
                     'Type': 'Door Locator Node',
                     'Name': 'door_locator_2',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-6.6260000000000003, 20.841000000000001, 1.006),
+                    'Pos': Point3(-6.6260, 20.841, 1.006),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'TargetUIDs': [] } },
             'Visual': {
@@ -97,6 +97,6 @@ objectStruct = {
         '1203471263.94akelts': '["Objects"]["1202846053.19akelts0"]["Objects"]["1203471263.94akelts"]',
         '1203471263.95akelts': '["Objects"]["1202846053.19akelts0"]["Objects"]["1203471263.95akelts"]' } }
 extraInfo = {
-    'camPos': Point3(118, 156.06700000000001, 151.72900000000001),
-    'camHpr': VBase3(69.982799999999997, -27.349900000000002, 0),
+    'camPos': Point3(118, 156.067, 151.729),
+    'camHpr': VBase3(69.9827, -27.3499, 0),
     'focalLength': 1.3999999761599999 }

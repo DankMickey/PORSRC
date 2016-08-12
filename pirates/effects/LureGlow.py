@@ -27,7 +27,7 @@ class LureGlow(PooledEffect, EffectController):
     def createTrack(self):
         self.effectModel.hide()
         self.effectModel.setColorScale(self.effectColor)
-        pulseIval = Sequence(LerpScaleInterval(self.effectModel, duration = 0.14999999999999999, scale = 3.5), LerpScaleInterval(self.effectModel, duration = 0.14999999999999999, scale = 1.0))
+        pulseIval = Sequence(LerpScaleInterval(self.effectModel, duration = 0.149, scale = 3.5), LerpScaleInterval(self.effectModel, duration = 0.149, scale = 1.0))
         self.startEffect = Sequence(Func(self.effectModel.show), Func(pulseIval.loop))
         self.endEffect = Sequence(Func(pulseIval.finish), Func(self.cleanUpEffect))
         self.track = Sequence(self.startEffect, Wait(1.0), self.endEffect)

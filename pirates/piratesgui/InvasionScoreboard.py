@@ -21,7 +21,7 @@ class InvasionScoreboard(DirectFrame):
     width = PiratesGuiGlobals.PortPanelWidth / 2.0
     height = PiratesGuiGlobals.PortPanelHeight * 3.0 / 5.0
     titleHeight = PiratesGuiGlobals.PortTitleHeight
-    buffer = 0.050000000000000003
+    buffer = 0.050000
 
     def __init__(self, holidayId, wonInvasion, reputationEarned, enemiesKilled, barricadesSaved, wavesCleared):
         DirectFrame.__init__(self, relief = None, parent = base.aspect2d, image = None, pos = (0.0, 0.0, 0.5))
@@ -59,45 +59,45 @@ class InvasionScoreboard(DirectFrame):
         general_frame_gui.remove_node()
         main_gui.remove_node()
         if self.onIsland:
-            topLeftBackground = OnscreenImage(parent = self, image = background, scale = 0.75, pos = (0.75, 0.0, 0.0), color = (0.29999999999999999, 0.29999999999999999, 0.29999999999999999, 1.0))
-            topRightBackground = OnscreenImage(parent = self, image = background, scale = 0.75, pos = (1.5, 0.0, 0.0), color = (0.29999999999999999, 0.29999999999999999, 0.29999999999999999, 1.0))
-            bottomLeftBackground = OnscreenImage(parent = self, image = background, scale = 0.75, pos = (0.75, 0.0, -0.75), color = (0.29999999999999999, 0.29999999999999999, 0.29999999999999999, 1.0))
-            bottomRightBackground = OnscreenImage(parent = self, image = background, scale = 0.75, pos = (1.5, 0.0, -0.75), color = (0.29999999999999999, 0.29999999999999999, 0.29999999999999999, 1.0))
-            leftBorder1 = OnscreenImage(parent = self, image = side_bar, scale = 0.25, pos = (-0.26000000000000001, 0.0, -0.53000000000000003))
-            leftBorder2 = OnscreenImage(parent = self, image = side_bar, scale = 0.25, pos = (-0.26000000000000001, 0.0, -1.1499999999999999))
-            rightBorder1 = OnscreenImage(parent = self, image = side_bar, scale = 0.25, pos = (1.2350000000000001, 0.0, -0.53000000000000003))
-            rightBorder2 = OnscreenImage(parent = self, image = side_bar, scale = 0.25, pos = (1.2350000000000001, 0.0, -1.1499999999999999))
-            topBorder1 = OnscreenImage(parent = self, image = side_bar, scale = 0.25, pos = (0.53000000000000003, 0.0, -0.26000000000000001), hpr = (0, 0, -90))
-            topBorder2 = OnscreenImage(parent = self, image = side_bar, scale = 0.25, pos = (1.1499999999999999, 0.0, -0.26000000000000001), hpr = (0, 0, -90))
-            bottomBorder1 = OnscreenImage(parent = self, image = side_bar, scale = 0.25, pos = (0.53000000000000003, 0.0, -1.7649999999999999), hpr = (0, 0, -90))
-            bottomBorder2 = OnscreenImage(parent = self, image = side_bar, scale = 0.25, pos = (1.1499999999999999, 0.0, -1.7649999999999999), hpr = (0, 0, -90))
+            topLeftBackground = OnscreenImage(parent = self, image = background, scale = 0.75, pos = (0.75, 0.0, 0.0), color = (0.299, 0.299, 0.299, 1.0))
+            topRightBackground = OnscreenImage(parent = self, image = background, scale = 0.75, pos = (1.5, 0.0, 0.0), color = (0.299, 0.299, 0.299, 1.0))
+            bottomLeftBackground = OnscreenImage(parent = self, image = background, scale = 0.75, pos = (0.75, 0.0, -0.75), color = (0.299, 0.299, 0.299, 1.0))
+            bottomRightBackground = OnscreenImage(parent = self, image = background, scale = 0.75, pos = (1.5, 0.0, -0.75), color = (0.299, 0.299, 0.299, 1.0))
+            leftBorder1 = OnscreenImage(parent = self, image = side_bar, scale = 0.25, pos = (-0.260, 0.0, -0.53000))
+            leftBorder2 = OnscreenImage(parent = self, image = side_bar, scale = 0.25, pos = (-0.260, 0.0, -1.14))
+            rightBorder1 = OnscreenImage(parent = self, image = side_bar, scale = 0.25, pos = (1.235, 0.0, -0.53000))
+            rightBorder2 = OnscreenImage(parent = self, image = side_bar, scale = 0.25, pos = (1.235, 0.0, -1.14))
+            topBorder1 = OnscreenImage(parent = self, image = side_bar, scale = 0.25, pos = (0.53000, 0.0, -0.260), hpr = (0, 0, -90))
+            topBorder2 = OnscreenImage(parent = self, image = side_bar, scale = 0.25, pos = (1.14, 0.0, -0.260), hpr = (0, 0, -90))
+            bottomBorder1 = OnscreenImage(parent = self, image = side_bar, scale = 0.25, pos = (0.53000, 0.0, -1.7649), hpr = (0, 0, -90))
+            bottomBorder2 = OnscreenImage(parent = self, image = side_bar, scale = 0.25, pos = (1.14, 0.0, -1.7649), hpr = (0, 0, -90))
             topLeftCorner = OnscreenImage(parent = self, image = top_left, scale = 1.0, pos = (0.12, 0.0, -0.11))
-            topRightCorner = OnscreenImage(parent = self, image = top_right, scale = 1.0, pos = (1.3799999999999999, 0.0, -0.11))
-            bottomLeftCorner = OnscreenImage(parent = self, image = bottom_left, scale = 1.0, pos = (0.12, 0.0, -1.3899999999999999))
-            bottomRightCorner = OnscreenImage(parent = self, image = bottom_right, scale = 1.0, pos = (1.3799999999999999, 0.0, -1.3899999999999999))
-            titlePos = (0.75, 0, -0.080000000000000002)
-            resultPos = (0.75, 0, -0.17000000000000001)
-            scoreboardPos = (0.20000000000000001, 0, -1.3500000000000001)
-            closePos = (1.8100000000000001, 0, -1.21)
+            topRightCorner = OnscreenImage(parent = self, image = top_right, scale = 1.0, pos = (1.37, 0.0, -0.11))
+            bottomLeftCorner = OnscreenImage(parent = self, image = bottom_left, scale = 1.0, pos = (0.12, 0.0, -1.38))
+            bottomRightCorner = OnscreenImage(parent = self, image = bottom_right, scale = 1.0, pos = (1.37, 0.0, -1.38))
+            titlePos = (0.75, 0, -0.08)
+            resultPos = (0.75, 0, -0.170)
+            scoreboardPos = (0.200, 0, -1.35)
+            closePos = (1.81, 0, -1.21)
         else:
-            leftBackground = OnscreenImage(parent = self, image = background, scale = 0.75, pos = (0.75, 0.0, -0.375), color = (0.29999999999999999, 0.29999999999999999, 0.29999999999999999, 1.0))
-            rightBackground = OnscreenImage(parent = self, image = background, scale = 0.75, pos = (1.5, 0.0, -0.375), color = (0.29999999999999999, 0.29999999999999999, 0.29999999999999999, 1.0))
-            leftBorder = OnscreenImage(parent = self, image = side_bar, scale = 0.25, pos = (-0.26000000000000001, 0.0, -0.83999999999999997))
-            rightBorder = OnscreenImage(parent = self, image = side_bar, scale = 0.25, pos = (1.2350000000000001, 0.0, -0.83999999999999997))
-            topBorder1 = OnscreenImage(parent = self, image = side_bar, scale = 0.25, pos = (0.53000000000000003, 0.0, -0.63500000000000001), hpr = (0, 0, -90))
-            topBorder2 = OnscreenImage(parent = self, image = side_bar, scale = 0.25, pos = (1.1499999999999999, 0.0, -0.63500000000000001), hpr = (0, 0, -90))
-            bottomBorder1 = OnscreenImage(parent = self, image = side_bar, scale = 0.25, pos = (0.53000000000000003, 0.0, -1.3899999999999999), hpr = (0, 0, -90))
-            bottomBorder2 = OnscreenImage(parent = self, image = side_bar, scale = 0.25, pos = (1.1499999999999999, 0.0, -1.3899999999999999), hpr = (0, 0, -90))
-            topLeftCorner = OnscreenImage(parent = self, image = top_left, scale = 1.0, pos = (0.12, 0.0, -0.48499999999999999))
-            topRightCorner = OnscreenImage(parent = self, image = top_right, scale = 1.0, pos = (1.3799999999999999, 0.0, -0.48499999999999999))
-            bottomLeftCorner = OnscreenImage(parent = self, image = bottom_left, scale = 1.0, pos = (0.12, 0.0, -1.0149999999999999))
-            bottomRightCorner = OnscreenImage(parent = self, image = bottom_right, scale = 1.0, pos = (1.3799999999999999, 0.0, -1.0149999999999999))
+            leftBackground = OnscreenImage(parent = self, image = background, scale = 0.75, pos = (0.75, 0.0, -0.375), color = (0.299, 0.299, 0.299, 1.0))
+            rightBackground = OnscreenImage(parent = self, image = background, scale = 0.75, pos = (1.5, 0.0, -0.375), color = (0.299, 0.299, 0.299, 1.0))
+            leftBorder = OnscreenImage(parent = self, image = side_bar, scale = 0.25, pos = (-0.260, 0.0, -0.83))
+            rightBorder = OnscreenImage(parent = self, image = side_bar, scale = 0.25, pos = (1.235, 0.0, -0.83))
+            topBorder1 = OnscreenImage(parent = self, image = side_bar, scale = 0.25, pos = (0.53000, 0.0, -0.635), hpr = (0, 0, -90))
+            topBorder2 = OnscreenImage(parent = self, image = side_bar, scale = 0.25, pos = (1.14, 0.0, -0.635), hpr = (0, 0, -90))
+            bottomBorder1 = OnscreenImage(parent = self, image = side_bar, scale = 0.25, pos = (0.53000, 0.0, -1.38), hpr = (0, 0, -90))
+            bottomBorder2 = OnscreenImage(parent = self, image = side_bar, scale = 0.25, pos = (1.14, 0.0, -1.38), hpr = (0, 0, -90))
+            topLeftCorner = OnscreenImage(parent = self, image = top_left, scale = 1.0, pos = (0.12, 0.0, -0.484))
+            topRightCorner = OnscreenImage(parent = self, image = top_right, scale = 1.0, pos = (1.37, 0.0, -0.484))
+            bottomLeftCorner = OnscreenImage(parent = self, image = bottom_left, scale = 1.0, pos = (0.12, 0.0, -1.0149))
+            bottomRightCorner = OnscreenImage(parent = self, image = bottom_right, scale = 1.0, pos = (1.37, 0.0, -1.0149))
             titlePos = (0.75, 0, -0.5)
-            resultPos = (0.75, 0, -0.58999999999999997)
-            scoreboardPos = (0.20000000000000001, 0, -0.90000000000000002)
-            closePos = (1.8100000000000001, 0, -1.585)
+            resultPos = (0.75, 0, -0.58)
+            scoreboardPos = (0.200, 0, -0.9)
+            closePos = (1.81, 0, -1.585)
         titleTxt = PLocalizer.InvasionScoreboardTitle % PLocalizer.LocationNames[InvasionGlobals.getIslandId(self.holidayId)]
-        title = DirectLabel(parent = self, relief = None, text = titleTxt, text_align = TextNode.ACenter, text_scale = 0.070000000000000007, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, pos = titlePos, text_font = PiratesGlobals.getPirateOutlineFont())
+        title = DirectLabel(parent = self, relief = None, text = titleTxt, text_align = TextNode.ACenter, text_scale = 0.070, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, pos = titlePos, text_font = PiratesGlobals.getPirateOutlineFont())
         if self.wonInvasion:
             resultText = PLocalizer.InvasionWon
         else:
@@ -106,7 +106,7 @@ class InvasionScoreboard(DirectFrame):
         self.screenNode = None
         self.screenNodeScale = None
         if self.onIsland:
-            parchmentImage = OnscreenImage(parent = self, image = parchment, scale = (0.80000000000000004, 0, 0.94999999999999996), pos = (0.75, 0, -0.69999999999999996))
+            parchmentImage = OnscreenImage(parent = self, image = parchment, scale = (0.800000, 0, 0.946), pos = (0.75, 0, -0.696))
             self.screenNode = localAvatar.getParentObj().minimap.getScreenNode()
 
         if self.screenNode:
@@ -119,7 +119,7 @@ class InvasionScoreboard(DirectFrame):
 
         if self.onIsland:
             if self.wonInvasion:
-                waxSealImage = OnscreenImage(parent = self, image = wax_seal, pos = (1.27, 0, -0.94999999999999996), scale = 1.0)
+                waxSealImage = OnscreenImage(parent = self, image = wax_seal, pos = (1.27, 0, -0.946), scale = 1.0)
                 self.fireSeq = None
             else:
                 for fireInfo in InvasionGlobals.getLossFires(self.holidayId):
@@ -135,8 +135,8 @@ class InvasionScoreboard(DirectFrame):
                     self.firePaths.append(firePath)
 
 
-        closeButton = GuiButton.GuiButton(parent = self, relief = None, pos = closePos, image = (generic_box, generic_box, generic_box_over, generic_box), image_scale = 0.59999999999999998, command = localAvatar.guiMgr.removeInvasionScoreboard)
-        xButton = OnscreenImage(parent = closeButton, image = generic_x, scale = 0.29999999999999999, pos = (-0.38200000000000001, 0, 1.1499999999999999))
+        closeButton = GuiButton.GuiButton(parent = self, relief = None, pos = closePos, image = (generic_box, generic_box, generic_box_over, generic_box), image_scale = 0.598, command = localAvatar.guiMgr.removeInvasionScoreboard)
+        xButton = OnscreenImage(parent = closeButton, image = generic_x, scale = 0.299, pos = (-0.382, 0, 1.14))
         self.createScoreboard(scoreboardPos)
 
 
@@ -203,7 +203,7 @@ class InvasionScoreboard(DirectFrame):
 
     def createScoreboard(self, scoreboardPos):
         invasionResults = self.getInvasionResults()
-        self.panel = Scoreboard.Scoreboard('', self.width, self.height - 0.71499999999999997, invasionResults, self.titleHeight)
+        self.panel = Scoreboard.Scoreboard('', self.width, self.height - 0.714, invasionResults, self.titleHeight)
         self.panel.reparentTo(self)
         self.panel.setPos(scoreboardPos)
         for item in self.panel.list.items:

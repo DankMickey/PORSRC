@@ -444,7 +444,7 @@ class GrabberTentacle(DistributedCreature, Monstrous):
             cNode.addSolid(cSolid)
             cNodePath = NodePath(cNode)
             cNodePath.reparentTo(rParent)
-            cNodePath.setScale(int(range * 0.90000000000000002))
+            cNodePath.setScale(int(range * 0.9))
             self.rangeCollisions = cNodePath
 
 

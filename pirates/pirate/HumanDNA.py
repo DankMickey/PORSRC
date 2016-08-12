@@ -747,8 +747,8 @@ class HumanDNA(AvatarDNA.AvatarDNA):
             self.head.hair.hair = 14
             self.head.hair.color = 1
             self.head.mouthLipThickness = 0.25
-            self.head.browProtruding = 0.85799999999999998
-            self.head.cheekFat = 0.17999999999999999
+            self.head.browProtruding = 0.85798
+            self.head.cheekFat = 0.179
         elif self.gender == 'n':
             self.clothes.coat = 3
             self.clothes.coatColor = 0
@@ -2166,11 +2166,11 @@ class HumanDNA(AvatarDNA.AvatarDNA):
             8])
         self.body.shape = randomGen.choice(BodyDefs.BodyChoicesNeutral)
         self.body.height = randomGen.choice([
-            -0.29999999999999999,
+            -0.299,
             0.0,
-            0.29999999999999999,
-            0.59999999999999998])
-        self.body.headSize = -0.29999999999999999 + randomGen.random() * 0.59999999999999998
+            0.299,
+            0.598])
+        self.body.headSize = -0.299 + randomGen.random() * 0.598
         self.clothes.shirt = 0
         self.clothes.shirtTexture = 0
         self.clothes.vest = 0
@@ -2250,9 +2250,9 @@ class HumanDNA(AvatarDNA.AvatarDNA):
         self.body.shape = randomGen.choice(BodyDefs.BodyChoicesNeutral)
         self.body.height = randomGen.choice([
             0.0,
-            0.29999999999999999,
-            0.59999999999999998])
-        self.body.headSize = -0.29999999999999999 + randomGen.random() * 0.59999999999999998
+            0.299,
+            0.598])
+        self.body.headSize = -0.299 + randomGen.random() * 0.598
         self.clothes.shirt = 0
         self.clothes.vest = 0
         self.clothes.coat = 4
@@ -2315,11 +2315,11 @@ class HumanDNA(AvatarDNA.AvatarDNA):
 
     def makeLeadingMan(self):
         self.gender = 'm'
-        self.height = 0.80000000000000004
+        self.height = 0.800000
         self.head.headWidth = 0
         self.head.headHeight = 0
         self.head.headRoundness = 0
-        self.head.mouthFrown = 0.35999999999999999
+        self.head.mouthFrown = 0.359
         self.body.shape = BodyDefs.BodyChoicesMale[2]
         self.body.color = 4
         self.clothes.shirt = 6

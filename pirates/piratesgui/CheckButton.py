@@ -8,7 +8,7 @@ class CheckButton(DirectButton):
         toplevel_gui = loader.loadModel('models/gui/toplevel_gui')
         generic_box = toplevel_gui.find('**/generic_box')
         generic_box_over = toplevel_gui.find('**/generic_box_over')
-        optiondefs = (('geom', None, None), ('value', False, self.setValue), ('checkedGeom', toplevel_gui.find('**/generic_check'), None), ('image', (generic_box, generic_box, generic_box_over, generic_box), None), ('image_scale', 0.59999999999999998, None))
+        optiondefs = (('geom', None, None), ('value', False, self.setValue), ('checkedGeom', toplevel_gui.find('**/generic_check'), None), ('image', (generic_box, generic_box, generic_box_over, generic_box), None), ('image_scale', 0.598, None))
         self.oldValue = False
         self.quiet = True
         self.defineoptions(kw, optiondefs)

@@ -34,8 +34,8 @@ class FriendsPage(SocialPage.SocialPage):
         SocialPage.SocialPage.__init__(self, myTitle)
         self.initialiseoptions(FriendsPage)
         charGui = loader.loadModel('models/gui/char_gui')
-        self.membersList = PirateMemberList.PirateMemberList(10, self, 'FOOLIO HC', height = 0.68000000000000005, memberWidth = 0.59999999999999998, width = 0.62, sort = 1)
-        self.membersList.setPos(-0.086999999999999994, 0.0, 0.029999999999999999)
+        self.membersList = PirateMemberList.PirateMemberList(10, self, 'FOOLIO HC', height = 0.680000, memberWidth = 0.598, width = 0.62, sort = 1)
+        self.membersList.setPos(-0.0864, 0.0, 0.0299)
         self.accept(self.membersList.onlineChangeEvent, self.updateCount)
         if self.showAvatar:
             self.accept(OTPGlobals.AvatarFriendAddEvent, self.addAvatarFriend)
@@ -53,7 +53,7 @@ class FriendsPage(SocialPage.SocialPage):
             self.accept(OTPGlobals.PlayerFriendRemoveEvent, self.removePlayerFriend)
 
         charGui.remove_node()
-        self.headingLabel = DirectLabel(parent = self, relief = None, state = DGG.NORMAL, text = myTitle, text_align = TextNode.ACenter, text_scale = PiratesGuiGlobals.TextScaleLarge, text_pos = (0.0, 0.0), text_fg = PiratesGuiGlobals.TextFG1, pos = (0.23999999999999999, 0, 0.79400000000000004))
+        self.headingLabel = DirectLabel(parent = self, relief = None, state = DGG.NORMAL, text = myTitle, text_align = TextNode.ACenter, text_scale = PiratesGuiGlobals.TextScaleLarge, text_pos = (0.0, 0.0), text_fg = PiratesGuiGlobals.TextFG1, pos = (0.239, 0, 0.794000))
         self.maintainNormalButtonState()
 
 

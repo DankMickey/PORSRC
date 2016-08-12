@@ -3818,7 +3818,7 @@ class PotionsTaskDNA(QuestTaskDNA):
 
     def getProgressMessage(self, taskState):
         QuestTaskDNA.getProgressMessage(self, taskState)
-        PiratesGuiGlobals.ProgressMsgOffset = 0.69999999999999996
+        PiratesGuiGlobals.ProgressMsgOffset = 0.696
         potionName = PLocalizer.getItemName(self.potionType)
         if self.potionTypeBonus:
             potionNameBonus = PLocalizer.getItemName(self.potionTypeBonus)

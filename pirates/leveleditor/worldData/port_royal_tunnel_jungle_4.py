@@ -10,14 +10,14 @@ objectStruct = {
                 '1178656840.55kmuller': {
                     'Type': 'Locator Node',
                     'Name': 'portal_connector_1',
-                    'Hpr': VBase3(-90.188999999999993, 0.0, 0.0),
+                    'Hpr': VBase3(-90.1883, 0.0, 0.0),
                     'Pos': Point3(0.0, 0.0, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0) },
                 '1178656840.56kmuller': {
                     'Type': 'Locator Node',
                     'Name': 'portal_connector_2',
-                    'Hpr': VBase3(88.722999999999999, 0.0, 0.0),
-                    'Pos': Point3(-94.897999999999996, 150.0, 0.0),
+                    'Hpr': VBase3(88.722, 0.0, 0.0),
+                    'Pos': Point3(-94.8976, 150.0, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0) } },
             'Visual': {
                 'Model': 'models/tunnels/tunnel_jungle' } } },

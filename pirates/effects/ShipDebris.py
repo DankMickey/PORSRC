@@ -44,7 +44,7 @@ class ShipDebris(PooledEffect):
         randomNumY = random.uniform(360, 2880)
         randomNumZ = random.uniform(360, 2880)
         self.playRotate = self.debris.hprInterval(6, Point3(randomNumX, randomNumY, randomNumZ))
-        enableColl = Sequence(Wait(0.20000000000000001), Func(self.cnode.setFromCollideMask, PiratesGlobals.TargetBitmask))
+        enableColl = Sequence(Wait(0.200), Func(self.cnode.setFromCollideMask, PiratesGlobals.TargetBitmask))
         playDebris = Parallel(playProjectile, enableColl)
         self.track = Sequence(Func(self.transNode.reparentTo, self), playDebris, Func(self.cleanUpEffect))
 

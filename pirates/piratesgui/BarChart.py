@@ -11,7 +11,7 @@ class BarChart(DirectFrame):
     def __init__(self, data, height, width, name = '', titleColor = (1.0, 1.0, 1.0, 1.0), maxValue = None):
         self.width = width
         self.height = height
-        self.barHeight = (self.height / len(data)) * 0.66600000000000004
+        self.barHeight = (self.height / len(data)) * 0.666000
         self.name = name
         self.titleColor = titleColor
         self.maxValue = maxValue
@@ -19,7 +19,7 @@ class BarChart(DirectFrame):
         DirectFrame.__init__(self, relief = None, state = DGG.NORMAL)
         self.initialiseoptions(BarChart)
         self.statBars = []
-        self.title = DirectFrame(parent = self, relief = None, text = self.name, text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleLarge, text_pos = (0.029999999999999999, 0.01), text_fg = self.titleColor, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (0, 0, self.height + 0.02))
+        self.title = DirectFrame(parent = self, relief = None, text = self.name, text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleLarge, text_pos = (0.0299, 0.01), text_fg = self.titleColor, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (0, 0, self.height + 0.02))
         self.loadStatBars(self.data)
 
 
@@ -31,14 +31,14 @@ class BarChart(DirectFrame):
 
 
     def addBar(self, data, repack = 1):
-        meter = DirectWaitBar(parent = self, relief = DGG.RAISED, borderWidth = (0.0040000000000000001, 0.0040000000000000001), range = data[2], value = data[1], frameColor = (0, 0, 0, 0), barColor = (0.10000000000000001, 0.69999999999999996, 0.10000000000000001, 1), frameSize = (0.17000000000000001, self.width - 0.10000000000000001, -(self.barHeight) * 0.25, self.barHeight * 0.75), text = str(data[1]), text_align = TextNode.ALeft, text_scale = 0.029999999999999999, text_fg = (1, 1, 1, 1), text_shadow = (0, 0, 0, 1), text_pos = (0, 0), pos = (0, 0, 0))
+        meter = DirectWaitBar(parent = self, relief = DGG.RAISED, borderWidth = (0.00400, 0.00400), range = data[2], value = data[1], frameColor = (0, 0, 0, 0), barColor = (0.100, 0.696, 0.100, 1), frameSize = (0.170, self.width - 0.100, -(self.barHeight) * 0.25, self.barHeight * 0.75), text = str(data[1]), text_align = TextNode.ALeft, text_scale = 0.0299, text_fg = (1, 1, 1, 1), text_shadow = (0, 0, 0, 1), text_pos = (0, 0), pos = (0, 0, 0))
         if self.maxValue:
             meter['range'] = self.maxValue
 
         meterWidth = meter['frameSize'][1] - meter['frameSize'][0]
         percentFilled = float(meter['value']) / float(meter['range'])
         print percentFilled
-        newTextPos = meterWidth * percentFilled + 0.17999999999999999
+        newTextPos = meterWidth * percentFilled + 0.179
         meter['text_pos'] = (newTextPos, 0)
         label = DirectLabel(parent = meter, relief = None, text = data[0], text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_pos = (0, 0), text_fg = PiratesGuiGlobals.TextFG2)
         self.statBars.append([
@@ -75,7 +75,7 @@ class BarChart(DirectFrame):
 
             meterWidth = meter['frameSize'][1] - meter['frameSize'][0]
             percentFilled = min(1.0, float(meter['value']) / float(meter['range']))
-            newTextPos = meterWidth * percentFilled + 0.17999999999999999
+            newTextPos = meterWidth * percentFilled + 0.179
             meter['text_pos'] = (newTextPos, 0)
 
 

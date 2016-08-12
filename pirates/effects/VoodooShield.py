@@ -53,16 +53,16 @@ class VoodooShield(PooledEffect, EffectController):
         self.p0.renderer.setAnimAngleFlag(0)
         self.p0.renderer.setInitialXScale(0.01 * self.cardScale)
         self.p0.renderer.setFinalXScale(0.02 * self.cardScale)
-        self.p0.renderer.setInitialYScale(0.050000000000000003 * self.cardScale)
-        self.p0.renderer.setFinalYScale(0.025000000000000001 * self.cardScale)
+        self.p0.renderer.setInitialYScale(0.050000 * self.cardScale)
+        self.p0.renderer.setFinalYScale(0.0250 * self.cardScale)
         self.p0.renderer.setNonanimatedTheta(0.0)
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPBLENDLINEAR)
         self.p0.renderer.setAlphaDisable(0)
         self.p0.renderer.setColorBlendMode(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne)
-        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(0, 0, 1, 0.59999999999999998), Vec4(0.80000000000000004, 0.90000000000000002, 1, 0.59999999999999998), 1)
+        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(0, 0, 1, 0.598), Vec4(0.800000, 0.9, 1, 0.598), 1)
         self.p0.emitter.setEmissionType(BaseParticleEmitter.ETRADIATE)
         self.p0.emitter.setAmplitude(0.0)
-        self.p0.emitter.setAmplitudeSpread(0.10000000000000001)
+        self.p0.emitter.setAmplitudeSpread(0.100)
         self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, -1.0))
         self.p0.emitter.setExplicitLaunchVector(Vec3(0.0, 0.0, 0.0))
         self.p0.emitter.setRadiateOrigin(Point3(0.0, 0.0, 0.0))
@@ -70,7 +70,7 @@ class VoodooShield(PooledEffect, EffectController):
 
 
     def createTrack(self):
-        self.startEffect = Sequence(Func(self.p0.clearToInitial), Func(self.p0.setBirthRate, 0.10000000000000001), Func(self.f.start, self, self))
+        self.startEffect = Sequence(Func(self.p0.clearToInitial), Func(self.p0.setBirthRate, 0.100), Func(self.f.start, self, self))
         self.endEffect = Sequence(Func(self.p0.setBirthRate, 100.0), Wait(1.0), Func(self.cleanUpEffect))
         self.track = Sequence(self.startEffect, Wait(2.0), self.endEffect)
 
@@ -78,13 +78,13 @@ class VoodooShield(PooledEffect, EffectController):
     def pulseEffect(self):
 
         def scaleUp():
-            self.p0.renderer.setInitialYScale(0.10000000000000001 * self.cardScale)
-            self.p0.renderer.setFinalYScale(0.040000000000000001 * self.cardScale)
+            self.p0.renderer.setInitialYScale(0.100 * self.cardScale)
+            self.p0.renderer.setFinalYScale(0.0400 * self.cardScale)
 
 
         def scaleDown():
-            self.p0.renderer.setInitialYScale(0.050000000000000003 * self.cardScale)
-            self.p0.renderer.setFinalYScale(0.025000000000000001 * self.cardScale)
+            self.p0.renderer.setInitialYScale(0.050000 * self.cardScale)
+            self.p0.renderer.setFinalYScale(0.0250 * self.cardScale)
 
         if not self.pulseIval:
             self.pulseIval = Sequence(Func(scaleUp), Wait(0.5), Func(scaleDown))

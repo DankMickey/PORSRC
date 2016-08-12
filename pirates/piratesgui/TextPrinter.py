@@ -14,7 +14,7 @@ class TextPrinter(DirectObject.DirectObject):
         DirectObject.DirectObject.__init__(self)
         self.event = None
         self.sfx = None
-        self.text = DirectLabel(parent = aspect2d, relief = None, text = '', text_align = TextNode.ACenter, text_scale = 0.059999999999999998, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (0, 0, -0.90000000000000002), text_font = PiratesGlobals.getPirateOutlineFont(), sortOrder = 80, state = DGG.DISABLED)
+        self.text = DirectLabel(parent = aspect2d, relief = None, text = '', text_align = TextNode.ACenter, text_scale = 0.0598, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (0, 0, -0.9), text_font = PiratesGlobals.getPirateOutlineFont(), sortOrder = 80, state = DGG.DISABLED)
         self.text.hide()
         self.fader = None
         self.subtitleParent = render2d.attachNewNode(PGTop('subtitleParent'))

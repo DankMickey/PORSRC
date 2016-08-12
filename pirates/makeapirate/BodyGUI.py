@@ -93,14 +93,14 @@ class BodyGUI(DirectFrame, StateData.StateData):
             self.main.charGui.find('**/chargui_female_c_over'),
             self.main.charGui.find('**/chargui_female_d_over'),
             self.main.charGui.find('**/chargui_female_e_over')]
-        self.shapeFrameTitle = DirectFrame(parent = self.parent, relief = None, text = PLocalizer.BodyShapeFrameTitle, text_fg = (1, 1, 1, 1), text_scale = 0.17999999999999999, text_pos = (0, 0), pos = (0, 0, -0.10000000000000001), scale = 0.69999999999999996)
+        self.shapeFrameTitle = DirectFrame(parent = self.parent, relief = None, text = PLocalizer.BodyShapeFrameTitle, text_fg = (1, 1, 1, 1), text_scale = 0.179, text_pos = (0, 0), pos = (0, 0, -0.100), scale = 0.696)
         self.shapeFrameTitle.hide()
 
 
     def loadHeightGUI(self):
-        self.heightSlider = CharGuiSlider(self.main, parent = self.parent, text = PLocalizer.BodyHeightFrameTitle, command = self.updateHeightSlider, range = (-0.20000000000000001, 0.20000000000000001))
-        self.heightSlider.setPos(-0.29999999999999999, 0, -0.69999999999999996)
-        self.heightSlider.setScale(0.69999999999999996)
+        self.heightSlider = CharGuiSlider(self.main, parent = self.parent, text = PLocalizer.BodyHeightFrameTitle, command = self.updateHeightSlider, range = (-0.200, 0.200))
+        self.heightSlider.setPos(-0.299, 0, -0.696)
+        self.heightSlider.setScale(0.696)
         self.heightSlider['extraArgs'] = [
             self.heightSlider,
             0,
@@ -111,40 +111,40 @@ class BodyGUI(DirectFrame, StateData.StateData):
 
     def loadColorGUI(self):
         idx = 0
-        self.maleColorFrameTitle = DirectFrame(parent = self.parent, relief = None, image = self.main.charGui.find('**/chargui_frame05'), image_pos = (0, 0, -0.59999999999999998), image_scale = (1.5, 1, 1.25), text = PLocalizer.BodyColorFrameTitle, text_fg = (1, 1, 1, 1), text_scale = 0.17999999999999999, text_pos = (0, -0.040000000000000001), pos = (0, 0, -1.0), scale = 0.69999999999999996)
+        self.maleColorFrameTitle = DirectFrame(parent = self.parent, relief = None, image = self.main.charGui.find('**/chargui_frame05'), image_pos = (0, 0, -0.598), image_scale = (1.5, 1, 1.25), text = PLocalizer.BodyColorFrameTitle, text_fg = (1, 1, 1, 1), text_scale = 0.179, text_pos = (0, -0.0400), pos = (0, 0, -1.0), scale = 0.696)
         self.maleColorFrameTitle.hide()
         self.maleColorButtons = []
-        xOffset = -0.40000000000000002
-        yOffset = -0.29999999999999999
+        xOffset = -0.4
+        yOffset = -0.299
         whiteSkinTone = (1.0, 1.0, 1.0)
         for i in xrange(0, len(HumanDNA.skinColors)):
             if i and i % 5 == 0:
-                xOffset = -0.40000000000000002
-                yOffset -= 0.20000000000000001
+                xOffset = -0.4
+                yOffset -= 0.200
 
             skinColor = HumanDNA.skinColors[i]
             skinTone = (skinColor[0] * whiteSkinTone[0], skinColor[1] * whiteSkinTone[1], skinColor[2] * whiteSkinTone[2], 1.0)
-            self.maleColorButtons.append(DirectButton(parent = self.maleColorFrameTitle, relief = DGG.RAISED, pos = (xOffset, 0, yOffset), frameSize = (-0.10000000000000001, 0.10000000000000001, -0.10000000000000001, 0.10000000000000001), borderWidth = (0.0080000000000000002, 0.0080000000000000002), frameColor = skinTone, command = self.handleSetColor, extraArgs = [
+            self.maleColorButtons.append(DirectButton(parent = self.maleColorFrameTitle, relief = DGG.RAISED, pos = (xOffset, 0, yOffset), frameSize = (-0.100, 0.100, -0.100, 0.100), borderWidth = (0.008, 0.008), frameColor = skinTone, command = self.handleSetColor, extraArgs = [
                 i]))
-            xOffset += 0.20000000000000001
+            xOffset += 0.200
 
         idx = 1
-        self.femaleColorFrameTitle = DirectFrame(parent = self.parent, relief = None, image = self.main.charGui.find('**/chargui_frame05'), image_pos = (0, 0, -0.59999999999999998), image_scale = (1.5, 1, 1.25), text = PLocalizer.BodyColorFrameTitle, text_fg = (1, 1, 1, 1), text_scale = 0.17999999999999999, text_pos = (0, -0.040000000000000001), pos = (0, 0, -1.0), scale = 0.69999999999999996)
+        self.femaleColorFrameTitle = DirectFrame(parent = self.parent, relief = None, image = self.main.charGui.find('**/chargui_frame05'), image_pos = (0, 0, -0.598), image_scale = (1.5, 1, 1.25), text = PLocalizer.BodyColorFrameTitle, text_fg = (1, 1, 1, 1), text_scale = 0.179, text_pos = (0, -0.0400), pos = (0, 0, -1.0), scale = 0.696)
         self.femaleColorFrameTitle.hide()
         self.femaleColorButtons = []
-        xOffset = -0.40000000000000002
-        yOffset = -0.29999999999999999
+        xOffset = -0.4
+        yOffset = -0.299
         whiteSkinTone = (1.0, 1.0, 1.0)
         for i in xrange(0, len(HumanDNA.skinColors)):
             if i and i % 5 == 0:
-                xOffset = -0.40000000000000002
-                yOffset -= 0.20000000000000001
+                xOffset = -0.4
+                yOffset -= 0.200
 
             skinColor = HumanDNA.skinColors[i]
             skinTone = (skinColor[0] * whiteSkinTone[0], skinColor[1] * whiteSkinTone[1], skinColor[2] * whiteSkinTone[2], 1.0)
-            self.femaleColorButtons.append(DirectButton(parent = self.femaleColorFrameTitle, relief = DGG.RAISED, pos = (xOffset, 0, yOffset), frameSize = (-0.10000000000000001, 0.10000000000000001, -0.10000000000000001, 0.10000000000000001), borderWidth = (0.0080000000000000002, 0.0080000000000000002), frameColor = skinTone, command = self.handleSetColor, extraArgs = [
+            self.femaleColorButtons.append(DirectButton(parent = self.femaleColorFrameTitle, relief = DGG.RAISED, pos = (xOffset, 0, yOffset), frameSize = (-0.100, 0.100, -0.100, 0.100), borderWidth = (0.008, 0.008), frameColor = skinTone, command = self.handleSetColor, extraArgs = [
                 i]))
-            xOffset += 0.20000000000000001
+            xOffset += 0.200
 
 
 
@@ -219,12 +219,12 @@ class BodyGUI(DirectFrame, StateData.StateData):
             PLocalizer.BodyTallPear,
             PLocalizer.BodyTallMuscular]
         self.shapeButtons = []
-        xOffset = -1.1000000000000001
-        yOffset = -0.40000000000000002
+        xOffset = -1.10
+        yOffset = -0.4
         for i in xrange(0, len(self.maleShapeButtonIcons)):
             self.shapeButtons.append(DirectButton(parent = self.shapeFrameTitle, relief = None, geom = (self.maleShapeButtonIcons[i], self.maleShapeButtonIconsOver[i], self.maleShapeButtonIconsOver[i]), geom_scale = 2, pos = (xOffset, 0, yOffset), command = self.handleShape, extraArgs = [
                 i]))
-            xOffset += 0.55000000000000004
+            xOffset += 0.550000
 
 
 
@@ -258,7 +258,7 @@ class BodyGUI(DirectFrame, StateData.StateData):
             if random.choice([
                 0,
                 1]):
-                value = random.random() * 0.10000000000000001
+                value = random.random() * 0.100
                 toss = 0
                 if slider['range'][0] < 0:
                     toss = random.choice([
@@ -292,7 +292,7 @@ class BodyGUI(DirectFrame, StateData.StateData):
             if random.choice([
                 0,
                 1]):
-                value = random.random() * 0.10000000000000001
+                value = random.random() * 0.100
                 toss = 0
                 if slider['range'][0] < 0:
                     toss = random.choice([
@@ -327,7 +327,7 @@ class BodyGUI(DirectFrame, StateData.StateData):
 
     def handleShape(self, index, needToRefresh = True):
         for i in xrange(0, len(self.shapeButtons)):
-            self.shapeButtons[i].setColor(0.59999999999999998, 0.80000000000000004, 1.0, 1.0)
+            self.shapeButtons[i].setColor(0.598, 0.800000, 1.0, 1.0)
 
         bodyShapeIndex = BodyDefs.BodyChoiceGenderDict[self.main.pirate.style.gender][index]
         self.shapeButtons[index].setColor(1.0, 1.0, 0, 1.0)

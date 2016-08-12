@@ -21,16 +21,16 @@ class RedeemCodeGUI(DirectFrame):
         self.initialiseoptions(RedeemCodeGUI)
         gui_main = loader.loadModel('models/gui/gui_main')
         topImage = gui_main.find('**/game_options_panel/top')
-        topImage.setPos(0.52000000000000002, 0, -0.14999999999999999)
+        topImage.setPos(0.52, 0, -0.149)
         gui_main.remove_node()
-        self.artFrame = DirectFrame(parent = aspect2dp, relief = None, image = topImage, image_scale = (0.23999999999999999, 0.23999999999999999, 0.23999999999999999), pos = (0.10000000000000001, 0.0, -0.20000000000000001))
+        self.artFrame = DirectFrame(parent = aspect2dp, relief = None, image = topImage, image_scale = (0.239, 0.239, 0.239), pos = (0.100, 0.0, -0.200))
         self.artFrame.setBin('gui-fixed', 6)
-        self.blackout = DirectFrame(parent = aspect2dp, state = DGG.NORMAL, frameSize = (-5, 5, -5, 5), frameColor = (0.0, 0.0, 0.0, 0.40000000000000002), pos = (0.0, 0.0, 0.0))
-        self.enterCode = GuiButton.GuiButton(parent = self.artFrame, text = PLocalizer.lConfirm, pos = (0.38500000000000001, 0.0, -0.025000000000000001), command = self.confirmCode)
-        self.cancelCode = GuiButton.GuiButton(parent = self.artFrame, text = PLocalizer.lCancel, pos = (0.65000000000000002, 0.0, -0.025000000000000001), command = self.hideCode)
-        DirectLabel(parent = self.artFrame, relief = None, text = PLocalizer.ShopEnterCode, text_align = TextNode.ACenter, text_scale = PiratesGuiGlobals.TextScaleTitleSmall * 0.90000000000000002, text_pos = (0.51000000000000001, 0.33500000000000002), text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getInterfaceOutlineFont(), textMayChange = 0)
-        DirectLabel(parent = self.artFrame, relief = None, text = PLocalizer.ShopCodeInst, text_align = TextNode.ACenter, text_scale = PiratesGuiGlobals.TextScaleLarge * 1.1000000000000001, text_pos = (0.51000000000000001, 0.25), text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getInterfaceOutlineFont(), textMayChange = 0, text_wordwrap = 12)
-        self.codeInput = DirectEntry(parent = self.artFrame, relief = DGG.GROOVE, scale = PiratesGuiGlobals.TextScaleExtraLarge, pos = (0.52000000000000002, 0, 0.059999999999999998), borderWidth = PiratesGuiGlobals.BorderWidth, frameColor = (0.0, 0.0, 0.0, 1.0), text_align = TextNode.ACenter, width = 15, numLines = 1, focus = 1, cursorKeys = 1, text_fg = (1, 1, 1, 1), suppressKeys = 1, suppressMouse = 1, autoCapitalize = 0, command = self.confirmCode)
+        self.blackout = DirectFrame(parent = aspect2dp, state = DGG.NORMAL, frameSize = (-5, 5, -5, 5), frameColor = (0.0, 0.0, 0.0, 0.4), pos = (0.0, 0.0, 0.0))
+        self.enterCode = GuiButton.GuiButton(parent = self.artFrame, text = PLocalizer.lConfirm, pos = (0.385, 0.0, -0.0250), command = self.confirmCode)
+        self.cancelCode = GuiButton.GuiButton(parent = self.artFrame, text = PLocalizer.lCancel, pos = (0.65, 0.0, -0.0250), command = self.hideCode)
+        DirectLabel(parent = self.artFrame, relief = None, text = PLocalizer.ShopEnterCode, text_align = TextNode.ACenter, text_scale = PiratesGuiGlobals.TextScaleTitleSmall * 0.9, text_pos = (0.510, 0.335), text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getInterfaceOutlineFont(), textMayChange = 0)
+        DirectLabel(parent = self.artFrame, relief = None, text = PLocalizer.ShopCodeInst, text_align = TextNode.ACenter, text_scale = PiratesGuiGlobals.TextScaleLarge * 1.10, text_pos = (0.510, 0.25), text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getInterfaceOutlineFont(), textMayChange = 0, text_wordwrap = 12)
+        self.codeInput = DirectEntry(parent = self.artFrame, relief = DGG.GROOVE, scale = PiratesGuiGlobals.TextScaleExtraLarge, pos = (0.52, 0, 0.0598), borderWidth = PiratesGuiGlobals.BorderWidth, frameColor = (0.0, 0.0, 0.0, 1.0), text_align = TextNode.ACenter, width = 15, numLines = 1, focus = 1, cursorKeys = 1, text_fg = (1, 1, 1, 1), suppressKeys = 1, suppressMouse = 1, autoCapitalize = 0, command = self.confirmCode)
         self.alertDialog = None
         self.accept('codeRedeemed', self._RedeemCodeGUI__handleCodeRedeem)
 
@@ -47,7 +47,7 @@ class RedeemCodeGUI(DirectFrame):
 
         if input == None or len(input) == 0:
             self.alertDialog = PDialog.PDialog(parent = aspect2dp, text = PLocalizer.ShopCodeErr, style = OTPDialog.CancelOnly, command = self._RedeemCodeGUI__handleAlert, destroyedCallback = self._RedeemCodeGUI__destroyedAlert)
-            self.alertDialog.setPos(0.59999999999999998, 0, 0.10000000000000001)
+            self.alertDialog.setPos(0.598, 0, 0.100)
             self.alertDialog.setBin('gui-fixed', 6)
         else:
             localAvatar.submitCodeToServer(input)
@@ -68,7 +68,7 @@ class RedeemCodeGUI(DirectFrame):
             self.alertDialog = PDialog.PDialog(parent = aspect2dp, text = PLocalizer.ShopCodeFull, style = OTPDialog.CancelOnly, command = self._RedeemCodeGUI__handleCodeSuccess, destroyedCallback = self._RedeemCodeGUI__destroyedAlert)
         else:
             self.alertDialog = PDialog.PDialog(parent = aspect2dp, text = PLocalizer.ShopCodeErr, style = OTPDialog.CancelOnly, command = self._RedeemCodeGUI__handleAlert, destroyedCallback = self._RedeemCodeGUI__destroyedAlert)
-        self.alertDialog.setPos(0.59999999999999998, 0, 0.10000000000000001)
+        self.alertDialog.setPos(0.598, 0, 0.100)
         self.alertDialog.setBin('gui-fixed', 6)
 
 

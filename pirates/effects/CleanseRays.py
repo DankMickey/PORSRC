@@ -28,7 +28,7 @@ class CleanseRays(PooledEffect, EffectController):
         textureStage = self.effectModel.findAllTextureStages()[0]
         duration = 5.5
         self.setNewUVs(1.0, self.effectModel, textureStage)
-        scaleIval = LerpScaleInterval(self, duration, Vec3(1.2, 1.2, 1.6000000000000001), startScale = Vec3(0.80000000000000004, 0.80000000000000004, 0.20000000000000001))
+        scaleIval = LerpScaleInterval(self, duration, Vec3(1.2, 1.2, 1.60), startScale = Vec3(0.800000, 0.800000, 0.200))
         uvScroll = LerpFunctionInterval(self.setNewUVs, duration, toData = -2.0, fromData = 1.0, extraArgs = [
             self.effectModel,
             textureStage])

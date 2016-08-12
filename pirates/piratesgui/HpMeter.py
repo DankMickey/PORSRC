@@ -11,7 +11,7 @@ from pirates.piratesbase import PiratesGlobals
 class HpMeter(DirectFrame):
     FADEOUT_TIME = 8.0
 
-    def __init__(self, name = '', width = 0.40000000000000002, height = 0.025000000000000001, fadeOut = 0, parent = None, originAtMidPt = False):
+    def __init__(self, name = '', width = 0.4, height = 0.0250, fadeOut = 0, parent = None, originAtMidPt = False):
         DirectFrame.__init__(self, relief = None, parent = parent)
         self.initialiseoptions(HpMeter)
         self.fadeOut = fadeOut
@@ -21,13 +21,13 @@ class HpMeter(DirectFrame):
         self.name = name
         self.doId = 0
         self.fader = None
-        self.categoryLabel = DirectLabel(parent = self, relief = None, text = self.name, text_scale = height + 0.0050000000000000001, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, pos = (0, 0, height + 0.014999999999999999), textMayChange = 1, text_font = PiratesGlobals.getPirateOutlineFont())
+        self.categoryLabel = DirectLabel(parent = self, relief = None, text = self.name, text_scale = height + 0.00500, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, pos = (0, 0, height + 0.0149), textMayChange = 1, text_font = PiratesGlobals.getPirateOutlineFont())
         if originAtMidPt:
             meterPos = (-width / 2.0, 0, 0)
         else:
             meterPos = (0, 0, 0)
-        self.meter = DirectWaitBar(parent = self, relief = DGG.RAISED, borderWidth = (0.0040000000000000001, 0.0040000000000000001), range = self.max, value = self.value, frameColor = (0, 0, 0, 1), barColor = (0.10000000000000001, 0.10000000000000001, 0.69999999999999996, 1), pos = meterPos, frameSize = (0, width, 0, height))
-        self.valueLabel = DirectLabel(parent = self.meter, relief = None, text = '', text_scale = PiratesGuiGlobals.TextScaleTiny, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, pos = (0.20000000000000001, 0, 0.0050000000000000001), textMayChange = 1)
+        self.meter = DirectWaitBar(parent = self, relief = DGG.RAISED, borderWidth = (0.00400, 0.00400), range = self.max, value = self.value, frameColor = (0, 0, 0, 1), barColor = (0.100, 0.100, 0.696, 1), pos = meterPos, frameSize = (0, width, 0, height))
+        self.valueLabel = DirectLabel(parent = self.meter, relief = None, text = '', text_scale = PiratesGuiGlobals.TextScaleTiny, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, pos = (0.200, 0, 0.00500), textMayChange = 1)
         self.update(self.value, self.max)
         if not base.config.GetBool('display-enemyHp', 0):
             self.valueLabel.hide()
@@ -59,9 +59,9 @@ class HpMeter(DirectFrame):
 
         hpFraction = float(self.value) / float(self.max)
         if hpFraction >= 0.5:
-            self.meter['barColor'] = (0.10000000000000001, 0.69999999999999996, 0.10000000000000001, 1)
+            self.meter['barColor'] = (0.100, 0.696, 0.100, 1)
         elif hpFraction >= 0.25:
-            self.meter['barColor'] = (1.0, 1.0, 0.10000000000000001, 1)
+            self.meter['barColor'] = (1.0, 1.0, 0.100, 1)
         else:
             self.meter['barColor'] = (1.0, 0.0, 0.0, 1)
         if self.fadeOut:

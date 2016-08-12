@@ -104,7 +104,7 @@ def genColor(number, type, npc, effects):
         a = 1
     elif type == 3:
         if npc:
-            r = 0.29999999999999999
+            r = 0.299
             g = 0.0
             b = 1.0
             a = 1
@@ -119,55 +119,55 @@ def genColor(number, type, npc, effects):
         b = 1.0
         a = 1
     elif type == 5:
-        r = 0.80000000000000004
+        r = 0.800000
         g = 1.0
-        b = 0.80000000000000004
+        b = 0.800000
         a = 1
     elif type == 7:
-        r = 0.80000000000000004
-        g = 0.20000000000000001
+        r = 0.800000
+        g = 0.200
         b = 0.0
         a = 1
     elif type == 8:
         r = 1.0
-        g = 0.40000000000000002
-        b = 0.10000000000000001
+        g = 0.4
+        b = 0.100
         a = 1
     elif type == 9:
         r = 0.0
-        g = 0.90000000000000002
+        g = 0.9
         b = 0.0
         a = 1
     elif type == 10:
-        r = 0.59999999999999998
-        g = 0.59999999999999998
-        b = 0.94999999999999996
+        r = 0.598
+        g = 0.598
+        b = 0.946
         a = 1
     elif number < 0:
         if ItemGlobals.CRITICAL in effects:
-            r = 0.90000000000000002
-            g = 0.69999999999999996
-            b = 0.29999999999999999
+            r = 0.9
+            g = 0.696
+            b = 0.299
             a = 1
         elif npc:
-            r = 0.90000000000000002
-            g = 0.10000000000000001
-            b = 0.10000000000000001
+            r = 0.9
+            g = 0.100
+            b = 0.100
             a = 1
         else:
-            r = 0.90000000000000002
-            g = 0.29999999999999999
-            b = 0.10000000000000001
+            r = 0.9
+            g = 0.299
+            b = 0.100
             a = 1
     elif npc:
         r = 0
-        g = 0.90000000000000002
+        g = 0.9
         b = 0
         a = 1
     else:
-        r = 0.10000000000000001
-        g = 0.90000000000000002
-        b = 0.20000000000000001
+        r = 0.100
+        g = 0.9
+        b = 0.200
         a = 1
     return (r, g, b, a)
 
@@ -217,7 +217,7 @@ class TextEffect:
             self.hpText = hpText
 
         if satellite:
-            hpText.setScale(self.scale * 0.69999999999999996)
+            hpText.setScale(self.scale * 0.696)
         else:
             hpText.setScale(self.scale)
         hpText.setBillboardPointEye(3.0)
@@ -246,7 +246,7 @@ class TextEffect:
         if self.startPos:
             hpTextDummy.setPos(self.targetObj, self.startPos[0], self.startPos[1], self.startPos[2])
         else:
-            hpTextDummy.setPos(self, 0, 0, self.targetObj.height * 0.66600000000000004)
+            hpTextDummy.setPos(self, 0, 0, self.targetObj.height * 0.666000)
         hpTextDummy.headsUp(base.camera)
         hpTextDummy.setH(hpTextDummy.getH() + 180)
         tgtColor = Vec4(origColor[0], origColor[1], origColor[2], 0)
@@ -254,17 +254,17 @@ class TextEffect:
             destPos = Point3(hpTextDummy.getX(), hpTextDummy.getY(), hpTextDummy.getZ() + 3 * self.scale)
 
         numberMoveUp = hpTextDummy.posInterval(self.duration, destPos)
-        fadeOut = hpTextDummy.colorScaleInterval(self.duration * 0.33300000000000002, tgtColor, startColorScale = Vec4(*origColor))
+        fadeOut = hpTextDummy.colorScaleInterval(self.duration * 0.333, tgtColor, startColorScale = Vec4(*origColor))
         trackParallel = Parallel(numberMoveUp)
         numMods = len(self.mods)
-        origModDelay = self.duration * 0.80000000000000004 / (numMods + 1)
+        origModDelay = self.duration * 0.800000 / (numMods + 1)
         modDelay = origModDelay * 0.5
         for mod in self.mods:
             nextModDelay = modDelay + origModDelay
             trackParallel.append(Sequence(Wait(modDelay), Func(self.playMod, hpTextDummy, mod, origModDelay)))
             modDelay = nextModDelay
 
-        trackParallel.append(Sequence(Wait(self.duration * 0.66600000000000004), fadeOut))
+        trackParallel.append(Sequence(Wait(self.duration * 0.666000), fadeOut))
         track = Sequence(trackParallel, Func(self.finish, hpTextDummy))
         track.start()
         self.textNodes.append(hpTextDummy)
@@ -303,8 +303,8 @@ class TextEffect:
             self.textModIvals = []
 
         if mod.type == MOD_TYPE_SEQUENTIAL_COMPACT or mod.type == MOD_TYPE_MULTIPLE_COMPACT:
-            zLoc = (1.8999999999999999 - parentHeight) + self.scale * 0.5
-            modText.setPos(0, -0.10000000000000001, zLoc)
+            zLoc = (1.89 - parentHeight) + self.scale * 0.5
+            modText.setPos(0, -0.100, zLoc)
             origColor = self.textColor
             origColorX = origColor[0]
             origColorY = origColor[1]
@@ -321,14 +321,14 @@ class TextEffect:
 
             modTextFade = Sequence(modText.colorScaleInterval(0.5, origColor, startColorScale = tgtColor))
             if mod.type != MOD_TYPE_MULTIPLE_COMPACT:
-                modTextFade.append(Wait(fadeDelay - 0.14999999999999999 - 0.5))
-                modTextFade.append(modText.colorScaleInterval(0.14999999999999999, tgtColor, startColorScale = origColor))
+                modTextFade.append(Wait(fadeDelay - 0.149 - 0.5))
+                modTextFade.append(modText.colorScaleInterval(0.149, tgtColor, startColorScale = origColor))
 
             fullTrack.append(modTextFade)
             fullTrack.start()
             self.textModIvals.append(fullTrack)
         else:
-            modText.setPos(2 * self.scale * 1.25, -0.10000000000000001, 2 + self.scale * 0.90000000000000002)
+            modText.setPos(2 * self.scale * 1.25, -0.100, 2 + self.scale * 0.9)
             if prevTextModPos:
                 startPos = modText.getPos()
                 modText.setPos(prevTextModPos)

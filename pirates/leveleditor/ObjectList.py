@@ -297,7 +297,7 @@ PlayerSpawnNode['Ship Movement Node'] = {
                 'Direction 1',
                 'Direction 2']] },
     'Visual': {
-        'Color': (0.65000000000000002, 0, 0, 1),
+        'Color': (0.65, 0, 0, 1),
         'Model': 'models/misc/smiley',
         'Models': [
             'models/misc/smiley'],
@@ -309,7 +309,7 @@ PlayerSpawnNode['Ship Spawn Node'] = {
     'Selectable': 1,
     'UI Name': 'SHIP Spawn Node',
     'Visual': {
-        'Color': (0, 0, 0.65000000000000002, 1),
+        'Color': (0, 0, 0.65, 1),
         'Model': 'models/misc/smiley',
         'Models': [
             'models/misc/smiley'],
@@ -361,7 +361,7 @@ PlayerSpawnNode['Cannon Defense Movement Node'] = {
                 'Mine',
                 'Depart']] },
     'Visual': {
-        'Color': (0.65000000000000002, 0, 0, 1),
+        'Color': (0.65, 0, 0, 1),
         'Model': 'models/misc/smiley',
         'Models': [
             'models/misc/smiley'],
@@ -373,7 +373,7 @@ PlayerSpawnNode['Spawn Node'] = {
     'Selectable': 1,
     'UI Name': 'NPC Spawn Node',
     'Visual': {
-        'Color': (0, 0, 0.65000000000000002, 1),
+        'Color': (0, 0, 0.65, 1),
         'Models': [
             'models/misc/smiley'],
         'Scale': 2.0,
@@ -554,7 +554,7 @@ PlayerSpawnNode['Dormant NPC Spawn Node'] = {
     'Selectable': 1,
     'UI Name': 'Dormant NPC Spawn Node',
     'Visual': {
-        'Color': (0, 0, 0.65000000000000002, 1),
+        'Color': (0, 0, 0.65, 1),
         'Models': [
             'models/misc/smiley'],
         'Scale': 2.0,
@@ -727,7 +727,7 @@ PlayerSpawnNode['Invasion NPC Spawn Node'] = {
     'Selectable': 1,
     'UI Name': 'Invasion NPC Spawn Node',
     'Visual': {
-        'Color': (0, 0.65000000000000002, 0, 1),
+        'Color': (0, 0.65, 0, 1),
         'Models': [
             'models/misc/smiley'],
         'Scale': 2.0,
@@ -889,7 +889,7 @@ PlayerSpawnNode['Cutscene Origin Node'] = {
     'Selectable': 1,
     'UI Name': 'Cutscene Origin Node',
     'Visual': {
-        'Color': (0, 0, 0.65000000000000002, 1),
+        'Color': (0, 0, 0.65, 1),
         'Models': [
             'models/misc/smiley'],
         'Offset': (0, 0, 1.0) },
@@ -905,7 +905,7 @@ PlayerSpawnNode['Effect Node'] = {
     'Selectable': 1,
     'UI Name': 'Effect Node',
     'Visual': {
-        'Color': (0, 0, 0.65000000000000002, 1),
+        'Color': (0, 0, 0.65, 1),
         'Models': [
             'models/misc/smiley'],
         'Offset': (0, 0, 1.0) },
@@ -924,7 +924,7 @@ PlayerSpawnNode['Object Spawn Node'] = {
     'Linkable': 1,
     'UI Name': 'Object Spawn Node',
     'Visual': {
-        'Color': (0.80000000000000004, 0.20000000000000001, 0.65000000000000002, 1),
+        'Color': (0.800000, 0.200, 0.65, 1),
         'Models': [
             'models/misc/smiley'],
         'Scale': 2.0,
@@ -1232,7 +1232,7 @@ AVAIL_OBJ_LIST = {
         'Raycast': 1,
         'Selectable': 1,
         'Visual': {
-            'Color': (0.5, 0.5, 1.0, 0.20000000000000001),
+            'Color': (0.5, 0.5, 1.0, 0.200),
             'Scale': 1.0,
             'Models': [
                 'models/misc/smiley'] } },
@@ -3477,13 +3477,13 @@ AVAIL_OBJ_LIST = {
                 'HorizontalFov': [
                     PROP_UI_SLIDE,
                     [
-                        179.99000000000001,
+                        179.99,
                         0.01],
                     'self.setEffectProjectorFov'],
                 'VerticalFov': [
                     PROP_UI_SLIDE,
                     [
-                        179.99000000000001,
+                        179.99,
                         0.01],
                     'self.setEffectProjectorFov'],
                 'TargetUids': [
@@ -6226,7 +6226,7 @@ AVAIL_OBJ_LIST = {
             'Selectable': 1,
             'UI Name': 'Ambient SFX Node',
             'Visual': {
-                'Color': (0, 0.65000000000000002, 0, 1),
+                'Color': (0, 0.65, 0, 1),
                 'Model': 'models/misc/smiley',
                 'Scale': 1.0,
                 'Offset': (0, 0, 1.0) },
@@ -6236,7 +6236,7 @@ AVAIL_OBJ_LIST = {
                     [
                         2500.0,
                         0.0,
-                        0.10000000000000001],
+                        0.100],
                     'self.setEntityProperty'] },
             'PropertiesList': [
                 'Range'],
@@ -6249,7 +6249,7 @@ AVAIL_OBJ_LIST = {
             'Selectable': 1,
             'UI Name': 'SFX Node',
             'Visual': {
-                'Color': (0, 0.65000000000000002, 0, 1),
+                'Color': (0, 0.65, 0, 1),
                 'Model': 'models/misc/smiley',
                 'Scale': 1.0,
                 'Offset': (0, 0, 1.0) },
@@ -6274,14 +6274,14 @@ AVAIL_OBJ_LIST = {
                     [
                         60.0,
                         0.0,
-                        0.10000000000000001],
+                        0.100],
                     'self.setSoundFX'],
                 'DelayMax': [
                     PROP_UI_SLIDE,
                     [
                         60.0,
                         0.0,
-                        0.10000000000000001],
+                        0.100],
                     'self.setSoundFX'] },
             'PropertiesList': [
                 'SFX Group',
@@ -6425,7 +6425,7 @@ AVAIL_OBJ_LIST = {
                 'LinearAttenuation': [
                     PROP_UI_SLIDE,
                     [
-                        0.14999999999999999,
+                        0.149,
                         0],
                     'self.setLightRadius'],
                 'QuadraticAttenuation': [

@@ -55,12 +55,12 @@ class SoulHarvest(PooledEffect, EffectController):
         self.p0.renderer.setInitialXScale(0.01 * self.cardScale)
         self.p0.renderer.setFinalXScale(0.012 * self.cardScale)
         self.p0.renderer.setInitialYScale(0.0001 * self.cardScale)
-        self.p0.renderer.setFinalYScale(0.14999999999999999 * self.cardScale)
+        self.p0.renderer.setFinalYScale(0.149 * self.cardScale)
         self.p0.renderer.setNonanimatedTheta(0.0)
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPBLENDLINEAR)
         self.p0.renderer.setAlphaDisable(0)
         self.p0.renderer.setColorBlendMode(ColorBlendAttrib.MAdd, ColorBlendAttrib.OOneMinusFbufferAlpha, ColorBlendAttrib.OOneMinusIncomingAlpha)
-        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(1.0, 1.0, 1.0, 1.0), Vec4(0.58999999999999997, 0.78000000000000003, 0.69999999999999996, 0.40000000000000002), 1)
+        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(1.0, 1.0, 1.0, 1.0), Vec4(0.58, 0.78000, 0.696, 0.4), 1)
         self.p0.emitter.setEmissionType(BaseParticleEmitter.ETRADIATE)
         self.p0.emitter.setAmplitude(1.0)
         self.p0.emitter.setAmplitudeSpread(0.0)
@@ -77,7 +77,7 @@ class SoulHarvest(PooledEffect, EffectController):
     def setEffectColor(self, color):
         self.effectColor = Vec4(1, 1, 1, 0) - (Vec4(1, 1, 1, 1) - color) / 2.0
         self.p0.renderer.getColorInterpolationManager().clearToInitial()
-        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, self.effectColor, Vec4(0.58999999999999997, 0.78000000000000003, 0.69999999999999996, 0.40000000000000002), 1)
+        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, self.effectColor, Vec4(0.58, 0.78000, 0.696, 0.4), 1)
 
 
     def cleanUpEffect(self):

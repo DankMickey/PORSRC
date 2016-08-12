@@ -15,8 +15,8 @@ objectStruct = {
                 '1172092324.47kmuller': {
                     'Type': 'Flower_Pots',
                     'Hpr': VBase3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-2.6499999999999999, -7.0330000000000004, 2.629),
-                    'Scale': VBase3(0.88100000000000001, 0.88100000000000001, 0.88100000000000001),
+                    'Pos': Point3(-2.64, -7.03300, 2.629),
+                    'Scale': VBase3(0.881, 0.881, 0.881),
                     'Visual': {
                         'Model': 'models/props/FlowerPot1' } },
                 '1181605248.0dxschafe': {
@@ -25,9 +25,9 @@ objectStruct = {
                     'Aggro Radius': '12.0000',
                     'AnimSet': 'bar_wipe',
                     'CustomModel': 'None',
-                    'Hpr': VBase3(104.38200000000001, 0.0, 0.0),
+                    'Hpr': VBase3(104.382, 0.0, 0.0),
                     'Patrol Radius': '12.0000',
-                    'Pos': Point3(33.070999999999998, 8.4120000000000008, -0.23699999999999999),
+                    'Pos': Point3(33.0708, 8.4120000000000008, -0.236),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'Private Status': 'All',
@@ -41,7 +41,7 @@ objectStruct = {
                     'Type': 'Door Locator Node',
                     'Name': 'door_locator',
                     'Hpr': VBase3(-180.0, 0.0, 0.0),
-                    'Pos': Point3(-0.17899999999999999, -4.4210000000000003, 4.8899999999999997),
+                    'Pos': Point3(-0.178, -4.4210, 4.88),
                     'Scale': VBase3(1.0, 1.0, 1.0) },
                 '1222963591.11akelts': {
                     'Type': 'Light - Dynamic',
@@ -52,11 +52,11 @@ objectStruct = {
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Intensity': '0.3012',
                     'LightType': 'AMBIENT',
-                    'Pos': Point3(15.779999999999999, 3.3439999999999999, 37.624000000000002),
+                    'Pos': Point3(15.779, 3.3439, 37.624),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.94999999999999996, 1.0, 0.91000000000000003, 1.0),
+                        'Color': (0.946, 1.0, 0.91000, 1.0),
                         'Model': 'models/props/light_tool_bulb' } },
                 '1222963599.89akelts': {
                     'Type': 'Light - Dynamic',
@@ -64,14 +64,14 @@ objectStruct = {
                     'ConeAngle': '60.0000',
                     'DropOff': '0.0000',
                     'FlickRate': '0.5000',
-                    'Hpr': VBase3(180.0, -86.066999999999993, 180.0),
+                    'Hpr': VBase3(180.0, -86.0663, 180.0),
                     'Intensity': '0.6747',
                     'LightType': 'DIRECTIONAL',
-                    'Pos': Point3(22.268000000000001, 2.5409999999999999, 42.139000000000003),
+                    'Pos': Point3(22.268, 2.5409, 42.139),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
                     'Visual': {
-                        'Color': (0.93999999999999995, 0.94999999999999996, 1.0, 1.0),
+                        'Color': (0.935, 0.946, 1.0, 1.0),
                         'Model': 'models/props/light_tool_bulb' } } },
             'VisSize': '',
             'Visual': {

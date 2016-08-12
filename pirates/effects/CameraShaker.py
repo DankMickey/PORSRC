@@ -10,7 +10,7 @@ class CameraShaker(NodePath):
 
     def __init__(self):
         NodePath.__init__(self, 'CameraShakerRenderParent')
-        self.shakeSpeed = 0.10000000000000001
+        self.shakeSpeed = 0.100
         self.shakePower = 5.0
         self.numShakes = 1.0
         self.track = None

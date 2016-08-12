@@ -54,7 +54,7 @@ class BlackPearlCrew(DirectFrame):
         DirectFrame.__init__(self, relief = None)
         self.crewButtons = { }
         self.crewQuestInts = { }
-        imagePos = (-0.45000000000000001, 0.0, -0.29999999999999999)
+        imagePos = (-0.450, 0.0, -0.299)
         self.images = loader.loadModel('models/gui/gui_bpcrew')
         for crewMember in self.crewData:
             uniqueId = crewMember.get('uniqueId')
@@ -62,7 +62,7 @@ class BlackPearlCrew(DirectFrame):
             containerName = crewMember.get('ladder')
             container = QuestLadderDB.getContainer(containerName)
             self.crewQuestInts[uniqueId] = QuestLadderDB.getAllParentQuestInts(container)
-            self.crewButtons[uniqueId] = GuiButton(parent = self, pos = imagePos, state = DGG.DISABLED, image = memberImage, image_scale = 0.17999999999999999, geom_pos = imagePos)
+            self.crewButtons[uniqueId] = GuiButton(parent = self, pos = imagePos, state = DGG.DISABLED, image = memberImage, image_scale = 0.179, geom_pos = imagePos)
 
         self.accept('clientLogout', self.destroy)
 

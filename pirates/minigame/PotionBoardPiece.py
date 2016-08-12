@@ -26,16 +26,16 @@ class PotionBoardPiece(NodePath):
         (1.0, 0, 0, 1.0),
         (0, 0, 1.0, 1.0),
         (0, 1.0, 0, 1.0),
-        (0.80000000000000004, 0.59999999999999998, 0, 1.0),
-        (0.29999999999999999, 0.29999999999999999, 0.29999999999999999, 1.0),
-        (0.80000000000000004, 0, 1.0, 1.0)]
+        (0.800000, 0.598, 0, 1.0),
+        (0.299, 0.299, 0.299, 1.0),
+        (0.800000, 0, 1.0, 1.0)]
     colorTableIncomplete = [
         (0.5, 0.25, 0.25, 1.0),
         (0.25, 0.5, 0.25, 1.0),
         (0.25, 0.25, 0.5, 1.0),
-        (0.59999999999999998, 0.40000000000000002, 0.20000000000000001, 1.0),
-        (0.80000000000000004, 0.80000000000000004, 0.80000000000000004, 1.0),
-        (0.59999999999999998, 0.5, 0.75, 1.0)]
+        (0.598, 0.4, 0.200, 1.0),
+        (0.800000, 0.800000, 0.800000, 1.0),
+        (0.598, 0.5, 0.75, 1.0)]
     secretColor = (0.5, 0.5, 0.5, 1.0)
 
     def __init__(self, parentFrame, color = 0, level = 0, colorSet = 0, recipe = None):
@@ -94,13 +94,13 @@ class PotionBoardPiece(NodePath):
         self.nameCheck = topGui.find('**/generic_check')
         textureCard = loader.loadModel('models/minigames/pir_m_gui_pot_textureCard')
         self.checkBox = textureCard.find('**/pir_t_gui_pot_checkbox')
-        self.nameLabel = DirectLabel(relief = None, text = nameText, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_align = TextNode.ALeft, text_fg = PotionGlobals.TextColor, text_wordwrap = 37, pos = (0.22, 0, -0.040000000000000001), textMayChange = 0)
+        self.nameLabel = DirectLabel(relief = None, text = nameText, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_align = TextNode.ALeft, text_fg = PotionGlobals.TextColor, text_wordwrap = 37, pos = (0.22, 0, -0.0400), textMayChange = 0)
         self.nameLabel.reparentTo(self)
-        self.nameCheck.setPos(0.16, 0, -0.029999999999999999)
+        self.nameCheck.setPos(0.16, 0, -0.0299)
         self.nameCheck.setScale(0.75, 0.75, 0.75)
         self.nameCheck.reparentTo(self.background)
-        self.checkBox.setPos(0.14999999999999999, 0, -0.070000000000000007)
-        self.checkBox.setScale(0.20000000000000001, 0.20000000000000001, 0.20000000000000001)
+        self.checkBox.setPos(0.149, 0, -0.070)
+        self.checkBox.setScale(0.200, 0.200, 0.200)
         self.checkBox.reparentTo(self.background)
         if not self.completed:
             self.nameCheck.stash()
@@ -277,7 +277,7 @@ class PotionBoardPiece(NodePath):
         self.background.reparentTo(self)
         self.bgModel = loader.loadModel('models/minigames/pir_m_gui_pot_tok_blank')
         self.bgModel.flattenStrong()
-        self.bgModel.setScale(0.35199999999999998, 0.35199999999999998, 0.35199999999999998)
+        self.bgModel.setScale(0.35198, 0.35198, 0.35198)
         self.bgModel.reparentTo(self.background)
         self.background.reparentTo(self)
         self.bgModel.setTransparency(True)
@@ -297,9 +297,9 @@ class PotionBoardPiece(NodePath):
         self.column = destX
         self.row = destY
         if self.column % 2 == 0:
-            self.setPiecePosition(self.column * 0.13919999999999999, self.row * 0.16159999999999999 + 0.080799999999999997)
+            self.setPiecePosition(self.column * 0.13919, self.row * 0.16159 + 0.0807)
         else:
-            self.setPiecePosition(self.column * 0.13919999999999999, self.row * 0.16159999999999999)
+            self.setPiecePosition(self.column * 0.13919, self.row * 0.16159)
 
 
     def moveTo(self, destX, destY):
@@ -308,13 +308,13 @@ class PotionBoardPiece(NodePath):
         self.Xpos = destX
         self.Ypos = destY
         if self.moveVerySlow:
-            speed = 0.59999999999999998
+            speed = 0.598
         elif self.moveSlow:
-            speed = 0.40000000000000002
+            speed = 0.4
         elif self.moveFast:
-            speed = 0.14999999999999999
+            speed = 0.149
         else:
-            speed = 0.29999999999999999
+            speed = 0.299
         self.moveFast = False
         self.moveSlow = False
         self.moveVerySlow = False
@@ -336,9 +336,9 @@ class PotionBoardPiece(NodePath):
         self.column = destX
         self.row = destY
         if self.column % 2 == 0:
-            return self.moveTo(self.column * 0.13919999999999999, self.row * 0.16159999999999999 + 0.080799999999999997)
+            return self.moveTo(self.column * 0.13919, self.row * 0.16159 + 0.0807)
         else:
-            return self.moveTo(self.column * 0.13919999999999999, self.row * 0.16159999999999999)
+            return self.moveTo(self.column * 0.13919, self.row * 0.16159)
 
 
     def destroy(self):

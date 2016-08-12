@@ -54,22 +54,22 @@ class RangeSlider(DirectFrame):
             val = self.slider['value']
             updateField(self.slider, 'text', '%1.3f' % val)
 
-        self.slider = DirectSlider(parent = self, relief = DGG.FLAT, range = range, value = value, orientation = orientation, scale = 0.25, thumb_relief = DGG.FLAT, thumb_color = (0, 1, 1, 1), pos = (0, 0, 0), text = '0.0', text_scale = 0.20000000000000001, text_pos = (0, 0.10000000000000001, 0))
+        self.slider = DirectSlider(parent = self, relief = DGG.FLAT, range = range, value = value, orientation = orientation, scale = 0.25, thumb_relief = DGG.FLAT, thumb_color = (0, 1, 1, 1), pos = (0, 0, 0), text = '0.0', text_scale = 0.200, text_pos = (0, 0.100, 0))
         updateField(self.slider, 'command', finalCommand)
         width = 3
         if orientation == DGG.HORIZONTAL:
-            pos = (-0.27500000000000002 - width * 0.050000000000000003, 0, -0.02)
+            pos = (-0.275 - width * 0.050000, 0, -0.02)
         else:
-            pos = (-0.025000000000000001 * width, 0, -0.34999999999999998)
-        self.min = DirectEntry(parent = self, initialText = `float(self.slider['range'][0])`, scale = 0.050000000000000003, width = width, pos = pos)
+            pos = (-0.0250 * width, 0, -0.348)
+        self.min = DirectEntry(parent = self, initialText = `float(self.slider['range'][0])`, scale = 0.050000, width = width, pos = pos)
         updateField(self.min, 'command', lambda x: updateField(self.slider, 'range', (float(x), self.slider['range'][1])))
         if orientation == DGG.HORIZONTAL:
-            pos = (0.27500000000000002, 0, -0.02)
+            pos = (0.275, 0, -0.02)
         else:
-            pos = (-0.025000000000000001 * width, 0, 0.29999999999999999)
-        self.max = DirectEntry(parent = self, initialText = `float(self.slider['range'][1])`, scale = 0.050000000000000003, width = width, pos = pos)
+            pos = (-0.0250 * width, 0, 0.299)
+        self.max = DirectEntry(parent = self, initialText = `float(self.slider['range'][1])`, scale = 0.050000, width = width, pos = pos)
         updateField(self.max, 'command', lambda x: updateField(self.slider, 'range', (self.slider['range'][0], float(x))))
-        self.label = DirectLabel(parent = self, relief = None, text = label, text_scale = 0.050000000000000003, text_pos = (0.029999999999999999 - 0.39500000000000002, 0.34999999999999998 - 0.23999999999999999, 0), text_align = TextNode.ALeft)
+        self.label = DirectLabel(parent = self, relief = None, text = label, text_scale = 0.050000, text_pos = (0.0299 - 0.395, 0.348 - 0.239, 0), text_align = TextNode.ALeft)
 
 
 
@@ -93,13 +93,13 @@ class MapConfig(DirectFrame):
             value = self.visSlider['value']
             self.setColorScale(Vec4(1, 1, 1, value))
 
-        self.visSlider = DirectSlider(guiId = 'visSlider', parent = self.mainFrame, scale = 0.40000000000000002, thumb_relief = DGG.FLAT, thumb_color = (0.25, 1.0, 0.25, 1), pos = (0.40000000000000002, 0, -0.84999999999999998), text = 'Visibility', text_scale = 0.20000000000000001, text_pos = (0, 0.10000000000000001, 0), text_bg = (0.80000000000000004, 0.80000000000000004, 0.80000000000000004, 1), value = 1.0, command = setVisibility)
+        self.visSlider = DirectSlider(guiId = 'visSlider', parent = self.mainFrame, scale = 0.4, thumb_relief = DGG.FLAT, thumb_color = (0.25, 1.0, 0.25, 1), pos = (0.4, 0, -0.848), text = 'Visibility', text_scale = 0.200, text_pos = (0, 0.100, 0), text_bg = (0.800000, 0.800000, 0.800000, 1), value = 1.0, command = setVisibility)
         self.visSlider.getChild(0).setTransparency(0)
-        self.camFrame = DirectFrame(guiId = 'camFrame', parent = self.mainFrame, relief = DGG.RIDGE, frameSize = (0.0, 0.80000000000000004, 0.0, 0.32000000000000001), frameColor = (1, 1, 0.75, 1), borderWidth = (0.0050000000000000001, 0.0050000000000000001), pos = (0, 0, 0.59999999999999998), text = 'Camera', text_fg = (0, 0, 0, 1), text_scale = 0.050000000000000003, text_pos = (0.10000000000000001, 0.26000000000000001, 0))
-        self.camSlider = RangeSlider(guiId = 'zoom', label = 'Zoom (Y-axis)', range = (-0.75, 0.25), value = 0, parent = self.camFrame, pos = (0.39500000000000002, 0, 0.070000000000000007))
-        self.worldFrame = DirectFrame(guiId = 'worldFrame', parent = self.mainFrame, relief = DGG.RIDGE, frameSize = (0.0, 0.80000000000000004, -0.55000000000000004, 0.5), frameColor = (1, 0.75, 0.75, 1), borderWidth = (0.0050000000000000001, 0.0050000000000000001), pos = (0.0, 0, 0), text = 'World', text_fg = (0, 0, 0, 1), text_scale = 0.050000000000000003, text_pos = (0.10000000000000001, 0.42999999999999999, 0))
-        self.worldPSlider = RangeSlider(guiId = 'worldP', label = 'World P', range = (-90, 0), value = 0.0, parent = self.worldFrame, pos = (0.39500000000000002, 0, 0.23999999999999999))
-        self.worldDecorScaleSlider = RangeSlider(guiId = 'worldP', label = 'World Decor Scale', range = (0.20000000000000001, 0.29999999999999999), value = 0.25, parent = self.worldFrame, pos = (0.39500000000000002, 0, 0.0))
-        self.finalSlider = RangeSlider(guiId = 'final', label = 'Final', range = (0, 1), value = 0, parent = self.worldFrame, pos = (0.39500000000000002, 0, -0.47999999999999998))
-        self.saveState0Button = DirectButton(guiId = 'save0Button', parent = self.mainFrame, scale = 0.10000000000000001, pos = (0.20000000000000001, 0, -0.65000000000000002), borderWidth = (0.10000000000000001, 0.10000000000000001), text = 'save pt0')
-        self.saveState1Button = DirectButton(guiId = 'save1Button', parent = self.mainFrame, scale = 0.10000000000000001, pos = (0.59999999999999998, 0, -0.65000000000000002), borderWidth = (0.10000000000000001, 0.10000000000000001), text = 'save pt1')
+        self.camFrame = DirectFrame(guiId = 'camFrame', parent = self.mainFrame, relief = DGG.RIDGE, frameSize = (0.0, 0.800000, 0.0, 0.320), frameColor = (1, 1, 0.75, 1), borderWidth = (0.00500, 0.00500), pos = (0, 0, 0.598), text = 'Camera', text_fg = (0, 0, 0, 1), text_scale = 0.050000, text_pos = (0.100, 0.260, 0))
+        self.camSlider = RangeSlider(guiId = 'zoom', label = 'Zoom (Y-axis)', range = (-0.75, 0.25), value = 0, parent = self.camFrame, pos = (0.395, 0, 0.070))
+        self.worldFrame = DirectFrame(guiId = 'worldFrame', parent = self.mainFrame, relief = DGG.RIDGE, frameSize = (0.0, 0.800000, -0.550000, 0.5), frameColor = (1, 0.75, 0.75, 1), borderWidth = (0.00500, 0.00500), pos = (0.0, 0, 0), text = 'World', text_fg = (0, 0, 0, 1), text_scale = 0.050000, text_pos = (0.100, 0.429, 0))
+        self.worldPSlider = RangeSlider(guiId = 'worldP', label = 'World P', range = (-90, 0), value = 0.0, parent = self.worldFrame, pos = (0.395, 0, 0.239))
+        self.worldDecorScaleSlider = RangeSlider(guiId = 'worldP', label = 'World Decor Scale', range = (0.200, 0.299), value = 0.25, parent = self.worldFrame, pos = (0.395, 0, 0.0))
+        self.finalSlider = RangeSlider(guiId = 'final', label = 'Final', range = (0, 1), value = 0, parent = self.worldFrame, pos = (0.395, 0, -0.478))
+        self.saveState0Button = DirectButton(guiId = 'save0Button', parent = self.mainFrame, scale = 0.100, pos = (0.200, 0, -0.65), borderWidth = (0.100, 0.100), text = 'save pt0')
+        self.saveState1Button = DirectButton(guiId = 'save1Button', parent = self.mainFrame, scale = 0.100, pos = (0.598, 0, -0.65), borderWidth = (0.100, 0.100), text = 'save pt1')

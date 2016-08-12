@@ -70,10 +70,10 @@ class SteamVent(PooledEffect, EffectController):
 
 
     def setEffectScale(self, scale):
-        self.p0.renderer.setInitialXScale(0.050000000000000003 * self.cardScale * scale)
-        self.p0.renderer.setFinalXScale(0.34999999999999998 * self.cardScale * scale)
-        self.p0.renderer.setInitialYScale(0.050000000000000003 * self.cardScale * scale)
-        self.p0.renderer.setFinalYScale(0.34999999999999998 * self.cardScale * scale)
+        self.p0.renderer.setInitialXScale(0.050000 * self.cardScale * scale)
+        self.p0.renderer.setFinalXScale(0.348 * self.cardScale * scale)
+        self.p0.renderer.setInitialYScale(0.050000 * self.cardScale * scale)
+        self.p0.renderer.setFinalYScale(0.348 * self.cardScale * scale)
         self.p0.emitter.setAmplitude(3.0 * scale)
         self.p0.emitter.setAmplitudeSpread(1.0 * scale)
         self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, 7.0) * scale)

@@ -27,8 +27,8 @@ class PowderKegDomeExplosion(PooledEffect, EffectController):
         self.speed = 0.5
         self.explosion.node().setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd))
         self.explosion.setScale(1)
-        self.explosion.setColorScale(1, 1, 1, 0.45000000000000001)
-        fadeBlast = self.explosion.colorScaleInterval(self.speed * 0.90000000000000002, Vec4(0, 0, 0, 0))
+        self.explosion.setColorScale(1, 1, 1, 0.450)
+        fadeBlast = self.explosion.colorScaleInterval(self.speed * 0.9, Vec4(0, 0, 0, 0))
         waitFade = Sequence(Wait(self.speed * 0.5), fadeBlast)
         scaleUp = self.explosion.scaleInterval(self.speed, self.size, startScale = 0.0, blendType = 'easeIn', other = render)
         self.track = Sequence(Func(self.show), Parallel(scaleUp, waitFade), Func(self.hide), Func(self.cleanUpEffect))

@@ -101,18 +101,18 @@ def getNametagScale(name):
 
 ObjectAnimRates = {
     'Default': [
-        0.80000000000000004,
+        0.800000,
         1.0],
     'models/vegetation/tree_b_leaf_idle': [
-        0.40000000000000002,
-        0.69999999999999996] }
+        0.4,
+        0.696] }
 ObjectAnimRates_new = {
     'Default': [
-        0.80000000000000004,
+        0.800000,
         1.0],
     'tree_b': [
-        0.40000000000000002,
-        0.69999999999999996] }
+        0.4,
+        0.696] }
 
 def getLocationValue(name):
     return __locationNames.get(name)

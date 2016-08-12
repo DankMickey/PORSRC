@@ -54,20 +54,20 @@ class RepairMincroGame(DirectFrame, FSM.FSM):
             RepairMincroGame.completeSound = loadSfx(SoundGlobals.SFX_MINIGAME_REPAIR_GENERAL_GAMECOMPLETE)
 
     def _initVisuals(self):
-        self.countDownLabel = DirectLabel(text = self.startText, text_fg = (1.0, 1.0, 1.0, 1.0), text_shadow = (0.0, 0.0, 0.0, 1.0), text_font = PiratesGlobals.getPirateFont(), scale = (0.16, 0.16, 0.16), pos = (0.0, 0.0, 0.14999999999999999), parent = self, relief = None, textMayChange = 1)
+        self.countDownLabel = DirectLabel(text = self.startText, text_fg = (1.0, 1.0, 1.0, 1.0), text_shadow = (0.0, 0.0, 0.0, 1.0), text_font = PiratesGlobals.getPirateFont(), scale = (0.16, 0.16, 0.16), pos = (0.0, 0.0, 0.149), parent = self, relief = None, textMayChange = 1)
         self.countDownLabel.setBin('fixed', 37)
         self.winLabel = DirectLabel(text = PLocalizer.Minigame_Repair_Win, text_fg = (1.0, 1.0, 1.0, 1.0), text_font = PiratesGlobals.getPirateFont(), text_shadow = (0.0, 0.0, 0.0, 1.0), scale = (0.16, 0.16, 0.16), pos = RepairGlobals.Common.youWinPos[self.name], relief = None, parent = self)
         self.winLabel.setBin('fixed', 37)
         self.winLabel.stash()
-        self.scoreLabel = DirectLabel(text = PLocalizer.Minigame_Repair_Win, text_fg = (1.0, 1.0, 1.0, 1.0), text_font = PiratesGlobals.getPirateFont(), text_shadow = (0.0, 0.0, 0.0, 1.0), scale = (0.10000000000000001, 0.10000000000000001, 0.10000000000000001), pos = RepairGlobals.Common.scorePos[self.name], relief = None, parent = self)
+        self.scoreLabel = DirectLabel(text = PLocalizer.Minigame_Repair_Win, text_fg = (1.0, 1.0, 1.0, 1.0), text_font = PiratesGlobals.getPirateFont(), text_shadow = (0.0, 0.0, 0.0, 1.0), scale = (0.100, 0.100, 0.100), pos = RepairGlobals.Common.scorePos[self.name], relief = None, parent = self)
         self.scoreLabel.setBin('fixed', 37)
         self.scoreLabel.stash()
-        self.postWinLabel = DirectLabel(text = PLocalizer.Minigame_Repair_Pick_New_Game, text_fg = (1.0, 1.0, 1.0, 1.0), text_font = PiratesGlobals.getPirateFont(), text_shadow = (0.0, 0.0, 0.0, 1.0), scale = (0.14000000000000001, 0.14000000000000001, 0.14000000000000001), pos = RepairGlobals.Common.youWinPos[self.name], relief = None, textMayChange = 1, parent = self.repairGame.gui)
+        self.postWinLabel = DirectLabel(text = PLocalizer.Minigame_Repair_Pick_New_Game, text_fg = (1.0, 1.0, 1.0, 1.0), text_font = PiratesGlobals.getPirateFont(), text_shadow = (0.0, 0.0, 0.0, 1.0), scale = (0.140, 0.140, 0.140), pos = RepairGlobals.Common.youWinPos[self.name], relief = None, textMayChange = 1, parent = self.repairGame.gui)
         self.postWinLabel.setBin('fixed', 37)
         self.postWinLabel.stash()
 
     def _initIntervals(self):
-        normalPos = Vec3(0.0, 0.0, 0.14999999999999999)
+        normalPos = Vec3(0.0, 0.0, 0.149)
         belowScreenPos = Vec3(normalPos.getX(), normalPos.getY(), normalPos.getZ() - 0.25)
         aboveScreenPos = Vec3(normalPos.getX(), normalPos.getY(), normalPos.getZ() + 0.25)
         self.introSequence = Sequence(Func(self.setCountDown, PLocalizer.Minigame_Repair_Countdown_Ready), Parallel(LerpFunc(self.countDownLabel.setPos, fromData = belowScreenPos, toData = normalPos, duration = 0.25), LerpFunc(self.countDownLabel.setAlphaScale, fromData = 0.0, toData = 1.0, duration = 0.25)), Func(self.readySound.play), Wait(0.5), Parallel(LerpFunc(self.countDownLabel.setPos, fromData = normalPos, toData = aboveScreenPos, duration = 0.25), LerpFunc(self.countDownLabel.setAlphaScale, fromData = 1.0, toData = 0.0, duration = 0.25)), Func(self.setCountDown, self.startText), Parallel(LerpFunc(self.countDownLabel.setPos, fromData = belowScreenPos, toData = normalPos, duration = 0.25), LerpFunc(self.countDownLabel.setAlphaScale, fromData = 0.0, toData = 1.0, duration = 0.25)), Func(self.goSound.play), Wait(0.5), Parallel(LerpFunc(self.countDownLabel.setPos, fromData = normalPos, toData = aboveScreenPos, duration = 0.25), LerpFunc(self.countDownLabel.setAlphaScale, fromData = 1.0, toData = 0.0, duration = 0.25)), Func(self.request, 'Game'), name = 'RepairMincroGame.introSequence')

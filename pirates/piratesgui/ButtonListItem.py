@@ -7,7 +7,7 @@ import types
 class ButtonListItem(DirectButton):
 
     def __init__(self, item, itemHeight, itemWidth, parent = None, parentList = None, textScale = None, txtColor = None, **kw):
-        optiondefs = (('state', DGG.NORMAL, None), ('image', None, None), ('image_scale', (0.23999999999999999, 0.22, 0.22), None), ('image_pos', (0.185, 0, 0.042999999999999997), None), ('frameColor', (0.10000000000000001, 0.10000000000000001, 1, 0.080000000000000002), None), ('borderWidth', PiratesGuiGlobals.BorderWidth, None), ('frameSize', (0.0, itemWidth, 0.0, itemHeight), None))
+        optiondefs = (('state', DGG.NORMAL, None), ('image', None, None), ('image_scale', (0.239, 0.22, 0.22), None), ('image_pos', (0.185, 0, 0.042), None), ('frameColor', (0.100, 0.100, 1, 0.08), None), ('borderWidth', PiratesGuiGlobals.BorderWidth, None), ('frameSize', (0.0, itemWidth, 0.0, itemHeight), None))
         self.defineoptions(kw, optiondefs)
         DirectButton.__init__(self, parent)
         self.initialiseoptions(ButtonListItem)
@@ -49,7 +49,7 @@ class ButtonListItem(DirectButton):
         self['text'] = itemText
         self['text_scale'] = self.textScale
         self['text_fg'] = self.textColor
-        self['text_pos'] = (self.getWidth() / 2, 0.025000000000000001)
+        self['text_pos'] = (self.getWidth() / 2, 0.0250)
         self.prevImageScale = self['image_scale']
 
 
@@ -74,7 +74,7 @@ class ButtonListItem(DirectButton):
         if selected:
             self.setColorScale(1, 1, 1, 1)
             self.prevImageScale = self['image_scale']
-            self['image_scale'] = (0.25, 0.23000000000000001, 0.23000000000000001)
+            self['image_scale'] = (0.25, 0.230, 0.230)
         else:
             self.setColorScale(*self.defaultColorScale)
             self['image_scale'] = self.prevImageScale

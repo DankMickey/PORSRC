@@ -15,7 +15,7 @@ objectStruct = {
                     'AnimSet': 'default',
                     'CustomModel': 'None',
                     'DNA': '1169079172.34sdnaik',
-                    'Hpr': VBase3(28.777999999999999, 0.0, 0.0),
+                    'Hpr': VBase3(28.777, 0.0, 0.0),
                     'Patrol Radius': '1.0000',
                     'Pos': Point3(15.324, -16.224, 0.0),
                     'Private Status': 'All',

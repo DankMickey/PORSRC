@@ -25,14 +25,14 @@ class HighSeasScoreboard(GuiPanel.GuiPanel):
     width = PiratesGuiGlobals.PortPanelWidth
     height = PiratesGuiGlobals.PortPanelHeight
     titleHeight = PiratesGuiGlobals.PortTitleHeight
-    buffer = 0.050000000000000003
+    buffer = 0.050000
 
     def __init__(self, name, stats, playerStats, ship):
         GuiPanel.GuiPanel.__init__(self, '', self.width, self.height, showClose = False)
         self.ship = ship
         self.stats = stats
         self.playerStats = playerStats
-        self.plunderHeight = 1.6499999999999999
+        self.plunderHeight = 1.64
         self.initialiseoptions(HighSeasScoreboard)
         self.leftPanel = None
         self.rightPanel = None
@@ -45,8 +45,8 @@ class HighSeasScoreboard(GuiPanel.GuiPanel):
             titleTxt = PLocalizer.BlackPearlScoreboard
         else:
             titleTxt = PLocalizer.LootScoreboard
-        self.title = DirectLabel(parent = self, relief = None, text = titleTxt, text_align = TextNode.ALeft, text_scale = self.titleHeight, text_fg = PiratesGuiGlobals.TextFG10, text_shadow = PiratesGuiGlobals.TextShadow, pos = (0.029999999999999999, 0, self.height - self.titleHeight - 0.029999999999999999), text_font = PiratesGlobals.getPirateOutlineFont(), textMayChange = 1)
-        self.closeButton = DialogButton.DialogButton(parent = self, buttonStyle = DialogButton.DialogButton.NO, text = PLocalizer.lClose, pos = (1.05, 0, 0.074999999999999997), command = self.closePanel)
+        self.title = DirectLabel(parent = self, relief = None, text = titleTxt, text_align = TextNode.ALeft, text_scale = self.titleHeight, text_fg = PiratesGuiGlobals.TextFG10, text_shadow = PiratesGuiGlobals.TextShadow, pos = (0.0299, 0, self.height - self.titleHeight - 0.0299), text_font = PiratesGlobals.getPirateOutlineFont(), textMayChange = 1)
+        self.closeButton = DialogButton.DialogButton(parent = self, buttonStyle = DialogButton.DialogButton.NO, text = PLocalizer.lClose, pos = (1.05, 0, 0.074), command = self.closePanel)
         self.labels = []
         self.grids = { }
         self.manager = base.localAvatar.guiMgr.inventoryUIManager
@@ -56,13 +56,13 @@ class HighSeasScoreboard(GuiPanel.GuiPanel):
         generic_box = main_gui.find('**/exit_button')
         generic_box_over = main_gui.find('**/exit_button_over')
         main_gui.remove_node()
-        self.newCloseButton = GuiButton.GuiButton(parent = self, relief = None, pos = (2.2999999999999998, 0, 1.0800000000000001), image = (generic_box, generic_box, generic_box_over, generic_box), image_scale = 0.40000000000000002, command = self.closePanel)
-        xButton = OnscreenImage(parent = self.newCloseButton, image = generic_x, scale = 0.20000000000000001, pos = (-0.25600000000000001, 0, 0.76600000000000001))
+        self.newCloseButton = GuiButton.GuiButton(parent = self, relief = None, pos = (2.28, 0, 1.08), image = (generic_box, generic_box, generic_box_over, generic_box), image_scale = 0.4, command = self.closePanel)
+        xButton = OnscreenImage(parent = self.newCloseButton, image = generic_x, scale = 0.200, pos = (-0.256, 0, 0.766))
         gui = loader.loadModel('models/gui/toplevel_gui')
         buttonImage = (gui.find('**/generic_button'), gui.find('**/generic_button_down'), gui.find('**/generic_button_over'), gui.find('**/generic_button_disabled'))
         gui.remove_node()
-        self.takeAllButton = DirectButton(parent = self, relief = None, image = buttonImage, image_scale = (0.34999999999999998, 1.0, 0.22), image0_color = VBase4(0.65000000000000002, 0.65000000000000002, 0.65000000000000002, 1), image1_color = VBase4(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 1), image2_color = VBase4(0.90000000000000002, 0.90000000000000002, 0.90000000000000002, 1), image3_color = VBase4(0.40999999999999998, 0.40000000000000002, 0.40000000000000002, 1), text = PLocalizer.InventoryPlunderTakeAll, text_font = PiratesGlobals.getPirateBoldOutlineFont(), text_align = TextNode.ACenter, text_pos = (0, -0.01), text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, pos = (1.3, 0, 0.074999999999999997), command = self.takeAllLoot)
-        self.takeAllIncidentalsButton = DirectButton(parent = self, relief = None, image = buttonImage, image_scale = (0.34999999999999998, 1.0, 0.22), image0_color = VBase4(0.65000000000000002, 0.65000000000000002, 0.65000000000000002, 1), image1_color = VBase4(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 1), image2_color = VBase4(0.90000000000000002, 0.90000000000000002, 0.90000000000000002, 1), image3_color = VBase4(0.40999999999999998, 0.40000000000000002, 0.40000000000000002, 1), text = PLocalizer.InventoryPlunderTakeAllSundries, text_font = PiratesGlobals.getPirateBoldOutlineFont(), text_align = TextNode.ACenter, text_pos = (0, -0.01), text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, pos = (0.80000000000000004, 0, 0.074999999999999997), command = self.requestAllIncidentals)
+        self.takeAllButton = DirectButton(parent = self, relief = None, image = buttonImage, image_scale = (0.348, 1.0, 0.22), image0_color = VBase4(0.65, 0.65, 0.65, 1), image1_color = VBase4(0.4, 0.4, 0.4, 1), image2_color = VBase4(0.9, 0.9, 0.9, 1), image3_color = VBase4(0.408, 0.4, 0.4, 1), text = PLocalizer.InventoryPlunderTakeAll, text_font = PiratesGlobals.getPirateBoldOutlineFont(), text_align = TextNode.ACenter, text_pos = (0, -0.01), text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, pos = (1.3, 0, 0.074), command = self.takeAllLoot)
+        self.takeAllIncidentalsButton = DirectButton(parent = self, relief = None, image = buttonImage, image_scale = (0.348, 1.0, 0.22), image0_color = VBase4(0.65, 0.65, 0.65, 1), image1_color = VBase4(0.4, 0.4, 0.4, 1), image2_color = VBase4(0.9, 0.9, 0.9, 1), image3_color = VBase4(0.408, 0.4, 0.4, 1), text = PLocalizer.InventoryPlunderTakeAllSundries, text_font = PiratesGlobals.getPirateBoldOutlineFont(), text_align = TextNode.ACenter, text_pos = (0, -0.01), text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, pos = (0.800000, 0, 0.074), command = self.requestAllIncidentals)
         self.setBin('gui-fixed', -1)
         self.autoLootList = [
             InventoryType.ItemTypeMoney,
@@ -175,8 +175,8 @@ class HighSeasScoreboard(GuiPanel.GuiPanel):
             label.destroy()
 
         height = self.plunderHeight
-        headingHeight = 0.029999999999999999
-        marginHeight = 0.10000000000000001
+        headingHeight = 0.0299
+        marginHeight = 0.100
         containerCount = 0
         for grid in self.grids.values():
             gridHasStuff = 0
@@ -190,7 +190,7 @@ class HighSeasScoreboard(GuiPanel.GuiPanel):
                 height -= headingHeight
                 gridHeight = grid.plunderRows / 2
                 zPos = height - self.buttonSize * float(gridHeight)
-                grid.setPos(0.10000000000000001, 0, zPos)
+                grid.setPos(0.100, 0, zPos)
                 plunderLength = len(grid.cellList)
                 plunderHeight = (int(len(grid.cellList)) / 2 + len(grid.cellList) % 2) * self.buttonSize
                 height -= plunderHeight
@@ -296,17 +296,17 @@ class HighSeasScoreboard(GuiPanel.GuiPanel):
     def createScoreboard(self):
         (pMissionTime, pShipDamage, pSkeletonKills, pNavyKills, pCreatureKills, pSeamonsterKills, pPirateKills, pTownfolkKills, pShipKills, pRepairCost, pExp, pGold, pCargo, pLootBoxes, dummyCrew) = self.playerStats
         missionResults = self.getMissionResults()
-        self.leftPanel = Scoreboard.Scoreboard('', (self.width - self.buffer * 2) / 2.0, self.height - 0.10000000000000001, missionResults, self.titleHeight)
+        self.leftPanel = Scoreboard.Scoreboard('', (self.width - self.buffer * 2) / 2.0, self.height - 0.100, missionResults, self.titleHeight)
         self.leftPanel.reparentTo(self)
-        self.leftPanel.setPos(self.buffer, 0, 0.20000000000000001)
+        self.leftPanel.setPos(self.buffer, 0, 0.200)
         cargoResults = self.getCargoResults()
-        self.rightPanel = Scoreboard.Scoreboard('', (self.width - self.buffer * 2) / 2.0, self.height - 0.10000000000000001, cargoResults, self.titleHeight)
+        self.rightPanel = Scoreboard.Scoreboard('', (self.width - self.buffer * 2) / 2.0, self.height - 0.100, cargoResults, self.titleHeight)
         self.rightPanel.reparentTo(self)
-        self.rightPanel.setPos((self.width + self.buffer) / 2.0, 0, 0.20000000000000001)
+        self.rightPanel.setPos((self.width + self.buffer) / 2.0, 0, 0.200)
         if len(pLootBoxes) == 0:
             self.leftPanel.hide()
             self.configure(frameSize = (self.width / 4.0, self.width * 3.0 / 4.0, 0, self.height))
-            self.title.setX(self.width / 4.0 + 0.029999999999999999)
+            self.title.setX(self.width / 4.0 + 0.0299)
             self.rightPanel.setX(self.width / 4.0 + self.buffer)
 
         if len(pLootBoxes) == 0 and len(pCargo) == 0:
@@ -403,7 +403,7 @@ class HighSeasScoreboard(GuiPanel.GuiPanel):
 
 
     def makeLootLabel(self, text, height):
-        label = DirectLabel(parent = self, relief = None, text = text, text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, pos = (0.10000000000000001, 0, height))
+        label = DirectLabel(parent = self, relief = None, text = text, text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, pos = (0.100, 0, height))
         self.labels.append(label)
 
 

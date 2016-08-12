@@ -9,9 +9,9 @@ VOMIT_EFFECT_DELAY = 15.0
 GENERIC_EFFECT_DELAY = 10.0
 PLAYER_INCREASE_SCALE = 1.5
 PLAYER_REDUCE_SCALE = 0.5
-TextColor = (0.28000000000000003, 0.23000000000000001, 0.17000000000000001, 1.0)
-TextColorDisabled = (0.57999999999999996, 0.48999999999999999, 0.32000000000000001, 1.0)
-TextColorHighlight = (0.23000000000000001, 0.28000000000000003, 0.17000000000000001, 1.0)
+TextColor = (0.28000, 0.230, 0.170, 1.0)
+TextColorDisabled = (0.576, 0.489, 0.320, 1.0)
+TextColorHighlight = (0.230, 0.28000, 0.170, 1.0)
 BONUS_XP_AMT = [
     10,
     30,
@@ -37,7 +37,7 @@ __potionBuffs = {
     C_CANNON_DAMAGE_LVL1: {
         'duration': 180.0,
         'xp': 35,
-        'potency': 0.10000000000000001,
+        'potency': 0.100,
         'potionId': ItemGlobals.POTION_CANNON_1,
         'haveMade': InventoryType.HaveMade_CannonDamageLvl1,
         'dontStackList': [
@@ -47,7 +47,7 @@ __potionBuffs = {
     C_CANNON_DAMAGE_LVL2: {
         'duration': 240.0,
         'xp': 90,
-        'potency': 0.14999999999999999,
+        'potency': 0.149,
         'potionId': ItemGlobals.POTION_CANNON_2,
         'haveMade': InventoryType.HaveMade_CannonDamageLvl2,
         'dontStackList': [
@@ -57,7 +57,7 @@ __potionBuffs = {
     C_CANNON_DAMAGE_LVL3: {
         'duration': 300.0,
         'xp': 140,
-        'potency': 0.20000000000000001,
+        'potency': 0.200,
         'potionId': ItemGlobals.POTION_CANNON_3,
         'haveMade': InventoryType.HaveMade_CannonDamageLvl3,
         'dontStackList': [
@@ -67,7 +67,7 @@ __potionBuffs = {
     C_PISTOL_DAMAGE_LVL1: {
         'duration': 180.0,
         'xp': 25,
-        'potency': 0.10000000000000001,
+        'potency': 0.100,
         'potionId': ItemGlobals.POTION_PISTOL_1,
         'haveMade': InventoryType.HaveMade_PistolDamageLvl1,
         'dontStackList': [
@@ -77,7 +77,7 @@ __potionBuffs = {
     C_PISTOL_DAMAGE_LVL2: {
         'duration': 240.0,
         'xp': 80,
-        'potency': 0.14999999999999999,
+        'potency': 0.149,
         'potionId': ItemGlobals.POTION_PISTOL_2,
         'haveMade': InventoryType.HaveMade_PistolDamageLvl2,
         'dontStackList': [
@@ -87,7 +87,7 @@ __potionBuffs = {
     C_PISTOL_DAMAGE_LVL3: {
         'duration': 300.0,
         'xp': 130,
-        'potency': 0.20000000000000001,
+        'potency': 0.200,
         'potionId': ItemGlobals.POTION_PISTOL_3,
         'haveMade': InventoryType.HaveMade_PistolDamageLvl3,
         'dontStackList': [
@@ -97,7 +97,7 @@ __potionBuffs = {
     C_CUTLASS_DAMAGE_LVL1: {
         'duration': 180.0,
         'xp': 25,
-        'potency': 0.10000000000000001,
+        'potency': 0.100,
         'potionId': ItemGlobals.POTION_CUTLASS_1,
         'haveMade': InventoryType.HaveMade_CutlassDamageLvl1,
         'dontStackList': [
@@ -107,7 +107,7 @@ __potionBuffs = {
     C_CUTLASS_DAMAGE_LVL2: {
         'duration': 240.0,
         'xp': 80,
-        'potency': 0.14999999999999999,
+        'potency': 0.149,
         'potionId': ItemGlobals.POTION_CUTLASS_2,
         'haveMade': InventoryType.HaveMade_CutlassDamageLvl2,
         'dontStackList': [
@@ -117,7 +117,7 @@ __potionBuffs = {
     C_CUTLASS_DAMAGE_LVL3: {
         'duration': 300.0,
         'xp': 130,
-        'potency': 0.20000000000000001,
+        'potency': 0.200,
         'potionId': ItemGlobals.POTION_CUTLASS_3,
         'haveMade': InventoryType.HaveMade_CutlassDamageLvl3,
         'dontStackList': [
@@ -127,7 +127,7 @@ __potionBuffs = {
     C_DOLL_DAMAGE_LVL1: {
         'duration': 180.0,
         'xp': 35,
-        'potency': 0.10000000000000001,
+        'potency': 0.100,
         'potionId': ItemGlobals.POTION_DOLL_1,
         'haveMade': InventoryType.HaveMade_DollDamageLvl1,
         'dontStackList': [
@@ -137,7 +137,7 @@ __potionBuffs = {
     C_DOLL_DAMAGE_LVL2: {
         'duration': 240.0,
         'xp': 90,
-        'potency': 0.14999999999999999,
+        'potency': 0.149,
         'potionId': ItemGlobals.POTION_DOLL_2,
         'haveMade': InventoryType.HaveMade_DollDamageLvl2,
         'dontStackList': [
@@ -147,7 +147,7 @@ __potionBuffs = {
     C_DOLL_DAMAGE_LVL3: {
         'duration': 300.0,
         'xp': 140,
-        'potency': 0.20000000000000001,
+        'potency': 0.200,
         'potionId': ItemGlobals.POTION_DOLL_3,
         'haveMade': InventoryType.HaveMade_DollDamageLvl3,
         'dontStackList': [
@@ -157,7 +157,7 @@ __potionBuffs = {
     C_HASTEN_LVL1: {
         'duration': 60.0,
         'xp': 45,
-        'potency': 0.29999999999999999,
+        'potency': 0.299,
         'potionId': ItemGlobals.POTION_SPEED_1,
         'haveMade': InventoryType.HaveMade_HastenLvl1,
         'dontStackList': [
@@ -167,7 +167,7 @@ __potionBuffs = {
     C_HASTEN_LVL2: {
         'duration': 180.0,
         'xp': 100,
-        'potency': 0.29999999999999999,
+        'potency': 0.299,
         'potionId': ItemGlobals.POTION_SPEED_2,
         'haveMade': InventoryType.HaveMade_HastenLvl2,
         'dontStackList': [
@@ -177,7 +177,7 @@ __potionBuffs = {
     C_HASTEN_LVL3: {
         'duration': 360.0,
         'xp': 145,
-        'potency': 0.29999999999999999,
+        'potency': 0.299,
         'potionId': ItemGlobals.POTION_SPEED_3,
         'haveMade': InventoryType.HaveMade_HastenLvl3,
         'dontStackList': [
@@ -187,7 +187,7 @@ __potionBuffs = {
     C_REP_BONUS_LVL1: {
         'duration': 180.0,
         'xp': 170,
-        'potency': 0.14999999999999999,
+        'potency': 0.149,
         'potionId': ItemGlobals.POTION_REP_1,
         'haveMade': InventoryType.HaveMade_RepBonusLvl1,
         'dontStackList': [
@@ -198,7 +198,7 @@ __potionBuffs = {
     C_REP_BONUS_LVL2: {
         'duration': 180.0,
         'xp': 230,
-        'potency': 0.29999999999999999,
+        'potency': 0.299,
         'potionId': ItemGlobals.POTION_REP_2,
         'haveMade': InventoryType.HaveMade_RepBonusLvl2,
         'dontStackList': [
@@ -231,7 +231,7 @@ __potionBuffs = {
     C_GOLD_BONUS_LVL1: {
         'duration': 180.0,
         'xp': 160,
-        'potency': 0.10000000000000001,
+        'potency': 0.100,
         'potionId': ItemGlobals.POTION_GOLD_1,
         'haveMade': InventoryType.HaveMade_GoldBonusLvl1,
         'dontStackList': [
@@ -240,7 +240,7 @@ __potionBuffs = {
     C_GOLD_BONUS_LVL2: {
         'duration': 180.0,
         'xp': 220,
-        'potency': 0.20000000000000001,
+        'potency': 0.200,
         'potionId': ItemGlobals.POTION_GOLD_2,
         'haveMade': InventoryType.HaveMade_GoldBonusLvl2,
         'dontStackList': [
@@ -289,7 +289,7 @@ __potionBuffs = {
     C_ACCURACY_BONUS_LVL1: {
         'duration': 180.0,
         'xp': 60,
-        'potency': 0.10000000000000001,
+        'potency': 0.100,
         'potionId': ItemGlobals.POTION_ACC_1,
         'haveMade': InventoryType.HaveMade_AccuracyBonusLvl1,
         'dontStackList': [
@@ -299,7 +299,7 @@ __potionBuffs = {
     C_ACCURACY_BONUS_LVL2: {
         'duration': 240.0,
         'xp': 110,
-        'potency': 0.14999999999999999,
+        'potency': 0.149,
         'potionId': ItemGlobals.POTION_ACC_2,
         'haveMade': InventoryType.HaveMade_AccuracyBonusLvl2,
         'dontStackList': [
@@ -309,7 +309,7 @@ __potionBuffs = {
     C_ACCURACY_BONUS_LVL3: {
         'duration': 300.0,
         'xp': 160,
-        'potency': 0.20000000000000001,
+        'potency': 0.200,
         'potionId': ItemGlobals.POTION_ACC_3,
         'haveMade': InventoryType.HaveMade_AccuracyBonusLvl3,
         'dontStackList': [
@@ -325,7 +325,7 @@ __potionBuffs = {
     C_REGEN_LVL1: {
         'duration': 120.0,
         'xp': 70,
-        'potency': 0.029999999999999999,
+        'potency': 0.0299,
         'potionId': ItemGlobals.POTION_REGEN_1,
         'haveMade': InventoryType.HaveMade_RegenLvl1,
         'dontStackList': [
@@ -336,7 +336,7 @@ __potionBuffs = {
     C_REGEN_LVL2: {
         'duration': 180.0,
         'xp': 120,
-        'potency': 0.029999999999999999,
+        'potency': 0.0299,
         'potionId': ItemGlobals.POTION_REGEN_2,
         'haveMade': InventoryType.HaveMade_RegenLvl2,
         'dontStackList': [
@@ -347,7 +347,7 @@ __potionBuffs = {
     C_REGEN_LVL3: {
         'duration': 240.0,
         'xp': 165,
-        'potency': 0.029999999999999999,
+        'potency': 0.0299,
         'potionId': ItemGlobals.POTION_REGEN_3,
         'haveMade': InventoryType.HaveMade_RegenLvl3,
         'dontStackList': [
@@ -358,7 +358,7 @@ __potionBuffs = {
     C_REGEN_LVL4: {
         'duration': 300.0,
         'xp': 200,
-        'potency': 0.029999999999999999,
+        'potency': 0.0299,
         'potionId': ItemGlobals.POTION_REGEN_4,
         'haveMade': InventoryType.HaveMade_RegenLvl4,
         'dontStackList': [

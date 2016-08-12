@@ -32,9 +32,9 @@ class JRDeathBlast(PooledEffect, EffectController):
 
 
     def createTrack(self, rate = 1):
-        self.ring.setColorScale(0.80000000000000004, 1, 0.10000000000000001, 1)
+        self.ring.setColorScale(0.800000, 1, 0.100, 1)
         self.ring.setScale(5)
-        self.flash.setColorScale(0.80000000000000004, 1, 0.10000000000000001, 1)
+        self.flash.setColorScale(0.800000, 1, 0.100, 1)
         self.flash.setScale(10)
         self.hide()
         ringFadeBlast = self.ring.colorScaleInterval(0.5, Vec4(0, 0, 0, 0))

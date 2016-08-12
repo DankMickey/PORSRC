@@ -211,7 +211,7 @@ class DistributedPVPInstance(DistributedInstanceWorld, FSM):
         if self.completed:
             return
 
-        self.goToSpawnIval = Sequence(Func(localAvatar.cameraFSM.request, 'Off'), Wait(2.1000000000000001), Func(self.respawn), Func(self.cleanupSpawnIval))
+        self.goToSpawnIval = Sequence(Func(localAvatar.cameraFSM.request, 'Off'), Wait(2.10), Func(self.respawn), Func(self.cleanupSpawnIval))
         self.goToSpawnIval.start()
 
     def cleanupSpawnIval(self):

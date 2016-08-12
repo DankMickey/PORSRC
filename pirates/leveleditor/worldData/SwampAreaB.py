@@ -19,20 +19,20 @@ objectStruct = {
                 '1153424527.2sdnaik': {
                     'Type': 'Locator Node',
                     'Name': 'portal_interior_1',
-                    'Hpr': VBase3(-7.2069999999999999, 0.0, 0.0),
-                    'Pos': Point3(-228.54400000000001, -32.225999999999999, 9.6479999999999997),
+                    'Hpr': VBase3(-7.2069, 0.0, 0.0),
+                    'Pos': Point3(-228.544, -32.225, 9.647),
                     'Scale': VBase3(1.0, 1.0, 1.0) },
                 '1153424527.2sdnaik0': {
                     'Type': 'Locator Node',
                     'Name': 'portal_interior_2',
-                    'Hpr': VBase3(172.79300000000001, 0.0, 0.0),
-                    'Pos': Point3(350.77100000000002, 207.56899999999999, 9.6479999999999997),
+                    'Hpr': VBase3(172.793, 0.0, 0.0),
+                    'Pos': Point3(350.771, 207.568, 9.647),
                     'Scale': VBase3(1.0, 1.0, 1.0) },
                 '1153424659.83sdnaik': {
                     'Type': 'Spawn Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Min Population': '1',
-                    'Pos': Point3(-62.012999999999998, -40.396000000000001, -0.376),
+                    'Pos': Point3(-62.0128, -40.396, -0.376),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'Skeleton',
                     'Team': '1' },
@@ -40,7 +40,7 @@ objectStruct = {
                     'Type': 'Spawn Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Min Population': '1',
-                    'Pos': Point3(-41.646000000000001, -78.756, 0.0060000000000000001),
+                    'Pos': Point3(-41.646, -78.756, 0.00600),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'Skeleton',
                     'Team': '1' },
@@ -48,14 +48,14 @@ objectStruct = {
                     'Type': 'Spawn Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Min Population': '1',
-                    'Pos': Point3(207.369, 82.796999999999997, 13.753),
+                    'Pos': Point3(207.369, 82.796, 13.753),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'Skeleton',
                     'Team': '1' },
                 '1153424723.64sdnaik': {
                     'Type': 'Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(193.97, 103.77200000000001, 13.734999999999999),
+                    'Pos': Point3(193.97, 103.772, 13.734),
                     'Scale': VBase3(1.0, 1.0, 1.0) },
                 '1153424726.66sdnaik': {
                     'Type': 'Movement Node',
@@ -65,18 +65,18 @@ objectStruct = {
                 '1153424744.5sdnaik': {
                     'Type': 'Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(170.61799999999999, 73.537000000000006, 9.6790000000000003),
+                    'Pos': Point3(170.617, 73.537, 9.6790),
                     'Scale': VBase3(1.0, 1.0, 1.0) },
                 '1153424752.06sdnaik': {
                     'Type': 'Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(176.803, 63.890999999999998, 9.891),
+                    'Pos': Point3(176.803, 63.8908, 9.891),
                     'Scale': VBase3(1.0, 1.0, 1.0) },
                 '1153424892.06sdnaik': {
                     'Type': 'Spawn Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Min Population': '1',
-                    'Pos': Point3(264.32999999999998, 147.44900000000001, 0.41399999999999998),
+                    'Pos': Point3(264.328, 147.449, 0.41398),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'Skeleton',
                     'Team': '1' },
@@ -84,14 +84,14 @@ objectStruct = {
                     'Type': 'Spawn Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Min Population': '1',
-                    'Pos': Point3(321.31200000000001, 179.83000000000001, -10.0),
+                    'Pos': Point3(321.312, 179.83, -10.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'Skeleton',
                     'Team': '1' },
                 '1154501366.24jubutler': {
                     'Type': 'Tree',
-                    'Hpr': VBase3(-4.8399999999999999, 0.0, 0.0),
-                    'Pos': Point3(291.54399999999998, 276.42700000000002, -11.093999999999999),
+                    'Hpr': VBase3(-4.83, 0.0, 0.0),
+                    'Pos': Point3(291.543, 276.427, -11.093),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Color': (0.40000000596046448, 0.40000000596046448, 0.40000000596046448, 1.0),
@@ -99,7 +99,7 @@ objectStruct = {
                 '1154501485.11jubutler': {
                     'Type': 'Tree',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(329.14100000000002, 278.07499999999999, -10.116),
+                    'Pos': Point3(329.141, 278.074, -10.116),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Color': (0.40000000596046448, 0.40000000596046448, 0.40000000596046448, 1.0),
@@ -107,7 +107,7 @@ objectStruct = {
                 '1154501557.28jubutler': {
                     'Type': 'Tree',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(184.72999999999999, 204.26599999999999, -13.826000000000001),
+                    'Pos': Point3(184.72, 204.265, -13.826),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Color': (0.40000000596046448, 0.40000000596046448, 0.40000000596046448, 1.0),
@@ -115,49 +115,49 @@ objectStruct = {
                 '1154567223.28sdnaik': {
                     'Type': 'Rock',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(895.15999999999997, 310.005, -498.91500000000002),
+                    'Pos': Point3(895.15, 310.005, -498.915),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/zz_dont_use_rock_Dk_1F' } },
                 '1154567458.89sdnaik': {
                     'Type': 'Tree',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(373.21300000000002, 215.386, -3.0099999999999998),
+                    'Pos': Point3(373.213, 215.386, -3.0098),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_a' } },
                 '1154567518.56sdnaik': {
                     'Type': 'Tree',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(368.76299999999998, 206.67400000000001, -3.0099999999999998),
+                    'Pos': Point3(368.762, 206.674, -3.0098),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_a' } },
                 '1154567528.52sdnaik': {
                     'Type': 'Tree',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(368.98000000000002, 212.78800000000001, -3.0099999999999998),
+                    'Pos': Point3(368.98, 212.788, -3.0098),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_d' } },
                 '1154567543.67sdnaik': {
                     'Type': 'Tree',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(371.75700000000001, 202.476, -3.0099999999999998),
+                    'Pos': Point3(371.757, 202.476, -3.0098),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_c' } },
                 '1154567555.73sdnaik': {
                     'Type': 'Tree',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(372.529, 198.822, -3.0099999999999998),
+                    'Pos': Point3(372.529, 198.822, -3.0098),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/vegetation/fern_tree_b' } },
                 '1154577668.63jubutler': {
                     'Type': 'Creature',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(228.03700000000001, 226.14599999999999, -10.0),
+                    'Pos': Point3(228.037, 226.145, -10.0),
                     'Respawns': True,
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Species': 'FlyTrap',
@@ -165,7 +165,7 @@ objectStruct = {
                 '1154577691.57jubutler': {
                     'Type': 'Creature',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(191.91999999999999, 171.45599999999999, -3.0089999999999999),
+                    'Pos': Point3(191.91, 171.455, -3.0089),
                     'Respawns': True,
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Species': 'FlyTrap',
@@ -173,7 +173,7 @@ objectStruct = {
                 '1154577700.0jubutler': {
                     'Type': 'Creature',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(132.196, 90.191000000000003, -3.0089999999999999),
+                    'Pos': Point3(132.196, 90.191, -3.0089),
                     'Respawns': True,
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Species': 'FlyTrap',
@@ -181,7 +181,7 @@ objectStruct = {
                 '1154577724.85jubutler': {
                     'Type': 'Creature',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(86.804000000000002, -5.2789999999999999, -3.0089999999999999),
+                    'Pos': Point3(86.804, -5.2789, -3.0089),
                     'Respawns': True,
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Species': 'FlyTrap',
@@ -189,14 +189,14 @@ objectStruct = {
                 '1154633129.0jubutler': {
                     'Type': 'NavySailor',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(25.57, -27.239999999999998, -10.0),
+                    'Pos': Point3(25.57, -27.238, -10.0),
                     'Respawns': True,
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Start State': 'Walk' },
                 '1154633139.96jubutler': {
                     'Type': 'NavySailor',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(42.362000000000002, -25.277000000000001, -3.0099999999999998),
+                    'Pos': Point3(42.362, -25.277, -3.0098),
                     'Respawns': True,
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Start State': 'Walk' } },

@@ -192,7 +192,7 @@ class LookoutRequestLVL1(InventoryPage, InventoryRequestGameType):
                 incrementDir = -1
             currR = lookoutImage.getR()
             lookoutImage.setHpr(0, 0, currR + increment * incrementDir)
-            lookoutImage.setScale(0.17999999999999999, 0.17999999999999999, 0.17999999999999999)
+            lookoutImage.setScale(0.179, 0.179, 0.179)
         elif lookoutImage.sourceImage is imageTray.lookoutButtonNormal:
             lookoutImage.setImage(imageTray.lookoutButtonLight)
             lookoutImage.sourceImage = imageTray.lookoutButtonLight
@@ -215,7 +215,7 @@ class LookoutRequestLVL1(InventoryPage, InventoryRequestGameType):
         lookoutImage.sourceImage = imageTray.lookoutButtonLight
         if self.iconAnimType == self.ICON_2D_ROTATE:
             lookoutImage.setHpr(0, 0, 0)
-            lookoutImage.setScale(0.089999999999999997, 0.089999999999999997, 0.089999999999999997)
+            lookoutImage.setScale(0.089, 0.089, 0.089)
 
 
 
@@ -449,16 +449,16 @@ class LookoutRequestLVL1(InventoryPage, InventoryRequestGameType):
 
     def createNewItem(self, item, parent, itemType = None, columnWidths = [], color = None):
         if self.UI_VERSION == 0:
-            newItem = ButtonListItem(item, 0.080000000000000002, 0.75, parent, parentList = self, txtColor = color, pressEffect = False, frameColor = (0, 0, 0, 0))
+            newItem = ButtonListItem(item, 0.08, 0.75, parent, parentList = self, txtColor = color, pressEffect = False, frameColor = (0, 0, 0, 0))
         elif item['Value'] == PiratesGlobals.GAME_TYPE_PRIV:
             newItem = LookoutListItem(item, self.LOOKOUT_GUI_FILE, 0.16, 0.75, parent, parentList = self, txtColor = color, pressEffect = False, frameColor = (0, 0, 0, 0), wantFrame = True)
         else:
             newItem = LookoutListItem(item, self.TOPLEVEL_GUI_FILE, 0.16, 0.75, parent, parentList = self, txtColor = color, pressEffect = False, frameColor = (0, 0, 0, 0), wantFrame = True)
         newItem.setup()
         if item['Value'] == PiratesGlobals.GAME_TYPE_CREW:
-            newItem.icon['scale'] = 0.22500000000000001
+            newItem.icon['scale'] = 0.225
             mainUI = loader.loadModel(self.MAIN_GUI_FILE)
-            glowIcon = OnscreenImage(image = mainUI.find('**/icon_glow'), pos = (0.095000000000000001, 0.0, 0.080000000000000002), scale = (0.69999999999999996, 0.69999999999999996, 0.69999999999999996), color = (0.17999999999999999, 0.40400000000000003, 0.39600000000000002, 5.0), parent = newItem, sort = -1)
+            glowIcon = OnscreenImage(image = mainUI.find('**/icon_glow'), pos = (0.0950, 0.0, 0.08), scale = (0.696, 0.696, 0.696), color = (0.179, 0.40400, 0.396, 5.0), parent = newItem, sort = -1)
             if self.guiMgr.crewHUD.crew and self.guiMgr.crewHUD.startACrewState or self.guiMgr.crewHUD.joinACrewStatusPVP:
                 if not DistributedBandMember.DistributedBandMember.IsLocalAvatarHeadOfBand() or base.localAvatar.getSiegeTeam():
                     newItem['state'] = DGG.DISABLED
@@ -466,7 +466,7 @@ class LookoutRequestLVL1(InventoryPage, InventoryRequestGameType):
 
 
         elif item['Value'] == PiratesGlobals.GAME_TYPE_PRIV:
-            newItem.icon['scale'] = 0.29999999999999999
+            newItem.icon['scale'] = 0.299
             if self.guiMgr.crewHUD.crew and self.guiMgr.crewHUD.startACrewState or self.guiMgr.crewHUD.joinACrewStatus:
                 if not DistributedBandMember.DistributedBandMember.IsLocalAvatarHeadOfBand() or not base.localAvatar.getSiegeTeam():
                     newItem['state'] = DGG.DISABLED
@@ -565,7 +565,7 @@ class LookoutRequestLVL1(InventoryPage, InventoryRequestGameType):
         def buildLvl2(itemList):
             if itemList and len(itemList) > 0:
                 gameCatStr = GameTypeGlobals.getGameTypeString(gameCat, 'type')
-                self.typePanel = LookoutRequestLVL2(gameCatStr, titleTextScale = 0.050000000000000003, itemList = itemList, parentPanel = self)
+                self.typePanel = LookoutRequestLVL2(gameCatStr, titleTextScale = 0.050000, itemList = itemList, parentPanel = self)
                 self.typePanel.reparentTo(self)
                 self.typePanel.setPos(0, 0, 0)
             elif self.submitButton:
@@ -859,7 +859,7 @@ class LookoutRequestLVL1(InventoryPage, InventoryRequestGameType):
         if imageInfo == None:
             lookoutUI = loader.loadModel(self.LOOKOUT_GUI_FILE)
             images = (lookoutUI.find('**/lookout_submit'), lookoutUI.find('**/lookout_submit_down'), lookoutUI.find('**/lookout_submit_over'), lookoutUI.find('**/lookout_submit_disabled'))
-            buttonPos = (0.82999999999999996, 0, 0.14999999999999999)
+            buttonPos = (0.826, 0, 0.149)
         else:
             uiTexture = imageInfo.get('textureCard')
             buttonImage = imageInfo.get('imageName')
@@ -884,7 +884,7 @@ class LookoutRequestLVL1(InventoryPage, InventoryRequestGameType):
         button = DirectButton(parent = buttonParent, relief = None, image = images, command = command, pos = buttonPos, scale = buttonScale, image_hpr = buttonHpr)
         text = None
         if textInfo:
-            text = DirectLabel(parent = button, state = DGG.DISABLED, relief = None, text = textInfo, text_align = TextNode.ACenter, text_scale = 0.17999999999999999, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (0, 0, -0.34999999999999998))
+            text = DirectLabel(parent = button, state = DGG.DISABLED, relief = None, text = textInfo, text_align = TextNode.ACenter, text_scale = 0.179, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (0, 0, -0.348))
 
         return [
             button,
@@ -897,23 +897,23 @@ class LookoutRequestLVL1(InventoryPage, InventoryRequestGameType):
             (self.submitButton, self.submitButtonText) = self.createButtonAndText(imageInfo = {
                 'textureCard': lookoutUI,
                 'imageName': 'lookout_submit',
-                'buttonPos': (0.88, 0, 0.14999999999999999),
-                'buttonScale': 0.29999999999999999,
+                'buttonPos': (0.88, 0, 0.149),
+                'buttonScale': 0.299,
                 'clickCommand': self.submitRequest }, textInfo = PLocalizer.LookoutSubmit)
             self.submitButton['state'] = DGG.DISABLED
             (self.nextButton, self.nextButtonText) = self.createButtonAndText(imageInfo = {
                 'textureCard': lookoutUI,
                 'imageName': 'lookout_forward',
-                'buttonPos': (0.88, 0, 0.14999999999999999),
+                'buttonPos': (0.88, 0, 0.149),
                 'buttonHpr': (0, 0, 180),
-                'buttonScale': 0.29999999999999999,
+                'buttonScale': 0.299,
                 'clickCommand': self.nextClick }, textInfo = PLocalizer.LookoutNext)
             self.nextButton['state'] = DGG.DISABLED
             (self.backButton, self.backButtonText) = self.createButtonAndText(imageInfo = {
                 'textureCard': lookoutUI,
                 'imageName': 'lookout_forward',
-                'buttonPos': (0.68999999999999995, 0, 0.14999999999999999),
-                'buttonScale': 0.29999999999999999,
+                'buttonPos': (0.685, 0, 0.149),
+                'buttonScale': 0.299,
                 'clickCommand': self.backClick }, textInfo = PLocalizer.LookoutBack)
         else:
             lookoutUI = loader.loadModel(self.LOOKOUT_GUI_FILE)
@@ -921,21 +921,21 @@ class LookoutRequestLVL1(InventoryPage, InventoryRequestGameType):
             (self.backButton, self.backButtonText) = self.createButtonAndText(imageInfo = {
                 'textureCard': lookoutUI,
                 'imageName': 'lookout_forward',
-                'buttonPos': (0.68999999999999995, 0, 0.14999999999999999),
-                'buttonScale': 0.29999999999999999,
+                'buttonPos': (0.685, 0, 0.149),
+                'buttonScale': 0.299,
                 'clickCommand': self.backClick }, textInfo = PLocalizer.LookoutBack)
-        self.activityListItems = ListFrame(0.80000000000000004, None, 'blah', self, frameColor = (0, 0, 0, 0))
+        self.activityListItems = ListFrame(0.800000, None, 'blah', self, frameColor = (0, 0, 0, 0))
         self.activityListItems.setup()
         if self.UI_VERSION == 0:
-            size = (0, 0.81999999999999995, 0, 0.5)
-            pos = (0.14999999999999999, 0, 0.55000000000000004)
+            size = (0, 0.815, 0, 0.5)
+            pos = (0.149, 0, 0.550000)
         else:
-            size = (0, 0.81999999999999995, 0, 1.0)
-            pos = (0.14999999999999999, 0, 0.0)
+            size = (0, 0.815, 0, 1.0)
+            pos = (0.149, 0, 0.0)
         charUI = loader.loadModel(self.CHAR_GUI_FILE)
         charGui_slider = charUI.find('**/chargui_slider_large')
         charGui_slider_thumb = charUI.find('**/chargui_slider_node')
-        self.activityList = DirectScrolledFrame(parent = self, frameSize = size, relief = DGG.GROOVE, state = DGG.NORMAL, frameColor = (0, 0, 0, 0), borderWidth = PiratesGuiGlobals.BorderWidth, canvasSize = (0, 0.69999999999999996, 0, self.activityListItems['frameSize'][3]), verticalScroll_image = charGui_slider, verticalScroll_frameSize = (0, PiratesGuiGlobals.ScrollbarSize, 0, self.height * 0.80000000000000004), verticalScroll_thumb_image = charGui_slider_thumb, sortOrder = 5, pos = pos)
+        self.activityList = DirectScrolledFrame(parent = self, frameSize = size, relief = DGG.GROOVE, state = DGG.NORMAL, frameColor = (0, 0, 0, 0), borderWidth = PiratesGuiGlobals.BorderWidth, canvasSize = (0, 0.696, 0, self.activityListItems['frameSize'][3]), verticalScroll_image = charGui_slider, verticalScroll_frameSize = (0, PiratesGuiGlobals.ScrollbarSize, 0, self.height * 0.800000), verticalScroll_thumb_image = charGui_slider_thumb, sortOrder = 5, pos = pos)
         if self.UI_VERSION == 0:
             self.createListFrame(self.activityList, lookoutUI)
 
@@ -996,20 +996,20 @@ class LookoutRequestLVL1(InventoryPage, InventoryRequestGameType):
         if self.titleText:
             self.titleText.remove_node()
 
-        self.titleText = DirectLabel(parent = self, relief = None, text = titleText, text_align = TextNode.ALeft, text_scale = 0.089999999999999997, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (0.35999999999999999, 0, 1.1699999999999999))
+        self.titleText = DirectLabel(parent = self, relief = None, text = titleText, text_align = TextNode.ALeft, text_scale = 0.089, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (0.359, 0, 1.16))
         toplevelUI = loader.loadModel(self.TOPLEVEL_GUI_FILE)
         if self.titleImage:
             self.titleImage.remove_node()
 
-        self.titleImage = OnscreenImage(image = toplevelUI.find('**/' + iconName), pos = (0.25, 0, 1.2), scale = (0.59999999999999998, 0.59999999999999998, 0.59999999999999998), parent = self)
+        self.titleImage = OnscreenImage(image = toplevelUI.find('**/' + iconName), pos = (0.25, 0, 1.2), scale = (0.598, 0.598, 0.598), parent = self)
         if self.descText:
             self.descText.remove_node()
 
-        self.descText = DirectLabel(parent = self, relief = None, text = titleDesc, text_align = TextNode.ALeft, text_scale = 0.044999999999999998, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 15, textMayChange = 1, pos = (0.23499999999999999, 0, 1.0600000000000001))
+        self.descText = DirectLabel(parent = self, relief = None, text = titleDesc, text_align = TextNode.ALeft, text_scale = 0.0448, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 15, textMayChange = 1, pos = (0.234, 0, 1.06))
 
 
     def createListFrame(self, list, lookoutUI = None):
-        self.activityListBorderFrame = BorderFrame(parent = list, pos = (0.40000000000000002, 0, 0.26500000000000001), scale = (0.80000000000000004, 1, 0.59999999999999998))
+        self.activityListBorderFrame = BorderFrame(parent = list, pos = (0.4, 0, 0.265), scale = (0.800000, 1, 0.598))
         self.activityListBorderFrame.setBackgroundVisible(False)
 
 
@@ -1018,20 +1018,20 @@ class LookoutRequestLVL1(InventoryPage, InventoryRequestGameType):
         (self.SearchContButton, self.SearchContButtonText) = self.createButtonAndText(imageInfo = {
             'textureCard': lookoutUI,
             'imageName': 'lookout_submit',
-            'buttonPos': (0.80000000000000004, 0, 0.14999999999999999),
-            'buttonScale': 0.29999999999999999,
+            'buttonPos': (0.800000, 0, 0.149),
+            'buttonScale': 0.299,
             'clickCommand': self.continueSearch }, textInfo = PLocalizer.LookoutSearchContinue)
         (self.SearchCancelButton, self.SearchCancelButtonText) = self.createButtonAndText(imageInfo = {
             'textureCard': lookoutUI,
             'imageName': 'lookout_stop_looking',
-            'buttonPos': (0.25, 0, 0.14999999999999999),
-            'buttonScale': 0.29999999999999999,
+            'buttonPos': (0.25, 0, 0.149),
+            'buttonScale': 0.299,
             'clickCommand': self.cancelSearch }, textInfo = PLocalizer.LookoutSearchCancel)
         (self.InviteCloseButton, self.InviteCloseButtonText) = self.createButtonAndText(imageInfo = {
             'textureCard': lookoutUI,
             'imageName': 'lookout_skip',
-            'buttonPos': (0.25, 0, 0.14999999999999999),
-            'buttonScale': 0.29999999999999999,
+            'buttonPos': (0.25, 0, 0.149),
+            'buttonScale': 0.299,
             'clickCommand': self.close }, textInfo = PLocalizer.LookoutInviteSkip)
         self.InviteCloseButton.hide()
         if self.currMode != PiratesGuiGlobals.SEARCH_MODE and self.currMode != PiratesGuiGlobals.INVITE_MODE and self.currMode != PiratesGuiGlobals.CHALLENGE_MODE and self.currMode != PiratesGuiGlobals.INVITE_ACCEPTED_MODE:
@@ -1040,23 +1040,23 @@ class LookoutRequestLVL1(InventoryPage, InventoryRequestGameType):
 
 
     def createFoundIface(self):
-        self.foundCat = DirectLabel(parent = self, relief = None, text = PLocalizer.LookoutFoundStatusCat, text_align = TextNode.ACenter, text_scale = 0.055, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (0.52000000000000002, 0, 0.90000000000000002))
-        self.foundType = DirectLabel(parent = self, relief = None, text = PLocalizer.LookoutFoundStatusType, text_align = TextNode.ACenter, text_scale = 0.050000000000000003, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (0.52000000000000002, 0, 0.81999999999999995))
-        self.foundChance = DirectLabel(parent = self, relief = None, text = PLocalizer.LookoutFoundStatusChance, text_align = TextNode.ACenter, text_scale = 0.044999999999999998, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (0.52000000000000002, 0, 0.40000000000000002))
+        self.foundCat = DirectLabel(parent = self, relief = None, text = PLocalizer.LookoutFoundStatusCat, text_align = TextNode.ACenter, text_scale = 0.055, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (0.52, 0, 0.9))
+        self.foundType = DirectLabel(parent = self, relief = None, text = PLocalizer.LookoutFoundStatusType, text_align = TextNode.ACenter, text_scale = 0.050000, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (0.52, 0, 0.815))
+        self.foundChance = DirectLabel(parent = self, relief = None, text = PLocalizer.LookoutFoundStatusChance, text_align = TextNode.ACenter, text_scale = 0.0448, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (0.52, 0, 0.4))
         lookoutUI = loader.loadModel(self.LOOKOUT_GUI_FILE)
         (self.foundJoinButton, self.foundJoinButtonText) = self.createButtonAndText(imageInfo = {
             'textureCard': lookoutUI,
             'imageName': 'lookout_join_game',
-            'buttonPos': (0.88, 0, 0.14999999999999999),
-            'buttonScale': 0.29999999999999999,
+            'buttonPos': (0.88, 0, 0.149),
+            'buttonScale': 0.299,
             'clickCommand': self.requestJoin }, textInfo = PLocalizer.LookoutFoundJoin)
         (self.foundDontJoinButton, self.foundDontJoinButtonText) = self.createButtonAndText(imageInfo = {
             'textureCard': lookoutUI,
             'imageName': 'lookout_skip',
-            'buttonPos': (0.5, 0, 0.14999999999999999),
-            'buttonScale': 0.29999999999999999,
+            'buttonPos': (0.5, 0, 0.149),
+            'buttonScale': 0.299,
             'clickCommand': self.skipGame }, textInfo = PLocalizer.LookoutFoundSkip)
-        self.TimerDisplay = DirectLabel(parent = self, relief = None, text = PLocalizer.LookoutTimer % self.joinTimeout, text_align = TextNode.ACenter, text_scale = 0.055, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (0.56999999999999995, 0, 0.40000000000000002))
+        self.TimerDisplay = DirectLabel(parent = self, relief = None, text = PLocalizer.LookoutTimer % self.joinTimeout, text_align = TextNode.ACenter, text_scale = 0.055, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (0.565, 0, 0.4))
         self.TimerDisplay.hide()
 
 

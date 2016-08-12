@@ -49,7 +49,7 @@ class FishBitingBubbleEffect(PooledEffect, EffectController):
 
     def setBubbleSizeBasedOnWeight(self, weight):
         bubbleMin = 0.001
-        bubbleMax = 0.0040000000000000001
+        bubbleMax = 0.00400
         bubbleSize = (bubbleMax - bubbleMin) * (weight / FishingGlobals.maxFishWeight) + bubbleMin
         self.p0.renderer.setInitialXScale(bubbleSize * self.cardScale)
         self.p0.renderer.setInitialYScale(bubbleSize * self.cardScale)
@@ -97,12 +97,12 @@ class FishBitingBubbleEffect(PooledEffect, EffectController):
         self.p0.emitter.setAmplitudeSpread(0.0)
         self.p0.emitter.setOffsetForce(Vec3(1.0, 0.0, -1.5))
         self.p0.emitter.setRadiateOrigin(Point3(0.0, 0.0, 0.0))
-        self.p0.emitter.setRadius(0.20000000000000001)
+        self.p0.emitter.setRadius(0.200)
 
 
     def createTrack(self):
         self.setParticleOptions()
-        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.10000000000000001), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy))
+        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.100), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy))
         self.endEffect = Sequence(Func(self.p0.setBirthRate, 20.0), Wait(10.0), Func(self.cleanUpEffect))
         self.track = Sequence(self.startEffect, Wait(0.5), self.endEffect)
 

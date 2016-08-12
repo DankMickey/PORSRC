@@ -128,7 +128,7 @@ class DistributedBomberZombie(DistributedBattleNPC.DistributedBattleNPC, BomberZ
                     painAnim = 'walk_hit'
                 else:
                     painAnim = 'idle_hit'
-                actorIval = self.actorInterval(painAnim, playRate = random.uniform(0.69999999999999996, 1.5))
+                actorIval = self.actorInterval(painAnim, playRate = random.uniform(0.696, 1.5))
                 if self.currentWeapon and WeaponGlobals.getIsStaffAttackSkill(skillId):
                     skillInfo = WeaponGlobals.getSkillAnimInfo(skillId)
                     getOuchSfxFunc = skillInfo[WeaponGlobals.OUCH_SFX_INDEX]
@@ -162,5 +162,5 @@ class DistributedBomberZombie(DistributedBattleNPC.DistributedBattleNPC, BomberZ
             self.voodooSmokeEffect2 = AttuneSmoke.getEffect()
             if self.voodooSmokeEffect2:
                 self.voodooSmokeEffect2.reparentTo(self)
-                self.voodooSmokeEffect2.setPos(0, 0, 0.20000000000000001)
+                self.voodooSmokeEffect2.setPos(0, 0, 0.200)
                 self.voodooSmokeEffect2.play()

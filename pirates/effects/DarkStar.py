@@ -56,18 +56,18 @@ class DarkStar(PooledEffect, EffectController):
         self.p0.renderer.setYScaleFlag(1)
         self.p0.renderer.setAnimAngleFlag(1)
         self.p0.renderer.setInitialXScale(0.0001 * self.cardScale)
-        self.p0.renderer.setFinalXScale(0.014999999999999999 * self.cardScale)
-        self.p0.renderer.setInitialYScale(0.00050000000000000001 * self.cardScale)
-        self.p0.renderer.setFinalYScale(0.035000000000000003 * self.cardScale)
+        self.p0.renderer.setFinalXScale(0.0149 * self.cardScale)
+        self.p0.renderer.setInitialYScale(0.000500 * self.cardScale)
+        self.p0.renderer.setFinalYScale(0.035000 * self.cardScale)
         self.p0.renderer.setNonanimatedTheta(0.0)
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPBLENDLINEAR)
         self.p0.renderer.setAlphaDisable(0)
         self.p0.renderer.setColorBlendMode(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne)
-        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(1.0, 1.0, 1.0, 1.0), Vec4(0.5, 0.20000000000000001, 1.0, 0.40000000000000002), 1)
+        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(1.0, 1.0, 1.0, 1.0), Vec4(0.5, 0.200, 1.0, 0.4), 1)
         self.p0.emitter.setEmissionType(BaseParticleEmitter.ETRADIATE)
         self.p0.emitter.setAmplitude(1.0)
         self.p0.emitter.setAmplitudeSpread(0.0)
-        self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, 0.10000000000000001))
+        self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, 0.100))
         self.p0.emitter.setExplicitLaunchVector(Vec3(1.0, 0.0, 0.0))
         self.p0.emitter.setRadiateOrigin(Point3(0.0, 0.0, 0.0))
         self.p0.emitter.setRadius(0.01)
@@ -76,7 +76,7 @@ class DarkStar(PooledEffect, EffectController):
     def createTrack(self, lod = None):
         self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.02), Func(self.p0.setPoolSize, 64), Func(self.p0.clearToInitial), Func(self.f.start, self, self), Func(self.f.reparentTo, self))
         self.endEffect = Sequence(Func(self.p0.setBirthRate, 2.0), Wait(1.5), Func(self.p0.setPoolSize, 0), Wait(1.0), Func(self.cleanUpEffect))
-        self.track = Sequence(self.startEffect, Wait(0.29999999999999999), self.endEffect)
+        self.track = Sequence(self.startEffect, Wait(0.299), self.endEffect)
 
 
     def setEffectColor(self, color):

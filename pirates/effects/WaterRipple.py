@@ -67,7 +67,7 @@ class WaterRipple(PooledEffect, EffectController):
 
 
     def createTrack(self):
-        self.disturb = Sequence(Func(self.p0.setEmitter, 'DiscEmitter'), Func(self.p0.setBirthRate, 0.29999999999999999), Func(self.p0.factory.setLifespanBase, 2.5), Wait(1.0), Func(self.p0.setEmitter, 'PointEmitter'), Func(self.p0.setBirthRate, 1.0), Func(self.p0.factory.setLifespanBase, 4.0))
+        self.disturb = Sequence(Func(self.p0.setEmitter, 'DiscEmitter'), Func(self.p0.setBirthRate, 0.299), Func(self.p0.factory.setLifespanBase, 2.5), Wait(1.0), Func(self.p0.setEmitter, 'PointEmitter'), Func(self.p0.setBirthRate, 1.0), Func(self.p0.factory.setLifespanBase, 4.0))
         self.startEffect = Sequence(Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self), self.disturb)
         self.endEffect = Sequence(Func(self.p0.setBirthRate, 100.0), Wait(3.0), Func(self.p0.setBirthRate, 0.0), Func(self.cleanUpEffect))
         self.track = Sequence(self.startEffect, Wait(2.0), self.endEffect)
@@ -75,11 +75,11 @@ class WaterRipple(PooledEffect, EffectController):
 
     def setEffectScale(self, scale):
         self.effectScale = scale
-        self.p0.renderer.setInitialXScale(0.20000000000000001 * scale)
+        self.p0.renderer.setInitialXScale(0.200 * scale)
         self.p0.renderer.setFinalXScale(6.0 * scale)
-        self.p0.renderer.setInitialYScale(0.20000000000000001 * scale)
+        self.p0.renderer.setInitialYScale(0.200 * scale)
         self.p0.renderer.setFinalYScale(6.0 * scale)
-        self.p0.renderer.setInitialZScale(0.20000000000000001 * scale)
+        self.p0.renderer.setInitialZScale(0.200 * scale)
         self.p0.renderer.setFinalZScale(6.0 * scale)
 
 

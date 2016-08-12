@@ -63,13 +63,13 @@ class BeamEffect(PooledEffect, EffectController):
                 newZ = random.uniform(-2.0, 2.0)
             self.beams[i].setPos(self, newX, newY, newZ)
             self.beams[i].lookAt(prevTarget)
-            dist = self.beams[i].getDistance(prevTarget) + 0.40000000000000002
+            dist = self.beams[i].getDistance(prevTarget) + 0.4
             if self.isTaperingBeam:
                 self.beams[i].setSx(4.0)
                 self.beams[i].setSy(prevTarget, dist / 10)
                 self.beams[i].setSz(4.0)
             else:
-                self.beams[i].setScale(prevTarget, 0.90000000000000002, dist / 10, 0.90000000000000002)
+                self.beams[i].setScale(prevTarget, 0.9, dist / 10, 0.9)
             prevTarget = self.beams[i]
             prevY = newY
 

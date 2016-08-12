@@ -62,8 +62,8 @@ class QuestTitleList(DirectScrolledFrame):
     questButtonSelected = None
 
     def __init__(self):
-        self.width = 0.94999999999999996
-        self.height = 0.54000000000000004
+        self.width = 0.946
+        self.height = 0.540000
         self.loadButtonGui()
         if not base.config.GetBool('enable-next-chapter', 0):
             self.chapter4Lockout = True
@@ -72,7 +72,7 @@ class QuestTitleList(DirectScrolledFrame):
             self.charGui = loader.loadModel('models/gui/char_gui')
             self.compassGui = loader.loadModel('models/gui/compass_main')
 
-        DirectScrolledFrame.__init__(self, relief = None, state = DGG.NORMAL, manageScrollBars = 0, autoHideScrollBars = 1, frameSize = (0, self.width, 0, self.height), canvasSize = (0, self.width - 0.050000000000000003, 0.025000000000000001, self.height - 0.025000000000000001), verticalScroll_relief = None, verticalScroll_image = self.charGui.find('**/chargui_slider_small'), verticalScroll_frameSize = (0, PiratesGuiGlobals.ScrollbarSize, 0, self.height), verticalScroll_image_scale = (self.height + 0.050000000000000003, 1, 0.75), verticalScroll_image_hpr = (0, 0, 90), verticalScroll_image_pos = (self.width - PiratesGuiGlobals.ScrollbarSize * 0.5 - 0.0040000000000000001, 0, self.height * 0.5), verticalScroll_image_color = (0.60999999999999999, 0.59999999999999998, 0.59999999999999998, 1), verticalScroll_thumb_image = (self.charGui.find('**/chargui_slider_node'), self.charGui.find('**/chargui_slider_node_down'), self.charGui.find('**/chargui_slider_node_over')), verticalScroll_thumb_relief = None, verticalScroll_thumb_image_scale = 0.40000000000000002, verticalScroll_resizeThumb = 0, horizontalScroll_relief = None, sortOrder = 5)
+        DirectScrolledFrame.__init__(self, relief = None, state = DGG.NORMAL, manageScrollBars = 0, autoHideScrollBars = 1, frameSize = (0, self.width, 0, self.height), canvasSize = (0, self.width - 0.050000, 0.0250, self.height - 0.0250), verticalScroll_relief = None, verticalScroll_image = self.charGui.find('**/chargui_slider_small'), verticalScroll_frameSize = (0, PiratesGuiGlobals.ScrollbarSize, 0, self.height), verticalScroll_image_scale = (self.height + 0.050000, 1, 0.75), verticalScroll_image_hpr = (0, 0, 90), verticalScroll_image_pos = (self.width - PiratesGuiGlobals.ScrollbarSize * 0.5 - 0.00400, 0, self.height * 0.5), verticalScroll_image_color = (0.609, 0.598, 0.598, 1), verticalScroll_thumb_image = (self.charGui.find('**/chargui_slider_node'), self.charGui.find('**/chargui_slider_node_down'), self.charGui.find('**/chargui_slider_node_over')), verticalScroll_thumb_relief = None, verticalScroll_thumb_image_scale = 0.4, verticalScroll_resizeThumb = 0, horizontalScroll_relief = None, sortOrder = 5)
         self.initialiseoptions(QuestTitleList)
         self.verticalScroll.incButton.destroy()
         self.verticalScroll.decButton.destroy()
@@ -90,7 +90,7 @@ class QuestTitleList(DirectScrolledFrame):
         if self.verticalScroll.isHidden():
             return None
 
-        amountScroll = 0.050000000000000003
+        amountScroll = 0.050000
         if self.verticalScroll['value'] > 0:
             self.verticalScroll['value'] -= amountScroll
 
@@ -100,7 +100,7 @@ class QuestTitleList(DirectScrolledFrame):
         if self.verticalScroll.isHidden():
             return None
 
-        amountScroll = 0.050000000000000003
+        amountScroll = 0.050000
         if self.verticalScroll['value'] < 1.0:
             self.verticalScroll['value'] += amountScroll
 
@@ -119,12 +119,12 @@ class QuestTitleList(DirectScrolledFrame):
         z = 0
         for button in self.buttons:
             if button.indent == 0:
-                z -= 0.080000000000000002
+                z -= 0.08
             else:
-                z -= 0.042000000000000003
+                z -= 0.042000
             button.setPos(0, 0, z)
 
-        self['canvasSize'] = (0, self.width - 0.050000000000000003, z, 0)
+        self['canvasSize'] = (0, self.width - 0.050000, z, 0)
 
 
     def update(self, questIdList, quest, newQuest):
@@ -343,13 +343,13 @@ class QuestTitleList(DirectScrolledFrame):
             isContainer = isinstance(node.questDNA, QuestLadderDNA.QuestContainerDNA)
             text = self._QuestTitleList__getText(indent, node.questId, isContainer)
             text_scale = PiratesGuiGlobals.TextScaleLarge
-            frameSize = (0, 0.92000000000000004, 0, 0.042000000000000003)
-            text_pos = (0.059999999999999998, 0.01)
+            frameSize = (0, 0.920000, 0, 0.042000)
+            text_pos = (0.0598, 0.01)
             textFg = PiratesGuiGlobals.TextFG1
             if indent == 0:
                 text_pos = (0.01, 0.01)
 
-            button = DirectButton(parent = guiParent, relief = None, frameSize = frameSize, borderWidth = (0.0050000000000000001, 0.0050000000000000001), text = text, text_fg = textFg, text_scale = text_scale, text_align = TextNode.ALeft, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = text_pos, command = self.select, extraArgs = [
+            button = DirectButton(parent = guiParent, relief = None, frameSize = frameSize, borderWidth = (0.00500, 0.00500), text = text, text_fg = textFg, text_scale = text_scale, text_align = TextNode.ALeft, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = text_pos, command = self.select, extraArgs = [
                 node.questId])
 
             button.accept('press-wheel_up-%s' % button.guiId, self.mouseWheelUp)
@@ -369,12 +369,12 @@ class QuestTitleList(DirectScrolledFrame):
         if not selected:
             button['image'] = QuestTitleList.questButton
 
-        button['image_color'] = Vec4(0.5, 0.080000000000000002, 0.017999999999999999, 1)
+        button['image_color'] = Vec4(0.5, 0.08, 0.0179, 1)
         if not indentLen:
-            button['image_scale'] = (titleTextLen * 0.057000000000000002, 0.38, 0.38)
-            button['image_pos'] = ((titleTextLen + indentLen) * 0.012200000000000001, 0, 0.023)
+            button['image_scale'] = (titleTextLen * 0.057, 0.38, 0.38)
+            button['image_pos'] = ((titleTextLen + indentLen) * 0.0122, 0, 0.023)
         else:
-            button['image_scale'] = (titleTextLen * 0.051999999999999998, 0.35999999999999999, 0.35999999999999999)
+            button['image_scale'] = (titleTextLen * 0.0518, 0.359, 0.359)
             button['image_pos'] = ((titleTextLen + indentLen) * 0.01, 0, 0.023)
 
 
@@ -383,8 +383,8 @@ class QuestTitleList(DirectScrolledFrame):
             if button.questId == questId:
                 button['geom'] = self.compassGui.find('**/icon_objective_grey')
                 button['geom_color'] = Vec4(1, 1, 0, 1)
-                button['geom_scale'] = 0.14000000000000001
-                button['geom_pos'] = (0.02, 0, 0.025000000000000001)
+                button['geom_scale'] = 0.140
+                button['geom_pos'] = (0.02, 0, 0.0250)
                 continue
             button['geom'] = None
 

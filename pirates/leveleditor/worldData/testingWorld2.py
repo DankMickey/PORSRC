@@ -13,13 +13,13 @@ objectStruct = {
                         '1142302312.03jubutler': {
                             'Type': 'LOD Sphere',
                             'Hpr': Point3(0.0, 0.0, 0.0),
-                            'Pos': Point3(-223.89500000000001, -72.295000000000002, 618.90599999999995),
+                            'Pos': Point3(-223.895, -72.295, 618.905),
                             'Radi': [
                                 3802,
                                 4102,
                                 4402],
                             'Scale': VBase3(1.0, 1.0, 1.0) } },
-                    'Pos': Point3(-25.184000000000001, 24.004999999999999, 0.0),
+                    'Pos': Point3(-25.184, 24.004, 0.0),
                     'Visual': {
                         'Model': 'models/islands/madre_del_fuego_zero' } } } } },
     'Node Links': [],

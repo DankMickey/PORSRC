@@ -13,9 +13,9 @@ objectStruct = {
                     'Category': 'Commoner',
                     'AnimSet': 'doctor_work',
                     'CustomModel': 'None',
-                    'Hpr': VBase3(-35.951000000000001, 0.0, 0.0),
+                    'Hpr': VBase3(-35.951, 0.0, 0.0),
                     'Patrol Radius': 12,
-                    'Pos': Point3(0.39400000000000002, -6.0759999999999996, 0.0),
+                    'Pos': Point3(0.394, -6.0756, 0.0),
                     'Private Status': 'All',
                     'Respawns': True,
                     'Scale': VBase3(1.0, 1.0, 1.0),
@@ -25,7 +25,7 @@ objectStruct = {
                     'Type': 'Furniture',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(0.96599999999999997, -9.2799999999999994, 0.0),
+                    'Pos': Point3(0.965, -9.2794, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/table_bar_square' } },
@@ -34,9 +34,9 @@ objectStruct = {
                     'Category': 'Commoner',
                     'AnimSet': 'patient_work',
                     'CustomModel': 'None',
-                    'Hpr': VBase3(91.269000000000005, 0.0, 0.0),
+                    'Hpr': VBase3(91.2690, 0.0, 0.0),
                     'Patrol Radius': 12,
-                    'Pos': Point3(9.7129999999999992, 16.167999999999999, 0.32200000000000001),
+                    'Pos': Point3(9.7122, 16.167, 0.322),
                     'Private Status': 'All',
                     'Respawns': True,
                     'Scale': VBase3(1.0, 1.0, 1.0),
@@ -45,8 +45,8 @@ objectStruct = {
                 '1180115072.0dchiappe1': {
                     'Type': 'Mortar_Pestle',
                     'Hpr': VBase3(0.0, 0.0, 0.0),
-                    'Pos': Point3(0.77500000000000002, -8.5120000000000005, 2.9369999999999998),
-                    'Scale': VBase3(0.70299999999999996, 0.70299999999999996, 0.70299999999999996),
+                    'Pos': Point3(0.775, -8.51200, 2.9368),
+                    'Scale': VBase3(0.70296, 0.70296, 0.70296),
                     'Visual': {
                         'Model': 'models/props/mortar_pestle_stone' } } },
             'Visual': {

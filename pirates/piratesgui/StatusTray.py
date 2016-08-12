@@ -24,7 +24,7 @@ class StatusTray(GuiTray.GuiTray):
     SHOW_SKILL_DURATION = 2.0
 
     def __init__(self, parent, showSkills = 0, **kw):
-        GuiTray.GuiTray.__init__(self, parent, 0.75, 0.14999999999999999)
+        GuiTray.GuiTray.__init__(self, parent, 0.75, 0.149)
         self.initialiseoptions(StatusTray)
         self.name = None
         self.sticky = False
@@ -39,26 +39,26 @@ class StatusTray(GuiTray.GuiTray):
         self.fader = None
         self.skillEffects = { }
         self.durationTask = None
-        self.nameLabel = DirectLabel(parent = self, state = DGG.DISABLED, relief = None, text = '', text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = Vec4(0.80000000000000004, 0.69999999999999996, 0.59999999999999998, 1), text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (0.040000000000000001, 0, 0.11), text_font = PiratesGlobals.getPirateBoldOutlineFont())
-        self.stickyLabel = DirectLabel(parent = self, state = DGG.DISABLED, relief = None, text = '', text_align = TextNode.ARight, text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (0.56999999999999995, 0, 0.025000000000000001), text_font = PiratesGlobals.getInterfaceOutlineFont())
-        self.hpLabel = DirectLabel(parent = self, state = DGG.DISABLED, relief = None, frameColor = (0, 0, 0, 0.20000000000000001), frameSize = (-0.01, 0.40000000000000002, -0.014999999999999999, 0.040000000000000001), pos = (0.32000000000000001, 0, 0.0060000000000000001), text = PLocalizer.StatusTrayHp, text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getInterfaceFont(), textMayChange = 0)
+        self.nameLabel = DirectLabel(parent = self, state = DGG.DISABLED, relief = None, text = '', text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = Vec4(0.800000, 0.696, 0.598, 1), text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (0.0400, 0, 0.11), text_font = PiratesGlobals.getPirateBoldOutlineFont())
+        self.stickyLabel = DirectLabel(parent = self, state = DGG.DISABLED, relief = None, text = '', text_align = TextNode.ARight, text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (0.565, 0, 0.0250), text_font = PiratesGlobals.getInterfaceOutlineFont())
+        self.hpLabel = DirectLabel(parent = self, state = DGG.DISABLED, relief = None, frameColor = (0, 0, 0, 0.200), frameSize = (-0.01, 0.4, -0.0149, 0.0400), pos = (0.320, 0, 0.00600), text = PLocalizer.StatusTrayHp, text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getInterfaceFont(), textMayChange = 0)
         self.hpLabel.hide()
-        self.voodooMeter = DirectWaitBar(parent = self, state = DGG.DISABLED, relief = DGG.RAISED, borderWidth = (0.0050000000000000001, 0.0050000000000000001), frameSize = (0.0, 0.53000000000000003, 0.0070000000000000001, 0.035000000000000003), frameColor = (0, 0, 0, 1), pos = (0.20000000000000001, 0, -0.055), range = 100, value = 100, barColor = (0.59999999999999998, 0.59999999999999998, 0.94999999999999996, 1), text = '', text_align = TextNode.ARight, text_scale = PiratesGuiGlobals.TextScaleMed, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0.5, -0.035000000000000003, 0), text_font = PiratesGlobals.getInterfaceFont(), textMayChange = 1, sortOrder = 0)
+        self.voodooMeter = DirectWaitBar(parent = self, state = DGG.DISABLED, relief = DGG.RAISED, borderWidth = (0.00500, 0.00500), frameSize = (0.0, 0.53000, 0.00700, 0.035000), frameColor = (0, 0, 0, 1), pos = (0.200, 0, -0.055), range = 100, value = 100, barColor = (0.598, 0.598, 0.946, 1), text = '', text_align = TextNode.ARight, text_scale = PiratesGuiGlobals.TextScaleMed, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0.5, -0.035000, 0), text_font = PiratesGlobals.getInterfaceFont(), textMayChange = 1, sortOrder = 0)
         self.voodooMeter.setTransparency(1)
         self.voodooMeter.component('text0').hide()
-        self.hpMeter = DirectWaitBar(parent = self, state = DGG.DISABLED, relief = DGG.RAISED, borderWidth = (0.0050000000000000001, 0.0050000000000000001), frameSize = (0.0, 0.53000000000000003, 0.002, 0.029999999999999999), frameColor = (0, 0, 0, 1), pos = (0.20000000000000001, 0, 0.050000000000000003), range = 100, value = 100, barColor = (0.10000000000000001, 0.69999999999999996, 0.10000000000000001, 1), text = '', text_align = TextNode.ARight, text_scale = PiratesGuiGlobals.TextScaleMed, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0.5, -0.044999999999999998, 0), text_font = PiratesGlobals.getInterfaceFont(), textMayChange = 1, sortOrder = 0)
+        self.hpMeter = DirectWaitBar(parent = self, state = DGG.DISABLED, relief = DGG.RAISED, borderWidth = (0.00500, 0.00500), frameSize = (0.0, 0.53000, 0.002, 0.0299), frameColor = (0, 0, 0, 1), pos = (0.200, 0, 0.050000), range = 100, value = 100, barColor = (0.100, 0.696, 0.100, 1), text = '', text_align = TextNode.ARight, text_scale = PiratesGuiGlobals.TextScaleMed, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0.5, -0.0448, 0), text_font = PiratesGlobals.getInterfaceFont(), textMayChange = 1, sortOrder = 0)
         self.hpMeter.setTransparency(1)
         self.hpMeter.component('text0').hide()
-        self.hpMeterChange = DirectFrame(parent = self, state = DGG.DISABLED, frameSize = (0.0, 0.53000000000000003, 0.0, 0.025999999999999999), frameColor = (1.0, 0.0, 0.0, 1.0), pos = (0, 0, 0))
+        self.hpMeterChange = DirectFrame(parent = self, state = DGG.DISABLED, frameSize = (0.0, 0.53000, 0.0, 0.0259), frameColor = (1.0, 0.0, 0.0, 1.0), pos = (0, 0, 0))
         self.hpMeterChange.setBin('gui-fixed', 0)
         self.hpMeterChange.hide()
-        self.hpMeterDownIval = Sequence(Func(self.hpMeterChange.show), Wait(0.10000000000000001), LerpColorInterval(self.hpMeterChange, 0.5, color = VBase4(0.69999999999999996, 0.10000000000000001, 0.10000000000000001, 1.0), blendType = 'easeOut'), LerpColorInterval(self.hpMeterChange, 0.25, color = VBase4(0.0, 0.0, 0.0, 1.0), blendType = 'easeOut'), Func(self.hpMeterChange.hide))
-        self.hpMeterUpGreenIval = Sequence(Func(self.hpMeterChange.show), Wait(0.10000000000000001), LerpColorInterval(self.hpMeterChange, 0.75, color = VBase4(0.10000000000000001, 0.69999999999999996, 0.10000000000000001, 1.0)), Func(self.hpMeterChange.hide))
-        self.hpMeterUpRedIval = Sequence(Func(self.hpMeterChange.show), Wait(0.10000000000000001), LerpColorInterval(self.hpMeterChange, 0.75, color = VBase4(1.0, 0.0, 0.0, 1.0)), Func(self.hpMeterChange.hide))
-        self.hpMeterUpYellowIval = Sequence(Func(self.hpMeterChange.show), Wait(0.10000000000000001), LerpColorInterval(self.hpMeterChange, 0.75, color = VBase4(1.0, 1.0, 0.10000000000000001, 1.0)), Func(self.hpMeterChange.hide))
-        self.meterChangeOffset = (0.0, 0.0, 0.050000000000000003)
+        self.hpMeterDownIval = Sequence(Func(self.hpMeterChange.show), Wait(0.100), LerpColorInterval(self.hpMeterChange, 0.5, color = VBase4(0.696, 0.100, 0.100, 1.0), blendType = 'easeOut'), LerpColorInterval(self.hpMeterChange, 0.25, color = VBase4(0.0, 0.0, 0.0, 1.0), blendType = 'easeOut'), Func(self.hpMeterChange.hide))
+        self.hpMeterUpGreenIval = Sequence(Func(self.hpMeterChange.show), Wait(0.100), LerpColorInterval(self.hpMeterChange, 0.75, color = VBase4(0.100, 0.696, 0.100, 1.0)), Func(self.hpMeterChange.hide))
+        self.hpMeterUpRedIval = Sequence(Func(self.hpMeterChange.show), Wait(0.100), LerpColorInterval(self.hpMeterChange, 0.75, color = VBase4(1.0, 0.0, 0.0, 1.0)), Func(self.hpMeterChange.hide))
+        self.hpMeterUpYellowIval = Sequence(Func(self.hpMeterChange.show), Wait(0.100), LerpColorInterval(self.hpMeterChange, 0.75, color = VBase4(1.0, 1.0, 0.100, 1.0)), Func(self.hpMeterChange.hide))
+        self.meterChangeOffset = (0.0, 0.0, 0.050000)
         self.prevTargetName = ''
-        self.voodooLabel = DirectLabel(parent = self, state = DGG.DISABLED, relief = None, frameColor = (0, 0, 0, 0.20000000000000001), frameSize = (-0.01, 0.40000000000000002, -0.014999999999999999, 0.040000000000000001), pos = (0.32000000000000001, 0, -0.091999999999999998), text = PLocalizer.StatusTrayVoodoo, text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getInterfaceFont(), textMayChange = 0)
+        self.voodooLabel = DirectLabel(parent = self, state = DGG.DISABLED, relief = None, frameColor = (0, 0, 0, 0.200), frameSize = (-0.01, 0.4, -0.0149, 0.0400), pos = (0.320, 0, -0.0918), text = PLocalizer.StatusTrayVoodoo, text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getInterfaceFont(), textMayChange = 0)
         self.voodooLabel.hide()
         self.statusEffectsPanel = StatusEffectsPanel.StatusEffectsPanel(parent = self)
         flagModel = loader.loadModel('models/gui/flag_icons')
@@ -70,7 +70,7 @@ class StatusTray(GuiTray.GuiTray):
             flagModel2.find('**/pir_t_ico_dol_straw')]
         for icon in flagModels:
             if icon == flagModel2.find('**/pir_t_ico_dol_straw'):
-                icon.setScale(0.10000000000000001)
+                icon.setScale(0.100)
             else:
                 icon.setScale(0.44)
             icon.flattenStrong()
@@ -92,7 +92,7 @@ class StatusTray(GuiTray.GuiTray):
             PVPGlobals.FrenchTeam: privateerLogos.find('**/logo_french_flag'),
             PVPGlobals.SpanishTeam: privateerLogos.find('**/logo_spanish_flag') }
         for logo in self.privateerLogos.itervalues():
-            logo.setScale(0.073999999999999996)
+            logo.setScale(0.0736)
             logo.flattenStrong()
 
         self.currentIcon = None
@@ -106,15 +106,15 @@ class StatusTray(GuiTray.GuiTray):
             tex = self.card.find('**/base')
             self.reloadFrame['scale'] = 0.5
             self.reloadFrame['image'] = tex
-            self.reloadFrame['image_scale'] = 0.085000000000000006
+            self.reloadFrame['image_scale'] = 0.085
             self.reloadFrame['image_pos'] = (0, 0, 0.02)
             self.reloadFrame.setPos(0.12, 0, -0.019)
-            self.reloadFrame.setScale(0.69999999999999996)
+            self.reloadFrame.setScale(0.696)
             tex = self.card.find('**/cutlass_sweep')
             self.skillFrame = DirectFrame(parent = self.reloadFrame, state = DGG.DISABLED, relief = None, sortOrder = 20, image_pos = (0, 0, 0))
             self.skillFrame.setTransparency(1)
             self.skillFrame['image'] = tex
-            self.skillFrame['image_scale'] = 0.10000000000000001
+            self.skillFrame['image_scale'] = 0.100
             self.skillFrame['image_pos'] = (0.12, 0, -0.019)
             self.activeName['text_align'] = TextNode.ALeft
             self.activeName.setPos(0.08, 0, 0.01)
@@ -233,9 +233,9 @@ class StatusTray(GuiTray.GuiTray):
             self.prevValue = hp
             hpFraction = float(hp) / float(maxHp)
             if hpFraction >= 0.5:
-                barColor = (0.10000000000000001, 0.69999999999999996, 0.10000000000000001, 1)
+                barColor = (0.100, 0.696, 0.100, 1)
             elif hpFraction >= 0.25:
-                barColor = (1.0, 1.0, 0.10000000000000001, 1)
+                barColor = (1.0, 1.0, 0.100, 1)
             else:
                 barColor = (1.0, 0.0, 0.0, 1)
             self.hpMeter['barColor'] = barColor
@@ -252,9 +252,9 @@ class StatusTray(GuiTray.GuiTray):
 
         hpFraction = float(hp) / float(maxHp)
         if hpFraction >= 0.5:
-            barColor = (0.10000000000000001, 0.69999999999999996, 0.10000000000000001, 1)
+            barColor = (0.100, 0.696, 0.100, 1)
         elif hpFraction >= 0.25:
-            barColor = (1.0, 1.0, 0.10000000000000001, 1)
+            barColor = (1.0, 1.0, 0.100, 1)
         else:
             barColor = (1.0, 0.0, 0.0, 1)
         self.hpMeter['barColor'] = barColor
@@ -299,11 +299,11 @@ class StatusTray(GuiTray.GuiTray):
             valueScale = float(hp) / float(maxHp)
             changeScale = float(change) / float(maxHp)
             frameSize = tuple(self.hpMeter['frameSize'])
-            frameRight = float(changeScale * 0.52000000000000002)
-            frameBottom = float(frameSize[2] + 0.0050000000000000001)
-            frameTop = float(frameSize[3] - 0.0050000000000000001)
-            frameLeft = float(valueScale * 0.52000000000000002)
-            frameX = float(0.20499999999999999 + frameLeft) - 0.001
+            frameRight = float(changeScale * 0.52)
+            frameBottom = float(frameSize[2] + 0.00500)
+            frameTop = float(frameSize[3] - 0.00500)
+            frameLeft = float(valueScale * 0.52)
+            frameX = float(0.204 + frameLeft) - 0.001
             self.hpMeterChange.setPos(frameX + float(self.meterChangeOffset[0]), 0.0, float(self.meterChangeOffset[2]))
             self.hpMeterChange['frameSize'] = (0.0, frameRight, frameBottom, frameTop)
             if self.hpMeterUpGreenIval.isPlaying():
@@ -332,14 +332,14 @@ class StatusTray(GuiTray.GuiTray):
             valueScale = float(hp) / float(maxHp)
             changeScale = float(change) / float(maxHp)
             frameSize = tuple(self.hpMeter['frameSize'])
-            frameRight = float(changeScale * 0.52000000000000002)
-            frameBottom = float(frameSize[2] + 0.0050000000000000001)
-            frameTop = float(frameSize[3] - 0.0050000000000000001)
-            frameLeft = float(valueScale * 0.52000000000000002)
-            frameX = float(0.20499999999999999 + frameLeft) - frameRight
+            frameRight = float(changeScale * 0.52)
+            frameBottom = float(frameSize[2] + 0.00500)
+            frameTop = float(frameSize[3] - 0.00500)
+            frameLeft = float(valueScale * 0.52)
+            frameX = float(0.204 + frameLeft) - frameRight
             self.hpMeterChange.setPos(frameX + float(self.meterChangeOffset[0]), 0.0, float(self.meterChangeOffset[2]))
-            if frameLeft > 0.52000000000000002:
-                diff = frameLeft - 0.52000000000000002
+            if frameLeft > 0.52:
+                diff = frameLeft - 0.52
                 frameRight = float(frameRight - diff)
 
             self.prevChange = change
@@ -496,7 +496,7 @@ class StatusTray(GuiTray.GuiTray):
         if self.card:
             tex = self.card.find('**/%s' % asset)
             self.skillFrame['image'] = tex
-            self.skillFrame['image_scale'] = 0.074999999999999997
+            self.skillFrame['image_scale'] = 0.074
             self.skillFrame.setPos(-0.105, 0, -0.255)
 
         ts = globalClockDelta.localElapsedTime(timestamp)

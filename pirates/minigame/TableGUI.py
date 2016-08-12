@@ -48,7 +48,7 @@ class TableGUI:
         else:
             self.suitIcons = loader.loadModel('models/gui/suit_icons')
             if self.suitIcons:
-                scale = 0.080000000000000002
+                scale = 0.08
                 icon = self.suitIcons.find('**/suit_icon_h')
                 icon.setScale(scale)
                 self.suitGeomArray.append(icon)
@@ -67,9 +67,9 @@ class TableGUI:
                     None,
                     None,
                     None]
-        x = -0.35999999999999999
-        y = 0.070000000000000007
-        x_increment = 0.23999999999999999
+        x = -0.359
+        y = 0.070
+        x_increment = 0.239
         text = PLocalizer.TableLeave
         button = GuiButton(parent = self.menu, command = self.leaveAction, canReposition = True)
         self.setButtonSettings(button, (x, 0, y), text, [
@@ -92,9 +92,9 @@ class TableGUI:
         self.cardSwapIndex = 0
         self.suitButtonArray = []
         self.rankButtonArray = []
-        x = -0.35999999999999999
-        y = 0.17749999999999999
-        x_increment = 0.23999999999999999
+        x = -0.359
+        y = 0.17749
+        x_increment = 0.239
         suit = 0
         text = PLocalizer.PlayingCardSuits[suit]
         button = GuiButton(parent = self.menu, command = self.cardSuitSelection, canReposition = True)
@@ -140,8 +140,8 @@ class TableGUI:
         button.setGeom()
         x = x + x_increment
         suit = suit + 1
-        x = -0.35999999999999999 - 0.059999999999999998
-        y = 0.17749999999999999
+        x = -0.359 - 0.0598
+        y = 0.17749
         x_increment = 0.12
         rank = 0
         text = PLocalizer.Card2
@@ -208,8 +208,8 @@ class TableGUI:
             button]
         x = x + x_increment
         rank = rank + 1
-        x = -0.35999999999999999 - 0.059999999999999998
-        y = 0.070000000000000007
+        x = -0.359 - 0.0598
+        y = 0.070
         x_increment = 0.12
         x = x + x_increment
         x = x + x_increment
@@ -286,7 +286,7 @@ class TableGUI:
 
 
     def setButtonSettingsHalfWidth(self, button, position, text, extra = None):
-        button.configure(text = text, text_fg = (1.0, 1.0, 1.0, 1.0), text_scale = PiratesGuiGlobals.TextScaleLarge, text_pos = (0, -(PiratesGuiGlobals.TextScaleLarge) * 0.25), text_wordwrap = 0, image_scale = (0.11, 0.22, 0.23999999999999999))
+        button.configure(text = text, text_fg = (1.0, 1.0, 1.0, 1.0), text_scale = PiratesGuiGlobals.TextScaleLarge, text_pos = (0, -(PiratesGuiGlobals.TextScaleLarge) * 0.25), text_wordwrap = 0, image_scale = (0.11, 0.22, 0.239))
         button.setPos(position[0], position[1], position[2])
         button['extraArgs'] = extra
         button.resetFrameSize()
@@ -294,7 +294,7 @@ class TableGUI:
 
 
     def setButtonSettings(self, button, position, text, extra = None):
-        button.configure(text = text, text_fg = (1.0, 1.0, 1.0, 1.0), text_scale = PiratesGuiGlobals.TextScaleLarge, text_pos = (0, -(PiratesGuiGlobals.TextScaleLarge) * 0.25), text_wordwrap = 0, image_scale = (0.23999999999999999, 0.23999999999999999, 0.23999999999999999))
+        button.configure(text = text, text_fg = (1.0, 1.0, 1.0, 1.0), text_scale = PiratesGuiGlobals.TextScaleLarge, text_pos = (0, -(PiratesGuiGlobals.TextScaleLarge) * 0.25), text_wordwrap = 0, image_scale = (0.239, 0.239, 0.239))
         button.setPos(position[0], position[1], position[2])
         button['extraArgs'] = extra
         button.resetFrameSize()
@@ -302,7 +302,7 @@ class TableGUI:
 
 
     def setButtonSettings2Lines(self, button, position, text, extra = None):
-        button.configure(text = text, text_fg = (1.0, 1.0, 1.0, 1.0), text_scale = PiratesGuiGlobals.TextScaleLarge, text_pos = (0, PiratesGuiGlobals.TextScaleLarge * 0.25), text_wordwrap = 0, image_scale = (0.23999999999999999, 0.23999999999999999, 0.23999999999999999))
+        button.configure(text = text, text_fg = (1.0, 1.0, 1.0, 1.0), text_scale = PiratesGuiGlobals.TextScaleLarge, text_pos = (0, PiratesGuiGlobals.TextScaleLarge * 0.25), text_wordwrap = 0, image_scale = (0.239, 0.239, 0.239))
         button.setPos(position[0], position[1], position[2])
         button['extraArgs'] = extra
         button.resetFrameSize()
@@ -422,7 +422,7 @@ class TableGUI:
             self.swapDialog = PDialog.PDialog(text = string, style = OTPDialog.YesNo, giveMouse = False, command = self.swapCallback)
             self.table.setDialogBin(self.swapDialog)
             position = self.swapDialog.getPos()
-            position.setZ(position[2] + 0.34999999999999998)
+            position.setZ(position[2] + 0.348)
             self.swapDialog.setPos(position)
 
 
@@ -508,22 +508,22 @@ class TableGUI:
         self.timeout = False
         if self.use_hourglass:
             timer = localAvatar.guiMgr.timerHourglass
-            timer.setPos(0.59114599999999995, 0, 0.127604)
+            timer.setPos(0.591145, 0, 0.127604)
             timer.reparentTo(base.a2dBottomCenter)
             start_time = 3.0
             end_time = 5.0
-            start_position = Vec3(0.59114599999999995, 0, 0.127604 - 0.5)
-            end_position = Vec3(0.59114599999999995, 0, 0.127604)
+            start_position = Vec3(0.591145, 0, 0.127604 - 0.5)
+            end_position = Vec3(0.591145, 0, 0.127604)
             timer.setSlide(start_time, end_time, start_position, end_position)
         else:
             timer = localAvatar.guiMgr.timer
-            timer.setPos(0.59114599999999995, 0, 0.127604)
+            timer.setPos(0.591145, 0, 0.127604)
             timer.reparentTo(base.a2dBottomCenter)
             if True:
                 start_time = 3.0
                 end_time = 5.0
-                start_position = Vec3(0.59114599999999995, 0, 0.127604 - 0.5)
-                end_position = Vec3(0.59114599999999995, 0, 0.127604)
+                start_position = Vec3(0.591145, 0, 0.127604 - 0.5)
+                end_position = Vec3(0.591145, 0, 0.127604)
                 timer.setSlide(start_time, end_time, start_position, end_position)
 
 
@@ -559,9 +559,9 @@ class TableGUI:
         self.levelUpSfx = loadSfx(SoundGlobals.SFX_MINIGAME_LEVELUP)
         self.levelUpSfx.setVolume(0.5)
         self.levelUpText = NodePath('text')
-        self.levelUpLabel = DirectLabel(parent = self.levelUpText, relief = None, text = '', text_font = PiratesGlobals.getPirateOutlineFont(), text_fg = (0.10000000000000001, 0.69999999999999996, 0.10000000000000001, 1), text_shadow = (0, 0, 0, 1), scale = 0.25)
-        self.levelUpCategoryLabel = DirectLabel(parent = self.levelUpText, relief = None, text = '', text_font = PiratesGlobals.getPirateOutlineFont(), text_fg = (0.10000000000000001, 0.69999999999999996, 0.10000000000000001, 1), text_shadow = (0, 0, 0, 1), scale = 0.125, pos = (0, 0, -0.17499999999999999))
-        self.levelUpIval = Sequence(Func(self.levelUpText.reparentTo, aspect2d), Parallel(LerpPosInterval(self.levelUpText, 5, pos = Point3(0, 0, 0.29999999999999999), startPos = Point3(0, 0, -0.29999999999999999)), Sequence(LerpColorScaleInterval(self.levelUpText, 0.5, colorScale = VBase4(1, 1, 1, 1), startColorScale = VBase4(1, 1, 1, 0)), Wait(4), LerpColorScaleInterval(self.levelUpText, 0.5, colorScale = VBase4(1, 1, 1, 0), startColorScale = VBase4(1, 1, 1, 1)))), Func(self.levelUpText.detachNode))
+        self.levelUpLabel = DirectLabel(parent = self.levelUpText, relief = None, text = '', text_font = PiratesGlobals.getPirateOutlineFont(), text_fg = (0.100, 0.696, 0.100, 1), text_shadow = (0, 0, 0, 1), scale = 0.25)
+        self.levelUpCategoryLabel = DirectLabel(parent = self.levelUpText, relief = None, text = '', text_font = PiratesGlobals.getPirateOutlineFont(), text_fg = (0.100, 0.696, 0.100, 1), text_shadow = (0, 0, 0, 1), scale = 0.125, pos = (0, 0, -0.174))
+        self.levelUpIval = Sequence(Func(self.levelUpText.reparentTo, aspect2d), Parallel(LerpPosInterval(self.levelUpText, 5, pos = Point3(0, 0, 0.299), startPos = Point3(0, 0, -0.299)), Sequence(LerpColorScaleInterval(self.levelUpText, 0.5, colorScale = VBase4(1, 1, 1, 1), startColorScale = VBase4(1, 1, 1, 0)), Wait(4), LerpColorScaleInterval(self.levelUpText, 0.5, colorScale = VBase4(1, 1, 1, 0), startColorScale = VBase4(1, 1, 1, 1)))), Func(self.levelUpText.detachNode))
 
 
     def showText(self, title, text, color = None, amount = 0):
@@ -569,8 +569,8 @@ class TableGUI:
         self.createText()
         self.levelUpLabel['text'] = title
         if color == None:
-            self.levelUpCategoryLabel['text_fg'] = (0.10000000000000001, 0.69999999999999996, 0.20000000000000001, 1)
-            self.levelUpLabel['text_fg'] = (0.10000000000000001, 0.69999999999999996, 0.10000000000000001, 1)
+            self.levelUpCategoryLabel['text_fg'] = (0.100, 0.696, 0.200, 1)
+            self.levelUpLabel['text_fg'] = (0.100, 0.696, 0.100, 1)
 
         self.levelUpCategoryLabel['text'] = text
         self.levelUpIval.pause()

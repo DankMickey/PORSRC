@@ -44,11 +44,11 @@ class Ear(DirectObject.DirectObject):
 
     def loadGUI(self):
         self.pgs1 = CharGuiSlider(self.main, parent = self.earFrame, text = PLocalizer.EarScale, range=(-0.05, 0.1), command = self.updateControlShape)
-        self.pgs1.setPos(-0.40000000000000002, 0, -0.29999999999999999)
+        self.pgs1.setPos(-0.4, 0, -0.299)
         self.pgs2 = CharGuiSlider(self.main, parent = self.earFrame, text = PLocalizer.EarFlapAngle, range = sliderRange, command = self.updateControlShape)
-        self.pgs2.setPos(-0.40000000000000002, 0, -0.55000000000000004)
+        self.pgs2.setPos(-0.4, 0, -0.550000)
         self.pgs3 = CharGuiSlider(self.main, parent = self.earFrame, text = PLocalizer.EarPosition, range = sliderRange, command = self.updateControlShape)
-        self.pgs3.setPos(-0.40000000000000002, 0, -0.80000000000000004)
+        self.pgs3.setPos(-0.4, 0, -0.800000)
         self.pgs = [
             self.pgs1,
             self.pgs2,
@@ -88,7 +88,7 @@ class Ear(DirectObject.DirectObject):
 
 
     def setupButtons(self):
-        self.earFrame = DirectFrame(parent = self.parent, relief = None, text = PLocalizer.EarFrameTitle, text_fg = (1, 1, 1, 1), text_scale = 0.17999999999999999, text_pos = (0, -0.050000000000000003), pos = (0, 0, 0), scale = 0.69999999999999996)
+        self.earFrame = DirectFrame(parent = self.parent, relief = None, text = PLocalizer.EarFrameTitle, text_fg = (1, 1, 1, 1), text_scale = 0.179, text_pos = (0, -0.050000), pos = (0, 0, 0), scale = 0.696)
         self.earFrame.hide()
 
 

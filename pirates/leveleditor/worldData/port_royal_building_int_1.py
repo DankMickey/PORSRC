@@ -35,8 +35,8 @@ objectStruct = {
                     'VisSize': '' },
                 '1178246656.0dchiappe': {
                     'Type': 'Interactive Prop',
-                    'Hpr': VBase3(29.466000000000001, 0.0, 0.0),
-                    'Pos': Point3(-13.083, 5.4829999999999997, 0.0),
+                    'Hpr': VBase3(29.466, 0.0, 0.0),
+                    'Pos': Point3(-13.083, 5.482, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/shop_bsmith_anvilblock_interactive' },
@@ -45,8 +45,8 @@ objectStruct = {
                 '1222295683.09WDIG': {
                     'Type': 'Door Locator Node',
                     'Name': 'door_locator',
-                    'Hpr': VBase3(-1.0840000000000001, 0.0, 0.0),
-                    'Pos': Point3(0.22600000000000001, -30.039999999999999, -0.042000000000000003),
+                    'Hpr': VBase3(-1.084, 0.0, 0.0),
+                    'Pos': Point3(0.226, -30.039, -0.042000),
                     'Scale': VBase3(1.0, 1.0, 1.0) },
                 '1222295766.63WDIG': {
                     'Type': 'Townsperson',
@@ -54,9 +54,9 @@ objectStruct = {
                     'AnimSet': 'default',
                     'CustomModel': 'None',
                     'HelpID': 'NONE',
-                    'Hpr': VBase3(174.12200000000001, 0.0, 0.0),
+                    'Hpr': VBase3(174.122, 0.0, 0.0),
                     'Patrol Radius': '12.0000',
-                    'Pos': Point3(3.879, 4.4880000000000004, -0.0),
+                    'Pos': Point3(3.879, 4.48800, -0.0),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'Private Status': 'All',
@@ -147,7 +147,7 @@ objectStruct = {
         '1222295683.09WDIG': '["Objects"]["1155244887.43dzlu0"]["Objects"]["1222295683.09WDIG"]',
         '1222295766.63WDIG': '["Objects"]["1155244887.43dzlu0"]["Objects"]["1222295766.63WDIG"]' } }
 extraInfo = {
-    'camPos': Point3(2.9912299999999998, -18.759499999999999, 10.406499999999999),
+    'camPos': Point3(2.99122, -18.7594, 10.4064),
     'camHpr': VBase3(-0.066942699999999994, -12.3317, 0),
     'focalLength': 1.3999999761599999,
     'skyState': -1,

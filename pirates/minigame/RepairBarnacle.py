@@ -35,10 +35,10 @@ class RepairBarnacle(DirectFrame, FSM.FSM):
 
     def _initGUI(self):
         self.barnacleGeom.reparentTo(self)
-        self.barnacleGeom.setScale(0.59999999999999998)
+        self.barnacleGeom.setScale(0.598)
         self.barnacleGeom.setR(random.random() * 360)
         if self.config.showBarnacleHP:
-            self.hpLabel = DirectLabel(text = '', scale = (0.025000000000000001, 0.025000000000000001, 0.025000000000000001), pos = (0.0, 0.0, -0.01), textMayChange = 1, parent = self)
+            self.hpLabel = DirectLabel(text = '', scale = (0.0250, 0.0250, 0.0250), pos = (0.0, 0.0, -0.01), textMayChange = 1, parent = self)
 
     def destroy(self):
         if self.currentShake is not None:
@@ -89,7 +89,7 @@ class RepairBarnacle(DirectFrame, FSM.FSM):
         newHP = self.hp - amount
         self.setHP(newHP)
         if self.currentShake is None:
-            self.currentShake = Sequence(LerpPosInterval(self, duration = 0.029999999999999999, pos = (self.getX() - pushDir[0] * (0.01 + amount / 1000.0), self.getY(), self.getZ() - pushDir[1] * (0.01 + amount / 1000.0)), blendType = 'easeIn'), LerpPosInterval(self, duration = 0.059999999999999998, pos = (self.getX(), self.getY(), self.getZ()), blendType = 'easeOut'), LerpPosInterval(self, duration = 0.040000000000000001, pos = (self.getX() + pushDir[0] * (0.0074999999999999997 + amount / 2000.0), self.getY(), self.getZ() + pushDir[1] * (0.0050000000000000001 + amount / 2000.0)), blendType = 'easeIn'), LerpPosInterval(self, duration = 0.080000000000000002, pos = (self.getX(), self.getY(), self.getZ()), blendType = 'easeOut'), Func(self.clearCurrentShake))
+            self.currentShake = Sequence(LerpPosInterval(self, duration = 0.0299, pos = (self.getX() - pushDir[0] * (0.01 + amount / 1000.0), self.getY(), self.getZ() - pushDir[1] * (0.01 + amount / 1000.0)), blendType = 'easeIn'), LerpPosInterval(self, duration = 0.0598, pos = (self.getX(), self.getY(), self.getZ()), blendType = 'easeOut'), LerpPosInterval(self, duration = 0.0400, pos = (self.getX() + pushDir[0] * (0.0074 + amount / 2000.0), self.getY(), self.getZ() + pushDir[1] * (0.00500 + amount / 2000.0)), blendType = 'easeIn'), LerpPosInterval(self, duration = 0.08, pos = (self.getX(), self.getY(), self.getZ()), blendType = 'easeOut'), Func(self.clearCurrentShake))
             self.currentShake.start()
 
     def checkCollision(self, mousePosition):

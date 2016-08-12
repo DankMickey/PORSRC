@@ -127,20 +127,20 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             if not self.GoldFounderIcon:
                 gui = loader.loadModel('models/gui/toplevel_gui')
                 self.GoldFounderIcon = gui.find('**/founders_coin').copyTo(NodePath('coinTop'))
-                self.GoldFounderIcon.setScale(2.7999999999999998)
+                self.GoldFounderIcon.setScale(2.78)
                 self.SilverFounderIcon = gui.find('**/founders_silver_coin').copyTo(NodePath('coinTop'))
-                self.SilverFounderIcon.setScale(2.7999999999999998)
+                self.SilverFounderIcon.setScale(2.78)
                 tpMgr = TextPropertiesManager.getGlobalPtr()
                 tpMgr.setGraphic('goldFounderIcon', self.GoldFounderIcon)
                 tpMgr.setGraphic('silverFounderIcon', self.SilverFounderIcon)
                 gold = TextProperties()
-                gold.setTextColor(1, 0.80000000000000004, 0.40000000000000002, 1)
+                gold.setTextColor(1, 0.800000, 0.4, 1)
                 tpMgr.setProperties('goldFounder', gold)
                 silver = TextProperties()
                 silver.setTextColor(0.75, 0.75, 0.75, 1)
                 tpMgr.setProperties('silverFounder', silver)
                 crewPurpleColor = TextProperties()
-                crewPurpleColor.setTextColor(0.90000000000000002, 0.5, 1.0, 1)
+                crewPurpleColor.setTextColor(0.9, 0.5, 1.0, 1)
                 tpMgr.setProperties('crewPurple', crewPurpleColor)
                 afkGrayColor = TextProperties()
                 afkGrayColor.setTextColor(0.5, 0.5, 0.5, 1)
@@ -169,7 +169,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
                 for (k, v) in CrewIconSelector.CREW_ICONS.iteritems():
                     np = crewIconGui.find('**/%s' % v)
                     self.crewIconDict[k] = np.copyTo(NodePath())
-                    self.crewIconDict[k].setScale(8.8000000000000007)
+                    self.crewIconDict[k].setScale(8.8)
                     if k == 1:
                         np = crewIconGui.find('**/icon_glow')
                         self.myCrewColorGlow = np.copyTo(self.crewIconDict[k])
@@ -198,10 +198,10 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
                             continue
 
                         imgScale = TitleGlobals.getScale(titleId)
-                        icon.setScale(0.70999999999999996 * imgScale)
+                        icon.setScale(0.706 * imgScale)
                         iconKey = 'badge-%s-%s' % (titleId, rank)
                         self.badgeIconDict[iconKey] = icon
-                        tg = TextGraphic(icon, -0.25, 0.75, -0.31, 0.68999999999999995)
+                        tg = TextGraphic(icon, -0.25, 0.75, -0.31, 0.685)
                         tpMgr.setGraphic(iconKey, tg)
 
 
@@ -212,16 +212,16 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
                 self.gmNameTagIcon.setColor(1)
                 tpMgr.setGraphic('gmNameTagLogo', self.gmNameTagIcon)
                 gmGoldColor = TextProperties()
-                gmGoldColor.setTextColor(1, 0.90000000000000002, 0.69999999999999996, 1)
+                gmGoldColor.setTextColor(1, 0.9, 0.696, 1)
                 tpMgr.setProperties('goldGM', gmGoldColor)
                 gmRedColor = TextProperties()
-                gmRedColor.setTextColor(1.0, 0.10000000000000001, 0.10000000000000001, 1)
+                gmRedColor.setTextColor(1.0, 0.100, 0.100, 1)
                 tpMgr.setProperties('redGM', gmRedColor)
                 gmGreenColor = TextProperties()
-                gmGreenColor.setTextColor(0.29999999999999999, 0.69999999999999996, 0.25, 1)
+                gmGreenColor.setTextColor(0.299, 0.696, 0.25, 1)
                 tpMgr.setProperties('greenGM', gmGreenColor)
                 gmBlueColor = TextProperties()
-                gmBlueColor.setTextColor(0.34999999999999998, 0.69999999999999996, 1, 1)
+                gmBlueColor.setTextColor(0.348, 0.696, 1, 1)
                 tpMgr.setProperties('blueGM', gmBlueColor)
                 gmWhiteColor = TextProperties()
                 gmWhiteColor.setTextColor(1, 1, 1, 1)
@@ -535,9 +535,9 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
                 self.setInteractOptions(proximityText = PLocalizer.InjuredHasTonic, sphereScale = sphereScale, diskRadius = 7, resetState = 0, offset = Point3(0, -1.5, 0))
             else:
                 self.setInteractOptions(proximityText = PLocalizer.InjuredNeedTonic, sphereScale = sphereScale, diskRadius = 7, resetState = 0, offset = Point3(0, -1.5, 0))
-            avSphereRad = 1.3999999999999999
+            avSphereRad = 1.39
             if hasattr(localAvatar.controlManager.currentControls, 'cWallSphereNodePath'):
-                avSphereRad = localAvatar.controlManager.currentControls.cWallSphereNodePath.getBounds().getRadius() + 0.050000000000000003
+                avSphereRad = localAvatar.controlManager.currentControls.cWallSphereNodePath.getBounds().getRadius() + 0.050000
 
             if self.getDistance(localAvatar) <= sphereScale + avSphereRad and self != localAvatar:
                 self.request('Proximity')
@@ -558,17 +558,17 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             topGui = loader.loadModel('models/gui/toplevel_gui')
             injuredIcon = topGui.find('**/pir_t_gui_gen_medical')
             circleBase = topGui.find('**/pir_t_gui_frm_base_circle')
-            self.injuredFrame = DirectFrame(parent = NodePath(), relief = None, pos = (0.0, 0, 0.0), image = circleBase, image_scale = 2.3999999999999999)
-            self.injuredDial = DialMeter(parent = self.injuredFrame, meterColor = VBase4(1.0, 0.0, 0.0, 1), baseColor = VBase4(0.10000000000000001, 0.10000000000000001, 0.10000000000000001, 1), wantCover = 0, pos = (0.0, -0.01, 0.0), sortOrder = 1, scale = 0.90000000000000002)
+            self.injuredFrame = DirectFrame(parent = NodePath(), relief = None, pos = (0.0, 0, 0.0), image = circleBase, image_scale = 2.39)
+            self.injuredDial = DialMeter(parent = self.injuredFrame, meterColor = VBase4(1.0, 0.0, 0.0, 1), baseColor = VBase4(0.100, 0.100, 0.100, 1), wantCover = 0, pos = (0.0, -0.01, 0.0), sortOrder = 1, scale = 0.9)
             (left, right, bottom, top) = self.injuredDial.getBounds()
             tpMgr = TextPropertiesManager.getGlobalPtr()
             self.injuredFrame.reparentTo(self.nametag3d)
             self.injuredFrame.setZ(5.5)
             self.injuredFrame.setBillboardPointEye(1)
             self.injuredFrame.setLightOff()
-            innerFrame = DirectFrame(parent = self.injuredFrame, relief = None, pos = (0.0, -0.029999999999999999, 0.0), image = circleBase, image_scale = 1.8, sortOrder = 2)
-            icon = DirectFrame(parent = self.injuredFrame, relief = None, pos = (0.0, -0.040000000000000001, 0.0), image = injuredIcon, image_scale = 2.7000000000000002, sortOrder = 3)
-            knockoutLabel = DirectLabel(parent = self.injuredDial, relief = None, state = DGG.DISABLED, text = '\1injuredRed\1\n%s\n' % PLocalizer.InjuredFlag, text_scale = PiratesGuiGlobals.TextScaleLarge * 5, text_align = TextNode.ACenter, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getPirateBoldOutlineFont(), pos = (0.0, 0, -0.40000000000000002), sortOrder = 4)
+            innerFrame = DirectFrame(parent = self.injuredFrame, relief = None, pos = (0.0, -0.0299, 0.0), image = circleBase, image_scale = 1.8, sortOrder = 2)
+            icon = DirectFrame(parent = self.injuredFrame, relief = None, pos = (0.0, -0.0400, 0.0), image = injuredIcon, image_scale = 2.7, sortOrder = 3)
+            knockoutLabel = DirectLabel(parent = self.injuredDial, relief = None, state = DGG.DISABLED, text = '\1injuredRed\1\n%s\n' % PLocalizer.InjuredFlag, text_scale = PiratesGuiGlobals.TextScaleLarge * 5, text_align = TextNode.ACenter, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getPirateBoldOutlineFont(), pos = (0.0, 0, -0.4), sortOrder = 4)
 
         self.injuredDial.update(self.injuredTimeLeft, PiratesGlobals.REVIVE_TIME_OUT)
         self.injuredFrame.show()
@@ -577,7 +577,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
 
 
     def resizeInjuryFrame(self, task):
-        self.injuredFrame.setScale(1.0 + 0.029999999999999999 * camera.getDistance(self))
+        self.injuredFrame.setScale(1.0 + 0.0299 * camera.getDistance(self))
         self.injuryCountDownTask()
         return task.cont
 
@@ -659,11 +659,11 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         if self.dizzyEffect:
             self.dizzyEffect.duration = 2.0
             self.dizzyEffect.direction = 1
-            self.dizzyEffect.effectScale = 0.65000000000000002
+            self.dizzyEffect.effectScale = 0.65
             if hasattr(self, 'headNode') and self.headNode:
                 self.dizzyEffect.reparentTo(self.headNode)
                 self.dizzyEffect.setHpr(0, 0, 90)
-                self.dizzyEffect.setPos(self.headNode, 0.59999999999999998, 0, 0)
+                self.dizzyEffect.setPos(self.headNode, 0.598, 0, 0)
             else:
                 self.dizzyEffect.reparentTo(self)
                 self.dizzyEffect.setHpr(self, 0, 0, 0)
@@ -679,7 +679,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             if hasattr(self, 'headNode') and self.headNode:
                 self.dizzyEffect2.reparentTo(self.headNode)
                 self.dizzyEffect2.setHpr(0, 120, 90)
-                self.dizzyEffect2.setPos(self.headNode, 0.84999999999999998, 0, 0)
+                self.dizzyEffect2.setPos(self.headNode, 0.848, 0, 0)
             else:
                 self.dizzyEffect2.reparentTo(self)
                 self.dizzyEffect2.setHpr(self, 120, 0, 0)
@@ -704,12 +704,12 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         self.isDazed = False
         self.dazedButtonBoolean = False
         shipGui = loader.loadModel('models/gui/ship_battle')
-        self.dazedBar = DirectWaitBar(parent = base.a2dBottomCenter, frameSize = (-0.69999999999999996, 0.69999999999999996, -0.02, 0.02), relief = DGG.FLAT, image = shipGui.find('**/ship_battle_speed_bar*'), image_pos = (0.0, 0, 0.0), image_scale = (1.0, 1.0, 1.0), borderWidth = (0, 0), pos = (0.0, 0.0, 0.59999999999999998), frameColor = (1.0, 0.0, 0.0, 1.0), barColor = (0.0, 1.0, 0.0, 1.0))
+        self.dazedBar = DirectWaitBar(parent = base.a2dBottomCenter, frameSize = (-0.696, 0.696, -0.02, 0.02), relief = DGG.FLAT, image = shipGui.find('**/ship_battle_speed_bar*'), image_pos = (0.0, 0, 0.0), image_scale = (1.0, 1.0, 1.0), borderWidth = (0, 0), pos = (0.0, 0.0, 0.598), frameColor = (1.0, 0.0, 0.0, 1.0), barColor = (0.0, 1.0, 0.0, 1.0))
         self.dazedBar['value'] = 0
         self.dazedBar.hide()
         self.dazedTextNode = TextNode('DazedTextNode')
         self.dazedTextNodePath = NodePath(self.dazedTextNode)
-        self.dazedTextNodePath.setPos(0.0, 0.0, 0.80000000000000004)
+        self.dazedTextNodePath.setPos(0.0, 0.0, 0.800000)
         self.dazedTextNodePath.setScale(0.12)
         self.dazedTextNode.setText(PLocalizer.DazedHelpText)
         self.dazedTextNode.setTextColor(1.0, 1.0, 1.0, 1.0)
@@ -830,9 +830,9 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         av = self
 
         def loopIdle():
-            av.loop('idle', blendDelay = 0.14999999999999999)
+            av.loop('idle', blendDelay = 0.149)
 
-        getupTrack = Parallel(Sequence(Wait(0.5), Func(loopIdle)), av.actorInterval('injured_standup', blendInT = 0.14999999999999999, blendOutT = 0.14999999999999999))
+        getupTrack = Parallel(Sequence(Wait(0.5), Func(loopIdle)), av.actorInterval('injured_standup', blendInT = 0.149, blendOutT = 0.149))
         return getupTrack
 
 
@@ -840,7 +840,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         av = self
 
         def loopIdle():
-            av.loop('injured_idle', blendDelay = 0.14999999999999999)
+            av.loop('injured_idle', blendDelay = 0.149)
 
 
         def startSFX():
@@ -849,7 +849,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
                 base.playSfx(sfx, node = self, cutoff = 100)
 
 
-        injuredTrack = Sequence(Parallel(Sequence(Wait(0.5), Func(loopIdle)), Func(startSFX), av.actorInterval('injured_fall', blendInT = 0.14999999999999999, blendOutT = 0.14999999999999999)))
+        injuredTrack = Sequence(Parallel(Sequence(Wait(0.5), Func(loopIdle)), Func(startSFX), av.actorInterval('injured_fall', blendInT = 0.149, blendOutT = 0.149)))
         return injuredTrack
 
 
@@ -875,7 +875,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         diedSound = loader.loadSfx('audio/sfx_doll_unattune.mp3')
         diedSoundInterval = SoundInterval(diedSound, node = self)
         duration = 1.0
-        deathIval = Parallel(diedSoundInterval, Func(self.setTransparency, 1), self.actorInterval(animName, blendInT = 0.14999999999999999, blendOutT = 0.14999999999999999), Sequence(LerpColorScaleInterval(self, duration, Vec4(1, 1, 1, 0), startColorScale = Vec4(1)), Func(self.hide, None, PiratesGlobals.INVIS_DEATH), Func(self.clearColorScale), Func(self.clearTransparency), Func(gotoRoam)))
+        deathIval = Parallel(diedSoundInterval, Func(self.setTransparency, 1), self.actorInterval(animName, blendInT = 0.149, blendOutT = 0.149), Sequence(LerpColorScaleInterval(self, duration, Vec4(1, 1, 1, 0), startColorScale = Vec4(1)), Func(self.hide, None, PiratesGlobals.INVIS_DEATH), Func(self.clearColorScale), Func(self.clearTransparency), Func(gotoRoam)))
         return deathIval
 
 
@@ -941,7 +941,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
                     healSparks.setPos(self, 0, -1, 0)
                     healSparks.setHpr(self, 0, 90, 0)
                     healSparks.setScale(1.5, 1.5, 2)
-                    healSparks.setEffectColor(Vec4(0.29999999999999999, 1, 1, 0.29999999999999999))
+                    healSparks.setEffectColor(Vec4(0.299, 1, 1, 0.299))
                     healSparks.startLoop()
                     self.healEffects.append(healSparks)
 
@@ -953,7 +953,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
                     healRays.setPos(self, 0, -1, 0)
                     healRays.setHpr(self, 0, 90, 0)
                     healRays.setScale(0.75, 0.75, 2)
-                    healRays.setEffectColor(Vec4(0.29999999999999999, 1, 1, 1))
+                    healRays.setEffectColor(Vec4(0.299, 1, 1, 1))
                     healRays.startLoop()
                     self.healEffects.append(healRays)
 
@@ -1305,7 +1305,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
                 else:
                     nameText['text'] = '\x01goldFounder\x01%s\x02' % text
             else:
-                nameText['fg'] = (0.40000000000000002, 0.29999999999999999, 0.94999999999999996, 1)
+                nameText['fg'] = (0.4, 0.299, 0.946, 1)
                 nameText['font'] = PiratesGlobals.getPirateOutlineFont()
             prefix = ''
             if self.injuredSetup and 0:
@@ -1372,7 +1372,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             else:
                 self.enableMixing()
                 if self.getGameState() == 'Injured':
-                    self.loop('injured_idle', blendDelay = 0.14999999999999999)
+                    self.loop('injured_idle', blendDelay = 0.149)
 
 
 
@@ -1416,7 +1416,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         if not self.isLocal():
             self.enableMixing()
             if self.getGameState() == 'Injured':
-                self.loop('injured_idle', blendDelay = 0.14999999999999999)
+                self.loop('injured_idle', blendDelay = 0.149)
 
 
 
@@ -1613,23 +1613,23 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             par = self.getParentObj()
             uid = par.getUniqueId()
             if uid == LocationIds.PORT_ROYAL_ISLAND:
-                self.setPos(par, -93.589600000000004, -362.238, 11.5197)
-                self.setHpr(par, -118.82299999999999, 0, 0)
+                self.setPos(par, -93.5896, -362.238, 11.5197)
+                self.setHpr(par, -118.822, 0, 0)
             elif uid == LocationIds.TORTUGA_ISLAND:
-                self.setPos(par, 19.7727, -460.67099999999999, 4.2405099999999996)
+                self.setPos(par, 19.7727, -460.670, 4.24050)
                 self.setHpr(par, -92.827299999999994, 0, 0)
             elif uid == LocationIds.CUBA_ISLAND:
-                self.setPos(par, -194.761, -764.57299999999998, 4.0030299999999999)
-                self.setHpr(par, -172.74199999999999, 0, 0)
+                self.setPos(par, -194.761, -764.572, 4.00302)
+                self.setHpr(par, -172.741, 0, 0)
             elif uid == LocationIds.DEL_FUEGO_ISLAND:
-                self.setPos(par, -1464.6199999999999, 385.61500000000001, 5.0097199999999997)
-                self.setHpr(par, -22.449000000000002, 0, 0)
+                self.setPos(par, -1464.61, 385.615, 5.00971)
+                self.setHpr(par, -22.449, 0, 0)
 
 
             def spiffyPlay():
                 self.play('stowaway_get_in_crate', blendOutT = 0.0)
 
-            teleportTrack = Parallel(Func(spiffyPlay), Sequence(Wait(0.59999999999999998), Func(base.transitions.fadeOut), Parallel(Sequence(Wait(0.5), SoundInterval(StowawayGUI.CrateShutSound, loop = 0)), Sequence(Wait(3.0), Func(base.cr.loadingScreen.show, waitForLocation = True, disableSfx = False)))))
+            teleportTrack = Parallel(Func(spiffyPlay), Sequence(Wait(0.598), Func(base.transitions.fadeOut), Parallel(Sequence(Wait(0.5), SoundInterval(StowawayGUI.CrateShutSound, loop = 0)), Sequence(Wait(3.0), Func(base.cr.loadingScreen.show, waitForLocation = True, disableSfx = False)))))
             teleportTrack.setDoneEvent('avatarTeleportEffect-done')
             teleportTrack.start()
         elif self.cr.teleportMgr.doEffect and not self.testTeleportFlag(PiratesGlobals.TFInInitTeleport):
@@ -1795,7 +1795,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         Biped.Biped.stop(self, *args, **kwArgs)
 
 
-    def putAwayCurrentWeapon(self, blendInT = 0.10000000000000001, blendOutT = 0.10000000000000001):
+    def putAwayCurrentWeapon(self, blendInT = 0.100, blendOutT = 0.100):
         self.setStickyTargets([])
         return DistributedBattleAvatar.putAwayCurrentWeapon(self, blendInT, blendOutT)
 
@@ -1831,11 +1831,11 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
                     TeamUtils.damageAllowed(self, target)
 
                 if hasFriendly and not hasEnemies:
-                    self.attuneEffect.setEffectColor(Vec4(0.20000000000000001, 0.5, 0.10000000000000001, 1))
+                    self.attuneEffect.setEffectColor(Vec4(0.200, 0.5, 0.100, 1))
                 elif hasEnemies and not hasFriendly:
-                    self.attuneEffect.setEffectColor(Vec4(0.20000000000000001, 0.10000000000000001, 0.5, 1))
+                    self.attuneEffect.setEffectColor(Vec4(0.200, 0.100, 0.5, 1))
                 elif hasEnemies and hasFriendly:
-                    self.attuneEffect.setEffectColor(Vec4(0, 0.14999999999999999, 0.14999999999999999, 1))
+                    self.attuneEffect.setEffectColor(Vec4(0, 0.149, 0.149, 1))
 
 
         elif self.attuneEffect:
@@ -2007,7 +2007,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
 
 
         if localAvatar.guiMgr and hasattr(localAvatar.guiMgr, 'titlesPage') and localAvatar.guiMgr.titlesPage:
-            taskMgr.doMethodLater(1.3999999999999999, localAvatar.guiMgr.titlesPage.refresh, 'titles-refresh', [])
+            taskMgr.doMethodLater(1.39, localAvatar.guiMgr.titlesPage.refresh, 'titles-refresh', [])
 
         self.refreshName()
 
@@ -3461,7 +3461,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             base.localAvatar.guiMgr.messageStack.addModalTextMessage(PLocalizer.TEMP_DOUBLE_REP % (h, m), seconds = 45, priority = 0, color = PiratesGuiGlobals.TextFG14)
 
         self.tempDoubleXPStatus = value
-        self.x2XPIcon.setPos(0.29999999999999999, 0, -0.14999999999999999)
+        self.x2XPIcon.setPos(0.299, 0, -0.149)
         self.refreshName()
 
 
@@ -3790,7 +3790,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
 
 
 class MinimapPlayerPirate(MinimapBattleAvatar):
-    DEFAULT_COLOR = VBase4(0.10000000000000001, 0.5, 1.0, 0.69999999999999996)
+    DEFAULT_COLOR = VBase4(0.100, 0.5, 1.0, 0.696)
 
     def __init__(self, avatar):
         MinimapBattleAvatar.__init__(self, avatar)
@@ -3827,9 +3827,9 @@ class MinimapPlayerPirate(MinimapBattleAvatar):
     def setIconColor(self, color = None):
         if self.inCrew:
             if not color:
-                MinimapBattleAvatar.setIconColor(self, VBase4(0.90000000000000002, 0.5, 0.94999999999999996, 1))
+                MinimapBattleAvatar.setIconColor(self, VBase4(0.9, 0.5, 0.946, 1))
         elif not color:
-            MinimapBattleAvatar.setIconColor(self, VBase4(0.10000000000000001, 0.5, 1.0, 0.69999999999999996))
+            MinimapBattleAvatar.setIconColor(self, VBase4(0.100, 0.5, 1.0, 0.696))
 
     def setAdminAccess(self, accessLevel):
         pass

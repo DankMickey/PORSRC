@@ -16,7 +16,7 @@ objectStruct = {
                     'Patrol Radius': '6.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(15.0, -40.0, 43.747999999999998),
+                    'Pos': Point3(15.0, -40.0, 43.7478),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'Scale': VBase3(1.0, 1.0, 1.0),
@@ -24,7 +24,7 @@ objectStruct = {
                     'Start State': 'Patrol',
                     'Team': 'default',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' } },
                 '1196379095.0piwanow': {
                     'Type': 'Spawn Node',
@@ -34,7 +34,7 @@ objectStruct = {
                     'Patrol Radius': '6.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(-20.0, -45.0, 43.942999999999998),
+                    'Pos': Point3(-20.0, -45.0, 43.9428),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'Scale': VBase3(1.0, 1.0, 1.0),
@@ -42,7 +42,7 @@ objectStruct = {
                     'Start State': 'Patrol',
                     'Team': 'default',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' } },
                 '1196379162.84piwanow': {
                     'Type': 'Spawn Node',
@@ -52,7 +52,7 @@ objectStruct = {
                     'Patrol Radius': '6.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(-25.0, -20.0, 42.473999999999997),
+                    'Pos': Point3(-25.0, -20.0, 42.473),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'Scale': VBase3(1.0, 1.0, 1.0),
@@ -60,7 +60,7 @@ objectStruct = {
                     'Start State': 'Patrol',
                     'Team': 'default',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' } },
                 '1196379220.0piwanow': {
                     'Type': 'Spawn Node',
@@ -70,7 +70,7 @@ objectStruct = {
                     'Patrol Radius': '6.0000',
                     'Pause Chance': 100,
                     'Pause Duration': 30,
-                    'Pos': Point3(10.0, -15.0, 43.664000000000001),
+                    'Pos': Point3(10.0, -15.0, 43.664),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'Scale': VBase3(1.0, 1.0, 1.0),
@@ -78,7 +78,7 @@ objectStruct = {
                     'Start State': 'Patrol',
                     'Team': 'default',
                     'Visual': {
-                        'Color': (0, 0, 0.65000000000000002, 1),
+                        'Color': (0, 0, 0.65, 1),
                         'Model': 'models/misc/smiley' } } },
             'Respawns': False,
             'Team': 'Player',
@@ -97,6 +97,6 @@ objectStruct = {
         '1196379162.84piwanow': '["Objects"]["1195522163.95gjeon"]["Objects"]["1196379162.84piwanow"]',
         '1196379220.0piwanow': '["Objects"]["1195522163.95gjeon"]["Objects"]["1196379220.0piwanow"]' } }
 extraInfo = {
-    'camPos': Point3(165.476, -13.527799999999999, 259.50400000000002),
-    'camHpr': VBase3(87.212900000000005, -53.757599999999996, 0),
+    'camPos': Point3(165.476, -13.5277, 259.504),
+    'camHpr': VBase3(87.2129, -53.7575, 0),
     'focalLength': 1.3999999761599999 }

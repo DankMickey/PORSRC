@@ -57,14 +57,14 @@ class ThrowDirt2(PooledEffect, EffectController):
         self.p0.renderer.setAlphaMode(BaseParticleRenderer.PRALPHAINOUT)
         self.p0.renderer.setUserAlpha(1.0)
         self.p0.renderer.setFromNode(self.card)
-        self.p0.renderer.setColor(Vec4(0.29999999999999999, 0.20000000000000001, 0, 1))
+        self.p0.renderer.setColor(Vec4(0.299, 0.200, 0, 1))
         self.p0.renderer.setXScaleFlag(1)
         self.p0.renderer.setYScaleFlag(1)
         self.p0.renderer.setAnimAngleFlag(0)
-        self.p0.renderer.setInitialXScale(0.0040000000000000001 * self.cardScale)
-        self.p0.renderer.setFinalXScale(0.0060000000000000001 * self.cardScale)
-        self.p0.renderer.setInitialYScale(0.0040000000000000001 * self.cardScale)
-        self.p0.renderer.setFinalYScale(0.0060000000000000001 * self.cardScale)
+        self.p0.renderer.setInitialXScale(0.00400 * self.cardScale)
+        self.p0.renderer.setFinalXScale(0.00600 * self.cardScale)
+        self.p0.renderer.setInitialYScale(0.00400 * self.cardScale)
+        self.p0.renderer.setFinalYScale(0.00600 * self.cardScale)
         self.p0.renderer.setNonanimatedTheta(0.0)
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPBLENDLINEAR)
         self.p0.renderer.setAlphaDisable(0)
@@ -79,7 +79,7 @@ class ThrowDirt2(PooledEffect, EffectController):
 
 
     def createTrack(self):
-        self.startEffect = Sequence(Wait(0.65000000000000002), Func(self.p0.setBirthRate, 0.02), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self))
+        self.startEffect = Sequence(Wait(0.65), Func(self.p0.setBirthRate, 0.02), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self))
         self.endEffect = Sequence(Func(self.destroy))
         self.track = Sequence(self.startEffect, Wait(2.0), self.endEffect)
 

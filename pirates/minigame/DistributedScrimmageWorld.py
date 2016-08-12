@@ -23,7 +23,7 @@ class DistributedScrimmageWorld(DistributedMiniGameWorld.DistributedMiniGameWorl
         DistributedMiniGameWorld.DistributedMiniGameWorld.announceGenerate(self)
         self._countdownUI = CannonDefenseCountdownUI()
         self._countdownUI.reparentTo(base.a2dTopCenter)
-        self._countdownUI.setPos(0.0, 0, -0.23000000000000001)
+        self._countdownUI.setPos(0.0, 0, -0.230)
         localAvatar.b_setTeleportFlag(PiratesGlobals.TFInScrimmage)
 
 

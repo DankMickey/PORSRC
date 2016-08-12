@@ -164,13 +164,13 @@ class DistributedVoodooZombie(DistributedBattleNPC.DistributedBattleNPC, Human.H
 
     def startShuffle(self, turnAnim):
         if self.playNoticeAnims():
-            self.loop(turnAnim, partName = 'legs', blendDelay = 0.14999999999999999)
+            self.loop(turnAnim, partName = 'legs', blendDelay = 0.149)
 
 
 
     def midShuffle(self):
         if self.playNoticeAnims():
-            self.loop('idle', blendDelay = 0.29999999999999999)
+            self.loop('idle', blendDelay = 0.299)
 
 
 
@@ -183,7 +183,7 @@ class DistributedVoodooZombie(DistributedBattleNPC.DistributedBattleNPC, Human.H
             else:
                 reaction = self.getNoticeAnimation()
             if reaction:
-                self.play(reaction, blendInT = 0.29999999999999999, blendOutT = 0.29999999999999999)
+                self.play(reaction, blendInT = 0.299, blendOutT = 0.299)
 
 
 
@@ -255,7 +255,7 @@ class DistributedVoodooZombie(DistributedBattleNPC.DistributedBattleNPC, Human.H
         mmObj = DistributedBattleNPC.DistributedBattleNPC.getMinimapObject(self)
         if mmObj:
             if self.getTeam() == PiratesGlobals.PLAYER_TEAM:
-                color = VBase4(0.10000000000000001, 1.0, 0.10000000000000001, 0.69999999999999996)
+                color = VBase4(0.100, 1.0, 0.100, 0.696)
                 mmObj.setIconColor(color = color)
             else:
                 mmObj.setIconColor()

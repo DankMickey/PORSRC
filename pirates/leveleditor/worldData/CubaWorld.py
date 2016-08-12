@@ -13,13 +13,13 @@ objectStruct = {
                         '1163130882.92sdnaik': {
                             'Type': 'LOD Sphere',
                             'Hpr': Point3(0.0, 0.0, 0.0),
-                            'Pos': Point3(154.73500000000001, 0.0, 121.512),
+                            'Pos': Point3(154.735, 0.0, 121.512),
                             'Radi': [
                                 3594,
                                 4594,
                                 5594],
                             'Scale': VBase3(1.0, 1.0, 1.0) } },
-                    'Pos': Point3(-43.872999999999998, 98.968000000000004, 0.0),
+                    'Pos': Point3(-43.8728, 98.9680, 0.0),
                     'Visual': {
                         'Model': 'models/islands/pir_m_are_isl_cuba' } } },
             'Visual': { } } },

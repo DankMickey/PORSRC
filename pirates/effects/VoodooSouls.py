@@ -56,7 +56,7 @@ class VoodooSouls(PooledEffect, EffectController):
         self.p0.renderer.setUserAlpha(1.0)
         self.p0.renderer.setColorBlendMode(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne)
         self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 0.25, Vec4(1.0, 1.0, 1.0, 0.0), Vec4(1.0, 1.0, 1.0, 0.5), 1)
-        self.p0.renderer.getColorInterpolationManager().addLinear(0.25, 1.0, Vec4(1.0, 1.0, 1.0, 0.5), Vec4(0.5, 0.20000000000000001, 1.0, 0.0), 1)
+        self.p0.renderer.getColorInterpolationManager().addLinear(0.25, 1.0, Vec4(1.0, 1.0, 1.0, 0.5), Vec4(0.5, 0.200, 1.0, 0.0), 1)
         self.p0.renderer.setFromNode(self.card)
         self.p0.renderer.setColor(Vec4(1.0, 1.0, 1.0, 1.0))
         self.p0.renderer.setXScaleFlag(1)

@@ -15,14 +15,14 @@ objectStruct = {
                 '1156912537.84sdnaik': {
                     'Type': 'Crate',
                     'Hpr': VBase3(28.285, 0.0, 0.0),
-                    'Pos': Point3(-6.4809999999999999, 10.324, 0.0),
+                    'Pos': Point3(-6.4809, 10.324, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/crate' } },
                 '1156912551.03sdnaik': {
                     'Type': 'Crate',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-2.9580000000000002, 9.3989999999999991, 0.0),
+                    'Pos': Point3(-2.9580, 9.3981, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/crate' } },
@@ -30,21 +30,21 @@ objectStruct = {
                     'Type': 'Patrol Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Min Population': '2',
-                    'Pos': Point3(2.0409999999999999, 24.861000000000001, 0.0),
+                    'Pos': Point3(2.0409, 24.861, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0) },
                 '1156918727.22sdnaik': {
                     'Type': 'Skeleton',
                     'AvId': 1,
                     'AvTrack': 0,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(1.7150000000000001, 20.640000000000001, 0.0),
+                    'Pos': Point3(1.715, 20.64, 0.0),
                     'Respawns': True,
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Start State': 'Walk' },
                 '1156970961.41sdnaik': {
                     'Type': 'Animal',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(2.2200000000000002, 5.7990000000000004, 0.0),
+                    'Pos': Point3(2.22, 5.79900, 0.0),
                     'Respawns': True,
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Species': 'Pig',
@@ -52,7 +52,7 @@ objectStruct = {
                 '1156970980.98sdnaik': {
                     'Type': 'Animal',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-14.215999999999999, -4.0789999999999997, 0.0),
+                    'Pos': Point3(-14.215, -4.078, 0.0),
                     'Respawns': True,
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Species': 'Rooster',

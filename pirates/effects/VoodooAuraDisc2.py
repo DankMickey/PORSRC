@@ -20,7 +20,7 @@ class VoodooAuraDisc2(PooledEffect, EffectController):
             self.reparentTo(effectParent)
 
         self.effectGeom = loader.loadModel('models/effects/pir_m_efx_msc_auraSplat')
-        self.effectGeom.setColorScale(0.5, 1.0, 0.5, 0.29999999999999999)
+        self.effectGeom.setColorScale(0.5, 1.0, 0.5, 0.299)
         self.effectGeom.setBillboardAxis(1)
         if not VoodooAuraDisc2.particleDummy:
             VoodooAuraDisc2.particleDummy = base.effectsRoot.attachNewNode(ModelNode('VoodooAuraDiscParticleDummy'))
@@ -41,7 +41,7 @@ class VoodooAuraDisc2(PooledEffect, EffectController):
         self.p0.setEmitter('DiscEmitter')
         self.f.addParticles(self.p0)
         self.p0.setPoolSize(12)
-        self.p0.setBirthRate(0.10000000000000001)
+        self.p0.setBirthRate(0.100)
         self.p0.setLitterSize(1)
         self.p0.setLocalVelocityFlag(1)
         self.p0.setSystemGrowsOlderFlag(0)
@@ -78,7 +78,7 @@ class VoodooAuraDisc2(PooledEffect, EffectController):
 
 
     def createTrack(self, lod = None):
-        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.20000000000000001), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self))
+        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.200), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self))
         self.endEffect = Sequence(Func(self.p0.setBirthRate, 100.0), Wait(2.0), Func(self.cleanUpEffect))
         self.track = Sequence(self.startEffect, Wait(10.0), self.endEffect)
 

@@ -17,10 +17,10 @@ class HitFlashA(PooledEffect, EffectController):
         self.useRay = 0
         self.useSpark = 1
         self.rayAngle = 0.0
-        self.rayFlareValue = 0.34999999999999998
+        self.rayFlareValue = 0.348
         self.setColorScaleOff()
         self.startCol = Vec4(1.0, 1.0, 1.0, 1)
-        self.fadeTime = 0.59999999999999998
+        self.fadeTime = 0.598
         self.startScale = 2.0
         self.splatScale = 10.0
         self.flashDummy = self.attachNewNode('FlashDummy')
@@ -52,7 +52,7 @@ class HitFlashA(PooledEffect, EffectController):
         self.flash.setColorScale(1, 1, 1, 1)
         fadeBlast = self.flash.colorScaleInterval(self.fadeTime, Vec4(0, 0, 0, 0), startColorScale = self.startCol, blendType = 'easeOut')
         scaleBlast = self.flash.scaleInterval(self.fadeTime, self.splatScale, startScale = self.startScale, blendType = 'easeOut')
-        scaleSlashRay = self.slashRay.scaleInterval(self.fadeTime / 4, Vec3(self.splatScale * 2.0, 0.20000000000000001, 0.20000000000000001), startScale = Vec3(self.startScale, 0.20000000000000001, self.splatScale * self.rayFlareValue), blendType = 'easeOut')
+        scaleSlashRay = self.slashRay.scaleInterval(self.fadeTime / 4, Vec3(self.splatScale * 2.0, 0.200, 0.200), startScale = Vec3(self.startScale, 0.200, self.splatScale * self.rayFlareValue), blendType = 'easeOut')
         fadeSlashRay = self.slashRay.colorScaleInterval(self.fadeTime, Vec4(0, 0, 0, 0), startColorScale = self.startCol, blendType = 'easeIn')
         anim = Parallel(fadeBlast, scaleBlast)
         if self.useRay:

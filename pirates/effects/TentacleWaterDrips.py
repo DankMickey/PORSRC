@@ -39,7 +39,7 @@ class TentacleWaterDrips(PooledEffect, EffectController):
         self.p0.setSystemGrowsOlderFlag(0)
         self.p0.setFloorZ(0.0)
         self.p0.factory.setLifespanBase(1.5)
-        self.p0.factory.setLifespanSpread(0.20000000000000001)
+        self.p0.factory.setLifespanSpread(0.200)
         self.p0.factory.setMassBase(1.0)
         self.p0.factory.setMassSpread(0.0)
         self.p0.factory.setTerminalVelocityBase(400.0)
@@ -66,7 +66,7 @@ class TentacleWaterDrips(PooledEffect, EffectController):
 
     def createTrack(self):
         self.decreaseIntensity = LerpFunctionInterval(self.setIntensity, 4.0 * self.effectScale, toData = 0, fromData = 0.5)
-        self.startEffect = Sequence(Func(self.p0.clearToInitial), Func(self.p0.setBirthRate, 0.02), Func(self.p0.renderer.setUserAlpha, 0.90000000000000002), Func(self.f.start, self, self.particleDummy))
+        self.startEffect = Sequence(Func(self.p0.clearToInitial), Func(self.p0.setBirthRate, 0.02), Func(self.p0.renderer.setUserAlpha, 0.9), Func(self.f.start, self, self.particleDummy))
         self.endEffect = Sequence(self.decreaseIntensity, Func(self.p0.setBirthRate, 10.0), Wait(3.0), Func(self.cleanUpEffect))
         self.track = Sequence(self.startEffect, Wait(1.0), self.endEffect)
 
@@ -78,15 +78,15 @@ class TentacleWaterDrips(PooledEffect, EffectController):
 
     def setEffectScale(self, scale):
         self.effectScale = scale
-        self.p0.renderer.setInitialXScale(0.025000000000000001 * self.cardScale * scale)
+        self.p0.renderer.setInitialXScale(0.0250 * self.cardScale * scale)
         self.p0.renderer.setInitialYScale(0.01 * self.cardScale * scale)
-        self.p0.renderer.setFinalXScale(0.070000000000000007 * self.cardScale * scale)
-        self.p0.renderer.setFinalYScale(0.29999999999999999 * self.cardScale * scale)
+        self.p0.renderer.setFinalXScale(0.070 * self.cardScale * scale)
+        self.p0.renderer.setFinalYScale(0.299 * self.cardScale * scale)
 
 
     def setIntensity(self, intensity):
-        self.p0.setBirthRate(0.20000000000000001 + (0.5 - intensity))
-        self.p0.renderer.setUserAlpha(intensity + 0.40000000000000002)
+        self.p0.setBirthRate(0.200 + (0.5 - intensity))
+        self.p0.renderer.setUserAlpha(intensity + 0.4)
 
 
     def cleanUpEffect(self):

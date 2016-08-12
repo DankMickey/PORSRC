@@ -23,9 +23,9 @@ class SoulSpiral(PooledEffect, EffectController):
         self.effectModel4.reparentTo(self.effectModel2)
         self.effectModel.node().setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne))
         self.effectModel2.node().setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne))
-        self.effectModel.setScale(0.20000000000000001, 0.20000000000000001, 0.20000000000000001)
+        self.effectModel.setScale(0.200, 0.200, 0.200)
         self.effectModel2.setTwoSided(1)
-        self.effectModel2.setScale(0.16, 0.16, 0.17999999999999999)
+        self.effectModel2.setScale(0.16, 0.16, 0.179)
         self.effectModel2.setH(25)
         self.setDepthWrite(0)
         self.setLightOff()
@@ -61,7 +61,7 @@ class SoulSpiral(PooledEffect, EffectController):
 
 
     def setEffectColor(self, color):
-        self.effectColor = color + Vec4(0.69999999999999996, 0.69999999999999996, 0.69999999999999996, 1.0)
+        self.effectColor = color + Vec4(0.696, 0.696, 0.696, 1.0)
         self.effectModel.setColorScale(self.effectColor)
         self.effectModel2.setColorScale(self.effectColor)
 

@@ -21,7 +21,7 @@ class CannonDefenseCountdownUI(NodePath):
         number.setFont(PiratesGlobals.getInterfaceFont())
         number.setTextColor(PiratesGuiGlobals.TextFG1)
         number.setAlign(TextNode.ACenter)
-        number.setShadow(0.050000000000000003, 0.050000000000000003)
+        number.setShadow(0.050000, 0.050000)
         number.setShadowColor(0, 0, 0, 1)
         if value > 0:
             number.setText(str(value))
@@ -31,5 +31,5 @@ class CannonDefenseCountdownUI(NodePath):
         numberNode.setTransparency(1)
         numberNode.setDepthTest(False)
         numberNode.setDepthWrite(False)
-        seq = Sequence(Parallel(numberNode.scaleInterval(1, Vec3(0, 0, 0), Vec3(0.29999999999999999, 0.29999999999999999, 0.29999999999999999)), numberNode.colorScaleInterval(1, Vec4(1, 1, 1, 0), Vec4(1, 1, 1, 1))), Func(numberNode.remove_node))
+        seq = Sequence(Parallel(numberNode.scaleInterval(1, Vec3(0, 0, 0), Vec3(0.299, 0.299, 0.299)), numberNode.colorScaleInterval(1, Vec4(1, 1, 1, 0), Vec4(1, 1, 1, 1))), Func(numberNode.remove_node))
         seq.start()

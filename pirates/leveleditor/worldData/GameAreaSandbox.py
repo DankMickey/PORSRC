@@ -13,13 +13,13 @@ objectStruct = {
                         '1164915549.7sdnaik': {
                             'Type': 'LOD Sphere',
                             'Hpr': Point3(0.0, 0.0, 0.0),
-                            'Pos': Point3(0.0, 0.0, 0.44900000000000001),
+                            'Pos': Point3(0.0, 0.0, 0.449),
                             'Radi': [
                                 1855,
                                 2855,
                                 3855],
                             'Scale': VBase3(1.0, 1.0, 1.0) } },
-                    'Pos': Point3(8.827, -2.1499999999999999, 0.0),
+                    'Pos': Point3(8.827, -2.14, 0.0),
                     'Visual': {
                         'Model': 'models/islands/gameAreaSandbox' } } },
             'Visual': { } } },

@@ -45,18 +45,18 @@ class CeilingDebris(PooledEffect, EffectController):
         self.p0.factory.setLifespanBase(3.0)
         self.p0.factory.setLifespanSpread(2.5)
         self.p0.factory.setMassBase(1.0)
-        self.p0.factory.setMassSpread(0.20000000000000001)
+        self.p0.factory.setMassSpread(0.200)
         self.p0.factory.setTerminalVelocityBase(400.0)
         self.p0.factory.setTerminalVelocitySpread(0.0)
         self.p0.renderer.setAlphaMode(BaseParticleRenderer.PRALPHAUSER)
         self.p0.renderer.setUserAlpha(1.0)
         self.p0.renderer.setFromNode(self.card)
-        self.p0.renderer.setColor(Vec4(0.29999999999999999, 0.20000000000000001, 0, 1))
+        self.p0.renderer.setColor(Vec4(0.299, 0.200, 0, 1))
         self.p0.renderer.setXScaleFlag(1)
         self.p0.renderer.setYScaleFlag(1)
         self.p0.renderer.setAnimAngleFlag(1)
-        self.p0.renderer.setInitialXScale(0.014999999999999999 * self.cardScale)
-        self.p0.renderer.setFinalXScale(0.014999999999999999 * self.cardScale)
+        self.p0.renderer.setInitialXScale(0.0149 * self.cardScale)
+        self.p0.renderer.setFinalXScale(0.0149 * self.cardScale)
         self.p0.renderer.setInitialYScale(0.01 * self.cardScale)
         self.p0.renderer.setFinalYScale(0.01 * self.cardScale)
         self.p0.renderer.setNonanimatedTheta(0.0)
@@ -66,13 +66,13 @@ class CeilingDebris(PooledEffect, EffectController):
         self.p0.emitter.setAmplitude(1.0)
         self.p0.emitter.setAmplitudeSpread(0.0)
         self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, 0.0))
-        self.p0.emitter.setExplicitLaunchVector(Vec3(0.20000000000000001, 0.0, 0.0))
+        self.p0.emitter.setExplicitLaunchVector(Vec3(0.200, 0.0, 0.0))
         self.p0.emitter.setRadiateOrigin(Point3(0.0, 0.0, 0.0))
         self.p0.emitter.setRadius(100.0)
 
 
     def createTrack(self):
-        self.track = Sequence(Func(self.p0.setBirthRate, 0.02), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self), Wait(0.20000000000000001), Func(self.p0.setBirthRate, 100), Wait(7.0), Func(self.cleanUpEffect))
+        self.track = Sequence(Func(self.p0.setBirthRate, 0.02), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self), Wait(0.200), Func(self.p0.setBirthRate, 100), Wait(7.0), Func(self.cleanUpEffect))
 
 
     def cleanUpEffect(self):

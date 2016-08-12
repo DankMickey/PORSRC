@@ -30,7 +30,7 @@ class CrewInviter(DirectFrame):
 
     def __init__(self):
         guiMain = loader.loadModel('models/gui/gui_main')
-        DirectFrame.__init__(self, relief = None, pos = (-0.59999999999999998, 0, 0.46999999999999997), image = guiMain.find('**/general_frame_e'), image_pos = (0.25, 0, 0.27500000000000002), image_scale = 0.25)
+        DirectFrame.__init__(self, relief = None, pos = (-0.598, 0, 0.46), image = guiMain.find('**/general_frame_e'), image_pos = (0.25, 0, 0.275), image_scale = 0.25)
         self.initialiseoptions(CrewInviter)
         self.avDisableName = ''
         self.fsm = ClassicFSM.ClassicFSM('CrewInviter', [
@@ -61,28 +61,28 @@ class CrewInviter(DirectFrame):
             State.State('maybe', self.enterMaybe, self.exitMaybe),
             State.State('down', self.enterDown, self.exitDown),
             State.State('cancel', self.enterCancel, self.exitCancel)], 'off', 'off')
-        self.title = DirectLabel(parent = self, relief = None, text = PLocalizer.CrewInviterTitle, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getPirateOutlineFont(), pos = (0.25, 0, 0.41999999999999998), image = None, image_scale = 0.25)
-        self.message = DirectLabel(parent = self, relief = None, text = '', text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.25, 0, 0.32500000000000001), textMayChange = 1)
+        self.title = DirectLabel(parent = self, relief = None, text = PLocalizer.CrewInviterTitle, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getPirateOutlineFont(), pos = (0.25, 0, 0.418), image = None, image_scale = 0.25)
+        self.message = DirectLabel(parent = self, relief = None, text = '', text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.25, 0, 0.325), textMayChange = 1)
         self.context = None
         self.bOk = CrewInviterButton(text = PLocalizer.CrewInviterOK, command = self._CrewInviter__handleOk)
         self.bOk.reparentTo(self)
-        self.bOk.setPos(0.20000000000000001, 0, 0.050000000000000003)
+        self.bOk.setPos(0.200, 0, 0.050000)
         self.bOk.hide()
         self.bCancel = CrewInviterButton(text = PLocalizer.CrewInviterCancel, command = self._CrewInviter__handleCancel)
         self.bCancel.reparentTo(self)
-        self.bCancel.setPos(0.20000000000000001, 0, 0.050000000000000003)
+        self.bCancel.setPos(0.200, 0, 0.050000)
         self.bCancel.hide()
         self.bStop = CrewInviterButton(text = PLocalizer.CrewInviterStopBeingCrewed, command = self._CrewInviter__handleStop)
         self.bStop.reparentTo(self)
-        self.bStop.setPos(0.20000000000000001, 0, 0.14999999999999999)
+        self.bStop.setPos(0.200, 0, 0.149)
         self.bStop.hide()
         self.bYes = CrewInviterButton(text = PLocalizer.CrewInviterYes, command = self._CrewInviter__handleYes)
         self.bYes.reparentTo(self)
-        self.bYes.setPos(0.10000000000000001, 0, 0.050000000000000003)
+        self.bYes.setPos(0.100, 0, 0.050000)
         self.bYes.hide()
         self.bNo = CrewInviterButton(text = PLocalizer.CrewInviterNo, command = self._CrewInviter__handleNo)
         self.bNo.reparentTo(self)
-        self.bNo.setPos(0.29999999999999999, 0, 0.050000000000000003)
+        self.bNo.setPos(0.299, 0, 0.050000)
         self.bNo.hide()
 
 
@@ -150,7 +150,7 @@ class CrewInviter(DirectFrame):
 
     def enterTooMany(self):
         self.message['text'] = PLocalizer.CrewInviterTooMany % (self.avName,)
-        self['text_pos'] = (0.0, 0.20000000000000001)
+        self['text_pos'] = (0.0, 0.200)
         self.bCancel.show()
 
 
@@ -240,7 +240,7 @@ class CrewInviter(DirectFrame):
     def enterAlreadyCrewed(self):
         self.title['text'] = PLocalizer.CrewInviterRemove
         self.message['text'] = PLocalizer.CrewInviterAlready % self.avName
-        self['text_pos'] = (0.0, 0.20000000000000001)
+        self['text_pos'] = (0.0, 0.200)
         self.context = None
         self.bStop.show()
         self.bCancel.show()

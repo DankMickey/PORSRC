@@ -7,8 +7,8 @@ from direct.gui.DirectButton import *
 from direct.gui import DirectGuiGlobals as DGG
 
 class OptionMenu(DirectOptionMenu):
-    normal_fg_color = (0.20000000000000001, 0.80000000000000004, 0.59999999999999998, 1.0)
-    disabled_fg_color = (0.20000000000000001, 0.20000000000000001, 0.20000000000000001, 1.0)
+    normal_fg_color = (0.200, 0.800000, 0.598, 1.0)
+    disabled_fg_color = (0.200, 0.200, 0.200, 1.0)
 
     def __init__(self, parent = None, **kw):
         gui_main = loader.loadModel('models/gui/gui_main')
@@ -18,11 +18,11 @@ class OptionMenu(DirectOptionMenu):
         popupMarkerImage = char_gui.find('**/chargui_forward')
         popupMarkerImageOver = char_gui.find('**/chargui_forward_over')
         char_gui.remove_node()
-        optiondefs = (('image', titleImage, None), ('image_pos', (0, 0, -6), None), ('image_scale', (6, 3, 3), None), ('popupMarkerImage', (popupMarkerImage, popupMarkerImage, popupMarkerImageOver, popupMarkerImage), None), ('popupMarkerImageScale', 5, None), ('popupMarkerHpr', (0, 0, 90), None), ('text_fg', self.normal_fg_color, None), ('text_align', TextNode.ACenter, None), ('popupBgColor', (0.074499999999999997, 0.062700000000000006, 0.050099999999999999, 1.0), None), ('popupTextColor', (0.83099999999999996, 0.745, 0.57999999999999996, 1.0), None), ('popupHalfWidth', 3.7999999999999998, None), ('highlightColor', (0.21199999999999999, 0.192, 0.16900000000000001, 1), None), ('frameSize', (0, 3.3999999999999999, 0, 0.59999999999999998), None), ('relief', None, None))
+        optiondefs = (('image', titleImage, None), ('image_pos', (0, 0, -6), None), ('image_scale', (6, 3, 3), None), ('popupMarkerImage', (popupMarkerImage, popupMarkerImage, popupMarkerImageOver, popupMarkerImage), None), ('popupMarkerImageScale', 5, None), ('popupMarkerHpr', (0, 0, 90), None), ('text_fg', self.normal_fg_color, None), ('text_align', TextNode.ACenter, None), ('popupBgColor', (0.0744, 0.0627, 0.0500, 1.0), None), ('popupTextColor', (0.83096, 0.745, 0.576, 1.0), None), ('popupHalfWidth', 3.78, None), ('highlightColor', (0.211, 0.192, 0.169, 1), None), ('frameSize', (0, 3.39, 0, 0.598), None), ('relief', None, None))
         self.defineoptions(kw, optiondefs)
         DirectOptionMenu.__init__(self, parent)
         self.popupMarker.remove_node()
-        self.popupMarker = self.createcomponent('popupMarker', (), None, DirectButton, (self,), image = self['popupMarkerImage'], image_scale = self['popupMarkerImageScale'], hpr = self['popupMarkerHpr'], relief = None, frameSize = (-0.5, 0.5, -0.20000000000000001, 0.20000000000000001))
+        self.popupMarker = self.createcomponent('popupMarker', (), None, DirectButton, (self,), image = self['popupMarkerImage'], image_scale = self['popupMarkerImageScale'], hpr = self['popupMarkerHpr'], relief = None, frameSize = (-0.5, 0.5, -0.200, 0.200))
         self.popupMarker.bind(DGG.B1PRESS, self.showPopupMenu)
         self.popupMarker.bind(DGG.B1RELEASE, self.selectHighlightedIndex)
         self.popupMarker.guiItem.setSound(DGG.B1PRESS + self.popupMarker.guiId, self['clickSound'])
@@ -109,7 +109,7 @@ class OptionMenu(DirectOptionMenu):
         b = self.getBounds()
         fb = self.popupMenu.getBounds()
         xPos = (b[1] - b[0]) / 2.0 - fb[0]
-        self.popupMenu.setZ(self, -0.20000000000000001)
+        self.popupMenu.setZ(self, -0.200)
         pos = self.popupMenu.getPos(render2d)
         scale = self.popupMenu.getScale(render2d)
         maxX = pos[0] + fb[1] * scale[0]

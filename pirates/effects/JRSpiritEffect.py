@@ -31,11 +31,11 @@ class JRSpiritEffect(PooledEffect, EffectController):
         fadeIn = LerpColorInterval(self, 0.75, Vec4(1.0, 1.0, 1.0, 1.0), startColor = Vec4(1.0, 1.0, 1.0, 0.0))
         fadeOut = LerpColorInterval(self, 1.5, Vec4(1.0, 1.0, 1.0, 0.0), startColor = Vec4(1.0, 1.0, 1.0, 1.0), blendType = 'easeIn')
         posIval = LerpPosInterval(self.effectModel, duration / 2.5, Vec3(0.0, 0.0, 2.0), startPos = Vec3(0.0, 0.0, 0.0))
-        scaleIval = LerpScaleInterval(self, duration, Vec3(1.5, 1.0, 4.0), startScale = Vec3(0.40000000000000002, 1.0, 0.75))
-        uvScrollA = LerpFunctionInterval(self.setNewUVs, duration / 2.5, toData = -2.6000000000000001, fromData = 0.0, extraArgs = [
+        scaleIval = LerpScaleInterval(self, duration, Vec3(1.5, 1.0, 4.0), startScale = Vec3(0.4, 1.0, 0.75))
+        uvScrollA = LerpFunctionInterval(self.setNewUVs, duration / 2.5, toData = -2.60, fromData = 0.0, extraArgs = [
             self.effectModel,
             textureStage])
-        uvScrollB = LerpFunctionInterval(self.setNewUVs, duration / 4.5, toData = -6.5, fromData = -2.6000000000000001, extraArgs = [
+        uvScrollB = LerpFunctionInterval(self.setNewUVs, duration / 4.5, toData = -6.5, fromData = -2.60, extraArgs = [
             self.effectModel,
             textureStage])
         self.startEffect = Parallel(fadeIn, Sequence(Wait(0.5), fadeOut), posIval, scaleIval, Sequence(uvScrollA, uvScrollB))

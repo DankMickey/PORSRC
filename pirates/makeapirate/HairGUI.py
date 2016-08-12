@@ -47,11 +47,11 @@ class HairGUI(DirectFrame, StateData.StateData):
 
     def loadGUI(self):
         self.hairPicker = CharGuiPicker(self.main, parent = self.parent, text = PLocalizer.MakeAPirateHairHair, nextCommand = self.handleNextHair, backCommand = self.handleLastHair)
-        self.hairPicker.setPos(0, 0, 0.10000000000000001)
+        self.hairPicker.setPos(0, 0, 0.100)
         self.beardPicker = CharGuiPicker(self.main, parent = self.parent, text = PLocalizer.MakeAPirateHairBeard, nextCommand = self.handleNextBeard, backCommand = self.handleLastBeard)
-        self.beardPicker.setPos(0, 0, -0.10000000000000001)
+        self.beardPicker.setPos(0, 0, -0.100)
         self.mustachePicker = CharGuiPicker(self.main, parent = self.parent, text = PLocalizer.MakeAPirateHairMustache, nextCommand = self.handleNextMustache, backCommand = self.handleLastMustache)
-        self.mustachePicker.setPos(0, 0, -0.29999999999999999)
+        self.mustachePicker.setPos(0, 0, -0.299)
         self.eyeBrowPicker = CharGuiPicker(self.main, parent = self.parent, text = PLocalizer.MakeAPirateHairEyeBrow, nextCommand = self.handleNextEyeBrow, backCommand = self.handleLastEyeBrow)
         self.eyeBrowPicker.setPos(0, 0, -0.5)
         self.hairPicker.hide()
@@ -60,21 +60,21 @@ class HairGUI(DirectFrame, StateData.StateData):
         self.eyeBrowPicker.hide()
 
     def loadColorGUI(self):
-        self.baseColorFrameTitle = DirectFrame(parent = self.parent, relief = None, image = self.main.charGui.find('**/chargui_frame01'), image_pos = (0, 0, -0.29999999999999999), image_scale = (2.1299999999999999, 1.6000000000000001, 1.6000000000000001), text = PLocalizer.HairColorFrameTitle, text_fg = (1, 1, 1, 1), text_scale = 0.17999999999999999, text_pos = (0, -0.050000000000000003), pos = (0, 0, -0.59999999999999998), scale = 0.69999999999999996)
+        self.baseColorFrameTitle = DirectFrame(parent = self.parent, relief = None, image = self.main.charGui.find('**/chargui_frame01'), image_pos = (0, 0, -0.299), image_scale = (2.12, 1.60, 1.60), text = PLocalizer.HairColorFrameTitle, text_fg = (1, 1, 1, 1), text_scale = 0.179, text_pos = (0, -0.050000), pos = (0, 0, -0.598), scale = 0.696)
         self.baseColorFrameTitle.hide()
         self.baseColorButtons = []
-        xOffset = -0.69999999999999996
-        yOffset = -0.29999999999999999
+        xOffset = -0.696
+        yOffset = -0.299
         for i in HumanDNA.availableHairColors:
             if i and i % 8 == 0:
                 xOffset = -0.5
-                yOffset -= 0.29999999999999999
+                yOffset -= 0.299
 
             hairColor = HumanDNA.hairColors[i]
             hairTone = (hairColor[0], hairColor[1], hairColor[2], 1.0)
-            self.baseColorButtons.append(DirectButton(parent = self.baseColorFrameTitle, relief = DGG.RAISED, pos = (xOffset, 0, yOffset), frameSize = (-0.10000000000000001, 0.10000000000000001, -0.10000000000000001, 0.10000000000000001), borderWidth = (0.0080000000000000002, 0.0080000000000000002), frameColor = hairTone, command = self.handleSetBaseColor, extraArgs = [
+            self.baseColorButtons.append(DirectButton(parent = self.baseColorFrameTitle, relief = DGG.RAISED, pos = (xOffset, 0, yOffset), frameSize = (-0.100, 0.100, -0.100, 0.100), borderWidth = (0.008, 0.008), frameColor = hairTone, command = self.handleSetBaseColor, extraArgs = [
                 i]))
-            xOffset += 0.20000000000000001
+            xOffset += 0.200
 
     def unload(self):
         self.notify.debug('called HairGui unload')

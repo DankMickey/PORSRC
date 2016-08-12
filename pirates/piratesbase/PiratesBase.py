@@ -74,10 +74,6 @@ class PiratesBase(OTPBase):
             launcher.setValue('GAME_SHOW_ADDS', 'NO')
 
         self.fourthOfJuly = base.config.GetBool('test-fourth-of-july', 0)
-        if self.hasEmbedded:
-            self.inAdFrame = embedded.isMainWindowVisible()
-        else:
-            self.inAdFrame = False
         self.bamCache = BamCache.getGlobalPtr()
         base.effectsRoot = render.attachNewNode('Effects Root')
 
@@ -230,7 +226,7 @@ class PiratesBase(OTPBase):
         farCullNode.setClipEffect(0)
         self.farCull = camera.attachNewNode(farCullNode)
         self.positionFarCull()
-        globalClockMaxDt = base.config.GetFloat('pirates-max-dt', 0.20000000000000001)
+        globalClockMaxDt = base.config.GetFloat('pirates-max-dt', 0.200)
         globalClock.setMaxDt(globalClockMaxDt)
         self.loadingScreen.tick()
         if self.config.GetBool('want-particles', 0):
@@ -283,7 +279,7 @@ class PiratesBase(OTPBase):
         self.whiteList = PWhiteList()
         tpMgr = TextPropertiesManager.getGlobalPtr()
         WLDisplay = TextProperties()
-        WLDisplay.setSlant(0.29999999999999999)
+        WLDisplay.setSlant(0.299)
         WLEnter = TextProperties()
         WLEnter.setTextColor(1.0, 0.0, 0.0, 1)
         tpMgr.setProperties('WLDisplay', WLDisplay)
@@ -590,7 +586,6 @@ class PiratesBase(OTPBase):
             return False
 
         embedded.showMainWindow()
-        self.inAdFrame = True
         self.options.fullscreen_runtime = 0
         wdef = embedded.getCurrentWindowModeDef()
         self.embeddedWP.setSize(wdef['want_size_x'], wdef['want_size_y'])
@@ -616,7 +611,6 @@ class PiratesBase(OTPBase):
         if not self.hasEmbedded:
             return False
 
-        self.inAdFrame = False
         if embedded.isMainWindowVisible():
             return self.hideEmbeddedFrame()
 
@@ -760,7 +754,7 @@ class PiratesBase(OTPBase):
         fn = base.screenshot(namePrefix = uFilename, defaultFilename = 0)
         winfile = pandafile.toOsSpecific()
         self.notify.info('Screenshot captured: ' + winfile)
-        screenShotNotice = DirectLabel(text = PLocalizer.ScreenshotCaptured + ':\n' + winfile, scale = 0.050000000000000003, pos = (0.0, 0.0, 0.29999999999999999), text_bg = (1, 1, 1, 0), text_fg = (1, 1, 1, 1), frameColor = (1, 1, 1, 0), text_font = PiratesGlobals.getInterfaceOutlineFont())
+        screenShotNotice = DirectLabel(text = PLocalizer.ScreenshotCaptured + ':\n' + winfile, scale = 0.050000, pos = (0.0, 0.0, 0.299), text_bg = (1, 1, 1, 0), text_fg = (1, 1, 1, 1), frameColor = (1, 1, 1, 0), text_font = PiratesGlobals.getInterfaceOutlineFont())
         screenShotNotice.reparentTo(base.a2dBottomCenter)
         screenShotNotice.setBin('gui-popup', 0)
 
@@ -915,10 +909,10 @@ class PiratesBase(OTPBase):
         thought3d = ChatBalloon(loader.loadModel('models/gui/chatbox_thought_cutout'))
         speech2d = ChatBalloon(loader.loadModel('models/gui/chatbox_noarrow'))
         chatButtonGui = loader.loadModel('models/gui/triangle')
-        chatButtonGui.setScale(0.10000000000000001)
+        chatButtonGui.setScale(0.100)
         chatButtonGui.flattenStrong()
         lookoutButtonGui = loader.loadModel('models/gui/lookout_gui')
-        lookoutButtonGui.setScale(0.40000000000000002)
+        lookoutButtonGui.setScale(0.4)
         lookoutButtonGui.flattenStrong()
         NametagGlobals.setCamera(self.cam)
         NametagGlobals.setArrowModel(arrow)

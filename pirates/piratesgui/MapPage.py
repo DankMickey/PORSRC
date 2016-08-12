@@ -69,15 +69,15 @@ class MapPage(InventoryPage.InventoryPage):
         teleportIcon = topGui.find('**/treasure_w_b_slot_empty').copyTo(NodePath(''))
         compassGui.find('**/compass_icon_objective_green').copyTo(teleportIcon)
         teleportIcon.flattenStrong()
-        self.portOfCallLabel = DirectLabel(parent = self, text = '', text_align = TextNode.ALeft, text_font = PiratesGlobals.getPirateOutlineFont(), text_scale = 0.044999999999999998, text_fg = PiratesGuiGlobals.TextFG2, textMayChange = 1, pos = (0.48999999999999999, 0, 0.072999999999999995))
-        self.portOfCallButton = GuiButton.GuiButton(parent = self, pos = (0.38, 0, 0.085000000000000006), scale = 0.84999999999999998, text = PLocalizer.Return, text_pos = (0.033000000000000002, -0.014), text_scale = 0.044999999999999998, textMayChange = 1, image3_color = (0.80000000000000004, 0.80000000000000004, 0.80000000000000004, 1), geom = teleportIcon, geom_pos = (-0.065000000000000002, 0, 0), geom_scale = 0.20000000000000001, command = self.handlePortOfCall)
+        self.portOfCallLabel = DirectLabel(parent = self, text = '', text_align = TextNode.ALeft, text_font = PiratesGlobals.getPirateOutlineFont(), text_scale = 0.0448, text_fg = PiratesGuiGlobals.TextFG2, textMayChange = 1, pos = (0.489, 0, 0.0725))
+        self.portOfCallButton = GuiButton.GuiButton(parent = self, pos = (0.38, 0, 0.085), scale = 0.848, text = PLocalizer.Return, text_pos = (0.033, -0.014), text_scale = 0.0448, textMayChange = 1, image3_color = (0.800000, 0.800000, 0.800000, 1), geom = teleportIcon, geom_pos = (-0.065, 0, 0), geom_scale = 0.200, command = self.handlePortOfCall)
 
 
     def createFrontOrnament(self):
         geom = loader.loadModel('models/gui/gui_map_window')
         geom.reparentTo(self)
-        geom.setPos(0.54000000000000004, 0, 0.72499999999999998)
-        geom.setScale(0.32000000000000001)
+        geom.setPos(0.540000, 0, 0.72498)
+        geom.setScale(0.320)
         geom.flattenStrong()
 
 
@@ -85,16 +85,16 @@ class MapPage(InventoryPage.InventoryPage):
         if not base.config.GetBool('want-momentary-minimap', 0):
             guiMain = loader.loadModel('models/gui/gui_main')
             btImages = (guiMain.find('**/minimap_button'), guiMain.find('**/minimap_button'), guiMain.find('**/minimap_button_over'), guiMain.find('**/minimap_button'))
-            self.minimapButton = GuiButton.GuiButton(parent = self, image = btImages, selectedImage = btImages, pos = (0.90000000000000002, 0, 1.1599999999999999), scale = 1.5, hotkeys = [
+            self.minimapButton = GuiButton.GuiButton(parent = self, image = btImages, selectedImage = btImages, pos = (0.9, 0, 1.15), scale = 1.5, hotkeys = [
                 'f8'], hotkeyLabel = 'F8', command = self.handleMinimapButton)
-            self.minimapButton.hotkeyLabel.setPos(-0.050000000000000003, 0.0, -0.050000000000000003)
+            self.minimapButton.hotkeyLabel.setPos(-0.050000, 0.0, -0.050000)
             self.minimapButton.hotkeyLabel.setScale(0.75)
         else:
             self.minimapButton = None
 
 
     def createWorldMap(self):
-        self.worldMap = WorldMap(parent = self, state = DGG.NORMAL, pos = (0.55000000000000004, 0, 0.62), scale = 0.46999999999999997)
+        self.worldMap = WorldMap(parent = self, state = DGG.NORMAL, pos = (0.550000, 0, 0.62), scale = 0.46)
         if __dev__ and 0:
 
             def changeMouseMode():
@@ -102,8 +102,8 @@ class MapPage(InventoryPage.InventoryPage):
                 self.worldMap.mapBall.rMode %= 2
                 self.mouseModeLabel['text'] = `self.worldMap.mapBall.rMode`
 
-            self.mouseModeButton = DirectButton(parent = self, text = 'MouseMode', scale = 0.065000000000000002, pos = (0.25, 0, 0.089999999999999997), command = changeMouseMode)
-            self.mouseModeLabel = DirectLabel(parent = self, scale = 0.074999999999999997, pos = (0.5, 0, 0.086999999999999994), text = `self.worldMap.mapBall.rMode`, text_fg = (1, 1, 1, 1), textMayChange = 1)
+            self.mouseModeButton = DirectButton(parent = self, text = 'MouseMode', scale = 0.065, pos = (0.25, 0, 0.089), command = changeMouseMode)
+            self.mouseModeLabel = DirectLabel(parent = self, scale = 0.074, pos = (0.5, 0, 0.0864), text = `self.worldMap.mapBall.rMode`, text_fg = (1, 1, 1, 1), textMayChange = 1)
 
 
 
@@ -117,13 +117,13 @@ class MapPage(InventoryPage.InventoryPage):
 
         gui = loader.loadModel('models/gui/gui_map_window_drawer')
         gui.reparentTo(self)
-        gui.setPos(0.55000000000000004, 0, 0.72499999999999998)
-        gui.setScale(0.32000000000000001)
+        gui.setPos(0.550000, 0, 0.72498)
+        gui.setScale(0.320)
         self.gear = gui.find('**/gear')
         self.gear.wrtReparentTo(self)
         gui.detachNode()
         self.shardPanel = ShardPanel.ShardPanel(parent = self, relief = None, gear = self.gear)
-        self.setScissor(Point3(-2, 0, -2), Point3(2.0, 0, 1.3500000000000001))
+        self.setScissor(Point3(-2, 0, -2), Point3(2.0, 0, 1.35))
         if __dev__ and 0:
 
             def showShardList():
@@ -137,7 +137,7 @@ class MapPage(InventoryPage.InventoryPage):
                 self.shardButton['text'] = 'Show Shards'
                 self.shardButton['command'] = showShardList
 
-            self.shardButton = DirectButton(parent = self, text = 'Show Shards', scale = 0.065000000000000002, pos = (0.75, 0, 0.089999999999999997), command = showShardList, textMayChange = 1)
+            self.shardButton = DirectButton(parent = self, text = 'Show Shards', scale = 0.065, pos = (0.75, 0, 0.089), command = showShardList, textMayChange = 1)
 
 
 

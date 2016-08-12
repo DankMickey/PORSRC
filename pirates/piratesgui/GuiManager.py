@@ -1353,7 +1353,7 @@ class GuiManager(FSM.FSM):
         self.topTen = DirectFrame(parent = aspect2d, relief = DGG.FLAT, frameSize = (-0.8, 0.8, -0.7, 0.6), frameColor = PiratesGuiGlobals.FrameColor, pos = (0, 0, 0), text = PLocalizer.RepTopTen, text_align = TextNode.ACenter, text_scale = 0.04, text_fg = (0.9, 1, 0.9, 1), text_pos = (0, 0.5, 0))
         count = len(stuff)
         for person in stuff:
-            slot = DirectFrame(parent = self.topTen, relief = DGG.FLAT, frameSize = (-0.5, 0.5, -0.035, 0.045), frameColor = (1, 1, 1, 1), pos = (0, 0, 0.5 + -0.1 * count), text = '%10d    %s' % (person[2], person[1]), text_scale = 0.040000000000000001)
+            slot = DirectFrame(parent = self.topTen, relief = DGG.FLAT, frameSize = (-0.5, 0.5, -0.035, 0.045), frameColor = (1, 1, 1, 1), pos = (0, 0, 0.5 + -0.1 * count), text = '%10d    %s' % (person[2], person[1]), text_scale = 0.0400)
             count -= 1
 
         taskMgr.doMethodLater(15.0, self.dismissTopTen, 'clearTopTen')

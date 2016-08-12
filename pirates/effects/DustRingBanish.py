@@ -43,20 +43,20 @@ class DustRingBanish(PooledEffect, EffectController):
         self.p0.factory.setLifespanBase(1.8)
         self.p0.factory.setLifespanSpread(0.5)
         self.p0.factory.setMassBase(1.0)
-        self.p0.factory.setMassSpread(0.20000000000000001)
+        self.p0.factory.setMassSpread(0.200)
         self.p0.factory.setTerminalVelocityBase(400.0)
         self.p0.factory.setTerminalVelocitySpread(0.0)
         self.p0.renderer.setAlphaMode(BaseParticleRenderer.PRALPHAOUT)
-        self.p0.renderer.setUserAlpha(0.29999999999999999)
+        self.p0.renderer.setUserAlpha(0.299)
         self.p0.renderer.setFromNode(self.card)
         self.p0.renderer.setColor(Vec4(0.5, 0.5, 1.0, 1.0))
         self.p0.renderer.setXScaleFlag(1)
         self.p0.renderer.setYScaleFlag(1)
         self.p0.renderer.setAnimAngleFlag(1)
-        self.p0.renderer.setInitialXScale(0.035000000000000003 * self.cardScale)
-        self.p0.renderer.setFinalXScale(0.14999999999999999 * self.cardScale)
-        self.p0.renderer.setInitialYScale(0.035000000000000003 * self.cardScale)
-        self.p0.renderer.setFinalYScale(0.14999999999999999 * self.cardScale)
+        self.p0.renderer.setInitialXScale(0.035000 * self.cardScale)
+        self.p0.renderer.setFinalXScale(0.149 * self.cardScale)
+        self.p0.renderer.setInitialYScale(0.035000 * self.cardScale)
+        self.p0.renderer.setFinalYScale(0.149 * self.cardScale)
         self.p0.renderer.setNonanimatedTheta(0.0)
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPNOBLEND)
         self.p0.renderer.setAlphaDisable(0)
@@ -71,7 +71,7 @@ class DustRingBanish(PooledEffect, EffectController):
 
 
     def createTrack(self):
-        self.track = Sequence(Func(self.p0.setBirthRate, 0.01), Func(self.p0.clearToInitial), Func(self.f.start, self, self), Func(self.f.reparentTo, self), Wait(0.10000000000000001), Func(self.p0.setBirthRate, 100), Wait(4.0), Func(self.cleanUpEffect))
+        self.track = Sequence(Func(self.p0.setBirthRate, 0.01), Func(self.p0.clearToInitial), Func(self.f.start, self, self), Func(self.f.reparentTo, self), Wait(0.100), Func(self.p0.setBirthRate, 100), Wait(4.0), Func(self.cleanUpEffect))
 
 
     def setEffectColor(self, color):

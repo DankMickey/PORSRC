@@ -20,7 +20,7 @@ objectStruct = {
                                 12520,
                                 13520],
                             'Scale': VBase3(1.0, 1.0, 1.0) } },
-                    'Pos': Point3(-186.05099999999999, 1925.5360000000001, 0.0),
+                    'Pos': Point3(-186.050, 1925.536, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/islands/pir_m_are_isl_portRoyal' } } },

@@ -38,7 +38,7 @@ class BlackhandCurse(PooledEffect, EffectController):
 
 
     def createTrack(self):
-        scalePulse = Sequence(self.effectModel.scaleInterval(0.14999999999999999, Vec3(1.2, 1.2, 1.2), startScale = Vec3(0.59999999999999998, 0.59999999999999998, 0.59999999999999998), blendType = 'easeIn'), self.effectModel.scaleInterval(0.14999999999999999, Vec3(0.59999999999999998, 0.59999999999999998, 0.59999999999999998), startScale = Vec3(1.2, 1.2, 1.2), blendType = 'easeOut'))
+        scalePulse = Sequence(self.effectModel.scaleInterval(0.149, Vec3(1.2, 1.2, 1.2), startScale = Vec3(0.598, 0.598, 0.598), blendType = 'easeIn'), self.effectModel.scaleInterval(0.149, Vec3(0.598, 0.598, 0.598), startScale = Vec3(1.2, 1.2, 1.2), blendType = 'easeOut'))
         self.modelParent.setColorScale(0, 0, 0, 1.0)
         fadeOut = self.modelParent.colorScaleInterval(1.0, Vec4(0, 0, 0, 0), startColorScale = Vec4(0, 0, 0, 1.0), blendType = 'easeIn')
         self.startEffect = Sequence(Func(scalePulse.loop))

@@ -41,7 +41,7 @@ class SparksTrail(PooledEffect, EffectController):
         self.p0.setLocalVelocityFlag(0)
         self.p0.setSystemGrowsOlderFlag(0)
         self.p0.factory.setLifespanBase(0.5)
-        self.p0.factory.setLifespanSpread(0.10000000000000001)
+        self.p0.factory.setLifespanSpread(0.100)
         self.p0.factory.setMassBase(1.0)
         self.p0.factory.setMassSpread(0.0)
         self.p0.factory.setTerminalVelocityBase(400.0)
@@ -83,10 +83,10 @@ class SparksTrail(PooledEffect, EffectController):
 
     def setEffectScale(self, scale):
         self.effectScale = scale
-        self.p0.renderer.setInitialXScale(0.10000000000000001 * self.cardScale * scale)
-        self.p0.renderer.setFinalXScale(0.20000000000000001 * self.cardScale * scale)
-        self.p0.renderer.setInitialYScale(0.10000000000000001 * self.cardScale * scale)
-        self.p0.renderer.setFinalYScale(0.20000000000000001 * self.cardScale * scale)
+        self.p0.renderer.setInitialXScale(0.100 * self.cardScale * scale)
+        self.p0.renderer.setFinalXScale(0.200 * self.cardScale * scale)
+        self.p0.renderer.setInitialYScale(0.100 * self.cardScale * scale)
+        self.p0.renderer.setFinalYScale(0.200 * self.cardScale * scale)
         self.p0.emitter.setAmplitude(20.0 * scale)
 
 

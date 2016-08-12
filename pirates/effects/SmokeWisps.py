@@ -11,7 +11,7 @@ class SmokeWisps(PooledEffect, EffectController):
     def __init__(self):
         PooledEffect.__init__(self)
         EffectController.__init__(self)
-        self.modelScale = 0.34999999999999998
+        self.modelScale = 0.348
         self.effectModel = loader.loadModel('models/effects/smokeWisp')
         self.effectModel.setScale(self.modelScale)
         self.effectModel.setDepthWrite(0)
@@ -24,8 +24,8 @@ class SmokeWisps(PooledEffect, EffectController):
     def createTrack(self):
         textureStage = self.effectModel.findAllTextureStages()[0]
         duration = 2.0 + random.uniform(0.0, 1.0)
-        fadeIn = self.effectModel.colorScaleInterval(1.0, Vec4(0.90000000000000002, 0.90000000000000002, 0.90000000000000002, 1.0), startColorScale = Vec4(0, 0, 0, 0), blendType = 'easeOut')
-        fadeOut = self.effectModel.colorScaleInterval(1.0, Vec4(0, 0, 0, 0), startColorScale = Vec4(0.90000000000000002, 0.90000000000000002, 0.90000000000000002, 1.0), blendType = 'easeOut')
+        fadeIn = self.effectModel.colorScaleInterval(1.0, Vec4(0.9, 0.9, 0.9, 1.0), startColorScale = Vec4(0, 0, 0, 0), blendType = 'easeOut')
+        fadeOut = self.effectModel.colorScaleInterval(1.0, Vec4(0, 0, 0, 0), startColorScale = Vec4(0.9, 0.9, 0.9, 1.0), blendType = 'easeOut')
         scaleUp = self.effectModel.scaleInterval(3.0, Vec3(1, 1, self.modelScale), startScale = Vec3(1, 1, 0), blendType = 'easeOut')
         uvScroll = LerpFunctionInterval(self.setNewUVs, duration, toData = 0, fromData = 1, extraArgs = [
             self.effectModel,

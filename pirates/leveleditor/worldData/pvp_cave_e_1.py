@@ -9,20 +9,20 @@ objectStruct = {
                 '1168057421.52sdnaik': {
                     'Type': 'Locator Node',
                     'Name': 'portal_interior_2',
-                    'Hpr': VBase3(144.768, 0.624, -0.46500000000000002),
-                    'Pos': Point3(299.39600000000002, -583.52800000000002, 3.411),
+                    'Hpr': VBase3(144.768, 0.624, -0.465),
+                    'Pos': Point3(299.396, -583.528, 3.411),
                     'Scale': VBase3(1.0, 1.0, 1.0) },
                 '1168057421.5sdnaik': {
                     'Type': 'Locator Node',
                     'Name': 'portal_interior_1',
-                    'Hpr': VBase3(-145.119, -1.51, 0.55600000000000005),
-                    'Pos': Point3(295.63299999999998, 137.404, 2.8380000000000001),
+                    'Hpr': VBase3(-145.119, -1.51, 0.556000),
+                    'Pos': Point3(295.632, 137.404, 2.838),
                     'Scale': VBase3(1.0, 1.0, 1.0) },
                 '1170127782.42sdnaik': {
                     'Type': 'Player Spawn Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Index': -1,
-                    'Pos': Point3(208.053, -512.31200000000001, 0.079000000000000001),
+                    'Pos': Point3(208.053, -512.312, 0.0790),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'All',
                     'Visual': {
@@ -32,7 +32,7 @@ objectStruct = {
                     'Type': 'Player Spawn Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Index': -1,
-                    'Pos': Point3(169.952, 57.286999999999999, 0.079000000000000001),
+                    'Pos': Point3(169.952, 57.286, 0.0790),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'All',
                     'Visual': {
@@ -41,14 +41,14 @@ objectStruct = {
                 '1170128209.66sdnaik': {
                     'Type': 'Tunnel Cap',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(167.84800000000001, 29.972000000000001, 0.079000000000000001),
+                    'Pos': Point3(167.848, 29.972, 0.0790),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/tunnels/tunnelcap_volcano' } },
                 '1170128325.13sdnaik': {
                     'Type': 'Tunnel Cap',
-                    'Hpr': VBase3(32.640999999999998, 0.0, 0.0),
-                    'Pos': Point3(191.88800000000001, -490.428, 0.079000000000000001),
+                    'Hpr': VBase3(32.6408, 0.0, 0.0),
+                    'Pos': Point3(191.888, -490.428, 0.0790),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/tunnels/tunnelcap_volcano' } },
@@ -59,11 +59,11 @@ objectStruct = {
                         '1170128892.45sdnaik': {
                             'Type': 'Treasure Chest',
                             'Hpr': Point3(0.0, 0.0, 0.0),
-                            'Pos': Point3(-78.975999999999999, 1.534, -16.088999999999999),
+                            'Pos': Point3(-78.975, 1.534, -16.088),
                             'Scale': VBase3(1.0, 1.0, 1.0),
                             'Visual': {
                                 'Model': 'models/props/treasureChest' } } },
-                    'Pos': Point3(197.05000000000001, -205.178, 30.991),
+                    'Pos': Point3(197.05, -205.178, 30.991),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/islands/pier_walkway' } } },

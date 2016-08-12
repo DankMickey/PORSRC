@@ -39,7 +39,7 @@ class VitaeMeter(DirectFrame):
 
     def update(self, level, range, val):
         self.vitaeDial.hide()
-        Range = range * 1.0009999999999999
+        Range = range * 1.0009
         if level > 0:
             self.vitaeDial.update(val, Range)
             self.vitaeDial.show()

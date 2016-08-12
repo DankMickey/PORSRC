@@ -62,7 +62,7 @@ class LavaBurst(PooledEffect, EffectController):
         self.p0.renderer.setAlphaMode(BaseParticleRenderer.PRALPHAOUT)
         self.p0.renderer.setUserAlpha(1.0)
         self.p0.renderer.setFromNode(self.card)
-        self.p0.renderer.setColor(Vec4(1.0, 0.80000000000000004, 0.80000000000000004, 1.0))
+        self.p0.renderer.setColor(Vec4(1.0, 0.800000, 0.800000, 1.0))
         self.p0.renderer.setXScaleFlag(1)
         self.p0.renderer.setYScaleFlag(1)
         self.p0.renderer.setAnimAngleFlag(1)
@@ -81,7 +81,7 @@ class LavaBurst(PooledEffect, EffectController):
 
 
     def createTrack(self, lod = None):
-        self.loopEffect = Sequence(Func(self.randomizeEffect), Func(self.p0.setBirthRate, 0.025000000000000001), Func(self.p0.clearToInitial), Wait(1.0), Func(self.p0.setBirthRate, 100.0), Wait(2.0 + 4.0 * random.random()))
+        self.loopEffect = Sequence(Func(self.randomizeEffect), Func(self.p0.setBirthRate, 0.0250), Func(self.p0.clearToInitial), Wait(1.0), Func(self.p0.setBirthRate, 100.0), Wait(2.0 + 4.0 * random.random()))
         self.startEffect = Sequence(Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self), Func(self.loopEffect.loop))
         self.endEffect = Sequence(Func(self.p0.setBirthRate, 100.0), Func(self.cleanUpEffect))
         self.track = Sequence(self.startEffect, Wait(2.0), self.endEffect)
@@ -104,9 +104,9 @@ class LavaBurst(PooledEffect, EffectController):
 
     def scaleEffectProperties(self, effectScale):
         self.p0.renderer.setInitialXScale(0.01 * self.cardScale * effectScale)
-        self.p0.renderer.setFinalXScale(0.025000000000000001 * self.cardScale * effectScale)
-        self.p0.renderer.setInitialYScale(0.029999999999999999 * self.cardScale * effectScale)
-        self.p0.renderer.setFinalYScale(0.0040000000000000001 * self.cardScale * effectScale)
+        self.p0.renderer.setFinalXScale(0.0250 * self.cardScale * effectScale)
+        self.p0.renderer.setInitialYScale(0.0299 * self.cardScale * effectScale)
+        self.p0.renderer.setFinalYScale(0.00400 * self.cardScale * effectScale)
         self.p0.emitter.setAmplitude(1.0 * effectScale)
         self.p0.emitter.setAmplitudeSpread(0.5 * effectScale)
         self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, 5.0) * effectScale)

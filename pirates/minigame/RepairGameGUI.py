@@ -38,7 +38,7 @@ class RepairGameGUI(DirectFrame):
         self.accept('avatarDetailsOpened', self.handleExitGame)
         self.accept('minimapOpened', self.handleExitGame)
         self.setBin('fixed', 30)
-        self.setZ(-0.20000000000000001)
+        self.setZ(-0.200)
         base.loadingScreen.beginStep('Intervals')
         self._initIntervals()
         base.loadingScreen.endStep('Intervals')
@@ -62,14 +62,14 @@ class RepairGameGUI(DirectFrame):
         self.repairGamePicker = RepairGamePickerGUI(self, self.repairGame, self.model.find('**/group_picker'))
         self.staticElements = GUIFactory.generateStaticElements(self.model.getChild(0), self)
         self.textElements = { }
-        self.textElements['title'] = DirectLabel(text = '', text_fg = (1.0, 1.0, 1.0, 1.0), text_shadow = (0.0, 0.0, 0.0, 1.0), scale = (0.087499999999999994, 0.087499999999999994, 0.087499999999999994), pos = (0.0, 0.0, 0.91000000000000003), relief = None, textMayChange = 1, text_font = PiratesGlobals.getPirateFont(), parent = self.staticElements['bg'])
-        self.textElements['tutorial'] = DirectLabel(text = '', text_fg = (1.0, 1.0, 1.0, 1.0), text_shadow = (0.0, 0.0, 0.0, 1.0), text_wordwrap = 14, scale = (0.044999999999999998, 0.044999999999999998, 0.044999999999999998), pos = (0.0, 0.0, 0.79500000000000004), relief = None, textMayChange = 1, text_font = PiratesGlobals.getPirateFont(), parent = self.staticElements['bg'])
-        self.textElements['level'] = DirectLabel(text = '', text_fg = (1.0, 1.0, 1.0, 1.0), scale = (0.052499999999999998, 0.052499999999999998, 0.052499999999999998), pos = (0.315, 0.0, 0.69999999999999996), relief = None, textMayChange = 1, text_align = TextNode.ARight, text_font = PiratesGlobals.getPirateFont(), parent = self.staticElements['bg'])
+        self.textElements['title'] = DirectLabel(text = '', text_fg = (1.0, 1.0, 1.0, 1.0), text_shadow = (0.0, 0.0, 0.0, 1.0), scale = (0.087494, 0.087494, 0.087494), pos = (0.0, 0.0, 0.91000), relief = None, textMayChange = 1, text_font = PiratesGlobals.getPirateFont(), parent = self.staticElements['bg'])
+        self.textElements['tutorial'] = DirectLabel(text = '', text_fg = (1.0, 1.0, 1.0, 1.0), text_shadow = (0.0, 0.0, 0.0, 1.0), text_wordwrap = 14, scale = (0.0448, 0.0448, 0.0448), pos = (0.0, 0.0, 0.795000), relief = None, textMayChange = 1, text_font = PiratesGlobals.getPirateFont(), parent = self.staticElements['bg'])
+        self.textElements['level'] = DirectLabel(text = '', text_fg = (1.0, 1.0, 1.0, 1.0), scale = (0.052498, 0.052498, 0.052498), pos = (0.315, 0.0, 0.696), relief = None, textMayChange = 1, text_align = TextNode.ARight, text_font = PiratesGlobals.getPirateFont(), parent = self.staticElements['bg'])
         self.textElements['level'].stash()
-        self.textElements['idleMessage'] = DirectLabel(text = '', text_fg = (1.0, 1.0, 1.0, 1.0), text_shadow = (0.0, 0.0, 0.0, 1.0), text_wordwrap = 15, scale = (0.087499999999999994, 0.087499999999999994, 0.087499999999999994), pos = (0.0, 0.0, 0.0), relief = None, textMayChange = 1, text_font = PiratesGlobals.getPirateFont(), parent = self.staticElements['bg'])
-        self.textElements['cycleCompleteMessage'] = DirectLabel(text = '', text_fg = (1.0, 1.0, 1.0, 1.0), text_shadow = (0.0, 0.0, 0.0, 1.0), text_wordwrap = 20, scale = (0.087499999999999994, 0.087499999999999994, 0.087499999999999994), pos = (0.0, 0.0, 0.0), relief = None, textMayChange = 1, text_font = PiratesGlobals.getPirateFont(), parent = self.staticElements['bg'])
-        self.closeButton = GuiButton(image = (self.model.find('**/esc_button/idle'), self.model.find('**/esc_button/over'), self.model.find('**/esc_button/over'), self.model.find('**/esc_button/idle')), image_scale = (0.75, 0.75, 0.75), image_pos = (0.074999999999999997, 0, 0.080000000000000002), hotkeys = [
-            'Escape'], hotkeyLabel = PLocalizer.Minigame_Repair_Leave_Game_Text, pos = (-0.40000000000000002, 0.0, 0.01), parent = base.a2dBottomRight, command = self.handleExitGame)
+        self.textElements['idleMessage'] = DirectLabel(text = '', text_fg = (1.0, 1.0, 1.0, 1.0), text_shadow = (0.0, 0.0, 0.0, 1.0), text_wordwrap = 15, scale = (0.087494, 0.087494, 0.087494), pos = (0.0, 0.0, 0.0), relief = None, textMayChange = 1, text_font = PiratesGlobals.getPirateFont(), parent = self.staticElements['bg'])
+        self.textElements['cycleCompleteMessage'] = DirectLabel(text = '', text_fg = (1.0, 1.0, 1.0, 1.0), text_shadow = (0.0, 0.0, 0.0, 1.0), text_wordwrap = 20, scale = (0.087494, 0.087494, 0.087494), pos = (0.0, 0.0, 0.0), relief = None, textMayChange = 1, text_font = PiratesGlobals.getPirateFont(), parent = self.staticElements['bg'])
+        self.closeButton = GuiButton(image = (self.model.find('**/esc_button/idle'), self.model.find('**/esc_button/over'), self.model.find('**/esc_button/over'), self.model.find('**/esc_button/idle')), image_scale = (0.75, 0.75, 0.75), image_pos = (0.074, 0, 0.08), hotkeys = [
+            'Escape'], hotkeyLabel = PLocalizer.Minigame_Repair_Leave_Game_Text, pos = (-0.4, 0.0, 0.01), parent = base.a2dBottomRight, command = self.handleExitGame)
         self.closeButton.setBin('background', -90)
         self.model.remove_node()
         del self.model
@@ -103,7 +103,7 @@ class RepairGameGUI(DirectFrame):
         if self.repairGame.location == ON_LAND:
             tpMgr = TextPropertiesManager.getGlobalPtr()
             tpGold = TextProperties()
-            tpGold.setTextColor(0.97999999999999998, 0.76000000000000001, 0, 1)
+            tpGold.setTextColor(0.978, 0.760, 0, 1)
             tpMgr.setProperties('gold', tpGold)
             completionTime = self.repairGame.getCycleCompleteTime()
             seconds = completionTime % 60
@@ -121,10 +121,10 @@ class RepairGameGUI(DirectFrame):
             else:
                 reward = PLocalizer.Minigame_Repair_Gold % str(goldAmount)
             text = PLocalizer.Minigame_Repair_BenchOutro % (time, reward)
-            self.textElements['cycleCompleteMessage'].setPos(0.0, 0.0, 0.34999999999999998)
+            self.textElements['cycleCompleteMessage'].setPos(0.0, 0.0, 0.348)
         else:
             text = PLocalizer.Minigame_Repair_ShipOutro
-            self.textElements['cycleCompleteMessage'].setPos(0.0, 0.0, 0.14999999999999999)
+            self.textElements['cycleCompleteMessage'].setPos(0.0, 0.0, 0.149)
         self.textElements['cycleCompleteMessage']['text'] = text
         self.textElements['cycleCompleteMessage'].setText()
 
@@ -135,10 +135,10 @@ class RepairGameGUI(DirectFrame):
     def showIdleMessage(self):
         if self.repairGame.location == ON_LAND:
             text = PLocalizer.Minigame_Repair_BenchIntro
-            self.textElements['idleMessage'].setPos(0.0, 0.0, 0.34999999999999998)
+            self.textElements['idleMessage'].setPos(0.0, 0.0, 0.348)
         else:
             text = PLocalizer.Minigame_Repair_ShipIntro
-            self.textElements['idleMessage'].setPos(0.0, 0.0, 0.17499999999999999)
+            self.textElements['idleMessage'].setPos(0.0, 0.0, 0.174)
         self.textElements['idleMessage']['text'] = text
         self.textElements['idleMessage'].setText()
 
@@ -148,20 +148,20 @@ class RepairGameGUI(DirectFrame):
 
     def onShipDamaged(self, wasGrapeshot = False):
         if wasGrapeshot:
-            shakeDelta = 0.050000000000000003
+            shakeDelta = 0.050000
             randomX = random.random() * 2 * shakeDelta - shakeDelta
             randomZ = random.random() * 2 * shakeDelta - shakeDelta
             if self.shakeSequence.isPlaying():
                 self.shakeSequence.finish()
 
-            self.shakeSequence = Parallel(Sequence(LerpColorScaleInterval(self, duration = 0.5, colorScale = (1.0, 0.20000000000000001, 0.20000000000000001, 1.0)), LerpColorScaleInterval(self, duration = RepairGlobals.Common.guiShakeCooldownTime / 2.0, colorScale = (1.0, 1.0, 1.0, 1.0))), Sequence(LerpPosInterval(self, duration = 0.10000000000000001, pos = self.getPos() - (randomX, 0.0, randomZ)), LerpPosInterval(self, duration = 0.20000000000000001, pos = self.getPos() + (randomX, 0.0, randomZ)), LerpPosInterval(self, duration = 0.10000000000000001, pos = self.getPos()), Wait(RepairGlobals.Common.guiShakeCooldownTime)), name = 'RepairGameGUI.shakeSequence')
+            self.shakeSequence = Parallel(Sequence(LerpColorScaleInterval(self, duration = 0.5, colorScale = (1.0, 0.200, 0.200, 1.0)), LerpColorScaleInterval(self, duration = RepairGlobals.Common.guiShakeCooldownTime / 2.0, colorScale = (1.0, 1.0, 1.0, 1.0))), Sequence(LerpPosInterval(self, duration = 0.100, pos = self.getPos() - (randomX, 0.0, randomZ)), LerpPosInterval(self, duration = 0.200, pos = self.getPos() + (randomX, 0.0, randomZ)), LerpPosInterval(self, duration = 0.100, pos = self.getPos()), Wait(RepairGlobals.Common.guiShakeCooldownTime)), name = 'RepairGameGUI.shakeSequence')
             self.shakeSequence.start()
         else:
-            shakeDelta = 0.025000000000000001
+            shakeDelta = 0.0250
             randomX = random.random() * 2 * shakeDelta - shakeDelta
             randomZ = random.random() * 2 * shakeDelta - shakeDelta
             if not self.shakeSequence.isPlaying():
-                self.shakeSequence = Sequence(LerpPosInterval(self, duration = 0.10000000000000001, pos = self.getPos() - (randomX, 0.0, randomZ)), LerpPosInterval(self, duration = 0.20000000000000001, pos = self.getPos() + (randomX, 0.0, randomZ)), LerpPosInterval(self, duration = 0.10000000000000001, pos = self.getPos()), Wait(RepairGlobals.Common.guiShakeCooldownTime), name = 'RepairGameGUI.shakeSequence')
+                self.shakeSequence = Sequence(LerpPosInterval(self, duration = 0.100, pos = self.getPos() - (randomX, 0.0, randomZ)), LerpPosInterval(self, duration = 0.200, pos = self.getPos() + (randomX, 0.0, randomZ)), LerpPosInterval(self, duration = 0.100, pos = self.getPos()), Wait(RepairGlobals.Common.guiShakeCooldownTime), name = 'RepairGameGUI.shakeSequence')
                 self.shakeSequence.start()
 
     def setTutorial(self, game, index = None):

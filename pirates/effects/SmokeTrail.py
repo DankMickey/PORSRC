@@ -38,7 +38,7 @@ class SmokeTrail(PooledEffect, EffectController):
 
     def createTrack(self):
         self.p0.setPoolSize(128)
-        self.p0.setBirthRate(0.20000000000000001)
+        self.p0.setBirthRate(0.200)
         self.p0.setLitterSize(1)
         self.p0.setLitterSpread(0)
         self.p0.setSystemLifespan(0.0)
@@ -47,7 +47,7 @@ class SmokeTrail(PooledEffect, EffectController):
         self.p0.factory.setLifespanBase(1.2)
         self.p0.factory.setLifespanSpread(0.5)
         self.p0.factory.setMassBase(1.0)
-        self.p0.factory.setMassSpread(0.20000000000000001)
+        self.p0.factory.setMassSpread(0.200)
         self.p0.factory.setTerminalVelocityBase(400.0)
         self.p0.factory.setTerminalVelocitySpread(0.0)
         self.p0.renderer.setAlphaMode(BaseParticleRenderer.PRALPHAOUT)
@@ -57,10 +57,10 @@ class SmokeTrail(PooledEffect, EffectController):
         self.p0.renderer.setXScaleFlag(1)
         self.p0.renderer.setYScaleFlag(1)
         self.p0.renderer.setAnimAngleFlag(0)
-        self.p0.renderer.setInitialXScale(0.10000000000000001 * self.cardScale)
-        self.p0.renderer.setInitialYScale(0.10000000000000001 * self.cardScale)
-        self.p0.renderer.setFinalXScale(0.20000000000000001 * self.cardScale)
-        self.p0.renderer.setFinalYScale(0.20000000000000001 * self.cardScale)
+        self.p0.renderer.setInitialXScale(0.100 * self.cardScale)
+        self.p0.renderer.setInitialYScale(0.100 * self.cardScale)
+        self.p0.renderer.setFinalXScale(0.200 * self.cardScale)
+        self.p0.renderer.setFinalYScale(0.200 * self.cardScale)
         self.p0.renderer.setNonanimatedTheta(0.0)
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPNOBLEND)
         self.p0.renderer.setAlphaDisable(0)
@@ -74,7 +74,7 @@ class SmokeTrail(PooledEffect, EffectController):
         self.p0.emitter.setRadiateOrigin(Point3(0.0, 0.0, 0.0))
         self.p0.emitter.setRadius(1.0)
         self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.01), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self))
-        self.endEffect = Sequence(Func(self.p0.setBirthRate, 4.0), Wait(3.7999999999999998), Func(self.cleanUpEffect))
+        self.endEffect = Sequence(Func(self.p0.setBirthRate, 4.0), Wait(3.78), Func(self.cleanUpEffect))
         self.track = Sequence(self.startEffect, Wait(15.0), self.endEffect)
 
 

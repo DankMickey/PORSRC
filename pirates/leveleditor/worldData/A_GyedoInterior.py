@@ -10,7 +10,7 @@ objectStruct = {
                     'Type': 'Barrel',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-12.555, -0.26400000000000001, 0.0),
+                    'Pos': Point3(-12.555, -0.264, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/barrel' } },
@@ -18,7 +18,7 @@ objectStruct = {
                     'Type': 'Barrel',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-0.52500000000000002, 8.9870000000000001, 0.0),
+                    'Pos': Point3(-0.525, 8.987, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/barrel' } },
@@ -26,7 +26,7 @@ objectStruct = {
                     'Type': 'Barrel',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-1.9199999999999999, 19.605, 0.0),
+                    'Pos': Point3(-1.91, 19.605, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/barrel' } },
@@ -42,7 +42,7 @@ objectStruct = {
                     'Type': 'Barrel',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-2.331, -17.033000000000001, 0.0),
+                    'Pos': Point3(-2.331, -17.033, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/barrel_group_3' } },
@@ -50,7 +50,7 @@ objectStruct = {
                     'Type': 'Crate',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-2.145, -8.0079999999999991, 0.0),
+                    'Pos': Point3(-2.145, -8.0071, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/crate' } },
@@ -64,11 +64,11 @@ objectStruct = {
                             'DisableCollision': False,
                             'Hpr': Point3(0.0, 0.0, 0.0),
                             'Objects': { },
-                            'Pos': Point3(0.025000000000000001, 0.53800000000000003, 2.75),
+                            'Pos': Point3(0.0250, 0.53800, 2.75),
                             'Scale': VBase3(1.0, 1.0, 1.0),
                             'Visual': {
                                 'Model': 'models/props/crate' } } },
-                    'Pos': Point3(8.1110000000000007, -1.294, 0.0),
+                    'Pos': Point3(8.111, -1.294, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/crate' } },
@@ -81,11 +81,11 @@ objectStruct = {
                             'Type': 'Crate',
                             'DisableCollision': False,
                             'Hpr': Point3(0.0, 0.0, 0.0),
-                            'Pos': Point3(0.14699999999999999, 0.622, 2.75),
+                            'Pos': Point3(0.146, 0.622, 2.75),
                             'Scale': VBase3(1.0, 1.0, 1.0),
                             'Visual': {
                                 'Model': 'models/props/crate' } } },
-                    'Pos': Point3(8.2260000000000009, 7.2009999999999996, 0.0),
+                    'Pos': Point3(8.2260000000000009, 7.2006, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/crate' } },
@@ -93,7 +93,7 @@ objectStruct = {
                     'Type': 'Crate',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(9.7729999999999997, 4.5670000000000002, 0.0),
+                    'Pos': Point3(9.772, 4.5670, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/crate' } },
@@ -101,7 +101,7 @@ objectStruct = {
                     'Type': 'Crate',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(5.8250000000000002, -7.2469999999999999, 0.0),
+                    'Pos': Point3(5.8250, -7.2469, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/crate' } },
@@ -109,7 +109,7 @@ objectStruct = {
                     'Type': 'Crate',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(11.558, -4.2999999999999998, 0.0),
+                    'Pos': Point3(11.558, -4.28, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/crate' } },
@@ -117,15 +117,15 @@ objectStruct = {
                     'Type': 'Crate',
                     'DisableCollision': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(5.2649999999999997, 18.341000000000001, 0.0),
+                    'Pos': Point3(5.264, 18.341, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/crate' } },
                 '1278520604.8gjeon': {
                     'Type': 'Door Locator Node',
                     'Name': 'door_locator',
-                    'Hpr': VBase3(-1.0840000000000001, 0.0, 0.0),
-                    'Pos': Point3(0.22600000000000001, -30.039999999999999, -0.042000000000000003),
+                    'Hpr': VBase3(-1.084, 0.0, 0.0),
+                    'Pos': Point3(0.226, -30.039, -0.042000),
                     'Scale': VBase3(1.0, 1.0, 1.0) } },
             'Visual': {
                 'Model': 'models/buildings/interior_spanish_npc' } } },
@@ -149,8 +149,8 @@ objectStruct = {
         '1189111538.61gjeon': '["Objects"]["1187719337.22gjeon0"]["Objects"]["1189111538.61gjeon"]',
         '1278520604.8gjeon': '["Objects"]["1187719337.22gjeon0"]["Objects"]["1278520604.8gjeon"]' } }
 extraInfo = {
-    'camPos': Point3(700.81500000000005, -154.44499999999999, 48.293700000000001),
-    'camHpr': VBase3(141.76900000000001, -28.2561, 0),
+    'camPos': Point3(700.815, -154.444, 48.2937),
+    'camHpr': VBase3(141.769, -28.2561, 0),
     'focalLength': 1.3999999761599999,
     'skyState': -1,
     'fog': 0 }

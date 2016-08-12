@@ -229,15 +229,15 @@ class ClothesGUI(DirectFrame, StateData.StateData):
             self.genPicsButtonsFrame.hide()
 
         self.shirtPicker = CharGuiPicker(self.main, parent = self.clothesFrame, text = PLocalizer.MakeAPirateClothingShirtStyle, nextCommand = Functor(self.handleNextClothing, 'SHIRT'), backCommand = Functor(self.handleLastClothing, 'SHIRT'))
-        self.shirtPicker.setPos(-0.29999999999999999, 0, 0.10000000000000001)
-        self.shirtGenPics = DirectButton(parent = self.genPicsButtonsFrame, relief = DGG.RAISED, frameSize = (-0.17000000000000001, 0.17000000000000001, -0.050000000000000003, 0.050000000000000003), borderWidth = (0.0080000000000000002, 0.0080000000000000002), text = PLocalizer.GeneratePictures, text_pos = (0, -0.014999999999999999), text_scale = 0.080000000000000002, pos = (-1, 0, 0.10000000000000001), command = self.handleShirtGenPics)
+        self.shirtPicker.setPos(-0.299, 0, 0.100)
+        self.shirtGenPics = DirectButton(parent = self.genPicsButtonsFrame, relief = DGG.RAISED, frameSize = (-0.170, 0.170, -0.050000, 0.050000), borderWidth = (0.008, 0.008), text = PLocalizer.GeneratePictures, text_pos = (0, -0.0149), text_scale = 0.08, pos = (-1, 0, 0.100), command = self.handleShirtGenPics)
         self.vestPicker = CharGuiPicker(self.main, parent = self.clothesFrame, text = PLocalizer.MakeAPirateClothingVestStyle, nextCommand = Functor(self.handleNextClothing, 'VEST'), backCommand = Functor(self.handleLastClothing, 'VEST'))
-        self.vestPicker.setPos(-0.29999999999999999, 0, -0.29999999999999999)
-        self.vestGenPics = DirectButton(parent = self.genPicsButtonsFrame, relief = DGG.RAISED, frameSize = (-0.17000000000000001, 0.17000000000000001, -0.050000000000000003, 0.050000000000000003), borderWidth = (0.0080000000000000002, 0.0080000000000000002), text = PLocalizer.GeneratePictures, text_pos = (0, -0.014999999999999999), text_scale = 0.080000000000000002, pos = (-1, 0, -0.29999999999999999), command = self.handleVestGenPics)
+        self.vestPicker.setPos(-0.299, 0, -0.299)
+        self.vestGenPics = DirectButton(parent = self.genPicsButtonsFrame, relief = DGG.RAISED, frameSize = (-0.170, 0.170, -0.050000, 0.050000), borderWidth = (0.008, 0.008), text = PLocalizer.GeneratePictures, text_pos = (0, -0.0149), text_scale = 0.08, pos = (-1, 0, -0.299), command = self.handleVestGenPics)
         if base.config.GetBool('want-map-coats') or self.main.wantNPCViewer:
             self.coatPicker = CharGuiPicker(self.main, parent = self.clothesFrame, text = PLocalizer.MakeAPirateClothingCoatStyle, nextCommand = Functor(self.handleNextClothing, 'COAT'), backCommand = Functor(self.handleLastClothing, 'COAT'))
-            self.coatPicker.setPos(-0.29999999999999999, 0, -0.69999999999999996)
-            self.coatGenPics = DirectButton(parent = self.genPicsButtonsFrame, relief = DGG.RAISED, frameSize = (-0.17000000000000001, 0.17000000000000001, -0.050000000000000003, 0.050000000000000003), borderWidth = (0.0080000000000000002, 0.0080000000000000002), text = PLocalizer.GeneratePictures, text_pos = (0, -0.014999999999999999), text_scale = 0.080000000000000002, pos = (-1, 0, -0.69999999999999996), command = self.handleCoatGenPics)
+            self.coatPicker.setPos(-0.299, 0, -0.696)
+            self.coatGenPics = DirectButton(parent = self.genPicsButtonsFrame, relief = DGG.RAISED, frameSize = (-0.170, 0.170, -0.050000, 0.050000), borderWidth = (0.008, 0.008), text = PLocalizer.GeneratePictures, text_pos = (0, -0.0149), text_scale = 0.08, pos = (-1, 0, -0.696), command = self.handleCoatGenPics)
 
         self.loadTopColorGUI()
         if self.main.wantNPCViewer:
@@ -254,64 +254,64 @@ class ClothesGUI(DirectFrame, StateData.StateData):
         for colorId in colors:
             if colorCount and colorCount % 7 == 0:
                 xOffset = 0.0
-                yOffset -= 0.10000000000000001
+                yOffset -= 0.100
 
             clothesColor = DYE_COLORS[colorId]
             clothesTone = (clothesColor[0], clothesColor[1], clothesColor[2], 1.0)
-            newColorButton = DirectButton(parent = frame, relief = DGG.RAISED, pos = (xOffset, 0, yOffset), frameSize = (-0.10000000000000001, 0.10000000000000001, -0.10000000000000001, 0.10000000000000001), borderWidth = (0.0080000000000000002, 0.0080000000000000002), frameColor = clothesTone, scale = 0.5, command = selectCommand, extraArgs = [
+            newColorButton = DirectButton(parent = frame, relief = DGG.RAISED, pos = (xOffset, 0, yOffset), frameSize = (-0.100, 0.100, -0.100, 0.100), borderWidth = (0.008, 0.008), frameColor = clothesTone, scale = 0.5, command = selectCommand, extraArgs = [
                 colorId])
             newColorButton.colorIndex = colorCount
             newColorButton.colorId = colorId
             colorButtons.append(newColorButton)
             colorCount += 1
-            xOffset += 0.10000000000000001
+            xOffset += 0.100
 
         return colorButtons
 
 
     def loadHatGUI(self):
-        self.maleHatColorFrameTitle = DirectFrame(parent = self.clothesFrame, relief = None, image = self.main.charGui.find('**/chargui_frame01'), image_scale = (0.90000000000000002, 1, 1.0), image_pos = (0.29999999999999999, 0, -0.0), scale = 0.80000000000000004, pos = (0.34999999999999998, 0, 0.55000000000000004))
-        self.femaleHatColorFrameTitle = DirectFrame(parent = self.clothesFrame, relief = None, image = self.main.charGui.find('**/chargui_frame01'), image_scale = (0.90000000000000002, 1, 1.0), image_pos = (0.29999999999999999, 0, -0.0), scale = 0.80000000000000004, pos = (0.34999999999999998, 0, 0.55000000000000004))
+        self.maleHatColorFrameTitle = DirectFrame(parent = self.clothesFrame, relief = None, image = self.main.charGui.find('**/chargui_frame01'), image_scale = (0.9, 1, 1.0), image_pos = (0.299, 0, -0.0), scale = 0.800000, pos = (0.348, 0, 0.550000))
+        self.femaleHatColorFrameTitle = DirectFrame(parent = self.clothesFrame, relief = None, image = self.main.charGui.find('**/chargui_frame01'), image_scale = (0.9, 1, 1.0), image_pos = (0.299, 0, -0.0), scale = 0.800000, pos = (0.348, 0, 0.550000))
         self.hatPicker = CharGuiPicker(self.main, parent = self.clothesFrame, text = PLocalizer.MakeAPirateClothingHatStyle, nextCommand = Functor(self.handleNextClothing, 'HAT'), backCommand = Functor(self.handleLastClothing, 'HAT'))
-        self.hatPicker.setPos(-0.29999999999999999, 0.0, 0.40000000000000002)
-        self.hatGenPics = DirectButton(parent = self.genPicsButtonsFrame, relief = DGG.RAISED, frameSize = (-0.17000000000000001, 0.17000000000000001, -0.050000000000000003, 0.050000000000000003), borderWidth = (0.0080000000000000002, 0.0080000000000000002), text = PLocalizer.GeneratePictures, text_pos = (0, -0.014999999999999999), text_scale = 0.080000000000000002, pos = (-1, 0, 0.40000000000000002), command = self.handleHatGenPics)
+        self.hatPicker.setPos(-0.299, 0.0, 0.4)
+        self.hatGenPics = DirectButton(parent = self.genPicsButtonsFrame, relief = DGG.RAISED, frameSize = (-0.170, 0.170, -0.050000, 0.050000), borderWidth = (0.008, 0.008), text = PLocalizer.GeneratePictures, text_pos = (0, -0.0149), text_scale = 0.08, pos = (-1, 0, 0.4), command = self.handleHatGenPics)
         self.maleHatColorButtons = self.makeColorSelector(self.maleHatColorFrameTitle, MALE_HAT_COLOR_SELECTIONS, 0.0, 0.0, self.handleSetHatColor)
         self.femaleHatColorButtons = self.makeColorSelector(self.femaleHatColorFrameTitle, FEMALE_HAT_COLOR_SELECTIONS, 0.0, 0.0, self.handleSetHatColor)
 
 
     def loadPantGUI(self):
         self.pantPicker = CharGuiPicker(self.main, parent = self.clothesFrame, text = PLocalizer.MakeAPirateClothingPantStyle, nextCommand = Functor(self.handleNextClothing, 'PANT'), backCommand = Functor(self.handleLastClothing, 'PANT'))
-        self.pantPicker.setPos(-0.29999999999999999, 0.0, -1.1000000000000001)
-        self.pantGenPics = DirectButton(parent = self.genPicsButtonsFrame, relief = DGG.RAISED, frameSize = (-0.17000000000000001, 0.17000000000000001, -0.050000000000000003, 0.050000000000000003), borderWidth = (0.0080000000000000002, 0.0080000000000000002), text = PLocalizer.GeneratePictures, text_pos = (0, -0.014999999999999999), text_scale = 0.080000000000000002, pos = (-1, 0, -1.1000000000000001), command = self.handlePantGenPics)
-        self.maleBeltColorFrameTitle = DirectFrame(parent = self.clothesFrame, relief = None, image = self.main.charGui.find('**/chargui_frame01'), image_scale = (0.90000000000000002, 1, 1.0), image_pos = (0.29999999999999999, 0, -0.0), scale = 0.80000000000000004, pos = (0.34999999999999998, 0, -1.45))
-        self.femaleBeltColorFrameTitle = DirectFrame(parent = self.clothesFrame, relief = None, image = self.main.charGui.find('**/chargui_frame01'), image_scale = (0.90000000000000002, 1, 1.0), image_pos = (0.29999999999999999, 0, -0.0), scale = 0.80000000000000004, pos = (0.34999999999999998, 0, -1.45))
+        self.pantPicker.setPos(-0.299, 0.0, -1.10)
+        self.pantGenPics = DirectButton(parent = self.genPicsButtonsFrame, relief = DGG.RAISED, frameSize = (-0.170, 0.170, -0.050000, 0.050000), borderWidth = (0.008, 0.008), text = PLocalizer.GeneratePictures, text_pos = (0, -0.0149), text_scale = 0.08, pos = (-1, 0, -1.10), command = self.handlePantGenPics)
+        self.maleBeltColorFrameTitle = DirectFrame(parent = self.clothesFrame, relief = None, image = self.main.charGui.find('**/chargui_frame01'), image_scale = (0.9, 1, 1.0), image_pos = (0.299, 0, -0.0), scale = 0.800000, pos = (0.348, 0, -1.45))
+        self.femaleBeltColorFrameTitle = DirectFrame(parent = self.clothesFrame, relief = None, image = self.main.charGui.find('**/chargui_frame01'), image_scale = (0.9, 1, 1.0), image_pos = (0.299, 0, -0.0), scale = 0.800000, pos = (0.348, 0, -1.45))
         self.beltPicker = CharGuiPicker(self.main, parent = self.clothesFrame, text = PLocalizer.MakeAPirateClothingBeltStyle, nextCommand = Functor(self.handleNextClothing, 'BELT'), backCommand = Functor(self.handleLastClothing, 'BELT'))
-        self.beltPicker.setPos(-0.29999999999999999, 0.0, -1.5)
-        self.beltGenPics = DirectButton(parent = self.genPicsButtonsFrame, relief = DGG.RAISED, frameSize = (-0.17000000000000001, 0.17000000000000001, -0.050000000000000003, 0.050000000000000003), borderWidth = (0.0080000000000000002, 0.0080000000000000002), text = PLocalizer.GeneratePictures, text_pos = (0, -0.014999999999999999), text_scale = 0.080000000000000002, pos = (-1, 0, -1.46), command = self.handleBeltGenPics)
+        self.beltPicker.setPos(-0.299, 0.0, -1.5)
+        self.beltGenPics = DirectButton(parent = self.genPicsButtonsFrame, relief = DGG.RAISED, frameSize = (-0.170, 0.170, -0.050000, 0.050000), borderWidth = (0.008, 0.008), text = PLocalizer.GeneratePictures, text_pos = (0, -0.0149), text_scale = 0.08, pos = (-1, 0, -1.46), command = self.handleBeltGenPics)
         if not self.main.wantNPCViewer:
-            self.beltGenPics.setPos(-1, 0.0, -1.3600000000000001)
+            self.beltGenPics.setPos(-1, 0.0, -1.36)
 
         self.maleBeltColorButtons = self.makeColorSelector(self.maleBeltColorFrameTitle, MALE_BELT_COLOR_SELECTIONS, 0.0, 0.0, self.handleSetBeltColor)
         self.femaleBeltColorButtons = self.makeColorSelector(self.femaleBeltColorFrameTitle, FEMALE_BELT_COLOR_SELECTIONS, 0.0, 0.0, self.handleSetBeltColor)
         self.loadBotColorGUI()
         if not self.main.wantNPCViewer:
-            self.pantPicker.setPos(-0.29999999999999999, 0, -1.25)
+            self.pantPicker.setPos(-0.299, 0, -1.25)
             self.pantGenPics.setPos(-1, 0, -1.2)
-            self.beltPicker.setPos(-0.29999999999999999, 0.0, -0.84999999999999998)
-            self.maleBeltColorFrameTitle.setPos(0.34999999999999998, 0.0, -0.80000000000000004)
-            self.femaleBeltColorFrameTitle.setPos(0.34999999999999998, 0.0, -0.80000000000000004)
-            self.maleBotColorFrameTitle.setPos(0.34999999999999998, 0.0, -1.2)
-            self.femaleBotColorFrameTitle.setPos(0.34999999999999998, 0.0, -1.2)
-            self.clothesFrame.setPos(0, 0, 0.10000000000000001)
+            self.beltPicker.setPos(-0.299, 0.0, -0.848)
+            self.maleBeltColorFrameTitle.setPos(0.348, 0.0, -0.800000)
+            self.femaleBeltColorFrameTitle.setPos(0.348, 0.0, -0.800000)
+            self.maleBotColorFrameTitle.setPos(0.348, 0.0, -1.2)
+            self.femaleBotColorFrameTitle.setPos(0.348, 0.0, -1.2)
+            self.clothesFrame.setPos(0, 0, 0.100)
 
 
 
     def loadShoeGUI(self):
         self.shoePicker = CharGuiPicker(self.main, parent = self.clothesFrame, text = PLocalizer.MakeAPirateClothingShoeStyle, nextCommand = Functor(self.handleNextClothing, 'SHOE'), backCommand = Functor(self.handleLastClothing, 'SHOE'))
-        self.shoePicker.setPos(-0.29999999999999999, 0.0, -1.75)
-        self.shoeGenPics = DirectButton(parent = self.genPicsButtonsFrame, relief = DGG.RAISED, frameSize = (-0.17000000000000001, 0.17000000000000001, -0.050000000000000003, 0.050000000000000003), borderWidth = (0.0080000000000000002, 0.0080000000000000002), text = PLocalizer.GeneratePictures, text_pos = (0, -0.014999999999999999), text_scale = 0.080000000000000002, pos = (-1, 0, -1.75), command = self.handleShoeGenPics)
+        self.shoePicker.setPos(-0.299, 0.0, -1.75)
+        self.shoeGenPics = DirectButton(parent = self.genPicsButtonsFrame, relief = DGG.RAISED, frameSize = (-0.170, 0.170, -0.050000, 0.050000), borderWidth = (0.008, 0.008), text = PLocalizer.GeneratePictures, text_pos = (0, -0.0149), text_scale = 0.08, pos = (-1, 0, -1.75), command = self.handleShoeGenPics)
         self.sockPicker = CharGuiPicker(self.main, parent = self.clothesFrame, text = PLocalizer.MakeAPirateClothingSockStyle, nextCommand = Functor(self.handleNextClothing, 'SHOE'), backCommand = Functor(self.handleLastClothing, 'SHOE'))
-        self.sockPicker.setPos(-0.29999999999999999, 0.0, -2.1499999999999999)
+        self.sockPicker.setPos(-0.299, 0.0, -2.14)
         wantSocks = base.config.GetBool('want-socks', 0)
         if not wantSocks:
             self.sockPicker.hide()
@@ -326,42 +326,42 @@ class ClothesGUI(DirectFrame, StateData.StateData):
         xOffset = 0.0
         yOffset = 0.0
         self.maleShirtColorButtons = []
-        self.maleShirtColorFrameTitle = DirectFrame(parent = self.clothesFrame, relief = None, image = self.main.charGui.find('**/chargui_frame01'), image_scale = (0.90000000000000002, 1, 1.0), image_pos = (0.29999999999999999, 0, -0.0), scale = 0.80000000000000004, pos = (0.34999999999999998, 0, 0.14999999999999999))
+        self.maleShirtColorFrameTitle = DirectFrame(parent = self.clothesFrame, relief = None, image = self.main.charGui.find('**/chargui_frame01'), image_scale = (0.9, 1, 1.0), image_pos = (0.299, 0, -0.0), scale = 0.800000, pos = (0.348, 0, 0.149))
         self.maleShirtColorButtons = self.makeColorSelector(self.maleShirtColorFrameTitle, MALE_SHIRT_COLOR_SELECTIONS, 0.0, 0.0, self.handleSetShirtColor)
         self.maleShirtColorFrameTitle.hide()
-        self.maleVestColorFrameTitle = DirectFrame(parent = self.clothesFrame, relief = None, image = self.main.charGui.find('**/chargui_frame01'), image_scale = (0.90000000000000002, 1, 1.0), image_pos = (0.29999999999999999, 0, -0.0), scale = 0.80000000000000004, pos = (0.34999999999999998, 0, -0.25))
+        self.maleVestColorFrameTitle = DirectFrame(parent = self.clothesFrame, relief = None, image = self.main.charGui.find('**/chargui_frame01'), image_scale = (0.9, 1, 1.0), image_pos = (0.299, 0, -0.0), scale = 0.800000, pos = (0.348, 0, -0.25))
         self.maleVestColorButtons = self.makeColorSelector(self.maleVestColorFrameTitle, MALE_VEST_COLOR_SELECTIONS, 0.0, 0.0, self.handleSetVestColor)
         self.maleVestColorFrameTitle.hide()
-        self.maleCoatColorFrameTitle = DirectFrame(parent = self.clothesFrame, relief = None, image = self.main.charGui.find('**/chargui_frame01'), image_scale = (0.90000000000000002, 1, 1.0), image_pos = (0.29999999999999999, 0, -0.0), scale = 0.80000000000000004, pos = (0.34999999999999998, 0, -0.65000000000000002))
+        self.maleCoatColorFrameTitle = DirectFrame(parent = self.clothesFrame, relief = None, image = self.main.charGui.find('**/chargui_frame01'), image_scale = (0.9, 1, 1.0), image_pos = (0.299, 0, -0.0), scale = 0.800000, pos = (0.348, 0, -0.65))
         self.maleCoatColorButtons = self.makeColorSelector(self.maleCoatColorFrameTitle, MALE_COAT_COLOR_SELECTIONS, 0.0, 0.0, self.handleSetCoatColor)
         self.maleCoatColorFrameTitle.hide()
-        self.femaleShirtColorFrameTitle = DirectFrame(parent = self.clothesFrame, relief = None, image = self.main.charGui.find('**/chargui_frame01'), image_scale = (0.90000000000000002, 1, 1.0), image_pos = (0.29999999999999999, 0, -0.0), scale = 0.80000000000000004, pos = (0.34999999999999998, 0, 0.14999999999999999))
+        self.femaleShirtColorFrameTitle = DirectFrame(parent = self.clothesFrame, relief = None, image = self.main.charGui.find('**/chargui_frame01'), image_scale = (0.9, 1, 1.0), image_pos = (0.299, 0, -0.0), scale = 0.800000, pos = (0.348, 0, 0.149))
         self.femaleShirtColorButtons = self.makeColorSelector(self.femaleShirtColorFrameTitle, FEMALE_SHIRT_COLOR_SELECTIONS, 0.0, 0.0, self.handleSetShirtColor)
         self.femaleShirtColorFrameTitle.hide()
-        self.femaleVestColorFrameTitle = DirectFrame(parent = self.clothesFrame, relief = None, image = self.main.charGui.find('**/chargui_frame01'), image_scale = (0.90000000000000002, 1, 1.0), image_pos = (0.29999999999999999, 0, -0.0), scale = 0.80000000000000004, pos = (0.34999999999999998, 0, -0.25))
+        self.femaleVestColorFrameTitle = DirectFrame(parent = self.clothesFrame, relief = None, image = self.main.charGui.find('**/chargui_frame01'), image_scale = (0.9, 1, 1.0), image_pos = (0.299, 0, -0.0), scale = 0.800000, pos = (0.348, 0, -0.25))
         self.femaleVestColorButtons = self.makeColorSelector(self.femaleVestColorFrameTitle, FEMALE_VEST_COLOR_SELECTIONS, 0.0, 0.0, self.handleSetVestColor)
         self.femaleVestColorFrameTitle.hide()
-        self.femaleCoatColorFrameTitle = DirectFrame(parent = self.clothesFrame, relief = None, image = self.main.charGui.find('**/chargui_frame01'), image_scale = (0.90000000000000002, 1, 1.0), image_pos = (0.29999999999999999, 0, -0.0), scale = 0.80000000000000004, pos = (0.34999999999999998, 0, -0.65000000000000002))
+        self.femaleCoatColorFrameTitle = DirectFrame(parent = self.clothesFrame, relief = None, image = self.main.charGui.find('**/chargui_frame01'), image_scale = (0.9, 1, 1.0), image_pos = (0.299, 0, -0.0), scale = 0.800000, pos = (0.348, 0, -0.65))
         self.femaleCoatColorButtons = self.makeColorSelector(self.femaleCoatColorFrameTitle, FEMALE_COAT_COLOR_SELECTIONS, 0.0, 0.0, self.handleSetCoatColor)
         self.femaleCoatColorFrameTitle.hide()
 
 
     def loadTopTextureGUI(self):
         self.hatTexturePicker = CharGuiPicker(self.main, parent = self.clothesFrame, text = PLocalizer.MakeAPirateClothingHatTrend, nextCommand = Functor(self.handleNextTexture, 'HAT'), backCommand = Functor(self.handleLastTexture, 'HAT'))
-        self.hatTexturePicker.setPos(-0.29999999999999999, 0, 0.25)
+        self.hatTexturePicker.setPos(-0.299, 0, 0.25)
         self.shirtTexturePicker = CharGuiPicker(self.main, parent = self.clothesFrame, text = PLocalizer.MakeAPirateClothingShirtTrend, nextCommand = Functor(self.handleNextTexture, 'SHIRT'), backCommand = Functor(self.handleLastTexture, 'SHIRT'))
-        self.shirtTexturePicker.setPos(-0.29999999999999999, 0, -0.050000000000000003)
+        self.shirtTexturePicker.setPos(-0.299, 0, -0.050000)
         self.vestTexturePicker = CharGuiPicker(self.main, parent = self.clothesFrame, text = PLocalizer.MakeAPirateClothingVestTrend, nextCommand = Functor(self.handleNextTexture, 'VEST'), backCommand = Functor(self.handleLastTexture, 'VEST'))
-        self.vestTexturePicker.setPos(-0.29999999999999999, 0, -0.45000000000000001)
+        self.vestTexturePicker.setPos(-0.299, 0, -0.450)
         self.coatTexturePicker = CharGuiPicker(self.main, parent = self.clothesFrame, text = PLocalizer.MakeAPirateClothingCoatTrend, nextCommand = Functor(self.handleNextTexture, 'COAT'), backCommand = Functor(self.handleLastTexture, 'COAT'))
-        self.coatTexturePicker.setPos(-0.29999999999999999, 0, -0.84999999999999998)
+        self.coatTexturePicker.setPos(-0.299, 0, -0.848)
 
 
     def loadBotTextureGUI(self):
         self.pantTexturePicker = CharGuiPicker(self.main, parent = self.clothesFrame, text = PLocalizer.MakeAPirateClothingPantTrend, nextCommand = Functor(self.handleNextTexture, 'PANT'), backCommand = Functor(self.handleLastTexture, 'PANT'))
-        self.pantTexturePicker.setPos(-0.29999999999999999, 0, -1.25)
+        self.pantTexturePicker.setPos(-0.299, 0, -1.25)
         self.shoeTexturePicker = CharGuiPicker(self.main, parent = self.clothesFrame, text = PLocalizer.MakeAPirateClothingShoeTrend, nextCommand = Functor(self.handleNextTexture, 'SHOE'), backCommand = Functor(self.handleLastTexture, 'SHOE'))
-        self.shoeTexturePicker.setPos(-0.29999999999999999, 0, -1.8999999999999999)
+        self.shoeTexturePicker.setPos(-0.299, 0, -1.89)
 
 
     def loadBotColorGUI(self):
@@ -370,11 +370,11 @@ class ClothesGUI(DirectFrame, StateData.StateData):
             vertPlace = -1.2
 
         idx = 0
-        self.maleBotColorFrameTitle = DirectFrame(parent = self.clothesFrame, relief = None, image = self.main.charGui.find('**/chargui_frame01'), image_scale = (0.90000000000000002, 1, 1.0), image_pos = (0.29999999999999999, 0, -0.0), scale = 0.80000000000000004, pos = (0.34999999999999998, 0, vertPlace))
+        self.maleBotColorFrameTitle = DirectFrame(parent = self.clothesFrame, relief = None, image = self.main.charGui.find('**/chargui_frame01'), image_scale = (0.9, 1, 1.0), image_pos = (0.299, 0, -0.0), scale = 0.800000, pos = (0.348, 0, vertPlace))
         self.maleBotColorFrameTitle.hide()
         self.malePantColorButtons = self.makeColorSelector(self.maleBotColorFrameTitle, MALE_PANTS_COLOR_SELECTIONS, 0.0, 0.0, self.handleSetPantColor)
         idx = 1
-        self.femaleBotColorFrameTitle = DirectFrame(parent = self.clothesFrame, relief = None, image = self.main.charGui.find('**/chargui_frame01'), image_scale = (0.90000000000000002, 1, 1.0), image_pos = (0.29999999999999999, 0, -0.0), scale = 0.80000000000000004, pos = (0.34999999999999998, 0, vertPlace))
+        self.femaleBotColorFrameTitle = DirectFrame(parent = self.clothesFrame, relief = None, image = self.main.charGui.find('**/chargui_frame01'), image_scale = (0.9, 1, 1.0), image_pos = (0.299, 0, -0.0), scale = 0.800000, pos = (0.348, 0, vertPlace))
         self.femaleBotColorFrameTitle.hide()
         self.femalePantColorButtons = self.makeColorSelector(self.femaleBotColorFrameTitle, FEMALE_PANTS_COLOR_SELECTIONS, 0.0, 0.0, self.handleSetPantColor)
 
@@ -1041,9 +1041,9 @@ class ClothesGUI(DirectFrame, StateData.StateData):
         taskMgr.remove('avCreate-ZoomTask')
         oldPos = base.camera.getPos()
         if self.main.pirate.gender == 'f':
-            base.camera.setPos(-0.20000000000000001, -5, 5.2699999999999996)
+            base.camera.setPos(-0.200, -5, 5.2696)
         else:
-            base.camera.setPos(-0.20000000000000001, -5, 5.2999999999999998)
+            base.camera.setPos(-0.200, -5, 5.28)
         self.generatePics('SHIRT')
         base.camera.setPos(oldPos)
         taskMgr.add(self.main.zoomTask, 'avCreate-ZoomTask')
@@ -1053,9 +1053,9 @@ class ClothesGUI(DirectFrame, StateData.StateData):
         taskMgr.remove('avCreate-ZoomTask')
         oldPos = base.camera.getPos()
         if self.main.pirate.gender == 'f':
-            base.camera.setPos(-0.20000000000000001, -4.0999999999999996, 4.9500000000000002)
+            base.camera.setPos(-0.200, -4.06, 4.95)
         else:
-            base.camera.setPos(-0.20000000000000001, -5, 5.2999999999999998)
+            base.camera.setPos(-0.200, -5, 5.28)
         self.generatePics('VEST')
         base.camera.setPos(oldPos)
         taskMgr.add(self.main.zoomTask, 'avCreate-ZoomTask')
@@ -1065,9 +1065,9 @@ class ClothesGUI(DirectFrame, StateData.StateData):
         taskMgr.remove('avCreate-ZoomTask')
         oldPos = base.camera.getPos()
         if self.main.pirate.gender == 'f':
-            base.camera.setPos(-0.20000000000000001, -6.5999999999999996, 5.2999999999999998)
+            base.camera.setPos(-0.200, -6.56, 5.28)
         else:
-            base.camera.setPos(-0.20000000000000001, -7.5, 5.4000000000000004)
+            base.camera.setPos(-0.200, -7.5, 5.40000)
         self.generatePics('COAT')
         base.camera.setPos(oldPos)
         taskMgr.add(self.main.zoomTask, 'avCreate-ZoomTask')
@@ -1077,9 +1077,9 @@ class ClothesGUI(DirectFrame, StateData.StateData):
         taskMgr.remove('avCreate-ZoomTask')
         oldPos = base.camera.getPos()
         if self.main.pirate.gender == 'f':
-            base.camera.setPos(-0.10000000000000001, -8, 4)
+            base.camera.setPos(-0.100, -8, 4)
         else:
-            base.camera.setPos(-0.20000000000000001, -5.5, 3.7000000000000002)
+            base.camera.setPos(-0.200, -5.5, 3.7)
         self.generatePics('PANT')
         base.camera.setPos(oldPos)
         taskMgr.add(self.main.zoomTask, 'avCreate-ZoomTask')
@@ -1089,9 +1089,9 @@ class ClothesGUI(DirectFrame, StateData.StateData):
         taskMgr.remove('avCreate-ZoomTask')
         oldPos = base.camera.getPos()
         if self.main.pirate.gender == 'f':
-            base.camera.setPos(-0.10000000000000001, -4.0999999999999996, 3.7999999999999998)
+            base.camera.setPos(-0.100, -4.06, 3.78)
         else:
-            base.camera.setPos(-0.10000000000000001, -3.8999999999999999, 3.5499999999999998)
+            base.camera.setPos(-0.100, -3.89, 3.5498)
         self.generatePics('BELT')
         base.camera.setPos(oldPos)
         taskMgr.add(self.main.zoomTask, 'avCreate-ZoomTask')
@@ -1101,9 +1101,9 @@ class ClothesGUI(DirectFrame, StateData.StateData):
         taskMgr.remove('avCreate-ZoomTask')
         oldPos = base.camera.getPos()
         if self.main.pirate.gender == 'f':
-            base.camera.setPos(-0.10000000000000001, -5, 2.3999999999999999)
+            base.camera.setPos(-0.100, -5, 2.39)
         else:
-            base.camera.setPos(-0.10000000000000001, -4, 1.5)
+            base.camera.setPos(-0.100, -4, 1.5)
         self.generatePics('SHOE')
         base.camera.setPos(oldPos)
         taskMgr.add(self.main.zoomTask, 'avCreate-ZoomTask')
@@ -1113,7 +1113,7 @@ class ClothesGUI(DirectFrame, StateData.StateData):
         taskMgr.remove('avCreate-ZoomTask')
         oldPos = base.camera.getPos()
         if self.main.pirate.gender == 'f':
-            base.camera.setPos(-0.10000000000000001, -3, 6.0999999999999996)
+            base.camera.setPos(-0.100, -3, 6.06)
         else:
             base.camera.setPos(0, -3, 6.5)
         self.generatePics('HAT')

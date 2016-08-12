@@ -20,7 +20,7 @@ class VoodooAttuneShield(PooledEffect, EffectController):
         self.effectModel.setLightOff()
         self.effectModel.setTransparency(1)
         self.effectModel.reparentTo(self)
-        self.effectModel.setScale(0.40000000000000002, 0.40000000000000002, 0.59999999999999998)
+        self.effectModel.setScale(0.4, 0.4, 0.598)
         self.effectModel.setTwoSided(1)
         self.effectModel.setBin('fixed', 0)
 
@@ -37,8 +37,8 @@ class VoodooAttuneShield(PooledEffect, EffectController):
 
     def pulseEffect(self):
         if not self.pulseIval:
-            scaleUp = LerpScaleInterval(self.effectModel, 0.20000000000000001, Vec3(0.40000000000000002, 0.40000000000000002, 1.75), startScale = Vec3(0.40000000000000002, 0.40000000000000002, 0.59999999999999998))
-            scaleDown = LerpScaleInterval(self.effectModel, 0.40000000000000002, Vec3(0.40000000000000002, 0.40000000000000002, 0.59999999999999998), startScale = Vec3(0.40000000000000002, 0.40000000000000002, 1.75))
+            scaleUp = LerpScaleInterval(self.effectModel, 0.200, Vec3(0.4, 0.4, 1.75), startScale = Vec3(0.4, 0.4, 0.598))
+            scaleDown = LerpScaleInterval(self.effectModel, 0.4, Vec3(0.4, 0.4, 0.598), startScale = Vec3(0.4, 0.4, 1.75))
             self.pulseIval = Sequence(scaleUp, scaleDown)
 
         self.pulseIval.start()

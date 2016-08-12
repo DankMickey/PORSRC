@@ -23,7 +23,7 @@ class StatRowHeadingGui(StatRowGui.StatRowGui):
     def _createIface(self):
         textFg = PiratesGuiGlobals.TextFG1
         self.headings = []
-        currColWidth = 0.40000000000000002
+        currColWidth = 0.4
         if len(self.columnWidths) > 0:
             currColWidth = self.columnWidths.pop(0)
 

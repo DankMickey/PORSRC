@@ -13,13 +13,13 @@ objectStruct = {
                         '1161660371.52Shochet': {
                             'Type': 'LOD Sphere',
                             'Hpr': Point3(0.0, 0.0, 0.0),
-                            'Pos': Point3(-0.0, 0.0, 10.194000000000001),
+                            'Pos': Point3(-0.0, 0.0, 10.194),
                             'Radi': [
                                 159,
                                 1159,
                                 2159],
                             'Scale': VBase3(1.0, 1.0, 1.0) } },
-                    'Pos': Point3(34.973999999999997, 6.7149999999999999, -13.161),
+                    'Pos': Point3(34.973, 6.7149, -13.161),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/islands/pir_m_are_isl_driftwood' } } },

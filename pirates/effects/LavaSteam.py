@@ -36,7 +36,7 @@ class LavaSteam(PooledEffect, EffectController):
         self.p0.setEmitter('DiscEmitter')
         self.f.addParticles(self.p0)
         self.p0.setPoolSize(32)
-        self.p0.setBirthRate(0.29999999999999999)
+        self.p0.setBirthRate(0.299)
         self.p0.setLitterSize(4)
         self.p0.setLitterSpread(0)
         self.p0.setSystemLifespan(0.0)
@@ -51,7 +51,7 @@ class LavaSteam(PooledEffect, EffectController):
         self.p0.renderer.setAlphaMode(BaseParticleRenderer.PRALPHAINOUT)
         self.p0.renderer.setUserAlpha(1.0)
         self.p0.renderer.setFromNode(self.card)
-        self.p0.renderer.setColor(Vec4(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 0.29999999999999999))
+        self.p0.renderer.setColor(Vec4(0.4, 0.4, 0.4, 0.299))
         self.p0.renderer.setXScaleFlag(1)
         self.p0.renderer.setYScaleFlag(1)
         self.p0.renderer.setAnimAngleFlag(0)
@@ -65,16 +65,16 @@ class LavaSteam(PooledEffect, EffectController):
 
 
     def createTrack(self, lod = Options.SpecialEffectsHigh):
-        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.29999999999999999), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self))
+        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.299), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self))
         self.endEffect = Sequence(Func(self.p0.setBirthRate, 100.0), Wait(2.0), Func(self.cleanUpEffect))
         self.track = Sequence(self.startEffect, Wait(10.0), self.endEffect)
 
 
     def setEffectScale(self, scale):
-        self.p0.renderer.setInitialXScale(0.10000000000000001 * self.cardScale * scale)
-        self.p0.renderer.setFinalXScale(0.29999999999999999 * self.cardScale * scale)
-        self.p0.renderer.setInitialYScale(0.050000000000000003 * self.cardScale * scale)
-        self.p0.renderer.setFinalYScale(0.20000000000000001 * self.cardScale * scale)
+        self.p0.renderer.setInitialXScale(0.100 * self.cardScale * scale)
+        self.p0.renderer.setFinalXScale(0.299 * self.cardScale * scale)
+        self.p0.renderer.setInitialYScale(0.050000 * self.cardScale * scale)
+        self.p0.renderer.setFinalYScale(0.200 * self.cardScale * scale)
         self.p0.emitter.setAmplitude(3.0 * scale)
         self.p0.emitter.setAmplitudeSpread(1.5 * scale)
         self.p0.emitter.setOffsetForce(Vec3(1.0, 4.0, 2.0) * scale)

@@ -18,7 +18,7 @@ class InventoryList(DirectScrolledFrame):
         self.width = self.listItemWidth + PiratesGuiGlobals.ScrollbarSize
         self.height = height
         charGui = loader.loadModel('models/gui/char_gui')
-        DirectScrolledFrame.__init__(self, relief = None, state = DGG.NORMAL, manageScrollBars = 0, autoHideScrollBars = 1, frameSize = (0, self.width, 0, self.height), canvasSize = (0, self.width - 0.050000000000000003, 0.025000000000000001, self.height - 0.025000000000000001), verticalScroll_relief = None, verticalScroll_image = charGui.find('**/chargui_slider_small'), verticalScroll_frameSize = (0, PiratesGuiGlobals.ScrollbarSize, 0, self.height), verticalScroll_image_scale = (self.height + 0.050000000000000003, 1, 0.75), verticalScroll_image_hpr = (0, 0, 90), verticalScroll_image_pos = (self.width - PiratesGuiGlobals.ScrollbarSize * 0.5 - 0.0040000000000000001, 0, self.height * 0.5), verticalScroll_image_color = (0.60999999999999999, 0.59999999999999998, 0.59999999999999998, 1), verticalScroll_thumb_image = (charGui.find('**/chargui_slider_node'), charGui.find('**/chargui_slider_node_down'), charGui.find('**/chargui_slider_node_over')), verticalScroll_thumb_relief = None, verticalScroll_thumb_image_scale = 0.25, verticalScroll_resizeThumb = 0, horizontalScroll_relief = None, sortOrder = 5)
+        DirectScrolledFrame.__init__(self, relief = None, state = DGG.NORMAL, manageScrollBars = 0, autoHideScrollBars = 1, frameSize = (0, self.width, 0, self.height), canvasSize = (0, self.width - 0.050000, 0.0250, self.height - 0.0250), verticalScroll_relief = None, verticalScroll_image = charGui.find('**/chargui_slider_small'), verticalScroll_frameSize = (0, PiratesGuiGlobals.ScrollbarSize, 0, self.height), verticalScroll_image_scale = (self.height + 0.050000, 1, 0.75), verticalScroll_image_hpr = (0, 0, 90), verticalScroll_image_pos = (self.width - PiratesGuiGlobals.ScrollbarSize * 0.5 - 0.00400, 0, self.height * 0.5), verticalScroll_image_color = (0.609, 0.598, 0.598, 1), verticalScroll_thumb_image = (charGui.find('**/chargui_slider_node'), charGui.find('**/chargui_slider_node_down'), charGui.find('**/chargui_slider_node_over')), verticalScroll_thumb_relief = None, verticalScroll_thumb_image_scale = 0.25, verticalScroll_resizeThumb = 0, horizontalScroll_relief = None, sortOrder = 5)
         self.initialiseoptions(InventoryList)
         self.verticalScroll.incButton.destroy()
         self.verticalScroll.decButton.destroy()
@@ -42,7 +42,7 @@ class InventoryList(DirectScrolledFrame):
         if self.verticalScroll.isHidden():
             return None
 
-        amountScroll = 0.074999999999999997
+        amountScroll = 0.074
         if self.verticalScroll['value'] > 0:
             self.verticalScroll['value'] -= amountScroll
 
@@ -52,7 +52,7 @@ class InventoryList(DirectScrolledFrame):
         if self.verticalScroll.isHidden():
             return None
 
-        amountScroll = 0.074999999999999997
+        amountScroll = 0.074
         if self.verticalScroll['value'] < 1.0:
             self.verticalScroll['value'] += amountScroll
 
@@ -89,7 +89,7 @@ class InventoryList(DirectScrolledFrame):
             self.panels[i].setPos(0.01, 0, -z * (i + 1))
             self.panels[i].origionalPos = self.panels[i].getPos(render2d)
 
-        self['canvasSize'] = (0, self.listItemWidth - 0.089999999999999997, -z * (i + 1), 0)
+        self['canvasSize'] = (0, self.listItemWidth - 0.089, -z * (i + 1), 0)
 
 
     def addPanel(self, data, repack = 1):

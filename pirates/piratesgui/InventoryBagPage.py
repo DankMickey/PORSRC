@@ -64,50 +64,50 @@ class InventoryBagPage(InventoryPage.InventoryPage):
 
         weaponKeySlotList.append((PLocalizer.InventoryPageItemSlot, '', Locations.RANGE_EQUIP_ITEMS[0]))
         self.inventoryPanelHotkey = InventoryUIBeltGrid.InventoryUIBeltGrid(self.inventoryUIManager, self.buttonSize * float(len(weaponKeySlotList)), self.buttonSize, len(weaponKeySlotList), 1, weaponKeySlotList)
-        self.inventoryPanelHotkey.setPos(0.42499999999999999 - 0.5 * self.inventoryPanelHotkey.sizeX, 0.0, 0.89500000000000002)
+        self.inventoryPanelHotkey.setPos(0.424 - 0.5 * self.inventoryPanelHotkey.sizeX, 0.0, 0.895)
         self.inventoryPanelHotkey.reparentTo(self.weaponBag)
         self.inventoryPanelTrash = InventoryUITrashContainer.InventoryUITrashContainer(self.inventoryUIManager, self.buttonSize, self.buttonSize)
         self.inventoryPanelTrash.setup()
-        self.inventoryPanelTrash.setPos(0.070000000000000007, 0.0, -0.029999999999999999)
+        self.inventoryPanelTrash.setPos(0.070, 0.0, -0.0299)
         self.inventoryPanelTrash.reparentTo(self)
         self.inventoryPanelDrinker = InventoryUIDrinker.InventoryUIDrinker(self.inventoryUIManager, self.buttonSize, self.buttonSize)
         self.inventoryPanelDrinker.setup()
-        self.inventoryPanelDrinker.setPos(0.29999999999999999, 0.0, -0.029999999999999999)
+        self.inventoryPanelDrinker.setPos(0.299, 0.0, -0.0299)
         self.inventoryPanelDrinker.reparentTo(self)
         self.inventoryPanelDressing = InventoryUIDressingContainer.InventoryUIDressingContainer(self.inventoryUIManager, self.buttonSize, self.buttonSize * 7.0, slotList = range(Locations.RANGE_EQUIP_CLOTHES[0], Locations.RANGE_EQUIP_CLOTHES[1] + 1))
-        self.inventoryPanelDressing.setPos(-0.22500000000000001, 0.0, -0.0)
+        self.inventoryPanelDressing.setPos(-0.225, 0.0, -0.0)
         self.inventoryPanelDressing.reparentTo(self.clothingBag)
         self.inventoryPanelJewelryDressing = InventoryUIJewelryDressingContainer.InventoryUIJewelryDressingContainer(self.inventoryUIManager, self.buttonSize * 2.0, self.buttonSize * 4.0, slotList = range(Locations.RANGE_EQUIP_JEWELRY[0], Locations.RANGE_EQUIP_JEWELRY[1] + 1))
-        self.inventoryPanelJewelryDressing.setPos(-0.37, 0.0, 0.40999999999999998)
+        self.inventoryPanelJewelryDressing.setPos(-0.37, 0.0, 0.408)
         self.inventoryPanelJewelryDressing.reparentTo(self.jewelryBag)
         self.inventoryPanelTattooDressing = InventoryUITattooDressingContainer.InventoryUITattooDressingContainer(self.inventoryUIManager, self.buttonSize * 2.0, self.buttonSize * 2.0, slotList = range(Locations.RANGE_EQUIP_TATTOO[0], Locations.RANGE_EQUIP_TATTOO[1] + 1))
         self.inventoryPanelTattooDressing.setPos(-0.37, 0.0, 0.0)
         self.inventoryPanelTattooDressing.reparentTo(self.jewelryBag)
         self.inventoryPanelGold = InventoryUIGoldContainer.InventoryUIGoldContainer(self.inventoryUIManager, self.buttonSize, self.buttonSize)
-        self.inventoryPanelGold.setPos(0.84999999999999998, 0.0, -0.029999999999999999)
+        self.inventoryPanelGold.setPos(0.848, 0.0, -0.0299)
         self.inventoryPanelGold.reparentTo(self)
         self.backTabParent = self.attachNewNode('backTabs')
         self.frontTabParent = self.attachNewNode('frontTab', sort = 2)
         self.tabBar = None
         self.tabCount = 0
         for container in self.containerList:
-            container.setPos(0.14000000000000001, 0.0, 0.44)
-            container.setX(0.54000000000000004 - 0.5 * container.sizeX)
+            container.setPos(0.140, 0.0, 0.44)
+            container.setX(0.540000 - 0.5 * container.sizeX)
             container.setZ(1.2 - container.getTotalHeight())
             container.reparentTo(self)
 
-        self.weaponBag.setZ(0.20000000000000001)
-        self.clothingBag.setPos(self.buttonSize * 2.0 + 0.029999999999999999, 0.0, 0.20000000000000001)
-        self.jewelryBag.setPos(self.buttonSize * 3.0 + 0.040000000000000001, 0.0, 0.20999999999999999)
-        self.ammoBag.setPos(self.buttonSize * 0.5 - 0.029999999999999999, 0.0, 0.248)
+        self.weaponBag.setZ(0.200)
+        self.clothingBag.setPos(self.buttonSize * 2.0 + 0.0299, 0.0, 0.200)
+        self.jewelryBag.setPos(self.buttonSize * 3.0 + 0.0400, 0.0, 0.209)
+        self.ammoBag.setPos(self.buttonSize * 0.5 - 0.0299, 0.0, 0.248)
         self.cardBag.setPos(self.buttonSize * 1.5 - 0.02, 0.0, self.buttonSize * 2.0)
         Gui = loader.loadModel('models/gui/char_gui')
         buttonImage = (Gui.find('**/chargui_text_block_large'), Gui.find('**/chargui_text_block_large_down'), Gui.find('**/chargui_text_block_large_over'), Gui.find('**/chargui_text_block_large'))
-        self.redeemCodeButton = DirectButton(parent = self, relief = None, image = buttonImage, image_scale = 0.45000000000000001, text = PLocalizer.InventoryRedeemCode, text_font = PiratesGlobals.getInterfaceOutlineFont(), text_align = TextNode.ACenter, text_pos = (0, -0.01), text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, pos = (0.68000000000000005, 0, 0.040000000000000001), command = self.showRedeemCodeGUI)
+        self.redeemCodeButton = DirectButton(parent = self, relief = None, image = buttonImage, image_scale = 0.450, text = PLocalizer.InventoryRedeemCode, text_font = PiratesGlobals.getInterfaceOutlineFont(), text_align = TextNode.ACenter, text_pos = (0, -0.01), text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, pos = (0.680000, 0, 0.0400), command = self.showRedeemCodeGUI)
         self.redeemCodeButton.hide()
-        self.faceCameraButton = DirectButton(parent = self, relief = None, image = buttonImage, image_scale = 0.45000000000000001, text = PLocalizer.InventoryFaceCamera, text_font = PiratesGlobals.getInterfaceOutlineFont(), text_align = TextNode.ACenter, text_pos = (0, -0.01), text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, pos = (0.37, 0, 0.040000000000000001), command = self.faceCamera)
+        self.faceCameraButton = DirectButton(parent = self, relief = None, image = buttonImage, image_scale = 0.450, text = PLocalizer.InventoryFaceCamera, text_font = PiratesGlobals.getInterfaceOutlineFont(), text_align = TextNode.ACenter, text_pos = (0, -0.01), text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, pos = (0.37, 0, 0.0400), command = self.faceCamera)
         self.faceCameraButton.hide()
-        self.notLoadedWarning = DirectLabel(parent = self, relief = DGG.SUNKEN, borderWidth = (0, 0), frameColor = (0.5, 0.14999999999999999, 0.050000000000000003, 1), text = PLocalizer.InventoryNotLoaded, text_align = TextNode.ALeft, text_font = PiratesGlobals.getInterfaceOutlineFont(), text_scale = 0.044999999999999998, text_fg = (1, 1, 1, 1), text_wordwrap = 20.0, state = DGG.DISABLED, pos = (0.10000000000000001, 0, 0.75))
+        self.notLoadedWarning = DirectLabel(parent = self, relief = DGG.SUNKEN, borderWidth = (0, 0), frameColor = (0.5, 0.149, 0.050000, 1), text = PLocalizer.InventoryNotLoaded, text_align = TextNode.ALeft, text_font = PiratesGlobals.getInterfaceOutlineFont(), text_scale = 0.0448, text_fg = (1, 1, 1, 1), text_wordwrap = 20.0, state = DGG.DISABLED, pos = (0.100, 0, 0.75))
         self.accept('openingContainer', self.onOpen)
         self.acceptOnce('localPirate-created', self.askInventory)
         self.accept('pickedUpItem', self.onLocatable)
@@ -162,7 +162,7 @@ class InventoryBagPage(InventoryPage.InventoryPage):
         if container in self.containerList or force != None:
             if container in self.containersToShowTrash or force:
                 self.inventoryPanelTrash.reparentTo(container)
-                self.inventoryPanelTrash.setPos(self, 0.070000000000000007, 0.0, -0.029999999999999999)
+                self.inventoryPanelTrash.setPos(self, 0.070, 0.0, -0.0299)
                 self.inventoryPanelTrash.show()
                 self.redeemCodeButton.show()
                 self.faceCameraButton.show()
@@ -172,7 +172,7 @@ class InventoryBagPage(InventoryPage.InventoryPage):
                 self.faceCameraButton.hide()
             if container == self.potionBag:
                 self.inventoryPanelDrinker.reparentTo(container)
-                self.inventoryPanelDrinker.setPos(self, 0.29999999999999999, 0.0, -0.029999999999999999)
+                self.inventoryPanelDrinker.setPos(self, 0.299, 0.0, -0.0299)
                 self.inventoryPanelDrinker.show()
                 self.faceCameraButton.hide()
             else:
@@ -216,7 +216,7 @@ class InventoryBagPage(InventoryPage.InventoryPage):
 
             gui = loader.loadModel('models/gui/toplevel_gui')
             treasureIcon = gui.find('**/topgui_icon_treasure')
-            treasureIcon.setScale(0.20000000000000001)
+            treasureIcon.setScale(0.200)
             tab = self.createTabExtended(PLocalizer.InventoryPageTreasure, treasureIcon, treasureIcon, self.openTreasures, [])
             self.treasureTab = tab
 
@@ -267,7 +267,7 @@ class InventoryBagPage(InventoryPage.InventoryPage):
         openContainer.takeOut()
         openContainer.show()
         self.inventoryPanelGold.reparentTo(openContainer)
-        self.inventoryPanelGold.setPos(self, 0.84999999999999998, 0.0, -0.029999999999999999)
+        self.inventoryPanelGold.setPos(self, 0.848, 0.0, -0.0299)
         self.inventoryPanelGold.show()
         self.treasurePageReopen = 0
 
@@ -279,16 +279,16 @@ class InventoryBagPage(InventoryPage.InventoryPage):
 
 
     def createTabExtended(self, name, iconClosed, iconOpen, command, extraArgList):
-        newTab = self.tabBar.addTab('My Tab %s' % self.tabCount, frameSize = (-0.12, 0.12, -0.11, 0.11), focusSize = (-0.12, 0.12, -0.12, 0.12), heightFactor = 0.59999999999999998, command = command, extraArgs = extraArgList)
+        newTab = self.tabBar.addTab('My Tab %s' % self.tabCount, frameSize = (-0.12, 0.12, -0.11, 0.11), focusSize = (-0.12, 0.12, -0.12, 0.12), heightFactor = 0.598, command = command, extraArgs = extraArgList)
         self.tabCount += 1
         image = iconClosed
-        newTab.imageTag = DirectLabel(parent = newTab, relief = None, state = DGG.DISABLED, image = image, image_scale = image.getScale(), image_color = Vec4(0.80000000000000004, 0.80000000000000004, 0.80000000000000004, 1), pos = (0, 0, 0))
+        newTab.imageTag = DirectLabel(parent = newTab, relief = None, state = DGG.DISABLED, image = image, image_scale = image.getScale(), image_color = Vec4(0.800000, 0.800000, 0.800000, 1), pos = (0, 0, 0))
         newTab.nameTag = DirectLabel(parent = newTab, relief = None, state = DGG.DISABLED, text = name, text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getInterfaceFont(), pos = (0, 0, 0))
         newTab.nameTag.setBin('gui-fixed', 1)
         newTab.nameTag.hide()
 
         def mouseOver(tab = newTab):
-            tab.imageTag.setScale(1.1000000000000001)
+            tab.imageTag.setScale(1.10)
             tab.imageTag['image_color'] = Vec4(1, 1, 1, 1)
             base.playSfx(PiratesGuiGlobals.getDefaultRolloverSound())
             newTab.nameTag.show()
@@ -297,7 +297,7 @@ class InventoryBagPage(InventoryPage.InventoryPage):
         def mouseOff(tab = newTab):
             if not tab['selected']:
                 tab.imageTag.setScale(1.0)
-                tab.imageTag['image_color'] = Vec4(0.80000000000000004, 0.80000000000000004, 0.80000000000000004, 1)
+                tab.imageTag['image_color'] = Vec4(0.800000, 0.800000, 0.800000, 1)
             else:
                 mouseOver(tab)
             newTab.nameTag.hide()

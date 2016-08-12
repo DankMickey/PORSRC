@@ -815,8 +815,8 @@ class DynamicHuman(HumanBase.HumanBase, Biped.Biped):
             self.eyeFSM.request('open')
 
         r = self.randGen.random()
-        if r < 0.10000000000000001:
-            t = 0.20000000000000001
+        if r < 0.100:
+            t = 0.200
         else:
             t = r * 4.0 + 1.0
         taskMgr.doMethodLater(t, self._DynamicHuman__blinkCloseEyes, self._DynamicHuman__blinkName)
@@ -1119,7 +1119,7 @@ class DynamicHuman(HumanBase.HumanBase, Biped.Biped):
 
     def setHeadControlShapeValues_old(self):
         value = self.style.getHeadSize()
-        mappedValue = 0.90000000000000002 + (1 + value) * 0.10000000000000001
+        mappedValue = 0.9 + (1 + value) * 0.100
         self.extraNode.setScale(2 - mappedValue, mappedValue, 1)
         self.setControlValue(self.style.getHeadWidth(), 'headWidth')
         self.setControlValue(self.style.getHeadHeight(), 'headHeight')
@@ -1165,7 +1165,7 @@ class DynamicHuman(HumanBase.HumanBase, Biped.Biped):
         if self.gender == 'f':
             idx = 1
 
-        mappedValue = (0.80000000000000004 + (1 + self.style.getBodyHeight()) * 0.20000000000000001) * BodyScales[idx][self.style.getBodyShape()]
+        mappedValue = (0.800000 + (1 + self.style.getBodyHeight()) * 0.200) * BodyScales[idx][self.style.getBodyShape()]
         return mappedValue
 
 
@@ -1238,7 +1238,7 @@ class DynamicHuman(HumanBase.HumanBase, Biped.Biped):
 
     def setHeadControlShapeValues(self):
         value = self.style.getHeadSize()
-        mappedValue = 0.90000000000000002 + (1 + value) * 0.10000000000000001
+        mappedValue = 0.9 + (1 + value) * 0.100
         self.extraNode.setScale(2 - mappedValue, mappedValue, 1)
         self.setControlValue_new(self.style.getHeadWidth(), 'headWidth')
         self.setControlValue_new(self.style.getHeadHeight(), 'headHeight')

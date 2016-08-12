@@ -36,8 +36,8 @@ class CannonExplosion(PooledEffect, EffectController):
 
 
     def createTrack(self):
-        animDuration = 0.34999999999999998
-        fadeOut = self.splash.colorInterval(0.80000000000000004, Vec4(1, 1, 1, 0), startColor = Vec4(1, 1, 1, 1))
+        animDuration = 0.348
+        fadeOut = self.splash.colorInterval(0.800000, Vec4(1, 1, 1, 0), startColor = Vec4(1, 1, 1, 1))
         animateSplash = Sequence(Func(self.splash.pose, 'splashdown', 0), Func(self.splash.show), Func(self.splash.setColor, Vec4(1, 1, 1, 1)), Func(self.splash.play, 'splashdown'), Wait(animDuration), fadeOut, Wait(1.0), Func(self.splash.stop), Func(self.splash.hide), Func(self.cleanUpEffect))
         sfx = random.choice(self.splashSfx)
         self.track = Parallel(animateSplash, Func(base.playSfx, sfx, volume = 1, node = self.splash))

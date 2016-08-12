@@ -33,13 +33,13 @@ class CrewPage(SocialPage.SocialPage):
         self.crewHUDToggleButton = 0
         self.crewIconSelection = 1
         self.mainFrame = DirectFrame(relief = None, parent = self)
-        self.chain = PirateButtonChain.PirateButtonChain(0.56000000000000005, self.mainFrame, True)
-        self.chain.setPos(-0.051999999999999998, 0.0, -0.285)
-        self.membersList = PirateMemberList.PirateMemberList(6, self.mainFrame, 'FOOLIO HC', height = 0.54700000000000004, memberHeight = 0.080000000000000002, memberWidth = 0.47999999999999998, memberOffset = 0.040000000000000001, bottom = 0.073999999999999996)
+        self.chain = PirateButtonChain.PirateButtonChain(0.560000, self.mainFrame, True)
+        self.chain.setPos(-0.0518, 0.0, -0.285)
+        self.membersList = PirateMemberList.PirateMemberList(6, self.mainFrame, 'FOOLIO HC', height = 0.547000, memberHeight = 0.08, memberWidth = 0.478, memberOffset = 0.0400, bottom = 0.0736)
         self.membersList.setPos(0.001, 0.0, 0.123)
         self.membersList.hide()
         self.load()
-        self.headingLabel = DirectLabel(parent = self, relief = None, state = DGG.NORMAL, text = PLocalizer.CrewPageTitle, text_align = TextNode.ACenter, text_scale = PiratesGuiGlobals.TextScaleLarge, text_pos = (0.0, 0.0), text_fg = PiratesGuiGlobals.TextFG1, pos = (0.23000000000000001, 0, 0.79400000000000004))
+        self.headingLabel = DirectLabel(parent = self, relief = None, state = DGG.NORMAL, text = PLocalizer.CrewPageTitle, text_align = TextNode.ACenter, text_scale = PiratesGuiGlobals.TextScaleLarge, text_pos = (0.0, 0.0), text_fg = PiratesGuiGlobals.TextFG1, pos = (0.230, 0, 0.794000))
 
 
     def load(self):

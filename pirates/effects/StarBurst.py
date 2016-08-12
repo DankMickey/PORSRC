@@ -36,7 +36,7 @@ class StarBurst(PooledEffect, EffectController):
         f0.addForce(force0)
         self.f.addForceGroup(f0)
         self.p0.setPoolSize(128)
-        self.p0.setBirthRate(0.040000000000000001)
+        self.p0.setBirthRate(0.0400)
         self.p0.setLitterSize(64)
         self.p0.setLitterSpread(0)
         self.p0.setSystemLifespan(0.0)
@@ -64,7 +64,7 @@ class StarBurst(PooledEffect, EffectController):
         self.p0.renderer.setNonanimatedTheta(0.0)
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPBLENDLINEAR)
         self.p0.renderer.setAlphaDisable(0)
-        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 0.10000000000000001, Vec4(0, 0, 0, 0), self.effectColor, 1)
+        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 0.100, Vec4(0, 0, 0, 0), self.effectColor, 1)
         self.p0.emitter.setEmissionType(BaseParticleEmitter.ETRADIATE)
         self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, 0.0))
         self.p0.emitter.setExplicitLaunchVector(Vec3(1.0, 0.0, 0.0))
@@ -74,13 +74,13 @@ class StarBurst(PooledEffect, EffectController):
 
 
     def createTrack(self):
-        self.track = Sequence(Func(self.p0.setBirthRate, 0.040000000000000001), Func(self.p0.clearToInitial), Func(self.f.start, self, self), Wait(0.20000000000000001), Func(self.p0.setBirthRate, 100.0), Wait(2.0), Func(self.cleanUpEffect))
+        self.track = Sequence(Func(self.p0.setBirthRate, 0.0400), Func(self.p0.clearToInitial), Func(self.f.start, self, self), Wait(0.200), Func(self.p0.setBirthRate, 100.0), Wait(2.0), Func(self.cleanUpEffect))
 
 
     def setEffectScale(self, scale):
         self.effectScale = scale
         self.p0.renderer.setInitialXScale(0.5 * self.cardScale * scale)
-        self.p0.renderer.setFinalXScale(0.80000000000000004 * self.cardScale * scale)
+        self.p0.renderer.setFinalXScale(0.800000 * self.cardScale * scale)
         self.p0.renderer.setInitialYScale(0.5 * self.cardScale * scale)
         self.p0.renderer.setFinalYScale(1.0 * self.cardScale * scale)
         self.p0.emitter.setAmplitude(100.0 * scale)

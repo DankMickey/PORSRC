@@ -41,8 +41,8 @@ class VolcanoEffect(NodePath):
         if self.inEditor or base.options.getSpecialEffectsSetting() >= base.options.SpecialEffectsMedium:
             self.cameraShaker = CameraShaker()
             self.cameraShaker.reparentTo(self)
-            self.cameraShaker.shakeSpeed = 0.050000000000000003
-            self.cameraShaker.shakePower = 0.20000000000000001
+            self.cameraShaker.shakeSpeed = 0.050000
+            self.cameraShaker.shakePower = 0.200
             self.cameraShaker.scalePower = True
             self.cameraShaker.numShakes = duration * 10
             self.cameraShaker.play(2200.0)

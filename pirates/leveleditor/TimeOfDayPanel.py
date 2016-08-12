@@ -200,7 +200,7 @@ class TimeOfDayPanel(AppShell):
         self.fogRangeFrame = Frame(fogControlFrame)
         self.fogRange = Valuator.ValuatorGroup(parent = self.fogRangeFrame, dim = 1, labels = [
             'Range'], value = [
-            initialRange], type = 'slider', valuator_style = 'mini', min = 0.0, max = 0.01, numDigits = 6, resolution = 9.9999999999999995e-007)
+            initialRange], type = 'slider', valuator_style = 'mini', min = 0.0, max = 0.01, numDigits = 6, resolution = 9.95e-007)
         self.fogRange['command'] = self.setFogRangeVec
         initialOnSet = self.todMgr.linearFog.getLinearOnsetPoint()
         initialPeak = self.todMgr.linearFog.getLinearOpaquePoint()

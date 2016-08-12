@@ -76,10 +76,10 @@ class CombatEffect(NodePath):
             WeaponGlobals.RESULT_MISTIMED_MISS,
             WeaponGlobals.RESULT_MISTIMED_HIT]:
             self.mistimed = 1
-            self.splatScaleMult = 0.45000000000000001
-            self.splatAlpha = 0.20000000000000001
-            self.splatRay = 0.10000000000000001
-            self.splatColor = Vec4(0.20000000000000001, 0.5, 1, 1)
+            self.splatScaleMult = 0.450
+            self.splatAlpha = 0.200
+            self.splatRay = 0.100
+            self.splatColor = Vec4(0.200, 0.5, 1, 1)
 
         self.setColorScaleOff()
         self.setTransparency(1)
@@ -168,7 +168,7 @@ class CombatEffect(NodePath):
                 if shockwaveHitEffect:
                     shockwaveHitEffect.reparentTo(self)
                     shockwaveHitEffect.size = 10
-                    shockwaveHitEffect.speed = 0.20000000000000001
+                    shockwaveHitEffect.speed = 0.200
                     shockwaveHitEffect.loadExplosion(Point3(0, 80, 0), 'Hit')
                     shockwaveHitEffect.setColor(1, 1, 1, 1)
                     shockwaveHitEffect.setPos(0, 0, 0)
@@ -180,7 +180,7 @@ class CombatEffect(NodePath):
                 if shockwaveHitEffect:
                     shockwaveHitEffect.reparentTo(self)
                     shockwaveHitEffect.size = 15
-                    shockwaveHitEffect.speed = 0.20000000000000001
+                    shockwaveHitEffect.speed = 0.200
                     shockwaveHitEffect.loadExplosion(Point3(-45, -45, 0), 'HitRay')
                     shockwaveHitEffect.setColor(1, 1, 1, 1)
                     shockwaveHitEffect.setPos(0, 0, 0)
@@ -276,7 +276,7 @@ class CombatEffect(NodePath):
                     if shockwaveHitEffect:
                         shockwaveHitEffect.reparentTo(self)
                         shockwaveHitEffect.size = 13
-                        shockwaveHitEffect.speed = 0.20000000000000001
+                        shockwaveHitEffect.speed = 0.200
                         shockwaveHitEffect.loadExplosion(Point3(-45, 45, 0), 'Hit')
                         shockwaveHitEffect.setColor(1, 1, 1, 1)
                         shockwaveHitEffect.setPos(0, 0, 0)
@@ -288,7 +288,7 @@ class CombatEffect(NodePath):
                     if shockwaveHitEffect:
                         shockwaveHitEffect.reparentTo(self)
                         shockwaveHitEffect.size = 20
-                        shockwaveHitEffect.speed = 0.20000000000000001
+                        shockwaveHitEffect.speed = 0.200
                         shockwaveHitEffect.loadExplosion(Point3(-45, -45, 0), 'HitRay')
                         shockwaveHitEffect.setColor(1, 1, 1, 1)
                         shockwaveHitEffect.setPos(0, 0, 0)
@@ -318,7 +318,7 @@ class CombatEffect(NodePath):
                 if shockwaveHitEffect:
                     shockwaveHitEffect.reparentTo(self)
                     shockwaveHitEffect.size = 13
-                    shockwaveHitEffect.speed = 0.20000000000000001
+                    shockwaveHitEffect.speed = 0.200
                     shockwaveHitEffect.loadExplosion(Point3(-45, 45, 0), 'Hit')
                     shockwaveHitEffect.setColor(1, 1, 1, 1)
                     shockwaveHitEffect.setPos(0, 0, 0)
@@ -330,7 +330,7 @@ class CombatEffect(NodePath):
                 if shockwaveHitEffect:
                     shockwaveHitEffect.reparentTo(self)
                     shockwaveHitEffect.size = 20
-                    shockwaveHitEffect.speed = 0.20000000000000001
+                    shockwaveHitEffect.speed = 0.200
                     shockwaveHitEffect.loadExplosion(Point3(-45, -45, 0), 'HitRay')
                     shockwaveHitEffect.setColor(1, 1, 1, 1)
                     shockwaveHitEffect.setPos(0, 0, 0)
@@ -356,7 +356,7 @@ class CombatEffect(NodePath):
                 effect.useRay = 0
                 effect.useSpark = 1
                 effect.splatScale = 15
-                effect.rayFlareValue = 0.34999999999999998
+                effect.rayFlareValue = 0.348
                 effect.setColor(1, 1, 1, 1)
                 effect.setPos(0, 0, 0)
                 effect.flashDummy.node().setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne))
@@ -368,7 +368,7 @@ class CombatEffect(NodePath):
                 if shockwaveHitEffect:
                     shockwaveHitEffect.reparentTo(self)
                     shockwaveHitEffect.size = 13
-                    shockwaveHitEffect.speed = 0.20000000000000001
+                    shockwaveHitEffect.speed = 0.200
                     shockwaveHitEffect.loadExplosion(Point3(-45, 45, 0), 'Hit')
                     shockwaveHitEffect.setColor(1, 1, 1, 1)
                     shockwaveHitEffect.setPos(0, 0, 0)
@@ -380,7 +380,7 @@ class CombatEffect(NodePath):
                 if shockwaveHitEffect:
                     shockwaveHitEffect.reparentTo(self)
                     shockwaveHitEffect.size = 20
-                    shockwaveHitEffect.speed = 0.20000000000000001
+                    shockwaveHitEffect.speed = 0.200
                     shockwaveHitEffect.loadExplosion(Point3(-45, -45, 0), 'HitRay')
                     shockwaveHitEffect.setColor(1, 1, 1, 1)
                     shockwaveHitEffect.setPos(0, 0, 0)
@@ -409,7 +409,7 @@ class CombatEffect(NodePath):
                 if shockwaveHitEffect:
                     shockwaveHitEffect.reparentTo(self)
                     shockwaveHitEffect.size = 13
-                    shockwaveHitEffect.speed = 0.20000000000000001
+                    shockwaveHitEffect.speed = 0.200
                     shockwaveHitEffect.loadExplosion(Point3(-45, 45, 0), 'Hit')
                     shockwaveHitEffect.setColor(1, 1, 1, 1)
                     shockwaveHitEffect.setPos(0, 0, 0)
@@ -421,7 +421,7 @@ class CombatEffect(NodePath):
                 if shockwaveHitEffect:
                     shockwaveHitEffect.reparentTo(self)
                     shockwaveHitEffect.size = 20
-                    shockwaveHitEffect.speed = 0.20000000000000001
+                    shockwaveHitEffect.speed = 0.200
                     shockwaveHitEffect.loadExplosion(Point3(-45, -45, 0), 'HitRay')
                     shockwaveHitEffect.setColor(1, 1, 1, 1)
                     shockwaveHitEffect.setPos(0, 0, 0)
@@ -567,7 +567,7 @@ class CombatEffect(NodePath):
                     if shockwaveHitEffect:
                         shockwaveHitEffect.reparentTo(self)
                         shockwaveHitEffect.size = 16
-                        shockwaveHitEffect.speed = 0.20000000000000001
+                        shockwaveHitEffect.speed = 0.200
                         shockwaveHitEffect.loadExplosion(Point3(-45, 45, 0), 'Hit')
                         shockwaveHitEffect.setColor(1, 1, 1, 1)
                         shockwaveHitEffect.setPos(0, 0, 0)
@@ -579,7 +579,7 @@ class CombatEffect(NodePath):
                     if shockwaveHitEffect:
                         shockwaveHitEffect.reparentTo(self)
                         shockwaveHitEffect.size = 22
-                        shockwaveHitEffect.speed = 0.20000000000000001
+                        shockwaveHitEffect.speed = 0.200
                         shockwaveHitEffect.loadExplosion(Point3(-45, -45, 0), 'HitRay')
                         shockwaveHitEffect.setColor(1, 1, 1, 1)
                         shockwaveHitEffect.setPos(0, 0, 0)
@@ -660,7 +660,7 @@ class CombatEffect(NodePath):
                 if shockwaveHitEffect:
                     shockwaveHitEffect.reparentTo(self)
                     shockwaveHitEffect.size = 10
-                    shockwaveHitEffect.speed = 0.20000000000000001
+                    shockwaveHitEffect.speed = 0.200
                     shockwaveHitEffect.loadExplosion(Point3(0, 80, 0), 'Hit')
                     shockwaveHitEffect.setColor(1, 1, 1, 1)
                     shockwaveHitEffect.setPos(0, 0, -1.0)
@@ -672,7 +672,7 @@ class CombatEffect(NodePath):
                 if shockwaveHitEffect:
                     shockwaveHitEffect.reparentTo(self)
                     shockwaveHitEffect.size = 15
-                    shockwaveHitEffect.speed = 0.20000000000000001
+                    shockwaveHitEffect.speed = 0.200
                     shockwaveHitEffect.loadExplosion(Point3(-45, -45, 0), 'HitRay')
                     shockwaveHitEffect.setColor(1, 1, 1, 1)
                     shockwaveHitEffect.setPos(0, 0, -1.0)
@@ -717,7 +717,7 @@ class CombatEffect(NodePath):
                 if shockwaveHitEffect:
                     shockwaveHitEffect.reparentTo(self)
                     shockwaveHitEffect.size = 13
-                    shockwaveHitEffect.speed = 0.20000000000000001
+                    shockwaveHitEffect.speed = 0.200
                     shockwaveHitEffect.loadExplosion(Point3(-45, 45, 0), 'Hit')
                     shockwaveHitEffect.setColor(1, 1, 1, 1)
                     shockwaveHitEffect.setPos(0, 0, 1.0)
@@ -729,7 +729,7 @@ class CombatEffect(NodePath):
                 if shockwaveHitEffect:
                     shockwaveHitEffect.reparentTo(self)
                     shockwaveHitEffect.size = 20
-                    shockwaveHitEffect.speed = 0.20000000000000001
+                    shockwaveHitEffect.speed = 0.200
                     shockwaveHitEffect.loadExplosion(Point3(-45, -45, 0), 'HitRay')
                     shockwaveHitEffect.setColor(1, 1, 1, 1)
                     shockwaveHitEffect.setPos(0, 0, 1.0)
@@ -758,7 +758,7 @@ class CombatEffect(NodePath):
                 if shockwaveHitEffect:
                     shockwaveHitEffect.reparentTo(self)
                     shockwaveHitEffect.size = 13
-                    shockwaveHitEffect.speed = 0.20000000000000001
+                    shockwaveHitEffect.speed = 0.200
                     shockwaveHitEffect.loadExplosion(Point3(-45, 45, 0), 'Hit')
                     shockwaveHitEffect.setColor(1, 1, 1, 1)
                     shockwaveHitEffect.setPos(0, 0, 0)
@@ -770,7 +770,7 @@ class CombatEffect(NodePath):
                 if shockwaveHitEffect:
                     shockwaveHitEffect.reparentTo(self)
                     shockwaveHitEffect.size = 20
-                    shockwaveHitEffect.speed = 0.20000000000000001
+                    shockwaveHitEffect.speed = 0.200
                     shockwaveHitEffect.loadExplosion(Point3(-45, -45, 0), 'HitRay')
                     shockwaveHitEffect.setColor(1, 1, 1, 1)
                     shockwaveHitEffect.setPos(0, 0, 0)
@@ -917,7 +917,7 @@ class CombatEffect(NodePath):
                     if shockwaveHitEffect:
                         shockwaveHitEffect.reparentTo(self)
                         shockwaveHitEffect.size = 13
-                        shockwaveHitEffect.speed = 0.20000000000000001
+                        shockwaveHitEffect.speed = 0.200
                         shockwaveHitEffect.loadExplosion(Point3(-45, 45, 0), 'Hit')
                         shockwaveHitEffect.setColor(1, 1, 1, 1)
                         shockwaveHitEffect.setPos(0, 0, -1.0)
@@ -929,7 +929,7 @@ class CombatEffect(NodePath):
                     if shockwaveHitEffect:
                         shockwaveHitEffect.reparentTo(self)
                         shockwaveHitEffect.size = 20
-                        shockwaveHitEffect.speed = 0.20000000000000001
+                        shockwaveHitEffect.speed = 0.200
                         shockwaveHitEffect.loadExplosion(Point3(-45, -45, 0), 'HitRay')
                         shockwaveHitEffect.setColor(1, 1, 1, 1)
                         shockwaveHitEffect.setPos(0, 0, -1.0)
@@ -1018,7 +1018,7 @@ class CombatEffect(NodePath):
                     if shockwaveHitEffect:
                         shockwaveHitEffect.reparentTo(self)
                         shockwaveHitEffect.size = 13
-                        shockwaveHitEffect.speed = 0.20000000000000001
+                        shockwaveHitEffect.speed = 0.200
                         shockwaveHitEffect.loadExplosion(Point3(-45, 45, 0), 'Hit')
                         shockwaveHitEffect.setColor(1, 1, 1, 1)
                         shockwaveHitEffect.setPos(0, 0, -1.0)
@@ -1030,7 +1030,7 @@ class CombatEffect(NodePath):
                     if shockwaveHitEffect:
                         shockwaveHitEffect.reparentTo(self)
                         shockwaveHitEffect.size = 20
-                        shockwaveHitEffect.speed = 0.20000000000000001
+                        shockwaveHitEffect.speed = 0.200
                         shockwaveHitEffect.loadExplosion(Point3(-45, -45, 0), 'HitRay')
                         shockwaveHitEffect.setColor(1, 1, 1, 1)
                         shockwaveHitEffect.setPos(0, 0, -1.0)
@@ -1060,7 +1060,7 @@ class CombatEffect(NodePath):
                 if shockwaveHitEffect:
                     shockwaveHitEffect.reparentTo(self)
                     shockwaveHitEffect.size = 13
-                    shockwaveHitEffect.speed = 0.20000000000000001
+                    shockwaveHitEffect.speed = 0.200
                     shockwaveHitEffect.loadExplosion(Point3(-45, 45, 0), 'Hit')
                     shockwaveHitEffect.setColor(1, 1, 1, 1)
                     shockwaveHitEffect.setPos(0, 0, 0)
@@ -1072,7 +1072,7 @@ class CombatEffect(NodePath):
                 if shockwaveHitEffect:
                     shockwaveHitEffect.reparentTo(self)
                     shockwaveHitEffect.size = 20
-                    shockwaveHitEffect.speed = 0.20000000000000001
+                    shockwaveHitEffect.speed = 0.200
                     shockwaveHitEffect.loadExplosion(Point3(-45, -45, 0), 'HitRay')
                     shockwaveHitEffect.setColor(1, 1, 1, 1)
                     shockwaveHitEffect.setPos(0, 0, 0)
@@ -1099,7 +1099,7 @@ class CombatEffect(NodePath):
                 effect.splatScale = 10.0 * self.splatScaleMult
                 effect.rayFlareValue = 2.0 * self.splatRay
                 effect.setColor(self.splatColor)
-                effect.setPos(0, 0, 0.80000000000000004)
+                effect.setPos(0, 0, 0.800000)
                 effect.flashDummy.node().setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne))
                 effectAnims.append(Func(effect.play))
                 self.effects.append(effect)
@@ -1108,7 +1108,7 @@ class CombatEffect(NodePath):
                 effect = SparkBurst.getEffect(unlimited)
                 if effect:
                     effect.reparentTo(self)
-                    effect.setPos(0, 0, 0.80000000000000004)
+                    effect.setPos(0, 0, 0.800000)
                     effect.particleDummy.reparentTo(self)
                     effectAnims.append(Func(effect.play, 'Yellow'))
                     self.effects.append(effect)
@@ -1125,7 +1125,7 @@ class CombatEffect(NodePath):
                     effect.splatScale = 13.0 * self.splatScaleMult
                     effect.rayFlareValue = 2.5 * self.splatRay
                     effect.setColor(self.splatColor)
-                    effect.setPos(-0.5, 0, 0.80000000000000004)
+                    effect.setPos(-0.5, 0, 0.800000)
                     effect.flashDummy.node().setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne))
                     effectAnims.append(Func(effect.play))
                     self.effects.append(effect)
@@ -1134,7 +1134,7 @@ class CombatEffect(NodePath):
                     effect = SparkBurst.getEffect(unlimited)
                     if effect:
                         effect.reparentTo(self)
-                        effect.setPos(-0.5, 0, 0.80000000000000004)
+                        effect.setPos(-0.5, 0, 0.800000)
                         effect.particleDummy.reparentTo(self)
                         effectAnims.append(Func(effect.play, 'Yellow'))
                         self.effects.append(effect)
@@ -1186,9 +1186,9 @@ class CombatEffect(NodePath):
                 if shockwaveHitEffect:
                     shockwaveHitEffect.reparentTo(self)
                     shockwaveHitEffect.size = 8
-                    shockwaveHitEffect.speed = 0.20000000000000001
+                    shockwaveHitEffect.speed = 0.200
                     shockwaveHitEffect.loadExplosion(Point3(0, 80, 0), 'Hit')
-                    shockwaveHitEffect.setColor(0.29999999999999999, 0.20000000000000001, 1, 1)
+                    shockwaveHitEffect.setColor(0.299, 0.200, 1, 1)
                     shockwaveHitEffect.setPos(0, 0, 0)
                     shockwaveHitEffect.node().setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne))
                     effectAnims.append(Func(shockwaveHitEffect.play))
@@ -1198,9 +1198,9 @@ class CombatEffect(NodePath):
                 if shockwaveHitEffect:
                     shockwaveHitEffect.reparentTo(self)
                     shockwaveHitEffect.size = 13
-                    shockwaveHitEffect.speed = 0.20000000000000001
+                    shockwaveHitEffect.speed = 0.200
                     shockwaveHitEffect.loadExplosion(Point3(-45, -45, 0), 'HitRay')
-                    shockwaveHitEffect.setColor(0.29999999999999999, 0.20000000000000001, 1, 1)
+                    shockwaveHitEffect.setColor(0.299, 0.200, 1, 1)
                     shockwaveHitEffect.setPos(0, 0, 0)
                     shockwaveHitEffect.node().setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne))
                     effectAnims.append(Func(shockwaveHitEffect.play))
@@ -1236,9 +1236,9 @@ class CombatEffect(NodePath):
                     if shockwaveHitEffect:
                         shockwaveHitEffect.reparentTo(self)
                         shockwaveHitEffect.size = 8
-                        shockwaveHitEffect.speed = 0.20000000000000001
+                        shockwaveHitEffect.speed = 0.200
                         shockwaveHitEffect.loadExplosion(Point3(0, 80, 0), 'Hit')
-                        shockwaveHitEffect.setColor(0.29999999999999999, 0.20000000000000001, 1, 1)
+                        shockwaveHitEffect.setColor(0.299, 0.200, 1, 1)
                         shockwaveHitEffect.setPos(0, 0, 0)
                         shockwaveHitEffect.node().setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne))
                         effectAnims.append(Func(shockwaveHitEffect.play))
@@ -1248,9 +1248,9 @@ class CombatEffect(NodePath):
                     if shockwaveHitEffect:
                         shockwaveHitEffect.reparentTo(self)
                         shockwaveHitEffect.size = 13
-                        shockwaveHitEffect.speed = 0.20000000000000001
+                        shockwaveHitEffect.speed = 0.200
                         shockwaveHitEffect.loadExplosion(Point3(-45, -45, 0), 'HitRay')
-                        shockwaveHitEffect.setColor(0.29999999999999999, 0.20000000000000001, 1, 1)
+                        shockwaveHitEffect.setColor(0.299, 0.200, 1, 1)
                         shockwaveHitEffect.setPos(0, 0, 0)
                         shockwaveHitEffect.node().setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne))
                         effectAnims.append(Func(shockwaveHitEffect.play))
@@ -1285,9 +1285,9 @@ class CombatEffect(NodePath):
                     if shockwaveHitEffect:
                         shockwaveHitEffect.reparentTo(self)
                         shockwaveHitEffect.size = 8
-                        shockwaveHitEffect.speed = 0.20000000000000001
+                        shockwaveHitEffect.speed = 0.200
                         shockwaveHitEffect.loadExplosion(Point3(0, 80, 0), 'Hit')
-                        shockwaveHitEffect.setColor(0.29999999999999999, 0.20000000000000001, 1, 1)
+                        shockwaveHitEffect.setColor(0.299, 0.200, 1, 1)
                         shockwaveHitEffect.setPos(0, 0, 0)
                         shockwaveHitEffect.node().setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne))
                         effectAnims.append(Func(shockwaveHitEffect.play))
@@ -1297,9 +1297,9 @@ class CombatEffect(NodePath):
                     if shockwaveHitEffect:
                         shockwaveHitEffect.reparentTo(self)
                         shockwaveHitEffect.size = 13
-                        shockwaveHitEffect.speed = 0.20000000000000001
+                        shockwaveHitEffect.speed = 0.200
                         shockwaveHitEffect.loadExplosion(Point3(-45, -45, 0), 'HitRay')
-                        shockwaveHitEffect.setColor(0.29999999999999999, 0.20000000000000001, 1, 1)
+                        shockwaveHitEffect.setColor(0.299, 0.200, 1, 1)
                         shockwaveHitEffect.setPos(0, 0, 0)
                         shockwaveHitEffect.node().setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne))
                         effectAnims.append(Func(shockwaveHitEffect.play))
@@ -1334,9 +1334,9 @@ class CombatEffect(NodePath):
                     if shockwaveHitEffect:
                         shockwaveHitEffect.reparentTo(self)
                         shockwaveHitEffect.size = 8
-                        shockwaveHitEffect.speed = 0.20000000000000001
+                        shockwaveHitEffect.speed = 0.200
                         shockwaveHitEffect.loadExplosion(Point3(0, 80, 0), 'Hit')
-                        shockwaveHitEffect.setColor(0.29999999999999999, 0.20000000000000001, 1, 1)
+                        shockwaveHitEffect.setColor(0.299, 0.200, 1, 1)
                         shockwaveHitEffect.setPos(0, 0, 0)
                         shockwaveHitEffect.node().setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne))
                         effectAnims.append(Func(shockwaveHitEffect.play))
@@ -1346,9 +1346,9 @@ class CombatEffect(NodePath):
                     if shockwaveHitEffect:
                         shockwaveHitEffect.reparentTo(self)
                         shockwaveHitEffect.size = 13
-                        shockwaveHitEffect.speed = 0.20000000000000001
+                        shockwaveHitEffect.speed = 0.200
                         shockwaveHitEffect.loadExplosion(Point3(-45, -45, 0), 'HitRay')
-                        shockwaveHitEffect.setColor(0.29999999999999999, 0.20000000000000001, 1, 1)
+                        shockwaveHitEffect.setColor(0.299, 0.200, 1, 1)
                         shockwaveHitEffect.setPos(0, 0, 0)
                         shockwaveHitEffect.node().setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne))
                         effectAnims.append(Func(shockwaveHitEffect.play))
@@ -1377,7 +1377,7 @@ class CombatEffect(NodePath):
                 effect3 = CameraShaker()
                 effect3.reparentTo(self)
                 effect3.setPos(0, 0, 0)
-                effect3.shakeSpeed = 0.059999999999999998
+                effect3.shakeSpeed = 0.0598
                 effect3.shakePower = 4.0
                 effect3.numShakes = 2
                 effect3.scalePower = 1
@@ -1397,8 +1397,8 @@ class CombatEffect(NodePath):
                 effect2.reparentTo(self)
                 effect2.setScale(600)
                 effect2.setPos(0, 0, 0)
-                effect2.effectColor = Vec4(0.5, 0.80000000000000004, 1, 1)
-                effect2.fadeTime = 0.29999999999999999
+                effect2.effectColor = Vec4(0.5, 0.800000, 1, 1)
+                effect2.fadeTime = 0.299
                 effectAnims.append(Func(effect2.play))
                 self.effects.append(effect2)
 
@@ -1422,7 +1422,7 @@ class CombatEffect(NodePath):
                 if shockwaveHitEffect:
                     shockwaveHitEffect.reparentTo(self)
                     shockwaveHitEffect.size = 13
-                    shockwaveHitEffect.speed = 0.20000000000000001
+                    shockwaveHitEffect.speed = 0.200
                     shockwaveHitEffect.loadExplosion(Point3(-45, -45, 0), 'HitRay')
                     shockwaveHitEffect.setColor(1, 1, 1, 1)
                     shockwaveHitEffect.setPos(0, 0, 0)
@@ -1486,7 +1486,7 @@ class CombatEffect(NodePath):
                 effect.rayAngle = 45
                 effect.splatScale = 15
                 effect.rayFlareValue = 3.0
-                effect.setColor(1, 0.40000000000000002, 0.40000000000000002, 1)
+                effect.setColor(1, 0.4, 0.4, 1)
                 effect.setPos(0, 0, 0)
                 effect.flashDummy.node().setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne))
                 effectAnims.append(Func(effect.play))
@@ -1531,8 +1531,8 @@ class CombatEffect(NodePath):
                     effect.rayAngle = 10
                     effect.splatScale = 15
                     effect.rayFlareValue = 3.5
-                    effect.setColor(0.20000000000000001, 0.5, 1, 1)
-                    effect.setPos(-0.5, 0, 0.80000000000000004)
+                    effect.setColor(0.200, 0.5, 1, 1)
+                    effect.setPos(-0.5, 0, 0.800000)
                     effect.flashDummy.node().setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne))
                     effectAnims.append(Func(effect.play))
                     self.effects.append(effect)
@@ -1541,7 +1541,7 @@ class CombatEffect(NodePath):
                     effect = SparkBurst.getEffect(unlimited)
                     if effect:
                         effect.reparentTo(self)
-                        effect.setPos(-0.5, 0, 0.80000000000000004)
+                        effect.setPos(-0.5, 0, 0.800000)
                         effect.particleDummy.reparentTo(self)
                         effectAnims.append(Func(effect.play, 'Blue'))
                         self.effects.append(effect)
@@ -1556,7 +1556,7 @@ class CombatEffect(NodePath):
                     effect.rayAngle = -25
                     effect.splatScale = 15
                     effect.rayFlareValue = 3.5
-                    effect.setColor(0.20000000000000001, 0.5, 1, 1)
+                    effect.setColor(0.200, 0.5, 1, 1)
                     effect.setPos(0.5, 0, -0.5)
                     effect.flashDummy.node().setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne))
                     effectAnims.append(Func(effect.play))
@@ -1581,7 +1581,7 @@ class CombatEffect(NodePath):
                     effect.rayAngle = 45
                     effect.splatScale = 15
                     effect.rayFlareValue = 3.5
-                    effect.setColor(0.20000000000000001, 0.5, 1, 1)
+                    effect.setColor(0.200, 0.5, 1, 1)
                     effect.setPos(-0.5, 0, 0)
                     effect.flashDummy.node().setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne))
                     effectAnims.append(Func(effect.play))
@@ -1627,7 +1627,7 @@ class CombatEffect(NodePath):
             if effect:
                 effect.reparentTo(self)
                 effect.setPos(0, 0, 1.0)
-                effect.fadeColor = Vec4(0.20000000000000001, 0.80000000000000004, 0.20000000000000001, 1.0)
+                effect.fadeColor = Vec4(0.200, 0.800000, 0.200, 1.0)
                 effectAnims.append(Func(effect.play))
                 self.effects.append(effect)
 
@@ -1638,7 +1638,7 @@ class CombatEffect(NodePath):
                 effect.useRay = 0
                 effect.useSpark = 0
                 effect.splatScale = 15
-                effect.setColor(0.20000000000000001, 0.20000000000000001, 1, 1)
+                effect.setColor(0.200, 0.200, 1, 1)
                 effect.setPos(0, 0, 0)
                 effect.flashDummy.node().setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne))
                 effectAnims.append(Func(effect.play))
@@ -1649,7 +1649,7 @@ class CombatEffect(NodePath):
                 if effect:
                     effect.reparentTo(self)
                     effect.setPos(self, 0, 0, -2.0)
-                    effect.setEffectColor(Vec4(0.20000000000000001, 0.20000000000000001, 1, 1))
+                    effect.setEffectColor(Vec4(0.200, 0.200, 1, 1))
                     effectAnims.append(Func(effect.play))
                     self.effects.append(effect)
 
@@ -1660,7 +1660,7 @@ class CombatEffect(NodePath):
                     effect.reparentTo(self)
                     effect.setPos(self, 0, 0, 0)
                     effect.setScale(0.5, 0.5, 2.5)
-                    effect.setEffectColor(Vec4(0.20000000000000001, 0.20000000000000001, 1, 1))
+                    effect.setEffectColor(Vec4(0.200, 0.200, 1, 1))
                     effectAnims.append(Func(effect.play))
                     self.effects.append(effect)
 
@@ -1672,7 +1672,7 @@ class CombatEffect(NodePath):
                 effect.useRay = 0
                 effect.useSpark = 1
                 effect.splatScale = 15
-                effect.setColor(0.20000000000000001, 0.5, 0.5, 1)
+                effect.setColor(0.200, 0.5, 0.5, 1)
                 effect.setPos(0, 0, 0)
                 effect.flashDummy.node().setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne))
                 effectAnims.append(Func(effect.play))
@@ -1694,7 +1694,7 @@ class CombatEffect(NodePath):
                     effect.reparentTo(self)
                     effect.setPos(self, 0, 0, 0)
                     effect.setScale(1, 1, 3)
-                    effect.setEffectColor(Vec4(0.20000000000000001, 0.5, 0.5, 1))
+                    effect.setEffectColor(Vec4(0.200, 0.5, 0.5, 1))
                     effectAnims.append(Func(effect.play))
                     self.effects.append(effect)
 
@@ -1703,7 +1703,7 @@ class CombatEffect(NodePath):
                     effect.reparentTo(self)
                     effect.setPos(self, 0, 0, 0)
                     effect.setScale(0.5, 0.5, 2.5)
-                    effect.setEffectColor(Vec4(0.20000000000000001, 0.5, 0.5, 1))
+                    effect.setEffectColor(Vec4(0.200, 0.5, 0.5, 1))
                     effectAnims.append(Func(effect.play))
                     self.effects.append(effect)
 
@@ -1715,7 +1715,7 @@ class CombatEffect(NodePath):
                 effect.useRay = 0
                 effect.useSpark = 1
                 effect.splatScale = 20
-                effect.setColor(0.29999999999999999, 0.75, 1, 1)
+                effect.setColor(0.299, 0.75, 1, 1)
                 effect.flashDummy.node().setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne))
                 effectAnims.append(Func(effect.play))
                 self.effects.append(effect)
@@ -1726,7 +1726,7 @@ class CombatEffect(NodePath):
                     effect.reparentTo(self)
                     effect.setHpr(self, 0, 90, 0)
                     effect.setScale(1, 1, 3)
-                    effect.setEffectColor(Vec4(0.29999999999999999, 1, 1, 0.25))
+                    effect.setEffectColor(Vec4(0.299, 1, 1, 0.25))
                     effectAnims.append(Func(effect.play))
                     self.effects.append(effect)
 
@@ -1734,8 +1734,8 @@ class CombatEffect(NodePath):
                 if effect:
                     effect.reparentTo(self)
                     effect.setHpr(self, 0, 90, 0)
-                    effect.setScale(0.40000000000000002, 0.40000000000000002, 2.5)
-                    effect.setEffectColor(Vec4(0.29999999999999999, 1, 1, 1))
+                    effect.setScale(0.4, 0.4, 2.5)
+                    effect.setEffectColor(Vec4(0.299, 1, 1, 1))
                     effectAnims.append(Func(effect.play))
                     self.effects.append(effect)
 
@@ -1755,7 +1755,7 @@ class CombatEffect(NodePath):
                 effect.useRay = 0
                 effect.useSpark = 1
                 effect.splatScale = 10
-                effect.setColor(0.29999999999999999, 0.20000000000000001, 0.75, 1)
+                effect.setColor(0.299, 0.200, 0.75, 1)
                 effect.setPos(0, 0, 0)
                 effect.flashDummy.node().setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingColor, ColorBlendAttrib.OOneMinusIncomingAlpha))
                 effectAnims.append(Func(effect.play))
@@ -1792,7 +1792,7 @@ class CombatEffect(NodePath):
             effect = CleanseRays.getEffect(unlimited)
             if effect:
                 effect.reparentTo(self)
-                effect.setPos(self, 0, 0, -3.3300000000000001)
+                effect.setPos(self, 0, 0, -3.33)
                 effectAnims.append(Func(effect.play))
                 self.effects.append(effect)
 
@@ -1824,7 +1824,7 @@ class CombatEffect(NodePath):
                 if effect:
                     effect.reparentTo(self)
                     effect.setPos(self, 0, 0, -2.0)
-                    effect.setEffectColor(Vec4(0.5, 0.29999999999999999, 1, 1), wantBlending = True)
+                    effect.setEffectColor(Vec4(0.5, 0.299, 1, 1), wantBlending = True)
                     effectAnims.append(Func(effect.play))
                     self.effects.append(effect)
 
@@ -1848,7 +1848,7 @@ class CombatEffect(NodePath):
                 if self.colorEffect:
                     effect.setEffectColor(self.colorEffect)
 
-                effectAnims.append(Func(effect.play, 0.29999999999999999))
+                effectAnims.append(Func(effect.play, 0.299))
                 self.effects.append(effect)
 
             if base.options.getSpecialEffectsSetting() >= base.options.SpecialEffectsHigh:
@@ -1867,7 +1867,7 @@ class CombatEffect(NodePath):
                 if shockwaveHitEffect:
                     shockwaveHitEffect.reparentTo(self)
                     shockwaveHitEffect.size = 10
-                    shockwaveHitEffect.speed = 0.34999999999999998
+                    shockwaveHitEffect.speed = 0.348
                     shockwaveHitEffect.loadExplosion(Point3(0, 0, 0), 'Dark')
                     shockwaveHitEffect.setPos(0, 0, 0)
                     if self.colorEffect:
@@ -1900,7 +1900,7 @@ class CombatEffect(NodePath):
                 if shockwaveHitEffect:
                     shockwaveHitEffect.reparentTo(self)
                     shockwaveHitEffect.size = 13
-                    shockwaveHitEffect.speed = 0.29999999999999999
+                    shockwaveHitEffect.speed = 0.299
                     shockwaveHitEffect.loadExplosion(Point3(0, 0, 0), 'Dark')
                     shockwaveHitEffect.setColor(0.25, 0.75, 0.25, 1)
                     shockwaveHitEffect.setPos(0, 0, 0)
@@ -1914,7 +1914,7 @@ class CombatEffect(NodePath):
                 flashEffect.reparentTo(self)
                 flashEffect.flash.setScale(100)
                 flashEffect.startCol = Vec4(0.5, 0.25, 1.0, 1)
-                flashEffect.fadeTime = 0.34999999999999998
+                flashEffect.fadeTime = 0.348
                 effectAnims.append(Func(flashEffect.play))
                 self.effects.append(flashEffect)
 
@@ -1957,7 +1957,7 @@ class CombatEffect(NodePath):
 
                 cameraShakerEffect = CameraShaker()
                 cameraShakerEffect.wrtReparentTo(self)
-                cameraShakerEffect.shakeSpeed = 0.059999999999999998
+                cameraShakerEffect.shakeSpeed = 0.0598
                 cameraShakerEffect.shakePower = 4.0
                 cameraShakerEffect.numShakes = 2
                 cameraShakerEffect.scalePower = 1
@@ -1971,7 +1971,7 @@ class CombatEffect(NodePath):
                 if self.colorEffect:
                     effect.setEffectColor(self.colorEffect)
 
-                effectAnims.append(Func(effect.play, 0.20000000000000001))
+                effectAnims.append(Func(effect.play, 0.200))
                 self.effects.append(effect)
 
             if base.options.getSpecialEffectsSetting() >= base.options.SpecialEffectsHigh:
@@ -2045,14 +2045,14 @@ class CombatEffect(NodePath):
                 effect.reparentTo(self)
                 effect.setPos(0, 0, -5)
                 effect.setScale(0.25)
-                effect.fadeColor = Vec4(0.80000000000000004, 1, 0.10000000000000001, 1)
+                effect.fadeColor = Vec4(0.800000, 1, 0.100, 1)
                 effectAnims.append(Func(effect.play))
                 self.effects.append(effect)
 
             effect = CameraShaker()
             effect.reparentTo(self)
             effect.setPos(0, 0, 0)
-            effect.shakeSpeed = 0.059999999999999998
+            effect.shakeSpeed = 0.0598
             effect.shakePower = 2.0
             effect.numShakes = 2
             effect.scalePower = 1
@@ -2062,8 +2062,8 @@ class CombatEffect(NodePath):
             effect.reparentTo(self)
             effect.setScale(300)
             effect.setPos(0, 0, 0)
-            effect.effectColor = Vec4(0.80000000000000004, 1.0, 0.10000000000000001, 1)
-            effect.fadeTime = 0.40000000000000002
+            effect.effectColor = Vec4(0.800000, 1.0, 0.100, 1)
+            effect.fadeTime = 0.4
             effectAnims.append(Func(effect.play))
             self.effects.append(effect)
         elif self.effectId == WeaponGlobals.VFX_CURSED_BOLT:
@@ -2071,15 +2071,15 @@ class CombatEffect(NodePath):
             if effect:
                 effect.reparentTo(self)
                 effect.setPos(0, 0, -5)
-                effect.setScale(0.10000000000000001, 0.10000000000000001, 0.25)
-                effect.fadeColor = Vec4(0.80000000000000004, 1, 0.20000000000000001, 1)
+                effect.setScale(0.100, 0.100, 0.25)
+                effect.fadeColor = Vec4(0.800000, 1, 0.200, 1)
                 effectAnims.append(Func(effect.play))
                 self.effects.append(effect)
 
             effect = CameraShaker()
             effect.reparentTo(self)
             effect.setPos(0, 0, 0)
-            effect.shakeSpeed = 0.050000000000000003
+            effect.shakeSpeed = 0.050000
             effect.shakePower = 1.5
             effect.numShakes = 2
             effect.scalePower = 1
@@ -2089,8 +2089,8 @@ class CombatEffect(NodePath):
             effect.reparentTo(self)
             effect.setScale(200)
             effect.setPos(0, 0, 0)
-            effect.effectColor = Vec4(0.80000000000000004, 1.0, 0.20000000000000001, 0.75)
-            effect.fadeTime = 0.40000000000000002
+            effect.effectColor = Vec4(0.800000, 1.0, 0.200, 0.75)
+            effect.fadeTime = 0.4
             effectAnims.append(Func(effect.play))
             self.effects.append(effect)
         elif self.effectId == WeaponGlobals.VFX_NO_EFFECT:

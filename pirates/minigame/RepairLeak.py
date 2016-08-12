@@ -35,7 +35,7 @@ class RepairLeak(DirectButton, FSM.FSM):
 
     def _initVars(self):
         self.timeActive = 0.0
-        self.pulseScale = 0.59999999999999998
+        self.pulseScale = 0.598
 
     def _initVisuals(self):
         textureCard = loader.loadModel('models/minigames/pir_m_gam_srp_water')
@@ -65,20 +65,20 @@ class RepairLeak(DirectButton, FSM.FSM):
         self.setScale(2.5 * self.leakScale)
         self.waterStream.setScale(self.leakScale)
         self.waterStream.setPos(self.getX(), 0.0, -0.5 * self.leakScale + self.getZ())
-        self.waterStream2.setScale(self.leakScale * 0.80000000000000004, self.leakScale, self.leakScale * 1.2)
-        self.waterStream2.setPos(self.getX(), 0.0, -0.59999999999999998 * self.leakScale + self.getZ())
-        self.waterStream.setColor(0.69999999999999996, 0.84999999999999998, 1.0, 1.0)
-        self.waterStream2.setColor(0.5, 0.59999999999999998, 0.90000000000000002, 1.0)
+        self.waterStream2.setScale(self.leakScale * 0.800000, self.leakScale, self.leakScale * 1.2)
+        self.waterStream2.setPos(self.getX(), 0.0, -0.598 * self.leakScale + self.getZ())
+        self.waterStream.setColor(0.696, 0.848, 1.0, 1.0)
+        self.waterStream2.setColor(0.5, 0.598, 0.9, 1.0)
         self.waterStream2.reparentTo(self.pitchingGame)
         self.waterStream.reparentTo(self.pitchingGame)
         self.waterStream2.setBin('fixed', 42)
         self.waterStream.setBin('fixed', 40)
         self.textureYOffset = random.random()
-        self.textureYDelta = 0.25 + 0.025000000000000001 / self.leakScale
+        self.textureYDelta = 0.25 + 0.0250 / self.leakScale
         self.textureYOffset2 = random.random()
         self.textureYDelta2 = 0.25412353999999998 + 0.058754645634 / self.leakScale
         self.textureYOffsetAlpha = 0.0
-        self.textureYDeltaAlpha = 0.25 + 0.025000000000000001 / self.leakScale
+        self.textureYDeltaAlpha = 0.25 + 0.0250 / self.leakScale
         self.textureYOffsetAlpha2 = 0.0
         self.textureYDeltaAlpha2 = 0.25412353999999998 + 0.058754645634 / self.leakScale
         self.textureStage = self.waterStream.findTextureStage('*')
@@ -91,7 +91,7 @@ class RepairLeak(DirectButton, FSM.FSM):
         self.textureStage4.setMode(TextureStage.MModulate)
         self.textureStage4.setSort(2)
         self.waterStream.setTexture(self.textureStage4, alphatex2)
-        trans = TransformState.makePos((0, 0.47999999999999998, 0))
+        trans = TransformState.makePos((0, 0.478, 0))
         self.waterStream.setTexTransform(self.textureStage4, trans)
         self.textureStage5 = TextureStage('alphaLayer3')
         self.textureStage5.setMode(TextureStage.MModulate)
@@ -101,13 +101,13 @@ class RepairLeak(DirectButton, FSM.FSM):
         self.textureStage6.setMode(TextureStage.MModulate)
         self.textureStage6.setSort(2)
         self.waterStream2.setTexture(self.textureStage6, alphatex4)
-        trans = TransformState.makePos((0, 0.47999999999999998, 0))
+        trans = TransformState.makePos((0, 0.478, 0))
         self.waterStream2.setTexTransform(self.textureStage6, trans)
 
     def repositionTo(self, newX, newZ):
         self.setPos(newX, 0.0, newZ)
         self.waterStream.setPos(self.getX(), 0.0, -0.5 * self.leakScale + self.getZ())
-        self.waterStream2.setPos(self.getX(), 0.0, -0.59999999999999998 * self.leakScale + self.getZ())
+        self.waterStream2.setPos(self.getX(), 0.0, -0.598 * self.leakScale + self.getZ())
 
     def _initIntervals(self):
         pass
@@ -199,7 +199,7 @@ class RepairLeak(DirectButton, FSM.FSM):
 
     def enterPatched(self):
         self['state'] = DGG.DISABLED
-        self.setScale(0.84999999999999998)
+        self.setScale(0.848)
 
     def exitPatched(self):
         self.stash()

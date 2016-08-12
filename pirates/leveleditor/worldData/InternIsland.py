@@ -29,7 +29,7 @@ objectStruct = {
                     'Type': 'Player Spawn Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Index': 1,
-                    'Pos': Point3(127.066, 202.495, 7.6849999999999996),
+                    'Pos': Point3(127.066, 202.495, 7.6846),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Spawnables': 'All',
                     'Visual': {
@@ -39,15 +39,15 @@ objectStruct = {
                     'Type': 'Port Collision Sphere',
                     'Name': 'PortRoyalPort',
                     'Hpr': VBase3(34.116, 0.0, 0.0),
-                    'Pos': Point3(-240.041, -2028.1500000000001, 0.0),
-                    'Scale': VBase3(2076.0599999999999, 2076.0599999999999, 2076.0599999999999),
+                    'Pos': Point3(-240.041, -2028.15, 0.0),
+                    'Scale': VBase3(2076.05, 2076.05, 2076.05),
                     'Visual': {
-                        'Color': (0.5, 0.5, 1.0, 0.20000000000000001),
+                        'Color': (0.5, 0.5, 1.0, 0.200),
                         'Model': 'models/misc/smiley' } },
                 '1183682138.26joswilso': {
                     'Type': 'Dinghy',
-                    'Hpr': VBase3(0.0, 9.0700000000000003, 0.0),
-                    'Pos': Point3(130.73599999999999, 169.94399999999999, 1.6339999999999999),
+                    'Hpr': VBase3(0.0, 9.0700, 0.0),
+                    'Pos': Point3(130.735, 169.943, 1.6339),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/shipparts/dingy-geometry_High' } } },

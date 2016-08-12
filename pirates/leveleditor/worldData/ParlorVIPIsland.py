@@ -10,7 +10,7 @@ objectStruct = {
                     'File': 'ParlorVIPInterior',
                     'ExtUid': '1161659544.64Shochet0',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(43.731999999999999, -17.425999999999998, 23.0),
+                    'Pos': Point3(43.731, -17.4258, 23.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Name': '',

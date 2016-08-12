@@ -20,7 +20,7 @@ objectStruct = {
                                 12520,
                                 13520],
                             'Scale': VBase3(1.0, 1.0, 1.0) } },
-                    'Pos': Point3(-22.812999999999999, -228.489, 4.766),
+                    'Pos': Point3(-22.812, -228.489, 4.766),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/islands/pir_m_are_isl_driftwood' } } },

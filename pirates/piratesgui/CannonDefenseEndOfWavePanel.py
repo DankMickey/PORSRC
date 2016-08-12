@@ -22,16 +22,16 @@ class CannonDefenseEndOfWavePanel(CannonDefenseScorePanelBase):
 
 
     def _createPanel(self):
-        startX = 0.77000000000000002
-        widthX = 0.39000000000000001
+        startX = 0.77
+        widthX = 0.390
         self._createHeader(self, self.waveNumber, self.roundComplete)
-        self._createTreasureLabels(self, 1.2150000000000001)
-        self._createWaveResultsLabel(self, 0.96999999999999997)
-        self._createPlayerNames(self, self.playerLbls, startX, 0.96999999999999997, widthX)
-        self._createStatsLabels(self, PLocalizer.CannonDefense['ShipsSunkWave'], self.shipsSunkTotalslbl, startX, 0.81999999999999995, widthX)
-        self._createStatsLabels(self, PLocalizer.CannonDefense['DamageDealtWave'], self.damageTotalslbl, startX, 0.71999999999999997, widthX)
+        self._createTreasureLabels(self, 1.215)
+        self._createWaveResultsLabel(self, 0.96)
+        self._createPlayerNames(self, self.playerLbls, startX, 0.96, widthX)
+        self._createStatsLabels(self, PLocalizer.CannonDefense['ShipsSunkWave'], self.shipsSunkTotalslbl, startX, 0.815, widthX)
+        self._createStatsLabels(self, PLocalizer.CannonDefense['DamageDealtWave'], self.damageTotalslbl, startX, 0.71, widthX)
         self._createStatsLabels(self, PLocalizer.CannonDefense['AccuracyWave'], self.accuracyTotalslbl, startX, 0.62, widthX)
-        self._createStatsLabels(self, PLocalizer.CannonDefense['ShotsFiredWave'], self.shotsFiredTotalslbl, startX, 0.52000000000000002, widthX)
+        self._createStatsLabels(self, PLocalizer.CannonDefense['ShotsFiredWave'], self.shotsFiredTotalslbl, startX, 0.52, widthX)
         self._createGoldAwardedLabel(self, 0.22)
         self._createFooter(self)
 
@@ -47,24 +47,24 @@ class CannonDefenseEndOfWavePanel(CannonDefenseScorePanelBase):
                 textColor = PiratesGuiGlobals.TextFG25
 
         headingTxtScale = PiratesGuiGlobals.TextScaleLarge * 4
-        DirectLabel(parent = myParent, relief = None, state = DGG.DISABLED, text = waveCompleteTxt, text_scale = headingTxtScale, text_align = TextNode.ACenter, text_fg = textColor, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0, 0, 0), text_font = self.headingfont, textMayChange = 0, pos = (1.2, 0, 1.3500000000000001))
+        DirectLabel(parent = myParent, relief = None, state = DGG.DISABLED, text = waveCompleteTxt, text_scale = headingTxtScale, text_align = TextNode.ACenter, text_fg = textColor, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0, 0, 0), text_font = self.headingfont, textMayChange = 0, pos = (1.2, 0, 1.35))
 
 
     def _createFooter(self, myParent):
         txtScale = PiratesGuiGlobals.TextScaleLarge * 1.5
         if self.roundComplete == RoundCompleteFlags.WAVE_COMPLETE:
             nextWaveTxt = PLocalizer.CannonDefense['NextWave'] % '?'
-            self.lblCountDown = DirectLabel(parent = myParent, relief = None, state = DGG.DISABLED, text = nextWaveTxt, text_scale = txtScale, text_align = TextNode.ARight, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0, 0, 0), text_font = self.bodyfont, textMayChange = 1, pos = (2.25, 0, -0.059999999999999998))
+            self.lblCountDown = DirectLabel(parent = myParent, relief = None, state = DGG.DISABLED, text = nextWaveTxt, text_scale = txtScale, text_align = TextNode.ARight, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0, 0, 0), text_font = self.bodyfont, textMayChange = 1, pos = (2.25, 0, -0.0598))
             self.lblCountDown.hide()
         else:
-            DirectLabel(parent = myParent, relief = None, state = DGG.DISABLED, text = '%s/%s' % (self.panelNumber, self.numOfPanels), text_scale = txtScale, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0, 0, 0), text_font = self.bodyfont, textMayChange = 0, pos = (2.1000000000000001, 0, 0.029999999999999999))
-            self.nextButton = GuiButton(parent = self, pos = (2.1000000000000001, 0, -0.050000000000000003), text = PLocalizer.CannonDefense['Next'])
+            DirectLabel(parent = myParent, relief = None, state = DGG.DISABLED, text = '%s/%s' % (self.panelNumber, self.numOfPanels), text_scale = txtScale, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0, 0, 0), text_font = self.bodyfont, textMayChange = 0, pos = (2.10, 0, 0.0299))
+            self.nextButton = GuiButton(parent = self, pos = (2.10, 0, -0.050000), text = PLocalizer.CannonDefense['Next'])
 
 
     def _createTreasureLabels(self, myParent, startY):
         txtScale = PiratesGuiGlobals.TextScaleLarge * 1.45
-        self.lblTreasureStolen = DirectLabel(parent = myParent, relief = None, state = DGG.DISABLED, text = '', text_scale = txtScale, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0, 0, 0), text_font = self.headingfont, textMayChange = 1, pos = (0.29999999999999999, 0, startY))
-        self.lblTreasureLeft = DirectLabel(parent = myParent, relief = None, state = DGG.DISABLED, text = '', text_scale = txtScale, text_align = TextNode.ARight, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0, 0, 0), text_font = self.bodyfont, textMayChange = 1, pos = (2.1000000000000001, 0, startY))
+        self.lblTreasureStolen = DirectLabel(parent = myParent, relief = None, state = DGG.DISABLED, text = '', text_scale = txtScale, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0, 0, 0), text_font = self.headingfont, textMayChange = 1, pos = (0.299, 0, startY))
+        self.lblTreasureLeft = DirectLabel(parent = myParent, relief = None, state = DGG.DISABLED, text = '', text_scale = txtScale, text_align = TextNode.ARight, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0, 0, 0), text_font = self.bodyfont, textMayChange = 1, pos = (2.10, 0, startY))
 
 
     def _createWaveResultsLabel(self, myParent, startY):
@@ -73,8 +73,8 @@ class CannonDefenseEndOfWavePanel(CannonDefenseScorePanelBase):
 
     def _createGoldAwardedLabel(self, myParent, startY):
         txtScale = PiratesGuiGlobals.TextScaleLarge * 1.5
-        self.lblGoldAwarded = DirectLabel(parent = myParent, relief = None, state = DGG.DISABLED, text = '', text_scale = txtScale, text_align = TextNode.ARight, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0, 0, 0), text_font = self.headingfont, textMayChange = 1, pos = (2.1899999999999999, 0, startY - 0.074999999999999997))
-        self.lblTreasureEarned = DirectLabel(parent = myParent, relief = None, state = DGG.DISABLED, text = '', text_scale = txtScale, text_align = TextNode.ARight, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0, 0, 0), text_font = self.headingfont, textMayChange = 1, pos = (2.1899999999999999, 0, startY))
+        self.lblGoldAwarded = DirectLabel(parent = myParent, relief = None, state = DGG.DISABLED, text = '', text_scale = txtScale, text_align = TextNode.ARight, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0, 0, 0), text_font = self.headingfont, textMayChange = 1, pos = (2.18, 0, startY - 0.074))
+        self.lblTreasureEarned = DirectLabel(parent = myParent, relief = None, state = DGG.DISABLED, text = '', text_scale = txtScale, text_align = TextNode.ARight, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0, 0, 0), text_font = self.headingfont, textMayChange = 1, pos = (2.18, 0, startY))
         self.lblTreasureEarned.hide()
 
 

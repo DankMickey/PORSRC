@@ -36,23 +36,23 @@ class TitlePanel(DirectFrame):
         self.titlesPage = titlesPage
         self.booleanTitle = TitleGlobals.isBooleanTitle(self.titleId)
         topgui = loader.loadModel('models/gui/toplevel_gui')
-        self.titleNameFrame = BorderFrame.BorderFrame(parent = self, relief = None, pos = (0.12, 0, 0.01), frameSize = (-0.14999999999999999, 0.5, -0.14999999999999999, 0.029999999999999999), modelName = 'pir_m_gui_frm_subframe', imageColorScale = VBase4(0.75, 0.75, 0.90000000000000002, 0.75), text = TitleGlobals.getTitleRankName(self.titleId, self.expPoints), text_align = TextNode.ALeft, text_scale = 0.035000000000000003, text_pos = (0, -0.02), text_fg = PiratesGuiGlobals.TextFG1, text_wordwrap = 15, text_shadow = (0, 0, 0, 1), textMayChange = 1, text_font = PiratesGlobals.getInterfaceFont())
-        self.titleDescFrame = DirectFrame(parent = self, relief = None, pos = (0.125, 0, -0.095000000000000001), text = TitleGlobals.getTitleDesc(self.titleId), text_align = TextNode.ALeft, text_scale = 0.029999999999999999, text_pos = (0, -0.01), text_fg = PiratesGuiGlobals.TextFG2, text_wordwrap = 15, text_shadow = (0, 0, 0, 1), textMayChange = 0, text_font = PiratesGlobals.getInterfaceFont())
+        self.titleNameFrame = BorderFrame.BorderFrame(parent = self, relief = None, pos = (0.12, 0, 0.01), frameSize = (-0.149, 0.5, -0.149, 0.0299), modelName = 'pir_m_gui_frm_subframe', imageColorScale = VBase4(0.75, 0.75, 0.9, 0.75), text = TitleGlobals.getTitleRankName(self.titleId, self.expPoints), text_align = TextNode.ALeft, text_scale = 0.035000, text_pos = (0, -0.02), text_fg = PiratesGuiGlobals.TextFG1, text_wordwrap = 15, text_shadow = (0, 0, 0, 1), textMayChange = 1, text_font = PiratesGlobals.getInterfaceFont())
+        self.titleDescFrame = DirectFrame(parent = self, relief = None, pos = (0.125, 0, -0.0950), text = TitleGlobals.getTitleDesc(self.titleId), text_align = TextNode.ALeft, text_scale = 0.0299, text_pos = (0, -0.01), text_fg = PiratesGuiGlobals.TextFG2, text_wordwrap = 15, text_shadow = (0, 0, 0, 1), textMayChange = 0, text_font = PiratesGlobals.getInterfaceFont())
         shipcard = loader.loadModel('models/gui/ship_battle')
         tex = shipcard.find('**/ship_battle_speed_bar*')
-        self.expFrame = DirectFrame(parent = self, pos = (0.35999999999999999, 0, -0.050000000000000003), relief = None, image = tex, image_scale = (0.23000000000000001, 1, 0.5), scale = (1.48, 1, 1.2))
-        self.expMeter = DirectWaitBar(parent = self.expFrame, relief = DGG.RAISED, borderWidth = (0.0040000000000000001, 0.0040000000000000001), range = 100, value = 50, frameColor = (0, 0, 0, 0), barColor = (223 / 255.0, 137 / 255.0, 28 / 255.0, 1), frameSize = (-0.222, 0.084000000000000005, -0.012, 0.012), pos = (0.069000000000000006, 0, 0.0))
-        self.expMeterText = DirectFrame(parent = self, relief = None, pos = (0.59999999999999998, 0, 0.0), text = '%s / %s' % (self.expBase, self.expTarget), text_align = TextNode.ARight, text_scale = 0.029999999999999999, text_pos = (0, -0.01), text_fg = PiratesGuiGlobals.TextFG2, text_wordwrap = 15, text_shadow = (0, 0, 0, 1), textMayChange = 1, text_font = PiratesGlobals.getInterfaceFont())
+        self.expFrame = DirectFrame(parent = self, pos = (0.359, 0, -0.050000), relief = None, image = tex, image_scale = (0.230, 1, 0.5), scale = (1.48, 1, 1.2))
+        self.expMeter = DirectWaitBar(parent = self.expFrame, relief = DGG.RAISED, borderWidth = (0.00400, 0.00400), range = 100, value = 50, frameColor = (0, 0, 0, 0), barColor = (223 / 255.0, 137 / 255.0, 28 / 255.0, 1), frameSize = (-0.222, 0.0840000, -0.012, 0.012), pos = (0.069, 0, 0.0))
+        self.expMeterText = DirectFrame(parent = self, relief = None, pos = (0.598, 0, 0.0), text = '%s / %s' % (self.expBase, self.expTarget), text_align = TextNode.ARight, text_scale = 0.0299, text_pos = (0, -0.01), text_fg = PiratesGuiGlobals.TextFG2, text_wordwrap = 15, text_shadow = (0, 0, 0, 1), textMayChange = 1, text_font = PiratesGlobals.getInterfaceFont())
         if self.booleanTitle:
             self.expFrame.hide()
             self.expMeterText.hide()
 
         imgScale = TitleGlobals.getScale(self.titleId)
-        self.iconFrame = GuiButton.GuiButton(parent = self, pos = (0.040000000000000001, 0, -0.050000000000000003), helpText = TitleGlobals.getTitleName(self.titleId), helpPos = (-0.26000000000000001, 0, 0.080000000000000002), relief = None, image = self.iconModel.find('**/' + TitleGlobals.getIconName(self.titleId, 1)), image_scale = (0.14999999999999999 * imgScale, 1, 0.14999999999999999 * imgScale))
-        self.landButton = DirectButton.DirectButton(parent = self, pos = (0.70999999999999996, 0, -0.050000000000000003), relief = None, scale = 0.22, image_color = VBase4(0.75, 0.84999999999999998, 1.0, 1.0), image = (topgui.find('**/pir_t_gui_frm_base_circle_over'), topgui.find('**/pir_t_gui_frm_base_circle'), topgui.find('**/pir_t_gui_frm_base_circle_over'), topgui.find('**/pir_t_gui_frm_base_circle')), command = self.selectLandBadge, extraArgs = [
+        self.iconFrame = GuiButton.GuiButton(parent = self, pos = (0.0400, 0, -0.050000), helpText = TitleGlobals.getTitleName(self.titleId), helpPos = (-0.260, 0, 0.08), relief = None, image = self.iconModel.find('**/' + TitleGlobals.getIconName(self.titleId, 1)), image_scale = (0.149 * imgScale, 1, 0.149 * imgScale))
+        self.landButton = DirectButton.DirectButton(parent = self, pos = (0.706, 0, -0.050000), relief = None, scale = 0.22, image_color = VBase4(0.75, 0.848, 1.0, 1.0), image = (topgui.find('**/pir_t_gui_frm_base_circle_over'), topgui.find('**/pir_t_gui_frm_base_circle'), topgui.find('**/pir_t_gui_frm_base_circle_over'), topgui.find('**/pir_t_gui_frm_base_circle')), command = self.selectLandBadge, extraArgs = [
             self.panelIndex])
         self.titlesPage.landButtons.append(self.landButton)
-        self.seaButton = DirectButton.DirectButton(parent = self, pos = (0.87, 0, -0.050000000000000003), relief = None, scale = 0.22, image_color = VBase4(0.75, 0.84999999999999998, 1.0, 1.0), image = (topgui.find('**/pir_t_gui_frm_base_circle_over'), topgui.find('**/pir_t_gui_frm_base_circle'), topgui.find('**/pir_t_gui_frm_base_circle_over'), topgui.find('**/pir_t_gui_frm_base_circle')), command = self.selectSeaBadge, extraArgs = [
+        self.seaButton = DirectButton.DirectButton(parent = self, pos = (0.87, 0, -0.050000), relief = None, scale = 0.22, image_color = VBase4(0.75, 0.848, 1.0, 1.0), image = (topgui.find('**/pir_t_gui_frm_base_circle_over'), topgui.find('**/pir_t_gui_frm_base_circle'), topgui.find('**/pir_t_gui_frm_base_circle_over'), topgui.find('**/pir_t_gui_frm_base_circle')), command = self.selectSeaBadge, extraArgs = [
             self.panelIndex])
         self.titlesPage.seaButtons.append(self.seaButton)
 
@@ -107,7 +107,7 @@ class TitlePanel(DirectFrame):
                 img = None
             self.iconFrame['image'] = img
             imgScale = TitleGlobals.getScale(self.titleId)
-            self.iconFrame['image_scale'] = (0.065000000000000002 * imgScale, 1, 0.065000000000000002 * imgScale)
+            self.iconFrame['image_scale'] = (0.065 * imgScale, 1, 0.065 * imgScale)
 
         titleOnOff = [
             PLocalizer.TitleOff,
@@ -180,16 +180,16 @@ class TitlesPage(InventoryPage.InventoryPage):
         self.loaded = 0
         self.opened = 0
         gui = loader.loadModel('models/gui/gui_main')
-        scale = 0.33500000000000002
+        scale = 0.335
         self.background = self.attachNewNode('background')
         self.background.setScale(scale)
-        self.background.setPos(0.53000000000000003, 0, 0.73999999999999999)
+        self.background.setPos(0.53000, 0, 0.739)
         gui.find('**/gui_inv_red_general1').copyTo(self.background)
         PiratesGlobals.flattenOrdered(self.background)
-        self.displayTitleFrame = DirectFrame(parent = self, relief = None, pos = (0.55000000000000004, 0, 1.175), text = PLocalizer.DisplayTitle, text_align = TextNode.ALeft, text_scale = 0.044999999999999998, text_pos = (-0.45000000000000001, 0.050000000000000003), text_fg = PiratesGuiGlobals.TextFG2, text_wordwrap = 20, text_shadow = (0, 0, 0, 1), textMayChange = 1, text_font = PiratesGlobals.getInterfaceFont())
-        self.displayTitleLandFrame = BorderFrame.BorderFrame(parent = self, relief = None, pos = (0.81000000000000005, 0, 1.02), frameSize = (-0.050000000000000003, 0.050000000000000003, -0.26000000000000001, -0.080000000000000002), modelName = 'pir_m_gui_frm_subframe', imageColorScale = VBase4(0.75, 0.75, 0.90000000000000002, 0.75), text = PLocalizer.DisplayTitleLand, text_align = TextNode.ACenter, text_scale = 0.032000000000000001, text_pos = (0, -0.01), text_fg = PiratesGuiGlobals.TextFG2, text_wordwrap = 15, text_shadow = (0, 0, 0, 1), textMayChange = 0, text_font = PiratesGlobals.getInterfaceFont())
-        self.displayTitleSeaFrame = BorderFrame.BorderFrame(parent = self, relief = None, pos = (0.96999999999999997, 0, 1.02), frameSize = (-0.050000000000000003, 0.050000000000000003, -0.26000000000000001, -0.080000000000000002), modelName = 'pir_m_gui_frm_subframe', imageColorScale = VBase4(0.75, 0.75, 0.90000000000000002, 0.75), text = PLocalizer.DisplayTitleSea, text_align = TextNode.ACenter, text_scale = 0.032000000000000001, text_pos = (0, -0.01), text_fg = PiratesGuiGlobals.TextFG2, text_wordwrap = 15, text_shadow = (0, 0, 0, 1), textMayChange = 0, text_font = PiratesGlobals.getInterfaceFont())
-        self.dummyFrame = DirectFrame(parent = self, relief = None, pos = (0.10000000000000001, 0, 0.89000000000000001))
+        self.displayTitleFrame = DirectFrame(parent = self, relief = None, pos = (0.550000, 0, 1.175), text = PLocalizer.DisplayTitle, text_align = TextNode.ALeft, text_scale = 0.0448, text_pos = (-0.450, 0.050000), text_fg = PiratesGuiGlobals.TextFG2, text_wordwrap = 20, text_shadow = (0, 0, 0, 1), textMayChange = 1, text_font = PiratesGlobals.getInterfaceFont())
+        self.displayTitleLandFrame = BorderFrame.BorderFrame(parent = self, relief = None, pos = (0.810000, 0, 1.02), frameSize = (-0.050000, 0.050000, -0.260, -0.08), modelName = 'pir_m_gui_frm_subframe', imageColorScale = VBase4(0.75, 0.75, 0.9, 0.75), text = PLocalizer.DisplayTitleLand, text_align = TextNode.ACenter, text_scale = 0.0320, text_pos = (0, -0.01), text_fg = PiratesGuiGlobals.TextFG2, text_wordwrap = 15, text_shadow = (0, 0, 0, 1), textMayChange = 0, text_font = PiratesGlobals.getInterfaceFont())
+        self.displayTitleSeaFrame = BorderFrame.BorderFrame(parent = self, relief = None, pos = (0.96, 0, 1.02), frameSize = (-0.050000, 0.050000, -0.260, -0.08), modelName = 'pir_m_gui_frm_subframe', imageColorScale = VBase4(0.75, 0.75, 0.9, 0.75), text = PLocalizer.DisplayTitleSea, text_align = TextNode.ACenter, text_scale = 0.0320, text_pos = (0, -0.01), text_fg = PiratesGuiGlobals.TextFG2, text_wordwrap = 15, text_shadow = (0, 0, 0, 1), textMayChange = 0, text_font = PiratesGlobals.getInterfaceFont())
+        self.dummyFrame = DirectFrame(parent = self, relief = None, pos = (0.100, 0, 0.890))
         self.accept('LocalAvatarInfamyUpdated', self.refresh)
         self.accept('landBadgeSet', self.updateLandBadge)
         self.accept('seaBadgeSet', self.updateSeaBadge)
@@ -264,11 +264,11 @@ class TitlesPage(InventoryPage.InventoryPage):
 
         if landIndex >= 0 and landIndex < len(self.landButtons):
             self.landButtons[landIndex]['geom'] = loader.loadModel('models/gui/toplevel_gui').find('**/treasure_w_coin*')
-            self.landButtons[landIndex]['geom_scale'] = 0.80000000000000004
+            self.landButtons[landIndex]['geom_scale'] = 0.800000
 
         if seaIndex >= 0 and seaIndex < len(self.seaButtons):
             self.seaButtons[seaIndex]['geom'] = loader.loadModel('models/gui/toplevel_gui').find('**/treasure_w_coin*')
-            self.seaButtons[seaIndex]['geom_scale'] = 0.80000000000000004
+            self.seaButtons[seaIndex]['geom_scale'] = 0.800000
 
 
 
@@ -302,15 +302,15 @@ class TitlesPage(InventoryPage.InventoryPage):
             if not self.shouldShowTitle(key):
                 continue
 
-            yPos = 0.01 - count * 0.20000000000000001
+            yPos = 0.01 - count * 0.200
             forceLandOn = 0
             forceSeaOn = 0
             panel = TitlePanel(self.dummyFrame, key, (0, 0, yPos), count, self, forceLandOn, forceSeaOn)
             self.titles.append(panel)
             count += 1
 
-        self.displayTitleLandFrame['frameSize'] = (-0.050000000000000003, 0.050000000000000003, -0.26000000000000001 - 0.20000000000000001 * (count - 1), -0.080000000000000002)
-        self.displayTitleSeaFrame['frameSize'] = (-0.050000000000000003, 0.050000000000000003, -0.26000000000000001 - 0.20000000000000001 * (count - 1), -0.080000000000000002)
+        self.displayTitleLandFrame['frameSize'] = (-0.050000, 0.050000, -0.260 - 0.200 * (count - 1), -0.08)
+        self.displayTitleSeaFrame['frameSize'] = (-0.050000, 0.050000, -0.260 - 0.200 * (count - 1), -0.08)
         self.loaded = 1
 
 

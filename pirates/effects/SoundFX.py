@@ -45,7 +45,7 @@ class SoundFX(NodePath):
         self.task = None
         if self.drawIcon:
             newModel = loader.loadModel('models/misc/smiley')
-            newModel.setColor(0, 0.65000000000000002, 0, 1)
+            newModel.setColor(0, 0.65, 0, 1)
             newModel.reparentTo(self)
             self.models.append(newModel)
 

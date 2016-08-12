@@ -9,7 +9,7 @@ objectStruct = {
                     'Type': 'Island',
                     'File': 'SandboxIsland',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(42.643999999999998, -35.667000000000002, 0.0),
+                    'Pos': Point3(42.6438, -35.667, 0.0),
                     'Visual': {
                         'Model': 'models/islands/pir_m_are_isl_cutthroat' } } },
             'Visual': { } } },

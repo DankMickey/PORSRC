@@ -58,13 +58,13 @@ class PiratesTimer(OTPTimer.OTPTimer):
 
     def loadDials(self):
         model = loader.loadModel('models/gui/gui_timer')
-        model.setScale(0.20000000000000001)
+        model.setScale(0.200)
         model.flattenLight()
         PiratesTimer.ClockImage = model.find('**/timer_front')
         PiratesTimer.BGImage = model.find('**/timer_back')
         model.remove_node()
         self.bgDial = DirectFrame(parent = self, state = DGG.DISABLED, relief = None, image = self.BGImage)
-        self.fgLabel = DirectLabel(parent = self, state = DGG.DISABLED, relief = None, image = self.ClockImage, image_pos = (-0.01, 0, 0.035000000000000003), image_scale = (1.1000000000000001, 1, 0.80000000000000004), text_scale = 0.070000000000000007, text_align = TextNode.ACenter, text_font = PiratesGlobals.getPirateOutlineFont())
+        self.fgLabel = DirectLabel(parent = self, state = DGG.DISABLED, relief = None, image = self.ClockImage, image_pos = (-0.01, 0, 0.035000), image_scale = (1.10, 1, 0.800000), text_scale = 0.070, text_align = TextNode.ACenter, text_font = PiratesGlobals.getPirateOutlineFont())
 
 
     def setTime(self, currTime):
@@ -96,29 +96,29 @@ class PiratesTimer(OTPTimer.OTPTimer):
             timeStr = '%s:%s' % (t[4], str(t[5]).zfill(2))
         else:
             timeStr = str(currTime)
-            self.fgLabel['text_scale'] = 0.070000000000000007
+            self.fgLabel['text_scale'] = 0.070
         timeStrLen = len(timeStr)
         if 0 >= currTime:
             pass
         currTime < self.alarmTime
         if 1:
-            fgColor = Vec4(0.90000000000000002, 0.10000000000000001, 0.10000000000000001, 1)
+            fgColor = Vec4(0.9, 0.100, 0.100, 1)
             if not self.alarmStarted:
                 self.startAlarm()
 
         else:
             fgColor = self.vFontColor
         if timeStrLen == 1:
-            self.setTimeStr(timeStr, 0.089999999999999997, (0, -0.02), fgColor)
+            self.setTimeStr(timeStr, 0.089, (0, -0.02), fgColor)
         elif timeStrLen == 2:
-            self.setTimeStr(timeStr, 0.080000000000000002, (0, -0.014999999999999999))
+            self.setTimeStr(timeStr, 0.08, (0, -0.0149))
         elif timeStrLen == 3:
-            self.setTimeStr(timeStr, 0.080000000000000002, (0, -0.014999999999999999))
+            self.setTimeStr(timeStr, 0.08, (0, -0.0149))
         else:
-            self.setTimeStr(timeStr, 0.070000000000000007, (0, -0.012))
+            self.setTimeStr(timeStr, 0.070, (0, -0.012))
 
 
-    def setTimeStr(self, timeStr, scale = 0.080000000000000002, pos = (0, -0.014999999999999999), fg = None):
+    def setTimeStr(self, timeStr, scale = 0.08, pos = (0, -0.0149), fg = None):
         self.fgLabel['text'] = ''
         if not fg:
             pass
@@ -131,7 +131,7 @@ class PiratesTimer(OTPTimer.OTPTimer):
     def countdown(self, duration, callback = None):
         OTPTimer.OTPTimer.countdown(self, duration, callback)
         self.fgLabel['text_font'] = PiratesGlobals.getInterfaceFont()
-        self.fgLabel['text_scale'] = 0.070000000000000007
+        self.fgLabel['text_scale'] = 0.070
         self.startDial()
 
 
@@ -145,8 +145,8 @@ class PiratesTimer(OTPTimer.OTPTimer):
 
 
     def createTimerText(self, titleText, titleFg, infoText):
-        self.titleText = DirectFrame(parent = self, state = DGG.DISABLED, relief = None, text = titleText, text_align = TextNode.ACenter, text_scale = 0.050000000000000003, text_fg = titleFg, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getPirateOutlineFont(), textMayChange = 1, text_wordwrap = 6, pos = (0, 0, 0.69999999999999996))
-        self.infoText = DirectFrame(parent = self, state = DGG.DISABLED, relief = None, text = infoText, text_align = TextNode.ACenter, text_scale = 0.14000000000000001, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getPirateOutlineFont(), textMayChange = 1, text_wordwrap = 6, pos = (0, 0, -0.75))
+        self.titleText = DirectFrame(parent = self, state = DGG.DISABLED, relief = None, text = titleText, text_align = TextNode.ACenter, text_scale = 0.050000, text_fg = titleFg, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getPirateOutlineFont(), textMayChange = 1, text_wordwrap = 6, pos = (0, 0, 0.696))
+        self.infoText = DirectFrame(parent = self, state = DGG.DISABLED, relief = None, text = infoText, text_align = TextNode.ACenter, text_scale = 0.140, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getPirateOutlineFont(), textMayChange = 1, text_wordwrap = 6, pos = (0, 0, -0.75))
 
 
     def createCancelButton(self, cancelCallback, cancelText):
@@ -156,7 +156,7 @@ class PiratesTimer(OTPTimer.OTPTimer):
         if not base.localAvatar.isCrewCaptain():
             return None
 
-        self.cancelButton = GuiButton.GuiButton(parent = self, helpText = cancelText, command = cancelCallback, borderWidth = PiratesGuiGlobals.BorderWidth, text = PLocalizer.Cancel, frameColor = PiratesGuiGlobals.ButtonColor3, text_fg = PiratesGuiGlobals.TextFG2, text_pos = (0, 0.014999999999999999), frameSize = (-0.089999999999999997, 0.089999999999999997, -0.014999999999999999, 0.065000000000000002), text_scale = PiratesGuiGlobals.TextScaleLarge, pad = (0.01, 0.01), pos = (0, 0, -1.55), scale = 2.2999999999999998)
+        self.cancelButton = GuiButton.GuiButton(parent = self, helpText = cancelText, command = cancelCallback, borderWidth = PiratesGuiGlobals.BorderWidth, text = PLocalizer.Cancel, frameColor = PiratesGuiGlobals.ButtonColor3, text_fg = PiratesGuiGlobals.TextFG2, text_pos = (0, 0.0149), frameSize = (-0.089, 0.089, -0.0149, 0.065), text_scale = PiratesGuiGlobals.TextScaleLarge, pad = (0.01, 0.01), pos = (0, 0, -1.55), scale = 2.28)
 
 
     def startDial(self, t = 6):

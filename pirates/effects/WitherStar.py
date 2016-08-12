@@ -35,8 +35,8 @@ class WitherStar(PooledEffect, EffectController):
         self.p0.setSystemLifespan(0.0)
         self.p0.setLocalVelocityFlag(1)
         self.p0.setSystemGrowsOlderFlag(0)
-        self.p0.factory.setLifespanBase(0.40000000000000002)
-        self.p0.factory.setLifespanSpread(0.10000000000000001)
+        self.p0.factory.setLifespanBase(0.4)
+        self.p0.factory.setLifespanSpread(0.100)
         self.p0.factory.setMassBase(1.0)
         self.p0.factory.setMassSpread(0.0)
         self.p0.factory.setTerminalVelocityBase(400.0)
@@ -54,18 +54,18 @@ class WitherStar(PooledEffect, EffectController):
         self.p0.renderer.setYScaleFlag(1)
         self.p0.renderer.setAnimAngleFlag(1)
         self.p0.renderer.setInitialXScale(0.0001 * self.cardScale)
-        self.p0.renderer.setFinalXScale(0.0025000000000000001 * self.cardScale)
-        self.p0.renderer.setInitialYScale(0.00050000000000000001 * self.cardScale)
-        self.p0.renderer.setFinalYScale(0.025000000000000001 * self.cardScale)
+        self.p0.renderer.setFinalXScale(0.00250 * self.cardScale)
+        self.p0.renderer.setInitialYScale(0.000500 * self.cardScale)
+        self.p0.renderer.setFinalYScale(0.0250 * self.cardScale)
         self.p0.renderer.setNonanimatedTheta(0.0)
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPBLENDLINEAR)
         self.p0.renderer.setAlphaDisable(0)
         self.p0.renderer.setColorBlendMode(ColorBlendAttrib.MAdd, ColorBlendAttrib.OOneMinusFbufferAlpha, ColorBlendAttrib.OOneMinusIncomingAlpha)
-        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(1.0, 1.0, 1.0, 1.0), Vec4(0.59999999999999998, 0.90000000000000002, 0.69999999999999996, 0.40000000000000002), 1)
+        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(1.0, 1.0, 1.0, 1.0), Vec4(0.598, 0.9, 0.696, 0.4), 1)
         self.p0.emitter.setEmissionType(BaseParticleEmitter.ETRADIATE)
         self.p0.emitter.setAmplitude(1.0)
         self.p0.emitter.setAmplitudeSpread(0.0)
-        self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, 0.10000000000000001))
+        self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, 0.100))
         self.p0.emitter.setExplicitLaunchVector(Vec3(1.0, 0.0, 0.0))
         self.p0.emitter.setRadiateOrigin(Point3(0.0, 0.0, 0.0))
         self.p0.emitter.setRadius(0.01)
@@ -80,7 +80,7 @@ class WitherStar(PooledEffect, EffectController):
     def setEffectColor(self, color):
         self.effectColor = Vec4(1, 1, 1, 1) - (Vec4(1, 1, 1, 1) - color) / 2.0
         self.p0.renderer.getColorInterpolationManager().clearToInitial()
-        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, self.effectColor, Vec4(0.59999999999999998, 0.90000000000000002, 0.69999999999999996, 0.40000000000000002), 1)
+        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, self.effectColor, Vec4(0.598, 0.9, 0.696, 0.4), 1)
 
 
     def changeEffectColor(self, color):

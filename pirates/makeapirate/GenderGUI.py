@@ -83,11 +83,11 @@ class GenderGUI(DirectFrame, StateData.StateData):
 
 
     def setupButtons(self):
-        self.genderFrameTitle = DirectFrame(parent = self.parent, relief = None, text = PLocalizer.GenderFrameTitle, text_scale = 0.17999999999999999, text_pos = (0, 0), text_fg = (1, 1, 1, 1), pos = (0, 0, 0.40000000000000002), scale = 0.69999999999999996)
+        self.genderFrameTitle = DirectFrame(parent = self.parent, relief = None, text = PLocalizer.GenderFrameTitle, text_scale = 0.179, text_pos = (0, 0), text_fg = (1, 1, 1, 1), pos = (0, 0, 0.4), scale = 0.696)
         self.genderFrameTitle.hide()
-        self.genderMaleButton = DirectButton(parent = self.genderFrameTitle, relief = None, pos = (-0.29999999999999999, 0, -0.25), image = (self.main.charGui.find('**/chargui_male'), self.main.charGui.find('**/chargui_male_down'), self.main.charGui.find('**/chargui_male_over')), image_scale = 1.8, command = self.handleMale)
+        self.genderMaleButton = DirectButton(parent = self.genderFrameTitle, relief = None, pos = (-0.299, 0, -0.25), image = (self.main.charGui.find('**/chargui_male'), self.main.charGui.find('**/chargui_male_down'), self.main.charGui.find('**/chargui_male_over')), image_scale = 1.8, command = self.handleMale)
         self.genderMaleButton.hide()
-        self.genderFemaleButton = DirectButton(parent = self.genderFrameTitle, relief = None, pos = (0.29999999999999999, 0, -0.25), image = (self.main.charGui.find('**/chargui_female'), self.main.charGui.find('**/chargui_female_down'), self.main.charGui.find('**/chargui_female_over')), image_scale = 1.8, command = self.handleFemale)
+        self.genderFemaleButton = DirectButton(parent = self.genderFrameTitle, relief = None, pos = (0.299, 0, -0.25), image = (self.main.charGui.find('**/chargui_female'), self.main.charGui.find('**/chargui_female_down'), self.main.charGui.find('**/chargui_female_over')), image_scale = 1.8, command = self.handleFemale)
         self.genderFemaleButton.hide()
 
 

@@ -192,7 +192,7 @@ SPECIAL_SKILL_ICONS = [
 
 def getGeomScale(repId, skillId = 0):
     if repId == InventoryType.PistolRep and WeaponGlobals.getSkillType(skillId) == WeaponGlobals.AMMO_SKILL:
-        return 0.17999999999999999
+        return 0.179
     else:
         return 0.12
 
@@ -223,7 +223,7 @@ class SkillButton(DirectFrame):
         model = loader.loadModel('models/effects/particleMaps')
         toggleIcon = model.find('**/particleGlow')
         toggleIcon.node().setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd))
-        self.toggleFrame = DirectFrame(relief = None, state = DGG.DISABLED, parent = self, image = toggleIcon, image_scale = 0.34999999999999998, image_pos = (0.0, 0.0, -0.01))
+        self.toggleFrame = DirectFrame(relief = None, state = DGG.DISABLED, parent = self, image = toggleIcon, image_scale = 0.348, image_pos = (0.0, 0.0, -0.01))
         self.toggleFrame.hide()
         self.glowRing = None
         self.glowRing2 = None
@@ -257,7 +257,7 @@ class SkillButton(DirectFrame):
         if self.isWeaponSkill:
             self.weaponBackground = DirectLabel(parent = self, state = DGG.DISABLED, image = SkillButton.SkillIcons.find('**/box_base'), image_scale = (0.22, 0, 0.22), image_pos = (0.0, 0.0, 0.0))
             self.weaponBackground.flattenLight()
-            self.weaponBackground.setColor(0.20000000000000001, 0.20000000000000001, 0.20000000000000001, 0.20000000000000001)
+            self.weaponBackground.setColor(0.200, 0.200, 0.200, 0.200)
             self.weaponBackground.setTransparency(1)
 
         if showRing:
@@ -266,7 +266,7 @@ class SkillButton(DirectFrame):
             elif self.isDefenseSkill:
                 color = Vec4(0, 1, 1, 1)
             else:
-                color = Vec4(1, 0.80000000000000004, 0.5, 1)
+                color = Vec4(1, 0.800000, 0.5, 1)
             self.skillRing = SkillRing(color, Vec4(0, 0, 0, 1.0))
             gs = self.skillRing.meterFaceHalf2.node().getGeomState(0)
             self.skillRing.meterFaceHalf2.node().setGeomState(0, gs.removeAttrib(ColorAttrib.getClassType()))
@@ -385,7 +385,7 @@ class SkillButton(DirectFrame):
             localAvatar.setDefenceEffect(self.skillId)
 
         if self.showRing:
-            self.skillRingIval = Sequence(Func(localAvatar.setDefenceEffect, 0), Func(self.setGeomColor, 0.5, 0.5, 0.5, 1.0), Func(self.skillRing.meterFaceHalf1.setColor, self.skillRing.meterActiveColor, 100), Func(self.skillRing.meterFaceHalf2.setColor, self.skillRing.meterColor, 100), Func(self.skillRing.meterFaceHalf1.setR, 0), Func(self.skillRing.meterFaceHalf2.setR, 0), Func(self.skillRing.meterFaceHalf1.show), Func(self.skillRing.meterFaceHalf2.show), LerpFunc(self.skillRing.meterFaceHalf2.setR, self.totalRechargeTime / 2, 0, -180), Func(self.skillRing.meterFaceHalf2.setColor, self.skillRing.meterActiveColor, 100), Func(self.skillRing.meterFaceHalf2.setR, 0), LerpFunc(self.skillRing.meterFaceHalf1.setR, self.totalRechargeTime / 2, 0, -180), Func(self.setGeomColor, 1.0, 1.0, 1.0, 1.0), Func(base.playSfx, SkillButton.SkillRechargedSound, volume = 0.5), Parallel(LerpScaleInterval(self.skillRing, 0.10000000000000001, Vec3(1.2, 1.2, 1.2)), LerpColorScaleInterval(self.skillRing, 0.10000000000000001, Vec4(0.0, 0.75, 0.0, 1.0), Vec4(1.0, 1.0, 1.0, 1.0), blendType = 'easeInOut')), Func(localAvatar.setDefenceEffect, self.skillId), LerpScaleInterval(self.skillRing, 0.20000000000000001, Vec3(0.90000000000000002, 0.90000000000000002, 0.90000000000000002)), LerpScaleInterval(self.skillRing, 0.029999999999999999, Vec3(1.1000000000000001, 1.1000000000000001, 1.1000000000000001)), Parallel(LerpScaleInterval(self.skillRing, 0.029999999999999999, Vec3(1.0, 1.0, 1.0)), LerpColorScaleInterval(self.skillRing, 1, Vec4(1.0, 1.0, 1.0, 1.0), blendType = 'easeInOut')), Func(self.skillRing.clearColorScale), Func(self.checkAmount))
+            self.skillRingIval = Sequence(Func(localAvatar.setDefenceEffect, 0), Func(self.setGeomColor, 0.5, 0.5, 0.5, 1.0), Func(self.skillRing.meterFaceHalf1.setColor, self.skillRing.meterActiveColor, 100), Func(self.skillRing.meterFaceHalf2.setColor, self.skillRing.meterColor, 100), Func(self.skillRing.meterFaceHalf1.setR, 0), Func(self.skillRing.meterFaceHalf2.setR, 0), Func(self.skillRing.meterFaceHalf1.show), Func(self.skillRing.meterFaceHalf2.show), LerpFunc(self.skillRing.meterFaceHalf2.setR, self.totalRechargeTime / 2, 0, -180), Func(self.skillRing.meterFaceHalf2.setColor, self.skillRing.meterActiveColor, 100), Func(self.skillRing.meterFaceHalf2.setR, 0), LerpFunc(self.skillRing.meterFaceHalf1.setR, self.totalRechargeTime / 2, 0, -180), Func(self.setGeomColor, 1.0, 1.0, 1.0, 1.0), Func(base.playSfx, SkillButton.SkillRechargedSound, volume = 0.5), Parallel(LerpScaleInterval(self.skillRing, 0.100, Vec3(1.2, 1.2, 1.2)), LerpColorScaleInterval(self.skillRing, 0.100, Vec4(0.0, 0.75, 0.0, 1.0), Vec4(1.0, 1.0, 1.0, 1.0), blendType = 'easeInOut')), Func(localAvatar.setDefenceEffect, self.skillId), LerpScaleInterval(self.skillRing, 0.200, Vec3(0.9, 0.9, 0.9)), LerpScaleInterval(self.skillRing, 0.0299, Vec3(1.10, 1.10, 1.10)), Parallel(LerpScaleInterval(self.skillRing, 0.0299, Vec3(1.0, 1.0, 1.0)), LerpColorScaleInterval(self.skillRing, 1, Vec4(1.0, 1.0, 1.0, 1.0), blendType = 'easeInOut')), Func(self.skillRing.clearColorScale), Func(self.checkAmount))
 
 
 
@@ -418,7 +418,7 @@ class SkillButton(DirectFrame):
         if not self.glowRing2:
             self.loadGlowRing()
 
-        self.quickImpulseIval = Sequence(Func(self.glowRing2.show), LerpScaleInterval(self.glowRing2, 0.20000000000000001, Vec3(0.33000000000000002, 0.33000000000000002, 0.33000000000000002)), LerpScaleInterval(self.glowRing2, 0.25, Vec3(0.20000000000000001, 0.20000000000000001, 0.20000000000000001)), Func(self.glowRing2.hide))
+        self.quickImpulseIval = Sequence(Func(self.glowRing2.show), LerpScaleInterval(self.glowRing2, 0.200, Vec3(0.33, 0.33, 0.33)), LerpScaleInterval(self.glowRing2, 0.25, Vec3(0.200, 0.200, 0.200)), Func(self.glowRing2.hide))
         self.quickImpulseIval.start()
 
 
@@ -427,7 +427,7 @@ class SkillButton(DirectFrame):
             self.loadGlowRing()
 
         self.glowRing.show()
-        self.impulseIval = Sequence(Parallel(LerpScaleInterval(self.glowRing, 0.10000000000000001, Vec3(0.20300000000000001, 0.20300000000000001, 0.20300000000000001)), LerpColorScaleInterval(self.glowRing, 0.10000000000000001, Vec4(0.80000000000000004, 0.80000000000000004, 0.80000000000000004, 0.80000000000000004), Vec4(1.0, 1.0, 1.0, 0.80000000000000004), blendType = 'easeInOut')), LerpScaleInterval(self.glowRing, 0.14999999999999999, Vec3(0.19, 0.19, 0.19)), LerpScaleInterval(self.glowRing, 0.050000000000000003, Vec3(0.20200000000000001, 0.20200000000000001, 0.20200000000000001)), Parallel(LerpScaleInterval(self.glowRing, 0.029999999999999999, Vec3(0.20000000000000001, 0.20000000000000001, 0.20000000000000001)), LerpColorScaleInterval(self.glowRing, 0.40000000000000002, Vec4(1.0, 1.0, 1.0, 1.0), blendType = 'easeInOut')), Func(self.glowRing.clearColorScale))
+        self.impulseIval = Sequence(Parallel(LerpScaleInterval(self.glowRing, 0.100, Vec3(0.203, 0.203, 0.203)), LerpColorScaleInterval(self.glowRing, 0.100, Vec4(0.800000, 0.800000, 0.800000, 0.800000), Vec4(1.0, 1.0, 1.0, 0.800000), blendType = 'easeInOut')), LerpScaleInterval(self.glowRing, 0.149, Vec3(0.19, 0.19, 0.19)), LerpScaleInterval(self.glowRing, 0.050000, Vec3(0.202, 0.202, 0.202)), Parallel(LerpScaleInterval(self.glowRing, 0.0299, Vec3(0.200, 0.200, 0.200)), LerpColorScaleInterval(self.glowRing, 0.4, Vec4(1.0, 1.0, 1.0, 1.0), blendType = 'easeInOut')), Func(self.glowRing.clearColorScale))
         self.impulseIval.loop()
 
 
@@ -455,7 +455,7 @@ class SkillButton(DirectFrame):
             self.skillRing.setScale(1.0)
             self.skillRing.clearColorScale()
             self.setGeomColor(1.0, 1.0, 1.0, 1.0)
-            self.skillRingIval = Sequence(Func(base.playSfx, SkillButton.SkillRechargedSound, volume = 0.5), Parallel(LerpScaleInterval(self.skillRing, 0.10000000000000001, Vec3(1.2, 1.2, 1.2)), LerpColorScaleInterval(self.skillRing, 0.10000000000000001, Vec4(0.0, 0.75, 0.0, 1.0), Vec4(1.0, 1.0, 1.0, 1.0), blendType = 'easeInOut')), Func(localAvatar.setDefenceEffect, self.skillId), LerpScaleInterval(self.skillRing, 0.20000000000000001, Vec3(0.90000000000000002, 0.90000000000000002, 0.90000000000000002)), LerpScaleInterval(self.skillRing, 0.029999999999999999, Vec3(1.1000000000000001, 1.1000000000000001, 1.1000000000000001)), Parallel(LerpScaleInterval(self.skillRing, 0.029999999999999999, Vec3(1.0, 1.0, 1.0)), LerpColorScaleInterval(self.skillRing, 1, Vec4(1.0, 1.0, 1.0, 1.0), blendType = 'easeInOut')), Func(self.skillRing.clearColorScale))
+            self.skillRingIval = Sequence(Func(base.playSfx, SkillButton.SkillRechargedSound, volume = 0.5), Parallel(LerpScaleInterval(self.skillRing, 0.100, Vec3(1.2, 1.2, 1.2)), LerpColorScaleInterval(self.skillRing, 0.100, Vec4(0.0, 0.75, 0.0, 1.0), Vec4(1.0, 1.0, 1.0, 1.0), blendType = 'easeInOut')), Func(localAvatar.setDefenceEffect, self.skillId), LerpScaleInterval(self.skillRing, 0.200, Vec3(0.9, 0.9, 0.9)), LerpScaleInterval(self.skillRing, 0.0299, Vec3(1.10, 1.10, 1.10)), Parallel(LerpScaleInterval(self.skillRing, 0.0299, Vec3(1.0, 1.0, 1.0)), LerpColorScaleInterval(self.skillRing, 1, Vec4(1.0, 1.0, 1.0, 1.0), blendType = 'easeInOut')), Func(self.skillRing.clearColorScale))
             self.skillRingIval.start()
         elif timeSpentRecharging < self.totalRechargeTime:
             self.rechargeFilled = 0
@@ -513,7 +513,7 @@ class SkillButton(DirectFrame):
             image = None
         else:
             image = SkillButton.Image
-        self.skillButton = DirectButton(parent = self, relief = None, pos = (0, 0, 0), text = ('', '', self.name), text_align = TextNode.ACenter, text_shadow = Vec4(0, 0, 0, 1), text_scale = 0.040000000000000001, text_fg = Vec4(1, 1, 1, 1), text_pos = (0.0, 0.089999999999999997), image = image, image_scale = 0.14999999999999999, image_color = image_color, geom = geom, geom_scale = geom_scale, geom_color = geomColor, command = self.callback, sortOrder = 50, extraArgs = [
+        self.skillButton = DirectButton(parent = self, relief = None, pos = (0, 0, 0), text = ('', '', self.name), text_align = TextNode.ACenter, text_shadow = Vec4(0, 0, 0, 1), text_scale = 0.0400, text_fg = Vec4(1, 1, 1, 1), text_pos = (0.0, 0.089), image = image, image_scale = 0.149, image_color = image_color, geom = geom, geom_scale = geom_scale, geom_color = geomColor, command = self.callback, sortOrder = 50, extraArgs = [
             skillId])
         self.skillButton.bind(DGG.ENTER, self.showDetails)
         self.skillButton.bind(DGG.EXIT, self.hideDetails)
@@ -523,7 +523,7 @@ class SkillButton(DirectFrame):
 
 
     def createHotkey(self, hotkey):
-        self.hotkeyLabel = DirectLabel(parent = self, relief = None, text = hotkey, text_font = PiratesGlobals.getPirateBoldOutlineFont(), text_align = TextNode.ARight, text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 0, pos = (0.070000000000000007, 0, -0.059999999999999998), sortOrder = 70, state = DGG.DISABLED)
+        self.hotkeyLabel = DirectLabel(parent = self, relief = None, text = hotkey, text_font = PiratesGlobals.getPirateBoldOutlineFont(), text_align = TextNode.ARight, text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 0, pos = (0.070, 0, -0.0598), sortOrder = 70, state = DGG.DISABLED)
         self.hotkeyLabel.flattenLight()
 
 
@@ -704,7 +704,7 @@ class SkillButton(DirectFrame):
             stats.append(rank)
 
         if self.skillRank:
-            rankText = DirectFrame(parent = self, relief = None, text = PLocalizer.makeHeadingString(PLocalizer.Rank + ' %s' % (self.skillRank + skillBoost), 2), text_align = TextNode.ARight, text_scale = PiratesGuiGlobals.TextScaleSmall, text_fg = PiratesGuiGlobals.TextFG2, text_wordwrap = 15, text_shadow = (0, 0, 0, 1), pos = (0.45000000000000001, 0, 0), textMayChange = 1, sortOrder = 92, state = DGG.DISABLED)
+            rankText = DirectFrame(parent = self, relief = None, text = PLocalizer.makeHeadingString(PLocalizer.Rank + ' %s' % (self.skillRank + skillBoost), 2), text_align = TextNode.ARight, text_scale = PiratesGuiGlobals.TextScaleSmall, text_fg = PiratesGuiGlobals.TextFG2, text_wordwrap = 15, text_shadow = (0, 0, 0, 1), pos = (0.450, 0, 0), textMayChange = 1, sortOrder = 92, state = DGG.DISABLED)
 
         stats = [int(stat + 0.01) for stat in stats]
 
@@ -715,8 +715,8 @@ class SkillButton(DirectFrame):
 
         helpText = DirectFrame(parent = self, relief = None, text = skillDesc % tuple(stats), text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleSmall, text_fg = PiratesGuiGlobals.TextFG2, text_wordwrap = 17, textMayChange = 1, state = DGG.DISABLED, sortOrder = 91)
         height = -(helpText.getHeight() + 0.01)
-        width = 0.55000000000000004
-        self.helpFrame = BorderFrame(parent = self, state = DGG.DISABLED, frameSize = (-0.040000000000000001, width, height, 0.050000000000000003), pos = (0, 0, -0.12), sortOrder = 90)
+        width = 0.550000
+        self.helpFrame = BorderFrame(parent = self, state = DGG.DISABLED, frameSize = (-0.0400, width, height, 0.050000), pos = (0, 0, -0.12), sortOrder = 90)
         self.helpFrame.setBin('gui-popup', 0)
         helpText.reparentTo(self.helpFrame)
         if self.skillRank:
@@ -771,7 +771,7 @@ class SkillButton(DirectFrame):
         if self.quantityLabel and not self.quantityLabel.isEmpty():
             self.quantityLabel['text'] = text
         else:
-            self.quantityLabel = DirectLabel(parent = NodePath(), relief = None, state = DGG.DISABLED, text = text, frameColor = (0, 0, 0, 1), frameSize = (-0.01, 0.02, -0.01, 0.025000000000000001), text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.029999999999999999, 0.0, 0.029999999999999999), text_font = PiratesGlobals.getPirateBoldOutlineFont(), sortOrder = 60)
+            self.quantityLabel = DirectLabel(parent = NodePath(), relief = None, state = DGG.DISABLED, text = text, frameColor = (0, 0, 0, 1), frameSize = (-0.01, 0.02, -0.01, 0.0250), text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.0299, 0.0, 0.0299), text_font = PiratesGlobals.getPirateBoldOutlineFont(), sortOrder = 60)
             self.quantityLabel.flattenLight()
             self.quantityLabel.reparentTo(self)
             if self.skillButton and not self.skillButton.isEmpty():

@@ -10,7 +10,7 @@ from pirates.piratesgui.ShipSnapshot import ShipSnapshot
 class ShipStatFrame(BorderFrame):
 
     def __init__(self, parent, shipOV = None, shipName = '', shipClass = 0, mastInfo = [], hp = 0, maxHp = 0, sp = 0, maxSp = 0, cargo = 0, maxCargo = 0, crew = 0, maxCrew = 0, adventureTime = 0, **kw):
-        optiondefs = (('state', DGG.DISABLED, None), ('frameSize', (0.050000000000000003, 0.64000000000000001, 0.040000000000000001, 0.39000000000000001), None))
+        optiondefs = (('state', DGG.DISABLED, None), ('frameSize', (0.050000, 0.640, 0.0400, 0.390), None))
         self.defineoptions(kw, optiondefs)
         BorderFrame.__init__(self, parent)
         self.initialiseoptions(ShipStatFrame)

@@ -41,7 +41,7 @@ class Billboard(Item):
 
     def _initBillboard(self, nodePath):
         self.setEffect(BillboardEffect.make(Vec3(0, 0, 1), True, False, 0, nodePath, Point3(0)))
-        self.node().setBounds(BoundingSphere(Point3(0), 0.14999999999999999))
+        self.node().setBounds(BoundingSphere(Point3(0), 0.149))
 
 
     def updateZoom(self, zoom):
@@ -64,7 +64,7 @@ class Spline(Item):
         rope.ropeNode.setUvMode(RopeNode.UVDistance)
         rope.ropeNode.setUvDirection(1)
         rope.ropeNode.setUvScale(-60)
-        rope.ropeNode.setThickness(0.0050000000000000001)
+        rope.ropeNode.setThickness(0.00500)
         rope.ropeNode.setUseVertexColor(1)
         topGui = loader.loadModel('models/gui/toplevel_gui')
         self.ropeTex = topGui.findTexture('pir_t_gui_linePencil')
@@ -92,7 +92,7 @@ class Model(Item):
         elif __dev__ and base.config.GetBool('map-islands-debug', 0):
             geom = loader.loadModel('models/misc/smiley')
             self.geom = geom.instanceTo(self)
-            scale = 0.050000000000000003
+            scale = 0.050000
             self.geom.setColorScale(Vec4(1, 0, 1, 1))
         else:
             self.geom = NodePath('dummy')
@@ -129,7 +129,7 @@ class BillboardModel(Billboard, PickableModel):
     def __init__(self, name, modelName, nodePath = NodePath(), offset = 0.0, scale = 1.0, collisionIndex = 17, *args, **kwargs):
         Billboard.__init__(self, name, nodePath)
         PickableModel.__init__(self, modelName, scale, collisionIndex)
-        self.geom.setY(-(offset + 0.0074999999999999997))
+        self.geom.setY(-(offset + 0.0074))
 
 
 
@@ -153,7 +153,7 @@ class Ship(Item):
         self.shipModel.setScale(0.13)
         self.shipModel.setTwoSided(1)
         formattedName = '\x01smallCapsslant\x01' + name.replace(' ', '\n') + '\x02'
-        self.text = Text(name + '-text', NodePath(), 0.0, formattedName, 0, scale = 0.017000000000000001)
+        self.text = Text(name + '-text', NodePath(), 0.0, formattedName, 0, scale = 0.0170)
         self.text.reparentTo(self)
         if self.shipModel.getBounds().isEmpty():
             r = 10
@@ -165,7 +165,7 @@ class Ship(Item):
         self.shipNode = NodePath('Ship')
         self.shipNode.reparentTo(self)
         self.shipNode.setBillboardPointEye()
-        self.shipNode.setPos(0, -0.0050000000000000001, 0)
+        self.shipNode.setPos(0, -0.00500, 0)
         self.shipNode.setHpr(0, 30, 0)
         self.shipModel.reparentTo(self.shipNode)
 
@@ -265,7 +265,7 @@ class Island(PickableModel):
 
 class Text(Billboard):
 
-    def __init__(self, name, nodePath, offset, text, stencilId, scale = 0.025000000000000001, *args, **kwargs):
+    def __init__(self, name, nodePath, offset, text, stencilId, scale = 0.0250, *args, **kwargs):
         Billboard.__init__(self, name, nodePath, *args, **kwargs)
         self.setBin('fixed', 110)
         self.scale = scale
@@ -337,21 +337,21 @@ class TextIsland(Island):
         icons = loader.loadModel('models/textureCards/icons')
         self.button = self.text.attachNewNode('button')
         bg = topGui.find('**/treasure_w_b_slot_empty')
-        bg.setScale(0.14000000000000001)
+        bg.setScale(0.140)
         bg.reparentTo(self.button)
-        buttonPos = Point3(t[0] - 0.021999999999999999, 0, (t[2] + T[2]) / 2.0)
+        buttonPos = Point3(t[0] - 0.0219, 0, (t[2] + T[2]) / 2.0)
         self.button.flattenStrong()
         self.button.setPos(buttonPos)
         self.button.setColorScaleOff()
         self.button.hide()
         self.teleportIconDisabled = compassGui.find('**/compass_icon_objective_grey')
-        self.teleportIconDisabled.setScale(0.14000000000000001)
+        self.teleportIconDisabled.setScale(0.140)
         self.teleportIconDisabled.reparentTo(self.button)
         self.teleportIconEnabled = compassGui.find('**/compass_icon_objective_green')
-        self.teleportIconEnabled.setScale(0.14000000000000001)
+        self.teleportIconEnabled.setScale(0.140)
         self.teleportIconEnabled.reparentTo(self.button)
         self.manIcon = icons.find('**/icon_stickman')
-        self.manIcon.setScale(0.035000000000000003)
+        self.manIcon.setScale(0.035000)
         self.manIcon.reparentTo(self.button)
         (t, T) = self.text.getTightBounds()
         p0 = VBase3(t[0], 0, t[2])
@@ -468,8 +468,8 @@ class TextIsland(Island):
         if not self.helpBox:
             self.helpLabel = DirectLabel(parent = aspect2d, relief = None, text = '', text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleSmall, text_fg = PiratesGuiGlobals.TextFG2, text_wordwrap = 12, text_shadow = (0, 0, 0, 1), textMayChange = 1, sortOrder = 91)
             height = -(self.helpLabel.getHeight() + 0.01)
-            width = max(0.25, self.helpLabel.getWidth() + 0.040000000000000001)
-            self.helpBox = BorderFrame(parent = aspect2d, state = DGG.DISABLED, frameSize = (-0.040000000000000001, width, height, 0.050000000000000003), pos = (0, 0, 0), sortOrder = 90)
+            width = max(0.25, self.helpLabel.getWidth() + 0.0400)
+            self.helpBox = BorderFrame(parent = aspect2d, state = DGG.DISABLED, frameSize = (-0.0400, width, height, 0.050000), pos = (0, 0, 0), sortOrder = 90)
             self.helpLabel.reparentTo(self.helpBox)
             self.helpBox.hide()
 
@@ -479,8 +479,8 @@ class TextIsland(Island):
         self.helpLabel['text'] = text
         self.helpLabel.resetFrameSize()
         height = -(self.helpLabel.getHeight() + 0.01)
-        width = max(0.25, self.helpLabel.getWidth() + 0.040000000000000001)
-        self.helpBox['frameSize'] = (-0.040000000000000001, width, height, 0.050000000000000003)
+        width = max(0.25, self.helpLabel.getWidth() + 0.0400)
+        self.helpBox['frameSize'] = (-0.0400, width, height, 0.050000)
         self.helpBox.resetFrameSize()
 
 
@@ -508,7 +508,7 @@ class OceanAreaText(Text):
             text = text + name[l] + ' '
 
         text = '\x01slantsmallCaps\x01' + text + '\x02'
-        Text.__init__(self, name, NodePath(), 0, text, 0, 0.017000000000000001)
+        Text.__init__(self, name, NodePath(), 0, text, 0, 0.0170)
         self.uid = areaUid
         self.fadeIval = None
         self.hidden = False
@@ -530,7 +530,7 @@ class OceanAreaText(Text):
             self.fadeIval = None
 
         self.setTransparency(1)
-        self.fadeIval = LerpFunc(self.setAlphaScale, duration = 0.14999999999999999 * abs(value - self.getColorScale().getW()), fromData = self.getColorScale().getW(), toData = value, blendType = blendType)
+        self.fadeIval = LerpFunc(self.setAlphaScale, duration = 0.149 * abs(value - self.getColorScale().getW()), fromData = self.getColorScale().getW(), toData = value, blendType = blendType)
         self.fadeIval.start()
 
 
@@ -558,8 +558,8 @@ class Swirl(Model):
 class Dart(PickableModel):
 
     def __init__(self, name, parent, defaultPos, color = Vec4(1), offset = 0.0, *args, **kwargs):
-        self.startScale = 0.074999999999999997
-        self.highlightScale = 0.10000000000000001
+        self.startScale = 0.074
+        self.highlightScale = 0.100
         PickableModel.__init__(self, name, modelName = 'icon_objective_grey', scale = self.startScale, collisionIndex = 17, modelPath = 'models/gui/compass_main', *args, **kwargs)
         self.defaultPos = defaultPos
         self.edgeMode = False
@@ -567,7 +567,7 @@ class Dart(PickableModel):
         self.helpLabel = None
         self.normalModeNode = self.attachNewNode('normal')
         self.normalModeNode.setColorScale(color)
-        self.normalModeNode.setY(-(offset + 0.0074999999999999997))
+        self.normalModeNode.setY(-(offset + 0.0074))
         self.geom.instanceTo(self.normalModeNode)
         self.colNode = self.normalModeNode.attachNewNode(CollisionNode('cNode'))
         self.colNode.node().addSolid(CollisionSphere(Point3(0, 0, 0), 0.25))
@@ -597,8 +597,8 @@ class Dart(PickableModel):
         if not self.helpBox:
             self.helpLabel = DirectLabel(parent = aspect2d, relief = None, text = '', text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleSmall, text_fg = PiratesGuiGlobals.TextFG2, text_wordwrap = 12, text_shadow = (0, 0, 0, 1), textMayChange = 1, sortOrder = 91)
             height = -(self.helpLabel.getHeight() + 0.01)
-            width = max(0.25, self.helpLabel.getWidth() + 0.040000000000000001)
-            self.helpBox = BorderFrame(parent = aspect2d, state = DGG.DISABLED, frameSize = (-0.040000000000000001, width, height, 0.050000000000000003), pos = (0, 0, 0), sortOrder = 90)
+            width = max(0.25, self.helpLabel.getWidth() + 0.0400)
+            self.helpBox = BorderFrame(parent = aspect2d, state = DGG.DISABLED, frameSize = (-0.0400, width, height, 0.050000), pos = (0, 0, 0), sortOrder = 90)
             self.helpLabel.reparentTo(self.helpBox)
             self.helpBox.hide()
 
@@ -608,8 +608,8 @@ class Dart(PickableModel):
         self.helpLabel['text'] = text
         self.helpLabel.resetFrameSize()
         height = -(self.helpLabel.getHeight() + 0.01)
-        width = max(0.25, self.helpLabel.getWidth() + 0.040000000000000001)
-        self.helpBox['frameSize'] = (-0.040000000000000001, width, height, 0.050000000000000003)
+        width = max(0.25, self.helpLabel.getWidth() + 0.0400)
+        self.helpBox['frameSize'] = (-0.0400, width, height, 0.050000)
         self.helpBox.resetFrameSize()
 
 

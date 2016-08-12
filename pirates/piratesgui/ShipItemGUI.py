@@ -57,10 +57,10 @@ class ShipItemGUI(InventoryItemGui.InventoryItemGui):
         del card
         self.minLvl = EconomyGlobals.getItemMinLevel(item)
         self.miscText = None
-        self.picture = DirectFrame(parent = self, relief = None, state = DGG.DISABLED, image = myTex, image_scale = 0.059999999999999998, pos = (0.085000000000000006, 0, 0.074999999999999997))
+        self.picture = DirectFrame(parent = self, relief = None, state = DGG.DISABLED, image = myTex, image_scale = 0.0598, pos = (0.085, 0, 0.074))
         self.picture.setTransparency(1)
         self.nameTag = DirectLabel(parent = self, state = DGG.DISABLED, relief = None, text = name, text_scale = PiratesGuiGlobals.TextScaleMed * PLocalizer.getHeadingScale(2), text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, pos = (0.16, 0, 0.105), textMayChange = 0)
-        self.costText = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, geom = self.coinImage, geom_scale = 0.12, geom_pos = Vec3(-0.01, 0, 0.01), text = str(self.price), text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ARight, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, text_pos = (-0.029999999999999999, 0, 0), pos = (self.width - 0.035000000000000003, 0, 0.105), text_font = PiratesGlobals.getInterfaceFont())
+        self.costText = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, geom = self.coinImage, geom_scale = 0.12, geom_pos = Vec3(-0.01, 0, 0.01), text = str(self.price), text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ARight, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, text_pos = (-0.0299, 0, 0), pos = (self.width - 0.035000, 0, 0.105), text_font = PiratesGlobals.getInterfaceFont())
 
 
     def showDetails(self, event):
@@ -81,7 +81,7 @@ class ShipItemGUI(InventoryItemGui.InventoryItemGui):
             repAmt = inv.getAccumulator(repId)
             if minLvl > ReputationGlobals.getLevelFromTotalReputation(repId, repAmt)[0]:
                 if not self.miscText:
-                    self.miscText = DirectLabel(parent = self, relief = None, text = '', text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.16, 0, 0.025000000000000001))
+                    self.miscText = DirectLabel(parent = self, relief = None, text = '', text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.16, 0, 0.0250))
 
                 self['image_color'] = Vec4(1, 0.5, 0.25, 1)
                 self['state'] = DGG.DISABLED

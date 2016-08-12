@@ -640,7 +640,7 @@ class DistributedPlayerSimpleShip(DistributedSimpleShip):
             import direct.distributed.ClockDelta
             dt = globalClockDelta.localElapsedTime(shipToBoard.sinkTimestamp)
             time = shipToBoard.sinkTime - dt
-            self.boardingPanel = ShipFrameBoard.ShipFrameBoard(shipName = shipInfo[1], shipClass = shipInfo[2], mastInfo = shipInfo[3], parent = base.a2dTopCenter, pos = (-0.45000000000000001, 0, -0.5), time = time, command = self.__handleBoardingChoice)
+            self.boardingPanel = ShipFrameBoard.ShipFrameBoard(shipName = shipInfo[1], shipClass = shipInfo[2], mastInfo = shipInfo[3], parent = base.a2dTopCenter, pos = (-0.450, 0, -0.5), time = time, command = self.__handleBoardingChoice)
             self._boardingTimer = taskMgr.doMethodLater(time, self._boardingChoiceTimeout, 'boardingTimer')
 
         self.boardingPanel.show()

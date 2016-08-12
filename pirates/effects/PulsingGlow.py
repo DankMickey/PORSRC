@@ -10,8 +10,8 @@ class PulsingGlow(PooledEffect, EffectController):
     def __init__(self):
         PooledEffect.__init__(self)
         EffectController.__init__(self)
-        self.fadeTime = 0.14999999999999999
-        self.duration = 0.34999999999999998
+        self.fadeTime = 0.149
+        self.duration = 0.348
         self.effectColor = Vec4(1, 1, 1, 1)
         self.modelParent = self.attachNewNode('ModelParent')
         model = loader.loadModel('models/effects/particleCards')
@@ -33,7 +33,7 @@ class PulsingGlow(PooledEffect, EffectController):
         self.modelParent.setScale(1.0)
         fadeBlast = self.colorScaleInterval(0.75, Vec4(0, 0, 0, 0), startColorScale = Vec4(self.effectColor), blendType = 'easeIn')
         scaleBlast = self.modelParent.scaleInterval(0.75, 15, startScale = 1.25, blendType = 'easeOut')
-        scalePulse = Sequence(self.effectModel.scaleInterval(0.10000000000000001, Vec3(4.5, 2.0, 2.0), startScale = Vec3(1.8, 1.8, 1.8), blendType = 'easeIn'), self.effectModel.scaleInterval(0.10000000000000001, Vec3(1.8, 1.8, 1.8), startScale = Vec3(4.5, 2.0, 2.0), blendType = 'easeOut'))
+        scalePulse = Sequence(self.effectModel.scaleInterval(0.100, Vec3(4.5, 2.0, 2.0), startScale = Vec3(1.8, 1.8, 1.8), blendType = 'easeIn'), self.effectModel.scaleInterval(0.100, Vec3(1.8, 1.8, 1.8), startScale = Vec3(4.5, 2.0, 2.0), blendType = 'easeOut'))
         scalePulse2 = Sequence(self.effectModel2.scaleInterval(0.12, Vec3(1.8, 1.8, 1.8), startScale = Vec3(2.0, 2.0, 4.5), blendType = 'easeIn'), self.effectModel2.scaleInterval(0.12, Vec3(2.0, 2.0, 4.5), startScale = Vec3(1.8, 1.8, 1.8), blendType = 'easeOut'))
         self.startEffect = Parallel(Func(scalePulse.loop), Func(scalePulse2.loop))
         self.endEffect = Sequence(Parallel(scaleBlast, fadeBlast), Func(scalePulse.pause), Func(scalePulse2.pause), Func(self.cleanUpEffect))

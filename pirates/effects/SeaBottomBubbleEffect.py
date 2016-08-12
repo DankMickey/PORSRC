@@ -62,7 +62,7 @@ class SeaBottomBubbleEffect(PooledEffect, EffectController):
             self.f.removeForceGroup(self.f0)
 
         self.f0 = ForceGroup.ForceGroup('gravity')
-        force0 = LinearVectorForce(Vec3(0.0, 0.0, 0.050000000000000003), 1.0, 0)
+        force0 = LinearVectorForce(Vec3(0.0, 0.0, 0.050000), 1.0, 0)
         force0.setVectorMasks(1, 1, 1)
         force0.setActive(1)
         self.f0.addForce(force0)
@@ -87,7 +87,7 @@ class SeaBottomBubbleEffect(PooledEffect, EffectController):
         self.p0.renderer.setXScaleFlag(1)
         self.p0.renderer.setYScaleFlag(1)
         self.p0.renderer.setAnimAngleFlag(1)
-        bubbleSize = random.uniform(0.0025000000000000001, 0.0050000000000000001)
+        bubbleSize = random.uniform(0.00250, 0.00500)
         self.p0.renderer.setInitialXScale(0.002 * self.cardScale)
         self.p0.renderer.setInitialYScale(0.002 * self.cardScale)
         self.p0.renderer.setFinalXScale(0.002 * self.cardScale)

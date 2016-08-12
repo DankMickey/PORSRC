@@ -49,7 +49,7 @@ class FishingGame(DirectObject.DirectObject):
         self.lureForceTarget = 0
         self.lureCurrForce = 0
         self.wantLeg = False
-        self.forceTarget = Vec2(-0.10000000000000001, 0.10000000000000001)
+        self.forceTarget = Vec2(-0.100, 0.100)
         self.currForce = Vec2(0, 0)
         self.boundaryTarget = Vec2(0, 0)
         self.currBoundary = Vec2(0, 0)
@@ -78,27 +78,27 @@ class FishingGame(DirectObject.DirectObject):
         self.boatFishingCameraOffset = Point3(0.0, 0.0, 0.0)
         if self.distributedFishingSpot.onABoat:
             if self.distributedFishingSpot.index == 0:
-                self.distributedFishingSpot.oceanOffset = 13.300000000000001
+                self.distributedFishingSpot.oceanOffset = 13.3
                 self.boatFishingCameraOffset = FishingGlobals.boatSpotIndexToCameraOffset[self.distributedFishingSpot.index]
 
             if self.distributedFishingSpot.index == 1:
-                self.distributedFishingSpot.oceanOffset = 13.300000000000001
+                self.distributedFishingSpot.oceanOffset = 13.3
                 self.boatFishingCameraOffset = FishingGlobals.boatSpotIndexToCameraOffset[self.distributedFishingSpot.index]
 
             if self.distributedFishingSpot.index == 2:
-                self.distributedFishingSpot.oceanOffset = 13.300000000000001
+                self.distributedFishingSpot.oceanOffset = 13.3
                 self.boatFishingCameraOffset = FishingGlobals.boatSpotIndexToCameraOffset[self.distributedFishingSpot.index]
 
             if self.distributedFishingSpot.index == 3:
-                self.distributedFishingSpot.oceanOffset = 13.300000000000001
+                self.distributedFishingSpot.oceanOffset = 13.3
                 self.boatFishingCameraOffset = FishingGlobals.boatSpotIndexToCameraOffset[self.distributedFishingSpot.index]
 
             if self.distributedFishingSpot.index == 4:
-                self.distributedFishingSpot.oceanOffset = 13.300000000000001
+                self.distributedFishingSpot.oceanOffset = 13.3
                 self.boatFishingCameraOffset = FishingGlobals.boatSpotIndexToCameraOffset[self.distributedFishingSpot.index]
 
             if self.distributedFishingSpot.index == 5:
-                self.distributedFishingSpot.oceanOffset = 13.300000000000001
+                self.distributedFishingSpot.oceanOffset = 13.3
                 self.boatFishingCameraOffset = FishingGlobals.boatSpotIndexToCameraOffset[self.distributedFishingSpot.index]
 
 
@@ -159,11 +159,11 @@ class FishingGame(DirectObject.DirectObject):
 
 
     def getFishStruggleForceBaseOnStamina(self, dt):
-        return FishingGlobals.fishingRodInclineDegree * self.fishManager.activeFish.myData['strength'] * (1 + self.fishManager.activeFish.staminaPercentage() * 0.59999999999999998) * dt * 20.0
+        return FishingGlobals.fishingRodInclineDegree * self.fishManager.activeFish.myData['strength'] * (1 + self.fishManager.activeFish.staminaPercentage() * 0.598) * dt * 20.0
 
 
     def fishingRodPullbyHumanDegree(self):
-        return FishingGlobals.humanPulledfishingRodBackDegree * 0.40000000000000002
+        return FishingGlobals.humanPulledfishingRodBackDegree * 0.4
 
 
     def getSwimSpeedBaseOnFishStamina(self, currentState, dt):
@@ -212,13 +212,13 @@ class FishingGame(DirectObject.DirectObject):
                 return None
 
             percentToFail = (c - b) / float(a - b)
-            base.musicMgr.requestChangeVolume(SoundGlobals.SFX_MINIGAME_FISHING_LEGENDARY_MUSIC, 0.10000000000000001, percentToFail * 0.20000000000000001 + 0.59999999999999998)
+            base.musicMgr.requestChangeVolume(SoundGlobals.SFX_MINIGAME_FISHING_LEGENDARY_MUSIC, 0.100, percentToFail * 0.200 + 0.598)
             self.sfx['legendaryRed'].setVolume(percentToFail * 4)
         elif self.sfx['legendaryRed'].status() is 1:
             return None
 
         self.sfx['legendaryRed'].stop()
-        base.musicMgr.requestChangeVolume(SoundGlobals.SFX_MINIGAME_FISHING_LEGENDARY_MUSIC, 0.10000000000000001, 0.59999999999999998)
+        base.musicMgr.requestChangeVolume(SoundGlobals.SFX_MINIGAME_FISHING_LEGENDARY_MUSIC, 0.100, 0.598)
 
 
     def testForLegendaryFish(self, task = None):
@@ -278,7 +278,7 @@ class FishingGame(DirectObject.DirectObject):
         self.saveFishingRod = 0
         self.prevClickingTime = globalClock.getFrameTime()
         self.startStruggleTime = globalClock.getFrameTime()
-        taskMgr.doMethodLater(0.050000000000000003, self.checkStruggle, 'checkStruggle')
+        taskMgr.doMethodLater(0.050000, self.checkStruggle, 'checkStruggle')
 
 
     def checkForMouseClickRate(self):
@@ -660,8 +660,8 @@ class FishingGame(DirectObject.DirectObject):
         self.lure.lureModel.setR(self.lure.lureModel.getR() + self.lureCurrForce * dt)
         if (self.lure.lureModel.getR() > self.lureAngle or not lureSign or self.lure.lureModel.getR() < self.lureAngle) and lureSign:
             if abs(self.lureForceTarget) > 10:
-                self.lureForceTarget *= 0.59999999999999998
-                self.lureCurrForce *= 0.59999999999999998
+                self.lureForceTarget *= 0.598
+                self.lureCurrForce *= 0.598
 
 
         if self.fsm.getCurrentOrNextState() == 'LegendaryFish':
@@ -714,19 +714,19 @@ class FishingGame(DirectObject.DirectObject):
                 self.currBoundary += (self.boundaryTarget - self.currBoundary) * 0.25
                 self.currForce += (self.forceTarget - self.currForce) * 0.25
                 if (self.forceTarget - self.currForce).length() < 0.01:
-                    self.forceTarget = Vec2(random.uniform(-0.10000000000000001, 0.10000000000000001), random.uniform(-0.10000000000000001, 0.10000000000000001))
+                    self.forceTarget = Vec2(random.uniform(-0.100, 0.100), random.uniform(-0.100, 0.100))
 
                 newX = self.lure.getX() + (self.reelVelocityMultiplier * FishingGlobals.lureVelocities[currentState][0] + self.currBoundary[0] + self.currForce[0]) * dt
                 if newX < FishingGlobals.leftLureBarrier:
-                    self.boundaryTarget[0] += 0.29999999999999999
+                    self.boundaryTarget[0] += 0.299
                 elif self.boundaryTarget[0] > 0:
-                    self.boundaryTarget[0] = max(0, self.boundaryTarget[0] - 0.40000000000000002)
+                    self.boundaryTarget[0] = max(0, self.boundaryTarget[0] - 0.4)
 
                 newZ = min(self.lure.getZ() + (self.reelVelocityMultiplier * FishingGlobals.lureVelocities[currentState][2] + self.currBoundary[1] + self.currForce[1]) * dt, self.waterLevel)
                 if (newZ < -(self.castDistance) or currentState == 'Fishing') and newZ < FishingGlobals.fishingLevelBoundaries[self.getRodLevel() - 1]:
-                    self.boundaryTarget[1] += 0.10000000000000001
+                    self.boundaryTarget[1] += 0.100
                 elif self.boundaryTarget[1] > 0:
-                    self.boundaryTarget[1] = max(0, self.boundaryTarget[1] - 0.29999999999999999)
+                    self.boundaryTarget[1] = max(0, self.boundaryTarget[1] - 0.299)
 
                 self.lure.setPos(newX, -1.0, newZ)
                 if int(self.lure.getX()) <= int(FishingGlobals.leftLureBarrier) and int(self.lure.getZ()) >= int(self.waterLevel):
@@ -776,7 +776,7 @@ class FishingGame(DirectObject.DirectObject):
             self.updateLine(startPoint, endPoint, self.getLineColorBasedOnHealth())
         else:
             endPoint = self.lure.getPos(self.fishingSpot)
-            self.updateLine(startPoint, endPoint, Vec4(0.29999999999999999, 0.29999999999999999, 1.0, 0.5))
+            self.updateLine(startPoint, endPoint, Vec4(0.299, 0.299, 1.0, 0.5))
         self.fishManager.update(dt)
         if self.lfgFsm.getCurrentOrNextState() in [
             'Win',

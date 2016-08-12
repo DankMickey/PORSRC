@@ -38,135 +38,135 @@ class NewTutorialPanel(GuiPanel.GuiPanel):
         'lookoutOpen': 'lookoutOpened',
         'lookoutClose': 'lookoutClosed' }
     DIMENSION_TO_EVENTS = {
-        'seachestOpen': (1.25, 0.25, 0.20000000000000001, 0, 0.20000000000000001),
-        'questPageOpen': (1.25, 0.25, 0.20000000000000001, 0, 0.20000000000000001),
-        'questPageClose': (1.25, 0.25, 0.20000000000000001, 0, 0.20000000000000001),
-        'boardShip': (1.25, 0.25, 0.20000000000000001, 0, 0.20000000000000001),
-        'useCannon': (1.25, 0.25, 0.20000000000000001, 0, 1.3999999999999999),
-        'moveCannon': (1.25, 0.25, 0.20000000000000001, 0, 1.3999999999999999),
-        'fireCannon': (1.25, 0.25, 0.20000000000000001, 0, 1.3999999999999999),
-        'exitCannon': (1.25, 0.25, 0.20000000000000001, 0, 1.3999999999999999),
-        'leaveJail': (1.25, 0.25, 0.20000000000000001, 0, 0.20000000000000001),
-        'showBlacksmith': (1.27, 0.25, 0.20000000000000001, 0, 0.20000000000000001),
-        'doCutlassTutorial': (1.25, 0.25, 0.20000000000000001, 0, 1.2),
-        'drawSword': (1.25, 0.25, 0.20000000000000001, 0, 1.2),
-        'attackSword': (1.25, 0.25, 0.20000000000000001, 0, 1.2),
-        'comboSword': (1.25, 0.25, 0.20000000000000001, 0, 1.2),
-        'bonusSword': (1.25, 0.25, 0.20000000000000001, 0, 1.2),
-        'cutlassLvl': (1.25, 0.25, 0.20000000000000001, 0, 0.25),
-        'cutlassSkillOpen': (1.25, 0.25, 0.20000000000000001, 0, 0.25),
-        'cutlassSkillUnlock': (1.25, 0.25, 0.20000000000000001, 0, 0.25),
-        'cutlassDoneLvl': (1.25, 0.25, 0.20000000000000001, 0, 0.25),
-        'specialMenu': (1.25, 0.25, 0.20000000000000001, 0, 1.2),
-        'skillLearning': (1.27, 0.25, 0.20000000000000001, 0, 1.2),
-        'sheatheSword': (1.25, 0.25, 0.20000000000000001, 0, 1.2),
-        'showSkeleton': (1.27, 0.25, 0.20000000000000001, 0, 0.20000000000000001),
-        'showJungleTia': (1.25, 0.25, 0.20000000000000001, 0, 0.20000000000000001),
-        'receiveCompass': (1.25, 0.25, 0.20000000000000001, 0, 0.20000000000000001),
-        'compassActiveQuest': (1.25, 0.25, 0.20000000000000001, 0, 1.2),
-        'compassIconsBearing': (1.25, 0.25, 0.20000000000000001, 0, 1.2),
-        'compassIconsPeople': (1.25, 0.25, 0.20000000000000001, 0, 1.2),
-        'showNavy': (1.25, 0.25, 0.20000000000000001, 0, 0.20000000000000001),
-        'showGovMansion': (1.25, 0.25, 0.20000000000000001, 0, 0.20000000000000001),
-        'showDarby': (1.25, 0.25, 0.20000000000000001, 0, 0.20000000000000001),
-        'showDinghy': (1.25, 0.25, 0.20000000000000001, 0, 0.20000000000000001),
-        'showBarbossa': (1.25, 0.25, 0.20000000000000001, 0, 0.20000000000000001),
-        'pistolAim': (1.25, 0.25, 0.20000000000000001, 0, 0.25),
-        'pistolTarget': (1.25, 0.25, 0.20000000000000001, 0, 0.25),
-        'pistolHit': (1.25, 0.25, 0.20000000000000001, 0, 0.25),
-        'pistolPractice': (1.25, 0.25, 0.20000000000000001, 0, 0.25),
-        'learnLookout': (1.25, 0.25, 0.20000000000000001, 0, 0.20000000000000001),
-        'lookoutChestOpen': (1.25, 0.25, 0.20000000000000001, 0, 0.20000000000000001),
-        'lookoutOpen': (1.25, 0.25, 0.20000000000000001, 0, 0.20000000000000001),
-        'lookoutClose': (1.25, 0.25, 0.20000000000000001, 0, 0.20000000000000001),
-        'showTortugaJack': (1.25, 0.25, 0.20000000000000001, 0, 0.20000000000000001),
-        'teleport_tut1': (1.25, 0.25, 0.20000000000000001, 0, 0.20000000000000001),
-        'teleport_tut2': (1.25, 0.25, 0.20000000000000001, 0, 0.20000000000000001),
-        'teleport_tut3': (1.25, 0.25, 0.20000000000000001, 0, 0.20000000000000001),
-        'chat_tut1': (1.25, 0.25, 0.20000000000000001, 0, 1.2),
-        'chat_tut2': (1.25, 0.25, 0.20000000000000001, 0, 1.2),
-        'chat_tut3': (1.27, 0.25, 0.20000000000000001, 0, 1.2),
-        'chat_tut4': (1.27, 0.25, 0.20000000000000001, 0, 0.20000000000000001),
-        'chat_tut5': (1.27, 0.25, 0.20000000000000001, 0, 0.20000000000000001),
-        'chat_tut6': (1.25, 0.25, 0.20000000000000001, 0, 1.2),
-        'chat_tut7': (1.25, 0.25, 0.20000000000000001, 0, 1.2),
-        'chat_tut8': (1.25, 0.25, 0.20000000000000001, 0, 1.2),
-        'chat_tut_alt1': (1.25, 0.25, 0.20000000000000001, 0, 1.2),
-        'chat_tut_alt2': (1.25, 0.25, 0.20000000000000001, 0, 1.2),
-        'chat_tut_alt3': (1.25, 0.25, 0.20000000000000001, 0, 1.2),
-        'chat_tut_alt4': (1.27, 0.25, 0.20000000000000001, 0, 1.2),
-        'chat_tut_alt5': (1.27, 0.25, 0.20000000000000001, 0, 0.20000000000000001),
-        'chat_tut_alt6': (1.27, 0.25, 0.20000000000000001, 0, 0.20000000000000001),
-        'chat_tut_alt7': (1.25, 0.25, 0.20000000000000001, 0, 1.2),
-        'chat_tut_alt8': (1.25, 0.25, 0.20000000000000001, 0, 1.2) }
+        'seachestOpen': (1.25, 0.25, 0.200, 0, 0.200),
+        'questPageOpen': (1.25, 0.25, 0.200, 0, 0.200),
+        'questPageClose': (1.25, 0.25, 0.200, 0, 0.200),
+        'boardShip': (1.25, 0.25, 0.200, 0, 0.200),
+        'useCannon': (1.25, 0.25, 0.200, 0, 1.39),
+        'moveCannon': (1.25, 0.25, 0.200, 0, 1.39),
+        'fireCannon': (1.25, 0.25, 0.200, 0, 1.39),
+        'exitCannon': (1.25, 0.25, 0.200, 0, 1.39),
+        'leaveJail': (1.25, 0.25, 0.200, 0, 0.200),
+        'showBlacksmith': (1.27, 0.25, 0.200, 0, 0.200),
+        'doCutlassTutorial': (1.25, 0.25, 0.200, 0, 1.2),
+        'drawSword': (1.25, 0.25, 0.200, 0, 1.2),
+        'attackSword': (1.25, 0.25, 0.200, 0, 1.2),
+        'comboSword': (1.25, 0.25, 0.200, 0, 1.2),
+        'bonusSword': (1.25, 0.25, 0.200, 0, 1.2),
+        'cutlassLvl': (1.25, 0.25, 0.200, 0, 0.25),
+        'cutlassSkillOpen': (1.25, 0.25, 0.200, 0, 0.25),
+        'cutlassSkillUnlock': (1.25, 0.25, 0.200, 0, 0.25),
+        'cutlassDoneLvl': (1.25, 0.25, 0.200, 0, 0.25),
+        'specialMenu': (1.25, 0.25, 0.200, 0, 1.2),
+        'skillLearning': (1.27, 0.25, 0.200, 0, 1.2),
+        'sheatheSword': (1.25, 0.25, 0.200, 0, 1.2),
+        'showSkeleton': (1.27, 0.25, 0.200, 0, 0.200),
+        'showJungleTia': (1.25, 0.25, 0.200, 0, 0.200),
+        'receiveCompass': (1.25, 0.25, 0.200, 0, 0.200),
+        'compassActiveQuest': (1.25, 0.25, 0.200, 0, 1.2),
+        'compassIconsBearing': (1.25, 0.25, 0.200, 0, 1.2),
+        'compassIconsPeople': (1.25, 0.25, 0.200, 0, 1.2),
+        'showNavy': (1.25, 0.25, 0.200, 0, 0.200),
+        'showGovMansion': (1.25, 0.25, 0.200, 0, 0.200),
+        'showDarby': (1.25, 0.25, 0.200, 0, 0.200),
+        'showDinghy': (1.25, 0.25, 0.200, 0, 0.200),
+        'showBarbossa': (1.25, 0.25, 0.200, 0, 0.200),
+        'pistolAim': (1.25, 0.25, 0.200, 0, 0.25),
+        'pistolTarget': (1.25, 0.25, 0.200, 0, 0.25),
+        'pistolHit': (1.25, 0.25, 0.200, 0, 0.25),
+        'pistolPractice': (1.25, 0.25, 0.200, 0, 0.25),
+        'learnLookout': (1.25, 0.25, 0.200, 0, 0.200),
+        'lookoutChestOpen': (1.25, 0.25, 0.200, 0, 0.200),
+        'lookoutOpen': (1.25, 0.25, 0.200, 0, 0.200),
+        'lookoutClose': (1.25, 0.25, 0.200, 0, 0.200),
+        'showTortugaJack': (1.25, 0.25, 0.200, 0, 0.200),
+        'teleport_tut1': (1.25, 0.25, 0.200, 0, 0.200),
+        'teleport_tut2': (1.25, 0.25, 0.200, 0, 0.200),
+        'teleport_tut3': (1.25, 0.25, 0.200, 0, 0.200),
+        'chat_tut1': (1.25, 0.25, 0.200, 0, 1.2),
+        'chat_tut2': (1.25, 0.25, 0.200, 0, 1.2),
+        'chat_tut3': (1.27, 0.25, 0.200, 0, 1.2),
+        'chat_tut4': (1.27, 0.25, 0.200, 0, 0.200),
+        'chat_tut5': (1.27, 0.25, 0.200, 0, 0.200),
+        'chat_tut6': (1.25, 0.25, 0.200, 0, 1.2),
+        'chat_tut7': (1.25, 0.25, 0.200, 0, 1.2),
+        'chat_tut8': (1.25, 0.25, 0.200, 0, 1.2),
+        'chat_tut_alt1': (1.25, 0.25, 0.200, 0, 1.2),
+        'chat_tut_alt2': (1.25, 0.25, 0.200, 0, 1.2),
+        'chat_tut_alt3': (1.25, 0.25, 0.200, 0, 1.2),
+        'chat_tut_alt4': (1.27, 0.25, 0.200, 0, 1.2),
+        'chat_tut_alt5': (1.27, 0.25, 0.200, 0, 0.200),
+        'chat_tut_alt6': (1.27, 0.25, 0.200, 0, 0.200),
+        'chat_tut_alt7': (1.25, 0.25, 0.200, 0, 1.2),
+        'chat_tut_alt8': (1.25, 0.25, 0.200, 0, 1.2) }
     ARROW_TO_EVENTS = {
         'seachestOpen': (base.a2dBottomRight, -0.25, 0, 0.25, 135),
-        'questPageOpen': (base.a2dBottomRight, -0.22500000000000001, 0, 0.42999999999999999, 135),
+        'questPageOpen': (base.a2dBottomRight, -0.225, 0, 0.429, 135),
         'questPageClose': (base.a2dBottomRight, -0.25, 0, 0.25, 135),
-        'drawSword': (base.a2dBottomRight, -0.67500000000000004, 0, 0.25, 135),
+        'drawSword': (base.a2dBottomRight, -0.675000, 0, 0.25, 135),
         'cutlassLvl': (base.a2dBottomRight, -0.25, 0, 0.25, 135),
         'cutlassSkillOpen': (base.a2dBottomRight, -0.25, 0, 1.0, 135),
         'cutlassSkillUnlock': (base.a2dBottomRight, -1.0, 0, 1.05, 135),
         'cutlassDoneLvl': (base.a2dBottomRight, -0.25, 0, 0.25, 135),
-        'specialMenu': (base.a2dBottomCenter, -0.42499999999999999, 0, 0.32500000000000001, 135),
-        'chat_tut1': (base.a2dBottomLeft, 0.40000000000000002, 0, 0.20000000000000001, 225),
-        'chat_tut2': (base.a2dBottomLeft, 0.5, 0, 0.20000000000000001, 225),
+        'specialMenu': (base.a2dBottomCenter, -0.424, 0, 0.325, 135),
+        'chat_tut1': (base.a2dBottomLeft, 0.4, 0, 0.200, 225),
+        'chat_tut2': (base.a2dBottomLeft, 0.5, 0, 0.200, 225),
         'chat_tut5': (base.a2dBottomLeft, 1.45, 0, 1.55, 225),
-        'chat_tut_alt2': (base.a2dBottomLeft, 0.29999999999999999, 0, 0.20000000000000001, 225),
+        'chat_tut_alt2': (base.a2dBottomLeft, 0.299, 0, 0.200, 225),
         'chat_tut_alt6': (base.a2dBottomLeft, 1.45, 0, 1.55, 225),
-        'lookoutChestOpen': (base.a2dBottomRight, -0.22500000000000001, 0, 0.25, 135),
-        'lookoutOpen': (base.a2dBottomRight, -0.22500000000000001, 0, 0.54500000000000004, 135),
+        'lookoutChestOpen': (base.a2dBottomRight, -0.225, 0, 0.25, 135),
+        'lookoutOpen': (base.a2dBottomRight, -0.225, 0, 0.545000, 135),
         'lookoutClose': (base.a2dBottomRight, -0.25, 0, 0.25, 135) }
     ICON_TO_EVENTS = {
-        'seachestOpen': ('models/gui/toplevel_gui', 'treasure_chest_closed', 0.17000000000000001),
-        'questPageOpen': ('models/gui/toplevel_gui', 'topgui_icon_journal', 0.28599999999999998),
-        'questPageClose': ('models/gui/toplevel_gui', 'treasure_chest_open', 0.17000000000000001),
-        'moveCannon': ('models/gui/toplevel_gui', 'icon_mouse_right', 0.17000000000000001),
-        'fireCannon': ('models/gui/toplevel_gui', 'icon_mouse_left', 0.17000000000000001),
-        'showBlacksmith': ('models/gui/toplevel_gui', 'icon_warehouse', 0.22500000000000001),
-        'doCutlassTutorial': ('models/gui/gui_icons_weapon', 'pir_t_ico_swd_cutlass_a', 0.17000000000000001),
-        'drawSword': ('models/gui/gui_icons_weapon', 'pir_t_ico_swd_cutlass_a', 0.17000000000000001),
-        'attackSword': ('models/gui/toplevel_gui', 'icon_mouse_left', 0.17000000000000001),
-        'comboSword': ('models/gui/toplevel_gui', 'icon_mouse_double_left', 0.28499999999999998),
-        'bonusSword': ('models/gui/toplevel_gui', 'icon_mouse_double_left', 0.28499999999999998),
-        'cutlassLvl': ('models/gui/toplevel_gui', 'treasure_chest_closed', 0.17000000000000001),
-        'cutlassSkillOpen': ('models/gui/toplevel_gui', 'topgui_icon_skills', 0.17000000000000001),
-        'cutlassSkillUnlock': ('models/textureCards/skillIcons', 'tutorial_sweep', 0.10000000000000001),
-        'cutlassDoneLvl': ('models/gui/toplevel_gui', 'treasure_chest_open', 0.17000000000000001),
-        'specialMenu': ('models/textureCards/skillIcons', 'tutorial_sweep', 0.10000000000000001),
-        'skillLearning': ('models/gui/toplevel_gui', 'topgui_icon_skills', 0.17000000000000001),
-        'showSkeleton': ('models/gui/toplevel_gui', 'icon_grave_yard', 0.22500000000000001),
-        'showJungleTia': ('models/gui/toplevel_gui', 'icon_jungle_entrance', 0.22500000000000001),
+        'seachestOpen': ('models/gui/toplevel_gui', 'treasure_chest_closed', 0.170),
+        'questPageOpen': ('models/gui/toplevel_gui', 'topgui_icon_journal', 0.28598),
+        'questPageClose': ('models/gui/toplevel_gui', 'treasure_chest_open', 0.170),
+        'moveCannon': ('models/gui/toplevel_gui', 'icon_mouse_right', 0.170),
+        'fireCannon': ('models/gui/toplevel_gui', 'icon_mouse_left', 0.170),
+        'showBlacksmith': ('models/gui/toplevel_gui', 'icon_warehouse', 0.225),
+        'doCutlassTutorial': ('models/gui/gui_icons_weapon', 'pir_t_ico_swd_cutlass_a', 0.170),
+        'drawSword': ('models/gui/gui_icons_weapon', 'pir_t_ico_swd_cutlass_a', 0.170),
+        'attackSword': ('models/gui/toplevel_gui', 'icon_mouse_left', 0.170),
+        'comboSword': ('models/gui/toplevel_gui', 'icon_mouse_double_left', 0.28498),
+        'bonusSword': ('models/gui/toplevel_gui', 'icon_mouse_double_left', 0.28498),
+        'cutlassLvl': ('models/gui/toplevel_gui', 'treasure_chest_closed', 0.170),
+        'cutlassSkillOpen': ('models/gui/toplevel_gui', 'topgui_icon_skills', 0.170),
+        'cutlassSkillUnlock': ('models/textureCards/skillIcons', 'tutorial_sweep', 0.100),
+        'cutlassDoneLvl': ('models/gui/toplevel_gui', 'treasure_chest_open', 0.170),
+        'specialMenu': ('models/textureCards/skillIcons', 'tutorial_sweep', 0.100),
+        'skillLearning': ('models/gui/toplevel_gui', 'topgui_icon_skills', 0.170),
+        'showSkeleton': ('models/gui/toplevel_gui', 'icon_grave_yard', 0.225),
+        'showJungleTia': ('models/gui/toplevel_gui', 'icon_jungle_entrance', 0.225),
         'receiveCompass': ('models/gui/toplevel_gui', 'compass_small_button_open', 0.25),
         'compassActiveQuest': ('models/gui/toplevel_gui', 'compass_small_button_open', 0.25),
         'compassIconsBearing': ('models/gui/toplevel_gui', 'compass_small_button_open', 0.25),
         'compassIconsPeople': ('models/gui/toplevel_gui', 'compass_small_button_open', 0.25),
-        'showNavy': ('models/gui/toplevel_gui', 'icon_navy', 0.22500000000000001),
-        'showGovMansion': ('models/gui/toplevel_gui', 'icon_gov_mansion', 0.22500000000000001),
-        'showDarby': ('models/gui/toplevel_gui', 'icon_darby', 0.22500000000000001),
-        'showDinghy': ('models/gui/toplevel_gui', 'icon_dinghy', 0.22500000000000001),
-        'showBarbossa': ('models/gui/toplevel_gui', 'icon_cave_entrance', 0.22500000000000001),
-        'chat_tut1': ('models/gui/triangle', 'triangle_over', 0.085000000000000006),
-        'chat_tut2': ('models/gui/triangle', 'triangle_over', 0.085000000000000006),
-        'chat_tut3': ('models/gui/chat_frame_skull', 'chat_frame_skull_over', 0.29999999999999999),
-        'chat_tut4': ('models/gui/chat_frame_skull', 'chat_frame_skull_over', 0.29999999999999999),
-        'chat_tut5': ('models/gui/chat_frame_skull', 'chat_frame_skull_over', 0.29999999999999999),
-        'chat_tut6': ('models/gui/chat_frame_skull', 'chat_frame_skull_over', 0.29999999999999999),
-        'chat_tut7': ('models/gui/chat_frame_skull', 'chat_frame_skull_over', 0.29999999999999999),
-        'chat_tut8': ('models/gui/chat_frame_skull', 'chat_frame_skull_over', 0.29999999999999999),
-        'chat_tut_alt2': ('models/gui/chat_frame_skull', 'chat_frame_skull_over', 0.29999999999999999),
-        'chat_tut_alt4': ('models/gui/chat_frame_skull', 'chat_frame_skull_over', 0.29999999999999999),
-        'chat_tut_alt5': ('models/gui/chat_frame_skull', 'chat_frame_skull_over', 0.29999999999999999),
-        'chat_tut_alt6': ('models/gui/chat_frame_skull', 'chat_frame_skull_over', 0.29999999999999999),
-        'chat_tut_alt7': ('models/gui/chat_frame_skull', 'chat_frame_skull_over', 0.29999999999999999),
-        'chat_tut_alt8': ('models/gui/chat_frame_skull', 'chat_frame_skull_over', 0.29999999999999999),
-        'pistolAim': ('models/gui/toplevel_gui', 'icon_mouse_right', 0.17000000000000001),
-        'pistolHit': ('models/gui/toplevel_gui', 'icon_mouse_left', 0.17000000000000001),
-        'learnLookout': ('models/gui/toplevel_gui', 'telescope_button', 0.22500000000000001),
-        'lookoutChestOpen': ('models/gui/toplevel_gui', 'treasure_chest_closed', 0.17000000000000001),
-        'lookoutOpen': ('models/gui/toplevel_gui', 'telescope_button', 0.22500000000000001),
-        'lookoutClose': ('models/gui/toplevel_gui', 'treasure_chest_open', 0.17000000000000001),
-        'showTortugaJack': ('models/gui/toplevel_gui', 'icon_faithful_bride', 0.22500000000000001) }
+        'showNavy': ('models/gui/toplevel_gui', 'icon_navy', 0.225),
+        'showGovMansion': ('models/gui/toplevel_gui', 'icon_gov_mansion', 0.225),
+        'showDarby': ('models/gui/toplevel_gui', 'icon_darby', 0.225),
+        'showDinghy': ('models/gui/toplevel_gui', 'icon_dinghy', 0.225),
+        'showBarbossa': ('models/gui/toplevel_gui', 'icon_cave_entrance', 0.225),
+        'chat_tut1': ('models/gui/triangle', 'triangle_over', 0.085),
+        'chat_tut2': ('models/gui/triangle', 'triangle_over', 0.085),
+        'chat_tut3': ('models/gui/chat_frame_skull', 'chat_frame_skull_over', 0.299),
+        'chat_tut4': ('models/gui/chat_frame_skull', 'chat_frame_skull_over', 0.299),
+        'chat_tut5': ('models/gui/chat_frame_skull', 'chat_frame_skull_over', 0.299),
+        'chat_tut6': ('models/gui/chat_frame_skull', 'chat_frame_skull_over', 0.299),
+        'chat_tut7': ('models/gui/chat_frame_skull', 'chat_frame_skull_over', 0.299),
+        'chat_tut8': ('models/gui/chat_frame_skull', 'chat_frame_skull_over', 0.299),
+        'chat_tut_alt2': ('models/gui/chat_frame_skull', 'chat_frame_skull_over', 0.299),
+        'chat_tut_alt4': ('models/gui/chat_frame_skull', 'chat_frame_skull_over', 0.299),
+        'chat_tut_alt5': ('models/gui/chat_frame_skull', 'chat_frame_skull_over', 0.299),
+        'chat_tut_alt6': ('models/gui/chat_frame_skull', 'chat_frame_skull_over', 0.299),
+        'chat_tut_alt7': ('models/gui/chat_frame_skull', 'chat_frame_skull_over', 0.299),
+        'chat_tut_alt8': ('models/gui/chat_frame_skull', 'chat_frame_skull_over', 0.299),
+        'pistolAim': ('models/gui/toplevel_gui', 'icon_mouse_right', 0.170),
+        'pistolHit': ('models/gui/toplevel_gui', 'icon_mouse_left', 0.170),
+        'learnLookout': ('models/gui/toplevel_gui', 'telescope_button', 0.225),
+        'lookoutChestOpen': ('models/gui/toplevel_gui', 'treasure_chest_closed', 0.170),
+        'lookoutOpen': ('models/gui/toplevel_gui', 'telescope_button', 0.225),
+        'lookoutClose': ('models/gui/toplevel_gui', 'treasure_chest_open', 0.170),
+        'showTortugaJack': ('models/gui/toplevel_gui', 'icon_faithful_bride', 0.225) }
     IVALS_TO_EVENTS = {
         'compassActiveQuest': True,
         'compassIconsBearing': True,
@@ -174,18 +174,18 @@ class NewTutorialPanel(GuiPanel.GuiPanel):
 
     def __init__(self, tutorialList, ignoreEscape = True, title = None):
         mode = tutorialList[0]
-        aspectRatio = 1.3200000000000001
+        aspectRatio = 1.32
         showClose = False
         self.closeMessage = self.STAGE_TO_EVENTS.get(mode, 'closeTutorialWindow')
         self.closeMessageCatchall = 'closeTutorialWindowAll'
         self.mode = mode
-        (width, height, x, y, z) = self.DIMENSION_TO_EVENTS.get(mode, (PiratesGuiGlobals.TutorialPanelWidth, PiratesGuiGlobals.TutorialPanelHeight, 0.029999999999999999, 0, 1.0))
-        GuiPanel.GuiPanel.__init__(self, '', width * aspectRatio, height * aspectRatio, showClose, modelName = 'general_frame_e', borderScale = 0.40000000000000002, bgBuffer = 0.14999999999999999)
+        (width, height, x, y, z) = self.DIMENSION_TO_EVENTS.get(mode, (PiratesGuiGlobals.TutorialPanelWidth, PiratesGuiGlobals.TutorialPanelHeight, 0.0299, 0, 1.0))
+        GuiPanel.GuiPanel.__init__(self, '', width * aspectRatio, height * aspectRatio, showClose, modelName = 'general_frame_e', borderScale = 0.4, bgBuffer = 0.149)
         self.initialiseoptions(NewTutorialPanel)
         self.reparentTo(base.a2dBottomLeft)
         self.setPos(x, y, z)
         self.setBin('gui-popup', 0)
-        (iconFile, iconName, iconScale) = self.ICON_TO_EVENTS.get(self.mode, ('models/gui/toplevel_gui', 'not_defined', 0.17000000000000001))
+        (iconFile, iconName, iconScale) = self.ICON_TO_EVENTS.get(self.mode, ('models/gui/toplevel_gui', 'not_defined', 0.170))
         guiFile = loader.loadModel(iconFile)
         flip = 0
         if iconName == 'icon_mouse_right':
@@ -201,14 +201,14 @@ class NewTutorialPanel(GuiPanel.GuiPanel):
 
         if self.icon:
             self.icon.reparentTo(self)
-            self.icon.setPos(0.17000000000000001, 0, 0.12 * aspectRatio)
+            self.icon.setPos(0.170, 0, 0.12 * aspectRatio)
             self.icon.setScale(iconScale * aspectRatio)
             if flip:
                 self.icon.setHpr(180, 0, 0)
 
-            textXOffset = 0.29999999999999999
+            textXOffset = 0.299
         else:
-            textXOffset = 0.10000000000000001
+            textXOffset = 0.100
         (arrowParent, ax, ay, az, ar) = self.ARROW_TO_EVENTS.get(self.mode, (None, 0, 0, 0, 135))
         if arrowParent:
             self.arrow = loader.loadModel('models/gui/arrow_with_halo')
@@ -243,7 +243,7 @@ class NewTutorialPanel(GuiPanel.GuiPanel):
         listLen = len(tutorialList)
         self.yesTutorial = None
         self.noTutorial = None
-        buttonPos = (0.59999999999999998 + textXOffset, 0, 0.11)
+        buttonPos = (0.598 + textXOffset, 0, 0.11)
         yesButtonText = PLocalizer.lOk
         if listLen > 3:
             self.wreckHitButton = []
@@ -256,9 +256,9 @@ class NewTutorialPanel(GuiPanel.GuiPanel):
 
             self.modifyText = text
         elif listLen >= 3:
-            buttonPos = (0.69999999999999996 + textXOffset, 0, 0.11)
+            buttonPos = (0.696 + textXOffset, 0, 0.11)
             self.noTutorial = DialogButton.DialogButton(self, text = PLocalizer.lNo, buttonStyle = DialogButton.DialogButton.NO, pos = buttonPos)
-            buttonPos = (0.40000000000000002 + textXOffset, 0, 0.11)
+            buttonPos = (0.4 + textXOffset, 0, 0.11)
             yesButtonText = PLocalizer.lYes
 
         if listLen >= 2:
@@ -273,7 +273,7 @@ class NewTutorialPanel(GuiPanel.GuiPanel):
             wordWrap = 12
         else:
             wordWrap = 8
-            yOffsetFudge = 0.050000000000000003
+            yOffsetFudge = 0.050000
         lenText = len(text)
         possibleNumLines = int(lenText / wordWrap)
         if title:
@@ -320,7 +320,7 @@ class NewTutorialPanel(GuiPanel.GuiPanel):
             ctrlCard.reparentTo(ctrlCardRoot)
             shiftCardRoot = NodePath('shiftCardRoot')
             shiftCard = kbButton.copyTo(kbButton)
-            shiftCard.setScale(2.2000000000000002, 1, 1)
+            shiftCard.setScale(2.2, 1, 1)
             shiftCard.reparentTo(shiftCardRoot)
             escapeCardRoot = NodePath('escapeCardRoot')
             escapeCard = kbButton.copyTo(kbButton)
@@ -334,7 +334,7 @@ class NewTutorialPanel(GuiPanel.GuiPanel):
             skillPageCardRoot = NodePath('skillCardRoot')
             skillPageCard = skButton.copyTo(skButton)
             skillPageCard.setScale(3.0)
-            skillPageCard.setPos(0, 0, -0.10000000000000001)
+            skillPageCard.setPos(0, 0, -0.100)
             skillPageCard.reparentTo(skillPageCardRoot)
             weapon1Card = kbButton.copyTo(kbButton)
             weapon2Card = kbButton.copyTo(kbButton)
@@ -366,16 +366,16 @@ class NewTutorialPanel(GuiPanel.GuiPanel):
             journalCard = jnButton.copyTo(jnButton)
             journalCard.setScale(4)
             journalCard.reparentTo(journalCardRoot)
-            tabText = DirectLabel(parent = tabCardRoot, relief = None, text = PLocalizer.TabKey, text_scale = 1.0, text_align = base.a2dBottomRight, text_fg = (0, 0, 0, 1), text_wordwrap = 12, pos = (0.0, 0.0, -0.14999999999999999))
-            ctrlText = DirectLabel(parent = ctrlCardRoot, relief = None, text = PLocalizer.CtrlKey, text_scale = 1.0, text_align = TextNode.ACenter, text_fg = (0, 0, 0, 1), text_wordwrap = 12, pos = (0.0, 0.0, -0.14999999999999999))
-            shiftText = DirectLabel(parent = shiftCardRoot, relief = None, text = PLocalizer.ShiftKey, text_scale = 1.0, text_align = TextNode.ACenter, text_fg = (0, 0, 0, 1), text_wordwrap = 12, pos = (0.0, 0.0, -0.14999999999999999))
-            escapeText = DirectLabel(parent = escapeCardRoot, relief = None, text = PLocalizer.EscapeKey, text_scale = 1.0, text_align = TextNode.ACenter, text_fg = (0, 0, 0, 1), text_wordwrap = 12, pos = (0.0, 0.0, -0.14999999999999999))
-            oneText = DirectLabel(parent = oneCardRoot, relief = None, text = PLocalizer.OneKey, text_scale = 1.0, text_align = TextNode.ACenter, text_fg = (0, 0, 0, 1), text_wordwrap = 12, pos = (0.0, 0.0, -0.14999999999999999))
-            questPageText = DirectLabel(parent = questPageCard, relief = None, text = PLocalizer.QuestPageKey, text_scale = 0.90000000000000002, text_align = TextNode.ACenter, text_font = PiratesGlobals.getPirateFont(), text_fg = (0, 0, 0, 1), text_wordwrap = 12, pos = (0.0, 0, -0.050000000000000003))
-            weapon1Text = DirectLabel(parent = weapon1Card, relief = None, text = PLocalizer.WeaponSlot1, text_scale = 0.90000000000000002, text_align = TextNode.ACenter, text_fg = (0, 0, 0, 1), text_wordwrap = 12, pos = (0.0, 0, -0.14999999999999999))
-            weapon2Text = DirectLabel(parent = weapon2Card, relief = None, text = PLocalizer.WeaponSlot2, text_scale = 0.90000000000000002, text_align = TextNode.ACenter, text_fg = (0, 0, 0, 1), text_wordwrap = 12, pos = (0.0, 0, -0.14999999999999999))
-            lookoutText = DirectLabel(parent = lookoutCard, relief = None, text = PLocalizer.LookoutPageKey, text_scale = 0.90000000000000002, text_align = TextNode.ACenter, text_fg = (0, 0, 0, 1), text_wordwrap = 12, pos = (0.0, 0, -0.14999999999999999))
-            moveText = DirectLabel(parent = moveCard, relief = None, text = PLocalizer.ForwardMoveKey, text_scale = 0.90000000000000002, text_align = TextNode.ACenter, text_fg = (0, 0, 0, 1), text_wordwrap = 12, pos = (0.0, 0, -0.14999999999999999))
+            tabText = DirectLabel(parent = tabCardRoot, relief = None, text = PLocalizer.TabKey, text_scale = 1.0, text_align = base.a2dBottomRight, text_fg = (0, 0, 0, 1), text_wordwrap = 12, pos = (0.0, 0.0, -0.149))
+            ctrlText = DirectLabel(parent = ctrlCardRoot, relief = None, text = PLocalizer.CtrlKey, text_scale = 1.0, text_align = TextNode.ACenter, text_fg = (0, 0, 0, 1), text_wordwrap = 12, pos = (0.0, 0.0, -0.149))
+            shiftText = DirectLabel(parent = shiftCardRoot, relief = None, text = PLocalizer.ShiftKey, text_scale = 1.0, text_align = TextNode.ACenter, text_fg = (0, 0, 0, 1), text_wordwrap = 12, pos = (0.0, 0.0, -0.149))
+            escapeText = DirectLabel(parent = escapeCardRoot, relief = None, text = PLocalizer.EscapeKey, text_scale = 1.0, text_align = TextNode.ACenter, text_fg = (0, 0, 0, 1), text_wordwrap = 12, pos = (0.0, 0.0, -0.149))
+            oneText = DirectLabel(parent = oneCardRoot, relief = None, text = PLocalizer.OneKey, text_scale = 1.0, text_align = TextNode.ACenter, text_fg = (0, 0, 0, 1), text_wordwrap = 12, pos = (0.0, 0.0, -0.149))
+            questPageText = DirectLabel(parent = questPageCard, relief = None, text = PLocalizer.QuestPageKey, text_scale = 0.9, text_align = TextNode.ACenter, text_font = PiratesGlobals.getPirateFont(), text_fg = (0, 0, 0, 1), text_wordwrap = 12, pos = (0.0, 0, -0.050000))
+            weapon1Text = DirectLabel(parent = weapon1Card, relief = None, text = PLocalizer.WeaponSlot1, text_scale = 0.9, text_align = TextNode.ACenter, text_fg = (0, 0, 0, 1), text_wordwrap = 12, pos = (0.0, 0, -0.149))
+            weapon2Text = DirectLabel(parent = weapon2Card, relief = None, text = PLocalizer.WeaponSlot2, text_scale = 0.9, text_align = TextNode.ACenter, text_fg = (0, 0, 0, 1), text_wordwrap = 12, pos = (0.0, 0, -0.149))
+            lookoutText = DirectLabel(parent = lookoutCard, relief = None, text = PLocalizer.LookoutPageKey, text_scale = 0.9, text_align = TextNode.ACenter, text_fg = (0, 0, 0, 1), text_wordwrap = 12, pos = (0.0, 0, -0.149))
+            moveText = DirectLabel(parent = moveCard, relief = None, text = PLocalizer.ForwardMoveKey, text_scale = 0.9, text_align = TextNode.ACenter, text_fg = (0, 0, 0, 1), text_wordwrap = 12, pos = (0.0, 0, -0.149))
             tpMgr.setGraphic('tabButton', tabCardRoot)
             tpMgr.setGraphic('ctrlButton', ctrlCardRoot)
             tpMgr.setGraphic('shiftButton', shiftCardRoot)
@@ -421,7 +421,7 @@ class NewTutorialPanel(GuiPanel.GuiPanel):
         self.openSfx = loadSfx(SoundGlobals.SFX_GUI_SHOW_PANEL)
         if self.arrow:
             arrowFunc = Func(self.arrow.show)
-            self.arrowIval = Sequence(LerpColorScaleInterval(self.arrow, 1.0, VBase4(1, 1, 1, 0.59999999999999998), startColorScale = VBase4(1, 1, 1, 1), blendType = 'easeIn'))
+            self.arrowIval = Sequence(LerpColorScaleInterval(self.arrow, 1.0, VBase4(1, 1, 1, 0.598), startColorScale = VBase4(1, 1, 1, 1), blendType = 'easeIn'))
         else:
             arrowFunc = Func(self.show)
         self.showPanelIval = Sequence(Func(self.show), Func(base.playSfx, self.openSfx), arrowFunc, LerpPosInterval(self, 0.5, Point3(self.getX(), self.getY(), self.getZ()), startPos = Point3(-1.0, self.getY(), self.getZ()), blendType = 'easeOut'))

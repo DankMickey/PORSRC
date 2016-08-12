@@ -13,7 +13,7 @@ class RepairClock(DirectFrame, FSM.FSM):
         self._initVars()
         self._initGUI()
         self._initIntervals()
-        self.setPos(0.0, 0.0, -0.34000000000000002)
+        self.setPos(0.0, 0.0, -0.34)
 
     def _initVars(self):
         self.gameTimes = { }
@@ -22,7 +22,7 @@ class RepairClock(DirectFrame, FSM.FSM):
         self.totalTime = 0.0
 
     def _initGUI(self):
-        self.secondsLabel = DirectLabel(text = '', text_fg = (1.0, 1.0, 1.0, 1.0), text_font = PiratesGlobals.getPirateFont(), scale = (0.089999999999999997, 0.089999999999999997, 0.089999999999999997), relief = None, textMayChange = 1, parent = self)
+        self.secondsLabel = DirectLabel(text = '', text_fg = (1.0, 1.0, 1.0, 1.0), text_font = PiratesGlobals.getPirateFont(), scale = (0.089, 0.089, 0.089), relief = None, textMayChange = 1, parent = self)
 
     def _initIntervals(self):
         pass

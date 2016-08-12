@@ -17,9 +17,9 @@ objectStruct = {
                     'Category': 'Tattoo',
                     'AnimSet': 'default',
                     'CustomModel': 'None',
-                    'Hpr': VBase3(-140.22900000000001, 0.0, 0.0),
+                    'Hpr': VBase3(-140.229, 0.0, 0.0),
                     'Patrol Radius': '12.0000',
-                    'Pos': Point3(7.8010000000000002, -0.086999999999999994, 0.0),
+                    'Pos': Point3(7.8010, -0.0864, 0.0),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'Private Status': 'All',
@@ -32,7 +32,7 @@ objectStruct = {
                     'Type': 'Door Locator Node',
                     'Name': 'door_locator',
                     'Hpr': VBase3(90.0, 0.0, 0.0),
-                    'Pos': Point3(41.985999999999997, -7.423, 0.079000000000000001),
+                    'Pos': Point3(41.985, -7.423, 0.0790),
                     'Scale': VBase3(1.0, 1.0, 1.0) },
                 '1201127619.8dxschafe': {
                     'Type': 'Light - Dynamic',
@@ -40,10 +40,10 @@ objectStruct = {
                     'ConeAngle': '60.0000',
                     'DropOff': '0.0000',
                     'FlickRate': '0.5000',
-                    'Hpr': VBase3(-20.472999999999999, -30.654, 0.0),
+                    'Hpr': VBase3(-20.472, -30.654, 0.0),
                     'Intensity': '0.6867',
                     'LightType': 'SPOT',
-                    'Pos': Point3(1.5600000000000001, -16.946000000000002, 14.129),
+                    'Pos': Point3(1.56, -16.946, 14.129),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Color': (1, 1, 1, 1),
@@ -57,7 +57,7 @@ objectStruct = {
                     'Hpr': VBase3(-176.988, -14.182, 0.0),
                     'Intensity': '0.9759',
                     'LightType': 'SPOT',
-                    'Pos': Point3(8.3829999999999991, 22.748999999999999, 15.630000000000001),
+                    'Pos': Point3(8.3821, 22.748, 15.63),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Color': (1, 1, 1, 1),
@@ -140,6 +140,6 @@ objectStruct = {
         '1201127619.8dxschafe': '["Objects"]["1171316864.0dxschafe2"]["Objects"]["1201127619.8dxschafe"]',
         '1201127675.39dxschafe': '["Objects"]["1171316864.0dxschafe2"]["Objects"]["1201127675.39dxschafe"]' } }
 extraInfo = {
-    'camPos': Point3(14.1654, -6.01051, 5.3645100000000001),
-    'camHpr': VBase3(50.673499999999997, -8.0624000000000002, 0),
+    'camPos': Point3(14.1654, -6.01051, 5.36451),
+    'camHpr': VBase3(50.6734, -8.0624, 0),
     'focalLength': 1.3999999761599999 }

@@ -9,12 +9,12 @@ objectStruct = {
                     'Type': 'Island',
                     'Name': 'shipBattleIsland1',
                     'File': '',
-                    'Hpr': VBase3(0.36899999999999999, 0.0, 0.0),
+                    'Hpr': VBase3(0.368, 0.0, 0.0),
                     'Objects': {
                         '1171693568.0jubutler1': {
                             'Type': 'LOD Sphere',
                             'Hpr': Point3(0.0, 0.0, 0.0),
-                            'Pos': Point3(719.90300000000002, 341.17899999999997, 475.38400000000001),
+                            'Pos': Point3(719.903, 341.178, 475.384),
                             'Radi': [
                                 1664,
                                 2664,
@@ -28,12 +28,12 @@ objectStruct = {
                     'Type': 'Island',
                     'Name': 'shipBattleIsland2',
                     'File': '',
-                    'Hpr': VBase3(-90.426000000000002, 0.0, 0.0),
+                    'Hpr': VBase3(-90.426, 0.0, 0.0),
                     'Objects': {
                         '1171693568.0jubutler0': {
                             'Type': 'LOD Sphere',
                             'Hpr': Point3(0.0, 0.0, 0.0),
-                            'Pos': Point3(-51.332999999999998, -49.722000000000001, 287.08300000000003),
+                            'Pos': Point3(-51.3328, -49.722, 287.083),
                             'Radi': [
                                 1003,
                                 2003,
@@ -47,12 +47,12 @@ objectStruct = {
                     'Type': 'Island',
                     'Name': 'shipBattleIsland3',
                     'File': '',
-                    'Hpr': VBase3(-91.350999999999999, 0.0, 0.0),
+                    'Hpr': VBase3(-91.350, 0.0, 0.0),
                     'Objects': {
                         '1171693568.0jubutler3': {
                             'Type': 'LOD Sphere',
                             'Hpr': Point3(0.0, 0.0, 0.0),
-                            'Pos': Point3(-79.299999999999997, 337.49200000000002, 449.57999999999998),
+                            'Pos': Point3(-79.2, 337.492, 449.578),
                             'Radi': [
                                 1511,
                                 2511,
@@ -66,12 +66,12 @@ objectStruct = {
                     'Type': 'Island',
                     'Name': 'shipBattleIsland4',
                     'File': '',
-                    'Hpr': VBase3(89.475999999999999, 0.0, 0.0),
+                    'Hpr': VBase3(89.475, 0.0, 0.0),
                     'Objects': {
                         '1171693568.0jubutler2': {
                             'Type': 'LOD Sphere',
                             'Hpr': Point3(0.0, 0.0, 0.0),
-                            'Pos': Point3(-51.332999999999998, -49.722000000000001, 287.08300000000003),
+                            'Pos': Point3(-51.3328, -49.722, 287.083),
                             'Radi': [
                                 1003,
                                 2003,
@@ -91,7 +91,7 @@ objectStruct = {
                     'SpawnDelay': '20',
                     'Spawnables': 'Team 2',
                     'Visual': {
-                        'Color': (0.80000000000000004, 0.20000000000000001, 0.65000000000000002, 1),
+                        'Color': (0.800000, 0.200, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'startingDepth': '12' },
                 '1171689216.0jubutler': {
@@ -104,7 +104,7 @@ objectStruct = {
                     'SpawnDelay': '20',
                     'Spawnables': 'Team 1',
                     'Visual': {
-                        'Color': (0.80000000000000004, 0.20000000000000001, 0.65000000000000002, 1),
+                        'Color': (0.800000, 0.200, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'startingDepth': '12' },
                 '1171689216.0jubutler0': {
@@ -117,7 +117,7 @@ objectStruct = {
                     'SpawnDelay': '20',
                     'Spawnables': 'Team 1',
                     'Visual': {
-                        'Color': (0.80000000000000004, 0.20000000000000001, 0.65000000000000002, 1),
+                        'Color': (0.800000, 0.200, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'startingDepth': '12' },
                 '1171689216.0jubutler1': {
@@ -130,7 +130,7 @@ objectStruct = {
                     'SpawnDelay': '20',
                     'Spawnables': 'Team 2',
                     'Visual': {
-                        'Color': (0.80000000000000004, 0.20000000000000001, 0.65000000000000002, 1),
+                        'Color': (0.800000, 0.200, 0.65, 1),
                         'Model': 'models/misc/smiley' },
                     'startingDepth': '12' } },
             'Visual': { } } },

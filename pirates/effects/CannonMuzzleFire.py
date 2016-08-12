@@ -30,8 +30,8 @@ class CannonMuzzleFire(PooledEffect, EffectController):
 
     def createTrack(self, rate = 1):
         self.splash.setPlayRate(rate, 'splashdown')
-        animDuration = self.splash.getDuration('splashdown') * 0.29999999999999999
-        fadeOut = self.splash.colorInterval(0.59999999999999998, Vec4(1, 1, 1, 0), startColor = Vec4(1, 1, 1, 1))
+        animDuration = self.splash.getDuration('splashdown') * 0.299
+        fadeOut = self.splash.colorInterval(0.598, Vec4(1, 1, 1, 0), startColor = Vec4(1, 1, 1, 1))
         self.track = Sequence(Func(self.splash.setColor, 1, 1, 1, 1), Func(self.splash.play, 'splashdown'), Wait(animDuration), fadeOut, Func(self.cleanUpEffect))
 
 

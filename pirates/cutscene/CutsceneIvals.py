@@ -149,7 +149,7 @@ def Cutscene1_1_2ivals(cutscene):
     KickFrame = 245
     CannonStartFrame = 330
     (subs, clearSubs) = subtitleSequence(cutscene.cutsceneName)
-    return (Parallel(Sequence(WaitFrames(KickFrame), Func(av.openJailDoor)), Sequence(WaitFrames(KickFrame), SoundInterval(cballHitTrack, volume = 0.59999999999999998)), Sequence(WaitFrames(CannonStartFrame), Func(messenger.send, 'startTutorialCannons')), subs), Parallel(Func(av.closeJailDoor), clearSubs))
+    return (Parallel(Sequence(WaitFrames(KickFrame), Func(av.openJailDoor)), Sequence(WaitFrames(KickFrame), SoundInterval(cballHitTrack, volume = 0.598)), Sequence(WaitFrames(CannonStartFrame), Func(messenger.send, 'startTutorialCannons')), subs), Parallel(Func(av.closeJailDoor), clearSubs))
 
 
 def Cutscene1_1_5_aivals(cutscene):
@@ -169,7 +169,7 @@ def Cutscene1_1_5_aivals(cutscene):
     if seachestTable == None or seachestTable.isEmpty():
         seachestTable = loader.loadModel('models/props/treasureChest')
 
-    seachestTable.setScale(0.80000000000000004)
+    seachestTable.setScale(0.800000)
     seachestTable.flattenStrong()
     if 'localAvatar' in __builtins__:
         av.localAvatar.tutObject = seachestTable
@@ -177,7 +177,7 @@ def Cutscene1_1_5_aivals(cutscene):
     else:
         endFunc = Func(seachestTable.removeNode)
     (subs, clearSubs) = subtitleSequence(cutscene.cutsceneName)
-    return (Parallel(Sequence(Func(base.transitions.fadeIn, 4.0)), Sequence(Func(av.adjustPos, 9.5609999999999999, 26.215, 5.2549999999999999)), Sequence(Func(av.recordEvent, 'beginSeachest')), Sequence(WaitFrames(125), Func(Nell.attachHandheld, mugRight, True)), Sequence(WaitFrames(126), Func(Nell.attachHandheld, mugLeft, False)), Sequence(WaitFrames(215), Func(Nell.detachHandheld, mugLeft, True)), Sequence(WaitFrames(216), Func(Nell.detachHandheld, mugRight, True)), Sequence(WaitFrames(719), Func(Dan.attachHandheld, seachestDan, True)), Sequence(WaitFrames(754), Func(Dan.detachHandheld, seachestDan, True)), Sequence(WaitFrames(754), Func(reparentObject, seachestTable, render, VBase3(9.5299999999999994, 33.219999999999999, 5.1100000000000003), VBase3(180, 0, 90))), subs), Parallel(endFunc, clearSubs))
+    return (Parallel(Sequence(Func(base.transitions.fadeIn, 4.0)), Sequence(Func(av.adjustPos, 9.5609, 26.215, 5.2549)), Sequence(Func(av.recordEvent, 'beginSeachest')), Sequence(WaitFrames(125), Func(Nell.attachHandheld, mugRight, True)), Sequence(WaitFrames(126), Func(Nell.attachHandheld, mugLeft, False)), Sequence(WaitFrames(215), Func(Nell.detachHandheld, mugLeft, True)), Sequence(WaitFrames(216), Func(Nell.detachHandheld, mugRight, True)), Sequence(WaitFrames(719), Func(Dan.attachHandheld, seachestDan, True)), Sequence(WaitFrames(754), Func(Dan.detachHandheld, seachestDan, True)), Sequence(WaitFrames(754), Func(reparentObject, seachestTable, render, VBase3(9.5294, 33.219, 5.1100), VBase3(180, 0, 90))), subs), Parallel(endFunc, clearSubs))
 
 
 def Cutscene1_1_5_bivals(cutscene):
@@ -227,7 +227,7 @@ def Cutscene1_3ivals(cutscene):
     captBeckSkel.setBin('fixed', 150)
     moneybag = loader.loadModel('models/handheld/moneybag_high')
     (subs, clearSubs) = subtitleSequence(cutscene.cutsceneName)
-    return (Parallel(Func(messenger.send, 'toggleGlows'), Func(jollyRoger.setColorScale, Vec4(0, 0, 0, 0)), hideInterceptorFunc, Sequence(WaitFrames(12), Func(skelship.ship.startDarkFog, -80)), Sequence(Func(messenger.send, 'introduceJR'), WaitFrames(83)), Sequence(WaitFrames(75), Func(skelship.ship.playStormEffect)), Sequence(WaitFrames(85), Func(skelship.ship.fadeIn)), Sequence(WaitFrames(140), Func(skelship.ship.stopDarkFog)), Sequence(Func(messenger.send, 'JRAttackShip'), WaitFrames(274)), Sequence(WaitFrames(295), Func(jollyRoger.startTeleportEffect, 1.25)), Sequence(WaitFrames(310), Func(jollyRoger.fadeInBlack, 2.0)), Sequence(WaitFrames(385), Func(jollyRoger.spawnSkeletons, cutscene)), Sequence(WaitFrames(731), Func(captBeck.attachHandheld, moneybag, False)), Sequence(WaitFrames(1000), Func(jollyRoger.startAttuneEffect)), Sequence(WaitFrames(1120), Func(jollyRoger.startSoulSuckEffect)), Sequence(WaitFrames(1147), Func(captBeck.detachHandheld, moneybag, True)), Sequence(WaitFrames(1144), Func(captBeck.setBin, 'fixed', 140), Func(captBeckSkel.fadeIn, 1.0), Func(captBeck.fadeOut, 1.5)), Sequence(WaitFrames(1240), Func(jollyRoger.stopSoulSuckEffect)), Sequence(WaitFrames(1547)), Sequence(WaitFrames(1760), Func(jollyRoger.startTeleportEffect, -1.0)), Sequence(WaitFrames(1765), Func(jollyRoger.fadeOutBlack, 1.5)), Sequence(WaitFrames(1910), Func(skelship.fireCannon, 0, ammo = InventoryType.CannonFirebrand, targetNode = interceptor.ship.modelRoot, offset = Vec3(0, 0, 10), wantCollisions = 1, flightTime = 0.29999999999999999, preciseHit = 1)), Sequence(WaitFrames(1928), Func(skelship.fireCannon, 3, ammo = InventoryType.CannonFirebrand, targetNode = interceptor.ship.modelRoot, offset = Vec3(0, 0, 15), wantCollisions = 1, flightTime = 0.5, preciseHit = 1)), Sequence(WaitFrames(1948), Func(skelship.fireCannon, 1, ammo = InventoryType.CannonFirebrand, targetNode = interceptor.ship.modelRoot, offset = Vec3(0, 0, 50), wantCollisions = 1, flightTime = 0.5, preciseHit = 1)), Sequence(WaitFrames(1955), Func(interceptor.explosionVFX, node = interceptor.ship.modelRoot, offset = Vec3(0, 0, 50))), Sequence(WaitFrames(1968), Func(skelship.fireCannon, 4, ammo = InventoryType.CannonFirebrand, targetNode = interceptor.ship.modelRoot, offset = Vec3(0, 0, 10), wantCollisions = 1, flightTime = 0.5, preciseHit = 1)), Sequence(WaitFrames(1980), Func(interceptor.explosionVFX, node = interceptor.ship.modelRoot, offset = Vec3(0, 0, 15))), Sequence(WaitFrames(1980), Func(skelship.fireCannon, 0, ammo = InventoryType.CannonFirebrand, targetNode = interceptor.ship.modelRoot, offset = Vec3(0, 0, 10), wantCollisions = 1, flightTime = 0.5, preciseHit = 1)), Sequence(WaitFrames(2008), Func(skelship.fireCannon, 4, ammo = InventoryType.CannonFirebrand, targetNode = interceptor.ship.modelRoot, offset = Vec3(0, 0, 15), wantCollisions = 1, flightTime = 0.5, preciseHit = 1)), Sequence(WaitFrames(2020), Func(interceptor.explosionVFX, node = interceptor.ship.modelRoot, offset = Vec3(0, 0, 10))), Sequence(WaitFrames(1980), Func(interceptor.ship.startSinkEffects)), Sequence(WaitFrames(1960), Func(interceptor.ship.breakMast, 0)), Sequence(WaitFrames(2020), Func(skelship.ship.startDarkFog, -70)), Sequence(WaitFrames(2112), Func(skelship.ship.stopDarkFog), Func(skelship.ship.fadeOut), Func(skelship.ship.stopStormEffect)), Sequence(WaitFrames(2110), Func(interceptor.ship.endSinkEffects)), subs), Parallel(clearSubs, Func(messenger.send, 'JRDestroyShip')))
+    return (Parallel(Func(messenger.send, 'toggleGlows'), Func(jollyRoger.setColorScale, Vec4(0, 0, 0, 0)), hideInterceptorFunc, Sequence(WaitFrames(12), Func(skelship.ship.startDarkFog, -80)), Sequence(Func(messenger.send, 'introduceJR'), WaitFrames(83)), Sequence(WaitFrames(75), Func(skelship.ship.playStormEffect)), Sequence(WaitFrames(85), Func(skelship.ship.fadeIn)), Sequence(WaitFrames(140), Func(skelship.ship.stopDarkFog)), Sequence(Func(messenger.send, 'JRAttackShip'), WaitFrames(274)), Sequence(WaitFrames(295), Func(jollyRoger.startTeleportEffect, 1.25)), Sequence(WaitFrames(310), Func(jollyRoger.fadeInBlack, 2.0)), Sequence(WaitFrames(385), Func(jollyRoger.spawnSkeletons, cutscene)), Sequence(WaitFrames(731), Func(captBeck.attachHandheld, moneybag, False)), Sequence(WaitFrames(1000), Func(jollyRoger.startAttuneEffect)), Sequence(WaitFrames(1120), Func(jollyRoger.startSoulSuckEffect)), Sequence(WaitFrames(1147), Func(captBeck.detachHandheld, moneybag, True)), Sequence(WaitFrames(1144), Func(captBeck.setBin, 'fixed', 140), Func(captBeckSkel.fadeIn, 1.0), Func(captBeck.fadeOut, 1.5)), Sequence(WaitFrames(1240), Func(jollyRoger.stopSoulSuckEffect)), Sequence(WaitFrames(1547)), Sequence(WaitFrames(1760), Func(jollyRoger.startTeleportEffect, -1.0)), Sequence(WaitFrames(1765), Func(jollyRoger.fadeOutBlack, 1.5)), Sequence(WaitFrames(1910), Func(skelship.fireCannon, 0, ammo = InventoryType.CannonFirebrand, targetNode = interceptor.ship.modelRoot, offset = Vec3(0, 0, 10), wantCollisions = 1, flightTime = 0.299, preciseHit = 1)), Sequence(WaitFrames(1928), Func(skelship.fireCannon, 3, ammo = InventoryType.CannonFirebrand, targetNode = interceptor.ship.modelRoot, offset = Vec3(0, 0, 15), wantCollisions = 1, flightTime = 0.5, preciseHit = 1)), Sequence(WaitFrames(1948), Func(skelship.fireCannon, 1, ammo = InventoryType.CannonFirebrand, targetNode = interceptor.ship.modelRoot, offset = Vec3(0, 0, 50), wantCollisions = 1, flightTime = 0.5, preciseHit = 1)), Sequence(WaitFrames(1955), Func(interceptor.explosionVFX, node = interceptor.ship.modelRoot, offset = Vec3(0, 0, 50))), Sequence(WaitFrames(1968), Func(skelship.fireCannon, 4, ammo = InventoryType.CannonFirebrand, targetNode = interceptor.ship.modelRoot, offset = Vec3(0, 0, 10), wantCollisions = 1, flightTime = 0.5, preciseHit = 1)), Sequence(WaitFrames(1980), Func(interceptor.explosionVFX, node = interceptor.ship.modelRoot, offset = Vec3(0, 0, 15))), Sequence(WaitFrames(1980), Func(skelship.fireCannon, 0, ammo = InventoryType.CannonFirebrand, targetNode = interceptor.ship.modelRoot, offset = Vec3(0, 0, 10), wantCollisions = 1, flightTime = 0.5, preciseHit = 1)), Sequence(WaitFrames(2008), Func(skelship.fireCannon, 4, ammo = InventoryType.CannonFirebrand, targetNode = interceptor.ship.modelRoot, offset = Vec3(0, 0, 15), wantCollisions = 1, flightTime = 0.5, preciseHit = 1)), Sequence(WaitFrames(2020), Func(interceptor.explosionVFX, node = interceptor.ship.modelRoot, offset = Vec3(0, 0, 10))), Sequence(WaitFrames(1980), Func(interceptor.ship.startSinkEffects)), Sequence(WaitFrames(1960), Func(interceptor.ship.breakMast, 0)), Sequence(WaitFrames(2020), Func(skelship.ship.startDarkFog, -70)), Sequence(WaitFrames(2112), Func(skelship.ship.stopDarkFog), Func(skelship.ship.fadeOut), Func(skelship.ship.stopStormEffect)), Sequence(WaitFrames(2110), Func(interceptor.ship.endSinkEffects)), subs), Parallel(clearSubs, Func(messenger.send, 'JRDestroyShip')))
 
 
 def Cutscene2_1ivals(cutscene):
@@ -240,7 +240,7 @@ def Cutscene2_1ivals(cutscene):
 
     cutlass.flattenStrong()
     (subs, clearSubs) = subtitleSequence(cutscene.cutsceneName)
-    return (Parallel(Func(base.transitions.fadeIn), Func(willTurner.attachHandheld, cutlass, True), Func(av.adjustPos, 30, -8, -5.9749999999999996), Sequence(WaitFrames(522), Func(willTurner.detachHandheld, cutlass)), Sequence(WaitFrames(530), Func(av.attachHandheld, cutlass, True)), Sequence(WaitFrames(668), Func(av.detachHandheld, cutlass, True)), Sequence(WaitFrames(787), Func(willTurner.recordTransAtCutscene, 787)), Sequence(WaitFrames(801), Func(base.transitions.fadeOut, 0.66000000000000003)), Sequence(WaitFrames(817), Func(base.transitions.fadeIn, 2.0)), subs), clearSubs)
+    return (Parallel(Func(base.transitions.fadeIn), Func(willTurner.attachHandheld, cutlass, True), Func(av.adjustPos, 30, -8, -5.9746), Sequence(WaitFrames(522), Func(willTurner.detachHandheld, cutlass)), Sequence(WaitFrames(530), Func(av.attachHandheld, cutlass, True)), Sequence(WaitFrames(668), Func(av.detachHandheld, cutlass, True)), Sequence(WaitFrames(787), Func(willTurner.recordTransAtCutscene, 787)), Sequence(WaitFrames(801), Func(base.transitions.fadeOut, 0.66000)), Sequence(WaitFrames(817), Func(base.transitions.fadeIn, 2.0)), subs), clearSubs)
 
 
 def Cutscene2_1_bivals(cutscene):
@@ -266,8 +266,8 @@ def Cutscene2_2ivals(cutscene):
     lantern = cutscene.getActor('GenericActor-lantern')
     lantern.loadEffects(cutscene)
     if lantern.effect:
-        lantern.effect.setZ(lantern.effect.getZ() - 0.55000000000000004)
-        lantern.effect.setScale(0.40000000000000002)
+        lantern.effect.setZ(lantern.effect.getZ() - 0.550000)
+        lantern.effect.setScale(0.4)
 
     lanternLight = None
     if 'localAvatar' not in __builtins__:
@@ -294,7 +294,7 @@ def Cutscene2_2ivals(cutscene):
 
     def addFog():
         self.fog = Fog('TimeOfDayFog')
-        self.fog.setExpDensity(0.040000000000000001)
+        self.fog.setExpDensity(0.0400)
         render.setFog(self.fog)
 
     bg1Cutlass = loader.loadModel('models/handheld/cutlass_steel_high')
@@ -320,7 +320,7 @@ def Cutscene2_2ivals(cutscene):
         bg1Cutlass,
         bg2Cutlass,
         bg3Cutlass]
-    func1 = Sequence(Func(base.ambientMgr.requestChangeVolume, SoundGlobals.AMBIENT_JUNGLE, 3.0, 0.14999999999999999, priority = 1))
+    func1 = Sequence(Func(base.ambientMgr.requestChangeVolume, SoundGlobals.AMBIENT_JUNGLE, 3.0, 0.149, priority = 1))
     func2 = Sequence(Func(base.ambientMgr.requestFadeIn, SoundGlobals.AMBIENT_JUNGLE, 10, finalVolume = PiratesGlobals.DEFAULT_AMBIENT_VOLUME, priority = 1))
     (subs, clearSubs) = subtitleSequence(cutscene.cutsceneName)
     return (Parallel(func1, Func(tiaDalma.hideVision, cutscene, cutlassDict, False), Sequence(WaitFrames(784), Func(tiaDalma.showVisionBG, cutscene)), Sequence(WaitFrames(990), Func(tiaDalma.showVisionJR, cutscene)), Sequence(WaitFrames(1010), Func(tiaDalma.spawnSkeleton1, cutscene)), Sequence(WaitFrames(1100), Func(tiaDalma.spawnSkeleton2, cutscene)), Sequence(WaitFrames(1295), Func(tiaDalma.hideVision, cutscene, cutlassDict, True)), Sequence(WaitFrames(1524), Func(tiaDalma.attachHandheld, compass, True)), Sequence(WaitFrames(1685), reparentFunc1), Sequence(WaitFrames(1690), Func(tiaDalma.detachHandheld, compass, True)), Sequence(WaitFrames(2192), Func(base.transitions.fadeOut, 1.0)), subs), Parallel(func2, reparentFunc2, Func(lantern.unloadEffects), Func(base.transitions.fadeIn), clearSubs))
@@ -350,7 +350,7 @@ def Cutscene2_4ivals(cutscene):
 
     base.transitions.fadeIn(0.5)
     (subs, clearSubs) = subtitleSequence(cutscene.cutsceneName)
-    return (Parallel(hideMunkieFunkie, Func(av.adjustPos, -5.4000000000000004, 11.6, 4.2000000000000002, 230), Sequence(WaitFrames(230), Func(captBarbossa.attachHandheld, pistol, False)), Sequence(WaitFrames(264), Func(captBarbossa.detachHandheld, pistol)), Sequence(WaitFrames(265), Func(av.attachHandheld, pistol, True)), Sequence(WaitFrames(496), Func(av.detachHandheld, pistol, True)), subs), clearSubs)
+    return (Parallel(hideMunkieFunkie, Func(av.adjustPos, -5.40000, 11.6, 4.2, 230), Sequence(WaitFrames(230), Func(captBarbossa.attachHandheld, pistol, False)), Sequence(WaitFrames(264), Func(captBarbossa.detachHandheld, pistol)), Sequence(WaitFrames(265), Func(av.attachHandheld, pistol, True)), Sequence(WaitFrames(496), Func(av.detachHandheld, pistol, True)), subs), clearSubs)
 
 
 def Cutscene2_4_bivals(cutscene):

@@ -10,7 +10,7 @@ TEXT_PREFIX = 'text'
 LOCATOR_PREFIX = 'locator'
 GROUP_PREFIX = 'group'
 SCALE_MULTIPLIER = 1.0
-TEXT_MULTIPLIER = 0.059999999999999998
+TEXT_MULTIPLIER = 0.0598
 notify = DirectNotifyGlobal.directNotify.newCategory('GUIFactory')
 
 def destroyDirectGUIDict(dict):
@@ -69,7 +69,7 @@ def _parseNodePath(nodePath, parent, elements = { }, elementTypes = None, **kw):
 
 def _parseText(nodePath, parent):
     notify.debug('creating %s' % nodePath.getName()[len(TEXT_PREFIX) + 1:])
-    label = DirectLabel(parent = parent, relief = None, text = nodePath.getName()[len(TEXT_PREFIX) + 1:], text_align = TextNode.ACenter, text_scale = 0.10000000000000001, sortOrder = 50)
+    label = DirectLabel(parent = parent, relief = None, text = nodePath.getName()[len(TEXT_PREFIX) + 1:], text_align = TextNode.ACenter, text_scale = 0.100, sortOrder = 50)
     label.setPos(nodePath.getPos() * SCALE_MULTIPLIER)
     return (nodePath.getName()[len(TEXT_PREFIX) + 1:], label)
 
@@ -86,7 +86,7 @@ def _parseButton(nodePath, parent, **kw):
     notify.debug('creating %s' % nodePath.getName()[len(BUTTON_PREFIX) + 1:])
     game = nodePath.getName()[len(BUTTON_PREFIX) + 1:]
     text = PLocalizer.Minigame_Repair_Names[game]
-    button = _createButton(nodePath = nodePath, parent = parent, canReposition = True, helpText = text, helpPos = (0.0, 0.0, -0.17499999999999999), helpOpaque = 1, helpCenterAlign = True, command = None, extraArgs = [
+    button = _createButton(nodePath = nodePath, parent = parent, canReposition = True, helpText = text, helpPos = (0.0, 0.0, -0.174), helpOpaque = 1, helpCenterAlign = True, command = None, extraArgs = [
         0], **kw)
     return (nodePath.getName()[len(BUTTON_PREFIX) + 1:], button)
 

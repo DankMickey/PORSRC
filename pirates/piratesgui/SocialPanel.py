@@ -16,10 +16,10 @@ class SocialPanel(DirectFrame):
         self.setBin('gui-fixed', 4)
         guic = loader.loadModel('models/gui/chat_frame_c')
         cm = CardMaker('bg')
-        cm.setColor(0.0, 0, 0, 0.69999999999999996)
-        cm.setFrame(-2.5, 1.95, -1.45, 4.9000000000000004)
+        cm.setColor(0.0, 0, 0, 0.696)
+        cm.setFrame(-2.5, 1.95, -1.45, 4.90000)
         self.bg = self.attachNewNode(cm.generate())
-        self.bg.setColor(0, 0, 0, 0.69999999999999996)
+        self.bg.setColor(0, 0, 0, 0.696)
         self.bg.setTransparency(1)
         self.bg.flattenStrong()
         guic.find('**/pPlane8').copyTo(self.bg)
@@ -27,14 +27,14 @@ class SocialPanel(DirectFrame):
         guic.find('**/pPlane10').copyTo(self.bg)
         guic.find('**/pPlane26').copyTo(self.bg)
         guic.find('**/pPlane27').copyTo(self.bg)
-        self.bg.setScale(0.14499999999999999, 1.0, 0.14000000000000001)
-        self.bg.setPos(0.27000000000000002, 0.0, 0.20999999999999999)
+        self.bg.setScale(0.144, 1.0, 0.140)
+        self.bg.setPos(0.27, 0.0, 0.209)
         buttonGeom = NodePath('Close')
         guic.find('**/pPlane30').copyTo(buttonGeom)
         guic.find('**/pPlane31').copyTo(buttonGeom)
         guic.find('**/pPlane32').copyTo(buttonGeom)
         buttonGeom.flattenStrong()
-        self.tCloseButton = DirectButton(parent = self, relief = None, frameColor = (1, 1, 1, 1), pad = (-0.02, -0.02), borderWidth = (0, 0), geom = buttonGeom, pos = (0.14499999999999999, 0, -0.095000000000000001), scale = 0.20000000000000001, rolloverSound = None, command = self.hide)
+        self.tCloseButton = DirectButton(parent = self, relief = None, frameColor = (1, 1, 1, 1), pad = (-0.02, -0.02), borderWidth = (0, 0), geom = buttonGeom, pos = (0.144, 0, -0.0950), scale = 0.200, rolloverSound = None, command = self.hide)
         self.currPageIndex = None
         self.currPageTabIndex = None
         self.pages = []
@@ -76,7 +76,7 @@ class SocialPanel(DirectFrame):
         xOffset = -0.01 + tabIndex * 0.158
         charGui = loader.loadModel('models/gui/toplevel_gui')
         buttonImage = (charGui.find('**/generic_button'), charGui.find('**/generic_button_down'), charGui.find('**/generic_button_over'), charGui.find('**/generic_button_disabled'))
-        pageTab = DirectButton(parent = self.pageTabFrame, relief = None, image = buttonImage, image_scale = (0.158, 1.0, 0.17999999999999999), image0_color = VBase4(0.65000000000000002, 0.65000000000000002, 0.65000000000000002, 1), image1_color = VBase4(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 1), image2_color = VBase4(0.90000000000000002, 0.90000000000000002, 0.90000000000000002, 1), image3_color = VBase4(0.40999999999999998, 0.40000000000000002, 0.40000000000000002, 1), text = page.title, text_align = TextNode.ACenter, text_pos = (0, -0.01), text_scale = PiratesGuiGlobals.TextScaleMed, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, pos = (xOffset, 0, 0.035000000000000003), command = goToPage)
+        pageTab = DirectButton(parent = self.pageTabFrame, relief = None, image = buttonImage, image_scale = (0.158, 1.0, 0.179), image0_color = VBase4(0.65, 0.65, 0.65, 1), image1_color = VBase4(0.4, 0.4, 0.4, 1), image2_color = VBase4(0.9, 0.9, 0.9, 1), image3_color = VBase4(0.408, 0.4, 0.4, 1), text = page.title, text_align = TextNode.ACenter, text_pos = (0, -0.01), text_scale = PiratesGuiGlobals.TextScaleMed, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, pos = (xOffset, 0, 0.035000), command = goToPage)
         self.pageTabs.append(pageTab)
         charGui.remove_node()
 
@@ -98,15 +98,15 @@ class SocialPanel(DirectFrame):
     def setPageTabIndex(self, pageTabIndex):
         for pageButton in self.pageTabs:
             pageButton['image_color'] = Vec4(0.63, 0.63, 0.63, 1)
-            pageButton['image1_color'] = Vec4(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 1)
-            pageButton['image2_color'] = Vec4(0.90000000000000002, 0.90000000000000002, 0.90000000000000002, 1)
-            pageButton['image3_color'] = Vec4(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 1)
+            pageButton['image1_color'] = Vec4(0.4, 0.4, 0.4, 1)
+            pageButton['image2_color'] = Vec4(0.9, 0.9, 0.9, 1)
+            pageButton['image3_color'] = Vec4(0.4, 0.4, 0.4, 1)
 
         self.currPageTabIndex = pageTabIndex
-        self.pageTabs[self.currPageTabIndex]['image_color'] = Vec4(0.81999999999999995, 0.81999999999999995, 0.81999999999999995, 1)
-        self.pageTabs[self.currPageTabIndex]['image1_color'] = Vec4(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 1)
-        self.pageTabs[self.currPageTabIndex]['image2_color'] = Vec4(0.90000000000000002, 0.90000000000000002, 0.90000000000000002, 1)
-        self.pageTabs[self.currPageTabIndex]['image3_color'] = Vec4(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 1)
+        self.pageTabs[self.currPageTabIndex]['image_color'] = Vec4(0.815, 0.815, 0.815, 1)
+        self.pageTabs[self.currPageTabIndex]['image1_color'] = Vec4(0.4, 0.4, 0.4, 1)
+        self.pageTabs[self.currPageTabIndex]['image2_color'] = Vec4(0.9, 0.9, 0.9, 1)
+        self.pageTabs[self.currPageTabIndex]['image3_color'] = Vec4(0.4, 0.4, 0.4, 1)
 
 
     def getCurPage(self):

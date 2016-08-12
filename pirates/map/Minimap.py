@@ -83,7 +83,7 @@ class Map(FSM):
 
     def enterTransparent(self):
         self.screenNode.show()
-        self.screenNode.setAlphaScale(0.59999999999999998)
+        self.screenNode.setAlphaScale(0.598)
         self.sentry = self.getSentry()
 
     def filterTransparent(self, request, *args):
@@ -142,7 +142,7 @@ class AreaMap(Map):
             h = diff[1]
             w = diff[0]
         ratio = h / w
-        if ratio < 0.98999999999999999:
+        if ratio < 0.989:
             normalScale = 2 / w
             screenScale = 1
         else:

@@ -13,15 +13,15 @@ from pirates.piratesgui.TabBar import TopTab, TabBar
 class ChatTab(TopTab):
 
     def __init__(self, tabBar, name, text_xyz = None, **kw):
-        optiondefs = (('modelName', 'general_frame_c', None), ('frameSize', (0, 0.22, 0.0, 0.10000000000000001), None), ('borderScale', 0.13500000000000001, None), ('bgBuffer', 0.14000000000000001, None), ('label', name, None), ('textMayChange', 1, None))
+        optiondefs = (('modelName', 'general_frame_c', None), ('frameSize', (0, 0.22, 0.0, 0.100), None), ('borderScale', 0.135, None), ('bgBuffer', 0.140, None), ('label', name, None), ('textMayChange', 1, None))
         self.defineoptions(kw, optiondefs)
         TopTab.__init__(self, tabBar, name)
         self.initialiseoptions(ChatTab)
-        text_pos = (0.11700000000000001, 0.040000000000000001, 0)
+        text_pos = (0.117, 0.0400, 0)
         if text_xyz:
             text_pos = text_xyz
 
-        self.myTextScale = PiratesGuiGlobals.TextScaleLarge * 1.1000000000000001
+        self.myTextScale = PiratesGuiGlobals.TextScaleLarge * 1.10
         self.myLabel = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, text = self['label'], text_scale = self.myTextScale, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = text_pos, text_font = PiratesGlobals.getInterfaceFont(), textMayChange = 1)
 
 
@@ -41,7 +41,7 @@ class ChatTabBar(TabBar):
     def refreshTabs(self):
         for (x, name) in enumerate(self.tabOrder):
             tab = self.tabs[name]
-            tab.setPos(0.070000000000000007 + 0.19500000000000001 * (x + self.offset), 0, 0.059999999999999998)
+            tab.setPos(0.070 + 0.195 * (x + self.offset), 0, 0.0598)
             tab.reparentTo(self.bParent)
 
         for name in reversed(self.tabOrder):
@@ -53,7 +53,7 @@ class ChatTabBar(TabBar):
             name = self.tabOrder[self.activeIndex]
             tab = self.tabs[name]
             tab.reparentTo(self.fParent)
-            tab.setZ(0.076999999999999999)
+            tab.setZ(0.0769)
 
 
 
@@ -75,7 +75,7 @@ class ChatTabBar(TabBar):
 class WhisperTab(TopTab):
 
     def __init__(self, tabBar, name, **kw):
-        optiondefs = (('modelName', 'general_frame_c', None), ('frameSize', (0, 0.745, 0.0, 0.11), None), ('borderScale', 0.13500000000000001, None), ('bgBuffer', 0.14000000000000001, None))
+        optiondefs = (('modelName', 'general_frame_c', None), ('frameSize', (0, 0.745, 0.0, 0.11), None), ('borderScale', 0.135, None), ('bgBuffer', 0.140, None))
         self.defineoptions(kw, optiondefs)
         TopTab.__init__(self, tabBar, name)
         self.initialiseoptions(ChatTab)
@@ -87,7 +87,7 @@ class WhisperTabBar(TabBar):
     def refreshTabs(self):
         for (x, name) in enumerate(self.tabOrder):
             tab = self.tabs[name]
-            tab.setPos(0.070000000000000007 + 0.71999999999999997 * (x + self.offset), 0, 0.059999999999999998)
+            tab.setPos(0.070 + 0.71 * (x + self.offset), 0, 0.0598)
             tab.reparentTo(self.bParent)
 
         for name in reversed(self.tabOrder):
@@ -99,7 +99,7 @@ class WhisperTabBar(TabBar):
             name = self.tabOrder[self.activeIndex]
             tab = self.tabs[name]
             tab.reparentTo(self.fParent)
-            tab.setZ(0.076999999999999999)
+            tab.setZ(0.0769)
 
 
 
@@ -115,7 +115,7 @@ class WhisperTabBar(TabBar):
 class ChatBar(DirectFrame, FSM):
 
     def __init__(self, parent, chatMgr, whiteListEntry, *args, **kw):
-        optiondefs = (('relief', None, None), ('state', DGG.DISABLED, None), ('frameSize', (0, 1, 0, 0.75), None), ('frameColor', (1, 0, 1, 0.20000000000000001), None))
+        optiondefs = (('relief', None, None), ('state', DGG.DISABLED, None), ('frameSize', (0, 1, 0, 0.75), None), ('frameColor', (1, 0, 1, 0.200), None))
         self.defineoptions(kw, optiondefs)
         DirectFrame.__init__(self, parent, *args, **kw)
         self.initialiseoptions(ChatBar)
@@ -135,7 +135,7 @@ class ChatBar(DirectFrame, FSM):
         self.whisperPrefixLabel = None
         self.percentage = 1.0
         self.iPercentage = 1.0
-        self.myTextScale = PiratesGuiGlobals.TextScaleLarge * 1.1000000000000001
+        self.myTextScale = PiratesGuiGlobals.TextScaleLarge * 1.10
         self.setupGui(whiteListEntry)
         self.request('Hidden')
 
@@ -159,7 +159,7 @@ class ChatBar(DirectFrame, FSM):
         self.iPercentage = iPercentage
         if self.whisperNameLabel:
             self.whisperNameLabel['text_scale'] = (self.myTextScale * iPercentage, self.myTextScale, self.myTextScale)
-            self.whisperNameLabel['text_pos'] = (0.20999999999999999 * self.iPercentage, 0.040000000000000001, 0)
+            self.whisperNameLabel['text_pos'] = (0.209 * self.iPercentage, 0.0400, 0)
 
         if self.whisperPrefixLabel:
             self.whisperPrefixLabel['text_scale'] = (self.myTextScale * iPercentage, self.myTextScale, self.myTextScale)
@@ -182,7 +182,7 @@ class ChatBar(DirectFrame, FSM):
         emoteGfxbg = loader.loadModel('models/gui/chat_frame_a')
         icons = loader.loadModel('models/gui/toplevel_gui')
         charGui = loader.loadModel('models/gui/char_gui')
-        scale = Vec3(0.20000000000000001, 1.0, 0.20000000000000001)
+        scale = Vec3(0.200, 1.0, 0.200)
         offset = (0.5, 0, 0.38)
         speedChatBg = self.attachNewNode('speedChatBg')
         skullbg.find('**/pPlane11').reparentTo(speedChatBg)
@@ -192,10 +192,10 @@ class ChatBar(DirectFrame, FSM):
         emoteBg = self.attachNewNode('emoteBg')
         skullbg2.find('**/pPlane11').reparentTo(emoteBg)
         emoteBg.setScale(scale)
-        emoteBg.setPos(0.59099999999999997, 0, 0.38)
+        emoteBg.setPos(0.590, 0, 0.38)
         emoteBg.flattenStrong()
         self.chatEntryBackground = self.attachNewNode('chatEntryBackground')
-        self.chatEntryBackground.setX(-0.90000000000000002)
+        self.chatEntryBackground.setX(-0.9)
         self.backTabParent = self.chatEntryBackground.attachNewNode('backTabs')
         textEntryGeom = self.chatEntryBackground.attachNewNode('textEntryBg')
         gui.find('**/pPlane12').reparentTo(textEntryGeom)
@@ -214,13 +214,13 @@ class ChatBar(DirectFrame, FSM):
             whiteListEntry.show = noshow
             whiteListEntry.hide()
         else:
-            whiteListEntry.setPos(0.20000000000000001, 0, 0.035999999999999997)
+            whiteListEntry.setPos(0.200, 0, 0.035)
         self.frontTabParent = self.chatEntryBackground.attachNewNode('frontTab', sort = 2)
-        self.speedButton = DirectButton(parent = self, relief = None, frameSize = (-0.055, 0.044999999999999998, -0.055, 0.044999999999999998), geom = (icons.find('**/chat_bubble_icon'), icons.find('**/chat_bubble_icon'), icons.find('**/chat_bubble_icon_over')), geom_scale = 0.25, pos = (0.14000000000000001, 0, 0.044999999999999998), rolloverSound = None, command = self.chatMgr.activateSpeedChat)
-        self.emoteButton = DirectButton(parent = self, relief = None, frameSize = (-0.055, 0.044999999999999998, -0.055, 0.044999999999999998), geom = (charGui.find('**/*head'), charGui.find('**/*head'), charGui.find('**/*head_over')), geom_scale = 0.29999999999999999, pos = (0.049000000000000002, 0, 0.044999999999999998), rolloverSound = None, command = self.chatMgr.activateEmoteChat)
+        self.speedButton = DirectButton(parent = self, relief = None, frameSize = (-0.055, 0.0448, -0.055, 0.0448), geom = (icons.find('**/chat_bubble_icon'), icons.find('**/chat_bubble_icon'), icons.find('**/chat_bubble_icon_over')), geom_scale = 0.25, pos = (0.140, 0, 0.0448), rolloverSound = None, command = self.chatMgr.activateSpeedChat)
+        self.emoteButton = DirectButton(parent = self, relief = None, frameSize = (-0.055, 0.0448, -0.055, 0.0448), geom = (charGui.find('**/*head'), charGui.find('**/*head'), charGui.find('**/*head_over')), geom_scale = 0.299, pos = (0.049, 0, 0.0448), rolloverSound = None, command = self.chatMgr.activateEmoteChat)
         tGui = loader.loadModel('models/gui/triangle')
         triangle = (tGui.find('**/triangle'), tGui.find('**/triangle_down'), tGui.find('**/triangle_over'))
-        self.startChatButton = DirectButton(parent = self, relief = None, image = triangle, image_scale = 0.065000000000000002, pos = (0.23100000000000001, 0.0, 0.050000000000000003), rolloverSound = None, command = self.chatMgr.activateChat)
+        self.startChatButton = DirectButton(parent = self, relief = None, image = triangle, image_scale = 0.065, pos = (0.231, 0.0, 0.050000), rolloverSound = None, command = self.chatMgr.activateChat)
         self.chatTabs = ChatTabBar(parent = self, backParent = self.backTabParent, frontParent = self.frontTabParent)
         allTab = self.chatTabs.addTab('All', label = PLocalizer.ChatTabAll, command = self.chatMgr.activateChat, extraArgs = [
             'All'])
@@ -228,7 +228,7 @@ class ChatBar(DirectFrame, FSM):
             'Crew'])
         guildTab = self.chatTabs.addTab('Guild', label = PLocalizer.ChatTabGuild, command = self.chatMgr.activateChat, extraArgs = [
             'Guild'])
-        shipPVPTab = self.chatTabs.addTab('ShipPVP', label = PLocalizer.ChatTabShipPVP, command = self.chatMgr.activateChat, frameSize = (0, 0.23999999999999999, 0.0, 0.10000000000000001), textMayChange = 1, extraArgs = [
+        shipPVPTab = self.chatTabs.addTab('ShipPVP', label = PLocalizer.ChatTabShipPVP, command = self.chatMgr.activateChat, frameSize = (0, 0.239, 0.0, 0.100), textMayChange = 1, extraArgs = [
             'ShipPVP'])
         self.chatTabs.stash()
         self.whisperTabs = WhisperTabBar(parent = self, backParent = self.backTabParent, frontParent = self.frontTabParent)
@@ -236,8 +236,8 @@ class ChatBar(DirectFrame, FSM):
         whisperCancelTab = self.whisperTabs.addTab('Cancel', command = self.whisperCanceled)
         self.whisperTabs.stash()
         whisperCancelTab['frameSize'] = (0, 0.105, 0.0, 0.11)
-        self.whisperPrefixLabel = DirectLabel(parent = whisperNameTab, relief = None, state = DGG.DISABLED, text = PLocalizer.ProfilePageWhisper + ':', text_scale = (self.myTextScale * self.iPercentage, self.myTextScale, self.myTextScale), text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0.033000000000000002, 0.040000000000000001, 0), text_font = PiratesGlobals.getInterfaceFont())
-        DirectLabel(parent = whisperCancelTab, relief = None, state = DGG.DISABLED, text = 'X', text_scale = (self.myTextScale * 1.1799999999999999, self.myTextScale * 1.1799999999999999, self.myTextScale * 1.1799999999999999), text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0.052999999999999999, 0.042999999999999997, 0), text_font = PiratesGlobals.getInterfaceFont())
+        self.whisperPrefixLabel = DirectLabel(parent = whisperNameTab, relief = None, state = DGG.DISABLED, text = PLocalizer.ProfilePageWhisper + ':', text_scale = (self.myTextScale * self.iPercentage, self.myTextScale, self.myTextScale), text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0.033, 0.0400, 0), text_font = PiratesGlobals.getInterfaceFont())
+        DirectLabel(parent = whisperCancelTab, relief = None, state = DGG.DISABLED, text = 'X', text_scale = (self.myTextScale * 1.17, self.myTextScale * 1.17, self.myTextScale * 1.17), text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0.0529, 0.042, 0), text_font = PiratesGlobals.getInterfaceFont())
         self.whisperTabs.stash()
         self.request('Hidden')
 
@@ -289,7 +289,7 @@ class ChatBar(DirectFrame, FSM):
 
     def enterHidden(self):
         self.stopSlideIval()
-        self.slideIval = Sequence(Func(self.chatEntryVisNode.setAlphaScale, 0), Func(self.chatEntryVisNode.hide), self.chatEntryBackground.posInterval(0.25, Point3(-0.90000000000000002, 0, 0), blendType = 'easeIn'), Func(self.startChatButton.show), Func(self.chatEntryBackground.hide))
+        self.slideIval = Sequence(Func(self.chatEntryVisNode.setAlphaScale, 0), Func(self.chatEntryVisNode.hide), self.chatEntryBackground.posInterval(0.25, Point3(-0.9, 0, 0), blendType = 'easeIn'), Func(self.startChatButton.show), Func(self.chatEntryBackground.hide))
         self.slideIval.start()
 
 
@@ -351,7 +351,7 @@ class ChatBar(DirectFrame, FSM):
         if self.whisperNameLabel:
             self.whisperNameLabel.destroy()
 
-        self.whisperNameLabel = DirectLabel(parent = self.whisperTabs.getTab('Name'), relief = None, state = DGG.DISABLED, text = avatarName, text_scale = (self.myTextScale * self.iPercentage, self.myTextScale, self.myTextScale), text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0.20999999999999999 * self.iPercentage, 0.040000000000000001, 0), text_font = PiratesGlobals.getInterfaceFont())
+        self.whisperNameLabel = DirectLabel(parent = self.whisperTabs.getTab('Name'), relief = None, state = DGG.DISABLED, text = avatarName, text_scale = (self.myTextScale * self.iPercentage, self.myTextScale, self.myTextScale), text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0.209 * self.iPercentage, 0.0400, 0), text_font = PiratesGlobals.getInterfaceFont())
 
 
     def exitWhisper(self):

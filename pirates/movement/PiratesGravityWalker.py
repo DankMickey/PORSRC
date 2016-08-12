@@ -103,7 +103,7 @@ class PiratesGravityWalker(GravityWalker):
                     self.predicting = 1
 
                 if not taskMgr.hasTaskNamed('jumpWait'):
-                    taskMgr.doMethodLater(0.20000000000000001, doJump, 'jumpWait')
+                    taskMgr.doMethodLater(0.200, doJump, 'jumpWait')
                     messenger.send('jumpStart')
 
         elif self.isAirborne and self.predicting:

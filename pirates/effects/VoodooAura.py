@@ -52,26 +52,26 @@ class VoodooAura(PooledEffect, EffectController):
         self.p0.renderer.setXScaleFlag(1)
         self.p0.renderer.setYScaleFlag(1)
         self.p0.renderer.setAnimAngleFlag(0)
-        self.p0.renderer.setInitialXScale(0.0050000000000000001 * self.cardScale)
+        self.p0.renderer.setInitialXScale(0.00500 * self.cardScale)
         self.p0.renderer.setFinalXScale(0.012 * self.cardScale)
-        self.p0.renderer.setInitialYScale(0.0050000000000000001 * self.cardScale)
+        self.p0.renderer.setInitialYScale(0.00500 * self.cardScale)
         self.p0.renderer.setFinalYScale(0.012 * self.cardScale)
         self.p0.renderer.setNonanimatedTheta(0.0)
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPBLENDLINEAR)
         self.p0.renderer.setAlphaDisable(0)
         self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 1.0, Vec4(0.0, 0.0, 0.0, 0.5), self.effectColor, 1)
         self.p0.emitter.setEmissionType(BaseParticleEmitter.ETRADIATE)
-        self.p0.emitter.setAmplitude(0.20000000000000001)
+        self.p0.emitter.setAmplitude(0.200)
         self.p0.emitter.setAmplitudeSpread(0.0)
         self.p0.emitter.setOffsetForce(Vec3(0.0, 0.0, 0.0))
         self.p0.emitter.setExplicitLaunchVector(Vec3(1.0, 0.0, 0.0))
         self.p0.emitter.setRadiateOrigin(Point3(0.0, 0.0, 0.0))
-        self.p0.emitter.setRadius(0.14999999999999999)
+        self.p0.emitter.setRadius(0.149)
 
 
     def createTrack(self, rate = 1):
-        self.castEffect = Sequence(Func(self.p0.emitter.setRadius, 0.75), Func(self.p0.renderer.setFinalXScale, 0.02 * self.cardScale), Func(self.p0.renderer.setFinalYScale, 0.02 * self.cardScale), Wait(2.0), Func(self.p0.emitter.setRadius, 0.14999999999999999), Func(self.p0.renderer.setFinalXScale, 0.012 * self.cardScale), Func(self.p0.renderer.setFinalYScale, 0.012 * self.cardScale))
-        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.029999999999999999), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy))
+        self.castEffect = Sequence(Func(self.p0.emitter.setRadius, 0.75), Func(self.p0.renderer.setFinalXScale, 0.02 * self.cardScale), Func(self.p0.renderer.setFinalYScale, 0.02 * self.cardScale), Wait(2.0), Func(self.p0.emitter.setRadius, 0.149), Func(self.p0.renderer.setFinalXScale, 0.012 * self.cardScale), Func(self.p0.renderer.setFinalYScale, 0.012 * self.cardScale))
+        self.startEffect = Sequence(Func(self.p0.setBirthRate, 0.0299), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy))
         self.endEffect = Sequence(Func(self.p0.setBirthRate, 100), Wait(7.0), Func(self.cleanUpEffect))
         self.track = Sequence(self.startEffect, Wait(1.0), self.endEffect)
 
@@ -79,14 +79,14 @@ class VoodooAura(PooledEffect, EffectController):
     def pulseUp(self):
         self.p0.renderer.setInitialXScale(0.01 * self.cardScale)
         self.p0.renderer.setFinalXScale(0.024 * self.cardScale)
-        self.p0.renderer.setInitialYScale(0.0080000000000000002 * self.cardScale)
-        self.p0.renderer.setFinalYScale(0.017000000000000001 * self.cardScale)
+        self.p0.renderer.setInitialYScale(0.008 * self.cardScale)
+        self.p0.renderer.setFinalYScale(0.0170 * self.cardScale)
 
 
     def pulseDown(self):
-        self.p0.renderer.setInitialXScale(0.0050000000000000001 * self.cardScale)
+        self.p0.renderer.setInitialXScale(0.00500 * self.cardScale)
         self.p0.renderer.setFinalXScale(0.012 * self.cardScale)
-        self.p0.renderer.setInitialYScale(0.0050000000000000001 * self.cardScale)
+        self.p0.renderer.setInitialYScale(0.00500 * self.cardScale)
         self.p0.renderer.setFinalYScale(0.012 * self.cardScale)
 
 

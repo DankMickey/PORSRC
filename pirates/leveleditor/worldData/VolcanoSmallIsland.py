@@ -8,28 +8,28 @@ objectStruct = {
                 '1141154634.53sdnaik': {
                     'Type': 'Rock',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-1048.453, 118.34099999999999, 38.314),
+                    'Pos': Point3(-1048.453, 118.340, 38.314),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/zz_dont_use_rocks_LT_group_1F' } },
                 '1141154639.13sdnaik': {
                     'Type': 'Rock',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-1053.665, 151.90000000000001, 37.457999999999998),
+                    'Pos': Point3(-1053.665, 151.9, 37.4578),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/zz_dont_use_rock_Dk_1F' } },
                 '1141154653.08sdnaik': {
                     'Type': 'Rock',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-1127.1130000000001, 128.661, 34.375999999999998),
+                    'Pos': Point3(-1127.113, 128.661, 34.3758),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/props/zz_dont_use_rock_Dk_1F' } },
                 '1141154674.09sdnaik': {
                     'Type': 'Tree - Animated',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-1085.864, 144.67099999999999, 36.052999999999997),
+                    'Pos': Point3(-1085.864, 144.670, 36.052),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'SubObjs': [
                         {
@@ -47,8 +47,8 @@ objectStruct = {
                 '1141154679.2sdnaik': {
                     'Type': 'Tree - Animated',
                     'Animate': 'models/vegetation/palm_trunk_a_idle',
-                    'Hpr': VBase3(-40.642000000000003, 0.0, 0.0),
-                    'Pos': Point3(-1093.491, 148.268, 35.624000000000002),
+                    'Hpr': VBase3(-40.642, 0.0, 0.0),
+                    'Pos': Point3(-1093.491, 148.268, 35.624),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'SubObjs': [
                         {
@@ -67,7 +67,7 @@ objectStruct = {
                     'Type': 'Tree - Animated',
                     'Animate': 'models/vegetation/palm_trunk_a_idle',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'Pos': Point3(-1086.865, 135.49100000000001, 36.171999999999997),
+                    'Pos': Point3(-1086.865, 135.491, 36.171),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'SubObjs': [
                         {

@@ -94,10 +94,10 @@ class PotionRecipe(DirectFrame):
 
     def loadIngredients(self):
         cm = CardMaker('card')
-        cm.setFrame(0, 0.80000000000000004, 0, 0.29999999999999999)
+        cm.setFrame(0, 0.800000, 0, 0.299)
         self.background = self.attachNewNode(cm.generate())
         self.background.setTransparency(True)
-        self.background.setColor(0.69999999999999996, 0.69999999999999996, 0.69999999999999996, 0)
+        self.background.setColor(0.696, 0.696, 0.696, 0)
         self.islandReq = 0
         if len(self.ingredientData) > 0:
             if False:
@@ -142,7 +142,7 @@ class PotionRecipe(DirectFrame):
 
             for ingredient in self.ingredients:
                 ingredient.setCompleted(False)
-                ingredient.setBoardPos(0, (5.2999999999999998 - self.ingredients.index(ingredient)) * 1.05)
+                ingredient.setBoardPos(0, (5.28 - self.ingredients.index(ingredient)) * 1.05)
 
         else:
             self.nameText = self.name
@@ -150,15 +150,15 @@ class PotionRecipe(DirectFrame):
             if self.ingredientCount is not None:
                 self.ingredientCount.remove_node()
 
-            self.ingredientCount = DirectLabel(parent = self.background, relief = None, text = str(self.ingredientsMade), text_scale = PiratesGuiGlobals.TextScaleTitleSmall, text_align = TextNode.ARight, text_fg = PotionGlobals.TextColor, text_wordwrap = 30, pos = (0.17000000000000001, 0, 0.94999999999999996), textMayChange = 1)
+            self.ingredientCount = DirectLabel(parent = self.background, relief = None, text = str(self.ingredientsMade), text_scale = PiratesGuiGlobals.TextScaleTitleSmall, text_align = TextNode.ARight, text_fg = PotionGlobals.TextColor, text_wordwrap = 30, pos = (0.170, 0, 0.946), textMayChange = 1)
             if self.ingredientLabel is not None:
                 self.ingredientLabel.remove_node()
 
-            self.ingredientLabel = DirectLabel(parent = self.background, relief = None, text = PLocalizer.PotionGui['IngredientCount'], text_scale = PiratesGuiGlobals.TextScaleTitleSmall, text_align = TextNode.ALeft, text_fg = PotionGlobals.TextColor, text_wordwrap = 30, pos = (0.25, 0, 0.94999999999999996), textMayChange = 1)
+            self.ingredientLabel = DirectLabel(parent = self.background, relief = None, text = PLocalizer.PotionGui['IngredientCount'], text_scale = PiratesGuiGlobals.TextScaleTitleSmall, text_align = TextNode.ALeft, text_fg = PotionGlobals.TextColor, text_wordwrap = 30, pos = (0.25, 0, 0.946), textMayChange = 1)
             if self.tileCount is not None:
                 self.tileCount.remove_node()
 
-            self.tileCount = DirectLabel(parent = self.background, relief = None, text = str(self.tilesUsed), text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ARight, text_fg = PotionGlobals.TextColor, text_wordwrap = 30, pos = (0.17000000000000001, 0, 0.75), textMayChange = 1)
+            self.tileCount = DirectLabel(parent = self.background, relief = None, text = str(self.tilesUsed), text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ARight, text_fg = PotionGlobals.TextColor, text_wordwrap = 30, pos = (0.170, 0, 0.75), textMayChange = 1)
             if self.tileLabel is not None:
                 self.tileLabel.remove_node()
 
@@ -166,11 +166,11 @@ class PotionRecipe(DirectFrame):
             if self.soulCount is not None:
                 self.soulCount.remove_node()
 
-            self.soulCount = DirectLabel(parent = self.background, relief = None, text = str(self.soulsCleared), text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_align = TextNode.ARight, text_fg = PotionGlobals.TextColor, text_wordwrap = 30, pos = (0.17000000000000001, 0, 0.84999999999999998), textMayChange = 1)
+            self.soulCount = DirectLabel(parent = self.background, relief = None, text = str(self.soulsCleared), text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_align = TextNode.ARight, text_fg = PotionGlobals.TextColor, text_wordwrap = 30, pos = (0.170, 0, 0.848), textMayChange = 1)
             if self.soulLabel is not None:
                 self.soulLabel.remove_node()
 
-            self.soulLabel = DirectLabel(parent = self.background, relief = None, text = PLocalizer.PotionGui['SoulCount'], text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_align = TextNode.ALeft, text_fg = PotionGlobals.TextColor, text_wordwrap = 30, pos = (0.25, 0, 0.84999999999999998), textMayChange = 1)
+            self.soulLabel = DirectLabel(parent = self.background, relief = None, text = PLocalizer.PotionGui['SoulCount'], text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_align = TextNode.ALeft, text_fg = PotionGlobals.TextColor, text_wordwrap = 30, pos = (0.25, 0, 0.848), textMayChange = 1)
         self.leveltext = PLocalizer.PotionGui['LevelLabel'] + str(self.level)
         if self.islandReq > 0:
             self.islandtext = PLocalizer.PotionGui['IslandName' + str(self.islandReq)]
@@ -199,15 +199,15 @@ class PotionRecipe(DirectFrame):
         if self.subtitle1 is not None:
             self.subtitle1.remove_node()
 
-        self.subtitle1 = DirectLabel(parent = self.background, relief = None, text = self.leveltext, text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ARight, text_fg = self.levelColor, text_wordwrap = 30, pos = (0.34999999999999998, 0, 1.1799999999999999), textMayChange = 0)
+        self.subtitle1 = DirectLabel(parent = self.background, relief = None, text = self.leveltext, text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ARight, text_fg = self.levelColor, text_wordwrap = 30, pos = (0.348, 0, 1.17), textMayChange = 0)
         if self.subtitle2 is not None:
             self.subtitle2.remove_node()
 
-        self.subtitle2 = DirectLabel(parent = self.background, relief = None, text = self.islandtext, text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ALeft, text_fg = self.islandColor, text_wordwrap = 30, pos = (0.39000000000000001, 0, 1.1799999999999999), textMayChange = 0)
+        self.subtitle2 = DirectLabel(parent = self.background, relief = None, text = self.islandtext, text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ALeft, text_fg = self.islandColor, text_wordwrap = 30, pos = (0.390, 0, 1.17), textMayChange = 0)
         if self.subtitle3 is not None:
             self.subtitle3.remove_node()
 
-        self.subtitle3 = DirectLabel(parent = self.background, relief = None, text = self.descText, text_scale = PiratesGuiGlobals.TextScaleMed, text_align = TextNode.ACenter, text_fg = self.titleColor, text_wordwrap = 30, pos = (0.37, 0, 1.1299999999999999), textMayChange = 0)
+        self.subtitle3 = DirectLabel(parent = self.background, relief = None, text = self.descText, text_scale = PiratesGuiGlobals.TextScaleMed, text_align = TextNode.ACenter, text_fg = self.titleColor, text_wordwrap = 30, pos = (0.37, 0, 1.12), textMayChange = 0)
         self.stash()
 
 

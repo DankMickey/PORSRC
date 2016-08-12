@@ -161,13 +161,13 @@ class DistributedKillerGhost(DistributedBattleNPC.DistributedBattleNPC, Ghost.Gh
 
     def startShuffle(self, turnAnim):
         if self.playNoticeAnims():
-            self.loop(turnAnim, partName = 'legs', blendDelay = 0.14999999999999999)
+            self.loop(turnAnim, partName = 'legs', blendDelay = 0.149)
 
 
 
     def midShuffle(self):
         if self.playNoticeAnims():
-            self.loop('idle', blendDelay = 0.29999999999999999)
+            self.loop('idle', blendDelay = 0.299)
 
 
 
@@ -180,7 +180,7 @@ class DistributedKillerGhost(DistributedBattleNPC.DistributedBattleNPC, Ghost.Gh
             else:
                 reaction = self.getNoticeAnimation()
             if reaction:
-                self.play(reaction, blendInT = 0.29999999999999999, blendOutT = 0.29999999999999999)
+                self.play(reaction, blendInT = 0.299, blendOutT = 0.299)
 
 
 
@@ -264,7 +264,7 @@ class DistributedKillerGhost(DistributedBattleNPC.DistributedBattleNPC, Ghost.Gh
 
         def startSFX():
             sfx = loadSfx(SoundGlobals.SFX_FX_THUNDERCLAP)
-            pitchRate = 0.80000000000000004 + random.random() * 0.40000000000000002
+            pitchRate = 0.800000 + random.random() * 0.4
             sfx.setPlayRate(pitchRate)
             si = SoundInterval(sfx, node = self, volume = 1.0, seamlessLoop = False, cutOff = 150.0)
             self.sfxList.append(si)
@@ -288,7 +288,7 @@ class DistributedKillerGhost(DistributedBattleNPC.DistributedBattleNPC, Ghost.Gh
                 deathEffect.reparentTo(render)
                 deathEffect.setPos(root, offset)
                 deathEffect.fadeColor = Vec4(0.5, 1, 0.5, 1)
-                deathEffect.setScale(effectScale * 0.40000000000000002)
+                deathEffect.setScale(effectScale * 0.4)
                 deathEffect.play()
 
 

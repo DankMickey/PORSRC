@@ -42,7 +42,7 @@ class SmokePillar(PooledEffect, EffectController):
 
     def createTrack(self):
         self.p0.setPoolSize(64)
-        self.p0.setBirthRate(0.29999999999999999)
+        self.p0.setBirthRate(0.299)
         self.p0.setLitterSize(10)
         self.p0.setLitterSpread(4)
         self.p0.setSystemLifespan(0.0)
@@ -52,7 +52,7 @@ class SmokePillar(PooledEffect, EffectController):
         self.p0.factory.setLifespanBase(1.0)
         self.p0.factory.setLifespanSpread(0.5)
         self.p0.factory.setMassBase(1.0)
-        self.p0.factory.setMassSpread(0.94999999999999996)
+        self.p0.factory.setMassSpread(0.946)
         self.p0.factory.setTerminalVelocityBase(2000.0)
         self.p0.factory.setTerminalVelocitySpread(0.0)
         self.p0.factory.setInitialAngle(0.0)
@@ -61,16 +61,16 @@ class SmokePillar(PooledEffect, EffectController):
         self.p0.factory.setAngularVelocity(5.0)
         self.p0.factory.setAngularVelocitySpread(1.0)
         self.p0.renderer.setAlphaMode(BaseParticleRenderer.PRALPHAOUT)
-        self.p0.renderer.setUserAlpha(0.59999999999999998)
+        self.p0.renderer.setUserAlpha(0.598)
         self.p0.renderer.setFromNode(self.card)
         self.p0.renderer.setColor(Vec4(1.0, 1.0, 1.0, 1.0))
         self.p0.renderer.setXScaleFlag(1)
         self.p0.renderer.setYScaleFlag(1)
         self.p0.renderer.setAnimAngleFlag(1)
         self.p0.renderer.setInitialXScale(0.12 * self.spriteScale * self.cardScale)
-        self.p0.renderer.setFinalXScale(0.34999999999999998 * self.spriteScale * self.cardScale)
+        self.p0.renderer.setFinalXScale(0.348 * self.spriteScale * self.cardScale)
         self.p0.renderer.setInitialYScale(0.12 * self.spriteScale * self.cardScale)
-        self.p0.renderer.setFinalYScale(0.34999999999999998 * self.spriteScale * self.cardScale)
+        self.p0.renderer.setFinalYScale(0.348 * self.spriteScale * self.cardScale)
         self.p0.renderer.setNonanimatedTheta(0.0)
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPNOBLEND)
         self.p0.renderer.setAlphaDisable(0)
@@ -81,7 +81,7 @@ class SmokePillar(PooledEffect, EffectController):
         self.p0.emitter.setExplicitLaunchVector(Vec3(1.0, 0.0, 0.0))
         self.p0.emitter.setRadiateOrigin(Point3(0.0, 0.0, 1.0))
         self.p0.emitter.setRadius(self.radius)
-        self.track = Sequence(Func(self.p0.setBirthRate, 0.02), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self), Wait(0.29999999999999999), Func(self.p0.setBirthRate, 100), Wait(7.0), Func(self.cleanUpEffect))
+        self.track = Sequence(Func(self.p0.setBirthRate, 0.02), Func(self.p0.clearToInitial), Func(self.f.start, self, self.particleDummy), Func(self.f.reparentTo, self), Wait(0.299), Func(self.p0.setBirthRate, 100), Wait(7.0), Func(self.cleanUpEffect))
 
 
     def cleanUpEffect(self):

@@ -64,10 +64,10 @@ class VolcanoSmoke(NodePath, EffectController):
         self.p0.renderer.setNonanimatedTheta(0.0)
         self.p0.renderer.setAlphaBlendMethod(BaseParticleRenderer.PPBLENDLINEAR)
         self.p0.renderer.setAlphaDisable(0)
-        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 0.050000000000000003, Vec4(1, 0, 0, 0), Vec4(1, 0.59999999999999998, 0.25, 1.0))
-        self.p0.renderer.getColorInterpolationManager().addLinear(0.050000000000000003, 0.10000000000000001, Vec4(1, 0.59999999999999998, 0.25, 1), Vec4(0.25, 0.25, 0.25, 1.0))
-        self.p0.renderer.getColorInterpolationManager().addConstant(0.10000000000000001, 0.80000000000000004, Vec4(0.25, 0.25, 0.25, 1))
-        self.p0.renderer.getColorInterpolationManager().addLinear(0.80000000000000004, 1.0, Vec4(0.25, 0.25, 0.25, 1.0), Vec4(0.5, 0.5, 0.5, 0.0))
+        self.p0.renderer.getColorInterpolationManager().addLinear(0.0, 0.050000, Vec4(1, 0, 0, 0), Vec4(1, 0.598, 0.25, 1.0))
+        self.p0.renderer.getColorInterpolationManager().addLinear(0.050000, 0.100, Vec4(1, 0.598, 0.25, 1), Vec4(0.25, 0.25, 0.25, 1.0))
+        self.p0.renderer.getColorInterpolationManager().addConstant(0.100, 0.800000, Vec4(0.25, 0.25, 0.25, 1))
+        self.p0.renderer.getColorInterpolationManager().addLinear(0.800000, 1.0, Vec4(0.25, 0.25, 0.25, 1.0), Vec4(0.5, 0.5, 0.5, 0.0))
         self.p0.emitter.setEmissionType(BaseParticleEmitter.ETEXPLICIT)
         self.p0.emitter.setAmplitude(0.0)
         self.p0.emitter.setAmplitudeSpread(0.0)
@@ -86,7 +86,7 @@ class VolcanoSmoke(NodePath, EffectController):
         self.p0.emitter.setAmplitude(0.0 * effectScale)
         self.p0.emitter.setAmplitudeSpread(10.0 * effectScale)
         self.p0.emitter.setOffsetForce(Vec3(0.0, -5.0, 15.0) * effectScale)
-        self.p0.accelerate(45, 1, 0.050000000000000003 * self.p0.getBirthRate())
+        self.p0.accelerate(45, 1, 0.050000 * self.p0.getBirthRate())
 
 
     def createTrack(self):
