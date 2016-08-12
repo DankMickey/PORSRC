@@ -10,7 +10,6 @@ from pirates.piratesbase import PLocalizer
 from pirates.piratesgui import SocialPage
 from pirates.piratesgui import PiratesGuiGlobals
 from pirates.piratesbase import PiratesGlobals
-from pirates.piratesbase import Freebooter
 from pirates.piratesgui import PirateMemberList
 from pirates.piratesgui import PirateButtonChain
 from pirates.piratesgui import PiratesConfirm
@@ -216,17 +215,6 @@ class GuildPage(SocialPage.SocialPage):
             self.redeemInvite['state'] = DGG.DISABLED
         else:
             self.createButton['state'] = DGG.NORMAL
-        if Freebooter.FreeGuildRestrict:
-            if not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-                if self.createButton:
-                    self.createButton['state'] = DGG.DISABLED
-
-                if self.renameButton:
-                    self.renameButton['state'] = DGG.DISABLED
-
-
-
-
 
     def destroy(self):
         self.ignoreAll()

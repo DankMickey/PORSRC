@@ -4,7 +4,6 @@ from pirates.battle import DistributedBattleAvatar
 from pirates.pirate import BattleAvatarGameFSM
 from direct.distributed import DistributedSmoothNode
 from pirates.piratesbase import PiratesGlobals
-from pirates.piratesbase import Freebooter
 from pirates.piratesbase import PLocalizer
 from pirates.piratesgui import PiratesGuiGlobals, HpMeter
 from direct.gui.DirectGui import DirectWaitBar, DGG

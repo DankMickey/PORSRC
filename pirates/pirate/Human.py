@@ -287,9 +287,6 @@ class Human(HumanBase.HumanBase, Biped.Biped):
 
         return filePrefix
 
-    def getIsPaid(self):
-        return True
-
     def setupGhostNodes(self):
         lod = NodePath(self.getLODNode())
         for node in lod.getChildren():
@@ -313,7 +310,6 @@ class Human(HumanBase.HumanBase, Biped.Biped):
         other.crazyColorSkin = self.crazyColorSkin
         other.setCrazyColorSkinIndex(self.getCrazyColorSkinIndex())
         yieldThread('anim dict')
-        other.isPaid = self.getIsPaid()
         other.showLOD(2000)
         yieldThread('showLOD')
         base.loadingScreen.tick()

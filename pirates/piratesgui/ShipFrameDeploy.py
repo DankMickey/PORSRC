@@ -8,7 +8,6 @@ from pirates.piratesgui import PiratesGuiGlobals
 from pirates.piratesgui.ShipFrameSelect import ShipFrameSelect
 from pirates.piratesgui.ShipSnapshot import ShipSnapshot
 from pirates.ship import ShipGlobals
-from pirates.piratesbase import Freebooter
 
 class ShipFrameDeploy(ShipFrameSelect):
 
@@ -90,19 +89,6 @@ class ShipFrameDeploy(ShipFrameSelect):
             self.button['text'] = PLocalizer.BoardShip
             stateStr = PLocalizer.ShipAtSea
             self.button['helpText'] = PLocalizer.ShipAtSea
-        if not Freebooter.getPaidStatus(base.localAvatar.getDoId()) and shipOV.shipClass != ShipGlobals.INTERCEPTORL1 and shipOV.shipClass != ShipGlobals.MERCHANTL1:
-            self.button['command'] = base.localAvatar.guiMgr.showNonPayer
-            self.button['extraArgs'] = [
-                'Restricted_ShipFrame_Deploy',
-                3]
-            self.button['text'] = PLocalizer.Locked
-            subgui = loader.loadModel('models/gui/toplevel_gui')
-            if subgui:
-                self.button['geom'] = subgui.find('**/pir_t_gui_gen_key_subscriber')
-                self.button['geom_scale'] = 0.14999999999999999
-                self.button['geom_color'] = Vec4(0.69999999999999996, 0.69999999999999996, 0.69999999999999996, 1.0)
-                subgui.remove_node()
-
 
         if typeStr:
             self.typeLabel['text'] = 'smallCaps(%s)' % typeStr

@@ -20,7 +20,6 @@ from otp.otpgui import OTPDialog
 from pirates.piratesgui import PDialog
 from direct.task import Task
 import random
-from pirates.piratesbase import Freebooter
 from pirates.inventory import ItemGlobals, DropGlobals
 from pirates.inventory.InventoryGlobals import *
 from pirates.uberdog.TradableInventoryBase import InvItem
@@ -245,7 +244,6 @@ class AccessoriesStoreGUI(DirectFrame):
         self.ParchmentIcon = gui.find('**/main_gui_quest_scroll')
         self.TailorIcons = loader.loadModel('models/textureCards/tailorIcons')
         self.ShirtIcon = loader.loadModel('models/gui/char_gui').find('**/chargui_cloth')
-        self.LockIcon = gui.find('**/pir_t_gui_gen_key_subscriber')
         self.ColorPickerIcon = gui.find('**/pir_t_gui_gen_colorPicker')
         self.backTabParent = self.attachNewNode('backTabs', sort = 0)
         self.panel = GuiPanel.GuiPanel(None, self.width, self.height, parent = self, showClose = False)
@@ -262,7 +260,6 @@ class AccessoriesStoreGUI(DirectFrame):
         if shopId == PiratesGlobals.PRIVATEER_HATS or shopId == PiratesGlobals.PRIVATEER_COATS:
             self.pvpMode = 1
 
-        self.paid = Freebooter.getPaidStatus(localAvatar.getDoId())
         if localAvatar.gameFSM.camIval is not None:
             if localAvatar.gameFSM.camIval.isPlaying():
                 localAvatar.gameFSM.camIval.finish()
@@ -352,8 +349,6 @@ class AccessoriesStoreGUI(DirectFrame):
         localAvatar.guiMgr.chatPanel.show()
         localAvatar.guiMgr.chatPanel.startFadeTextIval()
         self.accept('aspectRatioChanged', self.aspectRatioChange)
-        self.accept('NonPayerPanelShown', self.hideDisplayRegions)
-        self.accept('NonPayerPanelHidden', self.showDisplayRegions)
         self.accept('MainMenuShown', self.hideDisplayRegions)
         self.accept('MainMenuHidden', self.showDisplayRegions)
         self.accept('GUIShown', self.showDisplayRegions)
@@ -612,10 +607,6 @@ class AccessoriesStoreGUI(DirectFrame):
             self.ShirtIcon.remove_node()
             self.ShirtIcon = None
 
-        if self.LockIcon:
-            self.LockIcon.remove_node()
-            self.LockIcon = None
-
         if self.alertDialog:
             self.alertDialog.destroy()
 
@@ -683,7 +674,6 @@ class AccessoriesStoreGUI(DirectFrame):
 
     def createPirate(self):
         self.pirate = DynamicHuman.DynamicHuman()
-        self.pirate.isPaid = localAvatar.isPaid
         self.pirate.setDNAString(localAvatar.style)
         self.pirate.generateHuman(localAvatar.style.gender)
         self.pirate.model.setupSelectionChoices('DEFAULT')
@@ -1569,16 +1559,6 @@ class AccessoriesStoreGUI(DirectFrame):
                         clothButton.addToCart['state'] = DGG.DISABLED
                         clothButton.addToCart.hide()
                         clothButton.originalItem = DirectFrame(parent = clothButton, relief = None, text = PLocalizer.TailorStartingItem, text_fg = PiratesGuiGlobals.TextFG2, text_align = TextNode.ACenter, text_scale = PiratesGuiGlobals.TextScaleLarge, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 0, pos = (0.16, 0.0, 0.04))
-
-
-                if not self.paid:
-                    clothButton.addToCart['geom'] = self.LockIcon
-                    clothButton.addToCart['geom_scale'] = 0.2
-                    clothButton.addToCart['geom_pos'] = Vec3(-0.1, 0.0, 0.0)
-                    clothButton.addToCart['command'] = localAvatar.guiMgr.showNonPayer
-                    clothButton.addToCart['extraArgs'] = [
-                        'CLOTHING_CANNOT_BUY-SELL',
-                        10]
 
                 data = [
                     clothingType,

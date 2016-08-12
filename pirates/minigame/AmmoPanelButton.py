@@ -4,7 +4,6 @@ from panda3d.core import TextNode, VBase4
 from direct.gui.DirectGui import *
 from direct.interval.IntervalGlobal import *
 from pirates.piratesbase import PLocalizer
-from pirates.piratesbase import Freebooter
 from pirates.piratesgui import PiratesGuiGlobals
 from pirates.piratesgui.BorderFrame import BorderFrame
 from pirates.uberdog.UberDogGlobals import InventoryType
@@ -40,11 +39,6 @@ class AmmoPanelButton(DirectButton):
         DirectButton.__init__(self, relief = None, pos = (0, 0, 0), text = '?', text_scale = 0.10000000000000001, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0.0050000000000000001, -0.035000000000000003), text_align = TextNode.ACenter, image = AmmoPanelButton.Image, image_scale = 0.12, geom = geom, geom_scale = 0.12, command = callback, textMayChange = 1, sortOrder = 70, extraArgs = [
             skillId])
         self.initialiseoptions(AmmoPanelButton)
-        gui = loader.loadModel('models/gui/toplevel_gui')
-        self.lockIcon = gui.find('**/pir_t_gui_gen_key_subscriber')
-        if not Freebooter.getPaidStatus(base.localAvatar.doId) and skillId > CannonDefenseGlobals.FREEBOOTER_LAST_AMMO_AVAILABLE:
-            self.lock = DirectFrame(parent = self, relief = None, image = self.lockIcon, image_scale = 0.14000000000000001, image_pos = (0.050000000000000003, 0, -0.025000000000000001), sortOrder = 99)
-
         self.bind(DGG.ENTER, self.showDetails)
         self.bind(DGG.EXIT, self.hideDetails)
 
@@ -58,11 +52,7 @@ class AmmoPanelButton(DirectButton):
         self.infoBox = BorderFrame(parent = base.a2dLeftCenter, frameSize = (-0.040000000000000001, 0.5, -0.25, 0.050000000000000003), pos = (globalPos.getX() + 0.12, 0, globalPos.getZ()), state = DGG.DISABLED)
         self.label = DirectLabel(parent = self.infoBox, relief = None, text = PLocalizer.CannonDefenseAmmoDesc % (PLocalizer.makeHeadingString(PLocalizer.InventoryTypeNames[self.skillId], 2), self.cost, self.amount, PLocalizer.CannonDefenseAmmoTypeDesc[self.skillId]), text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleLarge, text_fg = PiratesGuiGlobals.TextFG2, text_wordwrap = 12, textMayChange = 1)
         if self.locked:
-            memberText = ''
-            if self.skillId > CannonDefenseGlobals.FREEBOOTER_LAST_AMMO_AVAILABLE:
-                memberText = PLocalizer.VR_AuthAccess
-
-            self.label['text'] = PLocalizer.CannonDefenseAmmoUnlockedAt % (CannonDefenseGlobals.getLevelUnlockedAt(self.skillId), memberText)
+            self.label['text'] = PLocalizer.CannonDefenseAmmoUnlockedAt % CannonDefenseGlobals.getLevelUnlockedAt(self.skillId)
 
         self.infoBox.setBin('gui-cannonDefense', 4)
 

@@ -42,7 +42,6 @@ from pirates.reputation import ReputationGlobals
 from otp.nametag.NametagConstants import CFSpeech, CFTimeout
 import PotionInstructionPanel
 from pirates.minigame.LegendaryTellGUI import LegendaryTellGUI
-from pirates.piratesbase import Freebooter
 from pirates.piratesbase import TeamUtils
 
 class DistributedNPCTownfolk(DistributedBattleNPC.DistributedBattleNPC, DistributedShopKeeper.DistributedShopKeeper, Townfolk.Townfolk):
@@ -1452,10 +1451,6 @@ class DistributedNPCTownfolk(DistributedBattleNPC.DistributedBattleNPC, Distribu
         if avFishingLevel >= 5 and rodLvl < 2:
             upgradeCost = FishingGlobals.ROD_JOURNEYMAN_COST
         elif avFishingLevel >= 15 and rodLvl < 3:
-            if Freebooter.getPaidStatus(localAvatar.doId) == False:
-                base.localAvatar.guiMgr.showNonPayer()
-                return None
-
             upgradeCost = FishingGlobals.ROD_MASTER_COST
         else:
             return None
@@ -1474,9 +1469,7 @@ class DistributedNPCTownfolk(DistributedBattleNPC.DistributedBattleNPC, Distribu
     def showLaunchFishingBoatDialog(self):
         avGold = localAvatar.getMoney()
         launchCost = EconomyGlobals.LAUNCH_FISHING_BOAT_COST
-        if Freebooter.getPaidStatus(localAvatar.doId) == False:
-            base.localAvatar.guiMgr.showNonPayer()
-        elif avGold < launchCost:
+        if avGold < launchCost:
             launchFailText = PLocalizer.LaunchFishingBoatFail % {
                 'gold': str(launchCost),
                 'have': str(avGold) }

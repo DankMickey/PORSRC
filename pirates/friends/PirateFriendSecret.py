@@ -18,26 +18,8 @@ offZ = 0.6
 
 def showFriendSecret(secretType = AccountSecret):
     global globalFriendSecret
-    if not Freebooter.getPaidStatus(localAvatar.getDoId()) and base.cr.productName == 'DisneyOnline-US':
-        chatMgr = base.localAvatar.chatMgr
-        chatMgr.fsm.request('unpaidChatWarning')
-    elif not base.cr.allowSecretChat():
-        chatMgr = base.localAvatar.chatMgr
-        if base.cr.productName in [
-            'DisneyOnline-AP',
-            'DisneyOnline-UK',
-            'ES',
-            'Wanadoo',
-            'T-Online',
-            'JP']:
-            chatMgr = base.localAvatar.chatMgr
-            if not Freebooter.getPaidStatus(localAvatar.getDoId()):
-                chatMgr.fsm.request('unpaidChatWarning')
-            else:
-                chatMgr.paidNoParentPassword = 1
-                chatMgr.fsm.request('unpaidChatWarning')
-        else:
-            chatMgr.fsm.request('noSecretChatAtAll')
+    if not base.cr.allowSecretChat():
+        base.localAvatar.chatMgr.fsm.request('noSecretChatAtAll')
     elif base.cr.needParentPasswordForSecretChat():
         unloadFriendSecret()
         globalFriendSecret = FriendSecretNeedsParentLogin(secretType)

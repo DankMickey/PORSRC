@@ -862,9 +862,7 @@ FishingNoRodWarning = 'Ye need to get a fishing rod from the fishmaster first!'
 FishingNoLuresWarning = 'Ye need to go buy some fishing lures from the fishmaster first!'
 FishingNoLureEquipped = 'Ye need to choose a new lure for your line!'
 LaunchFishingBoat = 'Go Fish'
-FishingBoatVelvetRope = 'You need to have Unlimited Access to launch a fishing boat.'
 NoFishingWhileUndeadWarning = "The Undead can't fish!"
-EquipReasonVelvet = 'Sign up for Unlimited Access to use this item.'
 EquipReasonGenderMale = 'This item is for men.'
 EquipReasonGenderFemale = 'This item is for women.'
 EquipReasonLevel = 'You are too low level for this item.'
@@ -988,8 +986,6 @@ CRNameCongratulations = 'CONGRATULATIONS!!'
 CRNameAccepted = 'Your name has been\napproved by the Pirate Bretheren.\n\nFrom this day forth\nyou will be named\n"%s"'
 CRServerDateTryAgain = 'Could not get server date from %s. Try again?'
 AfkForceAcknowledgeMessage = 'Your pirate got groggy and passed out.'
-PeriodTimerWarning = 'Your time limit this month is almost over!'
-PeriodForceAcknowledgeMessage = 'You have used up all of your available minutes this month.  Come back and play some more next month!'
 CREnteringToontown = 'Entering Pirates...'
 CRAvatarListFailed = 'Failed to login and retrieve your pirates. Please restart and try again.'
 FriendsListLabel = 'Friends'
@@ -1030,14 +1026,6 @@ AvatarChooserNameAccepted = 'Congratulations! Your pirate name was accepted.'
 AvatarChooserPleaseRename = "We're sorry, your pirate name was not approved. Please enter a new name."
 AvatarChooserQueued = 'Searching for a free ocean, please try again in a moment...'
 AvatarChooserNewName = 'Submitting your new name...'
-FirstAddTitle = 'Your 7 Day Full-Screen\nPreview Has Ended'
-PreviewTitle1 = '7 Day'
-PreviewTitle2 = 'Full Screen Preview'
-FirstAddDisplay = 'You can continue to play in the current framed mode with free Basic Access or you can become a member and enjoy expanded features, including full-screen game play.'
-FirstAddBasic = 'Continue Playing'
-FirstAddUpgrade = 'Become A Member'
-VR_FirstAddBasic = 'Continue Playing'
-VR_FirstAddUpgrade = 'Become A Member'
 MakeAPirateDone = 'Done'
 MakeAPirateCancel = lCancel
 MakeAPirateNext = lNext
@@ -4448,7 +4436,6 @@ ItemBoost = '%s Boost'
 ItemBarrels = 'Barrels: %s'
 ItemLevelRequirement = '\x01slant\x01Requires Level %s %s\x02'
 ItemTrainingRequirement = '\x01slant\x01Requires %s Training\x02'
-UnlimitedAccessRequirement = '\x01slant\x01Unlimited Access Only\x02'
 RightClickPotion = 'Right click to use'
 WeaponSkill = '\x01slant\x01(Weapon Skill)\x02'
 BreakAttackSkill = '\x01slant\x01(Break Attack)\x02'
@@ -7611,10 +7598,6 @@ CutSubtitle6_1__5 = 'Look upon it!'
 CutSubtitle6_1__6 = 'The learning of the doll be in the learning of its construction...'
 CutSubtitle6_1__7 = 'each must make their own.'
 CutSubtitle6_1__8 = 'We have much work to do.'
-ProgressBlockPopupDialog = {
-    'c3visitJoshamee': 'Congratulations! You have reached the start of the next Story Quest. Only players with full access may continue beyond this point. To become a full access member visit www.piratesonline.co and subscribe.',
-    'c3r2.6visitCarver': 'Congratulations! You have recruited 5 crew members for the Black Pearl and have given Gibbs a clue as to where she is being held by the Navy. Only players with full access may continue beyond this point. To become a full access member visit www.piratesonline.co and subscribe.',
-    'c4.1visitValentina': 'Story Quest Complete!' }
 __NavyAggro = [
     'Halt!',
     'Halt!',
@@ -8387,7 +8370,6 @@ LookoutInviteCrewMsg = 'You are invited to a %s, would you like to join? You wil
 LookoutInviteFail = 'Failed to invite %s crew member(s). They are not allowed to play the chosen game.'
 LookoutInviteIgnore = 'Cannot invite your crew at this moment, an invite is already in progress.  You can try again in a minute.'
 LookoutInviteNeedCrew = 'You need to join or create a crew to play that type of game.'
-LookoutInviteNeedUnlimited = 'You are invited to a %s. Sorry, you must be an Unlimited Access Member to join.'
 ParlorGame = 'Parlor Games'
 PVPGame = 'Pirate vs Pirate'
 TMGame = 'Treasure Maps'
@@ -8457,7 +8439,6 @@ PlayTMNowHelp = 'Give it a shot alone'
 PlayTMLookout = BossBattleName + ' With Crew'
 PlayTMLookoutHelp = 'Find others to play with'
 PlayTMBlackPearlNotReady = 'The Black Pearl boss battle is coming soon!'
-PlayTMVelvetRope = '\x01smallCaps\x01Unlimited Access Members Only\x02'
 Dowse = 'Use Dowsing Rod'
 DowsingRodNotAvailable = 'You cannot use the Dowsing Rod here.'
 DowsingRodWarmerFar = 'You are getting closer to the spot, but you are still very far away.'
@@ -8969,7 +8950,6 @@ NoTeleportInWater = "Sorry, you can't teleport while swimming."
 NoTeleportInPVP = "Sorry, you can't teleport while in PVP."
 NoTeleportInTutorial = "Sorry, you can't teleport yet."
 NoTeleportCompass = "Sorry, you can't teleport until you have both your Cutlass and Compass."
-NoTeleportVelvetRope = "Sorry, you can't teleport yet."
 NoTeleportInTunnel = "Sorry, you can't teleport from here."
 NoTeleportInTeleport = 'Sorry, you are already teleporting.'
 NoTeleportInjured = "Sorry, you can't teleport while injured."
@@ -9328,72 +9308,6 @@ PokerSitDownPoker = 'Poker'
 PokerSitDownHoldEmPoker = "Tortuga Hold'em Poker"
 PokerSitDown7StudPoker = '7 Stud Poker'
 PokerYouLost = 'You Lost'
-VR_Head_StayTuned1 = 'Stay tuned for the next Pirates Online Retribution Expansion!'
-VR_Head_StayTuned2 = 'Stay tuned for the next Pirates Online Retribution Expansion!'
-VR_UpgradeNow = '\x01smallCaps\x01Upgrade Now!\x02'
-VR_UpgradeLater = '\x01smallCaps\x01Continue Playing\x02'
-VR_DismissNow = 'Upgrade Later'
-VR_Head_Combat = 'Upgrade your account to continue this quest!'
-VR_Head_Quest = 'Upgrade your account to take part in this quest!'
-VR_Head_Trial = 'Your 7-Day Full-Screen Preview Has Expired'
-VR_Head_Guild = 'Upgrade your account to create your own Pirate Guild!'
-VR_Head_Island = 'Upgrade your account to gain access to this high-level area!'
-VR_Head_Ship = 'Upgrade your account to gain access to additional ships!'
-VR_Head_Account = 'Upgrade your account to create more Pirates!'
-VR_Head_Weapon = 'Upgrade your account to gain access to additional weapons and skills!'
-VR_Head_PVP = 'Upgrade your account to gain access to additional PVP maps and game types!'
-VR_Head_Parlor = 'Upgrade your account to gain access to additional parlor games!'
-VR_Head_Treasure = 'Upgrade your account to complete this treasure collection!'
-VR_Head_Customize = 'Upgrade your account to customize your Pirate with exclusive items!'
-VR_StayTuned1 = '-  Coming soon: More fabulous places to explore\n-  More pirate adventures with Jack and friends\n-  Fiendish foes to test your mettle'
-VR_StayTuned2 = '-  Coming soon: More fabulous places to explore\n-  More pirate adventures with Jack and friends\n-  Fiendish foes to test your mettle'
-VR_Access = '\x01uline\x01Experience Unlimited Access - Click here for details\x02'
-VRCustomizeBlurb = 'Customize your Pirates with exclusive clothing, jewelry, and tattoos'
-VR_Combat = "You'll also gain access to these exclusive game features:\n   -  Unlock advanced weapons and skills\n   -  " + VRCustomizeBlurb + '\n   -  Captain bigger and better ships...and more!'
-VR_Quest = "You'll also gain access to these exclusive game features:\n   -  " + VRCustomizeBlurb + '\n   -  Unlock advanced weapons and skills\n   -  Captain bigger and better ships... and more!'
-VR_Trial = 'You can continue to play in windowed mode with free Basic Access or you can upgrade to Unlimited Access for expanded features including full-screen game play.'
-VR_Guild = "You'll also gain access to these exclusive game features:\n   -  Unlock advanced weapons and skills\n   -  Captain bigger and better ships\n   -  " + VRCustomizeBlurb
-VR_Island = "You'll also gain access to these exclusive game features:\n   -  Unlock advanced weapons and skills\n   -  Embark on expanded quests\n   -  " + VRCustomizeBlurb
-VR_Ship = "You'll also gain access to these exclusive game features:\n   -  Unlock more powerful weapons and skills\n   -  Engage in expanded pirate-versus-pirate combat\n   -  " + VRCustomizeBlurb
-VR_Account = "You'll also gain access to these exclusive game features:\n   -  " + VRCustomizeBlurb + '\n   -  Unlock advanced weapons and skills\n   -  Captain bigger and better ships....and more!'
-VR_Weapon = "You'll also gain access to these exclusive game features:\n   -  Captain bigger and better ships\n   -  " + VRCustomizeBlurb + '\n   -  Engage in expanded pirate-versus-pirate combat... and more!'
-VR_PVP = "You'll also gain access to these exclusive game features:\n   -  Unlock more powerful weapons and skills\n   -  Create and lead your own powerful Pirate guild\n   -  Captain bigger and better ships... and more!"
-VR_Parlor = "You'll also gain access to these exclusive game features:\n   -  Unlock more powerful weapons and skills\n   -  Captain bigger and better ships\n   -  " + VRCustomizeBlurb
-VR_Treasure = "You'll also gain access to these exclusive game features:\n   -  Embark on expanded quests\n   -  " + VRCustomizeBlurb + '\n   -  Captain bigger and better ships... and more!'
-VR_Customize = "You'll also gain access to these exclusive game features:\n   -  Unlock advanced weapons and skills\n   -  Captain bigger and better ships\n   -  Create and lead your own Pirate Guild... and more!"
-VR_Cap_StayTuned1 = 'Next Expansion in the Works'
-VR_Cap_StayTuned2 = 'More Pirate Adventures'
-VR_Cap_Parlor1 = 'Play a variety of games'
-VR_Cap_Parlor2 = 'Enjoy members-only games'
-VR_Cap_Combat1 = 'Retake the Pearl'
-VR_Cap_Combat2 = 'Grab the Horizon'
-VR_Cap_Trial1 = 'Live the adventure!'
-VR_Cap_Trial2 = 'More pirate loot awaits!'
-VR_Cap_Quest1 = 'Extend your adventure'
-VR_Cap_Quest2 = 'Fully level up your character'
-VR_Cap_Ship1 = 'Captain more powerful ships'
-VR_Cap_Ship2 = 'Become a legend of the seas'
-VR_Cap_Weapon1 = 'Master advanced weapons'
-VR_Cap_Weapon2 = 'More powerful ammo and skills'
-VR_Cap_Account1 = 'Unleash more characters'
-VR_Cap_Account2 = 'Create a variety of Pirates'
-VR_Cap_Treasure1 = 'Discover more treasure'
-VR_Cap_Treasure2 = 'Complete your collection'
-VR_Cap_Guild1 = 'Build a powerful Guild'
-VR_Cap_Guild2 = 'Lead them into battle'
-VR_Cap_Island1 = 'Explore the dangerous island of Kingshead'
-VR_Cap_Island2 = 'Defeat high level Navy Officers'
-VR_Cap_PVP1 = 'More PVP Maps'
-VR_Cap_PVP2 = 'More PVP Games'
-VR_Cap_Customize1 = 'More clothing & unique items'
-VR_Cap_Customize2 = 'Stand out from the crowd'
-VR_FeaturePopTitle = 'Sorry Mate...'
-VR_FeaturePopLongText = 'This feature requires Unlimited Access Membership.\nJoin the crew of advanced players to experience\nall the Caribbean has to offer.'
-VR_FeaturePopLongTextAvatars = 'Creating more Pirates requires Unlimited Access Membership.\nJoin the crew of advanced players to experience\nall the Caribbean has to offer.'
-VR_AuthAccess = '\x01smallCaps\x01Unlimited Access Members Only\x02'
-VR_StayTuned = 'Stay Tuned for More Adventures'
-VR_MemberOnly = 'This feature is for Unlimited Access Members only!'
-VR_LongText = "Unlock the full Pirate adventure waiting for you now!  See what additional help Jack and his friends need!  Can you survive Davy Jones' wrath?  Learn new skills and new weapons!  Gain full mastery of the skills you currently possess.  Open new PVP and Parlor gaming modes!"
 TableIsFullMessage = "You can't sit at this table since it is full."
 BlackjackHand = 'Blackjack'
 BlackjackStay = 'Stay'
@@ -9408,11 +9322,6 @@ BlackjackSitDownBlackjack = 'Blackjack'
 BlackjackDealerWins = 'Dealer Wins'
 ComboOrderWarn = 'Combo skills must be unlocked in order.'
 TutorialSweepWarn = 'You must unlock Sweep on Cutlass upgrade.'
-noFreebooterCap = 'Unlimited Access Only'
-FreebooterSkillLock = '\x01Ired\x01Basic Members may spend only 6 skill points per category.\x02'
-FreebooterSkillMax = '\x01Ired\x01Basic Members may raise skills to no more than rank 2.\x02'
-FreebooterDisallow = '\x01Ired\x01Locked for Basic Members\x02'
-Freebooter = 'Basic Member'
 GuildPrefix = '(G):'
 CrewPrefix = '(C):'
 PVPPrefix = '(P):'
@@ -10016,17 +9925,6 @@ HintMap_Locations = {
     LocationIds.ANY_LARGE_PORT: (),
     LocationIds.ANY_WILD_PORT: (),
     LocationIds.ANY_LOCATION: () }
-Hints_VelvetRope = [
-    'You can use all 6 Weapons!',
-    'You can purchase all 12 Ship types!',
-    'With Basic Member Access, a Skill cannot be upgraded past Rank 2!',
-    'You can start your own Guild!',
-    'Grenades can be used to defeat large groups of enemies!',
-    'Command dark powers using the Voodoo Staff!',
-    'Fight enemies up close or from afar with the Dagger!',
-    'You can create up to 6 Pirate Characters!',
-    'You can purchase stronger weapons \n like the Double-Barreled Pistol!',
-    'You can unlock new ammo types, \n such as flaming cannonballs!']
 RepCapText_Overall = '  Pirate Master\nLevel %s'
 RepCapText_Skill = 'Mastered'
 AnyTMName = 'Any Treasure Map'
@@ -10111,20 +10009,10 @@ ShopLimitTattoo = 'You cannot hold this item.\n\nCurrently the limit for tattoos
 ShopFemaleVestConflict = 'Your current vest selection does not allow for shirts.\n\nPlease change vests to properly see this item'
 ShopOwnedBarber = 'You currently have this style.'
 ChatManagerOpenChatWarning = 'Your current chat settings do not allow chat. You can change your settings in the Account Options area of the The Pirates Online Retribution web site.'
-ChatManagerUnpaidWarning = 'Your subscription level does not allow chat. You can change your settings in the Account Options area of the The Pirates Online Retribution web site.'
 ChatManagerWhisperWarning = "Whispering text messages is only allowed between two paid subscribers who are adults or have their parent's permission."
 ChatManagerNoFriendsWarning = 'You need to exchange Player Friends Codes with your friends in order to use Player Friends chat. To learn more about Player Friends chat or to enable Open chat, visit www.PiratesOnline.co.'
 ChatManagerNeedParentWarning = 'Your account must be validated by a parent or guardian in order to use Player Friends chat or Open chat. To learn more about chat, visit www.PiratesOnline.co'
-EnterKingsheadMessage = 'Entering Unlimited Access area, Kingshead Island'
-EnterKingsheadWarning = 'Sorry, you must be an Unlimited Access member to enter Kingshead Island'
-AccessVelvetRope = 'Basic Member Access'
-AccessFull = 'Unlimited Access'
-AccessUnknown = 'Unknown Access'
-VelvetRopeQuestBlock = '\x01Ired\x01This quest is available only to Unlimited Access.\x02'
-AccessLevel = {
-    OTPGlobals.AccessUnknown: AccessUnknown,
-    OTPGlobals.AccessVelvetRope: AccessVelvetRope,
-    OTPGlobals.AccessFull: AccessFull }
+EnterKingsheadMessage = 'Entering Kingshead Island'
 for i in xrange(52):
     card = i
     suit = card / 13
@@ -10154,7 +10042,6 @@ MapCanTeleport = 'Click to teleport to this island.'
 MapCanTeleportReturn = 'Click to return to this island.'
 MapCanTeleportPortOfCall = 'Click to return to your Port of Call.'
 MapCannotTeleport = 'You cannot teleport to this island.'
-MapBasicAccess = 'With %s, you can get a special Voodoo Totem that allows you to teleport to this island!' % AccessFull
 MinimapNotAvailable = 'Map is not available for this area.'
 LootBounty = '%s Bounty'
 LootGold = '%s Gold'
@@ -10172,10 +10059,6 @@ CargoSkChestP = '%s Royal Chests'
 LootSacP = '%s Loot Pouches'
 LootChestP = '%s Loot Chests'
 LootSkChestP = '%s Loot Skull Chests'
-TempNameList = [
-    'Pirate',
-    'Freebooter',
-    'Seadog']
 WeaponUnlockText = {
     InventoryType.CutlassRep: 'Unlocked by Will Turner',
     InventoryType.PistolRep: 'Unlocked by Captain Barbossa',
@@ -10220,19 +10103,11 @@ DoubleGoldStart = makeHeadingString('Double Gold Event In Progress!', 2) + '\nPl
 DoubleGoldStartChat = 'Double Gold Event In Progress!\nPlayers will earn double gold rewards for their quests and battles. %(hours)s Hours, %(minutes)s Minutes remain before the end of the event.'
 DoubleGoldEnd = 'The double gold event for all has just ended!'
 DoubleGoldStatus = 'Double Gold Event (All Players):\nTime Remaining: %s Hours, %s Minutes'
-DoubleGoldFullStart = makeHeadingString('Double Gold Event In Progress!', 2) + '\nAll Unlimited Access Members will receive double gold rewards for their quests and battles. %(hours)s Hours, %(minutes)s Minutes remain before the end of the event.'
-DoubleGoldFullStartChat = 'Double Gold Event In Progress!\nAll Unlimited Access Members will receive double gold rewards for their quests and battles. %(hours)s Hours, %(minutes)s Minutes remain before the end of the event.'
-DoubleGoldFullEnd = 'The double gold event for unlimited access members has just ended!'
-DoubleGoldFullStatus = 'Double Gold Event (Unlimited Access Members):\nTime Remaining: %s Hours, %s Minutes'
 DoubleGoldBonus = '2x Gold Bonus'
 DoubleXPStart = makeHeadingString('Double Reputation Event In Progress!', 2) + '\nPlayers will earn double Reputation points for land and sea battles.'
 DoubleXPStartChat = 'Double Reputation Event In Progress!\nPlayers will earn double reputation points for land and sea battles.'
 DoubleXPEnd = 'The double reputation point event for all has just ended!'
 DoubleXPStatus = 'Double Reputation Point Event (All Players):\nTime Remaining: %s Hours, %s Minutes'
-DoubleXPFullStart = makeHeadingString('Double Reputation Event In Progress!', 2) + '\nAll Unlimited Access Members will receive double Reputation points for all land and sea battles.'
-DoubleXPFullStartChat = 'Double Reputation Event In Progress!\nAll Unlimited Access Members will receive double Reputation points for all land and sea battles.'
-DoubleXPFullEnd = 'The Double Reputation Event for Unlimited Access members has ended!'
-DoubleXPFullStatus = 'Double Reputation Point Event (Unlimited Access Members):\nTime Remaining: %s Hours, %s Minutes'
 BlackJackFridayStart = makeHeadingString('Blackjack Friday in progress!', 2) + "\nVisit the Rowdy Rooster in Port Royal or King's Arm in Tortuga to play"
 BlackJackFridayStartChat = 'Blackjack Friday currently in progress.'
 BlackJackFridayEnd = makeHeadingString('Blackjack Friday has ended!', 2) + "\nPlease attend next week's Blackjack Friday: 3:00PM to 9:00PM (PDT)"
@@ -10240,20 +10115,14 @@ BlackJackFridayEndChat = 'Blackjack Friday has ended.'
 BlackJackFridayStatus = 'BlackJack Friday:\nTime Remaining: %s Hours, %s Minutes'
 FreeHatStartUnlimited = makeHeadingString('To all Unlimited Access Members', 2) + "\nDon't forget to pick up your exclusive skull bandana from any Tailor Shop before Midnight (PST), Sunday, March 2nd."
 FreeHatStartUnlimitedChat = "Don't forget to pick up your exclusive skull bandana from any Tailor Shop before Midnight (PST), Sunday, March 2nd."
-FreeHatStartBasic = makeHeadingString('Claim your exclusive in-game item!', 2) + '\nUpgrade to Unlimited Access and visit any Tailor shop before Midnight (PST), Sunday, March 2nd, to pick up an exclusive skull bandana.'
-FreeHatStartBasicChat = 'Upgrade to Unlimited Access and visit any Tailor shop before Midnight (PST), March 2nd, to pick up an exclusive skull bandana!'
 FlirtEmoteStart = "To All Pirates... For Valentines Day, we are introducing a new emote, flirt. Flirt can be accessed through your emotes SpeedChat menu and by the emote command '/flirt'."
 StPatricksStartAll = "The Caribbean seas have turned a strange green color. Legend tells us it's either the work of a Leprechaun, or a mischievous pirate named Shamus O'Malley."
 StPatricksStartUnlimited = makeHeadingString('To all Unlimited Access Members', 2) + "\nVisit the tattoo parlor for your exclusive St. Patty's Day tattoo & the Barber for some green hair.  Available until Midnight (PST) on March 17th."
 StPatricksStartUnlimitedChat = "Don't forget to pick up your St. Patricks day tattoo and green hair before they disappear Midnight (PST), March 17th."
-StPatricksStartBasic = makeHeadingString("Get your St. Patrick's day tattoos and hair!", 2) + '\nUpgrade to Unlimited Access and get your St. Patrick?s Day tattoo and green hair before Midnight (PST) on March 17th!'
-StPatricksStartBasicChat = "Upgrade to Unlimited Access and pick up your St. Patrick's day tattoo and green hair before they disappear at Midnight (PST), March 17th!"
 StPatricksEndAll = 'The Caribbean seas turned back to its usual color.'
 StPatricksStatus = 'The Caribbean seas will remain green for the next %s Hours, %s Minutes'
 MothersDayStartUnlimited = makeHeadingString('To all Unlimited Access Members', 2) + "\nVisit a Tattoo Parlor for exclusive Mother's Day tattoos.  Available until 12:00AM (PDT) on May 11th."
 MothersDayStartUnlimitedChat = "Visit a Tattoo Parlor for exclusive Mother's Day tattoos.  Available until 12:00AM (PDT) on May 11th."
-MothersDayStartBasic = makeHeadingString("Get your Mother's Day tattoos!", 2) + "\nUpgrade to Unlimited Access and get your Mother's Day tattoos before 12:00AM (PDT) on May 11th!"
-MothersDayStartBasicChat = "Upgrade to Unlimited Access and pick up your Mother's Day tattoos before they disappear at 12:00AM (PDT), May 11th!"
 MothersDayStatus = "Mother's Day Tattoo Event (Unlimited Access Members):\nTime Remaining: %s Hour(s), %s Minute(s)"
 FathersDayStart = makeHeadingString("Father's Day Event", 2) + "\nVisit Jack Sparrow at the Rowdy Rooster in Port Royal, to take part in a limited time Father's Day Quest.  Available until 12:00AM (PDT) on June 22nd."
 FathersDayStartChat = "Visit Jack Sparrow at the Rowdy Rooster in Port Royal, to take part in a limited time Father's Day quest.  Available until 12:00AM (PDT) on June 22nd."
@@ -10264,13 +10133,7 @@ FourthOfJulyStatus = 'Fourth Of July Holiday:\nTime Remaining: %s Hours, %s Minu
 HalfOffCustomizationStart = 'Half off customization for Unlimited Access players: %s hours, and %s minutes'
 HalfOffCustomizationEnd = 'The 50%% off all customization items event has ended.'
 HalfOffCustomizationUnlimited = 'Unlimited Access Members Only!  Visit any of the shops for 50%% off all customization items such as Clothing, Tattoos and Jewelry. Now until noon (PDT), August 18. %s Hour(s), %s Minute(s) until the end of the event.'
-HalfOffCustomizationBasic = 'Now until noon (PDT), August 18, Unlimited Access members receive 50%% off all Customization Items. (Note: Discounts for paid members only. Upgrade to a paid subscription to take advantage of the shop discounts.) %s Hour(s), %s Minute(s) until the end of the event.'
 HalfOffCustomizationStatus = 'Half-Off Customization Event (Unlimited Access Players):\nTime Remaining: %s Hour(s), %s Minute(s)'
-AllAccessHolidayStart = 'Free Preview Weekend for the next %s hours, and %s minutes'
-UnlimitedAccessEventBasic = "Avast! It's a Free Preview Weekend! Your Basic Access account has been upgraded to Unlimited Access for FREE."
-UnlimitedAccessEventUnlimited = "Avast! It's a Free Preview Weekend for Limited Access crew members. Please feel free to invite friends and family to signup for a free account. They will be able to experience being an Unlimited Access crew member from now until noon (PDT), August 18th."
-UnlimitedAccessEventUnlimitedChat = "Avast! It's a Free Preview Weekend for Limited Access crew members. Please feel free to invite friends and family to signup for a free account. Now until noon (PDT), August 18th."
-UnlimitedAccessEventBasicEnd = 'The Free Preview Weekend has ended. Your account has returned to Basic Access status, to use any Unlimited Access items you acquired during the Free Preview, please upgrade your account.'
 HalloweenStart = makeHeadingString('All Hallows Eve Holiday is in progress!', 2) + '\nJolly Roger forced an evil atmosphere around the Caribbean.'
 HalloweenStartChat = 'All Hallows Eve Holiday is in progress! \nJolly Roger forced an evil atmosphere around the Caribbean.'
 HalloweenEnd = 'All Hallows Eve Holiday has ended!'
@@ -10293,8 +10156,6 @@ FoundersFeastBegin = 'Let the Brethren Victory Feast begin!'
 FoundersFeastStatus = 'Brethren Victory Feast:\nTime Remaining: %s Hours, %s Minutes'
 FreeBandanaStartUnlimited = makeHeadingString('To all Unlimited Access Members', 2) + "\nDon't forget to pick up your exclusive golden skull bandana from any Tailor Shop before Midnight (PST), Sunday, December 7th."
 FreeBandanaStartUnlimitedChat = "Don't forget to pick up your exclusive skull bandana from any Tailor Shop before Midnight (PST), Sunday, December 7th."
-FreeBandanaStartBasic = makeHeadingString('Claim your exclusive in-game item!', 2) + '\nUpgrade to Unlimited Access and visit any Tailor shop before Midnight (PST), Sunday, December 7th, to pick up an exclusive golden skull bandana.'
-FreeBandanaStartBasicChat = 'Upgrade to Unlimited Access and visit any Tailor shop before Midnight (PST), December 7th, to pick up an exclusive golden skull bandana!'
 WinterFestivalStart = makeHeadingString('The Winter Holiday is in progress!', 2) + '\nPirates all over the Caribbean have decorated the streets of Port Royal, Tortuga, and Padres del Fuego in holiday cheer. Join us in celebration!'
 WinterFestivalStartChat = 'The Winter Holiday is in progress!\nPirates all over the Caribbean have decorated the streets of Port Royal, Tortuga, and Padres del Fuego in holiday cheer. Join us in celebration!'
 WinterFestivalEnd = 'The Winter Holiday has ended. The joy of the season has driven Jolly Roger from the Caribbean...for now.'
@@ -10305,12 +10166,9 @@ NewYearsEnd = "New Year's festivities have ended. Best wishes for a bountiful ne
 NewYearsStatus = 'New Years:\nTime Remaining: %s Hours, %s Minutes'
 ValentinesDayStartUnlimited = makeHeadingString("The Valentine's Holiday is in progress!", 2) + "\nVisit Erin Amorous in the Rowdy Rooster on Port Royal to pick up a special Valentine's Quest. The Quest is only available until 2/16. Complete the Quest for a special reward!"
 ValentinesDayStartUnlimitedChat = "The Valentine's Holiday is in progress!\nVisit Erin Amorous in the Rowdy Rooster on Port Royal to pick up a special Valentine's Quest. The Quest is only available until 2/16. Complete the Quest for a special reward!"
-ValentinesDayStartBasic = makeHeadingString("The Valentine's Holiday is in progress!", 2) + "\nBecome an Unlimited Access Member and receive a special reward when you complete the Valentine's Quest."
-ValentinesDayStartBasicChat = "The Valentine's Holiday is in progress!\nBecome an Unlimited Access Member and receive a special reward when you complete the Valentine's Quest."
 ValentinesDayEnd = "Valentine's Holiday has ended!"
 ValentinesDayStatus = "Valentine's Holiday:\nTime Remaining: %s Hours, %s Minutes"
 DoubleCrossStart = 'The Casa de Muertos Guild has a job for you and will pay good coin to see it done. Meet Captain Ezekiel Rott by the dock of Padres del Fuego to learn more. This quest can only be started by Pirates at Level 15 Notoriety or higher.'
-DoubleCrossStartBasic = 'The Casa de Muertos Guild has a job for you and will pay good coin to see it done. Meet Captain Ezekiel Rott by the dock of Padres del Fuego to learn more. Available to Unlimited Access Members only.'
 DoubleCrossStatus = 'The Casa de Muertos Guild\nTime Remaining: %s Hours, %s Minutes'
 MardiGrasStart = 'Mardi Gras Carnival is in progress! Come to the shores of Tortuga to join the festivities.'
 MardiGrasEnd = 'Mardi Gras Carnival has ended!'
@@ -10481,27 +10339,17 @@ CatalogHolidayNames = {
         'tabName': 'Sep 2010' } }
 from pirates.holiday.MessageHolidayGlobals import ConfigIds as MHConfigIds
 MHCrewDaysMsg = 'Join us for Crew Days! Every Friday and Saturday from 3pm-8pm PST, meet at the docks of Port Royal, Tortuga and Padres del Fuego to start or join a crew with other pirates!'
-from pirates.ai.HolidayGlobals import MSG_START_ALL, MSG_START_UNLIMITED, MSG_START_BASIC, MSG_ICON, MSG_END_ALL, MSG_END_UNLIMITED, MSG_END_BASIC, MSG_CHAT_STATUS, MSG_CHAT_STATUS_UNLIMITED, MSG_CHAT_STATUS_BASIC, MSG_BONFIRE, MSG_PIG, MSG_BONFIRE_STARTED, MSG_PORK_RECEIVED
+from pirates.ai.HolidayGlobals import MSG_START_ALL, MSG_ICON, MSG_END_ALL, MSG_CHAT_STATUS, MSG_BONFIRE, MSG_PIG, MSG_BONFIRE_STARTED, MSG_PORK_RECEIVED
 holidayMessages = {
     HolidayGlobals.DOUBLEGOLDHOLIDAY: {
         MSG_START_ALL: (DoubleGoldStart, DoubleGoldStartChat),
         MSG_END_ALL: (DoubleGoldEnd, DoubleGoldEnd),
         MSG_CHAT_STATUS: DoubleGoldStatus,
         MSG_ICON: 'admin' },
-    HolidayGlobals.DOUBLEGOLDHOLIDAYPAID: {
-        MSG_START_ALL: (DoubleGoldFullStart, DoubleGoldFullStartChat),
-        MSG_END_ALL: (DoubleGoldFullEnd, DoubleGoldFullEnd),
-        MSG_CHAT_STATUS: DoubleGoldFullStatus,
-        MSG_ICON: 'admin' },
     HolidayGlobals.DOUBLEXPHOLIDAY: {
         MSG_START_ALL: (DoubleXPStart, DoubleXPStartChat),
         MSG_END_ALL: (DoubleXPEnd, DoubleXPEnd),
         MSG_CHAT_STATUS: DoubleXPStatus,
-        MSG_ICON: 'admin' },
-    HolidayGlobals.DOUBLEXPHOLIDAYPAID: {
-        MSG_START_ALL: (DoubleXPFullStart, DoubleXPFullStartChat),
-        MSG_END_ALL: (DoubleXPFullEnd, DoubleXPFullEnd),
-        MSG_CHAT_STATUS: DoubleXPFullStatus,
         MSG_ICON: 'admin' },
     HolidayGlobals.BLACKJACKFRIDAY: {
         MSG_START_ALL: (BlackJackFridayStart, BlackJackFridayStartChat),
@@ -10509,8 +10357,7 @@ holidayMessages = {
         MSG_CHAT_STATUS: BlackJackFridayStatus,
         MSG_ICON: 'friends' },
     HolidayGlobals.FREEHATWEEK: {
-        MSG_START_UNLIMITED: (FreeHatStartUnlimited, FreeHatStartUnlimitedChat),
-        MSG_START_BASIC: (FreeHatStartUnlimited, FreeHatStartUnlimitedChat),
+        MSG_START_ALL: (FreeHatStartUnlimited, FreeHatStartUnlimitedChat),
         MSG_ICON: 'hat' },
     HolidayGlobals.FLIRTEMOTE: { },
     HolidayGlobals.ZOMBIEEMOTE: { },
@@ -10520,8 +10367,7 @@ holidayMessages = {
         MSG_CHAT_STATUS: StPatricksStatus,
         MSG_ICON: 'admin' },
     HolidayGlobals.MOTHERSDAY: {
-        MSG_START_UNLIMITED: (MothersDayStartUnlimited, MothersDayStartUnlimitedChat),
-        MSG_START_BASIC: (MothersDayStartBasic, MothersDayStartBasicChat),
+        MSG_START_ALL: (MothersDayStartUnlimited, MothersDayStartUnlimitedChat),
         MSG_CHAT_STATUS: MothersDayStatus,
         MSG_ICON: 'tattoo' },
     HolidayGlobals.FATHERSDAY: {
@@ -10536,11 +10382,6 @@ holidayMessages = {
         MSG_START_ALL: (HalfOffCustomizationUnlimited, HalfOffCustomizationUnlimited),
         MSG_END_ALL: (HalfOffCustomizationEnd, HalfOffCustomizationEnd),
         MSG_CHAT_STATUS: HalfOffCustomizationStatus,
-        MSG_ICON: 'admin' },
-    HolidayGlobals.ALLACCESSWEEKEND: {
-        MSG_START_BASIC: (UnlimitedAccessEventBasic, UnlimitedAccessEventBasic),
-        MSG_END_BASIC: (UnlimitedAccessEventBasicEnd, UnlimitedAccessEventBasicEnd),
-        MSG_CHAT_STATUS_BASIC: AllAccessHolidayStart,
         MSG_ICON: 'admin' },
     HolidayGlobals.HALLOWEEN: {
         MSG_START_ALL: (HalloweenStart, HalloweenStartChat),
@@ -10565,8 +10406,7 @@ holidayMessages = {
         MSG_BONFIRE_STARTED: FoundersFeastBonfireAlreadyStarted,
         MSG_PORK_RECEIVED: FoundersFeastPorkChunkReceived },
     HolidayGlobals.FREEITEMTHANKSGIVING: {
-        MSG_START_UNLIMITED: (FreeBandanaStartUnlimited, FreeBandanaStartUnlimitedChat),
-        MSG_START_BASIC: (FreeBandanaStartBasic, FreeBandanaStartBasicChat),
+        MSG_START_ALL: (FreeBandanaStartUnlimited, FreeBandanaStartUnlimitedChat),
         MSG_ICON: 'hat' },
     HolidayGlobals.WINTERFESTIVAL: {
         MSG_START_ALL: (WinterFestivalStart, WinterFestivalStartChat),
@@ -10579,14 +10419,12 @@ holidayMessages = {
         MSG_CHAT_STATUS: NewYearsStatus,
         MSG_ICON: 'admin' },
     HolidayGlobals.VALENTINESDAY: {
-        MSG_START_UNLIMITED: (ValentinesDayStartUnlimited, ValentinesDayStartUnlimitedChat),
-        MSG_START_BASIC: (ValentinesDayStartBasic, ValentinesDayStartBasicChat),
+        MSG_START_ALL: (ValentinesDayStartUnlimited, ValentinesDayStartUnlimitedChat),
         MSG_END_ALL: (ValentinesDayEnd, ValentinesDayEnd),
         MSG_CHAT_STATUS: ValentinesDayStatus,
         MSG_ICON: 'admin' },
     HolidayGlobals.DOUBLECROSS: {
-        MSG_START_UNLIMITED: (DoubleCrossStart, DoubleCrossStart),
-        MSG_START_BASIC: (DoubleCrossStartBasic, DoubleCrossStartBasic),
+        MSG_START_ALL: (DoubleCrossStart, DoubleCrossStart),
         MSG_ICON: 'admin' },
     HolidayGlobals.INVASIONPORTROYAL: {
         MSG_START_ALL: (InvasionPortRoyalStart, InvasionPortRoyalStart),
@@ -11415,7 +11253,7 @@ CannonDefenseHelp = {
 CannonDefenseLevelUp = '%s Level %d'
 CannonDefenseAmmoUnlocked = 'Unlocked %s Ammo'
 CannonDefenseAmmoDesc = '%s\nCost: %d\nAmount: %s\n\n%s'
-CannonDefenseAmmoUnlockedAt = 'Unlocked at Level %d\n\n%s'
+CannonDefenseAmmoUnlockedAt = 'Unlocked at Level %d'
 NoAmmoSlot = 'No empty ammo slot available'
 NotEnoughBankNotes = 'More banknotes needed'
 Unlimited = 'Unlimited'

@@ -2681,9 +2681,6 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
         if anim == 'Idle':
             self.cameraFSM.getFPSCamera().ignoreWheel()
 
-    def updatePaidStatus(self, *args, **kw):
-        pass
-
     def goAFK(self, task):
         if not self.isAFK:
             self.toggleAFK()

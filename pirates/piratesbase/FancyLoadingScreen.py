@@ -198,14 +198,7 @@ def getOceanHint():
 
 
 def getGeneralHint():
-    type = random.choice([
-        0,
-        1])
-    if base.cr.isPaid() == OTPGlobals.AccessVelvetRope and type == 1:
-        hint = random.choice(PLocalizer.Hints_VelvetRope)
-    else:
-        hint = random.choice(PLocalizer.Hints_General)
-    return hint
+    return random.choice(PLocalizer.Hints_General)
 
 
 def getPrivateeringHint():
@@ -281,7 +274,6 @@ class FancyLoadingScreen(DirectObject.DirectObject):
         self.currScreenshot = None
         self.snapshot = None
         self.snapshotFrame = None
-        self.snapshotFrameBasic = None
         self.currentTime = 0
         self.analyzeMode = False
         self.loadScale = 1.0
@@ -485,9 +477,6 @@ class FancyLoadingScreen(DirectObject.DirectObject):
         self.snapshot = None
         if self.snapshotFrame:
             self.snapshotFrame.destroy()
-
-        if self.snapshotFrameBasic:
-            self.snapshotFrameBasic.destroy()
 
         if self.locationLabel:
             self.locationLabel.destroy()
@@ -738,14 +727,7 @@ class FancyLoadingScreen(DirectObject.DirectObject):
             self.__setLocationText(targetName)
 
     def getGeneralHint(self):
-        type = random.choice([
-            0,
-            1])
-        if OTPGlobals.AccessVelvetRope and type == 1:
-            hint = random.choice(PLocalizer.Hints_VelvetRope)
-        else:
-            hint = random.choice(PLocalizer.Hints_VelvetRope)
-        return hint
+        return random.choice(PLocalizer.Hints_General)
 
     def __setLoadingArt(self, screenshot):
         if self.currScreenshot:

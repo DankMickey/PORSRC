@@ -17,7 +17,6 @@ from otp.otpgui import OTPDialog
 from pirates.piratesgui import PDialog
 from direct.task import Task
 import random
-from pirates.piratesbase import Freebooter
 from pirates.inventory import ItemGlobals, DropGlobals
 from pirates.inventory.InventoryGlobals import *
 from pirates.uberdog.TradableInventoryBase import InvItem
@@ -230,7 +229,6 @@ class JewelryStoreGUI(DirectFrame):
         self.jewelerIconsA = loader.loadModel('models/gui/char_gui')
         self.jewelerIconsB = loader.loadModel('models/textureCards/shopIcons')
         self.ShirtIcon = loader.loadModel('models/gui/char_gui').find('**/chargui_cloth')
-        self.LockIcon = gui.find('**/pir_t_gui_gen_key_subscriber')
         self.backTabParent = self.attachNewNode('backTabs', sort = 0)
         self.panel = GuiPanel.GuiPanel(None, self.width, self.height, parent = self, showClose = False)
         self.setPos(0.0, 0, -0.75)
@@ -241,7 +239,6 @@ class JewelryStoreGUI(DirectFrame):
         self.model.reparentTo(self.panel)
         self.model.setPos(0.625, 0.0, 1.05)
         self.model.setScale(0.337, 0.0, 0.327)
-        self.paid = Freebooter.getPaidStatus(localAvatar.getDoId())
         self.shopId = shopId
         if localAvatar.gameFSM.camIval is not None:
             if localAvatar.gameFSM.camIval.isPlaying():
@@ -329,8 +326,6 @@ class JewelryStoreGUI(DirectFrame):
         self.createDisplayRegions()
         self.alertDialog = None
         self.accept('aspectRatioChanged', self.aspectRatioChange)
-        self.accept('NonPayerPanelShown', self.hideDisplayRegions)
-        self.accept('NonPayerPanelHidden', self.showDisplayRegions)
         self.accept('MainMenuShown', self.hideDisplayRegions)
         self.accept('MainMenuHidden', self.showDisplayRegions)
         self.accept('GUIShown', self.showDisplayRegions)
@@ -1239,15 +1234,6 @@ class JewelryStoreGUI(DirectFrame):
                     self.jewelryAmount])
                 if self.mode == BUYING and not owned:
                     jewelryButton.cost = DirectFrame(parent = jewelryButton, relief = None, text = str(cost), text_fg = PiratesGuiGlobals.TextFG2, text_align = TextNode.ARight, text_scale = PiratesGuiGlobals.TextScaleLarge, text_pos = (-0.055, 0.0), text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 0, image = self.CoinImage, image_scale = 0.15, image_pos = (-0.025, 0, 0.015), pos = (0.25, 0, -0.05))
-
-                if not self.paid:
-                    jewelryButton.addToCart['geom'] = self.LockIcon
-                    jewelryButton.addToCart['geom_scale'] = 0.2
-                    jewelryButton.addToCart['geom_pos'] = Vec3(-0.1, 0.0, 0.0)
-                    jewelryButton.addToCart['command'] = localAvatar.guiMgr.showNonPayer
-                    jewelryButton.addToCart['extraArgs'] = [
-                        'JEWELRY_CANNOT_BUY-SELL',
-                        10]
 
                 data = [
                     type,

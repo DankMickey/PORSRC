@@ -408,17 +408,10 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
 
     def _handleSneakIntoKingshead(self, msgName, avId):
         if avId == localAvatar.doId:
-            if base.cr.isPaid() != OTPGlobals.AccessFull:
-                self.deniedEntryToIsland()
-            else:
-                localAvatar.motionFSM.off()
-                self.sendUpdate('requestEntryToIsland')
-                if self.uniqueId == LocationIds.KINGSHEAD_ISLAND:
-                    localAvatar.guiMgr.messageStack.addTextMessage(PLocalizer.EnterKingsheadMessage)
-
-    def deniedEntryToIsland(self):
-        if self.uniqueId == LocationIds.KINGSHEAD_ISLAND:
-            localAvatar.guiMgr.messageStack.addTextMessage(PLocalizer.EnterKingsheadWarning)
+            localAvatar.motionFSM.off()
+            self.sendUpdate('requestEntryToIsland')
+            if self.uniqueId == LocationIds.KINGSHEAD_ISLAND:
+                localAvatar.guiMgr.messageStack.addTextMessage(PLocalizer.EnterKingsheadMessage)
 
     def setupPlayerBarrier(self):
         if not self.playerBarrierNP:

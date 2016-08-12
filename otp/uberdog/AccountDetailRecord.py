@@ -7,7 +7,6 @@ class SubDetailRecord:
         self.subOwnerId = 0
         self.subName = ''
         self.subActive = ''
-        self.subAccess = ''
         self.subLevel = 0
         self.subNumAvatars = 0
         self.subNumConcur = 0
@@ -20,7 +19,6 @@ class SubDetailRecord:
         s += 'Sub Owner Id: %d\n' % self.subOwnerId
         s += 'Sub Name: %s\n' % self.subName
         s += 'Sub Active: %s\n' % self.subActive
-        s += 'Sub Access: %s\n' % self.subAccess
         s += 'Sub Level: %d\n' % self.subLevel
         s += 'Sub MaxAvatars: %d\n' % self.subNumAvatars
         s += 'Sub Concurrent: %d\n' % self.subNumConcur
@@ -34,7 +32,6 @@ class AccountDetailRecord:
         self.openChatEnabled = False
         self.createFriendsWithChat = False
         self.chatCodeCreation = False
-        self.piratesAccess = OTPGlobals.AccessUnknown
         self.familyAccountId = 0
         self.playerAccountId = 0
         self.playerName = ''
@@ -63,7 +60,6 @@ class AccountDetailRecord:
         s += 'WLChatEnabled: %s\n' % self.WLChatEnabled
         s += 'CreateFriendsWithChat: %s\n' % self.createFriendsWithChat
         s += 'ChatCodeCreation: %s\n' % self.chatCodeCreation
-        s += 'PiratesAccess: %s\n' % self.piratesAccess
         s += 'FamilyAccountId: %d\n' % self.familyAccountId
         s += 'PlayerAccountId: %d\n' % self.playerAccountId
         s += 'PlayerName: %s\n' % self.playerName

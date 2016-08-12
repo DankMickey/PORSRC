@@ -6,7 +6,6 @@ from direct.interval.IntervalGlobal import *
 from pirates.piratesgui import PiratesGuiGlobals
 from direct.showbase.DirectObject import DirectObject
 from pirates.piratesbase import PLocalizer
-from pirates.piratesbase import Freebooter
 
 class ListFrame(DirectFrame, DirectObject):
     revealSpeed = PiratesGuiGlobals.ItemRevealTime
@@ -34,8 +33,6 @@ class ListFrame(DirectFrame, DirectObject):
         self.pendingObjRequests = []
         self.itemBuffer = 0
         self.topBuffer = 0.014999999999999999
-        gui = loader.loadModel('models/gui/toplevel_gui')
-        self.lockArt = gui.find('**/pir_t_gui_gen_key_subscriber')
 
 
     def setup(self):
@@ -154,21 +151,6 @@ class ListFrame(DirectFrame, DirectObject):
                         request = base.cr.relatedObjectMgr.requestObjects([
                             objId], eachCallback = lambda param1 = None, param2 = revealTime: self.createListItem(param1, param2))
                         self.pendingObjRequests.append(request)
-                    else:
-                        itmPtr = self.createListItem(currItem, revealTime)
-                        itemText = currItem.get('Text')
-                        if itemText:
-                            if itemText[0] == PLocalizer.TBTGame and itemText[0] == PLocalizer.CTLGame and itemText[0] == PLocalizer.SBTGame or itemText[0] == PLocalizer.PokerGame:
-                                if 0:
-                                    itmPtr.setColorScale(0.29999999999999999, 0.29999999999999999, 0.29999999999999999, 1)
-                                    lock = DirectFrame(parent = itmPtr, relief = None, image = self.lockArt, image_scale = 0.20000000000000001, image_pos = (0.55000000000000004, 0, 0.089999999999999997))
-                                    itmPtr.locked = True
-                                    itmPtr['command'] = base.localAvatar.guiMgr.showNonPayer
-                                    itmPtr['extraArgs'] = [
-                                        'Restricted_ListFrame',
-                                        4]
-
-
 
                     if (itemType == None or itemType != 'Space') and self.delayedReveal:
                         revealTime += self.revealSpeed

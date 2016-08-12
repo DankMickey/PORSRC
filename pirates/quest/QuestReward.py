@@ -14,13 +14,11 @@ from pirates.battle import EnemyGlobals
 from pirates.minigame import PlayingCardDropper
 from pirates.makeapirate import JewelryGlobals, TattooGlobals, ClothingGlobals
 from pirates.economy.EconomyGlobals import ItemId
-from pirates.piratesbase import Freebooter
 from pirates.inventory import ItemGlobals
 from pirates.inventory.InventoryGlobals import Locations
 
 REPFACTOR_HOLIDAY = 1
 GOLDFACTOR_HOLIDAY = 1
-REWARD_TO = 3
 
 class QuestReward(POD):
     notify = DirectNotifyGlobal.directNotify.newCategory('QuestReward')
@@ -110,16 +108,7 @@ class QuestReward(POD):
 class GoldAmountReward(QuestReward):
 
     def applyTo(self, trade, av):
-        avId = av.getDoId()
-        goldAmt = self.amount
-        if Freebooter.getPaidStatusAI(avId):
-            if REWARD_TO == 2 or REWARD_TO == 3:
-                goldAmt *= GOLDFACTOR_HOLIDAY
-            elif not Freebooter.getPaidStatusAI(avId):
-                if REWARD_TO == 1 or REWARD_TO == 3:
-                    goldAmt *= GOLDFACTOR_HOLIDAY
-
-        trade.giveGoldInPocket(goldAmt)
+        trade.giveGoldInPocket(self.amount * GOLDFACTOR_HOLIDAY)
 
 
     def getDescriptionText(self):
@@ -140,16 +129,7 @@ class GoldAmountReward(QuestReward):
 class GoldReward(QuestReward):
 
     def applyTo(self, trade, av):
-        avId = av.getDoId()
-        goldAmt = EnemyGlobals.getMaxGoldDrop(None, self.amount, 5)
-        if Freebooter.getPaidStatusAI(avId):
-            if REWARD_TO == 2 or REWARD_TO == 3:
-                goldAmt *= GOLDFACTOR_HOLIDAY
-            elif not Freebooter.getPaidStatusAI(avId):
-                if REWARD_TO == 1 or REWARD_TO == 3:
-                    goldAmt *= GOLDFACTOR_HOLIDAY
-
-        trade.giveGoldInPocket(goldAmt)
+        trade.giveGoldInPocket(EnemyGlobals.getMaxGoldDrop(None, self.amount, 5) * GOLDFACTOR_HOLIDAY)
 
 
     def getDescriptionText(self):
@@ -877,17 +857,10 @@ class MainStoryReward(QuestReward):
 class ReputationReward(QuestReward):
 
     def applyTo(self, trade, av):
-        avId = av.getDoId()
-        rewardAmount = self.amount
-        if Freebooter.getPaidStatusAI(avId):
-            if REWARD_TO == 2 or REWARD_TO == 3:
-                rewardAmount = self.amount * REPFACTOR_HOLIDAY
-            elif not Freebooter.getPaidStatusAI(avId):
-                if REWARD_TO == 1 or REWARD_TO == 3:
-                    rewardAmount = self.amount * REPFACTOR_HOLIDAY
+        rewardAmount = self.amount * REPFACTOR_HOLIDAY
 
         if av.getTempDoubleXPReward():
-            rewardAmount = rewardAmount * 2
+            rewardAmount *= 2
 
         trade.giveReputation(InventoryType.GeneralRep, rewardAmount)
         trade.giveReputation(InventoryType.OverallRep, rewardAmount)

@@ -15,7 +15,6 @@ from pirates.uberdog import UberDogGlobals
 from pirates.piratesgui.BorderFrame import BorderFrame
 from pirates.reputation import ReputationGlobals
 from pirates.piratesgui.InventoryListItem import InventoryListItem
-from pirates.piratesbase import Freebooter
 from pirates.inventory import ItemGlobals
 from pirates.pirate import TitleGlobals
 
@@ -105,8 +104,6 @@ class InventoryItemGui(InventoryListItem):
             if repId:
                 self.checkLevel(repId, self.minLvl)
 
-
-        self.checkFreebooter(itemId, base.localAvatar.getDoId())
         trainingReq = EconomyGlobals.getItemTrainingReq(itemId)
         if trainingReq:
             self.checkTrainingReq(trainingReq)
@@ -185,23 +182,6 @@ class InventoryItemGui(InventoryListItem):
         return geomParams
 
     getGeomParams = staticmethod(getGeomParams)
-
-    def checkFreebooter(self, itemId, avId):
-        if ItemGlobals.getRarity(itemId) == ItemGlobals.CRUDE:
-            return None
-
-        if not InventoryType.begin_WeaponCannonAmmo <= itemId or itemId <= InventoryType.end_WeaponCannonAmmo:
-            if (InventoryType.begin_WeaponPistolAmmo <= itemId or itemId <= InventoryType.end_WeaponGrenadeAmmo or InventoryType.begin_WeaponDaggerAmmo <= itemId) and itemId <= InventoryType.end_WeaponDaggerAmmo:
-                return None
-
-        if itemId in [
-            InventoryType.RegularLure]:
-            return None
-
-        if not Freebooter.getPaidStatus(avId):
-            self.highlightRed(PLocalizer.FreebooterDisallow)
-
-
 
     def checkLevel(self, repId, minLvl):
         inv = localAvatar.getInventory()
@@ -647,15 +627,6 @@ class InventoryItemGui(InventoryListItem):
                 runningVertPosition -= wHeight
                 runningSize += wHeight
                 labels.append(weaponReqLabel)
-
-            if not Freebooter.getPaidStatus(localAvatar.getDoId()):
-                if rarity != ItemGlobals.CRUDE:
-                    unlimitedLabel = DirectLabel(parent = self, relief = None, text = PLocalizer.UnlimitedAccessRequirement, text_scale = textScale, text_wordwrap = halfWidth * 2.0 * (1.5 / titleScale), text_fg = PiratesGuiGlobals.TextFG6, text_shadow = PiratesGuiGlobals.TextShadow, text_align = TextNode.ACenter, pos = (0.0, 0.0, runningVertPosition), text_pos = (0.0, -textScale))
-                    uHeight = unlimitedLabel.getHeight()
-                    runningVertPosition -= uHeight
-                    runningSize += uHeight
-                    labels.append(unlimitedLabel)
-
 
             runningVertPosition -= 0.02
             runningSize += 0.02

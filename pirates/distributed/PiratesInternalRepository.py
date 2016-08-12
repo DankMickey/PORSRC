@@ -4,8 +4,8 @@ from direct.distributed.PyDatagramIterator import PyDatagramIterator
 from direct.distributed.PyDatagram import PyDatagram
 from direct.distributed.MsgTypes import *
 from otp.distributed.OtpDoGlobals import *
-
 from PiratesNetMessengerAI import PiratesNetMessengerAI
+import urlparse, pymongo
 
 class PiratesInternalRepository(AstronInternalRepository):
     GameGlobalsId = OTP_DO_ID_PIRATES
@@ -18,6 +18,21 @@ class PiratesInternalRepository(AstronInternalRepository):
         AstronInternalRepository.__init__(
             self, baseChannel, serverId=serverId, dcFileNames=dcFileNames,
             dcSuffix=dcSuffix, connectMethod=connectMethod, threadedNet=threadedNet)
+    
+    def handleConnected(self):
+        self.__messenger = PiratesNetMessengerAI(self)
+        mongoUrl = config.GetString('mongodb-url', 'mongodb://localhost')
+        replicaSet = config.GetString('mongodb-replicaset', '')
+        db = (urlparse.urlparse(mongoUrl).path or '/porgame')[1:]
+       
+        if replicaSet:
+            self.dbConn = pymongo.MongoClient(mongoUrl, replicaset=replicaSet)
+        else:
+            self.dbConn = pymongo.MongoClient(mongoUrl)
+
+        self.database = self.dbConn[db]
+        self.dbGlobalCursor = self.database.porGame
+        self.dbAstronCursor = self.database.astron
 
     def getAvatarIdFromSender(self):
         return int(self.getMsgSender() & 0xFFFFFFFF)
@@ -48,9 +63,6 @@ class PiratesInternalRepository(AstronInternalRepository):
 
         except:
             return 'dev'
-
-    def handleConnected(self):
-        self.__messenger = PiratesNetMessengerAI(self)
 
     def prepareMessage(self, message, sentArgs=[]):
         return self.__messenger.prepare(message, sentArgs)

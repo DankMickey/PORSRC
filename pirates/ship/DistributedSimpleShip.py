@@ -22,7 +22,6 @@ from pirates.battle import EnemyGlobals
 from pirates.piratesbase import PiratesGlobals
 from pirates.piratesbase import PLocalizer
 from pirates.piratesbase import TeamUtils
-from pirates.piratesbase import Freebooter
 from pirates.piratesgui.ShipStatusDisplay import ShipStatusDisplay
 from pirates.piratesgui import ShipTargetPanel
 from pirates.piratesgui import PiratesGuiGlobals

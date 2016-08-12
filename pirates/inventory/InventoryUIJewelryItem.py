@@ -6,7 +6,6 @@ from pirates.pirate import HumanDNA
 from pirates.uberdog.UberDogGlobals import InventoryType
 from pirates.inventory import ItemGlobals
 from pirates.piratesbase import PLocalizer
-from pirates.piratesbase import Freebooter
 from pirates.inventory import InventoryUIItem
 from pirates.inventory import ItemConstants
 
@@ -440,14 +439,6 @@ class InventoryUIJewelryItem(InventoryUIItem.InventoryUIItem):
         runningVertPosition -= dHeight
         runningSize += dHeight
         labels.append(descriptionLabel)
-        if not Freebooter.getPaidStatus(localAvatar.getDoId()):
-            if rarity != ItemGlobals.CRUDE:
-                unlimitedLabel = DirectLabel(parent = self, relief = None, text = PLocalizer.UnlimitedAccessRequirement, text_scale = textScale, text_wordwrap = halfWidth * 2.0 * (1.5 / titleScale), text_fg = PiratesGuiGlobals.TextFG6, text_shadow = PiratesGuiGlobals.TextShadow, text_align = TextNode.ACenter, pos = (0.0, 0.0, runningVertPosition), text_pos = (0.0, -textScale))
-                uHeight = unlimitedLabel.getHeight()
-                runningVertPosition -= uHeight
-                runningSize += uHeight
-                labels.append(unlimitedLabel)
-
 
         runningVertPosition -= 0.02
         runningSize += 0.02

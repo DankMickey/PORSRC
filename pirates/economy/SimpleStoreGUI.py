@@ -25,7 +25,6 @@ from otp.otpbase import OTPGlobals
 from otp.otpgui import OTPDialog
 from pirates.piratesgui import PDialog
 from direct.task import Task
-from pirates.piratesbase import Freebooter
 from pirates.piratesgui.InventoryItemGui import InventoryItemGui
 from pirates.inventory.InventoryGlobals import *
 from pirates.uberdog.TradableInventoryBase import InvItem
@@ -419,7 +418,6 @@ class SimpleStoreGUI(DirectFrame):
         if shopId == PiratesGlobals.PRIVATEER_HATS:
             self.pvpMode = 1
 
-        self.paid = Freebooter.getPaidStatus(localAvatar.getDoId())
         self.previewPirate = None
         if localAvatar.gameFSM.camIval is not None:
             if localAvatar.gameFSM.camIval.isPlaying():
@@ -436,7 +434,6 @@ class SimpleStoreGUI(DirectFrame):
         self.ParchmentIcon = None
         self.TailorIcons = loader.loadModel('models/textureCards/tailorIcons')
         self.ShirtIcon = loader.loadModel('models/gui/char_gui').find('**/chargui_cloth')
-        self.LockIcon = gui.find('**/pir_t_gui_gen_key_subscriber')
         self.ColorPickerIcon = gui.find('**/pir_t_gui_gen_colorPicker')
         self.redeemCodeGUI = None
         self.invContainer = None
@@ -577,10 +574,6 @@ class SimpleStoreGUI(DirectFrame):
             self.ShirtIcon.remove_node()
             self.ShirtIcon = None
 
-        if self.LockIcon:
-            self.LockIcon.remove_node()
-            self.LockIcon = None
-
         if self.alertDialog:
             self.alertDialog.destroy()
 
@@ -628,7 +621,6 @@ class SimpleStoreGUI(DirectFrame):
 
     def createPreviewPirate(self):
         self.previewPirate = DynamicHuman.DynamicHuman()
-        self.previewPirate.isPaid = localAvatar.isPaid
         self.previewPirate.setDNAString(localAvatar.style)
         self.previewPirate.generateHuman(localAvatar.style.gender)
         self.previewPirate.model.setupSelectionChoices('DEFAULT')

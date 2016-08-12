@@ -46,7 +46,6 @@ class ChatManager(DirectObject.DirectObject):
         self.__scObscured = 0
         self.__normalObscured = 0
         self.openChatWarning = None
-        self.unpaidChatWarning = None
         self.teaser = None
         self.paidNoParentPassword = None
         self.noSecretChatAtAll = None
@@ -67,7 +66,6 @@ class ChatManager(DirectObject.DirectObject):
          State.State('whisperSpeedChat', self.enterWhisperSpeedChat, self.exitWhisperSpeedChat),
          State.State('whisperSpeedChatPlayer', self.enterWhisperSpeedChatPlayer, self.exitWhisperSpeedChatPlayer),
          State.State('openChatWarning', self.enterOpenChatWarning, self.exitOpenChatWarning),
-         State.State('unpaidChatWarning', self.enterUnpaidChatWarning, self.exitUnpaidChatWarning),
          State.State('noSecretChatAtAll', self.enterNoSecretChatAtAll, self.exitNoSecretChatAtAll),
          State.State('noSecretChatAtAllAndNoWhitelist', self.enterNoSecretChatAtAllAndNoWhitelist, self.exitNoSecretChatAtAllAndNoWhitelist),
          State.State('noSecretChatWarning', self.enterNoSecretChatWarning, self.exitNoSecretChatWarning),
@@ -97,10 +95,6 @@ class ChatManager(DirectObject.DirectObject):
         if self.openChatWarning:
             self.openChatWarning.destroy()
             self.openChatWarning = None
-        if self.unpaidChatWarning:
-            self.payButton = None
-            self.unpaidChatWarning.destroy()
-            self.unpaidChatWarning = None
         if self.teaser:
             self.teaser.cleanup()
             self.teaser.unload()
@@ -405,12 +399,6 @@ class ChatManager(DirectObject.DirectObject):
 
     def exitOpenChatWarning(self):
         self.notify.error('called exitOpenChatWarning() on parent class')
-
-    def enterUnpaidChatWarning(self):
-        self.notify.error('called enterUnpaidChatWarning() on parent class')
-
-    def exitUnpaidChatWarning(self):
-        self.notify.error('called exitUnpaidChatWarning() on parent class')
 
     def enterNoSecretChatAtAll(self):
         self.notify.error('called enterNoSecretChatAtAll() on parent class')

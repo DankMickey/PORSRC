@@ -275,8 +275,6 @@ class MasterHuman(HumanBase.HumanBase, Biped.Biped):
         if other != None:
             self.copyHuman(other)
 
-        self.isPaid = False
-
     def removeCopiedNodes(self):
         self.dropShadow = self.find('**/drop_shadow*')
         if not self.dropShadow.isEmpty():

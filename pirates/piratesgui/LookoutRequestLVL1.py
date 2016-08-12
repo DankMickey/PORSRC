@@ -1194,13 +1194,6 @@ class LookoutRequestLVL1(InventoryPage, InventoryRequestGameType):
         self.startTimer(PiratesGlobals.LOOKOUT_JOIN_TIMEOUT_INVITE, lambda param1 = False: self.invitedTimedOut(param1), self.TIMER_AUTO_HIDE_MODE_PAGECHANGE)
 
 
-    def unlimitedInviteNotice(self, activityCategory):
-        gameCatDesc = GameTypeGlobals.getGameTypeString(activityCategory, 'typeBrief')
-        if activityCategory == PiratesGlobals.GAME_TYPE_TM and self.guiMgr.crewHUD.crew:
-            localAvatar.guiMgr.messageStack.addTextMessage(PLocalizer.LookoutInviteNeedUnlimited % gameCatDesc, icon = ('lookout', None))
-
-
-
     def quickConfirm(self, yes, activityType = None):
         if yes:
             if self.currMode == PiratesGuiGlobals.REQUEST_FOUND_MODE:

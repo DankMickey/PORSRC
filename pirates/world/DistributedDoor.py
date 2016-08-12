@@ -5,7 +5,6 @@ from pirates.distributed import DistributedInteractive
 from pirates.piratesbase import PiratesGlobals
 from pirates.piratesbase import PLocalizer
 from pirates.world.LocationConstants import LocationIds
-from pirates.piratesbase import Freebooter
 import string
 from direct.showbase.PythonUtil import quickProfile
 
@@ -193,10 +192,6 @@ class DistributedDoor(DistributedInteractive.DistributedInteractive):
             self.closeOtherDoorIval.append(Sequence(Wait(0.25), Func(base.playSfx, self.closeSfx, node = self.soundNode, volume = 0.7, cutoff = 100)))
 
     def requestInteraction(self, avId, interactType = 0):
-        if not Freebooter.getPaidStatus(localAvatar.getDoId()):
-            localAvatar.guiMgr.showNonPayer(quest = 'Restricted_Location', focus = 0)
-            return None
-
         if avId == localAvatar.doId:
             self.fadeOut()
             return None

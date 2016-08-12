@@ -4,7 +4,6 @@ from panda3d.core import TextNode
 from direct.gui.DirectGui import *
 from pirates.piratesbase import PLocalizer
 from pirates.piratesbase import PiratesGlobals
-from pirates.piratesbase import Freebooter
 from pirates.piratesgui.GuiButton import GuiButton
 import SkillButton
 from direct.interval.IntervalGlobal import *
@@ -15,16 +14,13 @@ from pirates.minigame import CannonDefenseGlobals
 
 class AmmoSkillButton(SkillButton.SkillButton):
 
-    def __init__(self, skillId, slotId, callback, quantity = 0, skillRank = 0, showQuantity = False, showHelp = False, showRing = False, hotkey = None, name = '', showIcon = True, showLock = False, rechargeSkillId = False, assocAmmo = []):
+    def __init__(self, skillId, slotId, callback, quantity = 0, skillRank = 0, showQuantity = False, showHelp = False, showRing = False, hotkey = None, name = '', showIcon = True, rechargeSkillId = False, assocAmmo = []):
         if skillId in [
             InventoryType.DefenseCannonRoundShot,
             InventoryType.DefenseCannonEmpty]:
             showQuantity = False
 
-        if not Freebooter.getPaidStatus(base.localAvatar.doId) and slotId >= CannonDefenseGlobals.FREEBOOTER_MAX_AMMO_SLOTS:
-            showLock = True
-
-        SkillButton.SkillButton.__init__(self, skillId, callback, quantity, skillRank, showQuantity, showHelp, showRing, hotkey, name, showIcon, showLock, rechargeSkillId, assocAmmo)
+        SkillButton.SkillButton.__init__(self, skillId, callback, quantity, skillRank, showQuantity, showHelp, showRing, hotkey, name, showIcon, rechargeSkillId, assocAmmo)
         self.toggleFrame['image_scale'] = 0.55000000000000004
         self.toolTipBox = None
         self.slotId = slotId

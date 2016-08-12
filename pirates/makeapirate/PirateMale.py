@@ -4,7 +4,6 @@ from direct.directnotify import DirectNotifyGlobal
 from pirates.pirate import HumanDNA
 from pirates.makeapirate import ClothingGlobals
 from pirates.inventory.ItemConstants import DYE_COLORS
-from pirates.piratesbase import Freebooter
 import random
 import TattooGlobals
 from pirates.pirate import BodyDefs

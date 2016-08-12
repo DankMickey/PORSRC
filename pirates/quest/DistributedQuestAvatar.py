@@ -185,21 +185,6 @@ class DistributedQuestAvatar(QuestAvatarBase.QuestAvatarBase, QuestHolder.QuestH
         self.sendUpdate('findNewActiveQuest', [
             oldQuestId])
 
-    def popupProgressBlocker(self, questId):
-        if questId == 'c3visitJoshamee':
-            localAvatar.guiMgr.showNonPayer(quest = questId, focus = 9)
-            return None
-        elif questId == 'c4.1visitValentina':
-            localAvatar.guiMgr.showStayTuned(quest = questId, focus = 0)
-            return None
-
-        popupDialogText = PLocalizer.ProgressBlockPopupDialog.get(questId)
-        if popupDialogText:
-            self.popupDialog = PDialog.PDialog(text = popupDialogText, style = OTPDialog.Acknowledge, command = self.__cleanupDialog)
-        else:
-            localAvatar.guiMgr.showNonPayer(quest = questId, focus = 9)
-            self.notify.warning('%s: No progressBlock dialog found!' % questId)
-
     def __cleanupDialog(self, value = None):
         if self.popupDialog:
             self.popupDialog.destroy()

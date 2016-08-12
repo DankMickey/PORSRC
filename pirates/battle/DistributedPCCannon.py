@@ -20,7 +20,6 @@ from pirates.interact import InteractiveBase
 from pirates.battle import CannonGUI
 from pirates.uberdog import UberDogGlobals
 from pirates.ship import ShipGlobals
-from pirates.piratesbase import Freebooter
 from pirates.audio import SoundGlobals
 from pirates.audio.SoundGlobals import loadSfx
 from pirates.uberdog.DistributedInventoryBase import DistributedInventoryBase
@@ -291,11 +290,6 @@ class DistributedPCCannon(DistributedWeapon.DistributedWeapon):
             if WeaponGlobals.isInfiniteAmmo(ammoSkillId) or WeaponGlobals.canUseInfiniteAmmo(localAvatar.getCurrentCharm(), ammoSkillId):
                 keepChanging = False
 
-            if not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-                if not WeaponGlobals.canFreeUse(ammoSkillId):
-                    keepChanging = True
-
-            WeaponGlobals.canFreeUse(ammoSkillId)
         self.setAmmoSkillId(ammoSkillId)
         del ammoSkillId
         if WeaponGlobals.isInfiniteAmmo(self.getAmmoSkillId()) or WeaponGlobals.canUseInfiniteAmmo(localAvatar.getCurrentCharm(), self.getAmmoSkillId()):

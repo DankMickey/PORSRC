@@ -201,8 +201,6 @@ dclass DistributedPlayer : DistributedAvatar {
   OwningAccount(DoId);
   WishName(string = "") db ram;
   WishNameState(string = "OPEN") db ram;
-  setPreviousAccess(uint8 = 0) required db airecv;
-  setAccess(uint8 = 2) broadcast ownrecv required ram airecv;
   setAdminAccess(uint16 = 0) ownrecv required airecv;
   setAsGM(bool = 0) required ram broadcast ownrecv airecv;
 };
@@ -222,9 +220,9 @@ dclass OtpAvatarManager : DistributedObject {
   avatarSlotResponse(uint32, uint8);
   requestPlayAvatar(uint32, uint32, uint32) clsend airecv;
   rejectPlayAvatar(uint32, uint32);
-  playAvatarResponse(uint32, uint32, uint8, uint8);
+  playAvatarResponse(uint32, uint32, uint8);
   rejectCreateAvatar(uint32);
-  createAvatarResponse(uint32, uint32, uint8, uint8);
+  createAvatarResponse(uint32, uint32);
   requestRemoveAvatar(uint32, uint32, uint32, string(0-256)) airecv clsend;
   rejectRemoveAvatar(uint32);
   removeAvatarResponse(uint32, uint32);

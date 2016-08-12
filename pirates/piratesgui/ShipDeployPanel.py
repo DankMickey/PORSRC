@@ -9,7 +9,6 @@ from pirates.pvp import PVPGlobals
 from pirates.quest import QuestConstants
 from pirates.piratesgui.ShipFrameDeploy import ShipFrameDeploy
 from pirates.piratesbase import PLocalizer
-from pirates.piratesbase import Freebooter
 from pirates.band.DistributedBandMember import DistributedBandMember
 from pirates.piratesgui.ShipSelectionPanel import ShipSelectionPanel
 
@@ -81,10 +80,6 @@ class ShipDeployPanel(ShipSelectionPanel):
             shipFrame = ShipFrameDeploy(parent = None, shipId = shipId, shipName = shipOV.name, shipClass = shipOV.shipClass, mastInfo = mastInfo, shipType = ShipFrameDeploy.STOwn, siegeTeam = self._siegeTeam, command = callback, extraArgs = [
                 shipId])
             shipFrame.enableStatsOV(shipOV)
-            if not Freebooter.getPaidStatus(base.localAvatar.getDoId()) and shipOV.shipClass != ShipGlobals.INTERCEPTORL1 and shipOV.shipClass != ShipGlobals.MERCHANTL1:
-                shipFrame.nameLabel['text'] = PLocalizer.noFreebooterCap
-                shipFrame.nameLabel['text_fg'] = (1, 0.69999999999999996, 0.69999999999999996, 1)
-
 
         self.addFrameOwn(shipFrame)
 

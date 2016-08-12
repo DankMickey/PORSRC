@@ -10,7 +10,6 @@ from pirates.reputation import ReputationGlobals
 from pirates.battle import WeaponGlobals
 from pirates.economy import EconomyGlobals
 from pirates.economy.EconomyGlobals import *
-from pirates.piratesbase import Freebooter
 from pirates.inventory import ItemGlobals
 
 class BarSelectionMenu(GuiPanel.GuiPanel):
@@ -67,21 +66,16 @@ class BarSelectionMenu(GuiPanel.GuiPanel):
                 hotkey = DirectFrame(parent = icon, state = DGG.DISABLED, relief = None, text = hotkeyText, text_align = TextNode.ACenter, text_scale = 0.044999999999999998, text_pos = (0, 0), text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, image = kbButton, image_scale = 0.059999999999999998, image_pos = (0, 0, 0.01), image_color = (0.5, 0.5, 0.34999999999999998, 1), pos = (0, 0, 0.080000000000000002))
                 self.hotkeys.append(hotkey)
                 category = WeaponGlobals.getRepId(self.items[i][0])
-                if Freebooter.getPaidStatus(base.localAvatar.getDoId()) or Freebooter.allowedFreebooterWeapon(category):
-                    asset = ItemGlobals.getIcon(self.items[i][0])
-                    if asset:
-                        texCard = self.card.find('**/%s' % asset)
-                        icon['geom'] = texCard
-                        icon['geom_scale'] = 0.080000000000000002
-
-                    icon.resetFrameSize()
-                    self.icons.append(icon)
-                else:
-                    texCard = topGui.find('**/pir_t_gui_gen_key_subscriber*')
+                
+                asset = ItemGlobals.getIcon(self.items[i][0])
+                if asset:
+                    texCard = self.card.find('**/%s' % asset)
                     icon['geom'] = texCard
-                    icon['geom_scale'] = 0.20000000000000001
-                    icon.resetFrameSize()
-                    self.icons.append(icon)
+                    icon['geom_scale'] = 0.080000000000000002
+
+                icon.resetFrameSize()
+                self.icons.append(icon)
+
                 repMeter = DirectWaitBar(parent = icon, relief = DGG.SUNKEN, state = DGG.DISABLED, borderWidth = (0.002, 0.002), range = 0, value = 0, frameColor = (0.23999999999999999, 0.23999999999999999, 0.20999999999999999, 1), barColor = (0.80000000000000004, 0.80000000000000004, 0.69999999999999996, 1), pos = (-0.050000000000000003, 0, -0.052499999999999998), hpr = (0, 0, 0), frameSize = (0.0050000000000000001, 0.095000000000000001, 0, 0.012500000000000001))
                 self.repMeters.append(repMeter)
                 inv = base.localAvatar.getInventory()
@@ -104,21 +98,13 @@ class BarSelectionMenu(GuiPanel.GuiPanel):
             keepTrying = True
         else:
             keepTrying = False
+
         while keepTrying:
             keepTrying = False
             self.choice = self.choice - 1
             if self.choice < 0 or self.choice > len(self.items) - 1:
                 self.choice = len(self.items) - 1
 
-            if not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-                if self.items[self.choice]:
-                    category = WeaponGlobals.getRepId(self.items[self.choice][0])
-                    if not Freebooter.allowedFreebooterWeapon(category):
-                        keepTrying = True
-
-                else:
-                    keepTrying = True
-            self.items[self.choice]
         self.cursor.setPos(self.ICON_WIDTH * self.choice + 0.080000000000000002, 0, 0.071999999999999995)
         taskMgr.remove('BarSelectHideTask' + str(self.getParent()))
         self.hideTask = taskMgr.doMethodLater(self.SelectionDelay, self.confirmSelection, 'BarSelectHideTask' + str(self.getParent()), extraArgs = [])
@@ -139,12 +125,6 @@ class BarSelectionMenu(GuiPanel.GuiPanel):
             if self.choice > len(self.items) - 1:
                 self.choice = 0
 
-            if not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-                category = WeaponGlobals.getRepId(self.items[self.choice][0])
-                if not Freebooter.allowedFreebooterWeapon(category):
-                    keepTrying = True
-
-            #Freebooter.allowedFreebooterWeapon(category)
         self.cursor.setPos(self.ICON_WIDTH * self.choice + 0.080000000000000002, 0, 0.071999999999999995)
         taskMgr.remove('BarSelectHideTask' + str(self.getParent()))
         self.hideTask = taskMgr.doMethodLater(self.SelectionDelay, self.confirmSelection, 'BarSelectHideTask' + str(self.getParent()), extraArgs = [])

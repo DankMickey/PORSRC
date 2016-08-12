@@ -4,7 +4,6 @@ from panda3d.core import Point3, TextNode, Vec4, headsUp
 from direct.interval.IntervalGlobal import *
 from pirates.piratesbase import PLocalizer
 from otp.otpbase import OTPRender
-from pirates.piratesbase import Freebooter
 from pirates.piratesbase import PiratesGlobals
 from pirates.inventory import ItemGlobals
 from pirates.inventory import ItemConstants

@@ -292,18 +292,6 @@ class QuestContainer(DirectObject.DirectObject):
         simbase.air.writeServerEvent('questLadder', self.av.doId, 'assignQuest(quests: %s, giverId: %s, nextQuestIds: %s, rewards: %s, callback: %s)' % (quests, giverId, nextQuestIds, rewards, callback))
         self.notify.debug('QC.assignQuest().name: %s' % self.name)
         self.notify.debug('QC.assignQuest().nextQuestIds: %s' % nextQuestIds)
-        for quest in quests:
-            if hasattr(quest, 'questDNA'):
-                questDNA = quest.getQuestDNA()
-                if questDNA and questDNA.getProgressBlock():
-                    if questDNA.getFinalQuest() or self.av.getAccess() != 2:
-                        nextQuestId = nextQuestIds[0]
-                        self.av.d_popupProgressBlocker(nextQuestId)
-
-                else:
-                    break
-            questDNA.getProgressBlock()
-            self.notify.warning('%s has no questDNA!' % quest.getQuestId())
 
         nextQuestId = nextQuestIds[0]
         if len(quests):

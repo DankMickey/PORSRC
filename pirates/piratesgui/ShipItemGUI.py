@@ -11,7 +11,6 @@ from pirates.battle import WeaponGlobals
 from pirates.economy import EconomyGlobals
 from pirates.economy.EconomyGlobals import *
 from pirates.reputation import ReputationGlobals
-from pirates.piratesbase import Freebooter
 
 class ShipItemGUI(InventoryItemGui.InventoryItemGui):
 
@@ -80,20 +79,7 @@ class ShipItemGUI(InventoryItemGui.InventoryItemGui):
         inv = localAvatar.getInventory()
         if inv:
             repAmt = inv.getAccumulator(repId)
-            if not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-                (item, quantity) = self.data
-                if item != ItemId.INTERCEPTOR_L1 and item != ItemId.MERCHANT_L1:
-                    if not self.miscText:
-                        self.miscText = DirectLabel(parent = self, relief = None, text = '', text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, text_pos = (0.050000000000000003, 0, 0), pos = (0.16, 0, 0.025000000000000001))
-
-                    self['image_color'] = Vec4(1, 0.5, 0.5, 1)
-                    self.miscText['text_fg'] = PiratesGuiGlobals.TextFG8
-                    self.miscText['text'] = PLocalizer.noFreebooterCap
-                    subCard = loader.loadModel('models/gui/toplevel_gui')
-                    appendMe = DirectFrame(parent = self, relief = None, pos = (self.width - 0.40500000000000003, 0, -0.014999999999999999), state = DGG.DISABLED, geom = subCard.find('**/pir_t_gui_gen_key_subscriber'), geom_scale = 0.12, geom_pos = (0.059999999999999998, 0, 0.059999999999999998))
-                    subCard.remove_node()
-
-            elif minLvl > ReputationGlobals.getLevelFromTotalReputation(repId, repAmt)[0]:
+            if minLvl > ReputationGlobals.getLevelFromTotalReputation(repId, repAmt)[0]:
                 if not self.miscText:
                     self.miscText = DirectLabel(parent = self, relief = None, text = '', text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.16, 0, 0.025000000000000001))
 

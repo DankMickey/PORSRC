@@ -209,7 +209,7 @@ CATALOG_HOLIDAYS = {
 class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
     notify = DirectNotifyGlobal.directNotify.newCategory('MakeAPirate')
 
-    def __init__(self, avList, doneEvent, subId = 0, index = 0, isPaid = 0, isNPCEditor = False, piratesEditor = None):
+    def __init__(self, avList, doneEvent, subId = 0, index = 0, isNPCEditor = False, piratesEditor = None):
         self.undoList = {
             'm': [
                 HumanDNA.HumanDNA()],
@@ -286,7 +286,6 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
             self.isTutorial = 0
         else:
             self.isTutorial = 1
-        self.isPaid = isPaid
         self.lowestPage = 0
         StateData.StateData.__init__(self, doneEvent)
         self.phase = 3

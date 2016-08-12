@@ -64,13 +64,6 @@ class OTPClientRepository(ClientRepositoryBase):
         self.openChatAllowed = base.config.GetBool('allow-open-chat', True)
         self.secretChatNeedsParentPassword = base.config.GetBool('secret-chat-needs-parent-password', 0)
         self.parentPasswordSet = base.config.GetBool('parent-password-set', True)
-        self.userSignature = base.config.GetString('signature', 'none')
-
-        self.freeTimeExpiresAt = -1
-        self.__isPaid = 1
-        self.periodTimerExpired = 0
-        self.periodTimerStarted = None
-        self.periodTimerSecondsRemaining = None
 
         self.parentMgr.registerParent(OTPGlobals.SPRender, base.render)
         self.parentMgr.registerParent(OTPGlobals.SPHidden, NodePath())
@@ -153,10 +146,6 @@ class OTPClientRepository(ClientRepositoryBase):
                   self.exitAfkTimeout, [
                       'waitForAvatarList',
                       'shutdown']),
-            State('periodTimeout',
-                  self.enterPeriodTimeout,
-                  self.exitPeriodTimeout, [
-                      'shutdown']),
             State('waitForAvatarList',
                   self.enterWaitForAvatarList,
                   self.exitWaitForAvatarList, [
@@ -206,7 +195,6 @@ class OTPClientRepository(ClientRepositoryBase):
                       'login',
                       'shutdown',
                       'afkTimeout',
-                      'periodTimeout',
                       'noShards'])],
             'loginOff', 'loginOff')
         self.gameFSM = ClassicFSM('gameFSM', [
@@ -351,8 +339,6 @@ class OTPClientRepository(ClientRepositoryBase):
             self.loginFSM.request('waitForGameList')
         elif mode == 'getChatPassword':
             self.loginFSM.request('parentPassword')
-        elif mode == 'freeTimeExpired':
-            self.loginFSM.request('freeTimeInform')
         elif mode == 'reject':
             self.loginFSM.request('reject')
         elif mode == 'quit':
@@ -630,27 +616,6 @@ class OTPClientRepository(ClientRepositoryBase):
         return
 
     @report(types=['args', 'deltaStamp'], dConfigParam='teleport')
-    def enterPeriodTimeout(self):
-        self.sendSetAvatarIdMsg(0)
-        self.sendDisconnect()
-        msg = OTPLocalizer.PeriodForceAcknowledgeMessage
-        dialogClass = OTPGlobals.getDialogClass()
-        self.periodDialog = dialogClass(text=msg, command=self.__handlePeriodOk, style=OTPDialog.Acknowledge)
-        self.handler = self.handleMessageType
-
-    @report(types=['args', 'deltaStamp'], dConfigParam='teleport')
-    def __handlePeriodOk(self, value):
-        base.exitShow()
-
-    @report(types=['args', 'deltaStamp'], dConfigParam='teleport')
-    def exitPeriodTimeout(self):
-        if self.periodDialog:
-            self.periodDialog.cleanup()
-            self.periodDialog = None
-        self.handler = None
-        return
-
-    @report(types=['args', 'deltaStamp'], dConfigParam='teleport')
     def enterWaitForAvatarList(self):
         self._requestAvatarList()
 
@@ -738,10 +703,6 @@ class OTPClientRepository(ClientRepositoryBase):
         if avId != self.__currentAvId:
             self.__currentAvId = avId
             self.csm.sendChooseAvatar(avId)
-            if avId == 0:
-                self.stopPeriodTimer()
-            else:
-                self.startPeriodTimer()
 
     @report(types=['args', 'deltaStamp'], dConfigParam='teleport')
     def handleAvatarResponseMsg(self, avatarId, di):
@@ -1023,51 +984,11 @@ class OTPClientRepository(ClientRepositoryBase):
     def exitSwitchShards(self):
         pass
 
-    def isFreeTimeExpired(self):
-        if base.config.GetBool('free-time-expired', 0):
-            return 1
-        if base.config.GetBool('unlimited-free-time', 0):
-            return 0
-        if self.freeTimeExpiresAt == -1:
-            return 0
-        if self.freeTimeExpiresAt == 0:
-            return 1
-        if self.freeTimeExpiresAt < -1:
-            self.notify.warning('freeTimeExpiresAt is less than -1 (%s)' % self.freeTimeExpiresAt)
-        if self.freeTimeExpiresAt < time.time():
-            return 1
-        else:
-            return 0
-
-    def freeTimeLeft(self):
-        if self.freeTimeExpiresAt == -1 or self.freeTimeExpiresAt == 0:
-            return 0
-        secsLeft = self.freeTimeExpiresAt - time.time()
-        return max(0, secsLeft)
-
-    def isPaid(self):
-        paidStatus = base.config.GetString('force-paid-status', '')
-        if not paidStatus:
-            return self.__isPaid
-        elif paidStatus == 'paid':
-            return 1
-        elif paidStatus == 'unpaid':
-            return 0
-        elif paidStatus == 'FULL':
-            return OTPGlobals.AccessFull
-        elif paidStatus == 'VELVET':
-            return OTPGlobals.AccessVelvetRope
-        else:
-            return 0
-
-    def setIsPaid(self, isPaid):
-        self.__isPaid = isPaid
-
     def allowFreeNames(self):
         return base.config.GetInt('allow-free-names', 1)
 
     def allowSecretChat(self):
-        return self.secretChatAllowed or self.productName == 'Terra-DMC' and self.secretChatAllowed
+        return True
 
     def allowWhiteListChat(self):
         if hasattr(self, 'whiteListChatEnabled') and self.whiteListChatEnabled:
@@ -1088,21 +1009,7 @@ class OTPClientRepository(ClientRepositoryBase):
         return self.parentPasswordSet
 
     def needParentPasswordForSecretChat(self):
-        return self.isPaid() and self.secretChatNeedsParentPassword or self.productName == 'Terra-DMC' and self.secretChatNeedsParentPassword
-
-    def logAccountInfo(self):
-        self.notify.info('*** ACCOUNT INFO ***')
-        if base.logPrivateInfo:
-            self.notify.info('paid: %s' % self.isPaid())
-            if not self.isPaid():
-                if self.isFreeTimeExpired():
-                    self.notify.info('free time is expired')
-                else:
-                    secs = self.freeTimeLeft()
-                    self.notify.info('free time left: %s' % PythonUtil.formatElapsedSeconds(secs))
-            if self.periodTimerSecondsRemaining != None:
-                self.notify.info('period time left: %s' % PythonUtil.formatElapsedSeconds(self.periodTimerSecondsRemaining))
-        return
+        return False
 
     def getStartingDistrict(self):
         district = None
@@ -1200,52 +1107,6 @@ class OTPClientRepository(ClientRepositoryBase):
         if gsg:
             render2d.prepareScene(gsg)
         base.graphicsEngine.renderFrame()
-
-    def resetPeriodTimer(self, secondsRemaining):
-        self.periodTimerExpired = 0
-        self.periodTimerSecondsRemaining = secondsRemaining
-
-    def recordPeriodTimer(self, task):
-        freq = 60.0
-        elapsed = globalClock.getRealTime() - self.periodTimerStarted
-        self.runningPeriodTimeRemaining = self.periodTimerSecondsRemaining - elapsed
-        self.notify.debug('periodTimeRemaining: %s' % self.runningPeriodTimeRemaining)
-        taskMgr.doMethodLater(freq, self.recordPeriodTimer, 'periodTimerRecorder')
-        return Task.done
-
-    def startPeriodTimer(self):
-        if self.periodTimerStarted == None and self.periodTimerSecondsRemaining != None:
-            self.periodTimerStarted = globalClock.getRealTime()
-            taskMgr.doMethodLater(self.periodTimerSecondsRemaining, self.__periodTimerExpired, 'periodTimerCountdown')
-            for warning in OTPGlobals.PeriodTimerWarningTime:
-                if self.periodTimerSecondsRemaining > warning:
-                    taskMgr.doMethodLater(self.periodTimerSecondsRemaining - warning, self.__periodTimerWarning, 'periodTimerCountdown')
-
-            self.runningPeriodTimeRemaining = self.periodTimerSecondsRemaining
-            self.recordPeriodTimer(None)
-        return
-
-    def stopPeriodTimer(self):
-        if self.periodTimerStarted != None:
-            elapsed = globalClock.getRealTime() - self.periodTimerStarted
-            self.periodTimerSecondsRemaining -= elapsed
-            self.periodTimerStarted = None
-        taskMgr.remove('periodTimerCountdown')
-        taskMgr.remove('periodTimerRecorder')
-        return
-
-    def __periodTimerWarning(self, task):
-        base.localAvatar.setSystemMessage(0, OTPLocalizer.PeriodTimerWarning)
-        return Task.done
-
-    def __periodTimerExpired(self, task):
-        self.notify.info("User's period timer has just expired!")
-        self.stopPeriodTimer()
-        self.periodTimerExpired = 1
-        self.periodTimerStarted = None
-        self.periodTimerSecondsRemaining = None
-        messenger.send('periodTimerExpired')
-        return Task.done
 
     def handleMessageType(self, msgType, di):
         if self.__recordObjectMessage(msgType, di):

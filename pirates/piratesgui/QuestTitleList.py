@@ -16,7 +16,6 @@ from pirates.quest import QuestDNA
 from pirates.quest import QuestLadderDNA
 from pirates.quest.QuestTaskDNA import *
 from pirates.piratesgui import QuestTitleTiers
-from pirates.piratesbase import Freebooter
 
 class QuestTitleNode:
 
@@ -352,15 +351,6 @@ class QuestTitleList(DirectScrolledFrame):
 
             button = DirectButton(parent = guiParent, relief = None, frameSize = frameSize, borderWidth = (0.0050000000000000001, 0.0050000000000000001), text = text, text_fg = textFg, text_scale = text_scale, text_align = TextNode.ALeft, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = text_pos, command = self.select, extraArgs = [
                 node.questId])
-            questDNA = QuestDB.QuestDict.get(node.questId)
-            if questDNA:
-                if questDNA.getVelvetRoped():
-                    if not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-                        subCard = loader.loadModel('models/gui/toplevel_gui')
-                        appendMe = DirectFrame(parent = button, relief = None, pos = (self.width - 0.97999999999999998, 0, -0.029999999999999999), state = DGG.DISABLED, geom = subCard.find('**/pir_t_gui_gen_key_subscriber'), geom_scale = 0.10000000000000001, geom_pos = (0.059999999999999998, 0, 0.059999999999999998))
-                        subCard.remove_node()
-
-
 
             button.accept('press-wheel_up-%s' % button.guiId, self.mouseWheelUp)
             button.accept('press-wheel_down-%s' % button.guiId, self.mouseWheelDown)

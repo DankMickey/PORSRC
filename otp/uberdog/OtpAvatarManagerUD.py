@@ -31,13 +31,13 @@ class OtpAvatarManagerUD(DistributedObjectUD):
     def rejectPlayAvatar(self, todo0, todo1):
         pass
 
-    def playAvatarResponse(self, todo0, todo1, todo2, todo3):
+    def playAvatarResponse(self, todo0, todo1, todo2):
         pass
 
     def rejectCreateAvatar(self, todo0):
         pass
 
-    def createAvatarResponse(self, todo0, todo1, todo2, todo3):
+    def createAvatarResponse(self, todo0, todo1):
         pass
 
     def requestRemoveAvatar(self, todo0, todo1, todo2, todo3):

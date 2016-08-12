@@ -223,23 +223,17 @@ class StackMessage(BorderFrame):
                 image = StackMessage.HatTex
                 imageScale = 0.16
                 imagePos = (0.10000000000000001, 0, -0.12)
-                command = localAvatar.guiMgr.showNonPayer
-                extraArgs = [
-                    'Restricted_Message_Stack_Panel',
-                    10]
+                command = None
             elif category == 'tattoo':
                 image = StackMessage.TattooTex
                 imageScale = 0.12
                 imagePos = (0.10000000000000001, 0, -0.10000000000000001)
-                command = localAvatar.guiMgr.showNonPayer
-                extraArgs = [
-                    None,
-                    10]
+                command = None
             elif category == 'pork':
                 image = StackMessage.PorkChunkTex
                 imageScale = 0.10000000000000001
                 imagePos = (0.10000000000000001, 0, -0.080000000000000002)
-                command = localAvatar.guiMgr.showNonPayer
+                command = None
             elif category == 'ship':
                 image = StackMessage.ShipTex
                 imageScale = 0.17999999999999999

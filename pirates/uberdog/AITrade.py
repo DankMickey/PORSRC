@@ -2,7 +2,6 @@ from AITradeBase import AITradeBase
 from pirates.uberdog.UberDogGlobals import *
 from pirates.reputation import ReputationGlobals
 from direct.directnotify.DirectNotifyGlobal import directNotify
-from pirates.piratesbase import Freebooter
 
 class AITrade(AITradeBase):
     notify = directNotify.newCategory('AITrade')
@@ -260,10 +259,7 @@ class AITrade(AITradeBase):
                 if inv:
                     if category == InventoryType.OverallRep:
                         curLevel = av.getLevel()
-                        if Freebooter.getPaidStatusAI(self.avatarId):
-                            levelCap = ReputationGlobals.GlobalLevelCap
-                        else:
-                            levelCap = Freebooter.FreeOverallLevelCap
+                        levelCap = ReputationGlobals.GlobalLevelCap
                         if amount > 0 and curLevel < levelCap:
                             curRepTotal = inv.getAccumulator(InventoryType.OverallRep)
                             (newLevel, left) = ReputationGlobals.getLevelFromTotalReputation(InventoryType.OverallRep, curRepTotal + amount)
@@ -274,15 +270,13 @@ class AITrade(AITradeBase):
 
                     elif category == InventoryType.GeneralRep:
                         self.giveAccumulatorAddition(category, amount)
-                    elif Freebooter.getPaidStatusAI(self.avatarId):
+                    else:
                         if category in [
                             InventoryType.PotionsRep,
                             InventoryType.FishingRep]:
                             levelCap = ReputationGlobals.MinigameLevelCap
                         else:
                             levelCap = ReputationGlobals.LevelCap
-                    else:
-                        levelCap = Freebooter.FreeLevelCap
                     repAmt = inv.getAccumulator(category)
                     (curLevel, curLeft) = ReputationGlobals.getLevelFromTotalReputation(category, repAmt)
                     if curLevel >= levelCap:

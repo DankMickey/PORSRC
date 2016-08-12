@@ -5,7 +5,6 @@ from direct.gui.DirectGui import *
 from direct.distributed.ClockDelta import *
 from pirates.piratesbase import PiratesGlobals
 from pirates.piratesbase import PLocalizer
-from pirates.piratesbase import Freebooter
 from pirates.piratesgui import PiratesGuiGlobals
 from pirates.piratesgui import GuiPanel
 from pirates.piratesgui import Scoreboard
@@ -217,11 +216,8 @@ class HighSeasScoreboard(GuiPanel.GuiPanel):
             if base.localAvatar.ship.getOwnerId() == avId and len(base.localAvatar.ship.getCrew()) > 1:
                 bonusGold = int(totalGold * EconomyGlobals.CAPTAIN_LOOT_MULTIPLIER)
                 totalGold += bonusGold
-
-
-        if base.cr.newsManager:
-            if base.cr.newsManager.getHoliday(HolidayGlobals.DOUBLEGOLDHOLIDAYPAID) or Freebooter.getPaidStatus(avId) or base.cr.newsManager.getHoliday(HolidayGlobals.DOUBLEGOLDHOLIDAY):
-                totalGold *= 2
+        
+        totalGold *= 2
 
         netGold = totalGold - pRepairCost
         self.results = []
@@ -272,18 +268,17 @@ class HighSeasScoreboard(GuiPanel.GuiPanel):
                 'Value1': str(bonusGold) + ' ' + PLocalizer.MoneyName,
                 'UnwrapMode': 1 })
 
-        if base.cr.newsManager:
-            if base.cr.newsManager.getHoliday(HolidayGlobals.DOUBLEGOLDHOLIDAYPAID) or Freebooter.getPaidStatus(avId) or base.cr.newsManager.getHoliday(HolidayGlobals.DOUBLEGOLDHOLIDAY):
-                self.results.append({
-                    'Type': 'Space',
-                    'Text': '',
-                    'Value1': '',
-                    'UnwrapMode': 1 })
-                self.results.append({
-                    'Type': 'Entry',
-                    'Text': PLocalizer.DoubleGoldBonus,
-                    'Value1': str(totalGold / 2) + ' ' + PLocalizer.MoneyName,
-                    'UnwrapMode': 1 })
+        
+        self.results.append({
+            'Type': 'Space',
+            'Text': '',
+            'Value1': '',
+            'UnwrapMode': 1 })
+        self.results.append({
+            'Type': 'Entry',
+            'Text': PLocalizer.DoubleGoldBonus,
+            'Value1': str(totalGold / 2) + ' ' + PLocalizer.MoneyName,
+            'UnwrapMode': 1 })
 
         self.results.append({
             'Type': 'Space',

@@ -33,11 +33,7 @@ class OtpAvatarManager(DistributedObject.DistributedObject):
     def rejectCreateAvatar(self, result):
         messenger.send('createdNewAvatarFailed', [result])
 
-    def createAvatarResponse(self, avatarId, subId, access, founder):
-        self.notify.info('new avatarId: %s subId: %s access: %s founder: %s' % (avatarId,
-         subId,
-         access,
-         founder))
+    def createAvatarResponse(self, avatarId, subId):
         messenger.send('createdNewAvatar', [avatarId, subId])
 
     def sendRequestRemoveAvatar(self, avatarId, subId, confirmPassword):
@@ -79,8 +75,7 @@ class OtpAvatarManager(DistributedObject.DistributedObject):
     def rejectPlayAvatar(self, reasonId, avatarId):
         messenger.send('rejectPlayAvatar', [reasonId, avatarId])
 
-    def playAvatarResponse(self, avatarId, subId, access, founder):
+    def playAvatarResponse(self, avatarId, subId, founder):
         messenger.send('playAvatarResponse', [avatarId,
          subId,
-         access,
          founder])

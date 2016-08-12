@@ -721,7 +721,6 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   // setDinghyId(uint32) required broadcast ram;
   // setBandId(uint32, uint32) required broadcast ram ownrecv;
   requestLookoutInvite(uint32, string, uint32, uint32, resultPair []);
-  unlimitedInviteNotice(uint32);
   // setGuildId(uint32) required airecv broadcast ram;
   // setGuildName(string) required broadcast ram;
   setBandPvp(bool) clsend airecv;

@@ -4,7 +4,6 @@ import os
 
 class SubDetails:
     def __init__(self):
-        self.subAccess = PiratesGlobals.AccessFull
         self.subName = os.getenv('POR_PLAYCOOKIE', '???')
 
 

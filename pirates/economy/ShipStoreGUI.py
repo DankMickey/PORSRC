@@ -14,7 +14,6 @@ from pirates.economy.EconomyGlobals import *
 from pirates.economy import EconomyGlobals
 from pirates.ship import ShipGlobals
 from pirates.piratesgui import NamePanelGui
-from pirates.piratesbase import Freebooter
 from pirates.inventory import InventoryGlobals
 
 class ShipStoreGUI(GuiPanel.GuiPanel):
@@ -119,9 +118,6 @@ class ShipStoreGUI(GuiPanel.GuiPanel):
         self.goldValue = DirectFrame(parent = self, relief = None, text = str(localAvatar.getMoney()), text_align = TextNode.ARight, text_scale = PiratesGuiGlobals.TextScaleLarge, text_pos = (0.53, 0.411), text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 0, image = coinImage, image_scale = 0.15, image_pos = (0.56, 0, 0.425), pos = (self.columnWidth, 0, 0.04))
         coinImage.remove_node()
         self.commitButton = DialogButton.DialogButton(command = self.handleCommitPurchase, buttonStyle = DialogButton.DialogButton.YES, parent = self, relief = None, text = PLocalizer.PurchaseCommit, text_fg = PiratesGuiGlobals.TextFG2, text_scale = PiratesGuiGlobals.TextScaleLarge, textMayChange = 0, pos = (self.width - 0.39, 0, 0.07), sortOrder = 0)
-        lockImage = loader.loadModel('models/gui/toplevel_gui').find('**/pir_t_gui_gen_key_subscriber')
-        self.lock = DirectFrame(parent = self.commitButton, relief = None, image = lockImage, image_scale = 0.15, pos = (-0.06, 0, 0))
-        self.lock.hide()
         self.closeButton = DialogButton.DialogButton(command = self.closePanel, buttonStyle = DialogButton.DialogButton.NO, parent = self, relief = None, text = PLocalizer.lClose, text_fg = PiratesGuiGlobals.TextFG2, text_scale = PiratesGuiGlobals.TextScaleLarge, textMayChange = 0, pos = (self.width - 0.145, 0, 0.07))
         self.updateProfile()
         self.accept(InventoryGlobals.getCategoryChangeMsg(localAvatar.getInventoryId(), InventoryType.ItemTypeMoney), self.updateBalance)
@@ -142,13 +138,6 @@ class ShipStoreGUI(GuiPanel.GuiPanel):
         self.updateStats()
         self.shipStats.refreshBars(self.statData)
         self.updateBalance()
-        if not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-            if self.purchaseInventory[0][0] != ItemId.INTERCEPTOR_L1 and self.purchaseInventory[0][0] != ItemId.MERCHANT_L1:
-                self.lock.show()
-            else:
-                self.lock.hide()
-
-
 
     def updateStats(self):
         self.statData = []
@@ -214,12 +203,6 @@ class ShipStoreGUI(GuiPanel.GuiPanel):
         if self.purchaseInventory == [] and self.sellInventory == []:
             base.localAvatar.guiMgr.createWarning(PLocalizer.EmptyPurchaseWarning, PiratesGuiGlobals.TextFG6)
             return None
-
-        if not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-            if self.purchaseInventory[0][0] != ItemId.INTERCEPTOR_L1 and self.purchaseInventory[0][0] != ItemId.MERCHANT_L1:
-                base.localAvatar.guiMgr.showNonPayer('Purchase_Restriction', 3)
-                return None
-
 
         inventory = base.localAvatar.getInventory()
         if inventory:

@@ -12,7 +12,6 @@ from pirates.piratesgui.ReputationMeter import ReputationMeter
 from pirates.piratesgui import SkillpageGuiButton
 from pirates.piratesgui import PiratesGuiGlobals
 from pirates.battle import WeaponGlobals
-from pirates.piratesbase import Freebooter
 from pirates.piratesgui.SkillButton import SkillButton
 from pirates.piratesgui import PDialog
 from otp.otpgui import OTPDialog
@@ -273,12 +272,8 @@ class SkillPage(InventoryPage.InventoryPage):
 
             if not skill in comboSkills:
                 pass
-            showIcon = skillPts > 0
-            freeLock = False
-            if not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-                if not WeaponGlobals.canFreeUse(skill):
-                    freeLock = True
 
+            showIcon = skillPts > 0
 
             if skill in self.linkedSkillIds:
                 if skill in self.skillFrames:
@@ -286,20 +281,12 @@ class SkillPage(InventoryPage.InventoryPage):
 
                 skill = self.linkedSkillIds[skill]
 
-            self.createFrame(skill, skillPts, amt, freeLock, showIcon)
+            self.createFrame(skill, skillPts, amt, showIcon)
             x = 0.20000000000000001 + 0.17499999999999999 * count
             y = 1.1100000000000001
             self.skillFrames[skill].setPos(x, 0, y)
             if showIcon and skillPts > 1:
                 self.makeBoostDisplay(skill, skillPts - 1)
-
-            if not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-                if not WeaponGlobals.canFreeUse(skill):
-                    self.skillFrames[skill].skillButton['command'] = base.localAvatar.guiMgr.showNonPayer
-                    self.skillFrames[skill].skillButton['extraArgs'] = [
-                        'Restricted_Skill_' + WeaponGlobals.getSkillName(skill),
-                        5]
-
 
             count += 1
 
@@ -314,12 +301,8 @@ class SkillPage(InventoryPage.InventoryPage):
             yMod *= 0.90000000000000002
             if not skill in activeSkills:
                 pass
+            
             showIcon = skillPts > 0
-            freeLock = False
-            if not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-                if not WeaponGlobals.canFreeUse(skill):
-                    freeLock = True
-
 
             if skill in self.linkedSkillIds:
                 if skill in self.skillFrames:
@@ -327,20 +310,12 @@ class SkillPage(InventoryPage.InventoryPage):
 
                 skill = self.linkedSkillIds[skill]
 
-            self.createFrame(skill, skillPts, amt, freeLock, showIcon)
+            self.createFrame(skill, skillPts, amt, showIcon)
             x = xMod + 0.53000000000000003
             y = yMod + 0.61499999999999999
             self.skillFrames[skill].setPos(x, 0, y)
             if showIcon and skillPts > 1:
                 self.makeBoostDisplay(skill, skillPts - 1)
-
-            if not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-                if not WeaponGlobals.canFreeUse(skill):
-                    self.skillFrames[skill].skillButton['command'] = base.localAvatar.guiMgr.showNonPayer
-                    self.skillFrames[skill].skillButton['extraArgs'] = [
-                        'Restricted_Skill_' + WeaponGlobals.getSkillName(skill),
-                        5]
-
 
             ammo = self.getAmmo(skill)
             if ammo != None and showIcon:
@@ -357,12 +332,8 @@ class SkillPage(InventoryPage.InventoryPage):
 
             if not skill in passiveSkills:
                 pass
-            showIcon = skillPts > 0
-            freeLock = False
-            if not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-                if not WeaponGlobals.canFreeUse(skill):
-                    freeLock = True
 
+            showIcon = skillPts > 0
 
             if skill in self.linkedSkillIds:
                 if skill in self.skillFrames:
@@ -370,20 +341,12 @@ class SkillPage(InventoryPage.InventoryPage):
 
                 skill = self.linkedSkillIds[skill]
 
-            self.createFrame(skill, skillPts, amt, freeLock, showIcon)
+            self.createFrame(skill, skillPts, amt, showIcon)
             x = 0.20000000000000001 + 0.17499999999999999 * count
             y = 0.14999999999999999
             self.skillFrames[skill].setPos(x, 0, y)
             if showIcon and skillPts > 1:
                 self.makeBoostDisplay(skill, skillPts - 1)
-
-            if not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-                if not WeaponGlobals.canFreeUse(skill):
-                    self.skillFrames[skill].skillButton['command'] = base.localAvatar.guiMgr.showNonPayer
-                    self.skillFrames[skill].skillButton['extraArgs'] = [
-                        'Restricted_Skill_' + WeaponGlobals.getSkillName(skill),
-                        5]
-
 
             count += 1
 
@@ -488,18 +451,6 @@ class SkillPage(InventoryPage.InventoryPage):
         else:
             return None
         self._SkillPage__handleFreeDialog()
-        if not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-            if curAmt > Freebooter.FreeSkillCap:
-                self.spentDialog = PDialog.PDialog(text = PLocalizer.FreebooterSkillMax, style = OTPDialog.CancelOnly, command = self._SkillPage__handleFreeDialog)
-                return None
-
-            playerExp = inv.getAccumulator(self.currentRep)
-            (categoryLevel, extra) = ReputationGlobals.getLevelFromTotalReputation(self.currentRep, playerExp)
-            alreadySpent = categoryLevel - 1 - unSp
-            if alreadySpent > 5:
-                self.spentDialog = PDialog.PDialog(text = PLocalizer.FreebooterSkillLock, style = OTPDialog.CancelOnly, command = self._SkillPage__handleFreeDialog)
-                return None
-
 
         if not base.config.GetBool('want-combo-skips', 0):
             comboSkills = [
@@ -522,7 +473,7 @@ class SkillPage(InventoryPage.InventoryPage):
         self.skillFrames[frameSkillId].skillRank = curAmt - 1
 
 
-    def createFrame(self, skillId, skillPts, upgradeMode = 0, freeLock = False, showIcon = True):
+    def createFrame(self, skillId, skillPts, upgradeMode = 0, showIcon = True):
         skillRank = max(0, skillPts - 1)
         if skillId in self.skillFrames:
             button = self.skillFrames[skillId]
@@ -531,10 +482,9 @@ class SkillPage(InventoryPage.InventoryPage):
             showUpgrade = showIcon
             button.setShowUpgrade(showUpgrade)
             button.setShowIcon(showIcon)
-            button.setShowLock(freeLock)
             button.show()
         else:
-            button = SkillButton(skillId, self.addPoint, 0, skillRank, showHelp = True, showIcon = showIcon, showLock = freeLock)
+            button = SkillButton(skillId, self.addPoint, 0, skillRank, showHelp = True, showIcon = showIcon)
             if upgradeMode:
                 pass
             showUpgrade = showIcon

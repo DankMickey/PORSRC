@@ -202,9 +202,8 @@ class SkillButton(DirectFrame):
     SkillIcons = None
     Image = None
     SkillRechargedSound = None
-    SubLock = None
 
-    def __init__(self, skillId, callback, quantity = 0, skillRank = 0, showQuantity = False, showHelp = False, showRing = False, hotkey = None, name = '', showIcon = True, showLock = False, rechargeSkillId = False, isWeaponSkill = False, assocAmmo = []):
+    def __init__(self, skillId, callback, quantity = 0, skillRank = 0, showQuantity = False, showHelp = False, showRing = False, hotkey = None, name = '', showIcon = True, rechargeSkillId = False, isWeaponSkill = False, assocAmmo = []):
         DirectFrame.__init__(self, parent = NodePath(), relief = None)
         self.initialiseoptions(SkillButton)
         gui = loader.loadModel('models/gui/toplevel_gui')
@@ -212,7 +211,6 @@ class SkillButton(DirectFrame):
             SkillButton.SkillIcons = loader.loadModel('models/textureCards/skillIcons')
             SkillButton.Image = (SkillButton.SkillIcons.find('**/base'), SkillButton.SkillIcons.find('**/base_down'), SkillButton.SkillIcons.find('**/base_over'))
             SkillButton.SkillRechargedSound = loadSfx(SoundGlobals.SFX_SKILL_RECHARGED)
-            SkillButton.SubLock = gui.find('**/pir_t_gui_gen_key_subscriber')
             SkillButton.SpecialIcons = []
             for entry in SPECIAL_SKILL_ICONS:
                 if not entry:
@@ -240,9 +238,7 @@ class SkillButton(DirectFrame):
         self.showHelp = showHelp
         self.showRing = showRing
         self.showIcon = showIcon
-        self.showLock = showLock
         self.isWeaponSkill = isWeaponSkill
-        self.lock = None
         self.name = name
         self.helpFrame = None
         self.quantityLabel = None
@@ -283,9 +279,6 @@ class SkillButton(DirectFrame):
 
         if hotkey:
             self.createHotkey(hotkey)
-
-        if showLock:
-            self.createLock()
 
         self.skillButton.bind(DGG.ENTER, self.showDetails)
         self.skillButton.bind(DGG.EXIT, self.hideDetails)
@@ -534,22 +527,6 @@ class SkillButton(DirectFrame):
         self.hotkeyLabel.flattenLight()
 
 
-    def createLock(self):
-        if self.lock:
-            return None
-
-        self.lock = DirectFrame(parent = self, relief = None, image = SkillButton.SubLock, image_scale = 0.14000000000000001, image_pos = (0.050000000000000003, 0, -0.025000000000000001), sortOrder = 99)
-        if self.showIcon:
-            self.lock.setColorScale(0.90000000000000002, 0.90000000000000002, 0.90000000000000002, 1)
-            self.skillButton.setColorScale(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 1, 1)
-        else:
-            self.lock.setColorScale(0.59999999999999998, 0.59999999999999998, 0.59999999999999998, 1, 2)
-            self.skillButton.clearColorScale()
-        if self.showHelp:
-            self.lock.hide()
-
-
-
     def createHelpFrame(self, args = None):
         if self.helpFrame:
             return None
@@ -738,19 +715,12 @@ class SkillButton(DirectFrame):
 
         helpText = DirectFrame(parent = self, relief = None, text = skillDesc % tuple(stats), text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleSmall, text_fg = PiratesGuiGlobals.TextFG2, text_wordwrap = 17, textMayChange = 1, state = DGG.DISABLED, sortOrder = 91)
         height = -(helpText.getHeight() + 0.01)
-        if self.lock:
-            height = height - 0.040000000000000001
-
         width = 0.55000000000000004
         self.helpFrame = BorderFrame(parent = self, state = DGG.DISABLED, frameSize = (-0.040000000000000001, width, height, 0.050000000000000003), pos = (0, 0, -0.12), sortOrder = 90)
         self.helpFrame.setBin('gui-popup', 0)
         helpText.reparentTo(self.helpFrame)
         if self.skillRank:
             rankText.reparentTo(self.helpFrame)
-
-        if self.lock:
-            self.lockedFrame = DirectFrame(parent = self.helpFrame, relief = None, pos = (0.087999999999999995, 0, height + 0.029999999999999999), image = SkillButton.SubLock, image_scale = 0.13, image_pos = (-0.055, 0, 0.012999999999999999), text = PLocalizer.VR_AuthAccess, text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG13)
-            self.notify.debug('locked!')
 
         pos = self.helpFrame.getPos(aspect2d)
         x = min(pos[0], base.a2dRight - width)
@@ -868,22 +838,6 @@ class SkillButton(DirectFrame):
             if self.helpFrame:
                 self.helpFrame.destroy()
                 self.helpFrame = None
-
-
-
-
-    def setShowLock(self, show):
-        if self.showLock != show:
-            self.showLock = show
-            if show:
-                self.createLock()
-            elif self.lock:
-                self.lock.destroy()
-                self.lock = None
-                self.skillButton.clearColorScale()
-
-
-
 
     def destroy(self):
         self.callback = None

@@ -21,7 +21,6 @@ from otp.otpgui import OTPDialog
 from pirates.piratesgui import PDialog
 from direct.task import Task
 import random
-from pirates.piratesbase import Freebooter
 FACE_CAMERA = 0
 
 class BarberStoreTab(LeftTab):
@@ -86,14 +85,12 @@ class BarberStoreGUI(DirectFrame):
         self.barberIconsA = loader.loadModel('models/gui/char_gui')
         self.barberIconsB = loader.loadModel('models/textureCards/shopIcons')
         self.ShirtIcon = loader.loadModel('models/gui/char_gui').find('**/chargui_cloth')
-        self.LockIcon = gui.find('**/pir_t_gui_gen_key_subscriber')
         self.backTabParent = self.attachNewNode('backTabs', sort = 0)
         self.panel = GuiPanel.GuiPanel(None, self.width, self.height, parent = self, showClose = False)
         self.setPos(0.0, 0, -0.75)
         self.balance = 0
         self.npc = npc
         self.rootTitle = PLocalizer.ShopBarber
-        self.paid = Freebooter.getPaidStatus(localAvatar.getDoId())
         self.shopId = shopId
         if localAvatar.gameFSM.camIval is not None:
             if localAvatar.gameFSM.camIval.isPlaying():
@@ -160,8 +157,6 @@ class BarberStoreGUI(DirectFrame):
         self.createDisplayRegions()
         self.alertDialog = None
         self.accept('aspectRatioChanged', self.aspectRatioChange)
-        self.accept('NonPayerPanelShown', self.hideDisplayRegions)
-        self.accept('NonPayerPanelHidden', self.showDisplayRegions)
         self.accept('MainMenuShown', self.hideDisplayRegions)
         self.accept('MainMenuHidden', self.showDisplayRegions)
         self.accept('GUIShown', self.showDisplayRegions)
@@ -705,16 +700,6 @@ class BarberStoreGUI(DirectFrame):
                             i,
                             itemButton], sortOrder = 2)
                         xOffset += 0.048
-
-
-                if not self.paid:
-                    itemButton.buy['geom'] = self.LockIcon
-                    itemButton.buy['geom_scale'] = 0.2
-                    itemButton.buy['geom_pos'] = Vec3(-0.1, 0.0, 0.0)
-                    itemButton.buy['command'] = localAvatar.guiMgr.showNonPayer
-                    itemButton.buy['extraArgs'] = [
-                        'BARBER_CANNOT_BUY',
-                        10]
 
                 itemButton.color = currentHairColor
                 itemButton.uid = uid

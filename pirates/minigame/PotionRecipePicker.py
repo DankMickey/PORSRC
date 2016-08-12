@@ -13,7 +13,6 @@ from pirates.piratesgui.GuiPanel import *
 from pirates.piratesgui import GuiButton
 from pirates.piratesgui import PiratesGuiGlobals
 from pirates.piratesbase import PLocalizer
-from pirates.piratesbase import Freebooter
 from pirates.quest.QuestTaskDNA import PotionsTaskDNA
 import PotionGlobals
 
@@ -103,24 +102,8 @@ class PotionRecipePicker(DirectFrame):
                 buttonText = DirectLabel(parent = buttonImage, relief = None, text = iconText, text_scale = PiratesGuiGlobals.TextScaleLarge / buttonImageScale, text_font = PiratesGlobals.getPirateOutlineFont(), text_align = TextNode.ACenter, text_fg = iconTextColor, text_shadow = PiratesGuiGlobals.TextFG14, hpr = (0, 0, 20), pos = (-0.25, 0, 0), textMayChange = 0)
                 guiAssets.remove_node()
 
-            if Freebooter.getPaidStatus(localAvatar.doId) or recipe.isFree:
-                cmd = self.potionGame.selectRecipe
-                buttonGeom = None
-                buttonGeomScale = 1
-                buttonGeomPos = (0, 0, 0)
-                args = None
-            else:
-                gui = loader.loadModel('models/gui/toplevel_gui')
-                buttonGeom = gui.find('**/pir_t_gui_gen_key_subscriber')
-                buttonGeomScale = 0.16
-                buttonGeomPos = (-0.050000000000000003, 0, 0.01)
-                cmd = base.localAvatar.guiMgr.showNonPayer
-                args = [
-                    'Restricted_Potion_Crafting_Recipe',
-                    9]
-                gui.remove_node()
             if recipe.enabled and recipe.available:
-                button = GuiButton.GuiButton(text = (text, text, text, text), canReposition = True, text_wordwrap = 0, image_scale = buttonImageScale, image_pos = (-0.040000000000000001, 0.0, 0.01), image = (buttonImage, buttonImage, buttonImage, buttonImage), geom = buttonGeom, geom_scale = buttonGeomScale, geom_pos = buttonGeomPos, text0_fg = PotionGlobals.TextColor, text1_fg = PiratesGuiGlobals.TextFG0, text2_fg = PiratesGuiGlobals.TextFG15, text3_fg = PotionGlobals.TextColorDisabled, text_align = TextNode.ALeft, text_shadow = None, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, command = cmd, state = DGG.NORMAL, extraArgs = [
+                button = GuiButton.GuiButton(text = (text, text, text, text), canReposition = True, text_wordwrap = 0, image_scale = buttonImageScale, image_pos = (-0.040000000000000001, 0.0, 0.01), image = (buttonImage, buttonImage, buttonImage, buttonImage), text0_fg = PotionGlobals.TextColor, text1_fg = PiratesGuiGlobals.TextFG0, text2_fg = PiratesGuiGlobals.TextFG15, text3_fg = PotionGlobals.TextColorDisabled, text_align = TextNode.ALeft, text_shadow = None, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, command = self.potionGame.selectRecipe, state = DGG.NORMAL, extraArgs = [
                     recipe])
                 button.bind(DGG.ENTER, recipe.showDetails)
                 button.bind(DGG.EXIT, recipe.hideDetails)
@@ -129,7 +112,7 @@ class PotionRecipePicker(DirectFrame):
 
                 self.buttons.append(button)
             else:
-                button = GuiButton.GuiButton(text = (text, text, text, text), canReposition = True, text_wordwrap = 0, image_scale = buttonImageScale, image_pos = (-0.040000000000000001, 0.0, 0.01), image = (buttonImage, buttonImage, buttonImage, buttonImage), geom = buttonGeom, geom_scale = buttonGeomScale, geom_pos = buttonGeomPos, text0_fg = PotionGlobals.TextColorDisabled, text1_fg = PotionGlobals.TextColorDisabled, text2_fg = PotionGlobals.TextColorDisabled, text3_fg = PotionGlobals.TextColorDisabled, text_shadow = None, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_align = TextNode.ALeft, state = DGG.NORMAL, extraArgs = [
+                button = GuiButton.GuiButton(text = (text, text, text, text), canReposition = True, text_wordwrap = 0, image_scale = buttonImageScale, image_pos = (-0.040000000000000001, 0.0, 0.01), image = (buttonImage, buttonImage, buttonImage, buttonImage), text0_fg = PotionGlobals.TextColorDisabled, text1_fg = PotionGlobals.TextColorDisabled, text2_fg = PotionGlobals.TextColorDisabled, text3_fg = PotionGlobals.TextColorDisabled, text_shadow = None, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_align = TextNode.ALeft, state = DGG.NORMAL, extraArgs = [
                     recipe])
                 button.bind(DGG.ENTER, recipe.showDetails)
                 button.bind(DGG.EXIT, recipe.hideDetails)

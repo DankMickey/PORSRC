@@ -62,7 +62,6 @@ from pirates.world.DistributedGameArea import DistributedGameArea
 from pirates.world.DistributedIsland import DistributedIsland
 from pirates.speedchat import PSCDecoders
 from pirates.battle import Consumable
-from pirates.piratesbase import Freebooter
 from pirates.uberdog.UberDogGlobals import *
 from pirates.minigame import PotionGlobals
 from pirates.battle import EnemyGlobals
@@ -98,7 +97,6 @@ from math import cos
 from math import pi
 from pirates.piratesgui.DialMeter import DialMeter
 from pirates.quest import QuestDB
-from pirates.piratesbase import Freebooter
 from pirates.inventory import ItemConstants
 from pirates.uberdog.DistributedInventoryBase import DistributedInventoryBase
 from pirates.uberdog.TradableInventory import TradableInventory
@@ -279,7 +277,6 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             self.teleportConfirmCallbacks = { }
             self.questRewardFlags = 0
             self.bandMember = None
-            self.gameAccess = OTPGlobals.AccessUnknown
             self.founder = False
             self.port = 0
             self.waterRipple = None
@@ -299,9 +296,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             self.hasCrewIcon = 0
             self.isAFK = False
             self.status = 0
-            self.isPaid = False
             self.populated = 0
-            self.updatePaidStatus()
             self.tempDoubleXPStatus = 0
             self.tempDoubleXPStatusMessaged = False
             self.gmNameTagEnabled = 0
@@ -1302,19 +1297,16 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             else:
                 text = '%s%s  \x01smallCaps\x01%s%s%s%s\x02\x02\n\x01guildName\x01%s\x02' % (self.title, self.name, levelColor, PLocalizer.Lv, level, x2XPTempAwardIndicator, guildName)
             nameText['text'] = text
-            if Freebooter.getPaidStatus(self.doId):
-                if self.getFounder():
-                    nameText['fg'] = (1, 1, 1, 1)
-                    nameText['font'] = PiratesGlobals.getPirateOutlineFont()
-                    if not base.config.GetBool('want-land-infamy', 0) or base.config.GetBool('want-sea-infamy', 0):
-                        nameText['text'] = '\x05goldFounderIcon\x05 \x01goldFounder\x01%s\x02' % text
-                    else:
-                        nameText['text'] = '\x01goldFounder\x01%s\x02' % text
+            if self.getFounder():
+                nameText['fg'] = (1, 1, 1, 1)
+                nameText['font'] = PiratesGlobals.getPirateOutlineFont()
+                if not base.config.GetBool('want-land-infamy', 0) or base.config.GetBool('want-sea-infamy', 0):
+                    nameText['text'] = '\x05goldFounderIcon\x05 \x01goldFounder\x01%s\x02' % text
                 else:
-                    nameText['fg'] = (0.40000000000000002, 0.29999999999999999, 0.94999999999999996, 1)
-                    nameText['font'] = PiratesGlobals.getPirateOutlineFont()
+                    nameText['text'] = '\x01goldFounder\x01%s\x02' % text
             else:
-                nameText['fg'] = (0.5, 0.5, 0.5, 1)
+                nameText['fg'] = (0.40000000000000002, 0.29999999999999999, 0.94999999999999996, 1)
+                nameText['font'] = PiratesGlobals.getPirateOutlineFont()
             prefix = ''
             if self.injuredSetup and 0:
                 if self.injuredTimeLeft:
@@ -1331,14 +1323,12 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             badges = ''
             if self.isConfused:
                 prefix = '\x05confusedIcon\x05\n'
-            elif self.badge and Freebooter.getPaidStatus(self.doId):
+            elif self.badge:
                 if base.config.GetBool('want-land-infamy', 0) or base.config.GetBool('want-sea-infamy', 0):
                     if self.badge[0]:
                         textProp = TitleGlobals.Title2nametagTextProp[self.badge[0]]
                         if textProp == 'goldFounder':
-                            if not Freebooter.getFounderStatus(self.doId):
-                                pass
-                            else:
+                            if self.getFounder():
                                 badges += '\x01white\x01\x05badge-%s-%s\x05\x02 ' % (self.badge[0], 1)
                                 nameText['text'] = '\x01%s\x01%s\x02' % (textProp, nameText['text'])
                         elif textProp:
@@ -2847,11 +2837,6 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         if self.isLocal() and inviterId != localAvatar.doId:
             self.guiMgr.lookoutPage.requestInvite(inviterName, activityCategory, activityType, options)
 
-
-
-    def unlimitedInviteNotice(self, activityCategory):
-        self.guiMgr.lookoutPage.unlimitedInviteNotice(activityCategory)
-
     def scrubTalk(self, message, mods):
         scrubbed = 0
         text = copy.copy(message)
@@ -2949,27 +2934,6 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             return None
         chatString = PSCDecoders.decodeSCQuestMsgInt(questInt, msgType, taskNum)
         base.talkAssistant.receiveWhisperTalk(fromId, fromName, None, None, self.doId, self.getName(), chatString)
-
-
-    def getAccess(self):
-        if Freebooter.AllAccessHoliday:
-            return 2
-        else:
-            return self.getGameAccess()
-
-
-    def setAccess(self, access):
-        self.setGameAccess(access)
-
-
-    def setGameAccess(self, access):
-        self.gameAccess = access
-        self.refreshName()
-
-
-    def getGameAccess(self):
-        return self.gameAccess
-
 
     def setFounder(self, founder):
         self.founder = founder
@@ -3158,9 +3122,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             gender = self.style.getGender()
             itemId = tattooItem.getId()
             rarity = ItemGlobals.getRarity(itemId)
-            if rarity != ItemConstants.CRUDE and not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-                equipFunction(0, 0, 0, 0, 0, 0)
-            elif gender == 'm':
+            if gender == 'm':
                 tattooId = ItemGlobals.getMaleModelId(itemId)
                 if flipIt:
                     tattooOrientation = ItemGlobals.getOrientation(ItemGlobals.getMaleOrientation2(itemId))
@@ -3214,9 +3176,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
                 gender = self.style.getGender()
                 itemId = jewelryItem.getId()
                 rarity = ItemGlobals.getRarity(itemId)
-                if rarity != ItemConstants.CRUDE and not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-                    equipFunction(0, 0, 0)
-                elif gender == 'f':
+                if gender == 'f':
                     modelIndex = ItemGlobals.getFemaleModelId(itemId)
                 else:
                     modelIndex = ItemGlobals.getMaleModelId(itemId)
@@ -3255,18 +3215,6 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             modelIndex = ItemGlobals.getMaleModelId(itemTuple[1])
             textureIndex = ItemGlobals.getMaleTextureId(itemTuple[1])
         colorIndex = itemTuple[3]
-        if (modelIndex == -1 or rarity != ItemConstants.CRUDE) and not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-            underwearTable = ClothingGlobals.UNDERWEAR.get(gender)
-            if underwearTable:
-                underwearTuple = underwearTable.get(location, (0, 0, 0))
-                modelIndex = underwearTuple[0]
-                textureIndex = underwearTuple[1]
-                colorIndex = underwearTuple[2]
-            else:
-                modelId = 0
-                texId = 0
-                colorId = 0
-
         self.wearClothing(location, modelIndex, textureIndex, colorIndex)
 
 
@@ -3471,20 +3419,6 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
 
     def updateClientTutorialStatus(self, val):
         self.tutorialState = val
-
-
-    def getIsPaid(self):
-        self.updatePaidStatus()
-        return self.isPaid
-
-
-    def updatePaidStatus(self):
-        pStatus = self.getGameAccess()
-        if pStatus == 2 or pStatus == 0:
-            self.isPaid = True
-        else:
-            self.isPaid = False
-
 
     def initVisibleToCamera(self):
         if self is not localAvatar and localAvatar.getSoloInteraction():

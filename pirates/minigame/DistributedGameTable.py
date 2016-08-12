@@ -326,10 +326,6 @@ class DistributedGameTable(DistributedInteractive.DistributedInteractive):
             self.setDialogBin(self.requestDialog)
             localAvatar.motionFSM.on()
             self.cr.interactionMgr.start()
-        elif answer == 5:
-            localAvatar.guiMgr.showNonPayer(quest = 'Game_Table', focus = 6)
-            localAvatar.motionFSM.on()
-            self.cr.interactionMgr.start()
         else:
             localAvatar.motionFSM.on()
             self.cr.interactionMgr.start()

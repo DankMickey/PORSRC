@@ -9,7 +9,6 @@ from direct.interval.IntervalGlobal import *
 from pirates.audio.SoundGlobals import loadSfx
 from pirates.audio import SoundGlobals
 from pirates.piratesbase import PLocalizer
-from pirates.piratesbase import Freebooter
 from pirates.piratesgui import GuiPanel, GuiButton, RadialMenu
 from pirates.minigame import AmmoPanelButton
 from pirates.minigame.AmmoPanelMessageManager import AmmoPanelMessageManager
@@ -133,9 +132,6 @@ class AmmoPanel(DirectFrame):
     def onAmmoClick(self, skillId):
         button = self.buttons[skillId]
         if button.isLocked():
-            if not Freebooter.getPaidStatus(base.localAvatar.doId) and skillId > CannonDefenseGlobals.FREEBOOTER_LAST_AMMO_AVAILABLE:
-                localAvatar.guiMgr.showNonPayer()
-
             return None
 
         if button.canPurchase(self._bankNotes):
@@ -200,9 +196,6 @@ class AmmoPanel(DirectFrame):
                 index = i
                 break
                 continue
-
-        if (index < 0 or not Freebooter.getPaidStatus(base.localAvatar.doId)) and index >= CannonDefenseGlobals.FREEBOOTER_MAX_AMMO_SLOTS:
-            return False
 
         PiratesGlobals.CANNON_DEFENSE_SKILLS.remove(InventoryType.DefenseCannonEmpty)
         PiratesGlobals.CANNON_DEFENSE_SKILLS.insert(index, skillId)
@@ -348,11 +341,7 @@ class AmmoPanel(DirectFrame):
 
     def unlockAmmoFromAI(self, ammoSkillIds):
         for ammoSkillId in ammoSkillIds:
-            if Freebooter.getPaidStatus(base.localAvatar.doId) or ammoSkillId <= CannonDefenseGlobals.FREEBOOTER_LAST_AMMO_AVAILABLE:
-                self.buttons[ammoSkillId].unlock()
-                continue
-
-
+            self.buttons[ammoSkillId].unlock()
 
     def flashHandleStart(self):
         if self.flashIval or self.state == OPENED:

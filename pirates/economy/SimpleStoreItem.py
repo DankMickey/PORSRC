@@ -26,7 +26,6 @@ from otp.otpgui import OTPDialog
 from pirates.piratesgui import PDialog
 from direct.task import Task
 import random
-from pirates.piratesbase import Freebooter
 from pirates.piratesgui.InventoryItemGui import InventoryItemGui
 from pirates.inventory.InventoryGlobals import *
 from pirates.uberdog.TradableInventoryBase import InvItem

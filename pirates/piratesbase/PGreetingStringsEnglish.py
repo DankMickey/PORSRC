@@ -401,10 +401,6 @@ RavensCoveGhostBrushoff = [
     ("There be much unfinished business here on Raven's Cove.", None),
     ("You may soon be askin' yerself why you came to this place.", None),
     ("I be thinkin' you may be harboring a death wish, mate.", None)]
-GetConnectedBrushoff = [
-    {
-        'strings': [
-            ('Pssst! the secret hat code is: Scoundrel', EG.EMOTE_NERVOUS)] }]
 ThomasFishmeisterBrushoff = [
     {
         'strings': [

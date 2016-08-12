@@ -10,7 +10,6 @@ from pirates.uberdog.UberDogGlobals import InventoryType
 from pirates.piratesbase import PiratesGlobals
 from pirates.piratesbase import PLocalizer
 from pirates.piratesbase import CollectionMap
-from pirates.piratesbase import Freebooter
 from pirates.minigame import FishingGlobals
 
 class CollectionPage(InventoryPage.InventoryPage):
@@ -96,14 +95,8 @@ class CollectionPage(InventoryPage.InventoryPage):
             colSpot = loopItr / 4
             localHeight = PiratesGuiGlobals.InventoryPanelHeight - 0.20000000000000001
             howMany = inv.getStackQuantity(setItem)
-            if setItem in CollectionMap.Collection_Set_Locked:
-                if not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-                    isLocked = True
-                else:
-                    isLocked = False
-            else:
-                isLocked = False
-            if isLocked or howMany > 0:
+
+            if howMany > 0:
                 if setItem in self.setPics:
                     self.setPics[setItem].show()
                     self.setFrames[setItem].show()
@@ -111,17 +104,10 @@ class CollectionPage(InventoryPage.InventoryPage):
                     frameImg = gui.find('**/treasure_w_b_slot_full')
                     self.setFrames[setItem] = DirectFrame(parent = self, relief = None, image = frameImg, image_scale = 0.40000000000000002, image_pos = (0, 0, 0), pos = (0.28000000000000003 + 0.17999999999999999 * rowSpot, 0, localHeight - 0.35999999999999999 - 0.17999999999999999 * colSpot))
                     pic_name = CollectionMap.Assets[setItem]
-                    if isLocked:
-                        tex = gui.find('**/pir_t_gui_gen_key_subscriber')
-                        use_scale = 0.25
-                        self.setPics[setItem] = DirectButton(parent = self, relief = None, image = tex, image_scale = use_scale, image_pos = (0, 0, 0), pos = (0.28000000000000003 + 0.17999999999999999 * rowSpot, 0, localHeight - 0.35999999999999999 - 0.17999999999999999 * colSpot), text = PLocalizer.Collections[setItem], text_fg = PiratesGuiGlobals.TextFG2, text_align = TextNode.ACenter, text_wordwrap = 6, text_scale = 0.025000000000000001, text_pos = (0, -0.085000000000000006, 0), command = base.localAvatar.guiMgr.showNonPayer, extraArgs = [
-                            'Restricted_Treasure_Selection',
-                            7])
-                    else:
-                        tex = self.card.find('**/%s*' % pic_name)
-                        use_scale = 0.39000000000000001
-                        self.setPics[setItem] = DirectButton(parent = self, relief = None, image = tex, image_scale = use_scale, image_pos = (0, 0, 0), pos = (0.28000000000000003 + 0.17999999999999999 * rowSpot, 0, localHeight - 0.35999999999999999 - 0.17999999999999999 * colSpot), command = self.clickedTreasure, extraArgs = [
-                            setItem], text = PLocalizer.Collections[setItem], text_fg = PiratesGuiGlobals.TextFG2, text_align = TextNode.ACenter, text_wordwrap = 6, text_scale = 0.025000000000000001, text_pos = (0, -0.085000000000000006, 0))
+                    tex = self.card.find('**/%s*' % pic_name)
+                    use_scale = 0.39000000000000001
+                    self.setPics[setItem] = DirectButton(parent = self, relief = None, image = tex, image_scale = use_scale, image_pos = (0, 0, 0), pos = (0.28000000000000003 + 0.17999999999999999 * rowSpot, 0, localHeight - 0.35999999999999999 - 0.17999999999999999 * colSpot), command = self.clickedTreasure, extraArgs = [
+                        setItem], text = PLocalizer.Collections[setItem], text_fg = PiratesGuiGlobals.TextFG2, text_align = TextNode.ACenter, text_wordwrap = 6, text_scale = 0.025000000000000001, text_pos = (0, -0.085000000000000006, 0))
                     self.setPics[setItem].setTransparency(1)
                 if setItem in CollectionMap.Collection_Needed:
                     howManyINeed = CollectionMap.Collection_Needed[setItem]
@@ -146,11 +132,6 @@ class CollectionPage(InventoryPage.InventoryPage):
                         self.setHowMany[setItem].show()
                 elif howMany > 1:
                     self.setHowMany[setItem] = DirectLabel(parent = self.setPics[setItem], relief = None, text = '%d/%d' % (howMany, howManyINeed), text_align = TextNode.ARight, text_scale = 0.040000000000000001, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, pos = (0.080000000000000002, 0, -0.050000000000000003), text_font = PiratesGlobals.getInterfaceOutlineFont())
-
-                if isLocked:
-                    if setItem in self.setHowMany:
-                        self.setHowMany[setItem].hide()
-
 
             if setItem in self.setFrames:
                 self.setFrames[setItem].show()

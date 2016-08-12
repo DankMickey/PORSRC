@@ -1185,7 +1185,6 @@ class NPCIds:
     YELLOW_DAN = '1142321958.13sdnaik'
     WILLIAM_TRUEGRIN = '1248203967.73jloehrle'
     WILL_WILDSHOT = '1190743269.78dxschafe'
-    ROSETTA_ZIMM = '1306269869.31dxschafe'
     IH_NPC_1 = '1278709085.7jloehrle'
     IH_NPC_2 = '1278708908.39jloehrle'
     IH_NPC_3 = '1278548378.92jloehrle'

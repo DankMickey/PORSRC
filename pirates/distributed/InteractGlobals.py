@@ -453,8 +453,6 @@ __NPCSalutations = {
         'groodbyes': PLocalizer.TiaDalmaGoodbye,
         'durings': PLocalizer.TiaDalmaEncourage,
         'brushoffs': PLocalizer.TiaDalmaBrushoff },
-    NPCIds.ROSETTA_ZIMM: {
-        'brushoffs': PLocalizer.GetConnectedBrushoff },
     NPCIds.EDWARD_BRITTLE: {
         'brushoffs': PLocalizer.CrazyNedBrushoff },
     NPCIds.THOMAS_FISHMEISTER: {

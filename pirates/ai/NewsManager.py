@@ -15,7 +15,6 @@ from pirates.makeapirate import TattooGlobals
 from pirates.makeapirate import ClothingGlobals
 from pirates.makeapirate import JewelryGlobals
 from pirates.makeapirate import BarberGlobals
-from pirates.piratesbase import Freebooter
 from pirates.world.LocationConstants import LocationIds
 import random
 import time
@@ -134,7 +133,6 @@ class NewsManager(DistributedObject.DistributedObject):
         if not hasattr(base, 'localAvatar'):
             return None
 
-        paidStatus = Freebooter.getPaidStatus(localAvatar.getDoId(), checkHoliday = False)
         if base.localAvatar.getTutorialState() < PiratesGlobals.TUT_MET_JOLLY_ROGER or self.inNewsWorld() == None:
             taskMgr.doMethodLater(15, self.showHolidayMessage, 'showHolidayMessage-holidayId:' + str(holidayId), extraArgs = [
                 holidayId,
@@ -143,21 +141,21 @@ class NewsManager(DistributedObject.DistributedObject):
 
         if msgType == 1:
             (hours, minutes) = self.getTimeRemaining(holidayId)
-            message = HolidayGlobals.getHolidayStartMsg(holidayId, paidStatus)
+            message = HolidayGlobals.getHolidayStartMsg(holidayId)
             if message and re.findall('%\\(hours\\)s', message) and re.findall('%\\(minutes\\)s', message):
                 message = message % {
                     'hours': hours,
                     'minutes': minutes }
 
-            chatMessage = HolidayGlobals.getHolidayStartChatMsg(holidayId, paidStatus)
+            chatMessage = HolidayGlobals.getHolidayStartChatMsg(holidayId)
             if chatMessage and re.findall('%\\(hours\\)s', chatMessage) and re.findall('%\\(minutes\\)s', chatMessage):
                 chatMessage = chatMessage % {
                     'hours': hours,
                     'minutes': minutes }
 
         elif msgType == 0:
-            message = HolidayGlobals.getHolidayEndMsg(holidayId, paidStatus)
-            chatMessage = HolidayGlobals.getHolidayEndChatMsg(holidayId, paidStatus)
+            message = HolidayGlobals.getHolidayEndMsg(holidayId)
+            chatMessage = HolidayGlobals.getHolidayEndChatMsg(holidayId)
 
         if message:
             base.localAvatar.guiMgr.messageStack.addModalTextMessage(message, seconds = 45, priority = 0, color = PiratesGuiGlobals.TextFG14, icon = (HolidayGlobals.getHolidayIcon(holidayId), ''), modelName = 'general_frame_f')
@@ -196,18 +194,12 @@ class NewsManager(DistributedObject.DistributedObject):
                 else:
                     self.displayMessage(2)
 
-            if holidayId == HolidayGlobals.ALLACCESSWEEKEND:
-                Freebooter.setAllAccess(True)
-                localAvatar.guiMgr.stashPrevPanel()
-
             if holidayId == HolidayGlobals.APRILFOOLS:
                 messenger.send('moustacheFlip', [
                     1])
 
             if holidayId == HolidayGlobals.HALFOFFCUSTOMIZATION:
-                paidStatus = Freebooter.getPaidStatus(localAvatar.getDoId())
-                if paidStatus:
-                    self.divideAllAccessories(2)
+                self.divideAllAccessories(2)
 
             messenger.send('HolidayStarted', [
                 HolidayGlobals.getHolidayName(holidayId)])
@@ -225,12 +217,7 @@ class NewsManager(DistributedObject.DistributedObject):
             localAvatar.chatMgr.emoteEntry.updateEmoteList()
             self.showHolidayMessage(holidayId, 0)
             if holidayId == HolidayGlobals.HALFOFFCUSTOMIZATION:
-                paidStatus = Freebooter.getPaidStatus(localAvatar.getDoId())
-                if paidStatus:
-                    self.multiplyAllAccessories(2)
-
-            if holidayId == HolidayGlobals.ALLACCESSWEEKEND:
-                Freebooter.setAllAccess(False)
+                self.multiplyAllAccessories(2)
 
             if holidayId == HolidayGlobals.APRILFOOLS:
                 messenger.send('moustacheFlip', [
@@ -310,10 +297,9 @@ class NewsManager(DistributedObject.DistributedObject):
 
     def displayHolidayStatus(self):
         anyMessages = False
-        paidStatus = Freebooter.getPaidStatus(localAvatar.getDoId())
         for holidayId in self.holidayIdList:
             (h, m) = self.getTimeRemaining(holidayId)
-            message = HolidayGlobals.getHolidayStatusMsg(holidayId, paidStatus)
+            message = HolidayGlobals.getHolidayStatusMsg(holidayId)
             if message:
                 anyMessages = True
 

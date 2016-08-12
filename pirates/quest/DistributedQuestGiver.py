@@ -11,7 +11,6 @@ from pirates.quest import QuestParser
 from pirates.distributed import InteractGlobals
 from pirates.quest import QuestLadderDB
 from pirates.piratesbase import PLocalizer
-from pirates.piratesbase import Freebooter
 from pirates.piratesgui import PDialog
 from pirates.quest.QuestDetailGUI import QuestDetailGUI
 from pirates.quest.QuestRewardGUI import QuestRewardGUI
@@ -177,11 +176,6 @@ class DistributedQuestGiver(Avatar.Avatar):
                 if boolWeapLvlCheck & (questDNA.minWeapLevel > getLevelFromTotalReputation(questDNA.weapLvlType, inventory.getReputation(questDNA.weapLvlType))[0]):
                     passed = False
                     break
-
-                if questDNA.getVelvetRoped() and not Freebooter.getPaidStatus(localAvatar.getDoId()):
-                    passed = False
-                    break
-
                 if questDNA.getAcquireOnce():
                     history = localAvatar.getQuestLadderHistory()
                     questLadderId = base.cr.questDynMap.findQuestLadderInt(questId)

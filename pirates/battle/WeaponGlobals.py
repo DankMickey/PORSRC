@@ -2065,14 +2065,6 @@ def getSkillReputationCategoryId(skillId):
         return 0
 
 
-def canFreeUse(skillId):
-    skill = __skillInfo.get(skillId)
-    if skill:
-        return skill[FREE_INDEX]
-
-    return 0
-
-
 def canPVPUse(skillId):
     skill = __skillInfo.get(skillId)
     if skill:

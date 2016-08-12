@@ -323,11 +323,6 @@ class QuestPage(InventoryPage.InventoryPage):
 
 
     def startTreasureMap(self, tm, quick = True):
-        if localAvatar.getAccess() != OTPGlobals.AccessFull:
-            self.tmReadyDialog = PDialog.PDialog(text = PLocalizer.PlayTMVelvetRope, style = OTPDialog.Acknowledge, giveMouse = False, command = self.notReadyCallback)
-            self.tmReadyDialog.show()
-            return None
-
         if tm.getIsEnabled() or base.config.GetBool('black-pearl-ready', 0):
             DistributedBandMember = DistributedBandMember
             import pirates.band.DistributedBandMember

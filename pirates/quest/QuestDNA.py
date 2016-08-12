@@ -33,8 +33,6 @@ class QuestDNA(ParamObj):
             'playStinger': True,
             'displayGoal': True,
             'requiresVoyage': False,
-            'progressBlock': False,
-            'velvetRoped': True,
             'checkPoint': -1,
             'finalQuest': False,
             'acquireOnce': False,

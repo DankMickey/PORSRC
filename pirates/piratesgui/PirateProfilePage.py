@@ -13,7 +13,6 @@ from pirates.piratesgui import SocialPage
 from pirates.piratesgui import PiratesGuiGlobals
 from pirates.piratesbase import PiratesGlobals
 from pirates.piratesbase import PLocalizer
-from pirates.piratesbase import Freebooter
 from pirates.band import DistributedBandMember
 from pirates.piratesgui import TeleportConfirm
 from pirates.piratesgui import GuiButton
@@ -1023,13 +1022,10 @@ class PirateProfilePage(SocialPage.SocialPage):
         self.founder = founder
         av = base.cr.doId2do.get(self.profileId)
         if av:
-            if Freebooter.getPaidStatus(self.profileId):
-                if av.getFounder():
-                    self.founder = 3
-                else:
-                    self.founder = 2
+            if av.getFounder():
+                self.founder = 3
             else:
-                self.founder = 1
+                self.founder = 2
 
         if self.founder == 3:
             self.founderFrame['image'] = self.goldFounder

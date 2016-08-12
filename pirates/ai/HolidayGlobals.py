@@ -10,44 +10,40 @@ BLACKJACKFRIDAY = 2
 FREEHATWEEK = 3
 FLIRTEMOTE = 4
 SAINTPATRICKSDAY = 5
-DOUBLEXPHOLIDAYPAID = 6
-MOTHERSDAY = 7
-FATHERSDAY = 9
-FOURTHOFJULY = 10
-HALFOFFCUSTOMIZATION = 11
-ALLACCESSWEEKEND = 12
-HALLOWEEN = 13
-DOUBLEGOLDHOLIDAY = 14
-DOUBLEGOLDHOLIDAYPAID = 15
-JOLLYROGERCURSE = 16
-FOUNDERSFEAST = 17
-FREEITEMTHANKSGIVING = 18
-CURSEDNIGHT = 19
-JOLLYCURSEAUTO = 20
-WINTERFESTIVAL = 21
-NEWYEARS = 22
-VALENTINESDAY = 23
-ZOMBIEEMOTE = 24
-INVASIONPORTROYAL = 25
-WRECKEDGOVERNORSMANSION = 26
-DOUBLECROSS = 27
-INVASIONTORTUGA = 28
-WRECKEDFAITHFULBRIDE = 29
-INVASIONDELFUEGO = 30
-WRECKEDDELFUEGOTOWN = 31
-FLEETHOLIDAY = 32
-MARDIGRAS = 33
-FEASTOFSTRENGTH = 34
-EITCMOBILIZATION = 35
-NAVYMOBILIZATION = 36
-SKELMOBILIZATION = 37
-KRAKENHOLIDAY = 38
-CATALOGHOLIDAY = 39
-MESSAGEHOLIDAY = 40
-APRILFOOLS = 41
-QUEENANNES = 42
-GETCONNNECTED = 43
-DOUBLELOOTHOLIDAY = 44
+MOTHERSDAY = 6
+FATHERSDAY = 7
+FOURTHOFJULY = 8
+HALFOFFCUSTOMIZATION = 9
+HALLOWEEN = 10
+DOUBLEGOLDHOLIDAY = 11
+JOLLYROGERCURSE = 12
+FOUNDERSFEAST = 13
+FREEITEMTHANKSGIVING = 14
+CURSEDNIGHT = 15
+JOLLYCURSEAUTO = 16
+WINTERFESTIVAL = 17
+NEWYEARS = 18
+VALENTINESDAY = 19
+ZOMBIEEMOTE = 20
+INVASIONPORTROYAL = 21
+WRECKEDGOVERNORSMANSION = 22
+DOUBLECROSS = 23
+INVASIONTORTUGA = 24
+WRECKEDFAITHFULBRIDE = 25
+INVASIONDELFUEGO = 26
+WRECKEDDELFUEGOTOWN = 27
+FLEETHOLIDAY = 28
+MARDIGRAS = 29
+FEASTOFSTRENGTH = 30
+EITCMOBILIZATION = 31
+NAVYMOBILIZATION = 32
+SKELMOBILIZATION = 33
+KRAKENHOLIDAY = 34
+CATALOGHOLIDAY = 35
+MESSAGEHOLIDAY = 36
+APRILFOOLS = 37
+QUEENANNES = 38
+DOUBLELOOTHOLIDAY = 39
 HOLIDAYS_WITH_CATALOGS = [
     SAINTPATRICKSDAY,
     VALENTINESDAY,
@@ -101,16 +97,13 @@ def getHolidayConfigDatesDict(configDefs):
 
 holidayNameDict = {
     DOUBLEGOLDHOLIDAY: 'DoubleGoldHolidayAll',
-    DOUBLEGOLDHOLIDAYPAID: 'DoubleGoldHolidayPaid',
     DOUBLEXPHOLIDAY: 'DoubleXPHolidayAll',
-    DOUBLEXPHOLIDAYPAID: 'DoubleXPHolidayPaid',
     FREEHATWEEK: 'FreeHatWeek',
     SAINTPATRICKSDAY: 'SaintPatricksDay',
     MOTHERSDAY: 'MothersDay',
     FATHERSDAY: 'FathersDay',
     FOURTHOFJULY: 'FourthOfJuly',
     HALFOFFCUSTOMIZATION: 'HalfOffCustomization',
-    ALLACCESSWEEKEND: 'AllAccessWeekend',
     HALLOWEEN: 'Halloween',
     JOLLYROGERCURSE: 'JollyRogerCurse',
     FOUNDERSFEAST: 'FoundersFeast',
@@ -139,7 +132,6 @@ holidayNameDict = {
     MESSAGEHOLIDAY: getHolidayConfigNameDict('MessageHoliday', MessageHolidayConfigs),
     APRILFOOLS: 'AprilFools',
     QUEENANNES: 'QueenAnnesRevenge',
-    GETCONNNECTED: 'GetConnected',
     DOUBLELOOTHOLIDAY: 'DoubleLoot' }
 holidayClassNameDict = {
     FLEETHOLIDAY: 'FleetHoliday',
@@ -201,15 +193,9 @@ holidaySchedules = {
     DOUBLEGOLDHOLIDAY: HolidayDates(HolidayDates.TYPE_CUSTOM, [
         (2008, Month.SEPTEMBER, 13, 12, 0, 0),
         (2008, Month.SEPTEMBER, 13, 15, 0, 0)]),
-    DOUBLEGOLDHOLIDAYPAID: HolidayDates(HolidayDates.TYPE_CUSTOM, [
-        (2008, Month.SEPTEMBER, 14, 12, 0, 0),
-        (2008, Month.SEPTEMBER, 14, 15, 0, 0)]),
     DOUBLEXPHOLIDAY: HolidayDates(HolidayDates.TYPE_CUSTOM, [
         (2009, Month.DECEMBER, 19, 12, 0, 0),
         (2009, Month.DECEMBER, 19, 15, 0, 0)]),
-    DOUBLEXPHOLIDAYPAID: HolidayDates(HolidayDates.TYPE_CUSTOM, [
-        (2009, Month.DECEMBER, 20, 12, 0, 0),
-        (2009, Month.DECEMBER, 20, 15, 0, 0)]),
     DOUBLELOOTHOLIDAY: HolidayDates(HolidayDates.TYPE_CUSTOM, [
         (2008, Month.SEPTEMBER, 13, 12, 0, 0),
         (2008, Month.SEPTEMBER, 13, 15, 0, 0)]),
@@ -234,15 +220,9 @@ holidaySchedules = {
     FOURTHOFJULY: HolidayDates(HolidayDates.TYPE_YEARLY, [
         (Month.JULY, 3, 18, 0, 0),
         (Month.JULY, 7, 0, 0, 0)]),
-    GETCONNNECTED: HolidayDates(HolidayDates.TYPE_YEARLY, [
-        (Month.JULY, 1, 0, 0, 0),
-        (Month.AUGUST, 7, 12, 0, 0)]),
     HALFOFFCUSTOMIZATION: HolidayDates(HolidayDates.TYPE_CUSTOM, [
         (2008, Month.AUGUST, 14, 0, 0, 0),
         (2008, Month.AUGUST, 18, 12, 0, 0)]),
-    ALLACCESSWEEKEND: HolidayDates(HolidayDates.TYPE_CUSTOM, [
-        (2009, Month.APRIL, 17, 0, 0, 0),
-        (2009, Month.APRIL, 20, 0, 0, 0)]),
     HALLOWEEN: HolidayDates(HolidayDates.TYPE_YEARLY, [
         (Month.OCTOBER, 15, 0, 0, 0),
         (Month.OCTOBER, 31, 0, 0, 0)]),
@@ -536,19 +516,13 @@ RandomizedSchedules = {
             RandomTimeWindows.H],
         'duration': (1, 0) } }
 MSG_START_ALL = 0
-MSG_START_UNLIMITED = 1
-MSG_START_BASIC = 2
-MSG_END_ALL = 3
-MSG_END_UNLIMITED = 4
-MSG_END_BASIC = 5
-MSG_CHAT_STATUS = 6
-MSG_ICON = 7
-MSG_CHAT_STATUS_BASIC = 8
-MSG_CHAT_STATUS_UNLIMITED = 9
-MSG_BONFIRE = 10
-MSG_PIG = 11
-MSG_BONFIRE_STARTED = 12
-MSG_PORK_RECEIVED = 13
+MSG_END_ALL = 1
+MSG_CHAT_STATUS = 2
+MSG_ICON = 3
+MSG_BONFIRE = 4
+MSG_PIG = 5
+MSG_BONFIRE_STARTED = 6
+MSG_PORK_RECEIVED = 7
 
 def getHolidayMsgs(holidayId):
     holidayMessages = holidayMessages
@@ -561,41 +535,29 @@ def getHolidayMsgs(holidayId):
 
     return holidayMsgs
 
-def getHolidayStartMsg(holidayId, paidStatus, chat = 0):
+def getHolidayStartMsg(holidayId, chat = 0):
     holidayMsgs = getHolidayMsgs(holidayId)
     if holidayMsgs:
         if MSG_START_ALL in holidayMsgs:
             return holidayMsgs.get(MSG_START_ALL)[chat]
-        elif MSG_START_UNLIMITED in holidayMsgs and paidStatus:
-            return holidayMsgs.get(MSG_START_UNLIMITED)[chat]
-        elif MSG_START_BASIC in holidayMsgs and not paidStatus:
-            return holidayMsgs.get(MSG_START_BASIC)[chat]
 
-def getHolidayStartChatMsg(holidayId, paidStatus):
-    return getHolidayStartMsg(holidayId, paidStatus, chat = 1)
+def getHolidayStartChatMsg(holidayId):
+    return getHolidayStartMsg(holidayId, chat = 1)
 
-def getHolidayEndMsg(holidayId, paidStatus, chat = 0):
+def getHolidayEndMsg(holidayId, chat = 0):
     holidayMsgs = getHolidayMsgs(holidayId)
     if holidayMsgs:
         if MSG_END_ALL in holidayMsgs:
             return holidayMsgs.get(MSG_END_ALL)[chat]
-        elif MSG_END_UNLIMITED in holidayMsgs and paidStatus:
-            return holidayMsgs.get(MSG_END_UNLIMITED)[chat]
-        elif MSG_END_BASIC in holidayMsgs and not paidStatus:
-            return holidayMsgs.get(MSG_END_BASIC)[chat]
 
-def getHolidayEndChatMsg(holidayId, paidStatus):
-    return getHolidayEndMsg(holidayId, paidStatus, chat = 1)
+def getHolidayEndChatMsg(holidayId):
+    return getHolidayEndMsg(holidayId, chat = 1)
 
-def getHolidayStatusMsg(holidayId, paidStatus):
+def getHolidayStatusMsg(holidayId):
     holidayMsgs = getHolidayMsgs(holidayId)
     if holidayMsgs:
         if MSG_CHAT_STATUS in holidayMsgs:
             return holidayMsgs.get(MSG_CHAT_STATUS)
-        elif MSG_CHAT_STATUS_UNLIMITED in holidayMsgs and paidStatus:
-            return holidayMsgs.get(MSG_CHAT_STATUS_UNLIMITED)
-        elif MSG_CHAT_STATUS_BASIC in holidayMsgs and not paidStatus:
-            return holidayMsgs.get(MSG_CHAT_STATUS_BASIC)
 
 def getHolidayIcon(holidayId):
     holidayMsgs = getHolidayMsgs(holidayId)

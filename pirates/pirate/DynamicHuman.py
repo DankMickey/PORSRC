@@ -255,7 +255,6 @@ class DynamicHuman(HumanBase.HumanBase, Biped.Biped):
                 'open',
                 'off'])], 'off', 'off')
         self.eyeFSM.enterInitialState()
-        self.isPaid = True
         if other != None:
             self.copyHuman(other)
 

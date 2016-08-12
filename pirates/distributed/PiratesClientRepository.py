@@ -322,8 +322,6 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
         self.handleAvatarChoice(done, subId, slot)
 
     def handleAvatarChoice(self, done, subId, slot):
-        access = self.accountDetailRecord.subDetails[subId].subAccess
-        base.setEmbeddedFrameMode(access)
         if done == 'chose':
             av = self.avList[subId][slot]
             if av.dna.getTutorial() < 3 and self.skipTutorial == 0:
@@ -348,7 +346,7 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
 
     def enterCreateAvatar(self, avList, index, subId):
         self.tutorial = 0
-        self.avCreate = MakeAPirate(avList, 'makeAPirateComplete', subId, index, self.isPaid())
+        self.avCreate = MakeAPirate(avList, 'makeAPirateComplete', subId, index)
         self.avCreate.load()
         self.avCreate.enter()
         self.accept('makeAPirateComplete', self.__handleMakeAPirate)
@@ -678,9 +676,6 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
         for doId, obj in self.doId2do.items():
             if obj.parentId == localAvatar.defaultShard and obj is not localAvatar:
                 self.deleteObject(doId)
-
-    def isPaid(self):
-        return OTPGlobals.AccessFull
 
     def getFriendFlags(self, doId):
         return 0

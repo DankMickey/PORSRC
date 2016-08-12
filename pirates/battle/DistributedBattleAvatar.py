@@ -42,7 +42,6 @@ from pirates.effects.SpectralSmoke import SpectralSmoke
 from pirates.effects.SmokeWisps import SmokeWisps
 from pirates.effects.Flame import Flame
 from pirates.piratesbase import PLocalizer
-from pirates.piratesbase import Freebooter
 from pirates.inventory import ItemGlobals
 from pirates.piratesbase import EmoteGlobals
 from pirates.piratesgui import PiratesGuiGlobals
@@ -3249,7 +3248,6 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
 
     def showHpText(self, number, pos = 0, bonus = 0, duration = 2.0, scale = 0.5, basicPenalty = 0, crewBonus = 0, doubleXPBonus = 0, holidayBonus = 0, potionBonus = 0, itemEffects = []):
         if self.HpTextEnabled and not (self.ghostMode) and base.showGui:
-            freebooter = not Freebooter.getPaidStatus(base.localAvatar.getDoId())
             if pos != 0 and self.hasNetPythonTag('MonstrousObject'):
                 n = NodePath('empty')
                 n.reparentTo(self)

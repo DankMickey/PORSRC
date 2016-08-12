@@ -188,14 +188,7 @@ def getOceanHint():
 
 
 def getGeneralHint():
-    type = random.choice([
-        0,
-        1])
-    if base.cr.isPaid() == OTPGlobals.AccessVelvetRope and type == 1:
-        hint = random.choice(PLocalizer.Hints_VelvetRope)
-    else:
-        hint = random.choice(PLocalizer.Hints_General)
-    return hint
+    return random.choice(PLocalizer.Hints_General)
 
 
 def getPrivateeringHint():
@@ -270,7 +263,6 @@ class LoadingScreen(DirectObject.DirectObject):
         self.wheel = None
         self.snapshot = None
         self.snapshotFrame = None
-        self.snapshotFrameBasic = None
         self.currentTime = 0
         self.lastUpdateTime = globalClock.getRealTime()
         self.locationLabel = None
@@ -310,9 +302,6 @@ class LoadingScreen(DirectObject.DirectObject):
         if self.snapshotFrame:
             self.snapshotFrame.destroy()
 
-        if self.snapshotFrameBasic:
-            self.snapshotFrameBasic.destroy()
-
         if self.locationLabel:
             self.locationLabel.destroy()
 
@@ -346,38 +335,12 @@ class LoadingScreen(DirectObject.DirectObject):
 
         base.setTaskChainNetNonthreaded()
         self.allowLiveFlatten.setValue(1)
-        if self.parent and base.cr.isPaid() == OTPGlobals.AccessVelvetRope and base.config.GetBool('loading-screen-interstitial', 0):
-            self.model = loader.loadModel('models/gui/loading_screen_interstitial')
-            if self.model is not None:
-                loadimage = self.model.find('**/loadimage')
-                if loadimage is not None:
-                    loadimage.hide()
-
-        else:
-            self.model = loader.loadModel('models/gui/loading_screen')
+        self.model = loader.loadModel('models/gui/loading_screen')
         self.locationLabel = DirectLabel(parent = aspect2dp, relief = None, text = '', text_font = PiratesGlobals.getPirateOutlineFont(), text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_scale = PiratesGuiGlobals.TextScaleTitleJumbo * 0.7, text_align = TextNode.ACenter, pos = (0.0, 0.0, -0.52), textMayChange = 1)
         self.hintLabel = DirectLabel(parent = aspect2dp, relief = None, text = '', text_font = PiratesGlobals.getPirateOutlineFont(), text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_scale = PiratesGuiGlobals.TextScaleTitleJumbo * 0.5, text_align = TextNode.ACenter, pos = (0.0, 0.0, -0.8), text_wordwrap = 30, textMayChange = 1)
         self.wheel = self.model.find('**/red_wheel')
         title_bg = self.model.find('**/title_bg')
         title_frame = self.model.find('**/title_frame')
-        if self.parent and base.cr.isPaid() == OTPGlobals.AccessVelvetRope and base.config.GetBool('loading-screen-interstitial', 0):
-            self.hintLabel.setPos(0.69, 0, -0.63)
-            self.hintLabel['text_wordwrap'] = 12
-            self.locationLabel.setPos(-0.11, 0.0, -0.65)
-            root = self.model.find('**/loading_screen_top')
-            timer = self.model.find('**/timer')
-            gear = self.model.find('**/gear')
-            shell = self.model.find('**/shell')
-            frame_little = self.model.find('**/frame_little')
-            self.wheel.reparentTo(timer, 0)
-            gear.reparentTo(timer, 1)
-            shell.reparentTo(timer, 2)
-            title_bg.reparentTo(root)
-            title_frame.reparentTo(root)
-            self.snapshotFrameBasic = DirectFrame(parent = aspect2dp, relief = DGG.FLAT, frameColor = (0.0, 0.0, 0.0, 1.0), frameSize = (-4.95, -2.5, -1.1, -2.6))
-            self.snapshotFrameBasic.reparentTo(root)
-            frame_little.reparentTo(root)
-
         self.title_art.append(title_bg)
         self.title_art.append(title_frame)
         self.hideTitleFrame()
@@ -392,23 +355,13 @@ class LoadingScreen(DirectObject.DirectObject):
         elif self.snapshot:
             self.snapshot.show()
 
-        if self.parent and self.snapshot and base.cr.isPaid() == OTPGlobals.AccessVelvetRope and base.config.GetBool('loading-screen-interstitial', 0):
-            root = self.model.find('**/loading_screen_top')
-            frame_little = self.model.find('**/frame_little')
-            self.snapshot.reparentTo(root, 0)
-            frame_little.reparentTo(root, 1)
-
         self.snapshotFrame = DirectFrame(parent = aspect2dp, relief = DGG.FLAT, frameColor = (0.0, 0.0, 0.0, 1.0), frameSize = (-2.0, 2.0, 2.0, -2.0))
         self.snapshotFrame.setBin('fixed', 0)
         self.model.reparentTo(aspect2dp, NO_FADE_SORT_INDEX)
         self.locationLabel.reparentTo(aspect2dp, NO_FADE_SORT_INDEX)
         self.hintLabel.reparentTo(aspect2dp, NO_FADE_SORT_INDEX)
-        if self.parent and base.cr.isPaid() == OTPGlobals.AccessVelvetRope and base.config.GetBool('loading-screen-interstitial', 0):
-            self.model.setScale(0.22, 0.22, 0.22)
-            self.model.setPos(0.0, 0.0, -0.3)
-        else:
-            self.model.setScale(0.25, 0.25, 0.25)
-            self.model.setPos(0.0, 0.0, -0.15)
+        self.model.setScale(0.25, 0.25, 0.25)
+        self.model.setPos(0.0, 0.0, -0.15)
         if self.locationText and len(self.locationText):
             self.__setLocationText(self.locationText)
 
@@ -596,20 +549,10 @@ class LoadingScreen(DirectObject.DirectObject):
         except:
             self.snapshot = loader.loadModel('models/gui/loadingScreen_enter')
         if self.snapshot:
-            if self.parent and base.cr.isPaid() == OTPGlobals.AccessVelvetRope and base.config.GetBool('loading-screen-interstitial', 0):
-                self.snapshot.setScale(2.35, 1.0, 1.3)
-                self.snapshot.setPos(-3.74, 0, -1.83)
-                if self.model is not None:
-                    root = self.model.find('**/loading_screen_top')
-                    frame_little = self.model.find('**/frame_little')
-                    self.snapshot.reparentTo(root, 0)
-                    frame_little.reparentTo(root, 1)
-
-            else:
-                self.snapshot.reparentTo(aspect2dp, NO_FADE_SORT_INDEX)
-                self.snapshot.setScale(2.15, 1, 1.2)
-                self.snapshot.setPos(0.0, 0.0, 0.09)
-                self.snapshot.setBin('fixed', 1)
+            self.snapshot.reparentTo(aspect2dp, NO_FADE_SORT_INDEX)
+            self.snapshot.setScale(2.15, 1, 1.2)
+            self.snapshot.setPos(0.0, 0.0, 0.09)
+            self.snapshot.setBin('fixed', 1)
             if not self.__isVisible():
                 self.snapshot.hide()
 

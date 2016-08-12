@@ -20,7 +20,6 @@ import random
 from math import sin
 from math import cos
 from math import pi
-from pirates.piratesbase import Freebooter
 from pirates.inventory import ItemGlobals, DropGlobals
 from pirates.inventory.InventoryGlobals import *
 from pirates.uberdog.TradableInventoryBase import InvItem
@@ -259,7 +258,6 @@ class TattooStoreGUI(DirectFrame):
         self.ParchmentIcon = gui.find('**/main_gui_quest_scroll')
         self.TattooIcons = loader.loadModel('models/textureCards/tattooIcons')
         self.ShirtIcon = loader.loadModel('models/gui/char_gui').find('**/chargui_cloth')
-        self.LockIcon = gui.find('**/pir_t_gui_gen_key_subscriber')
         self.questIcon = loader.loadModel('models/gui/compass_main').find('**/icon_objective_grey')
         self.backTabParent = self.attachNewNode('backTabs', sort = 0)
         self.panel = GuiPanel.GuiPanel(None, self.width, self.height, parent = self, showClose = False)
@@ -271,7 +269,6 @@ class TattooStoreGUI(DirectFrame):
         self.model.reparentTo(self.panel)
         self.model.setPos(0.625, 0.0, 1.05)
         self.model.setScale(0.337, 0.0, 0.327)
-        self.paid = Freebooter.getPaidStatus(localAvatar.getDoId())
         self.shopId = shopId
         self.pvpMode = 0
         if shopId == PiratesGlobals.PRIVATEER_TATTOOS:
@@ -406,10 +403,6 @@ class TattooStoreGUI(DirectFrame):
         if self.TattooIcons:
             self.TattooIcons.remove_node()
             self.TattooIcons = None
-
-        if self.LockIcon:
-            self.LockIcon.remove_node()
-            self.LockIcon = None
 
         if self.questIcon:
             self.questIcon.remove_node()
@@ -1122,15 +1115,6 @@ class TattooStoreGUI(DirectFrame):
                         tattooButton['text_pos'] = (-0.02, 0.05)
 
                     tattooButton.cost = DirectFrame(parent = tattooButton, relief = None, text = str(cost), text_fg = PiratesGuiGlobals.TextFG2, text_align = TextNode.ARight, text_scale = PiratesGuiGlobals.TextScaleLarge, text_pos = (-0.055, 0.0), text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 0, image = self.CoinImage, image_scale = 0.15, image_pos = (-0.025, 0, 0.015), pos = (0.25, 0, -0.05))
-
-                if not self.paid:
-                    tattooButton.addToCart['geom'] = self.LockIcon
-                    tattooButton.addToCart['geom_scale'] = 0.2
-                    tattooButton.addToCart['geom_pos'] = Vec3(-0.1, 0.0, 0.0)
-                    tattooButton.addToCart['command'] = localAvatar.guiMgr.showNonPayer
-                    tattooButton.addToCart['extraArgs'] = [
-                        'JEWELRY_CANNOT_BUY-SELL',
-                        10]
 
                 data = [
                     type,

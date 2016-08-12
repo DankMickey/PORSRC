@@ -41,7 +41,6 @@ from pirates.inventory import ItemGlobals
 from pirates.inventory import ItemConstants
 from pirates.inventory import InventoryGlobals
 from direct.distributed.ClockDelta import globalClockDelta
-from pirates.piratesbase import Freebooter
 import time
 
 class InventoryUIManager(DirectFrame):
@@ -82,7 +81,6 @@ class InventoryUIManager(DirectFrame):
         self.discoveredInventory = 0
         self.trashItem = None
         self.reasonNoUse = None
-        self.hasShownVelvet = 0
         if config.GetBool('trash-invalid-loot', 0):
             self.trashInvalidItems = 1
         else:
@@ -507,11 +505,7 @@ class InventoryUIManager(DirectFrame):
         itemCat = itemTuple[0]
         itemId = itemTuple[1]
         rarity = ItemGlobals.getRarity(itemId)
-        if rarity != ItemConstants.CRUDE and not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-            canUse = 0
-            reason = ItemConstants.REASON_VELVETROPE
-            return (canUse, reason)
-        elif itemCat == InventoryType.ItemTypeClothing:
+        if itemCat == InventoryType.ItemTypeClothing:
             gender = localAvatar.style.getGender()
             if gender == 'm' and ItemGlobals.getMaleModelId(itemId) == -1:
                 canUse = 0
@@ -581,12 +575,6 @@ class InventoryUIManager(DirectFrame):
             return None
         elif self.reasonNoUse == ItemConstants.REASON_CANTPLACE:
             displayText = PLocalizer.EquipReasonFullSlot
-        elif self.reasonNoUse == ItemConstants.REASON_VELVETROPE:
-            displayText = PLocalizer.EquipReasonVelvet
-            if popUp:
-                localAvatar.guiMgr.showNonPayer()
-                self.hasShownVelvet = 1
-
         elif self.reasonNoUse == ItemConstants.REASON_GENDER:
             if localAvatar.style.getGender() == 'm':
                 displayText = PLocalizer.EquipReasonGenderFemale

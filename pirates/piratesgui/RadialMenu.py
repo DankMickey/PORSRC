@@ -7,7 +7,6 @@ from pirates.uberdog.UberDogGlobals import InventoryType
 from pirates.piratesgui.SkillRing import SkillRing
 from pirates.piratesbase import PiratesGlobals
 from pirates.piratesbase import PLocalizer
-from pirates.piratesbase import Freebooter
 from direct.interval.IntervalGlobal import *
 from pirates.reputation import ReputationGlobals
 from pirates.piratesgui.SkillButton import SkillButton
@@ -252,120 +251,56 @@ def getAllSkills(repId, skilltrack, wantWeaponSkill = 0):
         skillId = InventoryType.begin_WeaponSkillCutlass
         while skillId < InventoryType.end_WeaponSkillCutlass:
             if WeaponGlobals.getSkillTrack(skillId) == skilltrack:
-                locked = False
-                if not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-                    locked = not WeaponGlobals.canFreeUse(skillId)
-
-                if inv.getStackQuantity(skillId) >= minlvl:
-                    skill = (skillId, True, locked)
-                else:
-                    skill = (skillId, False, locked)
-                choices.append(skill)
+                choices.append((skillId, inv.getStackQuantity(skillId) >= minlvl))
 
             skillId += 1
     elif repId == InventoryType.MeleeRep:
         skillId = InventoryType.begin_WeaponSkillMelee
         while skillId < InventoryType.end_WeaponSkillMelee:
             if WeaponGlobals.getSkillTrack(skillId) == skilltrack:
-                locked = False
-                if not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-                    locked = not WeaponGlobals.canFreeUse(skillId)
-
-                if inv.getStackQuantity(skillId) >= minlvl:
-                    skill = (skillId, True, locked)
-                else:
-                    skill = (skillId, False, locked)
-                choices.append(skill)
+                choices.append((skillId, inv.getStackQuantity(skillId) >= minlvl))
 
             skillId += 1
     elif repId == InventoryType.DaggerRep:
         skillId = InventoryType.begin_WeaponSkillDagger
         while skillId < InventoryType.end_WeaponSkillDagger:
             if WeaponGlobals.getSkillTrack(skillId) == skilltrack:
-                locked = False
-                if not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-                    locked = not WeaponGlobals.canFreeUse(skillId)
-
-                if inv.getStackQuantity(skillId) >= minlvl:
-                    skill = (skillId, True, locked)
-                else:
-                    skill = (skillId, False, locked)
-                choices.append(skill)
+                choices.append((skillId, inv.getStackQuantity(skillId) >= minlvl))
 
             skillId += 1
     elif repId == InventoryType.GrenadeRep:
         skillId = InventoryType.begin_WeaponSkillGrenade
         while skillId < InventoryType.end_WeaponSkillGrenade:
             if WeaponGlobals.getSkillTrack(skillId) == skilltrack:
-                locked = False
-                if not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-                    locked = not WeaponGlobals.canFreeUse(skillId)
-
-                if inv.getStackQuantity(skillId) >= minlvl:
-                    skill = (skillId, True, locked)
-                else:
-                    skill = (skillId, False, locked)
-                choices.append(skill)
+                choices.append((skillId, inv.getStackQuantity(skillId) >= minlvl))
 
             skillId += 1
     elif repId == InventoryType.DollRep:
         skillId = InventoryType.begin_WeaponSkillDoll
         while skillId < InventoryType.end_WeaponSkillDoll:
             if WeaponGlobals.getSkillTrack(skillId) == skilltrack:
-                locked = False
-                if not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-                    locked = not WeaponGlobals.canFreeUse(skillId)
-
-                if inv.getStackQuantity(skillId) >= minlvl:
-                    skill = (skillId, True, locked)
-                else:
-                    skill = (skillId, False, locked)
-                choices.append(skill)
+                choices.append((skillId, inv.getStackQuantity(skillId) >= minlvl))
 
             skillId += 1
     elif repId == InventoryType.WandRep:
         skillId = InventoryType.begin_WeaponSkillWand
         while skillId < InventoryType.end_WeaponSkillWand:
             if WeaponGlobals.getSkillTrack(skillId) == skilltrack:
-                locked = False
-                if not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-                    locked = not WeaponGlobals.canFreeUse(skillId)
-
-                if inv.getStackQuantity(skillId) >= minlvl:
-                    skill = (skillId, True, locked)
-                else:
-                    skill = (skillId, False, locked)
-                choices.append(skill)
+                choices.append((skillId, inv.getStackQuantity(skillId) >= minlvl))
 
             skillId += 1
     elif repId == InventoryType.KettleRep:
         skillId = InventoryType.begin_WeaponSkillKettle
         while skillId < InventoryType.end_WeaponSkillKettle:
             if WeaponGlobals.getSkillTrack(skillId) == skilltrack:
-                locked = False
-                if not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-                    locked = not WeaponGlobals.canFreeUse(skillId)
-
-                if inv.getStackQuantity(skillId) >= minlvl:
-                    skill = (skillId, True, locked)
-                else:
-                    skill = (skillId, False, locked)
-                choices.append(skill)
+                choices.append((skillId, inv.getStackQuantity(skillId) >= minlvl))
 
             skillId += 1
     elif repId == InventoryType.PistolRep:
         skillId = InventoryType.begin_WeaponSkillPistol
         while skillId < InventoryType.end_WeaponSkillPistol:
             if WeaponGlobals.getSkillTrack(skillId) == skilltrack:
-                locked = False
-                if not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-                    locked = not WeaponGlobals.canFreeUse(skillId)
-
-                if inv.getStackQuantity(skillId) >= minlvl:
-                    skill = (skillId, True, locked)
-                else:
-                    skill = (skillId, False, locked)
-                choices.append(skill)
+                choices.append((skillId, inv.getStackQuantity(skillId) >= minlvl))
 
             skillId += 1
     elif repId == InventoryType.CannonRep:
@@ -373,36 +308,21 @@ def getAllSkills(repId, skilltrack, wantWeaponSkill = 0):
         skillId = InventoryType.begin_WeaponSkillCannon
         while skillId < InventoryType.end_WeaponSkillCannon:
             if WeaponGlobals.getSkillTrack(skillId) == skilltrack:
-                locked = False
-                if not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-                    locked = not WeaponGlobals.canFreeUse(skillId)
-
-                if inv.getStackQuantity(skillId) >= minlvl:
-                    skill = (skillId, True, locked)
-                else:
-                    skill = (skillId, False, locked)
-                choices.append(skill)
+                choices.append((skillId, inv.getStackQuantity(skillId) >= minlvl))
 
             skillId += 1
     elif repId == InventoryType.SailingRep:
         skillId = InventoryType.begin_SkillSailing
         while skillId < InventoryType.end_SkillSailing:
             if WeaponGlobals.getSkillTrack(skillId) == skilltrack:
-                locked = False
-                if not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-                    locked = not WeaponGlobals.canFreeUse(skillId)
-
-                shouldBeVisible = inv.getStackQuantity(skillId) >= minlvl
-                skill = (skillId, shouldBeVisible, locked)
-                choices.append(skill)
+                choices.append((skillId, inv.getStackQuantity(skillId) >= minlvl))
 
             skillId += 1
     elif repId == InventoryType.DefenseCannonRep:
         wantWeaponSkill = 0
         for skillId in PiratesGlobals.CANNON_DEFENSE_SKILLS:
             if WeaponGlobals.getSkillTrack(skillId) == skilltrack:
-                skill = (skillId, True, False)
-                choices.append(skill)
+                choices.append((skillId, True))
 
             skillId += 1
 
@@ -412,22 +332,14 @@ def getAllSkills(repId, skilltrack, wantWeaponSkill = 0):
         skilltrack = 1
         while skillId < InventoryType.end_WeaponSkillFishingRod:
             if WeaponGlobals.getSkillTrack(skillId) == skilltrack:
-                locked = False
-                if not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-                    locked = not WeaponGlobals.canFreeUse(skillId)
-
-                if inv.getStackQuantity(skillId) >= minlvl:
-                    skill = (skillId, True, locked)
-                else:
-                    skill = (skillId, False, locked)
-                choices.append(skill)
+                choices.append((skillId, inv.getStackQuantity(skillId) >= minlvl))
 
             skillId += 1
 
     if wantWeaponSkill:
         weaponSkill = getWeaponSkill(repId)
         if weaponSkill:
-            choices.append((weaponSkill, True, 0))
+            choices.append((weaponSkill, True))
 
 
     return choices
@@ -529,8 +441,7 @@ class RadialMenu:
             asset = getSkillIconName(self.rep, 0)
         self.radial[0] = DirectFrame(parent = aspect2d, relief = None, image = self.SkillIcons.find('**/%s' % asset), image_scale = ImageScale(self.rep), image_pos = (0.059999999999999998, 0, 0.059999999999999998), pos = (-0.050000000000000003, 0, -0.050000000000000003), sortOrder = 10)
         self.radial[0].setTransparency(1)
-        origMap = ActiveSkills(self.rep, 2)
-        self.radialSkillMap = Freebooter.pruneFreebooterSkills(origMap)
+        self.radialSkillMap = ActiveSkills(self.rep, 2)
         self.numberOfItems = len(self.radialSkillMap)
         for i in xrange(self.numberOfItems):
             (x, y) = InnerRingOffset(i + 1)
@@ -733,8 +644,6 @@ class SkillTray:
         self.showSkillTrayIval = None
         self.hideSkillTrayIval = None
         self.resetMoveUpVale()
-        gui = loader.loadModel('models/gui/toplevel_gui')
-        self.lockArt = gui.find('**/pir_t_gui_gen_key_subscriber')
         self.isPowerRecharged = False
 
 
@@ -885,24 +794,12 @@ class SkillTray:
         offset = 0.0
         for i in xrange(self.numberOfItems):
             if self.origMap[i][1] == False:
-                locked = False
-                if locked:
-                    image = (self.SkillIcons.find('**/base'), self.SkillIcons.find('**/base_down'), self.SkillIcons.find('**/base_over'))
-                else:
-                    image = self.SkillIcons.find('**/base')
-                button = DirectButton(parent = self.skillTray, relief = None, state = DGG.DISABLED, image = image, image_pos = (0.0, 0.0, 0.059999999999999998), image_scale = 0.12, image_color = (0.20000000000000001, 0.20000000000000001, 0.20000000000000001, 0.55000000000000004), sortOrder = 100, pos = (x, 0, -0.0))
+                button = DirectButton(parent = self.skillTray, relief = None, state = DGG.DISABLED, image = self.SkillIcons.find('**/base'), image_pos = (0.0, 0.0, 0.059999999999999998), image_scale = 0.12, image_color = (0.20000000000000001, 0.20000000000000001, 0.20000000000000001, 0.55000000000000004), sortOrder = 100, pos = (x, 0, -0.0))
                 button.setTransparency(1)
                 button.showQuantity = False
                 button.greyOut = -1
                 button.showRing = False
                 button.skillStatus = False
-                if locked:
-                    lock = DirectFrame(parent = button, relief = None, image = self.lockArt, image_scale = 0.14000000000000001, image_pos = (0.050000000000000003, 0, 0.035000000000000003))
-                    button['state'] = DGG.NORMAL
-                    button['command'] = base.localAvatar.guiMgr.showNonPayer
-                    button['extraArgs'] = [
-                        'Restricted_Radial_Menu',
-                        5]
 
                 self.tray[i + 1] = button
                 x = x + 0.14999999999999999
@@ -927,17 +824,12 @@ class SkillTray:
                     showRing = True
                 else:
                     showRing = False
-                locked = self.origMap[i][2]
+
                 if weaponMode == WeaponGlobals.DEFENSE_CANNON:
-                    button = AmmoSkillButton(skillId, i, self.callback, 99, 0, showQuantity = True, showHelp = False, showRing = showRing, hotkey = hotkey, name = name, showLock = locked)
+                    button = AmmoSkillButton(skillId, i, self.callback, 99, 0, showQuantity = True, showHelp = False, showRing = showRing, hotkey = hotkey, name = name)
                 else:
-                    button = SkillButton(skillId, self.callback, 0, 0, showQuantity = False, showHelp = False, showRing = showRing, hotkey = hotkey, name = name, showLock = locked)
+                    button = SkillButton(skillId, self.callback, 0, 0, showQuantity = False, showHelp = False, showRing = showRing, hotkey = hotkey, name = name)
                 button.skillStatus = True
-                if locked:
-                    button.skillButton['command'] = base.localAvatar.guiMgr.showNonPayer
-                    button.skillButton['extraArgs'] = [
-                        'Restricted_Radial_Menu',
-                        5]
 
                 if showRing:
                     button.skillRing.meterFaceHalf1.setScale(0.95999999999999996)

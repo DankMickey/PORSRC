@@ -13,7 +13,6 @@ from pirates.piratesgui import TeleportConfirm
 from pirates.piratesbase import PiratesGlobals
 from otp.otpbase import OTPGlobals
 from otp.friends.FriendInfo import FriendInfo
-from pirates.piratesbase import Freebooter
 from pirates.band import BandConstance
 import GuiButton
 from direct.showbase.DirectObject import *

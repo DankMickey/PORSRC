@@ -30,8 +30,6 @@ from pirates.pirate import Pirate
 from pirates.seapatch.SeaPatch import SeaPatch
 from pirates.seapatch.Reflection import Reflection
 from pirates.makeapirate import NameGUI
-from pirates.piratesgui import NonPayerPanel
-from pirates.piratesgui import TrialNonPayerPanel
 from pirates.pirate import Human, DynamicHuman
 from pirates.pirate import HumanDNA
 from pirates.audio import SoundGlobals
@@ -50,38 +48,15 @@ class AvatarChooser(DirectObject, StateData):
         self.av = None
         self.deleteConfirmDialog = None
         self.shareConfirmDialog = None
-        self.firstAddDialog = None
         self.notQueueCompleteDialog = None
         self.notifications = { }
         self.subFrames = { }
         self.subAvButtons = { }
         self.handleDialogOnScreen = 0
         self.subIds = base.cr.avList.keys()
-        if base.cr.isPaid() == OTPGlobals.AccessVelvetRope:
-            for subId in base.cr.avList:
-                avSet = base.cr.avList[subId]
-                for avatar in avSet:
-                    if type(avatar) != int:
-                        avatar.dna.setTattooChest(0, 0, 0, 0, 0, 0)
-                        avatar.dna.setTattooZone2(0, 0, 0, 0, 0, 0)
-                        avatar.dna.setTattooZone3(0, 0, 0, 0, 0, 0)
-                        avatar.dna.setTattooZone4(0, 0, 0, 0, 0, 0)
-                        avatar.dna.setTattooZone5(0, 0, 0, 0, 0, 0)
-                        avatar.dna.setTattooZone6(0, 0, 0, 0, 0, 0)
-                        avatar.dna.setTattooZone7(0, 0, 0, 0, 0, 0)
-                        avatar.dna.setJewelryZone1(0, 0, 0)
-                        avatar.dna.setJewelryZone2(0, 0, 0)
-                        avatar.dna.setJewelryZone3(0, 0, 0)
-                        avatar.dna.setJewelryZone4(0, 0, 0)
-                        avatar.dna.setJewelryZone5(0, 0, 0)
-                        avatar.dna.setJewelryZone6(0, 0, 0)
-                        avatar.dna.setJewelryZone7(0, 0, 0)
-                        avatar.dna.setJewelryZone8(0, 0, 0)
         self.subIds.sort()
         self.currentSubIndex = 0
         self.currentSubId = 0
-        self.nonPayerPanel = None
-        self.trialNonPayerPanel = None
         self.httpClient = None
         self.loginTask = None
         self.loginStatusRequest = None
@@ -137,8 +112,6 @@ class AvatarChooser(DirectObject, StateData):
         self.__allPhasesComplete()
         self._startLoginStatusTask()
         base.options.savePossibleWorking(base.options)
-        if launcher.getValue('GAME_SHOW_FIRSTADD'):
-            self.popupTrialPanel()
 
     def exit(self):
         if self.isLoaded == 0:
@@ -184,7 +157,6 @@ class AvatarChooser(DirectObject, StateData):
         taskMgr.setupTaskChain('phasePost', threadPriority = TPLow)
 
     def load(self):
-        self.notify.debug('isPaid: %s' % str(base.cr.isPaid()))
         if self.isLoaded == 1:
             return None
 
@@ -268,11 +240,6 @@ class AvatarChooser(DirectObject, StateData):
         if self.disableOptions:
             self.optionsButton.setColorScale(Vec4(0.7, 0.7, 0.7, 0.7))
 
-        self.upgradeButton = DirectButton(parent = self.quitFrame, relief = None, text_scale = 0.05, text_fg = (1, 0.9, 0.7, 0.9), text_shadow = PiratesGuiGlobals.TextShadow, text = '\x01smallCaps\x01%s\x02' % PLocalizer.AvatarChooserUpgrade, image = (self.model.find('**/avatar_c_C_box'), self.model.find('**/avatar_c_C_box'), self.model.find('**/avatar_c_C_box_over')), image_scale = 0.37, text_pos = (0, -0.015), pos = (0, 0, 0.07), command = self.__handleUpgrade)
-        if base.cr.isPaid() == OTPGlobals.AccessFull:
-            self.upgradeButton.hide()
-            self.optionsButton.setPos(0, 0, 0.07)
-
         self.disableQuit = base.config.GetBool('location-kiosk', 0)
         if self.disableQuit:
             quitState = DGG.DISABLED
@@ -336,10 +303,7 @@ class AvatarChooser(DirectObject, StateData):
                     image = (self.model.find('**/avatar_c_A_middle'), self.model.find('**/avatar_c_A_middle'), self.model.find('**/avatar_c_A_middle_over'), self.model.find('**/avatar_c_A_middle'))
                 if av == OTPGlobals.AvatarSlotAvailable:
                     text = '\x01smallCaps\x01%s\x02' % PLocalizer.AvatarChooserCreate
-                    if -3 in avData:
-                        command = self.__handleCreate
-                    else:
-                        command = self.popupFeatureBrowser
+                    command = self.__handleCreate
                     state = DGG.NORMAL
                 elif av == OTPGlobals.AvatarPendingCreate:
                     text = PLocalizer.AvatarChooserUnderConstruction
@@ -348,10 +312,7 @@ class AvatarChooser(DirectObject, StateData):
                     imageColor = Vec4(0.7, 0.7, 0.7, 1)
                 elif av == OTPGlobals.AvatarSlotUnavailable:
                     text = '\x01smallCaps\x01%s\x02' % PLocalizer.AvatarChooserCreate
-                    if -3 in avData:
-                        command = self.__handleCreate
-                    else:
-                        command = self.popupFeatureBrowser
+                    command = self.__handleCreate
                     state = DGG.NORMAL
                 else:
                     avName = av.dna.getDNAName()
@@ -412,14 +373,7 @@ class AvatarChooser(DirectObject, StateData):
         self.highlightFrame.destroy()
         self.quitFrame.destroy()
         self.renameButton.destroy()
-        if self.nonPayerPanel:
-            self.nonPayerPanel.destroy()
 
-        del self.nonPayerPanel
-        if self.trialNonPayerPanel:
-            self.trialNonPayerPanel.destroy()
-
-        del self.trialNonPayerPanel
         if self.gameOptions is not None:
             base.options = self.gameOptions.options
             self.gameOptions.destroy()
@@ -710,7 +664,7 @@ class AvatarChooser(DirectObject, StateData):
     def __handleRejectPlayAvatar(self, value):
         base.cr.loginFSM.request('shutdown')
 
-    def __playAvatarResponse(self, avatarId, subId, access, founder):
+    def __playAvatarResponse(self, avatarId, subId, founder):
         (subId, slot) = self.choice
         self.notify.info('AvatarChooser: acquired avatar slot: %s avId: %s subId: %s' % (slot, avatarId, subId))
         self.ignore('rejectPlayAvatar')
@@ -1030,18 +984,13 @@ class AvatarChooser(DirectObject, StateData):
         x = -width / 2
         y = -height / 2
         self.currentSubId = self.subIds[self.currentSubIndex]
-        subAccess = base.cr.accountDetailRecord.subDetails[self.currentSubId].subAccess
-        self.gameOptions = GameOptions('Game Options', x, y, width, height, base.options, access = subAccess, chooser = self)
+        self.gameOptions = GameOptions('Game Options', x, y, width, height, base.options, chooser = self)
         self.gameOptions.show()
         self.avatarListFrame.hide()
 
     def __handleQuit(self):
         from pirates.piratesgui.MainMenuConfirm import MainMenuConfirm
         self.areYouSureMenu = MainMenuConfirm("quit")
-
-    def __handleUpgrade(self):
-        base.cr.centralLogger.writeClientEvent('Upgrade button pressed on Pick-A-Pirate screen')
-        base.popupBrowser('http://piratesonline.go.com/#/account_services/membership_options.html', True)
 
     def __handleLogoutWithoutConfirm(self):
         base.cr.loginFSM.request('login')
@@ -1076,8 +1025,6 @@ class AvatarChooser(DirectObject, StateData):
         self.deleteButton.setColorScale(color)
         self.optionsButton['state'] = DGG.DISABLED
         self.optionsButton.setColorScale(color)
-        self.upgradeButton['state'] = DGG.DISABLED
-        self.upgradeButton.setColorScale(color)
         if base.config.GetBool('allow-linked-accounts', 0):
             self.nextSubButton['state'] = DGG.DISABLED
             self.nextSubButton.setColorScale(color)
@@ -1109,8 +1056,6 @@ class AvatarChooser(DirectObject, StateData):
 
         self.deleteButton['state'] = DGG.NORMAL
         self.deleteButton.clearColorScale()
-        self.upgradeButton['state'] = DGG.NORMAL
-        self.upgradeButton.clearColorScale()
         if not self.disableOptions:
             self.optionsButton['state'] = DGG.NORMAL
             self.optionsButton.clearColorScale()
@@ -1148,11 +1093,6 @@ class AvatarChooser(DirectObject, StateData):
         if self.queueComplete == False:
             self.__deactivatePlayButton()
             self.__deactivateCreateButtons()
-
-    def __handleFirstAdd(self, value):
-        self.firstAddDialog.destroy()
-        self.firstAddDialog = None
-        self.allowInput()
 
     def __handleFinalize(self, value):
         (subId, slot) = self.choice
@@ -1304,19 +1244,6 @@ class AvatarChooser(DirectObject, StateData):
             self.__handleHighlight(self.currentSubId, 0)
         else:
             self.__hideHighlightedAvatar()
-
-    def popupTrialPanel(self):
-        if not self.trialNonPayerPanel:
-            self.trialNonPayerPanel = TrialNonPayerPanel.TrialNonPayerPanel(trial = True)
-
-        self.trialNonPayerPanel.show()
-
-    def popupFeatureBrowser(self, subId, slot):
-        if not self.nonPayerPanel:
-            self.nonPayerPanel = TrialNonPayerPanel.TrialNonPayerPanel(trial = False)
-            self.nonPayerPanel.fullText['text'] = PLocalizer.VR_FeaturePopLongTextAvatars
-
-        self.nonPayerPanel.show()
 
     def _stopMouseReadTask(self):
         taskMgr.remove('AvatarChooser-MouseRead')

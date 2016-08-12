@@ -8290,7 +8290,6 @@ NPCNames = {
     '1286991877.14gcarranza': 'Davy Doubloon',
     '1291327895.46jloehrle': 'Foulberto Smasho',
     '1302895055.78jloehrle': 'LaSchafe',
-    '1306269869.31dxschafe': 'Rosetta Zimm',
     'Jack Sparrow Tutorial': 'Jack Sparrow',
     'tutorial_chat': 'Captain Bo Beck',
     'tutorial_dan': 'Doggerel Dan',

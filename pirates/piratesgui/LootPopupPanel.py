@@ -4,7 +4,6 @@ from panda3d.core import TextNode
 from direct.showbase import DirectObject
 from direct.gui.DirectGui import *
 from pirates.piratesbase import PLocalizer
-from pirates.piratesbase import Freebooter
 from pirates.piratesgui import PiratesGuiGlobals
 from pirates.piratesgui import GuiButton
 from pirates.piratesbase import PiratesGlobals
@@ -207,10 +206,7 @@ class LootPopupPanel(StackMessage, DirectObject.DirectObject):
                 textInfo = PLocalizer.LootGold % str(quantity)
                 potionPercent = PotionGlobals.getGoldBoostEffectPercent(localAvatar)
                 potionGold = 0
-                textInfo = PLocalizer.LootGold % str(quantity)
-                if base.cr.newsManager:
-                    if base.cr.newsManager.getHoliday(HolidayGlobals.DOUBLEGOLDHOLIDAYPAID) or Freebooter.getPaidStatus(base.localAvatar.getDoId()) or base.cr.newsManager.getHoliday(HolidayGlobals.DOUBLEGOLDHOLIDAY):
-                        textInfo = PLocalizer.LootGold % str(quantity / 2) + '\n + ' + PLocalizer.LootGoldDouble % str(quantity / 2)
+                textInfo = PLocalizer.LootGold % str(quantity / 2) + '\n + ' + PLocalizer.LootGoldDouble % str(quantity / 2)
 
                 if potionGold > 0:
                     textInfo += '\n + ' + PLocalizer.LootGoldPotionBoost % str(potionGold)

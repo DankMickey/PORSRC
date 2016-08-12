@@ -178,7 +178,6 @@ Collection_Set_Droppable = [
     InventoryType.Collection_Set6,
     InventoryType.Collection_Set7,
     InventoryType.Collection_Set8]
-Collection_Set_Locked = { }
 Collection_Rarity = {
     InventoryType.Collection_Set1_Part1: 1,
     InventoryType.Collection_Set1_Part2: 1,

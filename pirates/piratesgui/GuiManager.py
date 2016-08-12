@@ -80,8 +80,6 @@ from pirates.piratesgui import PiratesTimerHourglass
 from pirates.ship import ShipGlobals
 from pirates.uberdog.UberDogGlobals import *
 from pirates.piratesgui import MessageStackPanel
-from pirates.piratesgui import TrialNonPayerPanel
-from pirates.piratesgui import StayTunedPanel
 from pirates.uberdog.UberDogGlobals import InventoryType
 from pirates.uberdog import DistributedInventoryBase
 from pirates.economy.EconomyGlobals import *
@@ -94,7 +92,6 @@ from pirates.reputation import RepChart
 from pirates.piratesgui.MainMenu import MainMenu
 from pirates.piratesgui.TeleportBlockerPanel import TeleportBlockerPanel
 from pirates.piratesgui import WorkMeter
-from pirates.piratesbase import Freebooter
 from pirates.band import BandConstance
 from pirates.quest import QuestConstants
 from pirates.quest.QuestTaskDNA import MaroonNPCTaskDNA, DowsingRodTaskDNA
@@ -191,8 +188,6 @@ class GuiManager(FSM.FSM):
         self.dirtFader = None
         self.smokePanel = None
         self.dirtPanel = None
-        self.nonPayerPanel = None
-        self.stayTunedPanel = None
         self.workMeter = WorkMeter.WorkMeter()
         self.workMeter.hide()
         self.progressText = None
@@ -449,7 +444,6 @@ class GuiManager(FSM.FSM):
         (self.mouseX, self.mouseY) = (0, 0)
         self.reportAPlayer = None
         self.prevTag = None
-        self.createPreviewTag()
         self.bossMeter.reparentTo(base.a2dTopCenter)
         self.targetStatusTray.reparentTo(base.a2dTopCenter)
         self.barSelection.reparentTo(base.a2dBottomCenter)
@@ -537,14 +531,6 @@ class GuiManager(FSM.FSM):
         if self.filmOffsetLerp:
             self.filmOffsetLerp.pause()
             self.filmOffsetLerp = None
-
-        if self.nonPayerPanel:
-            self.nonPayerPanel.destroy()
-            self.nonPayerPanel = None
-
-        if self.stayTunedPanel:
-            self.stayTunedPanel.destroy()
-            self.stayTunedPanel = None
 
         self.chatPanel = None
         if self.lookoutPage:
@@ -1957,7 +1943,7 @@ class GuiManager(FSM.FSM):
                 self.av.getCrewShip().showStatusDisplay()
                 self.av.getCrewShip().showTargets()
 
-            if self.prevTag and not (Freebooter.AllAccessHoliday):
+            if self.prevTag:
                 self.prevTag.show()
 
 
@@ -3218,34 +3204,6 @@ class GuiManager(FSM.FSM):
                 self.crewHUD.setHUDOn()
                 self.crewHUDTurnedOff = False
 
-
-
-    def showStayTuned(self, quest = None, focus = None):
-        if not self.stayTunedPanel:
-            self.stayTunedPanel = StayTunedPanel.StayTunedPanel()
-
-        if focus is not None:
-            self.stayTunedPanel.setPicFocus(focus)
-
-        if quest is not None:
-            self.stayTunedPanel.show(quest)
-        else:
-            self.stayTunedPanel.show()
-
-
-    def showNonPayer(self, quest = None, focus = None):
-        if not __dev__ and localAvatar.isPaid:
-            return None
-
-        if not self.nonPayerPanel:
-            self.nonPayerPanel = TrialNonPayerPanel.TrialNonPayerPanel(trial = False)
-
-        if quest is not None:
-            self.nonPayerPanel.show(quest)
-        else:
-            self.nonPayerPanel.show()
-
-
     def flashOceanMsg(self, oceanZoneName):
         self.oceanMsg.show()
         self.oceanMsg['text'] = PLocalizer.EnterOceanZone % oceanZoneName
@@ -3253,31 +3211,8 @@ class GuiManager(FSM.FSM):
         self.oceanIval = Sequence(LerpScaleInterval(self.oceanMsg, duration = 2.0, scale = Point3(0.45, 0.45, 0.45), blendType = 'easeOut'), LerpScaleInterval(self.oceanMsg, duration = 3.0, scale = Point3(0.1, 0.1, 0.1), blendType = 'easeOut'), Func(self.oceanMsg.hide))
         self.oceanIval.start()
 
-
-    def createPreviewTag(self):
-        return None
-        if Freebooter.AllAccessHoliday:
-            return None
-
-        if launcher.getValue('GAME_SHOW_ADDS') == 'NO':
-            return None
-
-        self.prevTag = DirectFrame(parent = base.a2dTopRight, relief = None, pos = (-0.25, 0, -0.63), scale = 0.8, sortOrder = 0)
-        gui2 = loader.loadModel('models/textureCards/basic_unlimited')
-        self.imageOne = DirectFrame(parent = self.prevTag, relief = None, image = gui2.find('**/but_message_panel_border'), image_scale = (1, 1, 0.95), scale = 0.4)
-        self.titleText1 = DirectLabel(parent = self.prevTag, relief = None, text = PLocalizer.PreviewTitle1, text_align = TextNode.ACenter, text_scale = 0.09, text_fg = PiratesGuiGlobals.TextFG1, text_font = PiratesGlobals.getPirateFont(), text_shadow = PiratesGuiGlobals.TextShadow, pos = (0.0, 0, 0.08))
-        self.titleText2 = DirectLabel(parent = self.prevTag, relief = None, text = PLocalizer.PreviewTitle2, text_align = TextNode.ACenter, text_scale = 0.07, text_fg = PiratesGuiGlobals.TextFG1, text_font = PiratesGlobals.getPirateFont(), text_shadow = PiratesGuiGlobals.TextShadow, pos = (0.0, 0, -0.01))
-        norm_geom = gui2.find('**/but_nav')
-        over_geom = gui2.find('**/but_nav_over')
-        down_geom = gui2.find('**/but_nav_down')
-        dsbl_geom = gui2.find('**/but_nav_disabled')
-        self.upgradeButton = DirectButton(parent = self.prevTag, relief = None, geom = (norm_geom, down_geom, over_geom), pos = (0.0, 0, -0.11), scale = 0.8, command = base.popupBrowser, extraArgs = [
-            launcher.getValue('GAME_INGAME_UPGRADE'),
-            True], text = PLocalizer.FirstAddUpgrade, text_fg = PiratesGuiGlobals.TextFG1, text_font = PiratesGlobals.getInterfaceFont(), text_shadow = PiratesGuiGlobals.TextShadow, text_scale = 0.05, text_wordwrap = 9, text_pos = (0, 0.01))
-
-
     def showPrevPanel(self):
-        if self.prevTag and not (Freebooter.AllAccessHoliday):
+        if self.prevTag:
             self.prevTag.show()
 
 

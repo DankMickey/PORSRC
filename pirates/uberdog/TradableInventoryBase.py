@@ -8,7 +8,6 @@ import copy
 import types
 from direct.task.Task import Task
 from pirates.reputation import ReputationGlobals
-from pirates.piratesbase import Freebooter
 TEST_TYPE_LIMITS = 1
 TEST_TYPE_TRADES = 2
 
@@ -560,14 +559,7 @@ class TradableInventoryBase(DistributedInventoryBase):
         if not itemType:
             return None
 
-        results = { }
-        if game.process == 'client':
-            paidStatus = Freebooter.getPaidStatus(self.ownerId)
-        else:
-            paidStatus = Freebooter.getPaidStatusAI(self.ownerId)
-        rarity = ItemGlobals.getRarity(itemType)
-        if rarity != ItemConstants.CRUDE and not paidStatus:
-            results['paidStatus'] = (rarity != ItemConstants.CRUDE, False)
+        results = {}
 
         itemClass = ItemGlobals.getClass(itemType)
         if itemClass == InventoryType.ItemTypeWeapon or itemClass == InventoryType.ItemTypeCharm:

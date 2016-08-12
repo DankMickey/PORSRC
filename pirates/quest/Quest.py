@@ -7,7 +7,6 @@ from pirates.piratesbase import PLocalizer
 from pirates.quest import QuestDB, QuestReward, QuestTaskDNA
 from pirates.quest.QuestDNA import QuestDNA
 from otp.otpbase import OTPGlobals
-from pirates.piratesbase import Freebooter
 
 class Quest(POD):
     notify = DirectNotifyGlobal.directNotify.newCategory('Quest')
@@ -134,10 +133,7 @@ class Quest(POD):
             if taskDNA.locationMatches(questEvent):
                 taskState.resetModified()
                 if questEvent.applyTo(taskState, taskDNA):
-                    if holder.getAccess() != 2 and self.questDNA.getVelvetRoped():
-                        holder.d_popupProgressBlocker(self.getQuestId())
-                    else:
-                        questEvent.complete(taskState, taskDNA)
+                    questEvent.complete(taskState, taskDNA)
 
                 modified += taskState.isModified()
                 continue
@@ -416,11 +412,6 @@ class Quest(POD):
     def getStatusText(self):
         if self.questDNA == None:
             return ''
-
-        if self.questDNA.getVelvetRoped() and base.localAvatar.getAccess() != OTPGlobals.AccessFull:
-            if not Freebooter.AllAccessHoliday:
-                return PLocalizer.VelvetRopeQuestBlock
-
 
         taskDNAs = self.questDNA.getTaskDNAs()
         taskStates = self.getTaskStates()

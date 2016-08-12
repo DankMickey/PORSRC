@@ -29,7 +29,6 @@ class PiratesChatManager(ChatManagerV2.ChatManagerV2):
     def __init__(self):
         ChatManagerV2.ChatManagerV2.__init__(self)
         self.warningDialog = None
-        self.unpaidWarningDialog = None
         self.preferredMode = 'All'
         self.lastPreferred = 'All'
         self.whiteListActive = True
@@ -310,16 +309,6 @@ class PiratesChatManager(ChatManagerV2.ChatManagerV2):
 
     def exitNoSecretChatAtAll(self):
         self.noSecretChatAtAll.hide()
-
-    def enterUnpaidChatWarning(self):
-        self.unpaidWarningDialog = PDialog.PDialog(text = PLocalizer.ChatManagerUnpaidWarning, style = OTPDialog.Acknowledge, command = self.unpaidChatWarningAck)
-
-    def unpaidChatWarningAck(self, value):
-        self.fsm.request('mainMenu')
-
-    def exitUnpaidChatWarning(self):
-        self.unpaidWarningDialog.destroy()
-        self.unpaidWarningDialog = None
 
     def enterNoSecretChatWarning(self):
         pass

@@ -760,8 +760,6 @@ TFPlayerConfirm = BitMask32.bit(TFFlag)
 TFFlag += 1
 TFPhaseIncomplete = BitMask32.bit(TFFlag)
 TFFlag += 1
-TFVelvetRope = BitMask32.bit(TFFlag)
-TFFlag += 1
 TFInTutorial = BitMask32.bit(TFFlag)
 TFFlag += 1
 TFNoCompass = BitMask32.bit(TFFlag)
@@ -819,7 +817,7 @@ TFFlag += 1
 del TFFlag
 TFNoTeleport = TFInPVP | TFInTeleport | TFInTunnel | TFInTutorial | TFInJail | TFFlagshipBattle | TFInInitTeleport | TFTreasureMap | TFZombie | TFInScrimmage
 TFNoTeleportTo = TFNoTeleport | TFIgnore | TFOnShip | TFNotSameCrew | TFInWelcomeWorld | TFCannonDefense
-TFNoTeleportOut = TFNoTeleport | TFNoIslandToken | TFInBattle | TFInWater | TFParlorGame | TFFishing | TFNoCompass | TFPhaseIncomplete | TFLookoutJoined | TFVelvetRope | TFSiegeCaptain | TFSameArea | TFInjured | TFPotionCrafting
+TFNoTeleportOut = TFNoTeleport | TFNoIslandToken | TFInBattle | TFInWater | TFParlorGame | TFFishing | TFNoCompass | TFPhaseIncomplete | TFLookoutJoined | TFSiegeCaptain | TFSameArea | TFInjured | TFPotionCrafting
 TFNoTeleportReasons = {
     TFOnShip: PLocalizer.NoTeleportOnShip,
     TFNoIslandToken: PLocalizer.NoTeleportIslandToken,

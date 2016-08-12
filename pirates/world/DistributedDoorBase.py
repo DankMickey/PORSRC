@@ -5,7 +5,6 @@ from pirates.distributed import DistributedInteractive
 from pirates.piratesbase import PiratesGlobals
 from pirates.piratesbase import PLocalizer
 from pirates.world.LocationConstants import LocationIds
-from pirates.piratesbase import Freebooter
 from pirates.audio import SoundGlobals
 from pirates.audio.SoundGlobals import loadSfx
 from pirates.quest import QuestLadderDB
@@ -197,10 +196,6 @@ class DistributedDoorBase(DistributedInteractive.DistributedInteractive):
             self.closeOtherDoorIval.append(Sequence(Wait(0.25), Func(base.playSfx, self.closeSfx, node = self.soundNode, volume = 0.7, cutoff = 100)))
 
     def requestInteraction(self, avId, interactType = 0):
-        if self.buildingUid == LocationIds.KINGSHEAD_DOOR and not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-            base.localAvatar.guiMgr.showNonPayer(quest = 'Restricted_Location', focus = 0)
-            return None
-
         if self.questNeeded:
             questHistory = localAvatar.getQuestLadderHistory()
             currentQuests = localAvatar.getQuests()

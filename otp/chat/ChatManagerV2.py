@@ -16,7 +16,6 @@ class ChatManagerV2(DirectObject.DirectObject):
 
     def __init__(self):
         self.openChatWarning = None
-        self.unpaidChatWarning = None
         self.teaser = None
         self.paidNoParentPassword = None
         self.noSecretChatAtAll = None
@@ -29,7 +28,6 @@ class ChatManagerV2(DirectObject.DirectObject):
             State.State('off', self.enterOff, self.exitOff),
             State.State('mainMenu', self.enterMainMenu, self.exitMainMenu),
             State.State('openChatWarning', self.enterOpenChatWarning, self.exitOpenChatWarning),
-            State.State('unpaidChatWarning', self.enterUnpaidChatWarning, self.exitUnpaidChatWarning),
             State.State('noSecretChatAtAll', self.enterNoSecretChatAtAll, self.exitNoSecretChatAtAll),
             State.State('noSecretChatWarning', self.enterNoSecretChatWarning, self.exitNoSecretChatWarning),
             State.State('noFriendsWarning', self.enterNoFriendsWarning, self.exitNoFriendsWarning),
@@ -74,12 +72,6 @@ class ChatManagerV2(DirectObject.DirectObject):
 
     def exitOtherDialog(self):
         pass
-
-    def enterUnpaidChatWarning(self):
-        self.notify.error('called enterUnpaidChatWarning() on parent class')
-
-    def exitUnpaidChatWarning(self):
-        self.notify.error('called exitUnpaidChatWarning() on parent class')
 
     def enterNoFriendsWarning(self):
         self.notify.error('called enterNoFriendsWarning() on parent class')

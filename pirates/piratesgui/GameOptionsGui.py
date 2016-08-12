@@ -53,7 +53,7 @@ class GameOptionsGui(DirectFrame):
         texture_high,
         texture_maximum]
 
-    def __init__(self, gameOptions, title, x, y, width, height, options = None, file_path = None, pipe = None, access = 0, chooser = 0, keyMappings = None):
+    def __init__(self, gameOptions, title, x, y, width, height, options = None, file_path = None, pipe = None, chooser = 0, keyMappings = None):
         self.width = width
         self.height = height
         self.gameOptions = gameOptions
@@ -177,15 +177,6 @@ class GameOptionsGui(DirectFrame):
             self.windowVar = [
                 PLocalizer.GameOptionsFullscreenMode]
         self.windowModeRadios = self.createRadioButtonGroupVertical(parent, x, y, ox, sy, self.windowVar, 0.12, self.windowChoices, 1.2, self.windowRadioButtonCB)
-        if self.gameOptions and self.gameOptions.freeLock:
-            subCard = loader.loadModel('models/gui/toplevel_gui')
-            fullScreenRadioButton = self.windowModeRadios[-1]
-            fullScreenRadioButton['state'] = DGG.DISABLED
-            lockPos = fullScreenRadioButton.getPos()
-            lockPos[0] -= 0.040000000000000001
-            appendMe = DirectFrame(parent = self.displayFrame, relief = None, state = DGG.DISABLED, geom = subCard.find('**/pir_t_gui_gen_key_subscriber'), geom_scale = 0.20000000000000001, geom_pos = lockPos)
-            appendMe.setAlphaScale(1.0, 2)
-            subCard.remove_node()
 
         x += 0.29999999999999999
         oy = sy

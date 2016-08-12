@@ -113,10 +113,7 @@ class PiratesBase(OTPBase):
             self.notify.info('Loaded default graphics %s' % base.pipe.getType().getName())
 
         bits_per_pixel = 32
-        if self.inAdFrame:
-            self.getVelvetDisplayResolutions(bits_per_pixel, base.pipe)
-        else:
-            self.getDisplayResolutions(bits_per_pixel, base.pipe)
+        self.getDisplayResolutions(bits_per_pixel, base.pipe)
         if options_loaded:
             self.notify.info('Options State = %s' % options.state)
             if __dev__:
@@ -619,15 +616,9 @@ class PiratesBase(OTPBase):
         if not self.hasEmbedded:
             return False
 
-        if access == OTPGlobals.AccessVelvetRope and launcher.getValue('GAME_SHOW_ADDS') != 'NO':
-            self.inAdFrame = True
-            if not embedded.isMainWindowVisible():
-                return self.showEmbeddedFrame()
-
-        else:
-            self.inAdFrame = False
-            if embedded.isMainWindowVisible():
-                return self.hideEmbeddedFrame()
+        self.inAdFrame = False
+        if embedded.isMainWindowVisible():
+            return self.hideEmbeddedFrame()
 
 
 
@@ -1005,18 +996,6 @@ class PiratesBase(OTPBase):
             self.shipsVisibleFromIsland = self.options.ocean_visibility
             messenger.send('ship_vis_change', [
                 self.options.ocean_visibility])
-
-
-    def getVelvetDisplayResolutions(self, bits_per_pixel, pipe):
-        self.getDisplayResolutions(bits_per_pixel, pipe)
-        self.windowed_resolution_table = []
-        total_modes = embedded.getCountWindowModes()
-        for i in xrange(total_modes):
-            m = embedded.getAtWindowModeDef(i)
-            self.windowed_resolution_table = self.windowed_resolution_table + [
-                (m['want_size_x'], m['want_size_y'])]
-
-
 
     def getDisplayResolutions(self, bits_per_pixel, pipe):
         di = pipe.getDisplayInformation()

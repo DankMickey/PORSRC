@@ -17,7 +17,6 @@ from pirates.effects.WispSpiral import WispSpiral
 from pirates.battle import Wand
 from pirates.pvp import DistributedPVPInstance
 from pirates.uberdog.DistributedInventoryBase import DistributedInventoryBase
-from pirates.piratesbase import Freebooter
 from direct.distributed.ClockDelta import *
 from pirates.uberdog import TradableInventoryBase
 from pirates.inventory import InventoryUICombatTrayGrid
@@ -84,27 +83,14 @@ class WeaponButton(GuiButton):
 
         self.category = WeaponGlobals.getRepId(self.weaponId)
         card = loader.loadModel('models/gui/gui_icons_weapon')
-        gui = None
-        if not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-            if not Freebooter.allowedFreebooterWeapon(self.category):
-                if EconomyGlobals.getItemCategory(self.weaponId) == ItemType.WEAPON:
-                    gui = loader.loadModel('models/gui/toplevel_gui')
-
-
-
-        if gui:
-            self['geom'] = gui.find('**/pir_t_gui_gen_key_subscriber')
-            self['geom_scale'] = 0.20000000000000001
+        
+        asset = ItemGlobals.getIcon(self.weaponId)
+        if asset:
+            self['geom'] = card.find('**/%s' % asset)
+            self['geom_scale'] = 0.10000000000000001
             self['geom_pos'] = (0.059999999999999998, 0, 0.059999999999999998)
-            gui.remove_node()
-        else:
-            asset = ItemGlobals.getIcon(self.weaponId)
-            if asset:
-                self['geom'] = card.find('**/%s' % asset)
-                self['geom_scale'] = 0.10000000000000001
-                self['geom_pos'] = (0.059999999999999998, 0, 0.059999999999999998)
 
-            self.quantLabel = DirectLabel(parent = self, relief = None, state = DGG.DISABLED)
+        self.quantLabel = DirectLabel(parent = self, relief = None, state = DGG.DISABLED)
         if EconomyGlobals.getItemCategory(self.weaponId) == ItemType.WEAPON:
             repValue = inventory.getReputation(self.category)
             self.updateRep(repValue)
@@ -785,14 +771,7 @@ class CombatTray(GuiTray):
             self.chargeMeter.hide()
         repId = WeaponGlobals.getRepId(currentWeaponId)
         if currentWeaponId and isWeaponDrawn:
-            if not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-                if Freebooter.allowedFreebooterWeapon(self.rep):
-                    if ItemGlobals.getClass(currentWeaponId) == InventoryType.ItemTypeWeapon:
-                        self.skillTray.updateSkillTray(repId, self.weaponMode, self._CombatTray__skillTrayCallback)
-
-
-            else:
-                self.skillTray.updateSkillTray(repId, self.weaponMode, self._CombatTray__skillTrayCallback)
+            self.skillTray.updateSkillTray(repId, self.weaponMode, self._CombatTray__skillTrayCallback)
 
         messenger.send('weaponChange')
         if self.slotDisplay and isWeaponDrawn:
@@ -953,12 +932,6 @@ class CombatTray(GuiTray):
 
         if not skillId:
             return 0
-
-        if not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-            if not WeaponGlobals.canFreeUse(skillId):
-                base.localAvatar.guiMgr.showNonPayer('Restricted_Skill_' + WeaponGlobals.getSkillName(skillId), 5)
-                return 0
-
 
         if base.localAvatar.guiMgr.mainMenu and not base.localAvatar.guiMgr.mainMenu.isHidden():
             return 0
@@ -1592,12 +1565,6 @@ class CombatTray(GuiTray):
             if self.weaponMode == WeaponGlobals.DEFENSE_CANNON and skillId == InventoryType.DefenseCannonEmpty:
                 return None
 
-            if not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-                if not WeaponGlobals.canFreeUse(skillId):
-                    base.localAvatar.guiMgr.showNonPayer('Restricted_Skill_' + WeaponGlobals.getSkillName(skillId), 5)
-                    return 0
-
-
             combo = self.comboLevel
             attackSelected = 'usedSpecialAttack'
             linkedSkillId = 0
@@ -2053,11 +2020,7 @@ class CombatTray(GuiTray):
                 return None
 
             if self.weaponMode in (WeaponGlobals.COMBAT, WeaponGlobals.THROWING):
-                origTrack = self.skillMapping.get(button)
-                if not origTrack:
-                    return None
-
-                skillTrack = Freebooter.pruneFreebooterSkills(origTrack)
+                skillTrack = self.skillMapping.get(button)
                 if not skillTrack:
                     return None
 

@@ -16,7 +16,6 @@ from pirates.piratesgui import GuiButton
 from direct.gui import DirectButton
 from pirates.uberdog.UberDogGlobals import InventoryType
 from pirates.piratesgui import BorderFrame
-from pirates.piratesbase import Freebooter
 from pirates.inventory import InventoryGlobals
 
 class TitlePanel(DirectFrame):
@@ -121,7 +120,7 @@ class TitlePanel(DirectFrame):
                 self.titlesPage.setSeaActive(self.panelIndex, self.seaActive)
 
 
-        if self.rank == 0 or not Freebooter.getPaidStatus(localAvatar.doId):
+        if self.rank == 0:
             self.landButton.hide()
             self.seaButton.hide()
         else:
@@ -274,11 +273,7 @@ class TitlesPage(InventoryPage.InventoryPage):
 
 
     def updateText(self):
-        tText = PLocalizer.DisplayTitle
-        if not Freebooter.getPaidStatus(localAvatar.doId):
-            tText = PLocalizer.DisplayTitleFree
-
-        self.displayTitleFrame['text'] = tText
+        self.displayTitleFrame['text'] = PLocalizer.DisplayTitle
 
 
     def refresh(self, amount = 0):

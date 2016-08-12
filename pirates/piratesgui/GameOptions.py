@@ -11,7 +11,6 @@ from pirates.piratesgui.BorderFrame import BorderFrame
 from pirates.piratesgui.GuiButton import GuiButton
 from pirates.piratesgui.DialogButton import DialogButton
 from pirates.piratesbase import PLocalizer
-from pirates.piratesbase import Freebooter
 from otp.otpgui import OTPDialog
 from otp.otpbase import OTPGlobals
 from otp.otpbase import OTPRender
@@ -3673,7 +3672,7 @@ class GameOptions(BorderFrame):
     MinimumHorizontalResolution = 800
     MinimumVerticalResolution = 600
 
-    def __init__(self, title, x, y, width, height, options = None, file_path = None, pipe = None, access = 0, chooser = 0, keyMappings = None):
+    def __init__(self, title, x, y, width, height, options = None, file_path = None, pipe = None, chooser = 0, keyMappings = None):
         self.inAdFrame = False
         self.width = width
         self.height = height
@@ -3684,18 +3683,6 @@ class GameOptions(BorderFrame):
             self.file_path = file_path
         else:
             self.file_path = Options.DEFAULT_FILE_PATH
-        if base.config.GetBool('want-test-gameoptions', 0):
-            self.velvet = False
-            base.gameoptions = self
-        elif base.hasEmbedded:
-            if not embedded.isMainWindowVisible():
-                pass
-            self.velvet = base.cr.isPaid() == OTPGlobals.AccessVelvetRope
-        else:
-            self.velvet = False
-        if launcher.getValue('GAME_SHOW_ADDS') == 'NO' and sys.platform == 'darwin' or sys.platform == 'linux2':
-            self.velvet = False
-
         self.restartDialog = None
         self.savedDialog = None
         self.logoutDialog = None
@@ -3735,20 +3722,9 @@ class GameOptions(BorderFrame):
         except:
             pass
 
-        if access == Freebooter.VELVET_ROPE:
-            self.freeLock = True
-        else:
-            self.freeLock = False
-        if launcher.getValue('GAME_SHOW_ADDS') == 'NO' and sys.platform == 'darwin' or sys.platform == 'linux2':
-            self.freeLock = False
-        elif hasattr(base, 'localAvatar'):
-            if not Freebooter.getPaidStatus(base.localAvatar.getDoId()):
-                self.freeLock = True
-
-
         BorderFrame.__init__(self, relief = None, state = DGG.NORMAL, frameColor = PiratesGuiGlobals.FrameColor, borderWidth = PiratesGuiGlobals.BorderWidth, pos = (x, 0.0, y), frameSize = (0, width, 0, height), sortOrder = 20)
         self.initialiseoptions(GameOptions)
-        self.gui = GameOptionsGui(self, title, x, y, width, height, options, file_path, pipe, access, chooser, keyMappings)
+        self.gui = GameOptionsGui(self, title, x, y, width, height, options, file_path, pipe, chooser, keyMappings)
         BorderFrame.hide(self)
 
 
@@ -3903,15 +3879,6 @@ class GameOptions(BorderFrame):
 
     def default_dialog_command(self, value):
         self.delete_dialogs()
-
-
-    def showUpsell(self):
-        if self.chooser:
-            self.chooser.popupFeatureBrowser(0, 0)
-        else:
-            base.localAvatar.guiMgr.showNonPayer(quest = 'Game_Options', focus = 0)
-        self.hide()
-
 
     def close_button_function(self):
         self.hide()
@@ -4402,32 +4369,12 @@ class GameOptions(BorderFrame):
 
     width_to_resolution_id = classmethod(width_to_resolution_id)
 
-    def setNonPaid(self):
-        for button in self.windowed_resolutions_button_array[2:]:
-            button.hide()
-
-        for button in self.fullscreen_resolutions_button_array:
-            button.hide()
-
-
-
-    def setPaid(self):
-        for button in self.windowed_resolutions_button_array[2:]:
-            button.show()
-
-        for button in self.fullscreen_resolutions_button_array:
-            button.show()
-
-
-
     def initDisplayButtons(self):
         self.inAdFrame = base.inAdFrame
         if self.inAdFrame:
-            self.setNonPaid()
             windowed_index = self.options.resolution
         else:
             windowed_index = self.resolutionToIndex(self.options.window_width, self.options.window_height, False)
-            self.setPaid()
         fullscreen_index = self.resolutionToIndex(self.options.fullscreen_width, self.options.fullscreen_height, False)
         for i in xrange(len(self.windowed_resolutions_button_array)):
             if i == windowed_index:
