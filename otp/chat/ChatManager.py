@@ -4,8 +4,6 @@ from direct.showbase import DirectObject
 from otp.otpbase import OTPGlobals
 from direct.fsm import ClassicFSM
 from direct.fsm import State
-from otp.login import SecretFriendsInfoPanel
-from otp.login import PrivacyPolicyPanel
 from otp.otpbase import OTPLocalizer
 from direct.directnotify import DirectNotifyGlobal
 from direct.gui.DirectGui import *
@@ -46,16 +44,9 @@ class ChatManager(DirectObject.DirectObject):
         self.__scObscured = 0
         self.__normalObscured = 0
         self.openChatWarning = None
-        self.teaser = None
-        self.paidNoParentPassword = None
         self.noSecretChatAtAll = None
         self.noSecretChatAtAllAndNoWhitelist = None
         self.noSecretChatWarning = None
-        self.activateChatGui = None
-        self.chatMoreInfo = None
-        self.chatPrivacyPolicy = None
-        self.secretChatActivated = None
-        self.problemActivatingChat = None
         self.fsm = ClassicFSM.ClassicFSM('chatManager', [State.State('off', self.enterOff, self.exitOff),
          State.State('mainMenu', self.enterMainMenu, self.exitMainMenu),
          State.State('speedChat', self.enterSpeedChat, self.exitSpeedChat),
@@ -71,15 +62,9 @@ class ChatManager(DirectObject.DirectObject):
          State.State('noSecretChatWarning', self.enterNoSecretChatWarning, self.exitNoSecretChatWarning),
          State.State('noFriendsWarning', self.enterNoFriendsWarning, self.exitNoFriendsWarning),
          State.State('otherDialog', self.enterOtherDialog, self.exitOtherDialog),
-         State.State('activateChat', self.enterActivateChat, self.exitActivateChat),
-         State.State('chatMoreInfo', self.enterChatMoreInfo, self.exitChatMoreInfo),
-         State.State('chatPrivacyPolicy', self.enterChatPrivacyPolicy, self.exitChatPrivacyPolicy),
-         State.State('secretChatActivated', self.enterSecretChatActivated, self.exitSecretChatActivated),
-         State.State('problemActivatingChat', self.enterProblemActivatingChat, self.exitProblemActivatingChat),
          State.State('whiteListOpenChat', self.enterWhiteListOpenChat, self.exitWhiteListOpenChat),
          State.State('whiteListAvatarChat', self.enterWhiteListAvatarChat, self.exitWhiteListAvatarChat),
-         State.State('whiteListPlayerChat', self.enterWhiteListPlayerChat, self.exitWhiteListPlayerChat),
-         State.State('trueFriendTeaserPanel', self.enterTrueFriendTeaserPanel, self.exitTrueFriendTeaserPanel)], 'off', 'off')
+         State.State('whiteListPlayerChat', self.enterWhiteListPlayerChat, self.exitWhiteListPlayerChat)], 'off', 'off')
         self.fsm.enterInitialState()
         return
 
@@ -95,10 +80,6 @@ class ChatManager(DirectObject.DirectObject):
         if self.openChatWarning:
             self.openChatWarning.destroy()
             self.openChatWarning = None
-        if self.teaser:
-            self.teaser.cleanup()
-            self.teaser.unload()
-            self.teaser = None
         if self.noSecretChatAtAll:
             self.noSecretChatAtAll.destroy()
             self.noSecretChatAtAll = None
@@ -108,24 +89,8 @@ class ChatManager(DirectObject.DirectObject):
         if self.noSecretChatWarning:
             self.noSecretChatWarning.destroy()
             self.noSecretChatWarning = None
-        if self.activateChatGui:
-            self.activateChatGui.destroy()
-            self.activateChatGui = None
-        if self.chatMoreInfo:
-            self.chatMoreInfo.destroy()
-            self.chatMoreInfo = None
-        if self.chatPrivacyPolicy:
-            self.chatPrivacyPolicy.destroy()
-            self.chatPrivacyPolicy = None
-        if self.secretChatActivated:
-            self.secretChatActivated.destroy()
-            self.secretChatActivated = None
-        if self.problemActivatingChat:
-            self.problemActivatingChat.destroy()
-            self.problemActivatingChat = None
         del self.localAvatar
         del self.cr
-        return
 
     def obscure(self, normal, sc):
         self.__scObscured = sc
@@ -424,62 +389,8 @@ class ChatManager(DirectObject.DirectObject):
     def exitNoFriendsWarning(self):
         self.notify.error('called exitNoFriendsWarning() on parent class')
 
-    def enterActivateChat(self):
-        self.notify.error('called enterActivateChat() on parent class')
-
-    def exitActivateChat(self):
-        self.notify.error('called exitActivateChat() on parent class')
-
     def enterOtherDialog(self):
         pass
 
     def exitOtherDialog(self):
         pass
-
-    def enterChatMoreInfo(self):
-        if self.chatMoreInfo == None:
-            self.chatMoreInfo = SecretFriendsInfoPanel.SecretFriendsInfoPanel('secretFriendsInfoDone')
-        self.chatMoreInfo.show()
-        self.accept('secretFriendsInfoDone', self.__secretFriendsInfoDone)
-        return
-
-    def exitChatMoreInfo(self):
-        self.chatMoreInfo.hide()
-        self.ignore('secretFriendsInfoDone')
-
-    def enterChatPrivacyPolicy(self):
-        if self.chatPrivacyPolicy == None:
-            self.chatPrivacyPolicy = PrivacyPolicyPanel.PrivacyPolicyPanel('privacyPolicyDone')
-        self.chatPrivacyPolicy.show()
-        self.accept('privacyPolicyDone', self.__privacyPolicyDone)
-        return
-
-    def exitChatPrivacyPolicy(self):
-        cleanupDialog('privacyPolicyDialog')
-        self.chatPrivacyPolicy = None
-        self.ignore('privacyPolicyDone')
-        return
-
-    def enterSecretChatActivated(self):
-        self.notify.error('called enterSecretChatActivated() on parent class')
-
-    def exitSecretChatActivated(self):
-        self.notify.error('called exitSecretChatActivated() on parent class')
-
-    def enterProblemActivatingChat(self):
-        self.notify.error('called enterProblemActivatingChat() on parent class')
-
-    def exitProblemActivatingChat(self):
-        self.notify.error('called exitProblemActivatingChat() on parent class')
-
-    def enterTrueFriendTeaserPanel(self):
-        self.notify.error('called enterTrueFriendTeaserPanel () on parent class')
-
-    def exitTrueFriendTeaserPanel(self):
-        self.notify.error('called exitTrueFriendTeaserPanel () on parent class')
-
-    def __secretFriendsInfoDone(self):
-        self.fsm.request('activateChat')
-
-    def __privacyPolicyDone(self):
-        self.fsm.request('activateChat')

@@ -4,7 +4,6 @@ from panda3d.core import TextNode
 from direct.showbase.ShowBaseGlobal import *
 from direct.gui.DirectGui import *
 from direct.fsm import StateData
-from otp.friends import FriendSecret
 from otp.otpbase import OTPGlobals
 from pirates.piratesbase import PLocalizer
 from pirates.piratesgui import GuiPanel

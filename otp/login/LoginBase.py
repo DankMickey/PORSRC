@@ -10,6 +10,3 @@ class LoginBase:
 
     def getErrorCode(self):
         return 0
-
-    def needToSetParentPassword(self):
-        return 0

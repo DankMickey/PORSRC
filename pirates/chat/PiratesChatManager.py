@@ -360,44 +360,6 @@ class PiratesChatManager(ChatManagerV2.ChatManagerV2):
         self.warningDialog.destroy()
         self.warningDialog = None
 
-    def enterChatMoreInfo(self):
-        if self.chatMoreInfo == None:
-            self.chatMoreInfo = SecretFriendsInfoPanel.SecretFriendsInfoPanel('secretFriendsInfoDone')
-
-        self.chatMoreInfo.show()
-        self.accept('secretFriendsInfoDone', self._PiratesChatManager__secretFriendsInfoDone)
-
-    def exitChatMoreInfo(self):
-        self.chatMoreInfo.hide()
-        self.ignore('secretFriendsInfoDone')
-
-    def enterChatPrivacyPolicy(self):
-        if self.chatPrivacyPolicy == None:
-            self.chatPrivacyPolicy = PrivacyPolicyPanel.PrivacyPolicyPanel('privacyPolicyDone')
-
-        self.chatPrivacyPolicy.show()
-        self.accept('privacyPolicyDone', self._PiratesChatManager__privacyPolicyDone)
-
-    def exitChatPrivacyPolicy(self):
-        cleanupDialog('privacyPolicyDialog')
-        self.chatPrivacyPolicy = None
-        self.ignore('privacyPolicyDone')
-
-    def _PiratesChatManager__privacyPolicyDone(self):
-        self.fsm.request('mainMenu')
-
-    def enterSecretChatActivated(self):
-        self.notify.error('called enterSecretChatActivated() on parent class')
-
-    def exitSecretChatActivated(self):
-        self.notify.error('called exitSecretChatActivated() on parent class')
-
-    def enterProblemActivatingChat(self):
-        self.notify.error('called enterProblemActivatingChat() on parent class')
-
-    def exitProblemActivatingChat(self):
-        self.notify.error('called exitProblemActivatingChat() on parent class')
-
     def activateWhisperReply(self):
         (id, isPlayer) = base.talkAssistant.getWhisperReplyId()
         handle = None

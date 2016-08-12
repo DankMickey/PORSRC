@@ -48,7 +48,6 @@ from otp.distributed.PotentialAvatar import PotentialAvatar
 from otp.distributed import DistributedDistrict
 from otp.distributed import OtpDoGlobals
 from otp.otpbase import OTPGlobals
-from otp.friends import FriendSecret
 from otp.uberdog.AccountDetailRecord import AccountDetailRecord, SubDetailRecord
 from otp.otpgui import OTPDialog
 from pirates.login.AvatarChooser import AvatarChooser

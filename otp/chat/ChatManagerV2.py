@@ -4,8 +4,6 @@ from direct.showbase import DirectObject
 from otp.otpbase import OTPGlobals
 from direct.fsm import ClassicFSM
 from direct.fsm import State
-from otp.login import SecretFriendsInfoPanel
-from otp.login import PrivacyPolicyPanel
 from otp.otpbase import OTPLocalizer
 from direct.directnotify import DirectNotifyGlobal
 from direct.gui.DirectGui import *
@@ -16,14 +14,8 @@ class ChatManagerV2(DirectObject.DirectObject):
 
     def __init__(self):
         self.openChatWarning = None
-        self.teaser = None
-        self.paidNoParentPassword = None
         self.noSecretChatAtAll = None
         self.noSecretChatWarning = None
-        self.chatMoreInfo = None
-        self.chatPrivacyPolicy = None
-        self.secretChatActivated = None
-        self.problemActivatingChat = None
         self.fsm = ClassicFSM.ClassicFSM('chatManager', [
             State.State('off', self.enterOff, self.exitOff),
             State.State('mainMenu', self.enterMainMenu, self.exitMainMenu),
@@ -31,12 +23,7 @@ class ChatManagerV2(DirectObject.DirectObject):
             State.State('noSecretChatAtAll', self.enterNoSecretChatAtAll, self.exitNoSecretChatAtAll),
             State.State('noSecretChatWarning', self.enterNoSecretChatWarning, self.exitNoSecretChatWarning),
             State.State('noFriendsWarning', self.enterNoFriendsWarning, self.exitNoFriendsWarning),
-            State.State('otherDialog', self.enterOtherDialog, self.exitOtherDialog),
-            State.State('activateChat', self.enterActivateChat, self.exitActivateChat),
-            State.State('chatMoreInfo', self.enterChatMoreInfo, self.exitChatMoreInfo),
-            State.State('chatPrivacyPolicy', self.enterChatPrivacyPolicy, self.exitChatPrivacyPolicy),
-            State.State('secretChatActivated', self.enterSecretChatActivated, self.exitSecretChatActivated),
-            State.State('problemActivatingChat', self.enterProblemActivatingChat, self.exitProblemActivatingChat)], 'off', 'off')
+            State.State('otherDialog', self.enterOtherDialog, self.exitOtherDialog)], 'off', 'off')
         self.fsm.enterInitialState()
         self.accept('Chat-Failed open typed chat test', self._ChatManagerV2__handleFailOpenTypedChat)
         self.accept('Chat-Failed player typed chat test', self._ChatManagerV2__handleFailPlayerTypedWhsiper)
@@ -55,12 +42,6 @@ class ChatManagerV2(DirectObject.DirectObject):
     def _ChatManagerV2__handleFailAvatarTypedWhsiper(self, caller = None):
         self.fsm.request('noSecretChatWarning')
 
-    def _ChatManagerV2__secretFriendsInfoDone(self):
-        self.fsm.request('activateChat')
-
-    def _ChatManagerV2__privacyPolicyDone(self):
-        self.fsm.request('activateChat')
-
     def enterOff(self):
         self.ignoreAll()
 
@@ -78,30 +59,6 @@ class ChatManagerV2(DirectObject.DirectObject):
 
     def exitNoFriendsWarning(self):
         self.notify.error('called exitNoFriendsWarning() on parent class')
-
-    def enterSecretChatActivated(self):
-        self.notify.error('called enterSecretChatActivated() on parent class')
-
-    def exitSecretChatActivated(self):
-        self.notify.error('called exitSecretChatActivated() on parent class')
-
-    def enterProblemActivatingChat(self):
-        self.notify.error('called enterProblemActivatingChat() on parent class')
-
-    def exitProblemActivatingChat(self):
-        self.notify.error('called exitProblemActivatingChat() on parent class')
-
-    def enterChatPrivacyPolicy(self):
-        self.notify.error('called enterChatPrivacyPolicy() on parent class')
-
-    def exitChatPrivacyPolicy(self):
-        self.notify.error('called exitChatPrivacyPolicy() on parent class')
-
-    def enterChatMoreInfo(self):
-        self.notify.error('called enterChatMoreInfo() on parent class')
-
-    def exitChatMoreInfo(self):
-        self.notify.error('called exitChatMoreInfo() on parent class')
 
     def enterNoSecretChatWarning(self):
         self.notify.error('called enterNoSecretChatWarning() on parent class')

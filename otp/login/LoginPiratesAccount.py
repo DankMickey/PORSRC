@@ -20,11 +20,5 @@ class LoginPiratesAccount(LoginBase):
     def getErrorCode(self):
         return 0
 
-    def needToSetParentPassword(self):
-        return 0
-
-    def authenticateParentPassword(self, loginName, password, parentPassword):
-        self.notify.error('authenticateParentPassword called')
-
     def authenticateDelete(self, loginName, password):
         return 1

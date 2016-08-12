@@ -52,7 +52,6 @@ class OTPClientRepository(ClientRepositoryBase):
         self.launcher = launcher
         base.launcher = launcher
         self.__currentAvId = 0
-        self.productName = config.GetString('product-name', 'DisneyOnline-US')
         self.createAvatarClass = None
         self.systemMessageSfx = None
         self.wantMagicWords = False
@@ -62,8 +61,6 @@ class OTPClientRepository(ClientRepositoryBase):
 
         self.secretChatAllowed = base.config.GetBool('allow-secret-chat', True)
         self.openChatAllowed = base.config.GetBool('allow-open-chat', True)
-        self.secretChatNeedsParentPassword = base.config.GetBool('secret-chat-needs-parent-password', 0)
-        self.parentPasswordSet = base.config.GetBool('parent-password-set', True)
 
         self.parentMgr.registerParent(OTPGlobals.SPRender, base.render)
         self.parentMgr.registerParent(OTPGlobals.SPHidden, NodePath())
@@ -337,8 +334,6 @@ class OTPClientRepository(ClientRepositoryBase):
                 dateString = time.strftime(self.toontownTimeManager.formatStr, timestamp)
                 self.lastLoggedIn = self.toontownTimeManager.convertStrToToontownTime(dateString)
             self.loginFSM.request('waitForGameList')
-        elif mode == 'getChatPassword':
-            self.loginFSM.request('parentPassword')
         elif mode == 'reject':
             self.loginFSM.request('reject')
         elif mode == 'quit':
@@ -1004,12 +999,6 @@ class OTPClientRepository(ClientRepositoryBase):
 
     def allowOpenChat(self):
         return self.openChatAllowed
-
-    def isParentPasswordSet(self):
-        return self.parentPasswordSet
-
-    def needParentPasswordForSecretChat(self):
-        return False
 
     def getStartingDistrict(self):
         district = None

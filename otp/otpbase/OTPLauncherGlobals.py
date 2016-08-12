@@ -1,7 +1,6 @@
 NonErrorExitStateStart = 100
 ExitPurchase = 100
-ExitSetParentPassword = 101
-ExitEnableChat = 102
-ExitTimeExpired = 103
-ExitUpsell = 104
+ExitEnableChat = 101
+ExitTimeExpired = 102
+ExitUpsell = 103
 NonErrorExitStateEnd = 199
