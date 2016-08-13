@@ -963,7 +963,6 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
         taskMgr.remove(self.uniqueName('monitorStickyTargets'))
         taskMgr.remove('localAvLookAtTarget')
         taskMgr.remove(self.uniqueName('setZombie'))
-        base.talkAssistant.clearHistory()
         base.chatPanel.updateDisplay()
         self.ignore('InputState-forward')
         self.ignore('InputState-backward')

@@ -2,7 +2,6 @@ from panda3d.core import DSearchPath, Filename, VirtualFile, VirtualFileSystem
 import os
 import datetime
 from direct.directnotify import DirectNotifyGlobal
-from direct.showbase import AppRunnerGlobal
 from otp.chat.WhiteList import WhiteList
 from direct.directnotify import DirectNotifyGlobal
 

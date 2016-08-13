@@ -500,11 +500,7 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
             self.guiTopBar.hide()
 
         self.guiBottomBar.hide()
-        if not self.isNPCEditor:
-            if self.doneStatus == 'created':
-                base.options.display.restrictToEmbedded(False)
-
-
+        
         if self.skipTutorial:
             self.pirate.detachNode()
 

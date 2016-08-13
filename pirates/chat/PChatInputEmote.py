@@ -26,7 +26,6 @@ class PChatInputEmote(DirectObject.DirectObject):
 
     def __init__(self):
         self.whisperId = None
-        self.toPlayer = 0
         structure = []
         structure.append([
             SCEmoteMenu,
@@ -135,9 +134,8 @@ class PChatInputEmote(DirectObject.DirectObject):
         del self.speedChat
         del self.fsm
 
-    def setWhisperTo(self, whisperId, toPlayer = False):
+    def setWhisperTo(self, whisperId):
         self.whisperId = whisperId
-        self.toPlayer = toPlayer
 
     def show(self):
         self.speedChat.show()
@@ -156,19 +154,6 @@ class PChatInputEmote(DirectObject.DirectObject):
         pass
 
     def requestMode(self, mode, whisperId = None):
-        if mode == 'AllChat' and not base.talkAssistant.checkOpenSpeedChat():
-            messenger.send('Chat-Failed open typed chat test')
-            return None
-        elif mode == 'PlayerWhisper':
-            if not base.talkAssistant.checkWhisperSpeedChatPlayer(whisperId):
-                messenger.send('Chat-Failed player typed chat test')
-                return None
-
-        elif mode == 'AvatarWhisper':
-            if not base.talkAssistant.checkWhisperSpeedChatAvatar(whisperId):
-                messenger.send('Chat-Failed avatar typed chat test')
-                return None
-
         self.mode = mode
         self.whisperId = whisperId
 
@@ -211,12 +196,7 @@ class PChatInputEmote(DirectObject.DirectObject):
             base.talkAssistant.sendOpenTalk(gmHandler.getPhrase(textId))
             return None
 
-        if self.mode == 'PlayerWhisper':
-            if questFlag:
-                base.talkAssistant.sendPlayerWhisperQuestSpeedChat(questInt, msgType, taskNum, self.whisperId)
-            else:
-                base.talkAssistant.sendPlayerWhisperSpeedChat(msgType, textId, self.whisperId)
-        elif self.mode == 'AvatarWhisper':
+        if self.mode == 'AvatarWhisper':
             if questFlag:
                 pass
             else:

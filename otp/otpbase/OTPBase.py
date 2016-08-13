@@ -31,7 +31,6 @@ class OTPBase(ShowBase):
         self.enviroDR = None
         self.enviroCam = None
         self.pixelZoomSetup = False
-        self.gameOptionsCode = ''
         self.locationCode = ''
         self.locationCodeChanged = time.time()
         if base.cam:

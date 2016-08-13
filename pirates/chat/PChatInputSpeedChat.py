@@ -271,7 +271,6 @@ class PChatInputSpeedChat(DirectObject.DirectObject):
     def __init__(self):
         self.firstTime = 0
         self.whisperId = None
-        self.toPlayer = 0
         structure = []
         structure = scStructure
         self.createSpeedChatObject(structure)
@@ -307,9 +306,8 @@ class PChatInputSpeedChat(DirectObject.DirectObject):
         del self.speedChat
         del self.fsm
 
-    def setWhisperTo(self, whisperId, toPlayer = False):
+    def setWhisperTo(self, whisperId):
         self.whisperId = whisperId
-        self.toPlayer = toPlayer
 
     def show(self):
         self.speedChat.show()
@@ -326,19 +324,6 @@ class PChatInputSpeedChat(DirectObject.DirectObject):
         pass
 
     def requestMode(self, mode, whisperId = None):
-        if mode == 'AllChat' and not base.talkAssistant.checkOpenSpeedChat():
-            messenger.send('Chat-Failed open typed chat test')
-            return None
-        elif mode == 'PlayerWhisper':
-            if not base.talkAssistant.checkWhisperSpeedChatPlayer(whisperId):
-                messenger.send('Chat-Failed player typed chat test')
-                return None
-
-        elif mode == 'AvatarWhisper':
-            if not base.talkAssistant.checkWhisperSpeedChatAvatar(whisperId):
-                messenger.send('Chat-Failed avatar typed chat test')
-                return None
-
         self.mode = mode
         self.whisperId = whisperId
 
@@ -385,12 +370,7 @@ class PChatInputSpeedChat(DirectObject.DirectObject):
 
             return None
 
-        if self.mode == 'PlayerWhisper':
-            if questFlag:
-                base.talkAssistant.sendPlayerWhisperQuestSpeedChat(questInt, questMsgType, taskNum, self.whisperId)
-            else:
-                base.talkAssistant.sendPlayerWhisperSpeedChat(msgType, textId, self.whisperId)
-        elif self.mode == 'AvatarWhisper':
+        if self.mode == 'AvatarWhisper':
             if questFlag:
                 base.talkAssistant.sendAvatarWhisperQuestSpeedChat(questInt, questMsgType, taskNum, self.whisperId)
             else:

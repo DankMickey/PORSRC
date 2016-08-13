@@ -103,16 +103,15 @@ class GuildManager(DistributedObjectGlobal):
 
     def sendTalk(self, msgText, chatFlags = 0):
         self.sendUpdate('setTalkGroup', [0,
-         0,
          '',
          msgText,
          [],
          0])
 
-    def setTalkGroup(self, fromAv, fromAC, avatarName, chat, mods, flags):
+    def setTalkGroup(self, fromAv, avatarName, chat, mods, flags):
         if hasattr(base, 'localAvatar'):
             message, scrubbed = localAvatar.scrubTalk(chat, mods)
-            base.talkAssistant.receiveGuildTalk(fromAv, fromAC, avatarName, message, scrubbed)
+            base.talkAssistant.receiveGuildTalk(fromAv, avatarName, message)
 
     def sendSC(self, msgIndex):
         self.sendUpdate('sendSC', [msgIndex])
@@ -203,7 +202,7 @@ class GuildManager(DistributedObjectGlobal):
 
         for id, msg in self.pendingMsgs:
             if not self.cr.avatarFriendsManager.checkIgnored(id):
-                base.talkAssistant.receiveGuildMessage(msg, id, self.id2Name.get(id, 'Unknown'))
+                base.talkAssistant.receiveGuildMessage(id, self.id2Name.get(id, 'Unknown'), msg)
 
         if localAvatar.getGuildId():
             self.accept(self.cr.StopVisibilityEvent, self.handleLogout)
@@ -256,7 +255,7 @@ class GuildManager(DistributedObjectGlobal):
             if not self.cr.avatarFriendsManager.checkIgnored(senderId):
                 displayMess = '%s %s %s' % (senderName, OTPLocalizer.GuildPrefix, OTPLocalizer.SpeedChatStaticText[msgIndex])
                 message = OTPLocalizer.SpeedChatStaticText[msgIndex]
-                base.talkAssistant.receiveGuildMessage(message, senderId, senderName)
+                base.talkAssistant.receiveGuildMessage(senderId, senderName, message)
         else:
             self.pendingMsgs.append([senderId, OTPLocalizer.SpeedChatStaticText[msgIndex]])
             self.memberList()
@@ -268,7 +267,7 @@ class GuildManager(DistributedObjectGlobal):
         if senderName:
             if not self.cr.avatarFriendsManager.checkIgnored(senderId):
                 displayMess = '%s %s %s' % (senderName, OTPLocalizer.GuildPrefix, message)
-                base.talkAssistant.receiveGuildMessage(message, senderId, senderName)
+                base.talkAssistant.receiveGuildMessage(senderId, senderName, message)
         else:
             self.pendingMsgs.append([senderId, message])
             self.memberList()

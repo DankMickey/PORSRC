@@ -1073,24 +1073,6 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
     def stopLookAroundTask(self):
         pass
 
-    def b_setChat(self, chatString, chatFlags):
-        messenger.send('wakeup')
-        self.setChatAbsolute(chatString, chatFlags)
-        self.d_setChat(chatString, chatFlags)
-
-    def d_setChat(self, chatString, chatFlags):
-        self.sendUpdate('setChat', [
-            chatString,
-            chatFlags])
-
-    def setChat(self, chatString, chatFlags):
-        chatFlags &= ~(CFQuicktalker | CFPageButton | CFQuitButton)
-        if chatFlags & CFThought:
-            chatFlags &= ~(CFSpeech | CFTimeout)
-        else:
-            chatFlags |= CFSpeech | CFTimeout
-        self.setChatAbsolute(chatString, chatFlags)
-
     def getAggroRadius(self):
         if base.cr.activeWorld:
             return base.cr.activeWorld.getAggroRadius()

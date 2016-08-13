@@ -529,7 +529,6 @@ class FancyLoadingScreen(DirectObject.DirectObject):
         self.startLoading(expectedLoadScale)
         base.graphicsEngine.renderFrame()
         base.graphicsEngine.renderFrame()
-        base.refreshAds()
         taskMgr.add(self.update, 'updateLoadingScreen', priority = -100)
         if base.sfxManagerList and disableSfx:
             index = 0
@@ -537,9 +536,6 @@ class FancyLoadingScreen(DirectObject.DirectObject):
                 sfx_manager = base.sfxManagerList[index]
                 sfx_manager.setVolume(0.0)
                 index += 1
-
-        if base.appRunner:
-            base.appRunner.notifyRequest('onLoadingMessagesStart')
 
         self.__setLocationText(self.locationText)
         self.__setHintText(self.hintText)
@@ -649,8 +645,6 @@ class FancyLoadingScreen(DirectObject.DirectObject):
                 index += 1
 
         messenger.send('texture_state_changed')
-        if base.appRunner:
-            base.appRunner.notifyRequest('onLoadingMessagesStop')
 
     def showTarget(self, targetId = None, ocean = False, jail = False, pickapirate = False, exit = False, potionCrafting = False, benchRepair = False, shipRepair = False, cannonDefense = False, fishing = False):
         if base.config.GetBool('no-loading-screen', 0):

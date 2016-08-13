@@ -14,7 +14,7 @@ from pirates.piratesgui import GuiButton
 class ReportAPlayer(GuiPanel.GuiPanel, FSM.FSM):
     notify = DirectNotifyGlobal.directNotify.newCategory('ReportAPlayer')
 
-    def __init__(self, playerId, avId, avName):
+    def __init__(self, avId, avName):
         GuiPanel.GuiPanel.__init__(self, PLocalizer.ReportPlayerTitle, 0.7, 0.9, showClose = False, titleSize = 1)
         FSM.FSM.__init__(self, 'ReportAPlayer')
         self.initialiseoptions(ReportAPlayer)
@@ -22,7 +22,6 @@ class ReportAPlayer(GuiPanel.GuiPanel, FSM.FSM):
         self.titleLabel.setPos(0.03, 0, 0.81)
         self.setPos(-(self.width) * 0.5, 0, -(self.height) * 0.5)
         self.setScale(1.4)
-        self.playerId = playerId
         self.avId = avId
         self.avName = avName
         self.category = None
@@ -37,7 +36,7 @@ class ReportAPlayer(GuiPanel.GuiPanel, FSM.FSM):
             self.buttons.append(button)
 
         self.cancelButton = GuiButton.GuiButton(parent = self, text = PLocalizer.ReportPlayerCancel, textMayChange = 1, text_scale = PiratesGuiGlobals.TextScaleMed, text_pos = (0.035, -0.01), image_scale = (0.3, 0.22, 0.22), geom = (geomX,) * 4, geom_pos = (-0.06, 0, 0), geom_scale = 0.5, geom0_color = PiratesGuiGlobals.ButtonColor3[0], geom1_color = PiratesGuiGlobals.ButtonColor3[1], geom2_color = PiratesGuiGlobals.ButtonColor3[2], geom3_color = PiratesGuiGlobals.ButtonColor3[3], image3_color = (0.8, 0.8, 0.8, 1), pos = (self.width * 0.5, 0, 0.075), command = self.destroy)
-        if base.cr.centralLogger.hasReportedPlayer(self.playerId, self.avId):
+        if base.cr.centralLogger.hasReportedPlayer(self.avId):
             self.request('AlreadyReported')
         else:
             self.request('TopMenu')
@@ -124,11 +123,6 @@ class ReportAPlayer(GuiPanel.GuiPanel, FSM.FSM):
         if base.cr.avatarFriendsManager.isFriend(self.avId):
             base.cr.avatarFriendsManager.sendRequestRemove(self.avId)
             removedFriendship = True
-
-        if base.cr.playerFriendsManager.isFriend(self.playerId):
-            base.cr.playerFriendsManager.sendRequestRemove(self.playerId)
-            removedFriendship = True
-
         if removedFriendship:
             text += '\n\n' + PLocalizer.ReportPlayerRemovedFriend % self.avName
 
@@ -147,7 +141,7 @@ class ReportAPlayer(GuiPanel.GuiPanel, FSM.FSM):
 
 
     def sendReport(self):
-        return base.cr.centralLogger.reportPlayer(self.category, self.playerId, self.avId)
+        return base.cr.centralLogger.reportPlayer(self.category, self.avId)
 
 
     def destroy(self):

@@ -19,13 +19,12 @@ class FriendInviteeButton(RequestButton):
 class FriendInvitee(DirectFrame):
     notify = DirectNotifyGlobal.directNotify.newCategory('FriendInvitee')
 
-    def __init__(self, avId, avName, isPlayerInvite):
+    def __init__(self, avId, avName):
         guiMain = loader.loadModel('models/gui/gui_main')
         DirectFrame.__init__(self, relief = None, pos = (-0.6, 0, 0.47), image = guiMain.find('**/general_frame_e'), image_pos = (0.25, 0, 0.275), image_scale = 0.25)
         self.initialiseoptions(FriendInvitee)
         self.avId = avId
         self.avName = avName
-        self.isPlayerInvite = isPlayerInvite
         if base.cr.avatarFriendsManager.checkIgnored(self.avId):
             self._FriendInvitee__handleNo()
             return None
@@ -41,10 +40,7 @@ class FriendInvitee(DirectFrame):
         tpMgr = TextPropertiesManager.getGlobalPtr()
         tpMgr.setGraphic(self.avName, nameGFX)
         del tpMgr
-        if self.isPlayerInvite:
-            text = OTPLocalizer.FriendInviteeInvitationPlayer % self.avName
-        else:
-            text = OTPLocalizer.FriendInviteeInvitation % buttonName
+        text = OTPLocalizer.FriendInviteeInvitation % buttonName
         self.title = DirectLabel(parent = self, relief = None, text = PLocalizer.FriendInviteeTitle, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getPirateOutlineFont(), text_pos = (0, 0), pos = (0.25, 0, 0.42), image = None, image_scale = 0.25)
         self.message = DirectLabel(parent = self, relief = None, text = text, text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.25, 0, 0.325), textMayChange = 1)
         self.bOk = FriendInviteeButton(text = OTPLocalizer.FriendInviteeOK, command = self._FriendInvitee__handleOk)
@@ -66,18 +62,12 @@ class FriendInvitee(DirectFrame):
 
 
     def _FriendInvitee__handleOk(self):
-        if self.isPlayerInvite:
-            base.cr.playerFriendsManager.sendRequestInvite(self.avId)
-        else:
-            base.cr.avatarFriendsManager.sendRequestInvite(self.avId)
+        base.cr.avatarFriendsManager.sendRequestInvite(self.avId)
         self.destroy()
 
 
     def _FriendInvitee__handleNo(self):
-        if self.isPlayerInvite:
-            base.cr.playerFriendsManager.sendRequestDecline(self.avId)
-        else:
-            base.cr.avatarFriendsManager.sendRequestRemove(self.avId)
+        base.cr.avatarFriendsManager.sendRequestRemove(self.avId)
         self.destroy()
 
 

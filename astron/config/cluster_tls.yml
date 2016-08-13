@@ -31,16 +31,8 @@ uberdogs:
       id: 4686
       anonymous: false
 
-    - class: PlayerFriendsManager
-      id: 4687
-      anonymous: false
-
     - class: PiratesFriendsManager
       id: 4680
-      anonymous: false
-
-    - class: PiratesSpeedchatRelay
-      id: 4711
       anonymous: false
 
     - class: DistributedMatchMaker

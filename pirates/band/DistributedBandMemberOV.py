@@ -16,9 +16,8 @@ class DistributedBandMemberOV(DistributedObjectOV.DistributedObjectOV):
 
         DistributedObjectOV.DistributedObjectOV.delete(self)
 
-    def sendTalk(self, fromAV, fromAC, avatarName, message, mods, flags):
+    def sendTalk(self, fromAV, avatarName, message, mods, flags):
         self.sendUpdate('setTalk', [
-            0,
             0,
             '',
             message,

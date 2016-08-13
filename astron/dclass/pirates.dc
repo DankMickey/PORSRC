@@ -1,6 +1,5 @@
 from direct.distributed import DistributedObjectGlobal
 from pirates.uberdog.ClientServicesManager/UD import ClientServicesManager/UD
-from pirates.uberdog.PiratesSpeedchatRelay/UD import PiratesSpeedchatRelay/UD
 from pirates.distributed import DistributedPopulationTracker/AI
 from pirates.distributed import DistributedInteractive/AI/UD
 from pirates.treasuremap import DistributedBuriedTreasure/AI
@@ -31,7 +30,6 @@ from pirates.instance import DistributedTeleportMgr/AI
 from pirates.instance import DistributedMatchMaker/UD
 from pirates.instance import DistributedTravelAgent/UD
 from pirates.friends import DistributedGuildManager/AI/UD
-from pirates.friends import PCPlayerFriendsManager/UD
 from pirates.friends import PiratesFriendsManager/UD
 from pirates.ai import NewsManager/AI
 from pirates.world import DistributedGameArea/AI
@@ -428,7 +426,7 @@ dclass DistributedReputationAvatar : DistributedMovingObject, DistributedInterac
   setName(string) required broadcast db airecv ownrecv;
   checkAvOnShard(DoId) clsend airecv;
   confirmAvOnShard(DoId avId, int8 isOnShard);
-  setTalk(DoId fromAv, DoId fromAcc, string(0-256) avName,
+  setTalk(DoId fromAv, string(0-256) avName,
           string(0-400) chat, TalkModification [], uint8 flags) broadcast;
 };
 
@@ -766,7 +764,7 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   sendJewelryMessage(uint32) ownrecv;
   sendTattooMessage(uint32) ownrecv;
   sendClothingMessage(uint32, uint16) ownrecv;
-  sendReputationMessage(uint32, uint16[], uint16[], uint16, uint16, uint16, uint16, uint16) ownrecv;
+  sendReputationMessage(uint32, uint16[], uint16[], uint16, uint16, uint16, uint16) ownrecv;
   sendRenownMessage(uint32, uint16, uint16, uint8, uint8) ownrecv;
   sendSalvageMessage(uint32, uint16) ownrecv;
   sendFreeInventoryMessage(uint8) ownrecv;
@@ -886,9 +884,6 @@ struct Friend
   blob dna;
 };
 
-dclass PCPlayerFriendsManager : PlayerFriendsManager {
-};
-
 dclass PiratesFriendsManager : DistributedObjectGlobal {
   removeFriend(uint32) clsend;
   requestAvatarInfo(uint32[]) clsend;
@@ -977,9 +972,6 @@ dclass DistributedTeleportHandler : DistributedObject {
   teleportToInstanceFinal(uint32) airecv clsend;
   abortTeleport() broadcast ram;
   avatarLeft() airecv clsend;
-};
-
-dclass PiratesSpeedchatRelay : SpeedchatRelay {
 };
 
 dclass DistributedOceanGrid : DistributedCartesianGrid {

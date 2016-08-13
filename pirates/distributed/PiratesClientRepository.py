@@ -48,7 +48,6 @@ from otp.distributed.PotentialAvatar import PotentialAvatar
 from otp.distributed import DistributedDistrict
 from otp.distributed import OtpDoGlobals
 from otp.otpbase import OTPGlobals
-from otp.uberdog.AccountDetailRecord import AccountDetailRecord, SubDetailRecord
 from otp.otpgui import OTPDialog
 from pirates.login.AvatarChooser import AvatarChooser
 from pirates.makeapirate.MakeAPirate import MakeAPirate
@@ -88,7 +87,6 @@ from pirates.quest.QuestLadderDependency import QuestLadderDependency
 from pirates.quest.QuestChoiceDynMap import QuestChoiceDynMap
 from pirates.audio import SoundGlobals
 from pirates.audio.SoundGlobals import loadSfx
-from pirates.login.AccountDetailRecord import AccountDetailRecord
 from otp.ai.MagicWordManager import MagicWordManager
 
 
@@ -116,9 +114,7 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
         self.travelAgent = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_PIRATES_TRAVEL_AGENT, 'DistributedTravelAgent')
         self.crewMatchManager = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_PIRATES_CREW_MATCH_MANAGER, 'DistributedCrewMatchManager')
         self.avatarFriendsManager = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_AVATAR_FRIENDS_MANAGER, 'AvatarFriendsManager')
-        self.playerFriendsManager = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_PLAYER_FRIENDS_MANAGER, 'PCPlayerFriendsManager')
         self.piratesFriendsManager = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_PIRATES_FRIENDS_MANAGER, 'PiratesFriendsManager')
-        self.speedchatRelay = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_PIRATES_SPEEDCHAT_RELAY, 'PiratesSpeedchatRelay')
         #self.shipLoader = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_PIRATES_SHIP_MANAGER, 'DistributedShipLoader')
         self.codeRedemption = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_PIRATES_CODE_REDEMPTION, 'CodeRedemption')
         #self.settingsMgr = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_PIRATES_SETTINGS_MANAGER, 'PiratesSettingsMgr')
@@ -203,7 +199,6 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
             self.effectToggles = { }
 
         self.cannonballCollisionDebug = 1
-        self.accountDetailRecord = AccountDetailRecord()
 
     def gotoFirstScreen(self):
         base.loadingScreen.beginStep('PrepLogin', 9, 0.14)
@@ -282,21 +277,6 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
         base.loadingScreen.beginStep('AvChooser', 14, 10)
         self.sendSetAvatarIdMsg(0)
         self.handler = self.handleMessageType
-        if __dev__:
-            bp.loginCfg()
-            config_slot = base.config.GetInt('login-pirate-slot', -1)
-            if config_slot >= 0 and len(avList) > 0:
-                config_subId = base.config.GetInt('login-pirate-subId', avList.keys()[0])
-                slots = avList.get(config_subId, [])
-                if config_slot in xrange(len(slots)):
-                    potAv = slots[config_slot]
-                    if isinstance(potAv, PotentialAvatar):
-                        base.cr.loadingScreen.hide()
-                        ConfigVariableInt('login-pirate-slot').setValue(-1)
-                        base.loadingScreen.endStep('AvChooser')
-                        base.cr.avatarManager.sendRequestPlayAvatar(potAv.id, config_subId)
-                        self.handleAvatarChoice('chose', config_subId, config_slot)
-                        return None
 
         self.avChoiceDoneEvent = 'avatarChooserDone'
         self.avChoice = AvatarChooser(self.loginFSM, self.avChoiceDoneEvent)

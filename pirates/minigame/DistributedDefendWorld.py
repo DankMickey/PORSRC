@@ -377,7 +377,7 @@ class DistributedDefendWorld(DistributedMiniGameWorld, Lootable):
 
 
     def setMessage(self, senderId, senderName, message):
-        base.talkAssistant.receiveCannonDefenseMessage(message, senderName)
+        base.talkAssistant.receiveCannonDefenseMessage(senderId, senderName, message)
 
 
     def getTypeName(self):

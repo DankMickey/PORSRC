@@ -750,7 +750,7 @@ class AreaBuilderBase(DirectObject.DirectObject):
 
     def _loadObjects(self):
         self.uniqueId = self.master.uniqueId
-        areaGeometry = base.bamCache.lookup(Filename('/%s_area_%s_%s.bam' % (self.uniqueId, base.launcher.getServerVersion(), base.gridDetail)), 'bam')
+        areaGeometry = base.bamCache.lookup(Filename('/%s_area_%s_%s.bam' % (self.uniqueId, base.cr.getServerVersion(), base.gridDetail)), 'bam')
         if base.config.GetBool('want-disk-cache', 0) and areaGeometry.hasData():
             base.cr.loadingScreen.beginStep('CachedObjects', 3, 70)
             if not areaGeometry.hasData():

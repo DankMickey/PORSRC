@@ -341,10 +341,6 @@ class NameGUI(DirectFrame, StateData.StateData):
     def loadTypeAName(self):
         self.nameEntry = DirectEntry(parent = self.parent, relief = DGG.FLAT, scale = 0.16, width = MAX_NAME_WIDTH, numLines = 2, focus = 0, cursorKeys = 1, autoCapitalize = 1, frameColor = (0.0, 0.0, 0.0, 0.0), text = PL.NameGUI_EmptyNameText, text_fg = (1.0, 1.0, 0.5, 1.0), pos = (-0.65, 0.0, -0.050000), suppressKeys = 1, suppressMouse = 1, image = self.charGui.find('**/chargui_frame02'), image_scale = (15, 0.0, 8.5), image_pos = (4.38, 0.0, -0.200))
         self.nameEntryGuidelines = DirectLabel(parent = self.parent, relief = None, text = PL.NameGUI_Guidelines, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG3, text_pos = (0, 0.25), text_wordwrap = 18, scale = 0.100, pos = (-0.696, 0, -0.5))
-        if self.cr:
-            self.nameEntryGuidelinesURL = DirectButton(parent = self.parent, relief = None, pos = (0, 0, -0.550000), command = base.popupBrowser, extraArgs = [
-                launcher.getValue('GAME_INGAME_NAMING')], text = PL.NameGUI_URLText, text0_fg = PiratesGuiGlobals.TextFG2, text1_fg = PiratesGuiGlobals.TextFG2, text2_fg = PiratesGuiGlobals.TextFG1, text_font = PiratesGlobals.getInterfaceFont(), text_shadow = PiratesGuiGlobals.TextShadow, text_scale = 0.089, text_pos = (0, -0.635))
-
 
         func = lambda param = self: param.fsm.request('PickAName')
         self.pickANameButton = self._makeButton(text = PL.NameGUI_PickANameButtonText, command = func, pos = (0, 0, -1.6))
@@ -361,9 +357,6 @@ class NameGUI(DirectFrame, StateData.StateData):
         self.typeANameGui.append(self.pickANameButton)
         self.typeANameGui.append(self.nameEntry)
         self.typeANameGui.append(self.nameEntryGuidelines)
-        if self.cr:
-            self.typeANameGui.append(self.nameEntryGuidelinesURL)
-
         self.hide()
 
 
@@ -530,8 +523,6 @@ class NameGUI(DirectFrame, StateData.StateData):
         elif self.nameEntry:
             self.nameEntry.destroy()
             self.nameEntryGuidelines.destroy()
-            if self.cr:
-                self.nameEntryGuidelinesURL.destroy()
 
 
         del self.main

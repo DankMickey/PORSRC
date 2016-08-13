@@ -26,7 +26,6 @@ else:
 
 loadPrcFileData('', 'icon-filename resources/phase_3/etc/icon%s.ico' % quality)
 
-import PiratesPreloader
 print 'PiratesStart: Starting the game.'
 import __builtin__
 
@@ -51,8 +50,6 @@ launcher.setPandaErrorCode(7)
 import PiratesBase
 PiratesBase.PiratesBase()
 from direct.showbase.ShowBaseGlobal import *
-if base.config.GetBool('want-preloader', 0):
-    base.preloader = PiratesPreloader.PiratesPreloader()
 
 if base.win == None:
     print 'Unable to open window; aborting.'
@@ -62,7 +59,8 @@ launcher.setPandaErrorCode(0)
 base.sfxPlayer.setCutoffDistance(500.0)
 
 from pirates.piratesgui.PDialog import PDialog
-PDialog(text='Pre-initialise PDialog').hide()
+dialog = PDialog(text='Pre-initialise PDialog')
+dialog.destroy()
 
 from pirates.audio import SoundGlobals
 from pirates.audio.SoundGlobals import loadSfx

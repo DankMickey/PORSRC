@@ -26,45 +26,13 @@ class FriendInviterButton(RequestButton):
 class FriendInviter(DirectFrame):
     notify = DirectNotifyGlobal.directNotify.newCategory('FriendInviter')
 
-    def __init__(self, avId, avName, isPlayerInvite, quickYesNo = True, playerId = None):
+    def __init__(self, avId, avName, quickYesNo = True):
         guiMain = loader.loadModel('models/gui/gui_main')
         DirectFrame.__init__(self, relief = None, pos = (-0.25, 0, 0.64), image = guiMain.find('**/general_frame_e'), image_scale = 0.35)
         self.initialiseoptions(FriendInviter)
         self.avId = avId
         self.avName = avName
         self.avDisableName = 'disable-%s' % avId
-        self.isPlayerInvite = isPlayerInvite
-        self.playerId = playerId
-        self.playerName = None
-        if isPlayerInvite:
-            avatar = base.cr.doId2do.get(avId)
-            if avatar:
-                self.playerId = avatar.DISLid
-                self.playerName = avatar.DISLname
-
-            if not (self.playerId) or not (self.playerName):
-                aInfo = base.cr.avatarFriendsManager.getFriendInfo(avId)
-                if aInfo:
-                    if not self.playerId:
-                        self.playerId = aInfo.playerId
-
-                    if not self.playerName:
-                        self.playerName = aInfo.playerName
-
-
-
-            if not (self.playerId) or not (self.playerName):
-                pInfo = base.cr.playerFriendsManager.findPlayerInfoFromAvId(avId)
-                if pInfo:
-                    if not self.playerId:
-                        self.playerId = base.cr.playerFriendsManager.findPlayerIdFromAvId(avId)
-
-                    if not self.playerName:
-                        self.playerName = pInfo.playerName
-
-
-
-
         self.skipYesNo = quickYesNo
         self.skipCongrats = False
         self.fsm = ClassicFSM.ClassicFSM('FriendInviter', [
@@ -163,19 +131,6 @@ class FriendInviter(DirectFrame):
         self.accept(self.avDisableName, self._FriendInviter__handleDisableAvatar)
         if self.avId == myId:
             self.fsm.request('self')
-        elif self.isPlayerInvite:
-            if base.cr.playerFriendsManager.isAvatarOwnerPlayerFriend(self.avId) or base.cr.playerFriendsManager.isPlayerFriend(self.playerId):
-                self.fsm.request('alreadyFriends')
-            elif len(base.cr.playerFriendsManager.playerFriendsList) >= OTPGlobals.MaxPlayerFriends:
-                self.fsm.request('tooMany')
-            elif not base.cr.identifyFriend(self.avId) and not (self.playerId):
-                self.fsm.request('cantSee')
-            elif not base.cr.isFriendOnline(self.avId) and not base.cr.doId2do.get(self.avId):
-                self.fsm.request('notOnline')
-            elif self.skipYesNo == True:
-                self.fsm.request('checkAvailability')
-            else:
-                self.fsm.request('notYet')
         elif base.cr.avatarFriendsManager.isFriend(self.avId):
             self.fsm.request('alreadyFriends')
         else:
@@ -204,10 +159,7 @@ class FriendInviter(DirectFrame):
 
     def enterNotYet(self):
         self.accept(self.avDisableName, self._FriendInviter__handleDisableAvatar)
-        if not self.isPlayerInvite:
-            self.message['text'] = PLocalizer.FriendInviterAvatarNotYet % self.avName
-        else:
-            self.message['text'] = PLocalizer.FriendInviterPlayerNotYetAvNameOnly % self.avName
+        self.message['text'] = PLocalizer.FriendInviterAvatarNotYet % self.avName
         self.bYes.show()
         self.bNo.show()
 
@@ -229,40 +181,15 @@ class FriendInviter(DirectFrame):
             self.fsm.request('askingNPC')
             return None
 
-        if self.isPlayerInvite:
-            self.playerId = None
-            self.playerName = None
-            avatarInfo = base.cr.avatarFriendsManager.getFriendInfo(self.avId)
-            if avatarInfo and avatarInfo.playerId:
-                self.playerId = avatarInfo.playerId
-                self.playerName = avatarInfo.playerName
-            elif base.cr.doId2do.get(self.avId):
-                avatar = base.cr.doId2do.get(self.avId)
-                self.playerName = avatar.DISLname
-                self.playerId = avatar.DISLid
-
-            if self.playerId:
-                base.cr.playerFriendsManager.sendRequestInvite(self.playerId)
-            else:
-                self.fsm.request('cantSee')
-                return None
-        else:
-            base.cr.avatarFriendsManager.sendRequestInvite(self.avId)
+        base.cr.avatarFriendsManager.sendRequestInvite(self.avId)
         self.accept(OTPGlobals.AvatarFriendConsideringEvent, self._FriendInviter__friendConsidering)
         self.accept(OTPGlobals.AvatarFriendAddEvent, self._FriendInviter__friendAdded)
         self.accept(OTPGlobals.AvatarFriendRejectInviteEvent, self._FriendInviter__friendRejectInvite)
-        self.accept(OTPGlobals.PlayerFriendUpdateEvent, self._FriendInviter__friendAdded)
-        self.accept(OTPGlobals.PlayerFriendRejectInviteEvent, self._FriendInviter__friendRejectInvitePlayer)
         self.hide()
 
 
     def _FriendInviter__friendAdded(self, avId, info):
-        if self.isPlayerInvite:
-            if self.avId == info.avatarId:
-                self.info = info
-                self.fsm.request('yes')
-
-        elif self.avId == avId:
+        if self.avId == avId:
             localAvatar.guiMgr.messageStack.addTextMessage(OTPLocalizer.FriendInviterFriendSaidYes, name = info.avatarName, avId = avId, icon = ('friends', None))
             self.fsm.request('yes')
 
@@ -274,8 +201,6 @@ class FriendInviter(DirectFrame):
         self.ignore('friendResponse')
         self.ignore(OTPGlobals.AvatarFriendAddEvent)
         self.ignore(OTPGlobals.AvatarFriendRejectInviteEvent)
-        self.ignore(OTPGlobals.PlayerFriendAddEvent)
-        self.ignore(OTPGlobals.PlayerFriendRejectInviteEvent)
         self.bCancel.hide()
 
 
@@ -389,10 +314,7 @@ class FriendInviter(DirectFrame):
 
 
     def enterEndFriendship(self):
-        if self.isPlayerInvite:
-            self.message['text'] = PLocalizer.FriendInviterPlayerEndFriendShip % self.avName
-        else:
-            self.message['text'] = PLocalizer.FriendInviterAvatarEndFriendShip % self.avName
+        self.message['text'] = PLocalizer.FriendInviterAvatarEndFriendShip % self.avName
         self.context = None
         self.bYes.show()
         self.bNo.show()
@@ -404,16 +326,11 @@ class FriendInviter(DirectFrame):
 
 
     def enterFriendsNoMore(self):
-        if self.isPlayerInvite:
-            if self.playerId:
-                base.cr.playerFriendsManager.sendRequestRemove(self.playerId)
-
-        else:
-            base.cr.avatarFriendsManager.sendRequestRemove(self.avId)
+        base.cr.avatarFriendsManager.sendRequestRemove(self.avId)
         localAvatar.guiMgr.messageStack.addTextMessage(OTPLocalizer.FriendInviterFriendsNoMore, name = self.avName, avId = self.avId, icon = ('friends', None))
         self.context = None
         self.destroy()
-        if not (self.isPlayerInvite) and not base.cr.identifyAvatar(self.avId):
+        if not base.cr.identifyAvatar(self.avId):
             messenger.send(self.avDisableName)
 
 
@@ -448,8 +365,6 @@ class FriendInviter(DirectFrame):
         self.accept(OTPGlobals.AvatarFriendConsideringEvent, self._FriendInviter__friendConsidering)
         self.accept(OTPGlobals.AvatarFriendAddEvent, self._FriendInviter__friendAdded)
         self.accept(OTPGlobals.AvatarFriendRejectInviteEvent, self._FriendInviter__friendRejectInvite)
-        self.accept(OTPGlobals.PlayerFriendUpdateEvent, self._FriendInviter__friendAdded)
-        self.accept(OTPGlobals.PlayerFriendRejectInviteEvent, self._FriendInviter__friendRejectInvitePlayer)
         self.hide()
 
 
@@ -458,8 +373,6 @@ class FriendInviter(DirectFrame):
         self.ignore(OTPGlobals.AvatarFriendConsideringEvent)
         self.ignore(OTPGlobals.AvatarFriendAddEvent)
         self.ignore(OTPGlobals.AvatarFriendRejectInviteEvent)
-        self.ignore(OTPGlobals.PlayerFriendAddEvent)
-        self.ignore(OTPGlobals.PlayerFriendRejectInviteEvent)
         self.bCancel.hide()
 
 
@@ -600,13 +513,6 @@ class FriendInviter(DirectFrame):
             self.fsm.request('notOpen')
         else:
             self.notify.warning('friendRejectInvite: %s unknown reason: %s.' % (avId, reason))
-
-
-    def _FriendInviter__friendRejectInvitePlayer(self, playerId, respCode):
-        if respCode == FriendResponseCodes.INVITATION_RESP_DECLINE:
-            self.fsm.request('no')
-
-
 
     def _FriendInviter__friendResponse(self, yesNoMaybe, context):
         if self.context != context:

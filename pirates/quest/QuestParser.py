@@ -9,7 +9,6 @@ from direct.interval.IntervalGlobal import *
 from direct.gui.DirectGui import *
 from direct.directnotify import DirectNotifyGlobal
 from direct.showbase import PythonUtil, DirectObject
-from direct.showbase import AppRunnerGlobal
 from otp.speedchat import SpeedChatGlobals
 from pirates.piratesgui import NewTutorialPanel
 from pirates.npc import Skeleton

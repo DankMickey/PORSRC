@@ -4,17 +4,8 @@ import os
 class PiratesLauncher:
     notify = DirectNotifyGlobal.directNotify.newCategory('PiratesLauncher')
 
-    def __init__(self):
-        self.setServerVersion('tlopo-' + config.GetString('server-version', 'dev'))
-
     def getGameServer(self):
         return self.getValue('POR_GAMESERVER', '127.0.0.1')
-
-    def setServerVersion(self, version):
-        self.version = version
-
-    def getServerVersion(self):
-        return self.version
 
     def setPandaErrorCode(self, code):
         pass

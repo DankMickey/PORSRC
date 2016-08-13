@@ -564,7 +564,6 @@ LOOKOUT_INVITE_FRIENDS = 3
 LOOKOUT_JOIN_TIMEOUT = 30
 LOOKOUT_JOIN_TIMEOUT_INVITE = 90
 AvatarDetailsEvent = 'avatarDetailsEvent'
-PlayerDetailsEvent = 'playerDetailsEvent'
 GuildMakeEvent = 'guildMakeEvent'
 GuildAddEvent = 'guildAddEvent'
 GuildInvitationEvent = 'guildInvitationEvent'

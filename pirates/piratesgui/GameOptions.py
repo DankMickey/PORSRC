@@ -22,12 +22,6 @@ from pirates.piratesgui import GameOptionsMatrix
 from pirates.piratesgui.GameOptionsGui import *
 from pirates.uberdog.UberDogGlobals import InventoryType
 
-try:
-    import embedded
-except:
-    pass
-
-
 class OptionSpace:
     notify = DirectNotifyGlobal.directNotify.newCategory('OptionSpace')
 
@@ -82,51 +76,24 @@ class DisplayOptions:
 
     def __init__(self):
         self.restore_failed = False
-        self.restrictToEmbedded(1, False)
-
-
-    def restrictToEmbedded(self, restrict, change_display = True):
-        if base.config.GetBool('disable-restrict-to-embedded', False):
-            restrict = 0
-
-        if base.appRunner is None or base.appRunner.windowProperties is None:
-            restrict = 0
-            change_display = False
-
-        self.restrict_to_embedded = restrict
-        self.notify.debug('restrict_to_embedded: %s' % self.restrict_to_embedded)
-        if change_display:
-            self.set(base.options, base.pipe, base.options.getWidth(), base.options.getHeight())
-
-
 
     def set(self, options, pipe, width, height):
         state = False
         self.notify.info('SET')
         fullscreen = options.fullscreen_runtime
-        embedded = options.embedded_runtime
-        if self.restrict_to_embedded:
-            fullscreen = 0
-            embedded = 1
-
-        if embedded:
-            width = base.appRunner.windowProperties.getXSize()
-            height = base.appRunner.windowProperties.getYSize()
 
         self.current_pipe = base.pipe
         self.current_properties = WindowProperties(base.win.getProperties())
         properties = self.current_properties
         self.notify.debug('DISPLAY PREVIOUS:')
-        self.notify.debug('  EMBEDDED:   %s' % bool(properties.getParentWindow()))
         self.notify.debug('  FULLSCREEN: %s' % bool(properties.getFullscreen()))
         self.notify.debug('  X SIZE:     %s' % properties.getXSize())
         self.notify.debug('  Y SIZE:     %s' % properties.getYSize())
         self.notify.debug('DISPLAY REQUESTED:')
-        self.notify.debug('  EMBEDDED:   %s' % bool(embedded))
         self.notify.debug('  FULLSCREEN: %s' % bool(fullscreen))
         self.notify.debug('  X SIZE:     %s' % width)
         self.notify.debug('  Y SIZE:     %s' % height)
-        if self.current_pipe == pipe and bool(self.current_properties.getParentWindow()) == bool(embedded) and self.current_properties.getFullscreen() == fullscreen and self.current_properties.getXSize() == width and self.current_properties.getYSize() == height:
+        if self.current_pipe == pipe and self.current_properties.getFullscreen() == fullscreen and self.current_properties.getXSize() == width and self.current_properties.getYSize() == height:
             self.notify.info('DISPLAY NO CHANGE REQUIRED')
             state = True
         else:
@@ -134,19 +101,15 @@ class DisplayOptions:
             properties.setSize(width, height)
             properties.setFullscreen(fullscreen)
             properties.setParentWindow(0)
-            if embedded:
-                properties = base.appRunner.windowProperties
-
             original_sort = base.win.getSort()
             if self.resetWindowProperties(pipe, properties):
                 self.notify.debug('DISPLAY CHANGE SET')
                 properties = base.win.getProperties()
                 self.notify.debug('DISPLAY ACHIEVED:')
-                self.notify.debug('  EMBEDDED:   %s' % bool(properties.getParentWindow()))
                 self.notify.debug('  FULLSCREEN: %s' % bool(properties.getFullscreen()))
                 self.notify.debug('  X SIZE:     %s' % properties.getXSize())
                 self.notify.debug('  Y SIZE:     %s' % properties.getYSize())
-                if bool(properties.getParentWindow()) == bool(embedded) and properties.getFullscreen() == fullscreen and properties.getXSize() == width and properties.getYSize() == height:
+                if properties.getFullscreen() == fullscreen and properties.getXSize() == width and properties.getYSize() == height:
                     self.notify.info('DISPLAY CHANGE VERIFIED')
                     state = True
                 else:
@@ -204,19 +167,9 @@ class DisplayOptions:
             self.restore_failed = False
         else:
             self.notify.warning("Couldn't restore original display settings!")
-            if base.appRunner and base.appRunner.windowProperties:
-                options.fullscreen = 0
-                options.embedded = 1
-                tryProps = base.appRunner.windowProperties
-                if self.resetWindowProperties(self.current_pipe, tryProps):
-                    self.current_properties = copy.copy(tryProps)
-                    self.restore_failed = False
-                    return None
-
 
             if self.current_properties.getFullscreen():
                 options.fullscreen = 0
-                options.embedded = 0
                 tryProps = self.current_properties
                 tryProps.setFullscreen(0)
                 if self.resetWindowProperties(self.current_pipe, tryProps):
@@ -301,8 +254,6 @@ class Options(OptionSpace):
                 self.write_integer(output_file, self.fullscreen_height)
                 self.write_string(output_file, 'resolution ')
                 self.write_integer(output_file, self.resolution)
-                self.write_string(output_file, 'embedded ')
-                self.write_integer(output_file, self.embedded)
                 self.write_string(output_file, 'fullscreen ')
                 self.write_integer(output_file, self.fullscreen)
                 self.write_string(output_file, 'widescreen ')
@@ -464,9 +415,6 @@ class Options(OptionSpace):
             self.fullscreen_width = self.validate(int, 'fullscreen_width', 0)
             self.fullscreen_height = self.validate(int, 'fullscreen_height', 0)
             self.resolution = self.validate(int, 'resolution', 0, [
-                0,
-                1])
-            self.embedded = self.validate(int, 'embedded', 0, [
                 0,
                 1])
             self.fullscreen = self.validate(int, 'fullscreen', 0, [
@@ -645,44 +593,30 @@ class Options(OptionSpace):
 
 
     def getWidth(self):
-        if self.embedded_runtime:
-            return base.appRunner.windowProperties.getXSize()
-        elif self.fullscreen_runtime:
+        if self.fullscreen_runtime:
             return self.fullscreen_width
         else:
             return self.window_width
 
 
     def getHeight(self):
-        if self.embedded_runtime:
-            return base.appRunner.windowProperties.getYSize()
-        elif self.fullscreen_runtime:
+        if self.fullscreen_runtime:
             return self.fullscreen_height
         else:
             return self.window_height
 
-
-    def getEmbedded(self):
-        return self.embedded_runtime
-
-
     def getFullscreen(self):
-        if not (self.embedded_runtime):
-            pass
         return self.fullscreen_runtime
 
 
     def getWindowed(self):
-        if not (self.embedded_runtime):
-            pass
         return not (self.fullscreen_runtime)
 
 
     def optionsToPrcData(self):
         string = ''
-        if not base.appRunner:
-            string = string + 'win-size ' + self.getWidth().__repr__() + ' ' + self.getHeight().__repr__() + '\n'
-            string = string + 'fullscreen ' + self.getFullscreen().__repr__() + '\n'
+        string += 'win-size ' + self.getWidth().__repr__() + ' ' + self.getHeight().__repr__() + '\n'
+        string += 'fullscreen ' + self.getFullscreen().__repr__() + '\n'
 
         if self.textureCompressionRuntime:
             string = string + 'compressed-textures 1\n'
@@ -763,7 +697,6 @@ class Options(OptionSpace):
         self.fullscreen_width = 800
         self.fullscreen_height = 600
         self.resolution = 1
-        self.embedded = 0
         self.fullscreen = 1
         self.widescreen = 0
         self.widescreen_resolution = 0
@@ -801,7 +734,6 @@ class Options(OptionSpace):
 
 
     def runtime(self):
-        self.embedded_runtime = self.embedded
         self.fullscreen_runtime = self.fullscreen
         self.widescreen_runtime = self.widescreen
         self.shader_runtime = self.shader
@@ -3545,7 +3477,6 @@ class Options(OptionSpace):
         self.output('fullscreen_width ', self.fullscreen_width)
         self.output('fullscreen_height ', self.fullscreen_height)
         self.output('resolution ', self.resolution)
-        self.output('embedded ', self.embedded)
         self.output('fullscreen ', self.fullscreen)
         self.output('widescreen ', self.widescreen)
         self.output('widescreen_resolution ', self.widescreen_resolution)
@@ -3577,23 +3508,6 @@ class Options(OptionSpace):
         self.output('ocean_map_radar_axis', self.ocean_map_radar_axis)
         self.output('simple_display_option', self.simple_display_option)
         self.output('use_stereo', self.use_stereo)
-        scale = self.texture_scale
-        if scale <= 0.0:
-            scale = 1.0
-
-        scale = 1.0 / scale
-        if self.embedded and base.appRunner and base.appRunner.windowProperties:
-            x = base.appRunner.windowProperties.getXSize()
-            y = base.appRunner.windowProperties.getYSize()
-        elif self.fullscreen:
-            x = self.fullscreen_width
-            y = self.fullscreen_height
-        else:
-            x = self.window_width
-            y = self.window_height
-        gameOptionsCode = 'r%ds%ds%dt%dc%de%dc%dt%dm%de%df%dx%dy%ds%d' % (self.reflection, self.shader, self.shadow, scale, self.textureCompression, self.special_effects, self.character_detail_level, self.terrain_detail_level, self.memory, self.embedded, self.fullscreen, x, y, self.use_stereo)
-        base.gameOptionsCode = gameOptionsCode
-
 
     def compareNumbers(self, x1, y1, z1, w1, x2, y2, z2, w2):
         axis = 0
@@ -3673,7 +3587,6 @@ class GameOptions(BorderFrame):
     MinimumVerticalResolution = 600
 
     def __init__(self, title, x, y, width, height, options = None, file_path = None, pipe = None, chooser = 0, keyMappings = None):
-        self.inAdFrame = False
         self.width = width
         self.height = height
         self.chooser = chooser
@@ -4370,11 +4283,7 @@ class GameOptions(BorderFrame):
     width_to_resolution_id = classmethod(width_to_resolution_id)
 
     def initDisplayButtons(self):
-        self.inAdFrame = base.inAdFrame
-        if self.inAdFrame:
-            windowed_index = self.options.resolution
-        else:
-            windowed_index = self.resolutionToIndex(self.options.window_width, self.options.window_height, False)
+        windowed_index = self.resolutionToIndex(self.options.window_width, self.options.window_height, False)
         fullscreen_index = self.resolutionToIndex(self.options.fullscreen_width, self.options.fullscreen_height, False)
         for i in xrange(len(self.windowed_resolutions_button_array)):
             if i == windowed_index:
@@ -4383,9 +4292,6 @@ class GameOptions(BorderFrame):
             self.fade_button(self.windowed_resolutions_button_array[i])
 
         for i in xrange(len(self.fullscreen_resolutions_button_array)):
-            if base.inAdFrame:
-                self.inactive_button(self.fullscreen_resolutions_button_array[i])
-                continue
             if i == fullscreen_index:
                 self.highlight_button(self.fullscreen_resolutions_button_array[i])
                 continue

@@ -28,9 +28,7 @@ class PChatInputWhiteList(ChatInputWhiteList):
     def sendChatByMode(self, text):
         state = self.getCurrentOrNextState()
         messenger.send('sentRegularChat')
-        if state == 'PlayerWhisper':
-            base.talkAssistant.sendAccountTalk(text, self.whisperId)
-        elif state == 'AvatarWhisper':
+        if state == 'AvatarWhisper':
             base.talkAssistant.sendWhisperTalk(text, self.whisperId)
         elif state == 'GuildChat':
             base.talkAssistant.sendGuildTalk(text)

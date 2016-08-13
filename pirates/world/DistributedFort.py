@@ -361,19 +361,18 @@ class DistributedFort(DistributedBattleAvatar.DistributedBattleAvatar):
     def setLevel(self, level):
         self.level = level
 
-    def printExpText(self, totalExp, colorSetting, basicPenalty, crewBonus, doubleXPBonus, holidayBonus, potionBonus):
+    def printExpText(self, totalExp, colorSetting, crewBonus, doubleXPBonus, holidayBonus, potionBonus):
         taskMgr.doMethodLater(0.5, self.showHpText, self.taskName('printExp'), [
             totalExp,
             4,
             6.0,
             1.0,
-            basicPenalty,
             crewBonus,
             doubleXPBonus,
             holidayBonus,
             potionBonus])
 
-    def showHpText(self, number, bonus = 0, duration = 2.0, scale = 1.0, basicPenalty = 0, crewBonus = 0, doubleXPBonus = 0, holidayBonus = 0, potionBonus = 0):
+    def showHpText(self, number, bonus = 0, duration = 2.0, scale = 1.0, crewBonus = 0, doubleXPBonus = 0, holidayBonus = 0, potionBonus = 0):
         if self.isEmpty():
             return None
 
@@ -389,9 +388,6 @@ class DistributedFort(DistributedBattleAvatar.DistributedBattleAvatar):
                 self.textEffects.remove(newEffect)
 
         mods = { }
-        if basicPenalty > 0:
-            mods[TextEffect.MOD_BASICPENALTY] = basicPenalty
-
         if crewBonus > 0:
             mods[TextEffect.MOD_CREWBONUS] = crewBonus
 

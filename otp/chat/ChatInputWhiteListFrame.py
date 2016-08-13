@@ -6,11 +6,9 @@ from direct.directnotify import DirectNotifyGlobal
 from direct.gui.DirectGui import *
 from otp.otpbase import OTPLocalizer
 from direct.task import Task
-from otp.chat.ChatInputTyped import ChatInputTyped
 
 class ChatInputWhiteListFrame(FSM.FSM, DirectFrame):
     notify = DirectNotifyGlobal.directNotify.newCategory('ChatInputWhiteList')
-    ExecNamespace = None
 
     def __init__(self, entryOptions, parent = None, **kw):
         FSM.FSM.__init__(self, 'ChatInputWhiteListFrame')
@@ -83,24 +81,6 @@ class ChatInputWhiteListFrame(FSM.FSM, DirectFrame):
     def requestMode(self, mode, *args):
         return self.request(mode, *args)
 
-    def defaultFilter(self, request, *args):
-        if request == 'AllChat':
-            if not base.talkAssistant.checkAnyTypedChat():
-                messenger.send('Chat-Failed open typed chat test')
-                self.notify.warning('Chat-Failed open typed chat test')
-                return None
-        elif request == 'PlayerWhisper':
-            if not base.talkAssistant.checkWhisperTypedChatPlayer(self.whisperId):
-                messenger.send('Chat-Failed player typed chat test')
-                self.notify.warning('Chat-Failed player typed chat test')
-                return None
-        elif request == 'AvatarWhisper':
-            if not base.talkAssistant.checkWhisperTypedChatAvatar(self.whisperId):
-                messenger.send('Chat-Failed avatar typed chat test')
-                self.notify.warning('Chat-Failed avatar typed chat test')
-                return None
-        return FSM.FSM.defaultFilter(self, request, *args)
-
     def enterOff(self):
         self.deactivate()
         localAvatar.chatMgr.fsm.request('mainMenu')
@@ -129,15 +109,6 @@ class ChatInputWhiteListFrame(FSM.FSM, DirectFrame):
     def exitCrewChat(self):
         pass
 
-    def enterPlayerWhisper(self):
-        self.tempText = self.chatEntry.get()
-        self.activate()
-
-    def exitPlayerWhisper(self):
-        self.chatEntry.set(self.tempText)
-        self.whisperId = None
-        return
-
     def enterAvatarWhisper(self):
         self.tempText = self.chatEntry.get()
         self.activate()
@@ -147,19 +118,14 @@ class ChatInputWhiteListFrame(FSM.FSM, DirectFrame):
         self.whisperId = None
         return
 
-    def activateByData(self, receiverId = None, toPlayer = 0):
+    def activateByData(self, receiverId = None):
         self.receiverId = receiverId
-        self.toPlayer = toPlayer
-        result = None
+
         if not self.receiverId:
-            result = self.requestMode('AllChat')
-        elif self.receiverId and not self.toPlayer:
+            return self.requestMode('AllChat')
+        else:
             self.whisperId = receiverId
-            result = self.requestMode('AvatarWhisper')
-        elif self.receiverId and self.toPlayer:
-            self.whisperId = receiverId
-            result = self.requestMode('PlayerWhisper')
-        return result
+            return self.requestMode('AvatarWhisper')
 
     def activate(self):
         self.chatEntry['focus'] = 1
@@ -193,12 +159,7 @@ class ChatInputWhiteListFrame(FSM.FSM, DirectFrame):
 
         if text:
             self.chatEntry.set('')
-            if base.config.GetBool('exec-chat', 0) and text[0] == '>':
-                text = self.__execMessage(text[1:])
-                base.localAvatar.setChatAbsolute(text, CFSpeech | CFTimeout)
-                return
-            else:
-                self.sendChatBySwitch(text)
+            self.sendChatBySwitch(text)
             if self.wantHistory:
                 self.addToHistory(text)
         else:
@@ -224,17 +185,13 @@ class ChatInputWhiteListFrame(FSM.FSM, DirectFrame):
     def sendChatByData(self, text):
         if not self.receiverId:
             base.talkAssistant.sendOpenTalk(text)
-        elif self.receiverId and not self.toPlayer:
+        else:
             base.talkAssistant.sendWhisperTalk(text, self.receiverId)
-        elif self.receiverId and self.toPlayer:
-            base.talkAssistant.sendAccountTalk(text, self.receiverId)
 
     def sendChatByMode(self, text):
         state = self.getCurrentOrNextState()
         messenger.send('sentRegularChat')
-        if state == 'PlayerWhisper':
-            base.talkAssistant.sendPlayerWhisperWLChat(text, self.whisperId)
-        elif state == 'AvatarWhisper':
+        if state == 'AvatarWhisper':
             base.talkAssistant.sendAvatarWhisperWLChat(text, self.whisperId)
         elif state == 'GuildChat':
             base.talkAssistant.sendAvatarGuildWLChat(text)
@@ -278,35 +235,6 @@ class ChatInputWhiteListFrame(FSM.FSM, DirectFrame):
         self.chatEntry.set(self.history[self.historyIndex])
         self.historyIndex -= 1
         self.historyIndex %= len(self.history)
-
-    def importExecNamespace(self):
-        pass
-
-    def __execMessage(self, message):
-        if not ChatInputTyped.ExecNamespace:
-            ChatInputTyped.ExecNamespace = {}
-            self.importExecNamespace()
-        try:
-            return str(eval(message, globals(), ChatInputTyped.ExecNamespace))
-        except SyntaxError:
-            try:
-                exec message in globals(), ChatInputTyped.ExecNamespace
-                return 'ok'
-            except:
-                exception = sys.exc_info()[0]
-                extraInfo = sys.exc_info()[1]
-                if extraInfo:
-                    return str(extraInfo)
-                else:
-                    return str(exception)
-
-        except:
-            exception = sys.exc_info()[0]
-            extraInfo = sys.exc_info()[1]
-            if extraInfo:
-                return str(extraInfo)
-            else:
-                return str(exception)
 
     def applyFilter(self, keyArgs, strict = False):
         text = self.chatEntry.get(plain=True)

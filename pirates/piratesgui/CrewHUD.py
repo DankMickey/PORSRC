@@ -252,9 +252,9 @@ class CrewHUD(SocialPage.SocialPage):
             return None
 
         if avId not in self.crew or self.debugAvId:
-            button = self.membersList.addMember(avId + self.debugCount, None, PirateMemberList.MODE_CREW_HUD, member)
+            button = self.membersList.addMember(avId + self.debugCount, PirateMemberList.MODE_CREW_HUD, member)
             button['image'] = None
-            buttonSea = self.membersListSea.addMember(avId + self.debugCount, None, PirateMemberList.MODE_CREW_HUD_SEA, member)
+            buttonSea = self.membersListSea.addMember(avId + self.debugCount, PirateMemberList.MODE_CREW_HUD_SEA, member)
             buttonSea['image'] = None
             reloadFrame = DirectFrame(parent = button, relief = None, state = DGG.DISABLED, image = self.topGui.find('**/pir_t_gui_frm_base_circle'), image_scale = 0.299, image_pos = (0, 0, 0.02), pos = (0.089, 0, 0.01))
             button.reloadFrame = reloadFrame
@@ -366,11 +366,11 @@ class CrewHUD(SocialPage.SocialPage):
             self.crew.pop(avId, None)
 
         if self.membersList:
-            self.membersList.removeMember(avId, None, PirateMemberList.MODE_CREW)
-            self.membersList.removeMember(avId, None, PirateMemberList.MODE_CREW_HUD)
+            self.membersList.removeMember(avId, PirateMemberList.MODE_CREW)
+            self.membersList.removeMember(avId, PirateMemberList.MODE_CREW_HUD)
 
         if self.membersListSea:
-            self.membersListSea.removeMember(avId, None, PirateMemberList.MODE_CREW_HUD_SEA)
+            self.membersListSea.removeMember(avId, PirateMemberList.MODE_CREW_HUD_SEA)
 
         base.localAvatar.guiMgr.radarGui.refreshRadarObject(avId)
         base.localAvatar.guiMgr.crewPage.determineOptionsButtonsState()
@@ -396,9 +396,9 @@ class CrewHUD(SocialPage.SocialPage):
 
     def removePotentialCrew(self, avId):
         self.crew.pop(avId, None)
-        self.membersList.removeMember(avId, None, PirateMemberList.MODE_CREW)
-        self.membersList.removeMember(avId, None, PirateMemberList.MODE_CREW_HUD)
-        self.membersListSea.removeMember(avId, None, PirateMemberList.MODE_CREW_HUD_SEA)
+        self.membersList.removeMember(avId, PirateMemberList.MODE_CREW)
+        self.membersList.removeMember(avId, PirateMemberList.MODE_CREW_HUD)
+        self.membersListSea.removeMember(avId, PirateMemberList.MODE_CREW_HUD_SEA)
         if avId != localAvatar.getDoId():
             self.repackCrew()
 

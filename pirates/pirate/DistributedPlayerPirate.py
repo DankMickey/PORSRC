@@ -261,7 +261,6 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             self.stickyTargets = []
             self.attuneEffect = None
             self.avatarFriendsList = set()
-            self.playerFriendsList = set()
             self.guildName = PLocalizer.GuildNoGuild
             self.guildId = -1
             self.guildRank = -1
@@ -485,7 +484,6 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         self._showBeaconFC.pushCurrentState()
         self.useStandardInteract()
         self.setPlayerType(NametagGroup.CCNormal)
-
 
     def sendAILog(self, errorString):
         self.sendUpdate('submitErrorLog', [
@@ -1461,11 +1459,6 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
     def getAvatarFriendsList(self):
         return self.avatarFriendsList
 
-
-    def getPlayerFriendsList(self):
-        return self.playerFriendsList
-
-
     def getName(self):
         return self.title + self.name
 
@@ -1939,7 +1932,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         localAvatar.guiMgr.messageStack.showLoot([], gold = 0, collect = 0, tattoo = tattooUID)
 
 
-    def sendReputationMessage(self, targetId, categories, reputationList, basicPenalty, crewBonus, doubleXPBonus, holidayBonus, potionBonus):
+    def sendReputationMessage(self, targetId, categories, reputationList, crewBonus, doubleXPBonus, holidayBonus, potionBonus):
         target = base.cr.doId2do.get(targetId)
         if target:
             totalWeaponRep = 0
@@ -1958,7 +1951,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             if InventoryType.GeneralRep in categories:
                 colorSetting = 5
 
-            target.printExpText(totalRep, colorSetting, basicPenalty, crewBonus, doubleXPBonus, holidayBonus, potionBonus)
+            target.printExpText(totalRep, colorSetting, crewBonus, doubleXPBonus, holidayBonus, potionBonus)
 
 
 
@@ -2882,7 +2875,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         if self.doId in base.localAvatar.ignoreList:
             return None
 
-        base.talkAssistant.receiveOpenSpeedChat(ChatGlobals.SPEEDCHAT_EMOTE, emoteId, self.doId)
+        base.talkAssistant.receiveEmote(self, emoteId)
 
 
     def b_setSpeedChatQuest(self, questInt, msgType, taskNum):
@@ -2908,10 +2901,9 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             return None
 
         chatString = PSCDecoders.decodeSCQuestMsgInt(questInt, msgType, taskNum, taskState)
+
         if chatString:
             self.setChatAbsolute(chatString, CFSpeech | CFQuicktalker | CFTimeout)
-
-        base.talkAssistant.receiveOpenTalk(self.doId, self.getName(), None, None, chatString)
 
 
     def whisperSCQuestTo(self, questInt, msgType, taskNum, sendToId):
@@ -2928,13 +2920,16 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             return None
 
         fromHandle = base.cr.identifyAvatar(fromId)
+
         if fromHandle:
             fromName = fromHandle.getName()
         else:
             return None
-        chatString = PSCDecoders.decodeSCQuestMsgInt(questInt, msgType, taskNum)
-        base.talkAssistant.receiveWhisperTalk(fromId, fromName, None, None, self.doId, self.getName(), chatString)
 
+        chatString = PSCDecoders.decodeSCQuestMsgInt(questInt, msgType, taskNum)
+
+        base.talkAssistant.receiveWhisperTalk(fromId, fromName, chatString)
+        
     def setFounder(self, founder):
         self.founder = founder
         self.refreshName()

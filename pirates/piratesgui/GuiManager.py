@@ -124,7 +124,6 @@ class DummyProfileInfo:
     hide = dummy()
     destroy = dummy()
     showProfile = dummy()
-    showPlayerProfile = dummy()
 
 class GuiManager(FSM.FSM):
     notify = DirectNotifyGlobal.directNotify.newCategory('GuiManager')
@@ -206,7 +205,6 @@ class GuiManager(FSM.FSM):
         self.seaChestActive = False
         self.ignoreGuildInvites = 0
         self.ignoreInvitesAvatarList = []
-        self.ignoreInvitesPlayerList = []
         self.levelUpBufferDict = { }
         self.tutorialStatus = PiratesGlobals.TUT_STARTED
         self.forceLookout = base.config.GetBool('force-lookout', 0)
@@ -321,10 +319,8 @@ class GuiManager(FSM.FSM):
         self.inventoryBagPage = InventoryBagPage.InventoryBagPage(self.inventoryUIManager)
         self.chestPanel.addPage(self.inventoryBagPage)
         self.chatPanel = base.chatPanel
-        self.friendsPage = FriendsPage.FriendsPage(showAvatar = 1, showPlayer = 0, showPlayerFriendAvatars = 1)
+        self.friendsPage = FriendsPage.FriendsPage(showAvatar = 1)
         self.socialPanel.addPage(self.friendsPage)
-        self.playerFriendsPage = FriendsPage.FriendsPage(showAvatar = 0, showPlayer = 1)
-        self.socialPanel.addPage(self.playerFriendsPage)
         self.guildPage = GuildPage.GuildPage()
         self.socialPanel.addPage(self.guildPage)
         self.crewHUD = CrewHUD.CrewHUD()
@@ -334,7 +330,6 @@ class GuiManager(FSM.FSM):
         NametagGlobals.setMasterNametagsActive(1)
         self.accept('gotoAvatar', self.handleGotoAvatar)
         self.accept(PiratesGlobals.AvatarDetailsEvent, self.handleAvatarDetails)
-        self.accept(PiratesGlobals.PlayerDetailsEvent, self.handlePlayerDetails)
         self.accept('clickedNametag', self.handleClickedNametag)
         self.accept(BandConstance.BandMakeEvent, self.handleCrewInvite)
         self.accept(BandConstance.BandInvitationEvent, self.handleCrewInvitation)
@@ -343,7 +338,6 @@ class GuiManager(FSM.FSM):
         self.accept(PiratesGlobals.GuildInvitationEvent, self.handleGuildInvitation)
         self.accept(PiratesGlobals.FriendMakeEvent, self.handleAvatarFriendInvite)
         self.accept(OTPGlobals.AvatarFriendInvitationEvent, self.handleAvatarFriendInvitation)
-        self.accept(OTPGlobals.PlayerFriendInvitationEvent, self.handlePlayerFriendInvitation)
         self.accept(PiratesGlobals.TradeRequestEvent, self.handleTradeInvite)
         self.accept(PiratesGlobals.TradeIncomingEvent, self.handleTradeInvitation)
         self.accept(PiratesGlobals.PVPChallengedEvent, self.handlePVPInvitation)
@@ -1377,13 +1371,6 @@ class GuiManager(FSM.FSM):
     def handleIgnoreGuildInvites(self):
         self.ignoreGuildInvites = 1
 
-
-    def ignoreInvitesPlayer(self, pId):
-        if pId not in self.ignoreInvitesPlayerList:
-            self.ignoreInvitesPlayerList.append(pId)
-
-
-
     def ignoreInvitesAvatar(self, avId):
         if avId not in self.ignoreInvitesAvatarList:
             self.ignoreInvitesAvatarList.append(avId)
@@ -1404,24 +1391,15 @@ class GuiManager(FSM.FSM):
     def hideAvatarDetails(self):
         self.profilePage.hide()
 
-
-    def handlePlayerDetails(self, playerId, playerName = None):
-        self.profilePage.showPlayerProfile(playerId, playerName)
-
-
-    def hidePlayerDetails(self):
-        self.profilePage.hide()
-
-
     def handleGotoAvatar(self, avId, avName = None):
         base.cr.teleportMgr.queryAvatarForTeleport(avId)
 
 
-    def handleRelationships(self, avId, avName, playerId = None):
+    def handleRelationships(self, avId, avName):
         if self.relationshipChooser:
             self.relationshipChooser.destroy()
 
-        self.relationshipChooser = RelationshipChooser.RelationshipChooser(avId, avName, playerId)
+        self.relationshipChooser = RelationshipChooser.RelationshipChooser(avId, avName)
         self.relationshipChooser.setPos(-0.75, 0, -0.295)
 
 
@@ -1433,33 +1411,13 @@ class GuiManager(FSM.FSM):
         if av:
             avName = av.getName()
 
-        self.friendInviter = FriendInviter.FriendInviter(avId, avName, False, False)
-
-
-    def handlePlayerFriendInvite(self, avId, avName, pId = None):
-        pInfo = base.cr.playerFriendsManager.findPlayerInfoFromAvId(avId)
-        if pInfo:
-            avName = pInfo.playerName
-
-        if self.friendInviter:
-            self.friendInviter.destroy()
-
-        self.friendInviter = FriendInviter.FriendInviter(avId, avName, True, False, pId)
-
+        self.friendInviter = FriendInviter.FriendInviter(avId, avName, False)
 
     def handleAvatarFriendInvitation(self, avId, avName = 'Unknown'):
         if self.friendInvitee:
             self.friendInvitee.destroy()
 
-        self.friendInvitee = FriendInvitee.FriendInvitee(avId, avName, False)
-
-
-    def handlePlayerFriendInvitation(self, avId, avName = 'Unknown'):
-        if self.friendInvitee:
-            self.friendInvitee.destroy()
-
-        self.friendInvitee = FriendInvitee.FriendInvitee(avId, avName, True)
-
+        self.friendInvitee = FriendInvitee.FriendInvitee(avId, avName)
 
     def handleGuildInviteAccept(self, avid):
         if not self.guildInviter:
@@ -1585,11 +1543,11 @@ class GuiManager(FSM.FSM):
         self.ignoreConfirm = IgnoreConfirm.IgnoreConfirm(avId, avName)
 
 
-    def handleReport(self, playerId, avId, avName):
+    def handleReport(self, avId, avName):
         if self.reportAPlayer:
             self.reportAPlayer.destroy()
 
-        self.reportAPlayer = ReportAPlayer.ReportAPlayer(playerId, avId, avName)
+        self.reportAPlayer = ReportAPlayer.ReportAPlayer(avId, avName)
 
 
     def handleWhisperIncoming(self, senderId, msgText):

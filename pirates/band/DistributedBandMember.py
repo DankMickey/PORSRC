@@ -227,22 +227,22 @@ class DistributedBandMember(DistributedObject, PAvatarHandle):
             pass
         return self.shipInfo[0] in localAvatar.getInventory().getShipDoIdList()
 
-    def setTalk(self, fromAV, fromAC, avatarName, chat, mods, flags):
+    def setTalk(self, fromAV, avatarName, chat, mods, flags):
         (message, scrubbed) = localAvatar.scrubTalk(chat, mods)
-        base.talkAssistant.receivePartyTalk(fromAV, 0, avatarName, message, scrubbed)
+        base.talkAssistant.receivePartyTalk(fromAV, avatarName, message)
 
     def setSpeedChat(self, senderId, msgIndex):
         if not self.cr.avatarFriendsManager.checkIgnored(self.avatarId):
             displayMess = '%s %s %s' % (self.name, PLocalizer.CrewPrefix, SCDecoders.decodeSCStaticTextMsg(msgIndex))
             message = SCDecoders.decodeSCStaticTextMsg(msgIndex)
             if message:
-                base.talkAssistant.receivePartyMessage(message, senderId, self.name)
+                base.talkAssistant.receivePartyMessage(senderId, self.name, message)
 
     def setSCQuestChat(self, senderId, questInt, msgType, taskNum):
         if not self.cr.avatarFriendsManager.checkIgnored(self.avatarId):
             displayMess = '%s %s %s' % (self.name, PLocalizer.CrewPrefix, PSCDecoders.decodeSCQuestMsgInt(questInt, msgType, taskNum))
             message = PSCDecoders.decodeSCQuestMsgInt(questInt, msgType, taskNum)
-            base.talkAssistant.receivePartyMessage(message, senderId, self.name)
+            base.talkAssistant.receivePartyMessage(senderId, self.name, message)
 
     def getName(self):
         return self.name

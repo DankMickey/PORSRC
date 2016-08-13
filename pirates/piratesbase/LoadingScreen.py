@@ -371,7 +371,6 @@ class LoadingScreen(DirectObject.DirectObject):
 
         base.graphicsEngine.renderFrame()
         base.graphicsEngine.renderFrame()
-        base.refreshAds()
         taskMgr.add(self.update, 'updateLoadingScreen', priority = -100)
         if base.sfxManagerList and disableSfx:
             index = 0
@@ -379,9 +378,6 @@ class LoadingScreen(DirectObject.DirectObject):
                 sfx_manager = base.sfxManagerList[index]
                 sfx_manager.setVolume(0.0)
                 index += 1
-
-        if base.appRunner:
-            base.appRunner.notifyRequest('onLoadingMessagesStart')
 
     def showHint(self, destId = None, ocean = False):
         if base.config.GetBool('no-loading-screen', 0):
@@ -471,8 +467,6 @@ class LoadingScreen(DirectObject.DirectObject):
                 index += 1
 
         messenger.send('texture_state_changed')
-        if base.appRunner:
-            base.appRunner.notifyRequest('onLoadingMessagesStop')
 
     def showTarget(self, targetId = None, ocean = False, jail = False, pickapirate = False, exit = False, potionCrafting = False, benchRepair = False, shipRepair = False, cannonDefense = False):
         if base.config.GetBool('no-loading-screen', 0):

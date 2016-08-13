@@ -20,16 +20,11 @@ from pirates.uberdog.UberDogGlobals import InventoryType
 class FriendsPage(SocialPage.SocialPage):
     NumVisible = 6
 
-    def __init__(self, showAvatar = 1, showPlayer = 1, showPlayerFriendAvatars = 0):
+    def __init__(self, showAvatar = 1):
         self.showAvatar = showAvatar
-        self.showPlayer = showPlayer
-        self.showPlayerFriendAvatars = showPlayerFriendAvatars
-        if self.showAvatar and self.showPlayer:
-            myTitle = PLocalizer.FriendsListLabel
-        elif self.showAvatar:
+
+        if self.showAvatar:
             myTitle = PLocalizer.AvatarFriendsListLabel
-        elif self.showPlayer:
-            myTitle = PLocalizer.AccountsFriendsListLabel
 
         SocialPage.SocialPage.__init__(self, myTitle)
         self.initialiseoptions(FriendsPage)
@@ -41,16 +36,6 @@ class FriendsPage(SocialPage.SocialPage):
             self.accept(OTPGlobals.AvatarFriendAddEvent, self.addAvatarFriend)
             self.accept(OTPGlobals.AvatarFriendUpdateEvent, self.updateAvatarFriend)
             self.accept(OTPGlobals.AvatarFriendRemoveEvent, self.removeAvatarFriend)
-
-        if showPlayerFriendAvatars:
-            self.accept(OTPGlobals.PlayerFriendAddEvent, self.addPlayerFriendAvatar)
-            self.accept(OTPGlobals.PlayerFriendUpdateEvent, self.updatePlayerFriendAvatar)
-            self.accept(OTPGlobals.PlayerFriendRemoveEvent, self.removePlayerFriendAvatar)
-
-        if self.showPlayer:
-            self.accept(OTPGlobals.PlayerFriendAddEvent, self.addPlayerFriend)
-            self.accept(OTPGlobals.PlayerFriendUpdateEvent, self.updatePlayerFriend)
-            self.accept(OTPGlobals.PlayerFriendRemoveEvent, self.removePlayerFriend)
 
         charGui.remove_node()
         self.headingLabel = DirectLabel(parent = self, relief = None, state = DGG.NORMAL, text = myTitle, text_align = TextNode.ACenter, text_scale = PiratesGuiGlobals.TextScaleLarge, text_pos = (0.0, 0.0), text_fg = PiratesGuiGlobals.TextFG1, pos = (0.239, 0, 0.794000))
@@ -70,7 +55,7 @@ class FriendsPage(SocialPage.SocialPage):
 
 
     def addAvatarFriend(self, avId, info):
-        self.membersList.updateOrAddMember(avId, None, PirateMemberList.MODE_FRIEND_AVATAR, info)
+        self.membersList.updateOrAddMember(avId, PirateMemberList.MODE_FRIEND_AVATAR, info)
         self.startRecountMembers()
         if hasattr(base, 'localAvatar'):
             inv = base.localAvatar.getInventory()
@@ -79,86 +64,22 @@ class FriendsPage(SocialPage.SocialPage):
 
 
 
-
-    def addPlayerFriend(self, playerId, info, isNewFriend):
-        if localAvatar.style.getTutorial() >= PiratesGlobals.TUT_MET_JOLLY_ROGER and isNewFriend:
-            localAvatar.guiMgr.messageStack.addTextMessage(OTPLocalizer.FriendInviterFriendSaidYes, playerName = info.playerName, avId = playerId, icon = ('friends', None))
-
-        self.membersList.updateOrAddMember(info.avatarId, playerId, PirateMemberList.MODE_FRIEND_PLAYER, info)
-        self.startRecountMembers()
-
-
-    def addPlayerFriendAvatar(self, playerId, info, isNewFriend):
-        if info.isOnline() and info.avatarId:
-            if isNewFriend:
-                localAvatar.guiMgr.messageStack.addTextMessage(OTPLocalizer.FriendInviterPlayerFriendSaidYes, name = info.avatarName, playerName = info.playerName, avId = info.avatarId, icon = ('friends', None))
-
-            self.membersList.updateOrAddMember(info.avatarId, playerId, PirateMemberList.MODE_FRIEND_PLAYER_AVATAR, info)
-
-        self.startRecountMembers()
-
-
     def addAvatarFriends(self, friendData):
         for friendDetail in friendData:
             avId = friendDetail[0]
             info = friendDetail[1]
-            self.membersList.updateOrAddMember(avId, None, PirateMemberList.MODE_FRIEND_AVATAR, info)
+            self.membersList.updateOrAddMember(avId, PirateMemberList.MODE_FRIEND_AVATAR, info)
 
         self.startRecountMembers()
-
-
-    def addPlayerFriends(self, friendData):
-        for friendDetail in friendData:
-            playerId = friendDetail[0]
-            info = friendDetail[1]
-            self.membersList.updateOrAddMember(info.avatarId, playerId, PirateMemberList.MODE_FRIEND_PLAYER, info)
-
-        self.startRecountMembers()
-
 
     def updateAvatarFriend(self, avId, info):
-        self.membersList.updateOrAddMember(avId, None, PirateMemberList.MODE_FRIEND_AVATAR, info)
+        self.membersList.updateOrAddMember(avId, PirateMemberList.MODE_FRIEND_AVATAR, info)
         self.startRecountMembers()
-
-
-    def updatePlayerFriend(self, playerId, info):
-        self.membersList.updateOrAddMember(None, playerId, PirateMemberList.MODE_FRIEND_PLAYER, info)
-        self.startRecountMembers()
-
-
-    def updatePlayerFriendAvatar(self, playerId, info):
-        if info.isOnline() and info.avatarId:
-            self.membersList.updateOrAddMember(info.avatarId, playerId, PirateMemberList.MODE_FRIEND_PLAYER_AVATAR, info)
-        else:
-            self.removePlayerFriendAvatar(playerId)
-        self.startRecountMembers()
-
 
     def removeAvatarFriend(self, avId):
-        removeIdPair = self.membersList.removeMember(avId, None, PirateMemberList.MODE_FRIEND_AVATAR)
-        avId = removeIdPair[0]
-        playerId = base.cr.playerFriendsManager.findPlayerIdFromAvId(avId)
-        if self.showPlayerFriendAvatars:
-            self.membersList.refillMember(avId, playerId, PirateMemberList.MODE_FRIEND_AVATAR)
-
+        self.membersList.removeMember(avId, PirateMemberList.MODE_FRIEND_AVATAR)
         self.membersList.arrangeMembers()
         self.startRecountMembers()
-
-
-    def removePlayerFriend(self, playerId):
-        removeIdPair = self.membersList.removeMember(None, playerId, PirateMemberList.MODE_FRIEND_PLAYER)
-        self.membersList.arrangeMembers()
-        self.startRecountMembers()
-
-
-    def removePlayerFriendAvatar(self, playerId):
-        removeIdPair = self.membersList.removeMember(None, playerId, PirateMemberList.MODE_FRIEND_PLAYER_AVATAR)
-        if self.showAvatar:
-            self.membersList.refillMember(removeIdPair[0], removeIdPair[1], PirateMemberList.MODE_FRIEND_PLAYER_AVATAR)
-
-        self.membersList.arrangeMembers()
-        self.startRecountMembers()
-
 
     def maintainNormalButtonState(self):
         taskMgr.remove('friendsMaintainNormalButtonState')

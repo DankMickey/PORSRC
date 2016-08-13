@@ -25,22 +25,10 @@ class ChatManagerV2(DirectObject.DirectObject):
             State.State('noFriendsWarning', self.enterNoFriendsWarning, self.exitNoFriendsWarning),
             State.State('otherDialog', self.enterOtherDialog, self.exitOtherDialog)], 'off', 'off')
         self.fsm.enterInitialState()
-        self.accept('Chat-Failed open typed chat test', self._ChatManagerV2__handleFailOpenTypedChat)
-        self.accept('Chat-Failed player typed chat test', self._ChatManagerV2__handleFailPlayerTypedWhsiper)
-        self.accept('Chat-Failed avatar typed chat test', self._ChatManagerV2__handleFailAvatarTypedWhsiper)
 
     def delete(self):
         self.ignoreAll()
         del self.fsm
-
-    def _ChatManagerV2__handleFailOpenTypedChat(self, caller = None):
-        self.fsm.request('openChatWarning')
-
-    def _ChatManagerV2__handleFailPlayerTypedWhsiper(self, caller = None):
-        self.fsm.request('noSecretChatWarning')
-
-    def _ChatManagerV2__handleFailAvatarTypedWhsiper(self, caller = None):
-        self.fsm.request('noSecretChatWarning')
 
     def enterOff(self):
         self.ignoreAll()

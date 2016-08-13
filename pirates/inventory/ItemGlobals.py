@@ -1,6 +1,5 @@
 from panda3d.core import Texture, Vec4
 from direct.showbase.PythonUtil import *
-from direct.showbase import AppRunnerGlobal
 import string
 import os
 from ItemConstants import *

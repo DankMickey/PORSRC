@@ -15,12 +15,6 @@ from otp.otpgui import OTPDialog
 from pirates.piratesgui import PDialog
 from pirates.seapatch.Water import Water
 
-try:
-    import embedded
-except:
-    pass
-
-
 class GameOptionsGui(DirectFrame):
     notify = DirectNotifyGlobal.directNotify.newCategory('GameOptions')
     debug = False
@@ -156,21 +150,11 @@ class GameOptionsGui(DirectFrame):
         y -= oy * 3
         ox = 0.0400
         sy = -0.070
-        if base.appRunner is None or base.appRunner.windowProperties is None:
-            y += sy
-            self.windowChoices = [
-                PLocalizer.GameOptionsWindowedMode,
-                PLocalizer.GameOptionsFullscreenMode]
-        else:
-            base.appRunner.windowProperties.setFullscreen(0)
-            self.windowChoices = [
-                PLocalizer.GameOptionsWebEmbeddedMode,
-                PLocalizer.GameOptionsWindowedMode,
-                PLocalizer.GameOptionsFullscreenMode]
-        if self.gameOptions.options.getEmbedded():
-            self.windowVar = [
-                PLocalizer.GameOptionsWebEmbeddedMode]
-        elif self.gameOptions.options.getWindowed():
+        y += sy
+        self.windowChoices = [
+            PLocalizer.GameOptionsWindowedMode,
+            PLocalizer.GameOptionsFullscreenMode]
+        if self.gameOptions.options.getWindowed():
             self.windowVar = [
                 PLocalizer.GameOptionsWindowedMode]
         else:
@@ -180,11 +164,6 @@ class GameOptionsGui(DirectFrame):
 
         x += 0.299
         oy = sy
-        text = PLocalizer.GameOptionsEmbeddedRestriction
-        self.restrictToEmbeddedMsg = self.create_label(x + 0.050000, y + oy * len(self.windowChoices), text, parent, 0.9, text_align = TextNode.ACenter, color = (0.696, 0.696, 0.696, 1))
-        if base.appRunner is not None and base.appRunner.windowProperties is not None:
-            y += oy
-
         text = PLocalizer.GameOptionsWindowedResolutions
         self.windowed_resolutions = []
         if hasattr(base, 'windowed_resolution_table'):
@@ -230,9 +209,7 @@ class GameOptionsGui(DirectFrame):
             self.pipeMenu = OptionMenu(parent = parent, scale = 0.050000, pos = (x + 0.200, 0, y), items = self.pipe_names, command = self.pipeMenuCB)
 
         if base.config.GetBool('enable-stereo-display', 0):
-            if base.appRunner is None or base.appRunner.windowProperties is None:
-                x -= 0.4
-
+            x -= 0.4
             text = PLocalizer.GameOptionsStereo
             self.create_label(x + 0.149, y, text, parent, sl)
             self.stereoCheck = CheckButton(parent = parent, relief = None, scale = sc, pos = (x + 0.100, 0, y + 0.0149), command = self.stereoCheckCB)
@@ -772,27 +749,12 @@ class GameOptionsGui(DirectFrame):
     def initResolutionSettings(self):
         if self.gameOptions is None:
             return None
-
-        if base.inAdFrame:
-            self.fullscreenResolutionMenu.updateState(DGG.DISABLED)
-            if len(self.windowed_resolutions) > 2:
-                self.windowedResolutionMenu['items'] = self.windowed_resolutions[:2]
-                self.windowedResolutionMenu.setItems()
-
-            total_modes = embedded.getCountWindowModes()
-            current_mode = embedded.getCurrentWindowModeDef()
-            for button_index in xrange(total_modes):
-                m = embedded.getAtWindowModeDef(button_index)
-                if current_mode['want_size_x'] == m['want_size_x'] and current_mode['want_size_y'] == m['want_size_y']:
-                    self.windowedResolutionMenu.set(button_index, False)
-                    continue
-
-        else:
-            self.fullscreenResolutionMenu.updateState(DGG.NORMAL)
-            self.windowedResolutionMenu['items'] = self.windowed_resolutions
-            self.windowedResolutionMenu.setItems()
-            self.windowedResolutionMenu.setByValue('%dx%d' % (self.gameOptions.options.window_width, self.gameOptions.options.window_height), False)
-            self.fullscreenResolutionMenu.setByValue('%dx%d' % (self.gameOptions.options.fullscreen_width, self.gameOptions.options.fullscreen_height), False)
+        
+        self.fullscreenResolutionMenu.updateState(DGG.NORMAL)
+        self.windowedResolutionMenu['items'] = self.windowed_resolutions
+        self.windowedResolutionMenu.setItems()
+        self.windowedResolutionMenu.setByValue('%dx%d' % (self.gameOptions.options.window_width, self.gameOptions.options.window_height), False)
+        self.fullscreenResolutionMenu.setByValue('%dx%d' % (self.gameOptions.options.fullscreen_width, self.gameOptions.options.fullscreen_height), False)
         self.displayRadios[self.gameOptions.options.simple_display_option].check()
 
 
@@ -814,26 +776,15 @@ class GameOptionsGui(DirectFrame):
             self.stereoCheck['value'] = self.gameOptions.options.use_stereo
 
         self.initResolutionSettings()
-        if self.gameOptions.options.display.restrict_to_embedded:
-            self.restrictToEmbeddedMsg.show()
-        else:
-            self.restrictToEmbeddedMsg.hide()
         winProps = base.win.getProperties()
         if self.gameOptions.options.getFullscreen():
             self.windowModeRadios[-1].check(False)
             self.fullscreenResolutionMenu.updateState(DGG.NORMAL)
             self.windowedResolutionMenu.updateState(DGG.DISABLED)
-            self.restrictToEmbeddedMsg['text_fg'] = (1.0, 0.100, 0.100, 1)
-        elif self.gameOptions.options.getEmbedded():
-            self.windowModeRadios[-3].check(False)
-            self.fullscreenResolutionMenu.updateState(DGG.DISABLED)
-            self.windowedResolutionMenu.updateState(DGG.DISABLED)
-            self.restrictToEmbeddedMsg['text_fg'] = (0.696, 0.696, 0.696, 1)
         else:
             self.windowModeRadios[-2].check(False)
             self.fullscreenResolutionMenu.updateState(DGG.DISABLED)
             self.windowedResolutionMenu.updateState(DGG.NORMAL)
-            self.restrictToEmbeddedMsg['text_fg'] = (1.0, 0.100, 0.100, 1)
         if self.pipeMenu is not None:
             self.pipeMenu.setByValue(base.pipe.getInterfaceName(), False)
 
@@ -912,30 +863,18 @@ class GameOptionsGui(DirectFrame):
         winProps = base.win.getProperties()
         if self.gameOptions.options.getFullscreen():
             currMode = PLocalizer.GameOptionsFullscreenMode
-        elif self.gameOptions.options.getEmbedded():
-            currMode = PLocalizer.GameOptionsWebEmbeddedMode
         else:
             currMode = PLocalizer.GameOptionsWindowedMode
         if self.windowVar[0] == currMode:
             return None
 
-        if self.windowVar[0] == PLocalizer.GameOptionsWebEmbeddedMode:
+        if self.windowVar[0] == PLocalizer.GameOptionsWindowedMode:
             self.gameOptions.options.fullscreen = 0
             self.gameOptions.options.fullscreen_runtime = 0
-            self.gameOptions.options.embedded = 1
-            self.gameOptions.options.embedded_runtime = 1
-            self.gameOptions.set_display(self.gameOptions.options, base.pipe, self.gameOptions.options.window_width, self.gameOptions.options.window_height)
-        elif self.windowVar[0] == PLocalizer.GameOptionsWindowedMode:
-            self.gameOptions.options.fullscreen = 0
-            self.gameOptions.options.fullscreen_runtime = 0
-            self.gameOptions.options.embedded = 0
-            self.gameOptions.options.embedded_runtime = 0
             self.gameOptions.set_display(self.gameOptions.options, base.pipe, self.gameOptions.options.window_width, self.gameOptions.options.window_height)
         elif self.windowVar[0] == PLocalizer.GameOptionsFullscreenMode:
             self.gameOptions.options.fullscreen = 1
             self.gameOptions.options.fullscreen_runtime = 1
-            self.gameOptions.options.embedded = 0
-            self.gameOptions.options.embedded_runtime = 0
             self.gameOptions.set_display(self.gameOptions.options, base.pipe, self.gameOptions.options.fullscreen_width, self.gameOptions.options.fullscreen_height)
 
         self.set_options(False)
@@ -946,13 +885,7 @@ class GameOptionsGui(DirectFrame):
             return None
 
         index = base.windowed_resolution_table.index((int(val.split('x')[0]), int(val.split('x')[1])))
-        if base.inAdFrame:
-            self.gameOptions.display_identifier = index
-            self.gameOptions.set_display(self.gameOptions.options, base.pipe, base.windowed_resolution_table[index][0], base.windowed_resolution_table[index][1])
-            if base.hasEmbedded:
-                self.gameOptions.options.resolution = index
-
-        elif self.gameOptions.options.getWindowed():
+        if self.gameOptions.options.getWindowed():
             self.gameOptions.set_display(self.gameOptions.options, base.pipe, base.windowed_resolution_table[index][0], base.windowed_resolution_table[index][1])
 
         self.gameOptions.options.window_width = base.windowed_resolution_table[index][0]
@@ -975,9 +908,7 @@ class GameOptionsGui(DirectFrame):
 
         newX = int(val.split('x')[0])
         newY = int(val.split('x')[1])
-        if base.inAdFrame:
-            pass
-        1
+
         if self.gameOptions.options.getFullscreen():
             self.gameOptions.set_display(self.gameOptions.options, base.pipe, newX, newY)
 

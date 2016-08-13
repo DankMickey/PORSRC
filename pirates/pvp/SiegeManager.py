@@ -51,7 +51,6 @@ class SiegeManager(DistributedObject, SiegeManagerBase):
         print 'Seige Manager Sending Message %s' % message
         self.sendUpdate('setTalkGroup', [
             0,
-            0,
             '',
             message,
             [],
@@ -64,26 +63,24 @@ class SiegeManager(DistributedObject, SiegeManagerBase):
             0])
 
     def sendSC(self, msgIndex):
-        self.sendUpdate('sendSC', [
-            msgIndex])
+        self.sendUpdate('sendSC', [msgIndex])
 
-    def setTalkGroup(self, fromAv, fromAC, avatarName, chat, mods, flags):
-        print 'Seige Manager- SetTalkGroup %s' % chat
+    def setTalkGroup(self, fromAv, avatarName, chat, mods, flags):
         teamName = self.getPVPChatTeamName(localAvatar.getSiegeTeam())
         (message, scrubbed) = localAvatar.scrubTalk(chat, mods)
-        base.talkAssistant.receiveShipPVPMessage(fromAv, fromAC, avatarName, teamName, message, scrubbed)
+        base.talkAssistant.receiveShipPVPMessage(fromAv, avatarName, teamName, message, scrubbed)
 
-    def recvChat(self, avatarId, message, chatFlags, DISLid, name):
+    def recvChat(self, avatarId, message, chatFlags, name):
         teamName = self.getPVPChatTeamName(localAvatar.getSiegeTeam())
         if not self.cr.avatarFriendsManager.checkIgnored(avatarId):
             displayMess = '%s %s %s' % (name, self.getPVPChatTeamName(localAvatar.getSiegeTeam()), message)
-            base.talkAssistant.receiveShipPVPMessage(avatarId, DISLid, name, teamName, message)
+            base.talkAssistant.receiveShipPVPMessage(avatarId, name, teamName, message)
 
-    def recvWLChat(self, avatarId, message, chatFlags, DISLid, name):
+    def recvWLChat(self, avatarId, message, chatFlags, name):
         teamName = self.getPVPChatTeamName(localAvatar.getSiegeTeam())
         if not self.cr.avatarFriendsManager.checkIgnored(avatarId):
             displayMess = '%s %s %s' % (name, self.getPVPChatTeamName(localAvatar.getSiegeTeam()), message)
-            base.talkAssistant.receiveShipPVPMessage(avatarId, DISLid, name, teamName, message)
+            base.talkAssistant.receiveShipPVPMessage(avatarId, name, teamName, message)
 
     def recvSpeedChat(self, avatarId, msgIndex, name):
         print 'siege manager recvSpeedChat'
@@ -91,7 +88,7 @@ class SiegeManager(DistributedObject, SiegeManagerBase):
             displayMess = '%s %s %s' % (name, self.getPVPChatTeamName(localAvatar.getSiegeTeam()), SCDecoders.decodeSCStaticTextMsg(msgIndex))
             message = SCDecoders.decodeSCStaticTextMsg(msgIndex)
             teamName = self.getPVPChatTeamName(localAvatar.getSiegeTeam())
-            base.talkAssistant.receiveShipPVPMessage(avatarId, 0, name, teamName, message)
+            base.talkAssistant.receiveShipPVPMessage(avatarId, name, teamName, message)
 
     def sendSCQuest(self, questInt, msgType, taskNum):
         self.sendUpdate('sendSCQuest', [

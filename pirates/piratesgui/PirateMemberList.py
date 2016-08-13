@@ -18,12 +18,10 @@ import GuiButton
 from direct.showbase.DirectObject import *
 import copy
 MODE_FRIEND_AVATAR = 0
-MODE_FRIEND_PLAYER = 1
-MODE_FRIEND_PLAYER_AVATAR = 6
-MODE_CREW = 2
-MODE_GUILD = 3
-MODE_CREW_HUD = 4
-MODE_CREW_HUD_SEA = 5
+MODE_CREW = 1
+MODE_GUILD = 2
+MODE_CREW_HUD = 3
+MODE_CREW_HUD_SEA = 4
 
 class PirateMemberButton(GuiButton.GuiButton):
     memberImageColor = (Vec4(0.31, 0.299, 0.299, 1), Vec4(0.408, 0.4, 0.4, 1), Vec4(0.408, 0.4, 0.4, 1), Vec4(0.209, 0.200, 0.200, 1))
@@ -41,9 +39,8 @@ class PirateMemberButton(GuiButton.GuiButton):
     ONLINE_ICON = ICON.find('**/icon_sphere')
     LocalTextColor = PiratesGuiGlobals.TextFG1
 
-    def __init__(self, owner, avId, playerId, mode, modeInfo = None, name = None):
+    def __init__(self, owner, avId, mode, modeInfo = None, name = None):
         self.avId = avId
-        self.playerId = playerId
         self.avName = None
         self.mode = mode
         self.modeInfo = modeInfo
@@ -131,14 +128,8 @@ class PirateMemberButton(GuiButton.GuiButton):
 
 
     def destroy(self):
-        if self.mode in [
-            MODE_FRIEND_AVATAR,
-            MODE_FRIEND_PLAYER,
-            MODE_FRIEND_PLAYER_AVATAR,
-            MODE_GUILD]:
-            if self.online:
-                self.owner.onlineCount -= 1
-
+        if self.mode in [MODE_FRIEND_AVATAR, MODE_GUILD] and self.online:
+            self.owner.onlineCount -= 1
 
         GuiButton.GuiButton.destroy(self)
         self.modeInfo = None
@@ -297,34 +288,6 @@ class PirateMemberButton(GuiButton.GuiButton):
                 text_cap = 18
             else:
                 self.updateShip(None)
-        elif self.mode == MODE_FRIEND_PLAYER:
-            friendInfo = base.cr.playerFriendsManager.getFriendInfo(self.playerId)
-            text = friendInfo.playerName
-            self.avName = text
-            self.statusLabel.hide()
-            self.shipIcon.setPos(self.owner.memberWidth - 0.4, 0, 0.035000)
-            shipId = base.cr.playerFriendsManager.getShipId(self.playerId)
-            if shipId:
-                self.shipIcon.shipId = shipId
-                shipState = base.cr.playerFriendsManager.getShipId2State(shipId)
-                self.updateShip(shipId, shipState)
-                text_cap = 18
-            else:
-                self.updateShip(None)
-        elif self.mode == MODE_FRIEND_PLAYER_AVATAR:
-            friendInfo = base.cr.playerFriendsManager.getFriendInfo(self.playerId)
-            text = (friendInfo.avatarName, friendInfo.avatarName, friendInfo.playerName, friendInfo.avatarName)
-            self.avName = friendInfo.avatarName
-            self.statusLabel.hide()
-            self.shipIcon.setPos(self.owner.memberWidth - 0.4, 0, 0.035000)
-            shipId = base.cr.playerFriendsManager.getShipId(self.playerId)
-            if shipId:
-                self.shipIcon.shipId = shipId
-                shipState = base.cr.playerFriendsManager.getShipId2State(shipId)
-                self.updateShip(shipId, shipState)
-                text_cap = 18
-            else:
-                self.updateShip(None)
         elif self.mode == MODE_CREW and self.mode == MODE_CREW_HUD or self.mode == MODE_CREW_HUD_SEA:
             if not self.potentialMember:
                 text = self.modeInfo.name
@@ -351,11 +314,7 @@ class PirateMemberButton(GuiButton.GuiButton):
             statusText = self.getGuildRankName(self.modeInfo[2])
         else:
             return None
-        if self.mode in [
-            MODE_FRIEND_AVATAR,
-            MODE_FRIEND_PLAYER,
-            MODE_FRIEND_PLAYER_AVATAR,
-            MODE_GUILD]:
+        if self.mode in [MODE_FRIEND_AVATAR, MODE_GUILD]:
             if self.avId == localAvatar.doId:
                 online = True
             elif friendInfo:
@@ -366,8 +325,6 @@ class PirateMemberButton(GuiButton.GuiButton):
             self.updateOnline(online)
             if online:
                 text0_fg = self.OnlineTextColor
-                if self.mode == MODE_FRIEND_PLAYER_AVATAR:
-                    text0_fg = PiratesGuiGlobals.TextFG13
 
                 if not self.online:
                     self.owner.onlineCount += 1
@@ -439,22 +396,12 @@ class PirateMemberButton(GuiButton.GuiButton):
 
 
     def handlePress(self):
-        if self.mode == MODE_FRIEND_PLAYER:
-            messenger.send(PiratesGlobals.PlayerDetailsEvent, [
-                self.playerId])
-        elif self.mode in (MODE_FRIEND_AVATAR, MODE_GUILD, MODE_CREW):
+        if self.mode in (MODE_FRIEND_AVATAR, MODE_GUILD, MODE_CREW):
             messenger.send(PiratesGlobals.AvatarDetailsEvent, [
                 self.avId,
                 False])
         elif self.mode in (MODE_CREW_HUD, MODE_CREW_HUD_SEA):
             self.showProfile(self.avId, self.avName)
-        elif self.mode == MODE_FRIEND_PLAYER_AVATAR:
-            friendInfo = base.cr.playerFriendsManager.getFriendInfo(self.playerId)
-            avId = friendInfo.avatarId
-            messenger.send(PiratesGlobals.AvatarDetailsEvent, [
-                avId,
-                False])
-
 
 
     def showProfile(self, avId, avName):
@@ -501,7 +448,6 @@ class PirateMemberList(DirectObject):
 
         self.members = []
         self.memberAvatarDict = { }
-        self.memberPlayerDict = { }
         self.onlineCheckTaskName = base.cr.specialName('memberList_checkLastOnline')
         self.prearrangeTaskName = base.cr.specialName('memberList_prearrangeMembers')
         self.onlineChangeEvent = base.cr.specialName('memberList_onlineChange')
@@ -563,7 +509,6 @@ class PirateMemberList(DirectObject):
             member.destroy()
 
         self.memberAvatarDict = { }
-        self.memberPlayerDict = { }
         self.members = []
         self.baseFrame.destroy()
 
@@ -618,27 +563,16 @@ class PirateMemberList(DirectObject):
                 return member
                 continue
 
-
-
-    def getMemberByPlayerId(self, playerId):
-        for member in self.members:
-            if playerId and member.playerId == playerId:
-                return member
-                continue
-
-
-
     def removeNotOnAvList(self, cullAvList):
         for member in self.members:
             if member.avId not in cullAvList:
-                self.removeMember(member.avId, member.playerId, member.mode)
+                self.removeMember(member.avId, member.mode)
                 continue
 
 
 
-    def updateOrAddMember(self, avId, playerId, mode, modeInfo = None):
+    def updateOrAddMember(self, avId, mode, modeInfo = None):
         tryAv = self.memberAvatarDict.get(avId)
-        tryPlayer = self.memberPlayerDict.get(playerId)
         if tryAv and tryAv.isEmpty():
             if tryAv in self.members:
                 self.members.remove(tryAv)
@@ -646,64 +580,33 @@ class PirateMemberList(DirectObject):
             tryAv = None
             del self.memberAvatarDict[avId]
 
-        if tryPlayer and tryPlayer.isEmpty():
-            if tryPlayer in self.members:
-                self.members.remove(tryPlayer)
-
-            tryPlayer = None
-            del self.memberPlayerDict[playerId]
-
         if tryAv:
             if tryAv.mode == mode:
-                self.updateMemberInfo(avId, playerId, mode, modeInfo)
-            elif mode == MODE_FRIEND_AVATAR and tryAv.mode == MODE_FRIEND_PLAYER_AVATAR:
-                self.addMember(avId, playerId, mode, modeInfo)
-            elif mode == MODE_FRIEND_PLAYER_AVATAR and tryAv.mode == MODE_FRIEND_AVATAR:
-                return None
+                self.updateMemberInfo(avId, mode, modeInfo)
+            elif mode == MODE_FRIEND_AVATAR:
+                self.addMember(avId, mode, modeInfo)
 
-        elif tryPlayer and tryPlayer.mode == mode:
-            self.updateMemberInfo(avId, playerId, mode, modeInfo)
-        else:
-            self.addMember(avId, playerId, mode, modeInfo)
+        self.addMember(avId, mode, modeInfo)
 
 
-    def updateMemberInfo(self, avId, playerId, mode, modeInfo = None):
+    def updateMemberInfo(self, avId, mode, modeInfo = None):
         tryAv = self.memberAvatarDict.get(avId)
-        tryPlayer = self.memberPlayerDict.get(playerId)
-        member = None
-        if tryAv and tryAv.mode == mode:
-            member = tryAv
-        elif tryPlayer and tryPlayer.mode == mode:
-            member = tryPlayer
 
-        if member:
-            member.update(modeInfo)
+        if tryAv and tryAv.mode == mode:
+            tryAv.update(modeInfo)
             self.prearrangeMembers()
 
 
-
-    def addMember(self, avId, playerId, mode, modeInfo = None, fromClearList = 0):
-        if mode == MODE_FRIEND_AVATAR:
-            someMember = self.getMemberByPlayerId(playerId)
-            if someMember:
-                playerId = someMember.playerId
-
-
-        if mode == MODE_FRIEND_PLAYER_AVATAR:
-            avId = base.cr.playerFriendsManager.findAvIdFromPlayerId(playerId)
-
-        if self.memberAvatarDict.get(avId) or self.memberPlayerDict.get(playerId):
-            self.removeMember(avId, playerId, mode)
+    def addMember(self, avId, mode, modeInfo = None, fromClearList = 0):
+        if self.memberAvatarDict.get(avId):
+            self.removeMember(avId, mode)
 
         texcolor = (0.9, 1, 0.9, 1)
         fcolor = PiratesGuiGlobals.ButtonColor5
-        addMe = PirateMemberButton(self, avId, playerId, mode, modeInfo)
+        addMe = PirateMemberButton(self, avId, mode, modeInfo)
         self.members.append(addMe)
         if avId:
             self.memberAvatarDict[avId] = addMe
-
-        if playerId:
-            self.memberPlayerDict[playerId] = addMe
 
         if mode == MODE_GUILD and len(self.members) > 0:
             self.accept('guildMemberOnlineStatus', self.updateGuildMemberOnline)
@@ -734,25 +637,14 @@ class PirateMemberList(DirectObject):
         return addMe
 
 
-    def removeMember(self, avId, playerId, mode):
+    def removeMember(self, avId, mode):
         removedAvId = None
-        removedPlayerId = None
-        if not playerId and avId:
-            avMemeber = self.memberAvatarDict.get(avId)
-            if avMemeber:
-                playerId = avMemeber.playerId
-
-        elif playerId and not avId:
-            playerMemeber = self.memberPlayerDict.get(avId)
-            if playerMemeber:
-                avId = playerMemeber.playerId
-
 
         if avId:
             removeMe = self.memberAvatarDict.get(avId)
             removedAvId = avId
+
             if removeMe:
-                removedPlayerId = removeMe.playerId
                 if removeMe in self.members:
                     self.members.remove(removeMe)
 
@@ -760,47 +652,15 @@ class PirateMemberList(DirectObject):
                 removeMe.destroy()
                 del self.memberAvatarDict[avId]
 
-
-        if playerId:
-            removeMe = self.memberPlayerDict.get(playerId)
-            removedPlayerId = playerId
-            if removeMe:
-                removedAvId = removeMe.avId
-                if removeMe in self.members:
-                    self.members.remove(removeMe)
-
-                removeMe.detachNode()
-                removeMe.destroy()
-                del self.memberPlayerDict[playerId]
-
-
         if mode == MODE_GUILD and len(self.members) == 0:
             self.ignore('guildMemberOnlineStatus')
 
         self.prearrangeMembers()
-        return (removedAvId, removedPlayerId)
+        return removedAvId
 
 
-    def removeMemberWithRefill(self, avId, playerId, mode):
-        self.removeMember(avId, playerId, mode)
-        if mode in (MODE_FRIEND_AVATAR, MODE_FRIEND_PLAYER_AVATAR):
-            self.refillMember(avId, playerId, mode)
-
-
-
-    def refillMember(self, avId, playerId, mode):
-        if mode == MODE_FRIEND_AVATAR:
-            if playerId and base.cr.playerFriendsManager.isFriend(playerId):
-                info = base.cr.playerFriendsManager.getFriendInfo(playerId)
-                self.updateOrAddMember(None, playerId, MODE_FRIEND_PLAYER_AVATAR, info)
-
-        elif mode == MODE_FRIEND_PLAYER_AVATAR:
-            if avId and base.cr.avatarFriendsManager.isFriend(avId):
-                info = base.cr.avatarFriendsManager.getFriendInfo(avId)
-                self.updateOrAddMember(avId, None, MODE_FRIEND_AVATAR, info)
-
-
-
+    def removeMemberWithRefill(self, avId, mode):
+        self.removeMember(avId, mode)
 
     def requestLastOnlineTimes(self, task):
         memberIds = []
@@ -889,7 +749,6 @@ class PirateMemberList(DirectObject):
 
         self.members = []
         self.memberAvatarDict = { }
-        self.memberPlayerDict = { }
         self.onlineCount = 0
 
 
@@ -928,12 +787,8 @@ class PirateMemberList(DirectObject):
 
 
 
-        if (first.mode == MODE_FRIEND_PLAYER or first.mode == MODE_FRIEND_PLAYER_AVATAR) and first.mode == MODE_FRIEND_AVATAR:
-            return -1
-        elif first.mode == MODE_FRIEND_AVATAR:
-            if first.mode == MODE_FRIEND_PLAYER or first.mode == MODE_FRIEND_PLAYER_AVATAR:
-                return 1
-            elif self.sortMode == 'Online':
+        if first.mode == MODE_FRIEND_AVATAR:
+            if self.sortMode == 'Online':
                 if first.lastOnline == None:
                     return 1
                 elif other.lastOnline == None:
@@ -942,12 +797,8 @@ class PirateMemberList(DirectObject):
                     return -1
 
                 return 1
-            elif first.mode == MODE_FRIEND_PLAYER_AVATAR:
-                text1 = first['text'][0]
             else:
                 text1 = first['text']
-        if other.mode == MODE_FRIEND_PLAYER_AVATAR:
-            text2 = other['text'][0]
         else:
             text2 = other['text']
         return cmp(text1.lower(), text2.lower())

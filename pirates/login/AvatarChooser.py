@@ -71,7 +71,6 @@ class AvatarChooser(DirectObject, StateData):
         base.loadingScreen.tick(tickNumber = 150)
 
     def enter(self):
-        base.options.display.restrictToEmbedded(True)
         taskMgr.setupTaskChain('phasePost', threadPriority = TPHigh)
         if self.isLoaded == 0:
             self.load()
@@ -84,12 +83,7 @@ class AvatarChooser(DirectObject, StateData):
         self.scene.reparentTo(render)
         camera.reparentTo(render)
         camera.setPosHpr(-29.0187, 37.0125, 24.75, 4.09, 1.0, 0.0)
-        loggedInSubId = base.cr.accountDetailRecord.playerAccountId
-        if loggedInSubId in self.subIds:
-            index = self.subIds.index(loggedInSubId)
-        else:
-            index = 0
-        self.showSub(index)
+        self.showSub(0)
         if self.ship:
             taskMgr.add(self.__shipRockTask, 'avatarChooserShipRockTask')
 
@@ -150,9 +144,6 @@ class AvatarChooser(DirectObject, StateData):
 
         if hasattr(self, 'fadeFrame'):
             self.fadeFrame.destroy()
-
-        if self.doneStatus and self.doneStatus['mode'] == 'chose':
-            base.options.display.restrictToEmbedded(False)
 
         taskMgr.setupTaskChain('phasePost', threadPriority = TPLow)
 

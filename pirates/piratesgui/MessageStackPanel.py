@@ -592,49 +592,31 @@ class MessageStackPanel(DirectFrame):
         self.addMessage(msg)
 
 
-    def addTextMessage(self, text, seconds = 7, priority = 0, color = (0, 0, 0, 1), icon = (), modelName = 'general_frame_b', name = None, avId = None, playerName = None):
-        if name and playerName:
-            t2 = text % (playerName, name)
-        elif name:
+    def addTextMessage(self, text, seconds = 7, priority = 0, color = (0, 0, 0, 1), icon = (), modelName = 'general_frame_b', name = None, avId = None):
+        if name:
             t2 = text % name
-        elif playerName:
-            t2 = text % playerName
         else:
             t2 = text
         if self.lastMessage == t2:
             return None
 
         msg = StackMessage(parent = self, text = t2, text_wordwrap = 15.5, text_align = TextNode.ALeft, text_scale = 0.035000, text_fg = color, text_pos = (0.170, -0.0715, 0), textMayChange = 1, time = seconds, priority = priority, icon = icon, modelName = modelName)
-        if name and playerName:
-            buttonText = text % playerName
-        else:
-            buttonText = text
-        if name or playerName:
+        buttonText = text
+        if name:
             msg['text_fg'] = (0, 0, 0, 0)
             if name:
                 nameArray = ('\x01CPOrangeHEAD\x01' + name + '\x02', '\x01CPOrangeHEAD\x01' + name + '\x02', '\x01CPOrangeOVER\x01' + name + '\x02', '\x01CPOrangeHEAD\x01' + name + '\x02')
-            else:
-                nameArray = ('\x01CPOrangeHEAD\x01' + playerName + '\x02', '\x01CPOrangeHEAD\x01' + playerName + '\x02', '\x01CPOrangeOVER\x01' + playerName + '\x02', '\x01CPOrangeHEAD\x01' + playerName + '\x02')
             if name:
                 nameButton = DirectButton(parent = NodePath(), relief = None, text = nameArray, text_align = TextNode.ALeft, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 0, command = self.handleAvatarTextPress, extraArgs = [
                     avId,
                     name])
-            else:
-                nameButton = DirectButton(parent = NodePath(), relief = None, text = nameArray, text_align = TextNode.ALeft, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 0, command = self.handlePlayerTextPress, extraArgs = [
-                    avId,
-                    playerName])
             (left, right, bottom, top) = nameButton.getBounds()
             nameGFX = TextGraphic(nameButton, left, right, 0, 1)
             if name:
                 buttonName = '' + name + ''
-            else:
-                buttonName = '' + playerName + ''
             buttonText = buttonText % buttonName
             tpMgr = TextPropertiesManager.getGlobalPtr()
-            if name:
-                tpMgr.setGraphic(name, nameGFX)
-            else:
-                tpMgr.setGraphic(playerName, nameGFX)
+            tpMgr.setGraphic(name, nameGFX)
             del tpMgr
             textRender = TextNode('textRender')
             textRender.setFont(PiratesGlobals.getInterfaceFont())
@@ -698,14 +680,6 @@ class MessageStackPanel(DirectFrame):
     def handleAvatarTextPress(self, avId, avName):
         if hasattr(base, 'localAvatar') and base.localAvatar.guiMgr:
             base.localAvatar.guiMgr.handleAvatarDetails(avId, avName)
-
-
-
-    def handlePlayerTextPress(self, pId, pName):
-        if hasattr(base, 'localAvatar') and base.localAvatar.guiMgr:
-            base.localAvatar.guiMgr.handlePlayerDetails(pId, pName)
-
-
 
     def handleAvatarModalPress(self, avId, avName):
         if hasattr(base, 'localAvatar') and base.localAvatar.guiMgr:

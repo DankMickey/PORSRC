@@ -36,12 +36,6 @@ from pirates.chat.PWhiteList import PWhiteList
 import PiratesGlobals
 import __builtin__
 
-try:
-    import embedded
-    hasEmbedded = 1
-except ImportError:
-    hasEmbedded = 0
-
 class PiratesBase(OTPBase):
     notify = DirectNotifyGlobal.directNotify.newCategory('PiratesBase')
     lowMemoryStreamAudio = ConfigVariableBool('low-memory-stream-audio', 0)
@@ -63,15 +57,9 @@ class PiratesBase(OTPBase):
 
     def __init__(self):
         OTPBase.__init__(self, windowType = 'none')
-        self.hasEmbedded = hasEmbedded
         self.shipFactory = None
         self.isMainWindowOpen = False
         self.shipLookAhead = 0
-        if __dev__:
-            launcher.setValue('GAME_SHOW_ADDS', 'NO')
-
-        if base.appRunner:
-            launcher.setValue('GAME_SHOW_ADDS', 'NO')
 
         self.fourthOfJuly = base.config.GetBool('test-fourth-of-july', 0)
         self.bamCache = BamCache.getGlobalPtr()
@@ -80,6 +68,7 @@ class PiratesBase(OTPBase):
         self.musicMgr = None
         use_recommended_options = False
         options = Options()
+
         if __dev__:
             Options.DEFAULT_FILE_PATH = Filename.expandFrom('$HOME/game_options.txt').toOsSpecific()
             Options.DEFAULT_API_FILE_PATH = Filename.expandFrom('$HOME/game_api.txt').toOsSpecific()
@@ -144,35 +133,27 @@ class PiratesBase(OTPBase):
         options.verifyOptions(base.pipe, overwrite_options)
         string = options.optionsToPrcData()
         loadPrcFileData('game_options', string)
+
         self.options = options
         self.shipsVisibleFromIsland = self.options.ocean_visibility
         self.overrideShipVisibility = False
         base.windowType = 'onscreen'
-        self.detachedWP = WindowProperties()
-        self.embeddedWP = WindowProperties()
-        if self.hasEmbedded:
-            if embedded.isMainWindowVisible():
-                self.showEmbeddedFrame()
-            else:
-                self.hideEmbeddedFrame()
-        elif self.appRunner:
-            self.openDefaultWindow()
-        else:
-            wp = WindowProperties()
-            wp.setSize(options.getWidth(), options.getHeight())
-            wp.setFullscreen(options.getFullscreen())
-            self.openDefaultWindow(props = wp)
+        wp = WindowProperties()
+        wp.setSize(options.getWidth(), options.getHeight())
+        wp.setFullscreen(options.getFullscreen())
+        self.openDefaultWindow(props = wp)
         self.eventMgr.doEvents()
         loadingMode = config.GetInt('loading-screen', 0)
         if loadingMode == 0:
             self.loadingScreen = LoadingScreen.LoadingScreen(None)
         else:
             self.loadingScreen = FancyLoadingScreen.FancyLoadingScreen(None)
+        
         self.loadingScreen.showTarget(pickapirate = True)
         self.loadingScreen.show()
         self.loadingScreen.beginStep('PiratesBase', 34, 25)
-        if not self.isMainWindowOpen:
 
+        if not self.isMainWindowOpen:
             try:
                 launcher.setPandaErrorCode(7)
             except:
@@ -190,6 +171,7 @@ class PiratesBase(OTPBase):
         else:
             base.cam.node().setCameraMask(OTPRender.MainCameraBitmask | OTPRender.EnviroCameraBitmask)
         self.loadingScreen.tick()
+
         self._PiratesBase__alreadyExiting = False
         self.exitFunc = self.userExit
         TextureStage.getDefault().setPriority(10)
@@ -229,6 +211,7 @@ class PiratesBase(OTPBase):
         globalClockMaxDt = base.config.GetFloat('pirates-max-dt', 0.200)
         globalClock.setMaxDt(globalClockMaxDt)
         self.loadingScreen.tick()
+
         if self.config.GetBool('want-particles', 0):
             self.notify.debug('Enabling particles')
             self.enableParticles()
@@ -262,19 +245,14 @@ class PiratesBase(OTPBase):
         self.accept('PandaPaused', self.disableAllAudio)
         self.accept('PandaRestarted', self.enableAllAudio)
         self.emoteGender = None
+
         shadow = loader.loadModel('models/misc/drop_shadow.bam')
         self.loadingScreen.tick()
         taskMgr.setupTaskChain('phasePost', numThreads = 0, threadPriority = TPHigh)
 
-        if config.GetBool('have-all-phases', True):
-            self.phase3Post()
-            self.phase4Post()
-            self.phase5Post()
-
-        else:
-            launcher.addPhasePostProcess(3, self.phase3Post, taskChain = 'phasePost')
-            launcher.addPhasePostProcess(4, self.phase4Post, taskChain = 'phasePost')
-            launcher.addPhasePostProcess(5, self.phase5Post, taskChain = 'phasePost')
+        self.phase3Post()
+        self.phase4Post()
+        self.phase5Post()
 
         self.whiteList = PWhiteList()
         tpMgr = TextPropertiesManager.getGlobalPtr()
@@ -304,20 +282,13 @@ class PiratesBase(OTPBase):
         self.showShipFlats = False
         self.hideShipNametags = False
         self.showGui = True
-        self.memoryMonitorMinimumPercentage = 90
-        self.cpuSpeedDialog = None
-        self.peakProcessMemory = 0
-        self.peakMemoryLoad = 0
-        self.maximumCpuFrequency = 0
-        self.currentCpuFrequency = 0
-        self.displayCpuFrequencyDialog = False
-        self.taskMgr.doMethodLater(120.0, self.memoryMonitorTask, 'memory-monitor-task')
         if self.win.getGsg():
             self.useStencils = self.win.getGsg().getSupportsStencil()
         else:
             self.useStencils = False
         self.supportAlphaFb = self.win.getFbProperties().getAlphaBits()
         taskMgr.setupTaskChain('background', frameBudget = 0.001, threadPriority = TPLow)
+
         gsg = base.win.getGsg()
 
         if gsg:
@@ -334,7 +305,6 @@ class PiratesBase(OTPBase):
         self.transitions.letterbox.setColorScale(0, 0, 0, 1)
         self.loadingScreen.endStep('PiratesBase')
 
-
     def setNoticeSystem(self, on):
         if self.noticeSystemOn == on:
             return None
@@ -344,72 +314,6 @@ class PiratesBase(OTPBase):
 
     def setShipLookAhead(self, value):
         self.shipLookAhead = value
-
-    def deleteDialogs(self):
-        if self.cpuSpeedDialog:
-            self.cpuSpeedDialog.destroy()
-            del self.cpuSpeedDialog
-            self.cpuSpeedDialog = None
-
-    def cpuSpeedDialogCommand(self, value):
-        if value == DGG.DIALOG_CANCEL:
-            base.options.cpu_frequency_warning = 0
-            base.options.save(Options.DEFAULT_FILE_PATH, Options.NEW_STATE)
-            base.options.log('Options Saved: Cpu Frequency Warning Disable')
-        self.deleteDialogs()
-
-    def displayCpuSpeedDialog(self, message):
-        self.deleteDialogs()
-        if base.options.cpu_frequency_warning:
-            buttonText = [
-                OTPLocalizer.DialogOK,
-                OTPLocalizer.DialogDoNotShowAgain]
-            self.cpuSpeedDialog = PDialog.PDialog(text = message, style = OTPDialog.TwoChoiceCustom, giveMouse = False, command = self.cpuSpeedDialogCommand, buttonText = buttonText)
-            if self.cpuSpeedDialog:
-                self.cpuSpeedDialog.setBin('gui-fixed', 20, 20)
-
-    def memoryMonitorTask(self, task):
-        if base.pipe:
-            display = False
-            di = base.pipe.getDisplayInformation()
-            if di:
-                di.updateMemoryInformation()
-                if di.getPeakProcessMemory() > self.peakProcessMemory:
-                    self.peakProcessMemory = di.getPeakProcessMemory()
-                    display = True
-                if di.getMemoryLoad() >= self.memoryMonitorMinimumPercentage and di.getMemoryLoad() > self.peakMemoryLoad:
-                    self.peakMemoryLoad = di.getMemoryLoad()
-                    display = True
-                if display:
-                    oomb = 1.0 / 1024.0 * 1024.0
-                if base.config.GetBool('want-cpu-frequency-warning', 0):
-                    processor_number = 0
-                    di.updateCpuFrequency(processor_number)
-                    maximum = di.getMaximumCpuFrequency()
-                    if maximum > 0:
-                        current = di.getCurrentCpuFrequency()
-                        if current > 0:
-                            if base.config.GetInt('test-cpu-frequency-warning', 0):
-                                current = maximum - 1000000
-                            change = False
-                            if current != self.currentCpuFrequency:
-                                if self.currentCpuFrequency:
-                                    change = True
-                                self.currentCpuFrequency = current
-                            if maximum != self.maximumCpuFrequency:
-                                self.maximumCpuFrequency = maximum
-                            if current < maximum:
-                                if self.displayCpuFrequencyDialog == False:
-                                    self.displayCpuFrequencyDialog = True
-                                    oob = 1.0 / 1000000000.0
-                                    c = current * oob
-                                    m = maximum * oob
-                                    string = PLocalizer.CpuWarning % (c, m)
-                                    self.displayCpuSpeedDialog(string)
-                                    self.notify.info(string)
-                            if current == maximum:
-                                self.displayCpuFrequencyDialog = False
-        return Task.again
 
     def phase3Post(self):
         from pirates.battle import Sword, Dagger
@@ -577,80 +481,6 @@ class PiratesBase(OTPBase):
         if self.config.GetBool('show-tex-mem', False):
             if not (self.texmem) or self.texmem.cleanedUp:
                 self.toggleTexMem()
-
-
-
-
-    def showEmbeddedFrame(self):
-        if not self.hasEmbedded:
-            return False
-
-        embedded.showMainWindow()
-        self.options.fullscreen_runtime = 0
-        wdef = embedded.getCurrentWindowModeDef()
-        self.embeddedWP.setSize(wdef['want_size_x'], wdef['want_size_y'])
-        self.embeddedWP.setOrigin(wdef['want_loc_x'], wdef['want_loc_y'])
-        self.embeddedWP.setParentWindow(embedded.getMainWindowHandle())
-        self.embeddedWP.setFullscreen(0)
-        messenger.send('access-changed')
-        return self.openDefaultWindow(props = self.embeddedWP, gsg = base.win, keepCamera = True)
-
-
-    def hideEmbeddedFrame(self):
-        if not self.hasEmbedded:
-            return False
-
-        embedded.hideMainWindow()
-        self.detachedWP.setSize(self.options.getWidth(), self.options.getHeight())
-        self.detachedWP.setFullscreen(self.options.fullscreen)
-        messenger.send('access-changed')
-        return self.openDefaultWindow(props = self.detachedWP, gsg = base.win, keepCamera = True)
-
-
-    def setEmbeddedFrameMode(self, access):
-        if not self.hasEmbedded:
-            return False
-
-        if embedded.isMainWindowVisible():
-            return self.hideEmbeddedFrame()
-
-
-
-    def popupBrowser(self, url, demandFocus = False):
-        import sys
-        if sys.platform == 'darwin':
-            import os
-            os.system('/usr/bin/open %s' % url)
-        elif sys.platform == 'linux2':
-            import webbrowser as webbrowser
-            webbrowser.open(url)
-        else:
-
-            try:
-                import webbrowser as webbrowser
-                webbrowser.open(url, new = 2, autoraise = True)
-            except WindowsError:
-                e = None
-                if base.appRunner:
-                    demandFocus = False
-                    if demandFocus:
-                        base.appRunner.dom.location = url
-                    else:
-                        base.appRunner.evalScript('window.open("%s")' % (url,), needsResponse = False)
-                else:
-                    import os as os
-                    os.system('explorer "%s"' % url)
-
-
-
-    def refreshAds(self):
-        self.notify.debug('Refresh Ads')
-        if not self.hasEmbedded:
-            return False
-
-        embedded.allowAddRefreshLeft()
-        embedded.allowAddRefreshTop()
-
 
     def positionFarCull(self):
         gridDetail = base.config.GetString('grid-detail', 'high')

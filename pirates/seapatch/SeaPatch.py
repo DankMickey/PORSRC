@@ -14,7 +14,6 @@ from otp.otpbase import OTPRender
 from pirates.seapatch.Reflection import Reflection
 from pirates.seapatch.Water import Water
 from direct.motiontrail.MotionTrail import MotionTrail
-from direct.showbase import AppRunnerGlobal
 from pirates.piratesgui.GameOptions import *
 
 class SeaPatch(Water):
@@ -542,15 +541,11 @@ class SeaPatch(Water):
             filename = Filename.fromOsSpecific(filename)
 
         searchPath = DSearchPath()
-        if AppRunnerGlobal.appRunner:
-            searchPath.appendDirectory(Filename.expandFrom('$POTCO_2_ROOT/etc'))
-        else:
-            searchPath.appendDirectory(Filename.fromOsSpecific(os.path.expandvars('resources/phase_2/etc/')))
-            searchPath.appendDirectory(Filename.fromOsSpecific(os.path.expandvars('$PIRATES/src/seapatch')))
-            searchPath.appendDirectory(Filename.fromOsSpecific(os.path.expandvars('pirates/src/seapatch')))
-            searchPath.appendDirectory(Filename.fromOsSpecific(os.path.expandvars('phase_2/etc/')))
-            searchPath.appendDirectory(Filename('etc'))
-            searchPath.appendDirectory(Filename('.'))
+        searchPath.appendDirectory(Filename.fromOsSpecific(os.path.expandvars('resources/phase_2/etc/')))
+        searchPath.appendDirectory(Filename.fromOsSpecific(os.path.expandvars('pirates/src/seapatch')))
+        searchPath.appendDirectory(Filename.fromOsSpecific(os.path.expandvars('phase_2/etc/')))
+        searchPath.appendDirectory(Filename('etc'))
+        searchPath.appendDirectory(Filename('.'))
         found = vfs.resolveFilename(filename, searchPath)
         if not found:
             self.notify.warning('file not found: %s' % filename)

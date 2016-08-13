@@ -5,8 +5,6 @@ class CrewMatchHandle(PAvatarHandle):
     def __init__(self, avId, avName):
         self.avatarId = avId
         self.avatarName = avName
-        self.accountId = None
-        self.accountName = None
 
     def getName(self):
         return self.avatarName

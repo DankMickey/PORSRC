@@ -19,13 +19,6 @@ from pirates.piratesgui import PNameTumbler
 from pirates.piratesgui.BorderFrame import BorderFrame
 from pirates.distributed import InteractGlobals
 
-try:
-    import embedded
-    hasEmbedded = 1
-except ImportError:
-    hasEmbedded = 0
-
-
 class FeedbackConfirmButton(RequestButton):
 
     def __init__(self, text, command):
@@ -96,7 +89,6 @@ class FeedbackPanel(GuiPanel.GuiPanel):
                 base.localAvatar.guiMgr.feedbackFormActive = True
 
         title = PLocalizer.FeedbackFormTitle
-        self.hasEmbedded = hasEmbedded
         currentInteraction = base.cr.interactionMgr.getCurrent()
         if not hasattr(currentInteraction, 'storeType'):
             GuiPanel.GuiPanel.__init__(self, title, 0.79, 1.0, 0, 1.5, pos = (0.4, 0, -0.83))
@@ -164,7 +156,6 @@ class FeedbackPanel(GuiPanel.GuiPanel):
 
 
     def _FeedbackPanel__handleAccountWeb(self):
-        base.popupBrowser(launcher.getValue('GAME_INGAME_MANAGE_ACCT'))
         self.feedbackObj.destroy()
         self.destroy()
 

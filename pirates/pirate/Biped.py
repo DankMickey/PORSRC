@@ -524,12 +524,6 @@ class Biped(UsesAnimationMixer, Avatar, UsesEffectNode):
 
     def setChatAbsolute(self, chatString, chatFlags, dialogue = None, interrupt = 1):
         Avatar.setChatAbsolute(self, chatString, chatFlags, dialogue, interrupt)
-        if chatString:
-            avId = None
-            if hasattr(self, 'doId'):
-                avId = self.doId
-
-            base.talkAssistant.receiveOpenTalk(avId, self.getName(), 0, None, chatString)
 
 
 

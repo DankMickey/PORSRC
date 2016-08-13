@@ -472,7 +472,7 @@ class GuildPage(SocialPage.SocialPage):
         timeBefore = globalClock.getRealTime()
         for info in memlist:
             cullList.append(info[0])
-            self.membersList.updateOrAddMember(info[0], None, PirateMemberList.MODE_GUILD, list(info))
+            self.membersList.updateOrAddMember(info[0], PirateMemberList.MODE_GUILD, list(info))
 
         self.membersList.removeNotOnAvList(cullList)
         self.startRecountMembers()
@@ -489,12 +489,12 @@ class GuildPage(SocialPage.SocialPage):
 
 
     def addMember(self, info):
-        self.membersList.addMember(info[0], None, PirateMemberList.MODE_GUILD, list(info))
+        self.membersList.addMember(info[0], PirateMemberList.MODE_GUILD, list(info))
         self.startRecountMembers()
 
 
     def removeMember(self, avatarId):
-        self.membersList.removeMember(avatarId, None, PirateMemberList.MODE_GUILD)
+        self.membersList.removeMember(avatarId, PirateMemberList.MODE_GUILD)
         self.startRecountMembers()
 
 

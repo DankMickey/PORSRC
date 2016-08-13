@@ -260,6 +260,9 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
         self.battleCollisionsDisabled = False
         self.protectionEffect = None
         self.efficiency = False
+    
+    def setTalk(self, *args):
+        DistributedReputationAvatar.setTalk(self, *args)
 
     if WantHpCheck:
 
@@ -3246,7 +3249,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
         DistributedReputationAvatar.updateReputation(self, category, value)
 
 
-    def showHpText(self, number, pos = 0, bonus = 0, duration = 2.0, scale = 0.5, basicPenalty = 0, crewBonus = 0, doubleXPBonus = 0, holidayBonus = 0, potionBonus = 0, itemEffects = []):
+    def showHpText(self, number, pos = 0, bonus = 0, duration = 2.0, scale = 0.5, crewBonus = 0, doubleXPBonus = 0, holidayBonus = 0, potionBonus = 0, itemEffects = []):
         if self.HpTextEnabled and not (self.ghostMode) and base.showGui:
             if pos != 0 and self.hasNetPythonTag('MonstrousObject'):
                 n = NodePath('empty')
@@ -3272,9 +3275,6 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
 
 
             mods = { }
-            if basicPenalty > 0:
-                mods[TextEffect.MOD_BASICPENALTY] = basicPenalty
-
             if crewBonus > 0:
                 mods[TextEffect.MOD_CREWBONUS] = crewBonus
 
@@ -3524,14 +3524,13 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
         return self.motionFSM.isAirborne()
 
 
-    def printExpText(self, totalExp, colorSetting, basicPenalty, crewBonus, doubleXPBonus, holidayBonus, potionBonus):
+    def printExpText(self, totalExp, colorSetting, crewBonus, doubleXPBonus, holidayBonus, potionBonus):
         taskMgr.doMethodLater(0.5, self.showHpText, self.taskName('printExp'), [
             totalExp,
             0,
             colorSetting,
             5.0,
             0.5,
-            basicPenalty,
             crewBonus,
             doubleXPBonus,
             holidayBonus,

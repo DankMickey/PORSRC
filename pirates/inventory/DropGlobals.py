@@ -1,6 +1,5 @@
 from panda3d.core import ConfigVariable, ConfigVariableBool
 from direct.showbase.PythonUtil import *
-from direct.showbase import AppRunnerGlobal
 from pirates.pirate import AvatarTypes
 from pirates.battle import EnemyGlobals
 from pirates.ship import ShipGlobals

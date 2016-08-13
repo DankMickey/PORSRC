@@ -794,21 +794,20 @@ class DistributedSimpleShip(DistributedMovingObject, Teamable, DistributedFlagsh
         pass
 
 
-    def printExpText(self, totalExp, colorSetting, basicPenalty, crewBonus, doubleXPbonus, holidayBonus, potionBonus):
+    def printExpText(self, totalExp, colorSetting, crewBonus, doubleXPbonus, holidayBonus, potionBonus):
         taskMgr.doMethodLater(0.5, self.showHpText, self.taskName('printExp'), [
             totalExp,
             colorSetting,
             6.0,
             1.0,
             0,
-            basicPenalty,
             crewBonus,
             doubleXPbonus,
             holidayBonus,
             potionBonus])
 
 
-    def showHpText(self, number, bonus = 0, duration = 2.0, scale = 1.0, pos = None, basicPenalty = 0, crewBonus = 0, doubleXPBonus = 0, holidayBonus = 0, potionBonus = 0, itemEffects = []):
+    def showHpText(self, number, bonus = 0, duration = 2.0, scale = 1.0, pos = None, crewBonus = 0, doubleXPBonus = 0, holidayBonus = 0, potionBonus = 0, itemEffects = []):
         if self.isEmpty():
             return None
 
@@ -830,9 +829,6 @@ class DistributedSimpleShip(DistributedMovingObject, Teamable, DistributedFlagsh
 
 
         mods = { }
-        if basicPenalty > 0:
-            mods[TextEffect.MOD_BASICPENALTY] = basicPenalty
-
         if crewBonus > 0:
             mods[TextEffect.MOD_CREWBONUS] = crewBonus
 

@@ -25,7 +25,7 @@ class DistributedGuildManager(GuildManager):
         message = decodeSCQuestMsgInt(questInt, msgType, taskNum)
         if senderName:
             displayMess = '%s %s %s' % (senderName, OTPLocalizer.GuildPrefix, message)
-            base.talkAssistant.receiveGuildMessage(displayMess, senderId, senderName)
+            base.talkAssistant.receiveGuildMessage(senderId, senderName, displayMess)
         else:
             self.pendingMsgs.append([
                 senderId,

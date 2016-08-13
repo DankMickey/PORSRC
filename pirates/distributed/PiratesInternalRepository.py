@@ -5,7 +5,7 @@ from direct.distributed.PyDatagram import PyDatagram
 from direct.distributed.MsgTypes import *
 from otp.distributed.OtpDoGlobals import *
 from PiratesNetMessengerAI import PiratesNetMessengerAI
-import urlparse, pymongo
+import urlparse, pymongo, traceback, sys
 
 class PiratesInternalRepository(AstronInternalRepository):
     GameGlobalsId = OTP_DO_ID_PIRATES

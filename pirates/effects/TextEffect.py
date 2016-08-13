@@ -15,11 +15,10 @@ MOD_TYPE_SEQUENTIAL = 2
 MOD_TYPE_SEQUENTIAL_CONTINUOUS = 3
 MOD_TYPE_SEQUENTIAL_COMPACT = 4
 MOD_TYPE_TOTAL = 5
-MOD_BASICPENALTY = 0
-MOD_CREWBONUS = 1
-MOD_2XPBONUS = 2
-MOD_HOLIDAYBONUS = 3
-MOD_POTIONBONUS = 4
+MOD_CREWBONUS = 0
+MOD_2XPBONUS = 1
+MOD_HOLIDAYBONUS = 2
+MOD_POTIONBONUS = 3
 
 def genText(value, type, modType = MOD_TYPE_MULTIPLE, modifiers = { }, effects = { }):
     if value < 0:
@@ -47,7 +46,6 @@ def genText(value, type, modType = MOD_TYPE_MULTIPLE, modifiers = { }, effects =
         finalText += '!'
 
     mods = []
-    basicPenalty = 0
     crewBonus = 0
     doubleXPBonus = 0
     holidayBonus = 0
@@ -68,13 +66,6 @@ def genText(value, type, modType = MOD_TYPE_MULTIPLE, modifiers = { }, effects =
     if MOD_CREWBONUS in modtypes:
         crewBonus = modifiers.get(MOD_CREWBONUS)
         baseVal -= crewBonus
-
-    if MOD_BASICPENALTY in modtypes:
-        basicPenalty = modifiers.get(MOD_BASICPENALTY)
-        baseVal += basicPenalty
-
-    if basicPenalty > 0:
-        mods.append(TextEffect.TextEffectMod(0, -1 * basicPenalty, PLocalizer.EXP_Nerf, modType))
 
     if crewBonus > 0:
         mods.append(TextEffect.TextEffectMod(0, crewBonus, PLocalizer.CrewBonus, modType))

@@ -976,7 +976,7 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
         self.dockingLOD = None
 
     def getCoreCache(self):
-        return base.bamCache.lookup(Filename('/%s_%s_core_%s_%s.bam' % (self.name, self.uniqueId, base.launcher.getServerVersion(), base.gridDetail)), 'bam')
+        return base.bamCache.lookup(Filename('/%s_%s_core_%s_%s.bam' % (self.name, self.uniqueId, base.cr.getServerVersion(), base.gridDetail)), 'bam')
 
     def getGridCache(self):
         return base.bamCache.lookup(Filename('/%s_%s_grid_%s.bam' % (self.name, self.uniqueId, base.gridDetail)), 'bam')
@@ -988,10 +988,10 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
         return base.bamCache.lookup(Filename('/%s_%s_large_%s.bam' % (self.name, self.uniqueId, base.gridDetail)), 'bam')
 
     def getIslandCache(self):
-        return base.bamCache.lookup(Filename('/%s_%s_island_%s_%s.bam' % (self.name, self.uniqueId, base.launcher.getServerVersion(), base.gridDetail)), 'bam')
+        return base.bamCache.lookup(Filename('/%s_%s_island_%s_%s.bam' % (self.name, self.uniqueId, base.cr.getServerVersion(), base.gridDetail)), 'bam')
 
     def getDockingCache(self):
-        return base.bamCache.lookup(Filename('/%s_%s_island_docking_%s_%s.bam' % (self.name, self.uniqueId, base.launcher.getServerVersion(), base.gridDetail)), 'bam')
+        return base.bamCache.lookup(Filename('/%s_%s_island_docking_%s_%s.bam' % (self.name, self.uniqueId, base.cr.getServerVersion(), base.gridDetail)), 'bam')
 
     def getSiegeTeam(self):
         return base.cr.distributedDistrict.worldCreator.getPvpIslandTeam(self.uniqueId)

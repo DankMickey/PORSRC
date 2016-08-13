@@ -47,21 +47,6 @@ class ChatPanel(DirectFrame, FSM):
         self.shadowOffset = (0.089, 0.089)
         self.shadowColor = (0.0, 0.0, 0.0, 1.0)
         self.fontColorStyle = 1
-        if base.config.GetBool('want-random-chatStyle', 0):
-            self.chatFont = random.choice([
-                PiratesGlobals.getInterfaceFont(),
-                PiratesGlobals.getInterfaceOutlineFont()])
-            self.nameFont = random.choice([
-                PiratesGlobals.getInterfaceFont(),
-                PiratesGlobals.getInterfaceOutlineFont()])
-            self.shadowOffset = random.choice([
-                (0.089, 0.089),
-                (0.0, 0.0)])
-            self.fontColorStyle = random.choice([
-                0,
-                1,
-                2])
-
         self.lineDict = { }
         self.renderedLineDict = { }
         self.renderedLines = []
@@ -309,9 +294,9 @@ class ChatPanel(DirectFrame, FSM):
         self.chatBar.request('ShipPVP')
 
 
-    def activateWhisperChat(self, whisperId, toPlayer = False):
+    def activateWhisperChat(self, whisperId):
         self.requestPreferredMode()
-        name = base.talkAssistant.findName(whisperId, toPlayer)
+        name = base.talkAssistant.findName(whisperId)
         self.chatBar.request('Whisper', name, whisperId)
 
 
@@ -469,8 +454,6 @@ class ChatPanel(DirectFrame, FSM):
             plainName = message.getReceiverAvatarName()
         elif message.getSenderAvatarName():
             plainName = message.getSenderAvatarName()
-        elif message.getSenderAccountName():
-            plainName = message.getSenderAccountName()
 
         if message.getTalkType() in (INFO_SYSTEM, INFO_GAME, UPDATE_FRIEND, CANNON_DEFENSE, INFO_GUILD):
             if wantReceiver:
@@ -484,18 +467,12 @@ class ChatPanel(DirectFrame, FSM):
                 useName = plainName
         elif message.getTalkType() == INFO_DEV:
             useName = ''
-        elif message.getTalkType() in (TALK_OPEN, TALK_WHISPER, TALK_ACCOUNT, AVATAR_THOUGHT):
+        elif message.getTalkType() in (TALK_OPEN, TALK_WHISPER, AVATAR_THOUGHT):
             if message.getTalkType() == TALK_WHISPER:
                 if message.getSenderAvatarId() == localAvatar.doId:
                     plainName = OTPLocalizer.WhisperToFormatName % message.getReceiverAvatarName()
                 else:
                     plainName = OTPLocalizer.WhisperFromFormatName % message.getSenderAvatarName()
-            elif message.getTalkType() == TALK_ACCOUNT:
-                if message.getSenderAccountId() == base.cr.accountDetailRecord.playerAccountId:
-                    plainName = OTPLocalizer.WhisperToFormatName % message.getReceiverAccountName()
-                else:
-                    plainName = OTPLocalizer.WhisperFromFormatName % message.getSenderAccountName()
-
             if message.getTalkType() == AVATAR_THOUGHT:
                 if message.getSenderAvatarId() == localAvatar.doId:
                     plainName = OTPLocalizer.ThoughtSelfFormatName
@@ -503,7 +480,6 @@ class ChatPanel(DirectFrame, FSM):
                     plainName = OTPLocalizer.ThoughtOtherFormatName % message.getSenderAvatarName()
 
             useName = '\x01' + MESSAGE_COLOR_TABLE[message.getTalkType()][self.fontColorStyle] + '\x01' + plainName + divider + '\x01' + MESSAGE_STYLE_TABLE[message.getTalkType()][self.fontColorStyle] + '\x01'
-
         elif message.getTalkType() == TALK_GM:
             useName = '[' + PLocalizer.TalkGMLabel + '] ' + plainName + divider
         elif message.getTalkType() == TALK_GUILD:
@@ -545,26 +521,10 @@ class ChatPanel(DirectFrame, FSM):
                 buttonArgs = [
                     message.getSenderAvatarId(),
                     useName]
-        elif message.getTalkType() == TALK_ACCOUNT and message.getSenderAccountId():
-            if message.getSenderAccountId() == base.cr.accountDetailRecord.playerAccountId:
-                buttonCommand = self.handlePlayerPress
-                buttonArgs = [
-                    message.getReceiverAccountId(),
-                    useName]
-            else:
-                buttonCommand = self.handlePlayerPress
-                buttonArgs = [
-                    message.getSenderAccountId(),
-                    useName]
         elif message.getSenderAvatarId():
             buttonCommand = self.handleAvatarPress
             buttonArgs = [
                 message.getSenderAvatarId(),
-                useName]
-        elif message.getSenderAccountId():
-            buttonCommand = self.handlePlayerPress
-            buttonArgs = [
-                message.getSenderAccountId(),
                 useName]
 
         if message.getTalkType() == INFO_GUILD and message.getReceiverAvatarId():
@@ -600,6 +560,8 @@ class ChatPanel(DirectFrame, FSM):
             messageName = message.getSenderAvatarName() + ': '
         messageBody = message.getBody()
         chatString = ''
+        if not message.getBody():
+            return
         if '%s' in message.getBody() and message.getTalkType() == INFO_OPEN:
             someMessage = message.getBody() % messageName
         elif '%s' in message.getBody() and message.getTalkType() == INFO_GUILD:
@@ -688,6 +650,8 @@ class ChatPanel(DirectFrame, FSM):
             messageIdList.append(message.getMessageId())
             if not self.renderedLineDict.get(message):
                 msg = self.decodeOpenMessage(message)
+                if not msg:
+                    continue
                 messageRenderedLines = []
                 self.renderedLineDict[message] = messageRenderedLines
                 for mline in msg.split('\n'):
@@ -862,9 +826,3 @@ class ChatPanel(DirectFrame, FSM):
     def handleAvatarPress(self, avId, avName):
         if hasattr(base, 'localAvatar') and base.localAvatar.guiMgr:
             base.localAvatar.guiMgr.handleAvatarDetails(avId, avName)
-
-
-
-    def handlePlayerPress(self, pId, pName):
-        if hasattr(base, 'localAvatar') and base.localAvatar.guiMgr:
-            base.localAvatar.guiMgr.handlePlayerDetails(pId, pName)

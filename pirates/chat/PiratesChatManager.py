@@ -18,13 +18,11 @@ from pirates.piratesgui import GuiPanel
 from pirates.piratesgui import ChatPanel
 from PChatInputSpeedChat import PChatInputSpeedChat
 from PChatInputEmote import PChatInputEmote
-from PChatInputTyped import PChatInputTyped
 from PChatInputWhiteList import PChatInputWhiteList
 from pirates.uberdog.UberDogGlobals import InventoryType
 
 class PiratesChatManager(ChatManagerV2.ChatManagerV2):
     notify = DirectNotifyGlobal.directNotify.newCategory('PiratesChatManager')
-    execChat = base.config.GetBool('exec-chat', 0)
 
     def __init__(self):
         ChatManagerV2.ChatManagerV2.__init__(self)
@@ -38,7 +36,7 @@ class PiratesChatManager(ChatManagerV2.ChatManagerV2):
         self.shipPVPChatAllowed = True
         self.crewChatAllowed = True
         self.guildChatAllowed = True
-        self.openChatEnabled = base.cr.accountDetailRecord.canOpenChatAndNotGetBooted()
+        self.openChatEnabled = True
         if self.whiteListEnabled:
             pass
         self.toggleEnabled = self.openChatEnabled
@@ -162,43 +160,34 @@ class PiratesChatManager(ChatManagerV2.ChatManagerV2):
             else:
                 self.activateChat('All')
         elif self.preferredMode == 'Whisper' and self.lastWhisper:
-            (id, isPlayer) = self.lastWhisper
+            id = self.lastWhisper
             handle = None
             if id:
-                if isPlayer:
-                    handle = base.cr.identifyPlayer(id)
-                else:
-                    handle = base.cr.identifyAvatar(id)
+                handle = base.cr.identifyAvatar(id)
             if handle:
-                self.activateWhisperChat(id, isPlayer)
+                self.activateWhisperChat(id)
                 self.chatPanel.activateWhisperChat(*self.lastWhisper)
             else:
                 self.activateChat(self.lastPreferred)
 
-    def activateWhisperChat(self, whisperId, toPlayer = False):
+    def activateWhisperChat(self, whisperId):
         self.stopFadeTimer()
         if self.preferredMode != 'Whisper':
             self.lastPreferred = self.preferredMode
 
         self.preferredMode = 'Whisper'
-        self.lastWhisper = (whisperId, toPlayer)
-        self.chatPanel.activateWhisperChat(whisperId, toPlayer)
-        if toPlayer:
-            self.speedEntry.requestMode('PlayerWhisper', whisperId)
-            self.speedEntry.setWhisperTo(whisperId, toPlayer)
+        self.lastWhisper = whisperId
+        self.chatPanel.activateWhisperChat(whisperId)
+        
+        handle = base.cr.identifyAvatar(whisperId)
+        
+        if handle and handle.isOnline():
+            self.speedEntry.requestMode('AvatarWhisper', whisperId)
+            self.speedEntry.setWhisperTo(whisperId)
             if self.whiteListActive:
-                self.whiteListEntry.requestMode('PlayerWhisper', whisperId)
-
+                self.whiteListEntry.requestMode('AvatarWhisper', whisperId)
         else:
-            handle = base.cr.identifyAvatar(whisperId)
-            if handle and handle.isOnline():
-                self.speedEntry.requestMode('AvatarWhisper', whisperId)
-                self.speedEntry.setWhisperTo(whisperId, toPlayer)
-                if self.whiteListActive:
-                    self.whiteListEntry.requestMode('AvatarWhisper', whisperId)
-
-            else:
-                self.activateChat(self.lastPreferred)
+            self.activateChat(self.lastPreferred)
 
     def activateSpeedChat(self):
         messenger.send('openedSpeedChat')
@@ -224,11 +213,7 @@ class PiratesChatManager(ChatManagerV2.ChatManagerV2):
         if self.whiteListActive:
             text = self.whiteListEntry.get(plain = True)
             if 'Whisper' in self.preferredMode:
-                (whisperId, toPlayer) = self.lastWhisper
-                if toPlayer:
-                    self.whiteListEntry.requestMode('PlayerWhisper', whisperId)
-                else:
-                    self.whiteListEntry.requestMode('AvatarWhisper', whisperId)
+                self.whiteListEntry.requestMode('AvatarWhisper', self.lastWhisper)
             else:
                 self.whiteListEntry.requestMode(self.preferredMode + 'Chat')
             self.whiteListEntry.activate()
@@ -239,10 +224,6 @@ class PiratesChatManager(ChatManagerV2.ChatManagerV2):
         else:
             text = self.whiteListEntry.get(plain = True)
             self.whiteListEntry.requestMode('Off')
-            if 'Whisper' in self.preferredMode:
-                (whisperId, toPlayer) = self.lastWhisper
-                if toPlayer:
-                    pass
 
     def speedChatDone(self, success = True):
         self.deactivateChat(success)
@@ -335,20 +316,6 @@ class PiratesChatManager(ChatManagerV2.ChatManagerV2):
     def start(self):
         self.fsm.request('mainMenu')
         self.accept('enter', self.activateChat)
-        self.accept('alt-enter', self.activateWhisperReply)
-        self.accept('/', self.beginSlashCommand)
-        self.accept('shift-`', self.beginGMCommand)
-
-    def beginGMCommand(self):
-        if localAvatar.isGM() or base.cr.wantMagicWords:
-            self.activateChat('All')
-            self.whiteListEntry.set('~')
-            self.whiteListEntry.guiItem.setCursorPosition(1)
-
-    def beginSlashCommand(self):
-        self.activateChat('All')
-        self.whiteListEntry.set('/')
-        self.whiteListEntry.guiItem.setCursorPosition(1)
 
     def enterNoSecretChatWarning(self):
         self.warningDialog = PDialog.PDialog(text = PLocalizer.ChatManagerNoFriendsWarning, style = OTPDialog.Acknowledge, command = self.noSecretChatWarningAck)
@@ -359,20 +326,6 @@ class PiratesChatManager(ChatManagerV2.ChatManagerV2):
     def exitNoSecretChatWarning(self):
         self.warningDialog.destroy()
         self.warningDialog = None
-
-    def activateWhisperReply(self):
-        (id, isPlayer) = base.talkAssistant.getWhisperReplyId()
-        handle = None
-        if id:
-            if isPlayer:
-                handle = base.cr.identifyPlayer(id)
-            else:
-                handle = base.cr.identifyAvatar(id)
-
-        if handle:
-            self.activateWhisperChat(id, isPlayer)
-        else:
-            self.activateChat(self.lastPreferred)
 
     def addGMSpeedChat(self):
         self.speedEntry.addGMSpeedChat()

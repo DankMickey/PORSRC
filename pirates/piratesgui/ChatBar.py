@@ -122,8 +122,8 @@ class ChatBar(DirectFrame, FSM):
         FSM.__init__(self, 'ChatBar')
         if base.config.GetBool('whitelist-chat-enabled', 0):
             pass
-        self.whiteListEnabled = base.cr.accountDetailRecord.WLChatEnabled
-        self.openChatEnabled = base.cr.accountDetailRecord.canOpenChatAndNotGetBooted()
+        self.whiteListEnabled = True
+        self.openChatEnabled = True
         if not self.whiteListEnabled:
             pass
         self.noChat = not (self.openChatEnabled)

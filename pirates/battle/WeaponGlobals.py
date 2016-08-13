@@ -2,7 +2,6 @@ import copy
 import math
 from direct.interval.IntervalGlobal import *
 from direct.showbase.PythonUtil import *
-from direct.showbase import AppRunnerGlobal
 from pirates.battle.EnemySkills import *
 from pirates.battle import CannonGlobals
 from pirates.piratesbase import PLocalizer

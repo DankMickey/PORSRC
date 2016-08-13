@@ -7,12 +7,10 @@ from direct.gui.DirectGui import *
 from direct.gui import DirectGuiGlobals
 from otp.otpbase import OTPLocalizer
 from direct.task import Task
-from otp.chat.ChatInputTyped import ChatInputTyped
 from otp.nametag.NametagConstants import CFSpeech, CFTimeout, CFThought
 
 class ChatInputWhiteList(FSM.FSM, DirectEntry):
     notify = DirectNotifyGlobal.directNotify.newCategory('ChatInputWhiteList')
-    ExecNamespace = None
 
     def __init__(self, parent = None, **kw):
         FSM.FSM.__init__(self, 'ChatInputWhiteList')
@@ -52,21 +50,6 @@ class ChatInputWhiteList(FSM.FSM, DirectEntry):
     def requestMode(self, mode, *args):
         self.request(mode, *args)
 
-    def defaultFilter(self, request, *args):
-        if request == 'AllChat':
-            pass
-        if request == 'PlayerWhisper':
-            if not base.talkAssistant.checkWhisperSpeedChatPlayer(self.whisperId):
-                messenger.send('Chat-Failed player typed chat test')
-                return None
-
-        elif request == 'AvatarWhisper':
-            if not base.talkAssistant.checkWhisperSpeedChatAvatar(self.whisperId):
-                messenger.send('Chat-Failed avatar typed chat test')
-                return None
-
-        return FSM.FSM.defaultFilter(self, request, *args)
-
     def enterOff(self):
         self.deactivate()
 
@@ -100,15 +83,6 @@ class ChatInputWhiteList(FSM.FSM, DirectEntry):
 
     def exitShipPVPChat(self):
         pass
-
-    def enterPlayerWhisper(self, whisperId):
-        self.tempText = self.get()
-        self.activate()
-        self.whisperId = whisperId
-
-    def exitPlayerWhisper(self):
-        self.set(self.tempText)
-        self.whisperId = None
 
     def enterAvatarWhisper(self, whisperId):
         self.tempText = self.get()
@@ -156,28 +130,7 @@ class ChatInputWhiteList(FSM.FSM, DirectEntry):
         text = self.get(plain = True)
         if text:
             self.set('')
-            if base.config.GetBool('exec-chat', 0) and text[0] == '>':
-                if text[1:]:
-                    ext = base.talkAssistant.execMessage(text[1:])
-                    base.talkAssistant.receiveDeveloperMessage(text)
-                    base.talkAssistant.receiveDeveloperMessage(ext)
-                    base.localAvatar.setChatAbsolute(ext, CFSpeech | CFTimeout)
-                    if self.wantHistory:
-                        self.addToHistory(text)
-
-                    localAvatar.chatMgr.deactivateChat()
-                    localAvatar.chatMgr.activateChat()
-                    self.set('>')
-                    self.setCursorPosition(1)
-                    return None
-                else:
-                    localAvatar.chatMgr.deactivateChat()
-            elif base.config.GetBool('want-slash-commands', 1) and text[0] == '/':
-                base.talkAssistant.executeSlashCommand(text)
-            elif (localAvatar.isGM() or base.cr.wantMagicWords) and text[0] == '`':
-                base.talkAssistant.executeGMCommand(text)
-            else:
-                self.sendChatByMode(text)
+            self.sendChatByMode(text)
             if self.wantHistory:
                 self.addToHistory(text)
 
@@ -193,9 +146,7 @@ class ChatInputWhiteList(FSM.FSM, DirectEntry):
     def sendChatByMode(self, text):
         state = self.getCurrentOrNextState()
         messenger.send('sentRegularChat')
-        if state == 'PlayerWhisper':
-            base.talkAssistant.sendAccountTalk(text, self.whisperId)
-        elif state == 'AvatarWhisper':
+        if state == 'AvatarWhisper':
             base.talkAssistant.sendWhisperTalk(text, self.whisperId)
         else:
             base.talkAssistant.sendOpenTalk(text)
@@ -231,44 +182,10 @@ class ChatInputWhiteList(FSM.FSM, DirectEntry):
         self.historyIndex %= len(self.history)
         self.setCursorPosition(len(self.get()))
 
-    def importExecNamespace(self):
-        pass
-
-    def _ChatInputWhiteList__execMessage(self, message):
-        print '_execMessage %s' % message
-        if not ChatInputTyped.ExecNamespace:
-            ChatInputTyped.ExecNamespace = { }
-            self.importExecNamespace()
-
-        try:
-            return str(eval(message, globals(), ChatInputTyped.ExecNamespace))
-        except SyntaxError:
-
-            try:
-                exec message in globals(), ChatInputTyped.ExecNamespace
-                return 'ok'
-            except:
-                exception = sys.exc_info()[0]
-                extraInfo = sys.exc_info()[1]
-                if extraInfo:
-                    return str(extraInfo)
-                else:
-                    return str(exception)
-
-            exception = sys.exc_info()[0]
-            extraInfo = sys.exc_info()[1]
-            if extraInfo:
-                return str(extraInfo)
-            else:
-                return str(exception)
-
     def applyFilter(self, keyArgs, strict = False):
         text = self.get(plain = True)
         if len(text) > 0:
             if text[0] == '/':
-                self.guiItem.setAcceptEnabled(True)
-                return None
-            elif text[0] == '>' and base.config.GetBool('exec-chat', 0):
                 self.guiItem.setAcceptEnabled(True)
                 return None
             elif text[0] == '~' and base.cr.wantMagicWords:
