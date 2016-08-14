@@ -21,7 +21,7 @@ class LavaBurst(PooledEffect, EffectController):
 
         self.loopEffect = None
         self.effectScale = 1.0
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/pir_t_efx_msc_lavaSplash')
         if not LavaBurst.particleDummy:
             LavaBurst.particleDummy = base.effectsRoot.attachNewNode(ModelNode('LavaBurstParticleDummy'))

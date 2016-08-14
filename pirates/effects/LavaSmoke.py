@@ -25,7 +25,7 @@ class LavaSmoke(PooledEffect, EffectController):
             LavaSmoke.particleDummy.setDepthWrite(0)
             LavaSmoke.particleDummy.setLightOff()
 
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/particleFlameSmoke')
         self.f = ParticleEffect.ParticleEffect('LavaSmoke')
         self.f.reparentTo(self)

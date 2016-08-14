@@ -20,7 +20,7 @@ class WaterMist(PooledEffect, EffectController):
         self.effectScale = 1.0
         self.f = ParticleEffect.ParticleEffect('WaterMist')
         self.f.reparentTo(self)
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/particleWhiteSteam')
         self.cardScale = 64.0
         self.p0 = Particles.Particles('particles-1')

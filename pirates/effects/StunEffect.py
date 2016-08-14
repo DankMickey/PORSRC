@@ -16,7 +16,7 @@ class StunEffect(PooledEffect, EffectController):
         EffectController.__init__(self)
         self.dummy = self.attachNewNode(ModelNode('dummyNode'))
         self.dummy2 = self.dummy.attachNewNode(ModelNode('dummyNode2'))
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/particleSpark')
         self.setDepthWrite(0)
         self.setColorScaleOff()

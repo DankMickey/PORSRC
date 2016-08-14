@@ -21,7 +21,7 @@ class PistolFlame(PooledEffect, EffectController):
         EffectController.__init__(self)
         self.setColorScaleOff()
         self.startCol = Vec4(0.5, 0.5, 0.5, 1)
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/particleDot')
         if not PistolFlame.particleDummy:
             PistolFlame.particleDummy = render.attachNewNode(ModelNode('FireParticleDummy'))

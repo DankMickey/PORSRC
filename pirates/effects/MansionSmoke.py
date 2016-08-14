@@ -22,7 +22,7 @@ class MansionSmoke(PooledEffect, EffectController):
             self.reparentTo(parent)
 
         self._accelerateTime = 0
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/particleBlackSmoke')
         if not MansionSmoke.particleDummy:
             MansionSmoke.particleDummy = render.attachNewNode(ModelNode('MansionSmokeParticleDummy'))

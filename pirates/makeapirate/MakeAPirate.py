@@ -19,7 +19,7 @@ from pirates.pirate import Pirate
 from pirates.pirate import LocalPirate
 from pirates.pirate import Human
 from pirates.pirate import HumanDNA
-from pirates.cutscene import Cutscene, CutsceneData
+from pirates.cutscene import Cutscene, CutsceneData, CutsceneActor
 from pirates.npc import Skeleton
 from pirates.npc.Cast import *
 from pirates.piratesbase import PiratesGlobals
@@ -478,7 +478,7 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
             self.offsetZoomHpr = camera.getHpr(render)
         base.loadingScreen.hide()
         base.transitions.fadeIn()
-        self.cutsceneStart(csId = 0, otherLocalAvatar=self.getPirate()) # Camera angle isn't perf, but it works.
+        self.cutsceneStart(csId = 0) # Camera angle isn't perf, but it works.
 
     def exit(self):
         taskMgr.remove('avCreate-ZoomTask')
@@ -2676,7 +2676,9 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
         def destroyCutscene(cs = cs):
             cs.cutscene.destroy()
 
-        c = Cutscene.Cutscene(base.cr, name, DelayedFunctor(destroyCutscene, '~cutscene-destroy'), otherLocalAvatar=otherLocalAvatar)
+        c = Cutscene.Cutscene(base.cr, name, DelayedFunctor(destroyCutscene, '~cutscene-destroy'))
+        c.otherLocalAvatar = c.getActor(CutsceneActor.CutJackSparrow.getActorKey())
+        print str(c.otherLocalAvatar)
         cs.cutscene = c
         c.play()
         destroyCutscene = None

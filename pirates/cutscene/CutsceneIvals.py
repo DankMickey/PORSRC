@@ -315,7 +315,7 @@ def Cutscene2_2ivals(cutscene):
         motion_blur.stash()
 
     bg3Cutlass.flattenStrong()
-    loader.loadModel('models/effects/particleMaps')
+    loader.loadModel('phase_2/models/effects/particleMaps')
     cutlassDict = [
         bg1Cutlass,
         bg2Cutlass,

@@ -27,7 +27,7 @@ class MonkeyPanic(PooledEffect, EffectController):
         self.setLightOff()
         self.f = ParticleEffect.ParticleEffect('MonkeyPanic')
         self.f.reparentTo(self)
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/pir_t_efx_msc_glowingRays')
         self.p0 = Particles.Particles('particles-1')
         self.p0.setFactory('ZSpinParticleFactory')

@@ -22,7 +22,7 @@ class SwordFlame(PooledEffect, EffectController):
 
         self.duration = 10.0
         self.effectScale = 1.0
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/particleFire2')
         self.setDepthWrite(0)
         self.setFogOff()

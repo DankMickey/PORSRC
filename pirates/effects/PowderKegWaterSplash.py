@@ -18,7 +18,7 @@ class PowderKegWaterSplash(PooledEffect, EffectController):
         self.effectScale = 1.0
         self.f = ParticleEffect.ParticleEffect('PowderKegWaterSplash')
         self.f.reparentTo(self)
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/particleSplash')
         self.cardScale = 64.0
         self.p1 = Particles.Particles('particles-1')

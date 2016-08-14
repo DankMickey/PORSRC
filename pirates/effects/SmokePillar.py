@@ -16,7 +16,7 @@ class SmokePillar(PooledEffect, EffectController):
     def __init__(self):
         PooledEffect.__init__(self)
         EffectController.__init__(self)
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/particleSmoke')
         self.speed = 20.0
         self.radius = 7.0

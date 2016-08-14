@@ -14,7 +14,7 @@ class LavaSplats(NodePath, EffectController):
     def __init__(self):
         NodePath.__init__(self, 'LavaSplats')
         EffectController.__init__(self)
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/pir_t_efx_msc_lavaSplash')
         self.duration = 10.0
         self.particleDummy = self.attachNewNode(ModelNode('LavaSplatsParticleDummy'))

@@ -19,7 +19,7 @@ class VoodooExplosion(PooledEffect, EffectController):
         self.setDepthWrite(0)
         self.setLightOff()
         self.effectColor = Vec4(1, 1, 1, 1)
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/particleWhiteSteam')
         self.card2 = model.find('**/particleDarkSmoke')
         self.f = ParticleEffect.ParticleEffect('VoodooExplosion')

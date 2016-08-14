@@ -20,7 +20,7 @@ class VolcanoSmoke(NodePath, EffectController):
         self.particleDummy.setLightOff()
         self.particleDummy.clearFog()
         self.particleDummy.setBin('fixed', 10)
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/particleWhiteSmoke')
         self.f = ParticleEffect.ParticleEffect('VolcanoSmoke')
         self.p0 = Particles.Particles('particles-1')

@@ -28,7 +28,7 @@ class ThrowDirt2(PooledEffect, EffectController):
 
         self.f = ParticleEffect.ParticleEffect('ThrowDirt2')
         self.f.reparentTo(self)
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/particleRockShower')
         self.p0 = Particles.Particles('particles-1')
         self.p0.setFactory('PointParticleFactory')

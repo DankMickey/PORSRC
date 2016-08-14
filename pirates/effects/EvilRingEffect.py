@@ -32,7 +32,7 @@ class EvilRingEffect(PooledEffect, EffectController):
         self.effectScale = 1.0
         self.effectColor = Vec4(1, 1, 1, 1)
         self.duration = 4.0
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/particleDarkSmoke')
         self.f = ParticleEffect.ParticleEffect('EvilRingEffect')
         self.f.reparentTo(self)

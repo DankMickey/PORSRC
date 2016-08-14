@@ -17,7 +17,7 @@ class FlameTrail(PooledEffect, EffectController):
     def __init__(self):
         PooledEffect.__init__(self)
         EffectController.__init__(self)
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/pir_t_efx_msc_lavaSplash')
         if not FlameTrail.particleDummy:
             FlameTrail.particleDummy = render.attachNewNode(ModelNode('FlameTrailParticleDummy'))

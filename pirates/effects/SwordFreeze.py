@@ -21,7 +21,7 @@ class SwordFreeze(PooledEffect, EffectController):
             self.reparentTo(effectParent)
 
         self.duration = 10.0
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/particleWhiteSmoke')
         self.setDepthWrite(0)
         self.setFogOff()

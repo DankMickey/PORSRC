@@ -40,7 +40,7 @@ class BlackhandCurseSword(PooledEffect, EffectController):
         self.effectActor.setScale(1, 1.2, 1)
         self.effectActor.setBin('fixed', 2)
         self.joint = self.effectActor.find('**/joint1')
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/particleEvilSmoke')
         if not self.particleDummy:
             self.particleDummy = render.attachNewNode(ModelNode('FlamingSkullParticleDummy'))

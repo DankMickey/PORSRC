@@ -18,7 +18,7 @@ class SparkBurst(PooledEffect, EffectController):
     def __init__(self):
         PooledEffect.__init__(self)
         EffectController.__init__(self)
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/particleGlow')
         self.blueCard = model.find('**/particleGlowBlue')
         self.darkCard = model.find('**/effectDarkGlow')

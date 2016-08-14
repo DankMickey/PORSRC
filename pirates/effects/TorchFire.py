@@ -20,7 +20,7 @@ class TorchFire(EffectController, NodePath):
         if newParent:
             self.reparentTo(newParent)
 
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/particleFlame')
         if not TorchFire.particleDummy:
             TorchFire.particleDummy = base.effectsRoot.attachNewNode(ModelNode('TorchFireParticleDummy'))

@@ -22,7 +22,7 @@ class LightFire(PooledEffect, EffectController):
             self.reparentTo(effectParent)
 
         self.duration = 10.0
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/particleFire2')
         if not LightFire.particleDummy:
             LightFire.particleDummy = base.effectsRoot.attachNewNode(ModelNode('FireParticleDummy'))

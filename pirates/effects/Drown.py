@@ -25,7 +25,7 @@ class Drown(PooledEffect, EffectController):
         self.setLightOff()
         self.f = ParticleEffect.ParticleEffect('Drown')
         self.f.reparentTo(self)
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/particleGunSmoke')
         self.p0 = Particles.Particles('particles-1')
         self.p0.setFactory('PointParticleFactory')

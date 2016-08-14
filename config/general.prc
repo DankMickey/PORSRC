@@ -231,7 +231,7 @@ exclude-texture-scale pir_t_gui_pot_*
 exclude-texture-scale pir_t_gui_srp_*
 
 # GLSL DEBUG
-gl-check-errors #t
+gl-check-errors #f
 
 # GUI
 hide-gui #f

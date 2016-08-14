@@ -19,7 +19,7 @@ class TentacleFire(PooledEffect, EffectController):
         if effectParent:
             self.reparentTo(effectParent)
 
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/particleFire2')
         self.effectScale = 1.0
         if not TentacleFire.particleDummy:

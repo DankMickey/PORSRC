@@ -1919,7 +1919,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
 
         def startGlow():
             geom = av.getGeomNode()
-            model = loader.loadModel('models/effects/particleMaps')
+            model = loader.loadModel('phase_2/models/effects/particleMaps')
             tex = model.find('**/effectWindBlur').findAllTextures()[0]
             geom.setTransparency(1)
             geom.setTexture(tex, 100)

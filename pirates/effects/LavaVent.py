@@ -25,7 +25,7 @@ class LavaVent(PooledEffect, EffectController):
             LavaVent.particleDummy.setDepthWrite(0)
             LavaVent.particleDummy.setLightOff()
 
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/particleWhiteSmoke')
         self.f = ParticleEffect.ParticleEffect('LavaVent')
         self.f.reparentTo(self)

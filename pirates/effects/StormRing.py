@@ -13,7 +13,7 @@ class StormRing(EffectController, NodePath):
     def __init__(self):
         NodePath.__init__(self, 'StormRing')
         EffectController.__init__(self)
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/particleWhiteSmoke')
         if not StormRing.particleDummy:
             StormRing.particleDummy = render.attachNewNode(ModelNode('StormRingDummy'))

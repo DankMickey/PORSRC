@@ -25,7 +25,7 @@ class SteamVent(PooledEffect, EffectController):
             SteamVent.particleDummy.setDepthWrite(0)
             SteamVent.particleDummy.setLightOff()
 
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/particleWhiteSteam')
         self.f = ParticleEffect.ParticleEffect('SteamEffect')
         self.f.reparentTo(self)

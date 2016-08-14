@@ -18,7 +18,7 @@ class FuseSparks(PooledEffect, EffectController):
     def __init__(self):
         PooledEffect.__init__(self)
         EffectController.__init__(self)
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.flash = model.find('**/particleSpark')
         self.flash.reparentTo(self)
         self.sparks = loader.loadModel('models/effects/particleSpark_tflip')

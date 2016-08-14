@@ -18,7 +18,7 @@ class MysticSmoke(PooledEffect, EffectController):
         if parent is not None:
             self.reparentTo(parent)
 
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/particleWhiteSmoke')
         self.setDepthWrite(0)
         self.setColorScaleOff()

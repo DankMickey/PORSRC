@@ -2543,29 +2543,6 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
     def testTeleportFlag(self, flag):
         return not (self.teleportFlags & flag).isZero()
 
-
-    def getNextTeleportConfirmFlag(self, currentFlag = None, flags = None):
-        if not currentFlag:
-            pass
-        currentFlag = BitMask32()
-        if not flags:
-            pass
-        flags = BitMask32(self.teleportFlags)
-        flags &= PiratesGlobals.TFNoTeleportOut
-        return flags.keepNextHighestBit(currentFlag)
-
-
-    def getNextTeleportToConfirmFlag(self, currentFlag = None, flags = None):
-        if not currentFlag:
-            pass
-        currentFlag = BitMask32()
-        if not flags:
-            pass
-        flags = BitMask32(self.teleportFlags)
-        flags &= PiratesGlobals.TFNoTeleportTo
-        return flags.keepNextHighestBit(currentFlag)
-
-
     def getNoTeleportString(self, flag = None):
         if not flag:
             pass
@@ -2588,12 +2565,12 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
 
     def confirmTeleport(self, callback, feedback = False):
         if not self.canTeleport():
-            flag = self.getNextTeleportConfirmFlag()
-            while not flag.isZero():
-                (confirmFunc, confirmArgs) = self.teleportConfirmCallbacks.get(flag, (None, []))
-                if confirmFunc and confirmFunc('from', 0, 0, 0, 0, *confirmArgs):
-                    flag = self.getNextTeleportConfirmFlag(flag)
+            for flag, value in self.teleportConfirmCallbacks.iteritems():
+                confirmFunc, confirmArgs = value
+                
+                if (not confirmFunc) or (not self.teleportFlags & flag) or confirmFunc('from', 0, 0, 0, 0, *confirmArgs):
                     continue
+                
                 if feedback:
                     if self.guiMgr.mapPage:
                         self.guiMgr.mapPage.shardPanel.refreshCurrentShard()
@@ -2601,19 +2578,20 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
                     self.guiMgr.createWarning(self.getNoTeleportString(flag), PiratesGuiGlobals.TextFG6, duration = 10)
 
                 callback(False)
-                return None
+                return
 
         callback(True)
 
     def confirmTeleportTo(self, callback, avId, avName, bandMgrId, bandId, guildId):
-        flag = self.getNextTeleportToConfirmFlag()
-        while not flag.isZero():
-            (confirmFunc, confirmArgs) = self.teleportConfirmCallbacks.get(flag, (None, []))
-            if confirmFunc and confirmFunc('to', avId, bandMgrId, bandId, guildId, *confirmArgs):
-                flag = self.getNextTeleportToConfirmFlag(flag)
+        for flag, value in self.teleportConfirmCallbacks.iteritems():
+            confirmFunc, confirmArgs = value
+            
+            if (not confirmFunc) or (not self.teleportFlags & flag) or confirmFunc('to', avId, bandMgrId, bandId, guildId, *confirmArgs):
                 continue
+            
             callback(False, avId, flag)
-            return None
+            return
+
         callback(True, avId, flag)
 
     def b_setTeleportFlag(self, flag, confirmCallback = None, confirmArgs = []):
@@ -2623,7 +2601,6 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
     def setTeleportFlag(self, flag, confirmCallback = None, confirmArgs = []):
         self.setTeleportFlags(self.teleportFlags | flag, {
             flag: (confirmCallback, confirmArgs) })
-
 
     def b_clearTeleportFlag(self, flag):
         self.b_setTeleportFlags(self.teleportFlags & ~flag, {
@@ -2661,20 +2638,6 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
     def getTeleportFlags(self):
         return self.teleportFlags
 
-
-    def decipherTeleportFlags(self):
-        iter = BitMask32(1)
-        print self.teleportFlags, '-' * 80
-        while iter.getWord():
-            if (iter & self.teleportFlags).getWord():
-                print '%-4s' % iter.getHighestOnBit()
-                if not self.getNoTeleportString(iter):
-                    pass
-                print self.getNoTeleportToString(iter)
-
-            iter <<= 1
-
-
     def sendTeleportQuery(self, sendToId, localBandMgrId, localBandId, localGuildId, localShardId):
         self.d_teleportQuery(localAvatar.doId, localBandMgrId, localBandId, localGuildId, localShardId, sendToId)
 
@@ -2704,6 +2667,9 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         pass
 
     def teleportTokenCheck(self, token):
+        if config.GetBool('free-teleport-access', False):
+            print 'teleport token check'
+            return True
         inv = self.getInventory()
         if inv:
             return inv.getStackQuantity(token)
@@ -2716,7 +2682,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
 
     def confirmIslandTokenTeleport(self, toFrom, incomingAvid = 0, bandMgrId = 0, bandId = 0, guildId = 0, islandUid = ''):
         if toFrom == 'from':
-            if self.hasIslandTeleportToken(islandUid) and self.returnLocation == islandUid and self.currentIsland == islandUid and self.cr.distributedDistrict.worldCreator.isPvpIslandByUid(islandUid) and base.config.GetBool('teleport-all', 0) and islandUid == LocationIds.PORT_ROYAL_ISLAND and self.getInventory():
+            if self.hasIslandTeleportToken(islandUid):
                 return not self.getInventory().getShipDoIdList()
         else:
             return True

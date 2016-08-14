@@ -16,7 +16,7 @@ class SimpleSmokeCloud(PooledEffect, EffectController):
     def __init__(self):
         PooledEffect.__init__(self)
         EffectController.__init__(self)
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/particleSmoke')
         if not SimpleSmokeCloud.particleDummy:
             SimpleSmokeCloud.particleDummy = render.attachNewNode(ModelNode('SimpleSmokeCloudParticleDummy'))

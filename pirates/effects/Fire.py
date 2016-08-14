@@ -24,7 +24,7 @@ class Fire(PooledEffect, EffectController):
         if effectParent:
             self.reparentTo(effectParent)
 
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/particleFire2')
         if not self.burningSfx:
             self.burningSfx = loadSfx(SoundGlobals.SFX_FX_FIRE_LOOP)

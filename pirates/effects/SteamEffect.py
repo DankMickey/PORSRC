@@ -27,7 +27,7 @@ class SteamEffect(PooledEffect, EffectController):
 
         self.f = ParticleEffect.ParticleEffect('SteamEffect')
         self.f.reparentTo(self)
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/particleWhiteSteam')
         self.p0 = Particles.Particles('particles-1')
         self.p0.setFactory('PointParticleFactory')

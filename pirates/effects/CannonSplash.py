@@ -22,7 +22,7 @@ class CannonSplash(PooledEffect, EffectController):
     def __init__(self):
         PooledEffect.__init__(self)
         EffectController.__init__(self)
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/particleSplash')
         if not CannonSplash.particleDummy:
             CannonSplash.particleDummy = render.attachNewNode(ModelNode('CannonSplashParticleDummy'))

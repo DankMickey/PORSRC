@@ -23,7 +23,7 @@ class ShipSinkSplashes(PooledEffect, EffectController):
         self.effectScale = 1.0
         self.f = ParticleEffect.ParticleEffect('ShipSinkSplashes')
         self.f.reparentTo(self)
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/particleWhiteSteam')
         self.card2 = model.find('**/particleSplash')
         self.p0 = Particles.Particles('particles-1')

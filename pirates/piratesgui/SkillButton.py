@@ -220,7 +220,7 @@ class SkillButton(DirectFrame):
                 SkillButton.SpecialIcons.append(specialImage)
 
 
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         toggleIcon = model.find('**/particleGlow')
         toggleIcon.node().setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd))
         self.toggleFrame = DirectFrame(relief = None, state = DGG.DISABLED, parent = self, image = toggleIcon, image_scale = 0.348, image_pos = (0.0, 0.0, -0.01))
@@ -336,7 +336,7 @@ class SkillButton(DirectFrame):
         self.glowRing.setBin('transparent', 0)
         self.glowRing.setScale(0.2)
         self.glowRing.hide()
-        self.glowRing2 = loader.loadModel('models/effects/particleMaps').find('**/particleGlow')
+        self.glowRing2 = loader.loadModel('phase_2/models/effects/particleMaps').find('**/particleGlow')
         self.glowRing2.node().setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd, ColorBlendAttrib.OOneMinusIncomingAlpha, ColorBlendAttrib.OOne))
         self.glowRing2.reparentTo(self)
         self.glowRing2.setBin('transparent', 0)

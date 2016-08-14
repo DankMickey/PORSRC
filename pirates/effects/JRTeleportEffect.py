@@ -31,7 +31,7 @@ class JRTeleportEffect(PooledEffect, EffectController):
         self.effectScale = 1.0
         self.duration = 3.0
         self.radius = 1.0
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/particleEvilSmoke')
         self.card2 = model.find('**/particleWhiteSmoke')
         self.f = ParticleEffect.ParticleEffect('JRTeleportEffect')

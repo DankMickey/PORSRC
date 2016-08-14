@@ -26,7 +26,7 @@ class LavaSteam(PooledEffect, EffectController):
             LavaSteam.particleDummy.setLightOff()
             LavaSteam.particleDummy.setBin('fixed', 60)
 
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/particleWhiteSmoke')
         self.f = ParticleEffect.ParticleEffect('LavaSteam')
         self.f.reparentTo(self)

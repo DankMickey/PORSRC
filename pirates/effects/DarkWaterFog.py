@@ -21,7 +21,7 @@ class DarkWaterFog(EffectController, NodePath):
         self.radius = 700
         self.radiusSpread = 300
         self.lifespan = 4.0
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/particleGunSmoke')
         if not DarkWaterFog.particleDummy:
             DarkWaterFog.particleDummy = render.attachNewNode(ModelNode('DarkWaterFogParticleDummy'))

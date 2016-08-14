@@ -24,7 +24,7 @@ class LavaEruption(NodePath, EffectController):
         self.startEffect = None
         self.endEffect = None
         self.track = None
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/pir_t_efx_msc_lavaSplash')
         self.duration = 10.0
         self.particleDummy = self.attachNewNode(ModelNode('LavaEruptionParticleDummy'))

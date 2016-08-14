@@ -19,7 +19,7 @@ class GroundFog(EffectController, NodePath):
     def __init__(self):
         NodePath.__init__(self, 'GroundFog')
         EffectController.__init__(self)
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/particleGroundFog')
         if not GroundFog.particleDummy:
             GroundFog.particleDummy = render.attachNewNode(ModelNode('GroundFogParticleDummy'))

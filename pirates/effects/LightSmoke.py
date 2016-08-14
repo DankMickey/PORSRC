@@ -22,7 +22,7 @@ class LightSmoke(PooledEffect, EffectController):
             self.reparentTo(parent)
 
         self._accelerateTime = 0
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/particleGunSmoke')
         if not LightSmoke.particleDummy:
             LightSmoke.particleDummy = render.attachNewNode(ModelNode('BlackSmokeParticleDummy'))

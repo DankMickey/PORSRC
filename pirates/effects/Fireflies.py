@@ -18,7 +18,7 @@ class Fireflies(EffectController, NodePath):
     def __init__(self):
         NodePath.__init__(self, 'Fireflies')
         EffectController.__init__(self)
-        model = loader.loadModel('models/effects/particleMaps')
+        model = loader.loadModel('phase_2/models/effects/particleMaps')
         self.card = model.find('**/particleGlow')
         if not Fireflies.particleDummy:
             Fireflies.particleDummy = render.attachNewNode(ModelNode('FirefliesParticleDummy'))
