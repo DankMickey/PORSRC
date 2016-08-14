@@ -2668,7 +2668,6 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
 
     def teleportTokenCheck(self, token):
         if config.GetBool('free-teleport-access', False):
-            print 'teleport token check'
             return True
         inv = self.getInventory()
         if inv:

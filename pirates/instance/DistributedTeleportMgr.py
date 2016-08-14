@@ -92,6 +92,10 @@ class DistributedTeleportMgr(DistributedObject.DistributedObject):
 
         messenger.send('islandPlayerBarrier', [
             0])
+        if not hasattr(parent, 'getZoneFromXYZ'):
+            self.acceptOnce(base.cr.getAllInterestsCompleteEvent(), localAvatar.b_setGameState, extraArgs = [
+                'TeleportIn'])
+            return
         teleportZone = parent.getZoneFromXYZ(teleportPosHpr[:3])
         localAvatar.reparentTo(parent)
         localAvatar.setPosHpr(*teleportPosHpr)
