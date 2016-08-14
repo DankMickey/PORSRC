@@ -5,7 +5,7 @@ want-idle-centered #f
 npc-sidestep #f
 osd-anim-blends #t
 want-splash-anims #t
-motionfsm-lag #t
+motionfsm-lag #F
 restore-initial-pose 0
 
 # WEAPONS
@@ -36,7 +36,7 @@ whitelist-chat-enabled #f
 
 # COMPASS/MAP
 want-compass-task #t
-map-islands-debug #t
+map-islands-debug #f
 want-momentary-minimap #t
 
 # CULL BINS
@@ -267,39 +267,13 @@ optimize-avatar-lod #f
 
 # NOTIFY
 default-directnotify-level info
-notify-level-dxgsg warning
-notify-level-gobj warning
-notify-level-loader warning
-notify-level-chan fatal
-notify-level-pgraph error
-notify-level-collide error
-notify-level-abs error
-notify-level-Actor error
 
 # OPTIONS
 disable-pirates-options #f
 enable-stereo-display #t
 
 # OTHER
-default-lod-type fade
-lock-to-one-cpu 0
-stencil-bits 8
-framebuffer-alpha 1
-alpha-bits 8
-dx-management 0
-dx-texture-management 0
-prefer-parasite-buffer 1
-force-parasite-buffer 1
-text-encoding utf8
 text-default-font models/fonts/BardiT_outline.bam
-want-background-region 0
-empty-node-path future
-crash-on-proactive-leak-detect 0
-make-grid-lod 1
-retransform-sprites 1
-verify-lods 0
-enforce-clean-exit 1
-want-render2dp 1
 
 # RESOURCES
 model-path resources

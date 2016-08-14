@@ -169,8 +169,11 @@ class SeaPatch(Water):
         self.texture_extension = '.jpg'
         if self.shader:
             self.seamodel.setShader(self.shader)
+            self.seamodel.setShaderAuto()
+            self.seamodel.setTransparency(1)
+            self.seamodel.setColorScale(1, 1, 1, 0.75)
             self.seamodel.setFogOff()
-            if self.use_alpha_map:
+            if True:
                 self.patchNP.setTransparency(1)
 
             self.base_texture = loader.loadTexture('maps/oceanWater2' + self.texture_extension)
