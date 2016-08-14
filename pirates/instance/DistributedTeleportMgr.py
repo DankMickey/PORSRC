@@ -121,7 +121,8 @@ class DistributedTeleportMgr(DistributedObject.DistributedObject):
         for currIsle in base.cr.doId2do.values():
             if not (hasattr(currIsle, 'getName') and hasattr(currIsle, 'getUniqueId')):
                 continue
-
+            if not hasattr(currIsle, 'getZoneFromXYZ'):
+                continue
             if currIsle.getName() == locationName:
                 break
 
