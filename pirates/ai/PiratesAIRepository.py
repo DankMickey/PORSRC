@@ -87,6 +87,15 @@ class PiratesAIRepository(PiratesInternalRepository):
 
         from pirates.battle.DistributedEnemySpawnerAI import DistributedEnemySpawnerAI
         DistributedEnemySpawnerAI.printMissingTypes()
+        self.accept('pirate-inventory-activate', self.__inventoryActivate)
+    
+    def __inventoryActivate(self, ownerId, invId):
+        owner = self.doId2do.get(ownerId)
+        
+        if owner:
+            owner.b_setInventoryId(invId)
+        else:
+            self.acceptOnce('generate-%d' % ownerId, lambda av: av.b_setInventoryId(invId))
 
     def getTrackClsends(self):
         return False

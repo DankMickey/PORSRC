@@ -61,6 +61,7 @@ class InventoryRequest(FSM):
                                           self.air.dclassesByName['DistributedPlayerPirateUD'],
                                           {'setInventoryId': [self.inventoryId]})
 
+        self.air.sendNetEvent('pirate-inventory-activate', [self.ownerId, self.inventoryId])
         self.demand('Activate')
 
     def enterQuery(self):

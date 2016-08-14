@@ -41,6 +41,7 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         self.returnLocation = ''
         self.jailCell = None
         self.underArrest = 0
+        self.inventoryId = 0
 
     def announceGenerate(self):
         DistributedBattleAvatarAI.announceGenerate(self)
@@ -53,7 +54,20 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
 
     def gotInventory(self):
         self.repChanged()
-
+    
+    def b_setInventoryId(self, inventoryId):
+        self.setInventoryId(inventoryId)
+        self.d_setInventoryId(inventoryId)
+    
+    def d_setInventoryId(self, inventoryId):
+        self.sendUpdate('setInventoryId', [inventoryId])
+    
+    def setInventoryId(self, inventoryId):
+        self.inventoryId = inventoryId
+    
+    def getInventoryId(self):
+        return self.inventoryId
+    
     def repChanged(self):
         newLevel = self.calcLevel()
         levelChanged = newLevel != self.level

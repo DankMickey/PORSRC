@@ -406,6 +406,8 @@ class TradableInventoryBase(DistributedInventoryBase):
                     itemCount = 1
 
                 if currItemType in locatables:
+                    if isinstance(locatables[currItemType], tuple):
+                        continue
                     locatables[currItemType] += itemCount
                 else:
                     locatables[currItemType] = itemCount
