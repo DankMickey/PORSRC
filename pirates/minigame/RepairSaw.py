@@ -34,7 +34,6 @@ class RepairSaw(DirectButton):
     def _initGUI(self):
         mainGui = loader.loadModel('models/gui/pir_m_gui_srp_sawing_main')
         self.sawGlow = OnscreenImage(parent = self, image = mainGui.find('**/glow'))
-        self.glow = OnscreenImage(parent = self, image = mainGui.find('**/glow'))
         self.sawGlow.setR(193)
         self.sawGlow.setPos(0.9, 0.0, -0.165)
         self.sawGlow.setBin('fixed', 50)
@@ -117,10 +116,9 @@ class RepairSaw(DirectButton):
                     dir = 1
                 else:
                     dir = -1
-                if len(self.sawingGame.sawWaypoints) > self.sawingGame.lastHitIndex + dir:
-                    pass
-                self.sawingGame.lastHitIndex + dir >= 0
-                if 1 and not (self.sawingGame.sawWaypoints[self.sawingGame.lastHitIndex + dir].hit):
+                if len(self.sawingGame.sawWaypoints) <= self.sawingGame.lastHitIndex + dir:
+                    return
+                if not self.sawingGame.sawWaypoints[self.sawingGame.lastHitIndex + dir].hit:
                     nextPos = self.sawingGame.sawWaypoints[self.sawingGame.lastHitIndex + dir].getPos(self.sawingGame)
                     dif = self.sawingGame.sawWaypoints[self.sawingGame.lastHitIndex].getPos(self.sawingGame) - nextPos
                     goalR = math.degrees(math.atan2(-dif.getZ(), dif.getX()))

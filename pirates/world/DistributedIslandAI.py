@@ -202,7 +202,7 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
 
         elif objType == 'RepairBench' and config.GetBool('want-repair-game', 0):
             genObj = DistributedRepairBenchAI.makeFromObjectKey(self.air, objKey, object)
-            self.generateChild(genObj) # This is already disabled in config
+            self.generateChild(genObj)
 
         #elif objType == 'Island Game Area':
         #    genObj = DistributedGATunnelAI.makeFromObjectKey(self.air, objKey, object)

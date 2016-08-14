@@ -1091,8 +1091,7 @@ dclass DistributedPotionGame : DistributedObject {
 };
 
 dclass DistributedRepairBench : DistributedInteractive {
-  requestDifficulty() clsend airecv;
-  setDifficulty(uint8) broadcast ram;
+  setDifficulty(uint8) required broadcast ram;
   denyAccess(int8);
   finishInteraction();
   kickInteraction();

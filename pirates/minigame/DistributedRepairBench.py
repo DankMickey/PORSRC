@@ -25,14 +25,10 @@ class DistributedRepairBench(DistributedInteractive):
         DistributedInteractive.generate(self)
         NodePath.__init__(self, 'RepairBench')
         self.setInteractOptions(proximityText = PLocalizer.InteractRepairBench, sphereScale = self.interactRadius, diskRadius = self.diskRadius)
-        self.requestDifficulty()
 
     def delete(self):
         self.repairBenchDifficultyTextNode = None
         DistributedInteractive.delete(self)
-
-    def requestDifficulty(self):
-        self.sendUpdate('requestDifficulty')
 
     def setDifficulty(self, difficulty):
         self.proximityText = PLocalizer.InteractRepairBench + ' (' + DifficultyText[difficulty] + ')'

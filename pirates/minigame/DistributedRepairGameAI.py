@@ -22,9 +22,24 @@ class DistributedRepairGameAI(DistributedObjectAI, DistributedRepairGameBase):
     def __init__(self, air):
         DistributedObjectAI.__init__(self, air)
         DistributedRepairGameBase.__init__(self)
+        self.difficulty = 0
 
-    def requestMincroGame(self, game):
-        self.game = game
+    def setDifficulty(self, difficulty):
+        self.difficulty = difficulty
+    
+    def getDifficulty(self):
+        return self.difficulty
+    
+    def requestMincroGame(self, gameIndex):
+        avId = self.air.getAvatarIdFromSender()
+        success = False
+        if self.location == ON_LAND:
+            success = gameIndex < len(GAME_ORDER[ON_LAND])
+   
+        elif self.location == AT_SEA:
+            success = gameIndex < len(GAME_ORDER[AT_SEA])
+ 
+        self.sendUpdateToAvatarId(avId, 'requestMincroGameResponse', [success, self.difficulty])
 
     def reportMincroGameProgress(self, todo0, todo1, todo2):
         pass
@@ -32,9 +47,9 @@ class DistributedRepairGameAI(DistributedObjectAI, DistributedRepairGameBase):
     def reportMincroGameScore(self, todo0, todo1):
         pass
 
-    def requestMincroGameResponse(self, todo0, todo1):
-        print "requestMincroGameResponse %s %s" % (todo0, todo1)
-        return ACCEPT | ACCEPT_SEND_UPDATE
+    def requestMincroGameResponse(self, success, difficulty):
+        self.notify.info('mincroGameResponse: %s' % success)
+        self.sendUpdate('requestMincroGameResponse', [success, difficulty])
 
     def setMincroGameProgress(self, progress):
         self.progress = progress

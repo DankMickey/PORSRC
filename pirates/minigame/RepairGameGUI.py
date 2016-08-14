@@ -92,6 +92,7 @@ class RepairGameGUI(DirectFrame):
 
     def handleExitGame(self):
         messenger.send('escape')
+        self.destroy()
 
     def getCycleCompleteWaitTime(self):
         if self.repairGame.location == ON_LAND:
@@ -208,23 +209,46 @@ class RepairGameGUI(DirectFrame):
         self.repairGamePicker.updatePirateNamesPerMincrogame(avIds2CurrentGameIndex)
 
     def destroy(self):
+        if self.repairGame:
+            try:
+                self.repairGame.cleanup()
+            except:
+                pass
+
+            self.repairGame = None
+
         self.ignore('clientLogout')
         self.ignore('seachestOpened')
         self.ignore('avatarDetailsOpened')
         self.ignore('minimapOpened')
-        self.introSequence.clearToInitial()
-        self.outroSequence.clearToInitial()
-        self.cycleCompleteSequence.clearToInitial()
-        self.shakeSequence.clearToInitial()
-        del self.introSequence
-        del self.outroSequence
-        del self.cycleCompleteSequence
-        del self.shakeSequence
-        self.closeButton.destroy()
-        self.closeButton.remove_node()
-        del self.closeButton
-        GUIFactory.destroyDirectGUIDict(self.staticElements)
-        del self.staticElements
-        self.repairGamePicker.destroy()
-        del self.repairGamePicker
+        
+        if hasattr(self, 'introSequence') and self.introSequence:
+            self.introSequence.clearToInitial()
+            del self.introSequence
+        
+        if hasattr(self, 'outroSequence') and self.outroSequence:
+            self.outroSequence.clearToInitial()
+            del self.outroSequence
+        
+        if hasattr(self, 'cycleCompleteSequence') and self.cycleCompleteSequence:
+            self.cycleCompleteSequence.clearToInitial()
+            del self.cycleCompleteSequence
+
+        if hasattr(self, 'shakeSequence') and self.shakeSequence:
+            self.shakeSequence.clearToInitial()
+            del self.shakeSequence
+        
+        if hasattr(self, 'closeButton') and self.closeButton:
+            self.closeButton.destroy()
+            self.closeButton.remove_node()
+            del self.closeButton
+        
+        if hasattr(self, 'staticElements') and self.staticElements:
+            GUIFactory.destroyDirectGUIDict(self.staticElements)
+            del self.staticElements
+        
+        if hasattr(self, 'repairGamePicker') and self.repairGamePicker:
+            self.repairGamePicker.destroy()
+            del self.repairGamePicker
+        
         self.remove_node()

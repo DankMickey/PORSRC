@@ -209,11 +209,14 @@ class RepairGridPiece(DirectButton, FSM.FSM):
             self['state'] = DGG.NORMAL
 
     def isGoalPiece(self):
-        pass
+        return self.pieceType not in (GOAL_EMPTY, GOAL_NONE)
 
     def isEmptyPiece(self):
         return self.pieceType == GOAL_EMPTY
 
+    def isBlankPiece(self):
+        return self.pieceType == GOAL_NONE
+    
     def setGridLocation(self, location, pos):
         self.location = location
         self.setPos(pos)

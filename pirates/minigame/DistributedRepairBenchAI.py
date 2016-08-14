@@ -9,19 +9,21 @@ class DistributedRepairBenchAI(DistributedInteractiveAI):
     def __init__(self, air):
         DistributedInteractiveAI.__init__(self, air)
         self.difficulty = 0
+        self.game = None
 
     def setDifficulty(self, difficulty):
         self.difficulty = difficulty
+        
+        if self.game:
+            self.game.setDifficulty(self.difficulty)
 
     def getDifficulty(self):
-        return self.difficulty
-
-    def requestDifficulty(self):
         return self.difficulty
 
     def announceGenerate(self):
         DistributedInteractiveAI.announceGenerate(self)
         self.game = DistributedRepairGameAI(self.air)
+        self.game.setDifficulty(self.difficulty)
         self.getParentObj().generateChild(self.game, self.zoneId)
 
     def handleInteract(self, avId, interactType, instant):
@@ -31,5 +33,5 @@ class DistributedRepairBenchAI(DistributedInteractiveAI):
     @classmethod
     def makeFromObjectKey(cls, air, objKey, data):
         obj = DistributedInteractiveAI.makeFromObjectKey(cls, air, objKey, data)
-        obj.setDifficulty(int(data['difficulty']))
+        obj.setDifficulty(int(data.get('difficulty', '0')))
         return obj

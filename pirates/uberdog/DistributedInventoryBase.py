@@ -307,7 +307,6 @@ class DistributedInventoryBase:
 
 
     def isReady(self):
-        print 'Is ready? %s?' % self.sentReadyMessage
         return self.sentReadyMessage
 
 

@@ -81,88 +81,58 @@ class RepairBracingGame(RepairMincroGame):
         percent = difficulty / self.repairGame.difficultyMax
         difIndex = int(math.floor(percent * (len(self.config.difficultyLevels) - 1)))
         self.currentGridDimensionAndLineCount = self.config.difficultyLevels[difIndex]
-
-    def getRandomGridCoords(self):
-        xpos = random.randint(0, GRID_SIZE - 1)
-        ypos = random.randint(0, GRID_SIZE - 1)
-        return (xpos, ypos)
-
-    def iterateCoordsAndPieces(self):
-        result = []
-        for xpos in xrange(GRID_SIZE):
-            for ypos in xrange(GRID_SIZE):
-                result.append((xpos, ypos, self.grid[xpos][ypos]))
-
-        return result
+    
+    def getPieces(self):
+        pieces = []
+        
+        for x in xrange(GRID_SIZE):
+            for y in xrange(GRID_SIZE):
+                pieces.append(self.grid[x][y])
+        
+        return pieces
 
     def randomizeBoard(self):
-        for (xpos, ypos, piece) in self.iterateCoordsAndPieces():
+        for piece in self.getPieces():
             piece.request('Blank')
             piece.unstash()
             piece.setEnabled(False)
 
+        self.removePieces(self.currentGridDimensionAndLineCount[0])
         self.createGoalPieces()
-        for i in xrange(self.currentGridDimensionAndLineCount[0]):
-            self.removePiece()
 
+    def getAvailableSpots(self):
+        availableSpots = []
+        
+        for x in xrange(GRID_SIZE):
+            for y in xrange(GRID_SIZE):
+                if self.grid[x][y].isBlankPiece():
+                    availableSpots.append((x, y))
+        
+        return availableSpots                
+    
     def createGoalPieces(self):
-        for pieceType in self.currentGridDimensionAndLineCount[1]:
-            availableYSpots = []
-            for i in xrange(GRID_SIZE):
-                availableYSpots.append(i)
+        availableSpots = self.getAvailableSpots()
+        random.shuffle(availableSpots)
 
+        for pieceType in self.currentGridDimensionAndLineCount[1]:
             goalCount = GRID_SIZE
             if GOAL_VERT_1 in self.currentGridDimensionAndLineCount[1]:
                 goalCount -= 1
 
-            for xpos in xrange(goalCount):
-                randIndex = random.randint(0, len(availableYSpots) - 1)
-                index = availableYSpots[randIndex]
-                countout = 0
-                if self.grid[xpos][index].isGoalPiece():
-                    randIndex = random.randint(0, len(availableYSpots) - 1)
-                    index = availableYSpots[randIndex]
-                    countout += 1
-                    if 1 or countout >= 20:
-                        for j in xrange(GRID_SIZE):
-                            if not self.grid[xpos][j].isGoalPiece():
-                                index = j
-                                break
-
-                if index in availableYSpots:
-                    availableYSpots.remove(index)
-
-                self.grid[xpos][index].request('Goal', pieceType)
+            for i in xrange(goalCount):
+                x, y = availableSpots.pop()
+                self.grid[x][y].request('Goal', pieceType)
 
         if GOAL_VERT_1 in self.currentGridDimensionAndLineCount[1]:
-            (xpos, ypos) = self.getRandomGridCoords()
-            piece = self.grid[xpos][ypos]
-            countout = 0
-            while piece.isGoalPiece():
-                (xpos, ypos) = self.getRandomGridCoords()
-                piece = self.grid[xpos][ypos]
-                countout += 1
-                if countout >= 200:
-                    for x in xrange(GRID_SIZE):
-                        for y in xrange(GRID_SIZE):
-                            if not self.grid[x][y].isGoalPiece():
-                                piece = self.grid[x][y]
-                                break
-
-                    break
-            piece.request('Goal', GOAL_CROSS_1_1)
-
-    def removePiece(self):
-        (xpos, ypos) = self.getRandomGridCoords()
-        piece = self.grid[xpos][ypos]
-        countout = 0
-        while piece.isGoalPiece() or piece.isEmptyPiece():
-            (xpos, ypos) = self.getRandomGridCoords()
-            piece = self.grid[xpos][ypos]
-            countout += 1
-            if countout >= 200:
-                break
-        piece.request('Empty')
+            x, y = availableSpots.pop()
+            self.grid[x][y].request('Goal', GOAL_CROSS_1_1)
+    
+    def removePieces(self, number):
+        availableSpots = self.getAvailableSpots()
+        
+        for i in xrange(number):
+            x, y = availableSpots.pop()
+            self.grid[x][y].request('Empty')
 
     def onPiecePressed(self, xpos, ypos, dir = None):
         if self.getCurrentOrNextState() in [
@@ -197,63 +167,59 @@ class RepairBracingGame(RepairMincroGame):
     def checkWin(self):
         percentages = []
         solved = []
-        usedYpos = -1
-        for i in xrange(len(self.currentGridDimensionAndLineCount[1])):
+
+        for type in self.currentGridDimensionAndLineCount[1]:
             solved.append(False)
             percentages.append(0.0)
-            type = self.currentGridDimensionAndLineCount[1][i]
+
             if type == GOAL_HORIZ_1 or type == GOAL_HORIZ_2:
                 bestGoalCount = 0
-                for ypos in xrange(GRID_SIZE):
-                    if ypos == usedYpos:
-                        continue
 
+                for y in xrange(GRID_SIZE):
                     goalCount = 0
-                    for xpos in xrange(GRID_SIZE):
-                        if self.grid[xpos][ypos].isGoalPiece():
-                            if self.grid[xpos][ypos].pieceType == type or self.grid[xpos][ypos].pieceType == GOAL_CROSS_1_1:
-                                goalCount += 1
-                                continue
+
+                    for x in xrange(GRID_SIZE):
+                        spot = self.grid[x][y]
+
+                        if spot.pieceType in (type, GOAL_CROSS_1_1):
+                            goalCount += 1
 
                     if goalCount > bestGoalCount:
                         bestGoalCount = goalCount
-                        if i == 0:
-                            usedYpos = ypos
-
-                    i == 0
 
                 percent = int(((bestGoalCount - 1.0) / (GRID_SIZE - 1)) * 100)
                 percentages[-1] = percent
+                print 'Horiz: %s, %s' % (bestGoalCount, goalCount)
+
                 if bestGoalCount == GRID_SIZE:
                     solved[-1] = True
 
-            bestGoalCount == GRID_SIZE
             if type == GOAL_VERT_1:
                 bestGoalCount = 0
-                for xpos in xrange(GRID_SIZE):
-                    goalCount = 0
-                    for ypos in xrange(GRID_SIZE):
-                        if self.grid[xpos][ypos].isGoalPiece():
-                            if self.grid[xpos][ypos].pieceType == type or self.grid[xpos][ypos].pieceType == GOAL_CROSS_1_1:
-                                goalCount += 1
-                                continue
 
-                    bestGoalCount = max(bestGoalCount, goalCount)
+                for x in xrange(GRID_SIZE):
+                    goalCount = 0
+
+                    for y in xrange(GRID_SIZE):
+                        spot = self.grid[x][y]
+
+                        if spot.pieceType in (type, GOAL_CROSS_1_1):
+                            goalCount += 1
+                            continue
+
+                    if goalCount > bestGoalCount:
+                        bestGoalCount = goalCount
 
                 percent = int(((bestGoalCount - 1.0) / (GRID_SIZE - 1.0)) * 100)
                 percentages[-1] = percent
+                print 'Vert: %s, %s' % (bestGoalCount, goalCount)
+
                 if bestGoalCount == GRID_SIZE:
                     solved[-1] = True
 
-            bestGoalCount == GRID_SIZE
-
-        linesComplete = 0
-        for lineComplete in solved:
-            if lineComplete == True:
-                linesComplete += 1
-                continue
-
+        linesComplete = len([line for line in solved if line])
         rating = 0
+
         if linesComplete > self.linesComplete:
             self.lineCompleteSound.play()
             completeTime = globalClock.getRealTime()
@@ -263,20 +229,22 @@ class RepairBracingGame(RepairMincroGame):
 
         self.linesComplete = linesComplete
         percent = sum(percentages) / len(percentages)
+
         self.repairGame.d_reportMincroGameProgress(percent, rating)
-        if sum(solved) == len(solved):
+
+        if linesComplete == len(solved):
             self.request('Outro')
 
     def enterGame(self):
         RepairMincroGame.enterGame(self)
-        for (xpos, ypos, piece) in self.iterateCoordsAndPieces():
+        for piece in self.getPieces():
             if not piece.isEmptyPiece():
                 piece.setEnabled(True)
                 piece.request('Active')
 
     def exitGame(self):
         RepairMincroGame.exitGame(self)
-        for (xpos, ypos, piece) in self.iterateCoordsAndPieces():
+        for piece in self.getPieces():
             piece.setEnabled(False)
 
     def enterOutro(self):
@@ -285,5 +253,5 @@ class RepairBracingGame(RepairMincroGame):
 
     def exitOutro(self):
         RepairMincroGame.exitOutro(self)
-        for (xpos, ypos, piece) in self.iterateCoordsAndPieces():
+        for piece in self.getPieces():
             piece.request('Idle')

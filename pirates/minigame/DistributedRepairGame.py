@@ -148,8 +148,8 @@ class DistributedRepairGame(DistributedRepairGameBase, DistributedObject):
     def requestMincroGameResponse(self, success, difficulty):
         self.notify.debug('requestMincroGameResponse was %i' % success)
         if success:
-            self.gameFSM.request('MincroGame', self.gameIndexRequested, difficulty)
             self.gui.setDifficulty(difficulty)
+            self.gameFSM.request('MincroGame', self.gameIndexRequested, difficulty)
         else:
             self.notify.debug('MincroGame request denied')
 
