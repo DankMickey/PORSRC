@@ -741,7 +741,10 @@ class MotionAnimFSM(FSM):
         pass
 
     def request(self, *args, **kwargs):
-        FSM.request(self, *args, **kwargs)
+        try:
+            FSM.request(self, *args, **kwargs)
+        except:
+            pass
 
 
 class MotionFSM(FSM):
