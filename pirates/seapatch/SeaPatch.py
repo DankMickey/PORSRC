@@ -543,20 +543,6 @@ class SeaPatch(Water):
         if not isinstance(filename, Filename):
             filename = Filename.fromOsSpecific(filename)
 
-        searchPath = DSearchPath()
-        searchPath.appendDirectory(Filename.fromOsSpecific(os.path.expandvars('resources/phase_2/etc/')))
-        searchPath.appendDirectory(Filename.fromOsSpecific(os.path.expandvars('pirates/src/seapatch')))
-        searchPath.appendDirectory(Filename.fromOsSpecific(os.path.expandvars('phase_2/etc/')))
-        searchPath.appendDirectory(Filename('etc'))
-        searchPath.appendDirectory(Filename('.'))
-        found = vfs.resolveFilename(filename, searchPath)
-        if not found:
-            self.notify.warning('file not found: %s' % filename)
-        else:
-            self.notify.info('file loaded at location %s' % filename)
-            data = vfs.readFile(filename, 1)
-            data = data.replace('\r', '')
-            #exec data #need to write libpirates stuff. the 'exec data' needs them.
         return patch
 
 

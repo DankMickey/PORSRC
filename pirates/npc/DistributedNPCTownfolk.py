@@ -423,7 +423,12 @@ class DistributedNPCTownfolk(DistributedBattleNPC.DistributedBattleNPC, Distribu
             return None
 
         self.dialogFlag = 2
-        self.playDialog()
+        
+        try:
+            self.playDialog()
+        except:
+            pass
+
         DistributedBattleNPC.DistributedBattleNPC.requestInteraction(self, avId, interactType)
 
 

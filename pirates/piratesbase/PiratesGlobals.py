@@ -1,4 +1,4 @@
-from panda3d.core import BitMask32, DSearchPath, SceneGraphReducer, TextNode, TransformState, Vec3, getModelPath
+from panda3d.core import BitMask32, SceneGraphReducer, TextNode, TransformState, Vec3, getModelPath
 global InterfaceOutlineFont, PirateFont, PirateOutlineFont, PirateBoldOutlineFont
 import PLocalizer
 from otp.otpbase.OTPGlobals import *
@@ -8,9 +8,6 @@ from pirates.uberdog.UberDogGlobals import *
 from pirates.piratesbase import PLocalizer as PL
 from otp.otpbase import OTPLocalizer as OL
 from pirates.piratesbase import EmoteGlobals
-searchPath = DSearchPath()
-for i in xrange(getModelPath().getNumDirectories()):
-    searchPath.appendDirectory(getModelPath().getDirectory(i))
 
 PiratesSubId = 9872
 ShipsDatabaseChannelId = 4008

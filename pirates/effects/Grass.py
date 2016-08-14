@@ -123,8 +123,6 @@ class Grass(DirectObject, NodePath):
     def readGrassSamples(self):
         filename = self._Grass__grassDataFile
         spfSearchPath = DSearchPath()
-        spfSearchPath.appendDirectory(Filename.fromOsSpecific(os.path.expandvars('$PIRATES/src/effects')))
-        spfSearchPath.appendDirectory(Filename.fromOsSpecific(os.path.expandvars('pirates/src/effects')))
         spfSearchPath.appendDirectory(Filename('.'))
         pfile = Filename(filename)
         if vfs:
