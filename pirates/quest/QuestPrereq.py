@@ -356,15 +356,12 @@ class IsHoliday(QuestPrereq):
         'holidayId': None }
 
     def __init__(self, holidayId):
-        #QuestPrereq.__init__(self, holidayId = holidayId)
-        pass
+        QuestPrereq.__init__(self, holidayId = holidayId)
 
 
     def avIsReady(self, av):
-        #return self.holidayId in base.cr.newsManager.getHolidayIdList()
-        pass
+        return base.cr.newsManager and self.holidayId in base.cr.newsManager.getHolidayIdList()
 
 
     def avIsReadyAI(self, av):
-        #return simbase.air.holidayManager.isHolidayActive(self.holidayId)
-        pass
+        return simbase.air.holidayManager.isHolidayActive(self.holidayId)

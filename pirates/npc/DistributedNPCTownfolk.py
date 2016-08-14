@@ -422,6 +422,8 @@ class DistributedNPCTownfolk(DistributedBattleNPC.DistributedBattleNPC, Distribu
             localAvatar.guiMgr.createWarning(PLocalizer.ZombieNoPeople, PiratesGuiGlobals.TextFG6)
             return None
 
+        self.dialogFlag = 2
+        self.playDialog()
         DistributedBattleNPC.DistributedBattleNPC.requestInteraction(self, avId, interactType)
 
 
