@@ -1148,7 +1148,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
             geom.setTransparency(1)
             geom.setDepthWrite(0)
             geom.setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne))
-            if self.isLocal() or localAvatar.isGM():
+            if self.isLocal():
                 geom.setColorScale(ghostColor)
                 geom.setRenderModeWireframe()
             else:

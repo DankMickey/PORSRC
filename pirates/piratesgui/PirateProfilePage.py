@@ -199,7 +199,6 @@ class PirateProfilePage(SocialPage.SocialPage):
         self.siegeFrame = DirectFrame(parent = self.mainFrame, relief = None, state = DGG.DISABLED, image = None, image_pos = (0, 0, 0), pos = (-0.25, 0, 0.489))
         self.pirateLabel = OnscreenText(parent = self.mainFrame, scale = PiratesGuiGlobals.TextScaleLarge, align = TextNode.ACenter, fg = (0.5, 0.5, 0.5, 1), font = PiratesGlobals.getPirateOutlineFont(), shadow = PiratesGuiGlobals.TextShadow, mayChange = 1, pos = (-0.44, 0.495))
         self.guildLabel = OnscreenText(parent = self.mainFrame, text = '', scale = PiratesGuiGlobals.TextScaleSmall, align = TextNode.ACenter, fg = PiratesGuiGlobals.TextFG2, shadow = PiratesGuiGlobals.TextShadow, mayChange = 1, pos = (-0.44, 0.46))
-        self.accountLabel = OnscreenText(parent = self.mainFrame, text = '', scale = PiratesGuiGlobals.TextScaleMed, align = TextNode.ACenter, fg = PiratesGuiGlobals.TextFG2, shadow = PiratesGuiGlobals.TextShadow, wordwrap = 9, mayChange = 1, pos = (-0.44, -0.13))
         self.notorietyLabel = DirectLabel(relief = None, parent = self.mainFrame, image = basicgui.find('**/but_nav'), image_scale = 0.348, text = '', text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_pos = (0, -0.01, 0), text_shadow = PiratesGuiGlobals.TextShadow, state = DGG.DISABLED, pos = (-0.63, 0, 0.408))
         self.hpMeter = DirectWaitBar(parent = self.mainFrame, relief = DGG.RAISED, borderWidth = (0.002, 0.002), range = 1, value = 0, frameColor = (0.050000, 0.050000, 0.050000, 1), barColor = (0.100, 0.696, 0.100, 1), pos = (-0.714, 0, 0.35698), frameSize = (0, 0.200, 0, 0.0149), text = PLocalizer.ProfilePageHp, text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleSmall, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_pos = (0, 0.02, 0), textMayChange = 1, scale = 0.800000)
         self.hpBar = OnscreenImage(parent = self.mainFrame, image = shipgui.find('**/ship_battle_speed_bar'), scale = (0.12, 1.0, 0.299), pos = (-0.635, 0, 0.362))
@@ -295,7 +294,6 @@ class PirateProfilePage(SocialPage.SocialPage):
         self.pirateLabel['text'] = self.profileName
         self.pirateLabel['fg'] = (0.5, 0.5, 0.5, 1)
         self.guildLabel['text'] = ''
-        self.accountLabel['text'] = ''
         self.chatLabel['text'] = ''
         self.islandName = ''
         self.locationName = ''
@@ -730,7 +728,6 @@ class PirateProfilePage(SocialPage.SocialPage):
 
     def fillInAvatarInfo(self, dna, guildId, guildName, founder, hp, maxHp, voodoo, maxVoodoo, shardId, disableButtons, showGoTo):
         self.loadingLabel.hide()
-        self.accountName = ''
         self.guildId = guildId
         self.guildName = guildName
         self.hpMeter['range'] = maxHp
@@ -751,15 +748,8 @@ class PirateProfilePage(SocialPage.SocialPage):
                     profile = base.cr.doId2do.get(self.profileId)
                     if profile:
                         self.guildName = profile.getGuildName()
-                        if localAvatar.isGM():
-                            self.accountName = profile.DISLname
-
-
-
             else:
                 self.guildName = profile.getGuildName()
-                if localAvatar.isGM():
-                    self.accountName = profile.DISLname
 
         elif base.cr.guildManager.getBandId(localAvatar.doId) == base.cr.guildManager.getBandId(self.profileId):
             self.guildName = localAvatar.getGuildName()
@@ -773,10 +763,6 @@ class PirateProfilePage(SocialPage.SocialPage):
             self.guildName = PLocalizer.GuildDefaultName % self.guildId
 
         self.guildLabel['text'] = '\x01slant\x01%s\x02' % self.guildName
-        if self.accountName == '':
-            self.accountLabel['text'] = self.accountName
-        else:
-            self.accountLabel['text'] = PLocalizer.ProfilePageAccountName % self.accountName
         self.islandLabel['text'] = self.islandName
         self.locationLabel['text'] = '\x01slant\x01%s\x02' % self.locationName
         if self.locationName == '':

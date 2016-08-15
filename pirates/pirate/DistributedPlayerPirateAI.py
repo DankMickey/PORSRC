@@ -43,6 +43,7 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         self.underArrest = 0
         self.inventoryId = 0
         self.founder = False
+        self.gmNametag = ('', '')
 
     def announceGenerate(self):
         DistributedBattleAvatarAI.announceGenerate(self)
@@ -84,6 +85,19 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
     
     def getFounder(self):
         return self.founder
+    
+    def b_setGMNametag(self, color, string):
+        self.setGMNametag(color, string)
+        self.d_setGMNametag(color, string)
+    
+    def d_setGMNametag(self, color, string):
+        self.sendUpdate('setGMNametag', [color, string])
+    
+    def setGMNametag(self, color, string):
+        self.gmNametag = (color, string)
+    
+    def getGMNametag(self):
+        return self.gmNametag
     
     def repChanged(self):
         newLevel = self.calcLevel()
@@ -377,9 +391,6 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
     def requestExit(self):
         pass
 
-    def updateGMNameTag(self, state, color, tagString):
-        pass
-
     def setAuraActivated(self, todo0):
         pass
 
@@ -475,3 +486,18 @@ def founder():
         return 'Enabled founder status!'
     else:
         return 'Disabled founder status!'
+
+@magicWord(CATEGORY_GAME_MASTER, types=[str, str])
+def gm(color=None, tag=None):
+    av = spellbook.getTarget()
+    
+    if not color:
+        av.b_setGMNametag('', '')
+        return 'Cleared GM nametag!'
+    elif color not in ('gold', 'red', 'green', 'blue'):
+        return 'Color must be gold, red, green or blue!'
+    elif not tag:
+        return 'You must specify a tag!'
+    else:
+        av.b_setGMNametag(color, tag)
+        return 'GM nametag set!'

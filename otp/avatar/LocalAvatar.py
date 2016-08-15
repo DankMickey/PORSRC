@@ -1277,17 +1277,3 @@ class LocalAvatar(DistributedAvatar.DistributedAvatar, DistributedSmoothNode.Dis
     def kingshead():
         from pirates.piratesbase import PiratesGlobals
         base.cr.teleportMgr.initiateTeleport(PiratesGlobals.INSTANCE_GENERIC, 'KingsheadWorld')
-
-
-    @magicWord(CATEGORY_GAME_DEVELOPER)
-    def togGM():
-        """Toggle GM icon for Pirate."""
-        if base.localAvatar.isGM() == 0:
-            base.localAvatar.setAsGM(1)
-            base.localAvatar.b_updateGMNameTag(1, 'red', 'Game Master')
-            response = 'GM Tag Enabled'
-        else:
-            base.localAvatar.setAsGM(0)
-            base.localAvatar.b_updateGMNameTag(0, '', '')
-            response = 'GM Tag Disabled'
-        return response

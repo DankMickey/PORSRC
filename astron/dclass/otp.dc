@@ -195,7 +195,6 @@ dclass DistributedPlayer : DistributedAvatar {
   WishName(string = "") db ram;
   WishNameState(string = "OPEN") db ram;
   setAdminAccess(uint16 = 0) ownrecv required airecv;
-  setAsGM(bool = 0) required ram broadcast ownrecv airecv;
 };
 
 dclass MagicWordManager : DistributedObject {

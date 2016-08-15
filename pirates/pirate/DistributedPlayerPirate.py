@@ -298,9 +298,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             self.populated = 0
             self.tempDoubleXPStatus = 0
             self.tempDoubleXPStatusMessaged = False
-            self.gmNameTagEnabled = 0
-            self.gmNameTagColor = 'whiteGM'
-            self.gmNameTagString = ''
+            self.gmNametag = (None, None)
             self.BandId = None
             self.cursed = False
             self.injuredSetup = 0
@@ -1343,20 +1341,22 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
                     return None
 
 
-            if self.getCrewIcon() and not (self.gmNameTagEnabled):
+            if self.getCrewIcon() and not self.hasGMNametag():
                 if self.getCrewIcon() != 2:
                     oldLabelText = nameText['text']
                     nameText['text'] = '\x01white\x01\x05crewIcon%s\x05\x02\n%s' % (self.hasCrewIcon, oldLabelText)
 
 
-            if self.gmNameTagEnabled and self.isGM():
+            if self.hasGMNametag():
+                color, tag = self.gmNametag
+
                 if self.getCrewIcon():
-                    nameText['text'] = '\x05gmNameTagLogo\x05\x01white\x01\x05crewIcon%s\x05\x02\n\x01%s\x01%s\x02\n%s' % (self.hasCrewIcon, self.getGMNameTagColor(), self.gmNameTagString, nameText['text'])
+                    nameText['text'] = '\x05gmNameTagLogo\x05\x01white\x01\x05crewIcon%s\x05\x02\n\x01%s\x01%s\x02\n%s' % (self.hasCrewIcon, color, tag, nameText['text'])
                 else:
-                    nameText['text'] = '\x05gmNameTagLogo\x05\n\x01%s\x01%s\x02\n%s' % (self.getGMNameTagColor(), self.gmNameTagString, nameText['text'])
+                    nameText['text'] = '\x05gmNameTagLogo\x05\n\x01%s\x01%s\x02\n%s' % (color, tag, nameText['text'])
 
-
-
+    def hasGMNametag(self):
+        return bool(self.gmNametag[1])
 
     def setTutorialAck(self, tutorialAck):
         self.tutorialAck = tutorialAck
@@ -3441,60 +3441,16 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             hours,
             minutes]
 
-
-    def setGMNameTagState(self, state):
-        self.gmNameTagEnabled = state
-
-
-    def setGMNameTagString(self, nameTagString):
-        self.gmNameTagString = nameTagString
-
-
-    def getGMNameTagString(self):
-        return self.gmNameTagString
-
-
-    def setGMNameTagColor(self, color):
-        self.gmNameTagColor = color
-
-
-    def getGMNameTagColor(self):
-        return self.gmNameTagColor
-
-
-    def updateGMNameTag(self, state, color, tagString):
-        if color == 'gold':
-            color = 'goldGM'
-        elif color == 'red':
-            color = 'redGM'
-        elif color == 'green':
-            color = 'greenGM'
-        elif color == 'blue':
-            color = 'blueGM'
-        else:
-            color = 'whiteGM'
-        self.setGMNameTagState(state)
-        self.setGMNameTagColor(color)
-        self.setGMNameTagString(tagString)
+    def setGMNametag(self, color, tagString):
+        self.gmNametag = (color + 'GM' if color in ('gold', 'red', 'green', 'blue') else 'whiteGM', tagString)
         self.refreshName()
-
+    
+    def getGMNametag(self):
+        return self.gmNametag
 
     def nameTag3dInitialized(self):
         DistributedPirateBase.nameTag3dInitialized(self)
         self.refreshName()
-
-
-    def b_updateGMNameTag(self, state, color, tagString):
-        self.d_updateGMNameTag(state, color, tagString)
-        self.updateGMNameTag(state, color, tagString)
-
-
-    def d_updateGMNameTag(self, state, color, tagString):
-        self.sendUpdate('updateGMNameTag', [
-            state,
-            color,
-            tagString])
-
 
     def getShortName(self):
         return self.getName()

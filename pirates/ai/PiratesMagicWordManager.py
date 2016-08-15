@@ -579,31 +579,6 @@ class PiratesMagicWordManager(MagicWordManager.MagicWordManager):
             else:
                 profileId = localAvatar.getDoId()
             localAvatar.guiMgr.handleAvatarDetails(profileId)
-        elif wordIs('~gmNameTag'):
-            args = word.split()
-            if len(args) < 2 and localAvatar.isGM():
-                response = PLocalizer.MAGICWORD_GMNAMETAG
-                self.setMagicWordResponse(response)
-
-            if len(args) >= 2 and localAvatar.isGM():
-                if args[1] == 'enable':
-                    localAvatar.setGMNameTagState(1)
-                elif args[1] == 'disable':
-                    localAvatar.setGMNameTagState(0)
-                elif args[1] == 'setString':
-                    xCount = 0
-                    stringToSet = ''
-                    for i in args:
-                        if xCount < 2:
-                            pass
-                        1
-                        stringToSet = '%s %s' % (stringToSet, args[xCount])
-                        xCount += 1
-
-                    localAvatar.setGMNameTagString(stringToSet)
-                elif args[1] == 'setColor':
-                    localAvatar.setGMNameTagColor(args[2])
-
         elif wordIs('~liveCam'):
             LiveCamTransforms = {
                 '1': [

@@ -168,9 +168,6 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
             self._siegeTeamSV = StateVar(0)
             self.guildPopupDialog = None
             self.moralePopupDialog = None
-            self.gmNameTagEnabledLocal = 0
-            self.gmNameTagStringLocal = ''
-            self.gmNameTagColorLocal = ''
             soundEffects = [
                 SoundGlobals.SFX_MONSTER_JR_LAUGH_01,
                 SoundGlobals.SFX_MONSTER_JR_LAUGH_02,
@@ -2752,20 +2749,6 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
             self.level = level
 
         return self.level
-
-    def setAsGM(self, state):
-        DistributedPlayerPirate.setAsGM(self, state)
-        if self.isGM():
-            self.chatMgr.addGMSpeedChat()
-            if base.config.GetString('gm-nametag-string', '') != '':
-                self.gmNameTagStringLocal = base.config.GetString('gm-nametag-string')
-
-            if base.config.GetString('gm-nametag-color', '') != '':
-                self.gmNameTagColorLocal = base.config.GetString('gm-nametag-color')
-
-            if base.config.GetInt('gm-nametag-enabled', 0):
-                self.gmNameTagEnabledLocal = 1
-                self.b_updateGMNameTag(state, self.gmNameTagColorLocal, self.gmNameTagStringLocal)
 
     def setBadgeIcon(self, titleId, rank):
         DistributedPlayerPirate.setBadgeIcon(self, titleId, rank)

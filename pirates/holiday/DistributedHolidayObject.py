@@ -19,7 +19,4 @@ class DistributedHolidayObject(DistributedInteractive):
         self.diskRadius = radius * 2.0
 
     def setInteractMode(self, mode):
-        if (mode == 1 or mode == 2) and localAvatar.isGM():
-            self.setInteractOptions(proximityText = self.proximityText, sphereScale = self.interactRadius, diskRadius = self.diskRadius)
-        else:
-            self.setInteractOptions(allowInteract = False)
+        self.setInteractOptions(allowInteract = False)

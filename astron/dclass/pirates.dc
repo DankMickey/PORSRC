@@ -660,7 +660,6 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   setSC(uint16 msgIndex) broadcast ownsend airecv;
   setSCCustom(uint16 msgIndex) broadcast ownsend airecv;
   setFriendsList(FriendEntry[] = []) ownrecv required db airecv;
-  setAsGM(bool) required ram broadcast ownrecv airecv;
   setDNAString(blob) required broadcast ownrecv db;
   WishNameState(string = "OPEN") db ram;
   WishName(string = "") db ram;
@@ -809,7 +808,7 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   spentSkillPoint(SkillId) ownrecv;
   requestActivity(uint32, int32, resultPair [], uint32 []) airecv clsend;
   // setTempDoubleXPReward(uint32) required db ram broadcast;
-  updateGMNameTag(uint8, string, string) required ram broadcast ownsend airecv;
+  setGMNametag(string, string) required broadcast ownrecv db;
   requestGotoJailWhileInjured() ownsend airecv;
   setUnderArrest(uint8 = 0) required ram airecv db;
   startHealing(uint32);
