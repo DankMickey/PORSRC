@@ -75,6 +75,7 @@ class FishingGameFSM(FSM.FSM):
                 'ReelingFish',
                 'Offscreen',
                 'FishOnHook',
+                'FishReeling',
                 'Recap',
                 'Fishing',
                 'Reeling',

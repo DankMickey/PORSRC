@@ -887,7 +887,7 @@ class FishingGame(DirectObject.DirectObject):
 
 
     def checkForHookSuccess(self):
-        if self.fishManager.activeFish.fsm.getCurrentOrNextState() == 'Biting':
+        if self.fishManager.activeFish and self.fishManager.activeFish.fsm.getCurrentOrNextState() == 'Biting':
             self.fishManager.activeFish.fishStatusIconTextNode.setText('!')
             self.fishManager.activeFish.fishStatusIconTextNode.setTextColor(1.0, 0.0, 0.0, 1.0)
             self.hookedIt = True
@@ -910,6 +910,7 @@ class FishingGame(DirectObject.DirectObject):
                 else:
                     self.fsm.request('FishOnHook')
                 self.fishManager.loseInterest()
+                return
             elif self.fishManager.activeFish.fsm.getCurrentOrNextState() != 'Flee':
                 self.fishManager.activeFish.fsm.request('Flee')
 
@@ -1043,6 +1044,8 @@ class FishingGame(DirectObject.DirectObject):
 
 
     def hasLures(self):
+        if config.GetBool('want-fishing-game-debug', False):
+            return True
         inv = localAvatar.getInventory()
         regular = inv.getStackQuantity(InventoryType.RegularLure)
         legendary = inv.getStackQuantity(InventoryType.LegendaryLure)
@@ -1058,6 +1061,8 @@ class FishingGame(DirectObject.DirectObject):
 
 
     def getAvatarsBestRod(self):
+        if config.GetBool('want-fishing-game-debug', False):
+            return ItemGlobals.FISHING_ROD_3
         inv = localAvatar.getInventory()
         rodLvl = inv.getItemQuantity(InventoryType.FishingRod)
         if rodLvl == 3:

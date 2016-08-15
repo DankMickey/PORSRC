@@ -1205,16 +1205,7 @@ for fish in allFishData:
 
 
 def giveMeAFish(location, depth, fishHisto):
-    rarity = DropGlobals.rollDistribution(fishRarityDistribution)
-    potentialFish = [1]
-    if potentialFish:
-        return random.choice(potentialFish)
-
-    for x in xrange(3):
-        if x != rarity:
-            continue
-        [1][x]
-        continue
+    return random.choice(allFishData)
 
 
 CollectionToData = { }

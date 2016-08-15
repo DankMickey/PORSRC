@@ -75,6 +75,7 @@ want-fishing-game #t
 want-repair-game #t
 want-ship-repair-spots #t
 want-show-off-fish #f
+want-fishing-game-debug #t
 
 # NPC:
 want-npcs #t

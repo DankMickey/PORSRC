@@ -86,8 +86,7 @@ class FishLure(NodePath):
     def showHelpText(self, textToShow):
         taskMgr.remove(self.gameObject.distributedFishingSpot.uniqueName('ClearLureText'))
         if textToShow is None:
-            self.helpTextNode.setText(' ')
-            self.helpTextNodePath.hide()
+            textToShow = ' '
         elif self.gameObject.fishManager.activeFish is not None:
             self.helpTextNodePath.setScale(FishingGlobals.fishSizeToHelpTextScale[self.gameObject.fishManager.activeFish.myData['size']])
         else:

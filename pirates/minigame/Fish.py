@@ -218,7 +218,8 @@ class Fish(NodePath):
 
         inv = localAvatar.getInventory()
         rodLvl = inv.getItemQuantity(InventoryType.FishingRod)
-        if self.myData['depth'] + 1 > rodLvl:
+
+        if self.myData['depth'] + 1 > rodLvl and not config.GetBool('want-fishing-game-debug', False):
             return None
 
         self.fsm.request('Biting')

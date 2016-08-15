@@ -117,7 +117,7 @@ class FishingGameGUI:
     def chooseRegularLure(self):
         inv = localAvatar.getInventory()
         qty = inv.getStackQuantity(InventoryType.RegularLure)
-        if qty > 0:
+        if qty > 0 or config.GetBool('want-fishing-game-debug', False):
             self.gameObject.chooseLure(InventoryType.RegularLure)
             self.lureSelectionPanel.hide()
             self.lureSelectionPanelShowing = False

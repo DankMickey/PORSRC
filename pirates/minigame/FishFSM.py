@@ -155,6 +155,7 @@ class FishFSM(FSM.FSM):
             if not self.fish.fishManager.gameObject.scareFish:
                 self.fish.fishManager.gameObject.lure.showHelpText(None)
                 self.fish.fishManager.gameObject.fsm.request('FishBiting')
+                return
             elif self.fish.fishMoveSequence:
                 self.fish.fishMoveSequence.pause()
                 self.fish.fishMoveSequence.clearToInitial()
