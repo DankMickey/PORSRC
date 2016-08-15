@@ -1160,52 +1160,15 @@ legendaryFishData = [
         'swimLeftDuration': 5.0,
         'swimRightDuration': 2.0,
         'biteXOffset': 7.0 }]
-rarityPool = {
-    'ship': {
-        0: {
-            0: [],
-            1: [],
-            2: [] },
-        1: {
-            0: [],
-            1: [],
-            2: [] },
-        2: {
-            0: [],
-            1: [],
-            2: [] } },
-    'dock': {
-        0: {
-            0: [],
-            1: [],
-            2: [] },
-        1: {
-            0: [],
-            1: [],
-            2: [] },
-        2: {
-            0: [],
-            1: [],
-            2: [] } } }
-fishRarityDistribution = DropGlobals.createZippedDist(raritySpawnChances, [
-    0,
-    1,
-    2])
-for fish in allFishData:
-    if fish['location'] in [
-        'ship',
-        'both']:
-        rarityPool['ship'][fish['depth']][fish['rarity']].append(fish)
 
-    if fish['location'] in [
-        'dock',
-        'both']:
-        rarityPool['dock'][fish['depth']][fish['rarity']].append(fish)
+RandomList = []
 
-
+for i, fishData in enumerate(allFishData):
+    for j in xrange((3 - fishData['rarity']) * 2):
+        RandomList.append(i)
 
 def giveMeAFish(location, depth, fishHisto):
-    return random.choice(allFishData)
+    return allFishData[random.choice(RandomList)]
 
 
 CollectionToData = { }

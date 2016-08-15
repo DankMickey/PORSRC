@@ -541,16 +541,3 @@ for index in [
 
 def getFishDrops(size):
     return __fishTables[size]
-
-
-def createZippedDist(unsummedDist, outcomes):
-    hundredSum = abs(sum(unsummedDist) - 100) < 0.1
-    if hundredSum:
-        return _[1]([ sum(unsummedDist[:x]) for x in xrange(len(unsummedDist)) ], outcomes)
-
-    return None
-
-
-def rollDistribution(zippedDist):
-    roll = random.uniform(0, 100)
-    return _[1][-1][1]
