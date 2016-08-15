@@ -84,6 +84,8 @@ class FishLure(NodePath):
 
 
     def showHelpText(self, textToShow):
+        if not self.gameObject.distributedFishingSpot:
+            return
         taskMgr.remove(self.gameObject.distributedFishingSpot.uniqueName('ClearLureText'))
         if textToShow is None:
             textToShow = ' '

@@ -288,7 +288,7 @@ class DistributedFishingSpot(DistributedInteractive.DistributedInteractive, Loot
 
 
     def handleEndInteractKey(self):
-        if self.fishingGame or not self.fishingGame.gui.resultsScreen.isHidden() or localAvatar.guiMgr.inventoryUIManager.hasPlunder():
+        if not self.fishingGame or not self.fishingGame.gui.resultsScreen.isHidden() or localAvatar.guiMgr.inventoryUIManager.hasPlunder():
             return None
 
         if self._DistributedFishingSpot__dialog == None:

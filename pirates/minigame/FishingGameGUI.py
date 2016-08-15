@@ -214,19 +214,29 @@ class FishingGameGUI:
 
 
     def destroy(self):
-        self.castPowerMeter.remove_node()
-        self.lineHealthMeter.remove_node()
-        self.lureSelectionPanel.destroy()
-        self.lureSelectionPanel.regularLureButton = None
-        self.lureSelectionPanel.regularLureButtonText = None
-        self.lureSelectionPanel.legendaryLureButton = None
-        self.lureSelectionPanel.legendaryLureButtonText = None
-        self.lureSelectionPanel = None
+        if hasattr(self, 'castPowerMeter') and self.castPowerMeter:
+            self.castPowerMeter.remove_node()
+        
+        if hasattr(self, 'lineHealthMeter') and self.lineHealthMeter:
+            self.lineHealthMeter.remove_node()
+        
+        if hasattr(self, 'lureSelectionPanel') and self.lureSelectionPanel:
+            self.lureSelectionPanel.destroy()
+            self.lureSelectionPanel.regularLureButton = None
+            self.lureSelectionPanel.regularLureButtonText = None
+            self.lureSelectionPanel.legendaryLureButton = None
+            self.lureSelectionPanel.legendaryLureButtonText = None
+            self.lureSelectionPanel = None
+        
         self.lineLengthLabel = None
-        self.tackleBoxButton.destroy()
-        self.tackleBoxButton = None
-        self.exitButton.destroy()
-        self.exitButton = None
+        
+        if hasattr(self, 'tackleBoxButton') and self.tackleBoxButton:
+            self.tackleBoxButton.destroy()
+            self.tackleBoxButton = None
+        
+        if hasattr(self, 'exitButton') and self.exitButton:
+            self.exitButton.destroy()
+            self.exitButton = None
 
 
     def startPowerMeter(self):

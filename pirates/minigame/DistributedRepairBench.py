@@ -76,7 +76,11 @@ class DistributedRepairBench(DistributedInteractive):
         if localAvatar.getGameState() == 'BenchRepair':
             localAvatar.b_setGameState(localAvatar.gameFSM.defaultState)
             base.localAvatar.motionFSM.on()
+            messenger.send('repairBenchOver')
 
+    def handleEndInteractKey(self):
+        self.requestExit()
+    
     def requestExit(self):
         DistributedInteractive.requestExit(self)
         self.stopRepairing()

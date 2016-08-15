@@ -42,6 +42,7 @@ class RepairGameGUI(DirectFrame):
         base.loadingScreen.beginStep('Intervals')
         self._initIntervals()
         base.loadingScreen.endStep('Intervals')
+        self.acceptOnce('repairBenchOver', self.destroy)
 
     def _initSound(self):
         if not self.completeSound:
@@ -92,7 +93,6 @@ class RepairGameGUI(DirectFrame):
 
     def handleExitGame(self):
         messenger.send('escape')
-        self.destroy()
 
     def getCycleCompleteWaitTime(self):
         if self.repairGame.location == ON_LAND:
