@@ -42,11 +42,15 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         self.jailCell = None
         self.underArrest = 0
         self.inventoryId = 0
+        self.founder = False
 
     def announceGenerate(self):
         DistributedBattleAvatarAI.announceGenerate(self)
         DistributedPlayerAI.announceGenerate(self)
 
+        if config.GetBool('want-auto-founder', False) and not self.getFounder():
+            self.b_setFounder(True)
+        
         taskMgr.doMethodLater(10, self.__healthTask, self.taskName('healthTask'))
 
     def getInventory(self):
@@ -67,6 +71,19 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
     
     def getInventoryId(self):
         return self.inventoryId
+    
+    def b_setFounder(self, founder):
+        self.setFounder(founder)
+        self.d_setFounder(founder)
+    
+    def d_setFounder(self, founder):
+        self.sendUpdate('setFounder', [founder])
+    
+    def setFounder(self, founder):
+        self.founder = founder
+    
+    def getFounder(self):
+        return self.founder
     
     def repChanged(self):
         newLevel = self.calcLevel()
@@ -448,3 +465,13 @@ def rep(amount):
         return 'Pick the weapon you want to add reputation to!'
 
     av.inventory.addReputation(repId, amount)
+
+@magicWord(CATEGORY_GAME_MASTER)
+def founder():
+    av = spellbook.getTarget()
+    av.b_setFounder(not av.getFounder())
+    
+    if av.getFounder():
+        return 'Enabled founder status!'
+    else:
+        return 'Disabled founder status!'

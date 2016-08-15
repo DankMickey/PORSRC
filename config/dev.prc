@@ -91,6 +91,7 @@ want-run #f
 want-pirates-run #f
 immortal-mode #f
 free-teleport-access #t
+want-auto-founder #t
 
 # PVP/SVS
 want-pvp-team-balance #f
