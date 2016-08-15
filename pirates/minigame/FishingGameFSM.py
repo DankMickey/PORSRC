@@ -419,7 +419,7 @@ class FishingGameFSM(FSM.FSM):
                 self.gameObject.sfx['fishOutLarge03'].play()
 
         self.gameObject.sfx['successCaught'].play()
-        fishId = int(self.gameObject.fishManager.activeFish.myData['id'])
+        fishId = FishingGlobals.allFishData.index(self.gameObject.fishManager.activeFish.myData)
         self.gameObject.distributedFishingSpot.d_caughtFish(fishId, self.gameObject.fishManager.activeFish.weight)
         self.gameObject.oceanEye = False
         self.gameObject.playRewardSequence()

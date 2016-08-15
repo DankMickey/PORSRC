@@ -1144,7 +1144,7 @@ dclass DistributedFishingSpot : DistributedInteractive, Lootable {
   setIndex(int8) broadcast ram required;
   setOceanOffset(int16/10) broadcast ram required;
   setOnABoat(bool) broadcast ram required;
-  caughtFish(uint16, uint16) clsend airecv;
+  caughtFish(uint8, uint16) clsend airecv;
   lostLure(int16) clsend airecv;
   firstTimeFisher();
   spotFilledByAvId(uint32) broadcast ram;

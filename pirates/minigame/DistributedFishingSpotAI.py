@@ -2,6 +2,7 @@ from direct.directnotify import DirectNotifyGlobal
 from pirates.distributed.DistributedInteractiveAI import *
 from direct.distributed.DistributedObjectAI import *
 from pirates.inventory import LootableAI
+from pirates.uberdog.UberDogGlobals import InventoryType
 import FishingGlobals
 
 class DistributedFishingSpotAI(DistributedInteractiveAI, LootableAI.LootableAI):
@@ -18,7 +19,24 @@ class DistributedFishingSpotAI(DistributedInteractiveAI, LootableAI.LootableAI):
         return ACCEPT | ACCEPT_SEND_UPDATE
 
     def caughtFish(self, fishId, weight):
-        pass
+        avId = self.air.getAvatarIdFromSender()
+        av = self.air.doId2do.get(avId)
+        
+        if not av:
+            return
+
+        if len(FishingGlobals.allFishData) <= fishId:
+            return
+
+        fish = FishingGlobals.allFishData[fishId]
+        minWeight, maxWeight = fish['weightRange']
+        
+        if not minWeight <= weight <= maxWeight:
+            return
+
+        gold = fish['gold'] * weight
+        av.inventory.addReputation(InventoryType.FishingRep, fish['experience'])
+        av.repChanged()
 
     def lostLure(self, lureId):
         pass
