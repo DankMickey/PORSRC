@@ -12,7 +12,6 @@ from pirates.piratesgui.GuiButton import GuiButton
 from pirates.piratesbase import PLocalizer
 from direct.directnotify import DirectNotifyGlobal
 from pirates.piratesgui import PDialog
-from pirates.piratesgui import FeedbackPanel
 from pirates.piratesgui import MainMenuConfirm
 from pirates.piratesgui.GameOptions import GameOptions
 from pirates.audio import SoundGlobals
@@ -24,7 +23,6 @@ class MainMenu(DirectFrame):
 
     def __init__(self, title, x, y, width, height):
         self.popupDialog = None
-        self.feedbackPanel = None
         self.gameOptions = None
         DirectFrame.__init__(self, relief = None, image = loader.loadModel('models/misc/fade'), image_scale = (5, 2, 2), image_color = (0, 0, 0, 0.299), image_pos = (0.5, 0, 0.800000), state = DGG.NORMAL, pos = (x, 0.0, y), sortOrder = 20)
         self.initialiseoptions(MainMenu)
@@ -39,18 +37,18 @@ class MainMenu(DirectFrame):
         self.logo.setScale(0.9)
         self.buttons = []
         hotkeys = ['esc']
-        self.returnButton = GuiButton(parent = self.logo, relief = None, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text = PLocalizer.MainMenuReturn, image = (self.model.find('**/avatar_c_A_top'), self.model.find('**/avatar_c_A_top'), self.model.find('**/avatar_c_A_top_over')), image_scale = 0.4, text_pos = (0, -0.02), pos = (0, 0, -0.450), command = self.handleReturn)
+        z = -0.45
+        self.returnButton = GuiButton(parent = self.logo, relief = None, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text = PLocalizer.MainMenuReturn, image = (self.model.find('**/avatar_c_A_top'), self.model.find('**/avatar_c_A_top'), self.model.find('**/avatar_c_A_top_over')), image_scale = 0.4, text_pos = (0, -0.02), pos = (0, 0, z), command = self.handleReturn)
         self.buttons.append(self.returnButton)
-        self.optionsButton = GuiButton(parent = self.logo, relief = None, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text = PLocalizer.MainMenuOptions, image = (self.model.find('**/avatar_c_A_middle'), self.model.find('**/avatar_c_A_middle'), self.model.find('**/avatar_c_A_middle_over')), image_scale = 0.4, text_pos = (0, -0.0149), pos = (0, 0, -0.56395), command = self.handleOptions)
+        z -= 0.106
+        self.optionsButton = GuiButton(parent = self.logo, relief = None, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text = PLocalizer.MainMenuOptions, image = (self.model.find('**/avatar_c_A_middle'), self.model.find('**/avatar_c_A_middle'), self.model.find('**/avatar_c_A_middle_over')), image_scale = 0.4, text_pos = (0, -0.0149), pos = (0, 0, z), command = self.handleOptions)
         self.buttons.append(self.optionsButton)
-        self.feedbackButton = GuiButton(parent = self.logo, relief = None, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text = PLocalizer.MainMenuFeedback, image = (self.model.find('**/avatar_c_A_middle'), self.model.find('**/avatar_c_A_middle'), self.model.find('**/avatar_c_A_middle_over')), image_scale = 0.4, text_pos = (0, -0.0149), pos = (0, 0, -0.670000), command = self.loadFeedbackPanel)
-        self.buttons.append(self.feedbackButton)
-        self.buttonZ = -0.670000
-        self.buttonZ = self.buttonZ - 0.106
-        self.logoutButton = GuiButton(parent = self.logo, relief = None, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text = PLocalizer.MainMenuLogout, image = (self.model.find('**/avatar_c_A_middle'), self.model.find('**/avatar_c_A_middle'), self.model.find('**/avatar_c_A_middle_over')), image_scale = 0.4, text_pos = (0, -0.0149), pos = (0, 0, self.buttonZ), command = self.handleLogout)
-        self.buttons.append(self.logoutButton)
-        self.buttonZ = self.buttonZ - 0.157
-        self.quitButton = GuiButton(parent = self.logo, relief = None, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text = PLocalizer.MainMenuQuit, image = (self.model.find('**/avatar_c_A_bottom'), self.model.find('**/avatar_c_A_bottom'), self.model.find('**/avatar_c_A_bottom_over')), image_scale = 0.4, text_pos = (0, 0.035000), pos = (0, 0, self.buttonZ), command = self.handleQuit)
+        if config.GetBool('want-logout', False):
+            z -= 0.106
+            self.logoutButton = GuiButton(parent = self.logo, relief = None, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text = PLocalizer.MainMenuLogout, image = (self.model.find('**/avatar_c_A_middle'), self.model.find('**/avatar_c_A_middle'), self.model.find('**/avatar_c_A_middle_over')), image_scale = 0.4, text_pos = (0, -0.0149), pos = (0, 0, z), command = self.handleLogout)
+            self.buttons.append(self.logoutButton)
+        z -= 0.157
+        self.quitButton = GuiButton(parent = self.logo, relief = None, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text = PLocalizer.MainMenuQuit, image = (self.model.find('**/avatar_c_A_bottom'), self.model.find('**/avatar_c_A_bottom'), self.model.find('**/avatar_c_A_bottom_over')), image_scale = 0.4, text_pos = (0, 0.035000), pos = (0, 0, z), command = self.handleQuit)
         self.buttons.append(self.quitButton)
         self.barFrame = DirectFrame(parent = self.logo, relief = None, image = self.model.find('**/avatar_c_B_frame'), image_scale = 0.348, pos = (0, 0, -0.348))
         self.showMenuIval = None
@@ -78,10 +76,6 @@ class MainMenu(DirectFrame):
             self.popupDialog.destroy()
             del self.popupDialog
             self.popupDialog = None
-        if self.feedbackPanel:
-            self.feedbackPanel.destroy()
-            del self.feedbackPanel
-            self.feedbackPanel = None
         if self.gameOptions:
             self.gameOptions.destroy()
             del self.gameOptions
@@ -102,12 +96,6 @@ class MainMenu(DirectFrame):
         self.gameOptions.show()
         base.options = self.gameOptions.options
 
-    def loadFeedbackPanel(self):
-        if base.localAvatar.guiMgr.feedbackFormActive:
-            return None
-        self.feedbackPanel = FeedbackPanel.FeedbackPanel()
-        self.feedbackPanel.setBin('gui-fixed', -5)
-
     def handleLogout(self):
         if self.popupDialog:
             self.popupDialog.destroy()
@@ -123,7 +111,6 @@ class MainMenu(DirectFrame):
     def logout_dialog_command(self, value):
         self.delete_dialogs()
         if value == 1:
-
             try:
                 if base.cr.tutorialObject and base.cr.tutorialObject.map:
                     base.cr.tutorialObject.map.handleCancel()
@@ -131,12 +118,11 @@ class MainMenu(DirectFrame):
                     if localAvatar.getCanLogout():
                         if localAvatar.guiMgr.crewHUD.crew:
                             localAvatar.guiMgr.crewHUD.leaveCrew()
-
                         self.hideMenuIval.start()
                         base.cr.gameFSM.request('closeShard', [
                             'waitForAvatarList'])
-            except:
-                pass
+            except Exception as e:
+                raise e
 
     def buildShowHideMenuIvals(self):
         showSequence = Sequence(Func(self.show), ProjectileInterval(self.parentFrame, duration = 0.200, endPos = Point3(0, 0, -0.100)), ProjectileInterval(self.parentFrame, duration = 0.149, endPos = Point3(0, 0, -0.050000), gravityMult = -1), ProjectileInterval(self.parentFrame, duration = 0.149, endPos = Point3(0, 0, -0.100)))

@@ -97,7 +97,6 @@ from pirates.quest import QuestConstants
 from pirates.quest.QuestTaskDNA import MaroonNPCTaskDNA, DowsingRodTaskDNA
 from pirates.quest import ClubheartsPortrait
 from pirates.friends import ReportAPlayer
-from pirates.piratesgui import FeedbackPanel
 from pirates.piratesgui.SiegeBoard import SiegeBoard
 from pirates.piratesgui.PVPBoard import PVPBoard
 from pirates.inventory import InventoryUIManager
@@ -218,7 +217,6 @@ class GuiManager(FSM.FSM):
         self.warningMsg.text.setDepthTest(0)
         self.warningMsg.text.setDepthWrite(0)
         self.socialPanelReturn = False
-        self.feedbackFormActive = False
         self.crewHUDTurnedOff = True
         self.gameGui = GameGui.GameGui(parent = NodePath(), state = DGG.NORMAL, relief = None, pos = (-0.2, 0, -0.27), scale = 0.75, command = self.gameGuiPressed, frameSize = (0.0, 1.2, -0.03, 0.35))
         self.codeShown = 0

@@ -8508,7 +8508,6 @@ FriendInviterAvatarNotYet = 'Make Pirate Friends with the pirate named %s?\n\nTh
 FriendInviterAvatarEndFriendShip = 'Stop being Pirate Friends with the pirate named %s?\n\nThis will not break a Player Friendship, but these two pirates will no longer be friends.'
 MainMenuReturn = 'Return to Game'
 MainMenuOptions = 'Game Options'
-MainMenuFeedback = 'Send Feedback'
 MainMenuLogout = 'Logout'
 MainMenuQuit = 'Exit Game'
 MainMenuLogoutConfirm = 'Are you sure you want to logout?'
@@ -10896,25 +10895,6 @@ ShipPVPQuestProgDamA = '%d/%d Points Of Damage To %s %ss In %s'
 ShipPVPQuestProgDamB = '%d/%d Points Of Damage Against The %s In %s'
 ShipPVPQuestProgDamC = '%d/%d Points Of Damage To %ss In %s'
 ShipPVPQuestProgDamD = '%d/%d Points Of Damage In %s'
-FeedbackFormTitle = 'Feedback Form'
-FeedbackFormMessage = 'Please select a category from the list on the right and provide your feedback below. Thank you for helping us to improve the game!'
-FeedbackFormCatItems = [
-    'Quests',
-    'Weapons',
-    'Tech',
-    'Ships',
-    'PVP',
-    'Social',
-    'General',
-    'Crews',
-    'Guilds',
-    'Potions',
-    'Ship Repair',
-    'Cannons',
-    'Fishing']
-FeedbackButtonHelp = 'Send Feedback'
-FeedbackFormSend = 'Send'
-FeedbackManageButton = 'Manage Account'
 townfolkHelpText = {
     1: [
         "Ready to fly the French colours on that ship of yers?\x07 Be aware that sailing from an island like this, ye must know a thing or two.\x07First, Pirates who choose to embark from this scrap of an island will be thrown into a battle... whether they be wantin' to or not.\x07Second, be wary of the sail colours around ye. That way a pirate knows who's friend and who's foe.\x07And if ye be needin' to check your score, press the ~ button. That gives a ship's score AND its bounty.\x07Pirates earn both for sinkin' enemy ships. The higher a bounty, the more it's worth.\x07Fair winds and good luck, mate... ye be needin' both!"],

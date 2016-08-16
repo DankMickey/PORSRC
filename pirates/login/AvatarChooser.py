@@ -666,7 +666,6 @@ class AvatarChooser(DirectObject, StateData):
             'mode': 'chose' }
         messenger.send(self.doneEvent, [
             self.doneStatus])
-        messenger.send('destroyFeedbackPanel')
 
     def __activatePlayButton(self):
         if not self.queueComplete:

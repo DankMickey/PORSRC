@@ -734,18 +734,6 @@ class GameOptionsGui(DirectFrame):
                 gsg.getPreparedObjects().releaseAllTextures()
                 messenger.send('texture_state_changed')
 
-
-
-
-    def _GameOptionsGui__loadFeedbackPanel(self):
-        FeedbackPanel = FeedbackPanel
-        import pirates.piratesgui
-        self.close()
-        if self.gameOptions is not None:
-            FeedbackPanel.FeedbackPanel()
-
-
-
     def initResolutionSettings(self):
         if self.gameOptions is None:
             return None
