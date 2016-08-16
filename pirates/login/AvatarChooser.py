@@ -911,7 +911,7 @@ class AvatarChooser(DirectObject, StateData):
 
         (subId, slot) = self.choice
         potAv = base.cr.avList[subId][slot]
-        name = potAv.dna.getDNAName()
+        name = potAv.name
         self.blockInput()
         self.deleteConfirmDialog = PDialog.PDialog(text = PLocalizer.AvatarChooserConfirmDelete % name, style = OTPDialog.YesNo, command = self.__handleDeleteConfirmation)
 
