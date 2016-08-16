@@ -1024,3 +1024,8 @@ def flattenOrdered(root):
 INTERACT_TYPES_WITHOUT_FORCE_POS = [
     'barrel_hide']
 POPULATION_FACTOR = 0.200
+
+ALLEGIANCE_PIRATE = 0
+ALLEGIANCE_SPANISH = 1
+ALLEGIANCE_FRENCH = 2
+ALLEGIANCE_FLAGS = ['logo_pirate_flag', 'logo_spanish_flag', 'logo_french_flag']

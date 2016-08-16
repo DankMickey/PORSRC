@@ -656,7 +656,7 @@ class AvatarChooser(DirectObject, StateData):
     def __handleRejectPlayAvatar(self, value):
         base.cr.loginFSM.request('shutdown')
 
-    def __playAvatarResponse(self, avatarId, subId, founder):
+    def __playAvatarResponse(self, avatarId, subId):
         (subId, slot) = self.choice
         self.notify.info('AvatarChooser: acquired avatar slot: %s avId: %s subId: %s' % (slot, avatarId, subId))
         self.ignore('rejectPlayAvatar')

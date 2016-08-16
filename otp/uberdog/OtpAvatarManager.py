@@ -75,7 +75,6 @@ class OtpAvatarManager(DistributedObject.DistributedObject):
     def rejectPlayAvatar(self, reasonId, avatarId):
         messenger.send('rejectPlayAvatar', [reasonId, avatarId])
 
-    def playAvatarResponse(self, avatarId, subId, founder):
+    def playAvatarResponse(self, avatarId, subId):
         messenger.send('playAvatarResponse', [avatarId,
-         subId,
-         founder])
+         subId])

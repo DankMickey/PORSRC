@@ -31,7 +31,7 @@ class OtpAvatarManagerAI(DistributedObjectAI):
     def rejectPlayAvatar(self, todo0, todo1):
         pass
 
-    def playAvatarResponse(self, todo0, todo1, todo2):
+    def playAvatarResponse(self, todo0, todo1):
         pass
 
     def rejectCreateAvatar(self, todo0):

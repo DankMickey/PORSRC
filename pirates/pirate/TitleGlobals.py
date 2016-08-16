@@ -4,8 +4,7 @@ from pirates.piratesbase import PLocalizer
 from pirates.pvp import PVPGlobals
 ShipPVPTitle = 1
 LandPVPTitle = 2
-FounderTitle = 3
-CollectorTitle = 4
+CollectorTitle = 3
 landPVPIcons = {
     0: None,
     1: 'pir_t_ico_inf_lnd_rookie',
@@ -24,11 +23,7 @@ shipPVPIcons = {
     5: 'pir_t_ico_inf_shp_commodore',
     6: 'pir_t_ico_inf_shp_vice_admiral',
     7: 'pir_t_ico_inf_shp_admiral' }
-founderIcons = {
-    0: None,
-    1: 'founders_coin' }
 standardScale = 2.2
-foundersScale = 6.0
 pvpScale = 1.8
 TestBreakpoints1 = [
     0,
@@ -48,18 +43,13 @@ TestBreakpoints2 = [
     504,
     564,
     2323]
-FounderBreakpoints = [
-    0,
-    1]
 Title2nametagTextProp = {
     ShipPVPTitle: None,
-    LandPVPTitle: None,
-    FounderTitle: 'goldFounder' }
+    LandPVPTitle: None}
 TitlesDict = {
     ShipPVPTitle: ('models/gui/gui_icons_infamy', shipPVPIcons, pvpScale, PLocalizer.PVPTitleSeaName, PLocalizer.PVPTitleSeaRanks, PLocalizer.PVPTitleSeaDesc, PVPGlobals.RenownBreakpointsSea, InventoryType.PVPTotalInfamySea, 0),
-    LandPVPTitle: ('models/gui/gui_icons_infamy', landPVPIcons, pvpScale, PLocalizer.PVPTitleLandName, PLocalizer.PVPTitleLandRanks, PLocalizer.PVPTitleLandDesc, PVPGlobals.RenownBreakpointsLand, InventoryType.PVPTotalInfamyLand, 0),
-    FounderTitle: ('models/gui/toplevel_gui', founderIcons, foundersScale, PLocalizer.FounderTitleName, PLocalizer.FounderTitleRanks, PLocalizer.FounderTitleDesc, FounderBreakpoints, None, 1) }
-
+    LandPVPTitle: ('models/gui/gui_icons_infamy', landPVPIcons, pvpScale, PLocalizer.PVPTitleLandName, PLocalizer.PVPTitleLandRanks, PLocalizer.PVPTitleLandDesc, PVPGlobals.RenownBreakpointsLand, InventoryType.PVPTotalInfamyLand, 0)
+}
 def isValidTitle(titleKey):
     titleData = TitlesDict.get(titleKey, None)
     if titleData:
@@ -131,12 +121,6 @@ def getRank(title, expPoints):
     breakpoints = titleAttr[6]
     if not breakpoints:
         return 0
-
-    if title == FounderTitle:
-        if expPoints:
-            return 1
-        else:
-            return 0
 
     high = 0
     for testValue in breakpoints:

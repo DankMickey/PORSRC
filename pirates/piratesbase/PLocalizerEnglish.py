@@ -8266,12 +8266,8 @@ PVPTitleSeaRanks = {
     5: 'Commodore',
     6: 'Vice Admiral',
     7: 'Admiral' }
-FounderTitleRanks = {
-    0: None,
-    1: 'Founder' }
 PVPTitleLandName = 'PvP Title'
 PVPTitleSeaName = 'Privateering Title'
-FounderTitleName = 'Founder Title'
 PVPInfamy = 'Infamy'
 PVPInfamySea = 'Infamy'
 PVPInfamyLand = 'Infamy'
@@ -8283,7 +8279,6 @@ PVPMessageKill = 'You received %s infamy for landing the final blow on %s'
 PVPMessageDamage = 'You received %s infamy for doing the most damage to %s'
 PVPTitleSeaDesc = 'Ship Privateering Infamy'
 PVPTitleLandDesc = 'Land Combat Infamy'
-FounderTitleDesc = 'Founding Pirate for the Caribbean'
 NoTitle = 'No Title'
 TitlesTitle = 'Achievements'
 DisplayTitle = 'Select the badges you want to display\n\nNote: Infamy decreases during days you do not play.'

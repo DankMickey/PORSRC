@@ -189,7 +189,6 @@ class RepairBracingGame(RepairMincroGame):
 
                 percent = int(((bestGoalCount - 1.0) / (GRID_SIZE - 1)) * 100)
                 percentages[-1] = percent
-                print 'Horiz: %s, %s' % (bestGoalCount, goalCount)
 
                 if bestGoalCount == GRID_SIZE:
                     solved[-1] = True
@@ -212,7 +211,6 @@ class RepairBracingGame(RepairMincroGame):
 
                 percent = int(((bestGoalCount - 1.0) / (GRID_SIZE - 1.0)) * 100)
                 percentages[-1] = percent
-                print 'Vert: %s, %s' % (bestGoalCount, goalCount)
 
                 if bestGoalCount == GRID_SIZE:
                     solved[-1] = True

@@ -212,7 +212,7 @@ dclass OtpAvatarManager : DistributedObject {
   avatarSlotResponse(uint32, uint8);
   requestPlayAvatar(uint32, uint32, uint32) clsend airecv;
   rejectPlayAvatar(uint32, uint32);
-  playAvatarResponse(uint32, uint32, uint8);
+  playAvatarResponse(uint32, uint32);
   rejectCreateAvatar(uint32);
   createAvatarResponse(uint32, uint32);
   requestRemoveAvatar(uint32, uint32, uint32, string(0-256)) airecv clsend;

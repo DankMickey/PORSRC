@@ -47,7 +47,7 @@ from pirates.quest.DistributedQuestAvatar import DistributedQuestAvatar
 from pirates.world.LocationConstants import LocationIds
 from pirates.piratesbase import PLocalizer
 from pirates.piratesbase import PiratesGlobals
-from pirates.piratesgui import PiratesGuiGlobals, NamePanelGui, PDialog
+from pirates.piratesgui import PiratesGuiGlobals, NamePanelGui, PDialog, GUIUtils
 from pirates.piratesbase import TeamUtils
 from pirates.minigame import Fish, FishingGlobals
 from pirates.npc import Skeleton
@@ -115,6 +115,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
     crewIconId = None
     tempDoubleXPStatus = None
     badgeIconDict = None
+    flagIconDict = None
     gmNameTag = None
     confusedIcon = None
 
@@ -183,6 +184,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
 
                     tpMgr.setGraphic('crewIcon%s' % k, self.crewIconDict[k])
 
+                    
 
             if not self.badgeIconDict:
                 self.badgeIconDict = { }
@@ -204,7 +206,20 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
                         tg = TextGraphic(icon, -0.25, 0.75, -0.31, 0.685)
                         tpMgr.setGraphic(iconKey, tg)
 
+            if not self.flagIconDict:
+                self.flagIconDict = {}
+                flags = loader.loadModel('models/textureCards/sailLogo')
+                
+                for iconType, iconName in enumerate(PiratesGlobals.ALLEGIANCE_FLAGS):
+                    if iconType == 0:
+                        flag = GUIUtils.loadTextureModel(loader.loadTexture('phase_2/maps/pir_t_gui_shp_skull.jpg', 'phase_2/maps/pir_t_gui_shp_skull_a.rgb'))
+                        flag.setScale(0.5)
+                    else:
+                        flag = flags.find('**/' + iconName)
+                        flag.setScale(0.706)
 
+                    tpMgr.setGraphic(iconName, TextGraphic(flag, -0.25, 0.75, -0.31, 0.685))
+                    self.flagIconDict[iconType] = flag
 
             if not self.gmNameTag:
                 self.gmNameTagIcon = loader.loadModel('models/gui/gmLogo_tflip')
@@ -1292,17 +1307,15 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
                 text = '%s%s  \x01smallCaps\x01%s%s%s%s\x02\x02' % (self.title, self.name, levelColor, PLocalizer.Lv, level, x2XPTempAwardIndicator)
             else:
                 text = '%s%s  \x01smallCaps\x01%s%s%s%s\x02\x02\n\x01guildName\x01%s\x02' % (self.title, self.name, levelColor, PLocalizer.Lv, level, x2XPTempAwardIndicator, guildName)
-            nameText['text'] = text
             if self.getFounder():
                 nameText['fg'] = (1, 1, 1, 1)
                 nameText['font'] = PiratesGlobals.getPirateOutlineFont()
-                if not base.config.GetBool('want-land-infamy', 0) or base.config.GetBool('want-sea-infamy', 0):
-                    nameText['text'] = '\x05goldFounderIcon\x05 \x01goldFounder\x01%s\x02' % text
-                else:
-                    nameText['text'] = '\x01goldFounder\x01%s\x02' % text
+                text = '\x05goldFounderIcon\x05 \x01goldFounder\x01%s\x02' % text
             else:
                 nameText['fg'] = (0.4, 0.299, 0.946, 1)
                 nameText['font'] = PiratesGlobals.getPirateOutlineFont()
+            text = '\x01white\x01\x05%s\x05\x02%s' % (PiratesGlobals.ALLEGIANCE_FLAGS[self.allegiance], text)
+            nameText['text'] = text
             prefix = ''
             if self.injuredSetup and 0:
                 if self.injuredTimeLeft:
@@ -1323,11 +1336,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
                 if base.config.GetBool('want-land-infamy', 0) or base.config.GetBool('want-sea-infamy', 0):
                     if self.badge[0]:
                         textProp = TitleGlobals.Title2nametagTextProp[self.badge[0]]
-                        if textProp == 'goldFounder':
-                            if self.getFounder():
-                                badges += '\x01white\x01\x05badge-%s-%s\x05\x02 ' % (self.badge[0], 1)
-                                nameText['text'] = '\x01%s\x01%s\x02' % (textProp, nameText['text'])
-                        elif textProp:
+                        if textProp:
                             badges += '\x01white\x01\x05badge-%s-%s\x05\x02 ' % (self.badge[0], self.badge[1])
                             nameText['text'] = '\x01%s\x01%s\x02' % (textProp, nameText['text'])
                         else:
@@ -2898,11 +2907,16 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
     def setFounder(self, founder):
         self.founder = founder
         self.refreshName()
-
+    
+    def setAllegiance(self, allegiance):
+        self.allegiance = allegiance
+        self.refreshName()
 
     def getFounder(self):
         return self.founder
 
+    def getAllegiance(self):
+        return self.allegiance
 
     def useBestTonic(self):
         self.sendUpdate('useBestTonic', [])

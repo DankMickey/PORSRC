@@ -43,6 +43,7 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         self.underArrest = 0
         self.inventoryId = 0
         self.founder = False
+        self.allegiance = 0
         self.gmNametag = ('', '')
 
     def announceGenerate(self):
@@ -85,6 +86,19 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
     
     def getFounder(self):
         return self.founder
+    
+    def b_setAllegiance(self, allegiance):
+        self.setAllegiance(allegiance)
+        self.d_setAllegiance(allegiance)
+    
+    def d_setAllegiance(self, allegiance):
+        self.sendUpdate('setAllegiance', [allegiance])
+    
+    def setAllegiance(self, allegiance):
+        self.allegiance = allegiance
+    
+    def getAllegiance(self):
+        return self.allegiance
     
     def b_setGMNametag(self, color, string):
         self.setGMNametag(color, string)
@@ -486,6 +500,18 @@ def founder():
         return 'Enabled founder status!'
     else:
         return 'Disabled founder status!'
+
+@magicWord(CATEGORY_GAME_MASTER, types=[str])
+def allegiance(side=None):
+    allegiances = ['pirate', 'spanish', 'french']
+    side = side.lower()
+    
+    if side not in allegiances:
+        return 'Your side can only be pirate, spanish or french!'
+    
+    av = spellbook.getTarget()
+    av.b_setAllegiance(allegiances.index(side))
+    return 'Your allegiance has been set!'
 
 @magicWord(CATEGORY_GAME_MASTER, types=[str, str])
 def gm(color=None, tag=None):

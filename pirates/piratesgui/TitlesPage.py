@@ -70,8 +70,6 @@ class TitlePanel(DirectFrame):
                 self.expPoints = inv.getStackQuantity(invType)
             else:
                 self.expPoints = 0
-                if self.titleId == TitleGlobals.FounderTitle and localAvatar.getFounder():
-                    self.expPoints = 1
 
             self.rank = TitleGlobals.getRank(self.titleId, self.expPoints)
             self.maxRank = TitleGlobals.getMaxRank(self.titleId)
@@ -315,9 +313,7 @@ class TitlesPage(InventoryPage.InventoryPage):
 
 
     def shouldShowTitle(self, titleId):
-        if titleId == TitleGlobals.FounderTitle and not localAvatar.getFounder():
-            return 0
-        elif titleId == TitleGlobals.ShipPVPTitle and not base.config.GetBool('want-sea-infamy', 0):
+        if titleId == TitleGlobals.ShipPVPTitle and not base.config.GetBool('want-sea-infamy', 0):
             return 0
         elif titleId == TitleGlobals.LandPVPTitle and not base.config.GetBool('want-land-infamy', 0):
             return 0
