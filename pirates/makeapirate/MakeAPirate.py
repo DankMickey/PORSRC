@@ -1208,17 +1208,19 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
 
 
     def handleDone(self):
+        base.transitions.fadeScreen(0.25)
+
         if self.guiConfirmDoneBox:
             self.guiConfirmDoneBox.destroy()
 
         self.guiConfirmDoneBox = PDialog.PDialog(parent=aspect2dp, text = PLocalizer.MakeAPirateConfirm, style = OTPDialog.YesNo, command = self.handleConfirmDone)
         self.guiConfirmDoneBox.setBin('gui-popup', 5)
 
-
     def handleConfirmDone(self, done):
         self.guiConfirmDoneBox.destroy()
         self.guiConfirmDoneBox = None
         if done == DGG.DIALOG_CANCEL:
+            base.transitions.noFade()
             return None
 
         self.doneStatus = 'created'
@@ -1266,6 +1268,8 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
     def _handleNameOK(self):
         self.destroyFactionChooser()
         self.factionChooser = FactionChooser(self.__factionChooserDone)
+        self.factionChooser.setBin('gui-popup', 5)
+        base.transitions.fadeScreen(0.25)
     
     def __factionChooserDone(self, allegiance):
         self.destroyFactionChooser()

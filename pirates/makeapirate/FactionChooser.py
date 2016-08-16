@@ -76,6 +76,7 @@ class FactionChooser(DirectFrame):
 
         if done == DGG.DIALOG_CANCEL:
             self.show()
+            base.transitions.fadeScreen(0.25)
             return
         
         self.callback(self.chosen)
