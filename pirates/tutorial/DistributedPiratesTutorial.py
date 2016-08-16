@@ -520,10 +520,6 @@ class DistributedPiratesTutorial(DistributedObject.DistributedObject, FSM.FSM):
             self.acceptOnce('avatarPopulated', self.avatarPopulated)
             if self.map.nameGui.customName:
                 localAvatar.setWishName()
-                base.cr.avatarManager.sendRequestPopulateAvatar(localAvatar.doId, localAvatar.style, 0, 0, 0, 0, 0)
-            else:
-                name = self.map.nameGui.getNumericName()
-                base.cr.avatarManager.sendRequestPopulateAvatar(localAvatar.doId, localAvatar.style, 1, name[0], name[1], name[2], name[3])
             self.map.exit()
             self.map.unload()
             self.map = 0

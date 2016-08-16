@@ -941,7 +941,6 @@ class AvatarChooser(DirectObject, StateData):
                 wantShared = 0
             else:
                 wantShared = 1
-            base.cr.avatarManager.sendRequestShareAvatar(potAv.id, subId, wantShared)
             base.cr.waitForDatabaseTimeout(requestName = 'WaitForShareAvatarResponse')
             self.blockInput()
         else:
