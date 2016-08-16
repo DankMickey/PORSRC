@@ -17,7 +17,6 @@ from otp.distributed import DistributedDistrict/AI/UD
 from otp.distributed import DistributedDirectory/AI
 from otp.chat import ChatAgent/UD
 from otp.distributed import CentralLogger/AI/UD
-from otp.web import SettingsMgr/AI/UD
 from otp.status import StatusDatabase/UD
 from otp.avatar import AvatarHandle
 
@@ -364,11 +363,6 @@ dclass AvatarFriendsManager : DistributedObject {
 
 dclass CentralLogger : DistributedObject {
   sendMessage(string(0-256), string(0-1024), uint32) clsend;
-};
-
-dclass SettingsMgr : DistributedObject {
-  requestAllChangedSettings() airecv clsend;
-  settingChange(string, string) airecv;
 };
 
 dclass StatusDatabase : DistributedObject {

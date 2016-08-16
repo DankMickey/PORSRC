@@ -1,5 +1,4 @@
 from panda3d.core import Vec4
-from otp.web.Setting import StateVarSetting
 from direct.fsm.StatePush import FunctionCall
 from pirates.piratesbase import PLocalizer
 from pirates.ship import ShipGlobals
@@ -9,32 +8,24 @@ RulesDuration = 12.0
 ReadyTimeout = 120.0
 ReadyBarrierTimeout = RulesDuration + ReadyTimeout
 MainWorldAvRespawnDelay = 3.0
-MainWorldInvulnerabilityDuration = StateVarSetting('pvp.invulnerability.duration', 180.0)
-MainWorldInvulnerabilityWantCutoff = StateVarSetting('pvp.invulnerability.wantCutoff', 1)
-MainWorldInvulnerabilityCutoffRadiusScale = StateVarSetting('pvp.invulnerability.cutoffSphereRadiusScale', 1.1)
-WantIslandRegen = StateVarSetting('pvp.shipHeal.WantIslandRegen', getBase().config.GetBool('want-pvp-island-regeneration', 0))
-WantShipRepairSpots = StateVarSetting('pvp.shipHeal.WantShipRepairSpots', getBase().config.GetBool('want-ship-repair-spots', 1))
-WantShipRepairKit = StateVarSetting('pvp.shipHeal.WantShipRepairKit', getBase().config.GetBool('want-ship-repair-kit', 0))
-ShipRegenRadiusScale = StateVarSetting('pvp.shipHeal.island.sphereRadiusScale', 1.0)
-ShipRegenHps = StateVarSetting('pvp.shipHeal.island.healPerSecHP', 50)
-ShipRegenSps = StateVarSetting('pvp.shipHeal.island.healPerSecSP', 50)
-ShipRegenPeriod = StateVarSetting('pvp.shipHeal.island.healPeriodSecs', 2)
-RepairRate = StateVarSetting('pvp.shipHeal.repairSpots.repairRate', 10.0)
-RepairRateMultipliers = StateVarSetting('pvp.shipHeal.repairSpots.repairRateMultipliers', [
-    1.0,
-    2.0,
-    3.0,
-    4.0])
-RepairAcceleration = StateVarSetting('pvp.shipHeal.repairSpots.repairAcceleration', 2)
-RepairAccelerationMultipliers = StateVarSetting('pvp.shipHeal.repairSpots.repairAccelerationMultipliers', [
-    1.0,
-    1.0,
-    1.0,
-    1.0])
-RepairKitHp = StateVarSetting('pvp.shipHeal.repairKit.HP', WeaponGlobals.getAttackHullHP(InventoryType.ShipRepairKit))
-RepairKitSp = StateVarSetting('pvp.shipHeal.repairKit.SP', WeaponGlobals.getAttackSailHP(InventoryType.ShipRepairKit))
-SinkHpBonusPercent = StateVarSetting('pvp.sinkBonus.hp.percent', 0.8)
-SinkStreakPeriod = StateVarSetting('pvp.announcements.sinkStreakPeriod', 5)
+MainWorldInvulnerabilityDuration = 180.0
+MainWorldInvulnerabilityWantCutoff = 1
+MainWorldInvulnerabilityCutoffRadiusScale = 1.1
+WantIslandRegen = config.GetBool('want-pvp-island-regeneration', 0)
+WantShipRepairSpots = config.GetBool('want-ship-repair-spots', 1)
+WantShipRepairKit = config.GetBool('want-ship-repair-kit', 0)
+ShipRegenRadiusScale = 1.0
+ShipRegenHps = 50
+ShipRegenSps = 50
+ShipRegenPeriod = 2
+RepairRate = 10.0
+RepairRateMultipliers = [1.0, 2.0, 3.0, 4.0]
+RepairAcceleration = 2
+RepairAccelerationMultipliers = [1.0, 1.0, 1.0, 1.0]
+RepairKitHp = WeaponGlobals.getAttackHullHP(InventoryType.ShipRepairKit)
+RepairKitSp = WeaponGlobals.getAttackSailHP(InventoryType.ShipRepairKit)
+SinkHpBonusPercent = 0.8
+SinkStreakPeriod = 5
 
 def updateRepairKitHp(hp):
     WeaponGlobals.__skillInfo[InventoryType.ShipRepairKit][WeaponGlobals.HULL_HP_INDEX] = hp
@@ -54,65 +45,30 @@ RepairSpotLocatorNames = [
     'repair_spot_3']
 repairSpotNamePrefix = 'pvp.shipHeal.repairSpots.spots.'
 ShipClass2repairLocators = {
-    ShipGlobals.INTERCEPTORL1: StateVarSetting(repairSpotNamePrefix + 'interceptorL1', [
-        0,
-        1,
-        2,
-        3]),
-    ShipGlobals.INTERCEPTORL2: StateVarSetting(repairSpotNamePrefix + 'interceptorL2', [
-        0,
-        1,
-        2,
-        3]),
-    ShipGlobals.INTERCEPTORL3: StateVarSetting(repairSpotNamePrefix + 'interceptorL3', [
-        0,
-        1,
-        2,
-        3]),
-    ShipGlobals.MERCHANTL1: StateVarSetting(repairSpotNamePrefix + 'merchantL1', [
-        0,
-        1,
-        2,
-        3]),
-    ShipGlobals.MERCHANTL2: StateVarSetting(repairSpotNamePrefix + 'merchantL2', [
-        0,
-        1,
-        2,
-        3]),
-    ShipGlobals.MERCHANTL3: StateVarSetting(repairSpotNamePrefix + 'merchantL3', [
-        0,
-        1,
-        2,
-        3]),
-    ShipGlobals.WARSHIPL1: StateVarSetting(repairSpotNamePrefix + 'warshipL1', [
-        0,
-        1,
-        2,
-        3]),
-    ShipGlobals.WARSHIPL2: StateVarSetting(repairSpotNamePrefix + 'warshipL2', [
-        0,
-        1,
-        2,
-        3]),
-    ShipGlobals.WARSHIPL3: StateVarSetting(repairSpotNamePrefix + 'warshipL3', [
-        0,
-        1,
-        2,
-        3]),
-    ShipGlobals.SHIP_OF_THE_LINE: StateVarSetting(repairSpotNamePrefix + 'shipOfTheLine', []),
-    ShipGlobals.HMS_VICTORY: StateVarSetting(repairSpotNamePrefix + 'hmsVictory', []),
-    ShipGlobals.HMS_NEWCASTLE: StateVarSetting(repairSpotNamePrefix + 'hmsNewCastle', []),
-    ShipGlobals.HMS_INVINCIBLE: StateVarSetting(repairSpotNamePrefix + 'hmsInvincible', []),
-    ShipGlobals.EITC_INTREPID: StateVarSetting(repairSpotNamePrefix + 'eitcIntrepid', []),
-    ShipGlobals.EITC_CONQUERER: StateVarSetting(repairSpotNamePrefix + 'eitcConquerer', []),
-    ShipGlobals.EITC_LEVIATHAN: StateVarSetting(repairSpotNamePrefix + 'eitcLeviathan', []),
-    ShipGlobals.BLACK_PEARL: StateVarSetting(repairSpotNamePrefix + 'blackpearl', []),
-    ShipGlobals.GOLIATH: StateVarSetting(repairSpotNamePrefix + 'goliath', []),
-    ShipGlobals.FLYING_DUTCHMAN: StateVarSetting(repairSpotNamePrefix + 'flyingdutchman', []),
-    ShipGlobals.DAUNTLESS: StateVarSetting(repairSpotNamePrefix + 'dauntless', []),
-    ShipGlobals.JOLLY_ROGER: StateVarSetting(repairSpotNamePrefix + 'jollyroger', []),
-    ShipGlobals.SKEL_WARSHIPL3: StateVarSetting(repairSpotNamePrefix + 'skel_warshipL3', []),
-    ShipGlobals.SKEL_INTERCEPTORL3: StateVarSetting(repairSpotNamePrefix + 'skel_interceptorL3', []) }
+    ShipGlobals.INTERCEPTORL1: [0, 1, 2, 3],
+    ShipGlobals.INTERCEPTORL2: [0, 1, 2, 3],
+    ShipGlobals.INTERCEPTORL3: [0, 1, 2, 3],
+    ShipGlobals.MERCHANTL1: [0, 1, 2, 3],
+    ShipGlobals.MERCHANTL2: [0, 1, 2, 3],
+    ShipGlobals.MERCHANTL3: [0, 1, 2, 3],
+    ShipGlobals.WARSHIPL1: [0, 1, 2, 3],
+    ShipGlobals.WARSHIPL2: [0, 1, 2, 3],
+    ShipGlobals.WARSHIPL3: [0, 1, 2, 3],
+    ShipGlobals.SHIP_OF_THE_LINE: [],
+    ShipGlobals.HMS_VICTORY: [],
+    ShipGlobals.HMS_NEWCASTLE: [],
+    ShipGlobals.HMS_INVINCIBLE: [],
+    ShipGlobals.EITC_INTREPID: [],
+    ShipGlobals.EITC_CONQUERER: [],
+    ShipGlobals.EITC_LEVIATHAN: [],
+    ShipGlobals.BLACK_PEARL: [],
+    ShipGlobals.GOLIATH: [],
+    ShipGlobals.FLYING_DUTCHMAN: [],
+    ShipGlobals.DAUNTLESS: [],
+    ShipGlobals.JOLLY_ROGER: [],
+    ShipGlobals.SKEL_WARSHIPL3: [],
+    ShipGlobals.SKEL_INTERCEPTORL3: []
+}
 del repairSpotNamePrefix
 INSTANCE_PVP_CTL = 0
 INSTANCE_PVP_STB = 1
@@ -137,7 +93,7 @@ SpanishTeam = 2
 siegeTeamNames = {
     FrenchTeam: PLocalizer.ShipPVPQuestFrench,
     SpanishTeam: PLocalizer.ShipPVPQuestSpanish }
-MaxPrivateerShipsPerTeam = StateVarSetting('pvp.maxShipsPerTeam', getBase().config.GetInt('max-ships-per-privateer-team', 10))
+MaxPrivateerShipsPerTeam = config.GetInt('max-ships-per-privateer-team', 10)
 statText = {
     SCORE: PLocalizer.PVPScore,
     KILLS: PLocalizer.PVPEnemiesDefeated,
