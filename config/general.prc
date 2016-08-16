@@ -32,8 +32,7 @@ want-chat #t
 want-chat-history #t
 want-emotes 1
 want-sliding-chat #t
-want-whitelist #f
-want-slash-commands #t
+want-whitelist #t
 white-list-check-before-send #f
 whitelist-chat-enabled #f
 

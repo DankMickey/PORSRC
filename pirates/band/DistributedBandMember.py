@@ -88,7 +88,7 @@ class DistributedBandMember(DistributedObject, PAvatarHandle):
             '',
             0,
             []]
-        self.whiteListEnabled = base.config.GetBool('whitelist-chat-enabled', 0)
+        self.whiteListEnabled = base.config.GetBool('whitelist-chat-enabled', 1)
         self.TC = None
         self.shipMessageDoLater = None
 

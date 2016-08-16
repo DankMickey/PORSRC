@@ -37,7 +37,7 @@ class FishManager:
         self.hideNormalFishSequence = Sequence()
         self.objectsWithCaustics = NodePath('objectsWithCaustics')
         self.objectsWithCaustics.reparentTo(self.gameObject.fishingSpot)
-        self.causticsTexture = loader.loadTexture('maps/pir_t_gam_fsh_caustics.jpg')
+        self.causticsTexture = loader.loadTexture('phase_4/maps/pir_t_gam_fsh_caustics.jpg')
         self.causticsShader = loader.loadShader('models/shaders/fishingCausticsShader.sha')
         if base.win and base.win.getGsg():
             intShaders = base.win.getGsg().getSupportsBasicShaders()

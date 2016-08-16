@@ -44,7 +44,6 @@ class PiratesMagicWordManager(MagicWordManager.MagicWordManager):
         self.rainSplashes2 = None
         self.stormEye = None
         self.stormRing = None
-        self.fishCamEnabled = False
 
     def generate(self):
         MagicWordManager.MagicWordManager.generate(self)
@@ -1062,10 +1061,6 @@ class PiratesMagicWordManager(MagicWordManager.MagicWordManager):
             camera = base.cr.doFind('DistributedCamera')
             cameraOV = camera.getOV()
             cameraOV.stopRecording()
-        elif __dev__ and base.config.GetBool('want-fishing-game', 0) and wordIs('~fishcam'):
-            self.toggleFishCam()
-            self.setMagicWordResponse('toggling fish cam')
-            cameraOV.stopRecording()
         elif wordIs('~fishR'):
             self.doRequestFish(word, localAvatar, zoneId, localAvatar.doId)
         elif wordIs('~leg'):
@@ -1311,38 +1306,6 @@ class PiratesMagicWordManager(MagicWordManager.MagicWordManager):
             print 'ship created: %s' % ship
             ship.localAvatarInstantBoard()
             ship.enableOnDeckInteractions()
-
-    def toggleFishCam(self):
-        self.fishCamEnabled = not (self.fishCamEnabled)
-        if self.fishCamEnabled:
-            base.oobe()
-            base.oobeCamera.setPos(-13.0, 4.0, -6.0)
-            base.oobeCamera.setHpr(90.0, 0.0, 0.0)
-            CardMaker = CardMaker
-            import pandac.PandaModules
-            PosInterval = PosInterval
-            ProjectileInterval = ProjectileInterval
-            Sequence = Sequence
-            Wait = Wait
-            import direct.interval.IntervalGlobal
-            cm = CardMaker('fishBackdrop')
-            self.fishBackdrop = render.attachNewNode(cm.generate())
-            tex = loader.loadTexture('maps/underseaBackdrop.jpg')
-            self.fishBackdrop.setTexture(tex)
-            self.fishBackdrop.reparentTo(localAvatar)
-            self.fishBackdrop.setHpr(90, 0, 0)
-            self.fishBackdrop.setPos(0, -100, -108.7)
-            self.fishBackdrop.setScale(400, 1, 100)
-            self.fishBackdrop.setBin('ground', 20)
-            self.fishBackdrop.setDepthWrite(0)
-            self.fishCamProjectileInterval = Sequence(Wait(4), ProjectileInterval(base.oobeCamera, startPos = Point3(-13.0, 4.0, -6.0), endPos = Point3(-13.0, 164.0, -36.0), duration = 3), ProjectileInterval(base.oobeCamera, startPos = Point3(-13.0, 164.0, -36.0), endPos = Point3(-13.0, 4.0, -24.0), gravityMult = -0.5, duration = 5), base.oobeCamera.posInterval(5, Point3(-13.0, 4.0, -6.0)))
-            self.fishCamProjectileInterval.start()
-        else:
-            self.fishCamProjectileInterval.finish()
-            del self.fishCamProjectileInterval
-            self.fishBackdrop.reparentTo(hidden)
-            del self.fishBackdrop
-            base.oobe()
 
     def doRequestFish(self, word, av, zoneId, senderId):
         args = word.split()
