@@ -74,8 +74,8 @@ class ClientServicesManager(DistributedObjectGlobal):
 
         self.cr.handleAvatarsList(avList)
 
-    def sendCreateAvatar(self, avDNA, index, name):
-        self.sendUpdate('createAvatar', [avDNA.makeNetString(), index, name])
+    def sendCreateAvatar(self, avDNA, index, allegiance, name):
+        self.sendUpdate('createAvatar', [avDNA.makeNetString(), index, allegiance, name])
 
     def createAvatarResp(self, avId):
         messenger.send('createdNewAvatar', [avId])

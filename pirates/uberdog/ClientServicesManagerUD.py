@@ -433,10 +433,13 @@ class CreateAvatarFSM(CSMOperation):
     notify = directNotify.newCategory('CreateAvatarFSM')
     pattern = PCPickANamePattern('', 'm')
 
-    def enterStart(self, dna, index, name):
+    def enterStart(self, dna, index, allegiance, name):
         # Basic sanity-checking:
         if index >= 6:
             self.demand('Kill', 'Invalid index specified!')
+            return
+        if not PiratesGlobals.ALLEGIANCE_PIRATE <= allegiance <= PiratesGlobals.ALLEGIANCE_FRENCH:
+            self.demand('Kill', 'Invalid allegiance specified!')
             return
 
         self.index = index
@@ -446,6 +449,7 @@ class CreateAvatarFSM(CSMOperation):
             return
 
         self.dna = dna
+        self.allegiance = allegiance
 
         self.name = name.strip()
         self.nameState = ''
@@ -496,7 +500,8 @@ class CreateAvatarFSM(CSMOperation):
           'WishNameState': (self.nameState,),
           'WishName': (self.wishName,),
           'setDNAString': (self.dna,),
-          'setDISLid': (self.target,)
+          'setDISLid': (self.target,),
+          'setAllegiance': (self.allegiance,)
         }
         self.csm.air.dbInterface.createObject(
             self.csm.air.dbId,
@@ -1081,8 +1086,8 @@ class ClientServicesManagerUD(DistributedObjectGlobalUD):
     def requestAvatars(self):
         self.runAccountFSM(GetAvatarsFSM)
 
-    def createAvatar(self, dna, index, name):
-        self.runAccountFSM(CreateAvatarFSM, dna, index, name)
+    def createAvatar(self, dna, index, allegiance, name):
+        self.runAccountFSM(CreateAvatarFSM, dna, index, allegiance, name)
 
     def deleteAvatar(self, avId):
         self.runAccountFSM(DeleteAvatarFSM, avId)

@@ -46,6 +46,7 @@ import NameGUI
 import NPCGUI
 from CharGuiBase import CharGuiSlider
 from pirates.pirate import BodyDefs
+from FactionChooser import FactionChooser
 import copy
 MakeAPiratePageIcons = {
     'Body': 'chargui_body',
@@ -371,7 +372,6 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
         self.idleFSM.enterInitialState()
         self.superLowPirate = None
         self.guiConfirmDoneBox = None
-
 
     def getPirate(self):
         return self.pirate
@@ -1172,6 +1172,7 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
             self.guiConfirmDoneBox.destroy()
 
         del self.guiConfirmDoneBox
+        self.destroyFactionChooser()
         self.bookModel.destroy()
         del self.bookModel
         self.lowBookModel.destroy()
@@ -1254,12 +1255,24 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
         else:
             self._handleNameOK()
 
-
     def exitWithoutSaving(self):
-        self._handleNameOK(saveNPC = False)
+        self.allDone(saveNPC = False)
+    
+    def destroyFactionChooser(self):
+        if hasattr(self, 'factionChooser') and self.factionChooser:
+            self.factionChooser.destroy()
+            del self.factionChooser
 
-
-    def _handleNameOK(self, saveNPC = True):
+    def _handleNameOK(self):
+        self.destroyFactionChooser()
+        self.factionChooser = FactionChooser(self.__factionChooserDone)
+    
+    def __factionChooserDone(self, allegiance):
+        self.destroyFactionChooser()
+        self.allegiance = allegiance
+        self.allDone()
+    
+    def allDone(self, saveNPC = True):
         self.bookModel.stash()
         self.guiDoneButton.hide()
         self.genderGui.save()
@@ -1300,7 +1313,7 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
         def createAv():
             self.acceptOnce('createdNewAvatar', populateAv)
             name = self.nameGui._getName()
-            base.cr.csm.sendCreateAvatar(self.pirate.style, self.index, name)
+            base.cr.csm.sendCreateAvatar(self.pirate.style, self.index, self.allegiance, name)
 
         def sendDone():
             messenger.send('sendDone')
