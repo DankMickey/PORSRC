@@ -77,9 +77,6 @@ class AvatarChooser(DirectObject, StateData):
 
         base.disableMouse()
         self.quitButton.show()
-        if base.cr.loginInterface.supportsRelogin() and config.GetBool('avchooser-allow-logout', False):
-            self.logoutButton.show()
-
         self.scene.reparentTo(render)
         camera.reparentTo(render)
         camera.setPosHpr(-29.0187, 37.0125, 24.75, 4.09, 1.0, 0.0)
@@ -160,11 +157,18 @@ class AvatarChooser(DirectObject, StateData):
         self.scene = NodePath('AvatarChooserScene')
         self.todManager = TimeOfDayManager.TimeOfDayManager()
         self.todManager.request('EnvironmentTOD')
-        self.todManager.setEnvironment(TODGlobals.ENV_DEFAULT, { })
+        
+        if config.GetBool('want-spooky-avatarchooser', False):
+            self.todManager.switchJollyMoon(True)
+            self.todManager.setEnvironment(TODGlobals.ENV_CURSED_NIGHT, { })
+        else:
+            self.todManager.setEnvironment(TODGlobals.ENV_DEFAULT, {})
+
         self.todManager.doEndTimeOfDay()
         self.todManager.skyGroup.setSunTrueAngle(Vec3(260, 0, 15))
         self.todManager.skyGroup.setSunLock(1)
         self.todManager.skyGroup.dirLightSun.node().setColor(Vec4(0.9, 0.7, 0.8, 1))
+
         pier = loader.loadModel('models/islands/pier_port_royal_2deck')
         pier.setPosHpr(-222.23, 360.08, 15.06, 251.57, 0.0, 0.0)
         pier.flattenStrong()
@@ -180,7 +184,13 @@ class AvatarChooser(DirectObject, StateData):
         self.water.ignore('grid-detail-changed')
         self.ship = None
         from pirates.ship import ShipGlobals
-        self.ship = base.shipFactory.getShip(ShipGlobals.INTERCEPTORL1)
+        
+        if config.GetBool('want-spooky-avatarchooser', False):
+            self.ship = base.shipFactory.getShip(ShipGlobals.P_SKEL_PHANTOM)
+            self.ship.playStormEffect()
+        else:
+            self.ship = base.shipFactory.getShip(ShipGlobals.INTERCEPTORL1)
+
         self.ship.modelRoot.setPosHpr(140.86, 538.97, -3.62, -133.04, 0.0, 0.0)
         self.ship.modelRoot.reparentTo(self.scene)
         self.shipRoot = self.ship.modelRoot
@@ -221,25 +231,16 @@ class AvatarChooser(DirectObject, StateData):
         self.deleteButton = DirectButton(parent = self.highlightFrame, relief = None, text_scale = 0.045, text_fg = (1, 0.9, 0.7, 0.9), text_shadow = PiratesGuiGlobals.TextShadow, text = ('', '', PLocalizer.AvatarChooserDelete, ''), image = (self.model.find('**/avatar_c_B_delete'), self.model.find('**/avatar_c_B_delete'), self.model.find('**/avatar_c_B_delete_over')), image_scale = 0.37, text_pos = (0, -0.1), pos = (0.51, 0, -0.08), scale = 1.3, command = self.__handleDelete)
         self.quitFrame = DirectFrame(parent = base.a2dBottomRight, relief = None, image = self.model.find('**/avatar_c_C_back'), image_scale = 0.37, pos = (-0.4, 0, 0.21), scale = 0.9)
         self.quitFrameForeground = DirectFrame(parent = self.quitFrame, relief = None, image = self.model.find('**/avatar_c_C_frame'), image_scale = 0.37, pos = (0, 0, 0))
-        self.logoutButton = DirectButton(parent = self.quitFrame, relief = None, text_scale = 0.045, text_fg = (1, 0.9, 0.7, 0.9), text_shadow = PiratesGuiGlobals.TextShadow, text = PLocalizer.OptionsPageLogout, image = (self.model.find('**/avatar_c_C_box'), self.model.find('**/avatar_c_C_box'), self.model.find('**/avatar_c_C_box_over')), image_scale = 0.37, text_pos = (0, -0.015), pos = (0, 0, 0.2), command = self.__handleLogoutWithoutConfirm)
-        self.logoutButton.hide()
         if self.disableOptions:
             optionsState = DGG.DISABLED
         else:
             optionsState = DGG.NORMAL
-        self.optionsButton = DirectButton(parent = self.quitFrame, relief = None, text_scale = 0.05, text_fg = (1, 0.9, 0.7, 0.9), text_shadow = PiratesGuiGlobals.TextShadow, text = '\x01smallCaps\x01%s\x02' % PLocalizer.AvatarChooserOptions, image = (self.model.find('**/avatar_c_C_box'), self.model.find('**/avatar_c_C_box'), self.model.find('**/avatar_c_C_box_over')), image_scale = 0.37, text_pos = (0, -0.015), pos = (0, 0, 0.21), command = self.__handleOptions, state = optionsState)
+
+        self.optionsButton = DirectButton(parent = self.quitFrame, relief = None, text_scale = 0.05, text_fg = (1, 0.9, 0.7, 0.9), text_shadow = PiratesGuiGlobals.TextShadow, text = '\x01smallCaps\x01%s\x02' % PLocalizer.AvatarChooserOptions, image = (self.model.find('**/avatar_c_C_box'), self.model.find('**/avatar_c_C_box'), self.model.find('**/avatar_c_C_box_over')), image_scale = 0.37, text_pos = (0, -0.015), pos = (0, 0, 0.075), command = self.__handleOptions, state = optionsState)
         if self.disableOptions:
             self.optionsButton.setColorScale(Vec4(0.7, 0.7, 0.7, 0.7))
 
-        self.disableQuit = base.config.GetBool('location-kiosk', 0)
-        if self.disableQuit:
-            quitState = DGG.DISABLED
-        else:
-            quitState = DGG.NORMAL
-        self.quitButton = DirectButton(parent = self.quitFrame, state = quitState, relief = None, text_scale = 0.05, text_fg = (1, 0.9, 0.7, 0.9), text_shadow = PiratesGuiGlobals.TextShadow, text = '\x01smallCaps\x01%s\x02' % PLocalizer.AvatarChooserQuit, image = (self.model.find('**/avatar_c_C_box'), self.model.find('**/avatar_c_C_box'), self.model.find('**/avatar_c_C_box_over')), image_scale = 0.37, text_pos = (0, -0.015), pos = (0, 0, -0.07), command = self.__handleQuit)
-        if self.disableQuit:
-            self.quitButton.setColorScale(Vec4(0.7, 0.7, 0.7, 0.7))
-
+        self.quitButton = DirectButton(parent = self.quitFrame, relief = None, text_scale = 0.05, text_fg = (1, 0.9, 0.7, 0.9), text_shadow = PiratesGuiGlobals.TextShadow, text = '\x01smallCaps\x01%s\x02' % PLocalizer.AvatarChooserQuit, image = (self.model.find('**/avatar_c_C_box'), self.model.find('**/avatar_c_C_box'), self.model.find('**/avatar_c_C_box_over')), image_scale = 0.37, text_pos = (0, -0.015), pos = (0, 0, -0.075), command = self.__handleQuit)
         self.renameButton = DirectButton(parent = base.a2dTopRight, relief = None, text_scale = 0.05, text_fg = (1, 0.9, 0.7, 0.9), text_shadow = PiratesGuiGlobals.TextShadow, text = '\x01smallCaps\x01%s\x02' % 'rename', image = (self.model.find('**/avatar_c_C_box'), self.model.find('**/avatar_c_C_box'), self.model.find('**/avatar_c_C_box_over')), image_scale = 0.37, text_pos = (0, -0.015), pos = (-0.3, 0, -0.2), command = self.__handleRename)
 
         def shardSelected(shardId):
@@ -1004,8 +1005,6 @@ class AvatarChooser(DirectObject, StateData):
         self.renameButton.setColorScale(color)
         self.quitButton['state'] = DGG.DISABLED
         self.quitButton.setColorScale(color)
-        self.logoutButton['state'] = DGG.DISABLED
-        self.logoutButton.setColorScale(color)
         self.playButton['state'] = DGG.DISABLED
         self.playButton.setColorScale(color)
         if base.config.GetBool('allow-linked-accounts', 0):
@@ -1033,12 +1032,9 @@ class AvatarChooser(DirectObject, StateData):
 
         self.renameButton['state'] = DGG.NORMAL
         self.renameButton.clearColorScale()
-        if not self.disableQuit:
-            self.quitButton['state'] = DGG.NORMAL
-            self.quitButton.clearColorScale()
+        self.quitButton['state'] = DGG.NORMAL
+        self.quitButton.clearColorScale()
 
-        self.logoutButton['state'] = DGG.NORMAL
-        self.logoutButton.clearColorScale()
         self.playButton['state'] = DGG.NORMAL
         self.playButton.clearColorScale()
         if base.config.GetBool('allow-linked-accounts', 0):

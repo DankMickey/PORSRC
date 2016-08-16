@@ -53,7 +53,6 @@ show-understandable #f
 show-aggro-radius #f
 want-invasion-npc-minimap #f
 want-early-coderedemption #f
-location-kiosk #t
 
 # DOWNLOADER:
 fake-downloads #f

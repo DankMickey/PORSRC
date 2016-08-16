@@ -183,14 +183,8 @@ class PiratesBase(OTPBase):
         if base.mouse2cam:
             self.mouse2cam.reparentTo(render)
 
-        if not base.config.GetBool('location-kiosk', 0):
-            for key in PiratesGlobals.ScreenshotHotkeyList:
-                self.accept(key, self.takeScreenShot)
-
-            self.screenshotViewer = None
-            if base.config.GetBool('want-screenshot-viewer', 0):
-                self.accept(PiratesGlobals.ScreenshotViewerHotkey, self.showScreenshots)
-
+        for key in PiratesGlobals.ScreenshotHotkeyList:
+            self.accept(key, self.takeScreenShot)
 
         self.wantMarketingViewer = base.config.GetBool('want-marketing-viewer', 0)
         self.marketingViewerOn = False

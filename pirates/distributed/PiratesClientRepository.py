@@ -442,7 +442,7 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
         OTPClientRepository.OTPClientRepository.enterPlayingGame(self)
 
         def logout():
-            if not base.config.GetBool('location-kiosk', 0) and hasattr(base, 'localAvatar') and localAvatar.getCanLogout():
+            if hasattr(base, 'localAvatar') and localAvatar.getCanLogout():
                 self._userLoggingOut = True
                 self.gameFSM.request('closeShard', [
                     'waitForAvatarList'])

@@ -147,7 +147,6 @@ class GuiManager(FSM.FSM):
         self.ignoreEscapeHotKey = False
         self.ignoreAllButSkillHotKey = False
         self.ignoreAllButLookoutHotKey = False
-        self.disableMainMenu = base.config.GetBool('location-kiosk', 0)
         self.levelUpIval = None
         self.deathIval = None
         self.oceanIval = None
@@ -2896,9 +2895,6 @@ class GuiManager(FSM.FSM):
 
 
     def toggleMainMenu(self, args = None):
-        if self.disableMainMenu:
-            return None
-
         if self.ignoreMainMenuHotKey:
             return None
 

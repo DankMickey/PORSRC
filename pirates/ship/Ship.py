@@ -419,7 +419,7 @@ class Ship(DirectObject.DirectObject):
 
     def playStormEffect(self):
         if not self.stormEffect:
-            self.stormEffect = DarkMaelstrom(self.shipRoot)
+            self.stormEffect = DarkMaelstrom(self.modelRoot)
             self.stormEffect.setZ(50)
             self.stormEffect.loop()
             compassFX = CompassEffect.make(render)

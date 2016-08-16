@@ -2892,7 +2892,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
         self.guildPopupDialog = None
 
     def getCanLogout(self):
-        if not base.config.GetBool('location-kiosk', 0) and self.currentDialogMovie:
+        if self.currentDialogMovie:
             return self.getGameState() != 'Cutscene'
 
     def teleportQuery(self, requesterId, requesterBandMgrId, requesterBandId, requesterGuildId, requesterShardId):

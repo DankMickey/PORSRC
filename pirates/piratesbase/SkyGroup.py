@@ -196,7 +196,7 @@ class SkyGroup(NodePath):
         self.moonOverlay.setBin('background', 111)
         self.moonOverlay.reparentTo(self.moonModel)
         self.moonOverlay.setBillboardPointEye(0.0)
-        self.moonOverlay.setScale(0.9, 1, 0.25)
+        self.moonOverlay.setScale(0.9, 1, 0.9)
         self.moonOverlay.setColorScale(1, 1, 1, 0.25)
         self.moonOverlay.stash()
         self.moonOverlayIval = None
