@@ -1,4 +1,4 @@
-from panda3d.core import AmbientLight, AnimControl, AnimControlCollection, BoundingBox, BoundingSphere, CollideMask, ColorScaleAttrib, DataNode, FadeLODNode, Filename, InternalName, LODNode, Light, LightAttrib, Mat4, ModelNode, ModelPool, NodePath, PandaNode, Point3, PolylightEffect, PolylightNode, RenderEffects, RenderState, SceneGraphReducer, SwitchNode, Texture, TexturePool, TransformState, TransparencyAttrib, VBase4, Vec3, Vec4, autoBind
+from panda3d.core import AmbientLight, AnimControl, AnimControlCollection, BoundingBox, BoundingSphere, CollideMask, ColorScaleAttrib, FadeLODNode, Filename, InternalName, LODNode, Light, LightAttrib, Mat4, ModelNode, ModelPool, NodePath, PandaNode, Point3, PolylightEffect, PolylightNode, RenderEffects, RenderState, SceneGraphReducer, SwitchNode, Texture, TexturePool, TransformState, TransparencyAttrib, VBase4, Vec3, Vec4, autoBind
 import random
 import re
 import types

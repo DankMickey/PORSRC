@@ -1,4 +1,4 @@
-from panda3d.core import Light, VBase3
+from panda3d.core import Light
 from pirates.npc import Skeleton
 from pirates.npc import Townfolk
 from pirates.npc import NavySailor

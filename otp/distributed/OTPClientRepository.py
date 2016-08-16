@@ -1,5 +1,4 @@
-from panda3d.direct import CConnectionRepository, CInterval
-from panda3d.core import Connection, Datagram, DatagramIterator, Filename, HTTPClient, HashVal, MemoryUsage, NodePath, Notify, hashPrcVariables, ostream
+from panda3d.core import Connection, Datagram, DatagramIterator, Filename, HTTPClient, HashVal, NodePath, Notify, ostream
 import sys
 import time
 import string

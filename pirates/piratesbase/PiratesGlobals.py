@@ -1,4 +1,4 @@
-from panda3d.core import BitMask32, SceneGraphReducer, TextNode, TransformState, Vec3, getModelPath
+from panda3d.core import BitMask32, SceneGraphReducer, TextNode, TransformState, Vec3
 global InterfaceOutlineFont, PirateFont, PirateOutlineFont, PirateBoldOutlineFont
 import PLocalizer
 from otp.otpbase.OTPGlobals import *

@@ -1,4 +1,4 @@
-from panda3d.core import AlphaTestAttrib, CollideMask, CollisionNode, CollisionPlane, CollisionPolygon, DSearchPath, Filename, Frustum, GraphicsStateGuardian, InternalName, Light, Mat4, ModelPool, NodePath, Plane, Point3, RenderAttrib, RenderState, Shader, ShaderInput, StencilAttrib, Texture, TexturePool, TextureStage, TransformState, VBase2, VBase3, VBase4, Vec2, Vec3, Vec4
+from panda3d.core import AlphaTestAttrib, CollideMask, CollisionNode, CollisionPlane, CollisionPolygon, Filename, Frustum, GraphicsStateGuardian, InternalName, Light, Mat4, NodePath, Plane, Point3, RenderAttrib, Shader, ShaderInput, StencilAttrib, Texture, TextureStage, VBase2, VBase3, VBase4, Vec2, Vec3, Vec4
 import os
 import math
 from direct.gui.DirectGui import *

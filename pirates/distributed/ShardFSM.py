@@ -1,4 +1,3 @@
-from panda3d.core import HashVal, hashPrcVariables
 from direct.fsm.FSM import FSM
 from direct.task.Task import Task
 from direct.distributed import DistributedSmoothNode

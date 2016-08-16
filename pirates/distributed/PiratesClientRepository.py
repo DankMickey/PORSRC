@@ -1,5 +1,5 @@
 from panda3d.direct import DCFile
-from panda3d.core import ConfigVariable, ConfigVariableInt, DatagramIterator, Filename, HTTPClient, getModelPath
+from panda3d.core import DatagramIterator, Filename, HTTPClient, getModelPath
 import types
 import random
 import gc

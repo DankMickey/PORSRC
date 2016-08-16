@@ -1,4 +1,4 @@
-from panda3d.core import VBase4, Vec4
+from panda3d.core import VBase4
 # File: S (Python 2.4)
 
 from direct.gui.DirectGui import *

@@ -1,4 +1,3 @@
-from panda3d.core import TextNode, Vec3
 global globalFriendSecret
 from direct.gui.DirectGui import *
 from direct.directnotify import DirectNotifyGlobal
