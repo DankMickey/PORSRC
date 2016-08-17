@@ -30,6 +30,7 @@ from pirates.effects.Immolate import Immolate
 from pirates.effects.JRDeathBlast import JRDeathBlast
 from pirates.effects.JRDeath import JRDeath
 from pirates.effects.ExplosionFlip import ExplosionFlip
+from pirates.effects.FireBat import FireBat
 from pirates.audio import SoundGlobals
 from pirates.audio.SoundGlobals import loadSfx
 import random
@@ -124,7 +125,7 @@ class DistributedCreature(DistributedBattleNPC):
                 geom.setBin('pre-additive', 4)
                 geom.setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd, ColorBlendAttrib.OIncomingAlpha, ColorBlendAttrib.OOne))
                 geom.setColorScale(VBase4(1.0, 0.3, 0.3, 1))
-                from pirates.effects.FireBat import FireBat
+
                 self.creatureTypeEffect = FireBat.getEffect()
                 if self.creatureTypeEffect:
                     self.creatureTypeEffect.reparentTo(geom)

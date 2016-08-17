@@ -1337,8 +1337,8 @@ class Water(DirectObject):
 
 class IslandWaterParameters:
     debug = False
-    default_water_alpha_file_path = 'maps/default_inv_alpha.jpg'
-    default_water_color_file_path = 'maps/ocean_color_default.jpg'
+    default_water_alpha_file_path = 'phase_2/maps/default_inv_alpha.jpg'
+    default_water_color_file_path = 'phase_2/maps/ocean_color_default.jpg'
 
     def __init__(self):
         self.map_x_origin = 0.0

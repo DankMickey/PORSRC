@@ -176,7 +176,7 @@ class SeaPatch(Water):
             if True:
                 self.patchNP.setTransparency(1)
 
-            self.base_texture = loader.loadTexture('maps/oceanWater2' + self.texture_extension)
+            self.base_texture = loader.loadTexture('phase_2/maps/oceanWater2' + self.texture_extension)
             self.texture_d = self.base_texture.loadRelated(InternalName.make('-d'))
             self.texture_n = self.base_texture.loadRelated(InternalName.make('-n'))
             self.texture_bb = self.base_texture.loadRelated(InternalName.make('-bb'))
@@ -186,8 +186,8 @@ class SeaPatch(Water):
             self.water_b = 179
             self.water_a = 255
             self.set_water_color()
-            default_water_color_texture_filename = 'maps/ocean_color_1' + self.texture_extension
-            default_water_alpha_texture_filename = 'maps/default_inv_alpha' + self.texture_extension
+            default_water_color_texture_filename = 'phase_2/maps/ocean_color_1' + self.texture_extension
+            default_water_alpha_texture_filename = 'phase_2/maps/default_inv_alpha' + self.texture_extension
             self.set_water_color_texture(default_water_color_texture_filename)
             self.set_water_alpha_texture(default_water_alpha_texture_filename)
             if self.enable_water_panel:
@@ -219,7 +219,7 @@ class SeaPatch(Water):
             self.reflection_factor = 0.2
             self.set_reflection_parameters_np()
             if False:
-                default_water_color_texture_filename = 'maps/ocean_color_1' + self.texture_extension
+                default_water_color_texture_filename = 'phase_2/maps/ocean_color_1' + self.texture_extension
                 self.set_water_color_texture(default_water_color_texture_filename)
                 self.setup_color_map()
 

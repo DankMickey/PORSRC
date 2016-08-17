@@ -640,10 +640,10 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
         self.isAlarmed = isAlarmed
         self.alarmedAggroRadius = aggroRadius
         if self.cAggro:
-            if self.isAlarmed:
-                self.cAggro.setRadius(aggroRadius)
-            else:
-                self.cAggro.setRadius(self.getInstantAggroSphereSize())
+            radius = aggroRadius if self.isAlarmed else self.getInstantAggroSphereSize()
+            
+            if radius >= 0.0:
+                self.cAggro.setRadius(radius)
 
     def getIsAlarmed(self):
         return self.isAlarmed

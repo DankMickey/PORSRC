@@ -116,9 +116,6 @@ class Swamp(Water):
         self.set_water_color()
         self.reflection_factor = 0.34
         self.set_reflection_parameters_np()
-        if self.use_alpha_map:
-            if self.enable_alpha_map:
-                self.patchNP.setTransparency(1)
 
 
         if self.water_panel != None:
@@ -147,15 +144,13 @@ class Swamp(Water):
                 self.set_water_color()
                 self.reflection_factor = 0.34
                 self.set_reflection_parameters_np()
-                if self.use_alpha_map:
-                    self.patchNP.setTransparency(1)
 
                 self.texture_extension = '.jpg'
-                default_water_color_texture_filename = 'maps/ocean_color_1' + self.texture_extension
-                default_water_alpha_texture_filename = 'maps/default_inv_alpha' + self.texture_extension
+                default_water_color_texture_filename = 'phase_2/maps/ocean_color_1' + self.texture_extension
+                default_water_alpha_texture_filename = 'phase_2/maps/default_inv_alpha' + self.texture_extension
                 if swamp_model_file_path:
                     if False:
-                        self.base_texture = loader.loadTexture('maps/oceanWater2' + self.texture_extension)
+                        self.base_texture = loader.loadTexture('phase_2/maps/oceanWater2' + self.texture_extension)
                         self.texture_d = self.base_texture.loadRelated(InternalName.make('-d'))
                         self.texture_n = self.base_texture.loadRelated(InternalName.make('-n'))
                         self.texture_bb = self.base_texture.loadRelated(InternalName.make('-bb'))
@@ -173,20 +168,20 @@ class Swamp(Water):
                             card_node_path.node().setFinal(1)
                             card_node_path.reparentTo(render2d)
 
-                        self.texture_d = loader.loadTexture('maps/oceanWater2-d' + self.texture_extension)
-                        self.texture_n = loader.loadTexture('maps/oceanWater2-n' + self.texture_extension)
-                        self.texture_bb = loader.loadTexture('maps/oceanWater2-bb' + self.texture_extension)
-                        self.texture_low2 = loader.loadTexture('maps/oceanWater2-low2' + self.texture_extension)
+                        self.texture_d = loader.loadTexture('phase_2/maps/oceanWater2-d' + self.texture_extension)
+                        self.texture_n = loader.loadTexture('phase_2/maps/oceanWater2-n' + self.texture_extension)
+                        self.texture_bb = loader.loadTexture('phase_2/maps/oceanWater2-bb' + self.texture_extension)
+                        self.texture_low2 = loader.loadTexture('phase_2/maps/oceanWater2-low2' + self.texture_extension)
                         self.seamodel.setShaderInput('d', self.texture_d)
                         self.seamodel.setShaderInput('n', self.texture_n)
                         self.seamodel.setShaderInput('bb', self.texture_bb)
                         self.seamodel.setShaderInput('low2', self.texture_low2)
                     self.set_water_alpha_texture(default_water_alpha_texture_filename)
                 else:
-                    self.texture_d = loader.loadTexture('maps/oceanWater2-d' + self.texture_extension)
-                    self.texture_n = loader.loadTexture('maps/oceanWater2-n' + self.texture_extension)
-                    self.texture_bb = loader.loadTexture('maps/oceanWater2-bb' + self.texture_extension)
-                    self.texture_low2 = loader.loadTexture('maps/oceanWater2-low2' + self.texture_extension)
+                    self.texture_d = loader.loadTexture('phase_2/maps/oceanWater2-d' + self.texture_extension)
+                    self.texture_n = loader.loadTexture('phase_2/maps/oceanWater2-n' + self.texture_extension)
+                    self.texture_bb = loader.loadTexture('phase_2/maps/oceanWater2-bb' + self.texture_extension)
+                    self.texture_low2 = loader.loadTexture('phase_2/maps/oceanWater2-low2' + self.texture_extension)
                     self.seamodel.setShaderInput('d', self.texture_d)
                     self.seamodel.setShaderInput('n', self.texture_n)
                     self.seamodel.setShaderInput('bb', self.texture_bb)
