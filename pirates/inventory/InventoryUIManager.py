@@ -661,13 +661,9 @@ class InventoryUIManager(DirectFrame):
     def assignCellSlot(self, cell, slot):
         if slot == None:
             cell.slotId = None
-        elif self.slotToCellMap[slot] == None:
+        elif self.slotToCellMap.get(slot) == None:
             self.slotToCellMap[slot] = cell
             cell.container.assignSlot(cell, slot)
-        else:
-            print 'SLOT COLLISION ERROR! FIX ME!'
-            import pdb
-            pdb.set_trace()
 
 
     def markSlotPending(self, slot):
@@ -681,8 +677,11 @@ class InventoryUIManager(DirectFrame):
 
 
     def unmarkSlotPending(self, slot):
-        self.slotPendingActionList.remove(slot)
-        cell = self.slotToCellMap[slot]
+        if slot in self.slotPendingActionList:
+            self.slotPendingActionList.remove(slot)
+
+        cell = self.slotToCellMap.get(slot)
+
         if cell and cell.container:
             cell.container.unmarkCell(cell, MASK_PENDING)
 
@@ -694,10 +693,7 @@ class InventoryUIManager(DirectFrame):
 
 
     def isSlotPending(self, slot):
-        if slot in self.slotPendingActionList and slot != None:
-            return 1
-        else:
-            return 0
+        return slot in self.slotPendingActionList and slot != None
 
 
     def fixStuckPending(self, task = None):
