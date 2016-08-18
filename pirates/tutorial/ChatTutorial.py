@@ -86,7 +86,7 @@ class ChatTutorial(DirectObject.DirectObject):
         if self.stage != 3:
             return None
 
-        base.localAvatar.guiMgr.profilePage.showProfile(base.localAvatar.getDoId(), example = True)
+        base.localAvatar.guiMgr.profilePage.showProfile(base.localAvatar.getDoId())
         self.panel4 = NewTutorialPanel.NewTutorialPanel([
             self.contentPart4,
             'test'])

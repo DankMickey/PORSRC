@@ -115,14 +115,9 @@ class DistributedPlayerAI(DistributedAvatarAI.DistributedAvatarAI, PlayerBase.Pl
     def getAdminAccess(self):
         return self.adminAccess
 
-    def extendFriendsList(self, friendId, friendCode):
-        for i in xrange(len(self.friendsList)):
-            friendPair = self.friendsList[i]
-            if friendPair[0] == friendId:
-                self.friendsList[i] = (friendId, friendCode)
-                return
-
-        self.friendsList.append((friendId, friendCode))
+    def extendFriendsList(self, friendId):
+        if friendId not in self.friendsList:
+            self.friendsList.append(friendId)
 
 @magicWord(CATEGORY_MODERATION)
 def accId():

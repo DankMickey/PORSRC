@@ -1240,9 +1240,6 @@ class OTPClientRepository(ClientRepositoryBase):
                         hv.hashFile(pathname)
                         pyc.mergeWith(hv)
 
-    def queueRequestAvatarInfo(self, avId):
-        pass
-
     def identifyFriend(self, doId):
         pass
 

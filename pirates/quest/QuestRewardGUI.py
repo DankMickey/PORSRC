@@ -167,7 +167,7 @@ class QuestRewardGUI(QuestDetailBase):
                 'gold': gold }
 
         self['text'] = text
-        self.gameGui = GameGui.GameGui(self, relief = None, state = DGG.DISABLED, scale = 0.6, pos = (-0.45, 0, -0.12))
+        self.gameGui = GameGui.GameGui(parent = self, relief = None, state = DGG.DISABLED, scale = 0.6, pos = (-0.45, 0, -0.12))
         self.gameGui.vitaeMeter.hide()
         self.gameGui.statusTray.hpLabel.hide()
         self.gameGui.statusTray.hpMeter.component('text0').hide()

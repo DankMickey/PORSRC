@@ -49,7 +49,6 @@ from pirates.battle import WeaponBase/AI
 from pirates.battle import Teamable
 from pirates.piratesbase import DistributedTimeOfDayManager/AI
 from pirates.piratesbase import DistributedGameStatManager/AI
-from pirates.piratesgui import DistributedPirateProfileMgr/AI
 from pirates.uberdog import DistributedInventory/AI/UD
 from pirates.uberdog import PirateInventory/AI/UD
 from pirates.minigame import DistributedPotionGame/AI
@@ -449,15 +448,15 @@ dclass DistributedBattleAvatar : DistributedReputationAvatar, WeaponBase {
   setShipId(uint32) ownrecv required ram airecv broadcast;
   ramKnockdown() broadcast;
   regenUpdate(int16) broadcast;
-  setMaxHp(int32) required broadcast ram ownrecv;
-  setHp(int32, uint8) required broadcast ram ownrecv;
+  setMaxHp(int32) required broadcast ram ownrecv db;
+  setHp(int32, uint8) required broadcast ram ownrecv db;
   // setLuck(int16) required broadcast ram ownrecv;
   // setMaxLuck(int16) required broadcast ram ownrecv;
-  setMojo(int16) required broadcast ram ownrecv;
-  setMaxMojo(int16) required broadcast ram ownrecv;
+  setMojo(int16) required broadcast ram ownrecv db;
+  setMaxMojo(int16) required broadcast ram ownrecv db;
   /*
-  setSwiftness(int16) required broadcast ram ownrecv;
-  setMaxSwiftness(int16) required broadcast ram ownrecv;
+  setSwiftness(int16) required broadcast ram ownrecv db;
+  setMaxSwiftness(int16) required broadcast ram ownrecv db;
   setPower(int16) required broadcast ram ownrecv;
   setMaxPower(int16) required broadcast ram ownrecv;
   setLuckMod(int16) required broadcast ram ownrecv;
@@ -659,7 +658,8 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   setWhitelistChatFlags(uint8) broadcast ownrecv ram airecv;
   setSC(uint16 msgIndex) broadcast ownsend airecv;
   setSCCustom(uint16 msgIndex) broadcast ownsend airecv;
-  setFriendsList(FriendEntry[] = []) ownrecv required db airecv;
+  setFriendsList(uint32[] = []) required ownrecv airecv db;
+  setTrueFriends(uint32[] = []) required ownrecv airecv db;
   setDNAString(blob) required broadcast ownrecv db;
   WishNameState(string = "OPEN") db ram;
   WishName(string = "") db ram;
@@ -731,7 +731,7 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   requestRemoveEffects(DoIdList) ownsend airecv;
   requestAuraDetection(DoIdList) ownsend airecv;
   requestRemoveAuraDetection() ownsend airecv;
-  // setDefaultShard(uint32) ownsend ownrecv required db;
+  setDefaultShard(uint32) required broadcast ownrecv db;
   // setDefaultZone(uint32) ownrecv required db;
   // setLastLogout(uint32) required db;
   // setCustomMessages(uint16[]) ownrecv required db;
@@ -771,8 +771,8 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   sendFailedLootTradeMessage(bool) ownrecv;
   // setLuck(int16) required broadcast;
   // setMaxLuck(int16) required broadcast db;
-  setMojo(int16) required broadcast ownrecv;
-  setMaxMojo(int16) required broadcast ownrecv;
+  setMojo(int16) required broadcast ownrecv db;
+  setMaxMojo(int16) required broadcast ownrecv db;
   // setSwiftness(int16) required broadcast;
   // setMaxSwiftness(int16) required broadcast db;
   // setPower(int16) required broadcast;
@@ -886,21 +886,26 @@ struct Friend
 
 dclass PiratesFriendsManager : DistributedObjectGlobal {
   removeFriend(uint32) clsend;
-  requestAvatarInfo(uint32[]) clsend;
-
   requestFriendsList() clsend;
 
-  friendInfo(Friend);
-  friendList(Friend []);
+  friendList(Friend[]);
 
-  friendOnline(uint32, uint8, uint8);
+  friendOnline(uint32);
   friendOffline(uint32);
 
   goingOffline(uint32 avId);
 
   getAvatarDetails(uint32) clsend;
-  friendDetails(uint32, blob, uint16[], uint16, int16, int16, uint32, uint32, blob, blob, int8[]);
+  receiveAvatarInfo(blob, uint32, string, uint8, uint16, uint16, uint16, uint16, uint32, bool, bool, string, uint8, uint8);
+  receiveAvatarSkillLevels(uint8, uint8, uint8, uint8, uint8, uint8, uint8, uint8, uint8, uint8, uint8);
+  receiveAvatarShipInfo(bool, bool, bool);
 
+  routeTeleportQuery(uint32 toId) clsend;
+  teleportQuery(uint32 fromId);
+
+  teleportResponse(uint32 fromId, uint8 tpAvailable, uint32 defaultShard, uint32 hoodId, uint32 zoneId) clsend;
+  setTeleportResponse(uint32 toId, uint8 tpAvailable, uint32 defaultShard, uint32 hoodId, uint32 zoneId);
+  
   whisperSCTo(uint32 toId, uint16 msgIndex) clsend;
   setWhisperSCFrom(uint32 fromId, uint16 msgIndex);
 
@@ -912,7 +917,9 @@ dclass PiratesFriendsManager : DistributedObjectGlobal {
 
   sendTalkWhisper(uint32 toId, string message) clsend;
   receiveTalkWhisper(uint32 fromId, string message);
-
+  
+  teleportGiveup(uint32 toId) clsend;
+  setTeleportGiveup(uint32 fromId);
 };
 
 dclass DistributedInstanceBase : DistributedObject {
@@ -1260,18 +1267,6 @@ struct AvatarNameInfo {
   string avName;
   uint32 playerId;
   string playerName;
-};
-
-dclass DistributedPirateProfileMgr : DistributedObject {
-  requestAvatar(uint32, uint32) airecv clsend;
-  //setAvatarInfo(HumanDNA, uint32, string, uint8, uint16, uint16, uint16, uint16, uint32, bool, bool, uint32);
-  //receiveAvatarInfo(HumanDNA, uint32, string, uint8, uint16, uint16, uint16, uint16, uint32, bool, bool);
-  setAvatarSkillLevels(uint8, uint8, uint8, uint8, uint8, uint8, uint8, uint8, uint8, uint8, uint8, uint32);
-  receiveAvatarSkillLevels(uint8, uint8, uint8, uint8, uint8, uint8, uint8, uint8, uint8, uint8, uint8);
-  setAvatarShipInfo(bool, bool, bool, uint32);
-  receiveAvatarShipInfo(bool, bool, bool);
-  receiveAvatarOnlineInfo(string, string, uint8, uint8);
-  receiveAvatarChatPermissions(uint8);
 };
 
 //typedef uint8(0-255) PlayingCard;

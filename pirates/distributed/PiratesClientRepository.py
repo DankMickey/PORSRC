@@ -137,7 +137,6 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
         self.newsManager = None
         self.distributedDistrict = None
         self.district = None
-        self.profileMgr = None
         self.currCamParent = None
         self.fakeMSP = None
         self.timeOfDayManager = None
@@ -519,8 +518,6 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
             self.handleDisableOwner(di)
         elif msgType == CLIENT_OBJECT_DELETE_RESP:
             self.handleDelete(di)
-        elif msgType == CLIENT_GET_AVATAR_DETAILS_RESP:
-            self.handleGetAvatarDetailsResp(di)
         else:
             self.handleUnexpectedMsgType(msgType, di)
 

@@ -37,6 +37,7 @@ class PiratesUberRepository(PiratesInternalRepository):
         
     def createGlobals(self):
         self.csm = self.generateGlobalObject(OTP_DO_ID_CLIENT_SERVICES_MANAGER, 'ClientServicesManager')
+        self.piratesFriendsManager = self.generateGlobalObject(OTP_DO_ID_PIRATES_FRIENDS_MANAGER, 'PiratesFriendsManager')
         self.matchMaker = self.generateGlobalObject(OTP_DO_ID_PIRATES_MATCH_MAKER, 'DistributedMatchMaker')
         self.guildManager = self.generateGlobalObject(OTP_DO_ID_PIRATES_GUILD_MANAGER, 'DistributedGuildManager')
         self.travelAgent = self.generateGlobalObject(OTP_DO_ID_PIRATES_TRAVEL_AGENT, 'DistributedTravelAgent')

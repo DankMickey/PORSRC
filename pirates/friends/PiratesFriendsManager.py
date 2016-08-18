@@ -6,9 +6,6 @@ class PiratesFriendsManager(DistributedObjectGlobal):
     def d_removeFriend(self, friendId):
         self.sendUpdate('removeFriend', [friendId])
 
-    def d_requestAvatarInfo(self, friendIds):
-        self.sendUpdate('requestAvatarInfo', [friendIds])
-
     def d_requestFriendsList(self):
         self.sendUpdate('requestFriendsList', [])
 
@@ -18,8 +15,8 @@ class PiratesFriendsManager(DistributedObjectGlobal):
     def friendList(self, resp):
         base.cr.handleGetFriendsList(resp)
 
-    def friendOnline(self, id, commonChatFlags, whitelistChatFlags):
-        base.cr.handleFriendOnline(id, commonChatFlags, whitelistChatFlags)
+    def friendOnline(self, id):
+        base.cr.handleFriendOnline(id)
 
     def friendOffline(self, id):
         base.cr.handleFriendOffline(id)
@@ -27,16 +24,15 @@ class PiratesFriendsManager(DistributedObjectGlobal):
     def d_getAvatarDetails(self, avId):
         self.sendUpdate('getAvatarDetails', [avId])
 
-    def friendDetails(self, avId, inventory, trackAccess, trophies, hp, maxHp, defaultShard, lastHood, dnaString, experience, trackBonusLevel):
-        fields = [
-            ['setInventory' , inventory],
-            ['setHp' , hp],
-            ['setMaxHp' , maxHp],
-            ['setDefaultShard' , defaultShard],
-            ['setDNAString' , dnaString],
-        ]
-        base.cr.n_handleGetAvatarDetailsResp(avId, fields=fields)
-    """
+    def receiveAvatarInfo(self, *args):
+        messenger.send('avatarInfoRetrieved', list(args))
+
+    def receiveAvatarSkillLevels(self, *args):
+        messenger.send('avatarSkillLevelsRetrieved', list(args))
+
+    def receiveAvatarShipInfo(self, *args):
+        messenger.send('avatarShipInfoRetrieved', list(args))
+
     def d_teleportQuery(self, toId):
         self.sendUpdate('routeTeleportQuery', [toId])
 
@@ -63,7 +59,6 @@ class PiratesFriendsManager(DistributedObjectGlobal):
             hoodId,
             base.localAvatar.getZoneId()
         ])
-    """
 
     def teleportResponse(self, fromId, available, shardId, hoodId, zoneId):
         base.localAvatar.teleportResponse(fromId, available, shardId, hoodId, zoneId)

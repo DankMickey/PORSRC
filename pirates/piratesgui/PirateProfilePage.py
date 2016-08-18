@@ -20,7 +20,6 @@ from pirates.piratesgui import BorderFrame
 from pirates.pirate import MasterHuman
 from pirates.pirate import Human
 from pirates.pirate import HumanDNA
-import DistributedPirateProfileMgr
 from pirates.pirate import DistributedPlayerPirate
 from pirates.band import DistributedBandMember
 from direct.showbase.PythonUtil import StackTrace
@@ -272,9 +271,11 @@ class PirateProfilePage(SocialPage.SocialPage):
         self.logo.reparentTo(self.bg)
 
 
-    def showProfile(self, profileId, profileName = None, example = False):
+    def showProfile(self, profileId, profileName = None):
+        if profileId == self.profileId:
+            return
+
         self.profileId = profileId
-        self.example = example
         avatar = base.cr.doId2do.get(self.profileId)
         if avatar:
             if not isinstance(avatar, DistributedPlayerPirate.DistributedPlayerPirate):
@@ -358,16 +359,14 @@ class PirateProfilePage(SocialPage.SocialPage):
         self.pirate.setColor(0, 0, 0, 1)
         self.pirate.show()
         self.createBuffer()
-        if base.cr.profileMgr:
-            base.cr.profileMgr.requestAvatar(profileId)
-            self.accept('avatarInfoRetrieved', self.fillInAvatarInfo)
-            self.accept('avatarOnlineInfoRetrieved', self.copyAvatarOnlineInfo)
-            self.accept('avatarShipInfoRetrieved', self.copyAvatarShipInfo)
-            self.accept('avatarSkillLevelsRetrieved', self.copySkillLevels)
-            self.accept('avatarChatPermissionsRetrieved', self.copyChatPermissions)
-            self.accept('open_main_window', self.createBuffer)
-            self.accept('aspectRatioChanged', self.createBuffer)
-            self.accept('close_main_window', self.destroyBuffer)
+        
+        self.accept('avatarInfoRetrieved', self.fillInAvatarInfo)
+        self.accept('avatarShipInfoRetrieved', self.copyAvatarShipInfo)
+        self.accept('avatarSkillLevelsRetrieved', self.copySkillLevels)
+        self.accept('open_main_window', self.createBuffer)
+        self.accept('aspectRatioChanged', self.createBuffer)
+        self.accept('close_main_window', self.destroyBuffer)
+        base.cr.piratesFriendsManager.d_getAvatarDetails(profileId)
 
     def hide(self):
         self.mainFrame.hide()
@@ -503,85 +502,64 @@ class PirateProfilePage(SocialPage.SocialPage):
         self.determineButtonState()
 
 
-    def askShard(self, avId):
-        if not self.askingShard:
-            self.askingShard = True
-            localAvatar.askAvOnShard(avId)
-
-
-
-    def _PirateProfilePage__onShard(self, onShard = True):
-        self.askingShard = False
+    def gotOnShard(self, onShard):
         self.skillButton['state'] = DGG.NORMAL
-        if self.disableButtons:
-            self.crewButton.disable(PLocalizer.NoInteractPlayerWarning % self.profileName)
-            self.avatarFriendButton.disable(PLocalizer.NoInteractPlayerWarning % self.profileName)
-            self.guildButton.disable(PLocalizer.NoInteractPlayerWarning % self.profileName)
-            self.whisperButton.disable(PLocalizer.NoInteractPlayerWarning % self.profileName)
+
+        if not onShard:
+            return
+
+        if base.cr.avatarFriendsManager.checkIgnored(self.profileId):
+            self.crewButton.disable(PLocalizer.PlayerIgnoredWarning % self.profileName)
+            self.avatarFriendButton.disable(PLocalizer.PlayerIgnoredWarning % self.profileName)
+            self.guildButton.disable(PLocalizer.PlayerIgnoredWarning % self.profileName)
+            self.whisperButton.disable(PLocalizer.PlayerIgnoredWarning % self.profileName)
             self.goToButton.hide()
-            self.challengeButton.disable(PLocalizer.NoInteractPlayerWarning % self.profileName)
-            self.bootButton.disable(PLocalizer.NoInteractPlayerWarning % self.profileName)
-            self.reportButton.disable(PLocalizer.NoInteractPlayerWarning % self.profileName)
-            self.ignoreButton.disable(PLocalizer.NoInteractPlayerWarning % self.profileName)
-            if self.skillFrameIval and not (self.skillFrameClosed):
-                self.skillFrameIval.pause()
-                self.skillFrameIval = LerpPosInterval(self.skillFrame, 0.200, pos = (self.skillFrame.getX() - 0.44, 0, self.skillFrame.getZ()))
-                self.skillFrameClosed = True
-                self.skillFrameIval.start()
+            self.challengeButton.disable(PLocalizer.PlayerIgnoredWarning % self.profileName)
+            return
 
-            self.skillButton['state'] = DGG.DISABLED
-        elif onShard:
-            if not base.cr.avatarFriendsManager.checkIgnored(self.profileId):
-                self.crewButton.enable()
-                if DistributedBandMember.DistributedBandMember.areSameCrew(localAvatar.doId, self.profileId):
-                    self.crewButton.dim()
-                    if DistributedBandMember.DistributedBandMember.IsLocalAvatarHeadOfBand():
-                        self.crewButton.circle['helpText'] = PLocalizer.ProfilePageRemoveCrew
-                    else:
-                        self.crewButton.circle['helpText'] = PLocalizer.ProfilePageLeaveCrew
-                else:
-                    self.crewButton.circle['helpText'] = PLocalizer.ProfilePageCrew
-                self.testFriendsButtons()
-                self.guildButton.enable()
-                self.whisperButton.enable()
-                if not DistributedBandMember.DistributedBandMember.areSameCrew(localAvatar.doId, self.profileId):
-                    if base.cr.avatarFriendsManager.isFriend(self.profileId) or base.localAvatar.guiMgr.guildPage.membersList.getMemberByAvId(self.profileId):
-                        if self.showGoTo:
-                            self.goToButton.show()
+        self.crewButton.enable()
 
-
-                self.challengeButton.enable()
-                if base.cr.activeWorld:
-                    pass
-                inPVP = base.cr.activeWorld.getType() == PiratesGlobals.INSTANCE_PVP
-                inSameCrew = DistributedBandMember.DistributedBandMember.areSameCrew(localAvatar.doId, self.profileId)
-                profile = base.cr.doId2do.get(self.profileId)
-                if inPVP or inSameCrew:
-                    if inPVP:
-                        self.challengeButton.disable(PLocalizer.PlayerNotChallengeWarning % self.profileName)
-                    else:
-                        self.challengeButton.disable(PLocalizer.PlayerSameCrewWarning)
-
-                if not base.localAvatar.getSiegeTeam() or not base.localAvatar.getActiveShipId():
-                    self.bootButton.disable(PLocalizer.PlayerNotPrivateeringWarning)
-                elif not profile or profile.getShipId() != base.localAvatar.getActiveShipId():
-                    self.bootButton.disable(PLocalizer.PlayerNotOnShipWarning % self.profileName)
-                else:
-                    self.bootButton.enable()
-                self.checkGuildRank(True)
+        if DistributedBandMember.DistributedBandMember.areSameCrew(localAvatar.doId, self.profileId):
+            self.crewButton.dim()
+            if DistributedBandMember.DistributedBandMember.IsLocalAvatarHeadOfBand():
+                self.crewButton.circle['helpText'] = PLocalizer.ProfilePageRemoveCrew
             else:
-                self.crewButton.disable(PLocalizer.PlayerIgnoredWarning % self.profileName)
-                self.avatarFriendButton.disable(PLocalizer.PlayerIgnoredWarning % self.profileName)
-                self.guildButton.disable(PLocalizer.PlayerIgnoredWarning % self.profileName)
-                self.whisperButton.disable(PLocalizer.PlayerIgnoredWarning % self.profileName)
-                self.goToButton.hide()
-                self.challengeButton.disable(PLocalizer.PlayerIgnoredWarning % self.profileName)
+                self.crewButton.circle['helpText'] = PLocalizer.ProfilePageLeaveCrew
+        else:
+            self.crewButton.circle['helpText'] = PLocalizer.ProfilePageCrew
+        
+        self.testFriendsButtons()
+        self.guildButton.enable()
+        self.whisperButton.enable()
+        
+        if not DistributedBandMember.DistributedBandMember.areSameCrew(localAvatar.doId, self.profileId):
+            if base.cr.avatarFriendsManager.isFriend(self.profileId) or base.localAvatar.guiMgr.guildPage.membersList.getMemberByAvId(self.profileId):
+                if self.showGoTo:
+                    self.goToButton.show()
+
+        self.challengeButton.enable()
+        inPVP = base.cr.activeWorld.getType() == PiratesGlobals.INSTANCE_PVP
+        inSameCrew = DistributedBandMember.DistributedBandMember.areSameCrew(localAvatar.doId, self.profileId)
+        profile = base.cr.doId2do.get(self.profileId)
+        
+        if inPVP or inSameCrew:
+            if inPVP:
+                self.challengeButton.disable(PLocalizer.PlayerNotChallengeWarning % self.profileName)
+            else:
+                self.challengeButton.disable(PLocalizer.PlayerSameCrewWarning)
+
+        if not base.localAvatar.getSiegeTeam() or not base.localAvatar.getActiveShipId():
+            self.bootButton.disable(PLocalizer.PlayerNotPrivateeringWarning)
+        elif not profile or profile.getShipId() != base.localAvatar.getActiveShipId():
+            self.bootButton.disable(PLocalizer.PlayerNotOnShipWarning % self.profileName)
+        else:
+            self.bootButton.enable()
+        
+        self.checkGuildRank(True)
 
     def handleNewAvatarInfo(self, id = None, info = None):
         if id and id == self.profileId:
             self.determineButtonState()
-
-
 
     def testFriendsButtons(self):
         if base.cr.avatarFriendsManager.isFriend(self.profileId):
@@ -592,7 +570,6 @@ class PirateProfilePage(SocialPage.SocialPage):
             self.avatarFriendButton.circle['helpText'] = PLocalizer.ProfilePageFriend
             self.avatarFriendButton.enable()
 
-
     def testOnline(self):
         self.onlineNow = 0
         info = base.cr.identifyAvatar(self.profileId)
@@ -600,7 +577,6 @@ class PirateProfilePage(SocialPage.SocialPage):
             self.onlineNow = info.isOnline()
         elif base.cr.doId2do.get(self.profileId):
             self.onlineNow = 1
-
 
 
     def setIslandLabel(self, island, location = None):
@@ -617,25 +593,7 @@ class PirateProfilePage(SocialPage.SocialPage):
 
     def determineButtonState(self, extra = None, extra2 = None, extra3 = None):
         self.skillButton['state'] = DGG.NORMAL
-        if self.disableButtons:
-            self.crewButton.disable(PLocalizer.NoInteractPlayerWarning % self.profileName)
-            self.avatarFriendButton.disable(PLocalizer.NoInteractPlayerWarning % self.profileName)
-            self.guildButton.disable(PLocalizer.NoInteractPlayerWarning % self.profileName)
-            self.whisperButton.disable(PLocalizer.NoInteractPlayerWarning % self.profileName)
-            self.goToButton.hide()
-            self.challengeButton.disable(PLocalizer.NoInteractPlayerWarning % self.profileName)
-            self.bootButton.disable(PLocalizer.NoInteractPlayerWarning % self.profileName)
-            self.reportButton.disable(PLocalizer.NoInteractPlayerWarning % self.profileName)
-            self.ignoreButton.disable(PLocalizer.NoInteractPlayerWarning % self.profileName)
-            if self.skillFrameIval and not (self.skillFrameClosed):
-                self.skillFrameIval.pause()
-                self.skillFrameIval = LerpPosInterval(self.skillFrame, 0.200, pos = (self.skillFrame.getX() - 0.44, 0, self.skillFrame.getZ()))
-                self.skillFrameClosed = True
-                self.skillFrameIval.start()
-
-            self.skillButton['state'] = DGG.DISABLED
-        elif self.profileId:
-            self.askShard(self.profileId)
+        if self.profileId:
             self.checkGuildRank()
             if base.cr.activeWorld:
                 pass
@@ -726,7 +684,7 @@ class PirateProfilePage(SocialPage.SocialPage):
         return self.setPos(aspect2d, x, 0, z)
 
 
-    def fillInAvatarInfo(self, dna, guildId, guildName, founder, hp, maxHp, voodoo, maxVoodoo, shardId, disableButtons, showGoTo):
+    def fillInAvatarInfo(self, dna, guildId, guildName, founder, hp, maxHp, voodoo, maxVoodoo, shardId, showGoTo, chat, returnLocation, siege, profileIcon):
         self.loadingLabel.hide()
         self.guildId = guildId
         self.guildName = guildName
@@ -735,7 +693,6 @@ class PirateProfilePage(SocialPage.SocialPage):
         self.voodooMeter['range'] = maxVoodoo
         self.voodooMeter['value'] = voodoo
         self.shardId = shardId
-        self.disableButtons = disableButtons
         self.showGoTo = showGoTo
         if self.guildName == 'Null':
             self.guildName = ''
@@ -762,6 +719,31 @@ class PirateProfilePage(SocialPage.SocialPage):
         elif self.guildName == '0' or self.guildName == '':
             self.guildName = PLocalizer.GuildDefaultName % self.guildId
 
+        if returnLocation in PLocalizer.LocationNames:
+            self.islandName = PLocalizer.LocationNames[returnLocation]
+        else:
+            self.islandName = ''
+
+        if self.shardId in base.cr.activeDistrictMap:
+            self.locationName = base.cr.activeDistrictMap[self.shardId].getName()
+        else:
+            self.locationName = ''
+
+        self.locationFrame['image'] = self.profileIcons[profileIcon]
+
+        if profileIcon == PiratesGuiGlobals.PROFILE_ICON_LAND:
+            self.locationFrame['image_scale'] = 0.065
+        elif profileIcon == PiratesGuiGlobals.PROFILE_ICON_OCEAN:
+            self.locationFrame['image_scale'] = 0.135
+        elif profileIcon == PiratesGuiGlobals.PROFILE_ICON_CANNON:
+            self.locationFrame['image_scale'] = 0.085
+
+        self.locationTextLabel.show()
+        self.locationCircleFrame.show()
+        self.locationFrame.show()
+        self.siege = siege
+
+        self.chatLabel['text'] = (PLocalizer.PlayerSpeedChatPlus if chat else PLocalizer.PlayerSpeedChat)
         self.guildLabel['text'] = '\x01slant\x01%s\x02' % self.guildName
         self.islandLabel['text'] = self.islandName
         self.locationLabel['text'] = '\x01slant\x01%s\x02' % self.locationName
@@ -793,14 +775,18 @@ class PirateProfilePage(SocialPage.SocialPage):
                 self.siegeFrame['image'] = self.frenchFlag
             self.siegeFrame['image_scale'] = 0.0529
 
+        dnaObj = HumanDNA.HumanDNA()
+        dnaObj.makeFromNetString(dna)
+
         self.pirate.setDNA(dna)
-        self.pirate.generateHuman(dna.gender, self.masterHuman)
+        self.pirate.generateHuman(dnaObj.gender, self.masterHuman)
         self.pirate.stopBlink()
         self.pirate.pose('idle', 1)
         lodNode = self.pirate.find('**/+LODNode').node()
         lodNode.forceSwitch(lodNode.getHighestSwitch())
         self.pirate.setColor(1, 1, 1, 1)
         self.createBuffer()
+
         if localAvatar.getDoId() != self.profileId:
             self.avDisableName = 'disable-%s' % self.profileId
             self.accept(self.avDisableName, self.determineButtonState)
@@ -808,27 +794,11 @@ class PirateProfilePage(SocialPage.SocialPage):
             self.accept('generate-%s' % self.profileId, self.determineButtonState)
             self.accept('AvatarChange', self.determineButtonState)
             self.accept('CrewChange', self.determineButtonState)
-            self.accept('AvOnShard%s' % self.profileId, self._PirateProfilePage__onShard)
             self.accept('kickedFromGuild-%s' % self.profileId, self._PirateProfilePage__handleRemovedFromGuild)
             self.accept(OTPGlobals.AvatarFriendAddEvent, self.handleNewAvatarInfo)
             self.accept(OTPGlobals.AvatarFriendUpdateEvent, self.handleNewAvatarInfo)
             self.accept(OTPGlobals.AvatarFriendRemoveEvent, self.handleNewAvatarInfo)
-            self.askingShard = False
-            self.determineButtonState()
             self.accept('guildMemberUpdated', self.handleGuildMemberUpdated)
-        elif self.example:
-            for frame in [
-                self.mainFrame,
-                self.skillFrame,
-                self.problemFrame]:
-                frame.unbind(DGG.B1PRESS)
-                frame.unbind(DGG.B1RELEASE)
-                frame.unbind(DGG.B2PRESS)
-                frame.unbind(DGG.B2RELEASE)
-                frame.unbind(DGG.B3PRESS)
-                frame.unbind(DGG.B3RELEASE)
-
-            self.xFrame['state'] = DGG.DISABLED
 
         self.crewButton.disable(example = True)
         self.crewButton.circle['helpText'] = PLocalizer.ProfilePageCrew
@@ -838,24 +808,10 @@ class PirateProfilePage(SocialPage.SocialPage):
         self.whisperButton.disable(example = True)
         self.challengeButton.disable(example = True)
         self.problemButton.disable(example = True)
-
-
-    def copyAvatarOnlineInfo(self, islandName, locationName, siege, profileIcon):
-        self.islandName = islandName
-        self.locationName = locationName
-        self.locationFrame['image'] = self.profileIcons[profileIcon]
-        if profileIcon == PiratesGuiGlobals.PROFILE_ICON_LAND:
-            self.locationFrame['image_scale'] = 0.065
-        elif profileIcon == PiratesGuiGlobals.PROFILE_ICON_OCEAN:
-            self.locationFrame['image_scale'] = 0.135
-        elif profileIcon == PiratesGuiGlobals.PROFILE_ICON_CANNON:
-            self.locationFrame['image_scale'] = 0.085
-
-        self.locationTextLabel.show()
-        self.locationCircleFrame.show()
-        self.locationFrame.show()
-        self.siege = siege
-
+        
+        if localAvatar.getDoId() != self.profileId:
+            self.determineButtonState()
+            self.gotOnShard(self.shardId == localAvatar.getDefaultShard())
 
     def copyAvatarShipInfo(self, crewState, friendState, guildState):
         self.locationFrame['image'] = self.profileIcons[PiratesGuiGlobals.PROFILE_ICON_OCEAN]
@@ -873,9 +829,6 @@ class PirateProfilePage(SocialPage.SocialPage):
 
             if self.showGoTo:
                 self.goToButton.show()
-
-
-
 
     def copySkillLevels(self, level, cannon, sailing, cutlass, pistol, doll, dagger, grenade, staff, potions, fishing):
         self.level = level
@@ -967,17 +920,6 @@ class PirateProfilePage(SocialPage.SocialPage):
         self.potionsFrame.meter['text'] = PLocalizer.ProfilePageLevel % self.potionsLevel
         self.fishingFrame.meter['value'] = self.fishingLevel
         self.fishingFrame.meter['text'] = PLocalizer.ProfilePageLevel % self.fishingLevel
-
-
-    def copyChatPermissions(self, chatPermission):
-        if chatPermission == OPEN_CHAT:
-            chatText = PLocalizer.PlayerOpenChat
-        elif chatPermission == SPEEDCHAT_PLUS:
-            chatText = PLocalizer.PlayerSpeedChatPlus
-        else:
-            chatText = PLocalizer.PlayerSpeedChat
-        self.chatLabel['text'] = chatText
-
 
     def toggleSkillFrame(self):
         if self.skillFrameIval:

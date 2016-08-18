@@ -66,8 +66,8 @@ class FriendManagerAI(DistributedObjectAI):
             requested = self.air.doId2do[self.requests[context][0][1]]
             requester = self.air.doId2do[self.requests[context][0][0]]
 
-            requested.extendFriendsList(requester.getDoId(), 0)
-            requester.extendFriendsList(requested.getDoId(), 0)
+            requested.extendFriendsList(requester.getDoId())
+            requester.extendFriendsList(requested.getDoId())
 
             requested.d_setFriendsList(requested.getFriendsList())
             requester.d_setFriendsList(requester.getFriendsList())

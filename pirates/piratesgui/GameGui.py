@@ -15,9 +15,12 @@ from pirates.piratesgui import VitaeMeter
 
 class GameGui(DirectButton):
 
-    def __init__(self, parent, **kw):
+    def __init__(self, **kw):
+        if 'parent' not in kw:
+            kw['parent'] = aspect2d
+
         gui = loader.loadModel('models/gui/toplevel_gui')
-        DirectButton.__init__(self, parent = NodePath())
+        DirectButton.__init__(self, **kw)
         self.initialiseoptions(GameGui)
         self.repMeter = ReputationMeterDial.ReputationMeterDial(InventoryType.OverallRep, width = 0.56)
         self.repMeter.reparentTo(self)
@@ -55,21 +58,15 @@ class GameGui(DirectButton):
         clamp.setScale(0.55)
         self.clamps.hide()
         meterGui = loader.loadModel('models/textureCards/dialmeter')
-        self.glow = OnscreenImage(parent = self, image = meterGui.find('**/dialmeter_full'), scale = 0.58, color = (0.996, 0.957, 0.51, 0.67), pos = (0.425, 0, 0.19))
-        self.glow2 = OnscreenImage(parent = self, image = meterGui.find('**/dialmeter_full'), scale = 0.45, color = (0.996, 0.957, 0.51, 0.67), pos = (0.425, 0, 0.19))
+        self.glow = OnscreenImage(parent = self, image = meterGui.find('**/dialmeter_full'), scale = 0.47, color = (0.996, 0.957, 0.51, 0.67), pos = (0.295, 0, 0.267))
         self.glow.hide()
-        self.glow.setBin('gui-fixed', -2)
-        self.glow2.hide()
-        self.glow2.setBin('gui-fixed', -2)
+        self.glow.setBin('background', 10)
         self.setBin('gui-fixed', -1)
         meterGui.remove_node()
         self.bind(DGG.ENTER, self.turnHighlightOn)
         self.bind(DGG.EXIT, self.turnHighlightOff)
         self.createHealthAlert()
         self.haTask = None
-        if not parent:
-            pass
-        self.reparentTo(aspect2d)
 
 
     def createHealthAlert(self):
@@ -271,9 +268,7 @@ class GameGui(DirectButton):
 
     def turnHighlightOn(self, event = None):
         self.glow.show()
-        self.glow2.show()
 
 
     def turnHighlightOff(self, event = None):
         self.glow.hide()
-        self.glow2.hide()

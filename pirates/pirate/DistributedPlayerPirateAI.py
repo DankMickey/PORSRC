@@ -45,6 +45,7 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         self.founder = False
         self.allegiance = 0
         self.gmNametag = ('', '')
+        self.defaultShard = 0
 
     def announceGenerate(self):
         DistributedBattleAvatarAI.announceGenerate(self)
@@ -52,6 +53,9 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
 
         if config.GetBool('want-auto-founder', False) and not self.getFounder():
             self.b_setFounder(True)
+        
+        if self.defaultShard != self.air.districtId:
+            self.b_setDefaultShard(self.air.districtId)
         
         taskMgr.doMethodLater(10, self.__healthTask, self.taskName('healthTask'))
 
@@ -112,6 +116,19 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
     
     def getGMNametag(self):
         return self.gmNametag
+    
+    def b_setDefaultShard(self, defaultShard):
+        self.d_setDefaultShard(defaultShard)
+        self.setDefaultShard(defaultShard)
+
+    def d_setDefaultShard(self, defaultShard):
+        self.sendUpdate('setDefaultShard', [defaultShard])
+
+    def setDefaultShard(self, defaultShard):
+        self.defaultShard = defaultShard
+
+    def getDefaultShard(self):
+        return self.defaultShard
     
     def repChanged(self):
         newLevel = self.calcLevel()

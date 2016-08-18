@@ -1,121 +1,289 @@
 from panda3d.core import Datagram
+from direct.directnotify.DirectNotifyGlobal import directNotify
 from direct.distributed.DistributedObjectGlobalUD import DistributedObjectGlobalUD
 from direct.distributed.PyDatagram import *
-from direct.task import Task
-from direct.directnotify.DirectNotifyGlobal import directNotify
-import functools
+from direct.fsm.FSM import FSM
+from pirates.reputation import ReputationGlobals
+from pirates.uberdog import InventoryInit
+from pirates.uberdog.UberDogGlobals import InventoryType
+import time
+
+BasicCache = {}
+DetailedCache = {}
+
+# -- FSMS --
+class OperationFSM(FSM):
+
+    def __init__(self, mgr, air, senderAvId, targetAvId=None, callback=None):
+        FSM.__init__(self, 'OperationFSM-%s' % senderAvId)
+        self.mgr = mgr
+        self.air = air
+        self.sender = senderAvId
+        self.result = None
+        self.target = targetAvId
+        self.callback = callback
+        self.deleted = False
+    
+    def fsmName(self, name):
+        return 'OperationFSM-%s-%s' % (id(self), name)
+    
+    def deleteOperation(self):
+        if not self.deleted:
+            taskMgr.doMethodLater(1, self.__deleteOperation, self.fsmName('deleteOperation'))
+            self.deleted = True
+    
+    def __deleteOperation(self, task):
+        if self.sender in self.mgr.operations:
+            del self.mgr.operations[self.sender]
+
+    def enterOff(self):
+        if self.callback:
+            if self.result is not None:
+                self.callback(self.sender, self.result)
+            else:
+                self.callback()
+        
+        self.deleteOperation()
+
+    def enterError(self, message=None):
+        self.mgr.notify.warning("An error has occurred in a '%s'. Message: %s" % (self.__class__.__name__, message))
+        self.deleteOperation()
+
+class GetAvatarOperation(OperationFSM):
+
+    def getRequiredAccumulators(self):
+        return [InventoryType.OverallRep, InventoryType.CannonRep, InventoryType.SailingRep, InventoryType.CutlassRep,
+                InventoryType.PistolRep, InventoryType.DollRep, InventoryType.DaggerRep, InventoryType.GrenadeRep,
+                InventoryType.WandRep, InventoryType.PotionsRep, InventoryType.FishingRep]
+    
+    def getLevelFromAccumulator(self, accumulators, accumulator):
+        return ReputationGlobals.getLevelFromTotalReputation(accumulator, accumulators.get(accumulator, 0))[0]
+    
+    def getLevelsFromAccumulators(self, accumulators):
+        return [self.getLevelFromAccumulator(accumulators, accumulator) for accumulator in self.getRequiredAccumulators()]
+    
+    def getPirateFields(self):
+        return ('setDNAString', 'setFounder', 'setHp', 'setMaxHp', 'setMojo', 'setMaxMojo', 'setInventoryId', 'setDefaultShard', 'setReturnLocation')
+
+    def enterStart(self):
+        self.air.dbInterface.queryObject(self.air.dbId, self.target, self.handleRetrieve)
+    
+    def handleRetrieve(self, dclass, fields):
+        DetailedCache[self.target] = {'expire': time.time() + 30}
+
+        if dclass != self.air.dclassesByName['DistributedPlayerPirateUD']:
+            self.demand('Error', 'Distributed Class was not a Pirate.')
+            return
+
+        dna, founder, hp, maxHp, mojo, maxMojo, inventoryId, shardId, returnLocation = [fields[field][0] for field in self.getPirateFields()]
+        guildId = 0
+        guildName = ''
+        showGoTo = True
+        chat = True
+        siege = False
+        profileIcon = 0
+        avatar = [dna, guildId, guildName, founder, hp, maxHp, mojo, maxMojo, shardId, showGoTo, chat, returnLocation, siege, profileIcon]
+
+        DetailedCache[self.target]['avatar'] = avatar
+        self.mgr.d_receiveAvatarInfo(self.sender, *avatar)
+        self.air.dbInterface.queryObject(self.air.dbId, inventoryId, self.handleRetrieveInventory)
+
+    def handleRetrieveInventory(self, dclass, fields):
+        if dclass != self.air.dclassesByName['PirateInventoryUD']:
+            self.demand('Error', 'Distributed Class was not an Inventory.')
+            return
+        if fields.get('setInventoryVersion', [None])[0] != InventoryInit.UberDogRevision:
+            self.demand('Error', 'Inventory is in the wrong format!')
+            return
+        if fields.get('setOwnerId', [None])[0] != self.target:
+            self.demand('Error', 'Inventory belongs to someone else!')
+            return
+        
+        accumulators = dict(fields['setAccumulators'][0])
+        levels = self.getLevelsFromAccumulators(accumulators)
+
+        DetailedCache[self.target]['levels'] = levels
+        self.mgr.d_receiveAvatarSkillLevels(self.sender, *levels)
+        self.demand('Off')
+
+# -- Friends list --
+class FriendsListOperation(OperationFSM):
+
+    def enterStart(self):
+        self.air.dbInterface.queryObject(self.air.dbId, self.sender, self.handleRetrieveSender)
+
+    def handleRetrieveSender(self, dclass, fields):
+        if dclass != self.air.dclassesByName['DistributedPlayerPirateUD']:
+            self.demand('Error', 'Distributed Class was not a Pirate.')
+            return
+
+        self.demand('Retrieved', fields['setFriendsList'][0])
+
+    def enterRetrieved(self, friendsList):
+        self.friendsList = friendsList
+
+        if len(self.friendsList) <= 0:
+            self.result = []
+            self.demand('Off')
+            return
+
+        self.friendIndex = -1
+        self.realFriendsList = []
+        self.queryNext()
+
+    def addFriend(self, dclass, fields):
+        friendId = self.friendsList[self.friendIndex]
+
+        if dclass != self.air.dclassesByName['DistributedPlayerPirateUD']:
+            self.demand('Error', 'Friend was not a Pirate')
+            BasicCache[friendId] = {'expire': time.time() + 30}
+            return
+
+        info = [friendId, fields['setName'][0], fields['setDNAString'][0]]
+
+        BasicCache[friendId] = {'expire': time.time() + 1800, 'info': info}
+        self.addFriendInfo(info)
+    
+    def addFriendInfo(self, info):
+        self.realFriendsList.append(info)
+        
+        if len(self.realFriendsList) >= len(self.friendsList):
+            self.result = self.realFriendsList
+            self.demand('Off')
+            return
+
+        self.queryNext()
+    
+    def queryNext(self):
+        self.friendIndex += 1
+        next = self.friendsList[self.friendIndex]
+        
+        if next in BasicCache:
+            cache = BasicCache[next]
+
+            if cache['expire'] >= time.time():
+                if 'info' not in cache:
+                    self.queryNext()
+                else:
+                    self.addFriendInfo(cache['info'])
+
+                return
+        
+        self.air.dbInterface.queryObject(self.air.dbId, next, self.addFriend)
+
+# -- Remove Friends --
+class RemoveFriendOperation(OperationFSM):
+
+    def __init__(self, mgr, air, senderAvId, targetAvId=None, callback=None, alert=False):
+        OperationFSM.__init__(self, mgr, air, senderAvId, targetAvId, callback)
+        self.alert = alert
+
+    def enterStart(self):
+        self.air.dbInterface.queryObject(self.air.dbId, self.sender, self.handleRetrieve)
+
+    def handleRetrieve(self, dclass, fields):
+        if dclass != self.air.dclassesByName['DistributedPlayerPirateUD']:
+            self.demand('Error', 'Distributed Class was not a Pirate.')
+            return
+
+        self.demand('Retrieved', fields['setFriendsList'][0], fields['setTrueFriends'][0])
+
+    def enterRetrieved(self, friendsList, trueFriendsList):
+        dclass = self.air.dclassesByName['DistributedPlayerPirateUD']
+
+        if self.target in friendsList:
+            friendsList.remove(self.target)
+            self.air.send(dclass.aiFormatUpdate('setFriendsList', self.sender, self.sender, self.air.ourChannel, [friendsList]))
+        if self.target in trueFriendsList:
+            trueFriendsList.remove(self.target)
+            self.air.send(dclass.aiFormatUpdate('setTrueFriends', self.sender, self.sender, self.air.ourChannel, [trueFriendsList]))
+        if self.alert and self.sender in self.mgr.onlinePirates:
+            self.air.send(dclass.aiFormatUpdate('friendsNotify', self.sender, self.sender, self.air.ourChannel, [self.target, 1]))
+                
+        self.demand('Off')
+
+# -- FriendsManager --
 
 class PiratesFriendsManagerUD(DistributedObjectGlobalUD):
     notify = directNotify.newCategory('PiratesFriendsManagerUD')
 
     def announceGenerate(self):
         DistributedObjectGlobalUD.announceGenerate(self)
+
         self.onlinePirates = []
         self.tpRequests = {}
-        self.friendsLists = {}
-        self.friendIndexes = {}
-        self.listResponses = {}
+        self.whisperRequests = {}
+        self.operations = {}
+        self.delayTime = 1.0
 
-    def removeFriend(self, friendId):
-        avId = self.air.getAvatarIdFromSender()
-        self.__removeFromFriendsList(avId, friendId)
-        self.__removeFromFriendsList(friendId, avId, True)
+    def checkWhisperRequest(self, fromId):
+        currentTime = time.time()
+        allow = fromId not in self.whisperRequests or self.whisperRequests[fromId] <= currentTime
 
-    def __removeFromFriendsList(self, t1, t2, notify=False):
-        def handlePirate(dclass, fields):
-            if dclass != self.air.dclassesByName['DistributedPlayerPirateUD']:
-                return
-            newList = []
-            friendsList = fields['setFriendsList'][0]
-            for i in xrange(len(friendsList)):
-                if friendsList[i][0] == t2:
-                    continue
-                newList.append(friendsList[i])
-            if t1 in self.onlinePirates:
-                dg = self.air.dclassesByName['DistributedPlayerPirateUD'].aiFormatUpdate(
-                        'setFriendsList', t1, t1, self.air.ourChannel,
-                         [newList])
-                self.air.send(dg)
-                if notify:
-                    dg = self.air.dclassesByName['DistributedPlayerPirateUD'].aiFormatUpdate(
-                         'friendsNotify', t1, t1, self.air.ourChannel, [t2, 1])
-                    self.air.send(dg)
-            else:
-                self.air.dbInterface.updateObject(self.air.dbId, t1, self.air.dclassesByName['DistributedPlayerPirateUD'],
-                                                  {'setFriendsList' : [newList]})
-        self.air.dbInterface.queryObject(self.air.dbId, t1, handlePirate)
+        self.whisperRequests[fromId] = currentTime + self.delayTime
+        return allow
+    
+    def addOperation(self, operation):
+        if operation.sender in self.operations:
+            return
 
-
-
-    def requestAvatarInfo(self, friendIds):
-        avId = self.air.getAvatarIdFromSender()
-
-        self.currId = 0
-
-        def handleFriend(dclass, fields):
-            if dclass != self.air.dclassesByName['DistributedPlayerPirateUD']:
-                return
-            name = fields['setName'][0]
-            dna = fields['setDNAString'][0]
-            self.sendUpdateToAvatarId(avId, 'friendInfo', [self.currId, name, dna, petId])
-
-
-        def handleAv(dclass, fields):
-            if dclass != self.air.dclassesByName['DistributedPlayerPirateUD']:
-                return
-            friendsList = fields['setFriendsList'][0]
-            for id in friendIds:
-                for friend in friendsList:
-                    if friend[0] == id:
-                        currId = id
-                        self.air.dbInterface.queryObject(self.air.dbId, id, handleFriend)
-                        break
-
-        self.air.dbInterface.queryObject(self.air.dbId, avId, handleAv)
-
+        self.operations[operation.sender] = operation
+        operation.demand('Start')
+    
+    # dna, guildId, guildName, founder, hp, maxHp, voodoo, maxVoodoo, shardId, showGoTo, chat, islandName, locationName, siege, profileIcon
+    def d_receiveAvatarInfo(self, avId, *args):
+        self.sendUpdateToAvatarId(avId, 'receiveAvatarInfo', args)
+    
+    # see getRequiredAccumulators
+    def d_receiveAvatarSkillLevels(self, avId, *args):
+        self.sendUpdateToAvatarId(avId, 'receiveAvatarSkillLevels', args)
+    
+    # guildState, crewState, friendState
+    def d_receiveAvatarShipInfo(self, avId, *args):
+        self.sendUpdateToAvatarId(avId, 'receiveAvatarShipInfo', args)
+    
+    # -- Friends list --
     def requestFriendsList(self):
         avId = self.air.getAvatarIdFromSender()
+        
+        if avId not in self.operations:
+            self.addOperation(FriendsListOperation(self, self.air, avId, callback=self.sendFriendsList))
 
-        # Writing this function made me hate Python
+    def sendFriendsList(self, sender, friendsList):
+        self.sendUpdateToAvatarId(sender, 'friendList', [friendsList])
 
-        def addFriend(dclass, fields, friendId=0, avId=0):
-            if not (avId or friendId):
+        if sender not in self.onlinePirates:
+            self.pirateOnline(sender, friendsList)
+
+    # -- Remove Friend --
+    def removeFriend(self, friendId):
+        avId = self.air.getAvatarIdFromSender()
+
+        if avId in self.operations or friendId in self.operations:
+            return
+
+        self.addOperation(RemoveFriendOperation(self, self.air, avId, friendId))
+        self.addOperation(RemoveFriendOperation(self, self.air, friendId, avId, alert=True))
+
+    # -- Avatar Info --
+    def getAvatarDetails(self, avId):
+        senderId = self.air.getAvatarIdFromSender()
+        
+        if avId in DetailedCache:
+            cache = DetailedCache[avId]
+            
+            if cache['expire'] >= time.time() and 'avatar' in cache and 'levels' in cache:
+                self.d_receiveAvatarInfo(senderId, *cache['avatar'])
+                self.d_receiveAvatarSkillLevels(senderId, *cache['levels'])
                 return
-            if dclass == self.air.dclassesByName['DistributedPlayerPirateUD']:
-                self.listResponses[avId].append([friendId, fields['setName'][0], fields['setDNAString'][0]])
-            if len(self.listResponses[avId]) >= len(self.friendsLists[avId]):
-                self.sendUpdateToAvatarId(avId, 'friendList', [self.listResponses[avId]])
-                del self.friendsLists[avId]
-                del self.friendIndexes[avId]
-                del self.listResponses[avId]
-            else:
-                self.friendIndexes[avId] += 1
-                self.air.dbInterface.queryObject(self.air.dbId, self.friendsLists[avId][self.friendIndexes[avId]][0], functools.partial(addFriend, avId=avId, friendId=self.friendsLists[avId][self.friendIndexes[avId]][0]))
 
-        def handleAv(dclass, fields, avId=0):
-            if not avId:
-                return
-            if dclass != self.air.dclassesByName['DistributedPlayerPirateUD']:
-                return
-            if not avId in self.onlinePirates:
-                self.onlinePirates.append(avId)
-                self.pirateOnline(avId, fields)
-            self.friendsLists[avId] = fields['setFriendsList'][0]
-            self.friendIndexes[avId] = 0
-            self.listResponses[avId] = []
-            if len(self.friendsLists[avId]) <= 0:
-                self.sendUpdateToAvatarId(avId, 'friendList', [self.listResponses[avId]])
-                del self.friendsLists[avId]
-                del self.friendIndexes[avId]
-                del self.listResponses[avId]
-                return
-            self.air.dbInterface.queryObject(self.air.dbId, self.friendsLists[avId][0][0], functools.partial(addFriend, avId=avId, friendId=self.friendsLists[avId][0][0]))
-
-        self.air.dbInterface.queryObject(self.air.dbId, avId, functools.partial(handleAv, avId=avId))
-
-    def pirateOnline(self, doId, fields):
-        self.onlinePirates.append(doId)
-        friendsList = fields['setFriendsList'][0]
+        if avId not in self.operations:
+            self.addOperation(GetAvatarOperation(self, self.air, senderId, avId))
+    
+    # -- Pirate Online/Offline --
+    def pirateOnline(self, doId, friendsList):
+        if doId not in self.onlinePirates:
+            self.onlinePirates.append(doId)
 
         channel = self.GetPuppetConnectionChannel(doId)
         dgcleanup = self.dclass.aiFormatUpdate('goingOffline', self.doId, self.doId, self.air.ourChannel, [doId])
@@ -124,68 +292,46 @@ class PiratesFriendsManagerUD(DistributedObjectGlobalUD):
         dg.addString(dgcleanup.getMessage())
         self.air.send(dg)
 
+        onlineFriends = []
+        
         for friend in friendsList:
             friendId = friend[0]
-            if friend[0] in self.onlinePirates:
-                self.sendUpdateToAvatarId(doId, 'friendOnline', [friendId, 0, 0])
-            self.sendUpdateToAvatarId(friendId, 'friendOnline', [doId, 0, 0])
-
-    def pirateOffline(self, doId):
-        if doId not in self.onlinePirates:
-            return
-        def handlePirate(dclass, fields):
-            if dclass != self.air.dclassesByName['DistributedPlayerPirateUD']:
-                return
-            friendsList = fields['setFriendsList'][0]
-            for friend in friendsList:
-                friendId = friend[0]
-                if friendId in self.onlinePirates:
-                    self.sendUpdateToAvatarId(friendId, 'friendOffline', [doId])
-            self.onlinePirates.remove(doId)
-        self.air.dbInterface.queryObject(self.air.dbId, doId, handlePirate)
-
-    def clearList(self, doId):
-        def handlePirate(dclass, fields):
-            if dclass != self.air.dclassesByName['DistributedPlayerPirateUD']:
-                return
-            friendsList = fields['setFriendsList'][0]
-            for friend in friendsList:
-                self.__removeFromFriendsList(doId, friend[0])
-                self.__removeFromFriendsList(friend[0], doId, True)
-        self.air.dbInterface.queryObject(self.air.dbId, doId, handlePirate)
+            
+            if friendId in self.onlinePirates:
+                self.sendUpdateToAvatarId(friendId, 'friendOnline', [doId])
+                onlineFriends.append(friendId)
+        
+        self.sendUpdateToAvatarId(doId, 'friendsOnline', [onlineFriends])
 
     def goingOffline(self, avId):
         self.pirateOffline(avId)
 
-    def getAvatarDetails(self, avId):
-        #return
-        senderId = self.air.getAvatarIdFromSender()
+    def pirateOffline(self, doId):
+        if doId not in self.onlinePirates:
+            return
+
         def handlePirate(dclass, fields):
             if dclass != self.air.dclassesByName['DistributedPlayerPirateUD']:
                 return
-            inventory = fields['setInventory'][0]
-            hp = fields['setHp'][0]
-            maxHp = fields['setMaxHp'][0]
-            defaultShard = fields['setDefaultShard'][0]
-            dnaString =  fields['setDNAString'][0]
-            # We need an actual way to send the fields to the client...............
-            # Inventory, trackAccess, trophies, Hp, maxHp, defaultshard, lastHood, dnastring
-            self.sendUpdateToAvatarId(senderId, 'friendDetails', [avId, inventory, hp, maxHp, defaultShard, dnaString])
-        self.air.dbInterface.queryObject(self.air.dbId, avId, handlePirate)
 
-    # much client very trust
+            friendsList = fields['setFriendsList'][0]
 
-    # The PFM Uberdog acts as a 'gateway' between two friends
-    # when they cannot directly send updates to one another, for
-    # example when they are on different shards. We do this because
-    # Astron does not currently support a few things that we need.
-    # In this case, we route sent whispers and teleport queries from
-    # 1 client to another. We should probably log these, but for now
-    # we won't.
+            for friend in friendsList:
+                if friend in self.onlinePirates:
+                    self.sendUpdateToAvatarId(friend, 'friendOffline', [doId])
 
-    """
+            if doId in self.onlinePirates:
+                self.onlinePirates.remove(doId)
+
+        self.air.dbInterface.queryObject(self.air.dbId, doId, handlePirate)
+
+    # -- Teleport and Whispers --
     def routeTeleportQuery(self, toId):
         fromId = self.air.getAvatarIdFromSender()
+
+        if fromId in self.tpRequests.values():
+            return
+
         self.tpRequests[fromId] = toId
         self.sendUpdateToAvatarId(toId, 'teleportQuery', [fromId])
         taskMgr.doMethodLater(5, self.giveUpTeleportQuery, 'tp-query-timeout-%d' % fromId, extraArgs=[fromId, toId])
@@ -195,10 +341,10 @@ class PiratesFriendsManagerUD(DistributedObjectGlobalUD):
         # So we will tell the query sender that the pirate is unavailable.
         if fromId in self.tpRequests:
             del self.tpRequests[fromId]
-            self.sendUpdateToAvatarId(fromId, 'teleportResponse', [toId, 0, 0, 0, 0])
+            self.sendUpdateToAvatarId(fromId, 'setTeleportResponse', [toId, 0, 0, 0, 0])
             self.notify.warning('Teleport request that was sent by %d to %d timed out.' % (fromId, toId))
 
-    def routeTeleportResponse(self, toId, available, shardId, hoodId, zoneId):
+    def teleportResponse(self, toId, available, shardId, hoodId, zoneId):
         # Here is where the toId and fromId swap (because we are now sending it back)
         fromId = self.air.getAvatarIdFromSender()
 
@@ -209,24 +355,40 @@ class PiratesFriendsManagerUD(DistributedObjectGlobalUD):
         if toId not in self.tpRequests:
             return
         if self.tpRequests.get(toId) != fromId:
-            self.air.writeServerEvent('suspicious', fromId, 'pirate tried to send teleportResponse for a query that isn\'t theirs!')
+            self.air.writeServerEvent('suspicious', fromId, 'Pirate tried to send teleportResponse for a query that isn\'t theirs!')
             return
-        self.sendUpdateToAvatarId(toId, 'teleportResponse', [fromId, available, shardId, hoodId, zoneId])
+
+        self.sendUpdateToAvatarId(toId, 'setTeleportResponse', [fromId, available, shardId, hoodId, zoneId])
         del self.tpRequests[toId]
-    """
+
     def whisperSCTo(self, toId, msgIndex):
         fromId = self.air.getAvatarIdFromSender()
-        self.sendUpdateToAvatarId(toId, 'setWhisperSCFrom', [fromId, msgIndex])
+        
+        if self.checkWhisperRequest(fromId):
+            self.sendUpdateToAvatarId(toId, 'setWhisperSCFrom', [fromId, msgIndex])
 
     def whisperSCCustomTo(self, toId, msgIndex):
         fromId = self.air.getAvatarIdFromSender()
-        self.sendUpdateToAvatarId(toId, 'setWhisperSCCustomFrom', [fromId, msgIndex])
+        
+        if self.checkWhisperRequest(fromId):
+            self.sendUpdateToAvatarId(toId, 'setWhisperSCCustomFrom', [fromId, msgIndex])
 
     def whisperSCEmoteTo(self, toId, msgIndex):
         fromId = self.air.getAvatarIdFromSender()
-        self.sendUpdateToAvatarId(toId, 'setWhisperSCEmoteFrom', [fromId, msgIndex])
+        
+        if self.checkWhisperRequest(fromId):
+            self.sendUpdateToAvatarId(toId, 'setWhisperSCEmoteFrom', [fromId, msgIndex])
 
     def sendTalkWhisper(self, toId, message):
         fromId = self.air.getAvatarIdFromSender()
+        
+        if not self.checkWhisperRequest(fromId):
+            return
+
         self.sendUpdateToAvatarId(toId, 'receiveTalkWhisper', [fromId, message])
         self.air.writeServerEvent('whisper-said', fromId, toId, message)
+
+    # -- Routes --
+    def teleportGiveup(self, toId):
+        requester = self.air.getAvatarIdFromSender()
+        self.sendUpdateToAvatarId(toId, 'setTeleportGiveup', [requester])

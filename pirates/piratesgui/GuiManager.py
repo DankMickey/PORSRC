@@ -218,7 +218,7 @@ class GuiManager(FSM.FSM):
         self.warningMsg.text.setDepthWrite(0)
         self.socialPanelReturn = False
         self.crewHUDTurnedOff = True
-        self.gameGui = GameGui.GameGui(parent = NodePath(), state = DGG.NORMAL, relief = None, pos = (-0.2, 0, -0.27), scale = 0.75, command = self.gameGuiPressed, frameSize = (0.0, 1.2, -0.03, 0.35))
+        self.gameGui = GameGui.GameGui(state = DGG.NORMAL, relief = None, command=self.__gameGuiPressed, frameSize = (0.0, 1.2, -0.03, 0.35))
         self.codeShown = 0
         self.messageStackParent = DirectFrame(parent = base.a2dBottomLeft, relief = None)
         self.messageStack = MessageStackPanel.MessageStackPanel(self.messageStackParent, relief = None, pos = (0.01, 0, 0.6))
@@ -3443,7 +3443,6 @@ class GuiManager(FSM.FSM):
             self.chatWarningBox.close()
 
         self.chatWarningBox = None
-
-
-    def gameGuiPressed(self):
-        self.handleAvatarDetails(localAvatar.getDoId())
+    
+    def __gameGuiPressed(self):
+        self.profilePage.showProfile(base.localAvatar.doId)

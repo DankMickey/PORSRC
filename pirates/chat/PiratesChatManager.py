@@ -162,7 +162,7 @@ class PiratesChatManager(ChatManagerV2.ChatManagerV2):
                 handle = base.cr.identifyAvatar(id)
             if handle:
                 self.activateWhisperChat(id)
-                self.chatPanel.activateWhisperChat(*self.lastWhisper)
+                self.chatPanel.activateWhisperChat(self.lastWhisper)
             else:
                 self.activateChat(self.lastPreferred)
 

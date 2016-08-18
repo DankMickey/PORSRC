@@ -22,6 +22,7 @@ class InventoryRequest(FSM):
         self.inventoryId = inventoryId
 
         nextState = 'Query'
+
         if not self.inventoryId:
             nextState = 'Create'
 

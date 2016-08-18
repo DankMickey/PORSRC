@@ -1642,16 +1642,6 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             doEffect])
         self.cr.teleportMgr.doEffect = True
 
-    def relayTeleportLoc(self, shardId, zoneId, teleportMgrDoId):
-        self.b_setDefaultShard(shardId)
-        self.cr.playingGameLocReceived(shardId, self.doId)
-        if self.pendingTeleportMgr:
-            base.cr.relatedObjectMgr.abortRequest(self.pendingTeleportMgr)
-            self.pendingTeleportMgr = None
-
-        self.pendingTeleportMgr = base.cr.relatedObjectMgr.requestObjects([
-            teleportMgrDoId], eachCallback = self.readyToTeleport)
-
     def readyToTeleport(self, teleportMgr):
         bp.loginCfg()
         teleportMgr.initiateTeleport(self.teleportToType, self.teleportToName, shardId = self.getDefaultShard(), locationUid = self.returnLocation)
@@ -2099,17 +2089,6 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             effect.particleDummy.reparentTo(self)
             effect.setPos(0, 0, 0)
             effect.play()
-
-
-
-    def b_setDefaultShard(self, defaultShard):
-        if self.defaultShard != defaultShard:
-            self.d_setDefaultShard(defaultShard)
-            self.setDefaultShard(defaultShard)
-
-    def d_setDefaultShard(self, defaultShard):
-        self.sendUpdate('setDefaultShard', [
-            defaultShard])
 
     def setDefaultShard(self, defaultShard):
         self.defaultShard = defaultShard
