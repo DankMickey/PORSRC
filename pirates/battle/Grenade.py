@@ -20,7 +20,7 @@ class Grenade(Weapon.Weapon):
 
     def __init__(self, itemId):
         Weapon.Weapon.__init__(self, itemId, 'grenade')
-        self.ammoSkillId = 0
+        self.ammoSkillId = 1
 
 
     def loadModel(self):
