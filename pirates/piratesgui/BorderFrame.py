@@ -72,8 +72,7 @@ class BorderFrame(DirectFrame):
                 tex.setWrapU(Texture.WMMirror)
                 tex.setWrapV(Texture.WMMirror)
             if self['nameTag'] and self.nameTag:
-                PiratesGlobals = PiratesGlobals
-                import pirates.piratesbase
+                from pirates.piratesbase import PiratesGlobals
                 self.nameTagLabel = DirectLabel(parent = self.nameTag, relief = None, pos = (0, 0, 0.050000), text = self['nameTag'], text_scale = 0.200, text_font = PiratesGlobals.getPirateBoldOutlineFont(), text_fg = (1, 1, 1, 1), text_shadow = PiratesGuiGlobals.TextShadow, text_align = TextNode.ACenter, textMayChange = 1)
 
     def copyFlattenedChild(self, node, parent):

@@ -468,6 +468,10 @@ class PiratesBase(OTPBase):
             base.cam.node().setCameraMask(OTPRender.MainCameraBitmask)
         else:
             base.cam.node().setCameraMask(OTPRender.MainCameraBitmask | OTPRender.EnviroCameraBitmask)
+        self.mouseWatcherNode.setEnterPattern('mouse-enter-%r')
+        self.mouseWatcherNode.setLeavePattern('mouse-leave-%r')
+        self.mouseWatcherNode.setButtonDownPattern('button-down-%r')
+        self.mouseWatcherNode.setButtonUpPattern('button-up-%r')
         NametagGlobals.setMouseWatcher(base.mouseWatcherNode)
         if base.wantEnviroDR:
             base.setupEnviroCamera()
@@ -529,20 +533,6 @@ class PiratesBase(OTPBase):
     def setupRender2d(self):
         OTPBase.setupRender2d(self)
         self.a2dTopRight.reparentTo(self.aspect2d, sort = 1)
-
-
-    def setupMouse(self, win):
-        OTPBase.setupMouse(self, win)
-        mk = self.mouseWatcher.getParent()
-        bt = mk.attachNewNode(ButtonThrower('uber'))
-        bt.node().setPrefix('uber-')
-        mods = ModifierButtons()
-        mods.addButton(KeyboardButton.shift())
-        mods.addButton(KeyboardButton.control())
-        mods.addButton(KeyboardButton.alt())
-        mods.addButton(KeyboardButton.meta())
-        bt.node().setModifierButtons(mods)
-        self.buttonThrowers.append(bt)
 
 
     def doAvatarPhysics(self, state):

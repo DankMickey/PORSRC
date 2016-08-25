@@ -434,8 +434,6 @@ class GrabberTentacle(DistributedCreature, Monstrous):
             self.creature.pose('grab_avatar_idle', 0, blendT = 0)
             self.creature.update()
             range = self.creature.getGrabTargetNode().getPos().length()
-            PiratesGlobals = PiratesGlobals
-            import pirates.piratesbase
             cNode = CollisionNode(self.uniqueName('Range'))
             cNode.setFromCollideMask(BitMask32.allOff())
             cNode.setIntoCollideMask(PiratesGlobals.WallBitmask)
