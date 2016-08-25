@@ -86,7 +86,7 @@ class Subtitler(DirectObject.DirectObject):
 
 
     def _Subtitler__processChatMessage(self, message):
-        self._Subtitler__chatPages = []
+        self._Subtitler__chatPages = message.split('\n')
         self._Subtitler__chatMessage = message
         self._Subtitler__chatSet = 0
         self._Subtitler__chatPageNumber = 0
