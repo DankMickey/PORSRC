@@ -784,11 +784,11 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
         self.deleteWeaponJoints()
         lod2000 = self.getLOD('2000')
         if lod2000:
-            lod2000.flattenStrong()
+            lod2000.flattenMedium()
 
         lod1000 = self.getLOD('1000')
         if lod1000:
-            lod1000.flattenStrong()
+            lod1000.flattenMedium()
 
         self.getWeaponJoints()
         self.setLODAnimation(1000, 1000, 0.001)
@@ -1407,47 +1407,36 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
         self.prevDistSq = -1
 
 
-    def togglePrintAnimBlends(self, enable = None):
+    def togglePrintAnimBlends(self):
         if not hasattr(self, '_printAnimBlends'):
-            self._printAnimBlends = False
+            self._printAnimBlends = True
+        else:
+            self._printAnimBlends = not self._printAnimBlends
 
-        if enable is None:
-            enable = not (self._printAnimBlends)
-
-        self._printAnimBlends = enable
-        if enable:
-
+        if self._printAnimBlends:
             def doPrint(task, self = self):
                 self.printAnimBlends()
                 return task.cont
 
             taskMgr.add(doPrint, 'printAnimBlends')
-            print 'togglePrintAnimBlends ON'
         else:
             taskMgr.remove('printAnimBlends')
-            print 'togglePrintAnimBlends OFF'
 
 
     def toggleOsdAnimBlends(self, enable = None):
         if not hasattr(self, '_osdAnimBlends'):
-            self._osdAnimBlends = False
+            self._osdAnimBlends = True
+        else:
+            self._osdAnimBlends = not (self._osdAnimBlends)
 
-        if enable is None:
-            enable = not (self._osdAnimBlends)
-
-        self._osdAnimBlends = enable
-        if enable:
-
+        if self._osdAnimBlends:
             def doOsd(task, self = self):
                 self.osdAnimBlends()
                 return task.cont
 
             taskMgr.add(doOsd, 'osdAnimBlends')
-            print 'toggleOsdAnimBlends ON'
         else:
             taskMgr.remove('osdAnimBlends')
-            print 'toggleOsdAnimBlends OFF'
-
 
     def toggleAvVis(self):
         self.getLOD('2000').toggleVis()
@@ -1776,7 +1765,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
             for currToRemove in toRemove:
                 areaIdList.remove(currToRemove)
 
-        elif self.currentTarget and WeaponGlobals.getNeedTarget(skillId, ammoSkillId):
+        elif self.currentTarget:
             targetId = self.currentTarget.getDoId()
             areaCenter = self.currentTarget
         else:
@@ -1789,7 +1778,6 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
                 skillResult = WeaponGlobals.RESULT_MISTIMED_HIT
             elif skillResult == WeaponGlobals.RESULT_MISS:
                 skillResult = WeaponGlobals.RESULT_MISTIMED_MISS
-
 
         if skillResult == WeaponGlobals.RESULT_NOT_AVAILABLE and WeaponGlobals.getNeedTarget(skillId, ammoSkillId):
             messenger.send('skillFinished')
@@ -2530,37 +2518,6 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
 
         else:
             self.notify.warning('localAvatar has no controls during teleport')
-
-    if __dev__:
-
-
-        def printTS(self):
-            print 'TeleportState\n-----------------------------'
-            print 'location:', localAvatar.getLocation()
-            print 'pos:', localAvatar.getPos(localAvatar.getParentObj())
-
-            try:
-                print 'lastZoneLevel:', localAvatar.getParentObj().lastZoneLevel
-            except AttributeError:
-                pass
-
-            print '\nzoneSpheres:'
-            for x in localAvatar.getParentObj().zoneSphere:
-                x.ls()
-
-            print '\naccepting:'
-            for x in localAvatar.getParentObj().getAllAccepting():
-                print x
-
-            print '\ncTrav:'
-            print base.cTrav
-
-    def printIZL(self, reset = False):
-        for x in self.cr.activeWorld.islands.itervalues():
-            if reset:
-                x.setZoneLevel(min(3, x.lastZoneLevel))
-
-            print '%d %d %20s %s' % (x.lastZoneLevel, x.doId, x.getUniqueId(), x.getName())
 
     def addStatusEffect(self, effectId, attackerId, duration, timeLeft, timestamp, buffData):
         DistributedPlayerPirate.addStatusEffect(self, effectId, attackerId, duration, timeLeft, timestamp, buffData)
