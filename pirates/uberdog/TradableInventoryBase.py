@@ -126,7 +126,6 @@ class InvItem(tuple):
             return self == other
 
 
-
 class InvItemList(dict):
 
     def __setitem__(self, key, value):
@@ -198,9 +197,6 @@ class TradableInventoryBase(DistributedInventoryBase):
         self._locatableItems = InvItemList()
         self.tempAdds = []
         self.tempRems = []
-        self.selfTestsTask = None
-        self.selfTestTrades = []
-        self.testPending = False
         self.areLocatablesReady = 0
 
 
@@ -377,7 +373,16 @@ class TradableInventoryBase(DistributedInventoryBase):
             if itemId:
                 return itemCounts.get(itemId, 0)
             else:
-                return sum(itemCounts.values())
+                # TODO: Why?
+                theSum = 0
+                
+                for count in itemCounts.values():
+                    if hasattr(count, 'getCount'):
+                        theSum += count.getCount(0)
+                    else:
+                        theSum += count
+
+                return theSum
         else:
             return DistributedInventoryBase.getStackQuantity(self, itemCat)
 
@@ -584,217 +589,6 @@ class TradableInventoryBase(DistributedInventoryBase):
         else:
             results['itemLevel'] = (0, True)
         return results
-
-
-    def _TradableInventoryBase__runSelfTest_limits(self, itemCatFilter, verbose):
-        itemIds = ItemGlobals.getAllItemIds()
-        for currItemId in itemIds:
-            if itemCatFilter != None and itemCatFilter != ItemGlobals.getClass(currItemId):
-                continue
-
-            itemIds = ItemGlobals.getAllConsumableIds()
-            itemLimit = ItemGlobals.getStackLimit(currItemId)
-            itemCat = ItemGlobals.getClass(currItemId)
-            quantity = self.getItemQuantity(itemCat, currItemId)
-            if isStackableType(itemCat):
-                pass
-            1
-            if verbose:
-                if not itemLimit:
-                    pass
-                print 'item limit for item %s:%s passed (quantity: %s limit:%s)' % (itemCat, currItemId, quantity, 1)
-                continue
-
-
-
-    def _TradableInventoryBase__runSelfTest_giving(self, itemCatFilter, itemTypeFilter = None, count = None, verbose = None):
-        itemIds = ItemGlobals.getAllItemIds()
-        for currItemId in itemIds:
-            itemCat = ItemGlobals.getClass(currItemId)
-            if itemCatFilter != None and itemCat != itemCatFilter:
-                continue
-
-            if not count and ItemGlobals.getStackLimit(currItemId):
-                pass
-            actualCount = None
-            testItem = self.getTestItem(itemCat, currItemId, count = actualCount)
-            if game.process == 'ai':
-
-                def tradeSuccess(tradeObj):
-                    if verbose:
-                        print '  trade success'
-
-                    self.testPending = False
-
-
-                def tradeFail(tradeObj, reason):
-                    reasonStr = reason
-                    RejectCode = RejectCode
-                    import otp.uberdog.RejectCode
-                    for currCode in RejectCode.__dict__.keys():
-                        if reason == RejectCode.__dict__[currCode]:
-                            reasonStr = currCode
-                            continue
-
-                    if verbose:
-                        print '  trade fail %s (%s)' % (reasonStr, tradeObj)
-
-                    if reason == RejectCode.OVERFLOW:
-                        for currGiving in tradeObj.giving:
-                            checkItem = InvItem(currGiving)
-                            itemCat = checkItem.getCat()
-                            if not itemCat == InventoryType.ItemTypeWeapon:
-                                pass
-                            ranges = self.getPossibleLocations(itemCat, checkItem.getType(), itemCat == InventoryType.ItemTypeCharm)
-                            for currRange in ranges:
-                                minVal = currRange[0]
-                                if len(currRange) > 1:
-                                    maxVal = currRange[1]
-                                else:
-                                    maxVal = minVal
-                                for currLocation in xrange(minVal, maxVal + 1):
-                                    if not currLocation in self._locatableItems:
-                                        print '    WARNING: trade %s failed with overflow when it should not have %s' % (tradeObj, currLocation)
-                                        continue
-
-
-
-                    elif reason == RejectCode.UNDERFLOW:
-                        print '    WARNING: trade %s failed with underflow when it should not have' % tradeObj
-
-                    self.testPending = False
-
-
-                def tradeTimeout(tradeObj):
-                    if verbose:
-                        print '  trade timeout'
-
-                    self.testPending = False
-
-                AIMagicWordTrade = AIMagicWordTrade
-                import pirates.uberdog.AIMagicWordTrade
-                trade = AIMagicWordTrade(self, self.doId, self.ownerId)
-
-                def removeSetup(tradeObj, removeCat, removeType):
-                    ranges = self.getPossibleLocations(removeCat, removeType, False)
-                    itemToRemove = self._locatableItems.get(ranges[0][0])
-                    tradeObj.takeItem(itemToRemove)
-
-                trade.setSuccessCallback(tradeSuccess)
-                trade.setFailureCallback(tradeFail)
-                trade.setTimeoutCallback(tradeTimeout)
-                self.selfTestTrades.insert(0, (lambda param1 = trade, param2 = itemCat, param3 = testItem.getType(): removeSetup(param1, param2, param3), trade))
-                AIGift = AIGift
-                import pirates.uberdog.AIGift
-                trade = AIGift(self, GiftOrigin.MAGIC_WORD, self.doId, self.ownerId)
-                trade.giveItem(testItem)
-                trade.setSuccessCallback(tradeSuccess)
-                trade.setFailureCallback(tradeFail)
-                trade.setTimeoutCallback(tradeTimeout)
-                self.selfTestTrades.insert(1, (None, trade))
-                continue
-
-
-
-    def runSelfTests(self, itemCatFilter = None, testType = None, verbose = False):
-        print 'starting tests...'
-
-        def startTests(task = None):
-            if testType == None or testType == TEST_TYPE_LIMITS:
-                self._TradableInventoryBase__runSelfTest_limits(itemCatFilter, verbose)
-
-            if testType == None or testType == TEST_TYPE_TRADES:
-                self._TradableInventoryBase__runSelfTest_giving(itemCatFilter, verbose = verbose)
-
-
-            def processAsyncTests(task = None):
-                if not self.testPending:
-                    if self.selfTestTrades:
-                        testTradeInfo = self.selfTestTrades.pop()
-                        if testTradeInfo[0]:
-                            testTradeInfo[0]()
-
-                        testTradeInfo[1].sendTrade()
-                        if verbose:
-                            print 'sending trade %s' % str(testTradeInfo[1])
-
-                        self.testPending = True
-                    else:
-                        self.selfTestsTask = None
-                        print 'finished tests.'
-                        return Task.done
-
-                return Task.cont
-
-            self.selfTestsTask = taskMgr.add(processAsyncTests, 'runSelfTests')
-            return Task.done
-
-        taskMgr.doMethodLater(0, startTests, 'selfTestsStart')
-
-
-    def getTestItem(self, category, type = None, location = None, count = None, color = None):
-        type2gen = {
-            STInt8: 'int()',
-            STInt16: 'int()',
-            STInt32: 'int()',
-            STInt64: 'int()',
-            STUint8: 'int()',
-            STUint16: 'int()',
-            STUint32: 'int()',
-            STUint64: 'int()',
-            STFloat64: 'int()',
-            STString: 'str()',
-            STBlob: 'str()',
-            STBlob32: 'str()',
-            STInt16array: '[]',
-            STInt32array: '[]',
-            STUint16array: '[]',
-            STUint32array: '[]',
-            STInt8array: '[]',
-            STUint8array: '[]',
-            STUint32uint8array: '[]',
-            STChar: 'int()' }
-        locatablesField = self.dclass.getFieldByName('setLocatables').asAtomicField()
-        switchObj = None
-        result = tuple()
-        for currElement in xrange(locatablesField.getNumElements()):
-            arrayParam = locatablesField.getElement(currElement).asArrayParameter()
-            if arrayParam and arrayParam.getName() == 'items':
-                itemStruct = arrayParam.getElementType().asClassParameter().getClass()
-                for currItemField in xrange(itemStruct.getNumFields()):
-                    switchObj = itemStruct.getField(currItemField).asSwitchParameter().getSwitch()
-
-
-        if switchObj:
-            numCases = switchObj.getNumCases()
-            testPacker = DCPacker()
-            testPacker.rawPackUint16(category)
-            caseIdx = switchObj.getCaseByValue(testPacker.getString())
-            numFields = switchObj.getNumFields(caseIdx)
-            for currField in xrange(numFields):
-                if currField == 0:
-                    newVal = (category,)
-                elif currField == 1 and type != None:
-                    newVal = (type,)
-                elif currField == 2 and location != None:
-                    newVal = (location,)
-                elif currField == 3 and count != None:
-                    newVal = (count,)
-                elif currField == 3 and color != None:
-                    newVal = (color,)
-                else:
-                    fieldInfo = switchObj.getField(caseIdx, currField)
-                    fieldType = fieldInfo.asParameter().asSimpleParameter()
-                    if not fieldType:
-                        fieldType = STUint8array
-                    else:
-                        fieldType = fieldType.getType()
-                    exec 'newVal = (' + type2gen.get(fieldType) + ',)'  # TODO: Remove this use of exec
-                result = result[:] + newVal
-
-
-        return InvItem(result)
-
 
     def clearTemps(self):
         self.tempRems = []

@@ -198,8 +198,7 @@ class WorldCreatorBase:
             if not uid in fileData['ObjectIds']:
                 continue
 
-            getSyntax = 'objectInfo = fileData' + fileData['ObjectIds'][uid]
-            exec getSyntax
+            objectInfo = eval('fileData' + fileData['ObjectIds'][uid])
             if not 'File' in objectInfo or objectInfo.get('File') == '':
                 break
                 continue
@@ -221,10 +220,9 @@ class WorldCreatorBase:
                         return fileData['ObjectIds'][uid][match.start() + 2:match.end() - 2]
 
                     self.notify.warning('getObjectDataFromFileByUid: could not extract parentId from %s' % fileData['ObjectIds'][uid])
-                    getSyntax = 'objectInfo = None'
+                    objectInfo = None
                 else:
-                    getSyntax = 'objectInfo = fileData' + fileData['ObjectIds'][uid]
-                exec getSyntax
+                    objectInfo = eval('fileData' + fileData['ObjectIds'][uid])
 
         return objectInfo
 
@@ -239,8 +237,7 @@ class WorldCreatorBase:
             if not uid in fileData['ObjectIds']:
                 continue
 
-            getSyntax = 'objectInfo = fileData' + fileData['ObjectIds'][uid]
-            exec getSyntax
+            objectInfo = eval('fileData' + fileData['ObjectIds'][uid])
             fileList.add(name)
             objects = objectInfo.get('Objects')
             if objects:

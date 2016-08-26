@@ -1,6 +1,7 @@
 from panda3d.core import Light, NodePath
 from direct.interval.IntervalGlobal import *
 from direct.showbase.DirectObject import *
+from direct.directnotify import DirectNotifyGlobal
 from pirates.effects import DynamicLight
 from pirates.creature import Creature
 from pirates.creature.Alligator import Alligator
@@ -28,12 +29,14 @@ from pirates.effects import CausticsProjector
 from pirates.effects import ExplodingBarrel
 from pirates.world import WorldGlobals
 from pirates.piratesbase import PLocalizer
+import importlib
 LOD_STATE_NORMAL = 0
 LOD_STATE_HIGH = 1
 LOD_STATE_LOW = 2
 LOD_STATE_LOWEST = 3
 LOD_STATE_MED = 4
 flickerTracks = []
+notify = DirectNotifyGlobal.directNotify.newCategory('EditorGlobals')
 
 def LightDynamic(levelObj, parent = render, drawIcon = True, modular = False):
     if levelObj is None:
@@ -146,8 +149,15 @@ def CreateAnimal(species = None):
     if not species:
         species = 'Pig'
 
-    exec 'animal = %s()' % species  # TODO: Remove this use of exec
-    animal.setAvatarType(eval('AvatarTypes.%s' % species))
+    if not hasattr(AvatarTypes, species):
+        notify.error('Avatar type %s missing!' % species)
+        return
+    
+    animalClass = getattr(importlib.import_module('pirates.creature'), species)
+    animalType = getattr(AvatarTypes, species)
+
+    animal = animalClass()
+    animal.setAvatarType(animalType)
     return animal
 
 CREATURE_CLASS_DICT = {
@@ -181,7 +191,9 @@ def CreateCreature(species = None):
     if not species:
         species = 'Crab'
 
-    exec 'creature = %s()' % CREATURE_CLASS_DICT[species]  # TODO: Remove this use of exec
+    creatureClass = CREATURE_CLASS_DICT[species]
+    creatureClass = getattr(importlib.import_module('pirates.creature'), creatureClass)
+    creature = creatureClass()
     creature.show()
     avatarTypeFunc = AvatarTypes.NPC_SPAWNABLES[species][AvatarTypes.AVATAR_TYPE_IDX]
     avatarType = avatarTypeFunc()

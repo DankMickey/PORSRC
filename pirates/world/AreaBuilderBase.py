@@ -329,8 +329,7 @@ class AreaBuilderBase(DirectObject.DirectObject):
                             path = currData['ObjectIds'][currLink[1]]
                         else:
                             path = currData['ObjectIds'][currLink[0]]
-                        getDstPos = 'dstPos = currData' + path + '["Pos"]'
-                        exec getDstPos
+                        dstPos = eval('currData%s["Pos"]' % path)
                         h0 = propAv.getH()
                         h1 = propAv.getH() + 180
                         p = propAv.getP()

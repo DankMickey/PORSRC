@@ -17,23 +17,17 @@ __lootShipCache = { }
 __columnHeadings = __dropInfo.pop('columnHeadings')
 
 __commonDropInfo = DropData.commonDropInfo
-
+__staticIdTypeList = __columnHeadings
 __staticCommonDropList = { }
 __typeCommonDropList = { }
-for (heading, value) in __commonDropInfo.items():
-    if value == 'x':
-        value = 1
-    else:
-        value = 0
 
-    try:
-        newHeading = string.replace(heading, '\r', '')
-        id = None
-        exec 'id = (AvatarTypes.%s.getFaction(), AvatarTypes.%s.getTrack(), AvatarTypes.%s.getId())' % (heading, heading, heading)  # TODO: Remove this use of exec
-        exec '__typeCommonDropList[id] = %s' % value in globals()  # TODO: Remove this use of exec
-    except:
-        newHeading = string.replace(heading, '\r', '')
-        exec "__staticCommonDropList['%s'] = %s" % (newHeading, value) in globals()
+for heading, value in __commonDropInfo.items():
+    if hasattr(AvatarTypes, heading):
+        type = getattr(AvatarTypes, heading)
+        id = (type.getFaction(), type.getTrack(), type.getId())
+        __typeCommonDropList[id] = value
+    else:
+        __staticCommonDropList[heading] = value
 
 def isLive(item):
     if ConfigVariableBool('force-all-items-live', False):
