@@ -18,6 +18,8 @@ from pirates.instance.DistributedTeleportMgrAI import DistributedTeleportMgrAI
 from pirates.distributed.TargetManagerAI import TargetManagerAI
 from pirates.battle.BattleManagerAI import BattleManagerAI
 
+import threading, sys
+
 class PiratesAIRepository(PiratesInternalRepository):
     def __init__(self, baseChannel, stateServerChannel, districtName):
         PiratesInternalRepository.__init__(
@@ -65,6 +67,12 @@ class PiratesAIRepository(PiratesInternalRepository):
     def handleConnected(self):
         PiratesInternalRepository.handleConnected(self)
 
+        if sys.platform == 'win32':
+            threading.Thread(target=self.startDistrict).start()
+        else:
+            self.startDistrict()
+
+    def startDistrict(self):
         self.districtId = self.allocateChannel()
         self.notify.info('Creating PiratesDistrictAI(%d)...' % self.districtId)
 
