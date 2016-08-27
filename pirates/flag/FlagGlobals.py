@@ -110,7 +110,6 @@ YPosHiCount = 200
 LayoutScaleMin = 0.125
 LayoutScaleMax = 1.0
 LayoutScaleResolutionFactor = 16
-continue
 LayoutScales = [ LayoutScaleMin + (float(x) / (LayoutScaleResolutionFactor - 1)) * (LayoutScaleMax - LayoutScaleMin) for x in xrange(LayoutScaleResolutionFactor) ]
 LayoutScaleCount = len(LayoutScales)
 EmblemScales = LayoutScales

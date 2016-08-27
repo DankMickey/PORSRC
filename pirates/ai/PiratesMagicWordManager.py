@@ -1126,7 +1126,7 @@ class PiratesMagicWordManager(MagicWordManager.MagicWordManager):
                     for currEffectType in effectTypes:
                         newStatus = not base.cr.effectToggles.get(currEffectType, base.config.GetBool('want-special-effects', 1))
                         base.cr.effectToggles[currEffectType] = newStatus
-                        response = 'effect %s set to %s' % (currEffectType, 'ON' if newStatus else 'OFF'))
+                        response = 'effect %s set to %s' % (currEffectType, 'ON' if newStatus else 'OFF')
                         self.setMagicWordResponse(response)
 
             base.cr.wantSpecialEffects = base.config.GetBool('want-special-effects', 1)

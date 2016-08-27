@@ -67,7 +67,6 @@ class TentacleUtils:
             if self.statusTable[i][2] != -1:
                 self.stopAllEffects(i)
                 self.statusTable[i][2] = -1
-                continue
 
 
 
@@ -170,7 +169,6 @@ class TentacleUtils:
             if self.statusTable[i][4][0]:
                 self.statusTable[i][4][0].setPos(render, self.statusTable[i][3])
                 self.statusTable[i][4][0].particleDummy.setZ(render, self.statusTable[i][3][2] + 2.0)
-                continue
 
         if self.undeadSmoke:
             self.undeadSmoke.setPos(render, self.statusTable[len(self.statusTable) - 1][3])
