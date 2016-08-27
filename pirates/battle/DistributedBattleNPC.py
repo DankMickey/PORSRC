@@ -297,6 +297,16 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
                     self.notify.warning('error executing npc mod funcion %s for quest %s' % (self.questMod, self._associatedQuests))
         return self.questMod
 
+    def selectOption(self, optionId):
+        self.optionId = optionId
+
+    def d_selectOption(self, optionId):
+        self.sendUpdate('selectOption', [optionId])
+
+    def b_selectOption(self, optionId):
+        self.selectOption(optionId)
+        self.d_selectOption(optionId)
+
     def switchVisualMode(self, mode, skipHide = False):
         if self.altVisType == mode:
             return None

@@ -30,8 +30,24 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
         self.collisionMode = PiratesGlobals.COLL_MODE_ALL
         self.initZ = 0
         self.uniqueId = ''
+        self.dnaId = ''
 
         self.enemies = set()
+
+    def setDNAId(self, dnaId):
+        self.dnaId = dnaId
+
+    def getDNAId(self):
+        return self.dnaId
+
+    def getSpawnPos(self):
+        return self.spawnPos
+
+    def setGhostColor(self, ghostColor):
+        self.ghostColor = ghostColor
+
+    def getGhostColor(self):
+        return self.ghostColor
 
     def setLevel(self, level):
         if not level:

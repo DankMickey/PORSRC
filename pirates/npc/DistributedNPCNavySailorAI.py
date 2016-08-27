@@ -18,8 +18,3 @@ class DistributedNPCNavySailorAI(DistributedBattleNPCAI):
 
     def announceGenerate(self):
         DistributedBattleNPCAI.announceGenerate(self)
-
-    @classmethod
-    def makeFromObjectKey(cls, air, objKey, data):
-        obj = DistributedBattleNPCAI.makeFromObjectKey(air, objKey, data)
-        return obj

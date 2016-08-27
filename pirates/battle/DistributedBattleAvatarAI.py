@@ -30,6 +30,9 @@ class DistributedBattleAvatarAI(Teamable, DistributedReputationAvatarAI, WeaponB
         self.shipId = 0
         self.inInvasion = False
         self.skillEffects = []
+        self.isGhost = 0
+        self.hasGP = 0
+        self.armorScale = 0
 
         self.enemySkills = {}
 
@@ -62,6 +65,45 @@ class DistributedBattleAvatarAI(Teamable, DistributedReputationAvatarAI, WeaponB
     def b_setHp(self, hp, quietly=0):
         self.setHp(hp) # This might be modified by DPPAI (groggy)
         self.d_setHp(self.hp, quietly)
+
+    def setIsGhost(self, isGhost):
+        self.isGhost = isGhost
+
+    def d_setIsGhost(self, isGhost):
+        self.sendUpdate('setIsGhost', [isGhost])
+
+    def b_setIsGhost(self, isGhost):
+        self.setIsGhost(isGhost)
+        self.d_setIsGhost(self.isGhost)
+
+    def getIsGhost(self):
+        return self.isGhost
+
+    def setHasGhostPowers(self, hasGP):
+        self.hasGP = hasGP
+
+    def d_setHasGhostPowers(self, hasGP):
+        self.sendUpdate('setHasGhostPowers', [hasGP])
+
+    def b_setHasGhostPowers(self, hasGP):
+        self.setHasGhostPowers(hasGP)
+        self.d_setHasGhostPowers(self.hasGP)
+
+    def getHasGhostPowers(self):
+        return self.hasGP
+
+    def setArmorScale(self, armorScale):
+        self.armorScale = armorScale
+
+    def d_setArmorScale(self, armorScale):
+        self.sendUpdate('setArmorScale', [armorScale])
+
+    def b_setArmorScale(self, armorScale):
+        self.setArmorScale(armorScale)
+        self.d_setArmorScale(self.armorScale)
+
+    def getArmorScale(self):
+        return self.armorScale
 
     def setMojo(self, mojo):
         self.mojo = mojo
@@ -216,7 +258,7 @@ class DistributedBattleAvatarAI(Teamable, DistributedReputationAvatarAI, WeaponB
         statBonus = 0
         if rank > 5:
             statBonus = 5 * upgradeAmt
-            statBonus += (rank - 5) * (upgradeAmt / 2.0)
+            statBonus = (rank - 5) * (upgradeAmt / 2.0)
         else:
             statBonus = rank * upgradeAmt
         return statBonus
@@ -230,8 +272,8 @@ class DistributedBattleAvatarAI(Teamable, DistributedReputationAvatarAI, WeaponB
         inv = self.getInventory()
         if inv:
             skillLvl = max(0, inv.getStackQuantity(skillId) - 1)
-            skillLvl += ItemGlobals.getWeaponBoosts(self.currentWeaponId, skillId)
-            skillLvl += ItemGlobals.getWeaponBoosts(self.getCurrentCharm(), skillId)
+            skillLvl = ItemGlobals.getWeaponBoosts(self.currentWeaponId, skillId)
+            skillLvl = ItemGlobals.getWeaponBoosts(self.getCurrentCharm(), skillId)
 
         return skillLvl
 

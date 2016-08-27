@@ -6,6 +6,7 @@ class DistributedNPCPirateAI(DistributedBattleNPCAI):
 
     def __init__(self, air):
         DistributedBattleNPCAI.__init__(self, air)
+        self.dnaString = ''
 
     def disable(self):
         DistributedBattleNPCAI.disable(self)
@@ -18,6 +19,12 @@ class DistributedNPCPirateAI(DistributedBattleNPCAI):
 
     def announceGenerate(self):
         DistributedBattleNPCAI.announceGenerate(self)
+    
+    def setDNAString(self, dnaString):
+        self.dnaString = dnaString
+    
+    def getDNAString(self):
+        return self.DNAString
 
     @classmethod
     def makeFromObjectKey(cls, air, objKey, data):

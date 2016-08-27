@@ -6,6 +6,9 @@ from pirates.battle.DistributedBattleNPCAI import *
 from pirates.creature.DistributedCreatureAI import *
 from pirates.creature.DistributedAnimalAI import *
 from pirates.creature.DistributedRavenAI import *
+from pirates.npc.DistributedNPCNavySailorAI import *
+from pirates.npc.DistributedBountyHunterAI import *
+from pirates.npc.DistributedNPCSkeletonAI import *
 
 import random, os
 
@@ -21,14 +24,28 @@ for creature in (AvatarTypes.Crab, AvatarTypes.RockCrab, AvatarTypes.StoneCrab,
                  AvatarTypes.RabidBat, AvatarTypes.VampireBat, AvatarTypes.FireBat, AvatarTypes.Wasp,
                  AvatarTypes.KillerWasp, AvatarTypes.AngryWasp, AvatarTypes.SoldierWasp,
                  AvatarTypes.Monkey, AvatarTypes.GrabberTentacle, AvatarTypes.HolderTentacle,
-                 AvatarTypes.Kraken, AvatarTypes.KrakenHead):
+                 AvatarTypes.Kraken, AvatarTypes.KrakenHead, AvatarTypes.Cadet, AvatarTypes.Guard,
+                 AvatarTypes.Thug, AvatarTypes.Grunt, AvatarTypes.Hiredgun, AvatarTypes.Mercenary,
+                 AvatarTypes.Assassin, AvatarTypes.Marine, AvatarTypes.Sergeant, AvatarTypes.Veteran,
+                 AvatarTypes.Officer, AvatarTypes.FrenchUndeadA, AvatarTypes.FrenchUndeadB, AvatarTypes.FrenchUndeadC,
+                 AvatarTypes.FrenchUndeadD, AvatarTypes.Dragoon, AvatarTypes.SpanishUndeadA, AvatarTypes.SpanishUndeadB,
+                 AvatarTypes.SpanishUndeadC, AvatarTypes.SpanishUndeadD, AvatarTypes.Clod, AvatarTypes.Sludge,
+                 AvatarTypes.Mire, AvatarTypes.MireKnife, AvatarTypes.Muck, AvatarTypes.MuckCutlass, AvatarTypes.Corpse,
+                 AvatarTypes.CorpseCutlass, AvatarTypes.Carrion, AvatarTypes.CarrionKnife, AvatarTypes.Cadaver,
+                 AvatarTypes.CadaverCutlass, AvatarTypes.Zombie, AvatarTypes.CaptMudmoss, AvatarTypes.Mossman,
+                 AvatarTypes.Drip):
     if creature.isA(AvatarTypes.Animal):
         CLASSES[creature] = DistributedAnimalAI
-
+    elif creature in (AvatarTypes.Grunt, AvatarTypes.Thug, AvatarTypes.Hiredgun, AvatarTypes.Mercenary, AvatarTypes.Assassin):
+        #TODO: Characters spawn in default animation, miss their weapons, and attacks dont do damage.
+        CLASSES[creature] = DistributedBountyHunterAI
+    elif creature in (AvatarTypes.Guard, AvatarTypes.Cadet, AvatarTypes.Marine, AvatarTypes.Sergeant, AvatarTypes.Veteran, AvatarTypes.Officer, AvatarTypes.Dragoon):
+        #TODO: Characters spawn in default animation, miss their weapons, and attacks dont do damage.
+        CLASSES[creature] = DistributedNPCNavySailorAI
     elif creature == AvatarTypes.Raven:
         CLASSES[creature] = DistributedRavenAI
     elif creature.isA(AvatarTypes.Earth):
-        aClass = DistributedNPCSkeletonAI
+        CLASSES[creature] = DistributedNPCSkeletonAI
     else:
         CLASSES[creature] = DistributedCreatureAI
 
@@ -99,6 +116,16 @@ class DistributedEnemySpawnerAI:
     def addSpawnNode(self, objKey, data):
         self.spawnNodes[objKey] = SpawnNode(self, data)
 
+    def spawnNavy(self, objKey, data):
+        npc = DistributedNPCPirateAI.makeFromObjectKey(None, self, objKey, data)
+        self.spawn(npc, False)
+        return npc
+
+    def spawnMarine(self, objKey, data):
+        npc = DistributedNPCNavySailorAI.makeFromObjectKey(None, self, objKey, data)
+        self.spawn(npc, False)
+        return npc
+
     def spawnNPC(self, objKey, data):
         npc = DistributedNPCTownfolkAI.makeFromObjectKey(None, self, objKey, data)
         self.spawn(npc, False)
@@ -117,6 +144,9 @@ class DistributedEnemySpawnerAI:
 
     @classmethod
     def printMissingTypes(cls):
+        if not cls._missing:
+            return
+
         cls.notify.warning('Missing avatar types:')
         for avType in cls._missing:
             print '   %r' % avType
