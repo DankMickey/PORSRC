@@ -101,11 +101,6 @@ from pirates.inventory import ItemConstants
 from pirates.uberdog.DistributedInventoryBase import DistributedInventoryBase
 from pirates.uberdog.TradableInventory import TradableInventory
 
-
-class bp:
-    loginCfg = bpdb.bpPreset(iff = False, cfg = 'loginCfg', static = 1)
-
-
 class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, DistributedBattleAvatar, DistributedQuestAvatar, PAvatarHandle):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedPirate')
     wantBattle = base.config.GetBool('want-battle', 0)
@@ -1643,7 +1638,6 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         self.cr.teleportMgr.doEffect = True
 
     def readyToTeleport(self, teleportMgr):
-        bp.loginCfg()
         teleportMgr.initiateTeleport(self.teleportToType, self.teleportToName, shardId = self.getDefaultShard(), locationUid = self.returnLocation)
 
     def requestActivityAccepted(self):

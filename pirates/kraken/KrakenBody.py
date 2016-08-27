@@ -5,9 +5,6 @@ from pirates.creature.Creature import Creature
 from pirates.kraken.BodyGameFSM import BodyGameFSM
 from pirates.piratesbase import PiratesGlobals
 
-class bp:
-    kraken = bpdb.bpPreset(cfg = 'kraken', static = 1)
-
 class KrakenBody(Creature):
     ModelInfo = ('models/char/live_kraken_zero', 'models/char/live_kraken_zero')
     AnimList = { }

@@ -89,11 +89,6 @@ from pirates.audio import SoundGlobals
 from pirates.audio.SoundGlobals import loadSfx
 from otp.ai.MagicWordManager import MagicWordManager
 
-
-class bp:
-    loginCfg = bpdb.bpPreset(iff = True, cfg = 'loginCfg', static = 1)
-
-
 class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
     notify = directNotify.newCategory('PiratesClientRepository')
     SupportTutorial = 0

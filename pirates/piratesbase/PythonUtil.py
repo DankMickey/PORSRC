@@ -1,20 +1,7 @@
 from panda3d.direct import get_config_showbase
 from panda3d.core import Camera, ConfigVariable, ConfigVariableBool
 from direct.showbase.PythonUtil import getSetter, getSetterName
-import BpDb
 import sys
-
-#set up bpdb
-bpdb = BpDb.BpDb()
-def bpdbGetEnabled():
-    enabled = True
-    try:
-        enabled = __dev__
-        enabled = ConfigVariableBool('force-breakpoints', enabled).getValue()
-    finally:
-        return enabled
-bpdb.setEnabledCallback(bpdbGetEnabled)
-bpdb.setConfigCallback(lambda cfg: ConfigVariableBool('want-bp-%s' % (cfg.lower(),), 0).getValue())
 
 def mostDerivedLast(classList):
     """pass in list of classes. sorts list in-place, with derived classes
@@ -733,6 +720,5 @@ def describeException(backTrace = 4):
     return description
 
 import __builtin__
-__builtin__.bpdb = bpdb
 __builtin__.describeException = describeException
 __builtin__.config = get_config_showbase()

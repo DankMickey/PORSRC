@@ -14,17 +14,6 @@ import time
 import random
 from otp.otpbase import OTPRender
 
-class bp:
-    startup = bpdb.bpPreset(cfg = 'kraken', grp = 'startup', static = 1)
-    startupCall = bpdb.bpPreset(cfg = 'kraken', grp = 'startup', static = 1, call = 1)
-    shutdown = bpdb.bpPreset(cfg = 'kraken', grp = 'shutdown', static = 1)
-    shutdownCall = bpdb.bpPreset(cfg = 'kraken', grp = 'shutdown', static = 1, call = 1)
-    targeting = bpdb.bpPreset(cfg = 'kraken', grp = 'targeting', static = 1)
-    targetingCall = bpdb.bpPreset(cfg = 'kraken', grp = 'targeting', call = 1, static = 1)
-    update = bpdb.bpPreset(cfg = 'kraken', grp = 'update', static = 1)
-    updateCall = bpdb.bpPreset(cfg = 'kraken', grp = 'update', call = 1, static = 1)
-
-
 class Kraken(DistributedCreature, Monstrous):
     notify = DirectNotifyGlobal.directNotify.newCategory('Kraken')
 
@@ -125,11 +114,7 @@ class Kraken(DistributedCreature, Monstrous):
                 grabber.attachToShipLocator()
                 grabber.setupCollisions()
 
-
-        targetArrived = bp.targetingCall()(targetArrived)
         self.targetRomRequest = self.cr.relatedObjectMgr.requestObjects((targetShipId,), eachCallback = targetArrived)
-
-    setTargetShipId = bp.targetingCall()(setTargetShipId)
 
     def getTargetShipId(self):
         return self.targetShipId
