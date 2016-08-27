@@ -20,7 +20,7 @@ class Grenade(Weapon.Weapon):
 
     def __init__(self, itemId):
         Weapon.Weapon.__init__(self, itemId, 'grenade')
-        self.ammoSkillId = 1
+        self.ammoSkillId = 0
 
 
     def loadModel(self):
@@ -49,7 +49,6 @@ class Grenade(Weapon.Weapon):
             av.speedIndex = PiratesGlobals.SPEED_BATTLE_INDEX
             if av.isLocal():
                 av.controlManager.setSpeeds(*PiratesGlobals.PirateSpeeds[av.speedIndex])
-
         elif self.ammoSkillId == InventoryType.GrenadeSiege:
             self.walkAnim = 'bigbomb_walk'
             self.runAnim = 'bigbomb_walk'
@@ -67,7 +66,6 @@ class Grenade(Weapon.Weapon):
             av.speedIndex = PiratesGlobals.SPEED_HEAVY_INDEX
             if av.isLocal():
                 av.controlManager.setSpeeds(*PiratesGlobals.PirateSpeeds[av.speedIndex])
-
         else:
             self.walkAnim = 'walk'
             self.runAnim = 'run'

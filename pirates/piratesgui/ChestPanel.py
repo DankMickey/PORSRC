@@ -42,7 +42,7 @@ class ChestTabBar(TabBar):
 
 
     def makeTab(self, name, **kw):
-        return ChestTab(self, name)
+        return ChestTab(self, name, **kw)
 
 
 

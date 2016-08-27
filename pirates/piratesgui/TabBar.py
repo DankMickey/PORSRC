@@ -121,7 +121,7 @@ class TabBar(DirectFrame):
         self.removeTab(name, False)
         if pos < 0:
             pos = len(self.tabOrder)
-        self.tabs[name] = self.makeTab(name)
+        self.tabs[name] = self.makeTab(name, **kw)
         self.tabs[name].setTabBar(self)
         self.tabOrder.insert(pos, name)
         self.refreshTabs()
