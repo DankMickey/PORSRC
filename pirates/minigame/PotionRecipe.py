@@ -16,14 +16,13 @@ import PotionGlobals
 
 class PotionRecipe(DirectFrame):
 
-    def __init__(self, potionGame, potionID, name, desc, ingredientData, level, isFree, questOnly):
+    def __init__(self, potionGame, potionID, name, desc, ingredientData, level, questOnly):
         DirectFrame.__init__(self, parent = potionGame.background, relief = None)
         self.potionID = potionID
         self.name = name
         self.desc = desc
         self.potionGame = potionGame
         self.complete = False
-        self.isFree = isFree or config.GetBool('want-free-recipes', True)
         self.level = level
         self.questOnly = questOnly
         self.available = False

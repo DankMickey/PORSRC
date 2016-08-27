@@ -22,6 +22,7 @@ class DistributedPotionGame(DistributedObject):
         self.fadeTime = 0.100
         self.fadeTask = None
         self.xpBonus = 0
+        self.potionGame = None
 
     def setColorSet(self, colorSet):
         self.colorSet = colorSet
@@ -42,6 +43,10 @@ class DistributedPotionGame(DistributedObject):
         if self.fadeTask:
             taskMgr.remove(self.fadeTask)
             self.fadeTask = None
+        
+        if self.potionGame:
+            self.potionGame.destroy()
+            self.potionGame = None
 
         DistributedObject.disable(self)
 

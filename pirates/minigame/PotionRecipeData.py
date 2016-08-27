@@ -38,7 +38,6 @@ PotionRecipeList = [
             'dur': 0,
             'unit': 0 }),
         'potionID': C_BURP,
-        'free': False,
         'ingredients': [
             {
                 'color': 0,
@@ -61,7 +60,6 @@ PotionRecipeList = [
             'dur': 0,
             'unit': 0 }),
         'potionID': C_FART,
-        'free': False,
         'ingredients': [
             {
                 'color': 0,
@@ -85,7 +83,6 @@ PotionRecipeList = [
             'unit': 0 }),
         'disabled': True,
         'potionID': C_VOMIT,
-        'free': False,
         'ingredients': [
             {
                 'color': 0,
@@ -100,7 +97,6 @@ PotionRecipeList = [
                 'color': 3,
                 'level': 3 }],
         'level': 9,
-        'free': False,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.FaceColor],
@@ -123,7 +119,6 @@ PotionRecipeList = [
                 'color': 5,
                 'level': 3 }],
         'level': 5,
-        'free': True,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.SizeReduce],
@@ -146,7 +141,6 @@ PotionRecipeList = [
                 'color': 3,
                 'level': 5 }],
         'level': 10,
-        'free': False,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.SizeIncrease],
@@ -169,7 +163,6 @@ PotionRecipeList = [
                 'color': 5,
                 'level': 5 }],
         'level': 16,
-        'free': False,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.HeadFire],
@@ -195,7 +188,6 @@ PotionRecipeList = [
                 'color': 4,
                 'level': 5 }],
         'level': 17,
-        'free': False,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.ScorpionTransform],
@@ -210,7 +202,6 @@ PotionRecipeList = [
                 'color': 0,
                 'level': 6 }],
         'level': 20,
-        'free': False,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.AlligatorTransform],
@@ -225,7 +216,6 @@ PotionRecipeList = [
                 'color': 2,
                 'level': 6 }],
         'level': 20,
-        'free': False,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.CrabTransform],
@@ -240,7 +230,6 @@ PotionRecipeList = [
                 'color': 1,
                 'level': 6 }],
         'level': 20,
-        'free': False,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.CannonDamageLvl1],
@@ -260,7 +249,6 @@ PotionRecipeList = [
                 'color': 2,
                 'level': 3 }],
         'level': 2,
-        'free': True,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.PistolDamageLvl1],
@@ -280,7 +268,6 @@ PotionRecipeList = [
                 'color': 1,
                 'level': 3 }],
         'level': 1,
-        'free': False,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.CutlassDamageLvl1],
@@ -300,7 +287,6 @@ PotionRecipeList = [
                 'color': 2,
                 'level': 3 }],
         'level': 1,
-        'free': True,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.DollDamageLvl1],
@@ -320,7 +306,6 @@ PotionRecipeList = [
                 'color': 2,
                 'level': 3 }],
         'level': 2,
-        'free': False,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.CannonDamageLvl2],
@@ -340,7 +325,6 @@ PotionRecipeList = [
                 'color': 2,
                 'level': 4 }],
         'level': 7,
-        'free': False,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.PistolDamageLvl2],
@@ -360,7 +344,6 @@ PotionRecipeList = [
                 'color': 1,
                 'level': 4 }],
         'level': 6,
-        'free': False,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.CutlassDamageLvl2],
@@ -380,7 +363,6 @@ PotionRecipeList = [
                 'color': 2,
                 'level': 4 }],
         'level': 6,
-        'free': False,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.DollDamageLvl2],
@@ -400,7 +382,6 @@ PotionRecipeList = [
                 'color': 2,
                 'level': 4 }],
         'level': 7,
-        'free': False,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.CannonDamageLvl3],
@@ -420,7 +401,6 @@ PotionRecipeList = [
                 'color': 2,
                 'level': 5 }],
         'level': 12,
-        'free': False,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.PistolDamageLvl3],
@@ -440,7 +420,6 @@ PotionRecipeList = [
                 'color': 1,
                 'level': 5 }],
         'level': 11,
-        'free': False,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.CutlassDamageLvl3],
@@ -460,7 +439,6 @@ PotionRecipeList = [
                 'color': 2,
                 'level': 5 }],
         'level': 11,
-        'free': False,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.DollDamageLvl3],
@@ -480,7 +458,6 @@ PotionRecipeList = [
                 'color': 2,
                 'level': 5 }],
         'level': 12,
-        'free': False,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.HastenLvl1],
@@ -503,7 +480,6 @@ PotionRecipeList = [
                 'color': 2,
                 'level': 3 }],
         'level': 3,
-        'free': True,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.HastenLvl2],
@@ -529,7 +505,6 @@ PotionRecipeList = [
                 'color': 2,
                 'level': 3 }],
         'level': 8,
-        'free': False,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.HastenLvl3],
@@ -558,7 +533,6 @@ PotionRecipeList = [
                 'color': 2,
                 'level': 3 }],
         'level': 13,
-        'free': False,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.RepBonusLvl1],
@@ -587,7 +561,6 @@ PotionRecipeList = [
                 'color': 3,
                 'level': 3 }],
         'level': 15,
-        'free': False,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.RepBonusLvl2],
@@ -610,7 +583,6 @@ PotionRecipeList = [
                 'color': 3,
                 'level': 4 }],
         'level': 19,
-        'free': False,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.GoldBonusLvl1],
@@ -639,7 +611,6 @@ PotionRecipeList = [
                 'color': 4,
                 'level': 3 }],
         'level': 14,
-        'free': False,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.GoldBonusLvl2],
@@ -662,7 +633,6 @@ PotionRecipeList = [
                 'color': 4,
                 'level': 4 }],
         'level': 19,
-        'free': False,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.InvisibilityLvl1],
@@ -691,7 +661,6 @@ PotionRecipeList = [
                 'color': 5,
                 'level': 3 }],
         'level': 13,
-        'free': False,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.InvisibilityLvl2],
@@ -714,7 +683,6 @@ PotionRecipeList = [
                 'color': 5,
                 'level': 4 }],
         'level': 18,
-        'free': False,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.AccuracyBonusLvl1],
@@ -734,7 +702,6 @@ PotionRecipeList = [
                 'color': 5,
                 'level': 3 }],
         'level': 4,
-        'free': True,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.AccuracyBonusLvl2],
@@ -757,7 +724,6 @@ PotionRecipeList = [
                 'color': 5,
                 'level': 4 }],
         'level': 9,
-        'free': False,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.AccuracyBonusLvl3],
@@ -786,7 +752,6 @@ PotionRecipeList = [
                 'color': 5,
                 'level': 4 }],
         'level': 14,
-        'free': False,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.RemoveGroggy],
@@ -815,7 +780,6 @@ PotionRecipeList = [
                 'color': 2,
                 'level': 4 }],
         'level': 16,
-        'free': False,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.RegenLvl1],
@@ -832,7 +796,6 @@ PotionRecipeList = [
                 'color': 1,
                 'level': 4 }],
         'level': 5,
-        'free': False,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.RegenLvl2],
@@ -852,7 +815,6 @@ PotionRecipeList = [
                 'color': 1,
                 'level': 4 }],
         'level': 10,
-        'free': False,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.RegenLvl3],
@@ -875,7 +837,6 @@ PotionRecipeList = [
                 'color': 1,
                 'level': 4 }],
         'level': 15,
-        'free': False,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.RegenLvl4],
@@ -901,7 +862,6 @@ PotionRecipeList = [
                 'color': 1,
                 'level': 4 }],
         'level': 17,
-        'free': False,
         'discovered': False },
     {
         'name': PLocalizer.InventoryTypeNames[InventoryType.StaffEnchant1],
@@ -927,7 +887,6 @@ PotionRecipeList = [
                 'color': 2,
                 'level': 3 }],
         'level': 8,
-        'free': False,
         'discovered': False,
         'questOnly': True },
     {
@@ -942,17 +901,8 @@ PotionRecipeList = [
                 'color': 2,
                 'level': 6 }],
         'level': 20,
-        'free': False,
         'discovered': False,
         'questOnly': True }]
-
-def getFreeStatus(potionID):
-    for potion in PotionRecipeList:
-        if potion['potionID'] == potionID:
-            return potion['free']
-            continue
-
-    return False
 
 
 def getNumIngredients(potionID):

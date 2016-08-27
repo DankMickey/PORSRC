@@ -80,13 +80,9 @@ class PotionGame(DirectObject.DirectObject):
             for ingredient in recipeData['ingredients']:
                 if ingredient['color'] not in PotionRecipeData.PotionColorSets[self.dist.colorSet]:
                     valid = False
-                    continue
 
-            newRecipe = PotionRecipe(self, recipeData['potionID'], recipeData['name'], recipeData['desc'], recipeData['ingredients'], recipeData['level'], recipeData['free'], recipeData.get('questOnly', False))
-            if valid:
-                newRecipe.available = True
-            else:
-                newRecipe.available = False
+            newRecipe = PotionRecipe(self, recipeData['potionID'], recipeData['name'], recipeData['desc'], recipeData['ingredients'], recipeData['level'], recipeData.get('questOnly', False))
+            newRecipe.available = valid
             self.recipes.append(newRecipe)
 
         for recipe in self.recipes:
@@ -167,7 +163,7 @@ class PotionGame(DirectObject.DirectObject):
         localAvatar.guiMgr.registerReputationHandler(self.updateRepMeter)
         base.loadingScreen.tick()
         self.closeButton = GuiButton.GuiButton(image = (textureCard.find('**/pir_t_gui_pot_escape'), textureCard.find('**/pir_t_gui_pot_escapeOn'), textureCard.find('**/pir_t_gui_pot_escapeOn'), textureCard.find('**/pir_t_gui_pot_escape')), image_scale = (0.1, 0.1, 0.1), image_pos = (0.075, 0, 0.08), hotkeys = [
-            'Escape'], hotkeyLabel = PLocalizer.PotionGui['ExitButton'], pos = (-0.4, 0.0, 0.01), text0_fg = PotionGlobals.TextColor, text1_fg = PiratesGuiGlobals.TextFG0, text2_fg = PiratesGuiGlobals.TextFG15, text3_fg = PotionGlobals.TextColorDisabled, parent = self.buttonsBackground, command = self.confirmQuit)
+            'escape'], hotkeyLabel = PLocalizer.PotionGui['ExitButton'], pos = (-0.4, 0.0, 0.01), text0_fg = PotionGlobals.TextColor, text1_fg = PiratesGuiGlobals.TextFG0, text2_fg = PiratesGuiGlobals.TextFG15, text3_fg = PotionGlobals.TextColorDisabled, parent = self.buttonsBackground, command = self.confirmQuit)
         self.returnButton = GuiButton.GuiButton(text = (PLocalizer.PotionGui['SwitchRecipe'], PLocalizer.PotionGui['SwitchRecipe'], PLocalizer.PotionGui['SwitchRecipe'], PLocalizer.PotionGui['SwitchRecipe']), pos = (-0.58, 0.0, -0.62), text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_shadow = None, image = (None, None, None, None), text0_fg = PotionGlobals.TextColor, text1_fg = PiratesGuiGlobals.TextFG0, text2_fg = PiratesGuiGlobals.TextFG15, text3_fg = PotionGlobals.TextColorDisabled, parent = self.background, command = self.confirmReturn)
         self.returnButton.stash()
         self.hintsButton = GuiButton.GuiButton(text = (PLocalizer.PotionGui['ShowTutorial'], PLocalizer.PotionGui['ShowTutorial'], PLocalizer.PotionGui['ShowTutorial'], PLocalizer.PotionGui['ShowTutorial']), text_scale = PiratesGuiGlobals.TextScaleSmall, image_scale = (0.25, 0.1, 0.18), image_pos = (0, 0, 0), pos = (-0.53, 0.0, 0.075), parent = self.buttonsBackground, command = self.showLastHint)
@@ -362,7 +358,7 @@ class PotionGame(DirectObject.DirectObject):
     def testRecipe(self):
         for column in self.gameBoard.boardPieces:
             for piece in column:
-                if piece is not None:
+                if piece:
                     for ingredient in self.currentRecipe.ingredients:
                         if ingredient.completed == False and piece.colorIndex == ingredient.colorIndex and piece.level == ingredient.level:
                             return True
@@ -419,6 +415,9 @@ class PotionGame(DirectObject.DirectObject):
 
 
     def destroy(self):
+        if not self.gameFSM:
+            return
+
         self.ignoreAll()
         self.gameFSM.ignoreAll()
         self.ignore('seachestOpened')
