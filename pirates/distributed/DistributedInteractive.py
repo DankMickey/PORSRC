@@ -84,6 +84,7 @@ class DistributedInteractive(DistributedNode.DistributedNode, InteractiveBase.In
 
     def acceptInteraction(self):
         self.request('Use')
+        self.OfferOptions2()
 
 
     def rejectInteraction(self):

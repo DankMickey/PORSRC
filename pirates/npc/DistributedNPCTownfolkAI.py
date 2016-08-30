@@ -52,8 +52,8 @@ class DistributedNPCTownfolkAI(DistributedBattleNPCAI, DistributedShopKeeperAI):
     def getHasGhostPowers(self):
         return self.hasGhostPowers
 
-    # requestMusic(uint32) airecv clsend
-    # playMusic(uint32) broadcast
+    #requestMusic(uint32) airecv clsend
+    #playMusic(uint32) broadcast
     # levelUpCutlass(uint32) airecv clsend
     # setQuestRewardsEarned(uint32, uint32, uint32 [])
     # setInInvasion(bool) broadcast ram
@@ -64,12 +64,12 @@ class DistributedNPCTownfolkAI(DistributedBattleNPCAI, DistributedShopKeeperAI):
     # offerOptions(int8)
     # startTutorial(uint8)
     # swordTutorialPt1(uint32) airecv clsend
-    # pistolTutorialPt1(uint32) airecv clsend
-    # shipTutorialPt1(uint32, ItemNameHolder) airecv clsend
+    #pistolTutorialPt1(uint32) airecv clsend
+    #shipTutorialPt1(uint32, ItemNameHolder) airecv clsend
 
     def handleInteract(self, avId, interactType, instant):
         if interactType == PiratesGlobals.INTERACT_TYPE_FRIENDLY:
-            return REJECT
+            return ACCEPT_SEND_UPDATE, ACCEPT
 
         return DistributedBattleNPCAI.handleInteract(self, avId, interactType, instant)
 

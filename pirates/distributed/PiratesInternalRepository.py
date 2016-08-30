@@ -7,6 +7,7 @@ from otp.distributed.OtpDoGlobals import *
 from PiratesNetMessengerAI import PiratesNetMessengerAI
 import urlparse, pymongo, traceback, sys
 
+
 class PiratesInternalRepository(AstronInternalRepository):
     GameGlobalsId = OTP_DO_ID_PIRATES
     dbId = 4003
@@ -18,13 +19,13 @@ class PiratesInternalRepository(AstronInternalRepository):
         AstronInternalRepository.__init__(
             self, baseChannel, serverId=serverId, dcFileNames=dcFileNames,
             dcSuffix=dcSuffix, connectMethod=connectMethod, threadedNet=threadedNet)
-    
+
     def handleConnected(self):
         self.__messenger = PiratesNetMessengerAI(self)
         mongoUrl = config.GetString('mongodb-url', 'mongodb://localhost')
         replicaSet = config.GetString('mongodb-replicaset', '')
         db = (urlparse.urlparse(mongoUrl).path or '/porgame')[1:]
-       
+
         if replicaSet:
             self.dbConn = pymongo.MongoClient(mongoUrl, replicaset=replicaSet)
         else:
@@ -38,7 +39,7 @@ class PiratesInternalRepository(AstronInternalRepository):
         return int(self.getMsgSender() & 0xFFFFFFFF)
 
     def getAccountIdFromSender(self):
-        return int((self.getMsgSender()>>32) & 0xFFFFFFFF)
+        return int((self.getMsgSender() >> 32) & 0xFFFFFFFF)
 
     def systemMessage(self, message, channel):
         msgDg = PyDatagram()
@@ -98,7 +99,7 @@ class PiratesInternalRepository(AstronInternalRepository):
 
     def getAvatarExitEvent(self, avId):
         return 'distObjDelete-%d' % avId
-    
+
     def readerPollOnce(self):
         try:
             return AstronInternalRepository.readerPollOnce(self)
@@ -112,9 +113,10 @@ class PiratesInternalRepository(AstronInternalRepository):
                 dg.addString('You were disconnected to prevent a district reset.')
                 self.send(dg)
 
-            self.writeServerEvent('INTERNAL-EXCEPTION', self.getAvatarIdFromSender(), self.getAccountIdFromSender(), repr(e), traceback.format_exc())
+            self.writeServerEvent('INTERNAL-EXCEPTION', self.getAvatarIdFromSender(), self.getAccountIdFromSender(),
+                                  repr(e), traceback.format_exc())
             self.notify.warning('INTERNAL-EXCEPTION: %s (%s)' % (repr(e), self.getAvatarIdFromSender()))
             print traceback.format_exc()
             sys.exc_clear()
-            
+
         return 1
