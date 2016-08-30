@@ -423,14 +423,7 @@ class DistributedNPCTownfolk(DistributedBattleNPC.DistributedBattleNPC, Distribu
             return None
 
         self.dialogFlag = 2
-        
-        try:
-            self.playDialog()
-        except:
-            pass
-
         DistributedBattleNPC.DistributedBattleNPC.requestInteraction(self, avId, interactType)
-
 
     def rejectInteraction(self):
         if self.avatarType.isA(AvatarTypes.Cannonmaster):
@@ -446,15 +439,15 @@ class DistributedNPCTownfolk(DistributedBattleNPC.DistributedBattleNPC, Distribu
         self.requestExit()
 
 
-    def startInteract(self, av):
-        if av == base.localAvatar and not (self.interactMode):
+    def acceptInteraction(self):
+        if not self.interactMode:
             self.interactMode = 1
             self.setNameVisible(0)
             self.hideHpMeterFlag = 1
             self.playedFirstDialog = False
             self._questRewardsEarned = { }
             self.setChatAbsolute('', CFSpeech | CFTimeout)
-            self.acceptInteraction()
+            self.offerOptions(self.dialogFlag)
             base.localAvatar.guiMgr.setIgnoreEscapeHotKey(True)
             if self.avatarType.isA(AvatarTypes.Tailor) and self.avatarType.isA(AvatarTypes.CatalogRep) and self.avatarType.isA(AvatarTypes.Tattoo) and self.avatarType.isA(AvatarTypes.Jeweler) or self.avatarType.isA(AvatarTypes.Barber):
                 localAvatar.setSoloInteraction(True)
@@ -587,14 +580,8 @@ class DistributedNPCTownfolk(DistributedBattleNPC.DistributedBattleNPC, Distribu
             return None
 
         (optionIds, stateCodes, bribeType) = self.computeOptions()
-        anyActive = False
-        for i in xrange(len(optionIds)):
-            if optionIds[i] != InteractGlobals.CANCEL and stateCodes[i] != InteractGlobals.DISABLED:
-                anyActive = True
-                break
-                continue
 
-        if anyActive:
+        if any([True for optionId in optionIds if optionId != InteractGlobals.DISABLED]):
             if self.localAvatarHasBeenNoticed:
                 self.abortNotice()
 

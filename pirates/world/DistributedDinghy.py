@@ -94,7 +94,9 @@ class DistributedDinghy(DistributedInteractive):
         if localAvatar.zombie and avId == localAvatar.doId:
             localAvatar.guiMgr.createWarning(PLocalizer.ZombieNoBoats, PiratesGuiGlobals.TextFG6)
             return None
-        
+        if config.GetBool('want-seas-closed', 0):
+            self.denyAccess(PiratesGlobals.SeasAreClosed)
+            return None
         DistributedInteractive.requestInteraction(self, avId, interactType, instant)
         self.enterUse()
 
