@@ -44,7 +44,7 @@ for creature in (AvatarTypes.Crab, AvatarTypes.RockCrab, AvatarTypes.StoneCrab,
         CLASSES[creature] = DistributedNPCNavySailorAI
     elif creature == AvatarTypes.Raven:
         CLASSES[creature] = DistributedRavenAI
-    elif creature.isA(AvatarTypes.Earth):
+    elif creature.faction == AvatarTypes.Undead.faction:
         CLASSES[creature] = DistributedNPCSkeletonAI
     else:
         CLASSES[creature] = DistributedCreatureAI
