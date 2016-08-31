@@ -6,6 +6,7 @@ from pirates.pirate import AvatarTypes
 from pirates.piratesbase import PiratesGlobals
 from pirates.battle import DistributedBattleNPC
 from pirates.npc import Skeleton
+from pirates.pirate.AvatarType import AvatarType
 import random
 import NPCSkeletonGameFSM
 
@@ -35,7 +36,7 @@ class DistributedNPCSkeleton(DistributedBattleNPC.DistributedBattleNPC, Skeleton
         return Skeleton.Skeleton.getNameText(self)
 
     def setAvatarType(self, avatarType):
-        avatarType = AvatarTypes.EarthUndead[0]#AvatarType.fromTuple(avatarType)
+        avatarType = AvatarType.fromTuple(avatarType)
         Skeleton.Skeleton.setAvatarType(self, avatarType)
         DistributedBattleNPC.DistributedBattleNPC.setAvatarType(self, avatarType)
 
