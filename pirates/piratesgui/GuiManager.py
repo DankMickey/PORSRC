@@ -1007,7 +1007,7 @@ class GuiManager(FSM.FSM):
             self.gotoJailText = DirectLabel(parent = self.injuredGui, relief = None, frameSize = (-0.25, 0.25, -0.25, 0.25), image = topGui.find('**/pir_t_gui_gen_parchment'), image_scale = (0.345, 0, 0.465), scale = 1.0, text = PLocalizer.InjuredOrHelp, text_fg = PiratesGuiGlobals.TextFG0, text_font = PiratesGlobals.getPirateFont(), text_scale = 0.04, text_wordwrap = 13, text_pos = (0, 0.07))
             defeatedText = DirectLabel(parent = self.gotoJailText, relief = None, scale = 1.0, text = PLocalizer.InjuredDefeated, text_fg = PiratesGuiGlobals.TextFG23, text_font = PiratesGlobals.getPirateFont(), text_scale = 0.05, text_wordwrap = 12, text_pos = (0, 0.12))
             self.gotoJailButton = DirectButton(parent = self.injuredGui, relief = None, geom = (norm_geom, down_geom, over_geom), pos = (0.0, 0, -0.08), scale = 0.65, command = self.askForJail, text = PLocalizer.InjuredGotoJail, text_fg = PiratesGuiGlobals.TextFG2, text_font = PiratesGlobals.getPirateBoldOutlineFont(), text_scale = 0.07, text_wordwrap = 9, text_pos = (0, -0.02))
-            self.injuredHeartbeat = loader.loadSfx('audio/sfx_heartbeat_slow.wav')
+            self.injuredHeartbeat = loader.loadSfx('audio/sfx_heartbeat_slow.ogg')
             self.injuredHeartbeat.setLoop(True)
         self.injuredHeartbeat.setVolume(0.5)
         self.injuredHeartbeat.setPlayRate(0.75)
