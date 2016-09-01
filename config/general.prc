@@ -96,6 +96,7 @@ optimize-avatar-lod #f
 
 # NOTIFY
 default-directnotify-level info
+notify-level warning
 
 # OPTIONS
 disable-pirates-options #f
