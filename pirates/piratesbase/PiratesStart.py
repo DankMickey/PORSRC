@@ -1,5 +1,5 @@
 from panda3d.direct import CMotionTrail
-from panda3d.core import NodePath, Vec4, loadPrcFile, loadPrcFileData
+from panda3d.core import NodePath, Vec4, loadPrcFile, loadPrcFileData, ConfigVariableList, Filename, VirtualFileSystem
 import PiratesLogger
 import os
 print "POR_GAMESERVER = %s" % os.environ.get('POR_GAMESERVER', 'None')
@@ -11,6 +11,7 @@ for dtool in ('children', 'parent', 'name'):
 if __debug__:
     loadPrcFile('config/general.prc')
     loadPrcFile('config/dev.prc')
+    loadPrcFile('config/dev_client.prc')
 
     if os.path.isfile('config/personal.prc'):
         loadPrcFile('config/personal.prc')

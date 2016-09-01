@@ -1,6 +1,3 @@
-# WINDOW SETTINGS:
-window-title Pirates Online Retribution
-
 # ACCOUNT DB CONFIG:
 backend dev
 mongodb-url mongodb://localhost:27017

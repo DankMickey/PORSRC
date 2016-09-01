@@ -1,6 +1,5 @@
 from panda3d.physics import BaseParticleEmitter, BaseParticleRenderer, LinearCylinderVortexForce, LinearDistanceForce, LinearJitterForce, LinearSinkForce
 from panda3d.core import ModelNode, Point3, Vec3, Vec4
-from panda3d.ai import Flock
 # File: R (Python 2.4)
 
 from direct.interval.IntervalGlobal import *

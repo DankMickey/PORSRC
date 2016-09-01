@@ -126,7 +126,7 @@ print 'Converted tabs in %s scripts.' % count
 count = modifyFiles(files, convertEmptySpaces)
 print 'Converted empty spaces in %s scripts.' % count
 
-for package in ('ai', 'bullet', 'core', 'direct', 'egg', 'fx', 'ode', 'physics', 'rocket', 'skel', 'vision', 'vrpn'):
+for package in ('bullet', 'core', 'direct', 'egg', 'fx', 'ode', 'physics', 'rocket', 'skel', 'vision', 'vrpn'):
     package = 'panda3d.' + package
     count = addImportsToAll(files, package)
     print 'Imported package %s in %s scripts.' % (package, count)

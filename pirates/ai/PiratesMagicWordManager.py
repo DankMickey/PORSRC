@@ -1219,7 +1219,7 @@ class PiratesMagicWordManager(MagicWordManager.MagicWordManager):
     def configToggleBool(self, configName, defaultVal = 1, offCode = None, onCode = None):
         currVal = not config.GetBool(configName, defaultVal)
         loadPrcFileData('', '%s %s' % (configName, currVal))
-        self.setMagicWordResponse('%s %s' % (configName, 'ON' if currVal else 'OFF')))
+        self.setMagicWordResponse('%s %s' % (configName, 'ON' if currVal else 'OFF'))
         if currVal and onCode:
             onCode()
         elif not currVal and offCode:

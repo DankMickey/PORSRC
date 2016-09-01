@@ -21,6 +21,9 @@ from pirates.audio import SoundGlobals
 from pirates.audio.SoundGlobals import loadSfx
 from pirates.inventory import ItemGlobals
 from pirates.inventory.InventoryGlobals import Locations
+
+from StringIO import StringIO
+import QuestScripts
 notify = DirectNotifyGlobal.directNotify.newCategory('QuestParser')
 lineDict = { }
 globalVarDict = { }
@@ -47,11 +50,13 @@ def clear():
     globalVarDict.clear()
 
 
-def readFile(filename):
-    notify.debug('THE PARSED FILE IS %s' % filename)
-    lastReadFile = filename
-    scriptFile = StreamReader(vfs.openReadFile(filename, 1), 1)
-    gen = tokenize.generate_tokens(scriptFile.readline)
+def readFile():
+    script = StringIO(QuestScripts.SCRIPT)
+
+    def readLine():
+        return script.readline().replace('\r', '')
+
+    gen = tokenize.generate_tokens(readLine)
     line = getLineOfTokens(gen)
     while line is not None:
         if line == []:
@@ -67,13 +72,6 @@ def readFile(filename):
         else:
             lineDict[curId].append(line)
         line = getLineOfTokens(gen)
-
-
-def reReadFile():
-    if lastReadFile:
-        readFile(lastReadFile)
-
-
 
 def getLineOfTokens(gen):
     tokens = []
@@ -1920,4 +1918,4 @@ class NPCMoviePlayer(DirectObject.DirectObject):
         return [
             Func(localAvatar.guiMgr.radarGui.cleanupEffects)]
 
-readFile('resources/QuestScripts.txt')
+readFile()

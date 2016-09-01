@@ -266,7 +266,6 @@ class FaceSpot(DirectFrame):
         self.back = DirectFrame(parent = self, relief = None, geom = model.find('**/*bevel'))
         self.dots = DirectFrame(parent = self, relief = None, geom = model.find('**/*dots'))
         spot = model.find('**/*dot')
-        continue
         self.spots = [ DirectFrame(parent = self, relief = None, geom = spot, hpr = (0.0, 0.0, (360.0 / 24.0) * x)) for x in xrange(self.NUMSTEPS) ]
         self.face = DirectFrame(parent = self, relief = None, geom = model.find('**/*face_' + `faceId`))
         self.cross = DirectFrame(parent = self, relief = None, geom = model.find('**/*x'))
@@ -499,7 +498,6 @@ class BishopsHandGame(DirectFrame, FSM.FSM):
         self.gameInterface.hide()
         model = loader.loadModel('models/props/BH_images')
         self.bgImage = DirectFrame(parent = self.gameInterface, relief = None, geom = model.find('**/*table'), scale = (8.0 / 3.0, 2, 2))
-        continue
         self.faces = [ FaceSpot(0, parent = self.gameInterface, relief = None, pos = BishopsHandGlobals.FACE_SPOT_POS[p], scale = 0.333) for p in BishopsHandGlobals.FACE_SPOT_POS.keys()[1:] ]
         base.faces = self.faces
         for f in self.faces:
@@ -693,7 +691,6 @@ class BishopsHandGame(DirectFrame, FSM.FSM):
             pivot = (0.070, -0.1567)
 
             def turn(a, b):
-                continue
                 d = [ x - y for (x, y) in zip(a, b) ]
                 return atan2(d[0], d[1]) * 180.0 / math.pi
 
