@@ -46,7 +46,7 @@ class DistributedKillerGhost(DistributedBattleNPC.DistributedBattleNPC, Ghost.Gh
             self.checkState()
 
         yieldThread('ghost done')
-        ghostSoundNameList = ('audio/sfx_howl_01.mp3', 'audio/sfx_howl_02.mp3', 'audio/sfx_howl_03.mp3')
+        ghostSoundNameList = ('audio/sfx_howl_01.ogg', 'audio/sfx_howl_02.ogg', 'audio/sfx_howl_03.ogg')
         self.ghostSounds = []
         for ghostSoundName in ghostSoundNameList:
             ghostSound = loader.loadSfx(ghostSoundName)

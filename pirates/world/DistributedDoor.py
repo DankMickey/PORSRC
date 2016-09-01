@@ -29,10 +29,10 @@ class DistributedDoor(DistributedInteractive.DistributedInteractive):
         self.hasDoors = 0
         self.tOpen = 0.5
         if not self.closeSfx:
-            DistributedDoor.openSfxDict['english'] = base.loadSfx('audio/sfx_door_english_open.mp3')
-            DistributedDoor.openSfxDict['shanty'] = base.loadSfx('audio/sfx_door_shanty_open.mp3')
-            DistributedDoor.openSfxDict['spanish'] = base.loadSfx('audio/sfx_door_spanish_open.mp3')
-            DistributedDoor.closeSfx = base.loadSfx('audio/sfx_door_shanty_slam.mp3')
+            DistributedDoor.openSfxDict['english'] = base.loadSfx('audio/sfx_door_english_open.ogg')
+            DistributedDoor.openSfxDict['shanty'] = base.loadSfx('audio/sfx_door_shanty_open.ogg')
+            DistributedDoor.openSfxDict['spanish'] = base.loadSfx('audio/sfx_door_spanish_open.ogg')
+            DistributedDoor.closeSfx = base.loadSfx('audio/sfx_door_shanty_slam.ogg')
             DistributedDoor.openSfx = DistributedDoor.openSfxDict['english']
 
         self.questNeeded = 1

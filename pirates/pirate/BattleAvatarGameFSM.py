@@ -236,7 +236,7 @@ class BattleAvatarGameFSM(FSM.FSM):
 
         timeStamp = extraArgs[0]
         self.av.stopSmooth()
-        healedSound = loader.loadSfx('audio/sfx_skill_recharged.mp3')
+        healedSound = loader.loadSfx('audio/sfx_skill_recharged.ogg')
         healedSoundInterval = SoundInterval(healedSound, node = self.av, volume = 1.0)
 
         def gotoRoam():
@@ -435,7 +435,7 @@ class BattleAvatarGameFSM(FSM.FSM):
 
 
         self.av.loop('injured_healing_loop')
-        potionSound = loader.loadSfx('audio/sfx_water_glugs.mp3')
+        potionSound = loader.loadSfx('audio/sfx_water_glugs.ogg')
         potionSoundInterval = SoundInterval(potionSound, node = self.av, loop = 1, volume = 0.75, duration = PiratesGlobals.TIME_TO_REVIVE - 3.0)
         self.healingTrack = Parallel(self.av.actorInterval('injured_healing_into'), Sequence(Wait(0.5), Func(addBottle), Wait(1.5), potionSoundInterval))
         self.healingTrack.start()

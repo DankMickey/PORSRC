@@ -9,7 +9,7 @@ def loadSfx(audioName):
 def loadSfxString(audioName):
     return 'audio/' + audioName
 
-AUDIO_EXTENSION = 'mp3'
+AUDIO_EXTENSION = 'ogg'
 MUSIC_MAIN = 0
 MUSIC_ALT = 1
 MUSIC_COMBAT = 2

@@ -84,7 +84,7 @@ class DistributedRaven(DistributedCreature.DistributedCreature):
             self.flapLoopIval = None
 
         self.flapLoopIval = Sequence()
-        sound = loader.loadSfx('audio/sfx_bird_wings.mp3')
+        sound = loader.loadSfx('audio/sfx_bird_wings.ogg')
         sound.setPlayRate(0.9 + random.random() * 0.2)
         soundIval = SoundInterval(sound, node = self.creature, volume = 0.5, seamlessLoop = False, cutOff = 150.0)
         self.flapLoopIval.append(soundIval)
@@ -96,7 +96,7 @@ class DistributedRaven(DistributedCreature.DistributedCreature):
             self.cawLoopIval = None
 
         self.cawLoopIval = Sequence()
-        sound = loader.loadSfx('audio/sfx_crow_caw.mp3')
+        sound = loader.loadSfx('audio/sfx_crow_caw.ogg')
         pitchRate = 0.9 + random.random() * 0.2
         volumeCaw = 0.5 + random.random() * 0.5
         sound.setPlayRate(pitchRate)

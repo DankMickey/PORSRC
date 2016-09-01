@@ -116,8 +116,8 @@ class Gun(Weapon.Weapon):
         Gun.reloadSfx = loadSfx(SoundGlobals.SFX_WEAPON_PISTOL_RELOAD)
         Gun.returnSfx = loadSfx(SoundGlobals.SFX_WEAPON_PISTOL_SHEATHE)
         Gun.hitSfxs = (loadSfx(SoundGlobals.SFX_WEAPON_DAGGER_HIT),)
-        Gun.mistimedHitSfxs = (loader.loadSfx('audio/sfx_dagger_impact.mp3'),)
-        Gun.missSfxs = (loader.loadSfx('audio/whoosh-10.mp3'), loader.loadSfx('audio/arm-Whoosh-05.mp3'))
+        Gun.mistimedHitSfxs = (loader.loadSfx('audio/sfx_dagger_impact.ogg'),)
+        Gun.missSfxs = (loader.loadSfx('audio/whoosh-10.ogg'), loader.loadSfx('audio/arm-Whoosh-05.ogg'))
         Gun.blunderbussShootSfx = loadSfx(SoundGlobals.SFX_WEAPON_BLUNDERBUSS_SHOOT)
         Gun.musketShootSfx = loadSfx(SoundGlobals.SFX_WEAPON_MUSKET_SHOOT)
 

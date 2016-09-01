@@ -878,7 +878,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
 
 
 
-        diedSound = loader.loadSfx('audio/sfx_doll_unattune.mp3')
+        diedSound = loader.loadSfx('audio/sfx_doll_unattune.ogg')
         diedSoundInterval = SoundInterval(diedSound, node = self)
         duration = 1.0
         deathIval = Parallel(diedSoundInterval, Func(self.setTransparency, 1), self.actorInterval(animName, blendInT = 0.149, blendOutT = 0.149), Sequence(LerpColorScaleInterval(self, duration, Vec4(1, 1, 1, 0), startColorScale = Vec4(1)), Func(self.hide, None, PiratesGlobals.INVIS_DEATH), Func(self.clearColorScale), Func(self.clearTransparency), Func(gotoRoam)))

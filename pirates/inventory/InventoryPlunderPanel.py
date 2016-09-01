@@ -118,7 +118,7 @@ class InventoryPlunderPanel(DirectFrame):
             if newTime != self.timerUI['text']:
                 self.timerUI['text'] = newTime
                 if not self.timerSound:
-                    self.timerSound = loader.loadSfx('audio/sfx_can_ammochrgremind.mp3')
+                    self.timerSound = loader.loadSfx('audio/sfx_can_ammochrgremind.ogg')
 
                 self.timerSound.setVolume(1.0 * ((15 - int(newTime)) / 15.0))
                 self.timerSound.play()

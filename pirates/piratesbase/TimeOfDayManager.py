@@ -1282,7 +1282,7 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
             pass
         1
         if envNum == 1:
-            self.envSound = loader.loadSfx('audio/sfx_ocean_wind.mp3')
+            self.envSound = loader.loadSfx('audio/sfx_ocean_wind.ogg')
             self.envSound.setLoop(True)
             self.envSound.setVolume(0.696)
             self.envSound.setPlayRate(1.0)
@@ -1370,7 +1370,7 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
             return task.done
 
     def startAmbientSFX(self):
-        self.ambSound = loader.loadSfx('audio/sfx_ocean_shore.mp3')
+        self.ambSound = loader.loadSfx('audio/sfx_ocean_shore.ogg')
         self.ambSound.setLoop(True)
         self.ambSound.setVolume(0.0)
         self.ambSound.setPlayRate(1.0)
