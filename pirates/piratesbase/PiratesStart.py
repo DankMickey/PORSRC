@@ -25,8 +25,6 @@ if sys.platform == 'darwin':
 else:
     quality = 256
 
-loadPrcFileData('', 'icon-filename resources/phase_3/etc/icon%s.ico' % quality)
-
 print 'PiratesStart: Starting the game.'
 import __builtin__
 

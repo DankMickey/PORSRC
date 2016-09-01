@@ -442,13 +442,13 @@ class PiratesBase(OTPBase):
 
         searchPath = DSearchPath()
         searchPath.appendDirectory(Filename('resources/phase_3/etc'))
-        searchPath.appendDirectory(Filename('/phase_3/etc'))
+        searchPath.appendDirectory(Filename('./assets/phase_3/etc'))
 
         for filename in ['cutlass.cur', 'icon256.ico', 'icon500.ico']:
             p3filename = Filename(filename)
             found = vfs.resolveFilename(p3filename, searchPath)
             if not found:
-                return # Can't do anything past this point.
+                continue # Can't do anything past this point.
 
             with open(os.path.join(tempdir, filename), 'wb') as f:
                 f.write(vfs.readFile(p3filename, False))
