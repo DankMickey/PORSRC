@@ -11,7 +11,7 @@ GAME_COMPLETE = 100
 AT_SEA = 0
 ON_LAND = 1
 DIFFICULTY_MAX = 9
-GAME_ORDER = ((RepairPumpingGame, RepairSawingGame, RepairBracingGame, RepairHammeringGame, RepairPitchingGame), (RepairCareeningGame, RepairSawingGame, RepairBracingGame, RepairHammeringGame, RepairPitchingGame))
+GAME_ORDER = ((RepairCareeningGame, RepairSawingGame, RepairBracingGame, RepairHammeringGame, RepairPitchingGame), (RepairPumpingGame, RepairSawingGame, RepairBracingGame, RepairHammeringGame, RepairPitchingGame))
 
 class DistributedRepairGameBase(GridChild):
 
