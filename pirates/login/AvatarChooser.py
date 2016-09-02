@@ -1,4 +1,4 @@
-from panda3d.core import DocumentSpec, HTTPClient, NodePath, Point3, Ramfile, TPHigh, TPLow, TextNode, Vec3, Vec4, invert
+from panda3d.core import DocumentSpec, HTTPClient, NodePath, Point3, Ramfile, TPHigh, TPLow, TextNode, Vec3, Vec4, invert, TransparencyAttrib
 import math
 import time
 import os
@@ -14,6 +14,7 @@ from direct.fsm.State import State
 from direct.gui import DirectGuiGlobals
 from direct.interval.IntervalGlobal import *
 from direct.showbase.PythonUtil import quickProfile
+from direct.gui.OnscreenImage import OnscreenImage
 from otp.otpgui import OTPDialog
 from otp.otpbase import OTPGlobals
 from pirates.audio import SoundGlobals
@@ -252,10 +253,9 @@ class AvatarChooser(DirectObject, StateData):
         self.shardPanelBottom.setPos(0.42, 0, 0.095)
         self.shardPanelBottom.setScale(0.273)
         self.shardPanelBottom.reparentTo(base.a2dBottomLeft)
-        self.logo = loader.loadModel('models/gui/potcLogo')
-        self.logo.reparentTo(self.avatarListFrame)
-        self.logo.setPos(0, 0, 0.1)
-        self.logo.setScale(0.66)
+
+        self.logo.setTransparency(TransparencyAttrib.MAlpha)
+
         charGui.remove_node()
 
     def __createAvatarButtons(self):
