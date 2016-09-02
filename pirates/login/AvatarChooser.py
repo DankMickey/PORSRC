@@ -254,6 +254,7 @@ class AvatarChooser(DirectObject, StateData):
         self.shardPanelBottom.setScale(0.273)
         self.shardPanelBottom.reparentTo(base.a2dBottomLeft)
 
+        self.logo = OnscreenImage(image = 'custom/PORLogo.png', pos = (0, 0, 0.08), scale = (0.4, 0.25, 0.25), parent = self.avatarListFrame)
         self.logo.setTransparency(TransparencyAttrib.MAlpha)
 
         charGui.remove_node()
