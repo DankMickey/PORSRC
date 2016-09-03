@@ -39,7 +39,7 @@ class StowawayGUI(DirectFrame):
 
         self.panel = GuiPanel.GuiPanel(name, self.width, self.height, parent = self)
         self.panel.closeButton['command'] = self.closePanel
-        self.setPos(-0.8, 0, -0.66)
+        self.panel.setPos(-1, 0, -0.675)
         self.balance = 0
         self.inventory = inventory
         self.storeInventory = InventoryItemList.InventoryItemList(self.inventory, self.height - 0.15, buy = PiratesGuiGlobals.InventoryAdd, listItemClass = StowawayItemGui)
@@ -54,7 +54,18 @@ class StowawayGUI(DirectFrame):
     def closePanel(self):
         messenger.send('exitStore')
         self.ignoreAll()
-
+        self.destroy()
+    
+    def destroy(self):
+        DirectFrame.destroy(self)
+        
+        if self.storeInventory:
+            self.storeInventory.destroy()
+            self.storeInventory = None
+        
+        if self.panel:
+            self.panel.destroy()
+            self.panel = None
 
     def handleBuyItem(self, data, useCode):
         itemId = data[0]

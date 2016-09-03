@@ -289,7 +289,11 @@ class DistributedShopKeeper(DistributedObject):
             inventory = self.shopInventory[:]
             self.storeMenuGUI = MusicianGUI.MusicianGUI(inventory, PLocalizer.InteractMusician)
         elif storeType == InteractGlobals.STOWAWAY:
-            inventory = self.shopInventory[:]
+            inventory = [LocationIds.PORT_ROYAL_ISLAND, LocationIds.TORTUGA_ISLAND, LocationIds.CUBA_ISLAND, LocationIds.DEL_FUEGO_ISLAND]
+            
+            if base.localAvatar.getReturnLocation() in inventory:
+                inventory.remove(base.localAvatar.getReturnLocation())
+            
             self.storeMenuGUI = StowawayGUI.StowawayGUI(inventory, PLocalizer.StowawayMenuTitle)
         elif storeType == InteractGlobals.SHIPS:
             self.storeMenuGUI = ShipStoreGUI.ShipStoreGUI(SHIP_SHELF, PLocalizer.Shipyard)
