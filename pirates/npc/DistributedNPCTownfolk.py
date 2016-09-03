@@ -685,8 +685,6 @@ class DistributedNPCTownfolk(DistributedBattleNPC.DistributedBattleNPC, Distribu
     def confirmHealHp(self):
         maxHp = localAvatar.getAdjMaxHp()
         hp = localAvatar.getHp()
-        EconomyGlobals = EconomyGlobals
-        import pirates.economy
         gold = EconomyGlobals.getAvatarHealHpCost(maxHp - hp)
         if self.confirmDialog:
             self.confirmDialog.destroy()
