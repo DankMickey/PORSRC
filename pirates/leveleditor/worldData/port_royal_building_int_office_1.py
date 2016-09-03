@@ -1,4 +1,4 @@
-from pandac.PandaModules import Point3, VBase3, Vec4, Vec3
+from panda3d.core import Point3, VBase3, Vec4, Vec3
 objectStruct = {
     'Objects': {
         '1219777920.0akelts0': {
