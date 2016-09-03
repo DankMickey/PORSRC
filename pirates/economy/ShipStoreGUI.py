@@ -182,8 +182,27 @@ class ShipStoreGUI(GuiPanel.GuiPanel):
             self.card.remove_node()
 
         messenger.send('exitStore')
+        self.destroy()
         self.ignoreAll()
 
+    def destroy(self):
+        GuiPanel.GuiPanel.destroy(self)
+        
+        if self.storeInventory:
+            self.storeInventory.destroy()
+            self.storeInventory = None
+        
+        if self.shipStats:
+            self.shipStats.destroy()
+            self.shipStats = None
+        
+        if self.commitButton:
+            self.commitButton.destroy()
+            self.commitButton = None
+        
+        if self.closeButton:
+            self.closeButton.destroy()
+            self.closeButton = None
 
     def handleBuyItem(self, data, useCode):
         if useCode == PiratesGuiGlobals.InventoryAdd:

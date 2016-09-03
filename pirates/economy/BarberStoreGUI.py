@@ -439,6 +439,7 @@ class BarberStoreGUI(DirectFrame):
         camera.setPos(self.initialCamPos)
         camera.setHpr(self.initialCamHpr)
         self.unloadPirate()
+        self.destroy()
 
 
     def updateBalance(self, extraArgs = None):
