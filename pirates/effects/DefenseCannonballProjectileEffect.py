@@ -42,8 +42,6 @@ class DefenseCannonballProjectileEffect(ProjectileEffect):
 
 
     def basicHitEffect(self, hitObject, pos, skillId, ammoSkillId):
-        WeaponGlobals = WeaponGlobals
-        import pirates.battle
         if self.cr:
             attacker = self.cr.doId2do.get(self.attackerId)
             aoeRadius = self.cr.battleMgr.getModifiedAttackAreaRadius(attacker, skillId, ammoSkillId)

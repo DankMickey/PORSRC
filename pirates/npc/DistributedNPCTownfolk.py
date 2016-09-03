@@ -43,6 +43,7 @@ from otp.nametag.NametagConstants import CFSpeech, CFTimeout
 import PotionInstructionPanel
 from pirates.minigame.LegendaryTellGUI import LegendaryTellGUI
 from pirates.piratesbase import TeamUtils
+from pirates.minigame import FishingGlobals
 
 class DistributedNPCTownfolk(DistributedBattleNPC.DistributedBattleNPC, DistributedShopKeeper.DistributedShopKeeper, Townfolk.Townfolk):
     DiskWaitingColor = (0, 0, 1, 0.5)
@@ -1434,8 +1435,6 @@ class DistributedNPCTownfolk(DistributedBattleNPC.DistributedBattleNPC, Distribu
 
 
     def showUpgradeRodDialog(self):
-        FishingGlobals = FishingGlobals
-        import pirates.minigame
         avGold = localAvatar.getMoney()
         inv = localAvatar.getInventory()
         avFishingLevel = ReputationGlobals.getLevelFromTotalReputation(InventoryType.FishingRep, inv.getReputation(InventoryType.FishingRep))[0]

@@ -400,8 +400,6 @@ class DistributedPlayerSimpleShip(DistributedSimpleShip):
 
 
     def checkAbleDropAnchor(self):
-        PiratesGuiGlobals = PiratesGuiGlobals
-        import pirates.piratesgui
         if localAvatar.doId == self.steeringAvId:
             if self.shipStatusDisplay:
                 if localAvatar.getPort():
