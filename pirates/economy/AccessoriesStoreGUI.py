@@ -713,6 +713,7 @@ class AccessoriesStoreGUI(DirectFrame):
         camera.setPos(self.initialCamPos)
         camera.setHpr(self.initialCamHpr)
         self.unloadPirate()
+        self.destroy()
         if not hasattr(base, 'localAvatar'):
             return None
 

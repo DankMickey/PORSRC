@@ -120,8 +120,30 @@ class StoreGUI(DirectFrame):
             base.localAvatar.guiMgr.setIgnoreEscapeHotKey(False)
             messenger.send('exitStore')
             self.ignoreAll()
+            self.destroy()
+    
+    def destroy(self):
+        DirectFrame.destroy(self)
+        
+        if self.panel:
+            self.panel.destroy()
+            self.panel = None
+        
+        if self.storeInventory:
+            self.storeInventory.destroy()
+            self.storeInventory = None
+        
+        if self.cartFrame:
+            self.cartFrame.destroy()
+            self.cartFrame = None
 
-
+        if self.purchaseInventory:
+            self.purchaseInventory.destroy()
+            self.purchaseInventory = None
+        
+        if self.commitButton:
+            self.commitButton.destroy()
+            self.commitButton = None
 
     def handleBuyItem(self, data, useCode):
         itemId = data[0]

@@ -53,7 +53,22 @@ class MusicianGUI(DirectFrame):
     def closePanel(self):
         messenger.send('exitStore')
         self.ignoreAll()
-
+        self.destroy()
+    
+    def destroy(self):
+        DirectFrame.destroy(self)
+        
+        if self.panel:
+            self.panel.destroy()
+            self.panel = None
+        
+        if self.storeInventory:
+            self.storeInventory.destroy()
+            self.storeInventory = None
+        
+        if self.cartFrame:
+            self.cartFrame.destroy()
+            self.cartFrame = None
 
     def handleBuyItem(self, data, useCode):
         itemId = data[0]

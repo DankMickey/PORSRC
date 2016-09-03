@@ -536,7 +536,7 @@ class TattooStoreGUI(DirectFrame):
         else:
             offsetIndex = 6
         self.unloadPirate()
-
+        self.destroy()
 
     def purchaseConfirmation(self):
         pass

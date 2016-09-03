@@ -626,6 +626,7 @@ class JewelryStoreGUI(DirectFrame):
             localAvatar.motionFSM.on()
 
         self.unloadPirate()
+        self.destroy()
 
 
     def handleCommitPurchase(self):

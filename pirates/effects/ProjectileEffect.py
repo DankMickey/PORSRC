@@ -124,8 +124,6 @@ class ProjectileEffect:
 
 
     def basicHitEffect(self, hitObject, pos, skillId, ammoSkillId):
-        from pirates.battle import WeaponGlobals
-        WeaponGlobals = WeaponGlobals
         if self.cr:
             attacker = self.cr.doId2do.get(self.attackerId)
             aoeRadius = self.cr.battleMgr.getModifiedAttackAreaRadius(attacker, skillId, ammoSkillId)
