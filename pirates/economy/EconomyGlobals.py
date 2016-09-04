@@ -466,7 +466,7 @@ __itemList = {
     ItemId.FISHING_ROD3: (300, ItemType.WEAPON, ItemType.FISHING_ROD, None, 1, 15, None),
     ItemId.FISHING_LURE1: (100, ItemType.AMMO, ItemType.FISHING_LURE, None, 1, 0, None),
     ItemId.FISHING_LURE2: (300, ItemType.AMMO, ItemType.FISHING_LURE, None, 1, 20, None),
-    ItemId.INTERCEPTOR_L1: (100, ItemType.SHIP, ItemType.INTERCEPTOR, None, 1, 0, InventoryType.NewShipToken),
+    ItemId.INTERCEPTOR_L1: (0, ItemType.SHIP, ItemType.INTERCEPTOR, None, 1, 0, InventoryType.NewShipToken),
     ItemId.MERCHANT_L1: (300, ItemType.SHIP, ItemType.MERCHANT, None, 1, 0, InventoryType.NewShipToken),
     ItemId.WARSHIP_L1: (800, ItemType.SHIP, ItemType.WARSHIP, None, 1, 0, InventoryType.NewShipToken),
     ItemId.INTERCEPTOR_L2: (1000, ItemType.SHIP, ItemType.INTERCEPTOR, None, 1, 5, InventoryType.NewShipToken),
