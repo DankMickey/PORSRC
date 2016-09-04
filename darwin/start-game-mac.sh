@@ -9,10 +9,6 @@ else
     cd ..
 fi
 
-
-export DYLD_LIBRARY_PATH=`pwd`/Libraries.bundle
-export DYLD_FRAMEWORK_PATH="Frameworks"
-
 read -p "Username: " LOGIN_COOKIE
 read -p "Gameserver: " LOGIN_SERVER
 
