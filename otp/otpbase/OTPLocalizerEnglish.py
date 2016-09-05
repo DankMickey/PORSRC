@@ -110,6 +110,8 @@ TextColors = {
  'lightBlue': (0.4, 0.6, 1, 1),
  'skyBlue': (0, 0.6, 1, 1),
  'waterGreen': (0.2, 0.6, 0.3, 1),
+ 'maroon': (0.5, 0, 0, 1),
+ 'lightGold': (0.98, 0.98, 0.82, 1),
  'beige': (1, 0.95, 0.7, 1),           # Light yellow
  'amber': (1, 0.75, 0, 1),             # Orange
  'amaranth': (0.9, 0.15, 0.3, 1),      # Pink

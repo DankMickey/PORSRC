@@ -8,6 +8,5 @@ class DistributedTravelAgent(DistributedObjectGlobal):
         self.sendUpdate('requestInitLoc', [desiredShard])
 
     def requestInitLocResponse(self, shardAllowed, desiredShard):
-        print 'Shard %s is %s' % (desiredShard, shardAllowed)
         if shardAllowed:
             self.cr.playingGameLocReceived(desiredShard, 2000)
