@@ -4,7 +4,7 @@
 kill -9  `pgrep -f "pirates.uberdog.ServiceStart"`
 
 #start ai server
-python -m pirates.uberdog.ServiceStart > logs/ai_server.log 2>&1 &
+python -m pirates.uberdog.ServiceStart > logs/uberdog.log 2>&1 &
 
 echo "Pirates Online uberdog server - Process ID#" `pgrep -f "pirates.uberdog.ServiceStart"`
 echo "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+="
