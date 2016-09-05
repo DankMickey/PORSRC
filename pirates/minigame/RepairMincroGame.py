@@ -31,6 +31,7 @@ class RepairMincroGame(DirectFrame, FSM.FSM):
                 'Idle',
                 'Final'],
             'Outro': [
+                #'Reward'
                 'Idle',
                 'Final'],
             'Final': [] }
@@ -56,9 +57,16 @@ class RepairMincroGame(DirectFrame, FSM.FSM):
     def _initVisuals(self):
         self.countDownLabel = DirectLabel(text = self.startText, text_fg = (1.0, 1.0, 1.0, 1.0), text_shadow = (0.0, 0.0, 0.0, 1.0), text_font = PiratesGlobals.getPirateFont(), scale = (0.16, 0.16, 0.16), pos = (0.0, 0.0, 0.149), parent = self, relief = None, textMayChange = 1)
         self.countDownLabel.setBin('fixed', 37)
-        self.winLabel = DirectLabel(text = PLocalizer.Minigame_Repair_Win, text_fg = (1.0, 1.0, 1.0, 1.0), text_font = PiratesGlobals.getPirateFont(), text_shadow = (0.0, 0.0, 0.0, 1.0), scale = (0.16, 0.16, 0.16), pos = RepairGlobals.Common.youWinPos[self.name], relief = None, parent = self)
+        self.winLabel = DirectLabel(text = PLocalizer.PLocalizer.Minigame_Repair_Win, text_fg = (1.0, 1.0, 1.0, 1.0), text_font = PiratesGlobals.getPirateFont(), text_shadow = (0.0, 0.0, 0.0, 1.0), scale = (0.16, 0.16, 0.16), pos = RepairGlobals.Common.youWinPos[self.name], relief = None, parent = self)
         self.winLabel.setBin('fixed', 37)
         self.winLabel.stash()
+        self.rewardLabel = DirectLabel(text=PLocalizer.Minigame_Repair_BenchOutro1, text_fg=(1.0, 1.0, 1.0, 1.0),
+                                    text_font=PiratesGlobals.getPirateFont(), text_shadow=(0.0, 0.0, 0.0, 1.0),
+                                    scale=(0.16, 0.16, 0.16), pos = (0.0, 0.0, 0.149),
+                                    relief=None, parent=self)
+        self.rewardLabel.setBin('fixed', 37)
+        self.rewardLabel.stash()
+
         self.scoreLabel = DirectLabel(text = PLocalizer.Minigame_Repair_Win, text_fg = (1.0, 1.0, 1.0, 1.0), text_font = PiratesGlobals.getPirateFont(), text_shadow = (0.0, 0.0, 0.0, 1.0), scale = (0.100, 0.100, 0.100), pos = RepairGlobals.Common.scorePos[self.name], relief = None, parent = self)
         self.scoreLabel.setBin('fixed', 37)
         self.scoreLabel.stash()
@@ -79,6 +87,25 @@ class RepairMincroGame(DirectFrame, FSM.FSM):
         aboveScreenScorePos = Vec3(normalScorePos.getX(), normalScorePos.getY(), normalScorePos.getZ() + 0.25)
         self.outroSequence = Sequence(Func(self.winLabel.setAlphaScale, 0), Func(self.scoreLabel.setAlphaScale, 0), Func(self.postWinLabel.setAlphaScale, 0), Func(self.winLabel.setPos, belowScreenPos), Func(self.scoreLabel.setPos, belowScreenScorePos), Func(self.postWinLabel.setPos, belowScreenPos), Func(self.setScoreLabelText), Func(self.winLabel.unstash), Func(self.scoreLabel.unstash), Func(self.postWinLabel.unstash), Parallel(LerpFunc(self.scoreLabel.setPos, fromData = belowScreenScorePos, toData = normalScorePos, duration = 0.25), LerpFunc(self.scoreLabel.setAlphaScale, fromData = 0.0, toData = 1.0, duration = 0.25), LerpFunc(self.winLabel.setPos, fromData = belowScreenPos, toData = normalPos, duration = 0.25), LerpFunc(self.winLabel.setAlphaScale, fromData = 0.0, toData = 1.0, duration = 0.25)), Func(self.completeSound.play), Wait(1.0), Parallel(LerpFunc(self.winLabel.setPos, fromData = normalPos, toData = aboveScreenPos, duration = 0.25), LerpFunc(self.winLabel.setAlphaScale, fromData = 1.0, toData = 0.0, duration = 0.25), LerpFunc(self.scoreLabel.setPos, fromData = normalScorePos, toData = aboveScreenScorePos, duration = 0.25), LerpFunc(self.scoreLabel.setAlphaScale, fromData = 1.0, toData = 0.0, duration = 0.25)), Func(self.winLabel.stash), Func(self.scoreLabel.stash), Func(self.stashPostWinLabelIfCycleComplete), Wait(0.25), Parallel(LerpFunc(self.postWinLabel.setPos, fromData = belowScreenPos, toData = normalPos, duration = 0.25), LerpFunc(self.postWinLabel.setAlphaScale, fromData = 0.0, toData = 1.0, duration = 0.25)), name = 'outroSequence')
         self.cleanupSequence = Sequence(Parallel(LerpFunc(self.postWinLabel.setPos, fromData = normalPos, toData = aboveScreenPos, duration = 0.5), LerpFunc(self.postWinLabel.setAlphaScale, fromData = 1.0, toData = 0.0, duration = 0.5), LerpFunc(self.scoreLabel.setAlphaScale, fromData = 1.0, toData = 0.0, duration = 0.5)), Func(self.scoreLabel.stash), Func(self.postWinLabel.stash), name = 'cleanupSequence')
+        '''self.rewardSequence = Sequence(Func(self.rewardLabel.setAlphaScale, 0),
+                                       Func(self.postWinLabel.setAlphaScale, 0),
+                                       Func(self.rewardLabel.setPos, belowScreenPos),
+                                       Func(self.postWinLabel.setPos, belowScreenPos), Func(self.winLabel.unstash),
+                                       Func(self.postWinLabel.unstash),
+                                       LerpFunc(self.winLabel.setPos, fromData=belowScreenPos, toData=normalPos,
+                                                duration=0.25),
+                                       LerpFunc(self.rewardLabel.setAlphaScale, fromData=0.0, toData=1.0,
+                                                duration=0.25)), Func(self.completeSound.play),
+        Wait(1.0), Parallel(LerpFunc(self.winLabel.setPos, fromData=normalPos, toData=aboveScreenPos, duration=0.25),
+                            LerpFunc(self.winLabel.setAlphaScale, fromData=1.0, toData=0.0, duration=0.25),
+                            Func(self.winLabel.stash),
+                            Func(self.stashPostWinLabelIfCycleComplete), Wait(0.25),
+                            Parallel(LerpFunc(self.postWinLabel.setPos, fromData=belowScreenPos,
+                                              toData=normalPos, duration=0.25),
+                                     LerpFunc(self.postWinLabel.setAlphaScale, fromData=0.0, toData=1.0,
+                                              duration=0.25)),
+                            name='rewardSequence')'''
+
 
     def updatePostWinLabel(self):
         if self.repairGame.isThereAnOpenGame():
@@ -152,10 +179,21 @@ class RepairMincroGame(DirectFrame, FSM.FSM):
 
     def exitIntro(self):
         self.countDownLabel.stash()
-        self.introSequence.clearToInitial()
+        self.introSequence.clear_to_initial()
 
     def enterGame(self):
         self.repairGame.repairClock.restart()
+
+    def enterReward(self):
+        pass
+        #self.rewardSequence.start()
+
+
+
+    def exitReward(self):
+        pass
+    #add something here to exit the minigame
+
 
     def exitGame(self):
         self.repairGame.repairClock.pause()

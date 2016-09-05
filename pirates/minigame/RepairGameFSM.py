@@ -37,6 +37,7 @@ class RepairGameFSM(MinigameFSM):
                 'Final',
                 'Off'],
             'Outro': [
+                'Reward'
                 'Off',
                 'Final'],
             'Final': [
@@ -106,6 +107,13 @@ class RepairGameFSM(MinigameFSM):
     def exitOutro(self):
         self.notify.info("exit%s: '%s' -> '%s'" % (self.oldState, self.oldState, self.newState))
         self.gameObject.gui.outroSequence.finish()
+
+    def enterReward(self):
+        self.notify.info("enter%s: '%s' -> '%s'" % (self.newState, self.oldState, self.newState))
+        #self.repairMincroGame.rewardSequence.start()
+
+    def exitReward(self):
+        self.notify.info("exit%s: '%s' -> '%s'" % (self.oldState, self.oldState, self.newState))
 
     def enterFinal(self):
         self.notify.info("enter%s: '%s' -> '%s'" % (self.newState, self.oldState, self.newState))
