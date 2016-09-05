@@ -88,8 +88,8 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
         self.islandMapModelPath = None
         self.mapName = None
         self.objsCached = False
-        self.oceanVisEnabled = base.config.GetBool('ocean-visibility', False)
-        self.flatShipsOnIsland = base.config.GetBool('flat-ships-on-island', True)
+        self.oceanVisEnabled = config.GetBool('ocean-visibility', False)
+        self.flatShipsOnIsland = config.GetBool('flat-ships-on-island', True)
         self.locationSphereName = ''
         self.SiegeIcons = []
         if not DistributedIsland.SiegeIcon:
@@ -292,7 +292,7 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
 
             localAvatar.setInterest(self.doId, PiratesGlobals.IslandLocalZone, [
                 'IslandLocal'])
-            if base.config.GetBool('island-prepare-scene', 1) and base.win.getGsg():
+            if config.GetBool('island-prepare-scene', 1) and base.win.getGsg():
                 render.prepareScene(base.win.getGsg())
 
             self.initBlockers(self)

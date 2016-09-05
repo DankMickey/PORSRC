@@ -74,7 +74,7 @@ class Map(FSM):
 
     def filterOpaque(self, request, *args):
         if request == 'next':
-            if not base.config.GetBool('want-momentary-minimap', 0):
+            if not config.GetBool('want-momentary-minimap', 0):
                 return 'Transparent'
             else:
                 return 'Off'

@@ -14,10 +14,10 @@ from pirates.audio import SoundGlobals
 from pirates.audio.SoundGlobals import loadSfx
 
 class ChestTray(GuiTray.GuiTray):
-    WantClothingPage = base.config.GetBool('want-clothing-page', 0)
-    if not base.config.GetBool('want-land-infamy', 0):
+    WantClothingPage = config.GetBool('want-clothing-page', 0)
+    if not config.GetBool('want-land-infamy', 0):
         pass
-    WantTitlesPage = base.config.GetBool('want-sea-infamy', 0)
+    WantTitlesPage = config.GetBool('want-sea-infamy', 0)
 
     def __init__(self, parent, parentMgr, **kw):
         GuiTray.GuiTray.__init__(self, parent, 0.6, 0.12)

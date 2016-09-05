@@ -91,7 +91,7 @@ class DynamicLight(NodePath):
             self.setName('ModularLight')
         else:
             self.setName('DynamicLight')
-        if base.config.GetBool('draw-light-icons', 0) or self.drawIcon:
+        if config.GetBool('draw-light-icons', 0) or self.drawIcon:
             if isInit:
                 if self.modular:
                     newModel = loader.loadModel('models/props/light_tool_bulb_modular')

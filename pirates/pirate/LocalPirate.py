@@ -78,12 +78,12 @@ from pirates.piratesgui.GameOptions import Options
 from direct.gui import OnscreenText
 from otp.nametag.NametagConstants import *
 globalClock = ClockObject.getGlobalClock()
-if base.config.GetBool('want-pstats', 0):
+if config.GetBool('want-pstats', 0):
     import profile
     import pstats
 
 from direct.controls.ControlManager import ControlManager
-if base.config.GetBool('want-custom-keys', 0):
+if config.GetBool('want-custom-keys', 0):
     ControlManager.wantCustomKeys = 1
     ControlManager.wantWASD = 0
 else:
@@ -115,7 +115,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
             self.cameraFSM = CameraFSM(self)
             self.guiMgr = GuiManager.GuiManager(self)
             self.interestHandles = []
-            if base.config.GetBool('debug-local-animMixer', 0):
+            if config.GetBool('debug-local-animMixer', 0):
                 self.animMixer.setVerbose(True)
 
             self.currentMouseOver = None
@@ -145,7 +145,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
             self.lookFromNode = self.attachNewNode('lookFromTargetHelper')
             self.lookFromNode.setZ(self.getHeight())
             self.lookToNode = NodePath('lookToTargetHelper')
-            if base.config.GetBool('want-dev', False):
+            if config.GetBool('want-dev', False):
                 self.accept('shift-f12', self.toggleAvVis)
 
             self.money = 0
@@ -157,7 +157,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
             self.cloudScudEffect = None
             self.soloInteraction = False
             self.emoteAccess = []
-            self.AFKDelay = base.config.GetInt('afk-delay', 600)
+            self.AFKDelay = config.GetInt('afk-delay', 600)
             self.playRewardAnimation = None
             self.localProjectiles = []
             self._cannonAmmoSkillId = InventoryType.CannonRoundShot
@@ -185,7 +185,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
             self.lockRegenFlag = 0
             self.everBeenGhost = 0
             self.mistimedAttack = 0
-            if base.config.GetBool('want-easy-combos', 0):
+            if config.GetBool('want-easy-combos', 0):
                 self.wantComboTiming = 0
             else:
                 self.wantComboTiming = 1
@@ -194,7 +194,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
             self.defenceEffects = { }
             self.skillSfxIval = None
             self.currentWeaponSlotId = 1
-            if base.config.GetBool('want-pstats', 0):
+            if config.GetBool('want-pstats', 0):
                 self.pstatsGen = PStatCollector('Battle Avatars:Avatar Generating')
                 self.pstatsLoad = PStatCollector('Battle Avatars:Loading Asset')
                 self.pstatsFPS = PStatCollector('Battle Avatars:fps')
@@ -204,7 +204,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
             self.fishingGameHook = None
             self.accept('shipRemoved', self.checkHaveShip)
             self.rocketOn = 0
-            if base.config.GetBool('want-rocketman', 0):
+            if config.GetBool('want-rocketman', 0):
                 self.startRocketJumpMode()
 
             self.dialogProp = None
@@ -816,7 +816,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
         posHpr = (0, 0, 0, 0, 0, 0)
         self.setPosHpr(*posHpr)
         self.acceptOnce('targetMgrCreated', self.targetMgrCreated)
-        if base.config.GetBool('osd-anim-blends', 0):
+        if config.GetBool('osd-anim-blends', 0):
             self.toggleOsdAnimBlends(True)
 
         self.acceptOnce('generate-%s' % self.getInventoryId(), self.initInventoryGui)
@@ -885,7 +885,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
         self.accept('enterWater', self.handleWaterIn)
         self.accept('againWater', self.handleWaterAgain)
         self.accept('exitWater', self.handleWaterOut)
-        if self.style.getTutorial() < PiratesGlobals.TUT_GOT_COMPASS and not base.config.GetBool('teleport-all', 0):
+        if self.style.getTutorial() < PiratesGlobals.TUT_GOT_COMPASS and not config.GetBool('teleport-all', 0):
             self.b_setTeleportFlag(PiratesGlobals.TFNoCompass)
 
         if self.style.getTutorial() == PiratesGlobals.TUT_CHAPTER3_STARTED:
@@ -928,7 +928,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
 
     def disable(self):
         self.ignore('avatarZoneChanged')
-        if base.config.GetBool('want-pstats', 0):
+        if config.GetBool('want-pstats', 0):
             taskMgr.remove('avatarPstats')
 
         self.ignore('generate-%s' % self.getInventoryId())

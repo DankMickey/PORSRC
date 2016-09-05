@@ -56,8 +56,8 @@ class OTPClientRepository(ClientRepositoryBase):
         self.http = HTTPClient()
         self.loginInterface = LoginPiratesAccount.LoginPiratesAccount(self)
 
-        self.secretChatAllowed = base.config.GetBool('allow-secret-chat', True)
-        self.openChatAllowed = base.config.GetBool('allow-open-chat', True)
+        self.secretChatAllowed = config.GetBool('allow-secret-chat', True)
+        self.openChatAllowed = config.GetBool('allow-open-chat', True)
 
         self.parentMgr.registerParent(OTPGlobals.SPRender, base.render)
         self.parentMgr.registerParent(OTPGlobals.SPHidden, NodePath())
@@ -233,7 +233,7 @@ class OTPClientRepository(ClientRepositoryBase):
         self.shardListHandle = None
         self.uberZoneInterest = None
         self.wantSwitchboard = config.GetBool('want-switchboard', 0)
-        self.wantSwitchboardHacks = base.config.GetBool('want-switchboard-hacks', 0)
+        self.wantSwitchboardHacks = config.GetBool('want-switchboard-hacks', 0)
 
         self.__pendingGenerates = {}
         self.__pendingMessages = {}
@@ -921,7 +921,7 @@ class OTPClientRepository(ClientRepositoryBase):
         if not self.SupportTutorial or base.localAvatar.tutorialAck:
             self.gameFSM.request('playGame', [hoodId, zoneId, avId])
             return
-        if base.config.GetBool('force-tutorial', 0):
+        if config.GetBool('force-tutorial', 0):
             self.gameFSM.request('tutorialQuestion', [hoodId, zoneId, avId])
             return
         else:
@@ -974,7 +974,7 @@ class OTPClientRepository(ClientRepositoryBase):
         pass
 
     def allowFreeNames(self):
-        return base.config.GetInt('allow-free-names', 1)
+        return config.GetInt('allow-free-names', 1)
 
     def allowSecretChat(self):
         return True

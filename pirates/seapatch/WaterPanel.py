@@ -477,7 +477,7 @@ class WaterPanel(AppShell):
         pass
 
     def _load_water_parameters(self):
-        default_directory = base.config.GetString('water-panel-default-path', '.')
+        default_directory = config.GetString('water-panel-default-path', '.')
         filename = askopenfilename(initialdir = default_directory, filetypes = [
             ('WTR', 'wtr')], title = 'Open Water File')
         if not filename:
@@ -496,7 +496,7 @@ class WaterPanel(AppShell):
 
     def save_water_parameters(self):
         if self.region_texture_filename != None and self.region_alpha_texture_filename != None:
-            default_directory = base.config.GetString('water-panel-default-path', '.')
+            default_directory = config.GetString('water-panel-default-path', '.')
             filename = asksaveasfilename(initialdir = default_directory, filetypes = [
                 ('WTR', 'wtr')], title = 'Save Water File')
             if not filename:
@@ -528,7 +528,7 @@ class WaterPanel(AppShell):
             self.set_texture(self.texture_filename)
 
     def select_texture(self):
-        default_directory = base.config.GetString('water-panel-default-texture-path', '.')
+        default_directory = config.GetString('water-panel-default-texture-path', '.')
         filename = askopenfilename(initialdir = default_directory, filetypes = [
             ('BMP JPG TIF', 'bmp jpg tif')], title = 'Select Texture')
         if not filename:
@@ -554,7 +554,7 @@ class WaterPanel(AppShell):
             self.set_alpha_texture(self.alpha_texture_filename)
 
     def select_alpha_texture(self):
-        default_directory = base.config.GetString('water-panel-default-texture-path', '.')
+        default_directory = config.GetString('water-panel-default-texture-path', '.')
         filename = askopenfilename(initialdir = default_directory, filetypes = [
             ('BMP JPG TIF', 'bmp jpg tif')], title = 'Select Alpha Texture')
         if not filename:
@@ -577,7 +577,7 @@ class WaterPanel(AppShell):
             self.set_shader(self.shader_filename)
 
     def select_shader(self):
-        default_directory = base.config.GetString('water-panel-default-shader-path', '.')
+        default_directory = config.GetString('water-panel-default-shader-path', '.')
         filename = askopenfilename(initialdir = default_directory, filetypes = [
             ('CG', 'cg')], title = 'Select Shader')
         if not filename:

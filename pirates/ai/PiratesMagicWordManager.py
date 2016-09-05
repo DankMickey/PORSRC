@@ -51,13 +51,13 @@ class PiratesMagicWordManager(MagicWordManager.MagicWordManager):
 
     def doLoginMagicWords(self):
         MagicWordManager.MagicWordManager.doLoginMagicWords(self)
-        if base.config.GetBool('want-chat', 0):
+        if config.GetBool('want-chat', 0):
             self.d_setMagicWord('~chat', localAvatar.doId, 0)
 
-        if base.config.GetBool('want-run', 0) or base.config.GetBool('want-pirates-run', 0):
+        if config.GetBool('want-run', 0) or config.GetBool('want-pirates-run', 0):
             self.toggleRun()
 
-        if base.config.GetBool('immortal-mode', 0):
+        if config.GetBool('immortal-mode', 0):
             self.d_setMagicWord('~immortal', localAvatar.doId, 0)
 
     def disable(self):
@@ -484,7 +484,7 @@ class PiratesMagicWordManager(MagicWordManager.MagicWordManager):
             if len(args) >= 2:
                 csId = args[1]
             else:
-                csId = base.config.GetString('default-cutscene', '0')
+                csId = config.GetString('default-cutscene', '0')
             if int(csId) >= len(CutsceneData.CutsceneNames):
                 return None
 
@@ -1124,12 +1124,12 @@ class PiratesMagicWordManager(MagicWordManager.MagicWordManager):
                     effectTypes = base.cr.effectTypes.get(currEffectCat, [
                         currEffectCat])
                     for currEffectType in effectTypes:
-                        newStatus = not base.cr.effectToggles.get(currEffectType, base.config.GetBool('want-special-effects', 1))
+                        newStatus = not base.cr.effectToggles.get(currEffectType, config.GetBool('want-special-effects', 1))
                         base.cr.effectToggles[currEffectType] = newStatus
                         response = 'effect %s set to %s' % (currEffectType, 'ON' if newStatus else 'OFF')
                         self.setMagicWordResponse(response)
 
-            base.cr.wantSpecialEffects = base.config.GetBool('want-special-effects', 1)
+            base.cr.wantSpecialEffects = config.GetBool('want-special-effects', 1)
             DistributedSimpleShip = DistributedSimpleShip
             import pirates.ship
             clientShips = filter(lambda x: isinstance(x, DistributedSimpleShip.DistributedSimpleShip), base.cr.doId2do.values())

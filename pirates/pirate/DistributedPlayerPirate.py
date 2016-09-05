@@ -103,7 +103,7 @@ from pirates.uberdog.TradableInventory import TradableInventory
 
 class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, DistributedBattleAvatar, DistributedQuestAvatar, PAvatarHandle):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedPirate')
-    wantBattle = base.config.GetBool('want-battle', 0)
+    wantBattle = config.GetBool('want-battle', 0)
     deferrable = True
     GoldFounderIcon = None
     SilverFounderIcon = None
@@ -1036,7 +1036,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             self.enterDialogMode()
 
         self.setName(self.name)
-        if base.config.GetBool('disable-player-collisions', 0):
+        if config.GetBool('disable-player-collisions', 0):
             if self.battleTubeNodePaths:
                 for np in self.battleTubeNodePaths:
                     np.node().setIntoCollideMask(np.node().getIntoCollideMask() & ~(PiratesGlobals.WallBitmask))
@@ -1328,7 +1328,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             if self.isConfused:
                 prefix = '\x05confusedIcon\x05\n'
             elif self.badge:
-                if base.config.GetBool('want-land-infamy', 0) or base.config.GetBool('want-sea-infamy', 0):
+                if config.GetBool('want-land-infamy', 0) or config.GetBool('want-sea-infamy', 0):
                     if self.badge[0]:
                         textProp = TitleGlobals.Title2nametagTextProp[self.badge[0]]
                         if textProp:
@@ -1392,7 +1392,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
     def setInInvasion(self, inInvasion):
         self.inInvasion = inInvasion
         if inInvasion:
-            if not base.config.GetBool('disable-player-collisions', 0):
+            if not config.GetBool('disable-player-collisions', 0):
                 if self.battleTubeNodePaths:
                     for np in self.battleTubeNodePaths:
                         np.node().setIntoCollideMask(np.node().getIntoCollideMask() & ~(PiratesGlobals.WallBitmask))
@@ -1405,7 +1405,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             if not self.isLocal():
                 self.enableReducedMixing()
 
-        elif not base.config.GetBool('disable-player-collisions', 0):
+        elif not config.GetBool('disable-player-collisions', 0):
             if self.battleTubeNodePaths:
                 for np in self.battleTubeNodePaths:
                     np.node().setIntoCollideMask(np.node().getIntoCollideMask() | PiratesGlobals.WallBitmask)
@@ -3645,7 +3645,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
 
 
     def rewardNotify(self, rewardCat, rewardId):
-        if base.config.GetBool('black-pearl-repeat-reward', 1) == 1:
+        if config.GetBool('black-pearl-repeat-reward', 1) == 1:
 
             def showRewardPanel(task = None):
                 rewardSkillId = ItemGlobals.getUseSkill(rewardId)

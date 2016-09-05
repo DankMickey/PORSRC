@@ -926,7 +926,7 @@ class NPCMoviePlayer(DirectObject.DirectObject):
         else:
             classicChar = 'minnie'
         filename = filenameTemplate % classicChar
-        if base.config.GetString('language', 'english') == 'japanese':
+        if config.GetString('language', 'english') == 'japanese':
             dialogue = base.loadSfx(filename)
         else:
             dialogue = None
@@ -1728,7 +1728,7 @@ class NPCMoviePlayer(DirectObject.DirectObject):
 
 
     def parseSetMusicVolume(self, line):
-        if base.config.GetString('language', 'english') == 'japanese':
+        if config.GetString('language', 'english') == 'japanese':
 
             try:
                 loader = base.cr.playGame.place.loader

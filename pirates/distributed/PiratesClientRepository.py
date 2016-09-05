@@ -112,11 +112,11 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
         self.piratesFriendsManager = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_PIRATES_FRIENDS_MANAGER, 'PiratesFriendsManager')
         #self.shipLoader = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_PIRATES_SHIP_MANAGER, 'DistributedShipLoader')
 
-        self.wantSeapatch = base.config.GetBool('want-seapatch', 0)
-        self.wantSpecialEffects = base.config.GetBool('want-special-effects', 0)
-        self.wantMakeAPirate = base.config.GetBool('wantMakeAPirate', 0)
-        self.forceTutorial = base.config.GetBool('force-tutorial', 0)
-        self.skipTutorial = base.config.GetBool('skip-tutorial', 0)
+        self.wantSeapatch = config.GetBool('want-seapatch', 0)
+        self.wantSpecialEffects = config.GetBool('want-special-effects', 0)
+        self.wantMakeAPirate = config.GetBool('wantMakeAPirate', 0)
+        self.forceTutorial = config.GetBool('force-tutorial', 0)
+        self.skipTutorial = config.GetBool('skip-tutorial', 0)
         self.tutorialObject = None
         self.avChoiceDoneEvent = None
         self.avChoice = None

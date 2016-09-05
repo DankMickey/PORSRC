@@ -228,7 +228,7 @@ class NewTutorialPanel(GuiPanel.GuiPanel):
         self.showPanelIval = None
         self.createShowPanelIval()
         undefText = 'undefined text'
-        if base.config.GetBool('want-easy-combos', 0) and PLocalizer.TutorialPanelDialogEasyCombo.get(mode):
+        if config.GetBool('want-easy-combos', 0) and PLocalizer.TutorialPanelDialogEasyCombo.get(mode):
             text = PLocalizer.TutorialPanelDialogEasyCombo.get(mode)
         else:
             text = PLocalizer.TutorialPanelDialog.get(mode, undefText)

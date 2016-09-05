@@ -497,7 +497,7 @@ class FancyLoadingScreen(DirectObject.DirectObject):
         self.ignoreAll()
 
     def showTitleFrame(self):
-        if base.config.GetBool('no-loading-screen', 0):
+        if config.GetBool('no-loading-screen', 0):
             return None
 
         for part in self.title_art:
@@ -508,7 +508,7 @@ class FancyLoadingScreen(DirectObject.DirectObject):
             part.hide()
 
     def show(self, waitForLocation = False, disableSfx = True, expectedLoadScale = 1.0):
-        if self.state and base.config.GetBool('no-loading-screen', 0) or not (self.locationLabel):
+        if self.state and config.GetBool('no-loading-screen', 0) or not (self.locationLabel):
             return None
 
         render.hide()
@@ -544,7 +544,7 @@ class FancyLoadingScreen(DirectObject.DirectObject):
             self.__setLoadingArt(screenshot)
 
     def showHint(self, destId = None, ocean = False):
-        if base.config.GetBool('no-loading-screen', 0) or not (self.locationLabel):
+        if config.GetBool('no-loading-screen', 0) or not (self.locationLabel):
             return None
 
         if ocean:
@@ -647,7 +647,7 @@ class FancyLoadingScreen(DirectObject.DirectObject):
         messenger.send('texture_state_changed')
 
     def showTarget(self, targetId = None, ocean = False, jail = False, pickapirate = False, exit = False, potionCrafting = False, benchRepair = False, shipRepair = False, cannonDefense = False, fishing = False):
-        if base.config.GetBool('no-loading-screen', 0):
+        if config.GetBool('no-loading-screen', 0):
             return None
 
         if pickapirate:
@@ -707,9 +707,8 @@ class FancyLoadingScreen(DirectObject.DirectObject):
             targetName = PLocalizer.LoadingScreen_Jail
         else:
             targetName = PLocalizer.LocationNames.get(targetId)
-        base.setLocationCode('Loading: %s' % targetName)
         if pickapirate:
-            serverVersionText = base.config.GetString('server-version', 'no_version_set')
+            serverVersionText = config.GetString('server-version', 'no_version_set')
             self.__setHintText(serverVersionText)
         else:
             hintText = self.getGeneralHint()

@@ -258,7 +258,6 @@ class DistributedTeleportMgr(DistributedObject.DistributedObject):
                 teleportToObj])
             teleportToObj.registerBuildCompleteFunction(teleportToObj.enableOnDeckInteractions)
             teleportToObj.registerBuildCompleteFunction(self._localTeleportToIdDone)
-            base.setLocationCode('Ship')
         else:
             self.__pendingGoNow.append(False)
             goNow = self.__pendingGoNow.pop(0)
@@ -452,7 +451,7 @@ class DistributedTeleportMgr(DistributedObject.DistributedObject):
             PiratesGlobals.INSTANCE_MAIN,
             PiratesGlobals.INSTANCE_GENERIC,
             PiratesGlobals.INSTANCE_NONE]:
-            if not base.config.GetBool('can-break-teleport-rules', 0):
+            if not config.GetBool('can-break-teleport-rules', 0):
                 import pdb as pdb
                 pdb.set_trace()
                 return None

@@ -44,7 +44,7 @@ class DistributedWeapon(WeaponBase, DistributedInteractive.DistributedInteractiv
     def announceGenerate(self):
         DistributedInteractive.DistributedInteractive.announceGenerate(self)
         WeaponBase.announceGenerate(self)
-        if __dev__ and base.config.GetBool('show-ai-cannon-targets', 0):
+        if __dev__ and config.GetBool('show-ai-cannon-targets', 0):
             self.tracker = loader.loadModel('models/effects/explosion_sphere')
             self.tracker.reparentTo(render)
             self.tracker.setScale(30)

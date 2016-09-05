@@ -89,7 +89,7 @@ class CombatEffect(NodePath):
 
     def loadEffects(self):
         self.effects = []
-        if not base.config.GetBool('want-special-effects', 0):
+        if not config.GetBool('want-special-effects', 0):
             return None
 
         self.ival = Sequence()

@@ -126,10 +126,10 @@ class DummyProfileInfo:
 
 class GuiManager(FSM.FSM):
     notify = DirectNotifyGlobal.directNotify.newCategory('GuiManager')
-    WantClothingPage = base.config.GetBool('want-clothing-page', 0)
-    if not base.config.GetBool('want-land-infamy', 0):
+    WantClothingPage = config.GetBool('want-clothing-page', 0)
+    if not config.GetBool('want-land-infamy', 0):
         pass
-    WantTitlesPage = base.config.GetBool('want-sea-infamy', 0)
+    WantTitlesPage = config.GetBool('want-sea-infamy', 0)
     tpMgr = TextPropertiesManager.getGlobalPtr()
     GMgrey = tpMgr.getProperties('grey')
     GMgrey.setGlyphShift(-0.05)
@@ -205,7 +205,7 @@ class GuiManager(FSM.FSM):
         self.ignoreInvitesAvatarList = []
         self.levelUpBufferDict = { }
         self.tutorialStatus = PiratesGlobals.TUT_STARTED
-        self.forceLookout = base.config.GetBool('force-lookout', 0)
+        self.forceLookout = config.GetBool('force-lookout', 0)
         self.hotkeyButtons = { }
         self.setChatAllowed(True)
         self.setSeaChestAllowed(True)
@@ -942,12 +942,12 @@ class GuiManager(FSM.FSM):
 
 
     def handleBodySelect(self):
-        if not base.config.GetBool('want-body-prompt', 0):
+        if not config.GetBool('want-body-prompt', 0):
             return None
 
         gender = localAvatar.getStyle().gender
         oldShape = localAvatar.getStyle().getBodyShape()
-        if not base.config.GetBool('want-body-prompt-all', 0):
+        if not config.GetBool('want-body-prompt-all', 0):
             if gender == 'f':
                 if oldShape in BodyDefs.BodyChoicesFemale:
                     return None
@@ -2912,7 +2912,7 @@ class GuiManager(FSM.FSM):
 
         self.hideSeaChest()
         if not self.mainMenu:
-            if base.config.GetBool('want-custom-keys', 0):
+            if config.GetBool('want-custom-keys', 0):
                 width = 1.8
             else:
                 width = 1.6
@@ -3004,7 +3004,7 @@ class GuiManager(FSM.FSM):
 
 
     def handleMinimapKeyDown(self):
-        if base.config.GetBool('want-momentary-minimap', 0):
+        if config.GetBool('want-momentary-minimap', 0):
             if self.minimap and self.minimap.allowOnScreen():
                 self.minimap.request('Opaque')
             else:
@@ -3014,7 +3014,7 @@ class GuiManager(FSM.FSM):
 
 
     def handleMinimapKeyUp(self):
-        if base.config.GetBool('want-momentary-minimap', 0):
+        if config.GetBool('want-momentary-minimap', 0):
             if self.minimap:
                 self.minimap.request('Off')
 

@@ -25,7 +25,7 @@ class DistributedCapturePoint(DistributedHolidayObject.DistributedHolidayObject,
     DiskUseColor = (0, 0, 0, 1)
     DiskWaitingColor = (1, 0, 0, 1)
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedCapturePoint')
-    WantHpCheck = base.config.GetBool('want-hp-check', 0)
+    WantHpCheck = config.GetBool('want-hp-check', 0)
 
     def __init__(self, cr):
         NodePath.__init__(self, 'DistributedCapturePoint')

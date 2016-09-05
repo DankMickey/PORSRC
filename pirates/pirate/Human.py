@@ -93,7 +93,7 @@ class Human(HumanBase.HumanBase, Biped.Biped):
         self.crazyColorSkinIndex = 0
         self.flattenPending = None
         self.flattenSuperLowName = None
-        self.optimizeLOD = base.config.GetBool('optimize-avatar-lod', 0)
+        self.optimizeLOD = config.GetBool('optimize-avatar-lod', 0)
         self.loaded = 0
         self.playingRate = None
         self.shadowFileName = 'models/misc/drop_shadow'

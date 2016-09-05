@@ -543,7 +543,7 @@ class Skeleton(Biped.Biped):
 
     def setLODs(self):
         self.setLODNode()
-        avatarDetail = base.config.GetString('avatar-detail', 'high')
+        avatarDetail = config.GetString('avatar-detail', 'high')
         if avatarDetail == 'high':
             dist = [
                 0,

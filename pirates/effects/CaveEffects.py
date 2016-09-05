@@ -39,7 +39,7 @@ class CaveEffects(EnvironmentEffects.EnvironmentEffects):
         non_shader_water_color = Vec4(0.0, 1.0 / 255.0, 4.0 / 255.0, 1.0)
         shader_water_color = Vec4(0.0, 1.0, 4.0, 255.0)
         if self.parent.uniqueId in self.WaterCaves:
-            if base.config.GetBool('want-shaders', 1) and base.win and base.win.getGsg() and base.win.getGsg().getShaderModel() >= GraphicsStateGuardian.SM20:
+            if config.GetBool('want-shaders', 1) and base.win and base.win.getGsg() and base.win.getGsg().getShaderModel() >= GraphicsStateGuardian.SM20:
                 self.water = Swamp('models/caves/cave_a_water', self.parent, reflection, None, None, shader_water_color)
                 self.water.reflection_factor = 0.299
                 self.water.set_reflection_parameters_np()
@@ -57,7 +57,7 @@ class CaveEffects(EnvironmentEffects.EnvironmentEffects):
                 taskMgr.add(self.camTask, 'caveEffectsCamTask-' + str(id(self)), priority = 49)
                 water.setFogOff()
         elif self.parent.uniqueId in self.LavaCaves:
-            if base.config.GetBool('want-shaders', 1) and base.win and base.win.getGsg() and base.win.getGsg().getShaderModel() >= GraphicsStateGuardian.SM20:
+            if config.GetBool('want-shaders', 1) and base.win and base.win.getGsg() and base.win.getGsg().getShaderModel() >= GraphicsStateGuardian.SM20:
                 self.water = Swamp(self.modelPrefix + 'lava', self.parent, reflection, None, None, shader_water_color)
                 l1 = LerpScaleInterval(self.water.seamodel, 2, Vec3(1.006, 1.006, 1.0), Vec3(1.0, 1.0, 1.0), blendType = 'easeInOut')
                 l2 = LerpScaleInterval(self.water.seamodel, 2, Vec3(1.0, 1.0, 1.0), Vec3(1.006, 1.006, 1.0), blendType = 'easeInOut')

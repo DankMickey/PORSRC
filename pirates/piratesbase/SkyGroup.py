@@ -159,7 +159,7 @@ class SkyGroup(NodePath):
         al.setColor(VBase4(1, 1, 1, 1))
         self.ambLight = self.sunLight.attachNewNode(al)
         self.sunModel = loader.loadModel('models/sky/sun')
-        if base.config.GetBool('prepare-scene', 0):
+        if config.GetBool('prepare-scene', 0):
             if base.win.getGsg():
                 self.sunModel.prepareScene(base.win.getGsg())
 

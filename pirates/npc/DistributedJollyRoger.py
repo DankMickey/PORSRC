@@ -300,5 +300,5 @@ class DistributedJollyRoger(DistributedBattleNPC.DistributedBattleNPC, JollyRoge
             taskMgr.doMethodLater(5, self.removeCollisions, self.uniqueName('removeCollisions'))
             self.setClipPlane(base.farCull)
             self.setMonsterNameTag()
-            if base.config.GetBool('want-invasion-npc-minimap', 0):
+            if config.GetBool('want-invasion-npc-minimap', 0):
                 self.destroyMinimapObject()

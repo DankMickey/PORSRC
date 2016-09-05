@@ -85,7 +85,7 @@ class MainMenu(DirectFrame):
         base.localAvatar.guiMgr.toggleMainMenu()
 
     def handleOptions(self):
-        if base.config.GetBool('want-custom-keys', 0):
+        if config.GetBool('want-custom-keys', 0):
             width = 1.8
         else:
             width = 1.60

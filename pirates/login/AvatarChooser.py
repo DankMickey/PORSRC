@@ -107,7 +107,7 @@ class AvatarChooser(DirectObject, StateData):
         if self.isLoaded == 1:
             return
 
-        self.disableOptions = base.config.GetBool('disable-pirates-options', False)
+        self.disableOptions = config.GetBool('disable-pirates-options', False)
         base.musicMgr.load(SoundGlobals.MUSIC_AVATAR_CHOOSER)
         self.model = loader.loadModel('models/gui/avatar_chooser_rope')
         charGui = loader.loadModel('models/gui/char_gui')

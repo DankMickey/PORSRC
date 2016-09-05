@@ -146,7 +146,7 @@ class DistributedQuestGiver(Avatar.Avatar):
     def hasQuestOffers(self):
         AvailableQuests = []
         inventory = localAvatar.getInventory()
-        prereqExcludes = base.config.GetString('exclude-prereq-quests', '')
+        prereqExcludes = config.GetString('exclude-prereq-quests', '')
         for (questId, questDNA) in QuestDB.QuestDict.items():
             if len(prereqExcludes):
                 if questId in prereqExcludes:
@@ -943,7 +943,7 @@ class DistributedQuestGiver(Avatar.Avatar):
             return False
         offerDict = { }
         fromQuests = []
-        prereqExcludes = base.config.GetString('exclude-prereq-quests', '')
+        prereqExcludes = config.GetString('exclude-prereq-quests', '')
         for (questId, questDNA) in QuestDB.QuestDict.items():
             if prereqExcludes and questId in prereqExcludes:
                 continue

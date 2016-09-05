@@ -1769,7 +1769,7 @@ class DistributedSimpleShip(DistributedMovingObject, Teamable, DistributedFlagsh
         if self.shipStatusDisplay or base.cr.tutorial:
             return None
 
-        if base.config.GetBool('want-sea-infamy', 0) and not (self.renownDisplay):
+        if config.GetBool('want-sea-infamy', 0) and not (self.renownDisplay):
             self.renownDisplay = PVPRankGui.PVPRankGui(parent = base.a2dBottomRight, displayType = PVPRankGui.SHIP_RENOWN_DISPLAY)
             self.renownDisplay.reparentTo(base.a2dBottomRight, sort = -1)
 
@@ -2081,7 +2081,7 @@ class DistributedSimpleShip(DistributedMovingObject, Teamable, DistributedFlagsh
         self.cAggroNode.setIntoCollideMask(PiratesGlobals.ShipCollideBitmask)
         self.cAggroNode.addSolid(self.cAggro)
         self.cAggroNodePath = self.attachNewNode(self.cAggroNode)
-        if base.config.GetBool('show-aggro-radius', 0):
+        if config.GetBool('show-aggro-radius', 0):
             self.cAggroNodePath.show()
 
         self.cHighAggro = CollisionSphere(0, 0, 0, self.getInstantAggroSphereSize())
@@ -2417,10 +2417,10 @@ class DistributedSimpleShip(DistributedMovingObject, Teamable, DistributedFlagsh
         badgeText = ''
         threatText = ''
         if self.badge:
-            if base.config.GetBool('want-land-infamy', 0) or base.config.GetBool('want-sea-infamy', 0):
+            if config.GetBool('want-land-infamy', 0) or config.GetBool('want-sea-infamy', 0):
                 badgeText = ' whitebadge-%s-%s ' % (self.badge[0], self.badge[1])
 
-        if base.config.GetBool('want-ship-threat', 1) and not self.getSiegeTeam():
+        if config.GetBool('want-ship-threat', 1) and not self.getSiegeTeam():
             if self.getThreatLevel():
                 threatText = 'whitethreat-%s\n\n' % self.getThreatLevel()
             elif self.getHunterLevel():
@@ -2498,7 +2498,7 @@ class DistributedSimpleShip(DistributedMovingObject, Teamable, DistributedFlagsh
 
 
     def clickedNametag(self):
-        if localAvatar.chatMgr.active and base.config.GetBool('allow-doid-paste', 0):
+        if localAvatar.chatMgr.active and config.GetBool('allow-doid-paste', 0):
             currTxt = localAvatar.chatMgr.whiteListEntry.get()
             currTxtLen = len(currTxt)
             if currTxtLen and currTxt[currTxtLen - 1] != ' ':
@@ -4011,7 +4011,7 @@ class DistributedSimpleShip(DistributedMovingObject, Teamable, DistributedFlagsh
 
         self.stopDistanceChecks()
         checkDistances()
-        self.shipDistanceCheck = taskMgr.doMethodLater(base.config.GetInt('ship-dist-delay', 5), checkDistances, self.uniqueName('shipDistanceCheck'))
+        self.shipDistanceCheck = taskMgr.doMethodLater(config.GetInt('ship-dist-delay', 5), checkDistances, self.uniqueName('shipDistanceCheck'))
 
 
     def stopDistanceChecks(self):

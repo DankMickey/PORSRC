@@ -79,7 +79,7 @@ class DefenseCannonballProjectile(CannonballProjectile):
         self.scaleIval = None
         maxGlowScale = 8
         minGlowScale = 7
-        if not base.config.GetBool('want-special-effects', 0):
+        if not config.GetBool('want-special-effects', 0):
             cannonball = loader.loadModel('models/ammunition/cannonball')
         elif self.ammoSkillId == InventoryType.DefenseCannonRoundShot:
             cannonball = loader.loadModel('models/ammunition/cannonball')

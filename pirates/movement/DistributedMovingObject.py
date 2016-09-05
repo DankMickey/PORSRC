@@ -40,7 +40,7 @@ class DistributedMovingObject(DistributedSmoothNode.DistributedSmoothNode, Distr
     def generate(self):
         DistributedSmoothNode.DistributedSmoothNode.generate(self)
         DistributedTargetableObject.DistributedTargetableObject.generate(self)
-        if base.config.GetBool('create-client-coll-spheres', 0) is 1:
+        if config.GetBool('create-client-coll-spheres', 0) is 1:
             self.setupDebugCollisions()
 
 
@@ -54,7 +54,7 @@ class DistributedMovingObject(DistributedSmoothNode.DistributedSmoothNode, Distr
         self.stopSmooth()
         DistributedSmoothNode.DistributedSmoothNode.disable(self)
         DistributedTargetableObject.DistributedTargetableObject.disable(self)
-        if base.config.GetBool('create-client-coll-spheres', 0) is 1:
+        if config.GetBool('create-client-coll-spheres', 0) is 1:
             self.cleanupDebugcollisions()
 
         base.cr.handleObjDelete(self)
@@ -98,7 +98,7 @@ class DistributedMovingObject(DistributedSmoothNode.DistributedSmoothNode, Distr
 
 
     def showDebugName(self):
-        if __debug__ and base.config.GetBool('move-obj-nametags', 0) is 1:
+        if __debug__ and config.GetBool('move-obj-nametags', 0) is 1:
             if self.debugNameNP:
                 self.debugNameNP.remove_node()
             else:

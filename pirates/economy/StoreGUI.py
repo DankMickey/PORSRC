@@ -336,7 +336,7 @@ class StoreGUI(DirectFrame):
     def createTabs(self):
         for item in self.inventory:
             if item == InventoryType.ShipRepairKit:
-                if not base.config.GetBool('want-privateering', 0):
+                if not config.GetBool('want-privateering', 0):
                     continue
 
 

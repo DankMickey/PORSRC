@@ -28,7 +28,7 @@ class PVPPanel(BorderFrame.BorderFrame):
         self.list.reparentTo(self)
         self.list.setPos(0.00500, 0.200, 0.0 - len(holder.getItemList()) * 0.050000)
         self.renownDisplay = None
-        if base.config.GetBool('want-land-infamy', 0) and not (self.renownDisplay):
+        if config.GetBool('want-land-infamy', 0) and not (self.renownDisplay):
             self.renownDisplay = PVPRankGui.PVPRankGui(parent = base.a2dBottomRight, displayType = PVPRankGui.LAND_RENOWN_DISPLAY)
             self.renownDisplay.setPos(0.0, 0.0, 0.0)
 

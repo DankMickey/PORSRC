@@ -72,13 +72,13 @@ from pirates.shader.Hdr import *
 hdr = Hdr()
 from pirates.seapatch.Reflection import Reflection
 Reflection.initialize(render)
-serverVersion = base.config.GetString('server-version', 'no_version_set')
+serverVersion = config.GetString('server-version', 'no_version_set')
 
 from pirates.distributed import PiratesClientRepository
 cr = PiratesClientRepository.PiratesClientRepository(serverVersion, launcher)
 base.initNametagGlobals()
 base.startShow(cr)
-if base.config.GetBool('want-portal-cull', 0):
+if config.GetBool('want-portal-cull', 0):
     base.cam.node().setCullCenter(base.camera)
     base.graphicsEngine.setPortalCull(1)
 

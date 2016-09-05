@@ -12,7 +12,7 @@ from pirates.effects.AttuneSmoke import AttuneSmoke
 from pirates.inventory import ItemGlobals
 
 class DistributedTargetableObject(DistributedNode.DistributedNode):
-    NoPain = base.config.GetBool('no-pain', 0)
+    NoPain = config.GetBool('no-pain', 0)
 
     def __init__(self, cr):
         DistributedNode.DistributedNode.__init__(self, cr)

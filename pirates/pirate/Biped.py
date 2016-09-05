@@ -259,7 +259,7 @@ class Biped(UsesAnimationMixer, Avatar, UsesEffectNode):
     animInfo = { }
 
     def __init__(self, other = None, animationMixerClass = BipedAnimationMixer):
-        self.wantZombie = base.config.GetBool('want-zombie', 0)
+        self.wantZombie = config.GetBool('want-zombie', 0)
         Avatar.__init__(self, other)
         UsesAnimationMixer.__init__(self, animationMixerClass)
         UsesEffectNode.__init__(self)

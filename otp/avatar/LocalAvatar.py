@@ -29,13 +29,13 @@ from otp.ai.MagicWordManager import MagicWordManager
 
 class LocalAvatar(DistributedAvatar.DistributedAvatar, DistributedSmoothNode.DistributedSmoothNode):
     notify = DirectNotifyGlobal.directNotify.newCategory('LocalAvatar')
-    wantDevCameraPositions = base.config.GetBool('want-dev-camera-positions', 0)
-    wantMouse = base.config.GetBool('want-mouse', 0)
-    sleepTimeout = base.config.GetInt('sleep-timeout', 120)
-    swimTimeout = base.config.GetInt('afk-timeout', 600)
-    __enableMarkerPlacement = base.config.GetBool('place-markers', 0)
-    acceptingNewFriends = base.config.GetBool('accepting-new-friends', 1)
-    acceptingNonFriendWhispers = base.config.GetBool('accepting-non-friend-whispers', 0)
+    wantDevCameraPositions = config.GetBool('want-dev-camera-positions', 0)
+    wantMouse = config.GetBool('want-mouse', 0)
+    sleepTimeout = config.GetInt('sleep-timeout', 120)
+    swimTimeout = config.GetInt('afk-timeout', 600)
+    __enableMarkerPlacement = config.GetBool('place-markers', 0)
+    acceptingNewFriends = config.GetBool('accepting-new-friends', 1)
+    acceptingNonFriendWhispers = config.GetBool('accepting-non-friend-whispers', 0)
 
     def __init__(self, cr, chatMgr, talkAssistant = None, passMessagesThrough = False):
         try:
@@ -1256,7 +1256,7 @@ class LocalAvatar(DistributedAvatar.DistributedAvatar, DistributedSmoothNode.Dis
         from pirates.cutscene import Cutscene, CutsceneData
         name = None
         if csId is None:
-            csId = base.config.GetString('default-cutscene', '0')
+            csId = config.GetString('default-cutscene', '0')
         if int(csId) >= len(CutsceneData.CutsceneNames):
             return None
 

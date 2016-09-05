@@ -337,7 +337,7 @@ class BodyGUI(DirectFrame, StateData.StateData):
         self.main.pirate.generateSkinTexture()
         if not (self.main.isNPCEditor) and not (self.main.wantNPCViewer):
             self.main.pirate.loop('idle')
-            if base.config.GetBool('want-idle-centered', 0):
+            if config.GetBool('want-idle-centered', 0):
                 self.main.pirate.loop('idle_centered')
 
         else:

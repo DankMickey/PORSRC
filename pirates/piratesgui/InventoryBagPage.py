@@ -340,7 +340,7 @@ class InventoryBagPage(InventoryPage.InventoryPage):
 
     def showRedeemCodeGUI(self):
         if localAvatar.getTutorialState() < PiratesGlobals.TUT_MET_JOLLY_ROGER:
-            if base.config.GetBool("want-early-coderedemption", 0):
+            if config.GetBool("want-early-coderedemption", 0):
                 pass
             else:
                 localAvatar.guiMgr.createWarning(PLocalizer.CannotRedeemYet, PiratesGuiGlobals.TextFG6, duration = 8.0)

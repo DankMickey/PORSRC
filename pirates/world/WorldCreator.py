@@ -199,7 +199,7 @@ class WorldCreator(WorldCreatorBase.WorldCreatorBase, DirectObject.DirectObject)
 
         if dynamic:
             objectCat = self.findObjectCategory(objType)
-            if objType == 'Jack Sparrow Standin' and base.config.GetBool('want-npcs', 0) is 1:
+            if objType == 'Jack Sparrow Standin' and config.GetBool('want-npcs', 0) is 1:
                 newObj = self.createJackSparrowStandin(object, objKey, objParent)
             elif objectCat == 'PROP_OBJ' or objectCat == 'BUILDING_OBJ':
                 if objType == 'Light - Dynamic':

@@ -9,7 +9,7 @@ from pirates.piratesbase import PiratesGlobals
 from otp.otpbase import OTPRender
 from pirates.seapatch.Reflection import Reflection
 from pirates.seapatch.Water import Water
-if base.config.GetBool('want-water-panel', False):
+if config.GetBool('want-water-panel', False):
     from pirates.seapatch.WaterPanel import *
 
 
@@ -125,7 +125,7 @@ class Swamp(Water):
             shader_file_path = 'models/swamps/swamp002_2X.cg'
         else:
             shader_file_path = input_shader_file_path
-        if base.config.GetBool('want-shaders', 0) and base.win and base.win.getGsg() and base.win.getGsg().getShaderModel() >= GraphicsStateGuardian.SM20:
+        if config.GetBool('want-shaders', 0) and base.win and base.win.getGsg() and base.win.getGsg().getShaderModel() >= GraphicsStateGuardian.SM20:
             self.shader = loader.loadShader(shader_file_path)
             if self.shader != None:
                 self.seamodel.setShader(self.shader)

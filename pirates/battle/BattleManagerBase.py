@@ -584,7 +584,7 @@ class BattleManagerBase:
 
         if attacker and skillId == InventoryType.UsePotion:
             if self.__class__.__name__ == 'BattleManagerAI':
-                if simbase.config.GetBool('want-potion-game', 0):
+                if config.GetBool('want-potion-game', 0):
                     taskMgr.doMethodLater(1.0, self.addPotionBuff, 'addPotionBuff%i%i' % (attacker.doId, buffId), extraArgs = [
                         buffId,
                         attacker])

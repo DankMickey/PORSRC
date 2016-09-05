@@ -26,7 +26,7 @@ class SeaPatch(Water):
 
         self.p3 = Point3()
         self.parentNP = parentNP
-        self.followWater = base.config.GetBool('ships-follow-water', 1)
+        self.followWater = config.GetBool('ships-follow-water', 1)
         self.damper = 0.2 * 180.0 / math.pi
         self.floats = { }
         self.floatmasses = { }
@@ -45,7 +45,7 @@ class SeaPatch(Water):
         self.patchNP.setTwoSided(True)
         self.patchNP.hide()
         shader_file_path = None
-        if base.config.GetBool('want-shaders', 1) and base.win and base.win.getGsg() and base.win.getGsg().getShaderModel() >= GraphicsStateGuardian.SM20:
+        if config.GetBool('want-shaders', 1) and base.win and base.win.getGsg() and base.win.getGsg().getShaderModel() >= GraphicsStateGuardian.SM20:
             patchNode.setWantColor(0)
             shader_directory = 'models/sea/'
             shader_file_name_array = [

@@ -1139,7 +1139,7 @@ class FishingGame(DirectObject.DirectObject):
         todMgr = base.cr.timeOfDayManager
         fromState = todMgr.lastState
         toState = todMgr.currentState
-        if base.config.GetBool('want-shaders', 0) and base.win and base.win.getGsg():
+        if config.GetBool('want-shaders', 0) and base.win and base.win.getGsg():
             pass
         usesShader = base.win.getGsg().getShaderModel() >= GraphicsStateGuardian.SM20
         if usesShader and self.distributedFishingSpot.onABoat:

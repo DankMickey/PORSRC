@@ -312,7 +312,7 @@ class LoadingScreen(DirectObject.DirectObject):
         self.ignoreAll()
 
     def showTitleFrame(self):
-        if base.config.GetBool('no-loading-screen', 0):
+        if config.GetBool('no-loading-screen', 0):
             return None
 
         for part in self.title_art:
@@ -323,7 +323,7 @@ class LoadingScreen(DirectObject.DirectObject):
             part.hide()
 
     def show(self, waitForLocation = False, disableSfx = True, expectedLoadScale = 1.0):
-        if self.state or base.config.GetBool('no-loading-screen', 0):
+        if self.state or config.GetBool('no-loading-screen', 0):
             return None
 
         self.startLoading()
@@ -380,7 +380,7 @@ class LoadingScreen(DirectObject.DirectObject):
                 index += 1
 
     def showHint(self, destId = None, ocean = False):
-        if base.config.GetBool('no-loading-screen', 0):
+        if config.GetBool('no-loading-screen', 0):
             return None
 
         if ocean:
@@ -469,12 +469,12 @@ class LoadingScreen(DirectObject.DirectObject):
         messenger.send('texture_state_changed')
 
     def showTarget(self, targetId = None, ocean = False, jail = False, pickapirate = False, exit = False, potionCrafting = False, benchRepair = False, shipRepair = False, cannonDefense = False):
-        if base.config.GetBool('no-loading-screen', 0):
+        if config.GetBool('no-loading-screen', 0):
             return None
 
         if pickapirate:
             screenshot = screenShot_EnterGame
-            serverVersionText = base.config.GetString('server-version', 'no_version_set')
+            serverVersionText = config.GetString('server-version', 'no_version_set')
             self._LoadingScreen__setHintText(serverVersionText)
         elif exit:
             screenshot = screenShot_ExitGame
@@ -524,7 +524,6 @@ class LoadingScreen(DirectObject.DirectObject):
             targetName = PLocalizer.LoadingScreen_Jail
         else:
             targetName = PLocalizer.LocationNames.get(targetId)
-        base.setLocationCode('Loading: %s' % targetName)
         if targetName is None:
             return None
 

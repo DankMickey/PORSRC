@@ -223,7 +223,7 @@ class DynamicHuman(HumanBase.HumanBase, Biped.Biped):
         self.crazyColorSkinIndex = 0
         self.flattenPending = None
         if __dev__:
-            self.optimizeLOD = base.config.GetBool('optimize-avatar-lod', 1)
+            self.optimizeLOD = config.GetBool('optimize-avatar-lod', 1)
         else:
             self.optimizeLOD = 0
         self.master = 0
@@ -605,7 +605,7 @@ class DynamicHuman(HumanBase.HumanBase, Biped.Biped):
 
     def setLODs(self):
         self.setLODNode()
-        avatarDetail = base.config.GetString('avatar-detail', 'high')
+        avatarDetail = config.GetString('avatar-detail', 'high')
         if avatarDetail == 'high':
             dist = [
                 0,
@@ -683,7 +683,7 @@ class DynamicHuman(HumanBase.HumanBase, Biped.Biped):
             else:
                 pirate.model = PirateMale.PirateMale(pirate, pirate.style)
                 self.pirateMale = PirateMale.PirateMale(pirate, pirate.style)
-            if base.config.GetBool('debug-dynamic-human', 0):
+            if config.GetBool('debug-dynamic-human', 0):
                 pirate.model.newAvatars = True
             else:
                 pirate.model.newAvatars = False

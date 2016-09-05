@@ -272,7 +272,7 @@ class QuestPage(InventoryPage.InventoryPage):
     def addTreasureMapButtons(self, tm, buttonOffset):
         self.removeTreasureMapButtons()
         helpPos = (-0.260, 0, 0.0950)
-        if __debug__ and base.config.GetBool('enable-bp-solo', False):
+        if __debug__ and config.GetBool('enable-bp-solo', False):
             self.tmButtonQuick = GuiButton.GuiButton(parent = self, text = PLocalizer.PlayTMNow, text_align = TextNode.ACenter, text_scale = PiratesGuiGlobals.TextScaleLarge, text_pos = (0.0, -0.01), text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 40, image_scale = (0.450, 1, 0.239), command = self.startTreasureMap, extraArgs = [
                 tm], pos = (0.299, 0, buttonOffset), helpText = PLocalizer.PlayTMNowHelp, helpPos = helpPos)
             searchPos = (0.775, 0, buttonOffset)
@@ -323,7 +323,7 @@ class QuestPage(InventoryPage.InventoryPage):
 
 
     def startTreasureMap(self, tm, quick = True):
-        if tm.getIsEnabled() or base.config.GetBool('black-pearl-ready', 0):
+        if tm.getIsEnabled() or config.GetBool('black-pearl-ready', 0):
             DistributedBandMember = DistributedBandMember
             import pirates.band.DistributedBandMember
             if not DistributedBandMember.getBandMember(localAvatar.doId) and quick == False:

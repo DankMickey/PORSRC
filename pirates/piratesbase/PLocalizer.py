@@ -6,8 +6,8 @@ try:
     language = getConfigExpress().GetString('language', 'english')
     checkLanguage = getConfigExpress().GetBool('check-language', -0)
 except:
-    language = simbase.config.GetString('language', 'english')
-    checkLanguage = simbase.config.GetBool('check-language', 0)
+    language = simconfig.GetString('language', 'english')
+    checkLanguage = simconfig.GetBool('check-language', 0)
 
 
 def getLanguage():

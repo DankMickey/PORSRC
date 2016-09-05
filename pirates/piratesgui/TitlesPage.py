@@ -313,9 +313,9 @@ class TitlesPage(InventoryPage.InventoryPage):
 
 
     def shouldShowTitle(self, titleId):
-        if titleId == TitleGlobals.ShipPVPTitle and not base.config.GetBool('want-sea-infamy', 0):
+        if titleId == TitleGlobals.ShipPVPTitle and not config.GetBool('want-sea-infamy', 0):
             return 0
-        elif titleId == TitleGlobals.LandPVPTitle and not base.config.GetBool('want-land-infamy', 0):
+        elif titleId == TitleGlobals.LandPVPTitle and not config.GetBool('want-land-infamy', 0):
             return 0
 
         return 1

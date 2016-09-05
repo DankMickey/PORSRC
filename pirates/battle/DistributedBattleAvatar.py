@@ -99,7 +99,7 @@ from pirates.effects.FlashEffect import FlashEffect
 from pirates.effects.PulseEffect import PulseEffect
 from pirates.effects.GhostGlowShadow import GhostGlowShadow
 from pirates.effects.ProtectionDome import ProtectionDome
-if base.config.GetBool('want-pstats', 0):
+if config.GetBool('want-pstats', 0):
     import profile
     import pstats
 
@@ -109,9 +109,9 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
     DiskWaitingColor = (1, 0, 0, 1)
     ManagesNametagAmbientLightChanged = False
     notify = directNotify.newCategory('DistributedBattleAvatar')
-    PlayersInvulnerable = base.config.GetBool('players-invulnerable', 0)
-    ShowUnderstandable = base.config.GetBool('show-understandable', 0)
-    WantHpCheck = base.config.GetBool('want-hp-check', 0)
+    PlayersInvulnerable = config.GetBool('players-invulnerable', 0)
+    ShowUnderstandable = config.GetBool('show-understandable', 0)
+    WantHpCheck = config.GetBool('want-hp-check', 0)
 
     def __init__(self, cr):
         DistributedReputationAvatar.__init__(self, cr)
@@ -238,7 +238,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
         self.monkeyPanic = None
         self.potionStatusEffectManager = None
         self.trackStats = 0
-        if base.config.GetBool('want-pstats', 0):
+        if config.GetBool('want-pstats', 0):
             self.trackStats = 1
             if not hasattr(base, 'visList'):
                 base.visList = []
@@ -2421,7 +2421,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
             self._addMissileShieldEffect(attackerId, timeLeft)
         elif effectId == WeaponGlobals.C_MAGIC_SHIELD:
             self._addMagicShieldEffect(attackerId, timeLeft)
-        elif base.config.GetBool('want-potion-game', 0) and PotionGlobals.getIsPotionBuff(effectId):
+        elif config.GetBool('want-potion-game', 0) and PotionGlobals.getIsPotionBuff(effectId):
             if not self.potionStatusEffectManager:
                 self.enablePotionFx()
 
@@ -2511,7 +2511,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
             WeaponGlobals.C_MISSILE_SHIELD,
             WeaponGlobals.C_MAGIC_SHIELD]:
             self._removeGhostGuardEffect()
-        elif base.config.GetBool('want-potion-game', 0) and PotionGlobals.getIsPotionBuff(effectId):
+        elif config.GetBool('want-potion-game', 0) and PotionGlobals.getIsPotionBuff(effectId):
             if not self.potionStatusEffectManager:
                 self.enablePotionFx()
 
@@ -3882,13 +3882,13 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
 
 
     def enablePotionFx(self):
-        if base.config.GetBool('want-potion-game', 0):
+        if config.GetBool('want-potion-game', 0):
             self.potionStatusEffectManager = PotionStatusEffectManager(self)
 
 
 
     def disablePotionFx(self):
-        if base.config.GetBool('want-potion-game', 0):
+        if config.GetBool('want-potion-game', 0):
             self.potionStatusEffectManager.disable()
             self.potionStatusEffectManager = None
 

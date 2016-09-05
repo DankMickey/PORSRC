@@ -23,10 +23,10 @@ class ChatInputWhiteList(FSM.FSM, DirectEntry):
         if __dev__:
             wantHistory = 1
 
-        self.wantHistory = base.config.GetBool('want-chat-history', wantHistory)
+        self.wantHistory = config.GetBool('want-chat-history', wantHistory)
         self.history = [
             '']
-        self.historySize = base.config.GetInt('chat-history-size', 10)
+        self.historySize = config.GetInt('chat-history-size', 10)
         self.historyIndex = 0
         self.active = 0
         self.autoOff = 0

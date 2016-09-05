@@ -18,12 +18,12 @@ class Water(DirectObject):
         try:
             self.reflect_show_through_only = base.options.reflection == 1
         except:
-            self.reflect_show_through_only = base.config.GetBool('want-water-reflection-show-through-only', False)
+            self.reflect_show_through_only = config.GetBool('want-water-reflection-show-through-only', False)
 
-        self.enable_debug_keys = base.config.GetBool('want-water-debug-keys', False)
-        self.enable_parameter_keys = base.config.GetBool('want-water-parameter-ui', False)
-        self.enable_water_panel = base.config.GetBool('want-water-panel', False)
-        if base.config.GetBool('want-water-alpha', True) and base.win and base.win.getGsg():
+        self.enable_debug_keys = config.GetBool('want-water-debug-keys', False)
+        self.enable_parameter_keys = config.GetBool('want-water-parameter-ui', False)
+        self.enable_water_panel = config.GetBool('want-water-panel', False)
+        if config.GetBool('want-water-alpha', True) and base.win and base.win.getGsg():
             self.use_alpha_map = base.win.getGsg().getSupportsBasicShaders()
         self.enable_animate_uv = True
         self.enable_ui = True
@@ -90,7 +90,7 @@ class Water(DirectObject):
         self.seamodel.setTexture(self.color_map_texture_stage, self.water_color_texture)
 
     def reflection_enabled(self):
-        return base.config.GetBool('want-water-reflection', True)
+        return config.GetBool('want-water-reflection', True)
 
     def delete_water(self):
         if self.enable_ui and self.enable_parameter_keys:

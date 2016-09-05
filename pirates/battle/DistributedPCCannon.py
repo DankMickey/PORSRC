@@ -455,7 +455,7 @@ class DistributedPCCannon(DistributedWeapon.DistributedWeapon):
             self.sendRequestProjectileSkill(self.skillId, self.getAmmoSkillId(), posHpr, charge, timestamp)
             self.prop.playAttack(self.skillId, self.getAmmoSkillId(), self.projectileHitEvent, buffs = localAvatar.getSkillEffects(), shotNum = self.shotNum)
             self.setVolley(self.volley - 1)
-            if not WeaponGlobals.isInfiniteAmmo(self.getAmmoSkillId()) and not base.config.GetBool('infinite-ammo', 0) and not WeaponGlobals.canUseInfiniteAmmo(localAvatar.getCurrentCharm(), self.getAmmoSkillId()):
+            if not WeaponGlobals.isInfiniteAmmo(self.getAmmoSkillId()) and not config.GetBool('infinite-ammo', 0) and not WeaponGlobals.canUseInfiniteAmmo(localAvatar.getCurrentCharm(), self.getAmmoSkillId()):
                 inv = base.localAvatar.getInventory()
                 ammoInvId = WeaponGlobals.getSkillAmmoInventoryId(self.getAmmoSkillId())
                 maxShots = inv.getStackLimit(ammoInvId)
@@ -511,7 +511,7 @@ class DistributedPCCannon(DistributedWeapon.DistributedWeapon):
         self.prop.pivot.setP(p)
         self.prop.hNode.setP(0)
         self.prop.playAttack(skillId, ammoSkillId, self.projectileHitEvent, targetPos, buffs = buffs, timestamp = timestamp)
-        if __dev__ and base.config.GetBool('show-ai-cannon-targets', 0):
+        if __dev__ and config.GetBool('show-ai-cannon-targets', 0):
             self.tracker.setPos(render, targetPos)
 
 

@@ -236,7 +236,7 @@ class MasterHuman(HumanBase.HumanBase, Biped.Biped):
         self.crazyColorSkinIndex = 0
 
         self.flattenPending = None
-        self.optimizeLOD = base.config.GetBool('optimize-avatar-lod', 1)
+        self.optimizeLOD = config.GetBool('optimize-avatar-lod', 1)
 
         self.master = 0
         self.loaded = 0
@@ -589,7 +589,7 @@ class MasterHuman(HumanBase.HumanBase, Biped.Biped):
 
     def setLODs(self):
         self.setLODNode()
-        avatarDetail = base.config.GetString('avatar-detail', 'high')
+        avatarDetail = config.GetString('avatar-detail', 'high')
         if avatarDetail == 'high':
             dist = [0, 20, 80, 280]
         elif avatarDetail == 'med':
