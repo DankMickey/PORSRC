@@ -9,11 +9,11 @@ else
     cd ..
 fi
 
-read -p "Username: " LOGIN_COOKIE
-read -p "Gameserver: " LOGIN_SERVER
+#read -p "Username: " LOGIN_COOKIE
+#read -p "Gameserver: " LOGIN_SERVER
 
-export POR_PLAYCOOKIE=$LOGIN_COOKIE
-export POR_GAMESERVER=$LOGIN_SERVER
+export POR_PLAYCOOKIE=cj
+export POR_GAMESERVER=104.251.215.54
 
 echo "=============================="
 echo "Starting Pirates Online..."
