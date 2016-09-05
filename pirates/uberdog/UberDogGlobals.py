@@ -1695,8 +1695,39 @@ class InventoryId:
 def receiveSwitchField(field, itemInit = tuple):
     return map(itemInit, field)
 
-def prepareSwitchField(field):
+def prepareSwitchField(field,*self):
+
+
     def formatItem(x):
-        loc = x.getLocation()
-        return (x.getCat(), x.getId(), loc if loc is not None else 0, x.getUpgrades(), x.getColor(), x.getCount(1))
+        global cat,id,loc,upgrades,color,count
+
+
+        if self:
+            from pirates.uberdog.TradableInventoryBase import InvItem,TradableInventoryBase
+
+           # item = InvItem(self)
+            idx = TradableInventoryBase.ITEM_LOCATION_IDX
+
+            try:
+                item = InvItem(self[:idx] + (3,) + self[idx + 1:])
+                loc = item.getLocation()
+                cat = item.getCat()
+                id = item.getId()
+                upgrades = item.getUpgrades()
+                color = item.getColor()
+                count = item.getCount(1)
+
+                print "Xtype" + str(type(item)) + " " + str(item);
+            except:
+                print "mmmm InvItem generated an error";
+        else:
+            loc = x.getLocation()
+            cat = x.getCat()
+            id = x.getId()
+            upgrades = x.getUpgrades()
+            color = x.getColor()
+            count = x.getCount(1)
+            print "Xtype"+ str(type(x)) + " " +str(x);
+
+        return (cat, id, loc, upgrades, color, count)
     return map(formatItem, field)

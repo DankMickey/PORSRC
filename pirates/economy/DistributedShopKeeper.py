@@ -411,12 +411,15 @@ class DistributedShopKeeper(DistributedObject):
 
     def sendRequestMakeShipSale(self, buying = [], selling = [], names = []):
         self.storeMenuGUI.hide()
-        theBuying = prepareSwitchField(buying)
-        theSelling = prepareSwitchField(selling)
+        theBuying = prepareSwitchField(buying,self)
+        theSelling = prepareSwitchField(selling,self)
+
+        print "~~~~Sending :" + str(theBuying)  + " -buying: " + str(buying) + " - names; - " + str(names);
         self.sendUpdate('requestMakeShipSale', [
             theBuying,
             theSelling,
             names])
+        print "~~~~Update Sent!"
         self.finishShopping()
 
 
