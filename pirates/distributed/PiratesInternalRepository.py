@@ -10,7 +10,7 @@ import urlparse, pymongo, traceback, sys
 
 class PiratesInternalRepository(AstronInternalRepository):
     GameGlobalsId = OTP_DO_ID_PIRATES
-    dbId = 4003
+    dbId = 1101
 
     def __init__(self, baseChannel, serverId=None, dcFileNames=None,
                  dcSuffix='AI', connectMethod=None, threadedNet=None):
@@ -120,3 +120,9 @@ class PiratesInternalRepository(AstronInternalRepository):
             sys.exc_clear()
 
         return 1
+    
+    def getObjectsOfExactClass(self, objClass):
+        return {doId: do for doId, do in self.doId2do.items() if do.__class__ == objClass}
+    
+    def getObjectsOfClass(self, objClass):
+        return {doId: do for doId, do in self.doId2do.items() if isinstance(do, objClass)}

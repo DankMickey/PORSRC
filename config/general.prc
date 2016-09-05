@@ -36,8 +36,6 @@ want-chat-history #t
 want-emotes 1
 want-sliding-chat #t
 want-whitelist #t
-white-list-check-before-send #f
-whitelist-chat-enabled #f
 
 # COMPASS/MAP
 want-compass-task #t
@@ -109,8 +107,9 @@ text-default-font models/fonts/BardiT_outline.bam
 default-model-extension .bam
 
 # SERVER SETTINGS
-server-port 7969
-eventlog-host localhost:8190
+server-port 29150
+eventlog-host localhost:29160
+air-connect localhost:29170
 
 # TIME AND SKY
 enable-sky #t

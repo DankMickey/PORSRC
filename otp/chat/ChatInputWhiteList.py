@@ -28,7 +28,6 @@ class ChatInputWhiteList(FSM.FSM, DirectEntry):
             '']
         self.historySize = base.config.GetInt('chat-history-size', 10)
         self.historyIndex = 0
-        self.whiteList = None
         self.active = 0
         self.autoOff = 0
         self.alwaysSubmit = False
@@ -159,7 +158,7 @@ class ChatInputWhiteList(FSM.FSM, DirectEntry):
             return Task.done
 
         taskMgr.doMethodLater(0.1, resetFrameColor, 'resetFrameColor')
-        self.applyFilter(keyArgs = None, strict = False)
+        self.applyFilter(keyArgs = None)
         self.guiItem.setAcceptEnabled(True)
 
     def chatOverflow(self, overflowText):
@@ -182,36 +181,6 @@ class ChatInputWhiteList(FSM.FSM, DirectEntry):
         self.historyIndex %= len(self.history)
         self.setCursorPosition(len(self.get()))
 
-    def applyFilter(self, keyArgs, strict = False):
-        text = self.get(plain = True)
-        if len(text) > 0:
-            if text[0] == '/':
-                self.guiItem.setAcceptEnabled(True)
-                return None
-            elif text[0] == '~' and base.cr.wantMagicWords:
-                self.guiItem.setAcceptEnabled(True)
-                return None
-
-        words = text.split(' ')
-        newwords = []
-        self.notify.debug('%s' % words)
-        okayToSubmit = True
-        for word in words:
-            if word == '' or self.whiteList.isWord(word):
-                newwords.append(word)
-                continue
-            okayToSubmit = False
-            newwords.append('\x01WLEnter\x01' + word + '\x02')
-
-        if not strict:
-            lastword = words[-1]
-            if lastword == '' or self.whiteList.isPrefix(lastword):
-                newwords[-1] = lastword
-            else:
-                newwords[-1] = '\x01WLEnter\x01' + lastword + '\x02'
-
-        if not okayToSubmit:
-            pass
-        self.guiItem.setAcceptEnabled(self.alwaysSubmit)
-        newtext = ' '.join(newwords)
-        self.set(newtext)
+    def applyFilter(self, keyArgs):
+        if base.whiteList:
+            self.set(base.whiteList.processThroughAll(self.get(plain=True)))

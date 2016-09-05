@@ -389,14 +389,6 @@ class LoginAccountFSM(CSMOperation):
         datagram.addChannel(self.csm.GetAccountConnectionChannel(self.accountId))
         self.csm.air.send(datagram)
 
-        # Add this connection to extra channels which may be useful:
-        if self.accessLevel > 100:
-            datagram = PyDatagram()
-            datagram.addServerHeader(self.target, self.csm.air.ourChannel,
-                                     CLIENTAGENT_OPEN_CHANNEL)
-            datagram.addChannel(OtpDoGlobals.OTP_STAFF_CHANNEL)
-            self.csm.air.send(datagram)
-
         # Now set their sender channel to represent their account affiliation:
         datagram = PyDatagram()
         datagram.addServerHeader(

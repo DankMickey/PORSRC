@@ -41,7 +41,6 @@ class PiratesUberRepository(PiratesInternalRepository):
         self.matchMaker = self.generateGlobalObject(OTP_DO_ID_PIRATES_MATCH_MAKER, 'DistributedMatchMaker')
         self.guildManager = self.generateGlobalObject(OTP_DO_ID_PIRATES_GUILD_MANAGER, 'DistributedGuildManager')
         self.travelAgent = self.generateGlobalObject(OTP_DO_ID_PIRATES_TRAVEL_AGENT, 'DistributedTravelAgent')
-        self.chatAgent = self.generateGlobalObject(OTP_DO_ID_CHAT_MANAGER,'ChatAgent')
         self.crewMatchManager = self.generateGlobalObject(OTP_DO_ID_PIRATES_CREW_MATCH_MANAGER, 'DistributedCrewMatchManager')
 
     def _isValidPlayerLocation(self, parentId, zoneId):

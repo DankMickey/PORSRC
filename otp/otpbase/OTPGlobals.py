@@ -348,3 +348,14 @@ WhisperIncomingEvent = 'whisperIncomingEvent'
 AvatarPendingCreate = -1
 AvatarSlotUnavailable = -2
 AvatarSlotAvailable = -3
+
+from otp.ai.MagicWordGlobal import *
+
+CHAT_CHANNELS = {
+ 0: 0,
+ 1: MINIMUM_MAGICWORD_ACCESS
+}
+CHAT_CHANNEL_COLORS = {
+ 0: (1, 1, 1, 1),
+ 1: (1, 1, 0, 1)
+}

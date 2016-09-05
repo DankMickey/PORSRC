@@ -143,28 +143,12 @@ class Avatar(Actor, ShadowCaster):
         if hasattr(base, 'localAvatar') and self == base.localAvatar:
             self.understandable = 1
             self.setPlayerType(NametagGroup.CCFreeChat)
-        elif self.playerType == NametagGroup.CCSuit:
-            self.understandable = 1
-            self.setPlayerType(NametagGroup.CCSuit)
         elif self.playerType not in (NametagGroup.CCNormal, NametagGroup.CCFreeChat, NametagGroup.CCSpeedChat):
             self.understandable = 1
             self.setPlayerType(NametagGroup.CCNoChat)
-        elif hasattr(base, 'localAvatar') and self.commonChatFlags & base.localAvatar.commonChatFlags & OTPGlobals.CommonChat:
-            self.understandable = 1
-            self.setPlayerType(NametagGroup.CCFreeChat)
-        elif self.commonChatFlags & OTPGlobals.SuperChat:
-            self.understandable = 1
-            self.setPlayerType(NametagGroup.CCFreeChat)
-        elif hasattr(base, 'localAvatar') and base.localAvatar.commonChatFlags & OTPGlobals.SuperChat:
-            self.understandable = 1
-            self.setPlayerType(NametagGroup.CCFreeChat)
-        elif base.cr.getFriendFlags(self.doId) & OTPGlobals.FriendChat:
-            self.understandable = 1
-            self.setPlayerType(NametagGroup.CCFreeChat)
-        elif hasattr(base, 'localAvatar') and self.whitelistChatFlags & base.localAvatar.whitelistChatFlags:
-            self.understandable = 1
         else:
-            self.understandable = 0
+            self.understandable = 1
+            self.setPlayerType(NametagGroup.CCSpeedChat)
         if not hasattr(self, 'nametag'):
             self.notify.warning('no nametag attributed, but would have been used')
         else:

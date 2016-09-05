@@ -1,6 +1,4 @@
-from otp.chat.WhiteList import WhiteList
-
-WhitelistData = '''
+WHITELIST = '''
 0
 1
 2
@@ -29008,8 +29006,3 @@ zyyk
 zzz
 zzzzzs
 '''.split('\n')
-
-class PWhiteList(WhiteList):
-
-    def __init__(self):
-        WhiteList.__init__(self, WhitelistData)

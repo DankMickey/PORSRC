@@ -32,7 +32,6 @@ from otp.otpgui import OTPDialog
 from otp.otpbase import OTPGlobals
 from otp.otpbase import OTPLocalizer
 from pirates.piratesgui import PDialog
-from pirates.chat.PWhiteList import PWhiteList
 import PiratesGlobals
 import __builtin__
 
@@ -180,7 +179,6 @@ class PiratesBase(OTPBase):
         self.phase4Post()
         self.phase5Post()
 
-        self.whiteList = PWhiteList()
         tpMgr = TextPropertiesManager.getGlobalPtr()
         WLDisplay = TextProperties()
         WLDisplay.setSlant(0.299)

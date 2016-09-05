@@ -2180,7 +2180,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
 
 
 
-    def displayTalkWhisper(self, fromId, avatarName, chatString, mods):
+    def displayTalkWhisper(self, fromId, avatarName, chatString):
         if base.cr.avatarFriendsManager.checkIgnored(fromId):
             return None
 
@@ -2191,14 +2191,6 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
 
         if self.soundWhisper:
             base.playSfx(self.soundWhisper)
-
-
-
-    def displayTalkAccount(self, fromId, fromName, message, mods):
-        if self.soundWhisper:
-            base.playSfx(self.soundWhisper)
-
-
 
     def whisperTo(self, chatString, sendToId):
         recv = base.cr.identifyAvatar(sendToId)

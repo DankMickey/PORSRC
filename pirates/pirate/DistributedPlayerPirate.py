@@ -2777,37 +2777,6 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         if self.isLocal() and inviterId != localAvatar.doId:
             self.guiMgr.lookoutPage.requestInvite(inviterName, activityCategory, activityType, options)
 
-    def scrubTalk(self, message, mods):
-        scrubbed = 0
-        text = copy.copy(message)
-        for mod in mods:
-            index = mod[0]
-            length = mod[1] - mod[0] + 1
-            newText = text[0:index] + length * '\x07' + text[index + length:]
-            text = newText
-
-        words = text.split(' ')
-        newwords = []
-        for word in words:
-            if word == '':
-                newwords.append(word)
-            elif word[0] == '\x07' or len(word) > 1 and word[0] == '.' and word[1] == '\x07':
-                newwords.append('\x01WLDisplay\x01' + self.chatGarbler.garbleSingle(self, word, PLocalizer.WhitelistScrubList) + '\x02')
-                scrubbed = 1
-            elif not self.whiteListEnabled or base.whiteList.isWord(word):
-                newwords.append(word)
-            else:
-                flag = 1
-
-                if flag:
-                    scrubbed = 1
-                    newwords.append('\x01WLDisplay\x01' + word + '\x02')
-                else:
-                    newwords.append(word)
-
-        newText = ' '.join(newwords)
-        return (newText, scrubbed)
-
     def b_setSCEmote(self, emoteId):
         self.setSCEmote(emoteId)
         self.d_setSCEmote(emoteId)

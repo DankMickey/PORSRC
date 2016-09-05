@@ -32,7 +32,6 @@ class PiratesChatManager(ChatManagerV2.ChatManagerV2):
         self.whiteListActive = True
         self.active = False
         self.lastWhisper = None
-        self.whiteListEnabled = config.GetBool('whitelist-chat-enabled', 1)
         self.shipPVPChatAllowed = True
         self.crewChatAllowed = True
         self.guildChatAllowed = True
@@ -47,11 +46,8 @@ class PiratesChatManager(ChatManagerV2.ChatManagerV2):
         self.speedEntry = PChatInputSpeedChat()
         self.emoteEntry = PChatInputEmote()
         self.chatPanel = ChatPanel.ChatPanel(self, self.whiteListScroller)
-        if self.whiteListEnabled:
-            self.whiteListActive = True
-            self.whiteListEntry.requestMode(self.preferredMode)
-        elif self.noChat:
-            self.whiteListEntry.requestMode('Off')
+        self.whiteListActive = True
+        self.whiteListEntry.requestMode(self.preferredMode)
 
         self.deactivateChat()
 

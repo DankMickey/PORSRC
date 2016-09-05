@@ -111,8 +111,6 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
         self.avatarFriendsManager = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_AVATAR_FRIENDS_MANAGER, 'AvatarFriendsManager')
         self.piratesFriendsManager = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_PIRATES_FRIENDS_MANAGER, 'PiratesFriendsManager')
         #self.shipLoader = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_PIRATES_SHIP_MANAGER, 'DistributedShipLoader')
-        self.codeRedemption = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_PIRATES_CODE_REDEMPTION, 'CodeRedemption')
-        self.statusDatabase = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_STATUS_DATABASE, 'StatusDatabase')
 
         self.wantSeapatch = base.config.GetBool('want-seapatch', 0)
         self.wantSpecialEffects = base.config.GetBool('want-special-effects', 0)

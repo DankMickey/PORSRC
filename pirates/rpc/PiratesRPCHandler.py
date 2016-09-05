@@ -226,18 +226,6 @@ class PiratesRPCHandler(PiratesRPCHandlerBase):
         channel = avId + (1001L << 32)
         return self.rpc_messageChannel(channel, message) # Calls callback
 
-    @rpcmethod(CATEGORY_STAFF, args={'message': 'string'})
-    def rpc_messageStaff(self, callback, message):
-        """
-        Summary:
-            Broadcasts a [message] to any client whose access level is higher
-            than that of a standard user.
-
-        Parameters:
-            [str message] = The message to broadcast.
-        """
-        self.rpc_messageChannel(callback, OtpDoGlobals.OTP_STAFF_CHANNEL, message) # Calls callback
-
     @rpcmethod(CATEGORY_ADMINISTRATION, args={'message': 'string'})
     def rpc_messageAll(self, callback, message):
         """

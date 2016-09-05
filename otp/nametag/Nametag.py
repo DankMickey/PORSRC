@@ -41,6 +41,7 @@ class Nametag(ClickablePopup):
 
         self.chatString = ''
         self.chatFlags = 0
+        self.specialColor = None
 
     def destroy(self):
         ClickablePopup.destroy(self)
@@ -84,7 +85,7 @@ class Nametag(ClickablePopup):
             self.showName()
 
     def showBalloon(self, balloon, text):
-        color = self.qtColor if (self.chatFlags&CFQuicktalker) else self.chatBg
+        color = self.qtColor if (self.chatFlags&CFQuicktalker) else (self.chatBg if not self.specialColor else self.specialColor)
         if color[3] > self.CHAT_ALPHA:
             color = (color[0], color[1], color[2], self.CHAT_ALPHA)
         balloon = balloon.generate(text, self.font, textColor=self.chatFg,

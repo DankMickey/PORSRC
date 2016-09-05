@@ -99,5 +99,3 @@ class BanManagerUD(DirectObject):
         self.notify.info(msg)
         self.air.writeServerEvent('banned', fsm.accountId, username=fsm.targetUsername,
                                   moreInfo=msg)
-
-        self.air.systemMessage(msg, OtpDoGlobals.OTP_STAFF_CHANNEL)
