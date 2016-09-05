@@ -1,4 +1,4 @@
-from panda3d.core import BitMask32, Camera, CardMaker, CollideMask, ConfigVariable, ConfigVariableInt, EventHandler, Fog, GeomNode, Lens, NodePath, PerspectiveLens, Point3, Texture, Vec3, Vec4, loadPrcFile, loadPrcFileData, lookAt
+from panda3d.core import BitMask32, Camera, CollideMask, ConfigVariable, ConfigVariableInt, EventHandler, Fog, GeomNode, Lens, NodePath, PerspectiveLens, Point3, Vec3, Vec4, loadPrcFile, loadPrcFileData, lookAt
 from direct.showbase.ShowBaseGlobal import *
 from direct.distributed import DistributedObject
 from direct.directnotify import DirectNotifyGlobal

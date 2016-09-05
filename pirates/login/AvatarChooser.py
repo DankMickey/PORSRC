@@ -1,4 +1,4 @@
-from panda3d.core import DocumentSpec, HTTPClient, NodePath, Point3, Ramfile, TPHigh, TPLow, TextNode, Vec3, Vec4, invert, TransparencyAttrib
+from panda3d.core import DocumentSpec, HTTPClient, NodePath, Point3, Ramfile, TPHigh, TPLow, TextNode, TransparencyAttrib, Vec3, Vec4, invert
 import math
 import time
 import os
@@ -103,7 +103,6 @@ class AvatarChooser(DirectObject, StateData):
 
         self.__allPhasesComplete()
         self._startLoginStatusTask()
-        base.options.savePossibleWorking(base.options)
 
     def exit(self):
         if self.isLoaded == 0:
@@ -134,7 +133,6 @@ class AvatarChooser(DirectObject, StateData):
         self.ignore('f7')
         self._stopMouseReadTask()
         self._stopQueueTask()
-        base.options.saveWorking()
         self.ignoreAll()
         if hasattr(self, 'fadeInterval'):
             self.fadeInterval.pause()

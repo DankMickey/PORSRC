@@ -1,3 +1,4 @@
+from panda3d.core import Thread
 
 from direct.distributed.PyDatagram import *
 

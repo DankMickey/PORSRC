@@ -1,3 +1,4 @@
+from panda3d.core import Texture
 from direct.gui.DirectGui import *
 from otp.otpgui import OTPDialog
 from pirates.piratesgui import BorderFrame, GUIUtils, PiratesGuiGlobals, PDialog

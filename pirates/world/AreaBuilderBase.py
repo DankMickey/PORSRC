@@ -1,4 +1,4 @@
-from panda3d.core import AmbientLight, AnimControl, AnimControlCollection, BoundingBox, BoundingSphere, CollideMask, ColorScaleAttrib, FadeLODNode, Filename, InternalName, LODNode, Light, LightAttrib, Mat4, ModelNode, ModelPool, NodePath, PandaNode, Point3, PolylightEffect, PolylightNode, RenderEffects, RenderState, SceneGraphReducer, SwitchNode, Texture, TexturePool, TransformState, TransparencyAttrib, VBase4, Vec3, Vec4, autoBind
+from panda3d.core import AmbientLight, AnimControl, AnimControlCollection, BoundingBox, BoundingSphere, CollideMask, ColorScaleAttrib, FadeLODNode, InternalName, LODNode, Light, LightAttrib, Mat4, ModelNode, ModelPool, NodePath, PandaNode, Point3, PolylightEffect, PolylightNode, RenderEffects, RenderState, SceneGraphReducer, SwitchNode, Texture, TexturePool, TransformState, TransparencyAttrib, VBase4, Vec3, Vec4, autoBind
 import random
 import re
 import types
@@ -749,42 +749,16 @@ class AreaBuilderBase(DirectObject.DirectObject):
 
     def _loadObjects(self):
         self.uniqueId = self.master.uniqueId
-        areaGeometry = base.bamCache.lookup(Filename('/%s_area_%s_%s.bam' % (self.uniqueId, base.cr.getServerVersion(), base.gridDetail)), 'bam')
-        if base.config.GetBool('want-disk-cache', 0) and areaGeometry.hasData():
-            base.cr.loadingScreen.beginStep('CachedObjects', 3, 70)
-            if not areaGeometry.hasData():
-                self.notify.error('nonexistant geometry file for %s' % self.uniqueId)
-
-            self.staticGridRoot.detachNode()
-            self.largeObjectsRoot.detachNode()
-            self.collisions.detachNode()
-            self.animNode.detachNode()
-            data = areaGeometry.getData()
-            base.cr.loadingScreen.tick()
-            newData = data.copySubgraph()
-            base.cr.loadingScreen.tick()
-            self.areaGeometry.node().stealChildren(newData)
-            self.areaGeometry.node().copyTags(newData)
-            base.cr.loadingScreen.tick()
-            self.collisions = self.areaGeometry.find('collisions')
-            self.largeObjectsRoot = self.areaGeometry.find('largeObjects')
-            self.staticGridRoot = self.areaGeometry.find('staticGrid')
-            self.animNode = self.areaGeometry.find('animations')
-            base.cr.loadingScreen.endStep('CachedObjects')
-        else:
-            base.loadingScreen.beginStep('PreLoad', 1, 5)
-            self._preSubObjectsStep()
-            base.cr.loadingScreen.tick()
-            base.loadingScreen.endStep('PreLoad')
-            base.worldCreator.loadFileObjFromUid(self.uniqueId, self.master, self.master)
-            base.loadingScreen.beginStep('PostLoad', 3, 7)
-            base.cr.loadingScreen.tick()
-            self._postSubObjectsStep()
-            base.cr.loadingScreen.tick()
-            areaGeometry.setData(self.areaGeometry.node(), 0)
-            base.bamCache.store(areaGeometry)
-            base.cr.loadingScreen.tick()
-            base.cr.loadingScreen.endStep('PostLoad')
+        base.loadingScreen.beginStep('PreLoad', 1, 5)
+        self._preSubObjectsStep()
+        base.cr.loadingScreen.tick()
+        base.loadingScreen.endStep('PreLoad')
+        base.worldCreator.loadFileObjFromUid(self.uniqueId, self.master, self.master)
+        base.loadingScreen.beginStep('PostLoad', 3, 7)
+        base.cr.loadingScreen.tick()
+        self._postSubObjectsStep()
+        base.cr.loadingScreen.tick()
+        base.cr.loadingScreen.endStep('PostLoad')
 
     def _preSubObjectsStep(self):
         pass
