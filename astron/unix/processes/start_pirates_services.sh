@@ -1,6 +1,6 @@
 cd ..
 
-sh astron/linux/processes/ai.sh
-sh astron/linux/processes/uberdog.sh
+sh astron/unix/processes/ai.sh
+sh astron/unix/processes/uberdog.sh
 
 
