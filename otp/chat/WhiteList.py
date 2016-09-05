@@ -83,7 +83,6 @@ class WhiteList:
         return ' '.join(words)
 
     def processThroughAll(self, text, av=None):
-        print text
         if (text.startswith('~') and not av):
             return text
 
