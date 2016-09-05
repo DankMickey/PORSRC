@@ -44,15 +44,10 @@ class ClientServicesManager(DistributedObjectGlobal):
         self.sendUpdate('requestAvatars')
 
     def setAvatars(self, avatars):
-        avList = {PiratesGlobals.PiratesSubId: [PiratesGlobals.AvatarSlotAvailable,
-                                                PiratesGlobals.AvatarSlotAvailable,
-                                                PiratesGlobals.AvatarSlotAvailable,
-                                                PiratesGlobals.AvatarSlotAvailable,
-                                                PiratesGlobals.AvatarSlotAvailable,
-                                                PiratesGlobals.AvatarSlotAvailable]}
+        avList = [PiratesGlobals.AvatarSlotAvailable] * 6
 
         for avNum, avName, avDNA, avPosition, nameState, wishName in avatars:
-            if avPosition > len(avList[PiratesGlobals.PiratesSubId]):
+            if avPosition > len(avList):
                 continue
 
             nameOpen = int(nameState == 1)
@@ -69,7 +64,7 @@ class ClientServicesManager(DistributedObjectGlobal):
                 wishState = 'DENIED'
             dna = HumanDNA()
             dna.makeFromNetString(avDNA)
-            avList[PiratesGlobals.PiratesSubId][avPosition] = PotentialAvatar(avNum, names, dna, avPosition, nameOpen,
+            avList[avPosition] = PotentialAvatar(avNum, names, dna, avPosition, nameOpen,
                                                                               wishState=wishState, wishName=wishName)
 
         self.cr.handleAvatarsList(avList)
@@ -90,7 +85,7 @@ class ClientServicesManager(DistributedObjectGlobal):
         self.sendUpdate('deleteAvatar', [avatarId])
 
     def avDeleted(self, avatarId):
-        messenger.send('avDeleted', [avatarId, PiratesGlobals.PiratesSubId])
+        messenger.send('avDeleted', [avatarId])
 
     def sendAcknowledgeName(self, avId):
         self.sendUpdate('acknowledgeName', [avId])

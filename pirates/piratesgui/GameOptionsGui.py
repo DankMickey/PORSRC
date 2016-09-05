@@ -155,7 +155,6 @@ class GameOptionsGui(DirectFrame):
         oy = sy
         text = PLocalizer.GameOptionsWindowedResolutions
         resolutions = ['%dx%d' % (width, height) for width, height in self.getResolutionTable()]
-        print resolutions
 
         self.windowedResolutionMenu = OptionMenu(parent = parent, scale = 0.050000, pos = (x + 0.200, 0, y), items = resolutions, command = self.windowedResolutionMenuCB)
         y += oy

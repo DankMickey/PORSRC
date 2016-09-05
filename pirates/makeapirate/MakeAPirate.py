@@ -210,7 +210,7 @@ CATALOG_HOLIDAYS = {
 class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
     notify = DirectNotifyGlobal.directNotify.newCategory('MakeAPirate')
 
-    def __init__(self, avList, doneEvent, subId = 0, index = 0, isNPCEditor = False, piratesEditor = None):
+    def __init__(self, avList, doneEvent, index = 0, isNPCEditor = False, piratesEditor = None):
         self.undoList = {
             'm': [
                 HumanDNA.HumanDNA()],
@@ -263,7 +263,6 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
         FSM.FSM.__init__(self, 'MakeAPirate')
         self.avList = avList
         self.index = index
-        self.subId = subId
         self.genderIdx = 0
         self.wantNPCViewer = base.config.GetBool('want-npc-viewer', 0)
         self.wantPicButtons = base.config.GetBool('want-gen-pics-buttons', 0)
@@ -1309,7 +1308,6 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
 
         def populateAv(avId):
             self.avId = avId
-            self.subId = PiratesGlobals.PiratesSubId
             self.newPotAv = PotentialAvatar.PotentialAvatar(self.avId, self.nameGui.getNumericName(), self.pirate.style, self.index, True)
             messenger.send(self.doneEvent, [])
             base.transitions.fadeIn(1.0)

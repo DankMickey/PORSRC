@@ -345,9 +345,7 @@ AvatarFriendRejectInviteEvent = 'avatarFriendRejectInviteEvent'
 AvatarFriendRetractInviteEvent = 'avatarFriendRetractInviteEvent'
 AvatarFriendRejectRemoveEvent = 'avatarFriendRejectRemoveEvent'
 WhisperIncomingEvent = 'whisperIncomingEvent'
-AvatarPendingCreate = -1
-AvatarSlotUnavailable = -2
-AvatarSlotAvailable = -3
+AvatarSlotAvailable = -1
 
 from otp.ai.MagicWordGlobal import *
 

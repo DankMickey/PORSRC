@@ -262,7 +262,6 @@ if pvpMode < 3:
     del GameTypes[PiratesGlobals.GAME_TYPE_PVP]['style'][PiratesGlobals.GAME_STYLE_SHIP_BATTLE]
 
 def getGameTypes():
-    print GameTypes
     return GameTypes.keys()
 
 def getGameStyles(gameType, gameStyle = None, callback = None):
