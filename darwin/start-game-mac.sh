@@ -9,21 +9,8 @@ else
     cd ..
 fi
 
-
-if [[  whoami -eq 'easywin123' ]]; then
-    #Since i am the only one using mac at this time
-    #This is temporary, while we figure out the mac startup settings
-    #Hate typing/pasting this every freaking time
-    #this should be removed before this goes to production.
-
-    export POR_PLAYCOOKIE=cj
-    export POR_GAMESERVER=127.0.0.1
-else
-
-    read -p "Username: " POR_PLAYCOOKIE
-    read -p "Gameserver: " POR_GAMESERVER
-
-fi
+read -p "Username: " POR_PLAYCOOKIE
+read -p "Gameserver: " POR_GAMESERVER
 
 echo "=============================="
 echo "Starting Pirates Online..."
