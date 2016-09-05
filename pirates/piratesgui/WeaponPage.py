@@ -149,7 +149,7 @@ class WeaponPage(InventoryPage.InventoryPage):
             possibleItems.remove(ItemGlobals.ROAST_PORK)
 
         offset = 0
-        if base.config.GetBool('want-potion-game', 0):
+        if config.GetBool('want-potion-game', 0):
             items = inventory.getConsumables()
             listLength = len(InventoryType.PotionMinigamePotions)
             count = 0

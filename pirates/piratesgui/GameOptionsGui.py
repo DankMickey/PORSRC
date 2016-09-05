@@ -173,7 +173,7 @@ class GameOptionsGui(DirectFrame):
 
             self.pipeMenu = OptionMenu(parent = parent, scale = 0.050000, pos = (x + 0.200, 0, y), items = self.pipe_names, command = self.pipeMenuCB)
 
-        if base.config.GetBool('enable-stereo-display', 0):
+        if config.GetBool('enable-stereo-display', 0):
             x -= 0.4
             text = PLocalizer.GameOptionsStereo
             self.create_label(x + 0.149, y, text, parent, sl)
@@ -704,7 +704,7 @@ class GameOptionsGui(DirectFrame):
         if change_display:
             self.gameOptions.set_display(self.gameOptions.options, base.pipe, self.gameOptions.options.getWidth(), self.gameOptions.options.getHeight())
 
-        if base.config.GetBool('enable-stereo-display', 0):
+        if config.GetBool('enable-stereo-display', 0):
             self.stereoCheck['value'] = self.gameOptions.options.use_stereo
 
         self.initResolutionSettings()

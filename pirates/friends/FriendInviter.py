@@ -509,7 +509,6 @@ class FriendInviter(DirectFrame):
         elif reason == RejectCode.INVITATION_DECLINED:
             self.fsm.request('no')
         elif reason == RejectCode.MAY_NOT_OPEN_INVITE:
-            self.notify.warning('May Not Open Invite, switchboard confused %s.' % avId)
             self.fsm.request('notOpen')
         else:
             self.notify.warning('friendRejectInvite: %s unknown reason: %s.' % (avId, reason))

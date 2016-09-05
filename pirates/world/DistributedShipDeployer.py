@@ -214,7 +214,7 @@ class DistributedShipDeployer(DistributedNode):
             self.lockedMessage = 0
 
     def enableDeploySpheres(self, enable):
-        if base.config.GetBool('want-shipboard-report', 0):
+        if config.GetBool('want-shipboard-report', 0):
             self.showSpheres()
 
         if enable:

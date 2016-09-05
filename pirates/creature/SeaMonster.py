@@ -184,7 +184,7 @@ class SeaMonster(UsesAnimationMixer, Avatar.Avatar, UsesEffectNode):
     setupAnims = classmethod(setupAnims)
 
     def setLODs(self):
-        avatarDetail = base.config.GetString('avatar-detail', 'high')
+        avatarDetail = config.GetString('avatar-detail', 'high')
         if avatarDetail == 'high':
             dist = [
                 0,
@@ -225,7 +225,7 @@ class SeaMonster(UsesAnimationMixer, Avatar.Avatar, UsesEffectNode):
 
         cls.actor = Actor.Actor()
         if loader.loadModel(filePrefix + 'med') != None:
-            avatarDetail = base.config.GetString('avatar-detail', 'high')
+            avatarDetail = config.GetString('avatar-detail', 'high')
             if avatarDetail == 'high':
                 dist = [
                     0,

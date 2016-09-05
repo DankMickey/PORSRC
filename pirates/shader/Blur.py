@@ -498,7 +498,7 @@ class Blur(DirectObject):
 
     def __init__(self, width, height, source_rtt, luminance = 1, add = 0, order = -1, format = 0, hdr = 1, hdr_output = 1, add_glow = 0, glow_rtt = 0, average = 0):
         DirectObject.__init__(self)
-        self.debug_keys = base.config.GetInt('want-hdr-development', 0)
+        self.debug_keys = config.GetInt('want-hdr-development', 0)
         self.display = 1
         self.display_sliders = 0
         dependency_array = DependencyArray(self.createCallback)
@@ -589,7 +589,7 @@ class Blur(DirectObject):
         self.shader_array.append(self.blur_x_shader)
         self.blur_y_shader = self.loadShader('blur_y.cg')
         self.shader_array.append(self.blur_y_shader)
-        if base.config.GetInt('want-half-hdr', 0):
+        if config.GetInt('want-half-hdr', 0):
             self.tonemap_shader = self.loadShader('half_tonemap.cg')
         else:
             self.tonemap_shader = self.loadShader('tonemap.cg')

@@ -254,7 +254,7 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
         self.setPickable(0)
         self.accept('noticeStateChanged', self.handleNoticeChanged)
         self.accept('Local_Efficiency_Set', self.setEfficiency)
-        if __dev__ and base.config.GetBool('show-aggro-radius', 0):
+        if __dev__ and config.GetBool('show-aggro-radius', 0):
             if self.isBattleable():
                 size = self.getAggroSphereSize()
                 sphere = loader.loadModel('models/effects/explosion_sphere')
@@ -508,10 +508,10 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
             self.cAggroNode.setIntoCollideMask(PiratesGlobals.WallBitmask)
             self.cAggroNode.addSolid(self.cAggro)
             self.cAggroNodePath = self.attachNewNode(self.cAggroNode)
-            if base.config.GetBool('show-aggro-radius', 0):
+            if config.GetBool('show-aggro-radius', 0):
                 self.cAggroNodePath.show()
 
-            if base.config.GetBool('npcs-auto-target', 0):
+            if config.GetBool('npcs-auto-target', 0):
                 enterCollEvent = self.uniqueName('enter' + 'AggroSphere')
                 self.accept(enterCollEvent, self._handleEnterAggroSphere)
                 if base.cr.gameStatManager.aggroModelIndex == 1:
@@ -538,10 +538,10 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
                 self.cNoticeNode.setIntoCollideMask(BitMask32.allOff())
             self.cNoticeNode.addSolid(self.cNotice)
             self.cNoticeNodePath = self.attachNewNode(self.cNoticeNode)
-            if base.config.GetBool('show-aggro-radius', 0):
+            if config.GetBool('show-aggro-radius', 0):
                 self.cNoticeNodePath.show()
 
-            if base.config.GetBool('npcs-auto-target', 0):
+            if config.GetBool('npcs-auto-target', 0):
                 enterCollEvent = self.uniqueName('enter' + 'NoticeSphere')
                 self.accept(enterCollEvent, self._handleEnterNoticeSphere)
 
@@ -722,7 +722,7 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
     def _handleEnterNoticeSphere(self, collEntry):
         otherCollNode = collEntry.getFromNodePath()
         myCollNode = collEntry.getIntoNodePath()
-        if not base.config.GetBool('want-npc-notice', 0):
+        if not config.GetBool('want-npc-notice', 0):
             return None
         if localAvatar.isInvisible():
             return None
@@ -967,7 +967,7 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
         if cantMove == False:
             if (self.getPos(parentObj) - oldPos).length() < 0.100:
                 self.motionFSM.motionAnimFSM.updateNPCAnimState(0, 0, 0)
-                if base.config.GetBool('want-npc-notice', 0) and abs(self.getH() - oldH) < 0.100:
+                if config.GetBool('want-npc-notice', 0) and abs(self.getH() - oldH) < 0.100:
                     if self.moveNoticeFlag and self.lastMovedTimeStamp and globalClock.getFrameTime() - self.lastMovedTimeStamp > 0.5 and not (self.localAvatarHasBeenNoticed):
                         self.isMovingDontNotice = 0
                         self.firstNoticeLocalAvatar()
@@ -1032,7 +1032,7 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
                 speed = distMoved / deltaTime
             self.lastSmoothPosUpdateTime = animTime
             slideScale = 0.0
-            if base.config.GetBool('npc-sidestep', 0) and distMoved > 0.00500:
+            if config.GetBool('npc-sidestep', 0) and distMoved > 0.00500:
                 moveVec = self.headingNode.getPos() - self.getPos(parentObj)
                 self.headingNode.reparentTo(self)
                 self.headingNode.setPos(0, 1, 0)
@@ -1290,7 +1290,7 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
             self.enableReducedMixing()
             self.setClipPlane(base.farCull)
             self.setMonsterNameTag()
-            if base.config.GetBool('want-invasion-npc-minimap', 0):
+            if config.GetBool('want-invasion-npc-minimap', 0):
                 self.destroyMinimapObject()
 
     def removeCollisions(self, task = None):

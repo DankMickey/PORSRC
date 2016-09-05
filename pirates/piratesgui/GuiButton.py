@@ -101,7 +101,7 @@ class GuiButton(DirectButton):
             if not self['frameSize']:
                 pass
             frameSize = self.getBounds()
-            self.helpWatcher = DirectFrame(parent = self, relief = base.config.GetBool('show-helpwatchers', 0), state = DGG.NORMAL, frameColor = (1, 1, 0, 0.5), frameSize = frameSize, sortOrder = self['sortOrder'] - 1)
+            self.helpWatcher = DirectFrame(parent = self, relief = config.GetBool('show-helpwatchers', 0), state = DGG.NORMAL, frameColor = (1, 1, 0, 0.5), frameSize = frameSize, sortOrder = self['sortOrder'] - 1)
             self.helpWatcher.wrtReparentTo(self.getParent())
             self.reparentTo(self.getParent())
             self.helpWatcher.bind(DGG.WITHIN, self.waitShowDetails)

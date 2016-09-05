@@ -225,7 +225,7 @@ class ClothesGUI(DirectFrame, StateData.StateData):
         self.clothesFrame = DirectFrame(parent = self.parent, relief = None, pos = (0, 0, 0), scale = 1)
         self.clothesFrame.hide()
         self.genPicsButtonsFrame = DirectFrame(parent = self.clothesFrame, relief = None, pos = (0, 0, 0), scale = 1.0)
-        if not base.config.GetBool('want-gen-pics-buttons', 0):
+        if not config.GetBool('want-gen-pics-buttons', 0):
             self.genPicsButtonsFrame.hide()
 
         self.shirtPicker = CharGuiPicker(self.main, parent = self.clothesFrame, text = PLocalizer.MakeAPirateClothingShirtStyle, nextCommand = Functor(self.handleNextClothing, 'SHIRT'), backCommand = Functor(self.handleLastClothing, 'SHIRT'))
@@ -234,7 +234,7 @@ class ClothesGUI(DirectFrame, StateData.StateData):
         self.vestPicker = CharGuiPicker(self.main, parent = self.clothesFrame, text = PLocalizer.MakeAPirateClothingVestStyle, nextCommand = Functor(self.handleNextClothing, 'VEST'), backCommand = Functor(self.handleLastClothing, 'VEST'))
         self.vestPicker.setPos(-0.299, 0, -0.299)
         self.vestGenPics = DirectButton(parent = self.genPicsButtonsFrame, relief = DGG.RAISED, frameSize = (-0.170, 0.170, -0.050000, 0.050000), borderWidth = (0.008, 0.008), text = PLocalizer.GeneratePictures, text_pos = (0, -0.0149), text_scale = 0.08, pos = (-1, 0, -0.299), command = self.handleVestGenPics)
-        if base.config.GetBool('want-map-coats') or self.main.wantNPCViewer:
+        if config.GetBool('want-map-coats') or self.main.wantNPCViewer:
             self.coatPicker = CharGuiPicker(self.main, parent = self.clothesFrame, text = PLocalizer.MakeAPirateClothingCoatStyle, nextCommand = Functor(self.handleNextClothing, 'COAT'), backCommand = Functor(self.handleLastClothing, 'COAT'))
             self.coatPicker.setPos(-0.299, 0, -0.696)
             self.coatGenPics = DirectButton(parent = self.genPicsButtonsFrame, relief = DGG.RAISED, frameSize = (-0.170, 0.170, -0.050000, 0.050000), borderWidth = (0.008, 0.008), text = PLocalizer.GeneratePictures, text_pos = (0, -0.0149), text_scale = 0.08, pos = (-1, 0, -0.696), command = self.handleCoatGenPics)
@@ -312,7 +312,7 @@ class ClothesGUI(DirectFrame, StateData.StateData):
         self.shoeGenPics = DirectButton(parent = self.genPicsButtonsFrame, relief = DGG.RAISED, frameSize = (-0.170, 0.170, -0.050000, 0.050000), borderWidth = (0.008, 0.008), text = PLocalizer.GeneratePictures, text_pos = (0, -0.0149), text_scale = 0.08, pos = (-1, 0, -1.75), command = self.handleShoeGenPics)
         self.sockPicker = CharGuiPicker(self.main, parent = self.clothesFrame, text = PLocalizer.MakeAPirateClothingSockStyle, nextCommand = Functor(self.handleNextClothing, 'SHOE'), backCommand = Functor(self.handleLastClothing, 'SHOE'))
         self.sockPicker.setPos(-0.299, 0.0, -2.14)
-        wantSocks = base.config.GetBool('want-socks', 0)
+        wantSocks = config.GetBool('want-socks', 0)
         if not wantSocks:
             self.sockPicker.hide()
 
@@ -671,7 +671,7 @@ class ClothesGUI(DirectFrame, StateData.StateData):
             self.handleSetBeltColor(0)
 
         self.handleClothingChanged()
-        if base.config.GetBool('want-map-flavor-anims', 0):
+        if config.GetBool('want-map-flavor-anims', 0):
             currTime = globalClock.getFrameTime()
             if self.main.pirate.style.gender == 'f':
                 if currTime - self.lastRun > 10:
@@ -723,7 +723,7 @@ class ClothesGUI(DirectFrame, StateData.StateData):
             self.main.guiTextureInfo['text_fg'] = (1, 1, 1, 1)
 
         self.handleClothingChanged()
-        if base.config.GetBool('want-map-flavor-anims', 0):
+        if config.GetBool('want-map-flavor-anims', 0):
             currTime = globalClock.getFrameTime()
             if self.main.pirate.style.gender == 'f':
                 if currTime - self.lastRun > 10:
@@ -785,7 +785,7 @@ class ClothesGUI(DirectFrame, StateData.StateData):
             self.handleSetBeltColor(0)
 
         self.handleClothingChanged()
-        if base.config.GetBool('want-map-flavor-anims', 0):
+        if config.GetBool('want-map-flavor-anims', 0):
             currTime = globalClock.getFrameTime()
             if self.main.pirate.style.gender == 'f':
                 if currTime - self.lastRun > 10:

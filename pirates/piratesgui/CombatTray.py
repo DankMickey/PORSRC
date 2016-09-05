@@ -412,7 +412,7 @@ class ShipRepairButton(SkillButton):
 
 class CombatTray(GuiTray):
     notify = DirectNotifyGlobal.directNotify.newCategory('CombatTray')
-    InstantCast = base.config.GetBool('instant-cast', 0)
+    InstantCast = config.GetBool('instant-cast', 0)
     SkillButtonEvents = ('attack', 'mouse2', 'attack-up')
     COMBO_WINDOW_START = 0.299
     COMBO_WINDOW_END = 1.0

@@ -40,7 +40,7 @@ class SwampEffects(EnvironmentEffects.EnvironmentEffects):
 
     def startEffects(self):
         self.swamp_water = None
-        if base.config.GetBool('want-shaders', 0) and base.win and base.win.getGsg() and base.win.getGsg().getShaderModel() >= GraphicsStateGuardian.SM20:
+        if config.GetBool('want-shaders', 0) and base.win and base.win.getGsg() and base.win.getGsg().getShaderModel() >= GraphicsStateGuardian.SM20:
             reflection = Reflection.getGlobalReflection()
             self.swamp_water = Swamp(self.modelPath + '_water', self.parent, reflection)
         else:

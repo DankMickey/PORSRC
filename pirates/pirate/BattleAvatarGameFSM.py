@@ -997,7 +997,7 @@ class BattleAvatarGameFSM(FSM.FSM):
         self._repairingFrame = 0
         self._repairingStartT = globalClock.getRealTime()
         self._repairingIntoDur = intoDur
-        if not base.config.GetBool('want-repair-game', 0):
+        if not config.GetBool('want-repair-game', 0):
             taskMgr.add(self._doRepairingSfx, self.doRepairSfxTaskName)
 
 
@@ -1049,7 +1049,7 @@ class BattleAvatarGameFSM(FSM.FSM):
         self._repairingFrame = 0
         self._repairingStartT = globalClock.getRealTime()
         self._repairingIntoDur = intoDur
-        if not base.config.GetBool('want-repair-game', 0):
+        if not config.GetBool('want-repair-game', 0):
             taskMgr.add(self._doBenchRepairingSfx, self.doBenchRepairSfxTaskName)
 
 

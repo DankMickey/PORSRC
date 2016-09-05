@@ -55,7 +55,7 @@ class MotionAnimFSM(FSM):
         self.idleJumpIval = None
         self.lastMoveSpeed = 0
         self.zeroSpeedTimer = 0
-        self.motionFSMLag = base.config.GetBool('motionfsm-lag', 0)
+        self.motionFSMLag = config.GetBool('motionfsm-lag', 0)
         self.currentSplash = None
         self.splashAnims = None
         self.splashAnimDelay = None

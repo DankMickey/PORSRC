@@ -37,7 +37,7 @@ class ShipRepairSpotMgr(ShipRepairSpotMgrBase):
 
 
     def _evalNeedModels(self, validShipClass, hasTeam):
-        if base.config.GetBool('want-repair-game', 0):
+        if config.GetBool('want-repair-game', 0):
             self._state.needModels.set(validShipClass)
         elif validShipClass:
             pass

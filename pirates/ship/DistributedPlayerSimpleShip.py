@@ -283,7 +283,7 @@ class DistributedPlayerSimpleShip(DistributedSimpleShip):
 
 
     def getThreatLevel(self):
-        if base.config.GetBool('want-ship-threat', 1):
+        if config.GetBool('want-ship-threat', 1):
             return self.threatLevel
         else:
             return EnemyGlobals.SHIP_THREAT_ATTACK_BACK

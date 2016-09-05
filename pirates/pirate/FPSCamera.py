@@ -25,8 +25,8 @@ class FPSCamera(CameraMode.CameraMode, NodePath, ParamObj):
     baseH = None
     minH = None
     maxH = None
-    SensitivityH = base.config.GetFloat('fps-cam-sensitivity-x', 0.31)
-    SensitivityP = base.config.GetFloat('fps-cam-sensitivity-y', 0.21)
+    SensitivityH = config.GetFloat('fps-cam-sensitivity-x', 0.31)
+    SensitivityP = config.GetFloat('fps-cam-sensitivity-y', 0.21)
 
     def __init__(self, subject, params = None):
         ParamObj.__init__(self)

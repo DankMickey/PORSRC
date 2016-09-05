@@ -452,7 +452,7 @@ class SkillPage(InventoryPage.InventoryPage):
             return None
         self._SkillPage__handleFreeDialog()
 
-        if not base.config.GetBool('want-combo-skips', 0):
+        if not config.GetBool('want-combo-skips', 0):
             comboSkills = [
                 InventoryType.CutlassSlash,
                 InventoryType.CutlassCleave,

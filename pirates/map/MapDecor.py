@@ -89,7 +89,7 @@ class Model(Item):
             geom = loader.loadModel(modelName, okMissing = True)
         if geom:
             self.geom = geom.instanceTo(self)
-        elif __dev__ and base.config.GetBool('map-islands-debug', 0):
+        elif __dev__ and config.GetBool('map-islands-debug', 0):
             geom = loader.loadModel('models/misc/smiley')
             self.geom = geom.instanceTo(self)
             scale = 0.050000
@@ -191,7 +191,7 @@ class Island(PickableModel):
     def __init__(self, name, islandUid, modelName, isTeleportIsland, scale = 1.0, collisionIndex = 17, stencilId = 0, *args, **kwargs):
         PickableModel.__init__(self, name, modelName, scale / 160.0, collisionIndex, *args, **kwargs)
         self.setTag('islandUid', islandUid)
-        if isTeleportIsland or base.config.GetBool('teleport-all'):
+        if isTeleportIsland or config.GetBool('teleport-all'):
             self.setTag('isTeleportIsland', 'True')
 
         self._isCurrentIsland = False
@@ -241,7 +241,7 @@ class Island(PickableModel):
 
 
     def updateCanTeleportTo(self):
-        if self._hasTeleportToken and self._isCurrentIsland and self._isPortOfCall and base.cr.distributedDistrict.worldCreator.isPvpIslandByUid(self.getTag('islandUid')) or base.config.GetBool('teleport-all', 0):
+        if self._hasTeleportToken and self._isCurrentIsland and self._isPortOfCall and base.cr.distributedDistrict.worldCreator.isPvpIslandByUid(self.getTag('islandUid')) or config.GetBool('teleport-all', 0):
             pass
         self.setTag('canTeleportTo', str(bool(not base.cr.distributedDistrict.worldCreator.isMysteriousIslandByUid(self.getTag('islandUid')))))
 

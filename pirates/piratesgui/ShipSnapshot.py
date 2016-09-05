@@ -10,7 +10,7 @@ from pirates.piratesgui import PiratesGuiGlobals
 from pirates.ship import ShipMeter
 
 class ShipSnapshot(DirectFrame):
-    PrivateerRepairOnLaunch = base.config.GetBool('privateer-repair-on-launch', 0)
+    PrivateerRepairOnLaunch = config.GetBool('privateer-repair-on-launch', 0)
 
     def __init__(self, parent, shipOV = None, siegeTeam = 0, shipName = '', shipClass = 0, mastInfo = [], hp = 0, maxHp = 0, sp = 0, maxSp = 0, cargo = 0, maxCargo = 0, crew = 0, maxCrew = 0, time = 0, **kw):
         if ShipSnapshot.PrivateerRepairOnLaunch and siegeTeam:

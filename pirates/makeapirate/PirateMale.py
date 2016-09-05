@@ -1446,7 +1446,7 @@ class PirateMale(DirectObject.DirectObject):
             NodePathCollection(),
             NodePathCollection(),
             NodePathCollection()]
-        self.newAvatars = base.config.GetBool('want-new-avatars', 0)
+        self.newAvatars = config.GetBool('want-new-avatars', 0)
 
 
     def delete(self):
@@ -1716,7 +1716,7 @@ class PirateMale(DirectObject.DirectObject):
             self.eyeBrows.addPathsFrom(geoms)
 
         self.eyeBrows.stash()
-        if base.config.GetBool('want-gen-pics-buttons'):
+        if config.GetBool('want-gen-pics-buttons'):
             self.eyes = self.pirate.findAllMatches('**/eye_*')
 
         self.hair = geom.findAllMatches('**/hair*')
@@ -2887,7 +2887,7 @@ class PirateMale(DirectObject.DirectObject):
             '**/clothing_layer3_coat_short*',
             '**/clothing_layer3_coat_navy*',
             '**/clothing_layer3_coat_eitc*']
-        if base.config.GetBool('want-gen-pics-buttons'):
+        if config.GetBool('want-gen-pics-buttons'):
             self.clothesByType = {
                 'SHIRT': self.clothingsLayer1[:16] + self.clothingsLayer1[28:29],
                 'VEST': self.clothingsLayer2[:4],

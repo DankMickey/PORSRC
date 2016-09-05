@@ -709,7 +709,7 @@ class LookoutRequestLVL1(InventoryPage, InventoryRequestGameType):
             self.foundCat['text'] = PLocalizer.LookoutFoundStatusCat % self.searchParams['cat']
 
         taskMgr.remove('joinedGameAbandon')
-        if base.config.GetBool('disable-cancel-join-delay', False):
+        if config.GetBool('disable-cancel-join-delay', False):
             numMinutes = 0
         else:
             numMinutes = 2

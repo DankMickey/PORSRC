@@ -76,7 +76,7 @@ class PlayGame(StateData.StateData):
             base.localAvatar.gameFSM.request('LandRoam')
             base.localAvatar.setZ(base.localAvatar, 20)
 
-        if base.config.GetBool('want-dev', False):
+        if config.GetBool('want-dev', False):
             self.accept('shift-f3', shootUp)
 
         def initDefQuest(inventory):
@@ -90,7 +90,7 @@ class PlayGame(StateData.StateData):
                 base.localAvatar.getInventoryId()], eachCallback = initDefQuest)
 
     def exitPlay(self):
-        if base.config.GetBool('want-dev', False):
+        if config.GetBool('want-dev', False):
             self.ignore('shift-f3')
 
         if hasattr(self, 'pendingInitQuest'):

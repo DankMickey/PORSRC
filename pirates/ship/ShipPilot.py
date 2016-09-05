@@ -8,7 +8,7 @@ import math
 
 class ShipPilot(PhysicsWalker):
     notify = directNotify.newCategory('ShipPilot')
-    wantDebugIndicator = base.config.GetBool('want-avatar-physics-indicator', 0)
+    wantDebugIndicator = config.GetBool('want-avatar-physics-indicator', 0)
     MAX_STRAIGHT_SAIL_BONUS = 2.1
     STRAIGHT_SAIL_BONUS_TIME = 18.0
     REVERSE_STRAIGHT_SAIL_BONUS_TIME = -8.0

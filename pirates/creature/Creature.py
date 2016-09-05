@@ -215,7 +215,7 @@ class Creature(UsesAnimationMixer, Avatar.Avatar, UsesEffectNode):
     setupAnimInfo = classmethod(setupAnimInfo)
 
     def setLODs(self):
-        avatarDetail = base.config.GetString('avatar-detail', 'high')
+        avatarDetail = config.GetString('avatar-detail', 'high')
         if avatarDetail == 'high':
             dist = [
                 0,
@@ -256,7 +256,7 @@ class Creature(UsesAnimationMixer, Avatar.Avatar, UsesEffectNode):
 
         cls.actor = Actor.Actor()
         if loader.loadModel(filePrefix + 'med') != None:
-            avatarDetail = base.config.GetString('avatar-detail', 'high')
+            avatarDetail = config.GetString('avatar-detail', 'high')
             if avatarDetail == 'high':
                 dist = [
                     0,
@@ -281,7 +281,7 @@ class Creature(UsesAnimationMixer, Avatar.Avatar, UsesEffectNode):
             cls.actor.addLOD('hi', dist[1], dist[0])
             cls.actor.addLOD('med', dist[2], dist[1])
             cls.actor.addLOD('low', dist[3], dist[2])
-            creatureDetail = base.config.GetBool('want-high-creature-detail', 0)
+            creatureDetail = config.GetBool('want-high-creature-detail', 0)
             if creatureDetail:
                 cls.actor.loadModel(filePrefix + 'hi', 'modelRoot', 'hi')
                 cls.actor.loadModel(filePrefix + 'med', 'modelRoot', 'med')

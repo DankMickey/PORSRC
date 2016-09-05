@@ -461,7 +461,7 @@ class DistributedQuestProp(DistributedBattleable.DistributedBattleable, Lootable
             self.cProxNode.setIntoCollideMask(PiratesGlobals.WallBitmask)
             self.cProxNode.addSolid(self.cProx)
             self.cProxNodePath = self.attachNewNode(self.cProxNode)
-            if base.config.GetBool('show-prox-radius', 0):
+            if config.GetBool('show-prox-radius', 0):
                 self.cProxNodePath.show()
 
             enterCollEvent = self.uniqueName('enter' + 'ProxSphere')

@@ -273,7 +273,6 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
 
         taskMgr.doMethodLater(1, self.showEnterMessage, 'showEnterMessage')
         displayName = PLocalizer.LocationNames.get(self.uniqueId)
-        base.setLocationCode(displayName)
         self.storeLocationTime(self.funnelDisplayName, time.time())
         self.builder.initEffects()
 
@@ -445,7 +444,7 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
 
     def initBlockers(self, geom):
         self.disableBlockers = False
-        if base.config.GetBool('disable-blockers', 0):
+        if config.GetBool('disable-blockers', 0):
             self.disableBlockers = True
 
         blockerColls = geom.findAllMatches('**/blocker_*;+s')
@@ -618,7 +617,7 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
             print '*** water_alpha NODE NOT FOUND'
 
         use_shader = False
-        if base.config.GetBool('want-shaders', 0) and base.win and base.win.getGsg() and base.win.getGsg().getShaderModel() >= GraphicsStateGuardian.SM20:
+        if config.GetBool('want-shaders', 0) and base.win and base.win.getGsg() and base.win.getGsg().getShaderModel() >= GraphicsStateGuardian.SM20:
             use_shader = True
 
         model_ns = reference.find('**/water_swamp_ns')

@@ -1,4 +1,4 @@
-from panda3d.core import DocumentSpec, HTTPClient, NodePath, Point3, Ramfile, TPHigh, TPLow, TextNode, TransparencyAttrib, Vec3, Vec4, invert
+from panda3d.core import NodePath, Point3, TPHigh, TPLow, TextNode, TransparencyAttrib, Vec3, Vec4, invert
 import math, time
 from direct.gui.DirectGui import *
 from direct.showbase.DirectObject import DirectObject
@@ -107,7 +107,7 @@ class AvatarChooser(DirectObject, StateData):
         if self.isLoaded == 1:
             return
 
-        self.disableOptions = base.config.GetBool('disable-pirates-options', False)
+        self.disableOptions = config.GetBool('disable-pirates-options', False)
         base.musicMgr.load(SoundGlobals.MUSIC_AVATAR_CHOOSER)
         self.model = loader.loadModel('models/gui/avatar_chooser_rope')
         charGui = loader.loadModel('models/gui/char_gui')

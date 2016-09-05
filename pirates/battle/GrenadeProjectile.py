@@ -18,7 +18,7 @@ class GrenadeProjectile(ProjectileAmmo):
 
 
     def loadModel(self):
-        if not base.config.GetBool('want-special-effects', 0):
+        if not config.GetBool('want-special-effects', 0):
             grenade = loader.loadModel('models/ammunition/cannonball')
             grenade.setScale(0.6)
         elif self.ammoSkillId == InventoryType.GrenadeExplosion:

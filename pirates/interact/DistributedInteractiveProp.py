@@ -23,7 +23,7 @@ class DistributedInteractiveProp(DistributedInteractive.DistributedInteractive, 
     DiskUseColor = (1, 0, 0, 1)
     DiskWaitingColor = (1, 0, 0, 1)
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedInteractiveProp')
-    WantHpCheck = base.config.GetBool('want-hp-check', 0)
+    WantHpCheck = config.GetBool('want-hp-check', 0)
 
     def __init__(self, cr):
         NodePath.__init__(self, 'DistributedInteractiveProp')
@@ -260,7 +260,7 @@ class DistributedInteractiveProp(DistributedInteractive.DistributedInteractive, 
             WeaponGlobals.RESULT_HIT,
             WeaponGlobals.RESULT_MISTIMED_HIT]:
             if skillId == InventoryType.CutlassSlash or skillId == InventoryType.CutlassSweep:
-                if base.config.GetBool('want-easy-combos', 0):
+                if config.GetBool('want-easy-combos', 0):
                     if skillResult == WeaponGlobals.RESULT_HIT:
                         self.gameFSM.request('Death')
 
@@ -501,13 +501,13 @@ class DistributedInteractiveProp(DistributedInteractive.DistributedInteractive, 
 
 
     def propSlashed(self):
-        if not base.config.GetBool('want-easy-combos', 0):
+        if not config.GetBool('want-easy-combos', 0):
             messenger.send('didSlash')
 
 
 
     def propSlashedBonus(self):
-        if base.config.GetBool('want-easy-combos', 0):
+        if config.GetBool('want-easy-combos', 0):
             messenger.send('didSlash')
 
 

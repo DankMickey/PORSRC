@@ -106,25 +106,6 @@ class ChatManager(DirectObject.DirectObject):
     def start(self):
         self.fsm.request('mainMenu')
 
-    def announceChat(self):
-        messenger.send(ChatEvent)
-
-    def announceSCChat(self):
-        messenger.send(SCChatEvent)
-        self.announceChat()
-
-    def sendChatString(self, message):
-        chatFlags = CFSpeech | CFTimeout
-        if base.cr.wantSwitchboardHacks:
-            from otp.switchboard import badwordpy
-            badwordpy.init('', '')
-            message = badwordpy.scrub(message)
-        if isThought(message):
-            message = removeThoughtPrefix(message)
-            chatFlags = CFThought
-        messenger.send(NormalChatEvent)
-        self.announceChat()
-
     def sendWhisperString(self, message, whisperAvatarId):
         pass
 

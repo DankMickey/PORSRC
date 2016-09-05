@@ -2413,14 +2413,14 @@ def getEnemyStats(avatarType, level, hpMultiplier = 1, mpMultiplier = 1):
 
 
 def getMonsterHp(level):
-    if simbase.config.GetBool('demo-hacks', 0) == 1 and level > 5:
+    if config.GetBool('demo-hacks', 0) == 1 and level > 5:
         return 700
     else:
         return __HP_CHART[level]
 
 
 def getMonsterMp(level):
-    if simbase.config.GetBool('demo-hacks', 0) == 1 and level > 5:
+    if config.GetBool('demo-hacks', 0) == 1 and level > 5:
         return 50
     else:
         return __MP_CHART[level]
@@ -2522,7 +2522,7 @@ def getEnemySkills(avatarType, level, skillList = [], skillLevel = 0):
         skillList = baseSkills[SKILL_INDEX]
     if not skillLevel:
         skillLevel = levelModifier[SKILL_MOD]
-    if not simbase.config.GetBool('npcs-all-skills', 0):
+    if not config.GetBool('npcs-all-skills', 0):
         skillLevel = 15
 
     skillIds = skillList[0:skillLevel]

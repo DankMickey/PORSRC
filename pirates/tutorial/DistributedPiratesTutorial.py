@@ -193,8 +193,8 @@ class DistributedPiratesTutorial(DistributedObject.DistributedObject, FSM.FSM):
         self.island = None
         self.shipWreck = None
         self.loggingCannonDone = False
-        self.debugTutorial = base.config.GetBool('debug-tutorial', 0)
-        self.noJailLight = base.config.GetBool('no-jail-light', 0)
+        self.debugTutorial = config.GetBool('debug-tutorial', 0)
+        self.noJailLight = config.GetBool('no-jail-light', 0)
         self._leftJail = 0
         self.map = 0
         base.cr.tutorialObject = self

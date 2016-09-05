@@ -14,7 +14,7 @@ class Reflection(DirectObject):
         try:
             return base.options.reflection == 1
         except:
-            return base.config.GetBool('want-water-reflection-show-through-only', False)
+            return config.GetBool('want-water-reflection-show-through-only', False)
 
     @classmethod
     def initialize(self, parent):

@@ -264,21 +264,21 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
         self.avList = avList
         self.index = index
         self.genderIdx = 0
-        self.wantNPCViewer = base.config.GetBool('want-npc-viewer', 0)
-        self.wantPicButtons = base.config.GetBool('want-gen-pics-buttons', 0)
-        self.wantIdleCentered = base.config.GetBool('want-idle-centered', 0)
+        self.wantNPCViewer = config.GetBool('want-npc-viewer', 0)
+        self.wantPicButtons = config.GetBool('want-gen-pics-buttons', 0)
+        self.wantIdleCentered = config.GetBool('want-idle-centered', 0)
         if self.wantPicButtons and not (self.wantNPCViewer):
             self.wantNPCViewer = True
             self.notify.warning('Warning! want-gen-pics-buttons needs want-npc-viewer. wantNPCViewer overridden and set to TRUE')
 
-        self.wantMarketingViewer = base.config.GetBool('want-marketing-viewer', 0)
+        self.wantMarketingViewer = config.GetBool('want-marketing-viewer', 0)
         if isNPCEditor:
             self.wantNPCViewer = 1
 
         self.loadJackDialogs()
-        self.skipTutorial = base.config.GetBool('skip-tutorial', 0)
-        self.chooseFemale = base.config.GetBool('choose-female', 0)
-        self.noJailLight = base.config.GetBool('no-jail-light', 0)
+        self.skipTutorial = config.GetBool('skip-tutorial', 0)
+        self.chooseFemale = config.GetBool('choose-female', 0)
+        self.noJailLight = config.GetBool('no-jail-light', 0)
         if hasattr(base, 'pe') and base.pe:
             self.noJailLight = False
 
@@ -345,7 +345,7 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
         self.music = None
         self.soundBack = None
         if not hasattr(base, 'wantJewelry'):
-            self.wantJewelry = base.config.GetBool('want-jewelry', 0)
+            self.wantJewelry = config.GetBool('want-jewelry', 0)
         else:
             self.wantJewelry = base.wantJewelry
         if self.wantNPCViewer:
@@ -378,7 +378,7 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
 
     def enter(self):
         self.entered = 1
-        if base.config.GetBool('want-alt-idles', 0):
+        if config.GetBool('want-alt-idles', 0):
             taskMgr.add(self.altIdleTask, 'avCreate-AltIdleTask')
 
         taskMgr.add(self.zoomTask, 'avCreate-ZoomTask')
@@ -390,7 +390,7 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
             self.jail = loader.loadModel('models/buildings/navy_jail_interior_stairless')
             self.jail.flattenMedium()
             self.jail.reparentTo(render)
-            if base.config.GetBool('want-jail-lights-off', False):
+            if config.GetBool('want-jail-lights-off', False):
                 self.jail.setLightOff()
 
         if not self.noJailLight:

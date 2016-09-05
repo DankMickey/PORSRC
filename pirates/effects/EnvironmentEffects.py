@@ -399,7 +399,7 @@ class EnvironmentEffects(DirectObject):
 
 
     def loadGrass(self):
-        if base.config.GetBool('want-grass', 0) and Grass.HasGrass(self.modelPath):
+        if config.GetBool('want-grass', 0) and Grass.HasGrass(self.modelPath):
             self.grass = Grass.Grass(self.parent)
             self.grass.reparentTo(self.parent)
 

@@ -63,10 +63,10 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
         self.moonJolly = 0
         self.moonJollyIval = None
         self.softTOD = 1
-        if base.config.GetBool('want-soft-tod-changes', 0):
+        if config.GetBool('want-soft-tod-changes', 0):
             self.softTOD = 1
 
-        if base.config.GetBool('advanced-weather', 1):
+        if config.GetBool('advanced-weather', 1):
             pass
         1
         self.skyGroup = SkyGroup.SkyGroup()
@@ -92,11 +92,11 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
         self.setFogType(TODGlobals.FOG_OFF)
         self.showSky = 0
         self.avatarShadowCaster = None
-        if base.config.GetBool('want-avatar-shadows', 1):
+        if config.GetBool('want-avatar-shadows', 1):
             self.enableAvatarShadows()
 
         self.isPaused = 0
-        if base.config.GetBool('want-shaders', 1) and base.win and base.win.getGsg():
+        if config.GetBool('want-shaders', 1) and base.win and base.win.getGsg():
             pass
         self.use_shader = base.win.getGsg().getShaderModel() >= GraphicsStateGuardian.SM20
         self.accept('HolidayStarted', self.handleHolidayStarted)
@@ -1221,7 +1221,7 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
         render.setLight(self.alight)
         render.setLight(self.dlight)
         if base.win and not base.win.isClosed():
-            if base.config.GetBool('want-avatar-shadows', 1):
+            if config.GetBool('want-avatar-shadows', 1):
                 self.enableAvatarShadows()
 
 

@@ -75,7 +75,7 @@ class Holder(Creature, TentacleUtils):
             cls.sfx[name] = loadSfx(cls.SfxNames[name])
 
         cls.actor = Actor.Actor()
-        avatarDetail = base.config.GetString('avatar-detail', 'high')
+        avatarDetail = config.GetString('avatar-detail', 'high')
         if avatarDetail == 'high':
             dist = [
                 0,

@@ -120,7 +120,7 @@ class ChatBar(DirectFrame, FSM):
         DirectFrame.__init__(self, parent, *args, **kw)
         self.initialiseoptions(ChatBar)
         FSM.__init__(self, 'ChatBar')
-        if base.config.GetBool('whitelist-chat-enabled', 0):
+        if config.GetBool('whitelist-chat-enabled', 0):
             pass
         self.openChatEnabled = True
         self.noChat = not (self.openChatEnabled)

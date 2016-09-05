@@ -82,7 +82,7 @@ class MapPage(InventoryPage.InventoryPage):
 
 
     def createButtons(self):
-        if not base.config.GetBool('want-momentary-minimap', 0):
+        if not config.GetBool('want-momentary-minimap', 0):
             guiMain = loader.loadModel('models/gui/gui_main')
             btImages = (guiMain.find('**/minimap_button'), guiMain.find('**/minimap_button'), guiMain.find('**/minimap_button_over'), guiMain.find('**/minimap_button'))
             self.minimapButton = GuiButton.GuiButton(parent = self, image = btImages, selectedImage = btImages, pos = (0.9, 0, 1.15), scale = 1.5, hotkeys = [

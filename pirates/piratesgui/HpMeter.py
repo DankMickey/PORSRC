@@ -29,7 +29,7 @@ class HpMeter(DirectFrame):
         self.meter = DirectWaitBar(parent = self, relief = DGG.RAISED, borderWidth = (0.00400, 0.00400), range = self.max, value = self.value, frameColor = (0, 0, 0, 1), barColor = (0.100, 0.100, 0.696, 1), pos = meterPos, frameSize = (0, width, 0, height))
         self.valueLabel = DirectLabel(parent = self.meter, relief = None, text = '', text_scale = PiratesGuiGlobals.TextScaleTiny, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, pos = (0.200, 0, 0.00500), textMayChange = 1)
         self.update(self.value, self.max)
-        if not base.config.GetBool('display-enemyHp', 0):
+        if not config.GetBool('display-enemyHp', 0):
             self.valueLabel.hide()
 
 

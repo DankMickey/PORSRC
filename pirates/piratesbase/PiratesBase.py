@@ -45,8 +45,8 @@ class PiratesBase(OTPBase):
         self.isMainWindowOpen = False
         self.shipLookAhead = 0
 
-        self.fourthOfJuly = base.config.GetBool('test-fourth-of-july', 0)
-        base.effectsRoot = render.attachNewNode('Effects Root')
+        self.fourthOfJuly = config.GetBool('test-fourth-of-july', 0)
+        self.effectsRoot = render.attachNewNode('Effects Root')
 
         self.musicMgr = None
         self.options = Options()
@@ -57,15 +57,15 @@ class PiratesBase(OTPBase):
         pipe = selection.makeModulePipe(self.options.api)
 
         if pipe:
-            base.pipe = pipe
-            self.notify.info('Loaded requested graphics %s' % base.pipe.getType().getName())
+            self.pipe = pipe
+            self.notify.info('Loaded requested graphics %s' % self.pipe.getType().getName())
         else:
             self.notify.warning('Requested graphics API is not implemented!')
 
-        if not base.pipe:
-            base.makeDefaultPipe()
+        if not self.pipe:
+            self.makeDefaultPipe()
 
-            if not base.pipe:
+            if not self.pipe:
                 self.notify.error('Could not find any graphics API.')
 
         self.shipsVisibleFromIsland = self.options.ocean_visibility
@@ -87,20 +87,15 @@ class PiratesBase(OTPBase):
         self.loadingScreen.beginStep('PiratesBase', 34, 25)
 
         if not self.isMainWindowOpen:
-            try:
-                launcher.setPandaErrorCode(7)
-            except:
-                pass
-
             sys.exit(1)
 
         self.loadingScreen.tick()
-        if base.wantEnviroDR:
-            base.cam.node().setCameraMask(OTPRender.MainCameraBitmask)
+        if self.wantEnviroDR:
+            self.cam.node().setCameraMask(OTPRender.MainCameraBitmask)
             self.setupEnviroCamera()
             self.setupAutoPixelZoom()
         else:
-            base.cam.node().setCameraMask(OTPRender.MainCameraBitmask | OTPRender.EnviroCameraBitmask)
+            self.cam.node().setCameraMask(OTPRender.MainCameraBitmask | OTPRender.EnviroCameraBitmask)
         self.loadingScreen.tick()
 
         self._PiratesBase__alreadyExiting = False
@@ -111,13 +106,13 @@ class PiratesBase(OTPBase):
         if self.mouseInterface:
             self.mouseInterface.reparentTo(render)
 
-        if base.mouse2cam:
+        if self.mouse2cam:
             self.mouse2cam.reparentTo(render)
 
         for key in PiratesGlobals.ScreenshotHotkeyList:
             self.accept(key, self.takeScreenShot)
 
-        self.wantMarketingViewer = base.config.GetBool('want-marketing-viewer', 0)
+        self.wantMarketingViewer = config.GetBool('want-marketing-viewer', 0)
         self.marketingViewerOn = False
         if self.wantMarketingViewer:
             for key in PiratesGlobals.MarketingHotkeyList:
@@ -133,7 +128,7 @@ class PiratesBase(OTPBase):
         farCullNode.setClipEffect(0)
         self.farCull = camera.attachNewNode(farCullNode)
         self.positionFarCull()
-        globalClockMaxDt = base.config.GetFloat('pirates-max-dt', 0.200)
+        globalClockMaxDt = config.GetFloat('pirates-max-dt', 0.200)
         globalClock.setMaxDt(globalClockMaxDt)
         self.loadingScreen.tick()
 
@@ -213,7 +208,7 @@ class PiratesBase(OTPBase):
         self.supportAlphaFb = self.win.getFbProperties().getAlphaBits()
         taskMgr.setupTaskChain('background', frameBudget = 0.001, threadPriority = TPLow)
 
-        gsg = base.win.getGsg()
+        gsg = self.win.getGsg()
 
         if gsg:
             if gsg.getShaderModel() < gsg.SM20:
@@ -266,7 +261,7 @@ class PiratesBase(OTPBase):
             Holder.Holder.setupAssets()
             self.loadingScreen.tick()
 
-        if base.config.GetBool('want-seamonsters', 0):
+        if config.GetBool('want-seamonsters', 0):
             from pirates.creature import SeaSerpent
             SeaSerpent.SeaSerpent.setupAssets()
             self.loadingScreen.tick()
@@ -411,7 +406,7 @@ class PiratesBase(OTPBase):
                 self.toggleTexMem()
 
     def positionFarCull(self):
-        gridDetail = base.config.GetString('grid-detail', 'high')
+        gridDetail = config.GetString('grid-detail', 'high')
         self.gridDetail = gridDetail
         if gridDetail == 'high':
             self.farCull.setPos(0, 10000, 0)
@@ -433,8 +428,8 @@ class PiratesBase(OTPBase):
 
     def doAvatarPhysics(self, state):
         dt = ClockObject.getGlobalClock().getDt()
-        freq = base.config.GetFloat('avatar-physics-freq', 1.0)
-        maxSteps = base.config.GetInt('avatar-physics-maxsteps', 5)
+        freq = config.GetFloat('avatar-physics-freq', 1.0)
+        maxSteps = config.GetInt('avatar-physics-maxsteps', 5)
         if not freq:
             self.avatarPhysicsMgr.doPhysics(dt)
         elif not hasattr(state, 'dtRollover'):
@@ -496,15 +491,15 @@ class PiratesBase(OTPBase):
         del nullYield
         base.graphicsEngine.renderFrame()
         gameServer = os.environ.get('POR_GAMESERVER', '127.0.0.1')
-        serverPort = base.config.GetInt('server-port', 7969)
-        debugQuests = base.config.GetBool('debug-quests', True)
-        self.wantTattoos = base.config.GetBool('want-tattoos', 0)
-        self.wantSocks = base.config.GetBool('want-socks', 0)
-        self.wantJewelry = base.config.GetBool('want-jewelry', 0)
+        serverPort = config.GetInt('server-port', 7969)
+        debugQuests = config.GetBool('debug-quests', True)
+        self.wantTattoos = config.GetBool('want-tattoos', 0)
+        self.wantSocks = config.GetBool('want-socks', 0)
+        self.wantJewelry = config.GetBool('want-jewelry', 0)
         serverList = []
         for name in gameServer.split(';'):
             url = URLSpec(name, 1)
-            if base.config.GetBool('server-force-ssl', False):
+            if config.GetBool('server-force-ssl', False):
                 url.setScheme('s')
             if not url.hasPort():
                 url.setPort(serverPort)
@@ -512,7 +507,7 @@ class PiratesBase(OTPBase):
             serverList.append(url)
 
         if len(serverList) == 1:
-            failover = base.config.GetString('server-failover', '')
+            failover = config.GetString('server-failover', '')
             serverURL = serverList[0]
             for arg in failover.split():
 

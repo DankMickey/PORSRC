@@ -73,21 +73,21 @@ class DistributedShopKeeper(DistributedObject):
         if self.avatarType.isA(AvatarTypes.Cannoneer):
             self.shopInventory = CANNON_AMMO_SHELF_L1 + CANNON_AMMO_SHELF_L2 + CANNON_POUCH_SHELF
         elif self.avatarType.isA(AvatarTypes.Blacksmith):
-            if base.config.GetBool('low-weapons-only', 0):
+            if config.GetBool('low-weapons-only', 0):
                 self.shopInventory = MELEE_SHELF_L1 + MELEE_SHELF_L2 + DAGGER_AMMO_SHELF_L1 + DAGGER_AMMO_SHELF_L2 + DAGGER_POUCH_SHELF
             else:
                 self.shopInventory = MELEE_SHELF_L1 + MELEE_SHELF_L2 + MELEE_SHELF_L3 + DAGGER_AMMO_SHELF_L1 + DAGGER_AMMO_SHELF_L2 + DAGGER_POUCH_SHELF
         elif self.avatarType.isA(AvatarTypes.Bartender):
             self.shopInventory = MELEE_SHELF_L1 + MISSILE_SHELF_L1 + BOMB_SHELF_L1
         elif self.avatarType.isA(AvatarTypes.Gunsmith):
-            if base.config.GetBool('low-weapons-only', 0):
+            if config.GetBool('low-weapons-only', 0):
                 self.shopInventory = MISSILE_SHELF_L1 + MISSILE_SHELF_L2 + PISTOL_AMMO_SHELF_L1 + PISTOL_AMMO_SHELF_L2 + PISTOL_POUCH_SHELF + BOMB_SHELF_L1 + BOMB_SHELF_L2 + BOMB_AMMO_SHELF_L1 + BOMB_AMMO_SHELF_L2 + GRENADE_POUCH_SHELF + CANNON_AMMO_SHELF_L1 + CANNON_AMMO_SHELF_L2 + CANNON_POUCH_SHELF
             else:
                 self.shopInventory = MISSILE_SHELF_L1 + MISSILE_SHELF_L2 + MISSILE_SHELF_L3 + PISTOL_AMMO_SHELF_L1 + PISTOL_AMMO_SHELF_L2 + PISTOL_POUCH_SHELF + BOMB_SHELF_L1 + BOMB_SHELF_L2 + BOMB_SHELF_L3 + BOMB_AMMO_SHELF_L1 + BOMB_AMMO_SHELF_L2 + GRENADE_POUCH_SHELF + CANNON_AMMO_SHELF_L1 + CANNON_AMMO_SHELF_L2 + CANNON_POUCH_SHELF
         elif self.avatarType.isA(AvatarTypes.Grenadier):
             self.shopInventory = BOMB_SHELF_L1 + BOMB_SHELF_L2 + BOMB_SHELF_L3 + BOMB_AMMO_SHELF_L1 + BOMB_AMMO_SHELF_L2 + GRENADE_POUCH_SHELF
         elif self.avatarType.isA(AvatarTypes.Gypsy):
-            if base.config.GetBool('low-weapons-only', 0):
+            if config.GetBool('low-weapons-only', 0):
                 self.shopInventory = TONIC_SHELF_L1 + TONIC_SHELF_L2 + MOJO_SHELF_L1 + MOJO_SHELF_L2
             else:
                 self.shopInventory = TONIC_SHELF_L1 + TONIC_SHELF_L2 + MOJO_SHELF_ALL

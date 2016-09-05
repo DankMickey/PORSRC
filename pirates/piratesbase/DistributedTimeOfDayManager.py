@@ -11,7 +11,7 @@ class DistributedTimeOfDayManager(DistributedObject, TimeOfDayManager):
     def __init__(self, cr):
         DistributedObject.__init__(self, cr)
         TimeOfDayManager.__init__(self)
-        self.skyEnabled = base.config.GetBool('enable-sky', 1)
+        self.skyEnabled = config.GetBool('enable-sky', 1)
         self.syncEnabled = True
         self.isPaused = 0
         if not base.win.getGsg().isHardware():

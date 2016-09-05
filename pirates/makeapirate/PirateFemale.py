@@ -1308,7 +1308,7 @@ class PirateFemale(DirectObject.DirectObject):
             NodePathCollection(),
             NodePathCollection(),
             NodePathCollection()]
-        self.newAvatars = base.config.GetBool('want-new-avatars', 0)
+        self.newAvatars = config.GetBool('want-new-avatars', 0)
 
 
     def delete(self):
@@ -1510,7 +1510,7 @@ class PirateFemale(DirectObject.DirectObject):
         self.toothIdx = 0
         self.tooths.append(geom.findAllMatches('**/teeth_none*'))
         self.tooths.append(geom.findAllMatches('**/teeth_*'))
-        if base.config.GetBool('want-gen-pics-buttons'):
+        if config.GetBool('want-gen-pics-buttons'):
             self.eyes = self.pirate.findAllMatches('**/eye_*')
 
         self.eyeBrowIdx = 0
@@ -2625,7 +2625,7 @@ class PirateFemale(DirectObject.DirectObject):
         self.clothingsLayer2.append(geom.findAllMatches('**/clothing_layer2_belt_square_interior'))
         self.clothingsLayer2.append(geom.findAllMatches('**/clothing_layer2_belt_square_buckle_front'))
         self.clothingsLayer2.append(geom.findAllMatches('**/clothing_layer2_belt_square_strap_front'))
-        if base.config.GetBool('want-gen-pics-buttons'):
+        if config.GetBool('want-gen-pics-buttons'):
             self.clothesByType = {
                 'SHIRT': self.clothingsLayer1[:15],
                 'VEST': self.clothingsLayer2[:5],

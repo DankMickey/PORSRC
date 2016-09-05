@@ -65,7 +65,7 @@ class QuestTitleList(DirectScrolledFrame):
         self.width = 0.946
         self.height = 0.540000
         self.loadButtonGui()
-        if not base.config.GetBool('enable-next-chapter', 0):
+        if not config.GetBool('enable-next-chapter', 0):
             self.chapter4Lockout = True
 
         if not self.charGui:

@@ -90,7 +90,7 @@ class Cutscene(NodePath, DirectObject):
             if self.cr and localAvatar.ship:
                 self.addFlatWell()
 
-        if base.config.GetBool('cutscene-axis'):
+        if config.GetBool('cutscene-axis'):
             self._axis = loader.loadModel('models/misc/xyzAxis')
             self._axis.reparentTo(self)
 

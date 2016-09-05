@@ -49,7 +49,7 @@ class ForestEffects(EnvironmentEffects.EnvironmentEffects):
         self.swamp_water = None
         reflection = Reflection.getGlobalReflection()
         if 'jungle_a' in self.modelPrefix:
-            if base.config.GetBool('want-shaders', 0) and base.win and base.win.getGsg() and base.win.getGsg().getShaderModel() >= GraphicsStateGuardian.SM20:
+            if config.GetBool('want-shaders', 0) and base.win and base.win.getGsg() and base.win.getGsg().getShaderModel() >= GraphicsStateGuardian.SM20:
                 water_color = Vec4(13, 15, 21, 255.0)
                 self.water = Swamp(self.modelPrefix + 'water', self.parent, reflection, None, None, water_color)
                 self.water.reflection_factor = 0.299

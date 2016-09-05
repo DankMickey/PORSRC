@@ -1,4 +1,4 @@
-from panda3d.core import Camera, ColorWriteAttrib, DisplayRegion, Filename, Lens, NodePath, StereoDisplayRegion, TPLow, VBase4, getModelPath
+from panda3d.core import Camera, ColorWriteAttrib, DisplayRegion, Lens, StereoDisplayRegion, TPLow, VBase4
 from direct.showbase.ShowBase import ShowBase
 import OTPRender
 import time
@@ -21,19 +21,19 @@ class OTPBase(ShowBase):
         self.slowCloseShard = self.config.GetBool('slow-close-shard', 0)
         self.slowCloseShardDelay = self.config.GetFloat('slow-close-shard-delay', 10.0)
         self.fillShardsToIdealPop = self.config.GetBool('fill-shards-to-ideal-pop', 1)
-        self.logPrivateInfo = self.config.GetBool('log-private-info', __dev__)
+
         self.wantDynamicShadows = 1
         self.stereoEnabled = False
         self.enviroDR = None
         self.enviroCam = None
         self.pixelZoomSetup = False
-        self.locationCode = ''
-        self.locationCodeChanged = time.time()
+
         if base.cam:
             if self.wantEnviroDR:
                 base.cam.node().setCameraMask(OTPRender.MainCameraBitmask)
             else:
                 base.cam.node().setCameraMask(OTPRender.MainCameraBitmask | OTPRender.EnviroCameraBitmask)
+
         taskMgr.setupTaskChain('net')
         
         self.whiteList = None
@@ -46,7 +46,7 @@ class OTPBase(ShowBase):
                 self.whiteList.setSequenceList(SequenceListData.SEQUENCES)
 
     def setTaskChainNetThreaded(self):
-        if base.config.GetBool('want-threaded-network', 0):
+        if config.GetBool('want-threaded-network', 0):
             taskMgr.setupTaskChain('net', numThreads=1, frameBudget=0.001, threadPriority=TPLow)
 
     def setTaskChainNetNonthreaded(self):
@@ -180,11 +180,6 @@ class OTPBase(ShowBase):
 
     def getShardPopLimits(self):
         return (300, 600, 1200)
-
-    def setLocationCode(self, locationCode):
-        if locationCode != self.locationCode:
-            self.locationCode = locationCode
-            self.locationCodeChanged = time.time()
 
     def getRepository(self):
         return self.cr

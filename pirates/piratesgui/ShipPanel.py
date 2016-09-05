@@ -79,7 +79,7 @@ class ShipPanel(DirectFrame):
         self.accept('setHullCannonConfig-%s' % self.shipId, self.setShipMaxCannons)
         self.accept('setHullLeftBroadsideConfig-%s' % self.shipId, self.setShipMaxLeftBroadside)
         self.accept('setHullRightBroadsideConfig-%s' % self.shipId, self.setShipMaxRightBroadside)
-        if base.config.GetBool('want-deploy-button', 0):
+        if config.GetBool('want-deploy-button', 0):
             pass
         1
 

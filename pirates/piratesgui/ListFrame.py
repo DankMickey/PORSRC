@@ -132,7 +132,7 @@ class ListFrame(DirectFrame, DirectObject):
     def _createIface(self):
         itemList = self.getItemList()
         revealTime = self.revealSpeed
-        if base.config.GetBool('fast-gui', 0) is 1:
+        if config.GetBool('fast-gui', 0) is 1:
             self.revealSpeed = 0
 
         numItems = len(itemList)
