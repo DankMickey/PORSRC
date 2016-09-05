@@ -111,8 +111,6 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
         self.avatarFriendsManager = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_AVATAR_FRIENDS_MANAGER, 'AvatarFriendsManager')
         self.piratesFriendsManager = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_PIRATES_FRIENDS_MANAGER, 'PiratesFriendsManager')
         #self.shipLoader = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_PIRATES_SHIP_MANAGER, 'DistributedShipLoader')
-        self.codeRedemption = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_PIRATES_CODE_REDEMPTION, 'CodeRedemption')
-        self.statusDatabase = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_STATUS_DATABASE, 'StatusDatabase')
 
         self.wantSeapatch = base.config.GetBool('want-seapatch', 0)
         self.wantSpecialEffects = base.config.GetBool('want-special-effects', 0)
@@ -289,13 +287,13 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
             self.loginFSM.request('shutdown')
             return None
 
-        (subId, slot) = self.avChoice.getChoice()
+        slot = self.avChoice.getChoice()
         self.avChoice.exit()
-        self.handleAvatarChoice(done, subId, slot)
+        self.handleAvatarChoice(done, slot)
 
-    def handleAvatarChoice(self, done, subId, slot):
+    def handleAvatarChoice(self, done, slot):
         if done == 'chose':
-            av = self.avList[subId][slot]
+            av = self.avList[slot]
             if av.dna.getTutorial() < 3 and self.skipTutorial == 0:
                 self.tutorial = 1
             else:
@@ -303,7 +301,7 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
             self.loadingScreen.beginStep('waitForAv')
             self.loginFSM.request('waitForSetAvatarResponse', [av])
         elif done == 'create':
-            self.loginFSM.request('createAvatar', [self.avList[subId], slot, subId])
+            self.loginFSM.request('createAvatar', [self.avList, slot])
 
     def exitChooseAvatar(self):
         self.handler = None
@@ -316,14 +314,14 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
             self.ignore(self.avChoiceDoneEvent)
             self.avChoiceDoneEvent = None
 
-    def enterCreateAvatar(self, avList, index, subId):
+    def enterCreateAvatar(self, avList, index):
         self.tutorial = 0
-        self.avCreate = MakeAPirate(avList, 'makeAPirateComplete', subId, index)
+        self.avCreate = MakeAPirate(avList, 'makeAPirateComplete', index)
         self.avCreate.load()
         self.avCreate.enter()
         self.accept('makeAPirateComplete', self.__handleMakeAPirate)
 
-    def handleAvatarCreated(self, newPotAv, avatarId, subId):
+    def handleAvatarCreated(self, newPotAv, avatarId):
         newPotAv.id = avatarId
         self.loginFSM.request('waitForSetAvatarResponse', [newPotAv])
 
@@ -333,7 +331,7 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
             self.avCreate.exit()
             self.loginFSM.request('chooseAvatar', [self.avList])
         elif done == 'created':
-            self.handleAvatarCreated(self.avCreate.newPotAv, self.avCreate.avId, self.avCreate.subId)
+            self.handleAvatarCreated(self.avCreate.newPotAv, self.avCreate.avId)
         else:
             self.notify.error('Invalid doneStatus from MakeAPirate: ' + str(done))
 

@@ -15,9 +15,8 @@ from otp.friends import FriendInfo
 from otp.friends import AvatarFriendInfo
 from otp.distributed import DistributedDistrict/AI/UD
 from otp.distributed import DistributedDirectory/AI
-from otp.chat import ChatAgent/UD
+from otp.chat import ChatAgent/AI
 from otp.distributed import CentralLogger/AI/UD
-from otp.status import StatusDatabase/UD
 from otp.avatar import AvatarHandle
 
 typedef uint8 bool;
@@ -135,24 +134,14 @@ dclass DistributedCamera : DistributedNode {
   setFixtures(Fixture []) required broadcast ram ownsend airecv;
 };
 
-struct TalkModification {
-  uint16 offset;
-  uint16 size;
-};
-
-dclass TalkPath_owner {
-  setTalk(DoId fromAv, string(0-256) avName,
-          string(0-400) chat, TalkModification [], uint8 flags) broadcast ownsend;
-};
-
 dclass TalkPath_whisper {
   setTalkWhisper(DoId fromAv, string(0-256) avName,
-                 string(0-400) chat, TalkModification [], uint8 flags) ownrecv clsend;
+                 string(0-400) chat) ownrecv clsend;
 };
 
 dclass TalkPath_group {
   setTalkGroup(DoId fromAv, string(0-256) avName,
-               string(0-400) chat, TalkModification [], uint8 flags) clsend airecv;
+               string(0-400) chat) clsend airecv;
 };
 
 dclass AvatarHandle : TalkPath_whisper {
@@ -164,8 +153,8 @@ dclass DistributedAvatar : DistributedSmoothNode, TalkPath_whisper {
   friendsNotify(DoId avId, int8 status) ownrecv airecv;
   checkAvOnShard(DoId) clsend airecv;
   confirmAvOnShard(DoId avId, int8 isOnShard);
-  setTalk(DoId fromAv, string(0-256) avName,
-          string(0-400) chat, TalkModification [], uint8 flags) broadcast;
+  setTalk(string(0-256) chat) broadcast ram;
+  setTalkFrom(uint32 avId, uint8 channel, string(0-256) chat) ownrecv;
 };
 
 dclass DistributedPlayer : DistributedAvatar {
@@ -194,10 +183,7 @@ dclass MagicWordManager : DistributedObject {
 };
 
 dclass ChatAgent : DistributedObject {
-  adminChat(uint32 aboutId, string message);
-  chatMessage(string(0-256)) clsend;
-  whisperMessage(uint32 receiverAvId, string(0-256) message) clsend;
-  sfWhisperMessage(uint32 receiverAvId, string(0-256) message) clsend;
+  chatMessage(string(0-256) chat, uint8 channel) airecv clsend;
 };
 
 dclass FriendManager : DistributedObject {
@@ -358,11 +344,6 @@ dclass AvatarFriendsManager : DistributedObject {
 
 dclass CentralLogger : DistributedObject {
   sendMessage(string(0-256), string(0-1024), uint32) clsend;
-};
-
-dclass StatusDatabase : DistributedObject {
-  requestOfflineAvatarStatus(uint32 []) airecv clsend;
-  recvOfflineAvatarStatus(uint32, uint32);
 };
 
 dclass CallbackObject {

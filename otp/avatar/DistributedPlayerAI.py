@@ -114,6 +114,12 @@ class DistributedPlayerAI(DistributedAvatarAI.DistributedAvatarAI, PlayerBase.Pl
 
     def getAdminAccess(self):
         return self.adminAccess
+    
+    def d_setTalk(self, message):
+        self.sendUpdate('setTalk', [message])
+    
+    def d_setTalkFrom(self, avId, channel, message):
+        self.sendUpdate('setTalkFrom', [avId, channel, message])
 
     def extendFriendsList(self, friendId):
         if friendId not in self.friendsList:

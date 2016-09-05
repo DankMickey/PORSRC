@@ -1269,7 +1269,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
                 model = model.split('/')[-1]
 
 
-        strPos = '\nMaya Pos: \n%.1f, %.1f, %.1f' % (pos[0], pos[2], -pos[1]) + '\nPanda Pos: \n%.1f, %.1f, %.1f' % (pos[0], pos[1], pos[2]) + '\nH: %.1f' % hpr[0] + '\nModel: %s' % model + '\nTexture: %s, Terrain: %s, Avatar: %s' % (base.options.getTextureScaleString(), base.options.getGameOptionString(base.options.getTerrainDetailSetting()), base.options.getGameOptionString(base.options.getCharacterDetailSetting())) + '\nLoc: (%s, %s)' % (str(parentId), str(zoneId)) + ',\nVer: %s, ' % serverVersion + '\nDistrict: %s' % districtName
+        strPos = 'Position: \n%.1f, %.1f, %.1f' % (pos[0], pos[1], pos[2]) + '\nH: %.1f' % hpr[0] + '\nModel: %s' % model + '\nTexture: %s, Terrain: %s, Avatar: %s' % (base.options.getTextureScaleString(), base.options.getGameOptionString(base.options.getTerrainDetailSetting()), base.options.getGameOptionString(base.options.getCharacterDetailSetting())) + '\nLoc: (%s, %s)' % (str(parentId), str(zoneId)) + ',\nVersion: %s, ' % serverVersion + '\nDistrict: %s' % districtName
         self.setChatAbsolute(strPos, CFThought | CFTimeout)
 
 
@@ -2180,7 +2180,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
 
 
 
-    def displayTalkWhisper(self, fromId, avatarName, chatString, mods):
+    def displayTalkWhisper(self, fromId, avatarName, chatString):
         if base.cr.avatarFriendsManager.checkIgnored(fromId):
             return None
 
@@ -2191,14 +2191,6 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
 
         if self.soundWhisper:
             base.playSfx(self.soundWhisper)
-
-
-
-    def displayTalkAccount(self, fromId, fromName, message, mods):
-        if self.soundWhisper:
-            base.playSfx(self.soundWhisper)
-
-
 
     def whisperTo(self, chatString, sendToId):
         recv = base.cr.identifyAvatar(sendToId)

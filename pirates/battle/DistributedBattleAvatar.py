@@ -1985,7 +1985,6 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
 
 
     def setGameState(self, gameState, timestamp = None, localArgs = [], localChange = 0):
-        self.notify.info('setGameState: %s state: %s' % (self.doId, gameState))
         if timestamp is None:
             ts = 0.0
         else:

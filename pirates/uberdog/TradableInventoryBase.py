@@ -1,4 +1,3 @@
-from panda3d.direct import DCPacker, STBlob, STBlob32, STChar, STFloat64, STInt16, STInt16array, STInt32, STInt32array, STInt64, STInt8, STInt8array, STString, STUint16, STUint16array, STUint32, STUint32array, STUint32uint8array, STUint64, STUint8, STUint8array
 from pirates.uberdog.UberDogGlobals import receiveSwitchField, prepareSwitchField, InventoryType, isLocatable, GiftOrigin
 from pirates.uberdog.DistributedInventoryBase import DistributedInventoryBase
 from pirates.inventory.InventoryGlobals import *

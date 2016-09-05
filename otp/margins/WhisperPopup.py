@@ -10,7 +10,6 @@ class WhisperPopup(MarginPopup, ClickablePopup):
     WTSystem = WTSystem
     WTBattleSOS = WTBattleSOS
     WTEmote = WTEmote
-    WTToontownBoardingGroup = WTToontownBoardingGroup
 
     WORDWRAP = 7.5
     SCALE_2D = 0.25

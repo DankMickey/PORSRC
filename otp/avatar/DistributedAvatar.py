@@ -10,7 +10,6 @@ from direct.showbase import PythonUtil
 from otp.otpbase import OTPGlobals
 from otp.otpbase import OTPLocalizer
 from otp.speedchat import SCDecoders
-from otp.chat import ChatGarbler
 from otp.chat import ChatManager
 import random
 from Avatar import Avatar

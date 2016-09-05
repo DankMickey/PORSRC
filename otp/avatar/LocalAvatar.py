@@ -61,7 +61,6 @@ class LocalAvatar(DistributedAvatar.DistributedAvatar, DistributedSmoothNode.Dis
         self.chatMgr = chatMgr
         base.talkAssistant = talkAssistant
         self.commonChatFlags = 0
-        self.garbleChat = 1
         self.teleportAllowed = 1
         self.lockedDown = 0
         self.isPageUp = 0

@@ -70,34 +70,94 @@ WhisperToFormatName = 'To %s'
 WhisperFromFormatName = '%s whispers'
 ThoughtOtherFormatName = '%s thinks'
 ThoughtSelfFormatName = 'You think'
+
+
+propertyManager = TextPropertiesManager.getGlobalPtr()
+
 shadow = TextProperties()
 shadow.setShadow(-0.025, -0.025)
 shadow.setShadowColor(0, 0, 0, 1)
-TextPropertiesManager.getGlobalPtr().setProperties('shadow', shadow)
-red = TextProperties()
-red.setTextColor(1, 0, 0, 1)
-TextPropertiesManager.getGlobalPtr().setProperties('red', red)
-green = TextProperties()
-green.setTextColor(0, 1, 0, 1)
-TextPropertiesManager.getGlobalPtr().setProperties('green', green)
-yellow = TextProperties()
-yellow.setTextColor(1, 1, 0, 1)
-TextPropertiesManager.getGlobalPtr().setProperties('yellow', yellow)
-midgreen = TextProperties()
-midgreen.setTextColor(0.2, 1, 0.2, 1)
-TextPropertiesManager.getGlobalPtr().setProperties('midgreen', midgreen)
-blue = TextProperties()
-blue.setTextColor(0, 0, 1, 1)
-TextPropertiesManager.getGlobalPtr().setProperties('blue', blue)
-white = TextProperties()
-white.setTextColor(1, 1, 1, 1)
-TextPropertiesManager.getGlobalPtr().setProperties('white', white)
-black = TextProperties()
-black.setTextColor(0, 0, 0, 1)
-TextPropertiesManager.getGlobalPtr().setProperties('black', black)
-grey = TextProperties()
-grey.setTextColor(0.5, 0.5, 0.5, 1)
-TextPropertiesManager.getGlobalPtr().setProperties('grey', grey)
+italic = TextProperties()
+italic.setSlant(0.3)
+small = TextProperties()
+small.setGlyphScale(0.8)
+bold = TextProperties()
+bold.setGlyphScale(1.1)
+propertyManager.setProperties('shadow', shadow)
+propertyManager.setProperties('italic', italic)
+propertyManager.setProperties('small', small)
+propertyManager.setProperties('bold', bold)
+
+TextColors = {
+ 'red': (1, 0, 0, 1),
+ 'green': (0, 1, 0, 1),
+ 'blue': (0, 0, 1, 1),
+ 'yellow': (1, 1, 0, 1),
+ 'purple': (1, 0, 1, 1),
+ 'cyan': (0, 1, 1, 1),
+ 'midgreen': (0.2, 1, 0.2, 1),
+ 'white': (1, 1, 1, 1),
+ 'black': (0, 0, 0, 1),
+ 'grey': (0.5, 0.5, 0.5, 1),
+ 'gold': (1, 0.84, 0, 1),
+ 'brown': (0.8, 0.4, 0, 1),
+ 'orange': (1, 0.54, 0, 1),
+ 'darkGray': (0.2, 0.2, 0.2, 1),
+ 'darkPink': (0.75, 0.5, 0.85, 1),
+ 'darkGreen': (0, 0.45, 0, 1),
+ 'darkRed': (0.85, 0.15, 0.15, 1),
+ 'skillRed': (0.5, 0, 0, 1),
+ 'lightBlue': (0.4, 0.6, 1, 1),
+ 'skyBlue': (0, 0.6, 1, 1),
+ 'waterGreen': (0.2, 0.6, 0.3, 1),
+ 'maroon': (0.5, 0, 0, 1),
+ 'lightGold': (0.98, 0.98, 0.82, 1),
+ 'beige': (1, 0.95, 0.7, 1),           # Light yellow
+ 'amber': (1, 0.75, 0, 1),             # Orange
+ 'amaranth': (0.9, 0.15, 0.3, 1),      # Pink
+ 'androidGreen': (0.65, 0.75, 0.2, 1), # Green
+ 'caribbeanGreen': (0, 0.8, 0.6, 1),   # Turquoise-green
+ 'azure': (0, 0.5, 1, 1),              # Blue
+ 'cobalt': (0, 0.3, 0.65, 1),          # Cobalt-blue
+ 'forestGreen': (0.15, 0.8, 0.15, 1)   # Forest-green
+}
+DynamicColors = []
+DynamicFonts = []
+
+for name, color in TextColors.iteritems():
+    property = TextProperties()
+    property.setTextColor(*color)
+    propertyManager.setProperties(name, property)
+    property.setShadow(-0.025, -0.025)
+    property.setShadowColor(0, 0, 0, 1)
+    propertyManager.setProperties(name + 'Shadow', property)
+
+def getPropertiesForFont(font):
+    if font in DynamicFonts:
+        return 'dynamicFont%d' % DynamicFonts.index(font)
+    
+    name = 'dynamicFont%d' % len(DynamicFonts)
+    property = TextProperties()
+    property.setFont(font)
+    propertyManager.setProperties(name, property)
+    DynamicFonts.append(font)
+
+    return name
+
+def getPropertiesForColor(color):
+    if color in TextColors.values():
+        return TextColors.keys()[TextColors.values().index(color)]
+    if color in DynamicColors:
+        return 'dynamic%d' % DynamicColors.index(color)
+
+    name = 'dynamic%d' % len(DynamicColors)
+    property = TextProperties()
+    property.setTextColor(*color)
+    propertyManager.setProperties(name, property)
+    DynamicColors.append(color)
+    
+    return name
+
 MultiPageTextFrameNext = lNext
 MultiPageTextFramePrev = 'Previous'
 MultiPageTextFramePage = 'Page %s/%s'
@@ -2817,6 +2877,8 @@ InjectorRemoveWarning = 'This will remove the snippet "%s"! Are you sure you wan
 InjectorRemoved = '"%s" was removed successfully!'
 InjectorAIUnavailable = 'Not connected to AI server!'
 InjectorPStats = 'PStats Client'
+
+ChatChannels = {0: 'User', 1: 'Staff'}
 
 def timeElapsedString(timeDelta):
     timeDelta = abs(timeDelta)

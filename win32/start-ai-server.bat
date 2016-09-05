@@ -3,9 +3,9 @@ title POR AI
 
 rem Define some constants for our AI server:
 set MAX_CHANNELS=999999
-set STATESERVER=4002
-set ASTRON_IP=127.0.0.1:7100
-set EVENTLOGGER_IP=127.0.0.1:7198
+set STATESERVER=1100
+set ASTRON_IP=127.0.0.1:29170
+set EVENTLOGGER_IP=127.0.0.1:29160
 
 rem Get the user input:
 set /P DISTRICT_NAME="District name (DEFAULT: Davylore): " || ^

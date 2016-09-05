@@ -1,4 +1,4 @@
-from panda3d.core import BoundingVolume, CardMaker, CollideMask, CollisionNode, CollisionSphere, Filename, GraphicsStateGuardian, ModelNode, NodePath, NodePathCollection, OmniBoundingVolume, Point3, StencilAttrib, Texture, VBase4
+from panda3d.core import BoundingVolume, CardMaker, CollideMask, CollisionNode, CollisionSphere, GraphicsStateGuardian, ModelNode, NodePath, NodePathCollection, OmniBoundingVolume, Point3, StencilAttrib, Texture, VBase4
 from direct.distributed import DistributedNode
 from direct.distributed import DistributedObject
 from direct.showbase.PythonUtil import Functor, report
@@ -761,25 +761,8 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
         self.envSettings = base.worldCreator.getEnvSettingsByUid(self.uniqueId)
         self.builder = base.worldCreator.getBuilder(self, self.areaType)
 
-    def retrieveFootprintNode(self):
-        footprintCache = self.getFootprintCache()
-        if footprintCache.hasData() and base.config.GetBool('want-disk-cache', 0):
-            data = footprintCache.getData()
-            newData = data.copySubgraph()
-            footprintNode = NodePath(newData)
-        else:
-            footprintNode = self.buildFootprintNode()
-        return footprintNode
-
-    def getFootprintCache(self):
-        return base.bamCache.lookup(Filename('/%s_footprint_%s.bam' % (self.uniqueId, base.gridDetail)), 'bam')
-
     def buildFootprintNode(self):
-        footprintCache = self.getFootprintCache()
-        footprintNode = self.builder.buildFootprintNode()
-        footprintCache.setData(footprintNode.node(), 0)
-        base.bamCache.store(footprintCache)
-        return footprintNode
+        return self.builder.buildFootprintNode()
 
     def hideMapNodes(self):
         mapNodes = self.geom.findAllMatches('**/minimap_*')
@@ -835,7 +818,7 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
 
     def getFootprintNode(self):
         if not self.footprintNode:
-            self.footprintNode = self.retrieveFootprintNode()
+            self.footprintNode = self.buildFootprintNode()
 
         if not self.footprintNode.find('footprint_%s' % (self.minimapArea,)):
             pass

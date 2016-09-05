@@ -240,7 +240,6 @@ class OTPClientRepository(ClientRepositoryBase):
         self.__doId2pendingInterest = {}
 
         self.centralLogger = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_CENTRAL_LOGGER, 'CentralLogger')
-        self.chatAgent = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_CHAT_MANAGER, 'ChatAgent')
         self.csm = None # To be set by subclass.
 
     def getGameDoId(self):

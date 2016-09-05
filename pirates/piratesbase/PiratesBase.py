@@ -1,5 +1,5 @@
 from panda3d.physics import AngularEulerIntegrator, AngularIntegrator, ForceNode, LinearControlForce, LinearEulerIntegrator, LinearForce, LinearFrictionForce, LinearIntegrator, PhysicsManager
-from panda3d.core import BamCache, ButtonThrower, Camera, ClockObject, CollisionHandler, CollisionHandlerEvent, CollisionTraverser, ConfigVariable, ConfigVariableBool, CullBinEnums, CullBinManager, DSearchPath, DisplayInformation, EventHandler, ExecutionEnvironment, Filename, GeomVertexArrayData, GraphicsPipe, GraphicsPipeSelection, KeyboardButton, Lens, ModifierButtons, MouseWatcher, NodePath, PGButton, Pixel, Plane, PlaneNode, Point3, TPHigh, TPLow, TextProperties, TextPropertiesManager, Texture, TextureStage, URLSpec, VBase4, Vec3, Vec4, VertexDataPage, VirtualFile, VirtualFileSystem, WindowProperties, loadPrcFile, loadPrcFileData, xel
+from panda3d.core import Camera, ClockObject, CollisionHandler, CollisionHandlerEvent, CollisionTraverser, CullBinEnums, CullBinManager, DSearchPath, EventHandler, ExecutionEnvironment, Filename, GraphicsPipe, GraphicsPipeSelection, Lens, MouseWatcher, NodePath, PGButton, Plane, PlaneNode, Point3, TPHigh, TPLow, TextProperties, TextPropertiesManager, Texture, TextureStage, URLSpec, VBase4, Vec3, Vec4, VirtualFile, VirtualFileSystem, WindowProperties
 import sys
 import time
 import os
@@ -32,28 +32,12 @@ from otp.otpgui import OTPDialog
 from otp.otpbase import OTPGlobals
 from otp.otpbase import OTPLocalizer
 from pirates.piratesgui import PDialog
-from pirates.chat.PWhiteList import PWhiteList
 import PiratesGlobals
 import __builtin__
 
 class PiratesBase(OTPBase):
     notify = DirectNotifyGlobal.directNotify.newCategory('PiratesBase')
-    lowMemoryStreamAudio = ConfigVariableBool('low-memory-stream-audio', 0)
-    resolution_table = [
-        (800, 600),
-        (1024, 768),
-        (1280, 1024),
-        (1600, 1200)]
-    widescreen_resolution_table = [
-        (1280, 720),
-        (1920, 1080)]
-    MinimumHorizontalResolution = 800
-    MinimumVerticalResolution = 600
-    apiNames = [
-        'pandagl',
-        'pandadx8',
-        'pandadx9',
-        'tinydisplay']
+    apiNames = ['pandagl', 'pandadx9', 'tinydisplay']
 
     def __init__(self):
         OTPBase.__init__(self, windowType = 'none')
@@ -62,86 +46,35 @@ class PiratesBase(OTPBase):
         self.shipLookAhead = 0
 
         self.fourthOfJuly = base.config.GetBool('test-fourth-of-july', 0)
-        self.bamCache = BamCache.getGlobalPtr()
         base.effectsRoot = render.attachNewNode('Effects Root')
 
         self.musicMgr = None
-        use_recommended_options = False
-        options = Options()
+        self.options = Options()
+        self.options.load()
+        self.options.applyPre()
 
-        if __dev__:
-            Options.DEFAULT_FILE_PATH = Filename.expandFrom('$HOME/game_options.txt').toOsSpecific()
-            Options.DEFAULT_API_FILE_PATH = Filename.expandFrom('$HOME/game_api.txt').toOsSpecific()
-            Options.WORKING_FILE_PATH = Filename.expandFrom('$HOME/last_working_options.txt').toOsSpecific()
-            Options.POSSIBLE_WORKING_FILE_PATH = Filename.expandFrom('$HOME/p_working_options.txt').toOsSpecific()
+        selection = GraphicsPipeSelection.getGlobalPtr()
+        pipe = selection.makeModulePipe(self.options.api)
 
-        options_loaded = options.load(Options.DEFAULT_FILE_PATH)
-        self.notify.info('Requested graphics API = %s' % options.api)
-        if options.api == 'default' and self.config.GetBool('use-graphics-api-auto-select', True):
-            base.makeDefaultPipe()
-            options.automaticGraphicsApiSelection(base.pipe)
-            self.notify.info('Auto-selected graphics API = %s' % options.api)
-
-        if options.api in self.apiNames:
-            selection = GraphicsPipeSelection.getGlobalPtr()
-            pipe = selection.makeModulePipe(options.api)
-            if pipe:
-                base.pipe = pipe
-                self.notify.info('Loaded requested graphics %s' % base.pipe.getType().getName())
-
+        if pipe:
+            base.pipe = pipe
+            self.notify.info('Loaded requested graphics %s' % base.pipe.getType().getName())
+        else:
+            self.notify.warning('Requested graphics API is not implemented!')
 
         if not base.pipe:
             base.makeDefaultPipe()
+
             if not base.pipe:
                 self.notify.error('Could not find any graphics API.')
 
-            self.notify.info('Loaded default graphics %s' % base.pipe.getType().getName())
-
-        bits_per_pixel = 32
-        self.getDisplayResolutions(bits_per_pixel, base.pipe)
-        if options_loaded:
-            self.notify.info('Options State = %s' % options.state)
-            if __dev__:
-                options.save(Options.DEFAULT_FILE_PATH, Options.WORKING_STATE)
-            elif options.state == Options.DEFAULT_STATE or options.state == Options.NEW_STATE:
-                options.save(Options.DEFAULT_FILE_PATH, Options.ATTEMPT_STATE)
-            elif options.state == Options.ATTEMPT_STATE:
-                working_options = Options()
-                if working_options.load(Options.WORKING_FILE_PATH):
-                    options = working_options
-                    working_options.save(Options.DEFAULT_FILE_PATH, Options.ATTEMPT_WORKING_STATE)
-                else:
-                    options.config_to_options()
-                    use_recommended_options = True
-            elif options.state == Options.WORKING_STATE:
-                options.save(Options.DEFAULT_FILE_PATH, Options.ATTEMPT_STATE)
-            elif options.state == Options.ATTEMPT_WORKING_STATE:
-                options.config_to_options()
-                use_recommended_options = True
-            else:
-                options.save(Options.DEFAULT_FILE_PATH, Options.ATTEMPT_STATE)
-            options.log('Loaded Game Options')
-        else:
-            options.config_to_options()
-            if base.config.GetBool('want-dev', False):
-                pass
-            use_recommended_options = True
-        if use_recommended_options:
-            options.recommendedOptions(base.pipe, False)
-            options.log('Recommended Game Options')
-        overwrite_options = True
-        options.verifyOptions(base.pipe, overwrite_options)
-        string = options.optionsToPrcData()
-        loadPrcFileData('game_options', string)
-
-        self.options = options
         self.shipsVisibleFromIsland = self.options.ocean_visibility
         self.overrideShipVisibility = False
-        base.windowType = 'onscreen'
         wp = WindowProperties()
-        wp.setSize(options.getWidth(), options.getHeight())
-        wp.setFullscreen(options.getFullscreen())
+        wp.setSize(self.options.getWidth(), self.options.getHeight())
+        wp.setFullscreen(self.options.getFullscreen())
         self.openDefaultWindow(props = wp)
+        self.options.setRuntimeOptions()
         self.eventMgr.doEvents()
         loadingMode = config.GetInt('loading-screen', 0)
         if loadingMode == 0:
@@ -162,8 +95,6 @@ class PiratesBase(OTPBase):
             sys.exit(1)
 
         self.loadingScreen.tick()
-        options.options_to_config()
-        options.setRuntimeOptions()
         if base.wantEnviroDR:
             base.cam.node().setCameraMask(OTPRender.MainCameraBitmask)
             self.setupEnviroCamera()
@@ -248,7 +179,6 @@ class PiratesBase(OTPBase):
         self.phase4Post()
         self.phase5Post()
 
-        self.whiteList = PWhiteList()
         tpMgr = TextPropertiesManager.getGlobalPtr()
         WLDisplay = TextProperties()
         WLDisplay.setSlant(0.299)
@@ -287,7 +217,7 @@ class PiratesBase(OTPBase):
 
         if gsg:
             if gsg.getShaderModel() < gsg.SM20:
-                base.options.shader_runtime = 0
+                self.options.shader = 0
 
         self.noticeSystemOn = 1
         self.lodTrav = CollisionTraverser('base.lodTrav')
@@ -496,40 +426,6 @@ class PiratesBase(OTPBase):
     def disableFarCull(self):
         self.farCull.setPos(0, 10000, 0)
 
-
-    def setLowMemory(self, lowMemory):
-        self.lowMemory = lowMemory
-        if lowMemory:
-            GeomVertexArrayData.getIndependentLru().setMaxSize(5242880)
-            VertexDataPage.getGlobalLru(VertexDataPage.RCResident).setMaxSize(5242880)
-            taskMgr.setupTaskChain('background', numThreads = 0)
-        else:
-            GeomVertexArrayData.getIndependentLru().setMaxSize(0xFFFFFFFL)
-            VertexDataPage.getGlobalLru(VertexDataPage.RCResident).setMaxSize(0xFFFFFFFL)
-            taskMgr.setupTaskChain('background', numThreads = 1)
-        for filename in [
-            'models/misc/male_face.bam',
-            'models/misc/female_face.bam']:
-            self._setKeepRamImage(filename)
-
-
-
-    def _setKeepRamImage(self, filename):
-        model = loader.loadModel(filename)
-        if self.lowMemory:
-            for tex in model.findAllTextures():
-                tex.setCompression(tex.CMDefault)
-                tex.setKeepRamImage(False)
-                tex.clearRamImage()
-
-        else:
-            for tex in model.findAllTextures():
-                tex.setCompression(tex.CMOff)
-                tex.setKeepRamImage(True)
-                tex.reload()
-
-
-
     def setupRender2d(self):
         OTPBase.setupRender2d(self)
         self.a2dTopRight.reparentTo(self.aspect2d, sort = 1)
@@ -702,7 +598,6 @@ class PiratesBase(OTPBase):
             os._exit(0)
 
     def exitShow(self, errorCode = None):
-        self.bamCache.flushIndex()
         self.ignore('f12')
         if hasattr(base, 'cr'):
             self.musicMgr.delete()
@@ -804,101 +699,6 @@ class PiratesBase(OTPBase):
             self.shipsVisibleFromIsland = self.options.ocean_visibility
             messenger.send('ship_vis_change', [
                 self.options.ocean_visibility])
-
-    def getDisplayResolutions(self, bits_per_pixel, pipe):
-        di = pipe.getDisplayInformation()
-        total_display_modes = di.getTotalDisplayModes()
-        if di.getDisplayState() == DisplayInformation.DSSuccess and total_display_modes > 0:
-            resolution_table = []
-            index = 0
-            while index < total_display_modes:
-                if di.getDisplayModeBitsPerPixel(index) == bits_per_pixel:
-                    if di.getDisplayModeFullscreenOnly(index) == False:
-                        if di.getDisplayModeWidth(index) >= self.MinimumHorizontalResolution and di.getDisplayModeHeight(index) >= self.MinimumVerticalResolution:
-                            resolution = (di.getDisplayModeWidth(index), di.getDisplayModeHeight(index))
-                            if resolution not in resolution_table:
-                                if di.getDisplayModeWidth(index) <= di.getMaximumWindowWidth() and di.getDisplayModeHeight(index) <= di.getMaximumWindowHeight():
-                                    resolution_table = resolution_table + [
-                                        resolution]
-
-
-
-
-
-                index += 1
-            widescreen_resolution_table = [
-                (1280, 720),
-                (1920, 1080)]
-            index = 0
-            while index < len(widescreen_resolution_table):
-                resolution = widescreen_resolution_table[index]
-                if resolution not in resolution_table:
-                    if resolution[0] <= di.getMaximumWindowWidth() and resolution[1] <= di.getMaximumWindowHeight():
-                        resolution_table = resolution_table + [
-                            resolution]
-
-
-                index += 1
-            width = base.config.GetInt('custom-window-width', 0)
-            height = base.config.GetInt('custom-window-height', 0)
-            if width > 0 and height > 0:
-                resolution = (width, height)
-                if resolution not in resolution_table:
-                    if di.getDisplayModeWidth(index) <= di.getMaximumWindowWidth() and di.getDisplayModeHeight(index) <= di.getMaximumWindowHeight():
-                        resolution_table = resolution_table + [
-                            resolution]
-
-
-
-            self.windowed_resolution_table = resolution_table
-            resolution_table = []
-            index = 0
-            while index < total_display_modes:
-                if di.getDisplayModeBitsPerPixel(index) == bits_per_pixel:
-                    if di.getDisplayModeWidth(index) >= self.MinimumHorizontalResolution and di.getDisplayModeHeight(index) >= self.MinimumVerticalResolution:
-                        resolution = (di.getDisplayModeWidth(index), di.getDisplayModeHeight(index))
-                        if resolution not in resolution_table:
-                            resolution_table = resolution_table + [
-                                resolution]
-
-
-
-                index += 1
-            if False:
-                resolution = (2048, 1536)
-                resolution_table = resolution_table + [
-                    resolution]
-
-            self.fullscreen_resolution_table = resolution_table
-        else:
-            default_windowed_resolution_table = [
-                (800, 600),
-                (1024, 768),
-                (1280, 1024),
-                (1600, 1200),
-                (1280, 720),
-                (1920, 1080)]
-            default_fullscreen_resolution_table = [
-                (800, 600),
-                (1024, 768),
-                (1280, 1024),
-                (1600, 1200)]
-            self.windowed_resolution_table = default_windowed_resolution_table
-            self.fullscreen_resolution_table = default_fullscreen_resolution_table
-
-
-    def width_to_resolution_id(self, width):
-        id = 1
-        index = 0
-        total_resolutions = len(self.resolution_table)
-        while index < total_resolutions:
-            if width == GameOptions.resolution_table[index][0]:
-                id = index
-                break
-
-            index += 1
-        return id
-
 
     def hideEffects(self):
         self.effectsRoot.hide()

@@ -1,4 +1,4 @@
-from panda3d.core import AlphaTestAttrib, CollideMask, CollisionInvSphere, CollisionNode, FadeLODNode, Filename, Fog, LODNode, Light, NodePath, PandaNode, RenderAttrib, TextNode, Texture, TextureStage, VBase4, Vec3, Vec4
+from panda3d.core import AlphaTestAttrib, CollideMask, CollisionInvSphere, CollisionNode, FadeLODNode, Fog, LODNode, Light, NodePath, PandaNode, RenderAttrib, TextNode, Texture, TextureStage, VBase4, Vec3, Vec4
 import random
 import re
 import imp
@@ -900,23 +900,8 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
             self.ignore('enter' + self.locationSphereName)
             self.ignore('exit' + self.locationSphereName)
 
-    def buildDockingLOD(self):
-        dockingCache = self.getDockingCache()
-        self.loadDockingLOD()
-        for obj in self.dockingLOD.findAllMatches('**/=ignore-lighting'):
-            obj.setLightOff(1000)
-
-        dockingCache.setData(self.dockingLOD.node(), 0)
-        base.bamCache.store(dockingCache)
-
     def retrieveDockingLOD(self):
-        dockingCache = self.getDockingCache()
-        if dockingCache.hasData() and base.config.GetBool('want-disk-cache', 0):
-            data = dockingCache.getData()
-            newData = data.copySubgraph()
-            self.dockingLOD = NodePath(newData)
-        else:
-            self.buildDockingLOD()
+        self.loadDockingLOD()
         islandBaseName = self.modelPath.split('_zero')[0]
         dockingChar = loader.loadModel(islandBaseName + '_dock_lod_none', okMissing = True)
         if dockingChar:
@@ -932,27 +917,8 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
         self.dockingLOD.hide(OTPRender.MainCameraBitmask)
         self.dockingLOD.showThrough(OTPRender.EnviroCameraBitmask)
 
-    def buildIslandTerrain(self):
-        islandGeomCache = self.getIslandCache()
-        self.loadTerrain()
-        flat = self.geom.find('**/island_flat_lod')
-        if not flat.isEmpty():
-            flat.remove_node()
-
-        for obj in self.geom.findAllMatches('**/=ignore-lighting'):
-            obj.setLightOff(1000)
-
-        islandGeomCache.setData(self.geom.node(), 0)
-        base.bamCache.store(islandGeomCache)
-
     def retrieveIslandTerrain(self):
-        islandGeomCache = self.getIslandCache()
-        if islandGeomCache.hasData() and base.config.GetBool('want-disk-cache', 0):
-            data = islandGeomCache.getData()
-            newData = data.copySubgraph()
-            self.geom = NodePath(newData)
-        else:
-            self.buildIslandTerrain()
+        self.loadTerrain()
         self.geom.reparentTo(self)
         self.geom.hide(OTPRender.MainCameraBitmask)
         self.geom.showThrough(OTPRender.EnviroCameraBitmask)
@@ -974,24 +940,6 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
         self.dockingChar = None
         self.dockingLOD.remove_node()
         self.dockingLOD = None
-
-    def getCoreCache(self):
-        return base.bamCache.lookup(Filename('/%s_%s_core_%s_%s.bam' % (self.name, self.uniqueId, base.cr.getServerVersion(), base.gridDetail)), 'bam')
-
-    def getGridCache(self):
-        return base.bamCache.lookup(Filename('/%s_%s_grid_%s.bam' % (self.name, self.uniqueId, base.gridDetail)), 'bam')
-
-    def getAnimCache(self):
-        return base.bamCache.lookup(Filename('/%s_%s_anims_%s.bam' % (self.name, self.uniqueId, base.gridDetail)), 'bam')
-
-    def getLargeObjectsCache(self):
-        return base.bamCache.lookup(Filename('/%s_%s_large_%s.bam' % (self.name, self.uniqueId, base.gridDetail)), 'bam')
-
-    def getIslandCache(self):
-        return base.bamCache.lookup(Filename('/%s_%s_island_%s_%s.bam' % (self.name, self.uniqueId, base.cr.getServerVersion(), base.gridDetail)), 'bam')
-
-    def getDockingCache(self):
-        return base.bamCache.lookup(Filename('/%s_%s_island_docking_%s_%s.bam' % (self.name, self.uniqueId, base.cr.getServerVersion(), base.gridDetail)), 'bam')
 
     def getSiegeTeam(self):
         return base.cr.distributedDistrict.worldCreator.getPvpIslandTeam(self.uniqueId)

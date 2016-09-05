@@ -88,7 +88,6 @@ class DistributedBandMember(DistributedObject, PAvatarHandle):
             '',
             0,
             []]
-        self.whiteListEnabled = base.config.GetBool('whitelist-chat-enabled', 1)
         self.TC = None
         self.shipMessageDoLater = None
 
@@ -227,9 +226,11 @@ class DistributedBandMember(DistributedObject, PAvatarHandle):
             pass
         return self.shipInfo[0] in localAvatar.getInventory().getShipDoIdList()
 
-    def setTalk(self, fromAV, avatarName, chat, mods, flags):
-        (message, scrubbed) = localAvatar.scrubTalk(chat, mods)
-        base.talkAssistant.receivePartyTalk(fromAV, avatarName, message)
+    def setTalk(self, fromAV, avatarName, chat):
+        if base.whiteList:
+            chat = base.whiteList.processThroughAll(chat, base.localAvatar)
+
+        base.talkAssistant.receivePartyTalk(fromAV, avatarName, chat)
 
     def setSpeedChat(self, senderId, msgIndex):
         if not self.cr.avatarFriendsManager.checkIgnored(self.avatarId):

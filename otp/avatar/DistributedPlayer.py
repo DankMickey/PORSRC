@@ -15,14 +15,10 @@ from otp.otpbase import OTPGlobals
 from otp.avatar.Avatar import teleportNotify
 from otp.distributed.TelemetryLimited import TelemetryLimited
 from otp.ai.MagicWordGlobal import *
-if base.config.GetBool('want-chatfilter-hacks', 0):
-    from otp.switchboard import badwordpy
-    import os
-    badwordpy.init(os.environ.get('OTP') + '\\src\\switchboard\\', '')
+from otp.chat.ChatGarbler import ChatGarbler
 
-class DistributedPlayer(DistributedAvatar.DistributedAvatar, PlayerBase.PlayerBase, TelemetryLimited):
+class DistributedPlayer(DistributedAvatar.DistributedAvatar, PlayerBase.PlayerBase, TelemetryLimited, ChatGarbler):
     TeleportFailureTimeout = 60.0
-    chatGarbler = ChatGarbler.ChatGarbler()
 
     def __init__(self, cr):
         try:
@@ -46,7 +42,6 @@ class DistributedPlayer(DistributedAvatar.DistributedAvatar, PlayerBase.PlayerBa
             self.adminAccess = 0
             self.autoRun = 0
             self.isConfused = False
-            self.whiteListEnabled = base.config.GetBool('whitelist-chat-enabled', 1)
 
         return
 
@@ -89,6 +84,9 @@ class DistributedPlayer(DistributedAvatar.DistributedAvatar, PlayerBase.PlayerBa
         messenger.lock.release()
         messenger.send(self.GetPlayerGenerateEvent(), [self])
 
+    def getMessages(self):
+        return OTPLocalizer.ChatGarblerDefault
+    
     def setLocation(self, parentId, zoneId):
         DistributedAvatar.DistributedAvatar.setLocation(self, parentId, zoneId)
         if not (parentId in (0, None) and zoneId in (0, None)):
@@ -214,22 +212,37 @@ class DistributedPlayer(DistributedAvatar.DistributedAvatar, PlayerBase.PlayerBa
 
     def setChatAbsolute(self, chatString, chatFlags, dialogue = None, interrupt = 1, quiet = 0):
         DistributedAvatar.DistributedAvatar.setChatAbsolute(self, chatString, chatFlags, dialogue, interrupt)
-        if not quiet:
-            pass
 
-    def setTalk(self, fromAV, avatarName, chat, mods, flags):
-        newText, scrubbed = self.scrubTalk(chat, mods)
-        self.displayTalk(newText)
+    def setTalk(self, chat):
+        if not base.cr.chatAgent.verifyMessage(chat):
+            return
+        if False and base.localAvatar.isIgnored(self.doId):
+            return
+        if not self.understandable:
+            chat = self.garble(len(chat.split(' ')))
+        elif base.whiteList and self.understandable < 2:
+            chat = base.whiteList.processThroughAll(chat, self)
 
-    def setTalkWhisper(self, fromAV, avatarName, chat, mods, flags):
-        newText, scrubbed = self.scrubTalk(chat, mods)
-        self.displayTalkWhisper(fromAV, avatarName, chat, mods)
+        self.displayTalk(chat)
+    
+    def setTalkFrom(self, avId, channel, chat):
+        av = self.cr.doId2do.get(avId)
+        
+        if (not av) or not hasattr(av, 'nametag'):
+            return
 
-    def displayTalkWhisper(self, fromId, avatarName, chatString, mods):
+        av.nametag.setSpecialColor(OTPGlobals.CHAT_CHANNEL_COLORS[channel])
+        av.setTalk(chat)
+        av.nametag.setSpecialColor(None)
+
+    def setTalkWhisper(self, fromAV, avatarName, chat):
+        if base.whiteList:
+            chat = base.whiteList.processThroughAll(chat, self)
+
+        self.displayTalkWhisper(fromAV, avatarName, chat)
+
+    def displayTalkWhisper(self, fromId, avatarName, chatString):
         print 'TalkWhisper from %s: %s' % (fromId, chatString)
-
-    def scrubTalk(self, chat, mods):
-        return chat, True
 
     def b_setSC(self, msgIndex):
         self.setSC(msgIndex)

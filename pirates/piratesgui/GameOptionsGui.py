@@ -9,25 +9,12 @@ from pirates.piratesgui.CheckButton import *
 from pirates.piratesgui.GuiButton import *
 from pirates.piratesgui.OptionMenu import *
 from pirates.piratesgui.DialogButton import DialogButton
-from direct.directnotify import DirectNotifyGlobal
 from direct.gui import DirectGuiGlobals as DGG
 from otp.otpgui import OTPDialog
 from pirates.piratesgui import PDialog
 from pirates.seapatch.Water import Water
 
 class GameOptionsGui(DirectFrame):
-    notify = DirectNotifyGlobal.directNotify.newCategory('GameOptions')
-    debug = False
-    resolution_table = [
-        (800, 600),
-        (1024, 768),
-        (1280, 1024),
-        (1600, 1200)]
-    widescreen_resolution_table = [
-        (1280, 720),
-        (1920, 1080)]
-    MinimumHorizontalResolution = 800
-    MinimumVerticalResolution = 600
     texture_low = 256
     texture_medium = 512
     texture_high = 1024
@@ -47,7 +34,7 @@ class GameOptionsGui(DirectFrame):
         texture_high,
         texture_maximum]
 
-    def __init__(self, gameOptions, title, x, y, width, height, options = None, file_path = None, pipe = None, chooser = 0, keyMappings = None):
+    def __init__(self, gameOptions, title, x, y, width, height, options = None, chooser = 0, keyMappings = None):
         self.width = width
         self.height = height
         self.gameOptions = gameOptions
@@ -74,7 +61,9 @@ class GameOptionsGui(DirectFrame):
         self.restoreDialog = None
         self.showedNoteOnChange = False
 
-
+    def getResolutionTable(self):
+        return self.gameOptions.getResolutionTable()
+    
     def setupUpperFrame(self):
         gui_main = loader.loadModel('models/gui/gui_main')
         topImage = gui_main.find('**/game_options_panel/top')
@@ -165,37 +154,13 @@ class GameOptionsGui(DirectFrame):
         x += 0.299
         oy = sy
         text = PLocalizer.GameOptionsWindowedResolutions
-        self.windowed_resolutions = []
-        if hasattr(base, 'windowed_resolution_table'):
-            resolution_table = base.windowed_resolution_table
-        else:
-            resolution_table = self.resolution_table
-        for windowed_resolution in resolution_table:
-            self.windowed_resolutions.append(windowed_resolution[0].__repr__() + 'x' + windowed_resolution[1].__repr__())
+        resolutions = ['%dx%d' % (width, height) for width, height in self.getResolutionTable()]
 
-
-        def resolution_compare(x, y):
-            xs = x.split('x')
-            ys = y.split('x')
-            if xs[0] == ys[0]:
-                return int(xs[1]) - int(ys[1])
-            else:
-                return int(xs[0]) - int(ys[0])
-
-        self.windowed_resolutions.sort(resolution_compare)
-        self.windowedResolutionMenu = OptionMenu(parent = parent, scale = 0.050000, pos = (x + 0.200, 0, y), items = self.windowed_resolutions, command = self.windowedResolutionMenuCB)
+        self.windowedResolutionMenu = OptionMenu(parent = parent, scale = 0.050000, pos = (x + 0.200, 0, y), items = resolutions, command = self.windowedResolutionMenuCB)
         y += oy
         text = PLocalizer.GameOptionsFullscreenResolutions
-        fullscreen_resolutions = []
-        if hasattr(base, 'fullscreen_resolution_table'):
-            resolution_table = base.fullscreen_resolution_table
-        else:
-            resolution_table = self.resolution_table
-        for fullscreen_resolution in resolution_table:
-            fullscreen_resolutions.append(fullscreen_resolution[0].__repr__() + 'x' + fullscreen_resolution[1].__repr__())
 
-        fullscreen_resolutions.sort(resolution_compare)
-        self.fullscreenResolutionMenu = OptionMenu(parent = parent, scale = 0.050000, pos = (x + 0.200, 0, y), items = fullscreen_resolutions, command = self.fullscreenResolutionMenuCB)
+        self.fullscreenResolutionMenu = OptionMenu(parent = parent, scale = 0.050000, pos = (x + 0.200, 0, y), items = resolutions, command = self.fullscreenResolutionMenuCB)
         y -= 2 * oy
         sl = 1.0
         sc = 0.348
@@ -433,26 +398,17 @@ class GameOptionsGui(DirectFrame):
         self.create_label(x, y, text, parent, sl)
         self.textureDetailVar = [
             0]
-        if self.gameOptions is not None and self.gameOptions.options.texture_scale_mode == False:
-            sx = 0.13
-            self.textureDetailRadios = self.createRadioButtonGroup(parent, rx, y, sx, 0.0299, self.textureDetailVar, 0.149, [
-                PLocalizer.GameOptionsLow,
-                PLocalizer.GameOptionsMedium,
-                PLocalizer.GameOptionsHigh,
-                PLocalizer.GameOptionsMaximum], 0.800000, self.textureDetailRadiosCB)
-        else:
-            self.textureDetailRadios = self.createRadioButtonGroup(parent, rx, y, sx, 0.0299, self.textureDetailVar, 0.149, [
-                PLocalizer.GameOptionsLow,
-                PLocalizer.GameOptionsMedium,
-                PLocalizer.GameOptionsHigh], 0.800000, self.textureDetailRadiosCB)
+        
+        sx = 0.13
+        self.textureDetailRadios = self.createRadioButtonGroup(parent, rx, y, sx, 0.0299, self.textureDetailVar, 0.149, [
+            PLocalizer.GameOptionsLow,
+            PLocalizer.GameOptionsMedium,
+            PLocalizer.GameOptionsHigh,
+            PLocalizer.GameOptionsMaximum], 0.800000, self.textureDetailRadiosCB)
         y += oy
         text = PLocalizer.GameOptionsTextureCompressed
         self.create_label(x, y, text, parent, sl)
         self.compressedTextureCheck = CheckButton(parent = parent, relief = None, scale = sc, pos = (x + 0.418, 0, y + 0.0149), command = self.compressedTextureCheckCB)
-        y += oy
-        text = PLocalizer.GameOptionsAggressiveMemory
-        self.create_label(x, y, text, parent, sl)
-        self.aggressiveMemoryCheck = CheckButton(parent = parent, relief = None, scale = sc, pos = (x + 0.62, 0, y + 0.0149), command = self.aggressiveMemoryCheckCB)
         y += oy
         if self.gameOptions is not None and self.gameOptions.shader_support:
             text = PLocalizer.GameOptionsShaderLevel + ' ' + self.gameOptions.shader_model.__repr__() + ' *'
@@ -462,12 +418,11 @@ class GameOptionsGui(DirectFrame):
             text = PLocalizer.GameOptionsNoShader
             self.create_label(x, y, text, parent, sl * 0.9)
             self.shaderLevelCheck = None
-        self.smoothEdgesCheck = None
-        if base.win.getFbProperties().getMultisamples() > 1 and base.win.getPipe().getInterfaceName() == 'OpenGL':
-            y += oy
-            text = PLocalizer.GameOptionsSmoothEdges + ' *'
-            self.create_label(x, y, text, parent, sl)
-            self.smoothEdgesCheck = CheckButton(parent = parent, relief = None, scale = sc, pos = (x + 0.315, 0, y + 0.0149), command = self.smoothEdgesCheckCB)
+
+        y += oy
+        text = PLocalizer.GameOptionsSmoothEdges + ' *'
+        self.create_label(x, y, text, parent, sl)
+        self.smoothEdgesCheck = CheckButton(parent = parent, relief = None, scale = sc, pos = (x + 0.315, 0, y + 0.0149), command = self.smoothEdgesCheckCB)
 
         y += oy
         text = PLocalizer.GameOptionsRenderedShadows
@@ -537,15 +492,6 @@ class GameOptionsGui(DirectFrame):
             text = PLocalizer.GameOptionsRestartRequired
             y += oy
             self.create_label(x, y, text, parent, 0.9, color = (0.696, 0.696, 0.696, 1))
-
-        if base.config.GetBool('want-cpu-frequency-warning', 0):
-            y += oy
-            text = PLocalizer.GameOptionsCpuFrequencyWarning
-            self.create_label(x, y, text, parent, sl)
-            self.cpuFrequencyWarningCheck = CheckButton(parent = parent, relief = None, scale = sc, pos = (x + 0.450, 0, y + 0.0149), command = self.cpuFrequencyWarningCheckCB)
-        else:
-            self.cpuFrequencyWarningCheck = None
-
 
     def createRadioButtonGroup(self, parent, x, y, sx, oy, variable, scale, labels, textScale, cmd = None):
         i = 0
@@ -723,7 +669,6 @@ class GameOptionsGui(DirectFrame):
         self.restoreButton.hide()
         if self.chooser:
             base.cr.avChoice.avatarListFrame.show()
-        base.setLowMemory(self.gameOptions.options.memory)
         if self.orig_texture_scale != self.gameOptions.options.texture_scale or self.orig_textureCompression != self.gameOptions.options.textureCompression:
             self.orig_texture_scale = self.gameOptions.options.texture_scale
             self.orig_textureCompression = self.gameOptions.options.textureCompression
@@ -739,7 +684,6 @@ class GameOptionsGui(DirectFrame):
             return None
         
         self.fullscreenResolutionMenu.updateState(DGG.NORMAL)
-        self.windowedResolutionMenu['items'] = self.windowed_resolutions
         self.windowedResolutionMenu.setItems()
         self.windowedResolutionMenu.setByValue('%dx%d' % (self.gameOptions.options.window_width, self.gameOptions.options.window_height), False)
         self.fullscreenResolutionMenu.setByValue('%dx%d' % (self.gameOptions.options.fullscreen_width, self.gameOptions.options.fullscreen_height), False)
@@ -797,7 +741,6 @@ class GameOptionsGui(DirectFrame):
         self.orig_textureCompression = self.gameOptions.options.textureCompression
         self.characterDetailRadios[self.gameOptions.options.character_detail_level].check()
         self.terrainDetailRadios[self.gameOptions.options.terrain_detail_level].check()
-        self.aggressiveMemoryCheck['value'] = self.gameOptions.options.memory
         self.soundEffectCheck['value'] = self.gameOptions.options.sound
         self.sound_volume_slider['value'] = self.gameOptions.options.sound_volume
         self.musicCheck['value'] = self.gameOptions.options.music
@@ -806,9 +749,6 @@ class GameOptionsGui(DirectFrame):
         self.rotateCompassOnLandCheck['value'] = self.gameOptions.options.land_map_radar_axis
         self.rotateCompassAtSeaCheck['value'] = self.gameOptions.options.ocean_map_radar_axis
         self.gui_scale_slider['value'] = self.gameOptions.options.gui_scale
-        if self.cpuFrequencyWarningCheck:
-            self.cpuFrequencyWarningCheck['value'] = self.gameOptions.options.cpu_frequency_warning
-
         self.hardwareGammaCheck['value'] = self.gameOptions.options.gamma_enable
         self.gamma_slider['value'] = self.gameOptions.options.gamma
         if self.gameOptions.enable_hdr:
@@ -858,11 +798,9 @@ class GameOptionsGui(DirectFrame):
 
         if self.windowVar[0] == PLocalizer.GameOptionsWindowedMode:
             self.gameOptions.options.fullscreen = 0
-            self.gameOptions.options.fullscreen_runtime = 0
             self.gameOptions.set_display(self.gameOptions.options, base.pipe, self.gameOptions.options.window_width, self.gameOptions.options.window_height)
         elif self.windowVar[0] == PLocalizer.GameOptionsFullscreenMode:
             self.gameOptions.options.fullscreen = 1
-            self.gameOptions.options.fullscreen_runtime = 1
             self.gameOptions.set_display(self.gameOptions.options, base.pipe, self.gameOptions.options.fullscreen_width, self.gameOptions.options.fullscreen_height)
 
         self.set_options(False)
@@ -872,12 +810,14 @@ class GameOptionsGui(DirectFrame):
         if self.gameOptions is None:
             return None
 
-        index = base.windowed_resolution_table.index((int(val.split('x')[0]), int(val.split('x')[1])))
-        if self.gameOptions.options.getWindowed():
-            self.gameOptions.set_display(self.gameOptions.options, base.pipe, base.windowed_resolution_table[index][0], base.windowed_resolution_table[index][1])
+        newX = int(val.split('x')[0])
+        newY = int(val.split('x')[1])
 
-        self.gameOptions.options.window_width = base.windowed_resolution_table[index][0]
-        self.gameOptions.options.window_height = base.windowed_resolution_table[index][1]
+        if self.gameOptions.options.getWindowed():
+            self.gameOptions.set_display(self.gameOptions.options, base.pipe, newX, newY)
+
+        self.gameOptions.options.window_width = newX
+        self.gameOptions.options.window_height = newY
         if self.gameOptions.options.window_width > self.gameOptions.current_options.window_width and self.gameOptions.options.window_height > self.gameOptions.current_options.window_height:
             self.showNoteOnChange()
 
@@ -1025,15 +965,6 @@ class GameOptionsGui(DirectFrame):
         if self.gameOptions.options.terrain_detail_level > self.gameOptions.current_options.terrain_detail_level:
             self.showNoteOnChange()
 
-
-
-    def aggressiveMemoryCheckCB(self, val):
-        if self.gameOptions is None:
-            return None
-
-        self.gameOptions.options.memory = val
-
-
     def soundEffectCheckCB(self, val):
         if self.gameOptions is None:
             return None
@@ -1062,15 +993,6 @@ class GameOptionsGui(DirectFrame):
 
         self.gameOptions.options.mouse_look = val
         self.update()
-
-
-    def cpuFrequencyWarningCheckCB(self, val):
-        if self.gameOptions is None:
-            return None
-
-        self.gameOptions.options.cpu_frequency_warning = val
-        self.update()
-
 
     def hardwareGammaCheckCB(self, val):
         if self.gameOptions is None:
@@ -1146,20 +1068,6 @@ class GameOptionsGui(DirectFrame):
         if self.gameOptions is None:
             return None
 
-
-        def handleAggressiveMemoryCheck():
-            block_size = 1024 * 1024 * 256
-            physical_memory = self.gameOptions.options.getPhysicalMemory(base.pipe)
-            if physical_memory > 0:
-                blocks = (physical_memory + block_size / 2) / block_size
-                if blocks <= 2:
-                    self.aggressiveMemoryCheck['value'] = True
-                    self.compressedTextureCheck['value'] = True
-                else:
-                    self.aggressiveMemoryCheck['value'] = False
-            else:
-                self.aggressiveMemoryCheck['value'] = False
-
         self.gameOptions.options.simple_display_option = self.displayVar[0]
         if self.displayVar[0] == 0:
             self.characterDetailRadios[0].check()
@@ -1171,7 +1079,6 @@ class GameOptionsGui(DirectFrame):
                 self.shaderLevelCheck['value'] = False
 
             self.renderedShadowsCheck['value'] = False
-            handleAggressiveMemoryCheck()
         elif self.displayVar[0] == 1:
             self.characterDetailRadios[1].check()
             self.terrainDetailRadios[1].check()
@@ -1182,7 +1089,6 @@ class GameOptionsGui(DirectFrame):
                 self.shaderLevelCheck['value'] = False
 
             self.renderedShadowsCheck['value'] = False
-            handleAggressiveMemoryCheck()
         elif self.displayVar[0] == 2:
             self.characterDetailRadios[2].check()
             self.terrainDetailRadios[2].check()
@@ -1193,7 +1099,6 @@ class GameOptionsGui(DirectFrame):
                 self.shaderLevelCheck['value'] = True
 
             self.renderedShadowsCheck['value'] = True
-            handleAggressiveMemoryCheck()
 
         if self.gameOptions.options.simple_display_option != 3 and self.gameOptions.options.simple_display_option > self.gameOptions.current_options.simple_display_option:
             self.showNoteOnChange()

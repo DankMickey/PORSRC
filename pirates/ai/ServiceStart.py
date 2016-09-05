@@ -40,7 +40,7 @@ from otp.ai.AIBaseGlobal import *
 
 from pirates.ai.PiratesAIRepository import PiratesAIRepository
 simbase.air = PiratesAIRepository(config.GetInt('air-base-channel', 401000000),
-                                   config.GetInt('air-stateserver', 4002),
+                                   config.GetInt('air-stateserver', 1100),
                                    config.GetString('district-name', 'Pirates'))
 host = config.GetString('air-connect', '127.0.0.1')
 port = 7100

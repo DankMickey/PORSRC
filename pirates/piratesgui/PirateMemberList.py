@@ -502,7 +502,6 @@ class PirateMemberList(DirectObject):
     def destroy(self):
         taskMgr.remove(self.onlineCheckTaskName)
         taskMgr.remove(self.prearrangeTaskName)
-        self.onlineDataProbe.ignore(base.cr.statusDatabase.avatarDoneTaskName)
         self.ignoreAll()
         for member in self.members:
             member.detachNode()
@@ -611,10 +610,9 @@ class PirateMemberList(DirectObject):
         if mode == MODE_GUILD and len(self.members) > 0:
             self.accept('guildMemberOnlineStatus', self.updateGuildMemberOnline)
 
+        # TODO: Friends List
         taskMgr.remove(self.onlineCheckTaskName)
         task = taskMgr.doMethodLater(1.0, self.requestLastOnlineTimes, self.onlineCheckTaskName)
-        self.onlineDataProbe.ignore(base.cr.statusDatabase.avatarDoneTaskName)
-        self.onlineDataProbe.accept(base.cr.statusDatabase.avatarDoneTaskName, self.updateOnlineData)
         self.prearrangeMembers()
         return addMe
 
@@ -630,10 +628,9 @@ class PirateMemberList(DirectObject):
         if mode == MODE_GUILD and len(self.members) > 0:
             self.accept('guildMemberOnlineStatus', self.updateGuildMemberOnline)
 
+        # TODO: Friends List
         taskMgr.remove(self.onlineCheckTaskName)
         task = taskMgr.doMethodLater(1.0, self.requestLastOnlineTimes, self.onlineCheckTaskName)
-        self.onlineDataProbe.ignore(base.cr.statusDatabase.avatarDoneTaskName)
-        self.onlineDataProbe.accept(base.cr.statusDatabase.avatarDoneTaskName, self.updateOnlineData)
         return addMe
 
 
@@ -669,19 +666,15 @@ class PirateMemberList(DirectObject):
                 memberIds.append(member.avId)
                 continue
 
-        base.cr.statusDatabase.queueOfflineAvatarStatus(memberIds)
-        self.accept(base.cr.statusDatabase.avatarDoneTaskName, self.updateOnlineData)
+        # TODO: Friends List
         return task.done
 
 
     def updateOnlineData(self):
         for member in self.members:
             if member.avId:
-                onlineTime = base.cr.statusDatabase.avatarData.get(member.avId)
-                if onlineTime:
-                    member.updateOnlineTime(onlineTime)
-
-
+                # TODO: Friends List
+                pass
 
 
     def updateGuildMemberOnline(self, avId, onlineStatus):

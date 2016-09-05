@@ -1,4 +1,4 @@
-from panda3d.core import Camera, Point3, Point4, StreamReader, VBase3, VBase4
+from panda3d.core import Camera, Point3, Point4, VBase3, VBase4
 global curId, currFuncId
 import sys
 import os

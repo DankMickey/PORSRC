@@ -10,6 +10,8 @@ class AvatarHandle:
     def isUnderstandable(self):
         return True
 
-    def setTalkWhisper(self, fromAV, avatarName, chat, mods, flags):
-        newText, scrubbed = localAvatar.scrubTalk(chat, mods)
-        base.talkAssistant.receiveWhisperTalk(fromAV, avatarName, newText)
+    def setTalkWhisper(self, fromAV, avatarName, chat):
+        if base.whiteList:
+            chat = base.whiteList.processThroughAll(chat, base.localAvatar)
+
+        base.talkAssistant.receiveWhisperTalk(fromAV, avatarName, chat)

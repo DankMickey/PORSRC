@@ -53,7 +53,6 @@ class GuildManager(DistributedObjectGlobal):
         self.id2Rank = {}
         self.id2Online = {}
         self.pendingMsgs = []
-        self.whiteListEnabled = base.config.GetBool('whitelist-chat-enabled', 1)
         self.emailNotification = 0
         self.emailNotificationAddress = None
         self.receivingNewList = False
@@ -104,14 +103,14 @@ class GuildManager(DistributedObjectGlobal):
     def sendTalk(self, msgText, chatFlags = 0):
         self.sendUpdate('setTalkGroup', [0,
          '',
-         msgText,
-         [],
-         0])
+         msgText])
 
-    def setTalkGroup(self, fromAv, avatarName, chat, mods, flags):
+    def setTalkGroup(self, fromAv, avatarName, chat):
         if hasattr(base, 'localAvatar'):
-            message, scrubbed = localAvatar.scrubTalk(chat, mods)
-            base.talkAssistant.receiveGuildTalk(fromAv, avatarName, message)
+            if base.whiteList:
+                chat = base.whiteList.processThroughAll(chat, base.localAvatar)
+
+            base.talkAssistant.receiveGuildTalk(fromAv, avatarName, chat)
 
     def sendSC(self, msgIndex):
         self.sendUpdate('sendSC', [msgIndex])

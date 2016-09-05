@@ -9,7 +9,6 @@ from pirates.piratesbase import PLocalizer as PL
 from otp.otpbase import OTPLocalizer as OL
 from pirates.piratesbase import EmoteGlobals
 
-PiratesSubId = 9872
 ShipsDatabaseChannelId = 4008
 AvatarsDatabaseChannelId = 4021
 InventoryDatabaseChannelId = 4023

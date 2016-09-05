@@ -52,9 +52,7 @@ class SiegeManager(DistributedObject, SiegeManagerBase):
         self.sendUpdate('setTalkGroup', [
             0,
             '',
-            message,
-            [],
-            0])
+            message])
 
     def sendWLChat(self, message):
         self.sendUpdate('sendWLChat', [
@@ -65,10 +63,13 @@ class SiegeManager(DistributedObject, SiegeManagerBase):
     def sendSC(self, msgIndex):
         self.sendUpdate('sendSC', [msgIndex])
 
-    def setTalkGroup(self, fromAv, avatarName, chat, mods, flags):
+    def setTalkGroup(self, fromAv, avatarName, chat):
         teamName = self.getPVPChatTeamName(localAvatar.getSiegeTeam())
-        (message, scrubbed) = localAvatar.scrubTalk(chat, mods)
-        base.talkAssistant.receiveShipPVPMessage(fromAv, avatarName, teamName, message, scrubbed)
+        
+        if base.whiteList:
+            chat = base.whiteList.processThroughAll(chat, base.localAvatar)
+        
+        base.talkAssistant.receiveShipPVPMessage(fromAv, avatarName, teamName, chat)
 
     def recvChat(self, avatarId, message, chatFlags, name):
         teamName = self.getPVPChatTeamName(localAvatar.getSiegeTeam())

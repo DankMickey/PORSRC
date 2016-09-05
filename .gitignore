@@ -10,12 +10,9 @@ logs/
 screenshots/
 resources/
 src/
-cache/
 ai-crash.log
-last_working_options.txt
-p_working_options.txt
-game_options.txt
 snippets.json
+settings.json
 
 # Database
 *.db

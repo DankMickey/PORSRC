@@ -1,5 +1,5 @@
 from panda3d.direct import get_config_showbase
-from panda3d.core import Camera, ConfigVariable, ConfigVariableBool
+from panda3d.core import Camera
 from direct.showbase.PythonUtil import getSetter, getSetterName
 import sys
 

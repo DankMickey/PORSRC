@@ -2331,7 +2331,7 @@ class GuiManager(FSM.FSM):
 
     def createLookoutPopup(self):
         self.lookoutPopup = NametagGroup()
-        self.lookoutPopup.setColorCode(NametagGroup.CCToonBuilding)
+        self.lookoutPopup.setColorCode(NametagGroup.CCFreeChat)
         self.lookoutPopup.setAvatar(base.a2dBottomRight)
         self.lookoutPopup2D = NametagFloat2d()
         self.lookoutPopup2D.setContents(Nametag.CSpeech | Nametag.CThought)

@@ -1,7 +1,9 @@
+from panda3d.core import Thread
 
 from direct.distributed.PyDatagram import *
 
 from otp.ai.TimeManagerAI import TimeManagerAI
+from otp.chat.ChatAgentAI import ChatAgentAI
 from otp.distributed.OtpDoGlobals import *
 from otp.ai.MagicWordManagerAI import MagicWordManagerAI
 from otp.ai.BanManagerAI import BanManagerAI
@@ -34,6 +36,9 @@ class PiratesAIRepository(PiratesInternalRepository):
     def createManagers(self):
         self.timeManager = TimeManagerAI(self)
         self.timeManager.generateWithRequired(2)
+        
+        self.chatAgent = ChatAgentAI(self)
+        self.chatAgent.generateWithRequired(2)
 
         self.newsManager = NewsManagerAI(self)
         self.newsManager.generateWithRequired(2)

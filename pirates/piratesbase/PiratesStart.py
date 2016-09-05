@@ -1,9 +1,7 @@
 from panda3d.direct import CMotionTrail
-from panda3d.core import NodePath, Vec4, loadPrcFile, loadPrcFileData, ConfigVariableList, Filename, VirtualFileSystem
+from panda3d.core import NodePath, Vec4, loadPrcFile
 import PiratesLogger
 import os
-print "POR_GAMESERVER = %s" % os.environ.get('POR_GAMESERVER', 'None')
-print "POR_PLAYCOOKIE = %s" % os.environ.get('POR_PLAYCOOKIE', 'None')
 
 for dtool in ('children', 'parent', 'name'):
     del NodePath.DtoolClassDict[dtool]
@@ -75,7 +73,7 @@ hdr = Hdr()
 from pirates.seapatch.Reflection import Reflection
 Reflection.initialize(render)
 serverVersion = base.config.GetString('server-version', 'no_version_set')
-print 'serverVersion: ', serverVersion
+
 from pirates.distributed import PiratesClientRepository
 cr = PiratesClientRepository.PiratesClientRepository(serverVersion, launcher)
 base.initNametagGlobals()

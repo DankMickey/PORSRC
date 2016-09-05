@@ -7,10 +7,6 @@ class NametagGroup:
     CCNormal = CCNormal
     CCNoChat = CCNoChat
     CCNonPlayer = CCNonPlayer
-    CCSuit = CCSuit
-    CCToonBuilding = CCToonBuilding
-    CCSuitBuilding = CCSuitBuilding
-    CCHouseBuilding = CCHouseBuilding
     CCSpeedChat = CCSpeedChat
     CCFreeChat = CCFreeChat
 
@@ -77,6 +73,10 @@ class NametagGroup:
 
         return len(self.chatPages)
 
+    def setSpecialColor(self, color):
+        for nametag in self.nametags:
+            nametag.specialColor = color
+    
     def setPageNumber(self, page):
         self.chatPage = page
         self.updateTags()

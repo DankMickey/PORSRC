@@ -16,13 +16,11 @@ class DistributedBandMemberOV(DistributedObjectOV.DistributedObjectOV):
 
         DistributedObjectOV.DistributedObjectOV.delete(self)
 
-    def sendTalk(self, fromAV, avatarName, message, mods, flags):
+    def sendTalk(self, fromAV, avatarName, message):
         self.sendUpdate('setTalk', [
             0,
             '',
-            message,
-            [],
-            0])
+            message])
 
     def d_setSpeedChat(self, msgIndex):
         self.sendUpdate('setSpeedChat', [

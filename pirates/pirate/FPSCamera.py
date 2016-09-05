@@ -113,14 +113,7 @@ class FPSCamera(CameraMode.CameraMode, NodePath, ParamObj):
 
 
     def isSubjectMoving(self):
-        if 'localAvatar' in __builtins__:
-            autoRun = localAvatar.getAutoRun()
-        else:
-            autoRun = False
-        if inputState.isSet('forward') and inputState.isSet('reverse') and inputState.isSet('turnRight') and inputState.isSet('turnLeft') and inputState.isSet('slideRight') and inputState.isSet('slideLeft') or autoRun:
-            pass
-        return self.subject.controlManager.isEnabled
-
+        return inputState.isSet('forward') or inputState.isSet('reverse') or inputState.isSet('turnRight') or inputState.isSet('turnLeft') or inputState.isSet('slideRight') or inputState.isSet('slideLeft')
 
     def isWeaponEquipped(self):
         return self.subject.isWeaponDrawn

@@ -96,4 +96,4 @@ class PiratesFriendsManager(DistributedObjectGlobal):
     def receiveTalkWhisper(self, fromId, message):
         pirate = base.cr.identifyAvatar(fromId)
         if pirate:
-            base.localAvatar.setTalkWhisper(fromId, pirate.getName(), message, [], 0)
+            base.localAvatar.setTalkWhisper(fromId, pirate.getName(), message)

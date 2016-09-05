@@ -1,22 +1,18 @@
-CFNoQuitButton=256
-CFPageButton=16
+CFSpeech=1
+CFThought=2
 CFQuicktalker=4
+CFTimeout=8
+CFPageButton=16
 CFQuitButton=32
 CFReversed=64
 CFSndOpenchat=128
-CFSpeech=1
-CFThought=2
-CFTimeout=8
+CFNoQuitButton=256
 
 CCNormal = 0
 CCNoChat = 1
 CCNonPlayer = 2
-CCSuit = 3
-CCToonBuilding = 4
-CCSuitBuilding = 5
-CCHouseBuilding = 6
-CCSpeedChat = 7
-CCFreeChat = 8
+CCSpeedChat = 3
+CCFreeChat = 4
 
 NAMETAG_COLORS = {
     CCNormal: (
@@ -61,62 +57,6 @@ NAMETAG_COLORS = {
         ((0.8, 0.4, 0.0, 1.0), (0.8, 0.8, 0.8, 0.5),  # Name
          (0.0, 0.0, 0.0, 1.0), (1.0, 1.0, 1.0, 1.0)), # Chat
     ),
-    CCSuit: (
-        # Normal  FG                    BG
-        ((0.2, 0.2, 0.2, 1.0), (0.8, 0.8, 0.8, 0.5),  # Name
-         (0.0, 0.0, 0.0, 1.0), (1.0, 1.0, 1.0, 1.0)), # Chat
-        # Click   FG                    BG
-        ((0.2, 0.2, 0.2, 1.0), (0.2, 0.2, 0.2, 0.6),  # Name
-         (1.0, 0.5, 0.5, 1.0), (1.0, 1.0, 1.0, 1.0)), # Chat
-        # Hover   FG                    BG
-        ((0.4, 0.4, 0.4, 1.0), (1.0, 1.0, 1.0, 0.7),  # Name
-         (0.0, 0.6, 0.6, 1.0), (1.0, 1.0, 1.0, 1.0)), # Chat
-        # Disable FG                    BG
-        ((0.2, 0.2, 0.2, 1.0), (0.8, 0.8, 0.8, 0.5),  # Name
-         (0.0, 0.0, 0.0, 1.0), (1.0, 1.0, 1.0, 1.0)), # Chat
-    ),
-    CCSuitBuilding: (
-        # Normal  FG                    BG
-        ((0.2, 0.2, 0.2, 1.0), (0.8, 0.8, 0.8, 0.5),  # Name
-         (0.0, 0.0, 0.0, 1.0), (1.0, 1.0, 1.0, 1.0)), # Chat
-        # Click   FG                    BG
-        ((0.2, 0.2, 0.2, 1.0), (0.2, 0.2, 0.2, 0.6),  # Name
-         (1.0, 0.5, 0.5, 1.0), (1.0, 1.0, 1.0, 1.0)), # Chat
-        # Hover   FG                    BG
-        ((0.4, 0.4, 0.4, 1.0), (1.0, 1.0, 1.0, 0.7),  # Name
-         (0.0, 0.6, 0.6, 1.0), (1.0, 1.0, 1.0, 1.0)), # Chat
-        # Disable FG                    BG
-        ((0.2, 0.2, 0.5, 1.0), (0.8, 0.8, 0.8, 0.5),  # Name
-         (0.0, 0.0, 0.0, 1.0), (1.0, 1.0, 1.0, 1.0)), # Chat
-    ),
-    CCToonBuilding: (
-        # Normal  FG                    BG
-        ((0.2, 0.6, 0.9, 1.0), (0.8, 0.8, 0.8, 0.5),  # Name
-         (0.0, 0.0, 0.0, 1.0), (1.0, 1.0, 1.0, 1.0)), # Chat
-        # Click   FG                    BG
-        ((0.2, 0.6, 0.9, 1.0), (0.8, 0.8, 0.8, 0.5),  # Name
-         (0.0, 0.0, 0.0, 1.0), (1.0, 1.0, 1.0, 1.0)), # Chat
-        # Hover   FG                    BG
-        ((0.2, 0.6, 0.9, 1.0), (0.8, 0.8, 0.8, 0.5),  # Name
-         (0.0, 0.0, 0.0, 1.0), (1.0, 1.0, 1.0, 1.0)), # Chat
-        # Disable FG                    BG
-        ((0.2, 0.6, 0.9, 1.0), (0.8, 0.8, 0.8, 0.5),  # Name
-         (0.0, 0.0, 0.0, 1.0), (1.0, 1.0, 1.0, 1.0)), # Chat
-    ),
-    CCHouseBuilding: (
-        # Normal  FG                    BG
-        ((0.2, 0.6, 0.9, 1.0), (0.8, 0.8, 0.8, 0.5),  # Name
-         (0.0, 0.0, 0.0, 1.0), (1.0, 1.0, 1.0, 1.0)), # Chat
-        # Click   FG                    BG
-        ((0.2, 0.2, 0.5, 1.0), (0.2, 0.2, 0.2, 0.6),  # Name
-         (1.0, 0.5, 0.5, 1.0), (1.0, 1.0, 1.0, 1.0)), # Chat
-        # Hover   FG                    BG
-        ((0.5, 0.5, 1.0, 1.0), (1.0, 1.0, 1.0, 1.0),  # Name
-         (0.0, 0.6, 0.6, 1.0), (1.0, 1.0, 1.0, 1.0)), # Chat
-        # Disable FG                    BG
-        ((0.0, 0.6, 0.2, 1.0), (0.8, 0.8, 0.8, 0.5),  # Name
-         (0.0, 0.0, 0.0, 1.0), (1.0, 1.0, 1.0, 1.0)), # Chat
-    ),
     CCSpeedChat: (
         # Normal  FG                    BG
         ((0.0, 0.6, 0.2, 1.0), (0.8, 0.8, 0.8, 0.5),  # Name
@@ -152,7 +92,6 @@ WTQuickTalker = 1
 WTSystem = 2
 WTBattleSOS = 3
 WTEmote = 4
-WTToontownBoardingGroup = 5
 
 WHISPER_COLORS = {
     WTNormal: (
@@ -187,5 +126,4 @@ WHISPER_COLORS = {
     ),
     # TODO: WTBattleSOS
     # TODO: WTEmote
-    # TODO: WTToontownBoardingGroup
 }
