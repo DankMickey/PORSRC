@@ -597,8 +597,14 @@ class SimpleStoreGUI(DirectFrame):
         if self.invContainer:
             self.invContainer.destroy()
             self.invContainer = None
-
-
+        
+        if self.cartFrame:
+            self.cartFrame.destroy()
+            self.cartFrame = None
+        
+        if self.sellButton:
+            self.sellButton.destroy()
+            self.sellButton = None
 
     def createItemCardPlaceholder(self):
         if not self.itemCardPlaceholder:
@@ -810,12 +816,12 @@ class SimpleStoreGUI(DirectFrame):
 
 
     def closePanel(self):
+        self.destroy()
         messenger.send('exitStore')
         self.ignoreAll()
         camera.setPos(self.initialCamPos)
         camera.setHpr(self.initialCamHpr)
         self.unloadPirate()
-        self.destroy()
         if not hasattr(base, 'localAvatar'):
             return None
 
