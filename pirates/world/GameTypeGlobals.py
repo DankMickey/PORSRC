@@ -6,6 +6,7 @@ from pirates.piratesgui import PiratesGuiGlobals
 from pirates.uberdog.UberDogGlobals import InventoryType
 from pirates.uberdog import DistributedInventoryBase
 from otp.otpbase import OTPGlobals
+import __builtin__
 
 GAME_DURATION_SHORT = 0
 GAME_DURATION_MED = 1
@@ -161,7 +162,7 @@ def gatherGameStyleInfo(gameType, gameStyle, callback):
             callback(tmsOwned)
 
         if callback:
-            if game.process == 'client':
+            if hasattr(__builtin__, 'base'):
                 requestId = DistributedInventoryBase.DistributedInventoryBase.getInventory(localAvatar.inventoryId, gatherTMInfo)
             else:
                 tmsAvailable = { }

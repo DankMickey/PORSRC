@@ -1,4 +1,4 @@
-from panda3d.core import Camera, ColorWriteAttrib, DisplayRegion, Filename, Lens, NodePath, StereoDisplayRegion, TPLow, VBase4, getModelPath
+from panda3d.core import Camera, ColorWriteAttrib, DisplayRegion, Lens, StereoDisplayRegion, TPLow, VBase4
 from direct.showbase.ShowBase import ShowBase
 import OTPRender
 import time

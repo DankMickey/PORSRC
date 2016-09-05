@@ -1,4 +1,4 @@
-from panda3d.core import TextProperties, TextPropertiesManager
+from panda3d.core import Light, TextProperties, TextPropertiesManager
 import string
 from otp.otpbase.OTPLocalizerEnglishProperty import *
 lTheBrrrgh = 'The Brrrgh'

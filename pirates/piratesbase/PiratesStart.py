@@ -26,13 +26,6 @@ else:
 print 'PiratesStart: Starting the game.'
 import __builtin__
 
-class game:
-    name = 'pirates'
-    process = 'client'
-
-__builtin__.game = game()
-import __builtin__
-
 import CMotionTrail
 __builtin__.CMotionTrail = CMotionTrail.CMotionTrail
 

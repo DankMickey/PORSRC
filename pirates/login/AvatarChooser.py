@@ -1,4 +1,4 @@
-from panda3d.core import DocumentSpec, HTTPClient, NodePath, Point3, Ramfile, TPHigh, TPLow, TextNode, TransparencyAttrib, Vec3, Vec4, invert
+from panda3d.core import NodePath, Point3, TPHigh, TPLow, TextNode, TransparencyAttrib, Vec3, Vec4, invert
 import math, time
 from direct.gui.DirectGui import *
 from direct.showbase.DirectObject import DirectObject

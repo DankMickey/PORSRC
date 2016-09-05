@@ -6,6 +6,7 @@ from pirates.piratesbase import PiratesGlobals
 from pirates.quest import QuestConstants
 from pirates.piratesbase import TeamUtils
 from pirates.world import LocationConstants
+import __builtin__
 import types
 import copy
 
@@ -64,7 +65,7 @@ class QuestGoal:
                 return 1
 
             hasIsShip = hasattr(object, '_isShip')
-            if game.process == 'ai' and not hasIsShip:
+            if hasattr(__builtin__, 'simbase') and not hasIsShip:
                 return -1
 
             goalLocation = self._QuestGoal__goalData.get(self.LOCATION_IDX, None)
