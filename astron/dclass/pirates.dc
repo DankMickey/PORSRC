@@ -310,9 +310,18 @@ struct Buff {
   uint16[] data;
 };
 
+struct InventoryItem {
+  uint16 type;
+  uint16 id;
+  uint8 location;
+  uint8 upgrades;
+  uint8 colorId;
+  uint32 count;
+};
+
 dclass DistributedShopKeeper : DistributedObject {
-  // requestMakeSale(InventoryItem [], InventoryItem []) airecv clsend;
-  // requestMakeShipSale(InventoryItem [], InventoryItem [], ItemNameHolder []) airecv clsend;
+  requestMakeSale(InventoryItem [], InventoryItem []) airecv clsend;
+  requestMakeShipSale(InventoryItem [], InventoryItem [], ItemNameHolder []) airecv clsend;
   requestPurchaseRepair(uint32) airecv clsend;
   requestPurchaseOverhaul(uint32) airecv clsend;
   requestSellShip(uint32) airecv clsend;
@@ -1040,14 +1049,6 @@ struct InventoryAccumulatorSlot {
   uint32 quantity;
 };
 
-struct InventoryItem {
-  uint16 type;
-  uint16 id;
-  uint8 location;
-  uint8 upgrades;
-  uint8 colorId;
-  uint32 count;
-};
 
 dclass DistributedInventory : DistributedObject {
   uint32 AutoInterest[];
