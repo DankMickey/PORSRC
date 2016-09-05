@@ -15,6 +15,7 @@ from pirates.seapatch.Reflection import Reflection
 from pirates.seapatch.Water import Water
 from direct.motiontrail.MotionTrail import MotionTrail
 from pirates.piratesgui.GameOptions import *
+import __builtin__
 
 class SeaPatch(Water):
     notify = directNotify.newCategory('SeaPatch')
@@ -169,11 +170,14 @@ class SeaPatch(Water):
         self.texture_extension = '.jpg'
         if self.shader:
             self.seamodel.setShader(self.shader)
-            self.seamodel.setShaderAuto()
-            self.seamodel.setTransparency(1)
-            self.seamodel.setColorScale(1, 1, 1, 0.75)
+            
+            if not hasattr(__builtin__, 'dcStream'):
+                self.seamodel.setShaderAuto()
+                self.seamodel.setTransparency(True)
+                self.seamodel.setColorScale(1, 1, 1, 0.75)
+            
             self.seamodel.setFogOff()
-            if True:
+            if self.use_alpha_map:
                 self.patchNP.setTransparency(1)
 
             self.base_texture = loader.loadTexture('phase_2/maps/oceanWater2' + self.texture_extension)
