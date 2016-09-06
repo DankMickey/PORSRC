@@ -19,16 +19,12 @@ class MapBall(ArcBall):
 
     def mapPosToSpherePt(self, mapPos):
         pt = self.tsMat.xformPoint(Point2(mapPos[0], mapPos[1]))
+        theta = math.acos(2 / Vec3(pt[0], pt[1], 2).length())
 
-        try:
-            theta = math.acos(2 / Vec3(pt[0], pt[1], 2).length())
-
-            sinTheta = math.sin(theta)
-            z = 1 - 2 * sinTheta * sinTheta
-            coef = (z + 1) / 2.0
-            return Vec3(pt[0] * coef, pt[1] * coef, z)
-        except:
-            print "mapPosToSpherePt produced an error, supressed, continuing..."
+        sinTheta = math.sin(theta)
+        z = 1 - 2 * sinTheta * sinTheta
+        coef = (z + 1) * 1.8
+        return Vec3(pt[0] * coef, pt[1] * coef, z)
 
 
     def spherePtToMapPos(self, spherePt):

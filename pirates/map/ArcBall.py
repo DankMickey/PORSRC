@@ -432,14 +432,7 @@ class ArcBall(NodePath, DirectObject):
         theta = math.acos(clampScalar(-1, 1, p0.dot(p1)))
         axis = p0.cross(p1)
         axis.normalize()
-        if factor == 1.0:
-            return Quat(math.cos(theta / 2.0), axis * math.sin(theta / 2.0))
-        elif 0.0 < factor:
-            pass
-        elif factor == 1.0:
-            q = nLerp(Quat.identQuat(), Quat(math.cos(theta / 2.0), axis * math.sin(theta / 2.0)), factor)
-            return q
-
+        return nLerp(Quat.identQuat(), Quat(math.cos(theta / 2.0), axis * math.sin(theta / 2.0)), factor)
 
 
     def _getRotateAboutAxisQuat(self, axis, p0, p1, factor = 1.0):
