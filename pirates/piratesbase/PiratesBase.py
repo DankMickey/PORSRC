@@ -1,5 +1,5 @@
 from panda3d.physics import AngularEulerIntegrator, AngularIntegrator, ForceNode, LinearControlForce, LinearEulerIntegrator, LinearForce, LinearFrictionForce, LinearIntegrator, PhysicsManager
-from panda3d.core import Camera, ClockObject, CollisionHandler, CollisionHandlerEvent, CollisionTraverser, CullBinEnums, CullBinManager, DSearchPath, EventHandler, ExecutionEnvironment, Filename, GraphicsPipe, GraphicsPipeSelection, Lens, MouseWatcher, NodePath, PGButton, Plane, PlaneNode, Point3, TPHigh, TPLow, TextProperties, TextPropertiesManager, Texture, TextureStage, URLSpec, VBase4, Vec3, Vec4, VirtualFile, VirtualFileSystem, WindowProperties
+from panda3d.core import Camera, ClockObject, CollisionHandler, CollisionHandlerEvent, CollisionTraverser, CullBinEnums, CullBinManager, DSearchPath, EventHandler, ExecutionEnvironment, Filename, GeomVertexArrayData, GraphicsPipe, GraphicsPipeSelection, Lens, MouseWatcher, NodePath, PGButton, Plane, PlaneNode, Point3, TPHigh, TPLow, TextProperties, TextPropertiesManager, Texture, TextureStage, URLSpec, VBase4, Vec3, Vec4, VertexDataPage, VirtualFile, VirtualFileSystem, WindowProperties
 import sys
 import time
 import os
@@ -53,14 +53,19 @@ class PiratesBase(OTPBase):
         self.options.load()
         self.options.applyPre()
 
-        selection = GraphicsPipeSelection.getGlobalPtr()
-        pipe = selection.makeModulePipe(self.options.api)
+        GeomVertexArrayData.getIndependentLru().setMaxSize(5242880)
+        VertexDataPage.getGlobalLru(VertexDataPage.RCResident).setMaxSize(5242880)
+        taskMgr.setupTaskChain('background', numThreads = 0)
+        
+        if not self.isClientBuilt():
+            selection = GraphicsPipeSelection.getGlobalPtr()
+            pipe = selection.makeModulePipe(self.options.api)
 
-        if pipe:
-            self.pipe = pipe
-            self.notify.info('Loaded requested graphics %s' % self.pipe.getType().getName())
-        else:
-            self.notify.warning('Requested graphics API is not implemented!')
+            if pipe:
+                self.pipe = pipe
+                self.notify.info('Loaded requested graphics %s' % self.pipe.getType().getName())
+            else:
+                self.notify.warning('Requested graphics API is not implemented!')
 
         if not self.pipe:
             self.makeDefaultPipe()
@@ -223,6 +228,9 @@ class PiratesBase(OTPBase):
         self.transitions.loadLetterbox()
         self.transitions.letterbox.setColorScale(0, 0, 0, 1)
         self.loadingScreen.endStep('PiratesBase')
+    
+    def isClientBuilt(self):
+        return hasattr(__builtin__, 'dcStream')
 
     def setNoticeSystem(self, on):
         if self.noticeSystemOn == on:
