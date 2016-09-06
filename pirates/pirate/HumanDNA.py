@@ -2343,7 +2343,7 @@ class HumanDNA(AvatarDNA.AvatarDNA):
         self.head.hair.color = 2
 
     def packFloat(self, dg, float):
-        dg.addInt8(int(float * 10))
+        dg.addInt16(int(float * 100.0))
     
     def makeNetString(self):
         dg = PyDatagram()
@@ -2531,60 +2531,60 @@ class HumanDNA(AvatarDNA.AvatarDNA):
 
         # Body
         self.setBodyShape(dgi.getUint8())
-        self.setBodyHeight(dgi.getInt8() / 10.0)
+        self.setBodyHeight(dgi.getInt16() / 100.0)
         self.setBodyColor(dgi.getUint8())
         self.setBodySkin(dgi.getUint8())
 
         # Head
-        self.setHeadSize(dgi.getInt8() / 10.0)
-        self.setHeadWidth(dgi.getInt8() / 10.0)
-        self.setHeadHeight(dgi.getInt8() / 10.0)
-        self.setHeadRoundness(dgi.getInt8() / 10.0)
+        self.setHeadSize(dgi.getInt16() / 100.0)
+        self.setHeadWidth(dgi.getInt16() / 100.0)
+        self.setHeadHeight(dgi.getInt16() / 100.0)
+        self.setHeadRoundness(dgi.getInt16() / 100.0)
 
         # Jaw
-        self.setJawWidth(dgi.getInt8() / 10.0)
-        self.setJawRoundness(dgi.getInt8() / 10.0)
-        self.setJawChinSize(dgi.getInt8() / 10.0)
-        self.setJawAngle(dgi.getInt8() / 10.0)
-        self.setJawLength(dgi.getInt8() / 10.0)
+        self.setJawWidth(dgi.getInt16() / 100.0)
+        self.setJawRoundness(dgi.getInt16() / 100.0)
+        self.setJawChinSize(dgi.getInt16() / 100.0)
+        self.setJawAngle(dgi.getInt16() / 100.0)
+        self.setJawLength(dgi.getInt16() / 100.0)
 
         # Mouth
-        self.setMouthWidth(dgi.getInt8() / 10.0)
-        self.setMouthLipThickness(dgi.getInt8() / 10.0)
-        self.setMouthFrown(dgi.getInt8() / 10.0)
+        self.setMouthWidth(dgi.getInt16() / 100.0)
+        self.setMouthLipThickness(dgi.getInt16() / 100.0)
+        self.setMouthFrown(dgi.getInt16() / 100.0)
 
         # Cheek
-        self.setCheekBoneHeight(dgi.getInt8() / 10.0)
-        self.setCheekBoneWidth(dgi.getInt8() / 10.0)
-        self.setCheekFat(dgi.getInt8() / 10.0)
+        self.setCheekBoneHeight(dgi.getInt16() / 100.0)
+        self.setCheekBoneWidth(dgi.getInt16() / 100.0)
+        self.setCheekFat(dgi.getInt16() / 100.0)
 
         # Brow
-        self.setBrowWidth(dgi.getInt8() / 10.0)
-        self.setBrowProtruding(dgi.getInt8() / 10.0)
-        self.setBrowAngle(dgi.getInt8() / 10.0)
-        self.setBrowHeight(dgi.getInt8() / 10.0)
+        self.setBrowWidth(dgi.getInt16() / 100.0)
+        self.setBrowProtruding(dgi.getInt16() / 100.0)
+        self.setBrowAngle(dgi.getInt16() / 100.0)
+        self.setBrowHeight(dgi.getInt16() / 100.0)
 
         # Eye
-        self.setEyeCorner(dgi.getInt8() / 10.0)
-        self.setEyeOpeningSize(dgi.getInt8() / 10.0)
-        self.setEyeBulge(dgi.getInt8() / 10.0)
+        self.setEyeCorner(dgi.getInt16() / 100.0)
+        self.setEyeOpeningSize(dgi.getInt16() / 100.0)
+        self.setEyeBulge(dgi.getInt16() / 100.0)
 
         # Nose
-        self.setNoseBridgeWidth(dgi.getInt8() / 10.0)
-        self.setNoseNostrilWidth(dgi.getInt8() / 10.0)
-        self.setNoseLength(dgi.getInt8() / 10.0)
-        self.setNoseBump(dgi.getInt8() / 10.0)
-        self.setNoseNostrilHeight(dgi.getInt8() / 10.0)
-        self.setNoseNostrilAngle(dgi.getInt8() / 10.0)
-        self.setNoseNostrilIndent(dgi.getInt8() / 10.0)
-        self.setNoseBridgeBroke(dgi.getInt8() / 10.0)
-        self.setNoseNostrilBroke(dgi.getInt8() / 10.0)
+        self.setNoseBridgeWidth(dgi.getInt16() / 100.0)
+        self.setNoseNostrilWidth(dgi.getInt16() / 100.0)
+        self.setNoseLength(dgi.getInt16() / 100.0)
+        self.setNoseBump(dgi.getInt16() / 100.0)
+        self.setNoseNostrilHeight(dgi.getInt16() / 100.0)
+        self.setNoseNostrilAngle(dgi.getInt16() / 100.0)
+        self.setNoseNostrilIndent(dgi.getInt16() / 100.0)
+        self.setNoseBridgeBroke(dgi.getInt16() / 100.0)
+        self.setNoseNostrilBroke(dgi.getInt16() / 100.0)
 
         # Ear
-        self.setEarScale(dgi.getInt8() / 10.0)
-        self.setEarFlapAngle(dgi.getInt8() / 10.0)
-        self.setEarPosition(dgi.getInt8() / 10.0)
-        self.setEarLobe(dgi.getInt8() / 10.0)
+        self.setEarScale(dgi.getInt16() / 100.0)
+        self.setEarFlapAngle(dgi.getInt16() / 100.0)
+        self.setEarPosition(dgi.getInt16() / 100.0)
+        self.setEarLobe(dgi.getInt16() / 100.0)
 
         # Hair
         self.setHeadTexture(dgi.getUint8())
@@ -2612,21 +2612,21 @@ class HumanDNA(AvatarDNA.AvatarDNA):
         self.setClothesBotColor(dgi.getUint8(), dgi.getUint8(), dgi.getUint8())
 
         # Tattoo
-        self.setTattooChest(dgi.getUint8(), dgi.getInt8() / 10.0, dgi.getInt8() / 10.0,
+        self.setTattooChest(dgi.getUint8(), dgi.getInt16() / 100.0, dgi.getInt16() / 100.0,
                             dgi.getUint8(), dgi.getUint8(), dgi.getUint8())
-        self.setTattooZone2(dgi.getUint8(), dgi.getInt8() / 10.0, dgi.getInt8() / 10.0,
+        self.setTattooZone2(dgi.getUint8(), dgi.getInt16() / 100.0, dgi.getInt16() / 100.0,
                             dgi.getUint8(), dgi.getUint8(), dgi.getUint8())
-        self.setTattooZone3(dgi.getUint8(), dgi.getInt8() / 10.0, dgi.getInt8() / 10.0,
+        self.setTattooZone3(dgi.getUint8(), dgi.getInt16() / 100.0, dgi.getInt16() / 100.0,
                             dgi.getUint8(), dgi.getUint8(), dgi.getUint8())
-        self.setTattooZone4(dgi.getUint8(), dgi.getInt8() / 10.0, dgi.getInt8() / 10.0,
+        self.setTattooZone4(dgi.getUint8(), dgi.getInt16() / 100.0, dgi.getInt16() / 100.0,
                             dgi.getUint8(), dgi.getUint8(), dgi.getUint8())
-        self.setTattooZone5(dgi.getUint8(), dgi.getInt8() / 10.0, dgi.getInt8() / 10.0,
+        self.setTattooZone5(dgi.getUint8(), dgi.getInt16() / 100.0, dgi.getInt16() / 100.0,
                             dgi.getUint8(), dgi.getUint8(), dgi.getUint8())
-        self.setTattooZone6(dgi.getUint8(), dgi.getInt8() / 10.0, dgi.getInt8() / 10.0,
+        self.setTattooZone6(dgi.getUint8(), dgi.getInt16() / 100.0, dgi.getInt16() / 100.0,
                             dgi.getUint8(), dgi.getUint8(), dgi.getUint8())
-        self.setTattooZone7(dgi.getUint8(), dgi.getInt8() / 10.0, dgi.getInt8() / 10.0,
+        self.setTattooZone7(dgi.getUint8(), dgi.getInt16() / 100.0, dgi.getInt16() / 100.0,
                             dgi.getUint8(), dgi.getUint8(), dgi.getUint8())
-        self.setTattooZone8(dgi.getUint8(), dgi.getInt8() / 10.0, dgi.getInt8() / 10.0,
+        self.setTattooZone8(dgi.getUint8(), dgi.getInt16() / 100.0, dgi.getInt16() / 100.0,
                             dgi.getUint8(), dgi.getUint8(), dgi.getUint8())
 
         # Jewelry
