@@ -1505,6 +1505,20 @@ objectStruct = {
                     'Visual': {
                         'Color': (0.80000001192092896, 0.80000001192092896, 0.80000001192092896, 1.0),
                         'Model': 'models/buildings/pir_m_bld_frt_innerWall_100' } },
+                '1224019129.74akelts': {
+                    'description' : 'missing wall',
+                    'Type': 'Simple Fort',
+                    'DisableCollision': False,
+                    'Hpr': VBase3(-33.841, 1, 1),
+                    #distace from origin,left/right, position heigh
+                    'Pos': Point3(-200.072, 70, 10),
+                    'Scale': VBase3(1.0, 1.0, 2.0),
+                    'UseMayaLOD': False,
+                    'VisSize': 'Large',
+                    'VisZone': '19',
+                    'Visual': {
+                        'Color': (0.80000001192092896, 0.80000001192092896, 0.80000001192092896, 1.0),
+                        'Model': 'models/buildings/pir_m_bld_frt_innerWall_300'}},
                 '1224019382.75akelts': {
                     'Type': 'Simple Fort',
                     'DisableCollision': False,
@@ -8248,6 +8262,7 @@ objectStruct = {
             '1225924406.17caoconno',
             '1226100470.59caoconno',
             '1224019128.73akelts',
+            '1224019129.74akelts',
             '1222819925.38akelts',
             '1226011078.52caoconno',
             '1223506738.55akelts',
@@ -8559,6 +8574,7 @@ objectStruct = {
             '1226011078.52caoconno',
             '1226020204.77caoconno',
             '1224019128.73akelts',
+            '1224019129.74akelts'
             '1226100295.63caoconno',
             '1226357716.61caoconno',
             '1227058432.0akelts',
@@ -9603,6 +9619,7 @@ objectStruct = {
         '1223506738.55akelts': '["Objects"]["1150922126.8akelts"]["Objects"]["1223506738.55akelts"]',
         '1224019046.72akelts': '["Objects"]["1150922126.8akelts"]["Objects"]["1224019046.72akelts"]',
         '1224019128.73akelts': '["Objects"]["1150922126.8akelts"]["Objects"]["1224019128.73akelts"]',
+        '1224019129.74akelts': '["Objects"]["1150922126.8akelts"]["Objects"]["1224019129.74akelts"]',
         '1224019382.75akelts': '["Objects"]["1150922126.8akelts"]["Objects"]["1224019382.75akelts"]',
         '1225839240.97caoconno': '["Objects"]["1150922126.8akelts"]["Objects"]["1225839240.97caoconno"]',
         '1225839241.67caoconno': '["Objects"]["1150922126.8akelts"]["Objects"]["1225839241.67caoconno"]',
