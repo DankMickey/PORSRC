@@ -63,6 +63,11 @@ gl-check-errors #t
 # GUI
 hide-gui #f
 
+#FPS
+show-frame-rate-meter  #t
+base.setFrameRateMeter(True)
+sync-video #f
+
 # ISLAND
 remove-island-barriers #f
 
