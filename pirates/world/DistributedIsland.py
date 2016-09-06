@@ -593,6 +593,10 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
             self.dockingLOD.hide(OTPRender.MainCameraBitmask)
             self.dockingLOD.showThrough(OTPRender.EnviroCameraBitmask)
             self.dockingLOD.findAllMatches('**/water_*').detach()
+            
+            for obj in self.dockingLOD.findAllMatches('**/=ignore-lighting'):
+                obj.setLightOff(1000)
+            
             self.dockingLOD.flattenStrong()
             self.dockingLodFog = self.dockingLOD.find('**/fog')
             if self.dockingLodFog:
@@ -617,6 +621,12 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
         islandBaseName = self.modelPath.split('_zero')[0]
         self.geom = self.loadWholeModel(islandBaseName)
         self.geom.findAllMatches('**/water_*').detach()
+        
+        for flat in self.geom.findAllMatches('**/island_flat_lod'):
+            flat.removeNode()
+        
+        for obj in self.geom.findAllMatches('**/=ignore-lighting'):
+            obj.setLightOff(1000)
 
     def loadWholeModel(self, name):
         lowend = ''
