@@ -386,6 +386,12 @@ class PiratesBase(OTPBase):
             with open(os.path.join(tempdir, filename), 'wb') as f:
                 f.write(vfs.readFile(p3filename, False))
 
+        wp = WindowProperties()
+        if sys.platform == 'darwin':
+            wp.setIconFilename(Filename.fromOsSpecific(os.path.join(tempdir, 'icon500.ico')))
+        else:
+            wp.setIconFilename(Filename.fromOsSpecific(os.path.join(tempdir, 'icon256.ico')))
+            self.win.requestProperties(wp)
 
     def postOpenWindow(self):
         NametagGlobals.setCamera(base.cam)
