@@ -30,15 +30,16 @@ if [[ "$service" ]]; then
            sh astron/unix/astron.sh
             ;;
         mongo)
-            sh ../astron/unix/mongo.sh
+            sh astron/unix/mongo.sh
         ;;
         all)
-           sh astron/unix/astron.sh
+            #sh astron/unix/mongo.sh
+            sh astron/unix/astron.sh
             sh astron/unix/ai.sh
             sh astron/unix/uberdog.sh
             ;;
         *)
-            echo " Service '"$service"'  was not found, a typo herpaps?\n"
+            echo " Service '"$service"'  was not found, a typo perhaps?\n"
             usage
             exit 1 #
       ;;

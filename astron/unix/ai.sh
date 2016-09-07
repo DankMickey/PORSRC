@@ -4,7 +4,12 @@
 # python -m pip install pymongo
 
 #kill process if it is already running
-kill -9  `pgrep -f "pirates.ai.ServiceStart"`
+pid=$(pgrep -f "pirates.ai.ServiceStart")
+
+if [[ $pid ]]; then
+    kill -9  $pid
+fi
+
 
 #start ai server
 python -m pirates.ai.ServiceStart > logs/ai_server.log 2>&1 &

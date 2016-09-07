@@ -1,8 +1,11 @@
 #!/bin/sh
 
 #kill process if it is already running
-kill -9 `pgrep -f "astron"`
+pid=$(pgrep -f "astron")
 
+if [[ $pid ]]; then
+    kill -9  $pid
+fi
 
 #
 #  Need to Update the .yml config file to use mongodb!!!!!!!!!
