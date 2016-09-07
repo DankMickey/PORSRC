@@ -7,4 +7,6 @@ else
     cd ..
 fi
 
+killall pid of mongod
+
 mongod --dbpath  /data/db  --fork --syslog

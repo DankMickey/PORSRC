@@ -1,15 +1,12 @@
 #!/bin/sh
 
-echo "$(uname)"
-
 #kill process if it is already running
 kill -9 `pgrep -f "astron"`
 
-cd ..
 
-    #
-    #  Need to Update the .yml config file to use mongodb!!!!!!!!!
-    #
+#
+#  Need to Update the .yml config file to use mongodb!!!!!!!!!
+#
 
 #start ai server
 if [[ "$(uname)" == "Darwin" ]]; then
