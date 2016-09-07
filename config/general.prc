@@ -63,9 +63,10 @@ gl-check-errors #t
 # GUI
 hide-gui #f
 
-#FPS
-show-frame-rate-meter  #t
-base.setFrameRateMeter(True)
+# FPS
+show-frame-rate-meter #t
+sync-flip #f
+auto-flip #f
 sync-video #f
 
 # ISLAND

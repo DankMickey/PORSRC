@@ -416,7 +416,6 @@ class Human(HumanBase.HumanBase, Biped.Biped):
     def generateHuman(self, gender, others, useFaceTex = False):
         parent = self.getParent()
         self.detachNode()
-        print others
         if gender == 'f':
             other = others[1]
         else:
