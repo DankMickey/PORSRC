@@ -7,7 +7,7 @@ pid[2]=$(pgrep -f "pirates.uberdog.ServiceStart")
 
 for i in "${pid[@]}"
 do
-    if [[$i ]]; then
+    if [[ $i ]]; then
         kill -9 $i
     fi
 done
