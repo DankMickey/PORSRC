@@ -19,9 +19,6 @@ want-dev-weapons #t
 want-easy-combos #t
 want-friendly-fire #f
 instant-skill-recharge #f
-sync-flip #f
-auto-flip #f
-sync-video #f
 
 # BATTLE
 want-battle #f
