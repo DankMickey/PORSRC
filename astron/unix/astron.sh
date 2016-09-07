@@ -7,10 +7,6 @@ if [[ $pid ]]; then
     kill -9  $pid
 fi
 
-#
-#  Need to Update the .yml config file to use mongodb!!!!!!!!!
-#
-
 #start ai server
 if [[ "$(uname)" == "Darwin" ]]; then
     #Mac OS X platform
@@ -21,7 +17,8 @@ elif [[  $(uname) =~ ^Linux$ ]]; then
     astron/astrondlinux --loglevel info astron/config/cluster_yaml.yml  > logs/astron.log 2>&1 &
 fi
 
-echo "Astron - Process ID#" `pgrep -f "astron"`
+echo "Astron - Process ID#" `pgrep -f "astron"`  see log: logs/astron.log
+echo "Need to Update the .yml config file to use mongodb!!! - currently using yaml."
 echo "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+="
 
 
