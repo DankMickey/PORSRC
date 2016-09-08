@@ -207,7 +207,10 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
                 
                 if category in allIdles:
                     allAnims = allIdles.get(category)
-                    allIdles = allAnims.get('idles')
+                else:
+                    allAnims = allIdles.values()[0]
+                
+                allIdles = allAnims.get('idles')
 
             allProps = allAnims.get('props')
             currChoice = random.choice(allIdles)
