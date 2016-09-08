@@ -32,7 +32,7 @@ class DistributedBattleAvatarAI(Teamable, DistributedReputationAvatarAI, WeaponB
         self.skillEffects = []
         self.isGhost = 0
         self.hasGP = 0
-        self.armorScale = 0
+        self.armorScale = 1.0
 
         self.enemySkills = {}
 
