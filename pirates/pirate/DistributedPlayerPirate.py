@@ -2790,6 +2790,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         if self.doId in base.localAvatar.ignoreList:
             return None
 
+        self.playEmote(emoteId)
         base.talkAssistant.receiveEmote(self, emoteId)
 
 

@@ -3920,13 +3920,6 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
 
 
     def playEmote(self, emoteId):
-        if self.getGameState() not in [
-            'Emote',
-            'OOBEmote',
-            'WeaponReceive',
-            'NPCInteract']:
-            return None
-
         emote = self.getEmote(emoteId)
         if not emote:
             return None
