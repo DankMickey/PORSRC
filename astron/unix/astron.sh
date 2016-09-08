@@ -14,7 +14,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
 
 elif [[  $(uname) =~ ^Linux$ ]]; then
     #GNU/Linux platform
-    astron/astrondlinux --loglevel info astron/config/cluster_yaml.yml  > logs/astron.log 2>&1 &
+    astron/astrondlinux --loglevel info astron/config/cluster.yml  > logs/astron.log 2>&1 &
 fi
 
 echo "Astron - Process ID#" `pgrep -f "astron"`  see log: logs/astron.log
