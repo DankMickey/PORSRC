@@ -622,17 +622,16 @@ class DecoratedMapBall(MapBall):
 
     def addIsland(self, name, islandUid, modelPath, worldPos, rotation):
         scale = 25.0
-        if not name:
+        if (not name) or name == 'default':
             name = 'island-' + `self.itemCounter`
             info = (DecorTypes.Island, (name, islandUid, modelPath, False, scale), {
                 'pos': worldPos,
                 'rot': rotation })
-        elif not islandUid != LocationIds.KINGSHEAD_ISLAND and not base.cr.distributedDistrict.worldCreator.isMysteriousIslandByUid(islandUid) and bool(InventoryType.getIslandTeleportToken(islandUid)):
-            pass
-        isTeleportable = base.cr.distributedDistrict.worldCreator.isPvpIslandByUid(islandUid)
-        info = (DecorTypes.TextIsland, (name, islandUid, modelPath, isTeleportable, self.cam, 0.001, scale), {
-            'pos': worldPos,
-            'rot': rotation })
+        else:
+            isTeleportable = base.cr.distributedDistrict.worldCreator.isPvpIslandByUid(islandUid)
+            info = (DecorTypes.TextIsland, (name, islandUid, modelPath, isTeleportable, self.cam, 0.001, scale), {
+                'pos': worldPos,
+                'rot': rotation })
         self.addAndPlaceItem(name, info)
         self.placedIslands[islandUid] = self.placedItems[name]
         return name
