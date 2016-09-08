@@ -1,4 +1,3 @@
-from panda3d.direct import CMotionTrail
 from panda3d.core import NodePath, Vec4, loadPrcFile
 import PiratesLogger
 import os
@@ -25,9 +24,6 @@ else:
 
 print 'PiratesStart: Starting the game.'
 import __builtin__
-
-import CMotionTrail
-__builtin__.CMotionTrail = CMotionTrail.CMotionTrail
 
 from pirates.launcher.PiratesLauncher import PiratesLauncher
 launcher = PiratesLauncher()
