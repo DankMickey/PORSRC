@@ -61,7 +61,7 @@ class JewelryStoreTabBar(TabBar):
 
 
     def makeTab(self, name, **kw):
-        return JewelryStoreTab(self, name)
+        return JewelryStoreTab(self, name, **kw)
 
 
 

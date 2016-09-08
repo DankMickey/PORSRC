@@ -60,7 +60,7 @@ class AccessoriesStoreTabBar(TabBar):
 
 
     def makeTab(self, name, **kw):
-        return AccessoriesStoreTab(self, name)
+        return AccessoriesStoreTab(self, name, **kw)
 
 
 

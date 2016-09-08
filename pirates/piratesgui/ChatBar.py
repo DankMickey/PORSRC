@@ -58,7 +58,7 @@ class ChatTabBar(TabBar):
 
 
     def makeTab(self, name, **kw):
-        return ChatTab(self, name)
+        return ChatTab(self, name, **kw)
 
 
     def stash(self):
@@ -104,7 +104,7 @@ class WhisperTabBar(TabBar):
 
 
     def makeTab(self, name, **kw):
-        newWhisperTab = WhisperTab(self, name)
+        newWhisperTab = WhisperTab(self, name, **kw)
         if hasattr(self, 'percentage'):
             newWhisperTab.setBoxWidth(self.percentage)
 

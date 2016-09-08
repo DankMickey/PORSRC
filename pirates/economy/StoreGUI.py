@@ -49,7 +49,7 @@ class StoreTabBar(TabBar):
 
 
     def makeTab(self, name, **kw):
-        return StoreTab(self, name)
+        return StoreTab(self, name, **kw)
 
 
 

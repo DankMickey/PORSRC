@@ -53,7 +53,7 @@ class BarberStoreTabBar(TabBar):
 
 
     def makeTab(self, name, **kw):
-        return BarberStoreTab(self, name)
+        return BarberStoreTab(self, name, **kw)
 
 
 

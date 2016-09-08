@@ -39,7 +39,7 @@ class ShipTabBar(TabBar):
 
 
     def makeTab(self, name, **kw):
-        return ShipTab(self, name)
+        return ShipTab(self, name, **kw)
 
 
     def refreshTabs(self):

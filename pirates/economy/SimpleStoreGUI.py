@@ -73,7 +73,7 @@ class SimpleStoreTabBar(TabBar):
 
 
     def makeTab(self, name, **kw):
-        return SimpleStoreTab(self, name)
+        return SimpleStoreTab(self, name, **kw)
 
 
 

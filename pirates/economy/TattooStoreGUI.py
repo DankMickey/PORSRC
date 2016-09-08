@@ -89,7 +89,7 @@ class TattooStoreTabBar(TabBar):
 
 
     def makeTab(self, name, **kw):
-        return TattooStoreTab(self, name)
+        return TattooStoreTab(self, name, **kw)
 
 
 
