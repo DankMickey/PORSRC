@@ -910,6 +910,9 @@ class HumanDNA(AvatarDNA.AvatarDNA):
             if isinstance(val, (tuple, list)):
                 f(self, *val)
             else:
+                if isinstance(val, float):
+                    val = int(val)
+
                 f(self, val)
 
     def setTattooChest(self, tattoo, offsetX, offsetY, scale, rotate, color):
