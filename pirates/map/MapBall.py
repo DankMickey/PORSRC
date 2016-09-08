@@ -19,8 +19,9 @@ class MapBall(ArcBall):
 
     def mapPosToSpherePt(self, mapPos):
         pt = self.tsMat.xformPoint(Point2(mapPos[0], mapPos[1]))
-        theta = math.acos(2 / Vec3(pt[0], pt[1], 2).length())
-
+        len = Vec3(pt[0], pt[1], 2).length();
+        lencos = round(2 / len, 6)
+        theta = math.acos(lencos)
         sinTheta = math.sin(theta)
         z = 1 - 2 * sinTheta * sinTheta
         coef = (z + 1) * 1.8
