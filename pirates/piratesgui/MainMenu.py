@@ -1,4 +1,4 @@
-from panda3d.core import Point3
+from panda3d.core import Point3, TransparencyAttrib
 # File: M (Python 2.4)
 
 import copy
@@ -11,6 +11,7 @@ from pirates.piratesgui import PiratesGuiGlobals
 from pirates.piratesgui.GuiButton import GuiButton
 from pirates.piratesbase import PLocalizer
 from direct.directnotify import DirectNotifyGlobal
+from direct.gui.OnscreenImage import OnscreenImage
 from pirates.piratesgui import PDialog
 from pirates.piratesgui import MainMenuConfirm
 from pirates.piratesgui.GameOptions import GameOptions
@@ -31,10 +32,8 @@ class MainMenu(DirectFrame):
         self.parentFrame = DirectFrame(parent = self, pos = (0, 0, 1.2))
         self.ropeFrame = DirectFrame(parent = self.parentFrame, relief = None, image = self.model.find('**/avatar_c_A_rope'), image_scale = 0.359, pos = (0.518, 0, 1.58))
         self.ropeFrame2 = DirectFrame(parent = self.parentFrame, relief = None, image = self.model.find('**/avatar_c_A_rope'), image_scale = 0.359, pos = (1.076, 0, 1.58))
-        self.logo = loader.loadModel('models/gui/potcLogo')
-        self.logo.reparentTo(self.parentFrame)
-        self.logo.setPos(width / 2.0, 0, height - 0.149)
-        self.logo.setScale(0.9)
+        self.logo = OnscreenImage(image = 'custom/PORLogo.png', pos = (width / 2.0, 0, height - 0.149), scale = (0.9), parent = self.parentFrame)
+        self.logo.setTransparency(TransparencyAttrib.MAlpha)
         self.buttons = []
         hotkeys = ['esc']
         z = -0.45
