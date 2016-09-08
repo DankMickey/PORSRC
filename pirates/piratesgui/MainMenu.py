@@ -32,7 +32,7 @@ class MainMenu(DirectFrame):
         self.parentFrame = DirectFrame(parent = self, pos = (0, 0, 1.2))
         self.ropeFrame = DirectFrame(parent = self.parentFrame, relief = None, image = self.model.find('**/avatar_c_A_rope'), image_scale = 0.359, pos = (0.518, 0, 1.58))
         self.ropeFrame2 = DirectFrame(parent = self.parentFrame, relief = None, image = self.model.find('**/avatar_c_A_rope'), image_scale = 0.359, pos = (1.076, 0, 1.58))
-        self.logo = DirectFrame(self.parentFrame, relief = None, image = 'custom/PORLogo.png', image_scale = (0.7, 1, 0.5), pos = (width / 2.0, 0, height - 0.229), scale = 0.9)
+        self.logo = DirectFrame(self.parentFrame, relief = None, image = 'custom/PORLogo.png', image_scale = (0.7, 1, 0.5), pos = (width / 2.0, 0, height - 0.069), scale = 0.9)
         self.logo.setTransparency(TransparencyAttrib.MAlpha)
         self.buttons = []
         hotkeys = ['esc']
