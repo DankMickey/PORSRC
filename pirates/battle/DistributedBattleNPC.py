@@ -203,8 +203,11 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
 
             allIdles = allAnims.get('idles')
             if type(allIdles) is dict:
-                allAnims = allIdles.get(ItemGlobals.getSkillCategory(self.currentWeaponId))
-                allIdles = allAnims.get('idles')
+                category = ItemGlobals.getSkillCategory(self.currentWeaponId)
+                
+                if category in allIdles:
+                    allAnims = allIdles.get(category)
+                    allIdles = allAnims.get('idles')
 
             allProps = allAnims.get('props')
             currChoice = random.choice(allIdles)
