@@ -314,26 +314,18 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
         DistributedBattleAvatar.Count += 1
         self.handleLocalAvatarVisZoneChanged()
         self.accept('localAvatarVisZoneChanged', self.handleLocalAvatarVisZoneChanged)
-        yieldThread('battle av start')
         DistributedReputationAvatar.announceGenerate(self)
-        yieldThread('rep av gen')
         WeaponBase.announceGenerate(self)
-        yieldThread('wb/start battle gen')
         self.initializeBattleCollisions()
-        yieldThread('batttle collisions')
         if not self.isLocal() and self.canMove:
             self.showDebugName()
             self.startSmooth()
 
-        yieldThread('smoothing')
         self.setCurrentWeapon(self.currentWeaponId, self.isWeaponDrawn)
-        yieldThread('current weapon')
         self.setHeight(self.height)
-        yieldThread('set Height')
         if self.ambientSfx:
             self.ambientFx = SoundInterval(self.ambientSfx, node = self)
             self.ambientFx.loop()
-            yieldThread('sound')
 
         if self.dropShadow:
             self.dropShadow.setPos(self, (0, 0, 0))
@@ -1378,7 +1370,6 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
 
 
     def checkWeaponSwitch(self, currentWeaponId, isWeaponDrawn):
-        yieldThread('setCurrentWeapon begin')
         if isWeaponDrawn == self.isWeaponDrawn and currentWeaponId == self.currentWeaponId:
             return None
 

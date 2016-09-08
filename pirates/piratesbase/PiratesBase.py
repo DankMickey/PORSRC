@@ -490,11 +490,6 @@ class PiratesBase(OTPBase):
         from pirates.world import WorldCreator
         self.worldCreator = WorldCreator.WorldCreator(self.cr, None, None)
 
-        def nullYield(comment = ''):
-            pass
-
-        __builtin__.yieldThread = nullYield
-        del nullYield
         base.graphicsEngine.renderFrame()
         gameServer = os.environ.get('POR_GAMESERVER', '127.0.0.1')
         serverPort = config.GetInt('server-port', 7969)

@@ -94,13 +94,10 @@ class DistributedNPCTownfolk(DistributedBattleNPC.DistributedBattleNPC, Distribu
 
     def announceGenerate(self):
         DistributedBattleNPC.DistributedBattleNPC.announceGenerate(self)
-        yieldThread('battle gen')
         DistributedShopKeeper.DistributedShopKeeper.announceGenerate(self)
-        yieldThread('shop gen')
         self.setName(self.name)
         self.setInteractOptions(proximityText = PLocalizer.InteractNamedTownfolk % self.name)
         localAvatar.checkForAutoTrigger(self.doId)
-        yieldThread('auto trigger')
         if not self.canMove:
             self.motionFSM.off()
 

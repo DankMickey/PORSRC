@@ -29,9 +29,6 @@ class DistributedNPCNavySailor(DistributedBattleNPC.DistributedBattleNPC, NavySa
                 NavySailor.NavySailor.generateHuman(self, self.style.gender, base.cr.human)
 
 
-        yieldThread('navy done')
-
-
     def generate(self):
         DistributedBattleNPC.DistributedBattleNPC.generate(self)
         self.setInteractOptions(isTarget = False, allowInteract = False)

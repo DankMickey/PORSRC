@@ -45,7 +45,6 @@ class DistributedKillerGhost(DistributedBattleNPC.DistributedBattleNPC, Ghost.Gh
             self.setGhostColor(self.selectedGhostColor)
             self.checkState()
 
-        yieldThread('ghost done')
         ghostSoundNameList = ('audio/sfx_howl_01.ogg', 'audio/sfx_howl_02.ogg', 'audio/sfx_howl_03.ogg')
         self.ghostSounds = []
         for ghostSoundName in ghostSoundNameList:

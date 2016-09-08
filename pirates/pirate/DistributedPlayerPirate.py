@@ -1049,7 +1049,6 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         self.checkAttuneEffect()
         self.createConsumable()
         self.initVisibleToCamera()
-        yieldThread('current Item')
         self.setEfficiency(localAvatar.getEfficiency())
 
     def createConsumable(self):

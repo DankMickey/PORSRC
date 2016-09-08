@@ -145,7 +145,6 @@ class WorldCreator(WorldCreatorBase.WorldCreatorBase, DirectObject.DirectObject)
                         altParentUid = self.fileDicts[currFile + '.py']['Objects'].keys()[0]
                         addObjDict = self.fileDicts[currFile + '.py']['Objects'][altParentUid]['Objects']
                         self.loadObjectDict(addObjDict, parent, parentUid, dynamic)
-                        yieldThread('load object')
                         continue
 
         fileRef = objectInfo.get('File')

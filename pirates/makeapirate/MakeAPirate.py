@@ -350,11 +350,6 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
             self.wantJewelry = base.wantJewelry
         if self.wantNPCViewer:
             self.numShops = len(ShopNames)
-
-            def yieldThread(a):
-                pass
-
-            __builtins__['yieldThread'] = yieldThread
         else:
             self.numShops = ShopNames.index('NameShop') + 1
         self.inRandomAll = False

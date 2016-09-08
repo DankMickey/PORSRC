@@ -42,7 +42,6 @@ class DistributedGhost(DistributedBattleNPC.DistributedBattleNPC, Ghost.Ghost):
             self.checkState()
 
         self.getMinimapObject()
-        yieldThread('ghost done')
 
 
     def setTeam(self, team):

@@ -16,7 +16,6 @@ from pirates.makeapirate import PirateMale
 from pirates.makeapirate import PirateFemale
 from pirates.pirate.HumanAnimationMixer import HumanAnimationMixer
 from pirates.pirate import BodyDefs
-from pirates.pirate import DynamicHuman
 import random
 import cPickle
 TX = 0
@@ -62,17 +61,7 @@ NewModelDict = {
     'mi': 'mi',
     'tp': 'tp',
     'tm': 'tm' }
-PrebuiltAnimDict = {
-    'msf': Biped.msfCustomAnimList,
-    'mms': Biped.mmsCustomAnimList,
-    'mmi': Biped.mmiCustomAnimList,
-    'mtp': Biped.mtpCustomAnimList,
-    'mtm': Biped.mtmCustomAnimList,
-    'fsf': Biped.fsfCustomAnimList,
-    'fms': Biped.fmsCustomAnimList,
-    'fmi': Biped.fmiCustomAnimList,
-    'ftp': Biped.ftpCustomAnimList,
-    'ftm': Biped.ftmCustomAnimList }
+PrebuiltAnimDict = { }
 HeadPositions = BodyDefs.HeadPositions
 HeadScales = BodyDefs.HeadScales
 BodyScales = BodyDefs.BodyScales
@@ -85,7 +74,7 @@ PlayerNames = [
 class Human(HumanBase.HumanBase, Biped.Biped):
     notify = DirectNotifyGlobal.directNotify.newCategory('Human')
     prebuiltAnimData = { }
-
+    
     def __init__(self, other = None):
         Biped.Biped.__init__(self, other, HumanAnimationMixer)
         self.zombie = False
@@ -93,7 +82,7 @@ class Human(HumanBase.HumanBase, Biped.Biped):
         self.crazyColorSkinIndex = 0
         self.flattenPending = None
         self.flattenSuperLowName = None
-        self.optimizeLOD = config.GetBool('optimize-avatar-lod', 0)
+        self.optimizeLOD = base.config.GetBool('optimize-avatar-lod', 1)
         self.loaded = 0
         self.playingRate = None
         self.shadowFileName = 'models/misc/drop_shadow'
@@ -126,7 +115,9 @@ class Human(HumanBase.HumanBase, Biped.Biped):
         self.eyeFSM.enterInitialState()
         if other != None:
             self.copyHuman(other)
+        
 
+    
     def removeCopiedNodes(self):
         self.dropShadow = self.find('**/drop_shadow*')
         if not self.dropShadow.isEmpty():
@@ -135,13 +126,15 @@ class Human(HumanBase.HumanBase, Biped.Biped):
             self.dropShadow = None
         billboardNode = self.find('**/billboardNode')
         if not billboardNode.isEmpty():
-            billboardNode.remove_node()
+            billboardNode.removeNode()
+        
+        self.getGeomNode().getParent().removeNode()
 
-        self.getGeomNode().getParent().remove_node()
-
+    
     def flattenHuman(self):
         self.getWeaponJoints()
 
+    
     def flattenSuperLow(self):
         name = 'flattenSuperLow-%s' % self.this
         self.flattenSuperLowName = name
@@ -151,14 +144,17 @@ class Human(HumanBase.HumanBase, Biped.Biped):
         taskMgr.add(self.flattenSuperLowTask, name, extraArgs = [
             model], taskChain = 'background')
 
+    
     def flattenSuperLowTask(self, model):
         model = model.copyTo(NodePath())
         rhn = model.find('**/rightHand')
         lhn = model.find('**/leftHand')
         if lhn:
             lhn.detachNode()
+        
         if rhn:
             rhn.detachNode()
+        
         node = model.node()
         gr = SceneGraphReducer()
         model.node().setAttrib(TransparencyAttrib.make(0), 2000)
@@ -171,7 +167,9 @@ class Human(HumanBase.HumanBase, Biped.Biped):
         if name:
             messenger.send(name, [
                 model], taskChain = 'default')
+        
 
+    
     def _Human__doneFlattenSuperLow(self, flat):
         self.headNode = flat.find('**/def_head01')
         self.rootNode = flat.find('**/dx_root')
@@ -182,25 +180,32 @@ class Human(HumanBase.HumanBase, Biped.Biped):
         self.getWeaponJoints()
         if hasattr(self, 'animProp') and self.animProp:
             self.resetAnimProp()
-
+        
         self.findAllMatches('**/def_head01').detach()
         self.findAllMatches('**/dx_root').detach()
         for lodName in self.getLODNames():
+            if lodName == '500':
+                self.headNode.reparentTo(self.getLOD(lodName).find('**/+Character'))
+                self.rootNode.reparentTo(self.getLOD(lodName).find('**/+Character'))
+                continue
             self.headNode.instanceTo(self.getLOD(lodName).find('**/+Character'))
             self.rootNode.instanceTo(self.getLOD(lodName).find('**/+Character'))
-
+        
         self.headEffects.reparentTo(self.headNode)
 
+    
     def _Human__doneFlattenHuman(self, models):
         self.flattenPending = None
         self.getWeaponJoints()
 
+    
     def copyHuman(self, other):
         self.gender = other.gender
         self.loaded = other.loaded
         self.loadAnimatedHead = other.loadAnimatedHead
         self.rootScale = other.rootScale
 
+    
     def delete(self):
         self.Human_deleted = 1
         taskMgr.remove(self._Human__blinkName)
@@ -209,23 +214,24 @@ class Human(HumanBase.HumanBase, Biped.Biped):
             self.flattenSuperLowName = None
             self.ignore(name)
             taskMgr.remove(name)
-
+            
         if self.dropShadow and not self.dropShadow.isEmpty():
             self.deleteDropShadow()
-
+            
         del self.eyeFSM
         self.controlShapes = None
         self.sliderNames = None
         Biped.Biped.delete(self)
-
+    
     def isDeleted(self):
-
         try:
             if self.Human_deleted == 1:
                 return True
         except:
             return False
 
+
+    
     def fixEyes(self):
         self.eyeLids = { }
         self.eyeBalls = { }
@@ -238,40 +244,41 @@ class Human(HumanBase.HumanBase, Biped.Biped):
             self.eyeLids[lodName].stash()
             self.eyeBalls[lodName].unstash()
             self.eyeIris[lodName].unstash()
+        
 
-    def makeAnimDict(self, gender, animNames, optT=None):
+    
+    def makeAnimDict(self, gender, animNames):
         self.animTable = []
-        if not animNames and optT:
-            self.animTable = AnimListDict[optT]
-        else:
-            for currAnim in animNames:
-                anim = animNames.get(currAnim)
-                for currAnimName in anim:
-                    self.animTable.append([
-                        currAnimName,
-                        currAnimName])
-
+        for currAnim in animNames:
+            anim = animNames.get(currAnim)
+            for currAnimName in anim:
+                self.animTable.append([
+                    currAnimName,
+                    currAnimName])
+            
+        
         self.reducedAnimList = self.animTable
 
+    
     def forceLoadAnimDict(self):
         for anim in self.animDict.keys():
             self.getAnimControls(anim)
+        
 
+    
     def createAnimDict(self, customList = None):
+        filePrefix = 'models/char/m'
+        genderPrefix = 'm'
         if self.style.gender == 'f':
             self.type = BodyDefs.femaleFrames[self.style.getBodyShape()]
             filePrefix = 'models/char/f'
             genderPrefix = 'f'
         else:
-            filePrefix = 'models/char/m'
-            genderPrefix = 'm'
             self.type = BodyDefs.maleFrames[self.style.getBodyShape()]
         if self.reducedAnimList is None:
-            try:
-                self.makeAnimDict(genderPrefix, [], optT=self.type)
-            except:
-                self.animDict = self.prebuiltAnimData[genderPrefix + self.type]
-                return None
+            self.animDict = self.prebuiltAnimData[genderPrefix + self.type]
+            return
+        
         filePrefix += 'p'
         animList = self.reducedAnimList
         self.animDict = { }
@@ -281,12 +288,12 @@ class Human(HumanBase.HumanBase, Biped.Biped):
                 if anim[0] == CustomAnimDict[genderPrefix + self.type][i]:
                     animSuffix = '_' + genderPrefix + NewModelDict.get(self.type)
                     break
-                    continue
-
+            
             self.animDict[anim[0]] = filePrefix + '_' + anim[1] + animSuffix
-
+        
         return filePrefix
 
+    
     def setupGhostNodes(self):
         lod = NodePath(self.getLODNode())
         for node in lod.getChildren():
@@ -294,7 +301,9 @@ class Human(HumanBase.HumanBase, Biped.Biped):
             if eyes:
                 eyes.wrtReparentTo(eyes[0].getParent().attachNewNode(ModelNode('eyes')))
                 continue
+        
 
+    
     def loadHuman(self, other):
         other.style = self.style
         other.gender = self.style.gender
@@ -309,24 +318,19 @@ class Human(HumanBase.HumanBase, Biped.Biped):
         other.zombie = self.zombie
         other.crazyColorSkin = self.crazyColorSkin
         other.setCrazyColorSkinIndex(self.getCrazyColorSkinIndex())
-        yieldThread('anim dict')
         other.showLOD(2000)
-        yieldThread('showLOD')
         base.loadingScreen.tick()
         if other.zombie:
             other.showZombie()
-
+        
         if hasattr(self, 'motionFSM'):
             self.motionFSM.setAvatar(self)
-
+        
         base.loadingScreen.tick()
-        yieldThread('zombie')
         other.applyBodyShaper()
         base.loadingScreen.tick()
-        yieldThread('body shaper')
         base.loadingScreen.tick()
         other.applyHeadShaper()
-        yieldThread('head shaper')
         base.loadingScreen.tick()
         if self.zombie == 2:
             other.model.eyeBalls.unstash()
@@ -341,15 +345,14 @@ class Human(HumanBase.HumanBase, Biped.Biped):
         self.copyActor(other)
         base.loadingScreen.tick()
         self.floorOffsetZ = other.rootNode.getZ()
-        yieldThread('copyActor')
         self.copyHuman(other)
         if self.isGhost:
             self.setupGhostNodes()
-
+        
         gnodes = self.getLOD('500').findAllMatches('**/+GeomNode')
         for node in gnodes:
             node.setTextureOff(other.model.tattooStage)
-
+        
         base.loadingScreen.tick()
         self.flattenSuperLow()
         self.rootNode = self.getLOD('500').find('**/dx_root')
@@ -359,40 +362,41 @@ class Human(HumanBase.HumanBase, Biped.Biped):
         if len(lodNames) > 1:
             for i in xrange(1, len(lodNames)):
                 self.controlJoint(self.scaleNode, 'legs', 'def_scale_jt', lodNames[i])
-
+            
+        
         self.setGlobalScale(self.calcBodyScale())
-        yieldThread('copyHuman')
         base.loadingScreen.tick()
         self.loadAnimsOnAllLODs(self.animDict, 'modelRoot')
         base.loadingScreen.tick()
-        yieldThread('loadAnims')
         other.zombie = 0
         other.crazyColorSkin = 0
         other.setCrazyColorSkinIndex(0)
         other.showNormal()
-        yieldThread('show normal')
         self.initializeNametag3d()
         self.initializeDropShadow()
         self.setName(self.getName())
-        yieldThread('misc nodes')
         base.loadingScreen.tick()
         self.loaded = 1
 
+    
     def setGlobalScale(self, scale):
         self.scaleNode.setScale(scale)
         self.rootScale = scale
         self.scaleNode.setZ(-(self.floorOffsetZ * (1 - scale)))
 
+    
     def initializeMiscNodes(self):
         self.initializeNametag3d()
         self.initializeDropShadow()
 
+    
     def undoControlJoints(self):
         self.getGeomNode().getParent().findAllMatches('def_*').detach()
         self.getGeomNode().getParent().findAllMatches('trs_*').detach()
         self.findAllMatches('def_*').detach()
         self.findAllMatches('trs_*').detach()
 
+    
     def cleanupHuman(self, gender = 'm'):
         self.eyeFSM.request('off')
         self.undoControlJoints()
@@ -404,15 +408,18 @@ class Human(HumanBase.HumanBase, Biped.Biped):
         self.loaded = 0
         self.master = 0
 
+    
     def getCrazyColorSkinIndex(self):
         return self.crazyColorSkinIndex
 
+    
     def setCrazyColorSkinIndex(self, index):
         if len(HumanDNA.crazySkinColors) > index:
             self.crazyColorSkinIndex = index
         else:
             self.notify.warning('(Human)index: %d is out of bounds for crazyColorSkin: %d' % (index, len(HumanDNA.crazySkinColors)))
 
+    
     def generateHuman(self, gender, others, useFaceTex = False):
         parent = self.getParent()
         self.detachNode()
@@ -422,20 +429,22 @@ class Human(HumanBase.HumanBase, Biped.Biped):
             other = others[0]
         if self.loaded:
             self.cleanupHuman()
-
+        
         other.useFaceTex = useFaceTex
         self.loadHuman(other)
         if self.isLocal():
             self.renderReflection = True
-
+        
         self.setRenderReflection()
         self.resetEffectParent()
         self.enableMixing()
         self.reparentTo(parent)
 
+    
     def getShadowJoint(self):
         return self.nametagNodePath
 
+    
     def getNametagJoints(self):
         joints = []
         for lodName in self.getLODNames():
@@ -444,20 +453,23 @@ class Human(HumanBase.HumanBase, Biped.Biped):
             if joint:
                 joints.append(joint)
                 continue
+        
         return joints
 
+    
     def _Human__blinkOpenEyes(self, task):
         if self.eyeFSM.getCurrentState().getName() == 'closed':
             self.eyeFSM.request('open')
-
+        
         r = self.randGen.random()
-        if r < 0.100:
-            t = 0.200
+        if r < 0.1:
+            t = 0.2
         else:
             t = r * 4.0 + 1.0
         taskMgr.doMethodLater(t, self._Human__blinkCloseEyes, self._Human__blinkName)
         return Task.done
 
+    
     def _Human__blinkCloseEyes(self, task):
         if self.eyeFSM.getCurrentState().getName() != 'open':
             taskMgr.doMethodLater(4.0, self._Human__blinkCloseEyes, self._Human__blinkName)
@@ -466,77 +478,102 @@ class Human(HumanBase.HumanBase, Biped.Biped):
             taskMgr.doMethodLater(0.125, self._Human__blinkOpenEyes, self._Human__blinkName)
         return Task.done
 
+    
     def startBlink(self):
         taskMgr.remove(self._Human__blinkName)
         if self.eyeLids:
             self.openEyes()
+        
         taskMgr.doMethodLater(self.randGen.random() * 4.0 + 1, self._Human__blinkCloseEyes, self._Human__blinkName)
 
+    
     def stopBlink(self):
         taskMgr.remove(self._Human__blinkName)
         if self.eyeLids:
             self.eyeFSM.request('open')
+        
 
+    
     def closeEyes(self):
         self.eyeFSM.request('closed')
 
+    
     def openEyes(self):
         self.eyeFSM.request('open')
 
+    
     def enterEyeFSMOff(self):
         pass
 
+    
     def exitEyeFSMOff(self):
         pass
 
+    
     def enterEyeFSMOpen(self):
         for lodName in self.getLODNames():
             self.eyeLids[lodName].hide()
             self.eyeBalls[lodName].show()
             self.eyeIris[lodName].show()
+        
 
+    
     def exitEyeFSMOpen(self):
         pass
 
+    
     def enterEyeFSMClosed(self):
-        return None
         for lodName in self.getLODNames():
             self.eyeLids[lodName].show()
             self.eyeBalls[lodName].hide()
             self.eyeIris[lodName].hide()
+        
 
+    
     def exitEyeFSMClosed(self):
         pass
 
+    
     def getGlobalScale(self):
         return self.rootScale
 
+    
     def calcBodyScale(self):
         idx = 0
         if self.gender == 'f':
             idx = 1
-
-        mappedValue = (0.800000 + (1 + self.style.getBodyHeight()) * 0.200) * BodyScales[idx][self.style.getBodyShape()]
+        
+        mappedValue = (0.8 + (1 + self.style.getBodyHeight()) * 0.2) * BodyScales[idx][self.style.getBodyShape()]
         return mappedValue
 
+    
     def setupAnimDicts(cls):
         for t in BodyDefs.maleFrames:
             cls.storeAnimDict('models/char/mp', 'm', t)
+        
         for t in BodyDefs.femaleFrames:
             cls.storeAnimDict('models/char/fp', 'f', t)
-    setupAnimDicts = classmethod(setupAnimDicts)
+        
 
+    setupAnimDicts = classmethod(setupAnimDicts)
+    
     def storeAnimDict(cls, prefix, gender, type):
         qualifier = gender + type
         animList = AnimListDict[type]
         cls.prebuiltAnimData[qualifier] = { }
         for anim in animList:
+            if anim[0] == 'intro':
+                continue
+            
             animSuffix = ''
             for i in xrange(0, len(CustomAnimDict[qualifier])):
                 if anim[0] == CustomAnimDict[qualifier][i]:
                     animSuffix = '_' + gender + NewModelDict.get(type)
-
+                    break
+                    continue
+            
             cls.prebuiltAnimData[qualifier][anim[0]] = prefix + '_' + anim[1] + animSuffix
+        
 
     storeAnimDict = classmethod(storeAnimDict)
 

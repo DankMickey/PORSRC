@@ -178,19 +178,15 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
             if allAnims:
                 self.makeMyAnimDict(self.style.gender, allAnims)
 
-            yieldThread('make Anims')
-
     def setupStyle(self):
         if self.style:
             self.setupCustomAnims()
             self.generateMyself()
-            yieldThread('finished Gen')
 
     def addCustomAnimations(self, animList = []):
         if self.style:
             self.setupCustomAnims(extraAnims = animList)
             self.generateMyself()
-            yieldThread('finished Gen')
 
     def makeMyAnimDict(self, gender, animNames):
         pass
@@ -233,15 +229,12 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
                     self.motionFSM.setAnimInfo(newAnimInfo)
 
                 self.animInfo[currAnimState] = newAnimInfo
-                yieldThread('custom anim info')
 
             self.holdAnimProp(allProps)
             self.noticeIdle = allAnims.get('noticeIdle', [
                 None])[0]
             if self.canMove == False:
                 self.canCheckFloors = False
-
-            yieldThread('hold anim prop')
 
     def announceGenerate(self):
         self.checkQuestObjMod()
