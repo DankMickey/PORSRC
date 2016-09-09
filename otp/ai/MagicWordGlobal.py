@@ -22,7 +22,7 @@ class Spellbook:
         self.currentTarget = None
 
     def addWord(self, word):
-        self.words[word.name] = word
+        self.words[word.name.lower()] = word
 
     def process(self, invoker, target, incantation):
         self.currentInvoker = invoker
@@ -40,6 +40,7 @@ class Spellbook:
             self.currentTarget = None
 
     def doWord(self, wordName, args):
+        wordName = wordName.lower()
         word = self.words.get(wordName)
         if not word:
             return
