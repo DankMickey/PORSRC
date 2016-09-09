@@ -1,5 +1,6 @@
 from direct.distributed.DistributedObjectGlobalUD import DistributedObjectGlobalUD
 from direct.directnotify.DirectNotifyGlobal import directNotify
+import CodeRedemptionGlobals
 
 class CodeRedemptionUD(DistributedObjectGlobalUD):
     notify = directNotify.newCategory('CodeRedemptionUD')
@@ -8,5 +9,15 @@ class CodeRedemptionUD(DistributedObjectGlobalUD):
         DistributedObjectGlobalUD.__init__(self, air)
 
     def sendCodeForRedemption(self, code, userName, accountId):
-        # todo: gotta have this written to accept codes. For now, let's reject the code.
-        return REJECT
+        reward = None
+
+        try:
+        	reward = CodeRedemptionGlobals.AWARD_ID[code]
+        except:
+        	return REJECT
+
+        if reward is not None:
+        	#Handle code redemption
+        	return ACCEPT
+        else:
+        	return REJECT
