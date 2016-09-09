@@ -15,7 +15,7 @@ def isKraken(target):
 class BattleManagerBase:
     notify = DirectNotifyGlobal.directNotify.newCategory('BattleManager')
     SkillRechargeTimeConfig = config.GetFloat('skill-recharge-time', -1.0)
-    wantOutput = True#config.GetBool('show-attack-calc', 0)
+    wantOutput = config.GetBool('show-attack-calc', 0)
 
     def isPVP(self, attacker, target):
         if target and target.getTeam() == PiratesGlobals.PLAYER_TEAM and attacker and attacker.getTeam() == PiratesGlobals.PLAYER_TEAM:
