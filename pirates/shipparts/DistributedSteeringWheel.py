@@ -143,8 +143,8 @@ class DistributedSteeringWheel(DistributedInteractive.DistributedInteractive, Di
 
 
 
-    def setUserId(self, avId):
-        DistributedInteractive.DistributedInteractive.setUserId(self, avId)
+    def setUserIds(self, avIds):
+        DistributedInteractive.DistributedInteractive.setUserIds(self, avIds)
         self.ship.setWheelInUse(self.userId != 0)
         self.checkInUse()
 

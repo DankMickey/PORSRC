@@ -34,11 +34,11 @@ class DistributedRepairGame(DistributedRepairGameBase, DistributedObject):
         self.difficulty = difficulty
 
     def start(self, location):
-        self.notify.debug('starting DistributedRepairGame')
         if self.gameFSM:
             self.gameFSM.request('Off')
 
         self.location = location
+
         if location == ON_LAND:
             base.loadingScreen.showTarget(benchRepair = True)
         else:
@@ -58,7 +58,6 @@ class DistributedRepairGame(DistributedRepairGameBase, DistributedObject):
         self.repairClock = RepairClock(self)
         self.mousePicker = RepairMousePicker()
         self.games = []
-        self.avIds2CurrentGameIndex = { }
         base.loadingScreen.endStep('left')
         base.loadingScreen.beginStep('games', 1, 48)
         for gameClass in GAME_ORDER[self.location]:
@@ -147,19 +146,18 @@ class DistributedRepairGame(DistributedRepairGameBase, DistributedObject):
             self.sendUpdate('requestMincroGame', [
                 gameIndex])
 
-    def requestMincroGameResponse(self, success, difficulty):
-        self.notify.debug('requestMincroGameResponse was %i' % success)
-        if success:
-            self.gui.setDifficulty(difficulty)
-            self.gameFSM.request('MincroGame', self.gameIndexRequested, difficulty)
-        else:
-            self.notify.debug('MincroGame request denied')
+    def requestMincroGameResponse(self):
+        self.gui.setDifficulty(self.difficulty)
+        self.gameFSM.request('MincroGame', self.gameIndexRequested, self.difficulty)
 
     def d_reportMincroGameProgress(self, progress, rating = 0):
-        self.setMincroGameProgress(self.gameIndexRequested, progress)
+        self.sendUpdate('reportMincroGameProgress', [progress])
 
-    def setMincroGameProgress(self, gameIndex, progress):
-        self.notify.debug('setMincroGameProgress (%i, %i)' % (gameIndex, progress))
+    def setMincroGameProgress(self, progress):
+        for game, gameProgress in enumerate(progress):
+            self.setGameProgress(game, gameProgress)
+    
+    def setGameProgress(self, gameIndex, progress):
         if hasattr(self, 'gui') and self.gui:
             self.gui.setProgress(gameIndex, progress)
 
@@ -169,50 +167,29 @@ class DistributedRepairGame(DistributedRepairGameBase, DistributedObject):
         if hasattr(self, 'currentGame') and self.currentGame:
             self.currentGame.updatePostWinLabel()
 
-        if self.isCycleComplete():
-            self.cycleComplete(self.difficulty, [base.localAvatar.doId], [100], totalTime=time.time() - self.time)
+    def setAvatars(self, avatars):
+        if hasattr(self, 'gui') and self.gui:
+            self.gui.updatePirateNamesPerMincrogame(avatars)
 
-    def setAvIds2CurrentGameList(self, gameIndexList, doIdList):
-        if hasattr(self, 'avIds2CurrentGameIndex'):
-            self.avIds2CurrentGameIndex.clear()
-            for i in xrange(len(gameIndexList)):
-                self.avIds2CurrentGameIndex[doIdList[i]] = gameIndexList[i]
-
-            self.gui.updatePirateNamesPerMincrogame(self.avIds2CurrentGameIndex)
-
-    def setAllMincroGameProgress(self, progressList):
-        for i in xrange(len(progressList)):
-            self.setMincroGameProgress(i, progressList[i])
-
-    def cycleComplete(self, difficulty = 0, doIds = [], rewards = [], totalTime = 0):
+    def cycleComplete(self, rewards, totalTime):
         if self.gameFSM == None:
             return None
 
         if self.gameFSM.state == 'Intro':
-            self.resetMincroGameProgress()
-            self.gui.setDifficulty(difficulty)
             return None
 
-        self.setRewards(doIds, rewards)
+        self.setRewards(rewards)
         self.setCycleCompleteTime(totalTime)
         self.gameFSM.request('CycleComplete')
-        self.gui.setDifficulty(difficulty)
 
-    def setRewards(self, doIds, rewards):
-        self.doIds2Rewards.clear()
-        if len(doIds) == len(rewards):
-            for i in xrange(len(doIds)):
-                self.doIds2Rewards[doIds[i]] = rewards[i]
-
-        else:
-            self.notify.warning('List of players and list of rewards are a different length doIds:%d and rewards:%d' % (len(doIds), len(rewards)))
+    def setRewards(self, rewards):
+        self.doIds2Rewards = {doId: reward for doId, reward in rewards}
 
     def getReward(self, doId):
         if doId in self.doIds2Rewards:
             return self.doIds2Rewards[doId]
         else:
-            self.notify.warning("doId: %i isn't in self.doIds2Rewards" % doId)
-            return -1
+            return 0
 
     def setCycleCompleteTime(self, totalTime):
         self.cycleCompleteTime = totalTime
@@ -224,10 +201,6 @@ class DistributedRepairGame(DistributedRepairGameBase, DistributedObject):
         if hasattr(self, 'gui') and self.gui:
             self.gui.onShipDamaged(wasGrapeshot)
             self.gui.setDifficulty(difficulty)
-
-    def resetMincroGameProgress(self):
-        self.setAllMincroGameProgress([
-            GAME_OPEN] * self.getGameCount())
 
     def delete(self):
         DistributedObject.delete(self)

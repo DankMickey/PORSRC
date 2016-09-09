@@ -116,18 +116,25 @@ class RepairGamePickerGUI(DirectFrame):
         else:
             self.buttons[self.gameIndicesToNames[gameIndex]]['state'] = DGG.NORMAL
 
-    def updatePirateNamesPerMincrogame(self, avIds2CurrentGameIndex):
+    def updatePirateNamesPerMincrogame(self, avatars):
         for i in xrange(self.repairGame.getGameCount()):
             self.buttons[self.gameIndicesToNames[i]].updatePirateNameBox('')
 
-        for (k, v) in avIds2CurrentGameIndex.iteritems():
-            if k != localAvatar.doId:
-                pirateName = ''
-                handle = base.cr.identifyAvatar(k)
-                if handle:
-                    pirateName = handle.getName()
-
-                self.buttons[self.gameIndicesToNames[v]].updatePirateNameBox(pirateName)
+        print 'updating %s' % avatars
+        base.cr.lol = self
+        for avId, gameIndex in avatars:
+            print avId, gameIndex
+            handle = base.cr.identifyAvatar(avId)
+            print '??'
+            
+            if handle:
+                print 'RIP'
+                self.buttons[self.gameIndicesToNames[gameIndex]].updatePirateNameBox(handle.getName())
+                print 'RIP1'
+            else:
+                print 'ROFL'
+        
+        print 'yaa'
 
     def destroy(self):
         taskMgr.remove('RepairGameGUIUpdate')

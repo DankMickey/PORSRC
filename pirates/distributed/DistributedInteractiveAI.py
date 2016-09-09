@@ -11,12 +11,11 @@ ACCEPT_SEND_UPDATE = 8
 
 class DistributedInteractiveAI(DistributedLocatableObjectAI, DistributedNodeAI):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedInteractiveAI')
-    REJECT_IF_BUSY = True
 
     def __init__(self, air):
         DistributedLocatableObjectAI.__init__(self, air)
         DistributedNodeAI.__init__(self, air)
-        self.avId = 0
+        self.avIds = []
         self.uniqueId = ''
 
     def setUniqueId(self, uid):
@@ -24,6 +23,9 @@ class DistributedInteractiveAI(DistributedLocatableObjectAI, DistributedNodeAI):
 
     def getUniqueId(self):
         return self.uid
+    
+    def allowMultipleAvatars(self):
+        return False
 
     def requestInteraction(self, avId, interactType, instant):
         if avId != self.air.getAvatarIdFromSender():
@@ -34,7 +36,7 @@ class DistributedInteractiveAI(DistributedLocatableObjectAI, DistributedNodeAI):
             self.air.writeServerEvent('suspicious', avId, 'tried to requestInteraction but not in shard!')
             return
 
-        if self.avId and self.REJECT_IF_BUSY:
+        if (self.avIds and not self.allowMultipleAvatars()) or avId in self.avIds:
             self.sendUpdateToAvatarId(avId, 'rejectInteraction', [])
             return
 
@@ -43,7 +45,7 @@ class DistributedInteractiveAI(DistributedLocatableObjectAI, DistributedNodeAI):
         result = self.handleInteract(avId, interactType, instant)
         if result & ACCEPT:
             if result & ACCEPT_SET_AV:
-                self.setAvatar(avId)
+                self.addAvatar(avId)
 
             if result & ACCEPT_SEND_UPDATE:
                 self.sendUpdateToAvatarId(avId, 'acceptInteraction', [])
@@ -62,22 +64,32 @@ class DistributedInteractiveAI(DistributedLocatableObjectAI, DistributedNodeAI):
         ''' Must be overwritten by subclasses '''
         pass
 
-    def setAvatar(self, avId):
-        self.ignore(self.air.getAvatarExitEvent(self.avId))
-        self.avId = avId
-        self.acceptOnce(self.air.getAvatarExitEvent(avId), self.setAvatar, [0])
-        self.sendUpdate('setUserId', [self.avId])
+    def addAvatar(self, avId):
+        if avId in self.avIds:
+            return False
 
+        self.avIds.append(avId)
+        self.acceptOnce(self.air.getAvatarExitEvent(avId), self.exitAvatar, [avId])
+        self.sendUpdate('setUserIds', [self.avIds])
+        return True
+
+    def exitAvatar(self, avId):
+        if avId not in self.avIds:
+            return False
+        
+        self.avIds.remove(avId)
+        self.ignore(self.air.getAvatarExitEvent(avId))
+        self.sendUpdate('setUserIds', [self.avIds])
+        return True
+    
     def requestExit(self):
         avId = self.air.getAvatarIdFromSender()
-        if avId != self.avId:
+
+        if avId not in self.avIds:
             self.air.writeServerEvent('suspicious', avId, 'tried to requestExit as someone else!')
             return
 
-        self.doExit()
-
-    def doExit(self):
-        self.setAvatar(0)
+        self.exitAvatar(avId)
 
     def demandExit(self):
         self.requestExit()

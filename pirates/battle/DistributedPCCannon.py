@@ -550,8 +550,8 @@ class DistributedPCCannon(DistributedWeapon.DistributedWeapon):
         self.showCannonDressing()
 
 
-    def setUserId(self, avId):
-        DistributedWeapon.DistributedWeapon.setUserId(self, avId)
+    def setUserIds(self, avIds):
+        DistributedWeapon.DistributedWeapon.setUserIds(self, avIds)
         self.checkInUse()
 
 

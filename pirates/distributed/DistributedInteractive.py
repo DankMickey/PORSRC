@@ -15,7 +15,7 @@ class DistributedInteractive(DistributedNode.DistributedNode, InteractiveBase.In
         DistributedLocatableObject.DistributedLocatableObject.__init__(self, cr)
         self.interactGUI = None
         self.hideHpMeterFlag = 0
-        self.userId = 0
+        self.userIds = []
         self.uniqueId = None
 
 
@@ -127,13 +127,19 @@ class DistributedInteractive(DistributedNode.DistributedNode, InteractiveBase.In
         return ''
 
 
-    def setUserId(self, avId):
-        self.userId = avId
+    def setUserIds(self, avIds):
+        self.userIds = avIds
+        
+        if avIds:
+            self.userId = avIds[0]
+        else:
+            self.userId = 0
 
+    def getUserIds(self):
+        return self.userIds
 
     def getUserId(self):
         return self.userId
-
 
     def setUniqueId(self, uid):
         if self.uniqueId != '' and uid != self.uniqueId:

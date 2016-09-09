@@ -10,6 +10,9 @@ class DistributedRepairBenchAI(DistributedInteractiveAI):
         DistributedInteractiveAI.__init__(self, air)
         self.difficulty = 0
         self.game = None
+    
+    def allowMultipleAvatars(self):
+        return True
 
     def setDifficulty(self, difficulty):
         self.difficulty = difficulty
@@ -24,11 +27,18 @@ class DistributedRepairBenchAI(DistributedInteractiveAI):
         DistributedInteractiveAI.announceGenerate(self)
         self.game = DistributedRepairGameAI(self.air)
         self.game.setDifficulty(self.difficulty)
+        self.game.setLocation(ON_LAND)
         self.getParentObj().generateChild(self.game, self.zoneId)
 
     def handleInteract(self, avId, interactType, instant):
-        self.game.sendUpdateToAvatarId(avId, 'start', [self.game.location])
-        return ACCEPT | ACCEPT_SEND_UPDATE | ACCEPT_SET_AV
+        if self.game.joinAvatar(avId):
+            return ACCEPT | ACCEPT_SEND_UPDATE | ACCEPT_SET_AV
+        else:
+            return REJECT
+    
+    def exitAvatar(self, avId):
+        if DistributedInteractiveAI.exitAvatar(self, avId):
+            self.game.exitAvatar(avId)
 
     @classmethod
     def makeFromObjectKey(cls, air, objKey, data):

@@ -382,7 +382,7 @@ dclass DistributedInteractive : DistributedNode, DistributedLocatableObject {
   rejectExit();
   offerOptions(uint8[], uint8[]);
   selectOption(uint8) airecv clsend;
-  setUserId(DoId) broadcast ram;
+  setUserIds(uint32[]) broadcast ram;
   setUniqueId(string) required broadcast ram;
 };
 
@@ -1106,19 +1106,27 @@ dclass DistributedRepairBench : DistributedInteractive {
   kickInteraction();
 };
 
+struct RepairAvatar {
+  uint32 doId;
+  uint8(0-5) game;
+};
+
+struct RepairReward {
+  uint32 doId;
+  uint16 reward;
+};
+
 dclass DistributedRepairGame : DistributedObject {
   setDifficulty(uint8) required broadcast ram;
-  start(uint8(0-5));
-  stop();
-  requestMincroGame(uint8(0-5)) airecv clsend;
-  requestMincroGameResponse(bool, uint8);
-  reportMincroGameProgress(uint8(0-5), int8, uint8) clsend airecv;
-  setMincroGameProgress(uint8(0-5), int8);
-  setAllMincroGameProgress(int8 []);
-  setAvIds2CurrentGameList(uint8 [], uint32 []);
-  cycleComplete(uint8, uint32 [], uint16 [], uint32);
-  shipDamaged(bool, uint8);
   setGoldBonus(uint32) broadcast;
+  requestMincroGame(uint8(0-5)) airecv clsend;
+  reportMincroGameProgress(uint8(0-100)) clsend airecv;
+  requestMincroGameResponse();
+  cycleComplete(RepairReward[], uint32);
+  shipDamaged(bool, uint8);
+  setAvatars(RepairAvatar[]);
+  setMincroGameProgress(int8[]);
+  start(bool);
 };
 
 dclass DistributedDinghy : DistributedInteractive {

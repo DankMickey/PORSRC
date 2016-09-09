@@ -69,6 +69,7 @@ class StowawayGUI(DirectFrame):
 
     def handleBuyItem(self, data, useCode):
         itemId = data[0]
+
         if not itemId:
             return None
 
@@ -77,7 +78,4 @@ class StowawayGUI(DirectFrame):
                 base.localAvatar.guiMgr.createWarning(PLocalizer.NotEnoughMoneyWarning, PiratesGuiGlobals.TextFG6)
                 return None
 
-            messenger.send('requestStowaway', [
-                itemId])
-        elif useCode == PiratesGuiGlobals.InventoryRemove:
-            raise
+            messenger.send('requestStowaway', [itemId])

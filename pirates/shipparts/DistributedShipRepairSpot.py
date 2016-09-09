@@ -37,7 +37,6 @@ class DistributedShipRepairSpot(DistributedInteractive):
         self.reparentTo(ship.getModelRoot())
         self.setInteractOptions(proximityText = PLocalizer.InteractRepairSpot, diskRadius = 10.0, sphereScale = 6.0)
         self.setAllowInteract(1)
-        self.checkInUse()
         self._statePushes = DestructiveScratchPad(evalUsable = FunctionCall(self._evalUsableState, ship._repairSpotMgr._state.fullHealth, ship.getWheelInUseSV()).pushCurrentState())
 
 
@@ -121,23 +120,6 @@ class DistributedShipRepairSpot(DistributedInteractive):
     def shipSinking(self):
         self.notify.debug('shipSinking %s' % self._shipId)
         self.requestExit()
-
-
-    def setUserId(self, avId):
-        oldId = self.userId
-        DistributedInteractive.setUserId(self, avId)
-        if oldId != avId:
-            self.checkInUse()
-
-
-
-    def checkInUse(self):
-        if self.userId and localAvatar.getDoId() != self.userId:
-            self.setAllowInteract(0)
-        else:
-            self.setAllowInteract(1)
-
-
     
     def handleArrivedOnShip(self, ship):
         pass

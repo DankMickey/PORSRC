@@ -6,7 +6,6 @@ import random
 
 class DistributedCellDoorAI(DistributedInteractiveAI):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedCellDoorAI')
-    REJECT_IF_BUSY = False
     locked = False
 
     def __init__(self, air):

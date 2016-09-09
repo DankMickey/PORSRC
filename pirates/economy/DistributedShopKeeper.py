@@ -786,5 +786,4 @@ class DistributedShopKeeper(DistributedObject):
 
 
     def sendRequestStowaway(self, destUID):
-        self.sendUpdate('requestStowaway', [
-            destUID])
+        self.sendUpdate('requestStowaway', [destUID])

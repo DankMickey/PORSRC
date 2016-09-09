@@ -77,7 +77,7 @@ class RepairGameButton(GuiButton):
 
 
     def updatePirateNameBox(self, pirateName):
-        if self.pirateNameLabel != None and self.pirateNameLabel['text'] != pirateName:
+        if self.pirateNameLabel != None:
             if self.pirateNameBox:
                 self.pirateNameBox.destroy()
 
@@ -88,12 +88,7 @@ class RepairGameButton(GuiButton):
             self.pirateNameLabel = None
 
         if pirateName != '':
-            if self.pirateNameBox:
-                pass
-            if not (self.pirateNameLabel['text'] == pirateName):
-                self.createPirateNameBox(pirateName)
-
-
+            self.createPirateNameBox(pirateName)
 
     def createPirateNameBox(self, pirateName):
         self.pirateNameLabel = DirectLabel(relief = None, state = DGG.DISABLED, text = pirateName, text_align = TextNode.ACenter, text_scale = PiratesGuiGlobals.TextScaleMed, text_fg = PiratesGuiGlobals.TextFG1, text_wordwrap = 12, textMayChange = 0, sortOrder = 91)

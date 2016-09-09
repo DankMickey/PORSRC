@@ -88,7 +88,7 @@ class RepairGameGUI(DirectFrame):
         self.pickerOutroLerp = LerpPosInterval(self.repairGamePicker, duration = 1.0, startPos = self.repairGamePicker.getPos(), pos = (0.0, 0.0, -1.0))
         self.bgOutroLerp = LerpPosInterval(self.staticElements['bg'], duration = 1.0, startPos = self.repairGamePicker.getPos(), pos = (0.0, 0.0, 2.0))
         self.outroSequence = Sequence(Func(self.repairGamePicker.stashTab), Func(self.closeButton.stash), Parallel(Func(self.guiUpSound.play), Func(self.setPickerOutroStartPos), Func(self.setBGOutroStartPos), self.pickerOutroLerp, self.bgOutroLerp), Func(self.repairGame.cleanup), name = 'RepairGame.outroSequence')
-        self.cycleCompleteSequence = Sequence(Func(self.showCycleCompleteMessage), Func(self.repairGamePicker.stashTab), Wait(self.getCycleCompleteWaitTime()), Func(self.completeSound.play), Func(self.hideCycleCompleteMessage), LerpPosInterval(self.repairGamePicker, duration = 0.5, pos = self.repairGamePicker.getPos() - (0, 0, 1.0)), Func(self.repairGame.resetMincroGameProgress), LerpPosInterval(self.repairGamePicker, duration = 0.5, pos = self.repairGamePicker.getPos()), Func(self.repairGame.gameFSM.request, 'Idle'), name = 'RepairGame.cycleCompleteSequence')
+        self.cycleCompleteSequence = Sequence(Func(self.showCycleCompleteMessage), Func(self.repairGamePicker.setZ, self.repairGamePicker.getZ() - 1), Wait(self.getCycleCompleteWaitTime()), Func(self.completeSound.play), Func(self.hideCycleCompleteMessage), LerpPosInterval(self.repairGamePicker, duration = 0.5, pos = self.repairGamePicker.getPos()), Func(self.repairGame.gameFSM.request, 'Idle'), name = 'RepairGame.cycleCompleteSequence')
         self.shakeSequence = Sequence(name = 'RepairGameGUI.shakeSequence')
 
     def handleExitGame(self):
@@ -101,31 +101,22 @@ class RepairGameGUI(DirectFrame):
             return 1.5
 
     def showCycleCompleteMessage(self):
-        if self.repairGame.location == ON_LAND:
-            tpMgr = TextPropertiesManager.getGlobalPtr()
-            tpGold = TextProperties()
-            tpGold.setTextColor(0.978, 0.760, 0, 1)
-            tpMgr.setProperties('gold', tpGold)
-            completionTime = self.repairGame.getCycleCompleteTime()
-            seconds = completionTime % 60
-            minutes = int(completionTime / 60.0)
-            if minutes == 0:
-                time = '\x01gold\x01%i %s\x02' % (seconds, PLocalizer.Minigame_Repair_Seconds)
-            elif seconds < 10:
-                time = '\x01gold\x01%i:0%i %s\x02' % (minutes, seconds, PLocalizer.Minigame_Repair_Minutes)
-            else:
-                time = '\x01gold\x01%i:%i %s\x02' % (minutes, seconds, PLocalizer.Minigame_Repair_Minutes)
-            goldAmount = self.repairGame.getReward(localAvatar.doId)
-            goldBonus = self.repairGame.getGoldBonus()
-            if goldBonus:
-                reward = PLocalizer.Minigame_Repair_GoldBonus % (str(goldAmount), str(goldBonus))
-            else:
-                reward = PLocalizer.Minigame_Repair_Gold % str(goldAmount)
-            text = PLocalizer.Minigame_Repair_BenchOutro % (time, reward)
-            self.textElements['cycleCompleteMessage'].setPos(0.0, 0.0, 0.348)
+        completionTime = self.repairGame.getCycleCompleteTime()
+        minutes = int(completionTime / 60.0)
+        if minutes == 0:
+            time = '\x01gold\x01%i %s\x02' % (completionTime, PLocalizer.Minigame_Repair_Seconds)
+        elif completionTime < 10:
+            time = '\x01gold\x01%i:0%i %s\x02' % (minutes, completionTime, PLocalizer.Minigame_Repair_Minutes)
         else:
-            text = PLocalizer.Minigame_Repair_ShipOutro
-            self.textElements['cycleCompleteMessage'].setPos(0.0, 0.0, 0.149)
+            time = '\x01gold\x01%i:%i %s\x02' % (minutes, completionTime, PLocalizer.Minigame_Repair_Minutes)
+        goldAmount = self.repairGame.getReward(localAvatar.doId)
+        goldBonus = self.repairGame.getGoldBonus()
+        if goldBonus:
+            reward = PLocalizer.Minigame_Repair_GoldBonus % (str(goldAmount), str(goldBonus))
+        else:
+            reward = PLocalizer.Minigame_Repair_Gold % str(goldAmount)
+        text = PLocalizer.Minigame_Repair_BenchOutro % (time, reward)
+        self.textElements['cycleCompleteMessage'].setPos(0.0, 0.0, 0.348)
         self.textElements['cycleCompleteMessage']['text'] = text
         self.textElements['cycleCompleteMessage'].setText()
 
@@ -205,8 +196,8 @@ class RepairGameGUI(DirectFrame):
     def setProgress(self, gameIndex, percent):
         self.repairGamePicker.setProgress(gameIndex, percent)
 
-    def updatePirateNamesPerMincrogame(self, avIds2CurrentGameIndex):
-        self.repairGamePicker.updatePirateNamesPerMincrogame(avIds2CurrentGameIndex)
+    def updatePirateNamesPerMincrogame(self, avatars):
+        self.repairGamePicker.updatePirateNamesPerMincrogame(avatars)
 
     def destroy(self):
         if self.repairGame:

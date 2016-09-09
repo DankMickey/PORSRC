@@ -37,7 +37,6 @@ class DistributedRepairBench(DistributedInteractive):
     def announceGenerate(self):
         DistributedInteractive.announceGenerate(self)
         self.setAllowInteract(1)
-        self.checkInUse()
 
     def disable(self):
         if self.userId == localAvatar.doId:
@@ -100,12 +99,3 @@ class DistributedRepairBench(DistributedInteractive):
         self.stopRepairing()
         DistributedInteractive.exitUse(self)
 
-    def setUserId(self, avId):
-        DistributedInteractive.setUserId(self, avId)
-        self.checkInUse()
-
-    def checkInUse(self):
-        if self.userId and localAvatar.getDoId() != self.userId:
-            self.setAllowInteract(0)
-        else:
-            self.setAllowInteract(1)

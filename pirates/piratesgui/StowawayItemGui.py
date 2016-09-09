@@ -48,12 +48,8 @@ class StowawayItemGui(StowawayListItem):
         LocationIds.DEL_FUEGO_ISLAND: (1, 1, 1, 1) }
 
     def __init__(self, data, trade = 0, buy = 0, sell = 0, use = 0, weapon = 0, isDisabled = 0, **kw):
-        if (trade and buy and sell and use or weapon) and not isDisabled:
-            buttonRelief = DGG.RAISED
-            buttonState = DGG.NORMAL
-        else:
-            buttonRelief = DGG.RIDGE
-            buttonState = DGG.DISABLED
+        buttonRelief = DGG.RAISED
+        buttonState = DGG.NORMAL
         self.loadGui()
         optiondefs = (('relief', None, None), ('state', buttonState, None), ('frameSize', (0, self.width, 0, self.height), None), ('image', StowawayItemGui.genericButton, None), ('image_scale', (0.540000, 1, 0.418), None), ('image_pos', (0.260, 0, 0.08), None), ('pressEffect', 0, None), ('command', self.sendEvents, None))
         self.defineoptions(kw, optiondefs)
