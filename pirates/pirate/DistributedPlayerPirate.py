@@ -2109,6 +2109,9 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
     
     def getGoldInPocket(self):
         return self.goldInPocket
+    
+    def getMoney(self):
+        return self.goldInPocket
 
     def d_requestCurrentIsland(self, locationDoId):
         self.sendUpdate('requestCurrentIsland', [
