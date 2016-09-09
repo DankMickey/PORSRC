@@ -37,11 +37,9 @@ for creature in (AvatarTypes.Crab, AvatarTypes.RockCrab, AvatarTypes.StoneCrab,
                  AvatarTypes.Drip):
     if creature.isA(AvatarTypes.Animal):
         CLASSES[creature] = DistributedAnimalAI
-    elif creature in (AvatarTypes.Grunt, AvatarTypes.Thug, AvatarTypes.Hiredgun, AvatarTypes.Mercenary, AvatarTypes.Assassin):
-        #TODO: Characters spawn in default animation, miss their weapons, and attacks dont do damage.
+    elif creature.isA(AvatarTypes.BountyHunter):
         CLASSES[creature] = DistributedBountyHunterAI
-    elif creature in (AvatarTypes.Guard, AvatarTypes.Cadet, AvatarTypes.Marine, AvatarTypes.Sergeant, AvatarTypes.Veteran, AvatarTypes.Officer, AvatarTypes.Dragoon):
-        #TODO: Characters spawn in default animation, miss their weapons, and attacks dont do damage.
+    elif creature.isA(AvatarTypes.TradingCo) or creature.isA(AvatarTypes.Navy):
         CLASSES[creature] = DistributedNPCNavySailorAI
     elif creature == AvatarTypes.Raven:
         CLASSES[creature] = DistributedRavenAI
