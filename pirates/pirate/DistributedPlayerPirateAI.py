@@ -46,6 +46,7 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         self.allegiance = 0
         self.gmNametag = ('', '')
         self.defaultShard = 0
+        self.armorScale = 0.75
 
     def announceGenerate(self):
         DistributedBattleAvatarAI.announceGenerate(self)
