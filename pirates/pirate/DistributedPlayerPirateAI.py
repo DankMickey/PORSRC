@@ -364,6 +364,9 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         self.setReturnLocation(location)
         self.d_setReturnLocation(location)
     
+    def getReturnLocation(self):
+        return self.returnLocation
+    
     def setGoldInPocket(self, goldInPocket):
         self.goldInPocket = goldInPocket
 
