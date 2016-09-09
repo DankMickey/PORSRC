@@ -18,7 +18,8 @@ class InventoryUIGoldItem(InventoryUIStackItem.InventoryUIStackItem):
         self.imageScale = 3.0
         self.textScale = 1.1
         if update:
-            self.accept(getCategoryChangeMsg(localAvatar.getInventoryId(), InventoryType.ItemTypeMoney), self.updateAmount)
+            self.accept('goldInPocketChanged', self.updateAmount)
+            self.updateAmount()
 
 
 
@@ -32,8 +33,5 @@ class InventoryUIGoldItem(InventoryUIStackItem.InventoryUIStackItem):
 
 
     def updateAmount(self, caller = None):
-        inventory = localAvatar.getInventory()
-        if inventory:
-            amount = inventory.getGoldInPocket()
-            self.amount = amount
-            self.updateAmountText()
+        self.amount = localAvatar.getGoldInPocket()
+        self.updateAmountText()

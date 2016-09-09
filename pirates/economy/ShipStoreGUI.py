@@ -120,7 +120,7 @@ class ShipStoreGUI(GuiPanel.GuiPanel):
         self.commitButton = DialogButton.DialogButton(command = self.handleCommitPurchase, buttonStyle = DialogButton.DialogButton.YES, parent = self, relief = None, text = PLocalizer.PurchaseCommit, text_fg = PiratesGuiGlobals.TextFG2, text_scale = PiratesGuiGlobals.TextScaleLarge, textMayChange = 0, pos = (self.width - 0.39, 0, 0.07), sortOrder = 0)
         self.closeButton = DialogButton.DialogButton(command = self.closePanel, buttonStyle = DialogButton.DialogButton.NO, parent = self, relief = None, text = PLocalizer.lClose, text_fg = PiratesGuiGlobals.TextFG2, text_scale = PiratesGuiGlobals.TextScaleLarge, textMayChange = 0, pos = (self.width - 0.145, 0, 0.07))
         self.updateProfile()
-        self.accept(InventoryGlobals.getCategoryChangeMsg(localAvatar.getInventoryId(), InventoryType.ItemTypeMoney), self.updateBalance)
+        self.accept('goldInPocketChanged', self.updateBalance)
         self.accept(PiratesGuiGlobals.InventoryBuyEvent, self.handleBuyItem)
         self.accept(PiratesGuiGlobals.InventorySellEvent, self.handleSellItem)
         self.acceptOnce('escape', self.closePanel)
@@ -225,11 +225,11 @@ class ShipStoreGUI(GuiPanel.GuiPanel):
 
         inventory = base.localAvatar.getInventory()
         if inventory:
-            if inventory.getGoldInPocket() < self.balance:
+            if base.localAvatar.getGoldInPocket() < self.balance:
                 base.localAvatar.guiMgr.createWarning(PLocalizer.NotEnoughMoneyWarning, PiratesGuiGlobals.TextFG6)
                 return None
 
-            if self.balance < 0 and inventory.getGoldInPocket() + self.balance > InventoryGlobals.GOLD_CAP:
+            if self.balance < 0 and base.localAvatar.getGoldInPocket() + self.balance > InventoryGlobals.GOLD_CAP:
                 base.localAvatar.guiMgr.createWarning(PLocalizer.CannotHoldGoldWarning, PiratesGuiGlobals.TextFG6)
                 return None
 
@@ -276,7 +276,7 @@ class ShipStoreGUI(GuiPanel.GuiPanel):
             self.balanceValue['text'] = str(abs(self.balance))
         inventory = base.localAvatar.getInventory()
         if inventory:
-            if inventory.getGoldInPocket() < self.balance:
+            if base.localAvatar.getGoldInPocket() < self.balance:
                 self.commitButton['frameColor'] = PiratesGuiGlobals.ButtonColor3
             elif len(inventory.getShipDoIdList()) >= inventory.getCategoryLimit(InventoryCategory.SHIPS):
                 self.commitButton['frameColor'] = PiratesGuiGlobals.ButtonColor3

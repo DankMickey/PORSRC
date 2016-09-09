@@ -107,7 +107,7 @@ class StoreGUI(DirectFrame):
         self.commitButton.setPos(self.cartWidth / 2, 0, 0.05)
         self.initTabs()
         self.updateBalance()
-        self.accept(getCategoryChangeMsg(localAvatar.getInventoryId(), InventoryType.ItemTypeMoney), self.updateBalance)
+        self.accept('goldInPocketChanged', self.updateBalance)
         self.accept(PiratesGuiGlobals.InventoryBuyEvent, self.handleBuyItem)
         base.localAvatar.guiMgr.setIgnoreEscapeHotKey(True)
         self.acceptOnce('escape', self.closePanel)
@@ -270,15 +270,13 @@ class StoreGUI(DirectFrame):
             base.localAvatar.guiMgr.createWarning(PLocalizer.EmptyPurchaseWarning, PiratesGuiGlobals.TextFG6)
             return None
 
-        inventory = base.localAvatar.getInventory()
-        if inventory:
-            if inventory.getGoldInPocket() < self.balance:
-                base.localAvatar.guiMgr.createWarning(PLocalizer.NotEnoughMoneyWarning, PiratesGuiGlobals.TextFG6)
-                return None
+        if base.localAvatar.getGoldInPocket() < self.balance:
+            base.localAvatar.guiMgr.createWarning(PLocalizer.NotEnoughMoneyWarning, PiratesGuiGlobals.TextFG6)
+            return None
 
-            if self.balance < 0 and inventory.getGoldInPocket() + self.balance > GOLD_CAP:
-                base.localAvatar.guiMgr.createWarning(PLocalizer.CannotHoldGoldWarning, PiratesGuiGlobals.TextFG6)
-                return None
+        if self.balance < 0 and base.localAvatar.getGoldInPocket() + self.balance > GOLD_CAP:
+            base.localAvatar.guiMgr.createWarning(PLocalizer.CannotHoldGoldWarning, PiratesGuiGlobals.TextFG6)
+            return None
 
 
         StoreGUI.notify.debug('Make Purchase - Buying: %s' % self.purchaseInventory.inventory)
@@ -310,12 +308,10 @@ class StoreGUI(DirectFrame):
         else:
             self.balanceValue['text_fg'] = PiratesGuiGlobals.TextFG2
             self.commitButton['state'] = DGG.NORMAL
-        inventory = base.localAvatar.getInventory()
-        if inventory:
-            if inventory.getGoldInPocket() < self.balance or self.purchaseInventory.inventory == []:
-                self.commitButton['frameColor'] = PiratesGuiGlobals.ButtonColor3
-            else:
-                self.commitButton['frameColor'] = PiratesGuiGlobals.ButtonColor4
+        if base.localAvatar.getGoldInPocket() < self.balance or self.purchaseInventory.inventory == []:
+            self.commitButton['frameColor'] = PiratesGuiGlobals.ButtonColor3
+        else:
+            self.commitButton['frameColor'] = PiratesGuiGlobals.ButtonColor4
 
 
 

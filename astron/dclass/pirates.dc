@@ -803,6 +803,7 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   giveDefaultQuest() airecv clsend;
   requestReturnLocation(uint32) airecv ownsend;
   setReturnLocation(string) required db airecv ownrecv;
+  setGoldInPocket(uint32 gold = 0) required broadcast ownrecv db;
   requestCurrentIsland(uint32) airecv ownsend;
   setCurrentIsland(string) ownrecv;
   setJailCellIndex(uint8) required airecv ownrecv;

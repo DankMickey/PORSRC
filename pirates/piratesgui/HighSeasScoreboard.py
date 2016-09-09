@@ -136,9 +136,6 @@ class HighSeasScoreboard(GuiPanel.GuiPanel):
     def getMissionResults(self):
         (missionTime, shipDamage, skeletonKills, navyKills, creatureKills, seamonsterKills, pirateKills, townfolkKills, shipKills, repairCost, exp, gold, cargo, numCrew) = self.stats
         (pMissionTime, pShipDamage, pSkeletonKills, pNavyKills, pCreatureKills, pSeamonsterKills, pPirateKills, pTownfolkKills, pShipKills, pRepairCost, pExp, pGold, pCargo, pLootBoxes, dummyCrew) = self.playerStats
-        inventory = base.localAvatar.getInventory()
-        if inventory:
-            currentGold = inventory.getGoldInPocket()
 
         t = time.gmtime(missionTime)
         totalTime = str(t[3]) + '"' + str(t[4]) + "'" + str(t[5])
@@ -204,9 +201,6 @@ class HighSeasScoreboard(GuiPanel.GuiPanel):
     def getCargoResults(self):
         (missionTime, shipDamage, skeletonKills, navyKills, creatureKills, seamonsterKills, pirateKills, townfolkKills, shipKills, repairCost, exp, gold, cargo, numCrew) = self.stats
         (pMissionTime, pShipDamage, pSkeletonKills, pNavyKills, pCreatureKills, pSeamonsterKills, pPirateKills, pTownfolkKills, pShipKills, pRepairCost, pExp, pGold, pCargo, pLootBoxes, dummyCrew) = self.playerStats
-        inventory = base.localAvatar.getInventory()
-        if inventory:
-            currentGold = inventory.getGoldInPocket()
 
         avId = base.localAvatar.getDoId()
         cargoValue = EconomyGlobals.getCargoTotalValue(pCargo)

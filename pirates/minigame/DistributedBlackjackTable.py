@@ -232,9 +232,7 @@ class DistributedBlackjackTable(DistributedGameTable.DistributedGameTable):
         return PlayingCardGlobals.BlackjackBidAmount * self.betMultiplier
 
     def getPlayerChips(self):
-        inventory = localAvatar.getInventory()
-        if inventory:
-            self.chips = inventory.getGoldInPocket()
+        self.chips = localAvatar.getGoldInPocket()
         return self.chips
 
     def getPlayerInventoryCardCount(self, card_id):

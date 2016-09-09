@@ -5,7 +5,7 @@ from direct.distributed.PyDatagram import PyDatagram
 from direct.distributed.MsgTypes import *
 from pirates.uberdog.PirateInventoryAI import PirateInventoryAI
 from pirates.uberdog.UberDogGlobals import *
-from pirates.inventory import ItemConstants, ItemGlobals
+from pirates.inventory import ItemConstants, ItemGlobals, InventoryGlobals
 from pirates.reputation import RepChart
 from pirates.battle import WeaponGlobals
 from pirates.battle.DistributedBattleAvatarAI import *
@@ -363,9 +363,27 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
     def b_setReturnLocation(self, location):
         self.setReturnLocation(location)
         self.d_setReturnLocation(location)
+    
+    def setGoldInPocket(self, goldInPocket):
+        self.goldInPocket = goldInPocket
 
-    def getReturnLocation(self):
-        return self.returnLocation
+    def d_setGoldInPocket(self, goldInPocket):
+        self.sendUpdate('setGoldInPocket', [goldInPocket])
+
+    def b_setGoldInPocket(self, goldInPocket):
+        self.setGoldInPocket(goldInPocket)
+        self.d_setGoldInPocket(goldInPocket)
+
+    def getGoldInPocket(self):
+        return self.goldInPocket
+    
+    def takeGold(self, gold):
+        if gold > 0:
+            self.b_setGoldInPocket(max(0, self.getGoldInPocket() - gold))
+    
+    def giveGold(self, gold):
+        if gold > 0:
+            self.b_setGoldInPocket(min(InventoryGlobals.GOLD_CAP, self.getGoldInPocket() + gold))
 
     def requestGotoJailWhileInjured(self):
         messenger.send('sendAvToJail', [self])
@@ -544,3 +562,15 @@ def gm(color=None, tag=None):
     else:
         av.b_setGMNametag(color, tag)
         return 'GM nametag set!'
+
+@magicWord(CATEGORY_GAME_MASTER, types=[int])
+def giveGold(gold):
+    target = spellbook.getTarget()
+    target.giveGold(gold)
+    return 'Given %d gold! Balance: %d' % (gold, target.getGoldInPocket())
+
+@magicWord(CATEGORY_GAME_MASTER, types=[int])
+def takeGold(gold):
+    target = spellbook.getTarget()
+    target.takeGold(gold)
+    return 'Taken %d gold! Balance: %d' % (gold, target.getGoldInPocket())

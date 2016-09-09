@@ -341,7 +341,7 @@ class DistributedShopKeeper(DistributedObject):
         elif storeType == InteractGlobals.CATALOG_STORE:
             self.storeMenuGUI = SimpleStoreGUI.CatalogStoreGUI(npc = self, shopId = self.getShopId())
 
-        self.accept(InventoryGlobals.getCategoryChangeMsg(localAvatar.getInventoryId(), InventoryType.ItemTypeMoney), self.saleFinishedResponse)
+        self.accept('goldInPocketChanged', self.saleFinishedResponse)
 
 
     def finishShopping(self):
@@ -364,7 +364,7 @@ class DistributedShopKeeper(DistributedObject):
         self.ignore('requestMusic')
         self.ignore('requestStowaway')
         messenger.send('stoppedShopping')
-        self.ignore(InventoryGlobals.getCategoryChangeMsg(localAvatar.getInventoryId(), InventoryType.ItemTypeMoney))
+        self.ignore('goldInPocketChanged')
         if self._DistributedShopKeeper__invRequest:
             DistributedInventoryBase.cancelGetInventory(self._DistributedShopKeeper__invRequest)
             self._DistributedShopKeeper__invRequest = None
@@ -593,12 +593,9 @@ class DistributedShopKeeper(DistributedObject):
 
         cost = ShipGlobals.getRepairCost(shipOV)
         if choice == 1:
-            inventory = base.localAvatar.getInventory()
-            if inventory:
-                if inventory.getGoldInPocket() < cost:
-                    base.localAvatar.guiMgr.createWarning(PLocalizer.NotEnoughMoneyWarning, PiratesGuiGlobals.TextFG6)
-                    return None
-
+            if base.localAvatar.getGoldInPocket() < cost:
+                base.localAvatar.guiMgr.createWarning(PLocalizer.NotEnoughMoneyWarning, PiratesGuiGlobals.TextFG6)
+                return None
 
             self.sendUpdate('requestPurchaseRepair', [
                 shipId])
@@ -672,16 +669,14 @@ class DistributedShopKeeper(DistributedObject):
         modelType = ShipGlobals.getModelClass(shipOV.shipClass)
         cost = EconomyGlobals.getItemCost(modelType) / 2
         if choice == 1:
-            inventory = base.localAvatar.getInventory()
-            if inventory:
-                if cost > 0 and inventory.getGoldInPocket() + cost > InventoryGlobals.GOLD_CAP:
-                    r = Functor(self.sendRequestSellShipGoldOverflow, shipId)
-                    if self.confirmDialog:
-                        self.confirmDialog.destroy()
-                        self.confirmDialog = None
+            if cost > 0 and base.localAvatar.getGoldInPocket() + cost > InventoryGlobals.GOLD_CAP:
+                r = Functor(self.sendRequestSellShipGoldOverflow, shipId)
+                if self.confirmDialog:
+                    self.confirmDialog.destroy()
+                    self.confirmDialog = None
 
-                    self.confirmDialog = PDialog.PDialog(text = PLocalizer.ExcessGoldLost, style = OTPDialog.YesNo, command = r)
-                    return None
+                self.confirmDialog = PDialog.PDialog(text = PLocalizer.ExcessGoldLost, style = OTPDialog.YesNo, command = r)
+                return None
 
 
             self.sendUpdate('requestSellShip', [
@@ -746,11 +741,9 @@ class DistributedShopKeeper(DistributedObject):
         shipClass = shipOV.getShipClass()
         cost = EconomyGlobals.getItemCost(shipClass) * EconomyGlobals.OVERHAUL_COST_PERCENTAGE
         if choice == 1:
-            inventory = base.localAvatar.getInventory()
-            if inventory:
-                if inventory.getGoldInPocket() < cost:
-                    base.localAvatar.guiMgr.createWarning(PLocalizer.NotEnoughMoneyWarning, PiratesGuiGlobals.TextFG6)
-                    return None
+            if base.localAvatar.getGoldInPocket() < cost:
+                base.localAvatar.guiMgr.createWarning(PLocalizer.NotEnoughMoneyWarning, PiratesGuiGlobals.TextFG6)
+                return None
 
 
             self.sendUpdate('requestPurchaseOverhaul', [

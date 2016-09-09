@@ -609,11 +609,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
 
     def setMoney(self, money):
         if money == None:
-            inv = self.getInventory()
-            if inv:
-                money = inv.getGoldInPocket()
-            else:
-                return None
+            money = self.getGoldInPocket()
 
         self.guiMgr.setMoney(money)
         if money != 0:
@@ -932,7 +928,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
             taskMgr.remove('avatarPstats')
 
         self.ignore('generate-%s' % self.getInventoryId())
-        self.ignore(InventoryGlobals.getCategoryQuantChangeMsg(self.getInventoryId(), InventoryType.ItemTypeMoney))
+        self.ignore('goldInPocketChanged')
         self.ignore('inventoryQuantity-%s-%s' % (self.getInventoryId(), InventoryType.Dinghy))
         self.ignore('inventoryAddDoId-%s-%s' % (self.getInventoryId(), InventoryCategory.SHIPS))
         self.ignore('inventoryRemoveDoId-%s-%s' % (self.getInventoryId(), InventoryCategory.SHIPS))
@@ -1015,9 +1011,9 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
 
 
     def initInventoryGui(self, inventory):
-        gold = inventory.getGoldInPocket()
+        gold = self.getGoldInPocket()
         self.setMoney(gold)
-        self.accept(InventoryGlobals.getCategoryQuantChangeMsg(inventory.doId, InventoryType.ItemTypeMoney), self.setMoney)
+        self.accept('goldInPocketChanged', self.setMoney)
         self.refreshInventoryWeapons()
 
 

@@ -129,7 +129,7 @@ class InventorySellConfirm(BorderFrame):
 
 
     def confirmSale(self):
-        if localAvatar.getInventory().getGoldInPocket() + self.totalGoldValue * ItemGlobals.GOLD_SALE_MULTIPLIER > InventoryGlobals.GOLD_CAP:
+        if localAvatar.getGoldInPocket() + self.totalGoldValue * ItemGlobals.GOLD_SALE_MULTIPLIER > InventoryGlobals.GOLD_CAP:
             r = Functor(self.reconfirmSale)
             if self.confirmDialog:
                 self.confirmDialog.destroy()

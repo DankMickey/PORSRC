@@ -75,12 +75,8 @@ class MusicianGUI(DirectFrame):
         if not itemId:
             return None
 
-        inventory = base.localAvatar.getInventory()
-        if not inventory:
-            return None
-
         if useCode == PiratesGuiGlobals.InventoryAdd:
-            if inventory.getGoldInPocket() < 5:
+            if base.localAvatar.getGoldInPocket() < 5:
                 base.localAvatar.guiMgr.createWarning(PLocalizer.NotEnoughMoneyWarning, PiratesGuiGlobals.TextFG6)
                 return None
 

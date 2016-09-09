@@ -280,7 +280,7 @@ class SimpleStoreBuyPanelGUI(BorderFrame):
         costText = PLocalizer.ShopFree if self.item.cost == 0 else str(totalCost)
         self.costLabel = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, image = self.store.CoinImage, image_scale = 0.15, image_pos = Vec3(0.38, 0, 0.012), text = PLocalizer.SimpleStoreCost, text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, text_pos = (0, 0, 0.0), pos = (-0.2, 0, -0.05), text_font = PiratesGlobals.getInterfaceFont(), textMayChange = 1)
         self.costText = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, text = str(costText), text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ARight, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, text_pos = (0, 0, 0.0), pos = (0.14, 0, -0.05), text_font = PiratesGlobals.getInterfaceFont())
-        totalMoney = localAvatar.getInventory().getGoldInPocket()
+        totalMoney = localAvatar.getGoldInPocket()
         if totalCost > totalMoney:
             self.costText['text_fg'] = VBase4(1, 0, 0, 1)
 
@@ -355,7 +355,7 @@ class SimpleStoreBuyPanelGUI(BorderFrame):
         if self.item.cost:
             totalCost = int(self.item.cost * qtyMult) * self.item.quantity / qtyMult
             self.costText['text'] = str(totalCost)
-            totalMoney = localAvatar.getInventory().getGoldInPocket()
+            totalMoney = localAvatar.getGoldInPocket()
             if totalCost > totalMoney:
                 self.costText['text_fg'] = VBase4(1, 0, 0, 1)
             else:
@@ -802,7 +802,7 @@ class SimpleStoreGUI(DirectFrame):
         if self.pvpMode:
             return inventory.getStackQuantity(InventoryType.PVPCurrentInfamy)
 
-        return inventory.getGoldInPocket()
+        return base.localAvatar.getGoldInPocket()
 
 
     def getMaxMoney(self, inventory):
@@ -841,7 +841,7 @@ class SimpleStoreGUI(DirectFrame):
 
         stackable = self.buyPanelItem.checkStackable()
         inventory = base.localAvatar.getInventory()
-        myMoney = inventory.getGoldInPocket()
+        myMoney = base.localAvatar.getGoldInPocket()
         if self.pvpMode:
             myMoney = self.getMoney()
 

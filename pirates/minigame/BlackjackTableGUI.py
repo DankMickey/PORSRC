@@ -258,9 +258,9 @@ class BlackjackTableGUI(DirectFrame, TableGUI, SplitBase):
         gui = loader.loadModel('models/gui/toplevel_gui')
         goldCoin = gui.find('**/treasure_w_coin*')
         scale = 0.320
-        currentMoney = localAvatar.getInventory().getGoldInPocket()
+        currentMoney = localAvatar.getGoldInPocket()
         self.moneyDisplay = DirectLabel(parent = self.menu, relief = None, pos = (-0.299 + x_increment / 2.0, 0, 0.074), geom = goldCoin, geom_scale = (scale, scale, scale), geom_pos = (0, 0, 0), text = '%s' % currentMoney, text_align = TextNode.ALeft, text_scale = 0.035000, text_pos = (0.0448, -0.01), text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, scale = 1.10)
-        self.accept(InventoryGlobals.getCategoryQuantChangeMsg(localAvatar.getInventoryId(), InventoryType.ItemTypeMoney), self.setMoney)
+        self.accept('goldInPocketChanged', self.setMoney)
         this = self
         identifier = 0
         this.sfxArray = []

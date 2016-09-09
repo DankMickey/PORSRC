@@ -1658,7 +1658,7 @@ class DistributedNPCTownfolk(DistributedBattleNPC.DistributedBattleNPC, Distribu
 
     def hasEnoughRespecMoney(self, weaponOpt):
         weaponRep = self.getIGToITMap()[weaponOpt]
-        curGold = localAvatar.getInventory().getGoldInPocket()
+        curGold = localAvatar.getGoldInPocket()
         numRespecs = localAvatar.getInventory().getStackQuantity(getNumRespecType(weaponRep))
         goldCost = EconomyGlobals.getRespecCost(numRespecs)
         if curGold >= goldCost:

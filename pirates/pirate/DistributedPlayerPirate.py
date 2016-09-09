@@ -2102,6 +2102,13 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
 
     def getReturnLocation(self):
         return self.returnLocation
+    
+    def setGoldInPocket(self, goldInPocket):
+        self.goldInPocket = goldInPocket
+        messenger.send('goldInPocketChanged', [goldInPocket])
+    
+    def getGoldInPocket(self):
+        return self.goldInPocket
 
     def d_requestCurrentIsland(self, locationDoId):
         self.sendUpdate('requestCurrentIsland', [

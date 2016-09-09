@@ -491,11 +491,6 @@ class DistributedInventoryBase:
     def getAccumulator(self, accumulatorType):
         return self.accumulators.get(accumulatorType, 0)
 
-
-    def getGoldInPocket(self):
-        return self.getItemQuantity(InventoryType.ItemTypeMoney)
-
-
     def getGoldWagered(self):
         return self.getItemQuantity(InventoryType.ItemTypeMoneyWagered)
 

@@ -1035,10 +1035,7 @@ class DistributedPokerTable(DistributedGameTable.DistributedGameTable, PokerBase
 
 
     def getPlayerChips(self):
-        inventory = localAvatar.getInventory()
-        if inventory:
-            self.chips = inventory.getGoldInPocket()
-
+        self.chips = localAvatar.getGoldInPocket()
         return self.chips
 
 

@@ -116,17 +116,13 @@ class DistributedDiceGame(DistributedGameTable.DistributedGameTable):
 
 
     def playerIsReady(self):
-        inv = base.localAvatar.getInventory()
-        if inv:
-            if inv.getStackQuantity(InventoryType.ItemTypeMoney) < self.ante:
-                base.localAvatar.guiMgr.createWarning(PLocalizer.NotEnoughMoneyWarning, PiratesGuiGlobals.TextFG6)
-            else:
-                self.sendUpdate('playerIsReady', [])
-                self.gui.mainButton['state'] = DGG.DISABLED
-                self.gui.mainButton['frameColor'] = (0, 0.4, 0.050000, 1)
-                self.gameState = DiceGlobals.DSTATE_DOROLL
-
-
+        if base.localAvatar.getGoldInPocket() < self.ante:
+            base.localAvatar.guiMgr.createWarning(PLocalizer.NotEnoughMoneyWarning, PiratesGuiGlobals.TextFG6)
+        else:
+            self.sendUpdate('playerIsReady', [])
+            self.gui.mainButton['state'] = DGG.DISABLED
+            self.gui.mainButton['frameColor'] = (0, 0.4, 0.050000, 1)
+            self.gameState = DiceGlobals.DSTATE_DOROLL
 
     def newRound(self):
         self.gui.mainButton.show()
