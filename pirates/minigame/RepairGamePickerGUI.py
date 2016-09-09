@@ -120,21 +120,11 @@ class RepairGamePickerGUI(DirectFrame):
         for i in xrange(self.repairGame.getGameCount()):
             self.buttons[self.gameIndicesToNames[i]].updatePirateNameBox('')
 
-        print 'updating %s' % avatars
-        base.cr.lol = self
         for avId, gameIndex in avatars:
-            print avId, gameIndex
             handle = base.cr.identifyAvatar(avId)
-            print '??'
             
             if handle:
-                print 'RIP'
                 self.buttons[self.gameIndicesToNames[gameIndex]].updatePirateNameBox(handle.getName())
-                print 'RIP1'
-            else:
-                print 'ROFL'
-        
-        print 'yaa'
 
     def destroy(self):
         taskMgr.remove('RepairGameGUIUpdate')
