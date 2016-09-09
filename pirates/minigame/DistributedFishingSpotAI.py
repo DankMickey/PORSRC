@@ -34,7 +34,7 @@ class DistributedFishingSpotAI(DistributedInteractiveAI, LootableAI.LootableAI):
         if not minWeight <= weight <= maxWeight:
             return
 
-        gold = fish['gold'] * weight
+        av.giveGold(fish['gold'] * weight)
         av.inventory.addReputation(InventoryType.FishingRep, fish['experience'])
         av.repChanged()
 
