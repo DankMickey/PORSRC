@@ -82,6 +82,16 @@ class DistributedInteractiveAI(DistributedLocatableObjectAI, DistributedNodeAI):
         self.sendUpdate('setUserIds', [self.avIds])
         return True
     
+    def hasNoAvatar(self):
+        return not self.avIds
+    
+    def isAvatar(self, avId):
+        return avId in self.avIds
+    
+    def removeAvatars(self):
+        for avId in self.avIds:
+            self.exitAvatar(avId)
+    
     def requestExit(self):
         avId = self.air.getAvatarIdFromSender()
 

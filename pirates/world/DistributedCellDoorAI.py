@@ -34,7 +34,7 @@ class DistributedCellDoorAI(DistributedInteractiveAI):
                     av.sendUpdate('setJailCellIndex', [100])
                     av.b_setUnderArrest(0)
             self.kickers = []
-            self.setAvatar(0)
+            self.removeAvatars()
             taskMgr.doMethodLater(30, self.b_setHealth, self.taskName('resetHealth'), [100])
 
     def d_setHealth(self, health):
