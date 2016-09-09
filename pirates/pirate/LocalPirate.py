@@ -1271,6 +1271,12 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
 
         strPos = 'Position: \n%.1f, %.1f, %.1f' % (pos[0], pos[1], pos[2]) + '\nH: %.1f' % hpr[0] + '\nModel: %s' % model + '\nTexture: %s, Terrain: %s, Avatar: %s' % (base.options.getTextureScaleString(), base.options.getGameOptionString(base.options.getTerrainDetailSetting()), base.options.getGameOptionString(base.options.getCharacterDetailSetting())) + '\nLoc: (%s, %s)' % (str(parentId), str(zoneId)) + ',\nVersion: %s, ' % serverVersion + '\nDistrict: %s' % districtName
         self.setChatAbsolute(strPos, CFThought | CFTimeout)
+    
+    def thinkDistrict(self):
+        strPos = '\n'.join(['%s: %s' % (district.name, district.avatarCount) for district in base.cr.activeDistrictMap.values()])
+        self.setChatAbsolute(strPos, CFThought | CFTimeout)
+        
+        return strPos
 
 
     def openSpeedChat(self):

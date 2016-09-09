@@ -1276,3 +1276,7 @@ class LocalAvatar(DistributedAvatar.DistributedAvatar, DistributedSmoothNode.Dis
     def kingshead():
         from pirates.piratesbase import PiratesGlobals
         base.cr.teleportMgr.initiateTeleport(PiratesGlobals.INSTANCE_GENERIC, 'KingsheadWorld')
+    
+    @magicWord(CATEGORY_STAFF)
+    def districts():
+        return spellbook.getInvoker().thinkDistrict()
