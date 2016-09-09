@@ -524,10 +524,6 @@ class DistributedInteractiveProp(DistributedInteractive.DistributedInteractive, 
         return False
 
 
-    def getArmorScale(self):
-        return 1.0
-
-
     def getMinimapObject(self):
         pass
 

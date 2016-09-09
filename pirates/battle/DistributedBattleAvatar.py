@@ -234,7 +234,6 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
         self.depthGeom = None
         self.invisibleFlickerSeq = None
         self.inInvasion = False
-        self.armorScale = 1.0
         self.monkeyPanic = None
         self.potionStatusEffectManager = None
         self.trackStats = 0
@@ -3641,15 +3640,6 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
 
     def setEfficiency(self, efficiency):
         self.efficiency = efficiency
-
-
-    def setArmorScale(self, armorScale):
-        self.armorScale = armorScale
-
-
-    def getArmorScale(self):
-        return self.armorScale
-
 
     def setTrackTerrain(self, value):
         self.tracksTerrain = value

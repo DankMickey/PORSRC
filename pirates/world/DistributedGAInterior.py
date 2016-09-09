@@ -432,6 +432,3 @@ class DistributedGAInterior(DistributedGameArea.DistributedGameArea, Distributed
 
     def isInInvasion(self):
         return False
-
-    def getArmorScale(self):
-        return 1.0

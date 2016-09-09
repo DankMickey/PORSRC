@@ -32,7 +32,6 @@ class DistributedBattleAvatarAI(Teamable, DistributedReputationAvatarAI, WeaponB
         self.skillEffects = []
         self.isGhost = 0
         self.hasGP = 0
-        self.armorScale = 1.0
 
         self.enemySkills = {}
 
@@ -91,19 +90,6 @@ class DistributedBattleAvatarAI(Teamable, DistributedReputationAvatarAI, WeaponB
 
     def getHasGhostPowers(self):
         return self.hasGP
-
-    def setArmorScale(self, armorScale):
-        self.armorScale = armorScale
-
-    def d_setArmorScale(self, armorScale):
-        self.sendUpdate('setArmorScale', [armorScale])
-
-    def b_setArmorScale(self, armorScale):
-        self.setArmorScale(armorScale)
-        self.d_setArmorScale(self.armorScale)
-
-    def getArmorScale(self):
-        return self.armorScale
 
     def setMojo(self, mojo):
         self.mojo = mojo

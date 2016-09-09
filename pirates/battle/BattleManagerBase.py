@@ -15,7 +15,7 @@ def isKraken(target):
 class BattleManagerBase:
     notify = DirectNotifyGlobal.directNotify.newCategory('BattleManager')
     SkillRechargeTimeConfig = config.GetFloat('skill-recharge-time', -1.0)
-    wantOutput = config.GetBool('show-attack-calc', 0)
+    wantOutput = True#config.GetBool('show-attack-calc', 0)
 
     def isPVP(self, attacker, target):
         if target and target.getTeam() == PiratesGlobals.PLAYER_TEAM and attacker and attacker.getTeam() == PiratesGlobals.PLAYER_TEAM:
@@ -523,14 +523,11 @@ class BattleManagerBase:
             tMojo *= scale
             aHealth *= scale
 
-        if target:
-            if config.GetBool('want-dev', 0) or hasattr(target, 'getArmorScale'):
-                if tHealth < 0:
-                    oldTHealth = tHealth
-                    tHealth *= target.getArmorScale()
-                    tHealth = min(-1.0, tHealth)
-                    if self.wantOutput:
-                        print ' O - Armor Mod -  tHealth Modified from %s to %s' % (oldTHealth, tHealth)
+        if hasattr(target, 'founder'):
+            oldTHealth = tHealth
+            tHealth *= 0.6
+            if self.wantOutput:
+                print ' N - Pirate Immunity Mod - tHealth Modified from %s to %s' % (oldTHealth, tHealth)
 
         if target and hasattr(attacker, 'currentWeaponId'):
             if tHealth < 0:
@@ -755,11 +752,8 @@ class BattleManagerBase:
             scale = WeaponGlobals.getWeaponPvpDamageScale(attacker.currentWeaponId)
             tHealth *= scale
 
-        if target:
-            if config.GetBool('want-dev', 0) or hasattr(target, 'getArmorScale'):
-                if tHealth < 0:
-                    tHealth *= target.getArmorScale()
-                    tHealth = min(-1.0, tHealth)
+        if hasattr(target, 'founder'):
+            tHealth *= 0.6
 
         if target and hasattr(attacker, 'currentWeaponId'):
             if tHealth < 0:

@@ -486,7 +486,6 @@ dclass DistributedBattleAvatar : DistributedReputationAvatar, WeaponBase {
   battleRandomSync();
   setVisZone(string) broadcast ram ownsend;
   setInInvasion(bool) required broadcast ram;
-  setArmorScale(int16/10) required broadcast ram;
   setEmote(int32) broadcast ram airecv ownsend;
   playEmote(int32) broadcast;
 };

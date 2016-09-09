@@ -957,9 +957,6 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
     def isInInvasion(self):
         return False
 
-    def getArmorScale(self):
-        return 1.0
-
     def setUndockable(self, undockable):
         self.undockable = undockable
 

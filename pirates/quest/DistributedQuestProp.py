@@ -896,11 +896,6 @@ class DistributedQuestProp(DistributedBattleable.DistributedBattleable, Lootable
     def isInInvasion(self):
         return False
 
-
-    def getArmorScale(self):
-        return 1.0
-
-
     def isInvisible(self):
         return 0
 

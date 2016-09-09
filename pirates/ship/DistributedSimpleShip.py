@@ -3956,11 +3956,6 @@ class DistributedSimpleShip(DistributedMovingObject, Teamable, DistributedFlagsh
     def isInInvasion(self):
         return False
 
-
-    def getArmorScale(self):
-        return 1.0
-
-
     def updateShipEffects(self):
         if self.model:
             self.model.updateDamageEffects(self.healthState, self.armorStates[0], self.armorStates[1], self.armorStates[2])

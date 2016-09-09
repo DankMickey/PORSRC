@@ -18,7 +18,6 @@ BOSS_NPC_LIST = {
         'GoldScale': 2,
         'ModelScale': 1.10,
         'DamageScale': 1,
-        'ArmorScale': 1.0,
         'HighlightColor': VBase3(1) },
     'dynamicBoss_1': {
         'AvatarType': AvatarTypes.Muck,
@@ -278,5 +277,4 @@ BOSS_NPC_LIST = {
         'GoldScale': 2,
         'ModelScale': 2,
         'DamageScale': 1,
-        'ArmorScale': 0.100,
         'HighlightColor': VBase3(0, 1, 0.5) } }
