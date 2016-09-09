@@ -16,6 +16,7 @@ class DistributedInteractive(DistributedNode.DistributedNode, InteractiveBase.In
         self.interactGUI = None
         self.hideHpMeterFlag = 0
         self.userIds = []
+        self.userId = 0
         self.uniqueId = None
 
 
