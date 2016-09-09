@@ -3642,8 +3642,6 @@ authorization
 authorize
 authorized
 authors
-autism
-autistic
 auto
 auto's
 auto-reel
@@ -6163,9 +6161,6 @@ canceling
 cancelled
 cancelling
 cancels
-cancer
-cancerous
-cancers
 candace
 candelabra
 candelabras
