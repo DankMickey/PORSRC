@@ -42,7 +42,6 @@ from pirates.battle.EnemySkills import *
 from pirates.pirate.DistributedPirateBase import DistributedPirateBase
 from pirates.pirate import Biped
 from pirates.pirate.PAvatarHandle import PAvatarHandle
-from pirates.demo import DemoGlobals
 from pirates.quest.DistributedQuestAvatar import DistributedQuestAvatar
 from pirates.world.LocationConstants import LocationIds
 from pirates.piratesbase import PLocalizer

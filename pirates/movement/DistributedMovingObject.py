@@ -6,7 +6,6 @@ from direct.distributed.ClockDelta import *
 from direct.interval.IntervalGlobal import *
 import random
 from otp.movement import Mover
-from pirates.demo import DemoGlobals
 from pirates.piratesbase import PiratesGlobals
 from pirates.distributed import DistributedTargetableObject
 from pirates.battle import EnemyGlobals
