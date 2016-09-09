@@ -37,11 +37,9 @@ DialogCancel = 'Cancel'
 PortNames = {
     'PortRoyalPort': 'Port Royal',
     'Bilgewater': 'Bilgewater',
-    'Art Prototype': 'Art Prototype',
     'TheRock': 'The Rock',
     'Tortuga': 'Tortuga',
     'MadreDelFuego': 'Padres Del Fuego',
-    'ArtPrototypePort': 'Bilgewater',
     'VegasPort': 'Vegas',
     'HiddenIslandPort': 'Hidden Island',
     'CutthroatPort': 'Cutthroat Isle',

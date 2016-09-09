@@ -337,8 +337,6 @@ class PiratesMagicWordManager(MagicWordManager.MagicWordManager):
             self.cr.teleportMgr.initiateTeleport(PiratesGlobals.INSTANCE_MAIN, 'mainWorld')
         elif wordIs('~pvp'):
             self.cr.teleportMgr.initiateTeleport(PiratesGlobals.INSTANCE_PVP, 'pvp_mayhemWorld1')
-        elif wordIs('~pirateer'):
-            self.cr.teleportMgr.initiateTeleport(PiratesGlobals.INSTANCE_PVP, 'pirateerMap')
         elif wordIs('~pvpl'):
             self.cr.teleportMgr.initiateTeleport(PiratesGlobals.INSTANCE_MAIN, 'mainWorld')
         elif wordIs('~tortuga'):
@@ -367,25 +365,12 @@ class PiratesMagicWordManager(MagicWordManager.MagicWordManager):
             self.cr.teleportMgr.initiateTeleport(PiratesGlobals.INSTANCE_GENERIC, 'CaveDWorld')
         elif wordIs('~caveE'):
             self.cr.teleportMgr.initiateTeleport(PiratesGlobals.INSTANCE_GENERIC, 'CaveEWorld')
-        elif wordIs('~jungleA'):
-            self.cr.teleportMgr.initiateTeleport(PiratesGlobals.INSTANCE_GENERIC, 'JungleTestWorldA')
-        elif wordIs('~jungleB'):
-            self.cr.teleportMgr.initiateTeleport(PiratesGlobals.INSTANCE_GENERIC, 'JungleTestWorld')
-        elif wordIs('~jungleC'):
-            self.cr.teleportMgr.initiateTeleport(PiratesGlobals.INSTANCE_GENERIC, 'JungleTestWorldC')
-        elif wordIs('~swampA'):
-            self.cr.teleportMgr.initiateTeleport(PiratesGlobals.INSTANCE_GENERIC, 'SwampTestWorld')
         elif wordIs('~mainWorld'):
             self.cr.teleportMgr.initiateTeleport(PiratesGlobals.INSTANCE_MAIN, 'mainWorld')
-        elif wordIs('~gameArea'):
-            self.cr.teleportMgr.initiateTeleport(PiratesGlobals.INSTANCE_GENERIC, 'GameAreaSandbox')
         elif wordIs('~blackpearl') or wordIs('~bp'):
             args = word.split()
             if len(args) == 1:
                 self.cr.teleportMgr.initiateTeleport(PiratesGlobals.INSTANCE_TM, 'BlackpearlWorld')
-
-        elif wordIs('~scrimmage'):
-            self.cr.teleportMgr.initiateTeleport(PiratesGlobals.INSTANCE_SCRIMMAGE, 'ScrimmageTestWorld')
         elif wordIs('~fireworks') or wordIs('~fw'):
             args = word.split()
             if len(args) >= 2 and args[1] in [
@@ -1029,14 +1014,6 @@ class PiratesMagicWordManager(MagicWordManager.MagicWordManager):
                 cameraOV.blinkFixture(int(args[0]))
             else:
                 self.setMagicWordResponse('need camera id to blink')
-        elif __dev__ and wordIs('~testCamera'):
-            camera = base.cr.doFind('DistributedCamera')
-            cameraOV = camera.getOV()
-            args = word.split()[1:]
-            if args:
-                cameraOV.testFixture(int(args[0]))
-            else:
-                self.setMagicWordResponse('need camera id to test')
         elif __dev__ and wordIs('~storeCameras'):
             camera = base.cr.doFind('DistributedCamera')
             cameraOV = camera.getOV()
