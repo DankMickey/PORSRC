@@ -85,9 +85,6 @@ class DistributedCellDoor(DistributedInteractive.DistributedInteractive):
     def handleLocalAvatarCellIndex(self, index):
         self.setAllowInteract(index == self.cellIndex)
 
-    def setCaptives(self, avIds):
-        self.captives = avIds
-
     def acceptInteraction(self):
         DistributedInteractive.DistributedInteractive.acceptInteraction(self)
         localAvatar.setKickEvents(*self.kickEvents)

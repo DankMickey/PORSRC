@@ -1209,7 +1209,6 @@ dclass DistributedInteriorDoor : DistributedDoor {
 dclass DistributedCellDoor : DistributedInteractive {
   setCellIndex(uint8) required broadcast ram;
   setHealth(uint16) required broadcast ram;
-  setCaptives(uint32[]) required broadcast ram;
   doorKicked() airecv clsend;
 };
 

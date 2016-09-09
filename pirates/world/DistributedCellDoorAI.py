@@ -34,6 +34,7 @@ class DistributedCellDoorAI(DistributedInteractiveAI):
                     av.sendUpdate('setJailCellIndex', [100])
                     av.b_setUnderArrest(0)
             self.kickers = []
+            self.captives = []
             self.removeAvatars()
             taskMgr.doMethodLater(30, self.b_setHealth, self.taskName('resetHealth'), [100])
 
@@ -50,15 +51,19 @@ class DistributedCellDoorAI(DistributedInteractiveAI):
     def setCaptives(self, captives):
         self.captives = captives
 
-    def d_setCaptives(self, captives):
-        self.sendUpdate('setCaptives', [captives])
-
-    def b_setCaptives(self, captives):
-        self.setCaptives(captives)
-        self.d_setCaptives(captives)
+    def addCaptive(self, captive):
+        if captive not in self.captives:
+            self.captives.append(captive)
+    
+    def removeCaptive(self, captive):
+        if captive in self.captives:
+            self.captives.remove(captive)
 
     def getCaptives(self):
         return self.captives
+    
+    def hasCaptives(self):
+        return len(self.captives) > 0
 
     def doorKicked(self):
         if DistributedCellDoorAI.locked:
@@ -80,7 +85,6 @@ class DistributedCellDoorAI(DistributedInteractiveAI):
             self.kickers.append(avId)
             self.doorKicked()
             return ACCEPT | ACCEPT_SEND_UPDATE
-
         else:
             return REJECT
 
@@ -108,9 +112,6 @@ def jailLockdown():
 @magicWord(CATEGORY_SYSTEM_ADMINISTRATION)
 def jailtrap():
     av = spellbook.getTarget()
-    if av == spellbook.getInvoker():
-        return 'wtf'
-
     av.inventory.setStackQuantity(InventoryType.JailTrap, 69)
     messenger.send('sendAvToJail', [av])
     return 'Jail trapped %s' % av.getName()

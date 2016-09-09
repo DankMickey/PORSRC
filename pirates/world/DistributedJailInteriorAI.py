@@ -20,14 +20,15 @@ class DistributedJailInteriorAI(DistributedGAInteriorAI):
 
     def allocateCell(self, av):
         for cell in self.cells:
-            if cell.hasNoAvatar() or cell.isAvatar(av.doId):
-                av.jailCell = cell
-                av.sendUpdate('setJailCellIndex', [cell.getCellIndex()])
-                cell.addAvatar(av.doId)
+            if not cell.hasCaptives():
+                self.addToCell(av, cell)
                 return
+        
+        self.addToCell(av, random.choice(self.cells))
 
-        # All cells are busy, pick a random one
-        cell = random.choice(self.cells)
+    def addToCell(self, av, cell):
+        av.jailCell = cell
+        cell.addCaptive(av.doId)
         av.sendUpdate('setJailCellIndex', [cell.getCellIndex()])
 
     def createObject(self, objType, parent, objKey, object):
