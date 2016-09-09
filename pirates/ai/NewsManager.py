@@ -114,7 +114,7 @@ class NewsManager(DistributedObject.DistributedObject):
         if isinstance(message, list):
             message = random.choice(message)
 
-        base.localAvatar.guiMgr.messageStack.addModalTextMessage(message, seconds = 45, priority = 0, color = PiratesGuiGlobals.TextFG14, icon = icon, modelName = 'general_frame_f')
+        base.localAvatar.guiMgr.messageStack.addTextMessage(message, seconds = 45, priority = 0, color = PiratesGuiGlobals.TextFG14, icon = icon, modelName = 'general_frame_f')
         base.talkAssistant.receiveGameMessage(message)
 
     def playMusic(self, musicInfo):
