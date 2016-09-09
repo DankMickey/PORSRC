@@ -284,8 +284,6 @@ class DistributedShopKeeper(DistributedObject):
             else:
                 self.storeMenuGUI = StoreGUI.StoreGUI(inventory, PLocalizer.MerchantStore)
         elif storeType == InteractGlobals.MUSICIAN:
-            self.fadeIval = Sequence(Func(self.setTransparency, True), self.colorScaleInterval(1.0, VBase4(1.0, 1.0, 1.0, 0.0)), Func(self.hide))
-            self.fadeIval.start()
             inventory = self.shopInventory[:]
             self.storeMenuGUI = MusicianGUI.MusicianGUI(inventory, PLocalizer.InteractMusician)
         elif storeType == InteractGlobals.STOWAWAY:

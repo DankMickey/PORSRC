@@ -941,6 +941,9 @@ SongItem2MusicLabel = {
 def getMusicFromSongId(songId):
     return SongItem2MusicLabel.get(songId)
 
+def isSongId(songId):
+    return songId in SongItem2MusicLabel
+
 MusicLabel2Length = {
     MUSIC_DRIFTWOOD: 62,
     MUSIC_CANGREJOS: 63,

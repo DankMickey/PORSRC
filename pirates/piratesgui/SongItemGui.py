@@ -22,12 +22,8 @@ class SongItemGui(SongListItem):
     available = True
 
     def __init__(self, data, trade = 0, buy = 0, sell = 0, use = 0, weapon = 0, isDisabled = 0, **kw):
-        if (trade and buy and sell and use or weapon) and not isDisabled:
-            buttonRelief = DGG.RAISED
-            buttonState = DGG.NORMAL
-        else:
-            buttonRelief = DGG.RIDGE
-            buttonState = DGG.DISABLED
+        buttonRelief = DGG.RAISED
+        buttonState = DGG.NORMAL
         self.loadGui()
         optiondefs = (('relief', None, None), ('state', buttonState, None), ('frameSize', (0, self.width, 0, self.height), None), ('image', SongItemGui.genericButton, None), ('image_scale', (0.540000, 1, 0.418), None), ('image_pos', (0.260, 0, 0.08), None), ('pressEffect', 0, None), ('command', self.sendEvents, None))
         self.defineoptions(kw, optiondefs)
@@ -138,22 +134,7 @@ class SongItemGui(SongListItem):
 
 
     def checkPlayerInventory(self, itemId, extraQty = 0):
-        if self.available:
-            inventory = base.localAvatar.getInventory()
-            currStock = inventory.getStackQuantity(itemId)
-            currStockLimit = inventory.getStackLimit(itemId)
-            if currStock == 0:
-                if base.cr.newsManager.getHoliday(21):
-                    pass
-                if not (itemId in InventoryType.WinterHolidaySongs):
-                    self.name = PLocalizer.makeHeadingString(PLocalizer.SongTitleUnknown, 2)
-                    self.nameTag['text'] = PLocalizer.makeHeadingString(PLocalizer.SongTitleUnknown, 2)
-                    self.itemTypeName['text'] = PLocalizer.makeHeadingString(PLocalizer.SongComingSoon, 1)
-                    self.disable()
-
-            not (itemId in InventoryType.WinterHolidaySongs)
-
-
+        pass
 
     def highlightRed(self, text = ''):
         self['state'] = DGG.DISABLED

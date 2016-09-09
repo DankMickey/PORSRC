@@ -1,13 +1,32 @@
-# STUB
-
 from direct.directnotify import DirectNotifyGlobal
 from direct.distributed.DistributedObjectAI import DistributedObjectAI
+from pirates.economy import EconomyGlobals
+from pirates.audio import SoundGlobals
 
 class DistributedShopKeeperAI(DistributedObjectAI):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedShopKeeperAI')
 
     def __init__(self, air):
         DistributedObjectAI.__init__(self, air)
+    
+    
+    def requestMusic(self, music):
+        if not SoundGlobals.isSongId(music):
+            return
+
+        avId = self.air.getAvatarIdFromSender()
+        av = self.air.doId2do.get(avId)
+        
+        if not av:
+            return
+        
+        requiredGold = 5
+        
+        if requiredGold > av.getGoldInPocket():
+            return
+        
+        av.takeGold(requiredGold)
+        self.sendUpdate('playMusic', [music])
 
     # requestPurchaseRepair(uint32) airecv clsend
     # requestPurchaseOverhaul(uint32) airecv clsend

@@ -32,9 +32,10 @@ class MusicianGUI(DirectFrame):
         if not MusicianGUI.CoinImage:
             MusicianGUI.CoinImage = loader.loadModel('models/gui/toplevel_gui').find('**/treasure_w_coin*')
 
-        self.panel = GuiPanel.GuiPanel(name, self.width, self.height, parent = self)
+        self.panel = GuiPanel.GuiPanel(name, self.width, self.height, parent = base.a2dTopLeft)
+        self.panel.reparentTo(base.a2dTopLeft)
         self.panel.closeButton['command'] = self.closePanel
-        self.setPos(-0.6, 0, -0.66)
+        self.panel.setPos(0.25, 0, -1.75)
         self.balance = 0
         self.inventory = inventory
         self.storeInventory = InventoryItemList.InventoryItemList(self.inventory, self.height - 0.15, buy = PiratesGuiGlobals.InventoryAdd, listItemClass = SongItemGui)
