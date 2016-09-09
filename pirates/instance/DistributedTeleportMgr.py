@@ -38,7 +38,6 @@ class DistributedTeleportMgr(DistributedObject.DistributedObject):
         self.popupDialog = None
         self.doEffect = False
         self.stowawayEffect = False
-        self.miniLog = None
         self.teleportQueue = []
         self.teleportQueueProcess = None
 
@@ -158,9 +157,6 @@ class DistributedTeleportMgr(DistributedObject.DistributedObject):
     def localTeleportToId(self, locationId, teleportingObj = None, destPos = None, callback = None, objectLocation = None, showLoadingScreen = True):
         if showLoadingScreen:
             self.cr.loadingScreen.show(waitForLocation = True)
-
-        if locationId in base.cr.doId2do and base.cr.doId2do[locationId].dclass.getName() == 'DistributedOceanGrid':
-            logBlock(1, 'localTeleportToId(%s,%s,%s,%s,%s,%s) to ocean grid\n\n' % (locationId, teleportingObj, destPos, callback, objectLocation, showLoadingScreen) + str(StackTrace()))
 
         self.localTeleportId = locationId
         self.localTeleportingObj = teleportingObj
@@ -548,14 +544,8 @@ class DistributedTeleportMgr(DistributedObject.DistributedObject):
         self.fromInstanceType = fromInstanceType
         self.instanceName = instanceName
         self.gameType = gameType
-        self.miniLog = MiniLog('TeleportLog')
-        MiniLogSentry(self.miniLog, 'teleportInit', instanceType, fromInstanceType, instanceName, gameType)
 
     def teleportHasBegun(self, instanceType, fromInstanceType, instanceName, gameType):
-        if not self.miniLog:
-            self.miniLog = MiniLog('TeleportLog')
-
-        s = MiniLogSentry(self.miniLog, 'teleportHasBegun', instanceType, fromInstanceType, instanceName, gameType)
         if self.startedCallback:
             self.startedCallback()
             self.startedCallback = None
@@ -572,7 +562,6 @@ class DistributedTeleportMgr(DistributedObject.DistributedObject):
 
 
     def forceTeleportStart(self, instanceName, tzDoId, thDoId, worldGridDoId, tzParent, tzZone):
-        s = MiniLogSentry(self.miniLog, 'forceTeleportStart', instanceName, tzDoId, thDoId, worldGridDoId, tzParent, tzZone)
         self.setAmInTeleport()
         localAvatar.guiMgr.request('Cutscene')
         if not base.transitions.fadeOutActive():
@@ -590,7 +579,6 @@ class DistributedTeleportMgr(DistributedObject.DistributedObject):
 
         def fadeDone():
             base.cr.loadingScreen.show()
-            s = MiniLogSentry(self.miniLog, 'fadeDone')
             curParent = localAvatar.getParentObj()
             parentIsZoneLOD = isinstance(curParent, ZoneLOD.ZoneLOD)
             if parentIsZoneLOD:
@@ -607,7 +595,6 @@ class DistributedTeleportMgr(DistributedObject.DistributedObject):
         taskMgr.doMethodLater(1, fadeDone, self.uniqueName('fadeDone'), extraArgs = [])
 
     def teleportAddInterestTZ(self, instanceName, tzDoId, thDoId, worldGridDoId, tzParent, tzZone):
-        s = MiniLogSentry(self.miniLog, 'teleportAddInterestTZ', instanceName, tzDoId, thDoId, worldGridDoId, tzParent, tzZone)
         addEvent = self.getAddInterestEventName()
         self.accept(addEvent, self.teleportAddInterestCompleteTZ, extraArgs = [
             tzDoId,
@@ -619,25 +606,20 @@ class DistributedTeleportMgr(DistributedObject.DistributedObject):
 
 
     def teleportAddInterestCompleteTZ(self, tzDoId, thDoId, worldGridDoId):
-        s = MiniLogSentry(self.miniLog, 'teleportAddInterestCompleteTZ', tzDoId, thDoId, worldGridDoId)
         base.cr.relatedObjectMgr.requestObjects([
             tzDoId], eachCallback = lambda param1, param2 = thDoId: self.teleportZoneExists(param1, param2))
 
     def teleportZoneExists(self, teleportZone, thDoId):
-        s = MiniLogSentry(self.miniLog, 'teleportZoneExists', teleportZone, thDoId)
         base.cr.relatedObjectMgr.requestObjects([
             thDoId], eachCallback = lambda param1, param2 = teleportZone: self.teleportHandlerExists(param1, param2))
 
     def teleportHandlerExists(self, teleportHandler, teleportZone):
-        s = MiniLogSentry(self.miniLog, 'teleportHandlerExists', teleportHandler, teleportZone)
         teleportHandler.instanceName = self.instanceName
         teleportHandler.instanceType = self.instanceType
         teleportHandler.doneCallback = self.doneCallback
         self.doneCallback = None
         teleportHandler.oldWorld = self.oldWorld
         self.oldWorld = None
-        teleportHandler.miniLog = self.miniLog
-        self.miniLog = None
         teleportHandler.startTeleport()
 
     def localAvTeleportFinishedRequest(self, task = None):
@@ -645,14 +627,9 @@ class DistributedTeleportMgr(DistributedObject.DistributedObject):
             messenger.send('localAvTeleportFinished')
 
     def createSpawnInterests(self, parents, callback, destGrid, teleportingObj):
-        s = MiniLogSentry(self.miniLog, 'createSpawnInterests', parents, callback.__name__, destGrid, teleportingObj)
         parentsLen = len(parents)
-        if self.miniLog:
-            self.miniLog.appendLine('parents - %s' % (parents,))
-            self.miniLog.appendLine('destGrid - %s' % (destGrid,))
 
         if parentsLen == 0:
-            logBlock(2, self.miniLog)
             callback(destGrid, teleportingObj)
         else:
             parentObj = base.cr.doId2do.get(parents[0])

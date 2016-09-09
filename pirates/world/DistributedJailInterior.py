@@ -17,5 +17,4 @@ class DistributedJailInterior(DistributedGAInterior):
                 localAvatar.setAreaFootstep('Rock')
 
     def handleAvatarSetLocation(self, parentId, zoneId):
-        if parentId != self.doId:
-            logBlock(4, 'jailed avatar is leaving before ThrownInJail is complete.\nGoing to %s (%s,%s)' % (self.cr.doId2do.get(parentId), parentId, zoneId))
+        pass

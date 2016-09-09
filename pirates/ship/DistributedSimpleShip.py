@@ -165,7 +165,6 @@ class DistributedSimpleShip(DistributedMovingObject, Teamable, DistributedFlagsh
         self.respectDeployBarriers = False
         self.bandId = (0, 0)
         self.guildId = 0
-        self.miniLog = None
         self.kraken = None
         self.krakenLocators = []
         self.oldZoom = None
@@ -660,7 +659,6 @@ class DistributedSimpleShip(DistributedMovingObject, Teamable, DistributedFlagsh
 
     def setGameState(self, stateName, avId, timeStamp, localChange = 0):
         if stateName == 'ClientSteering':
-            s = MiniLogSentry(self.miniLog, 'setGameState', stateName, avId, timeStamp)
             self.requestGameState(stateName, avId)
         elif stateName == 'AISteering':
             self.requestGameState(stateName, avId)
@@ -1599,7 +1597,6 @@ class DistributedSimpleShip(DistributedMovingObject, Teamable, DistributedFlagsh
             return None
 
         if av.isLocal() and self.wheel:
-            s = MiniLogSentry(self.miniLog, 'clientSteeringBegin', avId)
             self.calcModifiedStats()
             if base.options.terrain_detail_level != 2:
                 self.model.forceLOD(1)
@@ -3584,13 +3581,6 @@ class DistributedSimpleShip(DistributedMovingObject, Teamable, DistributedFlagsh
 
     def getBandId(self):
         return self.bandId
-
-
-    def resetMiniLog(self, name = None):
-        if name:
-            pass
-        self.miniLog = MiniLog(name)
-
 
     def requestShipSkill(self, skillId, ammoSkillId):
         self.sendUpdate('requestSkillEvent', [

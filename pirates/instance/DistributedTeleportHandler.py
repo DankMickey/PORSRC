@@ -20,7 +20,6 @@ class DistributedTeleportHandler(DistributedObject):
         self.spawnWorldName = None
         self.instanceWorldName = None
         self.doneCallback = None
-        self.miniLog = MiniLog('DistributedTeleportHandler')
 
 
     def __repr__(self):
@@ -48,7 +47,6 @@ class DistributedTeleportHandler(DistributedObject):
 
 
     def startTeleport(self):
-        s = MiniLogSentry(self.miniLog, 'startTeleport')
         bandId = localAvatar.getBandId()
         if bandId == None:
             bandId = 0
@@ -61,7 +59,6 @@ class DistributedTeleportHandler(DistributedObject):
             bandId])
 
     def waitInTZ(self, objIds, destParentId):
-        s = MiniLogSentry(self.miniLog, 'waitInTZ', objIds, destParentId)
         self.otherTeleportingObjIds = objIds
         parent = localAvatar.getParentObj()
         if parent:
@@ -77,7 +74,6 @@ class DistributedTeleportHandler(DistributedObject):
         self.waitInTZ2(0, 0)
 
     def waitInTZ2(self, destParentId, destZoneId):
-        s = MiniLogSentry(self.miniLog, 'waitInTZ2', destParentId, destZoneId)
         destParentId = self.getLocation()[0]
         destZoneId = localAvatar.doId
         base.loadingScreen.beginStep('enterArea', 29, 80)
@@ -87,7 +83,6 @@ class DistributedTeleportHandler(DistributedObject):
 
 
     def teleportingObjAtDest(self, destParentId, destZoneId, callback, clearInterest = True):
-        s = MiniLogSentry(self.miniLog, 'teleportingObjAtDest', destParentId, destZoneId, callback.__name__, clearInterest)
         if clearInterest:
             leaveEvent = self.getRemoveInterestEventName()
             numInterests = localAvatar.clearInterestNamed(leaveEvent, [
@@ -106,7 +101,6 @@ class DistributedTeleportHandler(DistributedObject):
             callback()
 
     def teleportRemoveInterestCompleteTZ(self, zoneId, numInterests):
-        s = MiniLogSentry(self.miniLog, 'teleportRemoveInterestCompleteTZ', zoneId, numInterests)
         self.numInterestsCleared += 1
         if self.numInterestsCleared < numInterests:
             return None
@@ -118,7 +112,6 @@ class DistributedTeleportHandler(DistributedObject):
         self.cr.alterInterest(self.cr.uberZoneInterest, district.getDoId(), 2, event = 'shardSwitchComplete')
 
     def shardSwitchComplete(self, zoneId):
-        s = MiniLogSentry(self.miniLog, 'shardSwitchComplete', zoneId)
         self.oldWorld = base.cr.activeWorld
 
         def clockSyncComplete():
@@ -132,7 +125,6 @@ class DistributedTeleportHandler(DistributedObject):
 
 
     def continueTeleportToInstance(self, instanceParent, instanceZone, instanceDoId, instanceFileName, spawnParent, spawnZone, spawnDoId, spawnFileName, spawnWorldGridDoId):
-        s = MiniLogSentry(self.miniLog, 'continueTeleportToInstance', instanceParent, instanceZone, instanceDoId, instanceFileName, spawnParent, spawnZone, spawnDoId, spawnFileName, spawnWorldGridDoId)
         self.spawnWorldName = spawnFileName + '.py'
         base.worldCreator.fileDicts = { }
         base.worldCreator.registerFileObject(self.spawnWorldName)
@@ -146,7 +138,6 @@ class DistributedTeleportHandler(DistributedObject):
             'worldInterest'])
 
         def worldArrived(worldObj):
-            s = MiniLogSentry(self.miniLog, 'worldArrived', worldObj)
             self.teleportAddInterestWorldComplete(worldObj, spawnParent, spawnZone, spawnDoId, spawnWorldGridDoId, self.spawnWorldName)
 
         if self.pendingWorld:
@@ -156,7 +147,6 @@ class DistributedTeleportHandler(DistributedObject):
             instanceDoId], eachCallback = worldArrived)
 
     def teleportAddInterestWorldComplete(self, instance, spawnParent, spawnZone, spawnDoId, spawnWorldGridDoId, worldName):
-        s = MiniLogSentry(self.miniLog, 'teleportAddInterestWorldComplete', instance, spawnParent, spawnZone, spawnDoId, spawnWorldGridDoId, worldName)
         addEvent = self.getAddInterestEventName()
         if instance.doId != spawnDoId:
             instance.removeWorldInterest()
@@ -169,18 +159,15 @@ class DistributedTeleportHandler(DistributedObject):
             'instanceInterest'], addEvent)
 
     def teleportAddInterestDestComplete(self, spawnDoId, spawnWorldGridDoId, worldName):
-        s = MiniLogSentry(self.miniLog, 'teleportAddInterestDestComplete', spawnDoId, spawnWorldGridDoId, worldName)
         base.cr.relatedObjectMgr.requestObjects([
             spawnDoId], eachCallback = lambda param1, param2 = spawnWorldGridDoId, param3 = spawnDoId, param4 = worldName: self.teleportInstanceExists(param1, param2, param3, param4))
 
     def teleportInstanceExists(self, instanceObj, worldGridDoId, instanceDoId, worldName):
-        s = MiniLogSentry(self.miniLog, 'teleportInstanceExists', instanceObj, worldGridDoId, instanceDoId, worldName)
         self.destInstance = instanceObj
         base.cr.relatedObjectMgr.requestObjects([
             worldGridDoId], eachCallback = lambda param1, param2 = instanceDoId, param3 = worldName: self.teleportWorldGridExists(param1, param2, param3))
 
     def teleportWorldGridExists(self, worldGridObj, instanceDoId, worldName):
-        s = MiniLogSentry(self.miniLog, 'teleportWorldGridExists', worldGridObj, instanceDoId, worldName)
         oceanAreas = base.cr.distributedDistrict.worldCreator.getOceanData(worldName)
         if oceanAreas:
             for currArea in oceanAreas:
@@ -191,7 +178,6 @@ class DistributedTeleportHandler(DistributedObject):
         self.teleportInstanceComplete(worldGridObj, instanceDoId)
 
     def teleportInstanceComplete(self, worldGrid, instanceDoId):
-        s = MiniLogSentry(self.miniLog, 'teleportInstanceComplete', worldGrid, instanceDoId)
         self.setDestWorldGrid(worldGrid)
         if base.cr.distributedDistrict.shardType == PiratesGlobals.SHARD_WELCOME:
             localAvatar.b_setTeleportFlag(PiratesGlobals.TFInWelcomeWorld)
@@ -201,7 +187,6 @@ class DistributedTeleportHandler(DistributedObject):
             instanceDoId])
 
     def teleportToInstanceCleanup(self):
-        s = MiniLogSentry(self.miniLog, 'teleportToInstanceCleanup')
         if self.destInstance == None or self.destInstance.spawnInfo == None:
             self.notify.warning('no local destInstance reference for %s %s %s %s %s' % (localAvatar.doId, self.doId, self.getLocation(), self.spawnWorldName, self.instanceWorldName))
             self.sendAvatarLeft()
@@ -209,15 +194,9 @@ class DistributedTeleportHandler(DistributedObject):
             return None
 
         (self.spawnPos, zoneId, parents) = self.destInstance.spawnInfo
-        self.cr.teleportMgr.miniLog = self.miniLog
         self.cr.teleportMgr.createSpawnInterests(parents, self.teleportToInstanceCleanup3, self.destWorldGrid, localAvatar)
 
     def teleportToInstanceCleanup3(self, parentObj, teleportingObj):
-        s = MiniLogSentry(self.miniLog, 'teleportToInstanceCleanup3', parentObj, teleportingObj)
-        if isinstance(parentObj, DistributedOceanGrid):
-            self.miniLog.appendLine('being placed on the ocean')
-            logBlock(5, self.miniLog)
-
         self.cr.teleportMgr.localTeleportToId(parentObj.doId, teleportingObj, self.spawnPos)
         if isinstance(parentObj, DistributedGameArea):
             self.destInstance.addWorldInterest(parentObj)
@@ -229,7 +208,6 @@ class DistributedTeleportHandler(DistributedObject):
         self.oldWorld = None
 
     def teleportCleanupComplete(self):
-        s = MiniLogSentry(self.miniLog, 'teleportCleanupComplete')
         self.cr.activeWorld.setWorldGrid(self.destWorldGrid)
         localAvatar.teleportCleanupComplete(self.instanceType)
         self.sendUpdate('teleportToInstanceFinal', [
@@ -237,7 +215,6 @@ class DistributedTeleportHandler(DistributedObject):
         self.clearTZInterest()
 
     def clearTZInterest(self):
-        s = MiniLogSentry(self.miniLog, 'clearTZInterest')
         localAvatar.clearInterestNamed(None, [
             'TZInterest'])
         if self.doneCallback:
@@ -252,16 +229,13 @@ class DistributedTeleportHandler(DistributedObject):
 
 
     def setDestWorldGrid(self, worldGrid):
-        s = MiniLogSentry(self.miniLog, 'setDestWorldGrid', worldGrid)
         self.destWorldGrid = worldGrid
 
     def abortTeleport(self):
-        s = MiniLogSentry(self.miniLog, 'abortTeleport')
         self.notify.debug('%s: abortTeleport called' % self.doId)
         self.clearTZInterest()
         base.cr.teleportMgr.failTeleport(message = PLocalizer.TeleportGenericFailMessage)
 
 
     def sendAvatarLeft(self):
-        s = MiniLogSentry(self.miniLog, 'sendAvatarLeft')
         self.sendUpdate('avatarLeft')

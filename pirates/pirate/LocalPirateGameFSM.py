@@ -494,7 +494,6 @@ class LocalPirateGameFSM(PlayerPirateGameFSM):
 
     def enterShipPilot(self, extraArgs = []):
         ship = extraArgs[1]
-        s = MiniLogSentry(ship.miniLog, 'enterShipPilot')
         self.av.guiMgr.request('Interface')
         self.av.guiMgr.hideSeaChest()
         self.av.guiMgr.combatTray.initCombatTray(InventoryType.SailingRep)
@@ -509,13 +508,6 @@ class LocalPirateGameFSM(PlayerPirateGameFSM):
             self.accept(self.av.cr.distributedDistrict.siegeManager.getUseRepairKitEvent(), self._handleUseRepairKit)
             self._handleUseRepairKit(self.av.cr.distributedDistrict.siegeManager.getUseRepairKit())
 
-        if localAvatar.getParentObj() is not ship or __dev__:
-            if ship.miniLog:
-                ship.miniLog.appendLine("localAvatar's parent: (%s)" % (localAvatar.getParentObj(),))
-
-            logBlock(3, ship.miniLog)
-
-        ship.resetMiniLog()
         self.av.stopPosHprBroadcast()
         ship.placeAvatarAtWheel(self.av)
         self.av.sendCurrentPosition()
@@ -1154,7 +1146,6 @@ class LocalPirateGameFSM(PlayerPirateGameFSM):
             spawnInfo = self.av.cr.activeWorld.spawnInfo
             parent = self.av.getParentObj()
             if not isinstance(parent, NodePath):
-                logBlock(4, 'Player(%s) in jail, but parentObj is %s' % (self.av.doId, parent))
                 return None
 
             self.av.setPosHpr(self.av.getParentObj(), *spawnInfo[0])
