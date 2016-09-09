@@ -77,10 +77,7 @@ def _doExit(*args):
 
 taskMgr.destroy = _doExit
 
-if base.options:
-    base.options.options_to_config()
-    base.options.setRuntimeOptions()
-    try:
-        base.run()
-    finally:
-        os._exit(0)
+try:
+    base.run()
+finally:
+    os._exit(0)
