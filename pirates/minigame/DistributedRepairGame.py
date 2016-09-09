@@ -8,6 +8,7 @@ from RepairGameFSM import RepairGameFSM
 from RepairMousePicker import RepairMousePicker
 import RepairGlobals
 from pirates.audio import SoundGlobals
+import time
 
 class DistributedRepairGame(DistributedRepairGameBase, DistributedObject):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedRepairGame')
@@ -18,6 +19,7 @@ class DistributedRepairGame(DistributedRepairGameBase, DistributedObject):
         self.accept('onCodeReload', self.codeReload)
         self.gameFSM = None
         self.goldBonus = 0
+        self.difficulty = 0
 
     def codeReload(self):
         reload(RepairGlobals)
@@ -27,6 +29,9 @@ class DistributedRepairGame(DistributedRepairGameBase, DistributedObject):
 
     def getGoldBonus(self):
         return self.goldBonus
+    
+    def setDifficulty(self, difficulty):
+        self.difficulty = difficulty
 
     def start(self, location):
         self.notify.debug('starting DistributedRepairGame')
@@ -65,6 +70,7 @@ class DistributedRepairGame(DistributedRepairGameBase, DistributedObject):
         self.gameFSM.request('Intro')
         base.loadingScreen.endStep('Intro')
         base.loadingScreen.hide()
+        self.time = time.time()
 
     def stop(self):
         # This is not perfect.
@@ -120,22 +126,18 @@ class DistributedRepairGame(DistributedRepairGameBase, DistributedObject):
             base.musicMgr.stop(song)
 
     def isCycleComplete(self):
-        cycleComplete = True
         for progress in self.gameProgress:
             if progress != 100:
-                cycleComplete = False
-                break
+                return False
 
-        return cycleComplete
+        return True
 
     def isThereAnOpenGame(self):
-        isOpenGame = False
         for progress in self.gameProgress:
             if progress == -1:
-                isOpenGame = True
-                break
+                return True
 
-        return isOpenGame
+        return False
 
     def d_requestMincroGame(self, gameIndex):
         if self.gameFSM.state in [
@@ -154,11 +156,7 @@ class DistributedRepairGame(DistributedRepairGameBase, DistributedObject):
             self.notify.debug('MincroGame request denied')
 
     def d_reportMincroGameProgress(self, progress, rating = 0):
-        gameIndex = self.gameIndexRequested
-        self.sendUpdate('reportMincroGameProgress', [
-            gameIndex,
-            progress,
-            rating])
+        self.setMincroGameProgress(self.gameIndexRequested, progress)
 
     def setMincroGameProgress(self, gameIndex, progress):
         self.notify.debug('setMincroGameProgress (%i, %i)' % (gameIndex, progress))
@@ -171,6 +169,9 @@ class DistributedRepairGame(DistributedRepairGameBase, DistributedObject):
         if hasattr(self, 'currentGame') and self.currentGame:
             self.currentGame.updatePostWinLabel()
 
+        if self.isCycleComplete():
+            self.cycleComplete(self.difficulty, [base.localAvatar.doId], [100], totalTime=time.time() - self.time)
+
     def setAvIds2CurrentGameList(self, gameIndexList, doIdList):
         if hasattr(self, 'avIds2CurrentGameIndex'):
             self.avIds2CurrentGameIndex.clear()
@@ -182,12 +183,6 @@ class DistributedRepairGame(DistributedRepairGameBase, DistributedObject):
     def setAllMincroGameProgress(self, progressList):
         for i in xrange(len(progressList)):
             self.setMincroGameProgress(i, progressList[i])
-
-    def d_reportMincroGameScore(self, score):
-        gameIndex = self.gameIndexRequested
-        self.sendUpdate('reportMincroGameScore', [
-            gameIndex,
-            score])
 
     def cycleComplete(self, difficulty = 0, doIds = [], rewards = [], totalTime = 0):
         if self.gameFSM == None:

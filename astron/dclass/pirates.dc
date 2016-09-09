@@ -1107,6 +1107,7 @@ dclass DistributedRepairBench : DistributedInteractive {
 };
 
 dclass DistributedRepairGame : DistributedObject {
+  setDifficulty(uint8) required broadcast ram;
   start(uint8(0-5));
   stop();
   requestMincroGame(uint8(0-5)) airecv clsend;
@@ -1115,7 +1116,6 @@ dclass DistributedRepairGame : DistributedObject {
   setMincroGameProgress(uint8(0-5), int8);
   setAllMincroGameProgress(int8 []);
   setAvIds2CurrentGameList(uint8 [], uint32 []);
-  reportMincroGameScore(uint8(0-5), uint32) clsend airecv;
   cycleComplete(uint8, uint32 [], uint16 [], uint32);
   shipDamaged(bool, uint8);
   setGoldBonus(uint32) broadcast;

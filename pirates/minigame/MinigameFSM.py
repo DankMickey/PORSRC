@@ -15,6 +15,7 @@ class MinigameFSM(FSM.FSM):
             'Idle': [
                 'Intro',
                 'Idle',
+                'Outro',
                 'Final'],
             'Intro': [
                 'MainGame',

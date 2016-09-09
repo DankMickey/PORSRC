@@ -254,4 +254,3 @@ class RepairCareeningGame(RepairMincroGame):
 
     def enterOutro(self):
         RepairMincroGame.enterOutro(self)
-        self.repairGame.d_reportMincroGameScore(150)
