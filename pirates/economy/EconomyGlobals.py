@@ -59,7 +59,8 @@ class ItemType:
     FISHING_LURE = 39
     SHIP_REPAIR_KIT = 40
     FISHING_POUCH = 41
-
+    MATERIAL = 42
+    BRIG = 43
 
 class ItemTypeGroup:
     CUTLASS = 1
@@ -219,6 +220,9 @@ class ItemId:
     WARSHIP_L1 = ShipGlobals.WARSHIPL1
     WARSHIP_L2 = ShipGlobals.WARSHIPL2
     WARSHIP_L3 = ShipGlobals.WARSHIPL3
+    BRIG_L1 = ShipGlobals.BRIGL1
+    BRIG_L2 = ShipGlobals.BRIGL2
+    BRIG_L3 = ShipGlobals.BRIGL3
     BLACK_PEARL = ShipGlobals.BLACK_PEARL
     GOLIATH = ShipGlobals.GOLIATH
     DAUNTLESS = ShipGlobals.DAUNTLESS
@@ -466,15 +470,18 @@ __itemList = {
     ItemId.FISHING_ROD3: (300, ItemType.WEAPON, ItemType.FISHING_ROD, None, 1, 15, None),
     ItemId.FISHING_LURE1: (100, ItemType.AMMO, ItemType.FISHING_LURE, None, 1, 0, None),
     ItemId.FISHING_LURE2: (300, ItemType.AMMO, ItemType.FISHING_LURE, None, 1, 20, None),
-    ItemId.INTERCEPTOR_L1: (0, ItemType.SHIP, ItemType.INTERCEPTOR, None, 1, 0, InventoryType.NewShipToken),
+    ItemId.INTERCEPTOR_L1: (100, ItemType.SHIP, ItemType.INTERCEPTOR, None, 1, 0, InventoryType.NewShipToken),
     ItemId.MERCHANT_L1: (300, ItemType.SHIP, ItemType.MERCHANT, None, 1, 0, InventoryType.NewShipToken),
     ItemId.WARSHIP_L1: (800, ItemType.SHIP, ItemType.WARSHIP, None, 1, 0, InventoryType.NewShipToken),
+    ItemId.BRIG_L1: (900, ItemType.SHIP, ItemType.BRIG, None, 1, 0, InventoryType.NewShipToken),
     ItemId.INTERCEPTOR_L2: (1000, ItemType.SHIP, ItemType.INTERCEPTOR, None, 1, 5, InventoryType.NewShipToken),
     ItemId.MERCHANT_L2: (3500, ItemType.SHIP, ItemType.MERCHANT, None, 1, 5, InventoryType.NewShipToken),
     ItemId.WARSHIP_L2: (5000, ItemType.SHIP, ItemType.WARSHIP, None, 1, 5, InventoryType.NewShipToken),
+    ItemId.BRIG_L2: (7000, ItemType.SHIP, ItemType.BRIG, None, 1, 5, InventoryType.NewShipToken),
     ItemId.INTERCEPTOR_L3: (20000, ItemType.SHIP, ItemType.INTERCEPTOR, None, 1, 15, InventoryType.NewShipToken),
     ItemId.MERCHANT_L3: (40000, ItemType.SHIP, ItemType.MERCHANT, None, 1, 15, InventoryType.NewShipToken),
     ItemId.WARSHIP_L3: (60000, ItemType.SHIP, ItemType.WARSHIP, None, 1, 15, InventoryType.NewShipToken),
+    ItemId.BRIG_L3: (80000, ItemType.SHIP, ItemType.BRIG, None, 1, 15, InventoryType.NewShipToken),
     ItemId.BLACK_PEARL: (0, ItemType.SHIP, ItemType.WARSHIP, None, 1, 0, InventoryType.NewShipToken),
     ItemId.GOLIATH: (0, ItemType.SHIP, ItemType.WARSHIP, None, 1, 30, InventoryType.NewShipToken),
     ItemId.DAUNTLESS: (0, ItemType.SHIP, ItemType.WARSHIP, None, 1, 30, InventoryType.NewShipToken),
@@ -871,12 +878,15 @@ SHIP_SHELF = [
     ItemId.INTERCEPTOR_L1,
     ItemId.MERCHANT_L1,
     ItemId.WARSHIP_L1,
+    ItemId.BRIG_L1,
     ItemId.INTERCEPTOR_L2,
     ItemId.MERCHANT_L2,
     ItemId.WARSHIP_L2,
+    ItemId.BRIG_L2,
     ItemId.INTERCEPTOR_L3,
     ItemId.MERCHANT_L3,
-    ItemId.WARSHIP_L3]
+    ItemId.WARSHIP_L3,
+    ItemId.BRIG_L3]
 STOWAWAY_SHELF = [
     LocationIds.PORT_ROYAL_ISLAND,
     LocationIds.TORTUGA_ISLAND,

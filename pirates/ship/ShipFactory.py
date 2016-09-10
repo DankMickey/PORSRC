@@ -85,6 +85,9 @@ class ShipFactory:
         self.preprocessHull(ShipGlobals.MERCHANTL1)
         self.preprocessHull(ShipGlobals.MERCHANTL2)
         self.preprocessHull(ShipGlobals.MERCHANTL3)
+        self.preprocessHull(ShipGlobals.BRIGL1)
+        self.preprocessHull(ShipGlobals.BRIGL2)
+        self.preprocessHull(ShipGlobals.BRIGL3)
         self.preprocessHull(ShipGlobals.QUEEN_ANNES_REVENGE)
         self.sprits = ShipBlueprints.preprocessSprits()
 
@@ -93,6 +96,7 @@ class ShipFactory:
         self.preprocessHull(ShipGlobals.BLACK_PEARL)
         self.preprocessHull(ShipGlobals.GOLIATH)
         self.preprocessHull(ShipGlobals.SHIP_OF_THE_LINE)
+        self.preprocessHull(ShipGlobals.EL_PATRONS_SHIP)
 
 
     def preprocessMast(self, mastClass):

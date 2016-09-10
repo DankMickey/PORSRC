@@ -17,13 +17,27 @@ LogoDict = {
     ShipGlobals.Logos.Bandit_Dagger: 'pir_t_shp_logo_bandit_02',
     ShipGlobals.Logos.Bandit_Scorpion: 'pir_t_shp_logo_bandit_03',
     ShipGlobals.Logos.Bandit_Claw: 'pir_t_shp_logo_bandit_04',
+    ShipGlobals.Logos.Player_Hawk: 'pir_t_shp_log_hawk_solid',
+    ShipGlobals.Logos.Player_Rose: 'pir_t_shp_log_rose',
+    ShipGlobals.Logos.Player_Flame: 'pir_t_shp_log_flame',
+    ShipGlobals.Logos.Player_SpanishBull: 'pir_t_shp_log_spanishbull',
+    ShipGlobals.Logos.Player_Wolf: 'pir_t_shp_log_wolf_a',
+    ShipGlobals.Logos.Player_Angel: 'pir_t_shp_log_angelwings',
+    ShipGlobals.Logos.Player_Dragon: 'pir_t_shp_log_dragon',
+    ShipGlobals.Logos.Player_Shield: 'pir_t_shp_log_swordandshield',
+    ShipGlobals.Logos.Player_Heart: 'pir_t_shp_log_piercedheart',
     ShipGlobals.Logos.Treasure_Navy: 'pir_t_shp_log_navyTreasure_a',
     ShipGlobals.Logos.Treasure_EITC: 'pir_t_shp_log_eitcTreasure_a',
     ShipGlobals.Logos.Bounty_Hunter_Wasp: 'pir_t_shp_logo_wasp',
     ShipGlobals.Logos.Bounty_Hunter_Spider: 'pir_t_shp_logo_spider',
     ShipGlobals.Logos.Bounty_Hunter_Snake: 'pir_t_shp_logo_snake',
     ShipGlobals.Logos.Navy_Hunter_Unicorn: 'pir_t_shp_log_unicorn',
-    ShipGlobals.Logos.Navy_Hunter_Lion: 'pir_t_shp_log_lion' }
+    ShipGlobals.Logos.Navy_Hunter_Lion: 'pir_t_shp_log_lion',
+    ShipGlobals.Logos.Contest_Skull: 'pir_t_shp_logo_SkullCross',
+    ShipGlobals.Logos.Contest_Octopus: 'pir_t_shp_logo_Octopus',
+    ShipGlobals.Logos.Contest_Shark: 'pir_t_shp_logo_Shark',
+    ShipGlobals.Logos.Contest_Mermaid: 'pir_t_shp_logo_Mermaid',
+    ShipGlobals.Logos.Contest_StormCloud: 'pir_t_shp_logo_StormCloud' }
 shipStyles = {
     ShipGlobals.Styles.Player: 'ships_static_a_palette_3cmla_1',
     ShipGlobals.Styles.Navy: 'ships_static_a_palette_3cmla_1_swp_1',
@@ -40,7 +54,15 @@ shipStyles = {
     ShipGlobals.Styles.BountyHunter_E: 'ships_static_a_palette_3cmla_1_swp_1',
     ShipGlobals.Styles.BountyHunter_F: 'ships_static_a_palette_3cmla_1',
     ShipGlobals.Styles.BountyHunter_G: 'ships_static_a_palette_3cmla_3_swp_3',
-    ShipGlobals.Styles.NavyHunter: 'ships_static_a_palette_3cmla_1_swp_1' }
+    ShipGlobals.Styles.NavyHunter: 'ships_static_a_palette_3cmla_1_swp_1',
+    ShipGlobals.Styles.Streamlined: 'ships_static_a_palette_3cmla_7_swp_7',
+    ShipGlobals.Styles.CargoShip: 'ships_static_a_palette_3cmla_8_swp_8',
+    ShipGlobals.Styles.Reinforced: 'ships_static_a_palette_3cmla_9_swp_9',
+    ShipGlobals.Styles.SkullBones: 'ships_static_a_palette_3cmla_10_swp_10',
+    ShipGlobals.Styles.FortuneHunter: 'ships_static_a_palette_3cmla_11_swp_11',
+    ShipGlobals.Styles.FireStorm: 'ships_static_a_palette_3cmla_12_swp_12',
+    ShipGlobals.Styles.IronClad: 'ships_static_a_palette_3cmla_13_swp_13',
+    ShipGlobals.Styles.StormChaser: 'ships_static_a_palette_3cmla_14_swp_14' }
 ColorDict = {
     ShipGlobals.Styles.Navy: 'pir_t_shp_clr_navy',
     ShipGlobals.Styles.EITC: 'pir_t_shp_clr_eitc',
@@ -61,7 +83,29 @@ ColorDict = {
     ShipGlobals.Styles.BountyHunter_E: 'pir_t_shp_clr_bandit_01',
     ShipGlobals.Styles.BountyHunter_F: 'pir_t_shp_clr_blackPearl',
     ShipGlobals.Styles.BountyHunter_G: 'pir_t_shp_clr_bandit_04',
-    ShipGlobals.Styles.NavyHunter: 'pir_t_shp_clr_navy' }
+    ShipGlobals.Styles.NavyHunter: 'pir_t_shp_clr_navy',
+    ShipGlobals.Styles.Streamlined: 'pir_t_shp_clr_bandit_01',
+    ShipGlobals.Styles.CargoShip: 'pir_t_shp_clr_bandit_01',
+    ShipGlobals.Styles.Reinforced: 'pir_t_shp_clr_bandit_01',
+    ShipGlobals.Styles.SkullBones: 'pir_t_shp_clr_bandit_01',
+    ShipGlobals.Styles.SailWhite: 'pir_t_shp_clr_white',
+    ShipGlobals.Styles.SailBlack: 'pir_t_shp_clr_black',
+    ShipGlobals.Styles.SailGray: 'pir_t_shp_clr_gray',
+    ShipGlobals.Styles.SailBrown: 'pir_t_shp_clr_brown',
+    ShipGlobals.Styles.SailGold: 'pir_t_shp_clr_gold',
+    ShipGlobals.Styles.SailTan: 'pir_t_shp_clr_tan',
+    ShipGlobals.Styles.SailOlive: 'pir_t_shp_clr_olive',
+    ShipGlobals.Styles.SailRed: 'pir_t_shp_clr_red',
+    ShipGlobals.Styles.SailOrange: 'pir_t_shp_clr_orange',
+    ShipGlobals.Styles.SailYellow: 'pir_t_shp_clr_yellow',
+    ShipGlobals.Styles.SailGreen: 'pir_t_shp_clr_green',
+    ShipGlobals.Styles.SailCyan: 'pir_t_shp_clr_cyan',
+    ShipGlobals.Styles.SailBlue: 'pir_t_shp_clr_blue',
+    ShipGlobals.Styles.SailPurple: 'pir_t_shp_clr_purple',
+    ShipGlobals.Styles.SailPink: 'pir_t_shp_clr_pink',
+    ShipGlobals.Styles.SailRose: 'pir_t_shp_clr_rose',
+    ShipGlobals.Styles.SailLime: 'pir_t_shp_clr_lime',
+    ShipGlobals.Styles.SailMaroon: 'pir_t_shp_clr_maroon' }
 wheel = None
 MastData = {
     ShipGlobals.Masts.Main_Tri: {
@@ -109,12 +153,16 @@ HullDict = {
     ShipGlobals.INTERCEPTORL1: 'slp_light',
     ShipGlobals.INTERCEPTORL2: 'slp_regular',
     ShipGlobals.INTERCEPTORL3: 'slp_war',
+    ShipGlobals.BRIGL1: 'brig_light',
+    ShipGlobals.BRIGL2: 'brig_regular',
+    ShipGlobals.BRIGL3: 'brig_war',
     ShipGlobals.BLACK_PEARL: 'cas_blackPearl',
     ShipGlobals.GOLIATH: 'cas_goliath',
     ShipGlobals.QUEEN_ANNES_REVENGE: 'cas_queenAnnesRevenge',
     ShipGlobals.SHIP_OF_THE_LINE: 'lin_treasure',
     ShipGlobals.SKEL_WARSHIPL3: 'skl_frigate',
-    ShipGlobals.SKEL_INTERCEPTORL3: 'skl_sloop' }
+    ShipGlobals.SKEL_INTERCEPTORL3: 'skl_sloop',
+    ShipGlobals.EL_PATRONS_SHIP: 'gal_carrack' }
 if config.GetBool('want-kraken', 0):
     HullDict[23] = 'frg_war_kraken'
 

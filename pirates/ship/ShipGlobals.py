@@ -1,5 +1,5 @@
-from panda3d.core import Point3, Vec3
 global __maxHullStats
+from pandac.PandaModules import *
 from direct.showbase.PythonUtil import Enum
 from pirates.uberdog.UberDogGlobals import *
 from pirates.uberdog.UberDogGlobals import InventoryType
@@ -59,6 +59,33 @@ class Styles:
     BountyHunter_F = 19
     BountyHunter_G = 20
     NavyHunter = 21
+    Streamlined = 22
+    CargoShip = 23
+    Reinforced = 24
+    StormChaser = 30
+    FireStorm = 31
+    FortuneHunter = 32
+    SkullBones = 33
+    IronClad = 34
+    SailWhite = 100
+    SailBlack = 101
+    SailGray = 102
+    SailBrown = 103
+    SailGold = 104
+    SailOlive = 105
+    SailTan = 106
+    SailRed = 110
+    SailOrange = 111
+    SailYellow = 112
+    SailGreen = 113
+    SailCyan = 114
+    SailBlue = 115
+    SailPurple = 120
+    SailPink = 121
+    SailRose = 122
+    SailLime = 123
+    SailMaroon = 130
+
 
 
 class Logos:
@@ -82,6 +109,20 @@ class Logos:
     Bounty_Hunter_Snake = 244
     Navy_Hunter_Unicorn = 246
     Navy_Hunter_Lion = 247
+    Player_Hawk = 248
+    Player_Rose = 249
+    Player_Flame = 250
+    Player_SpanishBull = 251
+    Player_Wolf = 252
+    Player_Angel = 253
+    Player_Dragon = 254
+    Player_Shield = 255
+    Player_Heart = 224
+    Contest_Skull = 225
+    Contest_Octopus = 226
+    Contest_Shark = 227
+    Contest_Mermaid = 228
+    Contest_StormCloud = 229
 
 MAST_LOGO_PLACEMENT_LIST = [
     Logos.Bounty_Hunter_Wasp,
@@ -96,6 +137,9 @@ WARSHIPL1 = 21
 WARSHIPL2 = 22
 WARSHIPL3 = 23
 WARSHIPCOM = 24
+BRIGL1 = 25
+BRIGL2 = 26
+BRIGL3 = 27
 SHIP_OF_THE_LINE = 30
 HMS_VICTORY = 31
 HMS_NEWCASTLE = 32
@@ -116,6 +160,7 @@ FLYING_DUTCHMAN = 52
 GOLIATH = 53
 JOLLY_ROGER = 54
 QUEEN_ANNES_REVENGE = 55
+#BLACK_PEARL2 = 56
 SKEL_WARSHIPL3 = 60
 SKEL_INTERCEPTORL3 = 61
 NAVY_FERRET = 80
@@ -167,7 +212,7 @@ HUNTER_TALLYHO = 180
 HUNTER_BATTLEROYALE = 181
 HUNTER_EN_GARDE = 182
 STUMPY_SHIP = 255
-PLAYER_SHIPS = (INTERCEPTORL1, INTERCEPTORL2, INTERCEPTORL3, MERCHANTL1, MERCHANTL2, MERCHANTL3, WARSHIPL1, WARSHIPL2, WARSHIPL3, SHIP_OF_THE_LINE, EL_PATRONS_SHIP, P_SKEL_PHANTOM, P_SKEL_REVENANT, P_SKEL_CEREBUS, P_NAVY_KINGFISHER, P_EITC_WARLORD, NAVY_KRAKEN_HUNTER)
+PLAYER_SHIPS = (INTERCEPTORL1, INTERCEPTORL2, INTERCEPTORL3, MERCHANTL1, MERCHANTL2, MERCHANTL3, WARSHIPL1, WARSHIPL2, WARSHIPL3, BRIGL1, BRIGL2, BRIGL3, SHIP_OF_THE_LINE, EL_PATRONS_SHIP, P_SKEL_PHANTOM, P_SKEL_REVENANT, P_SKEL_CEREBUS, P_NAVY_KINGFISHER, P_EITC_WARLORD, NAVY_KRAKEN_HUNTER)
 MAST_LOGO_PLACEMENT = {
     INTERCEPTORL1: [
         0],
@@ -187,6 +232,12 @@ MAST_LOGO_PLACEMENT = {
         0],
     WARSHIPL3: [
         0],
+    BRIGL1: [
+        0],
+    BRIGL2: [
+        0],
+    BRIGL3: [
+        0],
     WARSHIPCOM: [
         0] }
 SHIP_CLASS_LIST = [
@@ -199,12 +250,16 @@ SHIP_CLASS_LIST = [
     'WARSHIPL1',
     'WARSHIPL2',
     'WARSHIPL3',
+    'BRIGL1',
+    'BRIGL2',
+    'BRIGL3',
     'BLACK_PEARL',
     'DAUNTLESS',
     'FLYING_DUTCHMAN',
     'GOLIATH',
     'QUEEN_ANNES_REVENGE',
     'SKEL_WARSHIPL3',
+    'EL_PATRONS_SHIP',
     'SKEL_INTERCEPTORL3',
     'STUMPY_SHIP',
     'NAVY_FERRET',
@@ -380,6 +435,18 @@ __hullArmor = {
         2000,
         3600,
         3600],
+    BRIGL1: [
+        1300,
+        1500,
+        1500],
+    BRIGL2: [
+        1900,
+        2700,
+        2700],
+    BRIGL3: [
+        3000,
+        4500,
+        4500],
     SHIP_OF_THE_LINE: [
         50000,
         100000,
@@ -403,7 +470,15 @@ __hullArmor = {
     QUEEN_ANNES_REVENGE: [
         3000,
         4000,
-        4000] }
+        4000],
+    EL_PATRONS_SHIP: [
+        3000,
+        4000,
+        4000],
+    DAUNTLESS: [
+        3200,
+        5600,
+        5600] }
 
 def getHullArmor(modelClass):
     return __hullArmor[modelClass]
@@ -550,6 +625,124 @@ __shipConfigs = {
         'maxReverseSpeed': 0.7 * defaultMaxReverseAcceleration,
         'turn': 0.6 * defaultTurn,
         'maxTurn': 0.6 * defaultMaxTurn },
+    BRIGL1: {
+        'setShipClass': BRIGL1,
+        'modelClass': BRIGL1,
+        'defaultStyle': Styles.Player,
+        'mastConfig1': (Masts.Main_Square, 1),
+        'mastConfig2': (Masts.Main_Square, 2),
+        'mastConfig3': 0,
+        'foremastConfig': (Masts.Fore_Multi, 2),
+        'aftmastConfig': 0,
+        'sailLogo': Logos.NoLogo,
+        'cannons': [
+            Cannons.L3] * 6,
+        'leftBroadsides': [
+            Cannons.L2] * 5,
+        'rightBroadsides': [
+            Cannons.L2] * 5,
+        'broadsideAmmo': InventoryType.CannonRoundShot,
+        'cannonAmmo': InventoryType.CannonRoundShot,
+        'prow': 0,
+        'hp': 3900,
+        'sp': 5500,
+        'maxCargo': 8,
+        'maxCrew': 8,
+        'maxCannons': 8,
+        'maxBroadsides': 10,
+        'rammingPower': 400,
+        'acceleration': 1.1499999999999999 * defaultAcceleration,
+        'maxSpeed': 0.84999999999999998 * defaultMaxSpeed,
+        'reverseAcceleration': 0.75 * defaultReverseAcceleration,
+        'maxReverseSpeed': 0.75 * defaultMaxReverseAcceleration,
+        'turn': 0.69999999999999996 * defaultTurn,
+        'maxTurn': 0.69999999999999996 * defaultMaxTurn },
+    BRIGL2: {
+        'setShipClass': BRIGL2,
+        'modelClass': BRIGL2,
+        'defaultStyle': Styles.Player,
+        'mastConfig1': (Masts.Main_Square, 2),
+        'mastConfig2': (Masts.Main_Square, 2),
+        'mastConfig3': 0,
+        'foremastConfig': (Masts.Fore_Multi, 2),
+        'aftmastConfig': (Masts.Aft_Tri, 1),
+        'sailLogo': Logos.NoLogo,
+        'cannons': [
+            Cannons.L3] * 10,
+        'leftBroadsides': [
+            Cannons.L2] * 7,
+        'rightBroadsides': [
+            Cannons.L2] * 7,
+        'broadsideAmmo': InventoryType.CannonRoundShot,
+        'cannonAmmo': InventoryType.CannonRoundShot,
+        'prow': 0,
+        'hp': 7800,
+        'sp': 8000,
+        'maxCargo': 12,
+        'maxCrew': 10,
+        'maxCannons': 10,
+        'maxBroadsides': 16,
+        'rammingPower': 750,
+        'acceleration': 1.1499999999999999 * defaultAcceleration,
+        'maxSpeed': 0.84999999999999998 * defaultMaxSpeed,
+        'reverseAcceleration': 0.75 * defaultReverseAcceleration,
+        'maxReverseSpeed': 0.75 * defaultMaxReverseAcceleration,
+        'turn': 0.69999999999999996 * defaultTurn,
+        'maxTurn': 0.69999999999999996 * defaultMaxTurn },
+    BRIGL3: {
+        'setShipClass': BRIGL3,
+        'modelClass': BRIGL3,
+        'defaultStyle': Styles.Player,
+        'mastConfig1': (Masts.Main_Square, 3),
+        'mastConfig2': (Masts.Main_Square, 3),
+        'mastConfig3': 0,
+        'foremastConfig': (Masts.Fore_Multi, 3),
+        'aftmastConfig': (Masts.Aft_Tri, 1),
+        'sailLogo': Logos.NoLogo,
+        'cannons': [
+            Cannons.L3] * 12,
+        'leftBroadsides': [
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2],
+        'rightBroadsides': [
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2],
+        'broadsideAmmo': InventoryType.CannonRoundShot,
+        'cannonAmmo': InventoryType.CannonRoundShot,
+        'prow': 0,
+        'hp': 12000,
+        'sp': 11000,
+        'maxCargo': 16,
+        'maxCrew': 12,
+        'maxCannons': 14,
+        'maxBroadsides': 22,
+        'rammingPower': 1400,
+        'acceleration': 1.1499999999999999 * defaultAcceleration,
+        'maxSpeed': 0.84999999999999998 * defaultMaxSpeed,
+        'reverseAcceleration': 0.75 * defaultReverseAcceleration,
+        'maxReverseSpeed': 0.75 * defaultMaxReverseAcceleration,
+        'turn': 0.69999999999999996 * defaultTurn,
+        'maxTurn': 0.69999999999999996 * defaultMaxTurn },
     SHIP_OF_THE_LINE: {
         'setShipClass': SHIP_OF_THE_LINE,
         'modelClass': SHIP_OF_THE_LINE,
@@ -584,7 +777,7 @@ __shipConfigs = {
         'maxTurn': 0.5 * defaultMaxTurn },
     EL_PATRONS_SHIP: {
         'setShipClass': EL_PATRONS_SHIP,
-        'modelClass': WARSHIPL3,
+        'modelClass': EL_PATRONS_SHIP,
         'defaultStyle': Styles.Player,
         'mastConfig1': (Masts.Main_Square, 3),
         'mastConfig2': (Masts.Main_Square, 3),
@@ -1313,6 +1506,38 @@ __shipConfigs = {
         'setShipClass': GOLIATH,
         'modelClass': GOLIATH,
         'defaultStyle': Styles.Navy,
+        'mastConfig1': (Masts.Main_Square, 3),
+        'mastConfig2': (Masts.Main_Square, 3),
+        'mastConfig3': (Masts.Main_Square, 3),
+        'foremastConfig': (Masts.Fore_Multi, 2),
+        'aftmastConfig': (Masts.Aft_Tri, 1),
+        'sailLogo': Logos.NoLogo,
+        'cannons': [
+            Cannons.L3] * 14,
+        'leftBroadsides': [
+            Cannons.L4] * 9,
+        'rightBroadsides': [
+            Cannons.L4] * 9,
+        'broadsideAmmo': InventoryType.CannonRoundShot,
+        'cannonAmmo': InventoryType.CannonFirebrand,
+        'prow': 0,
+        'hp': 3500,
+        'sp': 6000,
+        'maxCargo': 3,
+        'maxCrew': 8,
+        'maxCannons': 18,
+        'maxBroadsides': 18,
+        'rammingPower': 900,
+        'acceleration': 1.0 * defaultAcceleration,
+        'maxSpeed': 1.2 * defaultMaxSpeed,
+        'reverseAcceleration': 0.9 * defaultReverseAcceleration,
+        'maxReverseSpeed': 0.8 * defaultMaxReverseAcceleration,
+        'turn': 0.8 * defaultTurn,
+        'maxTurn': 0.8 * defaultMaxTurn },
+    DAUNTLESS: {
+        'setShipClass': DAUNTLESS,
+        'modelClass': GOLIATH,
+        'defaultStyle': Styles.Treasure_Navy,
         'mastConfig1': (Masts.Main_Square, 3),
         'mastConfig2': (Masts.Main_Square, 3),
         'mastConfig3': (Masts.Main_Square, 3),
@@ -3889,13 +4114,16 @@ BaseLevel = {
     INTERCEPTORL1: 2,
     MERCHANTL1: 4,
     WARSHIPL1: 8,
+    BRIGL1: 9,
     INTERCEPTORL2: 12,
     MERCHANTL2: 16,
     WARSHIPL2: 20,
+    BRIGL2: 22,
     INTERCEPTORL3: 26,
     MERCHANTL3: 30,
     WARSHIPL3: 34,
-    QUEEN_ANNES_REVENGE: 32,
+    BRIGL3: 36,
+    #QUEEN_ANNES_REVENGE: 32,
     BLACK_PEARL: 40,
     SKEL_WARSHIPL3: 32,
     SKEL_INTERCEPTORL3: 26,
@@ -3903,6 +4131,7 @@ BaseLevel = {
     GOLIATH: 50,
     SHIP_OF_THE_LINE: 80,
     QUEEN_ANNES_REVENGE: 40 }
+    
 __shipLevelStatMultiplier = {
     0: (0.5, 0, 10),
     1: (0.7, 0, 15),
