@@ -206,7 +206,6 @@ class LootPopupPanel(StackMessage, DirectObject.DirectObject):
                 textInfo = PLocalizer.LootGold % str(quantity)
                 potionPercent = PotionGlobals.getGoldBoostEffectPercent(localAvatar)
                 potionGold = 0
-                textInfo = PLocalizer.LootGold % str(quantity / 2) + '\n + ' + PLocalizer.LootGoldDouble % str(quantity / 2)
 
                 if potionGold > 0:
                     textInfo += '\n + ' + PLocalizer.LootGoldPotionBoost % str(potionGold)

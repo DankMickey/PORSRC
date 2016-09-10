@@ -584,8 +584,7 @@ class MessageStackPanel(DirectFrame):
 
 
     def showLoot(self, plunder = [], gold = 0, collect = 0, card = 0, cloth = 0, color = 0, jewel = None, tattoo = None, weapon = None, bounty = 0):
-        LootPopupPanel = LootPopupPanel
-        import pirates.piratesgui.LootPopupPanel
+        from pirates.piratesgui.LootPopupPanel import LootPopupPanel
         msg = LootPopupPanel()
         msg.reparentTo(self)
         msg.showLoot(plunder, gold, collect, card, cloth, color, jewel, tattoo, weapon, bounty)

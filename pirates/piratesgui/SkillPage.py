@@ -270,9 +270,6 @@ class SkillPage(InventoryPage.InventoryPage):
             if skill in self.localMods:
                 skillPts = self.localMods[skill]
 
-            if not skill in comboSkills:
-                pass
-
             showIcon = skillPts > 0
 
             if skill in self.linkedSkillIds:
@@ -299,8 +296,6 @@ class SkillPage(InventoryPage.InventoryPage):
             (xMod, yMod) = self.ringOffset(count)
             xMod *= 0.9
             yMod *= 0.9
-            if not skill in activeSkills:
-                pass
             
             showIcon = skillPts > 0
 
@@ -329,9 +324,6 @@ class SkillPage(InventoryPage.InventoryPage):
             skillPts = inv.getStackQuantity(skill)
             if skill in self.localMods:
                 skillPts = self.localMods[skill]
-
-            if not skill in passiveSkills:
-                pass
 
             showIcon = skillPts > 0
 
@@ -449,7 +441,8 @@ class SkillPage(InventoryPage.InventoryPage):
             else:
                 curAmt += 1
         else:
-            return None
+            curAmt = 1
+        print 'xx3'
         self._SkillPage__handleFreeDialog()
 
         if not config.GetBool('want-combo-skips', 0):
@@ -465,7 +458,7 @@ class SkillPage(InventoryPage.InventoryPage):
                 base.localAvatar.guiMgr.createWarning(PLocalizer.ComboOrderWarn, PiratesGuiGlobals.TextFG6)
                 return None
 
-
+        self.skillFrames[skillId].skillButton.clearColorScale()
         messenger.send('skillImprovementAttempted')
         localAvatar.spendSkillPoint(skillId)
         self.localMods[skillId] = curAmt

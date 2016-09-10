@@ -2210,8 +2210,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
 
 
     def spendSkillPoint(self, skillId):
-        self.sendUpdate('spendSkillPoint', [
-            skillId])
+        self.sendUpdate('spendSkillPoint', [skillId])
 
 
     def checkForAutoTrigger(self, objDoId):

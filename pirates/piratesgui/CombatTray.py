@@ -1187,7 +1187,7 @@ class CombatTray(GuiTray):
                     itemCat = InventoryType.ItemTypeConsumable
 
                 amt = inv.getItemQuantity(itemCat, ammoItemId)
-                if amt < 1:
+                if amt < 1 and not config.GetBool('want-infinite-ammo', False):
                     if EconomyGlobals.getItemCategory(ammoSkillId) == ItemType.AMMO:
                         localAvatar.guiMgr.createWarning(PLocalizer.OutOfAmmoWarning, PiratesGuiGlobals.TextFG6)
                     else:
@@ -1203,7 +1203,7 @@ class CombatTray(GuiTray):
                     return 0
 
                 amt = inv.getStackQuantity(ammoInvId)
-                if amt < 1:
+                if amt < 1 and not config.GetBool('want-infinite-ammo', False):
                     if EconomyGlobals.getItemCategory(skillId) == ItemType.AMMO:
                         localAvatar.guiMgr.createWarning(PLocalizer.OutOfAmmoWarning, PiratesGuiGlobals.TextFG6)
                     else:
@@ -1641,9 +1641,6 @@ class CombatTray(GuiTray):
                                     if self.skillTray.origMap[i][1]:
                                         self.skillTray.tray[i + 1].toggleButton(False)
                                         continue
-
-
-
                     else:
                         localAvatar.guiMgr.createWarning(PLocalizer.OutOfAmmoWarning, PiratesGuiGlobals.TextFG6)
             elif self.weaponMode == WeaponGlobals.VOODOO:
@@ -1680,9 +1677,6 @@ class CombatTray(GuiTray):
             if attackSelected:
                 messenger.send(attackSelected)
 
-            if toggleButton:
-                pass
-            1
             if self.weaponMode == WeaponGlobals.FIREARM and self.weaponMode == WeaponGlobals.GRENADE or self.weaponMode == WeaponGlobals.CANNON:
                 if skillId == EnemySkills.PISTOL_QUICKLOAD:
                     self.trySkill(skillId, 0, combo)
@@ -2276,18 +2270,17 @@ class CombatTray(GuiTray):
         if self.ammoSkillId:
             inv = localAvatar.getInventory()
             maxQuant = WeaponGlobals.getSkillMaxQuantity(self.ammoSkillId)
-            if not (maxQuant == WeaponGlobals.INF_QUANT) and not WeaponGlobals.canUseInfiniteAmmo(localAvatar.currentWeaponId, self.ammoSkillId) and not WeaponGlobals.canUseInfiniteAmmo(localAvatar.getCurrentCharm(), self.ammoSkillId):
-                ammoInvId = WeaponGlobals.getSkillAmmoInventoryId(self.ammoSkillId)
-                if not inv:
-                    self.outOfAmmo()
-                    return None
-                else:
-                    ammoAmt = inv.getStackQuantity(ammoInvId)
-                    if ammoAmt <= 0:
+            if not config.GetBool('want-infinite-ammo', False):
+                if not (maxQuant == WeaponGlobals.INF_QUANT) and not WeaponGlobals.canUseInfiniteAmmo(localAvatar.currentWeaponId, self.ammoSkillId) and not WeaponGlobals.canUseInfiniteAmmo(localAvatar.getCurrentCharm(), self.ammoSkillId):
+                    ammoInvId = WeaponGlobals.getSkillAmmoInventoryId(self.ammoSkillId)
+                    if not inv:
                         self.outOfAmmo()
                         return None
-
-
+                    else:
+                        ammoAmt = inv.getStackQuantity(ammoInvId)
+                        if ammoAmt <= 0:
+                            self.outOfAmmo()
+                            return None
 
         if self.weaponMode == WeaponGlobals.FIREARM:
             self.trySkill(EnemySkills.PISTOL_RELOAD, 0)

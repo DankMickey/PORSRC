@@ -306,8 +306,13 @@ class SkillpageGuiButton(DirectButton):
 
         if self.skillRank:
             self.rankText = DirectFrame(parent = self, relief = None, text = ('\x01goldsmallCaps\x01' + PLocalizer.Rank + ' %d' + '\x02') % self.skillRank, text_align = TextNode.ARight, text_scale = PiratesGuiGlobals.TextScaleSmall, text_fg = PiratesGuiGlobals.TextFG2, text_wordwrap = 15, text_shadow = (0, 0, 0, 1), pos = (0.450, 0, 0), textMayChange = 1, sortOrder = 92, state = DGG.DISABLED)
+        
+        try:
+            skillDesc = skillDesc % tuple(stats)
+        except:
+            pass
 
-        self.helpText = DirectFrame(parent = self, relief = None, text = skillDesc % tuple(stats), text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleSmall, text_fg = PiratesGuiGlobals.TextFG2, text_wordwrap = 15, text_shadow = (0, 0, 0, 1), textMayChange = 1, sortOrder = 91, state = DGG.DISABLED)
+        self.helpText = DirectFrame(parent = self, relief = None, text = skillDesc, text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleSmall, text_fg = PiratesGuiGlobals.TextFG2, text_wordwrap = 15, text_shadow = (0, 0, 0, 1), textMayChange = 1, sortOrder = 91, state = DGG.DISABLED)
         height = -(self.helpText.getHeight() + 0.01)
         self.helpBox = BorderFrame(parent = self, frameSize = (-0.0400, 0.5, height, 0.050000), pos = (0, 0, -0.12), sortOrder = 90, state = DGG.DISABLED)
         self.helpBox.setBin('gui-fixed', 4)

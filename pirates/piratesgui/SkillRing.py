@@ -9,9 +9,6 @@ class SkillRing(DirectFrame):
     base = None
 
     def __init__(self, color, baseColor = Vec4(1.0, 1.0, 1.0, 1.0)):
-        if color[0] == 1 and color[1] == 0:
-            pass
-        1
         DirectFrame.__init__(self, parent = NodePath(), relief = None)
         self._SkillRing__progress = None
         self.initialiseoptions(SkillRing)

@@ -19,6 +19,7 @@ want-dev-weapons #t
 want-easy-combos #t
 want-friendly-fire #f
 instant-skill-recharge #f
+want-infinite-ammo #t
 
 # BATTLE
 want-battle #f

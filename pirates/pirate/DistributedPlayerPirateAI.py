@@ -314,13 +314,42 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
 
     def spendSkillPoint(self, skillId):
         if 0 < self.inventory.getStackQuantity(skillId) < 5:
-            up = self.getUnspent(WeaponGlobals.getRepId(skillId))
-            if self.inventory.getStackQuantity(up):
+            unspent = self.getUnspent(skillId)
+            
+            if not unspent:
+                self.notify.warning("Skill ID %s doesn't have an unspent value!" % skillId)
+                return
+
+            if self.inventory.getStackQuantity(unspent):
                 self.inventory.addStackItem(skillId)
-                self.inventory.addStackItem(up, -1)
+                self.inventory.addStackItem(unspent, -1)
                 self.sendUpdate('spentSkillPoint', [skillId])
 
     def getUnspent(self, rep):
+        if InventoryType.begin_WeaponSkillPistol <= rep < InventoryType.end_WeaponSkillPistol:
+            return InventoryType.UnspentPistol
+        elif InventoryType.begin_WeaponSkillMelee <= rep < InventoryType.end_WeaponSkillMelee:
+            return InventoryType.UnspentMelee
+        elif InventoryType.begin_WeaponSkillCutlass <= rep < InventoryType.end_WeaponSkillCutlass:
+            return InventoryType.UnspentCutlass
+        elif InventoryType.begin_WeaponSkillMusket <= rep < InventoryType.end_WeaponSkillMusket:
+            return InventoryType.UnspentMusket
+        elif InventoryType.begin_WeaponSkillDagger <= rep < InventoryType.end_WeaponSkillDagger:
+            return InventoryType.UnspentDagger
+        elif InventoryType.begin_WeaponSkillGrenade <= rep < InventoryType.end_WeaponSkillGrenade:
+            return InventoryType.UnspentGrenade
+        elif InventoryType.begin_WeaponSkillDoll <= rep < InventoryType.end_WeaponSkillDoll:
+            return InventoryType.UnspentDoll
+        elif InventoryType.begin_SkillSailing <= rep < InventoryType.end_SkillSailing:
+            return InventoryType.UnspentSailing
+        elif InventoryType.begin_WeaponSkillWand <= rep < InventoryType.end_WeaponSkillWand:
+            return InventoryType.UnspentWand
+        elif InventoryType.begin_WeaponSkillCannon <= rep < InventoryType.end_WeaponSkillCannon:
+            return InventoryType.UnspentCannon
+        elif InventoryType.begin_WeaponSkillKettle <= rep < InventoryType.end_WeaponSkillKettle:
+            return InventoryType.UnspentKettle
+    
+    def getUnspentFromRep(self, rep):
         if rep == InventoryType.CutlassRep:
             return InventoryType.UnspentCutlass
         elif rep == InventoryType.DaggerRep:

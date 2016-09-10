@@ -709,11 +709,11 @@ class SkillButton(DirectFrame):
         stats = [int(stat + 0.01) for stat in stats]
 
         try:
+            skillDesc = skillDesc % tuple(stats)
+        except:
             pass
-        except TypeError:
-            self.notify.error('Error formatting skillDesc(%s): %s' % (self.skillId, stats))
 
-        helpText = DirectFrame(parent = self, relief = None, text = skillDesc % tuple(stats), text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleSmall, text_fg = PiratesGuiGlobals.TextFG2, text_wordwrap = 17, textMayChange = 1, state = DGG.DISABLED, sortOrder = 91)
+        helpText = DirectFrame(parent = self, relief = None, text = skillDesc, text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleSmall, text_fg = PiratesGuiGlobals.TextFG2, text_wordwrap = 17, textMayChange = 1, state = DGG.DISABLED, sortOrder = 91)
         height = -(helpText.getHeight() + 0.01)
         width = 0.550000
         self.helpFrame = BorderFrame(parent = self, state = DGG.DISABLED, frameSize = (-0.0400, width, height, 0.050000), pos = (0, 0, -0.12), sortOrder = 90)

@@ -3751,6 +3751,9 @@ InfiniteAmmoMap = {
     InventoryType.CannonFury: ItemGlobals.INFINITE_FURY }
 
 def canUseInfiniteAmmo(weaponId, skillId):
+    if config.GetBool('want-infinite-ammo', False):
+        return True
+
     infiniteAttribute = InfiniteAmmoMap.get(skillId)
     if infiniteAttribute:
         rank = ItemGlobals.getWeaponAttributes(weaponId, infiniteAttribute)
