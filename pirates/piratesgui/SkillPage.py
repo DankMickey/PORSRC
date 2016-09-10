@@ -130,11 +130,8 @@ class SkillPage(InventoryPage.InventoryPage):
                 InventoryType.DollToken,
                 InventoryType.DollRep])
             for tokenRep in tokenReps:
-                token = tokenRep[0]
                 repId = tokenRep[1]
-                if inventory.getStackQuantity(token):
-                    repIds.append(repId)
-                    continue
+                repIds.append(repId)
 
             for repId in repIds:
                 tab = self.tabBar.getTab(str(repId))
@@ -470,22 +467,18 @@ class SkillPage(InventoryPage.InventoryPage):
         skillRank = max(0, skillPts - 1)
         if skillId in self.skillFrames:
             button = self.skillFrames[skillId]
-            if upgradeMode:
-                pass
             showUpgrade = showIcon
             button.setShowUpgrade(showUpgrade)
             button.setShowIcon(showIcon)
             button.show()
         else:
             button = SkillButton(skillId, self.addPoint, 0, skillRank, showHelp = True, showIcon = showIcon)
-            if upgradeMode:
-                pass
             showUpgrade = showIcon
             button.setShowUpgrade(showUpgrade)
             button.reparentTo(self)
             self.skillFrames[skillId] = button
         button.skillButton['image_scale'] = 0.12
-        if skillPts == 1:
+        if skillPts < 1:
             self.skillFrames[skillId]['text_fg'] = (0.5, 0.5, 0.5, 1)
             self.skillFrames[skillId].skillButton.setColorScale(1, 1, 1, 0.5)
         else:
