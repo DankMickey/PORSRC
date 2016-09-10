@@ -2,7 +2,6 @@ from panda3d.core import Buffer, Lens, NodePath, PandaNode, Point3, TextNode, Te
 # File: G (Python 2.4)
 
 import os
-import webbrowser
 from direct.gui.DirectGui import *
 from direct.interval.IntervalGlobal import *
 from direct.showbase import DirectObject
