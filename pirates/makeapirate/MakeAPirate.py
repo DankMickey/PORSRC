@@ -366,6 +366,7 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
         self.idleFSM.enterInitialState()
         self.superLowPirate = None
         self.guiConfirmDoneBox = None
+        self.cameraEnabled = True
 
     def getPirate(self):
         return self.pirate
@@ -474,8 +475,9 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
         self.startCutscene()
     
     def startCutscene(self, task=None):
-        base.transitions.fadeIn()
-        #self.cutsceneStart(csId = 0) # Camera angle isn't perf, but it works.
+    	if not self.isNPCEditor:
+        	base.transitions.fadeIn()
+        	self.cutsceneStart(csId = 0) # Camera angle isn't perf, but it works.
 
     def exit(self):
         taskMgr.remove('avCreate-ZoomTask')
@@ -1947,14 +1949,15 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
         deltaHpr = (self.camZoomOutHpr - self.camInitHpr) * value
         nPos = Vec3(iPos[0] + deltaPos[0], iPos[1] + deltaPos[1], iPos[2] + deltaPos[2])
         nHpr = Vec3(iHpr[0] + deltaHpr[0], iHpr[1] + deltaHpr[1], iHpr[2] + deltaHpr[2])
-        if hasattr(self.avatar, 'dna') and self.avatar.dna:
-            bias = heightBiasArray[self.avatar.dna.getGender()][self.avatar.dna.getBodyShape()]
-            camera.setPos(nPos)
-            camera.setHpr(nHpr)
-        else:
-            bias = heightBiasArray['s'][self.skeletonType]
-            camera.setPos(nPos)
-            camera.setHpr(nHpr)
+        if self.cameraEnabled:
+	        if hasattr(self.avatar, 'dna') and self.avatar.dna:
+	            bias = heightBiasArray[self.avatar.dna.getGender()][self.avatar.dna.getBodyShape()]
+	            camera.setPos(nPos)
+	            camera.setHpr(nHpr)
+	        else:
+	            bias = heightBiasArray['s'][self.skeletonType]
+	            camera.setPos(nPos)
+	            camera.setHpr(nHpr)
         return Task.cont
 
 
@@ -2689,11 +2692,13 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
         name = CutsceneData.CutsceneNames[int(csId)]
         cs = ScratchPad()
 
-        def destroyCutscene(cs = cs):
-            cs.cutscene.destroy()
 
+        def destroyCutscene(self = self, cs = cs):
+        	cs.cutscene.destroy()
+        	self.cameraEnabled = True
+
+        self.cameraEnabled = False
         c = Cutscene.Cutscene(base.cr, name, DelayedFunctor(destroyCutscene, '~cutscene-destroy'))
         cs.cutscene = c
-        
-        taskMgr.doMethodLater(0.5, lambda task: c.play(), 'playCutscene')
+        c.play()
         destroyCutscene = None
