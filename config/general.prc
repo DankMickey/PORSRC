@@ -28,6 +28,11 @@ low-memory-stream-audio #t
 want-cache #t
 cache-quest-step #t
 
+# Graphics
+want-improved-graphics #f
+framebuffer-multisample 1
+multisamples 2
+
 # CHAT
 chat-history-size 10
 exec-chat #t
@@ -122,6 +127,10 @@ enable-sky #t
 prepare-scene #t
 advanced-weather #t
 want-soft-tod-changes #t
+
+# Code Redemption
+want-coderedemption #f
+reject-all-redeem-codes #t
 
 # WATER/WAVES
 want-water-reflection #t
