@@ -66,6 +66,8 @@ class RedeemCodeGUI(DirectFrame):
             self.alertDialog = PDialog.PDialog(parent = aspect2dp, text = PLocalizer.ShopCodeSuccess, style = OTPDialog.CancelOnly, command = self._RedeemCodeGUI__handleCodeSuccess, destroyedCallback = self._RedeemCodeGUI__destroyedAlert)
         elif value == CodeRedemptionGlobals.ERROR_ID_OVERFLOW:
             self.alertDialog = PDialog.PDialog(parent = aspect2dp, text = PLocalizer.ShopCodeFull, style = OTPDialog.CancelOnly, command = self._RedeemCodeGUI__handleCodeSuccess, destroyedCallback = self._RedeemCodeGUI__destroyedAlert)
+        elif value == CodeRedemptionGlobals.ERROR_ID_TIMEOUT: 
+            self.alertDialog = PDialog.PDialog(parent = aspect2dp, text = PLocalizer.CodeRedemptionTimeout, style = OTPDialog.CancelOnly, command = self._RedeemCodeGUI__handleCodeSuccess, destroyedCallback = self._RedeemCodeGUI__destroyedAlert)
         else:
             self.alertDialog = PDialog.PDialog(parent = aspect2dp, text = PLocalizer.ShopCodeErr, style = OTPDialog.CancelOnly, command = self._RedeemCodeGUI__handleAlert, destroyedCallback = self._RedeemCodeGUI__destroyedAlert)
         self.alertDialog.setPos(0.598, 0, 0.100)

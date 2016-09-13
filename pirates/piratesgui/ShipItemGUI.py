@@ -1,7 +1,5 @@
-from panda3d.core import TextNode, Vec3, Vec4
-# File: S (Python 2.4)
-
 from direct.gui.DirectGui import *
+from pandac.PandaModules import *
 from pirates.piratesgui import PiratesGuiGlobals
 from pirates.piratesgui import InventoryItemGui
 from pirates.piratesbase import PiratesGlobals
@@ -13,17 +11,30 @@ from pirates.economy.EconomyGlobals import *
 from pirates.reputation import ReputationGlobals
 
 class ShipItemGUI(InventoryItemGui.InventoryItemGui):
-
+    shipImageDict = {
+        ItemId.INTERCEPTOR_L1: 'Catalog_Light_Sloop',
+        ItemId.INTERCEPTOR_L2: 'Catalog_Regular_Sloop',
+        ItemId.INTERCEPTOR_L3: 'Catalog_War_Sloop',
+        ItemId.MERCHANT_L1: 'Catalog_Light_Galleon',
+        ItemId.MERCHANT_L2: 'Catalog_Regular_Galleon',
+        ItemId.MERCHANT_L3: 'Catalog_War_Galleon',
+        ItemId.WARSHIP_L1: 'Catalog_Light_Frigate',
+        ItemId.WARSHIP_L2: 'Catalog_Regular_Frigate',
+        ItemId.WARSHIP_L3: 'Catalog_War_Frigate',
+        ItemId.BRIG_L1: 'Catalog_Light_Brig',
+        ItemId.BRIG_L2: 'Catalog_Regular_Brig',
+        ItemId.BRIG_L3: 'Catalog_War_Brig' }
+    
     def __init__(self, data, trade = 0, buy = 0, sell = 0, use = 0, **kw):
         optiondefs = ()
         self.defineoptions(kw, optiondefs)
-        InventoryItemGui.InventoryItemGui.__init__(self, data, trade, buy, sell, use)
+        InventoryItemGui.InventoryItemGui.__init__(self, data, trade, buy, sell, use, **kw)
         self.initialiseoptions(ShipItemGUI)
         repId = InventoryType.SailingRep
         self.checkLevel(repId, self.minLvl)
         self.flattenStrong()
 
-
+    
     def createGui(self):
         (item, quantity) = self.data
         name = PLocalizer.InventoryTypeNames[item]
@@ -33,56 +44,44 @@ class ShipItemGUI(InventoryItemGui.InventoryItemGui):
         self.itemType = itemTypeName
         if self.sell:
             self.price /= 2
-
-        card = loader.loadModel('models/textureCards/shipRenders')
-        if item in [
-            ItemId.INTERCEPTOR_L1,
-            ItemId.INTERCEPTOR_L2,
-            ItemId.INTERCEPTOR_L3]:
-            myTexCard = card.find('**/Interceptor_Render*')
-        elif item in [
-            ItemId.MERCHANT_L1,
-            ItemId.MERCHANT_L2,
-            ItemId.MERCHANT_L3]:
-            myTexCard = card.find('**/Merchant_Render*')
-        elif item in [
-            ItemId.WARSHIP_L1,
-            ItemId.WARSHIP_L2,
-            ItemId.WARSHIP_L3]:
-            myTexCard = card.find('**/Warship_Render*')
-        else:
-            myTexCard = card.find('**/Warship_Render*')
+        
+        card = loader.loadModel('models/textureCards/shipCatalog')
+        renderName = self.shipImageDict.get(item, 'Catalog_War_Brig')
+        myTexCard = card.find('**/%s*' % renderName)
         myTex = myTexCard.findAllTextures()[0]
-        card.remove_node()
+        card.removeNode()
         del card
         self.minLvl = EconomyGlobals.getItemMinLevel(item)
         self.miscText = None
-        self.picture = DirectFrame(parent = self, relief = None, state = DGG.DISABLED, image = myTex, image_scale = 0.0598, pos = (0.085, 0, 0.074))
+        self.picture = DirectFrame(parent = self, relief = None, state = DGG.DISABLED, image = myTex, image_scale = (0.070000000000000007, 1.0, 0.059999999999999998))
+        self.picture.setPos(0.10000000000000001, 0, 0.080000000000000002)
         self.picture.setTransparency(1)
-        self.nameTag = DirectLabel(parent = self, state = DGG.DISABLED, relief = None, text = name, text_scale = PiratesGuiGlobals.TextScaleMed * PLocalizer.getHeadingScale(2), text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, pos = (0.16, 0, 0.105), textMayChange = 0)
-        self.costText = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, geom = self.coinImage, geom_scale = 0.12, geom_pos = Vec3(-0.01, 0, 0.01), text = str(self.price), text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ARight, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, text_pos = (-0.0299, 0, 0), pos = (self.width - 0.035000, 0, 0.105), text_font = PiratesGlobals.getInterfaceFont())
+        self.nameTag = DirectLabel(parent = self, state = DGG.DISABLED, relief = None, text = name, text_scale = PiratesGuiGlobals.TextScaleMed * PLocalizer.getHeadingScale(2), text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 0)
+        self.nameTag.setPos(0.20000000000000001, 0, 0.10000000000000001)
+        self.costText = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, geom = self.coinImage, geom_scale = 0.12, geom_pos = Vec3(-0.01, 0, 0.01), text = str(self.price), text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ARight, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, text_pos = (-0.029999999999999999, 0, 0), text_font = PiratesGlobals.getInterfaceFont())
+        self.costText.setPos(0.47999999999999998, 0, 0.040000000000000001)
 
-
+    
     def showDetails(self, event):
         pass
 
-
+    
     def hideDetails(self, event):
         pass
 
-
+    
     def createHelpbox(self, args = None):
         pass
 
-
+    
     def checkLevel(self, repId, minLvl):
         inv = localAvatar.getInventory()
         if inv:
             repAmt = inv.getAccumulator(repId)
             if minLvl > ReputationGlobals.getLevelFromTotalReputation(repId, repAmt)[0]:
                 if not self.miscText:
-                    self.miscText = DirectLabel(parent = self, relief = None, text = '', text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.16, 0, 0.0250))
-
+                    self.miscText = DirectLabel(parent = self, relief = None, text = '', text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.16, 0, 0.025000000000000001))
+                
                 self['image_color'] = Vec4(1, 0.5, 0.25, 1)
                 self['state'] = DGG.DISABLED
                 self.miscText['text_fg'] = PiratesGuiGlobals.TextFG8

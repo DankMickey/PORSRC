@@ -12,6 +12,7 @@ ERROR_ID_GOOD = 0
 ERROR_ID_BAD = 1
 ERROR_ID_OVERFLOW = 2
 ERROR_ID_TIMEOUT = 3
+TIMEOUT_DURATION = 10
 CODE_TYPES = {
     0: 'Never Expire',
     1: 'Expire on Redeem',
@@ -70,7 +71,7 @@ AWARD_ID = {
         NORMAL_INVENTORY,
         InvItem((InventoryType.ItemTypeMoney, 0)),
         None,
-        None,
+        200,
         PLocalizer.CodeRedemptionGold],
     AwardTypes.FREE_HAT: [
         CLOTHING,
@@ -208,7 +209,7 @@ AWARD_ID = {
         NORMAL_INVENTORY,
         InvItem((InventoryType.AmmoFury, 0)),
         None,
-        None,
+        1,
         PLocalizer.CodeRedemptionAmmoFury],
     AwardTypes.LOST_BLADE_OF_LEVIATHAN: [
         NORMAL_INVENTORY,
@@ -270,3 +271,19 @@ AWARD_ID = {
         None,
         1,
         PLocalizer.CodeRedemptionSummonDog] }
+
+def getAwardFromCode(code):
+    for award in AWARD_ID:
+        award = AWARD_ID.get(award)
+        codeword = award[4].lower()
+        if codeword == code.lower():
+            return award
+    return None
+
+def getAwardIdFromCode(code):
+    for award in AWARD_ID:
+        data = AWARD_ID.get(award)
+        codeword = award[4].lower()
+        if codeword == code.lower():   
+            return award
+    return -1
