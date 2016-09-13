@@ -13,7 +13,7 @@ except:
 def getLanguage():
     return language
 
-print 'PLocalizer: Running in language: %s' % language
+print ':PLocalizer: Running in language: %s' % language
 
 from pirates.piratesbase.PLocalizerEnglish import *
 from pirates.piratesbase.PQuestStringsEnglish import *
