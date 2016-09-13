@@ -14,7 +14,7 @@ git clone https://github.com/pearson1919/Pirates-Online-Retribution.git por
 cd por
 mkdir resources
 cd resources
-git https://github.com/pearson1919/Resources.git .
+git clone https://github.com/pearson1919/Resources.git .
 ````
 
 ### Production
