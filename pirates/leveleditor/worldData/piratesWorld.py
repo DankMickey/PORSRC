@@ -789,6 +789,30 @@ objectStruct = {
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
                         'Model': 'models/islands/pir_m_are_isl_delFuego' } },
+                '1264623757.79caoconno': {
+                    'Type': 'Island',
+                    'Name': 'Mysterious Isle',
+                    'File': 'mysterious_island',
+                    'Hpr': VBase3(-180.0, 0.0, 0.0),
+                    'Minimap': False,
+                    'Objects': {
+                        '1158214327.11sdnaik': {
+                            'Type': 'LOD Sphere',
+                            'Hpr': Point3(0.0, 0.0, 0.0),
+                            'Pos': Point3(-166.29400000000001, -732.31299999999999, 210.85300000000001),
+                            'Radi': [
+                                2700.0,
+                                3200.0,
+                                6000.0],
+                            'Scale': VBase3(1.0, 1.0, 1.0),
+                            'VisSize': '' } },
+                    'Phase': 1,
+                    'Pos': Point3(-30670.057, 25398.319, 0.0),
+                    'Scale': VBase3(1.0, 1.0, 1.0),
+                    'Undockable': True,
+                    'VisSize': '',
+                    'Visual': {
+                        'Model': 'models/islands/pir_m_are_isl_mysterious_04' } },
                 '1264194816.0kanpatel': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
@@ -2178,6 +2202,7 @@ objectStruct = {
     'ObjectIds': {
         '1141410776.53sdnaik': '["Objects"]["1141410776.53sdnaik"]',
         '1142029069.97sdnaik': '["Objects"]["1141410776.53sdnaik"]["Objects"]["1233100928.0akelts"]["Objects"]["1142029069.97sdnaik"]',
+        '1264623757.79caoconno': '["Objects"]["1141410776.53sdnaik"]["Objects"]["1264623757.79caoconno"]',
         '1150922126.8dzlu': '["Objects"]["1141410776.53sdnaik"]["Objects"]["1150922126.8dzlu"]',
         '1156207188.95dzlu': '["Objects"]["1141410776.53sdnaik"]["Objects"]["1156207188.95dzlu"]',
         '1156359855.24bbathen': '["Objects"]["1141410776.53sdnaik"]["Objects"]["1156359855.24bbathen"]',
