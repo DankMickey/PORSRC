@@ -119,16 +119,18 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
     def getUndockable(self):
         return self.undockable
 
-    # Todo
-    def setPortCollisionSpheres(self, todo0):
-        pass
+    def setPortCollisionSpheres(self, spheres):
+        self.portCollisionSpheres = spheres
 
-    def d_setPortCollisionSpheres(self, todo0):
-        pass
+    def d_setPortCollisionSpheres(self, spheres):
+        self.sendUpdate('setPortCollisionSpheres', [spheres])
 
-    def b_setPortCollisionSpheres(self, todo0):
-        pass
-    # End todo
+    def b_setPortCollisionSpheres(self, spheres):
+        self.setPortCollisionSpheres(spheres)
+        self.d_setPortCollisionSpheres(spheres)
+
+    def getPortCollisionSpheres(self):
+        return self.portCollisionSpheres
 
     def getPortCollisionSpheres(self):
         return self.portCollisionSpheres

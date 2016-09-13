@@ -14,6 +14,11 @@ MUSIC_MAIN = 0
 MUSIC_ALT = 1
 MUSIC_COMBAT = 2
 MUSIC_NONE = 'Not Found'
+
+AMBIENT_DAY = 0
+AMBIENT_NIGHT = 1
+AMBIENT_NONE = 'Not Found'
+
 MUSIC_CANGREJOS = 'music_cangrejos.%s' % AUDIO_EXTENSION
 MUSIC_CANGREJOS_ALT = 'music_cangrejos_alt.%s' % AUDIO_EXTENSION
 MUSIC_CANGREJOS_COMBAT = 'music_cangrejos_combat.%s' % AUDIO_EXTENSION
@@ -59,6 +64,9 @@ MUSIC_SWAMP = 'music_creepy_c.%s' % AUDIO_EXTENSION
 MUSIC_SAILING_A = 'music_sailing_a.%s' % AUDIO_EXTENSION
 MUSIC_SAILING_B = 'music_sailing_b.%s' % AUDIO_EXTENSION
 MUSIC_SAILING_C = 'music_sailing_c.%s' % AUDIO_EXTENSION
+MUSIC_SAILING_D = 'music_sailing_d.%s' % AUDIO_EXTENSION
+MUSIC_SAILING_E = 'music_sailing_e.%s' % AUDIO_EXTENSION
+MUSIC_SHIP_COMBAT = 'music_highseas_combat.%s' % AUDIO_EXTENSION
 MUSIC_SHIP_ENSNARED = 'music_wheel_08.%s' % AUDIO_EXTENSION
 MUSIC_KRAKEN_SINK = 'music_kraken_sink_ship.%s' % AUDIO_EXTENSION
 MUSIC_COMBAT_A = 'music_combat_a.%s' % AUDIO_EXTENSION
@@ -81,10 +89,23 @@ MUSIC_RAVENS_COVE_TOWN_BATTLE = 'music_battle_town.%s' % AUDIO_EXTENSION
 MUSIC_RAVENS_COVE_CAVE_BATTLE = 'music_battle_caves.%s' % AUDIO_EXTENSION
 MUSIC_AVATAR_CHOOSER = 'will_and_elizabeth.%s' % AUDIO_EXTENSION
 MUSIC_MAKE_A_PIRATE = 'music_jack_01.%s' % AUDIO_EXTENSION
+MUSIC_JACK_02 = 'music_jack_02.%s' % AUDIO_EXTENSION
+MUSIC_JACK_03 = 'music_jack_03.%s' % AUDIO_EXTENSION
+MUSIC_JACK_04 = 'music_jack_04.%s' % AUDIO_EXTENSION
+MUSIC_JACK_05 = 'music_jack_05.%s' % AUDIO_EXTENSION
+MUSIC_JACK_06 = 'music_jack_06.%s' % AUDIO_EXTENSION
+MUSIC_JACK_07 = 'music_jack_07.%s' % AUDIO_EXTENSION
+MUSIC_WHEEL_01 = 'music_wheel_01.%s' % AUDIO_EXTENSION
+MUSIC_WHEEL_04 = 'music_wheel_04.%s' % AUDIO_EXTENSION
+MUSIC_WHEEL_05 = 'music_wheel_05.%s' % AUDIO_EXTENSION
+MUSIC_WHEEL_06 = 'music_wheel_06.%s' % AUDIO_EXTENSION
+MUSIC_WHEEL_07 = 'music_wheel_07.%s' % AUDIO_EXTENSION
+MUSIC_WHEEL_09 = 'music_wheel_09.%s' % AUDIO_EXTENSION
+MUSIC_VICTORY = 'music_wheel_02.%s' % AUDIO_EXTENSION
 MUSIC_SEARCHING = 'music_wheel_03.%s' % AUDIO_EXTENSION
 MUSIC_DEATH = 'music_wheel_08_short.%s' % AUDIO_EXTENSION
-MUSIC_VICTORY = 'music_wheel_02.%s' % AUDIO_EXTENSION
 MUSIC_AMBUSH = 'music_wheel_10.%s' % AUDIO_EXTENSION
+MUSIC_WHEEL_13 = 'music_wheel_13.%s' % AUDIO_EXTENSION
 MUSIC_FINAL_BATTLE = 'music_final_battle.%s' % AUDIO_EXTENSION
 MUSIC_FIREWORKS = 'music_fireworks.%s' % AUDIO_EXTENSION
 MUSIC_REWARD_WEAPON = 'music_wheel_11.%s' % AUDIO_EXTENSION
@@ -105,6 +126,11 @@ AMBIENT_WAVES = 'sfx_ocean_shore.%s' % AUDIO_EXTENSION
 AMBIENT_CROW = 'sfx_crow_caw.%s' % AUDIO_EXTENSION
 AMBIENT_BIRDS = 'sfx_bird_wings.%s' % AUDIO_EXTENSION
 AMBIENT_WIND = 'sfx_ocean_wind.%s' % AUDIO_EXTENSION
+AMBIENCE_PORT_ROYAL = 'sfx_town_ambience_port_royal.%s' % AUDIO_EXTENSION
+AMBIENCE_PORT_ROYAL_NIGHT = 'sfx_town_ambience_port_royal_night.%s' % AUDIO_EXTENSION
+AMBIENCE_FORT = 'sfx_fort_ambience.%s' % AUDIO_EXTENSION
+AMBIENCE_TAVERN_INTERIOR = 'sfx_town_tavern_int.%s' % AUDIO_EXTENSION
+AMBIENCE_TAVERN_EXTERIOR = 'sfx_town_tavern_ext.%s' % AUDIO_EXTENSION
 CS_1_1_A_JS = 'cs_tut_1_1_a_js.%s' % AUDIO_EXTENSION
 CS_1_1_B_JS = 'cs_tut_1_1_b_js.%s' % AUDIO_EXTENSION
 CS_1_1_5_A_DAN = 'cs_tut_1_1_5_a_dan.%s' % AUDIO_EXTENSION
@@ -149,6 +175,13 @@ JSD_HAIR_01 = 'jsd_hair_lot.%s' % AUDIO_EXTENSION
 JSD_HAIR_02 = 'jsd_hair_mop.%s' % AUDIO_EXTENSION
 JSD_HAT_01 = 'jsd_hat_good.%s' % AUDIO_EXTENSION
 JSD_PANT_01 = 'jsd_pant_good.%s' % AUDIO_EXTENSION
+JSD_NAME_ANYTIME_01 = 'jsd_name_anytime.%s' % AUDIO_EXTENSION
+JSD_NAME_F_INTRO_01 = 'jsd_name_f_intro.%s' % AUDIO_EXTENSION
+JSD_NAME_LONG_01 = 'jsd_name_long_1.%s' % AUDIO_EXTENSION
+JSD_NAME_LONG_02 = 'jsd_name_long_2.%s' % AUDIO_EXTENSION
+JSD_NAME_LONG_03 = 'jsd_name_long_3.%s' % AUDIO_EXTENSION
+JSD_NAME_SHORT_01 = 'jsd_name_short_1.%s' % AUDIO_EXTENSION
+JSD_NAME_SHORT_02 = 'jsd_name_short_2.%s' % AUDIO_EXTENSION
 JSD_SHOE_BARB = 'jsd_shoe_barbossa.%s' % AUDIO_EXTENSION
 JSD_SHOE_01 = 'jsd_shoe_good.%s' % AUDIO_EXTENSION
 WTD_CODE = 'dialog/will_turner_7.2.b.%s' % AUDIO_EXTENSION
@@ -812,6 +845,10 @@ Music2IslandDict = {
         MUSIC_MAIN: MUSIC_PORT_ROYAL,
         MUSIC_ALT: MUSIC_PORT_ROYAL_ALT,
         MUSIC_COMBAT: MUSIC_PORT_ROYAL_COMBAT },
+    LocationIds.FORT_CHARLES: {
+        MUSIC_MAIN: MUSIC_PORT_ROYAL,
+        MUSIC_ALT: MUSIC_PORT_ROYAL_ALT,
+        MUSIC_COMBAT: MUSIC_PORT_ROYAL_COMBAT },
     LocationIds.TORTUGA_ISLAND: {
         MUSIC_MAIN: MUSIC_TORTUGA,
         MUSIC_ALT: MUSIC_TORTUGA_ALT,
@@ -896,6 +933,7 @@ def getCombatMusic(locationId):
     return random.choice([MUSIC_COMBAT_A ,MUSIC_COMBAT_B, MUSIC_COMBAT_C])
 
 def getAmbientFromStr(str):
+
     if not str:
         return None
     if 'jungle' in str:
@@ -912,6 +950,33 @@ def getAmbientFromStr(str):
         return AMBIENT_SHANTY
     elif 'jail_interior' in str:
         return AMBIENT_JAIL
+
+Ambient2IslandDict = {
+	LocationIds.PORT_ROYAL_ISLAND: {
+		AMBIENT_DAY: AMBIENCE_PORT_ROYAL,
+		AMBIENT_NIGHT: AMBIENCE_PORT_ROYAL_NIGHT
+	},
+	LocationIds.KINGSHEAD_ISLAND: {
+		AMBIENT_DAY: AMBIENCE_FORT
+	},
+	LocationIds.FORT_CHARLES: {
+		AMBIENT_DAY: AMBIENCE_FORT
+	},
+	LocationIds.ROWDYROOSTER_TAVERN: {
+		AMBIENT_DAY: AMBIENCE_TAVERN_INTERIOR
+	},
+    LocationIds.ROYALANCHOR_TAVERN: {
+		AMBIENT_DAY: AMBIENCE_TAVERN_INTERIOR
+    }
+}
+
+def getIslandAmbient(locationId, night=False):
+	if locationId in Ambient2IslandDict:
+		if not night or not AMBIENT_NIGHT in Ambient2IslandDict[locationId]:
+			return Ambient2IslandDict[locationId][AMBIENT_DAY]
+		else:
+			return Ambient2IslandDict[locationId][AMBIENT_NIGHT]
+	return None
 
 SongItem2MusicLabel = {
     UberDogGlobals.InventoryType.Song_1: MUSIC_DRIFTWOOD,

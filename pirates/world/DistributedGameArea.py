@@ -375,6 +375,10 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
 
                 base.musicMgr.request(music, priority = 0, volume = 0.6)
 
+            def changeAmbient(ambient, pri):
+                base.ambientMgr.silence()
+                base.ambientMgr.requestFadeIn(ambient, finalVolume=PiratesGlobals.DEFAULT_AMBIENT_VOLUME, modifier=True)
+
             mainMusic = SoundGlobals.getMainMusic(self.uniqueId)
             altMusic = SoundGlobals.getAltMusic(self.uniqueId)
             if mainMusic and altMusic:
@@ -391,6 +395,23 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
             elif altMusic:
                 base.musicMgr.requestCurMusicFadeOut(removeFromPlaylist = True)
                 base.musicMgr.request(altMusic, volume = 0.6)
+
+            if config.GetBool('want-new-ambients', False):
+                ambientDay = SoundGlobals.getIslandAmbient(self.uniqueId, False)
+                ambientNight = SoundGlobals.getIslandAmbient(self.uniqueId, True)
+
+                if ambientDay and ambientNight:
+                    base.ambientMgr.silence()
+                    todMgr = base.cr.timeOfDayManager
+                    todMgr.addTimeOfDayToggle('Day-Night Area Ambient', 6.0, 20.0, changeAmbient, [
+                        ambientDay,
+                        0], changeAmbient, [
+                        ambientNight,
+                        0])                    
+                elif ambientDay:
+                    base.ambientMgr.silence()
+                    base.ambientMgr.requestFadeIn(ambientDay, finalVolume=PiratesGlobals.DEFAULT_AMBIENT_VOLUME, modifier=True)
+
 
         self.builder.initEffects()
 
