@@ -561,6 +561,13 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
         self.jsd_pant_good = loadSfx(SoundGlobals.JSD_PANT_01)
         self.jsd_shoe_barbossa = loadSfx(SoundGlobals.JSD_SHOE_BARB)
         self.jsd_shoe_good = loadSfx(SoundGlobals.JSD_SHOE_01)
+        self.jsd_name_anytime_1 = loadSfx(SoundGlobals.JSD_NAME_ANYTIME_01)
+        self.jsd_name_f_intro_1 = loadSfx(SoundGlobals.JSD_NAME_F_INTRO_01)
+        self.jsd_name_long_1 = loadSfx(SoundGlobals.JSD_NAME_LONG_01)
+        self.jsd_name_long_2 = loadSfx(SoundGlobals.JSD_NAME_LONG_02)
+        self.jsd_name_long_3 = loadSfx(SoundGlobals.JSD_NAME_LONG_03)
+        self.jsd_name_short_1 = loadSfx(SoundGlobals.JSD_NAME_SHORT_01)
+        self.jsd_name_short_2 = loadSfx(SoundGlobals.JSD_NAME_SHORT_02)        
         self.lastDialog = None
 
 
@@ -652,6 +659,34 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
                 'SHOE': [
                     self.jsd_shoe_barbossa,
                     self.jsd_shoe_good] } }
+        self.JSD_NAMING = {
+            'm': {
+                'INTRO': [
+                    None],
+                'LONG': [
+                    self.jsd_name_long_1,
+                    self.jsd_name_long_2,
+                    self.jsd_name_long_3
+                ],
+                'SHORT': [
+                    self.jsd_name_short_1,
+                    self.jsd_name_short_2
+                ]
+            },
+            'f': {
+                'INTRO': [
+                    self.jsd_name_f_intro_1],
+                'LONG': [
+                    self.jsd_name_long_1,
+                    self.jsd_name_long_2,
+                    self.jsd_name_long_3
+                ],
+                'SHORT': [
+                    self.jsd_name_short_1,
+                    self.jsd_name_short_2
+                ]
+            },
+        }
 
 
     def setupCamera(self, character):
@@ -2554,7 +2589,31 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
             self.lastDialog = dialog
             self.JSD_CLOTHING[self.pirate.gender][clothesType].remove(dialog)
 
+    def playJackDialogOnName(self, nameType='LONG'):
+        if self.inRandomAll:
+            return None
 
+        choice = random.choice(range(12))
+        if choice != 0:
+            return None
+
+        if not config.GetBool('want-naming-dialog', False):
+            return None
+
+        try:
+            optionsLeft = len(self.JSD_NAMING[self.pirate.gender][nameType])
+            if optionsLeft:
+                if self.lastDialog:
+                    if self.lastDialog.status() == AudioSound.PLAYING:
+                        return None
+
+                choice = random.choice(range(0, optionsLeft))
+                dialog = self.JSD_NAMING[self.pirate.gender][nameType][choice]
+                base.playSfx(dialog)
+                self.lastDialog = dialog
+                self.JSD_NAMING[self.pirate.gender][nameType].remove(dialog)     
+        except:
+            pass           
 
     def refreshAnim(self, needToRefresh = True):
         if needToRefresh:
