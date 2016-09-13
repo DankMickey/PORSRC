@@ -6,6 +6,15 @@ This repository is the source code for Pirates Online Retribution.
 
 * Only push game code to this repository.
 * *Never* force a git push.
+* 
+
+
+````
+git clone https://github.com/pearson1919/Pirates-Online-Retribution.git por
+cd por
+mkdir resources
+git https://github.com/pearson1919/Resources.git resources
+````
 
 ### Production
 
