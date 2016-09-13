@@ -5,6 +5,13 @@ from direct.directnotify import DirectNotifyGlobal
 from direct.distributed.ClockDelta import globalClockDelta
 from direct.interval.IntervalGlobal import *
 from pirates.ai import HolidayGlobals
+from pirates.effects.RainMist import RainMist
+from pirates.effects.RainDrops import RainDrops
+from pirates.effects.RainSplashes import RainSplashes
+from pirates.effects.RainSplashes2 import RainSplashes2
+from pirates.effects.DarkWaterFog import DarkWaterFog
+from pirates.effects.StormEye import StormEye
+from pirates.effects.StormRing import StormRing
 from pirates.piratesbase import AvatarShadowCaster
 from pirates.piratesbase import PiratesGlobals
 from pirates.piratesbase import TODGlobals
@@ -16,6 +23,11 @@ import random
 
 class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
     notify = directNotify.newCategory('TimeOfDayManager')
+
+    HEAVYCLOUDS = 3
+    MEDIUMCLOUDS = 2
+    LIGHTCLOUDS = 1
+    NOCLOUDS = 0
 
     def __init__(self):
         FSM.FSM.__init__(self, 'TimeOfDayManager')
@@ -66,9 +78,18 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
         if config.GetBool('want-soft-tod-changes', 0):
             self.softTOD = 1
 
-        if config.GetBool('advanced-weather', 1):
-            pass
-        1
+        self.advancedWeather = config.GetBool('advanced-weather', 1)
+        if self.advancedWeather:
+            self.fixedWeather = False
+            self.weatherState = 0
+            self.rainDrops = None
+            self.rainMist = None
+            self.rainSplashes = None
+            self.rainSplashes2 = None
+            self.stormEye = None
+            self.stormRing = None
+            self.groundFog = None            
+
         self.skyGroup = SkyGroup.SkyGroup()
         self.skyGroup.reparentTo(camera)
         self.fixedSky = False
@@ -166,6 +187,35 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
 
         del self.moonJollyIval
 
+        if self.advancedWeather:
+            self.ignore('WeatherChanged')
+            if self.groundFog:
+                self.groundFog.destroy()
+            del self.groundFog
+
+            if self.rainDrops:
+                self.rainDrops.stopLoop()
+            del self.rainDrops
+
+            if self.rainSplashes:
+                self.rainSplashes.stopLoop()
+            del self.rainSplashes
+
+            if self.rainSplashes2:
+                self.rainSplashes2.stopLoop()
+            del self.rainSplashes2
+
+            if self.rainMist:
+                self.rainMist.stopLoop()
+            del self.rainMist
+
+            if self.stormEye:
+                self.stormEye.stopLoop()
+            del self.stormEye
+
+            if self.stormRing:
+                self.stormRing.stopLoop()
+            del self.stormRing
 
     def delete(self):
         render.clearLight(self.alight)
@@ -698,6 +748,9 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
         if self.avatarShadowCaster:
             self.avatarShadowCaster.setLightSrc(self.dlight)
 
+    def setCloudsType(self, cloudType):
+        self.skyGroup.transitionClouds(cloudType).start()
+
     def setSkyType(self, skyType):
         if skyType == TODGlobals.SKY_OFF:
             self.showSky = 0
@@ -1139,6 +1192,9 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
         self.notify.debug('enterIndoors')
         self.currentState = PiratesGlobals.TOD_CUSTOM
         self.fixedSky = True
+        if self.advancedWeather:
+            self.fixedWeather = True
+            self.handleWeatherChanged(0)
         self._prepareState(self.currentState)
         sunDir = TODGlobals.getTodEnvSetting(self.currentState, self.environment, 'Direction')
         self.skyGroup.setSunTrueAngle(sunDir)
@@ -1197,6 +1253,9 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
     def exitIndoors(self):
         self.notify.debug('exitIndoors')
         self.fixedSky = False
+        if self.advancedWeather:
+            self.fixedWeather = False
+            self.handleWeatherChanged(self.weatherState)
         base.positionFarCull()
 
 
@@ -1458,6 +1517,21 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
     def getFogColor(self):
         return self.fogColor
 
+    def setDarkFog(self, state, parent=None):
+        if not self.advancedWeather:
+            return
+        if not parent:
+            parent = base.localAvatar
+        if state:
+            if self.groundFog is None:
+                self.groundFog = DarkWaterFog()
+                self.groundFog.reparentTo(parent)
+                self.groundFog.startLoop()
+        else:
+            if self.groundFog:
+                self.groundFog.stopLoop()
+                self.groundFog.destroy()
+                self.groundFog = None
 
     def setFogMask(self, fogMask):
         self.fogMask = fogMask
@@ -1512,7 +1586,6 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
 
 
     def restoreLinearFog(self):
-        return None
         if self.currFogOnset == self.defaultFogOnset and self.currFogPeak == self.defaultFogPeak:
             return None
 
@@ -1535,6 +1608,69 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
         self.lerpFogIval = LerpFunctionInterval(setLinearFog, duration = lerpTime, fromData = 0.0, toData = 1.0, name = 'LerpFogIval')
         self.lerpFogIval.start()
 
+
+    def setStormState(self, state):
+        if not self.advancedWeather:
+            return
+        if state:
+            self.setCloudsType(self.STORMCLOUDS)
+            if self.stormEye is None:
+                self.stormEye = StormEye()
+                self.stormEye.reparentTo(render)
+                self.stormEye.startLoop()
+
+                self.stormRing = StormRing()
+                self.stormRing.reparentTo(render)
+                self.stormRing.setZ(100)
+                self.stormRing.startLoop()
+        else:
+            self.setCloudsType(self.STORMCLOUDS)
+            if self.stormEye:
+                self.stormEye.stopLoop()
+                self.stormRing.stopLoop()
+
+                self.stormEye.destroy()
+                self.stormRing.destroy()
+
+                self.stormEye = None
+                self.stormRing = None
+
+    def setRainState(self, state):
+        if not self.advancedWeather:
+            return
+        if state:
+            if self.rainDrops is None:
+                self.rainDrops = RainDrops(base.camera)
+                self.rainDrops.reparentTo(render)
+                self.rainDrops.startLoop()
+
+                self.rainMist = RainMist(base.camera)
+                self.rainMist.reparentTo(render)
+                self.rainMist.startLoop()
+
+                self.rainSplashes = RainSplashes(base.camera)
+                self.rainSplashes.reparentTo(render)
+                self.rainSplashes.startLoop()
+
+                self.rainSplashes2 = RainSplashes2(base.camera)
+                self.rainSplashes2.reparentTo(render)
+                self.rainSplashes2.startLoop()
+        else: 
+            if self.rainDrops:
+                self.rainDrops.stopLoop()
+                self.rainMist.stopLoop()
+                self.rainSplashes.stopLoop()
+                self.rainSplashes2.stopLoop()
+
+                self.rainDrops.destroy()
+                self.rainMist.destroy()
+                self.rainSplashes.destroy()
+                self.rainSplashes2.destroy()
+
+                self.rainDrops = None
+                self.rainMist = None
+                self.rainSplashes = None
+                self.rainSplashes2 = None   
 
     def getEnviroDictString(self, environment = None, tabs = 0, heading = 'SettingsDict ='):
         if environment == None:

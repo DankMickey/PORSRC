@@ -1677,7 +1677,7 @@ ShipClassNames = {
     ShipGlobals.HUNTER_TALLYHO: 'Tally-ho',
     ShipGlobals.HUNTER_BATTLEROYALE: 'Battle-Royale',
     ShipGlobals.HUNTER_EN_GARDE: 'En-Garde',
-    ShipGlobals.EL_PATRONS_SHIP: 'El Patrons Ship', #TODO: Change name to something unique?
+    ShipGlobals.EL_PATRONS_SHIP: 'Carrack',
     ShipGlobals.P_SKEL_PHANTOM: 'Phantom',
     ShipGlobals.P_SKEL_REVENANT: 'Revenant',
     ShipGlobals.P_SKEL_CEREBUS: 'Cerberus',
@@ -1754,6 +1754,13 @@ WeaponTypeNames = {
 InventoryTypeNames = {
     InventoryType.GoldInPocket: 'Gold in Pocket',
     InventoryType.GoldWagered: 'Gold Wagered',
+    InventoryType.PineInPocket: 'Pine',
+    InventoryType.OakInPocket: 'Oak',
+    InventoryType.IronInPocket: 'Iron',
+    InventoryType.SteelInPocket: 'Steel',
+    InventoryType.SilkInPocket: 'Silk',
+    InventoryType.CanvasInPocket: 'Canvas',
+    InventoryType.GrogInPocket: 'Grog',
     InventoryType.NewPlayerToken: 'New Player Token',
     InventoryType.ItemTypeWeapon: 'Weapon',
     InventoryType.ItemTypeClothing: 'Clothing',
@@ -1864,6 +1871,9 @@ InventoryTypeNames = {
     InventoryType.StaffEnchant1: 'Staff Enchant I',
     InventoryType.StaffEnchant2: 'Staff Enchant II',
     InventoryType.SummonChicken: 'Summon Chicken',
+    InventoryType.SummonMonkey: 'Summon Monkey',
+    InventoryType.SummonWasp: 'Summon Wasp',
+    InventoryType.SummonDog: 'Summon Dog',
     InventoryType.RemoveGroggy: "Clap o'Thunder",
     InventoryType.ShipRepairKit: 'Ship Repair Kit',
     InventoryType.PorkChunk: 'Roast Pork',
@@ -2319,6 +2329,9 @@ InventoryTypeNames = {
     ItemId.WARSHIP_L1: ShipClassNames.get(ShipGlobals.WARSHIPL1),
     ItemId.WARSHIP_L2: ShipClassNames.get(ShipGlobals.WARSHIPL2),
     ItemId.WARSHIP_L3: ShipClassNames.get(ShipGlobals.WARSHIPL3),
+    ItemId.BRIG_L1: ShipClassNames.get(ShipGlobals.BRIGL1),
+    ItemId.BRIG_L2: ShipClassNames.get(ShipGlobals.BRIGL2),
+    ItemId.BRIG_L3: ShipClassNames.get(ShipGlobals.BRIGL3),
     ItemId.QUEEN_ANNES_REVENGE: ShipClassNames.get(ShipGlobals.QUEEN_ANNES_REVENGE),
     ItemId.HUNTER_VENGENCE: ShipClassNames.get(ShipGlobals.HUNTER_VENGENCE),
     ItemId.HUNTER_TALLYHO: ShipClassNames.get(ShipGlobals.HUNTER_TALLYHO),
@@ -2377,7 +2390,7 @@ InventoryTypeNames = {
     ItemId.SKEL_BLOOD_SCOURGE_SP: ShipClassNames.get(ShipGlobals.SKEL_BLOOD_SCOURGE_SP),
     ItemId.WHEAT: 'Wheat',
     ItemId.COTTON: 'Cotton',
-    ItemId.RUM: 'Grog',
+    ItemId.RUM: 'Medicine',
     ItemId.IRON_ORE: 'Iron Ore',
     ItemId.IVORY: 'Ivory',
     ItemId.SILK: 'Silk',
@@ -10237,6 +10250,7 @@ FleetHolidayMsgs = {
 from pirates.holiday.KrakenHolidayGlobals import Msgs as KHMsgs
 KrakenHolidayMsgs = {
     KHMsgs.Launch: [
+        'The Caribbean seas have turned a strange green color. Legend tells us that is an omen, that a large sea creature is headed toward these waters.',
         'Let no joyful voice be heard! Let no man look up to the sky with hope! And let this day be cursed by we who ready to wake... the Kraken!',
         'RAWR! is Kraken for I love you...',
         'Every day and in every way, Kraken is getting better and better...'],
@@ -10811,6 +10825,7 @@ CodeRedemptionGood = 'Code Redeemed'
 CodeRedemptionTimeout = 'Code Redemption Failed. Did not get response from server, try again later'
 CodeRedemptionBad = 'Code Redemption Failed. Perhaps the code was mistyped or already used'
 CodeRedemptionFull = 'Code Redemption Failed. Free up an appropriate inventory spot and try again'
+CodeRedemptionDisabled = 'Code Redemption is currently disabled for bug fixes, Keep an eye out for its return!'
 CodeRedemptionGold = MoneyName
 CodeRedemptionFreeHat = 'Free Hat Week Hat'
 CodeRedemptionKrakenTattoo = 'Octopus Tattoo - Call of the Kraken Exclusive'
