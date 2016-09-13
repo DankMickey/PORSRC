@@ -22,7 +22,7 @@ if sys.platform == 'darwin':
 else:
     quality = 256
 
-print 'PiratesStart: Starting the game.'
+print ':PiratesStart: Starting the game.'
 import __builtin__
 
 from pirates.launcher.PiratesLauncher import PiratesLauncher
@@ -63,9 +63,9 @@ from pirates.seapatch.Reflection import Reflection
 Reflection.initialize(render)
 serverVersion = config.GetString('server-version', 'no_version_set')
 
-if base.config.GetBool("want-improved-graphics", True):
+if base.config.GetBool("want-improved-graphics", False):
+    print ":PiratesStart: Enabling testing improved graphics..."
     from panda3d.core import *
-    print ":PiratesStart: Enabling improved graphics..."
     render.setAntialias(AntialiasAttrib.MMultisample)
 
 from pirates.distributed import PiratesClientRepository
