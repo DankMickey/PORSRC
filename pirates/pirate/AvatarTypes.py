@@ -548,7 +548,11 @@ NPC_SPAWNABLES = {
     'Raven': [
         lambda p0 = Raven: typePassthrough(p0)],
     'Dog': [
-        lambda p0 = Dog: typePassthrough(p0)],}
+        lambda p0 = Dog: typePassthrough(p0)],
+    'Seagull': [
+        lambda p0 = Seagull: typePassthrough(p0)],
+    'Dolphin': [
+        lambda p0 = Dolphin: typePassthrough(p0)]}
 NPC_SPAWNABLES_KEYS = [
     'Skel T0',
     'Skel T1',
