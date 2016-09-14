@@ -2,14 +2,18 @@ from panda3d.core import Character
 from direct.directnotify import DirectNotifyGlobal
 
 from pirates.npc.DistributedNPCTownfolkAI import DistributedNPCTownfolkAI
+from pirates.npc.DistributedNPCTownfolkAI import DistributedNPCTownfolkAI
+from pirates.npc.DistributedNPCSkeletonAI import DistributedNPCSkeletonAI
+from pirates.npc.DistributedNPCNavySailorAI import DistributedNPCNavySailorAI
+from pirates.npc.DistributedKillerGhostAI import DistributedKillerGhostAI
+from pirates.npc.DistributedBountyHunterAI import DistributedBountyHunterAI
+from pirates.npc.DistributedVoodooZombieAI import DistributedVoodooZombieAI
+from pirates.npc.DistributedGhostAI import DistributedGhostAI
 
 from pirates.battle.DistributedBattleNPCAI import *
 from pirates.creature.DistributedCreatureAI import *
 from pirates.creature.DistributedAnimalAI import *
 from pirates.creature.DistributedRavenAI import *
-from pirates.npc.DistributedNPCNavySailorAI import *
-from pirates.npc.DistributedBountyHunterAI import *
-from pirates.npc.DistributedNPCSkeletonAI import *
 
 import random, os
 
@@ -34,13 +38,20 @@ for creature in (AvatarTypes.Crab, AvatarTypes.RockCrab, AvatarTypes.StoneCrab,
                  AvatarTypes.Mire, AvatarTypes.MireKnife, AvatarTypes.Muck, AvatarTypes.MuckCutlass, AvatarTypes.Corpse,
                  AvatarTypes.CorpseCutlass, AvatarTypes.Carrion, AvatarTypes.CarrionKnife, AvatarTypes.Cadaver,
                  AvatarTypes.CadaverCutlass, AvatarTypes.Zombie, AvatarTypes.CaptMudmoss, AvatarTypes.Mossman,
-                 AvatarTypes.Drip):
+                 AvatarTypes.Drip, AvatarTypes.RageGhost, AvatarTypes.Revenant, AvatarTypes.MutineerGhost, AvatarTypes.DeviousGhost,
+                 AvatarTypes.TraitorGhost, AvatarTypes.CrewGhost, AvatarTypes.LeaderGhost, AvatarTypes.Rogue, AvatarTypes.Stalker,
+                 AvatarTypes.Cutthroat, AvatarTypes.Executioner, AvatarTypes.Professional, AvatarTypes.PettyHunter, AvatarTypes.BailHunter,
+                 AvatarTypes.ScallyWagHunter, AvatarTypes.BanditHunter, AvatarTypes.PirateHunter, AvatarTypes.WitchHunter, AvatarTypes.MasterHunter):
     if creature.isA(AvatarTypes.Animal):
         CLASSES[creature] = DistributedAnimalAI
     elif creature.isA(AvatarTypes.BountyHunter):
         CLASSES[creature] = DistributedBountyHunterAI
     elif creature.isA(AvatarTypes.TradingCo) or creature.isA(AvatarTypes.Navy):
         CLASSES[creature] = DistributedNPCNavySailorAI
+    elif creature.isA(AvatarTypes.RageGhost):
+        CLASSES[creature] = DistributedKillerGhostAI
+    elif creature.isA(AvatarTypes.Ghost):
+        CLASSES[creature] = DistributedGhostAI
     elif creature == AvatarTypes.Raven:
         CLASSES[creature] = DistributedRavenAI
     elif creature.faction == AvatarTypes.Undead.faction:
@@ -72,7 +83,7 @@ class SpawnNode(DirectObject.DirectObject):
 
         self.avClass = CLASSES[self.avType]
 
-        self.desiredNumAvatars = 1 # TO DO
+        self.desiredNumAvatars = self.data['Min Population'] or 1
         self.acceptOnce('startShardActivity', self.died)
 
     def died(self):

@@ -78,7 +78,7 @@ class DistributedFishingSpot(DistributedInteractive.DistributedInteractive, Loot
 
 
     def getOnABoat(self):
-        return False#self.onABoat
+        return self.onABoat
 
     def setOceanOffset(self, offset):
         self.oceanOffset = offset
@@ -105,8 +105,8 @@ class DistributedFishingSpot(DistributedInteractive.DistributedInteractive, Loot
                 DistributedInteractive.DistributedInteractive.requestInteraction(self, avId, interactType)
         else:
             localAvatar.guiMgr.createWarning(PLocalizer.FishingNoRodWarning, PiratesGuiGlobals.TextFG6)
-            '''
-
+        '''
+        
     def rejectInteraction(self):
         localAvatar.motionFSM.on()
         localAvatar.gameFSM.request('LandRoam')
@@ -192,7 +192,7 @@ class DistributedFishingSpot(DistributedInteractive.DistributedInteractive, Loot
             self.loadingSequence = Sequence(Func(self.fadeOut), Wait(self.fadeTime + 0.100), Func(self.checkAndLoadFishingGame), Wait(1.5), Func(self.requestPlayerIdleState), Func(self.fadeIn))
             self.loadingSequence.start()
         else:
-            print '--------------------- DistributedFishingSpot : Trouble fading out!'
+            self.notify.warning('Trouble fading out!')
         taskMgr.doMethodLater(FishingGlobals.idleDuration, self.bootFromFishing, self.uniqueName('bootFromFishing'))
         self.accept('mouse1', self.resetBootCheck)
         self.accept('fishing-skill-used', self.resetBootCheck)

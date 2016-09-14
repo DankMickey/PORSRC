@@ -136,7 +136,14 @@ class InventoryType:
     begin_Money = 10000
     GoldInPocket = 10000
     GoldWagered = 10001
-    end_Money = GoldWagered + 1
+    PineInPocket = 10002
+    OakInPocket = 10003
+    IronInPocket = 10004
+    SteelInPocket = 10005
+    CanvasInPocket = 10006
+    SilkInPocket = 10007
+    GrogInPocket = 10008
+    end_Money = GrogInPocket + 1
     begin_Weapon = 10100
     MeleeWeaponL1 = 10100
     MeleeWeaponL2 = 10101

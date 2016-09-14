@@ -146,6 +146,11 @@ class DistributedInventoryManagerUD(DirectObject):
             dg.addString('A problem happened while loading your inventory. Please contact support.')
             self.air.send(dg)
 
+    def getInventoryFromAvatarId(self, avId):
+        if avId in self.inventories:
+            return self.inventories[avId]
+        return None
+
     def __handleAvatarExit(self, avId):
         inv = self.inventories.pop(avId, None)
         if inv:

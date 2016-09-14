@@ -63,10 +63,10 @@ from pirates.seapatch.Reflection import Reflection
 Reflection.initialize(render)
 serverVersion = config.GetString('server-version', 'no_version_set')
 
-if base.config.GetBool("want-improved-graphics", False):
-    print ":PiratesStart: Enabling testing improved graphics..."
-    from panda3d.core import *
-    render.setAntialias(AntialiasAttrib.MMultisample)
+#if base.config.GetBool("want-improved-graphics", False):
+#    print ":PiratesStart: Enabling testing improved graphics..."
+#    from panda3d.core import *
+#    render.setAntialias(AntialiasAttrib.MMultisample)
 
 from pirates.distributed import PiratesClientRepository
 cr = PiratesClientRepository.PiratesClientRepository(serverVersion, launcher)
