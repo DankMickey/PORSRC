@@ -52,7 +52,10 @@ class DistributedGameAreaAI(DistributedNodeAI):
         genObj = None
 
         if objType == 'Spawn Node' and config.GetBool('want-enemies', False):
-            self.spawner.addSpawnNode(objKey, object)
+            self.spawner.addEnemySpawnNode(objKey, object)
+
+        elif objType == 'Animal' and config.GetBool('want-animals', False):
+            self.spawner.addAnimalSpawnNode(objKey, object)
 
         elif objType == 'Townsperson' and config.GetBool('want-npcs', False):
             genObj = self.spawner.spawnNPC(objKey, object)

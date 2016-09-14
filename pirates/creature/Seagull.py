@@ -1,10 +1,11 @@
 from direct.directnotify import DirectNotifyGlobal
 from pirates.creature.Animal import Animal
+from pirates.audio import SoundGlobals
 
 class Seagull(Animal):
     ModelInfo = ('models/char/seagull_hi', 'models/char/seagull_')
     SfxNames = dict(Animal.SfxNames)
-    SfxNames.update({ })
+    SfxNames.update({ 'flying': SoundGlobals.SFX_SEAGULL_01, 'landing': SoundGlobals.SFX_SEAGULL_02, 'takeoff': SoundGlobals.SFX_SEAGULL_03})
     AnimList = (('idle', 'flying'), ('walk', 'flying'), ('run', 'flying'), ('flying', 'flying'), ('takeoff', 'takeoff'), ('landing', 'landing'), ('groom_idle', 'groom_idle'))
 
     class AnimationMixer(Animal.AnimationMixer):

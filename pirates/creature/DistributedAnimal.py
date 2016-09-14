@@ -13,8 +13,9 @@ class DistributedAnimal(DistributedCreature.DistributedCreature):
 
     def setupCreature(self, avatarType):
         DistributedCreature.DistributedCreature.setupCreature(self, avatarType)
-        self.motionFSM.motionAnimFSM.setupSplashAnimOverride(self.creature.getSplashOverride())
-        self.motionFSM.motionAnimFSM.setupSplashAnimOverrideDelay(12)
+        if hasattr(self, 'motionFSM'):
+            self.motionFSM.motionAnimFSM.setupSplashAnimOverride(self.creature.getSplashOverride())
+            self.motionFSM.motionAnimFSM.setupSplashAnimOverrideDelay(12)
 
     def customInteractOptions(self):
         self.setInteractOptions(proximityText = None, allowInteract = False)

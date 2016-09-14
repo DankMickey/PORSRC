@@ -51,11 +51,11 @@ Trapjaw = BigGatorBosses[0]
 HugeGatorBosses = [AvatarType(base=HugeGator, boss=1)]
 SwampTerror = HugeGatorBosses[0]
 
-Animals = [AvatarType(base=Animal, id=x) for x in xrange(6)]
-Chicken, Rooster, Pig, Dog, Seagull, Raven = Animals
+Animals = [AvatarType(base=Animal, id=x) for x in xrange(7)]
+Chicken, Rooster, Pig, Dog, Seagull, Raven, Dolphin = Animals
 
-SeaCreatures = [AvatarType(base=SeaCreature, id=x) for x in xrange(1)]
-Fish = SeaCreatures[0]
+SeaCreatures = [AvatarType(base=SeaCreature, id=x) for x in xrange(2)]
+Fish, Dolphin = SeaCreatures
 
 AirCreatures = [AvatarType(base=AirCreature, id=x) for x in xrange(10)]
 Seagull, Raven, Bat, RabidBat, VampireBat, FireBat, Wasp, KillerWasp, AngryWasp, SoldierWasp = AirCreatures
@@ -538,7 +538,17 @@ NPC_SPAWNABLES = {
     'Spanish Undead Pirata': [
         lambda p0 = SpanishUndeadC: typePassthrough(p0)],
     'Spanish Undead Captain': [
-        lambda p0 = SpanishUndeadD: typePassthrough(p0)] }
+        lambda p0 = SpanishUndeadD: typePassthrough(p0)],
+    'Pig': [
+        lambda p0 = Pig: typePassthrough(p0)],
+    'Chicken': [
+        lambda p0 = Chicken: typePassthrough(p0)],
+    'Rooster': [
+        lambda p0 = Rooster: typePassthrough(p0)],
+    'Raven': [
+        lambda p0 = Raven: typePassthrough(p0)],
+    'Dog': [
+        lambda p0 = Dog: typePassthrough(p0)],}
 NPC_SPAWNABLES_KEYS = [
     'Skel T0',
     'Skel T1',

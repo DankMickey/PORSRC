@@ -21,7 +21,7 @@ CLASSES = {}
 
 for creature in (AvatarTypes.Crab, AvatarTypes.RockCrab, AvatarTypes.StoneCrab,
                  AvatarTypes.GiantCrab, AvatarTypes.CrusherCrab, AvatarTypes.Chicken,
-                 AvatarTypes.Rooster, AvatarTypes.Pig, AvatarTypes.Dog, AvatarTypes.Seagull,
+                 AvatarTypes.Rooster, AvatarTypes.Pig, AvatarTypes.Dog, AvatarTypes.Seagull, AvatarTypes.Dolphin,
                  AvatarTypes.Raven, AvatarTypes.Stump, AvatarTypes.TwistedStump, AvatarTypes.FlyTrap,
                  AvatarTypes.RancidFlyTrap, AvatarTypes.AncientFlyTrap, AvatarTypes.Scorpion,
                  AvatarTypes.DireScorpion, AvatarTypes.DreadScorpion, AvatarTypes.Alligator,
@@ -59,13 +59,13 @@ for creature in (AvatarTypes.Crab, AvatarTypes.RockCrab, AvatarTypes.StoneCrab,
     else:
         CLASSES[creature] = DistributedCreatureAI
 
-class SpawnNode(DirectObject.DirectObject):
-    notify = DirectNotifyGlobal.directNotify.newCategory('SpawnNode')
+class EnemySpawnNode(DirectObject.DirectObject):
+    notify = DirectNotifyGlobal.directNotify.newCategory('EnemySpawnNode')
 
     def __init__(self, spawner, data):
         self.spawner = spawner
         self.air = self.spawner.air
-        self.uid = 'SpawnNode-%d' % self.air.allocateChannel()
+        self.uid = 'EnemySpawnNode-%d' % self.air.allocateChannel()
         self.npcs = {}
 
         self.data = data
@@ -113,6 +113,60 @@ class SpawnNode(DirectObject.DirectObject):
     def uniqueName(self, name):
         return '%s-%s' % (self.uid, name)
 
+class AnimalSpawnNode(DirectObject.DirectObject):
+    notify = DirectNotifyGlobal.directNotify.newCategory('AnimalSpawnNode')
+
+    def __init__(self, spawner, data):
+        self.spawner = spawner
+        self.air = self.spawner.air
+        self.uid = 'AnimalSpawnNode-%d' % self.air.allocateChannel()
+        self.npcs = {}
+
+        self.data = data
+        if 'Species' not in data:
+            return
+
+        self.spawnable = self.data['Species']
+        if self.spawnable not in AvatarTypes.NPC_SPAWNABLES:
+            self.notify.warning("Unknown animal species: %s" % self.spawnable)
+            return
+
+        self.avType = AvatarTypes.NPC_SPAWNABLES[self.spawnable][0]()
+        self.avClass = DistributedAnimalAI
+
+        if self.spawnable == "Raven":
+            self.avClass = DistributedRavenAI
+
+        self.desiredNumAvatars = 1
+        self.acceptOnce('startShardActivity', self.died)
+
+    def died(self):
+        taskMgr.doMethodLater(random.random() * 7, self.__checkCreatures, self.uniqueName('checkCreatures'))
+
+    def __checkCreatures(self, task):
+        deadNpcs = []
+        for doId, npc in self.npcs.items():
+            if npc.isDeleted():
+                deadNpcs.append(doId)
+
+        for doId in deadNpcs:
+            del self.npcs[doId]
+
+        # Upkeep population
+        numNpcs = len(self.npcs)
+        if numNpcs < self.desiredNumAvatars:
+            uid = self.uniqueName('spawned-%s' % os.urandom(4).encode('hex'))
+            npc = self.avClass.makeFromObjectKey(self.avClass, self, uid,
+                                                 self.avType, self.data)
+            self.spawner.spawn(npc)
+            self.npcs[npc.doId] = npc
+
+        if task:
+            return task.done
+
+    def uniqueName(self, name):
+        return '%s-%s' % (self.uid, name)
+
 class DistributedEnemySpawnerAI:
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedEnemySpawnerAI')
     _missing = set() # Debug
@@ -123,8 +177,11 @@ class DistributedEnemySpawnerAI:
 
         self.spawnNodes = {}
 
-    def addSpawnNode(self, objKey, data):
-        self.spawnNodes[objKey] = SpawnNode(self, data)
+    def addEnemySpawnNode(self, objKey, data):
+        self.spawnNodes[objKey] = EnemySpawnNode(self, data)
+
+    def addAnimalSpawnNode(self, objKey, data):
+        self.spawnNodes[objKey] = AnimalSpawnNode(self, data)
 
     def spawnNavy(self, objKey, data):
         npc = DistributedNPCPirateAI.makeFromObjectKey(None, self, objKey, data)
