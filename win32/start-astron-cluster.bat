@@ -3,5 +3,5 @@ title POR OTP
 cd "../astron"
 
 :main
-astrond --loglevel info config/cluster.yml
+astrond --loglevel info config/cluster_yaml.yml
 goto main

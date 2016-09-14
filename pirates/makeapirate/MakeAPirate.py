@@ -679,7 +679,8 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
                 'LONG': [
                     self.jsd_name_long_1,
                     self.jsd_name_long_2,
-                    self.jsd_name_long_3
+                    self.jsd_name_long_3,
+                    self.jsd_name_f_intro_1 #TEMP
                 ],
                 'SHORT': [
                     self.jsd_name_short_1,
@@ -2291,7 +2292,6 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
         self.currPageTabIndex = pageTabIndex
         self.pageTabs[self.currPageTabIndex].setColorScale(1, 1, 0.5, 1)
 
-
     def showPageTabs(self):
         for i in xrange(0, len(self.pageTabs)):
             self.pageTabs[i].show()
@@ -2597,23 +2597,27 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
         if choice != 0:
             return None
 
-        if not config.GetBool('want-naming-dialog', False):
+        if not self.currPageTabIndex == NAMESHOP:
             return None
 
-        try:
-            optionsLeft = len(self.JSD_NAMING[self.pirate.gender][nameType])
-            if optionsLeft:
-                if self.lastDialog:
-                    if self.lastDialog.status() == AudioSound.PLAYING:
-                        return None
+        #Crude hack
+        if not hasattr(self, 'JSD_NAMING'):
+            return None
 
-                choice = random.choice(range(0, optionsLeft))
-                dialog = self.JSD_NAMING[self.pirate.gender][nameType][choice]
-                base.playSfx(dialog)
-                self.lastDialog = dialog
-                self.JSD_NAMING[self.pirate.gender][nameType].remove(dialog)     
-        except:
-            pass           
+        if not config.GetBool('want-naming-dialog', True):
+            return None
+
+        optionsLeft = len(self.JSD_NAMING[self.pirate.gender][nameType])
+        if optionsLeft:
+            if self.lastDialog:
+                if self.lastDialog.status() == AudioSound.PLAYING:
+                    return None
+
+            choice = random.choice(range(0, optionsLeft))
+            dialog = self.JSD_NAMING[self.pirate.gender][nameType][choice]
+            base.playSfx(dialog)
+            self.lastDialog = dialog
+            self.JSD_NAMING[self.pirate.gender][nameType].remove(dialog)          
 
     def refreshAnim(self, needToRefresh = True):
         if needToRefresh:

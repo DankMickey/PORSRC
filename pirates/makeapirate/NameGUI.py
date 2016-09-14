@@ -168,7 +168,6 @@ class NameGUI(DirectFrame, StateData.StateData):
             else:
                 self.makeRandomName()
         elif self.mode == self._NameGUI__MODE_PICKANAME:
-            self.main.playJackDialogOnName('INTRO')
             self.enterPickAName()
         elif self.mode == self._NameGUI__MODE_TYPEANAME:
             self.enterTypeAName()
@@ -446,7 +445,7 @@ class NameGUI(DirectFrame, StateData.StateData):
                 self.suffixIndex = self.suffixList.index + 2
 
             nameLength = len(self.names[0] + self.names[1] + self.names[2] + self.names[3]) 
-            if nameLength <= 20:
+            if nameLength <= 10:
                 self.main.playJackDialogOnName("SHORT")
             else:
                 self.main.playJackDialogOnName("LONG")
@@ -623,11 +622,6 @@ class NameGUI(DirectFrame, StateData.StateData):
             self.names[1] = self.firstNamesMale[self.firstIndex]
             self.names[2] = self.lastPrefixesMale[self.prefixIndex]
             self.names[3] = self.lastSuffixesMale[self.suffixIndex]
-        nameLength = len(self.names[0] + self.names[1] + self.names[2] + self.names[3]) 
-        if nameLength <= 20:
-            self.main.playJackDialogOnName("SHORT")
-        else:
-            self.main.playJackDialogOnName("LONG")
         self.notify.debug('random name blindly generated:%s' % self._getName())
 
 
