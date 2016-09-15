@@ -77,7 +77,7 @@ class MusicianGUI(DirectFrame):
             return None
 
         if useCode == PiratesGuiGlobals.InventoryAdd:
-            if base.localAvatar.getGoldInPocket() < 5:
+            if base.localAvatar.getGoldInPocket() < EconomyGlobals.PLAY_MUSIC_COST:
                 base.localAvatar.guiMgr.createWarning(PLocalizer.NotEnoughMoneyWarning, PiratesGuiGlobals.TextFG6)
                 return None
 
