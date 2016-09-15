@@ -247,6 +247,7 @@ class AccessoriesStoreGUI(DirectFrame):
         self.ColorPickerIcon = gui.find('**/pir_t_gui_gen_colorPicker')
         self.backTabParent = self.attachNewNode('backTabs', sort = 0)
         self.panel = GuiPanel.GuiPanel(None, self.width, self.height, parent = self, showClose = False)
+        self.panel.setPos(0.0, 0, -0.75)
         self.setPos(0.0, 0, -0.75)
         self.balance = 0
         self.npc = npc
