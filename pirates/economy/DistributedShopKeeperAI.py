@@ -3,6 +3,7 @@ from direct.distributed.DistributedObjectAI import DistributedObjectAI
 from pirates.economy import EconomyGlobals
 from pirates.inventory import ItemGlobals
 from pirates.audio import SoundGlobals
+from pirates.makeapirate import BarberGlobals
 from pirates.uberdog.TradableInventoryBase import InvItem
 from pirates.uberdog.UberDogGlobals import *
 from otp.uberdog.RejectCode import RejectCode
@@ -74,6 +75,7 @@ class DistributedShopKeeperAI(DistributedObjectAI):
 
         requiredGold = requiredGold * amount
         if requiredGold > av.getGoldInPocket():
+            sendResponse(0)
             return
 
         inv = av.getInventory()
@@ -125,6 +127,7 @@ class DistributedShopKeeperAI(DistributedObjectAI):
 
         requiredGold = requiredGold * amount
         if requiredGold > av.getGoldInPocket():
+            sendResponse(0)
             return
 
         inv = av.getInventory()
@@ -177,6 +180,7 @@ class DistributedShopKeeperAI(DistributedObjectAI):
 
         requiredGold = requiredGold * amount
         if requiredGold > av.getGoldInPocket():
+            sendResponse(0)
             return
 
         inv = av.getInventory()
@@ -249,7 +253,13 @@ class DistributedShopKeeperAI(DistributedObjectAI):
         	self.sendUpdateToAvatarId(avId, 'makeBarberResponse', [hairId, colorId, True])
         	self.sendUpdateToAvatarId(avId, 'makeSaleResponse', [2])
 
-        requiredGold = ItemGlobals.getGoldCost(hairId)
+        itemData = BarberGlobals.barber_id.get(hairId)
+        if not itemData:
+            self.notify.warning("Unable to locate itemData for hairId: %s" % hairId)
+            sendResponse(RejectCode.TIMEOUT, False)
+            return
+
+        requiredGold = int(itemData[4])
         if not requiredGold:
             self.notify.warning("Unable to locate price for hairId: %s" % hairId)
             sendResponse(RejectCode.TIMEOUT, False)

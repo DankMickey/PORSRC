@@ -433,6 +433,9 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
     def getUnderArrest(self):
         return self.underArrest
 
+    def setHair(self, hairId, hairType=1, hairColor=None, hairLightColor=None):
+        self.sendUpdate('setHair', [hairId, hairType, hairColor, hairLightColor])
+
     def setStatus(self, todo0):
         pass
 
