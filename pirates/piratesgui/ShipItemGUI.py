@@ -25,7 +25,7 @@ class ShipItemGUI(InventoryItemGui.InventoryItemGui):
         ItemId.BRIG_L2: 'Catalog_Regular_Brig',
         ItemId.BRIG_L3: 'Catalog_War_Brig',
         ItemId.SHIP_OF_THE_LINE: 'Catalog_War_Brig', #'Catalog_Ship_Of_Line',
-        ItemId.EL_PATRONS_SHIP: 'Catalog_War_Brig' }
+        ItemId.EL_PATRONS_SHIP: 'Catalog_War_Brig' }#'Catalog_Carrack'}
     
     def __init__(self, data, trade = 0, buy = 0, sell = 0, use = 0, **kw):
         optiondefs = ()
@@ -85,7 +85,8 @@ class ShipItemGUI(InventoryItemGui.InventoryItemGui):
                 if not self.miscText:
                     self.miscText = DirectLabel(parent = self, relief = None, text = '', text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.16, 0, 0.025))
                 
-                self['image_color'] = Vec4(1, 0.5, 0.25, 1)
-                self['state'] = DGG.DISABLED
-                self.miscText['text_fg'] = PiratesGuiGlobals.TextFG8
-                self.miscText['text'] = PLocalizer.LevelRequirement % minLvl
+                if not base.config.GetBool('ignore-ship-shop-levels', False):
+                    self['image_color'] = Vec4(1, 0.5, 0.25, 1)
+                    self['state'] = DGG.DISABLED
+                    self.miscText['text_fg'] = PiratesGuiGlobals.TextFG8
+                    self.miscText['text'] = PLocalizer.LevelRequirement % minLvl

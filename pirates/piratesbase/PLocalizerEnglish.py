@@ -4770,6 +4770,9 @@ SloopDescription = 'The fastest and most maneuverable ship class, the Sloop is i
 MerchantDescription = 'The Galleons have the toughest armor amongst the ship classes.  They also can carry the most cargo.  \n \n Their strongest armor is near the rear of the ship, with a weakness in the front.'
 WarshipDescription = "The Frigate Class vessels pack the most firepower, sporting many cannons and strong below deck broadside capability.  \n \n The warship's strongest armor is near the front, with a weakness in the rear."
 BrigDescription = "Second best at everything the Brig is a jack of all trades, but a master of none. They are a good mix of firepower, speed, and cargo room. \n \n Their armor is the most evenly distributed without weak or strong areas."
+CarrackDescription = 'Not much is known yet about this mysterious ship...'
+ShipOfTheLineDescription = "N/A"
+UnknownDescription = "Not much is known about this vessel..."
 FishingRepDescription = 'Fishing Reputation'
 PotionRepDescription = 'Potion Brewing Reputation'
 WeaponDescriptions = {
@@ -4876,13 +4879,13 @@ ShipDescriptions = {
     ItemId.BRIG_L1: BrigDescription,
     ItemId.BRIG_L2: BrigDescription,
     ItemId.BRIG_L3: BrigDescription,        
-    ItemId.QUEEN_ANNES_REVENGE: WarshipDescription,
+    ItemId.QUEEN_ANNES_REVENGE: UnknownDescription,
     ItemId.HUNTER_VENGENCE: WarshipDescription,
     ItemId.HUNTER_TALLYHO: WarshipDescription,
-    ItemId.BLACK_PEARL: WarshipDescription,
-    ItemId.GOLIATH: WarshipDescription,
-    ItemId.SHIP_OF_THE_LINE: WarshipDescription,
-    ItemId.EL_PATRONS_SHIP: WarshipDescription,
+    ItemId.BLACK_PEARL: UnknownDescription,
+    ItemId.GOLIATH: ShipOfTheLineDescription,
+    ItemId.SHIP_OF_THE_LINE: ShipOfTheLineDescription,
+    ItemId.EL_PATRONS_SHIP: CarrackDescription,
     ItemId.P_SKEL_PHANTOM: WarshipDescription,
     ItemId.P_SKEL_REVENANT: WarshipDescription,
     ItemId.P_SKEL_CEREBUS: WarshipDescription,
