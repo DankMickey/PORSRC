@@ -1410,6 +1410,14 @@ class AccessoriesStoreGUI(SimpleStoreGUI):
         self.ShirtIcon = loader.loadModel('models/gui/char_gui').find('**/chargui_cloth')
         SimpleStoreGUI.__init__(self, PLocalizer.TailorStore, npc, shopId)
 
+    def getTabItemIds(self, tabId):
+        allitems = self.getMerchandiseIds()
+        tabItems = []
+        for itemId in allitems:
+        	itemType = ItemGlobals.getType(itemId)
+        	if itemType == tabId:
+        		tabItems.append(itemId)
+        return tabItems
 
     def createTabs(self):
         for item in self.tabInfos:
@@ -1461,10 +1469,14 @@ class JewelryStoreGUI(SimpleStoreGUI):
 
 
     def getTabItemIds(self, tabId):
-        allIds = self.getMerchandiseIds()
+        allitems = self.getMerchandiseIds()
         tabType = SimpleJewelryItem.itemTypeFromJewelryType(tabId)
-        tabIds = [1]
-        return tabIds
+        tabItems = []
+        for itemId in allitems:
+        	itemType = ItemGlobals.getType(itemId)
+        	if itemType == tabType:
+        		tabItems.append(itemId)
+        return tabItems
 
 
     def setTab(self, tabId):
@@ -1513,8 +1525,12 @@ class TattooStoreGUI(SimpleStoreGUI):
     def getTabItemIds(self, tabId):
         allIds = self.stock.keys()
         tabType = SimpleTattooItem.itemTypeFromTattooType(tabId)
-        tabIds = [1]
-        return tabIds
+        tabItems = []
+        for itemId in allitems:
+        	itemType = ItemGlobals.getType(itemId)
+        	if itemType == tabType:
+        		tabItems.append(itemId)
+        return tabItems
 
 
     def setTab(self, tabId):

@@ -290,6 +290,11 @@ struct JewelryInfo {
   uint8 location;
 };
 
+struct WeaponInfo {
+  int32 uid;
+  uint8 location;
+}
+
 struct Tattoo {
   uint8 type;
   int32 uid;
@@ -329,7 +334,7 @@ dclass DistributedShopKeeper : DistributedObject {
   requestAccessoriesList(uint32) airecv clsend;
   requestJewelryList(uint32) airecv clsend;
   requestTattooList(uint32) airecv clsend;
-  // requestWeapon(JewelryInfo [], WeaponInfo []) airecv clsend; - WeaponInfo wasn't in the old DC... wtf disney
+  requestWeapon(WeaponInfo [], WeaponInfo []) airecv clsend;
   requestAccessories(Accessory [], Accessory []) airecv clsend;
   requestJewelry(JewelryInfo [], JewelryInfo []) airecv clsend;
   requestAccessoryEquip(Accessory []) airecv clsend;

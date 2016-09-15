@@ -452,8 +452,7 @@ class DistributedTeleportMgr(DistributedObject.DistributedObject):
                 pdb.set_trace()
                 return None
 
-
-        if self.amInTeleport():
+        if self.amInTeleport() and not stowawayEffect:
             if queue:
                 self.queueInitiateTeleport(instanceType, instanceName, shardId, locationUid, instanceDoId, doneCallback, startedCallback, gameType, friendDoId, friendAreaDoId, doEffect, stowawayEffect)
                 return None

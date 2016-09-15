@@ -1,7 +1,11 @@
 from direct.directnotify import DirectNotifyGlobal
 from direct.distributed.DistributedObjectAI import DistributedObjectAI
 from pirates.economy import EconomyGlobals
+from pirates.inventory import ItemGlobals
 from pirates.audio import SoundGlobals
+from otp.uberdog.RejectCode import RejectCode
+from pirates.uberdog.TradableInventoryBase import InvItem
+from pirates.uberdog.UberDogGlobals import *
 
 class DistributedShopKeeperAI(DistributedObjectAI):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedShopKeeperAI')
@@ -20,7 +24,7 @@ class DistributedShopKeeperAI(DistributedObjectAI):
         if not av:
             return
         
-        requiredGold = 5
+        requiredGold = EconomyGlobals.PLAY_MUSIC_COST
         
         if requiredGold > av.getGoldInPocket():
             return
@@ -28,13 +32,115 @@ class DistributedShopKeeperAI(DistributedObjectAI):
         av.takeGold(requiredGold)
         self.sendUpdate('playMusic', [music])
 
-    # requestPurchaseRepair(uint32) airecv clsend
-    # requestPurchaseOverhaul(uint32) airecv clsend
     # requestSellShip(uint32) airecv clsend
-    # requestSellItem(uint32, uint32, uint16, uint16) airecv clsend
+
+    def requestPurchaseRepair(self, todo0):
+    	pass
+
+    def requestPurchaseOverhaul(self, todo0):
+    	pass
+
+    def requestSellShip(self, todo0):
+    	pass
+
+    def requestSellItem(self, todo0, todo1, todo2, todo3):
+    	self.notify.info("requestSellItem ({0}) ({1}) ({2}) ({3})".format(todo0, todo1, todo2, todo3))
+
+    def requestAccessoriesList(self, todo0):
+    	pass
+
+    def requestJeweleryList(self, todo0):
+    	pass
+
+    def requestTattooList(self, todo0):
+    	pass
+
+    def requestWeapon(self, buying, selling):
+
+        avId = self.air.getAvatarIdFromSender()
+        av = self.air.doId2do.get(avId)
+        
+        if not av:
+            return
+
+        itemId, amount = buying[0]
+        amount = max(1, amount)
+
+        requiredGold = ItemGlobals.getGoldCost(itemId)
+        if not requiredGold:
+        	self.notify.warning("Unable to locate price for itemId: %s" % itemId)
+        	self.sendUpdate('makeSaleResponse', [RejectCode.TIMEOUT])
+        	return
+
+        requiredGold = requiredGold * amount
+        if requiredGold > av.getGoldInPocket():
+            return
+
+        inv = av.getInventory()
+        if not inv:
+        	self.notify.warning("Unable to locate inventory for avatarId: %s" % avId)
+        	self.sendUpdate('makeSaleResponse', [RejectCode.TIMEOUT])
+        	return
+
+        resultCode = 0
+        availableSlot = -1
+
+        location = inv.findAvailableLocation(InventoryType.ItemTypeWeapon, itemId=itemId, count=amount, equippable=True)
+        self.notify.info(str(location))
+        if location != -1:
+            availableSlot = location
+        else:
+            resultCode = RejectCode.OVERFLOW
+
+        if availableSlot != -1:
+            success = inv.addLocatable(itemId, availableSlot, amount)
+            self.notify.info(success)
+            if success:
+                av.takeGold(requiredGold)
+                resultCode = 2
+        self.sendUpdateToAvatarId(avId, 'makeSaleResponse', [resultCode])
+
+    def requestAccessories(self, todo0, todo1):
+        avId = self.air.getAvatarIdFromSender()
+        av = self.air.doId2do.get(avId)
+        
+        if not av:
+            return
+
+        self.sendUpdateToAvatarId(avId, 'makeSaleResponse', [0])
+
+    def requestJewelry(self, todo0, todo1):
+        self.notify.info("requestJewelry ({0}) ({1})".format(todo0, todo1))
+        avId = self.air.getAvatarIdFromSender()
+        av = self.air.doId2do.get(avId)
+        
+        if not av:
+            return
+
+        self.sendUpdateToAvatarId(avId, 'makeSaleResponse', [0])
+
+    def requestTattoo(self, todo0, todo1):
+        avId = self.air.getAvatarIdFromSender()
+        av = self.air.doId2do.get(avId)
+        
+        if not av:
+            return
+
+        self.sendUpdateToAvatarId(avId, 'makeSaleResponse', [0])
+
+    def requestBarber(self, todo0, todo1):
+        avId = self.air.getAvatarIdFromSender()
+        av = self.air.doId2do.get(avId)
+        
+        if not av:
+            return
+        
+        self.sendUpdateToAvatarId(avId, 'makeSaleResponse', [0])
+
     # requestAccessoriesList(uint32) airecv clsend
     # requestJewelryList(uint32) airecv clsend
     # requestTattooList(uint32) airecv clsend
+    # requestWeapon(WeaponInfo [], WeaponInfo []) airecv clsend;
     # requestAccessories(Accessory [], Accessory []) airecv clsend
     # requestJewelry(JewelryInfo [], JewelryInfo []) airecv clsend
     # requestAccessoryEquip(Accessory []) airecv clsend
@@ -42,11 +148,33 @@ class DistributedShopKeeperAI(DistributedObjectAI):
     # requestTattooEquip(Tattoo []) airecv clsend
     # requestTattoo(TattooInfo [], TattooInfo []) airecv clsend
     # requestBarber(uint32, uint8) airecv clsend
-    # requestStowaway(string) airecv clsend
-    # makeSaleResponse(uint32) ownrecv
+
+    def requestStowaway(self, locationId):
+
+        if not locationId in EconomyGlobals.StowawayCost:
+            self.notify.warning("Unknown stowaway locationId: %s" % locationId)
+            return
+
+        avId = self.air.getAvatarIdFromSender()
+        av = self.air.doId2do.get(avId)
+        
+        if not av:
+            return
+
+        requiredGold = EconomyGlobals.StowawayCost[locationId]
+
+        if requiredGold > av.getGoldInPocket():
+            return
+
+        #av.takeGold(requiredGold)
+
+        #tpMgr = self.air.tpMgr
+        #tpMgr.initiateStowawayTeleport(locationId)
+
     # responseShipRepair(uint32) ownrecv
     # makeTattooResponse(uint16, uint16, bool) ownrecv
     # makeBarberResponse(uint32, uint8, bool) ownrecv
     # responseClothingList(uint32, uint32 [][]) ownrecv
     # responseTattooList(uint32, TattooInfo []) ownrecv
     # responseJewelryList(uint32, JewelryInfo []) ownrecv
+

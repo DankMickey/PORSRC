@@ -156,7 +156,6 @@ class SimpleClothingItem(SimpleLootItem):
         pirate.model.handleClothesHiding()
         pirate.model.handleHeadHiding()
 
-
     def unapply(self, pirate, sourceStyle):
         if not self.canBeUsed(pirate):
             return None

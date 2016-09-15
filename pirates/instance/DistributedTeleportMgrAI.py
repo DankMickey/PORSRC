@@ -1,6 +1,7 @@
 from direct.distributed import DistributedObjectAI
 
 class DistributedTeleportMgrAI(DistributedObjectAI.DistributedObjectAI):
+
     def initiateTeleport(self, instanceType, fromInstanceType, shardId, locationUid,
                          instanceDoId, instanceName, gameType, friendDoId, friendAreaDoId):
         avId = self.air.getAvatarIdFromSender()
@@ -46,3 +47,13 @@ class DistributedTeleportMgrAI(DistributedObjectAI.DistributedObjectAI):
 
     def teleportToObjectResp(self, todo0, todo1, todo2, todo3):
         pass
+
+    def initiateStowawayTeleport(self, locationUid):
+        avId = self.air.getAvatarIdFromSender()
+
+        obj = self.air.uid2do.get(locationUid)
+        doId, parentId, zoneId = 0, 0, 0
+        if obj:
+            doId = obj.doId
+            parentId, zoneId = obj.getLocation()
+        self.sendUpdateToAvatarId(avId, 'stowawayTeleportResponse', [parentId, doId])

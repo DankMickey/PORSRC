@@ -260,8 +260,7 @@ class DistributedShopKeeper(DistributedObject):
         self.acceptOnce('requestMusic', self.sendRequestMusic)
         self.acceptOnce('requestStowaway', self.sendRequestStowaway)
         self.storeType = storeType
-        simpleStoreList = getBase().config.GetString('want-simple-stores', '').lower()
-        useSimpleStore = 1
+        useSimpleStore = getBase().config.GetBool('want-simple-stores', True)
         if storeType == InteractGlobals.STORE:
             storeItems = DropGlobals.getStoreItems(self.uniqueId)
             inventory = ItemGlobals.getLegalStoreItems(storeItems)

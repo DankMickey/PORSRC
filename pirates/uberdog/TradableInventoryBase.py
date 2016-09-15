@@ -292,6 +292,8 @@ class TradableInventoryBase(DistributedInventoryBase):
         existingItem = self._locatableItems.get(location)
         if existingItem:
             existingCat = existingItem.getCat()
+            #ugly hack
+            return False
 
         if existingItem and isStackableType(existingCat):
             if existingItem.getCount() < self.getItemLimit(existingCat, existingItem.getType()):

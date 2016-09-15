@@ -25,6 +25,9 @@ settings.json
 config/personal.prc
 config/local.prc
 
+# Personalized startup bats
+win32/startup-astron-cluster-yaml.bat
+
 # Disney DLLs that we don't want in the repo
 libpirates.dll
 libotp.dll
