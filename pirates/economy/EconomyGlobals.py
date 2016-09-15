@@ -884,6 +884,7 @@ SHIP_SHELF = [
     ItemId.MERCHANT_L2,
     ItemId.WARSHIP_L2,
     ItemId.BRIG_L2,
+    ItemId.EL_PATRONS_SHIP,
     ItemId.INTERCEPTOR_L3,
     ItemId.MERCHANT_L3,
     ItemId.WARSHIP_L3,
