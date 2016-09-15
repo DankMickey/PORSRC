@@ -3204,6 +3204,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
 
     def setClothesFromList(self, dna):
         counter = 0
+        '''
         dclass = base.cr.dclassesByName['DistributedPlayerPirate']
         field = dclass.getFieldByName('setClothes').asMolecularField()
         for i in xrange(field.getNumAtomics()):
@@ -3211,6 +3212,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             args = dna[counter:counter + subField.getNumElements()]
             counter += subField.getNumElements()
             getattr(self.style, subField.getName())(*args)
+        '''
 
         messenger.send(self.uniqueName('accessoriesUpdate'))
 
