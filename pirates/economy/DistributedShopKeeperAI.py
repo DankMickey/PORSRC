@@ -84,7 +84,6 @@ class DistributedShopKeeperAI(DistributedObjectAI):
 
         if availableSlot != -1:
             success = inv.addLocatable(itemId, availableSlot, amount)
-            self.notify.info(success)
             if success:
                 av.takeGold(requiredGold)
                 resultCode = 2
