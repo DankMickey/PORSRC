@@ -233,10 +233,10 @@ class DistributedGAConnector(DistributedNode.DistributedNode):
 
     def setupEntranceNodes(self):
         entranceNodes = self.findAllMatches('**/entrance_locator_*')
-        eNodeMap = [](_[1]([ node.getName() for node in entranceNodes ], entranceNodes))
-        eNodeMapKeys = eNodeMap.keys()
-        eNodeMapKeys.sort()
-        self.entranceNodes = [ eNodeMap[key] for key in eNodeMapKeys ]
+        #eNodeMap = [](_[1]([ node.getName() for node in entranceNodes ], entranceNodes))
+        #eNodeMapKeys = eNodeMap.keys()
+        #eNodeMapKeys.sort()
+        self.entranceNodes = [] #[ eNodeMap[key] for key in eNodeMapKeys ]
 
     def getEntranceNode(self, index):
         if index < len(self.entranceNodes):
@@ -419,11 +419,14 @@ class DistributedGAConnector(DistributedNode.DistributedNode):
     def turnOff(self):
         pass
 
-    def getMinimapObject(self, worldNode):
-        if not (self.minimapObj) and not self.isDisabled():
-            self.minimapObj = MinimapTunnel(worldNode)
+    def getMinimapObject(self, worldNode=None):
+        if worldNode:
+            if not (self.minimapObj) and not self.isDisabled():
+                self.minimapObj = MinimapTunnel(worldNode)
 
-        return self.minimapObj
+            return self.minimapObj
+        else:
+            return None
 
     def destroyMinimapObject(self):
         if self.minimapObj:

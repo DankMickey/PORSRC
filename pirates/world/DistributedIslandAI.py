@@ -166,12 +166,6 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
 
     def createObject(self, objType, parent, objKey, object):
         genObj = None
-        '''
-        elif objType == 'Holiday':
-            holidayObject = DistributedHolidayObjectAI.makeFromObjectKey(self.air, objKey, object)
-            if actualParentObj:
-                actualParentObj.generateChild(holidayObject)
-        '''
 
         if objType == 'Object Spawn Node':
             if object['Spawnables'] == 'Buried Treasure':
@@ -206,9 +200,13 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
             genObj = DistributedRepairBenchAI.makeFromObjectKey(self.air, objKey, object)
             self.generateChild(genObj)
 
-        #elif objType == 'Island Game Area':
-        #    genObj = DistributedGATunnelAI.makeFromObjectKey(self.air, objKey, object)
-        #    self.generateChild(genObj)
+        elif objType == 'Holiday' and config.GetBool('want-holiday-objects', 1):
+            genObj = DistributedHolidayObjectAI.makeFromObjectKey(self.air, objKey, object)
+            self.generateChild(genObj)
+
+        elif objType == 'Island Game Area' and config.GetBool('want-link-tunnels', 0):
+            genObj = DistributedGATunnelAI.makeFromObjectKey(self.air, objKey, object)
+            self.generateChild(genObj)
 
         else:
             genObj = DistributedGameAreaAI.createObject(self, objType, parent, objKey, object)

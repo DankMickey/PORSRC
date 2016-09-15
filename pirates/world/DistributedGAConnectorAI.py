@@ -24,7 +24,7 @@ class DistributedGAConnectorAI(DistributedNodeAI):
         self.d_setModelPath(modelPath)
 
     def getModelPath(self):
-        return [self.modelPath]
+        return self.modelPath
 
     # setLinks(uint8, string, Link []) broadcast ram
 
@@ -40,10 +40,21 @@ class DistributedGAConnectorAI(DistributedNodeAI):
         self.d_setUniqueId(uniqueId)
 
     def getUniqueId(self):
-        return [self.uniqueId]
+        return self.uniqueId
 
     # requestPrivateArea(uint32) airecv clsend
 
     # setPrivateArea(uint32, uint32, uint32, bool) airecv clsend
 
+    def posControlledByIsland(self):
+        return True
+
+    @staticmethod
+    def makeFromObjectKey(air, objKey, data):
+        obj = DistributedGAConnectorAI(air)
+        obj.setUniqueId(objKey)
+        obj.setPos(data.get('Pos', 0))
+        obj.setHpr(data.get('Hpr', 0))
+        obj.setModelPath(data['Visual']['Model'])
+        return obj
 
