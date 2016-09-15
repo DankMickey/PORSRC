@@ -7,6 +7,27 @@ class DistributedPokerTableAI(DistributedGameTableAI.DistributedGameTableAI):
 
     def __init__(self, air):
         DistributedInteractiveAI.__init__(self, air)
+        self.gameType = ''
+        self.betMultiplier = 1
 
-    def handleInteraction(self):
-        return ACCEPT #gonna return it as accept, will need to have checks soon
+    def handleInteract(self, avId, interactType, instant):
+        return REJECT #TODO
+
+    def setGameType(self, gameType):
+    	self.gameType = gameType
+
+    def getGameType(self):
+    	return self.gameType
+
+    def setBetMultiplier(self, multiplier):
+    	self.betMultiplier = multiplier
+
+    def getBetMultiplier(self):
+    	return self.betMultiplier
+
+    @classmethod
+    def makeFromObjectKey(cls, air, objKey, data):
+        obj = DistributedInteractiveAI.makeFromObjectKey(cls, air, objKey, data)
+        obj.setGameType(data.get('Category', 'Holdem'))
+        obj.setBetMultiplier(int(data.get('BetMultiplier', '1')))
+        return obj

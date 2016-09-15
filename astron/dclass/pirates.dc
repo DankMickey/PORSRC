@@ -1303,23 +1303,23 @@ dclass DistributedGameTable : DistributedInteractive {
   avatarStand(uint32, uint8) broadcast;
 };
 
-//dclass DistributedPokerTable : DistributedGameTable {
-//  setAnteList(uint32 []) required broadcast;
-//  sendTell(uint32);
-//  requestCheat(uint8, uint8) airecv clsend;
-//  cheatResponse(uint8, uint8, uint8, CardHand);
-//  requestAIPlayerTurn(uint8) broadcast;
-//  askForClientAction(uint8) broadcast;
+dclass DistributedPokerTable : DistributedGameTable {
+  setAnteList(uint32 []) required broadcast;
+  sendTell(uint32);
+  requestCheat(uint8, uint8) airecv clsend;
+  cheatResponse(uint8, uint8, uint8, uint8[]);
+  requestAIPlayerTurn(uint8) broadcast;
+  askForClientAction(uint8) broadcast;
 //  clientAction(int8, PokerAction) airecv clsend;
-//  setTableState(int8, uint8, CardHand, CardHand [], int32 [], int32 []) required broadcast ram;
-//  setPotSize(uint32) required broadcast ram;
+  setTableState(int8, uint8, uint8[], uint8[][], int32 [], int32 []) required broadcast ram;
+  setPotSize(uint32) required broadcast ram;
 //  setPlayerActions(uint32, PokerActionList, int32 []) broadcast ram;
-//  setLocalAvatarHand(CardHand);
-//  setLocalAvatarHandValue(uint8, CardHand);
-//  setAllHandValues(uint8 [], CardHand []) broadcast;
-//  playerExpired();
-//  showHealthLoss(int16);
-//};
+  setLocalAvatarHand(uint8[]);
+  setLocalAvatarHandValue(uint8, uint8[]);
+  setAllHandValues(uint8 [], uint8[]) broadcast;
+  playerExpired();
+  showHealthLoss(int16);
+};
 
 dclass DistributedHolidayObject : DistributedInteractive {
   setInteractRadius(uint8) required broadcast ram;
