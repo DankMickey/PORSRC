@@ -407,7 +407,6 @@ class BarberStoreGUI(DirectFrame):
 
         pirate.model.handleHeadHiding()
 
-
     def purchaseConfirmation(self):
         pass
 

@@ -4769,6 +4769,7 @@ ComboReqFlourish = 'Requires Flourish'
 SloopDescription = 'The fastest and most maneuverable ship class, the Sloop is ideal for scouting and hit-and-run attacks.  However, Sloops tend to have weak armor and little cargo room. \n \n The strongest armor of the hull is located near the middle of the ship.'
 MerchantDescription = 'The Galleons have the toughest armor amongst the ship classes.  They also can carry the most cargo.  \n \n Their strongest armor is near the rear of the ship, with a weakness in the front.'
 WarshipDescription = "The Frigate Class vessels pack the most firepower, sporting many cannons and strong below deck broadside capability.  \n \n The warship's strongest armor is near the front, with a weakness in the rear."
+BrigDescription = "Second best at everything the Brig is a jack of all trades, but a master of none. They are a good mix of firepower, speed, and cargo room. \n \n Their armor is the most evenly distributed without weak or strong areas."
 FishingRepDescription = 'Fishing Reputation'
 PotionRepDescription = 'Potion Brewing Reputation'
 WeaponDescriptions = {
@@ -4872,6 +4873,9 @@ ShipDescriptions = {
     ItemId.WARSHIP_L1: WarshipDescription,
     ItemId.WARSHIP_L2: WarshipDescription,
     ItemId.WARSHIP_L3: WarshipDescription,
+    ItemId.BRIG_L1: BrigDescription,
+    ItemId.BRIG_L2: BrigDescription,
+    ItemId.BRIG_L3: BrigDescription,        
     ItemId.QUEEN_ANNES_REVENGE: WarshipDescription,
     ItemId.HUNTER_VENGENCE: WarshipDescription,
     ItemId.HUNTER_TALLYHO: WarshipDescription,
