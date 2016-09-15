@@ -395,6 +395,7 @@ def getRespecCost(numRespecs):
         return 10000
 
 LAUNCH_FISHING_BOAT_COST = 1000
+PLAY_MUSIC_COST = 5
 __itemList = {
     ItemId.MELEE_L1: (0, ItemType.WEAPON, ItemType.MELEE, ItemType.COMBAT_WEAPON, 1, 0, None),
     ItemId.MELEE_L2: (50, ItemType.WEAPON, ItemType.MELEE, ItemType.COMBAT_WEAPON, 1, 5, None),

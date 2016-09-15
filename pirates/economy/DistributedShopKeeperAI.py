@@ -44,7 +44,7 @@ class DistributedShopKeeperAI(DistributedObjectAI):
     	pass
 
     def requestSellItem(self, todo0, todo1, todo2, todo3):
-    	self.notify.info("requestSellItem ({0}) ({1}) ({2}) ({3})".format(todo0, todo1, todo2, todo3))
+    	self.notify.info("requestSellItem: ({0}) ({1}) ({2}) ({3})".format(todo0, todo1, todo2, todo3))
 
     def requestWeapon(self, buying, selling):
 
@@ -60,7 +60,7 @@ class DistributedShopKeeperAI(DistributedObjectAI):
         requiredGold = ItemGlobals.getGoldCost(itemId)
         if not requiredGold:
         	self.notify.warning("Unable to locate price for itemId: %s" % itemId)
-        	self.sendUpdate('makeSaleResponse', [RejectCode.TIMEOUT])
+        	self.sendUpdateToAvatarId('makeSaleResponse', [RejectCode.TIMEOUT])
         	return
 
         requiredGold = requiredGold * amount
@@ -70,7 +70,7 @@ class DistributedShopKeeperAI(DistributedObjectAI):
         inv = av.getInventory()
         if not inv:
         	self.notify.warning("Unable to locate inventory for avatarId: %s" % avId)
-        	self.sendUpdate('makeSaleResponse', [RejectCode.TIMEOUT])
+        	self.sendUpdateToAvatarId('makeSaleResponse', [RejectCode.TIMEOUT])
         	return
 
         resultCode = 0
@@ -104,7 +104,7 @@ class DistributedShopKeeperAI(DistributedObjectAI):
         requiredGold = ItemGlobals.getGoldCost(itemId)
         if not requiredGold:
             self.notify.warning("Unable to locate price for itemId: %s" % itemId)
-            self.sendUpdate('makeSaleResponse', [RejectCode.TIMEOUT])
+            self.sendUpdateToAvatarId('makeSaleResponse', [RejectCode.TIMEOUT])
             return
 
         requiredGold = requiredGold * amount
@@ -114,7 +114,7 @@ class DistributedShopKeeperAI(DistributedObjectAI):
         inv = av.getInventory()
         if not inv:
             self.notify.warning("Unable to locate inventory for avatarId: %s" % avId)
-            self.sendUpdate('makeSaleResponse', [RejectCode.TIMEOUT])
+            self.sendUpdateToAvatarId('makeSaleResponse', [RejectCode.TIMEOUT])
             return
 
         resultCode = 0
@@ -148,7 +148,7 @@ class DistributedShopKeeperAI(DistributedObjectAI):
         requiredGold = ItemGlobals.getGoldCost(itemId)
         if not requiredGold:
             self.notify.warning("Unable to locate price for itemId: %s" % itemId)
-            self.sendUpdate('makeSaleResponse', [RejectCode.TIMEOUT])
+            self.sendUpdateToAvatarId('makeSaleResponse', [RejectCode.TIMEOUT])
             return
 
         requiredGold = requiredGold * amount
@@ -158,7 +158,7 @@ class DistributedShopKeeperAI(DistributedObjectAI):
         inv = av.getInventory()
         if not inv:
             self.notify.warning("Unable to locate inventory for avatarId: %s" % avId)
-            self.sendUpdate('makeSaleResponse', [RejectCode.TIMEOUT])
+            self.sendUpdateToAvatarId('makeSaleResponse', [RejectCode.TIMEOUT])
             return
 
         resultCode = 0
@@ -178,18 +178,37 @@ class DistributedShopKeeperAI(DistributedObjectAI):
 
         self.sendUpdateToAvatarId(avId, 'makeSaleResponse', [resultCode])
 
-    def requestTattoo(self, todo0, todo1):
+    def requestTattoo(self, buying, selling):
         avId = self.air.getAvatarIdFromSender()
         av = self.air.doId2do.get(avId)
-        
+
         if not av:
             return
 
-        self.sendUpdateToAvatarId(avId, 'makeSaleResponse', [0])
+        itemId, amount = buying[0]
+        zone = ItemGlobals.getType(itemId)
 
-    def requestBarber(self, todo0, todo1):
+        requiredGold = ItemGlobals.getGoldCost(itemId)
+        if not requiredGold:
+            self.notify.warning("Unable to locate price for itemId: %s" % itemId)
+            self.sendUpdateToAvatarId('makeSaleResponse', [RejectCode.TIMEOUT])
+            return
+
+        requiredGold = requiredGold * amount
+        if requiredGold > av.getGoldInPocket():
+            return
+
+        success = True
+        av.takeGold(requiredGold)
+
+        self.sendUpdateToAvatarId(avId, 'makeTattooResponse', [itemId, zone, success])
+        self.sendUpdateToAvatarId(avId, 'makeSaleResponse', [2])
+
+    def requestBarber(self, buying, selling):
         avId = self.air.getAvatarIdFromSender()
         av = self.air.doId2do.get(avId)
+
+        self.notify.info("requestBarber: buying (%s)" % buying)
         
         if not av:
             return
@@ -199,9 +218,6 @@ class DistributedShopKeeperAI(DistributedObjectAI):
     # requestAccessoriesList(uint32) airecv clsend
     # requestJewelryList(uint32) airecv clsend
     # requestTattooList(uint32) airecv clsend
-    # requestWeapon(WeaponInfo [], WeaponInfo []) airecv clsend;
-    # requestAccessories(Accessory [], Accessory []) airecv clsend
-    # requestJewelry(JewelryInfo [], JewelryInfo []) airecv clsend
     # requestAccessoryEquip(Accessory []) airecv clsend
     # requestJewelryEquip(Jewelry []) airecv clsend
     # requestTattooEquip(Tattoo []) airecv clsend
@@ -225,6 +241,7 @@ class DistributedShopKeeperAI(DistributedObjectAI):
         if requiredGold > av.getGoldInPocket():
             return
 
+        #BROKEN
         #av.takeGold(requiredGold)
 
         #tpMgr = self.air.tpMgr

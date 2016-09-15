@@ -67,7 +67,6 @@ class DistributedGameAreaAI(DistributedNodeAI):
                 genObj.d_updateSmPos()
                 newZoneId = self.getZoneFromXYZ(genObj.getPos(self))
                 genObj.b_setLocation(genObj.parentId, newZoneId)
-
         else:
             nodeName =  'objNode-%s-%s' % (objType, objKey)
 

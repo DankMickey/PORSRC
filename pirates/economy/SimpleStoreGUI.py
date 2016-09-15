@@ -1523,7 +1523,7 @@ class TattooStoreGUI(SimpleStoreGUI):
 
 
     def getTabItemIds(self, tabId):
-        allIds = self.stock.keys()
+        allitems = self.stock.keys()
         tabType = SimpleTattooItem.itemTypeFromTattooType(tabId)
         tabItems = []
         for itemId in allitems:

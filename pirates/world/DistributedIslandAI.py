@@ -208,6 +208,9 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
             genObj = DistributedGATunnelAI.makeFromObjectKey(self.air, objKey, object)
             self.generateChild(genObj)
 
+        elif objType == 'Parlor Game' and config.GetBool('want-parlor-games', True):
+            genObject = DistributedPokerTableAI.makeFromObjectKey(self.air, objKey, object)
+            self.generateChild(genObj)
         else:
             genObj = DistributedGameAreaAI.createObject(self, objType, parent, objKey, object)
 
