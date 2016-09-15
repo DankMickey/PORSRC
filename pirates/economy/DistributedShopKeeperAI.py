@@ -60,7 +60,7 @@ class DistributedShopKeeperAI(DistributedObjectAI):
         requiredGold = ItemGlobals.getGoldCost(itemId)
         if not requiredGold:
         	self.notify.warning("Unable to locate price for itemId: %s" % itemId)
-        	self.sendUpdateToAvatarId('makeSaleResponse', [RejectCode.TIMEOUT])
+        	self.sendUpdateToAvatarId(avId, 'makeSaleResponse', [RejectCode.TIMEOUT])
         	return
 
         requiredGold = requiredGold * amount
@@ -70,7 +70,7 @@ class DistributedShopKeeperAI(DistributedObjectAI):
         inv = av.getInventory()
         if not inv:
         	self.notify.warning("Unable to locate inventory for avatarId: %s" % avId)
-        	self.sendUpdateToAvatarId('makeSaleResponse', [RejectCode.TIMEOUT])
+        	self.sendUpdateToAvatarId(avId, 'makeSaleResponse', [RejectCode.TIMEOUT])
         	return
 
         resultCode = 0
@@ -104,7 +104,7 @@ class DistributedShopKeeperAI(DistributedObjectAI):
         requiredGold = ItemGlobals.getGoldCost(itemId)
         if not requiredGold:
             self.notify.warning("Unable to locate price for itemId: %s" % itemId)
-            self.sendUpdateToAvatarId('makeSaleResponse', [RejectCode.TIMEOUT])
+            self.sendUpdateToAvatarId(avId, 'makeSaleResponse', [RejectCode.TIMEOUT])
             return
 
         requiredGold = requiredGold * amount
@@ -114,7 +114,7 @@ class DistributedShopKeeperAI(DistributedObjectAI):
         inv = av.getInventory()
         if not inv:
             self.notify.warning("Unable to locate inventory for avatarId: %s" % avId)
-            self.sendUpdateToAvatarId('makeSaleResponse', [RejectCode.TIMEOUT])
+            self.sendUpdateToAvatarId(avId, 'makeSaleResponse', [RejectCode.TIMEOUT])
             return
 
         resultCode = 0
@@ -148,7 +148,7 @@ class DistributedShopKeeperAI(DistributedObjectAI):
         requiredGold = ItemGlobals.getGoldCost(itemId)
         if not requiredGold:
             self.notify.warning("Unable to locate price for itemId: %s" % itemId)
-            self.sendUpdateToAvatarId('makeSaleResponse', [RejectCode.TIMEOUT])
+            self.sendUpdateToAvatarId(avId, 'makeSaleResponse', [RejectCode.TIMEOUT])
             return
 
         requiredGold = requiredGold * amount
@@ -158,7 +158,7 @@ class DistributedShopKeeperAI(DistributedObjectAI):
         inv = av.getInventory()
         if not inv:
             self.notify.warning("Unable to locate inventory for avatarId: %s" % avId)
-            self.sendUpdateToAvatarId('makeSaleResponse', [RejectCode.TIMEOUT])
+            self.sendUpdateToAvatarId(avId, 'makeSaleResponse', [RejectCode.TIMEOUT])
             return
 
         resultCode = 0
@@ -191,7 +191,7 @@ class DistributedShopKeeperAI(DistributedObjectAI):
         requiredGold = ItemGlobals.getGoldCost(itemId)
         if not requiredGold:
             self.notify.warning("Unable to locate price for itemId: %s" % itemId)
-            self.sendUpdateToAvatarId('makeSaleResponse', [RejectCode.TIMEOUT])
+            self.sendUpdateToAvatarId(avId, 'makeSaleResponse', [RejectCode.TIMEOUT])
             return
 
         requiredGold = requiredGold * amount
