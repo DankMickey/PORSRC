@@ -87,6 +87,7 @@ class BarberStoreGUI(DirectFrame):
         self.ShirtIcon = loader.loadModel('models/gui/char_gui').find('**/chargui_cloth')
         self.backTabParent = self.attachNewNode('backTabs', sort = 0)
         self.panel = GuiPanel.GuiPanel(None, self.width, self.height, parent = self, showClose = False)
+        self.panel.setPos(0.0, 0, -0.75)
         self.setPos(0.0, 0, -0.75)
         self.balance = 0
         self.npc = npc
