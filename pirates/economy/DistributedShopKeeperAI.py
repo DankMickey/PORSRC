@@ -352,10 +352,10 @@ class DistributedShopKeeperAI(DistributedObjectAI):
             return
 
         #BROKEN
-        #av.takeGold(requiredGold)
+        av.takeGold(requiredGold)
 
-        #tpMgr = self.air.tpMgr
-        #tpMgr.initiateStowawayTeleport(locationId)
+        tpMgr = self.air.tpMgr
+        tpMgr.initiateStowawayTeleport(locationId)
 
     # responseShipRepair(uint32) ownrecv
     # responseClothingList(uint32, uint32 [][]) ownrecv
