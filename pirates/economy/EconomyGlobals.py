@@ -857,7 +857,7 @@ MUSIC_SHELF = [
     InventoryType.Song_7,
     InventoryType.Song_8,
     InventoryType.Song_9,
-    InventoryType.Song_10,
+    #InventoryType.Song_10,
     InventoryType.Song_11,
     InventoryType.Song_12,
     InventoryType.Song_13,
