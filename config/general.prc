@@ -13,6 +13,7 @@ restore-initial-pose 0
 
 # Misc
 want-spooky-avatarchooser #t
+want-logout #t
 
 # WEAPONS
 want-all-weapons-trained #t
