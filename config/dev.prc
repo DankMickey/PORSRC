@@ -104,7 +104,7 @@ ocean-visibility 1
 infinite-ammo #f
 ship-wake-dist 3800
 ship-rock-dist 1000
-want-seas-closed #f
+want-seas-closed #t
 
 # TELEPORTATION
 teleport-all #t

@@ -128,6 +128,9 @@ prepare-scene #t
 advanced-weather #t
 want-soft-tod-changes #t
 
+# SAILING
+want-seas-closed #t
+
 # Code Redemption
 want-coderedemption #f
 reject-all-redeem-codes #t
