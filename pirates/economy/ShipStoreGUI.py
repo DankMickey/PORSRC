@@ -34,6 +34,9 @@ class ShipStoreGUI(GuiPanel.GuiPanel):
         ItemId.BRIG_L1: 'Catalog_Light_Brig',
         ItemId.BRIG_L2: 'Catalog_Regular_Brig',
         ItemId.BRIG_L3: 'Catalog_War_Brig',
+        ItemId.CARRACK_L1: 'Catalog_Light_Brig',
+        ItemId.CARRACK_L2: 'Catalog_Regular_Brig',
+        ItemId.CARRACK_L3: 'Catalog_War_Brig',
         ItemId.SHIP_OF_THE_LINE: 'Catalog_War_Brig', #'Catalog_Ship_Of_Line',
         ItemId.EL_PATRONS_SHIP: 'Catalog_War_Brig', #'Catalog_Carrack',
         ItemId.P_SKEL_PHANTOM: 'Catalog_War_Brig',
@@ -146,6 +149,11 @@ class ShipStoreGUI(GuiPanel.GuiPanel):
     def updateStats(self):
         self.statData = []
         stats = ShipGlobals.getShipConfig(self.purchaseInventory[0][0])
+
+        if not stats:
+        	self.notify.warning("Failed to retrieve stats for ship (%s). Defaulting to max stats." % str(self.purchaseInventory[0][0]))
+        	stats = ShipGlobals.getMaxShipStats()
+
         maxStats = ShipGlobals.getMaxShipStats()
         self.statData.append([
             PLocalizer.Hull,

@@ -1613,7 +1613,7 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
         if not self.advancedWeather:
             return
         if state:
-            self.setCloudsType(self.STORMCLOUDS)
+            self.setCloudsType(self.HEAVYCLOUDS)
             if self.stormEye is None:
                 self.stormEye = StormEye()
                 self.stormEye.reparentTo(render)
@@ -1624,7 +1624,7 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
                 self.stormRing.setZ(100)
                 self.stormRing.startLoop()
         else:
-            self.setCloudsType(self.STORMCLOUDS)
+            self.setCloudsType(self.HEAVYCLOUDS)
             if self.stormEye:
                 self.stormEye.stopLoop()
                 self.stormRing.stopLoop()

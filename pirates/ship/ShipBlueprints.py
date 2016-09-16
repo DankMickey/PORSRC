@@ -62,7 +62,8 @@ shipStyles = {
     ShipGlobals.Styles.FortuneHunter: 'ships_static_a_palette_3cmla_11_swp_11',
     ShipGlobals.Styles.FireStorm: 'ships_static_a_palette_3cmla_12_swp_12',
     ShipGlobals.Styles.IronClad: 'ships_static_a_palette_3cmla_13_swp_13',
-    ShipGlobals.Styles.StormChaser: 'ships_static_a_palette_3cmla_14_swp_14' }
+    ShipGlobals.Styles.StormChaser: 'ships_static_a_palette_3cmla_14_swp_14',
+    ShipGlobals.Styles.ElPatron: 'ships_static_a_palette_3cmla_3_swp_3' }
 ColorDict = {
     ShipGlobals.Styles.Navy: 'pir_t_shp_clr_navy',
     ShipGlobals.Styles.EITC: 'pir_t_shp_clr_eitc',
@@ -162,7 +163,10 @@ HullDict = {
     ShipGlobals.SHIP_OF_THE_LINE: 'lin_treasure',
     ShipGlobals.SKEL_WARSHIPL3: 'skl_frigate',
     ShipGlobals.SKEL_INTERCEPTORL3: 'skl_sloop',
-    ShipGlobals.EL_PATRONS_SHIP: 'gal_carrack' }
+    ShipGlobals.EL_PATRONS_SHIP: 'gal_carrack',
+    ShipGlobals.CARRACKL1: 'gal_carrack',
+    ShipGlobals.CARRACKL2: 'gal_carrack',
+    ShipGlobals.CARRACKL3: 'gal_carrack' }
 if config.GetBool('want-kraken', 0):
     HullDict[23] = 'frg_war_kraken'
 
