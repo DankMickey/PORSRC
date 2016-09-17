@@ -17,6 +17,7 @@ class RepairGameGUI(DirectFrame):
     guiDownSound = None
     guiUpSound = None
     shipRepairMusic = None
+    cycleCompleteSound = None
 
     def __init__(self, repairGame):
         DirectFrame.__init__(self, parent = base.a2dBackground, relief = None)
@@ -49,6 +50,7 @@ class RepairGameGUI(DirectFrame):
             RepairGameGUI.completeSound = loadSfx(SoundGlobals.SFX_MINIGAME_REPAIR_GENERAL_CYCLECOMPLETE)
             RepairGameGUI.guiDownSound = loadSfx(SoundGlobals.SFX_MINIGAME_REPAIR_GENERAL_GUIDOWN)
             RepairGameGUI.guiUpSound = loadSfx(SoundGlobals.SFX_MINIGAME_REPAIR_GENERAL_GUIUP)
+            RepairGameGUI.cycleCompleteSound = loadSfx(SoundGlobals.SFX_GUI_LOOT)
             RepairGameGUI.guiDownSound.setVolume(0.5)
             RepairGameGUI.guiUpSound.setVolume(0.5)
             RepairGameGUI.shipRepairMusic = [
@@ -88,7 +90,7 @@ class RepairGameGUI(DirectFrame):
         self.pickerOutroLerp = LerpPosInterval(self.repairGamePicker, duration = 1.0, startPos = self.repairGamePicker.getPos(), pos = (0.0, 0.0, -1.0))
         self.bgOutroLerp = LerpPosInterval(self.staticElements['bg'], duration = 1.0, startPos = self.repairGamePicker.getPos(), pos = (0.0, 0.0, 2.0))
         self.outroSequence = Sequence(Func(self.repairGamePicker.stashTab), Func(self.closeButton.stash), Parallel(Func(self.guiUpSound.play), Func(self.setPickerOutroStartPos), Func(self.setBGOutroStartPos), self.pickerOutroLerp, self.bgOutroLerp), Func(self.repairGame.cleanup), name = 'RepairGame.outroSequence')
-        self.cycleCompleteSequence = Sequence(Func(self.showCycleCompleteMessage), Func(self.repairGamePicker.setZ, self.repairGamePicker.getZ() - 1), Wait(self.getCycleCompleteWaitTime()), Func(self.completeSound.play), Func(self.hideCycleCompleteMessage), LerpPosInterval(self.repairGamePicker, duration = 0.5, pos = self.repairGamePicker.getPos()), Func(self.repairGame.gameFSM.request, 'Idle'), name = 'RepairGame.cycleCompleteSequence')
+        self.cycleCompleteSequence = Sequence(Func(self.showCycleCompleteMessage), Func(self.cycleCompleteSound.play),Func(self.repairGamePicker.setZ, self.repairGamePicker.getZ() - 1), Wait(self.getCycleCompleteWaitTime()), Func(self.completeSound.play), Func(self.hideCycleCompleteMessage), LerpPosInterval(self.repairGamePicker, duration = 0.5, pos = self.repairGamePicker.getPos()), Func(self.repairGame.gameFSM.request, 'Idle'), name = 'RepairGame.cycleCompleteSequence')
         self.shakeSequence = Sequence(name = 'RepairGameGUI.shakeSequence')
 
     def handleExitGame(self):
