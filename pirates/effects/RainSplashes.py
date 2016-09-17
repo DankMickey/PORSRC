@@ -85,8 +85,11 @@ class RainSplashes(EffectController, NodePath):
 
     def updatePos(self, t):
         if self.reference:
-            pos = self.reference.getPos(self.getParent())
-            self.setPos(pos[0], pos[1], 1.5)
+            try:
+                pos = self.reference.getPos(self.getParent())
+                self.setPos(pos[0], pos[1], 1.5)
+            except:
+                pass
 
 
 

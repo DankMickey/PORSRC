@@ -78,8 +78,11 @@ class RainMist(EffectController, NodePath):
 
     def updatePos(self, t):
         if self.reference:
-            pos = self.reference.getPos(self.getParent())
-            self.setPos(pos[0], pos[1], 0)
+            try:
+                pos = self.reference.getPos(self.getParent())
+                self.setPos(pos[0], pos[1], 0)
+            except:
+                pass
 
 
 

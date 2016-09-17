@@ -207,6 +207,116 @@ InventoryFullWarning = "This Item won't fit into your inventory!"
 NoInventorySpaceWarning = 'Not enough space in your inventory!'
 PlunderItemsLeftWarning = 'Some Items could not fit into your inventory.'
 CantTrashThat = "You can't trash something you don't have"
+ShipUpgradeAttributeArmor = 'Armor'
+ShipUpgradeAttributeSpeed = 'Speed'
+ShipUpgradeAttributeTurning = 'Turning'
+ShipUpgradeAttributeCargo = 'Cargo'
+ShipUpgradeComplete = 'Ship Modified!'
+ShipUpgradeFailed = 'Ship Modification Failed!'
+ShipUpgradePoor = ' (%s short)'
+ShipBroadsideInfo = '%s%% %s attack'
+ShipUgradeCosts = 'Resources:'
+ShipUgradeCostsRequired = 'Required'
+ShipUgradeCostsOwned = 'You Have'
+ShipUpgradeStats = 'Hull Benefits:'
+ShipUpgradeSkillBoosts = 'Skill Boosts:'
+ShipUpgradeSkillBoostAdd = 'boosted by'
+ShipUpgradeConfirmAsk = 'This will upgrade your hull. Are you sure?'
+ShipUpgradeConfirmYes = 'Yes'
+ShipUpgradeConfirmNo = 'No'
+ShipUpgradeConfirmTitle = 'Upgrade!'
+ShipUpgradeConfirmTitleDown = 'Downgrade?'
+ShipUpgradeConfirmAskDown = 'This will downgrade your hull. It will not refund money or materials. Are you sure?'
+ShipUpgradeConfirmTitleSide = 'Convert Type?'
+ShipUpgradeConfirmAskSide = 'This will convert your hull to a different type at the same level. Are you sure?'
+HullDefault = 'Basic Hull'
+HullReinforced1 = 'Level 1 Reinforced'
+HullReinforced2 = 'Level 2 Reinforced'
+HullReinforced3 = 'Level 3 Reinforced'
+HullStreamlined1 = 'Level 1 Streamlined'
+HullStreamlined2 = 'Level 2 Streamlined'
+HullStreamlined3 = 'Level 3 Streamlined'
+HullCargo1 = 'Level 1 Cargo'
+HullCargo2 = 'Level 2 Cargo'
+HullCargo3 = 'Level 3 Cargo'
+HullStormChaser1 = 'Level 4 Storm Chaser'
+HullStormChaser2 = 'Level 5 Storm Chaser'
+HullStormChaser3 = 'Level 6 Storm Chaser'
+HullFireStorm1 = 'Level 4 Firestorm'
+HullFireStorm2 = 'Level 5 Firestorm'
+HullFireStorm3 = 'Level 6 Firestorm'
+HullCaptBlood1 = 'Level 4 Fortune Hunter'
+HullCaptBlood2 = 'Level 5 Fortune Hunter'
+HullCaptBlood3 = 'Level 6 Fortune Hunter'
+HullSkullBones1 = 'Level 4 Skull & Bones'
+HullSkullBones2 = 'Level 5 Skull & Bones'
+HullSkullBones3 = 'Level 6 Skull & Bones'
+HullIronclad1 = 'Level 4 Copperhead'
+HullIronclad2 = 'Level 5 Copperhead'
+HullIronclad3 = 'Level 6 Copperhead'
+HullLabel = 'Hull'
+RiggingLabel = 'Rigging'
+DescriptionBase = "The standard wooden frame hull. It creaks a bit and won't impress anyone."
+DescriptionReinforced = "With metal plates bolted to the hull, you won't move very fast, but you'll get there in one piece."
+DescriptionStreamlined = 'This cuts through the water like a knife through... well... water. Turning and cargo suffer.'
+DescriptionCargo = 'The crew quarters have been converted into another cargo hold. You can sleep on the crates!'
+DescriptionStormChaser = "Ever try putting lightning rods in the masts? It'll run fast, though no one will man the crow's nest."
+DescriptionFirestorm = 'It has flames painted on it, and it shoots firebrand, what else could you ask for?'
+DescriptionCaptBlood = 'This clever and efficient design is good at thwarting the dirty navy. It has a bit of everything.'
+DescriptionSkullBones = 'Are you a dark and moody pirate? Or maybe you just like skulls. Either way, this boat is for you!'
+DescriptionIronClad = 'Watch wooden boats explode from the safety of a hull hardened by layers of iron and steel.'
+RiggingBase = 'Basic Rigging'
+RiggingOffense1 = 'Offense 1'
+RiggingOffense2 = 'Offense 2'
+RiggingDefense1 = 'Defense 1'
+RiggingDefense2 = 'Defense 2'
+RiggingSpeed1 = 'Speed 1'
+RiggingSpeed2 = 'Speed 2'
+SailPlain = 'Plain'
+SailWhite = 'White'
+SailBlack = 'Black'
+SailGray = 'Gray'
+SailBrown = 'Brown'
+SailGold = 'Gold'
+SailTan = 'Tan'
+SailOlive = 'Olive'
+SailRed = 'Red'
+SailOrange = 'Orange'
+SailYellow = 'Yellow'
+SailGreen = 'Green'
+SailCyan = 'Cyan'
+SailBlue = 'Blue'
+SailPurple = 'Purple'
+SailPink = 'Pink'
+SailRose = 'Rose'
+SailLime = 'Lime'
+SailMaroon = 'Maroon'
+SailStripeGreen = 'Green Stripe'
+SailStripeRed = 'Red Stripe'
+SailStripeViolet = 'Violet Stripe'
+SailPatches = 'Patchy'
+SailLogoBase = 'Blank'
+SailLogoBull = 'Bull Skull'
+SailLogoDagger = 'Dagger'
+SailLogoScorpion = 'Scorpion'
+SailLogoClaw = 'Claw'
+SailLogoWasp = 'Wasp'
+SailLogoSpider = 'Spider'
+SailLogoSnake = 'Snake'
+SailLogoHawk = 'Hawk'
+SailLogoRose = 'Rose'
+SailLogoFlame = 'Flame'
+SailLogoSpanishBull = 'Bull'
+SailLogoWolf = 'Wolf'
+SailLogoAngel = 'Wings'
+SailLogoDragon = 'Dragon'
+SailLogoShield = 'Shield'
+SailLogoHeart = 'Heart'
+SailLogoSkull = 'Skull'
+SailLogoOctopus = 'Octopus'
+SailLogoShark = 'Shark'
+SailLogoMermaid = 'Mermaid'
+SailLogoStormCloud = 'Storm'
 NoSwitchingItemsWarning = "You can't switch Items while attacking!"
 NoDoubleDrinkingItemsWarning = "You can't drink two things at once!"
 FreeWeaponInventoryMessage = 'Free a slot in your weapon inventory before accepting quest reward!'
@@ -259,9 +369,9 @@ ChestTattoo = 'Chest Tattoo'
 ArmTattoo = 'Arm Tattoo'
 FaceTattoo = 'Face Tattoo'
 SimpleStoreClickPreview = 'Click on the item to preview'
-MerchantStore = 'Merchant Store'
+MerchantStore = 'Merchant'
 StowawayMenuTitle = 'Stowaway Destinations'
-TailorStore = 'Accessories Store'
+TailorStore = 'Accessories'
 TailorPurchase = 'Purchases'
 TailorPurchased = 'Purchased'
 TailorSelling = 'Selling'
@@ -1658,6 +1768,9 @@ ShipClassNames = {
     ShipGlobals.BRIGL1: 'Light Brig',
     ShipGlobals.BRIGL2: 'Brig',
     ShipGlobals.BRIGL3: 'War Brig',
+    ShipGlobals.CARRACKL1: 'Light Carrack',
+    ShipGlobals.CARRACKL2: 'Carrack',
+    ShipGlobals.CARRACKL3: 'War Carrack',
     ShipGlobals.SHIP_OF_THE_LINE: 'Ship of the Line',
     ShipGlobals.HMS_VICTORY: 'HMS Victory',
     ShipGlobals.HMS_NEWCASTLE: 'HMS Newcastle',
@@ -1677,7 +1790,6 @@ ShipClassNames = {
     ShipGlobals.HUNTER_TALLYHO: 'Tally-ho',
     ShipGlobals.HUNTER_BATTLEROYALE: 'Battle-Royale',
     ShipGlobals.HUNTER_EN_GARDE: 'En-Garde',
-    ShipGlobals.EL_PATRONS_SHIP: 'Carrack',
     ShipGlobals.P_SKEL_PHANTOM: 'Phantom',
     ShipGlobals.P_SKEL_REVENANT: 'Revenant',
     ShipGlobals.P_SKEL_CEREBUS: 'Cerberus',
@@ -1706,6 +1818,7 @@ ShipClassNames = {
     ShipGlobals.SKEL_WARSHIPL3: 'War Frigate',
     ShipGlobals.SKEL_INTERCEPTORL3: 'War Sloop',
     ShipGlobals.QUEEN_ANNES_REVENGE: 'Legendary Ship',
+    ShipGlobals.EL_PATRONS_SHIP: 'Legendary Ship',
     ShipGlobals.BLACK_PEARL: 'Legendary Ship',
     ShipGlobals.FLYING_DUTCHMAN: 'Legendary Ship',
     ShipGlobals.STUMPY_SHIP: 'Light Sloop',
@@ -2332,6 +2445,9 @@ InventoryTypeNames = {
     ItemId.BRIG_L1: ShipClassNames.get(ShipGlobals.BRIGL1),
     ItemId.BRIG_L2: ShipClassNames.get(ShipGlobals.BRIGL2),
     ItemId.BRIG_L3: ShipClassNames.get(ShipGlobals.BRIGL3),
+    ItemId.CARRACK_L1: ShipClassNames.get(ShipGlobals.CARRACKL1),
+    ItemId.CARRACK_L2: ShipClassNames.get(ShipGlobals.CARRACKL2),
+    ItemId.CARRACK_L3: ShipClassNames.get(ShipGlobals.CARRACKL3),
     ItemId.QUEEN_ANNES_REVENGE: ShipClassNames.get(ShipGlobals.QUEEN_ANNES_REVENGE),
     ItemId.HUNTER_VENGENCE: ShipClassNames.get(ShipGlobals.HUNTER_VENGENCE),
     ItemId.HUNTER_TALLYHO: ShipClassNames.get(ShipGlobals.HUNTER_TALLYHO),
@@ -2414,21 +2530,21 @@ InventoryTypeNames = {
     InventoryType.Song_3: '3. Outcast Isle',
     InventoryType.Song_4: '4. Scatter the Gulls',
     InventoryType.Song_5: '5. Married to the Sea',
-    InventoryType.Song_6: '6. Song 6',
+    InventoryType.Song_6: '6. New Oceans',
     InventoryType.Song_7: '7. Song 7',
-    InventoryType.Song_8: '8. Song 8',
-    InventoryType.Song_9: '9. Song 9',
+    InventoryType.Song_8: '8. Caribbean Celebration',
+    InventoryType.Song_9: '9. Call to Arms',
     InventoryType.Song_10: '10. Song 10',
     InventoryType.Song_11: "11. Merchant's Folly",
     InventoryType.Song_12: '12. Prepare to Cast Off!',
     InventoryType.Song_13: '13. Cutthroat Isle',
     InventoryType.Song_14: '14. Kingshead',
     InventoryType.Song_15: "15. Rumrunner's Isle",
-    InventoryType.Song_16: '16. Song 16',
-    InventoryType.Song_17: '17. Song 17',
+    InventoryType.Song_16: '16. Tortuga',
+    InventoryType.Song_17: '17. Call of the Sea',
     InventoryType.Song_18: '18. Song 18',
-    InventoryType.Song_19: '19. Song 19',
-    InventoryType.Song_20: '20. Song 20',
+    InventoryType.Song_19: '19. The High Seas',
+    InventoryType.Song_20: "20. He's a Pirate",
     InventoryType.Song_21: '21. Ballad of a Buccaneer',
     InventoryType.Song_22: '22. Caribbean Holiday' }
 
@@ -4878,7 +4994,10 @@ ShipDescriptions = {
     ItemId.WARSHIP_L3: WarshipDescription,
     ItemId.BRIG_L1: BrigDescription,
     ItemId.BRIG_L2: BrigDescription,
-    ItemId.BRIG_L3: BrigDescription,        
+    ItemId.BRIG_L3: BrigDescription,  
+    ItemId.CARRACK_L1: CarrackDescription,      
+    ItemId.CARRACK_L2: CarrackDescription,
+    ItemId.CARRACK_L3: CarrackDescription,
     ItemId.QUEEN_ANNES_REVENGE: UnknownDescription,
     ItemId.HUNTER_VENGENCE: WarshipDescription,
     ItemId.HUNTER_TALLYHO: WarshipDescription,

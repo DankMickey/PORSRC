@@ -291,8 +291,10 @@ class DistributedShopKeeperAI(DistributedObjectAI):
         	sendResponse(0, False)
         	return
 
+        resultCode = 0
+
         av.takeGold(requiredGold)
-        sendResponse(2, True)
+        sendResponse(2, (resultCode == 2))
 
     def requestBarber(self, hairId, colorId):
 

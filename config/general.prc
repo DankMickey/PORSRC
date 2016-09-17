@@ -13,6 +13,7 @@ restore-initial-pose 0
 
 # Misc
 want-spooky-avatarchooser #t
+want-logout #t
 
 # WEAPONS
 want-all-weapons-trained #t
@@ -127,6 +128,9 @@ enable-sky #t
 prepare-scene #t
 advanced-weather #t
 want-soft-tod-changes #t
+
+# SAILING
+want-seas-closed #t
 
 # Code Redemption
 want-coderedemption #f

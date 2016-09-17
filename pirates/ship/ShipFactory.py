@@ -88,6 +88,9 @@ class ShipFactory:
         self.preprocessHull(ShipGlobals.BRIGL1)
         self.preprocessHull(ShipGlobals.BRIGL2)
         self.preprocessHull(ShipGlobals.BRIGL3)
+        self.preprocessHull(ShipGlobals.CARRACKL1)
+        self.preprocessHull(ShipGlobals.CARRACKL2)
+        self.preprocessHull(ShipGlobals.CARRACKL3)
         self.preprocessHull(ShipGlobals.QUEEN_ANNES_REVENGE)
         self.sprits = ShipBlueprints.preprocessSprits()
 

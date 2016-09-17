@@ -1,5 +1,5 @@
 from direct.directnotify import DirectNotifyGlobal
-from pirates.distributed import DistributedInteractiveAI
+from pirates.distributed.DistributedInteractiveAI import *
 import DistributedGameTableAI
 
 class DistributedPokerTableAI(DistributedGameTableAI.DistributedGameTableAI):
