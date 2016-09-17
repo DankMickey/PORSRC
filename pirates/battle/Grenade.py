@@ -162,15 +162,15 @@ class Grenade(Weapon.Weapon):
 
 
 def getHitSfx():
-    pass
+    return Grenade.hitSfxs
 
 
 def getMistimedHitSfx():
-    pass
+    return Grenade.mistimedHitSfxs
 
 
 def getMissSfx():
-    pass
+    return Grenade.missSfxs
 
 
 def getAimSfx():
