@@ -1,7 +1,5 @@
 from panda3d.physics import BaseParticleEmitter, BaseParticleRenderer
 from panda3d.core import ColorBlendAttrib, ModelNode, NodePath, Point3, StencilAttrib, Vec3, Vec4
-# File: R (Python 2.4)
-
 from direct.interval.IntervalGlobal import *
 from direct.particles import ParticleEffect
 from direct.particles import Particles
@@ -86,7 +84,10 @@ class RainSplashes2(EffectController, NodePath):
     def updatePos(self, t):
         if self.reference:
             pos = self.reference.getPos(self.getParent())
-            self.setPos(pos[0], pos[1], 2.0)
+            try:
+                self.setPos(pos[0], pos[1], 2.0)
+            except:
+                pass
 
 
 

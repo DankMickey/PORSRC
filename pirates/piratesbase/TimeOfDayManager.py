@@ -1609,11 +1609,14 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
         self.lerpFogIval.start()
 
 
-    def setStormState(self, state):
+    def setStormState(self, state, changeClouds=False):
         if not self.advancedWeather:
             return
+        if not config.GetBool('want-storm-weather', False):
+            return
         if state:
-            self.setCloudsType(self.HEAVYCLOUDS)
+            if changeClouds:
+                self.setCloudsType(self.HEAVYCLOUDS)
             if self.stormEye is None:
                 self.stormEye = StormEye()
                 self.stormEye.reparentTo(render)
@@ -1624,7 +1627,6 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
                 self.stormRing.setZ(100)
                 self.stormRing.startLoop()
         else:
-            self.setCloudsType(self.HEAVYCLOUDS)
             if self.stormEye:
                 self.stormEye.stopLoop()
                 self.stormRing.stopLoop()
