@@ -1,7 +1,8 @@
 from panda3d.core import NodePath, getModelPath
 from direct.distributed.DistributedNodeAI import DistributedNodeAI
 from pirates.battle.DistributedEnemySpawnerAI import DistributedEnemySpawnerAI
-
+from pirates.minigame.DistributedPokerTableAI import DistributedPokerTableAI
+from pirates.minigame.DistributedGameTableAI import DistributedGameTableAI
 
 class DistributedGameAreaAI(DistributedNodeAI):
     def __init__(self, air, modelPath):
@@ -67,6 +68,8 @@ class DistributedGameAreaAI(DistributedNodeAI):
                 genObj.d_updateSmPos()
                 newZoneId = self.getZoneFromXYZ(genObj.getPos(self))
                 genObj.b_setLocation(genObj.parentId, newZoneId)
+        elif objType == 'Parlor Game'  and config.GetBool('want-parlor-games', True):
+            genObj = DistributedPokerTableAI.makeFromObjectKey(self.air, objKey, object)
         else:
             nodeName =  'objNode-%s-%s' % (objType, objKey)
 

@@ -13,8 +13,6 @@ from pirates.treasuremap.DistributedBuriedTreasureAI import DistributedBuriedTre
 from pirates.minigame.DistributedPotionCraftingTableAI import DistributedPotionCraftingTableAI
 from pirates.minigame.DistributedRepairBenchAI import DistributedRepairBenchAI
 from pirates.minigame.DistributedFishingSpotAI import DistributedFishingSpotAI
-from pirates.minigame.DistributedGameTableAI import DistributedGameTableAI
-from pirates.minigame.DistributedPokerTableAI import DistributedPokerTableAI
 
 # Holiday
 from pirates.holiday.DistributedHolidayObjectAI import DistributedHolidayObjectAI
@@ -200,7 +198,7 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
             genObj = DistributedRepairBenchAI.makeFromObjectKey(self.air, objKey, object)
             self.generateChild(genObj)
 
-        elif objType == 'Holiday' and config.GetBool('want-holiday-objects', 1):
+        elif objType == 'Holiday' and config.GetBool('want-holiday-objects', 0):
             genObj = DistributedHolidayObjectAI.makeFromObjectKey(self.air, objKey, object)
             self.generateChild(genObj)
 
@@ -208,9 +206,6 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
             genObj = DistributedGATunnelAI.makeFromObjectKey(self.air, objKey, object)
             self.generateChild(genObj)
 
-        elif objType == 'Parlor Game' and config.GetBool('want-parlor-games', 0):
-            genObject = DistributedPokerTableAI.makeFromObjectKey(self.air, objKey, object)
-            self.generateChild(genObj)
         else:
             genObj = DistributedGameAreaAI.createObject(self, objType, parent, objKey, object)
 
