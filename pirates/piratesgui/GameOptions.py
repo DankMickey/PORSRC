@@ -22,7 +22,7 @@ from direct.directnotify import DirectNotifyGlobal
 from pirates.piratesgui.GameOptionsGui import *
 from pirates.uberdog.UberDogGlobals import InventoryType
 
-resolution_table = [(800, 600), (1024, 768), (1280, 720), (1280, 1024), (1600, 1200), (1920, 1080)]
+resolution_table = [(800, 600), (1024, 768), (1280, 720), (1280, 1024), (1360, 768), (1600, 900), (1600, 1200), (1920, 1080)]
 
 class DisplayOptions:
     notify = DirectNotifyGlobal.directNotify.newCategory('DisplayOptions')
