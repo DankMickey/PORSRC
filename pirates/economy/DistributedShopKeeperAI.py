@@ -353,7 +353,6 @@ class DistributedShopKeeperAI(DistributedObjectAI):
         if requiredGold > av.getGoldInPocket():
             return
 
-        #BROKEN
         av.takeGold(requiredGold)
 
         tpMgr = self.air.tpMgr
