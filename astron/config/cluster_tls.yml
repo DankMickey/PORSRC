@@ -48,9 +48,8 @@ roles:
       bind: 0.0.0.0:29150
       version: "pirates-dev"
       tls:
-        certificate: ../certs/dev/pserver.crt
-        key_file: ../certs/dev/pserver.key
-        cert_authority: ../certs/dev/pclient.crt
+        certificate: ../certs/cert.crt
+        key_file: ../certs/cert.key
       client:
           relocate: true
           add_interest: enabled
