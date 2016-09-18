@@ -57,8 +57,8 @@ class PiratesAIRepository(PiratesInternalRepository):
         self.magicWordManager = MagicWordManagerAI(self)
         self.magicWordManager.generateWithRequired(2)
 
-        self. coderedemption = CodeRedemptionAI(self)
-        self.coderedemption.generateWithRequired(2)
+        self.codeRedemption = CodeRedemptionAI(self)
+        self.codeRedemption.generateWithRequired(2)
 
         self.banMgr = BanManagerAI(self)
         self.battleMgr = BattleManagerAI(self)
