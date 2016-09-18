@@ -24,6 +24,7 @@ class OTPBase(ShowBase):
 
         self.wantDynamicShadows = 1
         self.stereoEnabled = False
+        self.FPSEnabled = False
         self.enviroDR = None
         self.enviroCam = None
         self.pixelZoomSetup = False
@@ -60,6 +61,7 @@ class OTPBase(ShowBase):
         if self.wantEnviroDR:
             self.setupEnviroCamera()
             return
+
         mainDR = base.camNode.getDisplayRegion(0)
         if self.stereoEnabled:
             if not mainDR.isStereo():
@@ -71,6 +73,16 @@ class OTPBase(ShowBase):
             base.win.removeDisplayRegion(mainDR)
             mainDR = base.win.makeMonoDisplayRegion()
             mainDR.setCamera(base.cam)
+
+    def toggleFPS(self):
+        self.FPSEnabledEnabled = not self.FPSEnabled
+        if self.FPSEnabled:
+            self.show-frame-rate-meter #t
+            base.setFrameRateMeter(True)
+        if not self.FPSEnabled:
+            base.setFrameRateMeter(False)
+            return
+
 
     def setupEnviroCamera(self):
         clearColor = VBase4(0, 0, 0, 1)
