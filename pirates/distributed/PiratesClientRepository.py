@@ -817,32 +817,20 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
         # TLS config
         self.checkHttp()
 
-        if config.GetBool('server-force-ssl', False):
-            mod = config.GetString('ssl-mod', 'dev')
-            certs = config.GetString('ssl-certs-folder', 'astron/certs/dev')
-
-            def _devmethod(http, server):
-                with open('%s/pserver.crt' % certs) as f:
-                    serverpem = f.read()
-
-                with open('%s/pclient.crt' % certs) as f:
-                    clientpem = f.read()
-
-                with open('%s/pclient.key' % certs) as f:
-                    clientpem += f.read()
-
-                http.addPreapprovedServerCertificatePem(server, serverpem)
-                http.setClientCertificatePem(clientpem)
-
-            if mod == 'dev':
-                method = _devmethod
-
-            elif mod == 'prod':
-                import _tlsdata
-                method = _tlsdata._prodmethod
+        if not base.isClientBuilt():
+            certFile = os.path.join('astron', 'certs', 'cert.crt')
+            
+            if os.path.exists(certFile):
+                with open(certFile, 'r') as file:
+                    certPem = certFile.read()
+            else:
+                certPem = None
+        
+        if certPem:
+            self.notify.info('Adding TLS certificate.')
 
             for server in serverList:
-                method(self.http, server)
+                self.http.addPreapprovedServerCertificatePem(server, certPem)
 
         self.http.setVerifySsl(HTTPClient.VSNoDateCheck)
         OTPClientRepository.OTPClientRepository.enterConnect(self, serverList)
