@@ -2,7 +2,7 @@ from panda3d.direct import DCFile
 from panda3d.core import DatagramIterator, Filename, HTTPClient, getModelPath
 import types
 import random
-import gc
+import gc, os
 import __builtin__
 base.loadingScreen.beginStep('PCR', 20, 15)
 from direct.showbase.ShowBaseGlobal import *
@@ -822,7 +822,7 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
             
             if os.path.exists(certFile):
                 with open(certFile, 'r') as file:
-                    certPem = certFile.read()
+                    certPem = file.read()
             else:
                 certPem = None
         
