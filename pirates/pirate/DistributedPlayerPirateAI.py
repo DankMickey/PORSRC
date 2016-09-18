@@ -129,6 +129,9 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
 
     def getDefaultShard(self):
         return self.defaultShard
+
+    def getGender(self):
+        return 'm' #TODO properly implement
     
     def repChanged(self):
         newLevel = self.calcLevel()

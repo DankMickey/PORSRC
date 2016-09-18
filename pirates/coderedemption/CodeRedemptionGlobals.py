@@ -98,7 +98,7 @@ AWARD_ID = {
         1,
         PLocalizer.CodeRedemptionFlatulentFizz],
     AwardTypes.BUCCANEER_HAT: [
-        NORMAL_INVENTORY,
+        CLOTHING,
         InvItem((InventoryType.ItemTypeClothing, ItemGlobals.BLACK_BUCCANEER_HAT, 0, 0)),
         None,
         1,
@@ -152,7 +152,7 @@ AWARD_ID = {
         1,
         PLocalizer.CodeRedemptionSuperReputationPotion],
     AwardTypes.SCOUNDREL_HAT: [
-        NORMAL_INVENTORY,
+        CLOTHING,
         InvItem((InventoryType.ItemTypeClothing, ItemGlobals.CRIMSON_BUCCANEER_HAT, 0, 0)),
         None,
         1,

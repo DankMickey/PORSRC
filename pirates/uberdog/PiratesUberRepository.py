@@ -1,5 +1,4 @@
 from pirates.distributed.PiratesInternalRepository import PiratesInternalRepository
-from pirates.coderedemption.CodeRedemptionUD import CodeRedemptionUD
 from direct.distributed.PyDatagram import *
 from otp.distributed.DistributedDirectoryAI import DistributedDirectoryAI
 from otp.distributed.OtpDoGlobals import *
@@ -43,7 +42,6 @@ class PiratesUberRepository(PiratesInternalRepository):
         self.guildManager = self.generateGlobalObject(OTP_DO_ID_PIRATES_GUILD_MANAGER, 'DistributedGuildManager')
         self.travelAgent = self.generateGlobalObject(OTP_DO_ID_PIRATES_TRAVEL_AGENT, 'DistributedTravelAgent')
         self.crewMatchManager = self.generateGlobalObject(OTP_DO_ID_PIRATES_CREW_MATCH_MANAGER, 'DistributedCrewMatchManager')
-        self.codeRedemption = self.generateGlobalObject(OTP_DO_ID_PIRATES_CODE_REDEMPTION, 'CodeRedemption')
 
     def _isValidPlayerLocation(self, parentId, zoneId):
         return True

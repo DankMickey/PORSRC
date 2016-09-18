@@ -80,9 +80,7 @@ from pirates.piratesbase import PLocalizer
 from pirates.piratesbase import LoadingScreen
 from pirates.ai import NewsManager
 from pirates.makeapirate import PCPickANamePattern
-
-if config.GetBool("want-coderedemption", True):
-    from pirates.coderedemption.CodeRedemption import CodeRedemption
+from pirates.coderedemption.CodeRedemption import CodeRedemption
 
 base.loadingScreen.endStep('PCR')
 from pirates.quest import QuestLadderDynMap
@@ -115,9 +113,6 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
         self.piratesFriendsManager = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_PIRATES_FRIENDS_MANAGER, 'PiratesFriendsManager')
         #self.shipLoader = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_PIRATES_SHIP_MANAGER, 'DistributedShipLoader')
 
-        if config.GetBool("want-coderedemption", True):
-            self.codeRedemption = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_PIRATES_CODE_REDEMPTION, 'CodeRedemption')
-
         self.wantSeapatch = config.GetBool('want-seapatch', 0)
         self.wantSpecialEffects = config.GetBool('want-special-effects', 0)
         self.wantMakeAPirate = config.GetBool('wantMakeAPirate', 0)
@@ -141,6 +136,7 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
         self.timeOfDayManager = None
         self.tradeManager = None
         self.pvpManager = None
+        self.codeRedemption = None
         self.battleMgr = BattleManager.BattleManager(self)
         self.combatAnims = CombatAnimations.CombatAnimations()
         self.interactionMgr = InteractionManager.InteractionManager()

@@ -7,18 +7,17 @@ from otp.chat.ChatAgentAI import ChatAgentAI
 from otp.distributed.OtpDoGlobals import *
 from otp.ai.MagicWordManagerAI import MagicWordManagerAI
 from otp.ai.BanManagerAI import BanManagerAI
-
 from pirates.distributed.PiratesInternalRepository import PiratesInternalRepository
 from pirates.instance.DistributedMainWorldAI import DistributedMainWorldAI
 from pirates.distributed.DistrictManagerAI import DistrictManagerAI
 from pirates.ai.NewsManagerAI import NewsManagerAI
-
 from pirates.world.WorldCreatorAI import WorldCreatorAI
 from pirates.piratesbase.DistributedTimeOfDayManagerAI import DistributedTimeOfDayManagerAI
 from pirates.piratesbase.DistributedGameStatManagerAI import DistributedGameStatManagerAI
 from pirates.instance.DistributedTeleportMgrAI import DistributedTeleportMgrAI
 from pirates.distributed.TargetManagerAI import TargetManagerAI
 from pirates.battle.BattleManagerAI import BattleManagerAI
+from pirates.coderedemption.CodeRedemptionAI import CodeRedemptionAI
 
 import threading, sys
 
@@ -57,6 +56,9 @@ class PiratesAIRepository(PiratesInternalRepository):
 
         self.magicWordManager = MagicWordManagerAI(self)
         self.magicWordManager.generateWithRequired(2)
+
+        self. coderedemption = CodeRedemptionAI(self)
+        self.coderedemption.generateWithRequired(2)
 
         self.banMgr = BanManagerAI(self)
         self.battleMgr = BattleManagerAI(self)

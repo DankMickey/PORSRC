@@ -65,7 +65,7 @@ from pirates.world import DistributedInteriorDoor/AI
 from pirates.world import DistributedCellDoor/AI
 from pirates.band import DistributedCrewMatchManager/AI/UD
 from pirates.interact import DistributedSearchableContainer/AI
-from pirates.coderedemption import CodeRedemption/UD
+from pirates.coderedemption import CodeRedemption/AI
 from pirates.minigame import DistributedGameTable/AI
 from pirates.minigame import DistributedPokerTable/AI
 from pirates.holiday import DistributedHolidayObject/AI
