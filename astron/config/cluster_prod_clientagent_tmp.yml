@@ -1,0 +1,27 @@
+daemon:
+    name: Client Agent
+
+general:
+    eventlogger: %LOGGER_IP%
+    dc_files:
+        - ../dclass/otp.dc
+        - ../dclass/pirates.dc
+
+messagedirector:
+    connect: %MD_IP%
+
+roles:
+    - type: clientagent
+      bind: 0.0.0.0:29150
+      version: "%VERSION%"
+      tls:
+          certificate: ../certs/cert.crt
+          key_file: ../certs/cert.key
+      client:
+          relocate: true
+          add_interest: enabled
+          send_hash: false
+          send_version: false
+      channels:
+          min: 1000000000
+          max: 1000001000
