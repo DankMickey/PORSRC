@@ -10,6 +10,39 @@ general:
 messagedirector:
     connect: %MD_IP%
 
+uberdogs:
+    - class: ClientServicesManager
+      id: 1000
+      anonymous: true
+
+    - class: DistributedTravelAgent
+      id: 1001
+      anonymous: false
+
+    - class: PiratesFriendsManager
+      id: 1002
+      anonymous: false
+    
+    - class: AvatarFriendsManager
+      id: 1003
+      anonymous: false
+    
+    - class: DistributedCrewMatchManager
+      id: 1004
+      anonymous: false
+    
+    - class: CentralLogger
+      id: 1005
+      anonymous: false
+
+    - class: DistributedMatchMaker
+      id: 1006
+      anonymous: false
+
+    - class: DistributedGuildManager
+      id: 1007
+      anonymous: false
+
 roles:
     - type: clientagent
       bind: 0.0.0.0:29150
