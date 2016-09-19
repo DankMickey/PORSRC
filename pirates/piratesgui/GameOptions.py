@@ -153,6 +153,7 @@ class Options(Settings):
             'oceanVisibility': self.ocean_visibility,
             'landMapRadarAxis': self.land_map_radar_axis,
             'oceanMapRadarAxis': self.ocean_map_radar_axis,
+            'FramesPerSecond': self.FPS,
             'simpleDisplayOption': self.simple_display_option,
             'useStereo': bool(self.use_stereo)
         }
@@ -218,6 +219,7 @@ class Options(Settings):
         self.ocean_map_radar_axis = self.validate(options, int, 'oceanMapRadarAxis', self.RadarAxisCamera, [self.RadarAxisMap, self.RadarAxisCamera])
         self.simple_display_option = self.validate(options, int, 'simpleDisplayOption', 3, [0, 1, 2, 3])
         self.use_stereo = self.validate(options, bool, 'useStereo', False)
+        self.FPS = self.validate(options, bool, 'FramesPerSecond', False)
     
     def applyPre(self):
         self.options_to_config()
@@ -352,6 +354,7 @@ class Options(Settings):
         self.hdr_factor = 1.0
         self.simple_display_option = Options.option_custom
         self.use_stereo = 0
+        self.FPS = 0
         self.land_map_radar_axis = self.RadarAxisMap
         self.ocean_map_radar_axis = self.RadarAxisCamera
 
@@ -422,6 +425,13 @@ class Options(Settings):
                 base.toggleStereo()
         elif base.stereoEnabled:
             base.toggleStereo()
+
+    def setRuntimeFPS(self):
+        if self.FPS:
+            if not base.FPSEnabled:
+                base.toggleFPS()
+        elif base.FPSEnabled:
+            base.toggleFPS()
 
     def setLandMapRadarAxis(self):
         messenger.send('landMapRadarAxisChanged', [

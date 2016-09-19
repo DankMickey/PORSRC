@@ -43,21 +43,18 @@ uberdogs:
       id: 1007
       anonymous: false
 
-    - class: CodeRedemption
-      id: 4703
-      anonymous: false
-
 roles:
     - type: clientagent
       bind: 0.0.0.0:29150
       version: "pirates-dev"
       tls:
-        certificate: ../certs/dev/pserver.crt
-        key_file: ../certs/dev/pserver.key
-        cert_authority: ../certs/dev/pclient.crt
+          certificate: ../certs/cert.crt
+          key_file: ../certs/cert.key
       client:
           relocate: true
           add_interest: enabled
+          send_hash: false
+          send_version: false
       channels:
           min: 1000000000
           max: 1000001000

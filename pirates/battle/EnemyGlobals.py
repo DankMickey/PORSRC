@@ -2370,8 +2370,8 @@ __baseAvatarSkills = {
         InventoryType.CutlassFlourish]) }
 __enemyAttackDelay = {
     InventoryType.GrenadeThrow: [
-        6,
-        6] }
+        7,
+        7] }
 
 def getAttackDelay(skillId, default = None):
     delayInfo = __enemyAttackDelay.get(skillId, None)
