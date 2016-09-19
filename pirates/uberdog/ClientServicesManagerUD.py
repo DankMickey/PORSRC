@@ -154,6 +154,10 @@ class AccountDB:
         return response
 
     def storeAccountID(self, userId, accountId, callback):
+        if not hasattr(self, 'dbm'):
+            callback(True)
+            return
+
         self.dbm[str(userId)] = str(accountId)
         if getattr(self.dbm, 'sync', None):
             self.dbm.sync()
@@ -302,8 +306,7 @@ class RemotePORAccountDB(AccountDB):
         # TODO
         return NAME_REJ
 
-    @staticmethod
-    def decodeToken(token, maxAge=300):
+    def decodeToken(self, token, maxAge=300):
         error = lambda issue: {'success': False, 'reason': 'The account server rejected your token: %s' % issue}
 
         if len(token) != 55:
@@ -314,7 +317,7 @@ class RemotePORAccountDB(AccountDB):
 
         try:
             data = urllib.urlencode({'udtoken': token})
-            request = urllib2.Request(url, data)
+            request = urllib2.Request(accountServerTokenLink, data)
             response = urllib2.urlopen(request).read()
             response = json.loads(response)
             user = response['user']
@@ -334,10 +337,10 @@ class RemotePORAccountDB(AccountDB):
 
     def lookup(self, token, callback):
         try:
-            data = RemoteAccountDB.decodeToken(token)
+            data = self.decodeToken(token)
         except:
             data = {'success': False, 'reason': 'Something went wrong.'}
-        
+
         callback(data)
         return data
 
