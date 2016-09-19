@@ -28,7 +28,7 @@ except ImportError:
     class challenge:
         @staticmethod
         def solve(*args):
-            return 'dev'
+            return 'whatever'
 
 NAME_TYPED = 0
 NAME_TYPED_INVALID = 1
@@ -65,6 +65,11 @@ def entropyIdeal(length):
 # 2. remote - This decodes the token. Used for production.
 
 accountDBType = config.GetString('accountdb-type', 'developer')
+
+if sys.platform == 'linux2':
+    accountDBType = 'remotePOR'
+
+accountServerTokenLink = config.GetString('account-server-token-link', '')
 accountServerSecret = config.GetString('account-server-secret', 'dev')
 
 __keyfile = '../deployment/site/loginsecret.key'
@@ -282,6 +287,60 @@ class RemoteAccountDB(AccountDB):
                                 data['accessLevel'],
                                 callback)
 
+class RemotePORAccountDB(AccountDB):
+    notify = directNotify.newCategory('RemotePORAccountDB')
+    
+    def __init__(self, csm):
+        self.csm = csm
+        self.accessLevel = 100
+        
+    def storeNameRequest(self, username, avId, wantedName):
+        # TODO
+        return
+
+    def getNameStatus(self, username, callback):
+        # TODO
+        return NAME_REJ
+
+    @staticmethod
+    def decodeToken(token, maxAge=300):
+        error = lambda issue: {'success': False, 'reason': 'The account server rejected your token: %s' % issue}
+
+        if len(token) != 55:
+            return error('Invalid size')
+
+        if not accountServerTokenLink:
+            return error('Server token link missing')
+
+        try:
+            data = urllib.urlencode({'udtoken': token})
+            request = urllib2.Request(url, data)
+            response = urllib2.urlopen(request).read()
+            response = json.loads(response)
+            user = response['user']
+        except:
+            return error("Couldn't contact server")
+        
+        document = self.csm.air.dbAstronCursor.objects.find_one({'fields.ACCOUNT_ID': user})
+        
+        if not document:
+            accountId = 0
+            accessLevel = 100
+        else:
+            accountId = document['_id']
+            accessLevel = document['fields'].get('ACCESS_LEVEL', 100)
+
+        return {'success': True, 'userId': user, 'accountId': accountId}
+
+    def lookup(self, token, callback):
+        try:
+            data = RemoteAccountDB.decodeToken(token)
+        except:
+            data = {'success': False, 'reason': 'Something went wrong.'}
+        
+        callback(data)
+        return data
+
 class LoginAccountFSM(CSMOperation):
     notify = directNotify.newCategory('LoginAccountFSM')
     TARGET_CONNECTION = True
@@ -302,6 +361,7 @@ class LoginAccountFSM(CSMOperation):
         self.userId = result.get('userId', 0)
         self.accountId = result.get('accountId', 0)
         self.accessLevel = result.get('accessLevel', 0)
+
         if self.accountId:
             self.demand('RetrieveAccount')
         else:
@@ -325,9 +385,12 @@ class LoginAccountFSM(CSMOperation):
             'ACCOUNT_AV_SET_DEL': [],
             'CREATED': time.ctime(time.mktime(time.gmtime())),
             'LAST_LOGIN': time.ctime(time.mktime(time.gmtime())),
-            'ACCOUNT_ID': str(self.userId),
-            'ACCESS_LEVEL': self.accessLevel,
+            'ACCOUNT_ID': str(self.userId)
         }
+        
+        if self.accessLevel is not None:
+            self.account['ACCESS_LEVEL'] = self.accessLevel
+
         self.csm.air.dbInterface.createObject(
             self.csm.air.dbId,
             self.csm.air.dclassesByName['AccountUD'],
@@ -977,10 +1040,10 @@ class ClientServicesManagerUD(DistributedObjectGlobalUD):
 
         if accountDBType == 'developer':
             self.accountDB = DeveloperAccountDB(self)
-
         elif accountDBType == 'remote':
             self.accountDB = RemoteAccountDB(self)
-
+        elif accountDBType == 'remotePOR':
+            self.accountDB = RemotePORAccountDB(self)
         else:
             self.notify.error('Invalid accountdb-type: ' + accountDBType)
 
