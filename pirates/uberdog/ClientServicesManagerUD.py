@@ -321,7 +321,9 @@ class RemotePORAccountDB(AccountDB):
             response = urllib2.urlopen(request).read()
             response = json.loads(response)
             user = response['user']
-        except:
+        except Exception as e:
+            import traceback
+            print traceback.format_exc()
             return error("Couldn't contact server")
         
         document = self.csm.air.dbAstronCursor.objects.find_one({'fields.ACCOUNT_ID': user})
@@ -336,9 +338,13 @@ class RemotePORAccountDB(AccountDB):
         return {'success': True, 'userId': user, 'accountId': accountId}
 
     def lookup(self, token, callback):
+        print 'Authenticating %s' % token
+
         try:
             data = self.decodeToken(token)
-        except:
+        except Exception as e:
+            import traceback
+            print traceback.format_exc()
             data = {'success': False, 'reason': 'Something went wrong.'}
 
         callback(data)
