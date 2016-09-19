@@ -47,9 +47,6 @@ roles:
     - type: clientagent
       bind: 0.0.0.0:29150
       version: "%VERSION%"
-      tls:
-          certificate: ../certs/cert.crt
-          key_file: ../certs/cert.key
       client:
           relocate: true
           add_interest: enabled

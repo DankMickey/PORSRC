@@ -817,9 +817,6 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
         # TLS config
         self.checkHttp()
 
-        if hasattr(__builtin__, 'certPem'):
-            self.notify.info('Using inbuilt certs.')
-            certPem = __builtin__.certPem
         if not base.isClientBuilt():
             certFile = os.path.join('astron', 'certs', 'cert.crt')
             
@@ -834,8 +831,6 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
 
             for server in serverList:
                 self.http.addPreapprovedServerCertificatePem(server, certPem)
-        else:
-            self.notify.info('No certs available.')
 
         self.http.setVerifySsl(HTTPClient.VSNoDateCheck)
         OTPClientRepository.OTPClientRepository.enterConnect(self, serverList)
