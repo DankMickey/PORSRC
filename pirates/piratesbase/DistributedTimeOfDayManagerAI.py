@@ -138,5 +138,5 @@ def setClouds(state):
 @magicWord(CATEGORY_GAME_MASTER, types=[int])
 def setJollyMoon(state):
     air = spellbook.getInvoker().air
-    air.todManager.setJollyMoon((state == 1))
+    air.todManager.setMoonJolly((state == 1))
     return "Setting jolly moon state to %s for district." % state
