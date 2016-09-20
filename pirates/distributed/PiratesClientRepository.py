@@ -81,6 +81,7 @@ from pirates.piratesbase import LoadingScreen
 from pirates.ai import NewsManager
 from pirates.makeapirate import PCPickANamePattern
 from pirates.coderedemption.CodeRedemption import CodeRedemption
+
 base.loadingScreen.endStep('PCR')
 from pirates.quest import QuestLadderDynMap
 from pirates.quest.QuestLadderDependency import QuestLadderDependency
@@ -567,7 +568,6 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
             return
         OTPClientRepository.OTPClientRepository._logFailedDisable(self, doId, ownerView)
 
-#L
     def exitCloseShard(self):
         OTPClientRepository.OTPClientRepository.exitCloseShard(self)
         self.ignore(PiratesClientRepository.ClearInterestDoneEvent)
@@ -606,13 +606,13 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
             self.notify.warning('removePiratesShardInterest: no shard interest open')
             callback()
             return
-         self.acceptOnce(PiratesClientRepository.ClearInterestDoneEvent, Functor(self._tcrRemoveUberZoneInterest, callback))
-         self._removeEmulatedSetZone(PiratesClientRepository.ClearInterestDoneEvent)
+        self.acceptOnce(PiratesClientRepository.ClearInterestDoneEvent, Functor(self._tcrRemoveUberZoneInterest, callback))
+        self._removeEmulatedSetZone(PiratesClientRepository.ClearInterestDoneEvent)
         return
 
     def _tcrRemoveUberZoneInterest(self, callback):
-         self.acceptOnce(PiratesClientRepository.ClearInterestDoneEvent, Functor(self._tcrRemoveShardInterestDone, callback))
-         self.removeInterest(self.uberZoneInterest, PiratesClientRepository.ClearInterestDoneEvent)
+        self.acceptOnce(PiratesClientRepository.ClearInterestDoneEvent, Functor(self._tcrRemoveShardInterestDone, callback))
+        self.removeInterest(self.uberZoneInterest, PiratesClientRepository.ClearInterestDoneEvent)
 
     def _tcrRemoveShardInterestDone(self, callback):
         self.uberZoneInterest = None
