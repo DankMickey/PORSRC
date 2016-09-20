@@ -321,7 +321,7 @@ class RemotePORAccountDB(AccountDB):
             response = urllib2.urlopen(request).read()
             response = json.loads(response)
             user = response['user']
-            accessLevel = response['access']
+            accessLevel = int(response['access'])
         except Exception as e:
             import traceback
             print traceback.format_exc()
