@@ -1138,6 +1138,7 @@ SkipTutorialOffer = 'Follow Jack into the Tutorial and learn how to be a Pirate?
 SkipTutorialYes = 'Tutorial'
 SkipTutorialNo = 'Skip'
 AnimateFrame = 'Motion'
+GameOptionsFPS = 'FPS'
 LODFrame = 'LOD'
 LODSuperLow = 'S.Low'
 LODLow = 'Low'
