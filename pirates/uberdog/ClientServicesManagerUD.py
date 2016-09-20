@@ -321,6 +321,7 @@ class RemotePORAccountDB(AccountDB):
             response = urllib2.urlopen(request).read()
             response = json.loads(response)
             user = response['user']
+            accessLevel = response['access']
         except Exception as e:
             import traceback
             print traceback.format_exc()
@@ -330,12 +331,10 @@ class RemotePORAccountDB(AccountDB):
         
         if not document:
             accountId = 0
-            accessLevel = 100
         else:
             accountId = document['_id']
-            accessLevel = document['fields'].get('ACCESS_LEVEL', 100)
 
-        return {'success': True, 'userId': user, 'accountId': accountId}
+        return {'success': True, 'userId': user, 'accountId': accountId, 'accessLevel': accessLevel}
 
     def lookup(self, token, callback):
         print 'Authenticating %s' % token
