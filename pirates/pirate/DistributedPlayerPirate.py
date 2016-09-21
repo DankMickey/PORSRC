@@ -3381,11 +3381,11 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             self.tempDoubleXPStatusMessaged = True
             if self.getDoId() == localAvatar.getDoId() and value != 0:
                 (h, m) = self.getHoursAndMinutes(value)
-                base.localAvatar.guiMgr.messageStack.addModalTextMessage(PLocalizer.TEMP_DOUBLE_REP % (h, m), seconds = 45, priority = 0, color = PiratesGuiGlobals.TextFG14)
+                base.localAvatar.guiMgr.messageStack.addTextMessage(PLocalizer.TEMP_DOUBLE_REP % (h, m), seconds = 45, priority = 0, color = PiratesGuiGlobals.TextFG14)
 
         elif value > self.tempDoubleXPStatus:
             (h, m) = self.getHoursAndMinutes(value)
-            base.localAvatar.guiMgr.messageStack.addModalTextMessage(PLocalizer.TEMP_DOUBLE_REP % (h, m), seconds = 45, priority = 0, color = PiratesGuiGlobals.TextFG14)
+            base.localAvatar.guiMgr.messageStack.addTextMessage(PLocalizer.TEMP_DOUBLE_REP % (h, m), seconds = 45, priority = 0, color = PiratesGuiGlobals.TextFG14)
 
         self.tempDoubleXPStatus = value
         self.x2XPIcon.setPos(0.299, 0, -0.149)
