@@ -468,8 +468,8 @@ dclass DistributedBattleAvatar : DistributedReputationAvatar, WeaponBase {
   regenUpdate(int16) broadcast;
   setMaxHp(int32) required broadcast ram ownrecv db;
   setHp(int32, uint8) required broadcast ram ownrecv db;
-  // setLuck(int16) required broadcast ram ownrecv;
-  // setMaxLuck(int16) required broadcast ram ownrecv;
+  setLuck(int16) required broadcast ram ownrecv;
+  setMaxLuck(int16) required broadcast ram ownrecv;
   setMojo(int16) required broadcast ram ownrecv db;
   setMaxMojo(int16) required broadcast ram ownrecv db;
   /*
@@ -786,8 +786,8 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   sendSalvageMessage(uint32, uint16) ownrecv;
   sendFreeInventoryMessage(uint8) ownrecv;
   sendFailedLootTradeMessage(bool) ownrecv;
-  // setLuck(int16) required broadcast;
-  // setMaxLuck(int16) required broadcast db;
+  setLuck(int16) required broadcast;
+  setMaxLuck(int16) required broadcast db;
   setMojo(int16) required broadcast ownrecv db;
   setMaxMojo(int16) required broadcast ownrecv db;
   // setSwiftness(int16) required broadcast;

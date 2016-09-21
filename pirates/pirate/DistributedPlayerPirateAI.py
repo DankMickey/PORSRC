@@ -48,6 +48,9 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         self.defaultShard = 0
         self.tempdoublexp = 0
         self.zombied = (0, False)
+        self.shipHat = 0
+        self.luck = 0
+        self.maxluck = 0
 
     def announceGenerate(self):
         DistributedBattleAvatarAI.announceGenerate(self)
@@ -160,6 +163,19 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
 
     def getTempDoubleXPReward(self):
         return self.tempdoublexp
+
+    def setLuck(self, luck):
+        self.luck = luck
+
+    def d_setLuck(self, luck):
+        self.sendUpdate('setLuck', [luck])
+
+    def b_setLuck(self, luck):
+        self.setLuck(luck)
+        self.d_setLuck(luck)
+
+    def getLuck(self):
+        return self.luck
     
     def repChanged(self):
         newLevel = self.calcLevel()
@@ -464,8 +480,18 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
     def getUnderArrest(self):
         return self.underArrest
 
-    def setHair(self, hairId, hairType=1, hairColor=None, hairLightColor=None):
-        self.sendUpdate('setHair', [hairId, hairType, hairColor, hairLightColor])
+    def setShipHat(self, shipClass):
+        self.shipHat = shipClass
+
+    def d_setShiphat(self, shipClass):
+        self.sendUpdate('setShipHat', [shipClass])
+
+    def b_setShiphat(self, shipClass):
+        self.setShipHat(shipClass)
+        self.d_setShiphat(shipClass)
+
+    def getShipHat(self):
+        return self.shipHat
 
     def setStatus(self, todo0):
         pass

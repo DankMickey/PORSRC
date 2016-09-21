@@ -32,6 +32,8 @@ class DistributedBattleAvatarAI(Teamable, DistributedReputationAvatarAI, WeaponB
         self.skillEffects = []
         self.isGhost = 0
         self.hasGP = 0
+        self.luck = 0
+        self.maxluck = 0
 
         self.enemySkills = {}
 
@@ -195,6 +197,32 @@ class DistributedBattleAvatarAI(Teamable, DistributedReputationAvatarAI, WeaponB
     def isInInvasion(self):
         return self.getInInvasion()
 
+    def setLuck(self, luck):
+        self.luck = luck
+
+    def d_setLuck(self, luck):
+        self.sendUpdate('setLuck', [luck])
+
+    def b_setLuck(self, luck):
+        self.setLuck(luck)
+        self.d_setLuck(luck)
+
+    def getLuck(self):
+        return self.luck
+
+    def setMaxLuck(self, luck):
+        self.maxluck = luck
+
+    def d_setMaxLuck(self, luck):
+        self.sendUpdate('setMaxLuck', [luck])
+
+    def b_setMaxLuck(self, luck):
+        self.setMaxLuck(luck)
+        self.d_setMaxLuck(luck)
+
+    def getMaxLuck(self):
+        return self.maxluck
+
     def addSkillEffect(self, effectId, attacker=0):
         # TO DO
         timestamp = 0
@@ -262,6 +290,3 @@ class DistributedBattleAvatarAI(Teamable, DistributedReputationAvatarAI, WeaponB
             skillLvl = ItemGlobals.getWeaponBoosts(self.getCurrentCharm(), skillId)
 
         return skillLvl
-
-    def sethasGhostPowers(self, powers):
-        pass

@@ -3655,6 +3655,10 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         self.show(invisibleBits = PiratesGlobals.INVIS_DIALOG)
 
 
+    def setShipHat(self, shipClass):
+        pass 
+
+
     def rewardNotify(self, rewardCat, rewardId):
         if config.GetBool('black-pearl-repeat-reward', 1) == 1:
 
@@ -3807,7 +3811,7 @@ class MinimapPlayerPirate(MinimapBattleAvatar):
             base.localAvatar.shipHat = None
 
         if shipClass == 0:
-            return 'Ship hat removed...'
+            return '[Debug] Ship hat removed...'
 
         ship = base.shipFactory.getShip(shipClass)
         ship.startSailing()
@@ -3820,7 +3824,7 @@ class MinimapPlayerPirate(MinimapBattleAvatar):
         ship.forceLOD(2)
         ship.modelCollisions.detachNode()
         base.localAvatar.shipHat = ship    
-        return 'Ship hat set to ship class %s' % shipClass 
+        return '[Debug] Ship hat set to ship class %s' % shipClass 
 
     @magicWord(CATEGORY_STAFF)
     def topten():
