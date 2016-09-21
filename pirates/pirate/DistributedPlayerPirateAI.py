@@ -46,6 +46,8 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         self.allegiance = 0
         self.gmNametag = ('', '')
         self.defaultShard = 0
+        self.tempdoublexp = 0
+        self.zombied = (0, False)
 
     def announceGenerate(self):
         DistributedBattleAvatarAI.announceGenerate(self)
@@ -132,6 +134,32 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
 
     def getGender(self):
         return 'm' #TODO properly implement
+
+    def setZombie(self, value, cursed=False):
+        self.zombied = (value, cursed)
+
+    def d_setZombie(self, value, cursed=False):
+        self.sendUpdate('setZombie', [value, cursed])
+
+    def b_setZombie(self, value, cursed=False):
+        self.setZombie(value, cursed)
+        self.d_setZombie(value, cursed)
+
+    def getZombie(self):
+        return self.zombied
+
+    def setTempDoubleXPReward(self, value):
+        self.tempdoublexp = value
+
+    def d_setTempDoubleXPReward(self, value):
+        self.sendUpdate('setTempDoubleXPReward', [value])
+
+    def b_setTempDoubleXPReward(self, value):
+        self.setTempDoubleXPReward(value)
+        self.d_setTempDoubleXPReward(value)
+
+    def getTempDoubleXPReward(self):
+        return self.tempdoublexp
     
     def repChanged(self):
         newLevel = self.calcLevel()
@@ -612,3 +640,27 @@ def takeGold(gold):
     target = spellbook.getTarget()
     target.takeGold(gold)
     return 'Taken %d gold! Balance: %d' % (gold, target.getGoldInPocket())
+
+@magicWord(CATEGORY_GAME_MASTER)
+def cursed():
+    target = spellbook.getTarget()
+    state, cursed = target.getZombie()
+    response = ''
+    if state:
+        target.b_setZombie(0, 0)
+        response = 'The curse has worn off...'
+    else:
+        target.b_setZombie(1, 1)
+        response = 'You are cursed!'
+    return response
+
+@magicWord(CATEGORY_GAME_MASTER, types=[int])
+def setdoublexp(value):
+    target = spellbook.getTarget()
+    target.b_setTempDoubleXPReward(value)
+    return "Set TempDoubleXPReward to %s" % value
+
+@magicWord(CATEGORY_GAME_MASTER)
+def getdoublexp():
+    target = spellbook.getTarget()
+    return 'TempDoubleXPReward is %s' % str(target.getTempDoubleXPReward())

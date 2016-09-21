@@ -3748,13 +3748,13 @@ class MinimapPlayerPirate(MinimapBattleAvatar):
         DistributedBattleAvatar.DistibutedBattleAvatar.setAvatarType(AvatarTypes.LocalPirateType if self.isLocal() else AvatarTypes.NonLocalPirateType)
 
     @magicWord(CATEGORY_STAFF)
-    def zombieMode():
+    def ZombieMode():
         if base.localAvatar.zombie == 0:
             base.localAvatar.setZombie(1,1)
-            response = 'You are cursed!'
+            response = 'You are locally cursed!'
         else:
             base.localAvatar.setZombie(0,0)
-            response = 'The curse has worn off...'
+            response = 'The local curse has worn off...'
         return response
 
     @magicWord(CATEGORY_STAFF, types=[int])
@@ -3806,6 +3806,9 @@ class MinimapPlayerPirate(MinimapBattleAvatar):
             base.localAvatar.shipHat.modelRoot.detachNode()
             base.localAvatar.shipHat = None
 
+        if shipClass == 0:
+            return 'Ship hat removed...'
+
         ship = base.shipFactory.getShip(shipClass)
         ship.startSailing()
         ship.modelRoot.reparentTo(base.localAvatar.headNode)
@@ -3856,7 +3859,6 @@ class MinimapPlayerPirate(MinimapBattleAvatar):
 
     @magicWord(CATEGORY_GAME_DEVELOPER)
     def swamp():
-
 		if hasattr(base.localAvatar, 'fireflies'):
 			base.localAvatar.fireflies.destroy()
 			base.localAvatar.fireflies = None

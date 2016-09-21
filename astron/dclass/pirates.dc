@@ -736,8 +736,8 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   // setDinghyId(uint32) required broadcast ram;
   // setBandId(uint32, uint32) required broadcast ram ownrecv;
   requestLookoutInvite(uint32, string, uint32, uint32, resultPair []);
-  // setGuildId(uint32) required airecv broadcast ram;
-  // setGuildName(string) required broadcast ram;
+  //setGuildId(uint32) required airecv broadcast ram;
+  //setGuildName(string) required broadcast ram;
   setBandPvp(bool) clsend airecv;
   setBandParlor(bool) clsend airecv;
   setAFK(bool) clsend airecv;
@@ -815,9 +815,10 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   requestCurrentIsland(uint32) airecv ownsend;
   setCurrentIsland(string) ownrecv;
   setJailCellIndex(uint8) required airecv ownrecv;
-  // setTeam(int16) required broadcast ram ownrecv;
-  // setPvp(uint8) required broadcast ram ownrecv;
-  // setZombie(uint8, uint8) required broadcast ram ownrecv;
+  setTeam(int16) required broadcast ram ownrecv;
+  setPvp(uint8) required broadcast ram ownrecv;
+  setZombie(uint8, uint8) required broadcast ram ownrecv;
+  setShipHat(uint32) required broadcast ram ownrecv;
   setCurseStatus(uint8) ownrecv;
   // setParlorGame(uint8) required broadcast ram ownrecv;
   // setPopulated(uint8) required broadcast db ram;
@@ -826,7 +827,7 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   useBestTonic() airecv ownsend;
   spentSkillPoint(SkillId) ownrecv;
   requestActivity(uint32, int32, resultPair [], uint32 []) airecv clsend;
-  // setTempDoubleXPReward(uint32) required db ram broadcast;
+  setTempDoubleXPReward(uint32) required db ram broadcast;
   setGMNametag(string, string) required broadcast ownrecv db;
   requestGotoJailWhileInjured() ownsend airecv;
   setUnderArrest(uint8 = 0) required ram airecv db;
