@@ -1,5 +1,6 @@
+=========================================================================================================================================
 These are a list of crashlogs submitted to us by players on the public server. If a crash has been fixed/resolved, insert a (RESOLVED) following the description for the crash and the link to it. We'd like to keep all of these crashes on record, so do not remove any of them. 
-
+=========================================================================================================================================
 
 
 1.) Very bumpy crash, not responding, then not working, then closed program, it responds and plays for 3 seconds, then closes.
