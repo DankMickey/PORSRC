@@ -14,5 +14,4 @@ https://cdn.discordapp.com/attachments/226498380338167808/228280686304428033/160
 
 5.) I just crashed on Tortuga while shooting an alligator - https://cdn.discordapp.com/attachments/228287346183766018/228291381385363458/nativelog.txt
 
-6.) http://pastebin.com/6nrTvs8q
-been getting this whenever I initiate a fight
+6.) been getting this whenever I initiate a fight - http://pastebin.com/6nrTvs8q
