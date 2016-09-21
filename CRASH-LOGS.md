@@ -11,3 +11,5 @@ https://cdn.discordapp.com/attachments/226498380338167808/228280686304428033/160
 3.) was fighting an alligator on tortuga, alligator wasnt taking damage then lost connection to server - https://cdn.discordapp.com/attachments/227515252252737536/228283977763389441/unknown.png
 
 4.) I through a grenade at a alligator and it crashed - https://cdn.discordapp.com/attachments/225307184487989248/228286681143443456/160921_183452.log
+
+5.) I just crashed on Tortuga while shooting an alligator - https://cdn.discordapp.com/attachments/228287346183766018/228291381385363458/nativelog.txt
