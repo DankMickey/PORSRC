@@ -895,10 +895,10 @@ class GameOptionsGui(DirectFrame):
         if self.gameOptions.options.window_width > self.gameOptions.current_options.window_width and self.gameOptions.options.window_height > self.gameOptions.current_options.window_height:
             self.showNoteOnChange()
 
-    '''def showNoteOnChange(self):
+    def showNoteOnChange(self):
         if not self.showedNoteOnChange:
             self.gameOptions.display_noteOnChange_dialog()
-            self.showedNoteOnChange = True'''
+            self.showedNoteOnChange = True
 
     def fullscreenResolutionMenuCB(self, val, index):
         if self.gameOptions is None:
