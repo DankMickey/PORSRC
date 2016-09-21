@@ -616,6 +616,9 @@ class CreateAvatarFSM(CSMOperation):
 
 class AvatarOperationFSM(CSMOperation):
     POST_ACCOUNT_STATE = 'Off'  # This needs to be overridden.
+    
+    def getId(self, identifier):
+        return '%s-%s' % (id(self), identifier)
 
     def enterRetrieveAccount(self):
         # Query the account:
@@ -669,11 +672,13 @@ class GetAvatarsFSM(AvatarOperationFSM):
                 self.csm.air.dbId,
                 avId,
                 response)
-
-        self.demand('SendAvatars')
+        
+        taskMgr.doMethodLater(3, self.demand, self.getId('demand-off-timeout'), extraArgs=['SendAvatars'])
 
     def enterSendAvatars(self):
         potentialAvs = []
+        
+        taskMgr.remove(self.getId('demand-off-timeout'))
 
         for avId, fields in self.avatarFields.items():
             index = self.avList.index(avId)
