@@ -1034,9 +1034,6 @@ class ClientServicesManagerUD(DistributedObjectGlobalUD):
 
     def requestChallenge(self):
         sender = self.air.getMsgSender()
-        if sender >> 32:
-            self.killConnection(sender, 'Client is already logged in.')
-            return
 
         if sender in self.challenges:
             self.killConnection(sender, 'Client requested challenge twice.')
@@ -1096,7 +1093,6 @@ class ClientServicesManagerUD(DistributedObjectGlobalUD):
         sender = self.air.getMsgSender()
 
         if sender >> 32:
-            self.killConnection(sender, 'Client is already logged in.')
             return
 
         if sender in self.connection2fsm:
