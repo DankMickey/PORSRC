@@ -501,7 +501,10 @@ class FireworkEffect(NodePath):
 
     def setupSoundVolume(self, interval):
         islandObj = base.cr.uidMgr.justGetMeMeObject(localAvatar.getCurrentIsland())
-        if (islandObj == None or islandObj.fireworkShow) and islandObj.fireworkShow.wantFireworkSounds():
-            interval.volume = 1.0
+        if hasattr(islandObj, 'fireworkShow'):
+            if (islandObj == None or islandObj.fireworkShow) and islandObj.fireworkShow.wantFireworkSounds():
+                interval.volume = 1.0
+            else:
+                interval.volume = 0.0
         else:
-            interval.volume = 0.0
+            interval.volume = 1.0

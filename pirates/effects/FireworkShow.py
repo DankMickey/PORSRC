@@ -2189,7 +2189,7 @@ class FireworkShow(NodePath):
             base.musicMgr.load(showMusic, looping = False)
             musicOffset = (self.getDuration(0, startIndex) - self.getDuration(startIndex, startIndex)) + offset
             volume = 0.800000
-            if self.wantFireworkSounds():
+            if self.wantFireworkSounds() and not base.config.GetBool('force-firework-music', False):
                 volume = 0.0
 
             sectionIval.append(Func(base.musicMgr.request, showMusic, priority = 2, looping = False, volume = volume))

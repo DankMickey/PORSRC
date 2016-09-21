@@ -5,6 +5,7 @@ from direct.directnotify import DirectNotifyGlobal
 from direct.distributed.ClockDelta import globalClockDelta
 from direct.interval.IntervalGlobal import *
 from pirates.ai import HolidayGlobals
+from otp.ai.MagicWordGlobal import *
 from pirates.effects.RainMist import RainMist
 from pirates.effects.RainDrops import RainDrops
 from pirates.effects.RainSplashes import RainSplashes
@@ -1712,3 +1713,22 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
         outputString += tab * tabs
         outputString += '}'
         return outputString
+
+    @magicWord(CATEGORY_GAME_DEVELOPER, types=[int, int, int])
+    def alight(red, green, blue):
+        color = Vec4(float(red), float(green), float(blue), 1)
+        base.cr.timeOfDayManager.alight.node().setColor(color)
+        return "Setting debug client alight setting."
+
+    @magicWord(CATEGORY_GAME_DEVELOPER, types=[int, int, int])
+    def dlight(red, green, blue):
+        color = Vec4(float(red), float(green), float(blue), 1)
+        base.cr.timeOfDayManager.dlight.node().setColor(color)
+        return "Setting debug client dlight setting."   
+
+    @magicWord(CATEGORY_GAME_DEVELOPER, types=[int, int, int, int])
+    def fog(red, green, blue, density):
+        color = Vec4(float(red), float(green), float(blue), 1)
+        base.cr.timeOfDayManager.fog.setColor(color)
+        base.cr.timeOfDayManager.fog.setExpDensity(float(density))
+        return "Setting debug client fog settings."

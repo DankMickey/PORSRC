@@ -146,3 +146,6 @@ flagship-wave-count 2
 # WINDOW SETTINGS
 wide-by-default #f
 fullscreen 0
+
+# TEMP PATCH
+force-firework-music #t
