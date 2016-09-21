@@ -1732,3 +1732,10 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
         base.cr.timeOfDayManager.fog.setColor(color)
         base.cr.timeOfDayManager.fog.setExpDensity(float(density))
         return "Setting debug client fog settings."
+
+    @magicWord(CATEGORY_GAME_DEVELOPER)
+    def todPanel():
+        tod = base.cr.timeOfDayManager
+        from pirates.leveleditor.TimeOfDayPanel import TimeOfDayPanel
+        p = TimeOfDayPanel(tod)
+        return "Opening TOD Panel"
