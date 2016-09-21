@@ -1088,16 +1088,6 @@ class OTPClientRepository(ClientRepositoryBase):
         if gsg:
             render2d.prepareScene(gsg)
         base.graphicsEngine.renderFrame()
-
-    def handleGoGetLost(self, di):
-        if di.getRemainingSize() > 0:
-            self.bootedIndex = di.getUint16()
-            self.bootedText = di.getString()
-        else:
-            self.bootedIndex = None
-            self.bootedText = None
-        
-        self.notify.warning("Server is booting us out!")
     
     def handleMessageType(self, msgType, di):
         if self.__recordObjectMessage(msgType, di):
