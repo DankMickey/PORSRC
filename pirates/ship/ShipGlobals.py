@@ -214,8 +214,11 @@ HUNTER_SCORNED_SIREN = 166
 HUNTER_TALLYHO = 180
 HUNTER_BATTLEROYALE = 181
 HUNTER_EN_GARDE = 182
+CORVETTEL1 = 183
+CORVETTEL2 = 184
+CORVETTEL3 = 185
 STUMPY_SHIP = 255
-PLAYER_SHIPS = (INTERCEPTORL1, INTERCEPTORL2, INTERCEPTORL3, MERCHANTL1, MERCHANTL2, MERCHANTL3, WARSHIPL1, WARSHIPL2, WARSHIPL3, BRIGL1, BRIGL2, BRIGL3, CARRACKL1, CARRACKL2, CARRACKL3, SHIP_OF_THE_LINE, EL_PATRONS_SHIP, P_SKEL_PHANTOM, P_SKEL_REVENANT, P_SKEL_CEREBUS, P_NAVY_KINGFISHER, P_EITC_WARLORD, NAVY_KRAKEN_HUNTER)
+PLAYER_SHIPS = (INTERCEPTORL1, INTERCEPTORL2, INTERCEPTORL3, MERCHANTL1, MERCHANTL2, MERCHANTL3, WARSHIPL1, WARSHIPL2, WARSHIPL3, BRIGL1, BRIGL2, BRIGL3, CARRACKL1, CARRACKL2, CARRACKL3, CORVETTEL1, CORVETTEL2, CORVETTEL3, SHIP_OF_THE_LINE, EL_PATRONS_SHIP, P_SKEL_PHANTOM, P_SKEL_REVENANT, P_SKEL_CEREBUS, P_NAVY_KINGFISHER, P_EITC_WARLORD, NAVY_KRAKEN_HUNTER)
 MAST_LOGO_PLACEMENT = {
     INTERCEPTORL1: [
         0],
@@ -246,7 +249,13 @@ MAST_LOGO_PLACEMENT = {
     CARRACKL2: [
         0],
     CARRACKL3: [
-        0],        
+        0], 
+    CORVETTEL1: [
+        0],
+    CORVETTEL2: [
+        0],
+    CORVETTEL3: [
+        0],       
     WARSHIPCOM: [
         0] }
 SHIP_CLASS_LIST = [
@@ -265,6 +274,9 @@ SHIP_CLASS_LIST = [
     'CARRACKL1',
     'CARRACKL2',
     'CARRACKL3',
+    'CORVETTEL1',
+    'CORVETTEL2',
+    'CORVETTEL3',
     'BLACK_PEARL',
     'DAUNTLESS',
     'FLYING_DUTCHMAN',
@@ -468,6 +480,18 @@ __hullArmor = {
         2700,
         2700],
     CARRACKL3: [
+        3000,
+        4500,
+        4500],
+    CORVETTEL1: [
+        1300,
+        1500,
+        1500],
+    CORVETTEL2: [
+        1900,
+        2700,
+        2700],
+    CORVETTEL3: [
         3000,
         4500,
         4500],
@@ -834,6 +858,124 @@ __shipConfigs = {
     CARRACKL3: {
         'setShipClass': CARRACKL3,
         'modelClass': CARRACKL3,
+        'defaultStyle': Styles.Player,
+        'mastConfig1': (Masts.Main_Square, 3),
+        'mastConfig2': (Masts.Main_Square, 3),
+        'mastConfig3': 0,
+        'foremastConfig': (Masts.Fore_Multi, 3),
+        'aftmastConfig': (Masts.Aft_Tri, 1),
+        'sailLogo': Logos.NoLogo,
+        'cannons': [
+            Cannons.L3] * 12,
+        'leftBroadsides': [
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2],
+        'rightBroadsides': [
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2],
+        'broadsideAmmo': InventoryType.CannonRoundShot,
+        'cannonAmmo': InventoryType.CannonRoundShot,
+        'prow': 0,
+        'hp': 12000,
+        'sp': 11000,
+        'maxCargo': 16,
+        'maxCrew': 12,
+        'maxCannons': 14,
+        'maxBroadsides': 22,
+        'rammingPower': 1400,
+        'acceleration': 1.1499999999999999 * defaultAcceleration,
+        'maxSpeed': 0.84999999999999998 * defaultMaxSpeed,
+        'reverseAcceleration': 0.75 * defaultReverseAcceleration,
+        'maxReverseSpeed': 0.75 * defaultMaxReverseAcceleration,
+        'turn': 0.69999999999999996 * defaultTurn,
+        'maxTurn': 0.69999999999999996 * defaultMaxTurn },
+    CORVETTEL1: {
+        'setShipClass': CORVETTEL1,
+        'modelClass': CORVETTEL1,
+        'defaultStyle': Styles.Player,
+        'mastConfig1': (Masts.Main_Square, 1),
+        'mastConfig2': (Masts.Main_Square, 2),
+        'mastConfig3': 0,
+        'foremastConfig': (Masts.Fore_Multi, 2),
+        'aftmastConfig': 0,
+        'sailLogo': Logos.NoLogo,
+        'cannons': [
+            Cannons.L3] * 6,
+        'leftBroadsides': [
+            Cannons.L2] * 5,
+        'rightBroadsides': [
+            Cannons.L2] * 5,
+        'broadsideAmmo': InventoryType.CannonRoundShot,
+        'cannonAmmo': InventoryType.CannonRoundShot,
+        'prow': 0,
+        'hp': 3900,
+        'sp': 5500,
+        'maxCargo': 8,
+        'maxCrew': 8,
+        'maxCannons': 8,
+        'maxBroadsides': 10,
+        'rammingPower': 400,
+        'acceleration': 1.1499999999999999 * defaultAcceleration,
+        'maxSpeed': 0.84999999999999998 * defaultMaxSpeed,
+        'reverseAcceleration': 0.75 * defaultReverseAcceleration,
+        'maxReverseSpeed': 0.75 * defaultMaxReverseAcceleration,
+        'turn': 0.69999999999999996 * defaultTurn,
+        'maxTurn': 0.69999999999999996 * defaultMaxTurn },
+    CORVETTEL2: {
+        'setShipClass': CORVETTEL2,
+        'modelClass': CORVETTEL2,
+        'defaultStyle': Styles.Player,
+        'mastConfig1': (Masts.Main_Square, 2),
+        'mastConfig2': (Masts.Main_Square, 2),
+        'mastConfig3': 0,
+        'foremastConfig': (Masts.Fore_Multi, 2),
+        'aftmastConfig': (Masts.Aft_Tri, 1),
+        'sailLogo': Logos.NoLogo,
+        'cannons': [
+            Cannons.L3] * 10,
+        'leftBroadsides': [
+            Cannons.L2] * 7,
+        'rightBroadsides': [
+            Cannons.L2] * 7,
+        'broadsideAmmo': InventoryType.CannonRoundShot,
+        'cannonAmmo': InventoryType.CannonRoundShot,
+        'prow': 0,
+        'hp': 7800,
+        'sp': 8000,
+        'maxCargo': 12,
+        'maxCrew': 10,
+        'maxCannons': 10,
+        'maxBroadsides': 16,
+        'rammingPower': 750,
+        'acceleration': 1.1499999999999999 * defaultAcceleration,
+        'maxSpeed': 0.84999999999999998 * defaultMaxSpeed,
+        'reverseAcceleration': 0.75 * defaultReverseAcceleration,
+        'maxReverseSpeed': 0.75 * defaultMaxReverseAcceleration,
+        'turn': 0.69999999999999996 * defaultTurn,
+        'maxTurn': 0.69999999999999996 * defaultMaxTurn },
+    CORVETTEL3: {
+        'setShipClass': CORVETTEL3,
+        'modelClass': CORVETTEL3,
         'defaultStyle': Styles.Player,
         'mastConfig1': (Masts.Main_Square, 3),
         'mastConfig2': (Masts.Main_Square, 3),
@@ -2240,7 +2382,7 @@ __shipConfigs = {
         'maxTurn': 0.8 * defaultMaxTurn },
     EITC_CORVETTE: {
         'setShipClass': EITC_CORVETTE,
-        'modelClass': WARSHIPL1,
+        'modelClass': CORVETTEL1,
         'defaultStyle': Styles.EITC,
         'mastConfig1': (Masts.Main_Square, 1),
         'mastConfig2': (Masts.Main_Square, 2),

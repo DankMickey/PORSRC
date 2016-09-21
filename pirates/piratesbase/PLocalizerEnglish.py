@@ -1772,6 +1772,9 @@ ShipClassNames = {
     ShipGlobals.CARRACKL1: 'Light Carrack',
     ShipGlobals.CARRACKL2: 'Carrack',
     ShipGlobals.CARRACKL3: 'War Carrack',
+    ShipGlobals.CORVETTEL1: 'Light Corvette',
+    ShipGlobals.CORVETTEL2: 'Corvette',
+    ShipGlobals.CORVETTEL3: 'War Corvette',
     ShipGlobals.SHIP_OF_THE_LINE: 'Ship of the Line',
     ShipGlobals.HMS_VICTORY: 'HMS Victory',
     ShipGlobals.HMS_NEWCASTLE: 'HMS Newcastle',
@@ -2449,6 +2452,9 @@ InventoryTypeNames = {
     ItemId.CARRACK_L1: ShipClassNames.get(ShipGlobals.CARRACKL1),
     ItemId.CARRACK_L2: ShipClassNames.get(ShipGlobals.CARRACKL2),
     ItemId.CARRACK_L3: ShipClassNames.get(ShipGlobals.CARRACKL3),
+    ItemId.CORVETTE_L1: ShipClassNames.get(ShipGlobals.CORVETTEL1),
+    ItemId.CORVETTE_L2: ShipClassNames.get(ShipGlobals.CORVETTEL2),
+    ItemId.CORVETTE_L3: ShipClassNames.get(ShipGlobals.CORVETTEL3),
     ItemId.QUEEN_ANNES_REVENGE: ShipClassNames.get(ShipGlobals.QUEEN_ANNES_REVENGE),
     ItemId.HUNTER_VENGENCE: ShipClassNames.get(ShipGlobals.HUNTER_VENGENCE),
     ItemId.HUNTER_TALLYHO: ShipClassNames.get(ShipGlobals.HUNTER_TALLYHO),
@@ -4888,6 +4894,7 @@ MerchantDescription = 'The Galleons have the toughest armor amongst the ship cla
 WarshipDescription = "The Frigate Class vessels pack the most firepower, sporting many cannons and strong below deck broadside capability.  \n \n The warship's strongest armor is near the front, with a weakness in the rear."
 BrigDescription = "Second best at everything the Brig is a jack of all trades, but a master of none. They are a good mix of firepower, speed, and cargo room. \n \n Their armor is the most evenly distributed without weak or strong areas."
 CarrackDescription = 'Not much is known yet about this mysterious ship...'
+CorvetteDescription = 'The Corvette class vessels are well known for being very maneuverable while still having a decent cargo hold. Corvettes are ideal for scouting and hit-and-run attacks. However, Corvettes are not the most well armed vessels.'
 ShipOfTheLineDescription = "N/A"
 UnknownDescription = "Not much is known about this vessel..."
 FishingRepDescription = 'Fishing Reputation'
@@ -4999,6 +5006,9 @@ ShipDescriptions = {
     ItemId.CARRACK_L1: CarrackDescription,      
     ItemId.CARRACK_L2: CarrackDescription,
     ItemId.CARRACK_L3: CarrackDescription,
+    ItemId.CORVETTE_L1: CorvetteDescription,
+    ItemId.CORVETTE_L2: CorvetteDescription,
+    ItemId.CORVETTE_L3: CorvetteDescription,
     ItemId.QUEEN_ANNES_REVENGE: UnknownDescription,
     ItemId.HUNTER_VENGENCE: WarshipDescription,
     ItemId.HUNTER_TALLYHO: WarshipDescription,
@@ -5033,7 +5043,7 @@ ShipDescriptions = {
     ItemId.NAVY_ELITE: WarshipDescription,
     ItemId.EITC_SEA_VIPER: SloopDescription,
     ItemId.EITC_SENTINEL: MerchantDescription,
-    ItemId.EITC_CORVETTE: WarshipDescription,
+    ItemId.EITC_CORVETTE: CorvetteDescription,
     ItemId.EITC_BLOODHOUND: SloopDescription,
     ItemId.EITC_IRONWALL: MerchantDescription,
     ItemId.EITC_MARAUDER: WarshipDescription,

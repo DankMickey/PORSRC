@@ -166,7 +166,10 @@ HullDict = {
     ShipGlobals.EL_PATRONS_SHIP: 'gal_carrack',
     ShipGlobals.CARRACKL1: 'gal_carrack',
     ShipGlobals.CARRACKL2: 'gal_carrack',
-    ShipGlobals.CARRACKL3: 'gal_carrack' }
+    ShipGlobals.CARRACKL3: 'gal_carrack',
+    ShipGlobals.CORVETTEL1: 'gal_carrack',
+    ShipGlobals.CORVETTEL2: 'gal_carrack',
+    ShipGlobals.CORVETTEL3: 'gal_carrack' }
 if config.GetBool('want-kraken', 0):
     HullDict[23] = 'frg_war_kraken'
 
