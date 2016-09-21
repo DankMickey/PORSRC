@@ -15,3 +15,5 @@ https://cdn.discordapp.com/attachments/226498380338167808/228280686304428033/160
 5.) I just crashed on Tortuga while shooting an alligator - https://cdn.discordapp.com/attachments/228287346183766018/228291381385363458/nativelog.txt
 
 6.) been getting this whenever I initiate a fight - http://pastebin.com/6nrTvs8q
+
+7.) When using a particular weapon - http://pastebin.com/de6meaTG
