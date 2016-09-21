@@ -122,9 +122,9 @@ class CSMOperation(FSM):
         self.demand('Off')
 
     def enterOff(self):
-        if self.TARGET_CONNECTION:
+        if self.target in self.csm.connection2fsm:
             del self.csm.connection2fsm[self.target]
-        else:
+        if self.target in self.csm.account2fsm:
             del self.csm.account2fsm[self.target]
 
 class AccountDB:
@@ -641,63 +641,36 @@ class GetAvatarsFSM(AvatarOperationFSM):
     POST_ACCOUNT_STATE = 'QueryAvatars'
 
     def enterStart(self):
-        self.nameStateData = None
         self.demand('RetrieveAccount')
 
     def enterQueryAvatars(self):
         self.pendingAvatars = set()
         self.avatarFields = {}
+
         for avId in self.avList:
-            if avId:
-                self.pendingAvatars.add(avId)
+            if not avId:
+                continue 
 
-                def response(dclass, fields, avId=avId):
-                    if self.state != 'QueryAvatars':
-                        return
-                    if dclass != self.csm.air.dclassesByName['DistributedPlayerPirateUD']:
-                        self.demand('Kill', "One of the account's avatars is invalid!")
-                        return
-                    self.avatarFields[avId] = fields
-                    self.pendingAvatars.remove(avId)
-                    if not self.pendingAvatars:
-                        self.demand('UpdateAvatarsNameState')
+            self.pendingAvatars.add(avId)
 
-                self.csm.air.dbInterface.queryObject(
-                    self.csm.air.dbId,
-                    avId,
-                    response)
-
-        if not self.pendingAvatars:
-            self.demand('SendAvatars')
-
-    def enterUpdateAvatarsNameState(self):
-        for avId, fields in self.avatarFields.items():
-            wns = fields.get('WishNameState', [''])[0]
-            name = fields.get('setName', [''])[0]
-            wn = fields.get('WishName', [''])[0]
-
-            if wns == 'PENDING':
-                if self.nameStateData is None:
-                    self.demand('QueryNameState')
+            def response(dclass, fields, avId=avId):
+                if self.state != 'QueryAvatars':
                     return
-                
-                state = self.nameStateData.get(str(avId), self.nameStateData.get('default', NAME_PEN))
-                wns = ('PENDING', 'REJECTED', 'APPROVED')[state]
-                
-                self.avatarFields[avId]['WishNameState'] = (wns,)
-                self.csm.air.dbInterface.updateObject(self.csm.air.dbId, avId,
-                                                      self.csm.air.dclassesByName['DistributedPlayerPirateUD'],
-                                                      self.avatarFields[avId])
+                if dclass != self.csm.air.dclassesByName['DistributedPlayerPirateUD']:
+                    self.demand('Kill', "One of the account's avatars is invalid!")
+                    return
+                self.avatarFields[avId] = fields
+                self.pendingAvatars.remove(avId)
 
-        taskMgr.doMethodLater(0, GetAvatarsFSM.demand, 'demand-SendAvatars', extraArgs=[self, 'SendAvatars'])
-        
-    def enterQueryNameState(self):
-        def gotStates(data):
-            self.nameStateData = data
-            taskMgr.doMethodLater(0, GetAvatarsFSM.demand, 'demand-UpdateAvatarsNameState',
-                                  extraArgs=[self, 'UpdateAvatarsNameState'])
-            
-        self.csm.accountDB.getNameStatus(self.account['ACCOUNT_ID'], gotStates)
+                if not self.pendingAvatars:
+                    self.demand('SendAvatars')
+
+            self.csm.air.dbInterface.queryObject(
+                self.csm.air.dbId,
+                avId,
+                response)
+
+        self.demand('SendAvatars')
 
     def enterSendAvatars(self):
         potentialAvs = []
@@ -720,18 +693,15 @@ class GetAvatarsFSM(AvatarOperationFSM):
 
             potentialAvs.append([avId, name, fields['setDNAString'][0],
                                  index, nameState, wishName])
+
         self.csm.sendUpdateToAccountId(self.target, 'setAvatars', [potentialAvs])
         self.demand('Off')
 
     def enterOff(self):
-        try:
-            if self.TARGET_CONNECTION:
-                del self.csm.connection2fsm[self.target]
-            else:
-                del self.csm.account2fsm[self.target]
-
-        except KeyError:
-            pass
+        if self.target in self.csm.connection2fsm:
+            del self.csm.connection2fsm[self.target]
+        if self.target in self.csm.account2fsm:
+            del self.csm.account2fsm[self.target]
 
 class UnloadAvatarFSM(CSMOperation):
     notify = directNotify.newCategory('UnloadAvatarFSM')
@@ -1088,6 +1058,7 @@ class ClientServicesManagerUD(DistributedObjectGlobalUD):
             self.notify.warning('Tried to kill connection %d for duplicate FSM, but none exists!' % connId)
             return
 
+        print str(fsm)
         self.killConnection(connId, 'An operation is already underway: ' + fsm.name)
 
     def killAccount(self, accountId, reason):
@@ -1099,6 +1070,8 @@ class ClientServicesManagerUD(DistributedObjectGlobalUD):
             self.notify.warning('Tried to kill account %d for duplicate FSM, but none exists!' % accountId)
             return
 
+        print str(fsm)
+        print 'acc'
         self.killAccount(accountId, 'An operation is already underway: ' + fsm.name)
 
     def runAccountFSM(self, fsmtype, *args):
