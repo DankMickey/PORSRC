@@ -13,3 +13,6 @@ https://cdn.discordapp.com/attachments/226498380338167808/228280686304428033/160
 4.) I through a grenade at a alligator and it crashed - https://cdn.discordapp.com/attachments/225307184487989248/228286681143443456/160921_183452.log
 
 5.) I just crashed on Tortuga while shooting an alligator - https://cdn.discordapp.com/attachments/228287346183766018/228291381385363458/nativelog.txt
+
+6.) http://pastebin.com/6nrTvs8q
+been getting this whenever I initiate a fight
