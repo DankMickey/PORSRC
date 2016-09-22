@@ -15,8 +15,6 @@ class JackSparrow(Avatar):
         loader.unloadModel('models/char/js_2000')
         Avatar.delete(self)
 
-
-
 class WillTurner(Avatar):
 
     def __init__(self):
@@ -30,8 +28,6 @@ class WillTurner(Avatar):
     def delete(self):
         loader.unloadModel('models/char/wt_2000')
         Avatar.delete(self)
-
-
 
 class ElizabethSwan(Avatar):
 
@@ -47,8 +43,6 @@ class ElizabethSwan(Avatar):
         loader.unloadModel('models/char/es_2000')
         Avatar.delete(self)
 
-
-
 class CaptBarbossa(Avatar):
 
     def __init__(self):
@@ -62,8 +56,6 @@ class CaptBarbossa(Avatar):
     def delete(self):
         loader.unloadModel('models/char/cb_2000')
         Avatar.delete(self)
-
-
 
 class TiaDalma(Avatar):
 
@@ -79,8 +71,6 @@ class TiaDalma(Avatar):
         loader.unloadModel('models/char/td_2000')
         Avatar.delete(self)
 
-
-
 class JoshGibbs(Avatar):
 
     def __init__(self):
@@ -95,8 +85,6 @@ class JoshGibbs(Avatar):
         loader.unloadModel('models/char/jg_2000')
         Avatar.delete(self)
 
-
-
 class JollyRoger(Avatar):
 
     def __init__(self):
@@ -109,4 +97,18 @@ class JollyRoger(Avatar):
 
     def delete(self):
         loader.unloadModel('models/char/jr_2000')
+        Avatar.delete(self)
+
+class DavyJones(Avatar):
+
+    def __init__(self):
+        Avatar.__init__(self)
+        self.avatarType = AvatarTypes.DavyJones
+        self.loadModel('models/char/dj_2000')
+        self.setName(self.avatarType.getName())
+        self.setNameVisible(0)
+
+
+    def delete(self):
+        loader.unloadModel('models/char/dj_2000')
         Avatar.delete(self)
