@@ -4,6 +4,8 @@ from direct.directnotify import DirectNotifyGlobal
 from direct.interval.IntervalGlobal import *
 from direct.task import Task
 from pirates.ai import HolidayGlobals
+from otp.ai.MagicWordGlobal import *
+from otp.ai.MagicWordManager import MagicWordManager
 from pirates.piratesbase import PiratesGlobals
 from pirates.piratesbase import PLocalizer
 from pirates.piratesbase import EmoteGlobals
@@ -378,3 +380,8 @@ class NewsManager(DistributedObject.DistributedObject):
         self.multiplyClothingPrices(factor)
         self.multiplyJewelryPrices(factor)
         self.multiplyBarberPrices(factor)
+
+@magicWord(CATEGORY_STAFF, types=[int])
+def testNewsId(self, newsId):
+    base.cr.newsManager.displayMessage(newsId)
+    return "Displaying NewsId: %s" % newsId

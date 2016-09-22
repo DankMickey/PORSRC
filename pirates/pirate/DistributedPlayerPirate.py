@@ -1091,9 +1091,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         self.refreshName()
         minimapObj = self.getMinimapObject()
         if minimapObj:
-            pass
-        1
-        # WTF?
+            pass #WTF?
 
 
     def setBadgeIcon(self, titleId, rank):

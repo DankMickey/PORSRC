@@ -26,6 +26,10 @@ class NewsManagerAI(DistributedObjectAI):
         self.setHolidayIdList(holidayIdList)
         self.d_setHolidayIdList(holidayIdList)
 
+    def addActiveHoliday(self, holidayId, time):
+        self.holidayIdList.append((holidayId, time))
+        self.b_setHolidayIdList(self.holidayId)
+
     def displayMessage(self, messageId):
         self.sendUpdate('displayMessage', [messageId])
 

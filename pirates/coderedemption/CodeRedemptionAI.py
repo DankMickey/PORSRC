@@ -1,6 +1,7 @@
 from pirates.uberdog.UberDogGlobals import InventoryType
 from direct.distributed.DistributedObjectAI import DistributedObjectAI
 from direct.directnotify.DirectNotifyGlobal import directNotify
+from otp.ai.MagicWordGlobal import *
 import CodeRedemptionGlobals
 
 class CodeRedemptionAI(DistributedObjectAI):

@@ -51,6 +51,9 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         self.shipHat = 0
         self.luck = 0
         self.maxluck = 0
+        self.welcomeWorld = False
+        self.badge = (0, 0)
+        self.shipIcon = (0, 0)
 
     def announceGenerate(self):
         DistributedBattleAvatarAI.announceGenerate(self)
@@ -164,18 +167,44 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
     def getTempDoubleXPReward(self):
         return self.tempdoublexp
 
-    def setLuck(self, luck):
-        self.luck = luck
+    def setOnWelcomeWorld(self, state):
+        self.welcomeWorld = state
 
-    def d_setLuck(self, luck):
-        self.sendUpdate('setLuck', [luck])
+    def d_setOnWelcomeWorld(self, state):
+        self.sendUpdate('setOnWelcomeWorld', [state])
 
-    def b_setLuck(self, luck):
-        self.setLuck(luck)
-        self.d_setLuck(luck)
+    def b_setOnWelcomeWorld(self, state):
+        self.setOnWelcomeWorld(state)
+        self.d_setOnWelcomeWorld(state)
 
-    def getLuck(self):
-        return self.luck
+    def getOnWorldWorld(self):
+        return self.welcomeWorld
+
+    def setBadgeIcon(self, title, rank):
+        self.badge = (title, rank)
+
+    def d_setBadgeIcon(self, title, rank):
+        self.sendUpdate('setBadgeIcon', [title, rank])
+
+    def b_setBadgeIcon(self, title, rank):
+        self.setBadgeIcon(title, rank)
+        self.d_setBadgeIcon(title, rank)
+
+    def getBadgeIcon(self):
+        return self.badge
+
+    def setShipIcon(self, title, rank):
+        self.shipIcon = (title, rank)
+
+    def d_setShipIcon(self, title, rank):
+        self.sendUpdate('setShipBadgeIcon', [title, rank])
+
+    def b_setShipIcon(self, title, rank):
+        self.setShipIcon(title, rank)
+        self.d_setShipIcon(title, rank)
+
+    def getShipIcon(self):
+        return self.shipIcon
     
     def repChanged(self):
         newLevel = self.calcLevel()
@@ -680,13 +709,26 @@ def cursed():
         response = 'You are cursed!'
     return response
 
-@magicWord(CATEGORY_GAME_MASTER, types=[int])
-def setdoublexp(value):
+@magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
+def setDoubleXP(value):
     target = spellbook.getTarget()
     target.b_setTempDoubleXPReward(value)
     return "Set TempDoubleXPReward to %s" % value
 
-@magicWord(CATEGORY_GAME_MASTER)
-def getdoublexp():
+@magicWord(CATEGORY_GAME_DEVELOPER)
+def getDoubleXP():
     target = spellbook.getTarget()
     return 'TempDoubleXPReward is %s' % str(target.getTempDoubleXPReward())
+
+@magicWord(CATEGORY_GAME_DEVELOPER, types=[int, int])
+def setBadge(title, rank):
+    target = spellbook.getTarget()
+    target.b_setBadgeIcon(title, rank)
+    return "Set badgeIcon to ({0}, {1})".format(title, rank)
+
+@magicWord(CATEGORY_GAME_DEVELOPER, types=[int, int])
+def setShipBadge(title, rank):
+    target = spellbook.getTarget()
+    target.b_setShipIcon(title, rank)
+    return "Set shipBadge to ({0}, {1})".format(title, rank)
+

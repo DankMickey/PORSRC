@@ -122,8 +122,8 @@ Drip, Damp, Drizzle, Spray, Splatter, Drool, Drench, Douse, CaptBriney, Spout = 
 
 ClassicUndead = list()
 
-BossUndead = [AvatarType(base=Boss, id=x) for x in xrange(1)]
-JollyRoger = BossUndead[0]
+BossUndead = [AvatarType(base=Boss, id=x) for x in xrange(2)]
+JollyRoger, DavyJones = BossUndead
 
 FrenchUndead = [AvatarType(base=French, id=x) for x in xrange(5)]
 FrenchUndeadA, FrenchUndeadB, FrenchUndeadC, FrenchUndeadD, FrenchBoss = FrenchUndead
