@@ -19,3 +19,6 @@ https://cdn.discordapp.com/attachments/226498380338167808/228280686304428033/160
 7.) When using a particular weapon - http://pastebin.com/de6meaTG
 
 8.) trying to put a weapon in one of the weapon slots - http://pastebin.com/fPTCxBUe
+
+9.) This is happening frequently while fishing - http://prntscr.com/ckwduw
+
