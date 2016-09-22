@@ -163,6 +163,7 @@ screenShot_Potions = 'models/gui/loadingScreen_41'
 screenShot_BenchRepair = 'models/gui/loadingScreen_42'
 screenShot_ShipRepair = 'models/gui/loadingScreen_43'
 screenShot_CannonDefense = 'models/gui/loadingScreen_44'
+screenShot_Fishing = 'models/gui/loadingScreen_45'
 
 NO_FADE_SORT_INDEX = 2000
 
