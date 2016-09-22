@@ -17,3 +17,5 @@ https://cdn.discordapp.com/attachments/226498380338167808/228280686304428033/160
 6.) been getting this whenever I initiate a fight - http://pastebin.com/6nrTvs8q
 
 7.) When using a particular weapon - http://pastebin.com/de6meaTG
+
+8.) trying to put a weapon in one of the weapon slots - http://pastebin.com/fPTCxBUe
