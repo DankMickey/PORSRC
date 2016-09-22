@@ -1,4 +1,4 @@
-from panda3d.core import ConfigVariable, ConfigVariableBool, TextNode, Texture
+from panda3d.core import ConfigVariable, ConfigVariableBool, TextNode, Texture, TransparencyAttrib
 from pirates.piratesbase import PiratesGlobals
 from pirates.piratesbase import PLocalizer
 from pirates.piratesgui import PiratesGuiGlobals
@@ -342,6 +342,10 @@ class LoadingScreen(DirectObject.DirectObject):
         self.locationLabel = DirectLabel(parent = aspect2dp, relief = None, text = '', text_font = PiratesGlobals.getPirateOutlineFont(), text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_scale = PiratesGuiGlobals.TextScaleTitleJumbo * 0.7, text_align = TextNode.ACenter, pos = (0.0, 0.0, -0.52), textMayChange = 1)
         self.hintLabel = DirectLabel(parent = aspect2dp, relief = None, text = '', text_font = PiratesGlobals.getPirateOutlineFont(), text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_scale = PiratesGuiGlobals.TextScaleTitleJumbo * 0.5, text_align = TextNode.ACenter, pos = (0.0, 0.0, -0.8), text_wordwrap = 30, textMayChange = 1)
         self.wheel = self.model.find('**/red_wheel')
+        self.oLogo = self.model.find('**/banner_logo')
+        self.oSkull = self.model.find('**/skull')
+        self.oLogo.hide()
+        self.oSkull.hide()
         title_bg = self.model.find('**/title_bg')
         title_frame = self.model.find('**/title_frame')
         self.title_art.append(title_bg)
@@ -365,6 +369,8 @@ class LoadingScreen(DirectObject.DirectObject):
         self.hintLabel.reparentTo(aspect2dp, NO_FADE_SORT_INDEX)
         self.model.setScale(0.25, 0.25, 0.25)
         self.model.setPos(0.0, 0.0, -0.15)
+        self.logo = OnscreenImage(image = 'custom/PORLogo.png', pos = (-0.12, 0, 3.5), scale = (1.4, 1.25, 1.25), parent = self.model)
+        self.logo.setTransparency(TransparencyAttrib.MAlpha)
         if self.locationText and len(self.locationText):
             self.__setLocationText(self.locationText)
 
