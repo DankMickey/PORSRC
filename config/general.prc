@@ -79,7 +79,7 @@ sync-video #f
 remove-island-barriers #f
 
 # LOADING SCREEN
-loading-screen 1
+loading-screen 0
 loading-screen-interstitial #f
 no-loading-screen #f
 
