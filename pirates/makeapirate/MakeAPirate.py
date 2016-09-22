@@ -272,6 +272,7 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
             self.notify.warning('Warning! want-gen-pics-buttons needs want-npc-viewer. wantNPCViewer overridden and set to TRUE')
 
         self.wantMarketingViewer = config.GetBool('want-marketing-viewer', 0)
+        
         if isNPCEditor:
             self.wantNPCViewer = 1
 
@@ -333,10 +334,10 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
             self.loadNPC = True
             self.camAdjusted = False
             self.avatarDummyNode = render.attachNewNode('Avatar Dummy Node')
-            self.avatarDummyNode.setPos(self.avList[self.index].getPos(render))
-            rot = self.avList[self.index].getHpr()
-            self.avatarDummyNode.setScale(self.avList[self.index].getScale())
-            self.avatarDummyNode.setHpr(rot[0], rot[1], rot[2])
+            #self.avatarDummyNode.setPos(self.avList[self.index].getPos(render))
+            #rot = self.avList[self.index].getHpr()
+            #self.avatarDummyNode.setScale(self.avList[self.index].getScale())
+            #self.avatarDummyNode.setHpr(rot[0], rot[1], rot[2])
             camera.wrtReparentTo(self.avatarDummyNode)
 
         self.nameList = []
@@ -472,12 +473,15 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
         else:
             self.offsetZoomHpr = camera.getHpr(render)
         base.loadingScreen.hide()
-        self.startCutscene()
+        if not self.isNPCEditor:
+            self.startCutscene(fadeIn = False)
+        else:
+            base.transitions.fadeIn()
     
-    def startCutscene(self, task=None):
-    	if not self.isNPCEditor:
-        	base.transitions.fadeIn()
-        	self.cutsceneStart(csId = 0) # Camera angle isn't perf, but it works.
+    def startCutscene(self, task=None, fadeIn=True):
+        if fadeIn:
+            base.transitions.fadeIn()
+        self.cutsceneStart(csId = 0)
 
     def exit(self):
         taskMgr.remove('avCreate-ZoomTask')
@@ -1129,6 +1133,8 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
             self.cast = JoshGibbs()
         elif type == 6:
             self.cast = JollyRoger()
+        elif type == 7:
+            self.cast = DavyJones()
 
         self.cast.style = CastBodyTypes[type]
         if self.isNPCEditor or self.wantNPCViewer:

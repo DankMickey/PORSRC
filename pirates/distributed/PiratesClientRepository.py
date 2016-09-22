@@ -318,7 +318,7 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
 
     def enterCreateAvatar(self, avList, index):
         self.tutorial = 0
-        self.avCreate = MakeAPirate(avList, 'makeAPirateComplete', index)
+        self.avCreate = MakeAPirate(avList, 'makeAPirateComplete', index, isNPCEditor=config.GetBool('want-npc-editor', False))
         self.avCreate.load()
         self.avCreate.enter()
         self.accept('makeAPirateComplete', self.__handleMakeAPirate)
