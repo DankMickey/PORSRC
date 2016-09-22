@@ -6268,7 +6268,8 @@ AvatarNames = {
             9: ('Spout', ('a Spout', 'Spouts')) },
         4: { },
         5: {
-            0: ('Jolly Roger', ('a Jolly Roger', 'Jolly Rogers')) },
+            0: ('Jolly Roger', ('a Jolly Roger', 'Jolly Rogers')),
+            1: ('Davy Jones', ('a Davy Jones', 'Davy Jones')) },
         6: {
             0: ('French Undead Quarter Master', ('a French Undead Quarter Master', 'French Undead Quarter Masters'), 'Fr.Undead Qtr.Master'),
             1: ('French Undead Maitre', ('a French Undead Maitre', 'French Undead Maitres'), 'Fr.Undead Maitres'),

@@ -7,6 +7,7 @@ from direct.showbase import DirectObject
 from direct.distributed.ClockDelta import *
 from direct.task import Task
 from direct.gui.DirectGui import *
+from direct.gui import DirectGuiGlobals
 from pirates.uberdog.UberDogGlobals import InventoryType
 from pirates.world.LocationConstants import *
 from otp.otpbase import OTPGlobals
@@ -162,6 +163,8 @@ screenShot_Potions = 'models/gui/loadingScreen_41'
 screenShot_BenchRepair = 'models/gui/loadingScreen_42'
 screenShot_ShipRepair = 'models/gui/loadingScreen_43'
 screenShot_CannonDefense = 'models/gui/loadingScreen_44'
+
+NO_FADE_SORT_INDEX = 2000
 
 def getOceanHint():
     oceans = [
@@ -468,14 +471,12 @@ class LoadingScreen(DirectObject.DirectObject):
 
         messenger.send('texture_state_changed')
 
-    def showTarget(self, targetId = None, ocean = False, jail = False, pickapirate = False, exit = False, potionCrafting = False, benchRepair = False, shipRepair = False, cannonDefense = False):
+    def showTarget(self, targetId = None, ocean = False, jail = False, pickapirate = False, exit = False, potionCrafting = False, benchRepair = False, shipRepair = False, cannonDefense = False, fishing = False):
         if config.GetBool('no-loading-screen', 0):
             return None
 
         if pickapirate:
             screenshot = screenShot_EnterGame
-            serverVersionText = config.GetString('server-version', 'no_version_set')
-            self._LoadingScreen__setHintText(serverVersionText)
         elif exit:
             screenshot = screenShot_ExitGame
         elif ocean:
@@ -490,29 +491,36 @@ class LoadingScreen(DirectObject.DirectObject):
             screenshot = screenShot_ShipRepair
         elif cannonDefense:
             screenshot = screenShot_CannonDefense
+        elif fishing:
+            screenshot = screenShot_Fishing
         elif base.localAvatar.style.getTutorial() < PiratesGlobals.TUT_GOT_CUTLASS:
             screenshot = screenShot_Weapon
         elif base.localAvatar.style.getTutorial() < PiratesGlobals.TUT_MET_JOLLY_ROGER:
             screenshot = screenShot_Cutlass
         elif base.cr.newsManager and base.cr.newsManager.getHoliday(21):
             screenshot = screenShots_WinterHolidayLocations.get(targetId)
-        if targetId is not None:
-            screenshot = random.choice(screenShots_Locations.get(targetId, [None]))
+            if not screenshot:
+                screenshot = screenShots_Locations.get(targetId)
+
+        else:
+            screenshot = screenShots_Locations.get(targetId)
+
         if not screenshot:
             if targetId in areaType_Jungles:
                 screenshot = random.choice(screenShots_Jungles)
+
             elif targetId in areaType_Swamps:
                 screenshot = random.choice(screenShots_Swamps)
+
             elif targetId in areaType_Caves:
                 screenshot = random.choice(screenShots_Caves)
+
             else:
-                island = getParentIsland(targetId)
-                screenshot = screenShots_Locations.get(island, [
-                    random.choice(screenShots)])[0]
-        elif len(screenshot) > 1:
+                screenshot = random.choice(tutorialShots_MoveAim)
+
+        if isinstance(screenshot, list):
             screenshot = random.choice(screenshot)
-        else:
-            screenshot = screenshot[0]
+
         self.__setLoadingArt(screenshot)
         if pickapirate:
             targetName = PLocalizer.LoadingScreen_PickAPirate
@@ -524,6 +532,14 @@ class LoadingScreen(DirectObject.DirectObject):
             targetName = PLocalizer.LoadingScreen_Jail
         else:
             targetName = PLocalizer.LocationNames.get(targetId)
+
+        if pickapirate:
+            serverVersionText = config.GetString('server-version', 'no_version_set')
+            self.__setHintText(serverVersionText)
+        #else: #BROKEN
+        #    hintText = self.getGeneralHint()
+        #    self.__setHintText(hintText)
+
         if targetName is None:
             return None
 
