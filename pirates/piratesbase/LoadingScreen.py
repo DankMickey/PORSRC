@@ -151,7 +151,9 @@ screenShots_Locations = {
     LocationIds.DEL_FUEGO_CAVE_E: [
         'models/gui/loadingScreen_27'],
     LocationIds.TORMENTA_CAVE_B: [
-        'models/gui/loadingScreen_28'] }
+        'models/gui/loadingScreen_28'],
+    LocationIds.RAVENS_COVE_ISLAND: [
+        'models/gui/loadingScreen_46']  }
 screenShots_WinterHolidayLocations = {
     LocationIds.DEL_FUEGO_ISLAND: [
         'models/gui/loadingScreen_38'],
