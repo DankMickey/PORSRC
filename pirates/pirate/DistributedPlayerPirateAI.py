@@ -65,6 +65,9 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         if self.defaultShard != self.air.districtId:
             self.b_setDefaultShard(self.air.districtId)
         
+        if self.getUnderArrest():
+            messenger.send('sendAvToJail', [self])
+        
         taskMgr.doMethodLater(10, self.__healthTask, self.taskName('healthTask'))
 
     def getInventory(self):
