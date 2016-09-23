@@ -101,7 +101,9 @@ class PiratesAIRepository(PiratesInternalRepository):
         messenger.send('startShardActivity')
 
         from pirates.battle.DistributedEnemySpawnerAI import DistributedEnemySpawnerAI
-        DistributedEnemySpawnerAI.printMissingTypes()
+        DistributedEnemySpawnerAI.printMissingAvatarTypes()
+        DistributedEnemySpawnerAI.printMissingShipTypes()
+        DistributedEnemySpawnerAI.printMissingAnimalTypes()
         self.accept('pirate-inventory-activate', self.__inventoryActivate)
     
     def __inventoryActivate(self, ownerId, invId):
