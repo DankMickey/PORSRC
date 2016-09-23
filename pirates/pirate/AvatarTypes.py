@@ -259,12 +259,12 @@ Gunners = [AvatarType(base=Gunner, id=x) for x in xrange(5)]
 Bandit, Brigand, Sharpshooter, Rifleman, Gunner = Gunners
 
 GhostTracks = [AvatarType(base=Ghost, track=x) for x in xrange(2)]
-GhostPirates, KillerGhosts = GhostTracks
+GhostPirate, KillerGhost = GhostTracks
 
-GhostPirates = [AvatarType(base=GhostPirates, id=x) for x in xrange(6)]
+GhostPirates = [AvatarType(base=GhostPirate, id=x) for x in xrange(6)]
 Revenant, MutineerGhost, DeviousGhost, TraitorGhost, CrewGhost, LeaderGhost = GhostPirates
 
-KillerGhosts = [AvatarType(base=KillerGhosts, id=1)]
+KillerGhosts = [AvatarType(base=KillerGhost, id=1)]
 RageGhost = KillerGhosts[0]
 
 VoodooZombieTracks = [AvatarType(base=VoodooZombie, track=1)]
@@ -423,6 +423,14 @@ NPC_SPAWNABLES = {
         lambda p0 = 7, p1 = 8: pickWaterUndead(p0, p1)],
     'Ghost T7': [
         lambda p0 = Revenant: typePassthrough(p0)],
+    'Ghost T9': [
+        lambda p0 = 1, p1 = 2: pickGhost(p0, p1)],
+    'GhostTest': [
+        lambda p0 = 1, p1 = 2: pickGhost(p0, p1)],
+    'Ghost T10': [
+        lambda p0 = TraitorGhost: typePassthrough(p0)],
+    'KillerGhost T11': [
+        lambda p0 = RageGhost: typePassthrough(p0)],
     'Noob Skeleton': [
         lambda p0 = 0: pickEarthUndead(p0, p0)],
     'Low Skeleton': [

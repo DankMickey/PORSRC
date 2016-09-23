@@ -6431,7 +6431,8 @@ AvatarNames = {
             4: ('Crew Ghost', ('a Crew Ghost', 'Crew Ghosts')),
             5: ('Leader Ghost', ('a Leader Ghost', 'Leader Ghosts')) },
         1: {
-            0: ('Rage Ghost', ('a Rage Ghost', 'Rage Ghosts')) } },
+            0: ('Rage Ghost', ('a Rage Ghost', 'Rage Ghosts')),
+            1: ('Rage Ghost', ('a Rage Ghost', 'Rage Ghosts'))  } },
     7: {
         0: {
             0: ('Jumbee Thrall', ('a Jumbee Thrall', 'Jumbee Thralls')),
