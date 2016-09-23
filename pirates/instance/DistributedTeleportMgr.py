@@ -514,7 +514,7 @@ class DistributedTeleportMgr(DistributedObject.DistributedObject):
 
 
     def amInTeleport(self):
-        return localAvatar.testTeleportFlag(PiratesGlobals.TFInTeleport)
+        return localAvatar.testTeleportFlag(PiratesGlobals.TFInTeleport) and not config.GetBool('can-ignore-teleport-flags', 0)
 
 
     def setAmInTeleport(self):
