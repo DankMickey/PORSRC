@@ -2015,6 +2015,7 @@ WHITELIST = '''
 2013
 2014
 2015
+2016
 !
 %
 %s
@@ -2065,7 +2066,6 @@ WHITELIST = '''
 =)
 =-)
 =o)
->////>
 ?
 @_@
 C:
@@ -10429,11 +10429,8 @@ dismissing
 dismissive
 disney
 disney's
-disney.com
 disneyana
 disneyana's
-disneyfairies.com
-disneyfairies.com/pixiehollow
 disneyland
 disneyland's
 disneymania
@@ -11227,11 +11224,6 @@ dwells
 dwindle
 dwindling
 dxd
-dxd3
-dxdart
-dxdef
-dxdome
-dxdream
 dye
 dyed
 dyeing
@@ -11346,7 +11338,6 @@ eddies
 edgar
 edge
 edge's
-edge-of-your-seat
 edged
 edger
 edges
@@ -20136,7 +20127,6 @@ na
 naa_ve
 naaa
 nachos
-nacib
 nada
 naggy
 nagu
@@ -21573,8 +21563,6 @@ piraterulers
 pirates
 pirates!!!
 pirates'
-pirates*
-piratesofthedepth
 piratey
 pirating
 pirato
@@ -23265,6 +23253,7 @@ retires
 retiring
 retold
 retreat
+retribution
 retried
 retrieve
 retrieving
@@ -24085,7 +24074,6 @@ scramble
 scrambled
 scrap
 scrap-metal
-scrap-metal-recovery-talent
 scrapbook
 scrappy
 scratch
@@ -26926,7 +26914,6 @@ title
 titles
 tkp
 tlc
-tlopo
 tm
 tnt
 tnts
@@ -28448,7 +28435,6 @@ wiidburns
 wilbur
 wild
 wild-n-crazy
-wild7
 wildburns
 wildcats
 wilde
@@ -28459,8 +28445,6 @@ wildfire
 wilding
 wildly
 wildwoods
-wilee
-wilee999
 will
 willa
 willa's
@@ -28660,7 +28644,6 @@ working
 workings
 workout
 works
-works-in-progress
 workshop
 workshops
 world
@@ -28735,12 +28718,8 @@ wrote
 wtg
 wut
 wwod
-www.dgamer.com
-www.disney.go.com/dxd
-www.disneyfairies.com
-www.piratesonline.com
-www.toontown.com
-www.toontownrewritten.com
+www.piratesforums.com
+www.piratesonline.us
 wyatt's
 wyda
 wynken
@@ -28778,7 +28757,6 @@ xtra
 xtraordinary
 xtreme
 xtremely
-xxwilee999xx
 y'all
 y'er
 ya
@@ -28918,7 +28896,6 @@ zambonis
 zanes
 zangetsu
 zany
-zanzibarbarians
 zaoran
 zap
 zari
@@ -28958,7 +28935,6 @@ zingers
 zinnia
 zinnias
 zip
-zip-a-dee-doo-dah
 zip-up
 zip-ups
 zippity
