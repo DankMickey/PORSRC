@@ -84,6 +84,7 @@ class StoreGUI(DirectFrame):
         self.panel = GuiPanel.GuiPanel(name, self.width, self.height, parent = self)
         self.panel.closeButton['command'] = self.closePanel
         self.setPos(-1.1, 0, -0.66)
+        self.panel.setPos(-1.1, 0, -0.66)
         self.balance = 0
         self.inventory = inventory
         self.storeInventory = InventoryItemList.InventoryItemList(self.inventory, self.height - 0.15, buy = PiratesGuiGlobals.InventoryAdd)
