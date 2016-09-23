@@ -34,22 +34,23 @@ class ShipStoreGUI(GuiPanel.GuiPanel):
         ItemId.BRIG_L1: 'Catalog_Light_Brig',
         ItemId.BRIG_L2: 'Catalog_Regular_Brig',
         ItemId.BRIG_L3: 'Catalog_War_Brig',
-        ItemId.CARRACK_L1: 'Catalog_Light_Brig',
-        ItemId.CARRACK_L2: 'Catalog_Regular_Brig',
-        ItemId.CARRACK_L3: 'Catalog_War_Brig',
+        ItemId.CARRACK_L1: 'Catalog_Light_Carrack',
+        ItemId.CARRACK_L2: 'Catalog_Regular_Carrack',
+        ItemId.CARRACK_L3: 'Catalog_War_Carrack',
         ItemId.CORVETTE_L1: 'Catalog_Light_Brig',
         ItemId.CORVETTE_L2: 'Catalog_Regular_Brig',
         ItemId.CORVETTE_L3: 'Catalog_War_Brig',
-        ItemId.SHIP_OF_THE_LINE: 'Catalog_War_Brig', #'Catalog_Ship_Of_Line',
-        ItemId.EL_PATRONS_SHIP: 'Catalog_War_Brig', #'Catalog_Carrack',
-        ItemId.P_SKEL_PHANTOM: 'Catalog_War_Brig',
+        ItemId.SHIP_OF_THE_LINE: 'Catalog_Ship_Of_Line',
+        ItemId.EL_PATRONS_SHIP: 'Catalog_War_Carrack',
+        ItemId.QUEEN_ANNES_REVENGE: 'Catalog_Queen_Anne_Revenge',
+        ItemId.P_SKEL_PHANTOM: 'Catalog_Phantom',
         ItemId.P_SKEL_REVENANT: 'Catalog_War_Brig',
         ItemId.P_SKEL_CEREBUS: 'Catalog_War_Brig',
         ItemId.P_NAVY_KINGFISHER: 'Catalog_War_Brig',
         ItemId.P_EITC_WARLORD: 'Catalog_War_Brig',
-        ItemId.HMS_VICTORY: 'Catalog_War_Brig',
-        ItemId.HMS_NEWCASTLE: 'Catalog_War_Brig',
-        ItemId.HMS_INVINCIBLE: 'Catalog_War_Brig',
+        ItemId.HMS_VICTORY: 'Catalog_Ship_Of_Line',
+        ItemId.HMS_NEWCASTLE: 'Catalog_Ship_Of_Line',
+        ItemId.HMS_INVINCIBLE: 'Catalog_Ship_Of_Line',
         ItemId.EITC_INTREPID: 'Catalog_War_Brig',
         ItemId.EITC_CONQUERER: 'Catalog_War_Brig',
         ItemId.EITC_LEVIATHAN: 'Catalog_War_Brig',
@@ -92,7 +93,7 @@ class ShipStoreGUI(GuiPanel.GuiPanel):
         ItemId.SKEL_HELLHOUND_SP: 'Catalog_War_Brig',
         ItemId.SKEL_BLOOD_SCOURGE_SP: 'Catalog_War_Brig',
         ItemId.HUNTER_VENGENCE: 'Catalog_War_Brig',
-        ItemId.HUNTER_TALLYHO: 'Catalog_War_Brig' }
+        ItemId.HUNTER_TALLYHO: 'Catalog_Ship_Of_Line' }
 
     def __init__(self, inventory, name):
         GuiPanel.GuiPanel.__init__(self, name, self.width, self.height, showClose = False)
@@ -136,11 +137,19 @@ class ShipStoreGUI(GuiPanel.GuiPanel):
         base.ssg = self
 
 
+    def getCardTexture(self, imageName):
+        tex = None
+        try:
+            texCard = self.card.find('**/' + imageName + '*')
+            tex = texCard.findAllTextures()[0]
+        except:
+            tex = loader.loadTexture('maps/%s.jpg' % imageName)
+        return tex
+
     def updateProfile(self):
         imageName = self.ShipIconTable.get(self.purchaseInventory[0][0])
-        print imageName
-        myTexCard = self.card.find('**/' + imageName + '*')
-        myTex = myTexCard.findAllTextures()[0]
+        myTex = self.getCardTexture(imageName)
+
         self.purchaseTitle['text'] = PLocalizer.InventoryTypeNames[self.purchaseInventory[0][0]]
         self.descText['text'] = (PLocalizer.ShipDescriptions[self.purchaseInventory[0][0]],)
         self.shipImage['image'] = myTex

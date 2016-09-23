@@ -24,8 +24,17 @@ class ShipItemGUI(InventoryItemGui.InventoryItemGui):
         ItemId.BRIG_L1: 'Catalog_Light_Brig',
         ItemId.BRIG_L2: 'Catalog_Regular_Brig',
         ItemId.BRIG_L3: 'Catalog_War_Brig',
-        ItemId.SHIP_OF_THE_LINE: 'Catalog_War_Brig', #'Catalog_Ship_Of_Line',
-        ItemId.EL_PATRONS_SHIP: 'Catalog_War_Brig' }#'Catalog_Carrack'}
+        ItemId.CARRACK_L1: 'Catalog_Light_Carrack',
+        ItemId.CARRACK_L2: 'Catalog_Regular_Carrack',
+        ItemId.CARRACK_L3: 'Catalog_War_Carrack',
+        ItemId.CORVETTE_L1: 'Catalog_Light_Brig',
+        ItemId.CORVETTE_L2: 'Catalog_Regular_Brig',
+        ItemId.CORVETTE_L3: 'Catalog_War_Brig',
+        ItemId.SHIP_OF_THE_LINE: 'Catalog_Ship_Of_Line',
+        ItemId.EL_PATRONS_SHIP: 'Catalog_War_Carrack',
+        ItemId.P_SKEL_PHANTOM: 'Catalog_Phantom',
+        ItemId.HUNTER_TALLYHO: 'Catalog_Ship_Of_Line',
+        ItemId.QUEEN_ANNES_REVENGE: 'Catalog_Queen_Anne_Revenge', }
     
     def __init__(self, data, trade = 0, buy = 0, sell = 0, use = 0, **kw):
         optiondefs = ()
@@ -36,6 +45,14 @@ class ShipItemGUI(InventoryItemGui.InventoryItemGui):
         self.checkLevel(repId, self.minLvl)
         self.flattenStrong()
 
+    def getCardTexture(self, imageName, card):
+        tex = None
+        try:
+            texCard = card.find('**/%s*' % imageName)
+            tex = texCard.findAllTextures()[0]
+        except:
+            tex = loader.loadTexture('maps/%s.jpg' % imageName)
+        return tex
     
     def createGui(self):
         (item, quantity) = self.data
@@ -49,8 +66,7 @@ class ShipItemGUI(InventoryItemGui.InventoryItemGui):
         
         card = loader.loadModel('models/textureCards/shipCatalog')
         renderName = self.shipImageDict.get(item, 'Catalog_War_Brig')
-        myTexCard = card.find('**/%s*' % renderName)
-        myTex = myTexCard.findAllTextures()[0]
+        myTex = self.getCardTexture(renderName, card)
         card.removeNode()
         del card
         self['state'] = DGG.NORMAL
