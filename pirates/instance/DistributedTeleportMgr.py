@@ -309,8 +309,7 @@ class DistributedTeleportMgr(DistributedObject.DistributedObject):
     def teleportConfirmation(self, confirmed):
         if confirmed:
             requestData = self.requestData
-            teleportData = requestData[0]
-            self.initiateTeleport(*requestData[0], **requestData[0])
+            self.initiateTeleport(*requestData[0], **requestData[1])
             locationUid = requestData[1]['locationUid']
             base.cr.loadingScreen.showTarget(locationUid)
             base.cr.loadingScreen.showHint(locationUid)
