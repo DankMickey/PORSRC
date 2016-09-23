@@ -155,7 +155,7 @@ class Options(Settings):
             'oceanMapRadarAxis': self.ocean_map_radar_axis,
             'FramesPerSecond': self.FPS,
             'simpleDisplayOption': self.simple_display_option,
-            'useStereo': bool(self.use_stereo)
+            'useStereo': bool(self.use_stereo),
         }
 
     def save(self):

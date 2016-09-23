@@ -375,7 +375,7 @@ class GameOptionsGui(DirectFrame):
         self.create_label(x, y, text, parent, sl)
         self.FPS = CheckButton(parent=parent, relief=None, scale=sc,
                                                    pos=(x + 0.675000, 0, y + 0.0149), command=self.oceanMapRadarAxisCB) #supposed to be FPS but no attribute error occurs again
-
+        
     def setupLowerFrame(self):
         self.lowerFrame = DirectFrame(parent=self, relief=None,
                                       pos=(0.299, 0, self.height - 0.91000 - PiratesGuiGlobals.TextScaleLarge * 17))
