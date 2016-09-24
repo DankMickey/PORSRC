@@ -65,9 +65,6 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         if self.defaultShard != self.air.districtId:
             self.b_setDefaultShard(self.air.districtId)
         
-        if self.getUnderArrest():
-            messenger.send('sendAvToJail', [self])
-        
         taskMgr.doMethodLater(10, self.__healthTask, self.taskName('healthTask'))
 
     def getInventory(self):
@@ -759,7 +756,7 @@ def giveLocatale(type, itemId, amount):
 def giveWeapon(itemId):
     target = spellbook.getTarget()
 
-    from pirates.uberdog.UberDogGlobals import *
+    from pirates.uberdog.UberDogGlobals import InventoryType
     from pirates.uberdog.TradableInventoryBase import InvItem
 
     inv = target.getInventory()
@@ -780,7 +777,7 @@ def giveWeapon(itemId):
 def giveClothing(itemId):
     target = spellbook.getTarget()
 
-    from pirates.uberdog.UberDogGlobals import *
+    from pirates.uberdog.UberDogGlobals import InventoryType
     from pirates.uberdog.TradableInventoryBase import InvItem
 
     inv = target.getInventory()
@@ -801,7 +798,7 @@ def giveClothing(itemId):
 def giveClothing(itemId):
     target = spellbook.getTarget()
 
-    from pirates.uberdog.UberDogGlobals import *
+    from pirates.uberdog.UberDogGlobals import InventoryType
     from pirates.uberdog.TradableInventoryBase import InvItem
 
     inv = target.getInventory()
