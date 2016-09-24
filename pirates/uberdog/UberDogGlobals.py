@@ -512,7 +512,7 @@ class InventoryType:
       LocationIds.KINGSHEAD_ISLAND: KingsheadTeleportToken,
       LocationIds.DEL_FUEGO_ISLAND: PadresDelFuegoTeleportToken,
       LocationIds.CUBA_ISLAND: CubaTeleportToken,
-      LocationIds.RAVENS_COVE_ISLAND: RavensCoveTeleportToken
+      LocationIds.RAVENS_COVE_ISLAND: RavensCoveTeleportToken,
     }
 
     @classmethod

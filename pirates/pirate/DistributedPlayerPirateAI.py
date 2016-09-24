@@ -735,3 +735,88 @@ def setShipBadge(title, rank):
     target.b_setShipIcon(title, rank)
     return "Set shipBadge to ({0}, {1})".format(title, rank)
 
+@magicWord(CATEGORY_GAME_MASTER, types=[int, int, int])
+def giveLocatale(type, itemId, amount):
+    target = spellbook.getTarget()
+
+    from pirates.uberdog.TradableInventoryBase import InvItem
+
+    inv = target.getInventory()
+    if not inv:
+        return "Failed to get target's inventory."
+
+    location = inv.findAvailableLocation(type, itemId=itemId, count=amount, equippable=True)
+    if location == -1:
+        return "Failed to give locatable. Target's inventory is full"
+
+    success = inv.addLocatable(itemId, location, 1)
+    if not success:
+        return "Failed to give locatable. Target's inventory is most likely full."
+
+    return "Locatable given."
+
+@magicWord(CATEGORY_GAME_MASTER, types=[int])
+def giveWeapon(itemId):
+    target = spellbook.getTarget()
+
+    from pirates.uberdog.UberDogGlobals import *
+    from pirates.uberdog.TradableInventoryBase import InvItem
+
+    inv = target.getInventory()
+    if not inv:
+        return "Failed to get target's inventory."
+
+    location = inv.findAvailableLocation(InventoryType.ItemTypeWeapon, itemId=itemId, count=1, equippable=True)
+    if location == -1:
+        return "Failed to give weapon. Target's inventory is full"
+
+    success = inv.addLocatable(itemId, location, 1)
+    if not success:
+        return "Failed to give weapon. Target's inventory is most likely full."
+
+    return "Weapon (%s) given." % itemId
+
+@magicWord(CATEGORY_GAME_MASTER, types=[int])
+def giveClothing(itemId):
+    target = spellbook.getTarget()
+
+    from pirates.uberdog.UberDogGlobals import *
+    from pirates.uberdog.TradableInventoryBase import InvItem
+
+    inv = target.getInventory()
+    if not inv:
+        return "Failed to get target's inventory."
+
+    location = inv.findAvailableLocation(InventoryType.ItemTypeClothing, itemId=itemId, count=1, equippable=True)
+    if location == -1:
+        return "Failed to give clothing item. Target's inventory is full"
+
+    success = inv.addLocatable(itemId, location, 1)
+    if not success:
+        return "Failed to give clothing item. Target's inventory is most likely full."
+
+    return "Clothing (%s) given." % itemId
+
+@magicWord(CATEGORY_GAME_MASTER, types=[int])
+def giveClothing(itemId):
+    target = spellbook.getTarget()
+
+    from pirates.uberdog.UberDogGlobals import *
+    from pirates.uberdog.TradableInventoryBase import InvItem
+
+    inv = target.getInventory()
+    if not inv:
+        return "Failed to get target's inventory."
+
+    location = inv.findAvailableLocation(InventoryType.ItemTypeJewelry, itemId=itemId, count=1, equippable=True)
+    if location == -1:
+        return "Failed to give jewelry item. Target's inventory is full"
+
+    success = inv.addLocatable(itemId, location, 1)
+    if not success:
+        return "Failed to give jewelry item. Target's inventory is most likely full."
+
+    return "Jewelry (%s) given." % itemId
+
+
+
