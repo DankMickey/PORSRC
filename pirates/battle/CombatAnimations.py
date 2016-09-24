@@ -3028,7 +3028,7 @@ class CombatAnimations:
     def unlockInput(self, av):
         if av.isLocal():
             messenger.send('skillFinished')
-            taskMgr.doMethodLater(.5, lambda t: localAvatar.motionFSM.motionAnimFSM.trackAnimToSpeed(None, 1), 'fixAnim')
+            taskMgr.doMethodLater(0.0, lambda t: localAvatar.motionFSM.motionAnimFSM.trackAnimToSpeed(None, 1), 'fixAnim')
 
 
     def lockDrink(self, av):
@@ -3039,4 +3039,4 @@ class CombatAnimations:
     def unlockDrink(self, av):
         if av.isLocal():
             messenger.send('drinkingFinished')
-            taskMgr.doMethodLater(.5, lambda t: localAvatar.motionFSM.motionAnimFSM.trackAnimToSpeed(None, 1), 'fixAnim')
+            taskMgr.doMethodLater(0.0, lambda t: localAvatar.motionFSM.motionAnimFSM.trackAnimToSpeed(None, 1), 'fixAnim')
