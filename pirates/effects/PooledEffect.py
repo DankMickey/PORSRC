@@ -12,20 +12,22 @@ class PooledEffect(DirectObject, NodePath):
     poolLimit = 30
 
     def getEffect(cls, unlimited = False, context = ''):
-        if cls.pool is None:
-            cls.pool = Pool.Pool()
+        try:
+            if cls.pool is None:
+                cls.pool = Pool.Pool()
 
-        if unlimited or PooledEffect.GlobalCount < PooledEffect.GlobalLimit:
-            if cls.pool.hasFree():
-                PooledEffect.GlobalCount += 1
-                return cls.pool.checkout()
-            else:
-                (free, used) = cls.pool.getNumItems()
-                if free + used < cls.poolLimit:
+            if unlimited or PooledEffect.GlobalCount < PooledEffect.GlobalLimit:
+                if cls.pool.hasFree():
                     PooledEffect.GlobalCount += 1
-                    cls.pool.add(cls())
                     return cls.pool.checkout()
-
+                else:
+                    (free, used) = cls.pool.getNumItems()
+                    if free + used < cls.poolLimit:
+                        PooledEffect.GlobalCount += 1
+                        cls.pool.add(cls())
+                        return cls.pool.checkout()
+        except:
+            return None
 
 
     getEffect = classmethod(getEffect)

@@ -75,9 +75,7 @@ class BattleManager(BattleManagerBase.BattleManagerBase):
             return WeaponGlobals.RESULT_MISS
 
         if target and not self.obeysPirateCode(attacker, target):
-            if ItemGlobals.getSubtype(localAvatar.currentWeaponId) == ItemGlobals.BAYONET:
-                if not (WeaponGlobals.getAttackClass(skillId) == WeaponGlobals.AC_COMBAT):
-                    return WeaponGlobals.RESULT_AGAINST_PIRATE_CODE
+            return WeaponGlobals.RESULT_AGAINST_PIRATE_CODE
 
         if target and not self.targetInRange(attacker, target, skillId, ammoSkillId, pos):
             return WeaponGlobals.RESULT_OUT_OF_RANGE

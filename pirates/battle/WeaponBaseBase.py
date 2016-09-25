@@ -188,10 +188,7 @@ class WeaponBaseBase:
                     continue
 
                 if not self.repository.battleMgr.obeysPirateCode(self.avatar, potentialTarget):
-                    if ItemGlobals.getSubtype(localAvatar.currentWeaponId) == ItemGlobals.BAYONET:
-                        pass
-                    if not (WeaponGlobals.getAttackClass(skillId) == WeaponGlobals.AC_COMBAT):
-                        continue
+                    continue
 
                 targets.append(potentialTargetId)
                 continue

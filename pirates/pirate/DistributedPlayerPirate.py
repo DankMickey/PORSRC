@@ -1028,6 +1028,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         DistributedPirateBase.announceGenerate(self)
         DistributedPlayer.announceGenerate(self)
         DistributedBattleAvatar.announceGenerate(self)
+        self.setAvatarType(AvatarTypes.LocalPirateType if self.isLocal() else AvatarTypes.NonLocalPirateType)
         self.accept('localAvatarEntersDialog', self.enterDialogMode)
         self.accept('localAvatarExitsDialog', self.exitDialogMode)
         self.accept('Local_Efficiency_Set', self.setEfficiency)
