@@ -80,6 +80,7 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
 
     def exitSpawn(self):
         taskMgr.remove(self.uniqueName('spawned'))
+        self.removeSkillEffect(WeaponGlobals.C_SPAWN)
         self.d_updateSmPos()
 
     def delete(self):

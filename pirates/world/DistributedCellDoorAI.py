@@ -81,6 +81,11 @@ class DistributedCellDoorAI(DistributedInteractiveAI):
             self.b_setHealth(health)
 
     def handleInteract(self, avId, interactType, instant):
+        av = self.air.doId2do.get(avId)
+
+        if not av or not av.getUnderArrest():
+            return REJECT
+
         if self.health:
             self.kickers.append(avId)
             self.doorKicked()

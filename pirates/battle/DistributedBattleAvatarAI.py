@@ -244,8 +244,10 @@ class DistributedBattleAvatarAI(Teamable, DistributedReputationAvatarAI, WeaponB
 
             newEffectList.append(buff)
 
-        self.skillEffects = newEffectList
-        self.sendUpdate('setSkillEffects', [self.skillEffects])
+        if newEffectList != self.skillEffects:
+            self.skillEffects = newEffectList
+            self.sendUpdate('setSkillEffects', [self.skillEffects])
+
         # TO DO: expire task
 
     def getSkillEffects(self):

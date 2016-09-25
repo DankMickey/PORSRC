@@ -7,7 +7,7 @@ from direct.showbase import DirectObject
 from direct.distributed.ClockDelta import *
 from direct.task import Task
 from direct.gui.DirectGui import *
-from direct.gui import DirectGuiGlobals
+from direct.gui.DirectGuiGlobals import NO_FADE_SORT_INDEX
 from pirates.uberdog.UberDogGlobals import InventoryType
 from pirates.world.LocationConstants import *
 from otp.otpbase import OTPGlobals
@@ -166,8 +166,6 @@ screenShot_BenchRepair = 'models/gui/loadingScreen_42'
 screenShot_ShipRepair = 'models/gui/loadingScreen_43'
 screenShot_CannonDefense = 'models/gui/loadingScreen_44'
 screenShot_Fishing = 'models/gui/loadingScreen_45'
-
-NO_FADE_SORT_INDEX = 2000
 
 def getOceanHint():
     oceans = [
