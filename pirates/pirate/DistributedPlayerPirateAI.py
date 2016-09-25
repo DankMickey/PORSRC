@@ -798,7 +798,7 @@ def giveClothing(itemId):
     return "Clothing (%s) given." % itemId
 
 @magicWord(CATEGORY_GAME_MASTER, types=[int])
-def giveClothing(itemId):
+def giveJewelry(itemId):
     target = spellbook.getTarget()
 
     from pirates.uberdog.UberDogGlobals import *
