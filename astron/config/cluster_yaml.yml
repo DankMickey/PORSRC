@@ -46,7 +46,7 @@ uberdogs:
 roles:
     - type: clientagent
       bind: 0.0.0.0:29150
-      version: "por-alpha"
+      version: "pirates-dev"
       client:
           relocate: true
           add_interest: enabled
