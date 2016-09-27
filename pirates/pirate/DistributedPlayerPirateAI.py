@@ -815,5 +815,8 @@ def giveJewelry(itemId):
 
     return "Jewelry (%s) given." % itemId
 
-
-
+@magicWord(CATEGORY_GAME_MASTER, types=[int])
+def ghost(state):
+    av = spellbook.getTarget()
+    av.b_setIsGhost((state == 1))
+    return "Set target's ghost state to %s" % state
