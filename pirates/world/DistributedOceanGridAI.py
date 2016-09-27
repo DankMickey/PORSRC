@@ -57,7 +57,7 @@ class DistributedOceanGridAI(DistributedCartesianGridAI, OceanGridBase):
     	self.spawner.addShipSpawnNode(objKey, object)
 
     def addShipMovementNode(self, objKey, object):
-        self.notify.info("Spawning: %s" % nodeName)
+        nodeName = 'objNode-ShipMovementNode-%s' % objKey
         genObj = NodePath(nodeName)
 
         if 'Pos' in object:
