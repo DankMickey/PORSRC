@@ -50,7 +50,14 @@ class InventoryUIWeaponItem(InventoryUIItem.InventoryUIItem):
     def __init__(self, manager, itemTuple, imageScaleFactor = 1.0):
         InventoryUIItem.InventoryUIItem.__init__(self, manager, itemTuple, imageScaleFactor = imageScaleFactor)
         weaponIcons = loader.loadModel('models/gui/gui_icons_weapon')
-        self['image'] = weaponIcons.find('**/%s' % ItemGlobals.getIcon(itemTuple[1]))
+        modelName = ItemGlobals.getIcon(itemTuple[1])
+        image = weaponIcons.find('**/%s' % modelName)
+        
+        if image:
+            self['image'] = image
+        else:
+            self.notify.warning('Missing image for %s!' % modelName)
+
         self['image_scale'] = 0.1 * imageScaleFactor
         self.helpFrame = None
         self.cm = CardMaker('itemCard')

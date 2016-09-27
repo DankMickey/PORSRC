@@ -27,7 +27,6 @@ from pirates.effects.FireballHit import FireballHit
 from pirates.effects.CurseHit import CurseHit
 from pirates.effects.ExplosionCloud import ExplosionCloud
 from pirates.effects.FadingSigil import FadingSigil
-from pirates.effects.FlashStar import FlashStar
 from pirates.effects.VoodooSmoke import VoodooSmoke
 from pirates.effects.SpectralSmoke import SpectralSmoke
 from pirates.effects.DrainLife import DrainLife
