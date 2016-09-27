@@ -1,3 +1,4 @@
+from panda3d.core import NodePath
 from direct.directnotify.DirectNotifyGlobal import *
 from direct.distributed.DistributedCartesianGridAI import DistributedCartesianGridAI
 from pirates.world.DistributedIslandAI import DistributedIslandAI
@@ -54,3 +55,15 @@ class DistributedOceanGridAI(DistributedCartesianGridAI, OceanGridBase):
 
     def addShipSpawn(self, objKey, object):
     	self.spawner.addShipSpawnNode(objKey, object)
+
+    def addShipMovementNode(self, objKey, object):
+        self.notify.info("Spawning: %s" % nodeName)
+        genObj = NodePath(nodeName)
+
+        if 'Pos' in object:
+            genObj.setPos(object['Pos'])
+
+        if 'Hpr' in object:
+            genObj.setHpr(object['Hpr'])
+
+        return genObj

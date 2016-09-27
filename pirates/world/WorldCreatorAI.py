@@ -52,8 +52,8 @@ class WorldCreatorAI(WorldCreatorBase):
         elif objType == 'Ship Spawn Node' and config.GetBool('want-enemy-ships', False):
             self.air.mainWorld.oceanGrid.addShipSpawn(objKey, object)
 
-        elif objType == 'Ship Movement Node' and config.GetBool('want-enemy-ships', False):
-            pass
+        elif objType == 'Ship Movement Node' and config.GetBool('want-enemy-ship-movement', False):
+            genObj = self.air.mainWorld.oceanGrid.addShipMovementNode(objKey, object)
 
         elif actualParentObj:
             genObj = actualParentObj.createObject(objType, parent, objKey, object)

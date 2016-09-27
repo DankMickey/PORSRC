@@ -131,6 +131,8 @@ want-soft-tod-changes #t
 
 # SAILING
 want-seas-closed #t
+want-enemy-ships #f
+want-enemy-ship-movement #t
 
 # Code Redemption
 want-coderedemption #f
