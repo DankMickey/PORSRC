@@ -6,7 +6,7 @@ account-bridge-filename astron/databases/account-database.db
 account-server-token-link http://63.142.255.4/_t.php
 
 # SERVER SETTINGS:
-server-version pirates-dev
+server-version por-alpha-1.0.0
 
 # RPC SETTINGS:
 want-rpc-server #f
