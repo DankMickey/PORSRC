@@ -1728,13 +1728,16 @@ def prepareSwitchField(field,*self):
             except:
                 print "mmmm InvItem generated an error";
         else:
-            loc = x.getLocation()
-            cat = x.getCat()
-            id = x.getId()
-            upgrades = x.getUpgrades()
-            color = x.getColor()
-            count = x.getCount(1)
-            print "Xtype"+ str(type(x)) + " " +str(x);
+            try:
+                loc = x.getLocation()
+                cat = x.getCat()
+                id = x.getId()
+                upgrades = x.getUpgrades()
+                color = x.getColor()
+                count = x.getCount(1)
+                print "Xtype"+ str(type(x)) + " " +str(x);
+            except:
+                print "mmmm InvItem generated an error";
 
         return (cat, id, loc, upgrades, color, count)
     return map(formatItem, field)
