@@ -6,7 +6,7 @@ account-bridge-filename astron/databases/account-database.db
 account-server-token-link http://63.142.255.4/_t.php
 
 # SERVER SETTINGS:
-server-version pirates-dev
+server-version por-alpha
 
 # RPC SETTINGS:
 want-rpc-server #f
@@ -105,7 +105,7 @@ ocean-visibility 1
 infinite-ammo #f
 ship-wake-dist 3800
 ship-rock-dist 1000
-want-seas-closed #t
+want-seas-closed #f
 
 # TELEPORTATION
 teleport-all #t
