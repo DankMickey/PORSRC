@@ -3869,8 +3869,8 @@ class MinimapPlayerPirate(MinimapBattleAvatar):
 			return "Swamp effect disabled."
 		else:
 			base.localAvatar.fireflies = Fireflies()
-			base.localAvatar.reparentTo(base.localAvatar)
-			base.localAvatar.startLoop()
+			base.localAvatar.fireflies.reparentTo(base.localAvatar)
+			base.localAvatar.fireflies.startLoop()
 
 			base.localAvatar.groundFog = GroundFog()
 			base.localAvatar.groundFog.reparentTo(base.localAvatar)
