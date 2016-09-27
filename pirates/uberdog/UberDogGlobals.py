@@ -1723,8 +1723,6 @@ def prepareSwitchField(field,*self):
                 upgrades = item.getUpgrades()
                 color = item.getColor()
                 count = item.getCount(1)
-
-                print "Xtype" + str(type(item)) + " " + str(item);
             except:
                 print "mmmm InvItem generated an error";
         else:
@@ -1735,7 +1733,6 @@ def prepareSwitchField(field,*self):
                 upgrades = x.getUpgrades()
                 color = x.getColor()
                 count = x.getCount(1)
-                print "Xtype"+ str(type(x)) + " " +str(x);
             except:
                 print "mmmm InvItem generated an error";
 

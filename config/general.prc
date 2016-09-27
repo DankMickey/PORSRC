@@ -96,6 +96,7 @@ want-map-flavor-anims #t
 want-map-coats #f
 avchooser-allow-logout #f
 disable-server-queueing #t
+want-naming-dialog #t
 
 # MULTIPLAYER
 disable-player-collisions #t
