@@ -144,7 +144,9 @@ class AvatarChooser(DirectObject, StateData):
         self.ship = None
         from pirates.ship import ShipGlobals
         
-        if config.GetBool('want-spooky-avatarchooser', False):
+        if config.GetInt('custom-avatarchooser-ship', 0) > 0:
+            self.ship = base.shipFactory.getShip(config.GetInt('custom-avatarchooser-ship', 0))
+        elif config.GetBool('want-spooky-avatarchooser', False):
             self.ship = base.shipFactory.getShip(ShipGlobals.P_SKEL_PHANTOM)
             self.ship.playStormEffect()
         else:
