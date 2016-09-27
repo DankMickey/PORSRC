@@ -1,12 +1,15 @@
 from direct.distributed.DistributedObjectAI import DistributedObjectAI
 from direct.distributed.ClockDelta import globalClockDelta
 from direct.directnotify import DirectNotifyGlobal
+from direct.task import Task
 from TimeOfDayManagerBase import TimeOfDayManagerBase
 from pirates.piratesbase import TODGlobals
 from direct.distributed.ClockDelta import globalClockDelta
 from otp.ai.MagicWordGlobal import *
 import TODGlobals
 import time
+import random
+
 
 class DistributedTimeOfDayManagerAI(DistributedObjectAI, TimeOfDayManagerBase):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedTimeOfDayManagerAI')
@@ -25,11 +28,60 @@ class DistributedTimeOfDayManagerAI(DistributedObjectAI, TimeOfDayManagerBase):
         self.isRain = 0
         self.isStorm = 0
         self.isDarkFog = 0
-        self.clouds = 1
+        self.clouds = TODGlobals.LIGHTCLOUDS
+        self.weather = (TODGlobals.WEATHER_CLEAR, 0)
         self.fromCurrent = 0
         self.startPhase = 0
         self.targetPhase = 0
         self.targetTime = 0
+
+    def announceGenerate(self):
+        DistributedObjectAI.announceGenerate(self)
+        if config.GetBool('advanced-weather', False) and config.GetBool('auto-weather', False):
+            self.__runWeather()
+            self.runWeather = taskMgr.doMethodLater(15, self.__runWeather, 'runWeather')
+
+    def delete(self):
+        DistributedObjectAI.delete(self)
+        if hasattr(self, 'runWeather'):
+            taskMgr.remove(self.runWeather)
+
+    def setWeather(self, type=0, time=0):
+        update = False
+        weather, otime = self.weather
+        if type != weather:
+            update = True
+
+        self.weather = (type, time)
+        if update:
+            self.notify.debug("Changing weather state to %s" % type)
+            weatherInfo = TODGlobals.WEATHER_ENVIROMENTS[type]
+            if not weatherInfo:
+                self.notify.warning("Failed to update weather state. %s is not a valid weather enviroment" % type)
+                return
+            self.setRain(weatherInfo['rain'])
+            self.setStorm(weatherInfo['storm'])
+            self.setBlackFog(weatherInfo['darkfog'])
+            self.setClouds(weatherInfo['sky'])
+
+    def pickWeather(self):
+        weatherChoices = TODGlobals.WEATHER_ENVIROMENTS
+        if not config.GetBool('want-storm-weather', False):
+            weatherChoices.pop(TODGlobals.WEATHER_STORM, None)
+        choice = (random.randint(0, len(weatherChoices)-1), (random.randint(5,10) * 60))
+        del weatherChoices
+        return choice
+
+    def __runWeather(self, task=None):
+        if self.isPaused:
+            return Task.again
+
+        type, time = self.weather
+        time = time - 15
+        if time <= 0:
+            type, time = self.pickWeather()
+        self.setWeather(type, time)
+        return Task.again
 
     def syncTOD(self, cycleType, cycleSpeed, startingNetTime, timeOffset):
         self.cycleType = cycleType
@@ -99,6 +151,30 @@ class DistributedTimeOfDayManagerAI(DistributedObjectAI, TimeOfDayManagerBase):
 
     def getClouds(self):
         return self.clouds
+
+@magicWord(CATEGORY_GAME_MASTER, types=[int, int])
+def setWeather(weatherId, time=0):
+    air = spellbook.getInvoker().air
+    if air.config.GetBool('advanced-weather', False):
+
+        if weatherId not in TODGlobals.WEATHER_ENVIROMENTS:
+            available = TODGlobals.WEATHER_ENVIROMENTS.keys()
+            return "%s is an invalid weather id. Available keys are %s " % (weatherId, available)
+
+        air.todManager.setWeather(weatherId, time)
+        return "Setting weather state to %s for the district for a duration of %s." % (weatherId, time)
+    return "Sorry, Weather is not enabled on this district."
+
+@magicWord(CATEGORY_GAME_MASTER)
+def getWeather():
+    air = spellbook.getInvoker().air
+    weather, time = air.todManager.weather
+    return "Current district weather is set to %s for a duration of %s" % (weather, time)
+
+@magicWord(CATEGORY_GAME_MASTER)
+def weatherReady():
+    return "Weather Ready: %s" % str(air.config.GetBool('advanced-weather', False))
+
 
 @magicWord(CATEGORY_GAME_MASTER, types=[int])
 def setRain(state):

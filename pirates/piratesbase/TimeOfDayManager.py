@@ -25,11 +25,6 @@ import random
 class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
     notify = directNotify.newCategory('TimeOfDayManager')
 
-    HEAVYCLOUDS = 3
-    MEDIUMCLOUDS = 2
-    LIGHTCLOUDS = 1
-    NOCLOUDS = 0
-
     def __init__(self):
         FSM.FSM.__init__(self, 'TimeOfDayManager')
         TimeOfDayManagerBase.TimeOfDayManagerBase.__init__(self)
@@ -750,6 +745,8 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
             self.avatarShadowCaster.setLightSrc(self.dlight)
 
     def setCloudsType(self, cloudType):
+        if cloudType not in TODGlobals.CLOUD_TRANSITIONS:
+            return 
         self.skyGroup.transitionClouds(cloudType).start()
 
     def setSkyType(self, skyType):
@@ -1617,7 +1614,7 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
             return
         if state:
             if changeClouds:
-                self.setCloudsType(self.HEAVYCLOUDS)
+                self.setCloudsType(TODGlobals.HEAVYCLOUDS)
             if self.stormEye is None:
                 self.stormEye = StormEye()
                 self.stormEye.reparentTo(render)
