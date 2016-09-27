@@ -210,11 +210,13 @@ class Ship(DirectObject.DirectObject):
         return False
 
     def dropMast(self, index):
-        if index in self.breakAnims:
-            self.breakAnims[index][1].playAll()
-            self.dropRigging(index)
-            self.mastCollisions[index].stash()
-
+        try:
+            if index in self.breakAnims:
+                self.breakAnims[index][1].playAll()
+                self.dropRigging(index)
+                self.mastCollisions[index].stash()
+        except:
+            pass
         self.mastStates[index] = 0
 
     def dropRigging(self, index):
@@ -531,7 +533,6 @@ class Ship(DirectObject.DirectObject):
                     self.restoreMast(i)
                 else:
                     self.dropMast(i)
-            mastStates[i]
 
     def sinkingBegin(self):
         self.computeDimensions()

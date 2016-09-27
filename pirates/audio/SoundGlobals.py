@@ -67,6 +67,7 @@ MUSIC_SAILING_C = 'music_sailing_c.%s' % AUDIO_EXTENSION
 MUSIC_SAILING_D = 'music_sailing_d.%s' % AUDIO_EXTENSION
 MUSIC_SAILING_E = 'music_sailing_e.%s' % AUDIO_EXTENSION
 MUSIC_SHIP_COMBAT_01 = 'music_highseas_combat.%s' % AUDIO_EXTENSION
+MUSIC_SHIP_COMBAT_02 = 'he_is_a_pirate.%s' % AUDIO_EXTENSION
 MUSIC_SHIP_ENSNARED = 'music_wheel_08.%s' % AUDIO_EXTENSION
 MUSIC_KRAKEN_SINK = 'music_kraken_sink_ship.%s' % AUDIO_EXTENSION
 MUSIC_COMBAT_A = 'music_combat_a.%s' % AUDIO_EXTENSION

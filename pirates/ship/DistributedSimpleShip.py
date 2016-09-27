@@ -10,6 +10,8 @@ from direct.distributed.ClockDelta import *
 from direct.showutil import Rope
 from otp.otpbase import OTPRender
 from otp.otpbase import OTPGlobals
+from otp.nametag.Nametag import Nametag
+from otp.nametag.NametagGroup import NametagGroup
 from pirates.movement.DistributedMovingObject import DistributedMovingObject
 from pirates.ship.DistributedFlagship import DistributedFlagship
 from pirates.battle.Teamable import Teamable
@@ -213,33 +215,33 @@ class DistributedSimpleShip(DistributedMovingObject, Teamable, DistributedFlagsh
         self.style = ShipGlobals.Styles.Undefined
         self.logoOverride = None
         self.styleOverride = None
-        if not self.threatIconDict:
-            self.threatIconDict = { }
-            threatCard = loader.loadModel('models/gui/ship_threat_icons')
-            tpMgr = TextPropertiesManager.getGlobalPtr()
-            for threatIconKey in EnemyGlobals.THREAT_ICON_DICT:
-                threatIconName = EnemyGlobals.THREAT_ICON_DICT.get(threatIconKey)
-                if threatIconName:
-                    icon = threatCard.find('**/%s*' % threatIconName)
-                    icon.setScale(2.0)
-                    iconKey = 'threat-%s' % threatIconKey
-                    self.threatIconDict[iconKey] = icon
-                    tg = TextGraphic(icon, -0.25, 0.75, -0.31, 0.69)
-                    tpMgr.setGraphic(iconKey, tg)
-                    continue
+        #if not self.threatIconDict:
+        #    self.threatIconDict = { }
+        #    threatCard = loader.loadModel('models/gui/ship_threat_icons')
+        #    tpMgr = TextPropertiesManager.getGlobalPtr()
+        #    for threatIconKey in EnemyGlobals.THREAT_ICON_DICT:
+        #        threatIconName = EnemyGlobals.THREAT_ICON_DICT.get(threatIconKey)
+        #        if threatIconName:
+        #            icon = threatCard.find('**/%s*' % threatIconName)
+        #            icon.setScale(2.0)
+        #            iconKey = 'threat-%s' % threatIconKey
+        #            self.threatIconDict[iconKey] = icon
+        #            tg = TextGraphic(icon, -0.25, 0.75, -0.31, 0.69)
+        #            tpMgr.setGraphic(iconKey, tg)
+        #            continue
 
 
-        if not self.hunterIcon:
-            threatCard = loader.loadModel('models/gui/ship_threat_icons')
-            tpMgr = TextPropertiesManager.getGlobalPtr()
-            hunterIconName = 'threat_hunter'
-            if threatIconName:
-                icon = threatCard.find('**/%s*' % hunterIconName)
-                icon.setScale(1.5)
-                iconKey = 'hunterTAG'
-                self.hunterIcon = icon
-                tg = TextGraphic(icon, -0.25, 0.75, -0.31, 0.69)
-                tpMgr.setGraphic(iconKey, tg)
+        #if not self.hunterIcon:
+        #    threatCard = loader.loadModel('models/gui/ship_threat_icons')
+        #    tpMgr = TextPropertiesManager.getGlobalPtr()
+        #    hunterIconName = 'threat_hunter'
+        #    if threatIconName:
+        #        icon = threatCard.find('**/%s*' % hunterIconName)
+        #        icon.setScale(1.5)
+        #        iconKey = 'hunterTAG'
+        #        self.hunterIcon = icon
+        #        tg = TextGraphic(icon, -0.25, 0.75, -0.31, 0.69)
+        #        tpMgr.setGraphic(iconKey, tg)
 
 
 
@@ -266,7 +268,7 @@ class DistributedSimpleShip(DistributedMovingObject, Teamable, DistributedFlagsh
 
         self.gameFSM = GameFSMShip(self)
         if self.initialGameState:
-            self.requestGameState(self.initialGameState[0], *self.initialGameState[1])
+        #    self.requestGameState(self.initialGameState[0], *self.initialGameState[1])
             self.initialGameState = None
 
         modelRoot = self.getTransNode()
@@ -2512,29 +2514,28 @@ class DistributedSimpleShip(DistributedMovingObject, Teamable, DistributedFlagsh
             return 0
 
         self.deleteNametag3d()
-        nametagNode = self.nametag.getNametag3d().upcastToPandaNode()
+        nametagNode = self.nametag.getNametag3d()#.upcastToPandaNode()
         self.nametag3d.attachNewNode(nametagNode)
         self.nametag3d.setLightOff()
         self.iconNodePath = self.nametag.getNameIcon()
-        if self.iconNodePath.isEmpty():
-            self.notify.warning('empty iconNodePath in initializeNametag3d')
-            return 0
+        #if self.iconNodePath.isEmpty():
+        #    self.notify.warning('empty iconNodePath in initializeNametag3d')
+        #    return 0
 
-        if self.nameText:
-            self.nameText.reparentTo(self.iconNodePath)
+        #if self.nameText:
+        #    self.nameText.reparentTo(self.iconNodePath)
 
-        if self.classNameText:
-            self.classNameText.reparentTo(self.iconNodePath)
+        #if self.classNameText:
+        #    self.classNameText.reparentTo(self.iconNodePath)
 
-        if self.isFlagship:
-            modelPath = EnemyGlobals.getFlagshipIconModelPath(self.getTeam())
-            if modelPath:
-                flagshipIcon = loader.loadModel(modelPath)
-                flagshipIcon.setPos(0, 0, 2)
-                flagshipIcon.setScale(1.5)
-                flagshipIcon.reparentTo(self.iconNodePath)
-                flagshipIcon.flattenLight()
-
+        #if self.isFlagship:
+        #    modelPath = EnemyGlobals.getFlagshipIconModelPath(self.getTeam())
+        #    if modelPath:
+        #        flagshipIcon = loader.loadModel(modelPath)
+        #        flagshipIcon.setPos(0, 0, 2)
+        #        flagshipIcon.setScale(1.5)
+        #        flagshipIcon.reparentTo(self.iconNodePath)
+        #        flagshipIcon.flattenLight()
 
         return 1
 

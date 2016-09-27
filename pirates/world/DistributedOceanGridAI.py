@@ -1,6 +1,7 @@
 from direct.directnotify.DirectNotifyGlobal import *
 from direct.distributed.DistributedCartesianGridAI import DistributedCartesianGridAI
 from pirates.world.DistributedIslandAI import DistributedIslandAI
+from pirates.battle.DistributedEnemySpawnerAI import DistributedEnemySpawnerAI
 from OceanGridBase import OceanGridBase
 import WorldGlobals
 
@@ -19,6 +20,7 @@ class DistributedOceanGridAI(DistributedCartesianGridAI, OceanGridBase):
         OceanGridBase.__init__(self)
 
         self.mainWorld = mainWorld
+        self.spawner = DistributedEnemySpawnerAI(self.mainWorld)
 
         self.islandData = {}
         self.islands = set()
@@ -49,3 +51,6 @@ class DistributedOceanGridAI(DistributedCartesianGridAI, OceanGridBase):
         self.notify.info('Created island %s %s' % (il.getName(), uniqueId))
         self.islands.add(il)
         return il
+
+    def addShipSpawn(self, objKey, object):
+    	self.spawner.addShipSpawnNode(objKey, object)

@@ -6,6 +6,14 @@ from pirates.treasuremap import DistributedBuriedTreasure/AI
 from pirates.distributed import PiratesDistrict/AI
 from pirates.distributed import PiratesDistrictStats/AI
 from pirates.economy import DistributedShopKeeper/AI
+from pirates.ship import DistributedSimpleShip/AI
+from pirates.ship import DistributedNPCSimpleShip/AI
+// from pirates.ship import DistributedPlayerSimpleShip/AI/UD/OV
+// from pirates.ship import DistributedPlayerFishingShip/AI/OV
+// from pirates.ship import DistributedTutorialSimpleShip/AI
+// from pirates.ship import DistributedBlackPearlSimpleShip/AI
+// from pirates.ship import DistributedPlayerSeizeableShip/AI
+// from pirates.ship import DistributedFormation/AI
 from pirates.npc import DistributedNPCSkeleton/AI
 from pirates.npc import DistributedNPCPirate/AI
 from pirates.npc import DistributedNPCNavySailor/AI
@@ -1327,4 +1335,77 @@ dclass DistributedPokerTable : DistributedGameTable {
 dclass DistributedHolidayObject : DistributedInteractive {
   setInteractRadius(uint8) required broadcast ram;
   setInteractMode(uint8) required broadcast ram;
+};
+
+dclass DistributedFlagshipAI : DistributedObject {
+  setBoarders(uint32 []) broadcast ram;
+  startWave(uint8, uint8, uint8);
+  clearWaves();
+};
+
+dclass DistributedShip: DistributedMovingObject, Teamable {
+  setParentingRules(string, string) broadcast ram;
+  string DcObjectType db;
+  setUniqueId(string) required broadcast ram;
+}
+
+dclass DistributedSimpleShip : DistributedShip, DistributedFlagshipAI {
+  setGameState(string, uint32, int16) required broadcast ram ownrecv;
+  setShipClass(uint8) required broadcast ram db ownrecv;
+  setStyleOverride(int16) required broadcast ram;
+  setLogoOverride(int16) required broadcast ram;
+  setLevel(uint16) required broadcast ram;
+  setName(string) required broadcast ram db ownrecv;
+  setArmorStates(uint16/100, uint16/100, uint16/100) required db broadcast ram ownrecv;
+  setMastStates(uint16/100, uint16/100, uint16/100, uint16/100, uint16/100) required broadcast db ram ownrecv;
+  setHealthState(uint16/100) required broadcast ram db ownrecv;
+  setCrew(uint32[]) required broadcast ram ownrecv;
+  setBandId(uint32, uint32) broadcast ram;
+  setOwnerId(uint32) required broadcast ram db ownrecv;
+  setCannons(uint32 [], uint32) broadcast ram;
+  //setSkillEffects(BuffList) broadcast ram;
+  setIsBoardable(uint8) required broadcast ram;
+  setIsExitable(uint8) required broadcast ram;
+  setIsFlagship(int8) required broadcast ram ownrecv;
+  setSinkTimer(int16, int16) broadcast ram;
+  damage(int16, Pos, DoId, uint16 []) broadcast;
+  setBoardableShipId(uint32) broadcast ram;
+  setIsInBoardingPosition(uint8) required broadcast ram;
+  requestBoard(uint32) airecv clsend;
+  setMovie(uint8, uint32, uint32, bool, int16) broadcast;
+  shipBoarded() clsend airecv;
+  leave(uint32) airecv clsend;
+  setDeploy(uint8, int16) broadcast ram;
+  requestBoardFlagship(uint32) clsend airecv;
+  boardShip(uint8) broadcast;
+  swingToShip(uint8) broadcast;
+  setWishName(string) required db ownrecv;
+  setWishNameState(string) required db ownrecv;
+  setCargo(uint8[]) required broadcast ram ownrecv;
+  notifyReceivedLoot(uint8[]) broadcast;
+  setCaptainId(DoId) broadcast ram;
+  setBadge(int8, int8) required broadcast ram;
+  setRespectDeployBarriers(bool, uint32) broadcast ram;
+  setGuildId(uint32) broadcast ram;
+  setClientController(uint32) broadcast ram;
+  sendCrewToIsland(uint32, PosH);
+  dropAnchor(uint32) airecv clsend;
+  requestSkillEvent(uint32, uint32) airecv clsend;
+  recordSkillEvent(uint32, uint32) broadcast;
+  sendShipDefeated() broadcast;
+  //setLandedGrapples(LandedGrappleList) broadcast ram;
+  setRespawnLocation(uint32, uint32);
+  setRepairCount(uint8) broadcast ram;
+  setSailsDown(bool) required broadcast ram clsend;
+  requestClientAggro() airecv clsend;
+  requestShipRam(DoId, Pos, uint32) clsend airecv;
+  useShipRam(Pos) broadcast;
+  relayTeleportInfo() airecv;
+  sendTeleportInfo(uint32, uint32) ownrecv;
+  teleportAvatarAboard(DoId) airecv;
+};
+
+dclass DistributedNPCSimpleShip : DistributedSimpleShip {
+  announceAttack(DoId, uint8) broadcast;
+  setHunterLevel(int8) broadcast ram;
 };
