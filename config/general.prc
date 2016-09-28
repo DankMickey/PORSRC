@@ -128,7 +128,6 @@ air-connect localhost:29170
 enable-sky #t
 prepare-scene #t
 advanced-weather #t
-auto-weather #f
 want-soft-tod-changes #t
 
 # SAILING

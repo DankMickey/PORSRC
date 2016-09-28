@@ -37,7 +37,7 @@ class DistributedTimeOfDayManagerAI(DistributedObjectAI, TimeOfDayManagerBase):
 
     def announceGenerate(self):
         DistributedObjectAI.announceGenerate(self)
-        if config.GetBool('advanced-weather', False) and config.GetBool('auto-weather', False):
+        if config.GetBool('advanced-weather', False):
             self.__runWeather()
             self.runWeather = taskMgr.doMethodLater(15, self.__runWeather, 'runWeather')
 
@@ -47,13 +47,10 @@ class DistributedTimeOfDayManagerAI(DistributedObjectAI, TimeOfDayManagerBase):
             taskMgr.remove(self.runWeather)
 
     def setWeather(self, type=0, time=0):
-        update = False
         weather, otime = self.weather
-        if type != weather:
-            update = True
-
         self.weather = (type, time)
-        if update:
+        
+        if type != weather:
             self.notify.debug("Changing weather state to %s" % type)
             weatherInfo = TODGlobals.WEATHER_ENVIROMENTS[type]
             if not weatherInfo:
@@ -65,21 +62,28 @@ class DistributedTimeOfDayManagerAI(DistributedObjectAI, TimeOfDayManagerBase):
             self.setClouds(weatherInfo['sky'])
 
     def pickWeather(self):
-        weatherChoices = TODGlobals.WEATHER_ENVIROMENTS
-        if not config.GetBool('want-storm-weather', False):
-            weatherChoices.pop(TODGlobals.WEATHER_STORM, None)
-        choice = (random.randint(0, len(weatherChoices)-1), (random.randint(5,10) * 60))
-        del weatherChoices
-        return choice
+        dice = random.random()
+        
+        if dice <= 50:
+            return TODGlobals.WEATHER_CLEAR
+        elif config.GetBool('want-storm-weather', False) and dice <= 75:
+            return TODGlobals.WEATHER_STORM
+
+        return TODGlobals.WEATHER_RAIN
 
     def __runWeather(self, task=None):
         if self.isPaused:
             return Task.again
 
         type, time = self.weather
-        time = time - 15
-        if time <= 0:
+        time -= 15
+
+        if not task:
+            type = TODGlobals.WEATHER_CLEAR
+            time = 1200
+        elif time <= 0:
             type, time = self.pickWeather()
+ 
         self.setWeather(type, time)
         return Task.again
 
@@ -154,42 +158,38 @@ class DistributedTimeOfDayManagerAI(DistributedObjectAI, TimeOfDayManagerBase):
 
 @magicWord(CATEGORY_GAME_MASTER, types=[int, int])
 def setWeather(weatherId, time=0):
-    air = spellbook.getInvoker().air
-    if air.config.GetBool('advanced-weather', False):
+    if config.GetBool('advanced-weather', False):
 
         if weatherId not in TODGlobals.WEATHER_ENVIROMENTS:
             available = TODGlobals.WEATHER_ENVIROMENTS.keys()
             return "%s is an invalid weather id. Available keys are %s " % (weatherId, available)
 
-        air.todManager.setWeather(weatherId, time)
+        simbase.air.todManager.setWeather(weatherId, time)
         return "Setting weather state to %s for the district for a duration of %s." % (weatherId, time)
     return "Sorry, Weather is not enabled on this district."
 
 @magicWord(CATEGORY_GAME_MASTER)
 def getWeather():
-    air = spellbook.getInvoker().air
-    weather, time = air.todManager.weather
+    weather, time = simbase.air.todManager.weather
     return "Current district weather is set to %s for a duration of %s" % (weather, time)
 
 @magicWord(CATEGORY_GAME_MASTER)
 def weatherReady():
-    return "Weather Ready: %s" % str(air.config.GetBool('advanced-weather', False))
+    return "Weather Ready: %s" % str(config.GetBool('advanced-weather', False))
 
 
 @magicWord(CATEGORY_GAME_MASTER, types=[int])
 def setRain(state):
-    air = spellbook.getInvoker().air
-    if air.config.GetBool('advanced-weather', False):
-        air.todManager.setRain((state == 1))
+    if config.GetBool('advanced-weather', False):
+        simbase.air.todManager.setRain((state == 1))
         return 'Setting rain state to %s for district.' % state
     return "Sorry, Weather is not enabled on this district."
 
 @magicWord(CATEGORY_GAME_MASTER, types=[int])
 def setStorm(state):
-    air = spellbook.getInvoker().air
-    if air.config.GetBool('advanced-weather', False):
-        if air.config.GetBool('want-storm-weather', False):
-            air.todManager.setStorm((state == 1))
+    if config.GetBool('advanced-weather', False):
+        if config.GetBool('want-storm-weather', False):
+            simbase.air.todManager.setStorm((state == 1))
             return 'Setting storm state to %s for district.' % state
         else:
             return "Sorry, Storms are not enabled on this district."
@@ -197,22 +197,19 @@ def setStorm(state):
 
 @magicWord(CATEGORY_GAME_MASTER, types=[int])
 def setDarkFog(state):
-    air = spellbook.getInvoker().air
-    if air.config.GetBool('advanced-weather', False):
-        air.todManager.setBlackFog((state == 1))
+    if config.GetBool('advanced-weather', False):
+        simbase.air.todManager.setBlackFog((state == 1))
         return 'Setting dark fog state to %s for district.' % state
     return "Sorry, Weather is not enabled on this district."
 
 @magicWord(CATEGORY_GAME_MASTER, types=[int])
 def setClouds(state):
-    air = spellbook.getInvoker().air
-    if air.config.GetBool('advanced-weather', False):
-        air.todManager.setClouds(state)
+    if config.GetBool('advanced-weather', False):
+        simbase.air.todManager.setClouds(state)
         return 'Setting cloud state to %s for district.' % state
     return "Sorry, Weather is not enabled on this district."
 
 @magicWord(CATEGORY_GAME_MASTER, types=[int])
 def setJollyMoon(state):
-    air = spellbook.getInvoker().air
-    air.todManager.setMoonJolly((state == 1))
+    simbase.air.todManager.setMoonJolly((state == 1))
     return "Setting jolly moon state to %s for district." % state
