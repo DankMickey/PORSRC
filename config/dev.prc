@@ -76,8 +76,7 @@ want-fishing-game-debug #t
 want-npcs #t
 want-enemies #t
 want-animals #t
-want-battle #f
-npcs-auto-target #f
+npcs-auto-target #
 want-npc-notice #f
 want-easy-combos #f
 
