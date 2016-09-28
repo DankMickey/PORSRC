@@ -18,6 +18,7 @@ from pirates.instance.DistributedTeleportMgrAI import DistributedTeleportMgrAI
 from pirates.distributed.TargetManagerAI import TargetManagerAI
 from pirates.battle.BattleManagerAI import BattleManagerAI
 from pirates.coderedemption.CodeRedemptionAI import CodeRedemptionAI
+from pirates.band.DistributedPirateBandManagerAI import DistributedPirateBandManagerAI
 
 import threading, sys
 
@@ -59,6 +60,9 @@ class PiratesAIRepository(PiratesInternalRepository):
 
         self.codeRedemption = CodeRedemptionAI(self)
         self.codeRedemption.generateWithRequired(2)
+
+        self.bandManager = DistributedPirateBandManagerAI(self)
+        self.bandManager.generateWithRequired(2)
 
         self.banMgr = BanManagerAI(self)
         self.battleMgr = BattleManagerAI(self)

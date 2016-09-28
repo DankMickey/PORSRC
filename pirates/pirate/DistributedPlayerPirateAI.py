@@ -54,6 +54,7 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         self.welcomeWorld = False
         self.badge = (0, 0)
         self.shipIcon = (0, 0)
+        self.crewIcon = 0
 
     def announceGenerate(self):
         DistributedBattleAvatarAI.announceGenerate(self)
@@ -541,7 +542,10 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         pass
 
     def setCrewIconIndicator(self, iconId):
-        pass
+        self.crewIcon = iconId
+
+    def getCrewIconIndicator(self):
+        return self.crewIcon
 
     def requestBadgeIcon(self, titleId, rank):
         pass

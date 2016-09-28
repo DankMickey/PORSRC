@@ -51,6 +51,7 @@ from pirates.world import DistributedGADoor/AI
 from pirates.world import DistributedGAInterior/AI
 from pirates.world import DistributedJailInterior/AI
 from pirates.world import DistributedFort/AI
+from pirates.band import DistributedPirateBandManager/AI
 from pirates.battle import DistributedBattleAvatar/AI
 from pirates.battle import DistributedBattleNPC/AI
 from pirates.battle import WeaponBase/AI
@@ -724,7 +725,7 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   setOnWelcomeWorld(bool) required ownrecv airecv db;
   setFounder(uint8) required broadcast ownrecv db;
   setAllegiance(uint8) required broadcast ownrecv db;
-  // setCrewIconIndicator(uint8) ownsend required ram broadcast airecv;
+  setCrewIconIndicator(uint8) ownsend required ram broadcast airecv;
   setBadgeIcon(int8, int8) required ram broadcast db;
   requestBadgeIcon(int8, int8) ownsend airecv;
   setShipBadgeIcon(int8, int8) required ram broadcast db;
@@ -1408,4 +1409,24 @@ dclass DistributedSimpleShip : DistributedShip, DistributedFlagshipAI {
 dclass DistributedNPCSimpleShip : DistributedSimpleShip {
   announceAttack(DoId, uint8) broadcast;
   setHunterLevel(int8) broadcast ram;
+};
+
+dclass DistributedPirateBandManager : DistributedObject {
+  setParentingRules(string, string) broadcast ram;
+  requestInvite(uint32) airecv clsend;
+  requestRejoin(uint32, bool) airecv clsend;
+  requestBoot(uint32) airecv clsend;
+  requestCancel(uint32) airecv clsend;
+  requestOutCome(uint32, string, uint8);
+  receiveBootTeleport(uint32, string);
+  receiveBootSuccess(uint32, string);
+  invitationFrom(uint32, string);
+  rejoinFrom(uint32, bool, uint8(0-2));
+  invitationCancel(uint32);
+  rejoinCancel(uint32);
+  invitationResponce(uint32, string, uint8) airecv clsend;
+  rejoinResponce(uint32, bool, uint8) airecv clsend;
+  requestRemove(uint32) airecv clsend;
+  requestCrewIconUpdate(uint8) airecv clsend;
+  receiveUpdatedCrewIcon(uint8);
 };
