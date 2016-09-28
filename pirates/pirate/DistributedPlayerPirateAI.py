@@ -642,7 +642,7 @@ def rmgroggy():
     av.removeDeathPenalty()
     av.fillHpMeter()
 
-@magicWord(CATEGORY_ADMINISTRATION, types=[int])
+@magicWord(CATEGORY_GAME_MASTER, types=[int])
 def rep(amount):
     av = spellbook.getInvoker()
     repId = ItemGlobals.getItemRepId(av.currentWeaponId)
