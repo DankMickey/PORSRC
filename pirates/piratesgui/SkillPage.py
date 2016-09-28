@@ -439,7 +439,7 @@ class SkillPage(InventoryPage.InventoryPage):
                 curAmt += 1
         else:
             curAmt = 1
-        print 'xx3'
+
         self._SkillPage__handleFreeDialog()
 
         if not config.GetBool('want-combo-skips', 0):
@@ -455,12 +455,13 @@ class SkillPage(InventoryPage.InventoryPage):
                 base.localAvatar.guiMgr.createWarning(PLocalizer.ComboOrderWarn, PiratesGuiGlobals.TextFG6)
                 return None
 
-        self.skillFrames[skillId].skillButton.clearColorScale()
+        if frameSkillId in self.skillFrames:
+            self.skillFrames[frameSkillId].skillButton.clearColorScale()
+            self.skillFrames[frameSkillId].skillRank = curAmt - 1
         messenger.send('skillImprovementAttempted')
         localAvatar.spendSkillPoint(skillId)
         self.localMods[skillId] = curAmt
         self.localMods[unSpentId] = unSp - 1
-        self.skillFrames[frameSkillId].skillRank = curAmt - 1
 
 
     def createFrame(self, skillId, skillPts, upgradeMode = 0, showIcon = True):

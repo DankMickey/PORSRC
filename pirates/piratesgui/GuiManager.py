@@ -974,8 +974,7 @@ class GuiManager(FSM.FSM):
         if localAvatar.getGameState() not in ('LandRoam', 'Battle'):
             return None
 
-        BodyShapeChanger = BodyShapeChanger
-        import pirates.makeapirate
+        from pirates.makeapirate import BodyShapeChanger
         if not self.bodyChanger:
             self.bodyChanger = BodyShapeChanger.BodyShapeChanger()
 
