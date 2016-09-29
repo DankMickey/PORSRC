@@ -107,6 +107,7 @@ optimize-avatar-lod #f
 
 # NOTIFY
 default-directnotify-level info
+notify-level-pgraph error
 notify-level warning
 
 # OPTIONS
