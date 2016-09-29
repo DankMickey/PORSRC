@@ -50,6 +50,10 @@ class BattleManagerBase:
         inPVPMode = self.isPVP(attacker, target)
         chanceOfHit = WeaponGlobals.getAttackAccuracy(skillId, ammoSkillId)
         weaponType = ItemGlobals.getType(attacker.currentWeaponId)
+
+        if not hasattr(target, 'avatarType'):
+            return WeaponGlobals.RESULT_MISS
+
         if target:
             if not inPVPMode and self.isFriendlyFire(attacker, target):
                 return WeaponGlobals.RESULT_MISS
