@@ -196,7 +196,7 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
     def gotoFirstScreen(self):
         base.loadingScreen.beginStep('PrepLogin', 9, 0.14)
         self.startReaderPollTask()
-        #self.startHeartbeat()
+        self.startHeartbeat()
         base.loadingScreen.tick()
         self.loginFSM.request('login')
         base.loadingScreen.tick()
