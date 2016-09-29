@@ -82,7 +82,8 @@ class DistributedTimeOfDayManagerAI(DistributedObjectAI, TimeOfDayManagerBase):
             type = TODGlobals.WEATHER_CLEAR
             time = 1200
         elif time <= 0:
-            type, time = self.pickWeather()
+            type = self.pickWeather()
+            time = random.randint(5, 10) * 60
  
         self.setWeather(type, time)
         return Task.again
