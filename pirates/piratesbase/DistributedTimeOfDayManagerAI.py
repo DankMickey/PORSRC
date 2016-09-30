@@ -107,6 +107,15 @@ class DistributedTimeOfDayManagerAI(DistributedObjectAI, TimeOfDayManagerBase):
     def requestSync(self):
         pass #TODO
 
+    def requestWeather(self):
+        avId = self.air.getAvatarIdFromSender()
+        self.notify.info("%s is requesting the current weather." % avId)
+        self.sendUpdateToAvatarId(avId, 'setRain', [self.getRain()])
+        self.sendUpdateToAvatarId(avId, 'setStorm', [self.getStorm()])
+        self.sendUpdateToAvatarId(avId, 'setBlackFog', [self.getBlackFog()])
+        self.sendUpdateToAvatarId(avId, 'setMoonJolly', [self.getMoonJolly()])
+
+
     def setEnvSubs(self, envSubEntry):
         self.envSubEntry = envSubEntry
 
@@ -178,15 +187,14 @@ def getWeather():
 def weatherReady():
     return "Weather Ready: %s" % str(config.GetBool('advanced-weather', False))
 
-
-@magicWord(CATEGORY_GAME_MASTER, types=[int])
+@magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
 def setRain(state):
     if config.GetBool('advanced-weather', False):
         simbase.air.todManager.setRain((state == 1))
         return 'Setting rain state to %s for district.' % state
     return "Sorry, Weather is not enabled on this district."
 
-@magicWord(CATEGORY_GAME_MASTER, types=[int])
+@magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
 def setStorm(state):
     if config.GetBool('advanced-weather', False):
         if config.GetBool('want-storm-weather', False):
@@ -196,14 +204,14 @@ def setStorm(state):
             return "Sorry, Storms are not enabled on this district."
     return "Sorry, Weather is not enabled on this district."
 
-@magicWord(CATEGORY_GAME_MASTER, types=[int])
+@magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
 def setDarkFog(state):
     if config.GetBool('advanced-weather', False):
         simbase.air.todManager.setBlackFog((state == 1))
         return 'Setting dark fog state to %s for district.' % state
     return "Sorry, Weather is not enabled on this district."
 
-@magicWord(CATEGORY_GAME_MASTER, types=[int])
+@magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
 def setClouds(state):
     if config.GetBool('advanced-weather', False):
         simbase.air.todManager.setClouds(state)

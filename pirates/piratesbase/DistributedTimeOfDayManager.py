@@ -53,7 +53,9 @@ class DistributedTimeOfDayManager(DistributedObject, TimeOfDayManager):
         if self.syncEnabled:
             self.sendUpdate('requestSync')
 
-
+    def requestWeather(self):
+        self.notify.info("Requesting weather...")
+        self.sendUpdate('requestWeather')
 
     def setIsPaused(self, isPaused):
         self.isPaused = isPaused

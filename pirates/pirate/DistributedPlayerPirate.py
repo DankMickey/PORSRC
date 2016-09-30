@@ -3810,7 +3810,7 @@ class MinimapPlayerPirate(MinimapBattleAvatar):
             base.localAvatar.shipHat = None
 
         if shipClass == 0:
-            return '[Debug] Ship hat removed...'
+            return 'Ship hat removed...'
 
         ship = base.shipFactory.getShip(shipClass)
         ship.startSailing()
@@ -3823,7 +3823,7 @@ class MinimapPlayerPirate(MinimapBattleAvatar):
         ship.forceLOD(2)
         ship.modelCollisions.detachNode()
         base.localAvatar.shipHat = ship    
-        return '[Debug] Ship hat set to ship class %s' % shipClass 
+        return 'Ship hat set to ship class %s' % shipClass 
 
     @magicWord(CATEGORY_STAFF)
     def topten():

@@ -308,7 +308,7 @@ class OTPClientRepository(ClientRepositoryBase):
 
     def gotoFirstScreen(self):
         self.startReaderPollTask()
-        #self.startHeartbeat()
+        self.startHeartbeat()
         self.loginFSM.request('login')
 
     @report(types=['args', 'deltaStamp'], dConfigParam='teleport')

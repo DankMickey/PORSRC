@@ -737,12 +737,13 @@ def setShipBadge(title, rank):
     return "Set shipBadge to ({0}, {1})".format(title, rank)
 
 @magicWord(CATEGORY_GAME_MASTER, types=[int, int, int])
-def giveLocatale(type, itemId, amount):
+def giveLocatable(type, itemId, amount):
     target = spellbook.getTarget()
 
     from pirates.uberdog.TradableInventoryBase import InvItem
 
     inv = target.getInventory()
+
     if not inv:
         return "Failed to get target's inventory."
 

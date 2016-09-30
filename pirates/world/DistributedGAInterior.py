@@ -131,6 +131,8 @@ class DistributedGAInterior(DistributedGameArea.DistributedGameArea, Distributed
         if self.buildingInterior:
             localAvatar.setInterest(self.doId, 2709, ['ga-interior'])
         DistributedGameArea.DistributedGameArea.handleEnterGameArea(self, collEntry)
+        if hasattr(self.cr, 'timeOfDayManager'):
+            self.cr.timeOfDayManager.enterIndoors()
 
     def setLocation(self, parentId, zoneId, teleport = 0):
         DistributedObject.DistributedObject.setLocation(self, parentId, zoneId)
@@ -151,6 +153,8 @@ class DistributedGAInterior(DistributedGameArea.DistributedGameArea, Distributed
         localAvatar.interior = None
         localAvatar.clearInterestNamed(None, ['ga-interior'])
         DistributedGameArea.DistributedGameArea.handleExitGameArea(self, collEntry)
+        if hasattr(self.cr, 'timeOfDayManager'):
+            self.cr.timeOfDayManager.exitIndoors()
 
     def loadModelParts(self):
         if self.modelPath.startswith('models/islands/pir_m_are_isl_'):

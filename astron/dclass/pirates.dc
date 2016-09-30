@@ -272,6 +272,7 @@ dclass DistributedTimeOfDayManager : DistributedObject {
   syncTOD(uint8, uint16, int32, int32/100) required broadcast ram;
   setIsPaused(bool) required broadcast ram;
   requestSync() airecv clsend;
+  requestWeather() airecv clsend;
   setEnvSubs(envSubEntry []) required broadcast ram;
   setMoonPhaseChange(int8, int16/100, int16/100, int32) required broadcast ram;
   setMoonJolly(int8) required broadcast ram;
