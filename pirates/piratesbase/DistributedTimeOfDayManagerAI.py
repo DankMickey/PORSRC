@@ -109,7 +109,6 @@ class DistributedTimeOfDayManagerAI(DistributedObjectAI, TimeOfDayManagerBase):
 
     def requestWeather(self):
         avId = self.air.getAvatarIdFromSender()
-        self.notify.info("%s is requesting the current weather." % avId)
         self.sendUpdateToAvatarId(avId, 'setRain', [self.getRain()])
         self.sendUpdateToAvatarId(avId, 'setStorm', [self.getStorm()])
         self.sendUpdateToAvatarId(avId, 'setBlackFog', [self.getBlackFog()])
