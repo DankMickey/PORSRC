@@ -825,3 +825,8 @@ def ghost(state):
     av = spellbook.getTarget()
     av.b_setIsGhost((state == 1))
     return "Set target's ghost state to %s" % state
+
+@magicWord(CATEGORY_GAME_MASTER)
+def mypos():
+    av = spellbook.getTarget()
+    return "Pos: %s" % str(av.getPos())
