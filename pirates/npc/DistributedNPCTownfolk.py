@@ -490,7 +490,6 @@ class DistributedNPCTownfolk(DistributedBattleNPC.DistributedBattleNPC, Distribu
 
 
     def playDialog(self, dialogStr = '', timeout = 5):
-        activeHolidays = base.cr.newsManager.getHolidayIdList()
         emote = None
         if self.avatarType.isA(AvatarTypes.Fishmaster):
             inv = base.localAvatar.getInventory()

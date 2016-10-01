@@ -61,6 +61,8 @@ class ItemType:
     FISHING_POUCH = 41
     MATERIAL = 42
     BRIG = 43
+    CARRACK = 44
+    CORVETTE = 45
 
 class ItemTypeGroup:
     CUTLASS = 1
@@ -223,6 +225,12 @@ class ItemId:
     BRIG_L1 = ShipGlobals.BRIGL1
     BRIG_L2 = ShipGlobals.BRIGL2
     BRIG_L3 = ShipGlobals.BRIGL3
+    CARRACK_L1 = ShipGlobals.CARRACKL1,
+    CARRACK_L2 = ShipGlobals.CARRACKL2,
+    CARRACK_L3 = ShipGlobals.CARRACKL3,
+    CORVETTE_L1 = ShipGlobals.CORVETTEL1,
+    CORVETTE_L2 = ShipGlobals.CORVETTEL2,
+    CORVETTE_L3 = ShipGlobals.CORVETTEL3,
     BLACK_PEARL = ShipGlobals.BLACK_PEARL
     GOLIATH = ShipGlobals.GOLIATH
     DAUNTLESS = ShipGlobals.DAUNTLESS
@@ -474,15 +482,21 @@ __itemList = {
     ItemId.INTERCEPTOR_L1: (100, ItemType.SHIP, ItemType.INTERCEPTOR, None, 1, 0, InventoryType.NewShipToken),
     ItemId.MERCHANT_L1: (300, ItemType.SHIP, ItemType.MERCHANT, None, 1, 0, InventoryType.NewShipToken),
     ItemId.WARSHIP_L1: (800, ItemType.SHIP, ItemType.WARSHIP, None, 1, 0, InventoryType.NewShipToken),
+    ItemId.CORVETTE_L1: (900, ItemType.SHIP, ItemType.CORVETTE, None, 1, 0, InventoryType.NewShipToken),
     ItemId.BRIG_L1: (900, ItemType.SHIP, ItemType.BRIG, None, 1, 0, InventoryType.NewShipToken),
+    ItemId.CARRACK_L1: (1000, ItemType.SHIP, ItemType.CARRACK, None, 1, 0, InventoryType.NewShipToken),
     ItemId.INTERCEPTOR_L2: (1000, ItemType.SHIP, ItemType.INTERCEPTOR, None, 1, 5, InventoryType.NewShipToken),
     ItemId.MERCHANT_L2: (3500, ItemType.SHIP, ItemType.MERCHANT, None, 1, 5, InventoryType.NewShipToken),
     ItemId.WARSHIP_L2: (5000, ItemType.SHIP, ItemType.WARSHIP, None, 1, 5, InventoryType.NewShipToken),
+    ItemId.CORVETTE_L2: (6000, ItemType.SHIP, ItemType.CORVETTE, None, 1, 5, InventoryType.NewShipToken),
     ItemId.BRIG_L2: (7000, ItemType.SHIP, ItemType.BRIG, None, 1, 5, InventoryType.NewShipToken),
+    ItemId.CARRACK_L2: (9000, ItemType.SHIP, ItemType.CARRACK, None, 1, 5, InventoryType.NewShipToken),
     ItemId.INTERCEPTOR_L3: (20000, ItemType.SHIP, ItemType.INTERCEPTOR, None, 1, 15, InventoryType.NewShipToken),
     ItemId.MERCHANT_L3: (40000, ItemType.SHIP, ItemType.MERCHANT, None, 1, 15, InventoryType.NewShipToken),
     ItemId.WARSHIP_L3: (60000, ItemType.SHIP, ItemType.WARSHIP, None, 1, 15, InventoryType.NewShipToken),
+    ItemId.CORVETTE_L3: (70000, ItemType.SHIP, ItemType.CORVETTE, None, 1, 15, InventoryType.NewShipToken),
     ItemId.BRIG_L3: (80000, ItemType.SHIP, ItemType.BRIG, None, 1, 15, InventoryType.NewShipToken),
+    ItemId.CARRACK_L3: (100000, ItemType.SHIP, ItemType.BRIG, None, 1, 15, InventoryType.NewShipToken),
     ItemId.BLACK_PEARL: (0, ItemType.SHIP, ItemType.WARSHIP, None, 1, 0, InventoryType.NewShipToken),
     ItemId.GOLIATH: (0, ItemType.SHIP, ItemType.WARSHIP, None, 1, 30, InventoryType.NewShipToken),
     ItemId.DAUNTLESS: (0, ItemType.SHIP, ItemType.WARSHIP, None, 1, 30, InventoryType.NewShipToken),
@@ -850,7 +864,7 @@ MUSIC_SHELF = [
     InventoryType.Song_7,
     InventoryType.Song_8,
     InventoryType.Song_9,
-    InventoryType.Song_10,
+    #InventoryType.Song_10,
     InventoryType.Song_11,
     InventoryType.Song_12,
     InventoryType.Song_13,
@@ -879,15 +893,21 @@ SHIP_SHELF = [
     ItemId.INTERCEPTOR_L1,
     ItemId.MERCHANT_L1,
     ItemId.WARSHIP_L1,
+    ItemId.CORVETTE_L1,
     ItemId.BRIG_L1,
+    ItemId.CARRACK_L1,
     ItemId.INTERCEPTOR_L2,
     ItemId.MERCHANT_L2,
     ItemId.WARSHIP_L2,
+    ItemId.CORVETTE_L2,
     ItemId.BRIG_L2,
+    ItemId.CARRACK_L2,
     ItemId.INTERCEPTOR_L3,
     ItemId.MERCHANT_L3,
     ItemId.WARSHIP_L3,
-    ItemId.BRIG_L3]
+    ItemId.CORVETTE_L3,
+    ItemId.BRIG_L3,
+    ItemId.CARRACK_L3]
 STOWAWAY_SHELF = [
     LocationIds.PORT_ROYAL_ISLAND,
     LocationIds.TORTUGA_ISLAND,

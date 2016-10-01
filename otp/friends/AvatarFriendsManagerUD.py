@@ -4,25 +4,30 @@ from direct.distributed.DistributedObjectUD import DistributedObjectUD
 class AvatarFriendsManagerUD(DistributedObjectUD):
     notify = DirectNotifyGlobal.directNotify.newCategory("AvatarFriendsManagerUD")
 
+    def announceGenerate(self):
+        DistributedObjectUD.announceGenerate(self)
+        self.invitations = {}
+
     def online(self):
         pass
 
-    def requestInvite(self, todo0):
+    def requestInvite(self, avId):
+        print("requestInvite: %s" % avId)
+
+
+    def friendConsidering(self, avId):
+        print("friendConsidering: %s" % avId)
+
+    def invitationFrom(self, avId, avatarName):
         pass
 
-    def friendConsidering(self, todo0):
+    def retractInvite(self, avId):
         pass
 
-    def invitationFrom(self, todo0, todo1):
+    def rejectInvite(self, avId, reason):
         pass
 
-    def retractInvite(self, todo0):
-        pass
-
-    def rejectInvite(self, todo0, todo1):
-        pass
-
-    def requestRemove(self, todo0):
+    def requestRemove(self, avId, reason):
         pass
 
     def rejectRemove(self, todo0, todo1):

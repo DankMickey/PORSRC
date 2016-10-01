@@ -261,6 +261,7 @@ class TattooStoreGUI(DirectFrame):
         self.questIcon = loader.loadModel('models/gui/compass_main').find('**/icon_objective_grey')
         self.backTabParent = self.attachNewNode('backTabs', sort = 0)
         self.panel = GuiPanel.GuiPanel(None, self.width, self.height, parent = self, showClose = False)
+        self.panel.setPos(0.0, 0, -0.75)
         self.setPos(0.0, 0, -0.75)
         self.balance = 0
         self.npc = npc

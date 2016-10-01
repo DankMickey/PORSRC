@@ -1028,6 +1028,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         DistributedPirateBase.announceGenerate(self)
         DistributedPlayer.announceGenerate(self)
         DistributedBattleAvatar.announceGenerate(self)
+        self.setAvatarType(AvatarTypes.LocalPirateType if self.isLocal() else AvatarTypes.NonLocalPirateType)
         self.accept('localAvatarEntersDialog', self.enterDialogMode)
         self.accept('localAvatarExitsDialog', self.exitDialogMode)
         self.accept('Local_Efficiency_Set', self.setEfficiency)
@@ -1091,9 +1092,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         self.refreshName()
         minimapObj = self.getMinimapObject()
         if minimapObj:
-            pass
-        1
-        # WTF?
+            pass #WTF?
 
 
     def setBadgeIcon(self, titleId, rank):
@@ -3381,11 +3380,11 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             self.tempDoubleXPStatusMessaged = True
             if self.getDoId() == localAvatar.getDoId() and value != 0:
                 (h, m) = self.getHoursAndMinutes(value)
-                base.localAvatar.guiMgr.messageStack.addModalTextMessage(PLocalizer.TEMP_DOUBLE_REP % (h, m), seconds = 45, priority = 0, color = PiratesGuiGlobals.TextFG14)
+                base.localAvatar.guiMgr.messageStack.addTextMessage(PLocalizer.TEMP_DOUBLE_REP % (h, m), seconds = 45, priority = 0, color = PiratesGuiGlobals.TextFG14)
 
         elif value > self.tempDoubleXPStatus:
             (h, m) = self.getHoursAndMinutes(value)
-            base.localAvatar.guiMgr.messageStack.addModalTextMessage(PLocalizer.TEMP_DOUBLE_REP % (h, m), seconds = 45, priority = 0, color = PiratesGuiGlobals.TextFG14)
+            base.localAvatar.guiMgr.messageStack.addTextMessage(PLocalizer.TEMP_DOUBLE_REP % (h, m), seconds = 45, priority = 0, color = PiratesGuiGlobals.TextFG14)
 
         self.tempDoubleXPStatus = value
         self.x2XPIcon.setPos(0.299, 0, -0.149)
@@ -3655,6 +3654,10 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         self.show(invisibleBits = PiratesGlobals.INVIS_DIALOG)
 
 
+    def setShipHat(self, shipClass):
+        pass 
+
+
     def rewardNotify(self, rewardCat, rewardId):
         if config.GetBool('black-pearl-repeat-reward', 1) == 1:
 
@@ -3748,13 +3751,13 @@ class MinimapPlayerPirate(MinimapBattleAvatar):
         DistributedBattleAvatar.DistibutedBattleAvatar.setAvatarType(AvatarTypes.LocalPirateType if self.isLocal() else AvatarTypes.NonLocalPirateType)
 
     @magicWord(CATEGORY_STAFF)
-    def zombieMode():
+    def ZombieMode():
         if base.localAvatar.zombie == 0:
             base.localAvatar.setZombie(1,1)
-            response = 'You are cursed!'
+            response = 'You are locally cursed!'
         else:
             base.localAvatar.setZombie(0,0)
-            response = 'The curse has worn off...'
+            response = 'The local curse has worn off...'
         return response
 
     @magicWord(CATEGORY_STAFF, types=[int])
@@ -3795,3 +3798,141 @@ class MinimapPlayerPirate(MinimapBattleAvatar):
         base.localAvatar.setBodyShape(val)
         base.localAvatar.changeBodyType()
         return 'Body changed to %s' % val
+
+    @magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
+    def shipHat(shipClass):
+    	'''Client side only command to display the provided ship class id on
+    	the pirates head'''
+        from pirates.ship import DistributedSimpleShip
+
+        if hasattr(base.localAvatar, 'shipHat'):
+            base.localAvatar.shipHat.modelRoot.detachNode()
+            base.localAvatar.shipHat = None
+
+        if shipClass == 0:
+            return 'Ship hat removed...'
+
+        ship = base.shipFactory.getShip(shipClass)
+        ship.startSailing()
+        ship.modelRoot.reparentTo(base.localAvatar.headNode)
+        ship.modelRoot.setR(90)
+        ship.modelRoot.setP(-90)
+        ship.modelRoot.setX(0.8)
+        ship.modelRoot.setScale(0.004)
+        ship.modelRoot.setZ(-0.2)
+        ship.forceLOD(2)
+        ship.modelCollisions.detachNode()
+        base.localAvatar.shipHat = ship    
+        return 'Ship hat set to ship class %s' % shipClass 
+
+    @magicWord(CATEGORY_STAFF)
+    def topten():
+    	base.cr.guildManager.requestLeaderboardTopTen()
+    	return 'Displaying guild top ten'
+
+    @magicWord(CATEGORY_STAFF)
+    def watch(targetDoId):
+		if taskMgr.hasTaskNamed('lookAtDude'):
+			base.taskMgr.remove('lookAtDude')
+			base.localAvatar.guiMgr.setIgnoreAllKeys(False)
+			base.localAvatar.guiMgr.combatTray.initCombatTray()
+			base.localAvatar.unstash()
+			return 'No longer watching...'
+		else:
+
+			def doHeadsUp(task=None):
+				targetObj = self.cr.doId2do.get(targetDoId)
+				if targetObj:
+					base.localAvatar.lookAt(targetObj)
+				return Task.cont
+
+			taskMgr.add(doHeadsUp, 'lookAtDude')
+			base.localAvatar.guiMgr.setIgnoreAllKeys(True)
+			base.localAvatar.guiMgr.combatTray.skillMapping.clear()
+			base.localAvatar.stash()
+			return 'Watching doId %s' %targetDoId
+
+    @magicWord(CATEGORY_GAME_DEVELOPER)
+    def bonfire():
+		bf = Bonfire()
+		bf.reparentTo(render)
+		bf.setPos(base.localAvatar, 0, 0, 0)
+		bf.startLoop()
+		return 'Client side only bonfire at %s, %s' % (base.localAvatar.getPos(), base.localAvatar.getHpr())    	
+
+    @magicWord(CATEGORY_GAME_DEVELOPER)
+    def swamp():
+		if hasattr(base.localAvatar, 'fireflies'):
+			base.localAvatar.fireflies.destroy()
+			base.localAvatar.fireflies = None
+			base.localAvatar.groundFog.destroy()
+			base.localAvatar.groundFog = None
+			return "Swamp effect disabled."
+		else:
+			base.localAvatar.fireflies = Fireflies()
+			base.localAvatar.fireflies.reparentTo(base.localAvatar)
+			base.localAvatar.fireflies.startLoop()
+
+			base.localAvatar.groundFog = GroundFog()
+			base.localAvatar.groundFog.reparentTo(base.localAvatar)
+			base.localAvatar.groundFog.startLoop()
+			return "Starting client side debug swamp effect."
+
+    @magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
+    def islandShips(state):
+		try:
+			if state:
+				base.localAvatar.getParentObj().setOceanVisEnabled(1)
+				base.localAvatar.getParentObj().setFlatShips(0)		
+			else:
+				base.localAvatar.getParentObj().setOceanVisEnabled(0)
+			return "set IslandShip state to %s" % state
+		except:
+			return "Failed to set islandShip state."
+
+    @magicWord(CATEGORY_GAME_DEVELOPER)
+    def dust():
+
+    	effect = CeilingDust.getEffect()
+    	if effect:
+    		effect.reparentTo(base.localAvatar)
+    		effect.setPos(0, 0, 10)
+    		effect.play()
+
+    	effect = CeilingDebris.getEffect()
+    	if effect:
+    		effect.reparentTo(base.localAvatar)
+    		effect.play()
+
+    	cameraShakerEffect = CameraShaker()
+    	cameraShakerEffect.reparentTo(base.localAvatar)
+    	cameraShakerEffect.setPos(0, 0, 0)
+    	cameraShakerEffect.shakeSpeed = 0.05
+    	cameraShakerEffect.shakePower = 4.5
+    	cameraShakerEffect.numShakes = 2
+    	cameraShakerEffect.scalePower = 1
+    	cameraShakerEffect.play(80.0)	
+    	return "Boom."		
+
+    @magicWord(CATEGORY_STAFF)
+    def turbo():
+    	base.localAvatar.toggleTurbo()
+    	return "'Turbo' toggled."
+
+    @magicWord(CATEGORY_STAFF)
+    def joincrew():
+    	base.cr.crewManager.requestNewCrew()
+    	return 'Requesting new crew...'
+
+    @magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
+    def debugfireworks(showType):
+    	timestamp = 0.0
+    	if base.cr.activeWorld:
+    		shows = [HolidayGlobals.FOURTHOFJULY, HolidayGlobals.NEWYEARS, HolidayGlobals.MARDIGRAS]
+    		if not showType in shows:
+    			return "Invalid show type. Please provide a valid show type (%s)" % str(shows)
+
+    		base.localAvatar.getParentObj().fireworkShowType = showType
+    		base.localAvatar.getParentObj().beginFireworkShow(timeStamp = timestamp)
+    		return 'Activating client side debug fireworks show'
+    	return 'Failed to activate debug fireworks show. No active world'

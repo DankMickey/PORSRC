@@ -66,13 +66,14 @@ MUSIC_SAILING_B = 'music_sailing_b.%s' % AUDIO_EXTENSION
 MUSIC_SAILING_C = 'music_sailing_c.%s' % AUDIO_EXTENSION
 MUSIC_SAILING_D = 'music_sailing_d.%s' % AUDIO_EXTENSION
 MUSIC_SAILING_E = 'music_sailing_e.%s' % AUDIO_EXTENSION
-MUSIC_SHIP_COMBAT = 'music_highseas_combat.%s' % AUDIO_EXTENSION
+MUSIC_SHIP_COMBAT_01 = 'music_highseas_combat.%s' % AUDIO_EXTENSION
+MUSIC_SHIP_COMBAT_02 = 'he_is_a_pirate.%s' % AUDIO_EXTENSION
 MUSIC_SHIP_ENSNARED = 'music_wheel_08.%s' % AUDIO_EXTENSION
 MUSIC_KRAKEN_SINK = 'music_kraken_sink_ship.%s' % AUDIO_EXTENSION
 MUSIC_COMBAT_A = 'music_combat_a.%s' % AUDIO_EXTENSION
 MUSIC_COMBAT_B = 'music_combat_b.%s' % AUDIO_EXTENSION
 MUSIC_COMBAT_C = 'music_combat_c.%s' % AUDIO_EXTENSION
-MUSIC_SHIP_COMBAT = 'he_is_a_pirate.%s' % AUDIO_EXTENSION
+MUSIC_SHIP_COMBAT_02 = 'he_is_a_pirate.%s' % AUDIO_EXTENSION
 MUSIC_TAVERN_A = 'music_tavern_a.%s' % AUDIO_EXTENSION
 MUSIC_TAVERN_B = 'music_tavern_b.%s' % AUDIO_EXTENSION
 MUSIC_TAVERN_C = 'music_tavern_c.%s' % AUDIO_EXTENSION
@@ -988,21 +989,21 @@ SongItem2MusicLabel = {
     UberDogGlobals.InventoryType.Song_3: MUSIC_OUTCAST,
     UberDogGlobals.InventoryType.Song_4: MUSIC_PERFORMERS_02,
     UberDogGlobals.InventoryType.Song_5: MUSIC_PERFORMERS_10,
-    UberDogGlobals.InventoryType.Song_6: MUSIC_DEATH,
-    UberDogGlobals.InventoryType.Song_7: MUSIC_DEATH,
-    UberDogGlobals.InventoryType.Song_8: MUSIC_DEATH,
-    UberDogGlobals.InventoryType.Song_9: MUSIC_DEATH,
+    UberDogGlobals.InventoryType.Song_6: MUSIC_SAILING_E,
+    UberDogGlobals.InventoryType.Song_7: MUSIC_JACK_05,
+    UberDogGlobals.InventoryType.Song_8: MUSIC_FIREWORKS,
+    UberDogGlobals.InventoryType.Song_9: MUSIC_MINIGAME_CANNON,
     UberDogGlobals.InventoryType.Song_10: MUSIC_DEATH,
     UberDogGlobals.InventoryType.Song_11: MUSIC_PERFORMERS_07,
     UberDogGlobals.InventoryType.Song_12: MUSIC_PERFORMERS_09,
     UberDogGlobals.InventoryType.Song_13: MUSIC_CUTTHROAT,
     UberDogGlobals.InventoryType.Song_14: MUSIC_KINGSHEAD,
     UberDogGlobals.InventoryType.Song_15: MUSIC_RUMRUNNERS,
-    UberDogGlobals.InventoryType.Song_16: MUSIC_DEATH,
-    UberDogGlobals.InventoryType.Song_17: MUSIC_DEATH,
-    UberDogGlobals.InventoryType.Song_18: MUSIC_DEATH,
-    UberDogGlobals.InventoryType.Song_19: MUSIC_DEATH,
-    UberDogGlobals.InventoryType.Song_20: MUSIC_DEATH,
+    UberDogGlobals.InventoryType.Song_16: MUSIC_TORTUGA,
+    UberDogGlobals.InventoryType.Song_17: MUSIC_SAILING_D,
+    UberDogGlobals.InventoryType.Song_18: MUSIC_WHEEL_07,
+    UberDogGlobals.InventoryType.Song_19: MUSIC_SHIP_COMBAT_01,
+    UberDogGlobals.InventoryType.Song_20: MUSIC_SHIP_COMBAT_02,
     UberDogGlobals.InventoryType.Song_21: MUSIC_HOLIDAY_01,
     UberDogGlobals.InventoryType.Song_22: MUSIC_HOLIDAY_02
 }
@@ -1017,6 +1018,7 @@ MusicLabel2Length = {
     MUSIC_DRIFTWOOD: 62,
     MUSIC_CANGREJOS: 63,
     MUSIC_OUTCAST: 61,
+    MUSIC_TORTUGA: 57,
     MUSIC_DEATH: 16,
     MUSIC_PERFORMERS_02: 64,
     MUSIC_PERFORMERS_07: 68,
@@ -1027,6 +1029,16 @@ MusicLabel2Length = {
     MUSIC_RUMRUNNERS: 59,
     MUSIC_FIREWORKS: 67,
     MUSIC_REWARD_WEAPON: 12,
+    MUSIC_SAILING_A: 63,
+    MUSIC_SAILING_B: 63,
+    MUSIC_SAILING_C: 66,
+    MUSIC_SAILING_D: 62,
+    MUSIC_SAILING_E: 61,
+    MUSIC_SHIP_COMBAT_01: 60,
+    MUSIC_SHIP_COMBAT_02: 90,
+    MUSIC_MINIGAME_CANNON: 130,
+    MUSIC_JACK_05: 76,
+    MUSIC_WHEEL_07: 52,
     MUSIC_HOLIDAY_01: 62,
     MUSIC_HOLIDAY_02: 96
 }

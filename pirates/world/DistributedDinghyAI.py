@@ -15,7 +15,7 @@ class DistributedDinghyAI(DistributedInteractiveAI):
         # It's set on the clients to deny interaction, but
         # if they manage get past the sanity check the server will
         # deny them anyway.
-        if config.GetBool('want-seas-closed', 0):
+        if config.GetBool('want-seas-closed', False):
             msg = 'Client bypassed sanity check and called DistributedDinghyAI'
             self.air.writeServerEvent('suspicious', self.air.getAvatarIdFromSender(), issue=msg)
 

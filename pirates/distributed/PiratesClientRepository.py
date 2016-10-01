@@ -2,7 +2,7 @@ from panda3d.direct import DCFile
 from panda3d.core import DatagramIterator, Filename, HTTPClient, getModelPath
 import types
 import random
-import gc
+import gc, os
 import __builtin__
 base.loadingScreen.beginStep('PCR', 20, 15)
 from direct.showbase.ShowBaseGlobal import *
@@ -80,9 +80,7 @@ from pirates.piratesbase import PLocalizer
 from pirates.piratesbase import LoadingScreen
 from pirates.ai import NewsManager
 from pirates.makeapirate import PCPickANamePattern
-
-if config.GetBool("want-coderedemption", True):
-    from pirates.coderedemption.CodeRedemption import CodeRedemption
+from pirates.coderedemption.CodeRedemption import CodeRedemption
 
 base.loadingScreen.endStep('PCR')
 from pirates.quest import QuestLadderDynMap
@@ -115,9 +113,6 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
         self.piratesFriendsManager = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_PIRATES_FRIENDS_MANAGER, 'PiratesFriendsManager')
         #self.shipLoader = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_PIRATES_SHIP_MANAGER, 'DistributedShipLoader')
 
-        if config.GetBool("want-coderedemption", True):
-            self.codeRedemption = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_PIRATES_CODE_REDEMPTION, 'CodeRedemption')
-
         self.wantSeapatch = config.GetBool('want-seapatch', 0)
         self.wantSpecialEffects = config.GetBool('want-special-effects', 0)
         self.wantMakeAPirate = config.GetBool('wantMakeAPirate', 0)
@@ -141,6 +136,7 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
         self.timeOfDayManager = None
         self.tradeManager = None
         self.pvpManager = None
+        self.codeRedemption = None
         self.battleMgr = BattleManager.BattleManager(self)
         self.combatAnims = CombatAnimations.CombatAnimations()
         self.interactionMgr = InteractionManager.InteractionManager()
@@ -200,7 +196,7 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
     def gotoFirstScreen(self):
         base.loadingScreen.beginStep('PrepLogin', 9, 0.14)
         self.startReaderPollTask()
-        #self.startHeartbeat()
+        self.startHeartbeat()
         base.loadingScreen.tick()
         self.loginFSM.request('login')
         base.loadingScreen.tick()
@@ -322,7 +318,7 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
 
     def enterCreateAvatar(self, avList, index):
         self.tutorial = 0
-        self.avCreate = MakeAPirate(avList, 'makeAPirateComplete', index)
+        self.avCreate = MakeAPirate(avList, 'makeAPirateComplete', index, isNPCEditor=config.GetBool('want-npc-editor', False))
         self.avCreate.load()
         self.avCreate.enter()
         self.accept('makeAPirateComplete', self.__handleMakeAPirate)
@@ -821,32 +817,20 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
         # TLS config
         self.checkHttp()
 
-        if config.GetBool('server-force-ssl', False):
-            mod = config.GetString('ssl-mod', 'dev')
-            certs = config.GetString('ssl-certs-folder', 'astron/certs/dev')
-
-            def _devmethod(http, server):
-                with open('%s/pserver.crt' % certs) as f:
-                    serverpem = f.read()
-
-                with open('%s/pclient.crt' % certs) as f:
-                    clientpem = f.read()
-
-                with open('%s/pclient.key' % certs) as f:
-                    clientpem += f.read()
-
-                http.addPreapprovedServerCertificatePem(server, serverpem)
-                http.setClientCertificatePem(clientpem)
-
-            if mod == 'dev':
-                method = _devmethod
-
-            elif mod == 'prod':
-                import _tlsdata
-                method = _tlsdata._prodmethod
+        if not base.isClientBuilt():
+            certFile = os.path.join('astron', 'certs', 'cert.crt')
+            
+            if os.path.exists(certFile):
+                with open(certFile, 'r') as file:
+                    certPem = file.read()
+            else:
+                certPem = None
+        
+        if certPem:
+            self.notify.info('Adding TLS certificate.')
 
             for server in serverList:
-                method(self.http, server)
+                self.http.addPreapprovedServerCertificatePem(server, certPem)
 
         self.http.setVerifySsl(HTTPClient.VSNoDateCheck)
         OTPClientRepository.OTPClientRepository.enterConnect(self, serverList)

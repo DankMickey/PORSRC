@@ -467,7 +467,34 @@ def getEnvSetting(timeOfDay, environment, settingName, check = 0):
             if environmentalSetting != None:
                 return environmentalSetting
 
-
-
-
 DefinedEnviros = (ENV_DEFAULT, ENV_FOREST, ENV_SWAMP, ENV_CAVE, ENV_LAVACAVE)
+NOCLOUDS = 0
+LIGHTCLOUDS = 1
+MEDIUMCLOUDS = 2
+HEAVYCLOUDS = 3
+CLOUD_TRANSITIONS = {NOCLOUDS, LIGHTCLOUDS, MEDIUMCLOUDS, HEAVYCLOUDS}
+
+WEATHER_CLEAR = 0
+WEATHER_RAIN = 1
+WEATHER_STORM = 2
+WEATHER_ENVIROMENTS = {
+    WEATHER_CLEAR: {
+        'rain': False,
+        'storm': False,
+        'darkfog': False,
+        'sky': NOCLOUDS
+    },
+    WEATHER_RAIN: {
+        'rain' : True,
+        'storm': False,
+        'darkfog': True,
+        'sky': MEDIUMCLOUDS
+    },
+    WEATHER_STORM: {
+        'rain': True,
+        'storm': True,
+        'darkfog': True,
+        'sky': HEAVYCLOUDS
+    }
+}
+

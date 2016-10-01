@@ -3,9 +3,10 @@ backend dev
 mongodb-url mongodb://localhost:27017
 mongodb-name test
 account-bridge-filename astron/databases/account-database.db
+account-server-token-link http://63.142.255.4/_t.php
 
 # SERVER SETTINGS:
-server-version pirates-dev
+server-version por-alpha-1.0.0
 
 # RPC SETTINGS:
 want-rpc-server #f
@@ -75,7 +76,6 @@ want-fishing-game-debug #t
 want-npcs #t
 want-enemies #t
 want-animals #t
-want-battle #f
 npcs-auto-target #f
 want-npc-notice #f
 want-easy-combos #f

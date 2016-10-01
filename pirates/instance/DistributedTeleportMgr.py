@@ -309,7 +309,7 @@ class DistributedTeleportMgr(DistributedObject.DistributedObject):
     def teleportConfirmation(self, confirmed):
         if confirmed:
             requestData = self.requestData
-            self.initiateTeleport(*requestData[0], **requestData[0])
+            self.initiateTeleport(*requestData[0], **requestData[1])
             locationUid = requestData[1]['locationUid']
             base.cr.loadingScreen.showTarget(locationUid)
             base.cr.loadingScreen.showHint(locationUid)
@@ -514,7 +514,7 @@ class DistributedTeleportMgr(DistributedObject.DistributedObject):
 
 
     def amInTeleport(self):
-        return localAvatar.testTeleportFlag(PiratesGlobals.TFInTeleport)
+        return localAvatar.testTeleportFlag(PiratesGlobals.TFInTeleport) and not config.GetBool('can-ignore-teleport-flags', 0)
 
 
     def setAmInTeleport(self):

@@ -13,6 +13,7 @@ restore-initial-pose 0
 
 # Misc
 want-spooky-avatarchooser #t
+want-logout #t
 
 # WEAPONS
 want-all-weapons-trained #t
@@ -78,7 +79,7 @@ sync-video #f
 remove-island-barriers #f
 
 # LOADING SCREEN
-loading-screen 1
+loading-screen 0
 loading-screen-interstitial #f
 no-loading-screen #f
 
@@ -95,6 +96,7 @@ want-map-flavor-anims #t
 want-map-coats #f
 avchooser-allow-logout #f
 disable-server-queueing #t
+want-naming-dialog #t
 
 # MULTIPLAYER
 disable-player-collisions #t
@@ -105,6 +107,7 @@ optimize-avatar-lod #f
 
 # NOTIFY
 default-directnotify-level info
+notify-level-pgraph error
 notify-level warning
 
 # OPTIONS
@@ -128,6 +131,11 @@ prepare-scene #t
 advanced-weather #t
 want-soft-tod-changes #t
 
+# SAILING
+want-seas-closed #f
+want-enemy-ships #f
+want-enemy-ship-movement #t
+
 # Code Redemption
 want-coderedemption #f
 reject-all-redeem-codes #t
@@ -142,3 +150,6 @@ flagship-wave-count 2
 # WINDOW SETTINGS
 wide-by-default #f
 fullscreen 0
+
+# TEMP PATCH
+force-firework-music #t

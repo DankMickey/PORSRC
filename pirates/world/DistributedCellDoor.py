@@ -41,11 +41,8 @@ class DistributedCellDoor(DistributedInteractive.DistributedInteractive):
         self.setInteractOptions(proximityText = PLocalizer.InteractKickDoor, diskRadius = 9.0, sphereScale = 6.0, allowInteract = self.allowInteract)
         self.setHealth(self.health, doAnim = True)
         self.accept('localAvatar-setJailCellIndex', self.handleLocalAvatarCellIndex)
-        if localAvatar.getJailCellIndex() == self.cellIndex:
-            self.collisionPlanarNodePath.unstash()
-            self.setAllowInteract(True)
-        else:
-            self.setAllowInteract(False)
+        self.handleLocalAvatarCellIndex(base.localAvatar.getJailCellIndex())
+        self.setAllowInteract(True)
 
     def disable(self):
         self.ignoreAll()
@@ -69,9 +66,9 @@ class DistributedCellDoor(DistributedInteractive.DistributedInteractive):
 
     def setupDoor(self):
         interior = self.cr.doId2do[self.getLocation()[0]]
-        locator = interior.find(self.cellLocatorStr)
+        self.locator = interior.find(self.cellLocatorStr)
         self.setPos(0, 0, 0)
-        self.reparentTo(locator)
+        self.reparentTo(self.locator)
         self.doorGeomNodePath = interior.find(self.doorModelStr)
         self.collisionNodePath = interior.find(self.doorCollisionStr)
         self.collisionPlanarNodePath = interior.find(self.doorCollisionPlanarStr)
@@ -83,7 +80,8 @@ class DistributedCellDoor(DistributedInteractive.DistributedInteractive):
         self.accept(self.kickEvents[1], self.localDoorKicked)
 
     def handleLocalAvatarCellIndex(self, index):
-        self.setAllowInteract(index == self.cellIndex)
+        if index == self.cellIndex:
+            base.localAvatar.setPos(self.locator, -1, -1, 0.1)
 
     def acceptInteraction(self):
         DistributedInteractive.DistributedInteractive.acceptInteraction(self)

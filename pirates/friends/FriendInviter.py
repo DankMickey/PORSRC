@@ -171,6 +171,7 @@ class FriendInviter(DirectFrame):
 
 
     def enterCheckAvailability(self):
+        self.notify.info("Sending friend request...")
         self.accept(self.avDisableName, self._FriendInviter__handleDisableAvatar)
         handle = base.cr.identifyAvatar(self.avId)
         if not handle:
@@ -181,6 +182,7 @@ class FriendInviter(DirectFrame):
             self.fsm.request('askingNPC')
             return None
 
+        self.notify.info("SENT")
         base.cr.avatarFriendsManager.sendRequestInvite(self.avId)
         self.accept(OTPGlobals.AvatarFriendConsideringEvent, self._FriendInviter__friendConsidering)
         self.accept(OTPGlobals.AvatarFriendAddEvent, self._FriendInviter__friendAdded)

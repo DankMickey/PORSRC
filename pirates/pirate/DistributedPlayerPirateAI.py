@@ -46,6 +46,15 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         self.allegiance = 0
         self.gmNametag = ('', '')
         self.defaultShard = 0
+        self.tempdoublexp = 0
+        self.zombied = (0, False)
+        self.shipHat = 0
+        self.luck = 0
+        self.maxluck = 0
+        self.welcomeWorld = False
+        self.badge = (0, 0)
+        self.shipIcon = (0, 0)
+        self.crewIcon = 0
 
     def announceGenerate(self):
         DistributedBattleAvatarAI.announceGenerate(self)
@@ -129,6 +138,74 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
 
     def getDefaultShard(self):
         return self.defaultShard
+
+    def getGender(self):
+        return 'm' #TODO properly implement
+
+    def setZombie(self, value, cursed=False):
+        self.zombied = (value, cursed)
+
+    def d_setZombie(self, value, cursed=False):
+        self.sendUpdate('setZombie', [value, cursed])
+
+    def b_setZombie(self, value, cursed=False):
+        self.setZombie(value, cursed)
+        self.d_setZombie(value, cursed)
+
+    def getZombie(self):
+        return self.zombied
+
+    def setTempDoubleXPReward(self, value):
+        self.tempdoublexp = value
+
+    def d_setTempDoubleXPReward(self, value):
+        self.sendUpdate('setTempDoubleXPReward', [value])
+
+    def b_setTempDoubleXPReward(self, value):
+        self.setTempDoubleXPReward(value)
+        self.d_setTempDoubleXPReward(value)
+
+    def getTempDoubleXPReward(self):
+        return self.tempdoublexp
+
+    def setOnWelcomeWorld(self, state):
+        self.welcomeWorld = state
+
+    def d_setOnWelcomeWorld(self, state):
+        self.sendUpdate('setOnWelcomeWorld', [state])
+
+    def b_setOnWelcomeWorld(self, state):
+        self.setOnWelcomeWorld(state)
+        self.d_setOnWelcomeWorld(state)
+
+    def getOnWorldWorld(self):
+        return self.welcomeWorld
+
+    def setBadgeIcon(self, title, rank):
+        self.badge = (title, rank)
+
+    def d_setBadgeIcon(self, title, rank):
+        self.sendUpdate('setBadgeIcon', [title, rank])
+
+    def b_setBadgeIcon(self, title, rank):
+        self.setBadgeIcon(title, rank)
+        self.d_setBadgeIcon(title, rank)
+
+    def getBadgeIcon(self):
+        return self.badge
+
+    def setShipIcon(self, title, rank):
+        self.shipIcon = (title, rank)
+
+    def d_setShipIcon(self, title, rank):
+        self.sendUpdate('setShipBadgeIcon', [title, rank])
+
+    def b_setShipIcon(self, title, rank):
+        self.setShipIcon(title, rank)
+        self.d_setShipIcon(title, rank)
+
+    def getShipIcon(self):
+        return self.shipIcon
     
     def repChanged(self):
         newLevel = self.calcLevel()
@@ -433,6 +510,19 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
     def getUnderArrest(self):
         return self.underArrest
 
+    def setShipHat(self, shipClass):
+        self.shipHat = shipClass
+
+    def d_setShiphat(self, shipClass):
+        self.sendUpdate('setShipHat', [shipClass])
+
+    def b_setShiphat(self, shipClass):
+        self.setShipHat(shipClass)
+        self.d_setShiphat(shipClass)
+
+    def getShipHat(self):
+        return self.shipHat
+
     def setStatus(self, todo0):
         pass
 
@@ -452,7 +542,10 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         pass
 
     def setCrewIconIndicator(self, iconId):
-        pass
+        self.crewIcon = iconId
+
+    def getCrewIconIndicator(self):
+        return self.crewIcon
 
     def requestBadgeIcon(self, titleId, rank):
         pass
@@ -549,7 +642,7 @@ def rmgroggy():
     av.removeDeathPenalty()
     av.fillHpMeter()
 
-@magicWord(CATEGORY_ADMINISTRATION, types=[int])
+@magicWord(CATEGORY_GAME_MASTER, types=[int])
 def rep(amount):
     av = spellbook.getInvoker()
     repId = ItemGlobals.getItemRepId(av.currentWeaponId)
@@ -606,3 +699,134 @@ def takeGold(gold):
     target = spellbook.getTarget()
     target.takeGold(gold)
     return 'Taken %d gold! Balance: %d' % (gold, target.getGoldInPocket())
+
+@magicWord(CATEGORY_GAME_MASTER)
+def cursed():
+    target = spellbook.getTarget()
+    state, cursed = target.getZombie()
+    response = ''
+    if state:
+        target.b_setZombie(0, 0)
+        response = 'The curse has worn off...'
+    else:
+        target.b_setZombie(1, 1)
+        response = 'You are cursed!'
+    return response
+
+@magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
+def setDoubleXP(value):
+    target = spellbook.getTarget()
+    target.b_setTempDoubleXPReward(value)
+    return "Set TempDoubleXPReward to %s" % value
+
+@magicWord(CATEGORY_GAME_DEVELOPER)
+def getDoubleXP():
+    target = spellbook.getTarget()
+    return 'TempDoubleXPReward is %s' % str(target.getTempDoubleXPReward())
+
+@magicWord(CATEGORY_GAME_DEVELOPER, types=[int, int])
+def setBadge(title, rank):
+    target = spellbook.getTarget()
+    target.b_setBadgeIcon(title, rank)
+    return "Set badgeIcon to ({0}, {1})".format(title, rank)
+
+@magicWord(CATEGORY_GAME_DEVELOPER, types=[int, int])
+def setShipBadge(title, rank):
+    target = spellbook.getTarget()
+    target.b_setShipIcon(title, rank)
+    return "Set shipBadge to ({0}, {1})".format(title, rank)
+
+@magicWord(CATEGORY_GAME_MASTER, types=[int, int, int])
+def giveLocatable(type, itemId, amount):
+    target = spellbook.getTarget()
+
+    from pirates.uberdog.TradableInventoryBase import InvItem
+
+    inv = target.getInventory()
+
+    if not inv:
+        return "Failed to get target's inventory."
+
+    location = inv.findAvailableLocation(type, itemId=itemId, count=amount, equippable=True)
+    if location == -1:
+        return "Failed to give locatable. Target's inventory is full"
+
+    success = inv.addLocatable(itemId, location, 1)
+    if not success:
+        return "Failed to give locatable. Target's inventory is most likely full."
+
+    return "Locatable given."
+
+@magicWord(CATEGORY_GAME_MASTER, types=[int])
+def giveWeapon(itemId):
+    target = spellbook.getTarget()
+
+    from pirates.uberdog.UberDogGlobals import InventoryType
+    from pirates.uberdog.TradableInventoryBase import InvItem
+
+    inv = target.getInventory()
+    if not inv:
+        return "Failed to get target's inventory."
+
+    location = inv.findAvailableLocation(InventoryType.ItemTypeWeapon, itemId=itemId, count=1, equippable=True)
+    if location == -1:
+        return "Failed to give weapon. Target's inventory is full"
+
+    success = inv.addLocatable(itemId, location, 1)
+    if not success:
+        return "Failed to give weapon. Target's inventory is most likely full."
+
+    return "Weapon (%s) given." % itemId
+
+@magicWord(CATEGORY_GAME_MASTER, types=[int])
+def giveClothing(itemId):
+    target = spellbook.getTarget()
+
+    from pirates.uberdog.UberDogGlobals import InventoryType
+    from pirates.uberdog.TradableInventoryBase import InvItem
+
+    inv = target.getInventory()
+    if not inv:
+        return "Failed to get target's inventory."
+
+    location = inv.findAvailableLocation(InventoryType.ItemTypeClothing, itemId=itemId, count=1, equippable=True)
+    if location == -1:
+        return "Failed to give clothing item. Target's inventory is full"
+
+    success = inv.addLocatable(itemId, location, 1)
+    if not success:
+        return "Failed to give clothing item. Target's inventory is most likely full."
+
+    return "Clothing (%s) given." % itemId
+
+@magicWord(CATEGORY_GAME_MASTER, types=[int])
+def giveJewelry(itemId):
+    target = spellbook.getTarget()
+
+    from pirates.uberdog.UberDogGlobals import InventoryType
+    from pirates.uberdog.TradableInventoryBase import InvItem
+
+    inv = target.getInventory()
+    if not inv:
+        return "Failed to get target's inventory."
+
+    location = inv.findAvailableLocation(InventoryType.ItemTypeJewelry, itemId=itemId, count=1, equippable=True)
+    if location == -1:
+        return "Failed to give jewelry item. Target's inventory is full"
+
+    success = inv.addLocatable(itemId, location, 1)
+    if not success:
+        return "Failed to give jewelry item. Target's inventory is most likely full."
+
+    return "Jewelry (%s) given." % itemId
+
+@magicWord(CATEGORY_GAME_MASTER, types=[int])
+def ghost(state):
+    av = spellbook.getTarget()
+    av.b_setIsGhost((state == 1))
+    return "Set target's ghost state to %s" % state
+
+@magicWord(CATEGORY_GAME_MASTER)
+def mypos():
+    av = spellbook.getTarget()
+    return "Pos: %s" % str(av.getPos())

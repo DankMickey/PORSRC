@@ -225,7 +225,10 @@ class GameFSMShip(FSM.FSM):
 
     def initAudio(self):
         base.ambientMgr.requestFadeIn(SoundGlobals.AMBIENT_SHIP)
-        self.currentMusic = random.choice((SoundGlobals.MUSIC_SAILING_A, SoundGlobals.MUSIC_SAILING_B, SoundGlobals.MUSIC_SAILING_C))
+        if base.config.GetBool('want-sailing-music-d', False):
+            self.currentMusic = random.choice((SoundGlobals.MUSIC_SAILING_A, SoundGlobals.MUSIC_SAILING_B, SoundGlobals.MUSIC_SAILING_C, SoundGlobals.MUSIC_SAILING_D, SoundGlobals.MUSIC_SAILING_E))
+        else:
+            self.currentMusic = random.choice((SoundGlobals.MUSIC_SAILING_A, SoundGlobals.MUSIC_SAILING_B, SoundGlobals.MUSIC_SAILING_C, SoundGlobals.MUSIC_SAILING_E))
         base.musicMgr.request(self.currentMusic, priority = 0, volume = 0.6)
 
     def clearAudio(self):

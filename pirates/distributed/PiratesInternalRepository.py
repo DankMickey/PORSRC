@@ -5,7 +5,7 @@ from direct.distributed.PyDatagram import PyDatagram
 from direct.distributed.MsgTypes import *
 from otp.distributed.OtpDoGlobals import *
 from PiratesNetMessengerAI import PiratesNetMessengerAI
-import urlparse, pymongo, traceback, sys
+import urlparse, traceback, sys
 
 
 class PiratesInternalRepository(AstronInternalRepository):
@@ -22,6 +22,12 @@ class PiratesInternalRepository(AstronInternalRepository):
 
     def handleConnected(self):
         self.__messenger = PiratesNetMessengerAI(self)
+        
+        try:
+            import pymongo
+        except:
+            return
+
         mongoUrl = config.GetString('mongodb-url', 'mongodb://localhost')
         replicaSet = config.GetString('mongodb-replicaset', '')
         db = (urlparse.urlparse(mongoUrl).path or '/porgame')[1:]

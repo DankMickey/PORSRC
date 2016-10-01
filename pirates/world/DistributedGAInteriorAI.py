@@ -4,6 +4,9 @@ from direct.directnotify import DirectNotifyGlobal
 from pirates.world.DistributedGameAreaAI import DistributedGameAreaAI
 import WorldGlobals
 
+from pirates.minigame.DistributedPokerTableAI import DistributedPokerTableAI
+from pirates.minigame.DistributedGameTableAI import DistributedGameTableAI
+
 # World
 from DistributedInteriorDoorAI import DistributedInteriorDoorAI
 
@@ -43,6 +46,9 @@ class DistributedGAInteriorAI(DistributedGameAreaAI, DistributedCartesianGridAI)
 
         elif objType == 'Door Locator Node':
             genObj = self.createIntDoor(objKey, object)
+
+        elif objType == 'Parlor Game'  and config.GetBool('want-parlor-games', False):
+            genObj = DistributedPokerTableAI.makeFromObjectKey(self.air, objKey, object)
 
         else:
             genObj = DistributedGameAreaAI.createObject(self, objType, parent, objKey, object)

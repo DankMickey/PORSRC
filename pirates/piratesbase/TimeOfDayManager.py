@@ -5,6 +5,7 @@ from direct.directnotify import DirectNotifyGlobal
 from direct.distributed.ClockDelta import globalClockDelta
 from direct.interval.IntervalGlobal import *
 from pirates.ai import HolidayGlobals
+from otp.ai.MagicWordGlobal import *
 from pirates.effects.RainMist import RainMist
 from pirates.effects.RainDrops import RainDrops
 from pirates.effects.RainSplashes import RainSplashes
@@ -23,11 +24,6 @@ import random
 
 class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
     notify = directNotify.newCategory('TimeOfDayManager')
-
-    HEAVYCLOUDS = 3
-    MEDIUMCLOUDS = 2
-    LIGHTCLOUDS = 1
-    NOCLOUDS = 0
 
     def __init__(self):
         FSM.FSM.__init__(self, 'TimeOfDayManager')
@@ -749,6 +745,8 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
             self.avatarShadowCaster.setLightSrc(self.dlight)
 
     def setCloudsType(self, cloudType):
+        if cloudType not in TODGlobals.CLOUD_TRANSITIONS:
+            return 
         self.skyGroup.transitionClouds(cloudType).start()
 
     def setSkyType(self, skyType):
@@ -1193,8 +1191,10 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
         self.currentState = PiratesGlobals.TOD_CUSTOM
         self.fixedSky = True
         if self.advancedWeather:
+            self.setRainState(0)
+            self.setStormState(0)
+            self.setDarkFog(0)
             self.fixedWeather = True
-            self.handleWeatherChanged(0)
         self._prepareState(self.currentState)
         sunDir = TODGlobals.getTodEnvSetting(self.currentState, self.environment, 'Direction')
         self.skyGroup.setSunTrueAngle(sunDir)
@@ -1255,7 +1255,7 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
         self.fixedSky = False
         if self.advancedWeather:
             self.fixedWeather = False
-            self.handleWeatherChanged(self.weatherState)
+            self.requestWeather()
         base.positionFarCull()
 
 
@@ -1505,6 +1505,8 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
     def handleHolidayEnded(self, holidayName):
         pass
 
+    def requestWeather(self):
+        pass
 
     def setFogColor(self, fogColor):
         self.fogColor = fogColor
@@ -1519,6 +1521,8 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
 
     def setDarkFog(self, state, parent=None):
         if not self.advancedWeather:
+            return
+        if self.fixedWeather:
             return
         if not parent:
             parent = base.localAvatar
@@ -1607,13 +1611,17 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
 
         self.lerpFogIval = LerpFunctionInterval(setLinearFog, duration = lerpTime, fromData = 0.0, toData = 1.0, name = 'LerpFogIval')
         self.lerpFogIval.start()
-
-
-    def setStormState(self, state):
+          
+    def setStormState(self, state, changeClouds=False):
         if not self.advancedWeather:
             return
+        if not config.GetBool('want-storm-weather', False):
+            return
+        if self.fixedWeather:
+            return
         if state:
-            self.setCloudsType(self.STORMCLOUDS)
+            if changeClouds:
+                self.setCloudsType(TODGlobals.HEAVYCLOUDS)
             if self.stormEye is None:
                 self.stormEye = StormEye()
                 self.stormEye.reparentTo(render)
@@ -1624,7 +1632,6 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
                 self.stormRing.setZ(100)
                 self.stormRing.startLoop()
         else:
-            self.setCloudsType(self.STORMCLOUDS)
             if self.stormEye:
                 self.stormEye.stopLoop()
                 self.stormRing.stopLoop()
@@ -1637,6 +1644,8 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
 
     def setRainState(self, state):
         if not self.advancedWeather:
+            return
+        if self.fixedWeather:
             return
         if state:
             if self.rainDrops is None:
@@ -1670,7 +1679,7 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
                 self.rainDrops = None
                 self.rainMist = None
                 self.rainSplashes = None
-                self.rainSplashes2 = None   
+                self.rainSplashes2 = None  
 
     def getEnviroDictString(self, environment = None, tabs = 0, heading = 'SettingsDict ='):
         if environment == None:
@@ -1710,3 +1719,29 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
         outputString += tab * tabs
         outputString += '}'
         return outputString
+
+    @magicWord(CATEGORY_GAME_DEVELOPER, types=[int, int, int])
+    def alight(red, green, blue):
+        color = Vec4(float(red), float(green), float(blue), 1)
+        base.cr.timeOfDayManager.alight.node().setColor(color)
+        return "Setting debug client alight setting."
+
+    @magicWord(CATEGORY_GAME_DEVELOPER, types=[int, int, int])
+    def dlight(red, green, blue):
+        color = Vec4(float(red), float(green), float(blue), 1)
+        base.cr.timeOfDayManager.dlight.node().setColor(color)
+        return "Setting debug client dlight setting."   
+
+    @magicWord(CATEGORY_GAME_DEVELOPER, types=[int, int, int, int])
+    def fog(red, green, blue, density):
+        color = Vec4(float(red), float(green), float(blue), 1)
+        base.cr.timeOfDayManager.fog.setColor(color)
+        base.cr.timeOfDayManager.fog.setExpDensity(float(density))
+        return "Setting debug client fog settings."
+
+    @magicWord(CATEGORY_GAME_DEVELOPER)
+    def todPanel():
+        tod = base.cr.timeOfDayManager
+        from pirates.leveleditor.TimeOfDayPanel import TimeOfDayPanel
+        p = TimeOfDayPanel(tod)
+        return "Opening TOD Panel"

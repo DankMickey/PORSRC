@@ -120,8 +120,11 @@ class StackMessage(BorderFrame):
 
     def setText(self):
         BorderFrame.setText(self)
-        lines = self.component('text0').textNode.getHeight()
-        textSpace = (0.034798 * lines - 0.0276) * self['text_scale'][1] / 0.035000
+        try:
+            lines = self.component('text0').textNode.getHeight()
+            textSpace = (0.034798 * lines - 0.0276) * self['text_scale'][1] / 0.035000
+        except:
+            textSpace = 0.0
         if textSpace > 100:
             textSpace = 0.0
 

@@ -618,7 +618,7 @@ class PirateMemberList(DirectObject):
 
 
     def addPotentialMember(self, avId, avName, mode):
-        self.removeMember(avId, None, mode)
+        self.removeMember(avId, mode)
         texcolor = (0.9, 1, 0.9, 1)
         fcolor = PiratesGuiGlobals.ButtonColor5
         addMe = PirateMemberButton(self, avId, None, mode, name = avName)

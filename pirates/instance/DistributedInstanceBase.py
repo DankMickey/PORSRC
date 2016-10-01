@@ -376,48 +376,34 @@ class DistributedInstanceBase(DistributedObject, WorldNode):
 
     def sendLocalAvatarToJail(self, jailDoId, jailWorldParentId, jailWorldZone):
         messenger.send('sendingLocalAvatarToJail')
+
         if jailDoId == 0 and jailWorldParentId == 0 and jailWorldZone == 0:
             localAvatar.b_setGameState('LandRoam')
-        else:
-            currentWorld = self
-            parentObj = localAvatar.getParentObj()
-            if isinstance(parentObj, DistributedGameArea):
-                currentArea = parentObj
-            else:
-                currentArea = None
-            alreadyHere = parentObj is base.cr.doId2do.get(jailDoId)
+            return
+        
+        def jailAreaLoaded(jailArea):
+            if isinstance(self, DistributedInstanceBase):
+                self.removeWorldInterest()
+                localAvatar.clearInterestNamed(None, ['instanceInterest'])
+                localAvatar.replaceInterestTag('instanceInterest-Jail', 'instanceInterest')
 
-            def loadJailWorld():
-                localAvatar.setInterest(jailWorldParentId, jailWorldZone, [
-                    'instanceInterest-Jail'])
-                if self.pendingJail:
-                    self.cr.relatedObjectMgr.abortRequest(self.pendingJail)
+            world = jailArea.getParentObj()
+            world.addWorldInterest(jailArea)
 
-                self.pendingJail = self.cr.relatedObjectMgr.requestObjects([
-                    jailDoId], eachCallback = jailAreaLoaded)
+            localAvatar.reparentTo(jailArea)
+            localAvatar.setPos(Point3(0))
+            localAvatar.setInterest(jailArea.doId, 2709, ['ga-interior'])
+            self.showDeathLoadingScreen(base.localAvatar)
+            localAvatar.b_setGameState('LandRoam')
+            base.cr.loadingScreen.hide()
+        
+        ship = localAvatar.getShip()
+        if ship:
+            localAvatar.removeFromShip(ship)
 
-            def jailAreaLoaded(jailArea):
-                self.pendingJail = None
-                if isinstance(currentWorld, DistributedInstanceBase):
-                    currentWorld.removeWorldInterest()
-                    localAvatar.clearInterestNamed(None, [
-                        'instanceInterest'])
-                    localAvatar.replaceInterestTag('instanceInterest-Jail', 'instanceInterest')
-
-                world = jailArea.getParentObj()
-                world.addWorldInterest(jailArea)
-                localAvatar.reparentTo(jailArea)
-                localAvatar.setPos(Point3(0))
-                zone = jailArea.getZoneFromXYZ(Point3(0))
-                localAvatar.b_setLocation(jailArea.doId, zone)
-                if alreadyHere:
-                    jailArea.sendUpdate('avatarAlreadyInJail', [])
-
-            ship = localAvatar.getShip()
-            if ship:
-                localAvatar.removeFromShip(ship)
-
-            loadJailWorld()
+        self.showDeathLoadingScreen(base.localAvatar)
+        self.cr.relatedObjectMgr.requestObjects([jailDoId], eachCallback = jailAreaLoaded)
+        localAvatar.setInterest(jailWorldParentId, jailWorldZone, ['instanceInterest-Jail'])
 
     def getWorldPos(self, node):
         pass

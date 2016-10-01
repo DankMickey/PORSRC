@@ -34,12 +34,14 @@ class BattleManagerBase:
             return True
 
         if target.avatarType.isA(AvatarTypes.Navy) or target.avatarType.isA(AvatarTypes.Townfolk) or target.avatarType.isA(AvatarTypes.Pirate) or target.avatarType.isA(AvatarTypes.BountyHunter):
-            human = target.avatarType.isA(AvatarTypes.TradingCo)
             weaponType = ItemGlobals.getType(attacker.currentWeaponId)
-            if human and weaponType == ItemGlobals.GUN:
+            if weaponType == ItemGlobals.GUN:
                 return False
 
         return True
+    
+    def isFriendlyFire(self, attacker, target):
+        return attacker.avatarType.isA(AvatarTypes.Player) and target.avatarType.isA(AvatarTypes.Player)
 
     def willWeaponHit(self, attacker, target, skillId, ammoSkillId, charge):
         if not attacker.getWorld():
@@ -47,13 +49,14 @@ class BattleManagerBase:
 
         inPVPMode = self.isPVP(attacker, target)
         chanceOfHit = WeaponGlobals.getAttackAccuracy(skillId, ammoSkillId)
-        if target and not WeaponGlobals.isFriendlyFire(skillId, ammoSkillId):
-            if not inPVPMode:
-                if not config.GetBool('want-dev', 0) and not attacker.isInInvasion() or not target.isInInvasion():
-                    if not hasattr(attacker, 'inInvasion') or not attacker.isInInvasion():
-                        if not hasattr(target, 'inInvasion') or not target.isInInvasion():
-                            accuracyModifier = WeaponGlobals.getComparativeLevelAccuracyModifier(attacker, target)
-                            chanceOfHit = max(0.0, chanceOfHit + accuracyModifier)
+        weaponType = ItemGlobals.getType(attacker.currentWeaponId)
+
+        if not hasattr(target, 'avatarType'):
+            return WeaponGlobals.RESULT_MISS
+
+        if target:
+            if not inPVPMode and self.isFriendlyFire(attacker, target):
+                return WeaponGlobals.RESULT_MISS
 
         chanceOfParry = 0.0
         chanceOfDodge = 0.0

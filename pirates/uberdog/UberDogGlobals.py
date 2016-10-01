@@ -512,7 +512,7 @@ class InventoryType:
       LocationIds.KINGSHEAD_ISLAND: KingsheadTeleportToken,
       LocationIds.DEL_FUEGO_ISLAND: PadresDelFuegoTeleportToken,
       LocationIds.CUBA_ISLAND: CubaTeleportToken,
-      LocationIds.RAVENS_COVE_ISLAND: RavensCoveTeleportToken
+      LocationIds.RAVENS_COVE_ISLAND: RavensCoveTeleportToken,
     }
 
     @classmethod
@@ -1723,18 +1723,18 @@ def prepareSwitchField(field,*self):
                 upgrades = item.getUpgrades()
                 color = item.getColor()
                 count = item.getCount(1)
-
-                print "Xtype" + str(type(item)) + " " + str(item);
             except:
                 print "mmmm InvItem generated an error";
         else:
-            loc = x.getLocation()
-            cat = x.getCat()
-            id = x.getId()
-            upgrades = x.getUpgrades()
-            color = x.getColor()
-            count = x.getCount(1)
-            print "Xtype"+ str(type(x)) + " " +str(x);
+            try:
+                loc = x.getLocation()
+                cat = x.getCat()
+                id = x.getId()
+                upgrades = x.getUpgrades()
+                color = x.getColor()
+                count = x.getCount(1)
+            except:
+                print "mmmm InvItem generated an error";
 
         return (cat, id, loc, upgrades, color, count)
     return map(formatItem, field)

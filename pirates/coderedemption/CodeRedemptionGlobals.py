@@ -60,6 +60,7 @@ class AwardTypes:
     POTION_SUMMON_CHICKEN = 32
     POTION_SUMMON_WASP = 33
     POTION_SUMMON_DOG = 34
+    TREASURE = 35
     TYPE_IDX = 0
     MALE_IDX = 1
     FEME_IDX = 2
@@ -72,7 +73,7 @@ AWARD_ID = {
         InvItem((InventoryType.ItemTypeMoney, 0)),
         None,
         200,
-        PLocalizer.CodeRedemptionGold],
+        PLocalizer.CodeRedemptionGold],   
     AwardTypes.FREE_HAT: [
         CLOTHING,
         InvItem((InventoryType.ItemTypeClothing, ItemGlobals.CROSSBONES_BANDANA, 0, 0)),
@@ -98,7 +99,7 @@ AWARD_ID = {
         1,
         PLocalizer.CodeRedemptionFlatulentFizz],
     AwardTypes.BUCCANEER_HAT: [
-        NORMAL_INVENTORY,
+        CLOTHING,
         InvItem((InventoryType.ItemTypeClothing, ItemGlobals.BLACK_BUCCANEER_HAT, 0, 0)),
         None,
         1,
@@ -152,7 +153,7 @@ AWARD_ID = {
         1,
         PLocalizer.CodeRedemptionSuperReputationPotion],
     AwardTypes.SCOUNDREL_HAT: [
-        NORMAL_INVENTORY,
+        CLOTHING,
         InvItem((InventoryType.ItemTypeClothing, ItemGlobals.CRIMSON_BUCCANEER_HAT, 0, 0)),
         None,
         1,
@@ -270,7 +271,13 @@ AWARD_ID = {
         InvItem((InventoryType.ItemTypeConsumable, ItemGlobals.POTION_SUMMON_DOG, 0, 0)),
         None,
         1,
-        PLocalizer.CodeRedemptionSummonDog] }
+        PLocalizer.CodeRedemptionSummonDog],
+    AwardTypes.TREASURE: [
+        NORMAL_INVENTORY,
+        InvItem((InventoryType.ItemTypeMoney, 0)),
+        None,
+        10000,
+        PLocalizer.CodeRedemptionTreasure] }
 
 def getAwardFromCode(code):
     for award in AWARD_ID:

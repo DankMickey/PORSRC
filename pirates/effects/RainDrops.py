@@ -44,7 +44,10 @@ class RainDrops(EffectController, NodePath):
 
     def setNewUVs(self, offset, ts):
         if self.reference:
-            self.setPos(self.reference.getPos(self.getParent()))
+            try:
+                self.setPos(self.reference.getPos(self.getParent()))
+            except:
+                pass
 
         self.layer1.setTexOffset(ts, 0.0, offset)
         self.layer2.setTexOffset(ts, 0.0, offset)

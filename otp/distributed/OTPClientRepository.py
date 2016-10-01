@@ -308,7 +308,7 @@ class OTPClientRepository(ClientRepositoryBase):
 
     def gotoFirstScreen(self):
         self.startReaderPollTask()
-        #self.startHeartbeat()
+        self.startHeartbeat()
         self.loginFSM.request('login')
 
     @report(types=['args', 'deltaStamp'], dConfigParam='teleport')
@@ -1088,16 +1088,6 @@ class OTPClientRepository(ClientRepositoryBase):
         if gsg:
             render2d.prepareScene(gsg)
         base.graphicsEngine.renderFrame()
-
-    def handleGoGetLost(self, di):
-        if di.getRemainingSize() > 0:
-            self.bootedIndex = di.getUint16()
-            self.bootedText = di.getString()
-        else:
-            self.bootedIndex = None
-            self.bootedText = None
-        
-        self.notify.warning("Server is booting us out!")
     
     def handleMessageType(self, msgType, di):
         if self.__recordObjectMessage(msgType, di):

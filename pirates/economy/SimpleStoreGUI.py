@@ -231,7 +231,11 @@ class SimpleStoreBuyPanelGUI(BorderFrame):
         if not qtyLimit:
             qtyLimit = inventory.getStackLimit(self.item.uid)
 
-        freeSpace = qtyLimit - self.item.getQuantityInInventory()
+        try:
+            freeSpace = qtyLimit - self.item.getQuantityInInventory()
+        except:
+            print(":SimpleStoreBuyPanelGUI(warning): Received invalid quantity return. Setting to 0")
+            freeSpace = qtyLimit
         stackable = self.item.checkStackable()
         if stackable:
             qtyMult = max(1, EconomyGlobals.getItemQuantity(self.item.uid))
@@ -258,7 +262,7 @@ class SimpleStoreBuyPanelGUI(BorderFrame):
         self.qtyLabel = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, text = PLocalizer.SimpleStoreQty, text_font = PiratesGlobals.getInterfaceFont(), text_scale = PiratesGuiGlobals.TextScaleLarge, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, text_pos = (0, 0, 0), pos = (-0.2, 0, 0.015))
         self.minusButton = GuiButton.GuiButton(parent = self, text = '-', text_fg = PiratesGuiGlobals.TextFG2, text_pos = (0.0, -0.014), text_scale = PiratesGuiGlobals.TextScaleTitleSmall, text_align = TextNode.ACenter, text_shadow = PiratesGuiGlobals.TextShadow, image = GuiButton.GuiButton.blueGenericButton, image_scale = (0.125, 0.36, 0.36), pos = (0.04, 0.0, 0.028), command = minusQuantity)
         if self.item.quantity == qtyMult:
-            self.minusButton['state'] = DGG.DISABLED
+           self.minusButton['state'] = DGG.DISABLED
 
         self.plusButton = GuiButton.GuiButton(parent = self, text = '+', text_fg = PiratesGuiGlobals.TextFG2, text_pos = (0.0, -0.014), text_scale = PiratesGuiGlobals.TextScaleTitleSmall, text_align = TextNode.ACenter, text_shadow = PiratesGuiGlobals.TextShadow, image = GuiButton.GuiButton.blueGenericButton, image_scale = (0.125, 0.36, 0.36), pos = (0.18, 0.0, 0.038), command = plusQuantity)
         if self.item.quantity == qtyLimit:
@@ -1633,6 +1637,11 @@ class MerchantStoreGUI(SimpleStoreGUI):
         for itemId in self.inventory:
             tabId = None
             itemType = ItemGlobals.getType(itemId)
+
+            #Hacky patch
+            if itemId == 1:
+                continue
+
             if itemType:
                 tabId = self.TabIdFromItemType.get(itemType, 'UNKNOWN')
             else:

@@ -13,7 +13,7 @@ except ImportError:
     class challenge:
         @staticmethod
         def solve(*args):
-            return 'dev'
+            return 'whatever'
 
 def flip(a):
     # This is SIMPLE OBFUSCATION not ENCRYPTION

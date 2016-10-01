@@ -6,6 +6,14 @@ from pirates.treasuremap import DistributedBuriedTreasure/AI
 from pirates.distributed import PiratesDistrict/AI
 from pirates.distributed import PiratesDistrictStats/AI
 from pirates.economy import DistributedShopKeeper/AI
+from pirates.ship import DistributedSimpleShip/AI
+from pirates.ship import DistributedNPCSimpleShip/AI
+// from pirates.ship import DistributedPlayerSimpleShip/AI/UD/OV
+// from pirates.ship import DistributedPlayerFishingShip/AI/OV
+// from pirates.ship import DistributedTutorialSimpleShip/AI
+// from pirates.ship import DistributedBlackPearlSimpleShip/AI
+// from pirates.ship import DistributedPlayerSeizeableShip/AI
+// from pirates.ship import DistributedFormation/AI
 from pirates.npc import DistributedNPCSkeleton/AI
 from pirates.npc import DistributedNPCPirate/AI
 from pirates.npc import DistributedNPCNavySailor/AI
@@ -43,6 +51,7 @@ from pirates.world import DistributedGADoor/AI
 from pirates.world import DistributedGAInterior/AI
 from pirates.world import DistributedJailInterior/AI
 from pirates.world import DistributedFort/AI
+from pirates.band import DistributedPirateBandManager/AI
 from pirates.battle import DistributedBattleAvatar/AI
 from pirates.battle import DistributedBattleNPC/AI
 from pirates.battle import WeaponBase/AI
@@ -65,7 +74,7 @@ from pirates.world import DistributedInteriorDoor/AI
 from pirates.world import DistributedCellDoor/AI
 from pirates.band import DistributedCrewMatchManager/AI/UD
 from pirates.interact import DistributedSearchableContainer/AI
-from pirates.coderedemption import CodeRedemption/UD
+from pirates.coderedemption import CodeRedemption/AI
 from pirates.minigame import DistributedGameTable/AI
 from pirates.minigame import DistributedPokerTable/AI
 from pirates.holiday import DistributedHolidayObject/AI
@@ -263,9 +272,14 @@ dclass DistributedTimeOfDayManager : DistributedObject {
   syncTOD(uint8, uint16, int32, int32/100) required broadcast ram;
   setIsPaused(bool) required broadcast ram;
   requestSync() airecv clsend;
+  requestWeather() airecv clsend;
   setEnvSubs(envSubEntry []) required broadcast ram;
   setMoonPhaseChange(int8, int16/100, int16/100, int32) required broadcast ram;
   setMoonJolly(int8) required broadcast ram;
+  setRain(int8) required broadcast ram;
+  setStorm(int8) required broadcast ram;
+  setBlackFog(int8) required broadcast ram;
+  setClouds(int8) required broadcast ram;
 };
 
 struct ItemNameHolder {
@@ -464,8 +478,8 @@ dclass DistributedBattleAvatar : DistributedReputationAvatar, WeaponBase {
   regenUpdate(int16) broadcast;
   setMaxHp(int32) required broadcast ram ownrecv db;
   setHp(int32, uint8) required broadcast ram ownrecv db;
-  // setLuck(int16) required broadcast ram ownrecv;
-  // setMaxLuck(int16) required broadcast ram ownrecv;
+  setLuck(int16) required broadcast ram ownrecv;
+  setMaxLuck(int16) required broadcast ram ownrecv;
   setMojo(int16) required broadcast ram ownrecv db;
   setMaxMojo(int16) required broadcast ram ownrecv db;
   /*
@@ -709,13 +723,13 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   receiveClothesList(uint32[] []) ownrecv;
   requestChangeClothes() ownsend airecv;
   // requestMAPClothes(MAPClothes []) ownsend airecv;
-  // setOnWelcomeWorld(bool) required ownrecv airecv db;
+  setOnWelcomeWorld(bool) required ownrecv airecv db;
   setFounder(uint8) required broadcast ownrecv db;
   setAllegiance(uint8) required broadcast ownrecv db;
-  // setCrewIconIndicator(uint8) ownsend required ram broadcast airecv;
-  // setBadgeIcon(int8, int8) required ram broadcast db;
+  setCrewIconIndicator(uint8) ownsend required ram broadcast airecv;
+  setBadgeIcon(int8, int8) required ram broadcast db;
   requestBadgeIcon(int8, int8) ownsend airecv;
-  // setShipBadgeIcon(int8, int8) required ram broadcast db;
+  setShipBadgeIcon(int8, int8) required ram broadcast db;
   requestShipBadgeIcon(int8, int8) ownsend airecv;
   // setLastPVPSinkTime(uint32) required ram broadcast db;
   // setLastShipPVPDecayTime(uint32) required ram broadcast db;
@@ -727,13 +741,12 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   infamyRankLandDecreaseMessage(uint8, uint8) ownrecv;
   setStatus(uint8) ownsend required ram broadcast airecv;
   // updateClientTutorialStatus(uint8) required ownrecv;
-  // setUndead(uint8, string) required broadcast ram;
   setInventoryId(uint32) required broadcast ram ownrecv db;
   // setDinghyId(uint32) required broadcast ram;
-  // setBandId(uint32, uint32) required broadcast ram ownrecv;
+  //setBandId(uint32, uint32) required broadcast ram ownrecv;
   requestLookoutInvite(uint32, string, uint32, uint32, resultPair []);
-  // setGuildId(uint32) required airecv broadcast ram;
-  // setGuildName(string) required broadcast ram;
+  //setGuildId(uint32) required airecv broadcast ram;
+  //setGuildName(string = "") required broadcast ram;
   setBandPvp(bool) clsend airecv;
   setBandParlor(bool) clsend airecv;
   setAFK(bool) clsend airecv;
@@ -746,7 +759,6 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   requestRemoveAuraDetection() ownsend airecv;
   setDefaultShard(uint32) required broadcast ownrecv db;
   // setDefaultZone(uint32) ownrecv required db;
-  // setLastLogout(uint32) required db;
   // setCustomMessages(uint16[]) ownrecv required db;
   setEmote(int32) broadcast ram airecv ownsend;
   playEmote(int32) broadcast;
@@ -782,8 +794,8 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   sendSalvageMessage(uint32, uint16) ownrecv;
   sendFreeInventoryMessage(uint8) ownrecv;
   sendFailedLootTradeMessage(bool) ownrecv;
-  // setLuck(int16) required broadcast;
-  // setMaxLuck(int16) required broadcast db;
+  setLuck(int16) required broadcast;
+  setMaxLuck(int16) required broadcast db;
   setMojo(int16) required broadcast ownrecv db;
   setMaxMojo(int16) required broadcast ownrecv db;
   // setSwiftness(int16) required broadcast;
@@ -811,9 +823,10 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   requestCurrentIsland(uint32) airecv ownsend;
   setCurrentIsland(string) ownrecv;
   setJailCellIndex(uint8) required airecv ownrecv;
-  // setTeam(int16) required broadcast ram ownrecv;
-  // setPvp(uint8) required broadcast ram ownrecv;
-  // setZombie(uint8, uint8) required broadcast ram ownrecv;
+  setTeam(int16) required broadcast ram ownrecv;
+  setPvp(uint8) required broadcast ram ownrecv;
+  setZombie(uint8, uint8) required broadcast ram ownrecv;
+  setShipHat(uint32) required broadcast ram ownrecv;
   setCurseStatus(uint8) ownrecv;
   // setParlorGame(uint8) required broadcast ram ownrecv;
   // setPopulated(uint8) required broadcast db ram;
@@ -822,7 +835,7 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   useBestTonic() airecv ownsend;
   spentSkillPoint(SkillId) ownrecv;
   requestActivity(uint32, int32, resultPair [], uint32 []) airecv clsend;
-  // setTempDoubleXPReward(uint32) required db ram broadcast;
+  setTempDoubleXPReward(uint32) required db ram broadcast;
   setGMNametag(string, string) required broadcast ownrecv db;
   requestGotoJailWhileInjured() ownsend airecv;
   setUnderArrest(uint8 = 0) required ram airecv db;
@@ -1324,4 +1337,97 @@ dclass DistributedPokerTable : DistributedGameTable {
 dclass DistributedHolidayObject : DistributedInteractive {
   setInteractRadius(uint8) required broadcast ram;
   setInteractMode(uint8) required broadcast ram;
+};
+
+dclass DistributedFlagshipAI : DistributedObject {
+  setBoarders(uint32 []) broadcast ram;
+  startWave(uint8, uint8, uint8);
+  clearWaves();
+};
+
+dclass DistributedShip: DistributedMovingObject, Teamable {
+  setParentingRules(string, string) broadcast ram;
+  string DcObjectType db;
+  setUniqueId(string) required broadcast ram;
+}
+
+dclass DistributedSimpleShip : DistributedShip, DistributedFlagshipAI {
+  setGameState(string, uint32, int16) required broadcast ram ownrecv;
+  setShipClass(uint8) required broadcast ram db ownrecv;
+  setStyleOverride(int16) required broadcast ram;
+  setLogoOverride(int16) required broadcast ram;
+  setLevel(uint16) required broadcast ram;
+  setName(string) required broadcast ram db ownrecv;
+  setArmorStates(uint16/100, uint16/100, uint16/100) required db broadcast ram ownrecv;
+  setMastStates(uint16/100, uint16/100, uint16/100, uint16/100, uint16/100) required broadcast db ram ownrecv;
+  setHealthState(uint16/100) required broadcast ram db ownrecv;
+  setCrew(uint32[]) required broadcast ram ownrecv;
+  setBandId(uint32, uint32) broadcast ram;
+  setOwnerId(uint32) required broadcast ram db ownrecv;
+  setCannons(uint32 [], uint32) broadcast ram;
+  //setSkillEffects(BuffList) broadcast ram;
+  setIsBoardable(uint8) required broadcast ram;
+  setIsExitable(uint8) required broadcast ram;
+  setIsFlagship(int8) required broadcast ram ownrecv;
+  setSinkTimer(int16, int16) broadcast ram;
+  damage(int16, Pos, DoId, uint16 []) broadcast;
+  setBoardableShipId(uint32) broadcast ram;
+  setIsInBoardingPosition(uint8) required broadcast ram;
+  requestBoard(uint32) airecv clsend;
+  setMovie(uint8, uint32, uint32, bool, int16) broadcast;
+  shipBoarded() clsend airecv;
+  leave(uint32) airecv clsend;
+  setDeploy(uint8, int16) broadcast ram;
+  requestBoardFlagship(uint32) clsend airecv;
+  boardShip(uint8) broadcast;
+  swingToShip(uint8) broadcast;
+  setWishName(string) required db ownrecv;
+  setWishNameState(string) required db ownrecv;
+  setCargo(uint8[]) required broadcast ram ownrecv;
+  notifyReceivedLoot(uint8[]) broadcast;
+  setCaptainId(DoId) broadcast ram;
+  setBadge(int8, int8) required broadcast ram;
+  setRespectDeployBarriers(bool, uint32) broadcast ram;
+  setGuildId(uint32) broadcast ram;
+  setClientController(uint32) broadcast ram;
+  sendCrewToIsland(uint32, PosH);
+  dropAnchor(uint32) airecv clsend;
+  requestSkillEvent(uint32, uint32) airecv clsend;
+  recordSkillEvent(uint32, uint32) broadcast;
+  sendShipDefeated() broadcast;
+  //setLandedGrapples(LandedGrappleList) broadcast ram;
+  setRespawnLocation(uint32, uint32);
+  setRepairCount(uint8) broadcast ram;
+  setSailsDown(bool) required broadcast ram clsend;
+  requestClientAggro() airecv clsend;
+  requestShipRam(DoId, Pos, uint32) clsend airecv;
+  useShipRam(Pos) broadcast;
+  relayTeleportInfo() airecv;
+  sendTeleportInfo(uint32, uint32) ownrecv;
+  teleportAvatarAboard(DoId) airecv;
+};
+
+dclass DistributedNPCSimpleShip : DistributedSimpleShip {
+  announceAttack(DoId, uint8) broadcast;
+  setHunterLevel(int8) broadcast ram;
+};
+
+dclass DistributedPirateBandManager : DistributedObject {
+  setParentingRules(string, string) broadcast ram;
+  requestInvite(uint32) airecv clsend;
+  requestRejoin(uint32, bool) airecv clsend;
+  requestBoot(uint32) airecv clsend;
+  requestCancel(uint32) airecv clsend;
+  requestOutCome(uint32, string, uint8);
+  receiveBootTeleport(uint32, string);
+  receiveBootSuccess(uint32, string);
+  invitationFrom(uint32, string);
+  rejoinFrom(uint32, bool, uint8(0-2));
+  invitationCancel(uint32);
+  rejoinCancel(uint32);
+  invitationResponce(uint32, string, uint8) airecv clsend;
+  rejoinResponce(uint32, bool, uint8) airecv clsend;
+  requestRemove(uint32) airecv clsend;
+  requestCrewIconUpdate(uint8) airecv clsend;
+  receiveUpdatedCrewIcon(uint8);
 };

@@ -615,6 +615,8 @@ class PirateProfilePage(SocialPage.SocialPage):
                 crew = localAvatar.guiMgr.crewHUD.crew
                 if crew:
                     crewMember = crew.get(self.profileId)
+                else:
+                    crewMember = False
 
                 if not (self.onlineNow):
                     if not inSameCrew and not crew and not crewMember or not (crewMember[0].hudOnline):

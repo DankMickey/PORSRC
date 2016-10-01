@@ -266,7 +266,7 @@ class TargetManager(DistributedObject.DistributedObject, TargetManagerBase.Targe
         self.reticleHolder.setPos(self.RETICLE_POS)
         self.reticle.setScale(self.reticleScale)
         typeId = ItemGlobals.getType(localAvatar.currentWeaponId)
-        if (typeId or typeId not in self.TypesWithoutReticles or not typeId) and localAvatar.currentWeaponId not in self.WeaponsWithoutReticles:
+        if (typeId not in self.TypesWithoutReticles and localAvatar.currentWeaponId not in self.WeaponsWithoutReticles) or base.config.GetBool('always-want-reticles', 0):
             self.reticleHolder.reparentTo(aspect2d)
             self.reticle.setColorScale(1, 1, 1, self.reticleAlpha)
             self.reticleHolder.show()

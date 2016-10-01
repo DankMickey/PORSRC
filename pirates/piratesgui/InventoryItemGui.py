@@ -121,7 +121,10 @@ class InventoryItemGui(InventoryListItem):
             self.quantityLabel = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, text = str(self.quantity), frameColor = (0, 0, 0, 1), frameSize = (-0.01, 0.02, -0.01, 0.0250), text_scale = 0.0275, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.02, 0, 0.0250), text_font = PiratesGlobals.getPirateBoldOutlineFont())
 
         geomParams = InventoryItemGui.getGeomParams(itemId)
-        self.picture = DirectFrame(parent = self, relief = None, state = DGG.DISABLED, geom = geomParams['geom'], geom_pos = geomParams['geom_pos'], geom_scale = geomParams['geom_scale'], pos = (0.01, 0, 0.01))
+        try:
+            self.picture = DirectFrame(parent = self, relief = None, state = DGG.DISABLED, geom = geomParams['geom'], geom_pos = geomParams['geom_pos'], geom_scale = geomParams['geom_scale'], pos = (0.01, 0, 0.01))
+        except:
+            self.picture = DirectFrame(parent = self, relief = None, state = DGG.DISABLED, pos = (0.01, 0, 0.01))
         self.flattenStrong()
 
 

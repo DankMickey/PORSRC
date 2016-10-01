@@ -426,7 +426,7 @@ AccumulatorLimits = {
 StartingGuns = [(51, 1, 1, 0, 0, 1),    # Cutlass | Originally 1
                 ]
 
-if config.GetBool('want-dev-weapons', True):
+if config.GetBool('want-dev-weapons', False):
     StartingGuns.extend([
                 (51, 2001, 2, 0, 0, 1), # Pistol | Originally 2001
                 (51, 3501, 3, 0, 0, 1), # Doll | Originally 3501

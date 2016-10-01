@@ -23,7 +23,18 @@ class ShipItemGUI(InventoryItemGui.InventoryItemGui):
         ItemId.WARSHIP_L3: 'Catalog_War_Frigate',
         ItemId.BRIG_L1: 'Catalog_Light_Brig',
         ItemId.BRIG_L2: 'Catalog_Regular_Brig',
-        ItemId.BRIG_L3: 'Catalog_War_Brig' }
+        ItemId.BRIG_L3: 'Catalog_War_Brig',
+        ItemId.CARRACK_L1: 'Catalog_Light_Carrack',
+        ItemId.CARRACK_L2: 'Catalog_Regular_Carrack',
+        ItemId.CARRACK_L3: 'Catalog_War_Carrack',
+        ItemId.CORVETTE_L1: 'Catalog_Light_Brig',
+        ItemId.CORVETTE_L2: 'Catalog_Regular_Brig',
+        ItemId.CORVETTE_L3: 'Catalog_War_Brig',
+        ItemId.SHIP_OF_THE_LINE: 'Catalog_Ship_Of_Line',
+        ItemId.EL_PATRONS_SHIP: 'Catalog_War_Carrack',
+        ItemId.P_SKEL_PHANTOM: 'Catalog_Phantom',
+        ItemId.HUNTER_TALLYHO: 'Catalog_Ship_Of_Line',
+        ItemId.QUEEN_ANNES_REVENGE: 'Catalog_Queen_Anne_Revenge', }
     
     def __init__(self, data, trade = 0, buy = 0, sell = 0, use = 0, **kw):
         optiondefs = ()
@@ -34,6 +45,14 @@ class ShipItemGUI(InventoryItemGui.InventoryItemGui):
         self.checkLevel(repId, self.minLvl)
         self.flattenStrong()
 
+    def getCardTexture(self, imageName, card):
+        tex = None
+        try:
+            texCard = card.find('**/%s*' % imageName)
+            tex = texCard.findAllTextures()[0]
+        except:
+            tex = loader.loadTexture('maps/%s.jpg' % imageName)
+        return tex
     
     def createGui(self):
         (item, quantity) = self.data
@@ -47,10 +66,10 @@ class ShipItemGUI(InventoryItemGui.InventoryItemGui):
         
         card = loader.loadModel('models/textureCards/shipCatalog')
         renderName = self.shipImageDict.get(item, 'Catalog_War_Brig')
-        myTexCard = card.find('**/%s*' % renderName)
-        myTex = myTexCard.findAllTextures()[0]
+        myTex = self.getCardTexture(renderName, card)
         card.removeNode()
         del card
+        self['state'] = DGG.NORMAL
         self.minLvl = EconomyGlobals.getItemMinLevel(item)
         self.miscText = None
         self.picture = DirectFrame(parent = self, relief = None, state = DGG.DISABLED, image = myTex, image_scale = (0.070000000000000007, 1.0, 0.059999999999999998))
@@ -80,9 +99,10 @@ class ShipItemGUI(InventoryItemGui.InventoryItemGui):
             repAmt = inv.getAccumulator(repId)
             if minLvl > ReputationGlobals.getLevelFromTotalReputation(repId, repAmt)[0]:
                 if not self.miscText:
-                    self.miscText = DirectLabel(parent = self, relief = None, text = '', text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.16, 0, 0.025000000000000001))
+                    self.miscText = DirectLabel(parent = self, relief = None, text = '', text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.16, 0, 0.025))
                 
-                self['image_color'] = Vec4(1, 0.5, 0.25, 1)
-                self['state'] = DGG.DISABLED
-                self.miscText['text_fg'] = PiratesGuiGlobals.TextFG8
-                self.miscText['text'] = PLocalizer.LevelRequirement % minLvl
+                if not base.config.GetBool('ignore-ship-shop-levels', False):
+                    self['image_color'] = Vec4(1, 0.5, 0.25, 1)
+                    self['state'] = DGG.DISABLED
+                    self.miscText['text_fg'] = PiratesGuiGlobals.TextFG8
+                    self.miscText['text'] = PLocalizer.LevelRequirement % minLvl

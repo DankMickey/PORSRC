@@ -1,9 +1,12 @@
 from direct.distributed.DistributedCartesianGridAI import DistributedCartesianGridAI
 from direct.distributed.GridParent import GridParent
+from direct.directnotify import DirectNotifyGlobal
+from direct.task import Task
 from pirates.world.DistributedGameAreaAI import DistributedGameAreaAI
 from pirates.battle.Teamable import Teamable
 from pirates.piratesbase import PiratesGlobals
 import WorldGlobals
+import random
 
 # Treasure
 from pirates.interact.DistributedSearchableContainerAI import DistributedSearchableContainerAI
@@ -13,8 +16,6 @@ from pirates.treasuremap.DistributedBuriedTreasureAI import DistributedBuriedTre
 from pirates.minigame.DistributedPotionCraftingTableAI import DistributedPotionCraftingTableAI
 from pirates.minigame.DistributedRepairBenchAI import DistributedRepairBenchAI
 from pirates.minigame.DistributedFishingSpotAI import DistributedFishingSpotAI
-from pirates.minigame.DistributedGameTableAI import DistributedGameTableAI
-from pirates.minigame.DistributedPokerTableAI import DistributedPokerTableAI
 
 # Holiday
 from pirates.holiday.DistributedHolidayObjectAI import DistributedHolidayObjectAI
@@ -24,6 +25,8 @@ from DistributedDinghyAI import DistributedDinghyAI
 from DistributedGATunnelAI import DistributedGATunnelAI
 
 class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Teamable):
+    notify = DirectNotifyGlobal.directNotify.newCategory('DistributedIslandAI')
+
     def __init__(self, mainWorld, islandModel):
         air = mainWorld.air
 
@@ -46,11 +49,33 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
         self.portCollisionSpheres = []
         self.feastFireEnabled = False
         self.fireworkShowEnabled = [False, 0]
+        self.nextEvent = 0
 
         self.__fspots = 0
         self.__dinghyIdx = 0
 
         self.jail = None
+
+    def announceGenerate(self):
+        DistributedCartesianGridAI.announceGenerate(self)
+        DistributedGameAreaAI.announceGenerate(self)
+        if config.GetBool('want-island-events', True):
+            self.__runIslandEvents()
+            self.runEvents = taskMgr.doMethodLater(15, self.__runIslandEvents, 'runEvents')
+
+    def delete(self):
+        DistributedCartesianGridAI.delete(self)
+        DistributedGameAreaAI.delete(self)
+        if hasattr(self, 'runEvents'):
+            taskMgr.remove(self.runEvents)
+
+    def __runIslandEvents(self, task=None):
+        self.nextEvent -= 15
+        if self.nextEvent <= 0:
+            if self.getUniqueId() == "1233100928.0akelts":
+                self.makeLavaErupt()
+                self.nextEvent = random.randint(5, 10) * 60
+        return Task.again
 
     def setIslandTransform(self, x, y, z, h):
         self.setXYZH(x, y, z, h)
@@ -200,7 +225,7 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
             genObj = DistributedRepairBenchAI.makeFromObjectKey(self.air, objKey, object)
             self.generateChild(genObj)
 
-        elif objType == 'Holiday' and config.GetBool('want-holiday-objects', 1):
+        elif objType == 'Holiday' and config.GetBool('want-holiday-objects', 0):
             genObj = DistributedHolidayObjectAI.makeFromObjectKey(self.air, objKey, object)
             self.generateChild(genObj)
 
@@ -208,9 +233,6 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
             genObj = DistributedGATunnelAI.makeFromObjectKey(self.air, objKey, object)
             self.generateChild(genObj)
 
-        elif objType == 'Parlor Game' and config.GetBool('want-parlor-games', 0):
-            genObject = DistributedPokerTableAI.makeFromObjectKey(self.air, objKey, object)
-            self.generateChild(genObj)
         else:
             genObj = DistributedGameAreaAI.createObject(self, objType, parent, objKey, object)
 

@@ -124,7 +124,7 @@ class CrewInviter(DirectFrame):
     def enterBegin(self):
         if self.avId == localAvatar.doId:
             self.fsm.request('leaveCrew')
-        elif self.bandId and self.bandId[0] != 0 or self.bandId[1] != 0 or DistributedBandMember.DistributedBandMember.getBandMember(self.avId):
+        elif DistributedBandMember.DistributedBandMember.getBandMember(self.avId):
             if DistributedBandMember.DistributedBandMember.areSameCrew(localAvatar.doId, self.avId):
                 if DistributedBandMember.DistributedBandMember.IsLocalAvatarHeadOfBand():
                     self.fsm.request('alreadyCrewed')
@@ -179,7 +179,7 @@ class CrewInviter(DirectFrame):
             self.fsm.request('askingNPC')
             return None
 
-        if base.cr.PirateBandManager == None:
+        if not hasattr(base.cr, 'PirateBandManager'):
             self.fsm.request('wentAway')
             return None
 

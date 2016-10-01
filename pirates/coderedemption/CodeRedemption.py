@@ -1,4 +1,4 @@
-from direct.distributed.DistributedObjectGlobal import DistributedObjectGlobal
+from direct.distributed.DistributedObject import DistributedObject
 from direct.directnotify.DirectNotifyGlobal import directNotify
 from direct.task import Task
 from otp.distributed import OtpDoGlobals
@@ -7,12 +7,21 @@ from otp.otpbase import OTPGlobals
 from pirates.piratesbase import PLocalizer
 from pirates.coderedemption import CodeRedemptionGlobals
 
-class CodeRedemption(DistributedObjectGlobal):
+class CodeRedemption(DistributedObject):
     notify = directNotify.newCategory('CodeRedemption')
+    neverDisable = 1
 
     def __init__(self, cr):
-        DistributedObjectGlobal.__init__(self, cr)
+        DistributedObject.__init__(self, cr)
         self.waiting = False
+
+    def announceGenerate(self):
+        self.cr.codeRedemption = self
+        DistributedObject.announceGenerate(self)
+
+    def disable(self):
+        self.cr.codeRedemption = None
+        DistributedObject.disable(self)
 
     def redeemCode(self, code):
         if code:

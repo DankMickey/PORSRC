@@ -85,6 +85,7 @@ class Styles:
     SailRose = 122
     SailLime = 123
     SailMaroon = 130
+    ElPatron = 131
 
 
 
@@ -140,14 +141,16 @@ WARSHIPCOM = 24
 BRIGL1 = 25
 BRIGL2 = 26
 BRIGL3 = 27
-SHIP_OF_THE_LINE = 30
-HMS_VICTORY = 31
-HMS_NEWCASTLE = 32
-HMS_INVINCIBLE = 33
-EITC_INTREPID = 34
-EITC_CONQUERER = 35
-EITC_LEVIATHAN = 36
-EL_PATRONS_SHIP = 37
+CARRACKL1 = 28
+CARRACKL2 = 29
+CARRACKL3 = 30
+SHIP_OF_THE_LINE = 31
+HMS_VICTORY = 32
+HMS_NEWCASTLE = 33
+HMS_INVINCIBLE = 34
+EITC_INTREPID = 35
+EITC_CONQUERER = 36
+EITC_LEVIATHAN = 37
 P_SKEL_PHANTOM = 38
 P_SKEL_REVENANT = 39
 P_SKEL_CEREBUS = 40
@@ -160,7 +163,7 @@ FLYING_DUTCHMAN = 52
 GOLIATH = 53
 JOLLY_ROGER = 54
 QUEEN_ANNES_REVENGE = 55
-#BLACK_PEARL2 = 56
+EL_PATRONS_SHIP = 56
 SKEL_WARSHIPL3 = 60
 SKEL_INTERCEPTORL3 = 61
 NAVY_FERRET = 80
@@ -211,8 +214,11 @@ HUNTER_SCORNED_SIREN = 166
 HUNTER_TALLYHO = 180
 HUNTER_BATTLEROYALE = 181
 HUNTER_EN_GARDE = 182
+CORVETTEL1 = 183
+CORVETTEL2 = 184
+CORVETTEL3 = 185
 STUMPY_SHIP = 255
-PLAYER_SHIPS = (INTERCEPTORL1, INTERCEPTORL2, INTERCEPTORL3, MERCHANTL1, MERCHANTL2, MERCHANTL3, WARSHIPL1, WARSHIPL2, WARSHIPL3, BRIGL1, BRIGL2, BRIGL3, SHIP_OF_THE_LINE, EL_PATRONS_SHIP, P_SKEL_PHANTOM, P_SKEL_REVENANT, P_SKEL_CEREBUS, P_NAVY_KINGFISHER, P_EITC_WARLORD, NAVY_KRAKEN_HUNTER)
+PLAYER_SHIPS = (INTERCEPTORL1, INTERCEPTORL2, INTERCEPTORL3, MERCHANTL1, MERCHANTL2, MERCHANTL3, WARSHIPL1, WARSHIPL2, WARSHIPL3, BRIGL1, BRIGL2, BRIGL3, CARRACKL1, CARRACKL2, CARRACKL3, CORVETTEL1, CORVETTEL2, CORVETTEL3, SHIP_OF_THE_LINE, EL_PATRONS_SHIP, P_SKEL_PHANTOM, P_SKEL_REVENANT, P_SKEL_CEREBUS, P_NAVY_KINGFISHER, P_EITC_WARLORD, NAVY_KRAKEN_HUNTER)
 MAST_LOGO_PLACEMENT = {
     INTERCEPTORL1: [
         0],
@@ -238,6 +244,18 @@ MAST_LOGO_PLACEMENT = {
         0],
     BRIGL3: [
         0],
+    CARRACKL1: [
+        0],
+    CARRACKL2: [
+        0],
+    CARRACKL3: [
+        0], 
+    CORVETTEL1: [
+        0],
+    CORVETTEL2: [
+        0],
+    CORVETTEL3: [
+        0],       
     WARSHIPCOM: [
         0] }
 SHIP_CLASS_LIST = [
@@ -253,6 +271,12 @@ SHIP_CLASS_LIST = [
     'BRIGL1',
     'BRIGL2',
     'BRIGL3',
+    'CARRACKL1',
+    'CARRACKL2',
+    'CARRACKL3',
+    'CORVETTEL1',
+    'CORVETTEL2',
+    'CORVETTEL3',
     'BLACK_PEARL',
     'DAUNTLESS',
     'FLYING_DUTCHMAN',
@@ -444,6 +468,30 @@ __hullArmor = {
         2700,
         2700],
     BRIGL3: [
+        3000,
+        4500,
+        4500],
+    CARRACKL1: [
+        1300,
+        1500,
+        1500],
+    CARRACKL2: [
+        1900,
+        2700,
+        2700],
+    CARRACKL3: [
+        3000,
+        4500,
+        4500],
+    CORVETTEL1: [
+        1300,
+        1500,
+        1500],
+    CORVETTEL2: [
+        1900,
+        2700,
+        2700],
+    CORVETTEL3: [
         3000,
         4500,
         4500],
@@ -743,6 +791,242 @@ __shipConfigs = {
         'maxReverseSpeed': 0.75 * defaultMaxReverseAcceleration,
         'turn': 0.69999999999999996 * defaultTurn,
         'maxTurn': 0.69999999999999996 * defaultMaxTurn },
+    CARRACKL1: {
+        'setShipClass': CARRACKL1,
+        'modelClass': CARRACKL1,
+        'defaultStyle': Styles.Player,
+        'mastConfig1': (Masts.Main_Square, 1),
+        'mastConfig2': (Masts.Main_Square, 2),
+        'mastConfig3': 0,
+        'foremastConfig': (Masts.Fore_Multi, 2),
+        'aftmastConfig': 0,
+        'sailLogo': Logos.NoLogo,
+        'cannons': [
+            Cannons.L3] * 6,
+        'leftBroadsides': [
+            Cannons.L2] * 5,
+        'rightBroadsides': [
+            Cannons.L2] * 5,
+        'broadsideAmmo': InventoryType.CannonRoundShot,
+        'cannonAmmo': InventoryType.CannonRoundShot,
+        'prow': 0,
+        'hp': 3900,
+        'sp': 5500,
+        'maxCargo': 8,
+        'maxCrew': 8,
+        'maxCannons': 8,
+        'maxBroadsides': 10,
+        'rammingPower': 400,
+        'acceleration': 1.1499999999999999 * defaultAcceleration,
+        'maxSpeed': 0.84999999999999998 * defaultMaxSpeed,
+        'reverseAcceleration': 0.75 * defaultReverseAcceleration,
+        'maxReverseSpeed': 0.75 * defaultMaxReverseAcceleration,
+        'turn': 0.69999999999999996 * defaultTurn,
+        'maxTurn': 0.69999999999999996 * defaultMaxTurn },
+    CARRACKL2: {
+        'setShipClass': CARRACKL2,
+        'modelClass': CARRACKL2,
+        'defaultStyle': Styles.Player,
+        'mastConfig1': (Masts.Main_Square, 2),
+        'mastConfig2': (Masts.Main_Square, 2),
+        'mastConfig3': 0,
+        'foremastConfig': (Masts.Fore_Multi, 2),
+        'aftmastConfig': (Masts.Aft_Tri, 1),
+        'sailLogo': Logos.NoLogo,
+        'cannons': [
+            Cannons.L3] * 10,
+        'leftBroadsides': [
+            Cannons.L2] * 7,
+        'rightBroadsides': [
+            Cannons.L2] * 7,
+        'broadsideAmmo': InventoryType.CannonRoundShot,
+        'cannonAmmo': InventoryType.CannonRoundShot,
+        'prow': 0,
+        'hp': 7800,
+        'sp': 8000,
+        'maxCargo': 12,
+        'maxCrew': 10,
+        'maxCannons': 10,
+        'maxBroadsides': 16,
+        'rammingPower': 750,
+        'acceleration': 1.1499999999999999 * defaultAcceleration,
+        'maxSpeed': 0.84999999999999998 * defaultMaxSpeed,
+        'reverseAcceleration': 0.75 * defaultReverseAcceleration,
+        'maxReverseSpeed': 0.75 * defaultMaxReverseAcceleration,
+        'turn': 0.69999999999999996 * defaultTurn,
+        'maxTurn': 0.69999999999999996 * defaultMaxTurn },
+    CARRACKL3: {
+        'setShipClass': CARRACKL3,
+        'modelClass': CARRACKL3,
+        'defaultStyle': Styles.Player,
+        'mastConfig1': (Masts.Main_Square, 3),
+        'mastConfig2': (Masts.Main_Square, 3),
+        'mastConfig3': 0,
+        'foremastConfig': (Masts.Fore_Multi, 3),
+        'aftmastConfig': (Masts.Aft_Tri, 1),
+        'sailLogo': Logos.NoLogo,
+        'cannons': [
+            Cannons.L3] * 12,
+        'leftBroadsides': [
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2],
+        'rightBroadsides': [
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2],
+        'broadsideAmmo': InventoryType.CannonRoundShot,
+        'cannonAmmo': InventoryType.CannonRoundShot,
+        'prow': 0,
+        'hp': 12000,
+        'sp': 11000,
+        'maxCargo': 16,
+        'maxCrew': 12,
+        'maxCannons': 14,
+        'maxBroadsides': 22,
+        'rammingPower': 1400,
+        'acceleration': 1.1499999999999999 * defaultAcceleration,
+        'maxSpeed': 0.84999999999999998 * defaultMaxSpeed,
+        'reverseAcceleration': 0.75 * defaultReverseAcceleration,
+        'maxReverseSpeed': 0.75 * defaultMaxReverseAcceleration,
+        'turn': 0.69999999999999996 * defaultTurn,
+        'maxTurn': 0.69999999999999996 * defaultMaxTurn },
+    CORVETTEL1: {
+        'setShipClass': CORVETTEL1,
+        'modelClass': CORVETTEL1,
+        'defaultStyle': Styles.Player,
+        'mastConfig1': (Masts.Main_Square, 1),
+        'mastConfig2': (Masts.Main_Square, 2),
+        'mastConfig3': 0,
+        'foremastConfig': (Masts.Fore_Multi, 2),
+        'aftmastConfig': 0,
+        'sailLogo': Logos.NoLogo,
+        'cannons': [
+            Cannons.L3] * 6,
+        'leftBroadsides': [
+            Cannons.L2] * 5,
+        'rightBroadsides': [
+            Cannons.L2] * 5,
+        'broadsideAmmo': InventoryType.CannonRoundShot,
+        'cannonAmmo': InventoryType.CannonRoundShot,
+        'prow': 0,
+        'hp': 3900,
+        'sp': 5500,
+        'maxCargo': 8,
+        'maxCrew': 8,
+        'maxCannons': 8,
+        'maxBroadsides': 10,
+        'rammingPower': 400,
+        'acceleration': 1.1499999999999999 * defaultAcceleration,
+        'maxSpeed': 0.84999999999999998 * defaultMaxSpeed,
+        'reverseAcceleration': 0.75 * defaultReverseAcceleration,
+        'maxReverseSpeed': 0.75 * defaultMaxReverseAcceleration,
+        'turn': 0.69999999999999996 * defaultTurn,
+        'maxTurn': 0.69999999999999996 * defaultMaxTurn },
+    CORVETTEL2: {
+        'setShipClass': CORVETTEL2,
+        'modelClass': CORVETTEL2,
+        'defaultStyle': Styles.Player,
+        'mastConfig1': (Masts.Main_Square, 2),
+        'mastConfig2': (Masts.Main_Square, 2),
+        'mastConfig3': 0,
+        'foremastConfig': (Masts.Fore_Multi, 2),
+        'aftmastConfig': (Masts.Aft_Tri, 1),
+        'sailLogo': Logos.NoLogo,
+        'cannons': [
+            Cannons.L3] * 10,
+        'leftBroadsides': [
+            Cannons.L2] * 7,
+        'rightBroadsides': [
+            Cannons.L2] * 7,
+        'broadsideAmmo': InventoryType.CannonRoundShot,
+        'cannonAmmo': InventoryType.CannonRoundShot,
+        'prow': 0,
+        'hp': 7800,
+        'sp': 8000,
+        'maxCargo': 12,
+        'maxCrew': 10,
+        'maxCannons': 10,
+        'maxBroadsides': 16,
+        'rammingPower': 750,
+        'acceleration': 1.1499999999999999 * defaultAcceleration,
+        'maxSpeed': 0.84999999999999998 * defaultMaxSpeed,
+        'reverseAcceleration': 0.75 * defaultReverseAcceleration,
+        'maxReverseSpeed': 0.75 * defaultMaxReverseAcceleration,
+        'turn': 0.69999999999999996 * defaultTurn,
+        'maxTurn': 0.69999999999999996 * defaultMaxTurn },
+    CORVETTEL3: {
+        'setShipClass': CORVETTEL3,
+        'modelClass': CORVETTEL3,
+        'defaultStyle': Styles.Player,
+        'mastConfig1': (Masts.Main_Square, 3),
+        'mastConfig2': (Masts.Main_Square, 3),
+        'mastConfig3': 0,
+        'foremastConfig': (Masts.Fore_Multi, 3),
+        'aftmastConfig': (Masts.Aft_Tri, 1),
+        'sailLogo': Logos.NoLogo,
+        'cannons': [
+            Cannons.L3] * 12,
+        'leftBroadsides': [
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2],
+        'rightBroadsides': [
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2,
+            Cannons.L2],
+        'broadsideAmmo': InventoryType.CannonRoundShot,
+        'cannonAmmo': InventoryType.CannonRoundShot,
+        'prow': 0,
+        'hp': 12000,
+        'sp': 11000,
+        'maxCargo': 16,
+        'maxCrew': 12,
+        'maxCannons': 14,
+        'maxBroadsides': 22,
+        'rammingPower': 1400,
+        'acceleration': 1.1499999999999999 * defaultAcceleration,
+        'maxSpeed': 0.84999999999999998 * defaultMaxSpeed,
+        'reverseAcceleration': 0.75 * defaultReverseAcceleration,
+        'maxReverseSpeed': 0.75 * defaultMaxReverseAcceleration,
+        'turn': 0.69999999999999996 * defaultTurn,
+        'maxTurn': 0.69999999999999996 * defaultMaxTurn },
     SHIP_OF_THE_LINE: {
         'setShipClass': SHIP_OF_THE_LINE,
         'modelClass': SHIP_OF_THE_LINE,
@@ -777,8 +1061,8 @@ __shipConfigs = {
         'maxTurn': 0.5 * defaultMaxTurn },
     EL_PATRONS_SHIP: {
         'setShipClass': EL_PATRONS_SHIP,
-        'modelClass': EL_PATRONS_SHIP,
-        'defaultStyle': Styles.Player,
+        'modelClass': CARRACKL3,
+        'defaultStyle': Styles.ElPatron,
         'mastConfig1': (Masts.Main_Square, 3),
         'mastConfig2': (Masts.Main_Square, 3),
         'mastConfig3': 0,
@@ -2098,7 +2382,7 @@ __shipConfigs = {
         'maxTurn': 0.8 * defaultMaxTurn },
     EITC_CORVETTE: {
         'setShipClass': EITC_CORVETTE,
-        'modelClass': WARSHIPL1,
+        'modelClass': CORVETTEL1,
         'defaultStyle': Styles.EITC,
         'mastConfig1': (Masts.Main_Square, 1),
         'mastConfig2': (Masts.Main_Square, 2),
@@ -4093,14 +4377,17 @@ BaseLevel = {
     MERCHANTL1: 4,
     WARSHIPL1: 8,
     BRIGL1: 9,
+    CARRACKL1: 10,
     INTERCEPTORL2: 12,
     MERCHANTL2: 16,
     WARSHIPL2: 20,
     BRIGL2: 22,
+    CARRACKL2: 24,
     INTERCEPTORL3: 26,
     MERCHANTL3: 30,
     WARSHIPL3: 34,
     BRIGL3: 36,
+    CARRACKL3: 38,
     #QUEEN_ANNES_REVENGE: 32,
     BLACK_PEARL: 40,
     SKEL_WARSHIPL3: 32,
@@ -4256,6 +4543,12 @@ WaterlineOffsets = {
     WARSHIPL1: -4,
     WARSHIPL2: -4,
     WARSHIPL3: -4,
+    BRIGL1: -4,
+    BRIGL2: -4,
+    BRIGL3: -4,
+    CARRACKL1: -4,
+    CARRACKL2: -4,
+    CARRACKL3: -4,
     QUEEN_ANNES_REVENGE: -4,
     BLACK_PEARL: -10,
     GOLIATH: -10,
@@ -4272,6 +4565,12 @@ TiltFakeMass = {
     WARSHIPL1: 2.5,
     WARSHIPL2: 3.0,
     WARSHIPL3: 4.0,
+    BRIGL1: 2.5,
+    BRIGL2: 3.0,
+    BRIGL3: 4.0,
+    CARRACKL1: 2.5,
+    CARRACKL2: 3.0,
+    CARRACKL3: 4.0,
     QUEEN_ANNES_REVENGE: 1.7,
     SHIP_OF_THE_LINE: 4.5,
     BLACK_PEARL: 4.5,

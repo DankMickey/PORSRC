@@ -15,49 +15,15 @@ from pirates.creature.DistributedCreatureAI import *
 from pirates.creature.DistributedAnimalAI import *
 from pirates.creature.DistributedRavenAI import *
 
+from pirates.ship import ShipGlobals
+from pirates.ship.DistributedNPCSimpleShipAI import DistributedNPCSimpleShipAI
+from pirates.ship.DistributedPlayerSeizeableShipAI import DistributedPlayerSeizeableShipAI
+
 import random, os
 
-CLASSES = {}
-
-for creature in (AvatarTypes.Crab, AvatarTypes.RockCrab, AvatarTypes.StoneCrab,
-                 AvatarTypes.GiantCrab, AvatarTypes.CrusherCrab, AvatarTypes.Chicken,
-                 AvatarTypes.Rooster, AvatarTypes.Pig, AvatarTypes.Dog, AvatarTypes.Seagull, AvatarTypes.Dolphin,
-                 AvatarTypes.Raven, AvatarTypes.Stump, AvatarTypes.TwistedStump, AvatarTypes.FlyTrap,
-                 AvatarTypes.RancidFlyTrap, AvatarTypes.AncientFlyTrap, AvatarTypes.Scorpion,
-                 AvatarTypes.DireScorpion, AvatarTypes.DreadScorpion, AvatarTypes.Alligator,
-                 AvatarTypes.BayouGator, AvatarTypes.BigGator, AvatarTypes.HugeGator, AvatarTypes.Bat,
-                 AvatarTypes.RabidBat, AvatarTypes.VampireBat, AvatarTypes.FireBat, AvatarTypes.Wasp,
-                 AvatarTypes.KillerWasp, AvatarTypes.AngryWasp, AvatarTypes.SoldierWasp,
-                 AvatarTypes.Monkey, AvatarTypes.GrabberTentacle, AvatarTypes.HolderTentacle,
-                 AvatarTypes.Kraken, AvatarTypes.KrakenHead, AvatarTypes.Cadet, AvatarTypes.Guard,
-                 AvatarTypes.Thug, AvatarTypes.Grunt, AvatarTypes.Hiredgun, AvatarTypes.Mercenary,
-                 AvatarTypes.Assassin, AvatarTypes.Marine, AvatarTypes.Sergeant, AvatarTypes.Veteran,
-                 AvatarTypes.Officer, AvatarTypes.FrenchUndeadA, AvatarTypes.FrenchUndeadB, AvatarTypes.FrenchUndeadC,
-                 AvatarTypes.FrenchUndeadD, AvatarTypes.Dragoon, AvatarTypes.SpanishUndeadA, AvatarTypes.SpanishUndeadB,
-                 AvatarTypes.SpanishUndeadC, AvatarTypes.SpanishUndeadD, AvatarTypes.Clod, AvatarTypes.Sludge,
-                 AvatarTypes.Mire, AvatarTypes.MireKnife, AvatarTypes.Muck, AvatarTypes.MuckCutlass, AvatarTypes.Corpse,
-                 AvatarTypes.CorpseCutlass, AvatarTypes.Carrion, AvatarTypes.CarrionKnife, AvatarTypes.Cadaver,
-                 AvatarTypes.CadaverCutlass, AvatarTypes.Zombie, AvatarTypes.CaptMudmoss, AvatarTypes.Mossman,
-                 AvatarTypes.Drip, AvatarTypes.RageGhost, AvatarTypes.Revenant, AvatarTypes.MutineerGhost, AvatarTypes.DeviousGhost,
-                 AvatarTypes.TraitorGhost, AvatarTypes.CrewGhost, AvatarTypes.LeaderGhost, AvatarTypes.Rogue, AvatarTypes.Stalker,
-                 AvatarTypes.Cutthroat, AvatarTypes.Executioner, AvatarTypes.Professional, AvatarTypes.PettyHunter, AvatarTypes.BailHunter,
-                 AvatarTypes.ScallyWagHunter, AvatarTypes.BanditHunter, AvatarTypes.PirateHunter, AvatarTypes.WitchHunter, AvatarTypes.MasterHunter):
-    if creature.isA(AvatarTypes.Animal):
-        CLASSES[creature] = DistributedAnimalAI
-    elif creature.isA(AvatarTypes.BountyHunter):
-        CLASSES[creature] = DistributedBountyHunterAI
-    elif creature.isA(AvatarTypes.TradingCo) or creature.isA(AvatarTypes.Navy):
-        CLASSES[creature] = DistributedNPCNavySailorAI
-    elif creature.isA(AvatarTypes.RageGhost):
-        CLASSES[creature] = DistributedKillerGhostAI
-    elif creature.isA(AvatarTypes.Ghost):
-        CLASSES[creature] = DistributedGhostAI
-    elif creature == AvatarTypes.Raven:
-        CLASSES[creature] = DistributedRavenAI
-    elif creature.faction == AvatarTypes.Undead.faction:
-        CLASSES[creature] = DistributedNPCSkeletonAI
-    else:
-        CLASSES[creature] = DistributedCreatureAI
+NPC_CACHE = {}
+ANIMAL_CACHE = {}
+SHIP_CACHE = {}
 
 class EnemySpawnNode(DirectObject.DirectObject):
     notify = DirectNotifyGlobal.directNotify.newCategory('EnemySpawnNode')
@@ -77,14 +43,57 @@ class EnemySpawnNode(DirectObject.DirectObject):
             return
 
         self.avType = AvatarTypes.NPC_SPAWNABLES[self.spawnable][0]()
-        if self.avType not in CLASSES:
-            DistributedEnemySpawnerAI.missingClass(self.avType)
+        self.avClass = self.getClassFromAvatarType(self.avType)
+        if self.avClass == None:
+            self.notify.warning("Unknown avatar class: %s" % self.spawnable)
+            DistributedEnemySpawnerAI.missingAvatarClass(self.avType)
             return
-
-        self.avClass = CLASSES[self.avType]
 
         self.desiredNumAvatars = self.data['Min Population'] or 1
         self.acceptOnce('startShardActivity', self.died)
+
+    def getClassFromAvatarType(self, avatar):
+        avatarClass = None
+        if avatar in NPC_CACHE:
+            return NPC_CACHE[avatar]
+
+        if avatar.isA(AvatarTypes.Animal):
+            avatarClass = DistributedAnimalAI
+        elif avatar == AvatarTypes.Raven:
+            avatarClass = DistributedRavenAI
+        elif avatar.isA(AvatarTypes.SeaMonster):
+            pass
+        elif avatar.isA(AvatarTypes.Undead):
+            if avatar.isA(AvatarTypes.FrenchBoss) or avatar.isA(AvatarTypes.SpanishBoss):
+                #avatarClass = DistributedBossSkeletonAI
+                pass
+            elif avatar == AvatarTypes.BomberZombie:
+                #avatarClass = DistributeBomberZombieAI
+                pass
+            else:
+                avatarClass = DistributedNPCSkeletonAI
+        elif avatar.isA(AvatarTypes.Navy):
+            avatarClass = DistributedNPCNavySailorAI
+        elif avatar.isA(AvatarTypes.GhostPirate):
+            avatarClass = DistributedGhostAI
+        elif avatar.isA(AvatarTypes.KillerGhost):
+            avatarClass = DistributedKillerGhostAI
+        elif avatar.isA(AvatarTypes.BountyHunter):
+            avatarClass = DistributedBountyHunterAI
+        elif avatar.isA(AvatarTypes.TradingCo):
+            avatarClass = DistributedNPCNavySailorAI
+        elif avatar.isA(AvatarTypes.VoodooZombie):
+            if avatar.isA(AvatarTypes.VoodooZombieBoss):
+                pass
+            else:
+                avatarClass = DistributedVoodooZombieAI
+        else:
+            avatarClass = DistributedCreatureAI
+
+        if avatar not in NPC_CACHE and avatarClass != None:
+            NPC_CACHE[avatar] = avatarClass
+
+        return avatarClass
 
     def died(self):
         taskMgr.doMethodLater(random.random() * 7, self.__checkCreatures, self.uniqueName('checkCreatures'))
@@ -132,13 +141,30 @@ class AnimalSpawnNode(DirectObject.DirectObject):
             return
 
         self.avType = AvatarTypes.NPC_SPAWNABLES[self.spawnable][0]()
-        self.avClass = DistributedAnimalAI
 
-        if self.spawnable == "Raven":
-            self.avClass = DistributedRavenAI
+        self.avClass = self.getClassFromAnimalType(self.spawnable)
+        if self.avClass == None:
+            self.notify.warning("Unknown animal class: %s" % self.spawnable)
+            DistributedEnemySpawnerAI.missingAnimalClass(self.spawnable)
+            return            
 
         self.desiredNumAvatars = 1
         self.acceptOnce('startShardActivity', self.died)
+
+    def getClassFromAnimalType(self, animal): #Done like this for potential future expansion
+        avatarClass = None
+        if animal in ANIMAL_CACHE:
+            return ANIMAL_CACHE[animal]
+
+        if animal == "Raven":
+            avatarClass = DistributedRavenAI
+        else:
+            avatarClass = DistributedAnimalAI
+
+        if avatarClass != None and animal not in ANIMAL_CACHE:
+            ANIMAL_CACHE[animal] = avatarClass
+
+        return avatarClass
 
     def died(self):
         taskMgr.doMethodLater(random.random() * 7, self.__checkCreatures, self.uniqueName('checkCreatures'))
@@ -167,9 +193,63 @@ class AnimalSpawnNode(DirectObject.DirectObject):
     def uniqueName(self, name):
         return '%s-%s' % (self.uid, name)
 
+class ShipSpawnNode(DirectObject.DirectObject):
+    notify = DirectNotifyGlobal.directNotify.newCategory('ShipSpawnNode')
+
+    def __init__(self, spawner, data):
+        self.spawner = spawner
+        self.air = self.spawner.air
+        self.uid = 'ShipSpawnNode-%d' % self.air.allocateChannel()
+        self.ships = {}
+
+        self.data = data
+        if 'Spawnables' not in data:
+            return
+
+        self.spawnable = self.data['Spawnables']
+        self.flagship = self.data['Flagship'] or False
+
+        if self.spawnable not in ShipGlobals.SHIP_CLASS_LIST:
+            self.notify.warning("Unknown ship class: %s" % self.spawnable)
+            DistributedEnemySpawnerAI.missingShipClass(self.spawnable)
+            return
+
+        self.shipClass = DistributedNPCSimpleShipAI
+
+        self.desiredNumShips = 1
+        self.acceptOnce('startShardActivity', self.died)
+
+    def died(self):
+        taskMgr.doMethodLater(random.random() * 7, self.__checkShips, self.uniqueName('checkShips'))
+
+    def __checkShips(self, task):
+        deadShips = []
+        for doId, ship in self.ships.items():
+            if ship.isDeleted():
+                deadShips.append(doId)
+
+        for doId in deadShips:
+            del self.ships[doId]
+
+        # Upkeep population
+        numShips = len(self.ships)
+        if numShips < self.desiredNumShips:
+            uid = self.uniqueName('spawned-%s' % os.urandom(4).encode('hex'))
+            ship = self.shipClass.makeFromObjectKey(self.shipClass, self, uid, self.data)
+            self.spawner.spawn(ship)
+            self.ships[ship.doId] = ship
+
+        if task:
+            return task.done
+
+    def uniqueName(self, name):
+        return '%s-%s' % (self.uid, name)
+
 class DistributedEnemySpawnerAI:
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedEnemySpawnerAI')
-    _missing = set() # Debug
+    _avatarMissing = set() # Debug
+    _shipMissing = set() # Debug
+    _animalMissing = set() #Debug
 
     def __init__(self, gameArea):
         self.gameArea = gameArea
@@ -182,6 +262,9 @@ class DistributedEnemySpawnerAI:
 
     def addAnimalSpawnNode(self, objKey, data):
         self.spawnNodes[objKey] = AnimalSpawnNode(self, data)
+
+    def addShipSpawnNode(self, objKey, data):
+        self.spawnNodes[objKey] = ShipSpawnNode(self, data)
 
     def spawnNavy(self, objKey, data):
         npc = DistributedNPCPirateAI.makeFromObjectKey(None, self, objKey, data)
@@ -206,16 +289,46 @@ class DistributedEnemySpawnerAI:
         self.gameArea.generateChild(npc)
 
     @classmethod
-    def missingClass(cls, avType):
-        cls._missing.add(avType)
+    def missingAvatarClass(cls, avType):
+        cls._avatarMissing.add(avType)
 
     @classmethod
-    def printMissingTypes(cls):
-        if not cls._missing:
+    def printMissingAvatarTypes(cls):
+        if not cls._avatarMissing:
             return
 
         cls.notify.warning('Missing avatar types:')
-        for avType in cls._missing:
+        for avType in cls._avatarMissing:
             print '   %r' % avType
 
-        del cls._missing
+        del cls._avatarMissing
+
+    @classmethod
+    def missingShipClass(cls, shipType):
+        cls._shipMissing.add(shipType)
+
+    @classmethod
+    def printMissingShipTypes(cls):
+        if not cls._shipMissing:
+            return
+
+        cls.notify.warning('Missing ship types:')
+        for shipType in cls._shipMissing:
+            print '   %r' % shipType
+
+        del cls._shipMissing   
+
+    @classmethod
+    def missingAnimalClass(cls, avType):
+        cls._animalMissing.add(avType)
+
+    @classmethod
+    def printMissingAnimalTypes(cls):
+        if not cls._animalMissing:
+            return
+
+        cls.notify.warning('Missing animal types:')
+        for avType in cls._animalMissing:
+            print '   %r' % avType
+
+        del cls._animalMissing 
