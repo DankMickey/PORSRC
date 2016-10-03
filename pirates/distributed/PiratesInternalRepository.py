@@ -20,26 +20,36 @@ class PiratesInternalRepository(AstronInternalRepository):
             self, baseChannel, serverId=serverId, dcFileNames=dcFileNames,
             dcSuffix=dcSuffix, connectMethod=connectMethod, threadedNet=threadedNet)
 
+    def __mongoMissing(self):
+        self.notify.warning('The usage of MongoDB is highly recommended. Please switch as soon as possible.')
+
     def handleConnected(self):
         self.__messenger = PiratesNetMessengerAI(self)
         
         try:
             import pymongo
         except:
+            self.notify.warning("Couldn't find pymongo package!")
+            self.__mongoMissing()
             return
 
-        mongoUrl = config.GetString('mongodb-url', 'mongodb://localhost')
-        replicaSet = config.GetString('mongodb-replicaset', '')
+        mongoUrl = config.GetString('mongodb-url', '')
+        
+        if not mongoUrl:
+            self.__mongoMissing()
+            return
+
         db = (urlparse.urlparse(mongoUrl).path or '/porgame')[1:]
 
-        if replicaSet:
-            self.dbConn = pymongo.MongoClient(mongoUrl, replicaset=replicaSet)
-        else:
-            self.dbConn = pymongo.MongoClient(mongoUrl)
-
+        self.dbConn = pymongo.MongoClient(mongoUrl)
         self.database = self.dbConn[db]
         self.dbGlobalCursor = self.database.porGame
         self.dbAstronCursor = self.database.astron
+        
+        self.notify.info('Connected to MongoDB.')
+    
+    def hasMongo(self):
+        return hasattr(self, 'database')
 
     def getAvatarIdFromSender(self):
         return int(self.getMsgSender() & 0xFFFFFFFF)

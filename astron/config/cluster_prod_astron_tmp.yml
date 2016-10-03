@@ -54,7 +54,7 @@ roles:
           max: 399999999
       backend:
         type: mongodb
-        server: mongodb://127.0.0.1:%MONGO_PORT%/porgame
+        server: %MONGO_IP%
 
     - type: dbss
       database: 1101

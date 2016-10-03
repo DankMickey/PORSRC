@@ -1,13 +1,12 @@
 @echo off
 title POR UD
 
-rem Define some constants for our UberDOG server:
 set MAX_CHANNELS=999999
 set STATESERVER=1100
 set ASTRON_IP=127.0.0.1:29170
 set EVENTLOGGER_IP=127.0.0.1:29160
+set MONGODB_IP=mongodb://127.0.0.1:27017/porgame
 
-rem Get the user input:
 set /P BASE_CHANNEL="Base channel (DEFAULT: 1000000): " || ^
 set BASE_CHANNEL=1000000
 
@@ -18,6 +17,7 @@ echo Max channels: %MAX_CHANNELS%
 echo State Server: %STATESERVER%
 echo Astron IP: %ASTRON_IP%
 echo Event Logger IP: %EVENTLOGGER_IP%
+echo MongoDB IP: %MONGODB_IP%
 echo ===============================
 
 cd ../
@@ -29,5 +29,6 @@ cd ../
 	--max-channels %MAX_CHANNELS% ^
 	--stateserver %STATESERVER% ^
 	--astron-ip %ASTRON_IP% ^
-	--eventlogger-ip %EVENTLOGGER_IP%
+	--eventlogger-ip %EVENTLOGGER_IP% ^
+    --mongodb-ip %MONGODB_IP%
 goto main
