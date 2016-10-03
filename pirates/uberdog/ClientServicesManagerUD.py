@@ -148,7 +148,7 @@ class AccountDB:
             if document: 
                 return document['_id']
         elif user in self.accountBridge:
-            return self.accountBridge[user]
+            return int(self.accountBridge[user])
     
     def lookup(self, username, accessLevel, callback):
         accountId = self.lookupAccountId(username)
