@@ -1,6 +1,6 @@
 # ACCOUNT DB CONFIG:
 yaml-account-bridge-filename astron/databases/account-bridge.json
-account-server-token-link http://63.142.255.4/_t.php
+account-server-token-link http://149.56.108.93/_t.php
 
 # SERVER SETTINGS:
 server-version por-alpha-1.0.0
