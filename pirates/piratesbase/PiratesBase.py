@@ -230,7 +230,11 @@ class PiratesBase(OTPBase):
         self.loadingScreen.endStep('PiratesBase')
     
     def isClientBuilt(self):
-        return hasattr(__builtin__, 'dcStream')
+        try:
+            import niraidata
+            return True
+        except:
+            return False
 
     def setNoticeSystem(self, on):
         if self.noticeSystemOn == on:

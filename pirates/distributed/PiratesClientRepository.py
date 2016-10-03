@@ -816,15 +816,16 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
     def enterConnect(self, serverList=[]):
         # TLS config
         self.checkHttp()
+        certPem = None
 
-        if not base.isClientBuilt():
+        if 'certPem' in __builtin__.__dict__:
+            certPem = __builtin__.certPem
+        elif not base.isClientBuilt():
             certFile = os.path.join('astron', 'certs', 'cert.crt')
             
             if os.path.exists(certFile):
                 with open(certFile, 'r') as file:
                     certPem = file.read()
-            else:
-                certPem = None
         
         if certPem:
             self.notify.info('Adding TLS certificate.')
