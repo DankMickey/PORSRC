@@ -732,7 +732,7 @@ def takeGold(gold):
 
 @magicWord(CATEGORY_GAME_MASTER)
 def cursed():
-    target = spellbook.getInvoker()
+    target = spellbook.getTarget()
     state, cursed = target.getZombie()
     response = ''
     if state:
@@ -740,7 +740,7 @@ def cursed():
         response = 'The curse has worn off...'
     else:
         target.b_setZombie(1, 1)
-        response = 'You are cursed!'
+        response = 'Your target is cursed!'
     return response
 
 @magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
