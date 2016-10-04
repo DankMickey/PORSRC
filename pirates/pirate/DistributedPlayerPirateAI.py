@@ -691,18 +691,28 @@ def gm(color=None, tag=None):
 @magicWord(CATEGORY_GAME_MASTER, types=[int])
 def giveGold(gold):
     target = spellbook.getTarget()
+    invoker = spellbook.getInvoker()
     target.giveGold(gold)
+
+    air = invoker.air
+    if hasattr(air, 'analyticsMgr'):
+        air.analyticsMgr.track("command-used", command="giveGold", invoker=invoker.getName(), target=target.getName(), amount=gold)
     return 'Given %d gold! Balance: %d' % (gold, target.getGoldInPocket())
 
 @magicWord(CATEGORY_GAME_MASTER, types=[int])
 def takeGold(gold):
     target = spellbook.getTarget()
+    invoker = spellbook.getInvoker()
     target.takeGold(gold)
+
+    air = invoker.air
+    if hasattr(air, 'analyticsMgr'):
+        air.analyticsMgr.track("command-used", command="takeGold", invoker=invoker.getName(), target=target.getName(), amount=gold)
     return 'Taken %d gold! Balance: %d' % (gold, target.getGoldInPocket())
 
 @magicWord(CATEGORY_GAME_MASTER)
 def cursed():
-    target = spellbook.getTarget()
+    target = spellbook.getInvoker()
     state, cursed = target.getZombie()
     response = ''
     if state:
@@ -739,8 +749,12 @@ def setShipBadge(title, rank):
 @magicWord(CATEGORY_GAME_MASTER, types=[int, int, int])
 def giveLocatable(type, itemId, amount):
     target = spellbook.getTarget()
+    invoker = spellbook.getInvoker()
 
     from pirates.uberdog.TradableInventoryBase import InvItem
+
+    if not invoker or not target:
+        return "Failed to give locatable, Unknown error has occured."
 
     inv = target.getInventory()
 
@@ -755,14 +769,22 @@ def giveLocatable(type, itemId, amount):
     if not success:
         return "Failed to give locatable. Target's inventory is most likely full."
 
+    air = invoker.air
+    if hasattr(air, 'analyticsMgr'):
+        air.analyticsMgr.track("command-used", command="giveLoctable", invoker=invoker.getName(), target=target.getName(), itemId=itemId, amount=amount)
+
     return "Locatable given."
 
 @magicWord(CATEGORY_GAME_MASTER, types=[int])
 def giveWeapon(itemId):
     target = spellbook.getTarget()
+    invoker = spellbook.getInvoker()
 
     from pirates.uberdog.UberDogGlobals import InventoryType
     from pirates.uberdog.TradableInventoryBase import InvItem
+
+    if not invoker or not target:
+        return "Failed to give weapon. Unknown error has occured."
 
     inv = target.getInventory()
     if not inv:
@@ -776,14 +798,22 @@ def giveWeapon(itemId):
     if not success:
         return "Failed to give weapon. Target's inventory is most likely full."
 
+    air = invoker.air
+    if hasattr(air, 'analyticsMgr'):
+        air.analyticsMgr.track("command-used", command="giveWeapon", invoker=invoker.getName(), target=target.getName(), itemId=itemId, amount=1)
+
     return "Weapon (%s) given." % itemId
 
 @magicWord(CATEGORY_GAME_MASTER, types=[int])
 def giveClothing(itemId):
     target = spellbook.getTarget()
+    invoker = spellbook.getInvoker()
 
     from pirates.uberdog.UberDogGlobals import InventoryType
     from pirates.uberdog.TradableInventoryBase import InvItem
+
+    if not invoker or not target:
+        return "Failed to give clothing Item. Unknown error has occured."
 
     inv = target.getInventory()
     if not inv:
@@ -797,14 +827,22 @@ def giveClothing(itemId):
     if not success:
         return "Failed to give clothing item. Target's inventory is most likely full."
 
+    air = invoker.air
+    if hasattr(air, 'analyticsMgr'):
+        air.analyticsMgr.track("command-used", command="giveClothing", invoker=invoker.getName(), target=target.getName(), itemId=itemId, amount=1)
+
     return "Clothing (%s) given." % itemId
 
 @magicWord(CATEGORY_GAME_MASTER, types=[int])
 def giveJewelry(itemId):
     target = spellbook.getTarget()
+    invoker = spellbook.getInvoker()
 
     from pirates.uberdog.UberDogGlobals import InventoryType
     from pirates.uberdog.TradableInventoryBase import InvItem
+
+    if not target or not invoker:
+        return "Failed to give jewelry item. Unknown error has occured."
 
     inv = target.getInventory()
     if not inv:
@@ -818,6 +856,10 @@ def giveJewelry(itemId):
     if not success:
         return "Failed to give jewelry item. Target's inventory is most likely full."
 
+    air = invoker.air
+    if hasattr(air, 'analyticsMgr'):
+        air.analyticsMgr.track("command-usage", command="giveJewelry", invoker=invoker.getName(), target=target.getName(), itemId= itemid, amount=1)
+
     return "Jewelry (%s) given." % itemId
 
 @magicWord(CATEGORY_GAME_MASTER, types=[int])
@@ -828,5 +870,5 @@ def ghost(state):
 
 @magicWord(CATEGORY_GAME_MASTER)
 def mypos():
-    av = spellbook.getTarget()
+    av = spellbook.getInvoker()
     return "Pos: %s" % str(av.getPos())
