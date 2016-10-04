@@ -4619,6 +4619,11 @@ SkillDescriptions = {
     EnemySkills.BROADSWORD_STAB: (ComboSkill, 'A powerful finishing move!', '', ClickToLearnCombo, 0),
     EnemySkills.SABRE_HACK: (ComboSkill, 'A fast guarded attack!', '', ClickToLearnCombo, 0),
     EnemySkills.SABRE_SLASH: (ComboSkill, 'A graceful low slash!', '', ClickToLearnCombo, 0),
+    EnemySkills.DUALCUTLASS_COMBINATION: (ComboSkill, 'A combination of attacks!', '', ClickToLearnCombo, 0),
+    EnemySkills.DUALCUTLASS_SPIN: (ComboSkill, 'A sword-spinning move!', '', ClickToLearnCombo, 0),
+    EnemySkills.DUALCUTLASS_BARRAGE: (ComboSkill, 'Some call this the barrage of swords!', '', ClickToLearnCombo, 0),
+    EnemySkills.DUALCUTLASS_XSLASH: (ComboSkill, 'A slashing attack!', '', ClickToLearnCombo, 0),
+    EnemySkills.DUALCUTLASS_GORE: (ComboSkill, 'A gory attack!', '', ClickToLearnCombo, 0),
     EnemySkills.SABRE_CLEAVE: (ComboSkill, 'Rapid fire sword thrusts!', '', ClickToLearnCombo, 0),
     EnemySkills.SABRE_FLOURISH: (ComboSkill, 'A barrage of sword blows!', '', ClickToLearnCombo, 0),
     EnemySkills.SABRE_STAB: (ComboSkill, 'An impressive finishing slash!', '', ClickToLearnCombo, 0),
@@ -11000,6 +11005,7 @@ CodeRedemptionScimitar48 = 'Scimitar 48'
 CodeRedemptionSummonChicken = 'Summon Chicken'
 CodeRedemptionSummonWasp = 'Summon Wasp'
 CodeRedemptionSummonDog = 'Summon Dog'
+CodeRedemptionDualCutlasses = 'DualCutlasses'
 ShipPVPQuestFrench = 'French'
 ShipPVPQuestSpanish = 'Spanish'
 ShipPVPQuestKillShip = 'ship'
