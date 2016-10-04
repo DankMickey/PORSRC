@@ -55,6 +55,7 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         self.badge = (0, 0)
         self.shipIcon = (0, 0)
         self.crewIcon = 0
+        self.redeemedCodes = []
 
     def announceGenerate(self):
         DistributedBattleAvatarAI.announceGenerate(self)
@@ -523,6 +524,25 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
     def getShipHat(self):
         return self.shipHat
 
+    def setRedeemedCodes(self, codes):
+        self.redeemedCodes = codes
+
+    def d_setRedeemedCodes(self, codes):
+        self.sendUpdate('setRedeemedCodes', [codes])
+
+    def getRedeemedCodes(self):
+        return self.redeemedCodes
+
+    def addRedeemedCode(self, code):
+        self.redeemedCodes.append(code)
+        self.d_setRedeemedCodes(self.redeemedCodes)
+
+    def removeRedeemedCode(self, code):
+        if code not in self.redeemedCodes:
+            return
+        self.redeemedCodes.remove(code)
+        self.d_setRedeemedCodes(sef.redeemedCodes)
+
     def setStatus(self, todo0):
         pass
 
@@ -872,3 +892,35 @@ def ghost(state):
 def mypos():
     av = spellbook.getInvoker()
     return "Pos: %s" % str(av.getPos())
+
+@magicWord(CATEGORY_GAME_MASTER)
+def getUsedCodes():
+    av = spellbook.getTarget()
+    return "Codes: %s" % str(av.getRedeemedCodes())
+
+@magicWord(CATEGORY_GAME_DEVELOPER)
+def clearUsedCodes():
+    invoker = spellbook.getInvoker()
+    av = spellbook.getTarget()
+    av.d_setRedeemedCodes([])
+    av.setRedeemedCodes([])
+
+    air = invoker.air
+    if hasattr(air, 'analyticsMgr'):
+        air.analyticsMgr.track("command-usage", command="clearUsedCodes", invoker=invoker.getName(), target=av.getName())
+        
+    return "Cleared Redeemed codes."
+
+@magicWord(CATEGORY_GAME_MASTER, types=[str])
+def clearCode(code):
+    invoker = spellbook.getInvoker()
+    av = spellbook.getTarget()
+    if code not in av.getRedeemedCodes():
+        return "Target has not redeemed '%s'." % code
+    av.removeRedeemedCode(code)
+
+    air = invoker.air
+    if hasattr(air,'analyticsMgr'):
+        air.analyticsMgr.track("command-usage", command="clearCode", invoker=invoker.getName(), target=av.getName(), code=code)
+
+    return "Removed '%s'!" % code 

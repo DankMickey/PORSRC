@@ -11,21 +11,10 @@ class CodeRedemptionAI(DistributedObjectAI):
         DistributedObjectAI.__init__(self, air)
 
     def checkAlreadyRedeemed(self, av, code):
-        used = False
-
-        if not av:
-            self.notify.warning("Failed to check redemption status on code '%s'. Avatar is None" % code)
-            return False
-
-        if config.GetBool("reject-all-redeem-codes", False):
-            used = True
-
-        return used
-
-    def registerCodeUsed(self, av, code):
-        if not av:
-            self.notify.warning("Failed to register redemption code as used. Avatar is None")
-            return
+        used = av.getRedeemedCodes()
+        if code in used or config.GetBool('reject-all-redeem-codes', False):
+            return True
+        return False
 
     def attemptToRedeemCode(self, code, avId):
         reward = None
@@ -64,8 +53,6 @@ class CodeRedemptionAI(DistributedObjectAI):
                 if not inv:
                     self.notify.warning("Unable to locate inventory for avatarId: %s" % avId)
                     return buildResponse(CodeRedemptionGlobals.ERROR_ID_BAD)
-                else:
-                	self.notify.info("Inventory located!")
 
                 if invType == CodeRedemptionGlobals.NORMAL_INVENTORY:
                     if rewardType == InventoryType.ItemTypeMoney:
@@ -100,14 +87,16 @@ class CodeRedemptionAI(DistributedObjectAI):
                     else:
                         return buildResponse(CodeRedemptionGlobals.ERROR_ID_OVERFLOW)   
                 elif invType == CodeRedemptionGlobals.HAIR:
+                    self.notify.warning("Unable to process redemption code (%s). Type Hair is not supported yet" % code)
                     return buildResponse(CodeRedemptionGlobals.ERROR_ID_BAD) #TODO add hair redemption
                 else:
                     self.notify.warning("Unable to process redemption code for inventory type: %s" % invType)
                     return buildResponse(CodeRedemptionGlobals.ERROR_ID_BAD)
 
-           	    self.registerCodeUsed(av, code)
+                av.addRedeemedCode(code)
                 return buildResponse(CodeRedemptionGlobals.ERROR_ID_GOOD, rewardType, itemId) 
             else:
+                self.notify.warning("No reward. Code: %s" % code)
                 return buildResponse(CodeRedemptionGlobals.ERROR_ID_BAD)
         except Exception, e:
             self.notify.warning("Unexpected error has occured while processing redemption code '%s' " % code)

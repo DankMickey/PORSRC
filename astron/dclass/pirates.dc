@@ -698,6 +698,7 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   locationChange(string);
   requestInteraction(uint32, uint8, bool) clsend airecv;
   sendCodeForRedemption(string, string, uint32) airecv clsend;
+  setRedeemedCodes(string[] = []) db ram;
 
   // SOME OF THE FIELDS BELOW ARE FROM ORIGINAL GAME
   // ARE COMMENTED OUT FOR NOW (TO AVOID ISSUES):
@@ -826,7 +827,7 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   setTeam(int16) required broadcast ram ownrecv;
   setPvp(uint8) required broadcast ram ownrecv;
   setZombie(uint8, uint8) required broadcast ram ownrecv;
-  setShipHat(uint32) required broadcast ram ownrecv;
+  setShipHat(uint8) required broadcast ram ownrecv;
   setCurseStatus(uint8) ownrecv;
   // setParlorGame(uint8) required broadcast ram ownrecv;
   // setPopulated(uint8) required broadcast db ram;
