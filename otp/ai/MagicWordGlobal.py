@@ -47,8 +47,8 @@ class Spellbook:
 
         ensureAccess(word.access)
         if self.getTarget() and self.getTarget() != self.getInvoker():
-            if self.getInvokerAccess() <= self.getTarget().getAdminAccess():
-                raise MagicError('Target must have lower access')
+            if self.getInvokerAccess() < self.getTarget().getAdminAccess():
+                raise MagicError('Target must have lower or equal access')
 
         result = word.run(args)
         if result is not None:

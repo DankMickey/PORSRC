@@ -141,7 +141,9 @@ class DistributedTargetableObject(DistributedNode.DistributedNode):
                 if type(sfxs) == types.DictType:
                     if weaponSubType:
                         sfxList = sfxs.get(weaponSubType)
-                        soundFx = random.choice(sfxList)
+                        
+                        if sfxList:
+                            soundFx = random.choice(sfxList)
                     else:
                         soundFx = sfxs.get(ammoSkillId)
                 elif type(sfxs) == types.TupleType:
