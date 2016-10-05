@@ -3,10 +3,6 @@ import sys, os
 from datetime import datetime
 from pirates.analytics import AnalyticsGlobals
 
-__all__ = [
-    "AnalyticsTracker",
-]
-
 class AnalyticsManager:
     notify = DirectNotifyGlobal.directNotify.newCategory('AnalyticsManager')
 
@@ -16,14 +12,10 @@ class AnalyticsManager:
             'host': config.GetString('splunk-host', 'localhost'),
             'port': config.GetInt('splunk-port', 8089),
             'scheme': config.GetString('splunk-scheme', 'http'),
-            'owner': config.GetString('splunk-owner', ''),
-            'app': config.GetString('splunk-app-namespace', ''),
-            #'token': config.GetString('splunk-token', ''),
-            'username': config.GetString('splunk-username', ''),
-            'password': config.GetString('splunk-password', ''),
-            'autologin': True
+            'token': config.GetString('splunk-token', '')
         }
-        self.index=AnalyticsGlobals.ANALYTICS_INDEX_NAME
+        self.notify.debug("Connecting to Splunk with (%s) for app '%s'" % (str(self.splunk_info), self.application_name))
+        self.index=config.GetString('splunk-index-name', AnalyticsGlobals.ANALYTICS_INDEX_NAME)
         self.con = None
 
         try:
@@ -40,9 +32,9 @@ class AnalyticsManager:
     def isReady(self):
         return self.con != None
 
-    def track(self, event_name, time = None, distinct_id = None, **props):
+    def track(self, event_name, time = None, distinct_id = None, props={}):
         if not self.con: 
             return False
 
-        self.con.track(event_name, time, distinct_id, props)
+        self.con.track(event_name, time, distinct_id, **props)
         return True

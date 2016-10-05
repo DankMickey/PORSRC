@@ -1,5 +1,5 @@
-ANALYTICS_INDEX_NAME = "sample_analytics"
-ANALYTICS_SOURCETYPE = "sample_analytics"
+ANALYTICS_INDEX_NAME = "main"
+ANALYTICS_SOURCETYPE = "httpevent"
 APPLICATION_KEY = "application"
 EVENT_KEY = "event"
 DISTINCT_KEY = "distinct_id"

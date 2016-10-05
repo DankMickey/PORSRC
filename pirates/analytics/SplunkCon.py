@@ -18,21 +18,8 @@ class SplunkCon:
         self.application_name = application_name
         self.splunk = client.connect(**splunk_info)
         self.index = index
+        self.notify.info("Successfully connected to Splunk!")
 
-        if not self.index in self.splunk.indexes:
-            self.splunk.indexes.create(self.index)
-        assert(self.index in self.splunk.indexes)
-
-        if AnalyticsGlobals.ANALYTICS_SOURCETYPE not in self.splunk.confs['props']:
-            self.splunk.confs["props"].create(AnalyticsGlobals.ANALYTICS_SOURCETYPE)
-            stanza = self.splunk.confs["props"][AnalyticsGlobals.ANALYTICS_SOURCETYPE]
-            stanza.submit({
-                "LINE_BREAKER": "(%s)" % AnalyticsGlobals.EVENT_TERMINATOR,
-                "CHARSET": "UTF-8",
-                "SHOULD_LINEMERGE": "false"
-            })
-        assert(AnalyticsGlobals.ANALYTICS_SOURCETYPE in self.splunk.confs['props'])
-        
     @staticmethod
     def encode(props):
         encoded = " "
@@ -79,6 +66,7 @@ class SplunkCon:
         return self.__counts(job, "event")
 
     def track(self, event_name, time = None, distinct_id = None, **props):
+        self.notify.info("Logging %s..." % event_name)
         if time is None:
             time = datetime.now().isoformat()
             
@@ -94,6 +82,6 @@ class SplunkCon:
             event += ('%s="%s" ' % (AnalyticsGlobals.DISTINCT_KEY, distinct_id))
             assert(not AnalyticsGlobals.DISTINCT_KEY in props.keys())
 
-        event += AnalyticsTracker.encode(props)
+        event += self.encode(props)
 
         self.splunk.indexes[self.index].submit(event, sourcetype=AnalyticsGlobals.ANALYTICS_SOURCETYPE)
