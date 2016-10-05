@@ -59,6 +59,8 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         self.redeemedCodes = []
         self.style = None
         self.dnaString = ""
+        self.guildId = 0
+        self.guildName = ""
 
     def announceGenerate(self):
         DistributedBattleAvatarAI.announceGenerate(self)
@@ -174,28 +176,6 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         if self.style != None:
             return self.style.getGender()
         return 'm'
-
-    def setHair(self, hairId=None, beardId=None, mustacheId=None, hairColor=None, highlightColor=None):
-        if self.style == None:
-            self.notify.warning("Failed to setHair. Style returned NoneType")
-            return
-
-        if hairId:
-            self.style.setHairHair(hairId)
-
-        if beardId:
-            self.style.setHairBeard(beardId)
-
-        if mustacheId:
-            self.style.setHairMustache(mustacheId)
-
-        if hairColor:
-            self.style.setHairColor(hairColor)
-
-        if highlightColor:
-            self.style.setHighLightcolor(highlightColor)
-
-        self.updateDNA()
 
     def setZombie(self, value, cursed=False):
         self.zombied = (value, cursed)
@@ -592,6 +572,32 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         self.redeemedCodes.remove(code)
         self.d_setRedeemedCodes(sef.redeemedCodes)
 
+    def setGuildId(self, id):
+        self.guildId = id
+
+    def d_setGuildId(self, id):
+        self.sendUpdate('setGuildId', [id])
+
+    def b_setGuildId(self, id):
+        self.setGuildId(id)
+        self.d_setGuildId(id)
+
+    def getGuildId(self):
+        return self.guildId
+
+    def setGuildName(self, name):
+        self.guildName = name
+
+    def d_setGuildName(self, name):
+        self.sendUpdate('setGuildName', [name])
+
+    def b_setGuildName(self, name):
+        self.setGuildName(name)
+        self.d_setGuildName(name)
+
+    def getGuildName(self):
+        return self.guildName
+
     def setStatus(self, todo0):
         pass
 
@@ -764,8 +770,9 @@ def giveGold(gold):
     target.giveGold(gold)
 
     air = invoker.air
-    if hasattr(air, 'analyticsMgr'):
-        air.analyticsMgr.track("command-used", command="giveGold", invoker=invoker.getName(), target=target.getName(), amount=gold)
+    #if hasattr(air, 'analyticsMgr'):
+    #    data = {'command': "giveGold", 'invoker':invoker.getName(), 'target':target.getName(), 'amount':str(gold)}
+    #    air.analyticsMgr.track("command-used", None, None, data)
     return 'Given %d gold top %s! Balance: %d' % (gold, target.getName(), target.getGoldInPocket())
 
 @magicWord(CATEGORY_GAME_MASTER, types=[int])
@@ -775,8 +782,8 @@ def takeGold(gold):
     target.takeGold(gold)
 
     air = invoker.air
-    if hasattr(air, 'analyticsMgr'):
-        air.analyticsMgr.track("command-used", command="takeGold", invoker=invoker.getName(), target=target.getName(), amount=gold)
+    #if hasattr(air, 'analyticsMgr'):
+    #    air.analyticsMgr.track("command-used", command="takeGold", invoker=invoker.getName(), target=target.getName(), amount=gold)
     return 'Taken %d gold from %s! Balance: %d' % (gold, target.getName(), target.getGoldInPocket())
 
 @magicWord(CATEGORY_GAME_MASTER)
@@ -839,8 +846,8 @@ def giveLocatable(type, itemId, amount):
         return "Failed to give locatable. Target's inventory is most likely full."
 
     air = invoker.air
-    if hasattr(air, 'analyticsMgr'):
-        air.analyticsMgr.track("command-used", command="giveLoctable", invoker=invoker.getName(), target=target.getName(), itemId=itemId, amount=amount)
+    #if hasattr(air, 'analyticsMgr'):
+    #    air.analyticsMgr.track("command-used", command="giveLoctable", invoker=invoker.getName(), target=target.getName(), itemId=itemId, amount=amount)
 
     return "Locatable given to %s." % target.getName()
 
@@ -868,8 +875,9 @@ def giveWeapon(itemId):
         return "Failed to give weapon. Target's inventory is most likely full."
 
     air = invoker.air
-    if hasattr(air, 'analyticsMgr'):
-        air.analyticsMgr.track("command-used", command="giveWeapon", invoker=invoker.getName(), target=target.getName(), itemId=itemId, amount=1)
+    
+    #if hasattr(air, 'analyticsMgr'):
+    #    air.analyticsMgr.track("command-used", command="giveWeapon", invoker=invoker.getName(), target=target.getName(), itemId=itemId, amount=1)
 
     return "Weapon (%s) given to %s." % (itemId, target.getName())
 
@@ -897,8 +905,8 @@ def giveClothing(itemId):
         return "Failed to give clothing item. Target's inventory is most likely full."
 
     air = invoker.air
-    if hasattr(air, 'analyticsMgr'):
-        air.analyticsMgr.track("command-used", command="giveClothing", invoker=invoker.getName(), target=target.getName(), itemId=itemId, amount=1)
+    #if hasattr(air, 'analyticsMgr'):
+    #    air.analyticsMgr.track("command-used", command="giveClothing", invoker=invoker.getName(), target=target.getName(), itemId=itemId, amount=1)
 
     return "Clothing (%s) given to %s." % (itemId, target.getName())
 
@@ -926,8 +934,8 @@ def giveJewelry(itemId):
         return "Failed to give jewelry item. Target's inventory is most likely full."
 
     air = invoker.air
-    if hasattr(air, 'analyticsMgr'):
-        air.analyticsMgr.track("command-usage", command="giveJewelry", invoker=invoker.getName(), target=target.getName(), itemId= itemid, amount=1)
+    #if hasattr(air, 'analyticsMgr'):
+    #    air.analyticsMgr.track("command-usage", command="giveJewelry", invoker=invoker.getName(), target=target.getName(), itemId= itemid, amount=1)
 
     return "Jewelry (%s) given to %s." % (itemId, target.getName())
 
@@ -947,7 +955,7 @@ def getUsedCodes():
     av = spellbook.getTarget()
     return "Codes: %s" % str(av.getRedeemedCodes())
 
-@magicWord(CATEGORY_GAME_DEVELOPER)
+@magicWord(CATEGORY_GAME_MASTER)
 def clearUsedCodes():
     invoker = spellbook.getInvoker()
     av = spellbook.getTarget()
@@ -955,8 +963,8 @@ def clearUsedCodes():
     av.setRedeemedCodes([])
 
     air = invoker.air
-    if hasattr(air, 'analyticsMgr'):
-        air.analyticsMgr.track("command-usage", command="clearUsedCodes", invoker=invoker.getName(), target=av.getName())
+    #if hasattr(air, 'analyticsMgr'):
+    #    air.analyticsMgr.track("command-usage", command="clearUsedCodes", invoker=invoker.getName(), target=av.getName())
 
     return "Cleared Redeemed codes."
 
@@ -969,25 +977,33 @@ def clearCode(code):
     av.removeRedeemedCode(code)
 
     air = invoker.air
-    if hasattr(air,'analyticsMgr'):
-        air.analyticsMgr.track("command-usage", command="clearCode", invoker=invoker.getName(), target=av.getName(), code=code)
+    #if hasattr(air,'analyticsMgr'):
+    #    air.analyticsMgr.track("command-usage", command="clearCode", invoker=invoker.getName(), target=av.getName(), code=code)
 
     return "Removed '%s'!" % code 
 
-@magicWord(CATEGORY_GAME_DEVELOPER, types=[int, int])
-def setHair(id, color):
+@magicWord(CATEGORY_GAME_MASTER, types=[str])
+def registerCodeUsed(code):
     invoker = spellbook.getInvoker()
-    target = spellbook.getTarget()
-
-    if not invoker or not target:
-        return "Failed to set hair. Unknown error has occcured."
-
-    target.setHair(hairId=id, hairColor=color)
-
-    #TODO add id and color checks to prevent errors
+    av = spellbook.getTarget()
+    if code in av.getRedeemedCodes():
+        return "%s has already redeemed '%s'." % (av.getName(), code)
+    av.addRedeemedCode(code)
 
     air = invoker.air
-    if hasattr(air, 'analyticsMgr'):
-        air.analyticsMgr.track("command-usage", command="setHair", invoker=invoker.getName(), target=target.getName(), hairId=id, colorId=color)
+    #if hasattr(air,'analyticsMgr'):
+    #    air.analyticsMgr.track("command-usage", command="registerCodeUsed", invoker=invoker.getName(), target=av.getName(), code=code)
 
-    return "Set %s's Hair to Id(%s) and Color(%s)" % (target.getName(), id, color)
+    return "Registered '%s' as used for %s." % (code, av.getName())
+
+@magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
+def setGuildId(id):
+    target = spellbook.getTarget()
+    target.b_setGuildId(id)
+    return "Set %s's guildId to %s" % (target.getName(), id)
+
+@magicWord(CATEGORY_GAME_DEVELOPER, types=[str])
+def setGuildName(name):
+    target = spellbook.getTarget()
+    target.b_setGuildName(name)
+    return "Set %s's guild name to %s" % (target.getName(), name)
