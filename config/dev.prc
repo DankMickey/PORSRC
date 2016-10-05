@@ -1,14 +1,5 @@
-# ACCOUNT DB CONFIG:
-yaml-account-bridge-filename astron/databases/account-bridge.json
-account-server-token-link http://149.56.108.93/_t.php
-
 # SERVER SETTINGS:
 server-version por-alpha-1.0.0
-
-# RPC SETTINGS:
-want-rpc-server #f
-rpc-server-endpoint http://localhost:8080/
-rpc-server-secret 7456236a45345z4545
 
 # ATTACKING:
 want-all-weapons-trained #t
