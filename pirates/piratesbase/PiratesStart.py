@@ -43,12 +43,7 @@ if base.win == None:
 
 import PiratesLoader
 base.loader = PiratesLoader.PiratesLoader(base)
-
-for model in [
-    'phase_2/models/effects/particleMaps',
-    'phase_3/models/effects/combat_hit_spark'
-]:
-    base.loader.loadModel(model)
+base.loader.preloadModels()
 
 __builtin__.loader = base.loader
 launcher.setPandaErrorCode(0)

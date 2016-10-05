@@ -19,6 +19,15 @@ class PiratesLoader(Loader):
         del self.modelCache
         Loader.destroy(self)
 
+    def preloadModels(self):
+        preload = [
+            'phase_2/models/effects/particleMaps',
+            'phase_3/models/effects/combat_hit_spark',
+            'phase_4/models/props/TreeBase']
+
+        for model in preload:
+            self.loadModel(model)
+
     def scanDirectory(self, directory, extensions=[]):
         fileNames = []
 
