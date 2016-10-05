@@ -11,5 +11,5 @@ rpc-server-secret 7456236a45345z4545
 want-analytics #f
 splunk-application por-server
 splunk-host 149.56.100.164
-splunk-port 8089
-splunk-token testingToken
+splunk-port 8088
+splunk-token 98C6EF2D-5B8D-4A0C-A51D-A0C9CACC918B
