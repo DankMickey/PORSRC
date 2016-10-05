@@ -159,23 +159,17 @@ class Grenade(Weapon.Weapon):
             messenger.send('skillFinished')
 
 
-
-
 def getHitSfx():
-    return Grenade.hitSfxs
-
+    return None 
 
 def getMistimedHitSfx():
     return Grenade.mistimedHitSfxs
 
-
 def getMissSfx():
     return Grenade.missSfxs
 
-
 def getAimSfx():
     return Grenade.aimSfxs
-
 
 def getReloadSfx():
     return Grenade.reloadSfxs
