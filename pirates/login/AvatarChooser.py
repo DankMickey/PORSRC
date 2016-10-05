@@ -653,16 +653,23 @@ class AvatarChooser(DirectObject, StateData):
 
         else:
             newList()
-            self.renameButton.show()
-        self.nameGui.unload()
-        del self.nameGui
+            if hasattr(self, 'renameButton') and self.renameButton:
+                self.renameButton.show()
+        
+        if hasattr(self, 'nameGui'):
+            self.nameGui.unload()
+            del self.nameGui
+        
         self.ignore('q')
         self.ignore('NameGUIFinished')
-        self.quitFrame.setColorScale(Vec4(1, 1, 1, 1))
-        self.highlightFrame.setColorScale(Vec4(1, 1, 1, 1))
-        self.avatarListFrame.setColorScale(Vec4(1, 1, 1, 1))
+        
+        if hasattr(self, 'quitFrame') and self.quitFrame:
+            self.quitFrame.setColorScale(Vec4(1, 1, 1, 1))
+            self.highlightFrame.setColorScale(Vec4(1, 1, 1, 1))
+            self.avatarListFrame.setColorScale(Vec4(1, 1, 1, 1))
+            self.frame.show()
+
         base.camera.setX(-29)
-        self.frame.show()
 
     def placeNotification(self, slot, pos, style):
         notification = self.exclam.copyTo(self.avatarListFrame)
