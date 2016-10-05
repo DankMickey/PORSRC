@@ -23,7 +23,7 @@ MaleFat = {
         'def_left_thumb02': VBase3(1, 1, 1),
         'def_left_thumb03': VBase3(1, 1, 1),
         'def_left_finger01': VBase3(1, 1.2, 1),
-        'def_left_finger02': VBase3(1, 1.14, 1),
+        'def_left_finger02': VBase3(1, 1.15, 1),
         'def_left_index01': VBase3(1, 1.75, 1),
         'def_left_index02': VBase3(1, 1.60, 1),
         'def_right_clav': VBase3(1, 1.3, 1.3),
