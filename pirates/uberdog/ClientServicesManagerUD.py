@@ -2,6 +2,7 @@ from panda3d.core import Connection, Datagram
 from pirates.makeapirate.PCPickANamePattern import PCPickANamePattern
 from pirates.piratesbase import PiratesGlobals
 from pirates.pirate.HumanDNA import HumanDNA
+from otp.settings.Settings import Settings
 from otp.distributed import OtpDoGlobals
 from direct.distributed.DistributedObjectGlobalUD import DistributedObjectGlobalUD
 from direct.directnotify.DirectNotifyGlobal import directNotify
@@ -11,8 +12,6 @@ from sys import platform
 import hashlib
 import urllib
 import urllib2
-import dumbdbm
-import anydbm
 import hmac
 import json
 import time
@@ -132,21 +131,32 @@ class AccountDB:
 
     def __init__(self, csm):
         self.csm = csm
-        filename = config.GetString('account-bridge-filename', 'account-bridge.db')
-
-        if platform == 'darwin':
-            self.dbm = dumbdbm.open(filename, 'c')
+        
+        if not simbase.air.hasMongo():
+            self.notify.info('Loading YAML account bridge.')
+            self.accountBridgeFile = Settings(config.GetString('yaml-account-bridge-filename', ''))
+            self.accountBridge = self.accountBridgeFile.read()
         else:
-            self.dbm = anydbm.open(filename, 'c')
+            self.accountBridge = None
 
+    def lookupAccountId(self, user):
+        user = str(user)
+
+        if simbase.air.hasMongo():
+            document = self.csm.air.dbAstronCursor.objects.find_one({'fields.ACCOUNT_ID': user})
+        
+            if document: 
+                return document['_id']
+        elif user in self.accountBridge:
+            return int(self.accountBridge[user])
+    
     def lookup(self, username, accessLevel, callback):
-        accountId = 0
-        if username in self.dbm:
-            accountId = int(self.dbm[str(username)])
+        accountId = self.lookupAccountId(username)
 
         response = {'success': True,
                     'userId': username,
                     'accountId': accountId}
+
         if accessLevel is not None:
             response['accessLevel'] = accessLevel
 
@@ -154,17 +164,11 @@ class AccountDB:
         return response
 
     def storeAccountID(self, userId, accountId, callback):
-        if not hasattr(self, 'dbm'):
-            callback(True)
-            return
+        if not simbase.air.hasMongo():
+            self.accountBridge[str(userId)] = str(accountId)
+            self.accountBridgeFile.write(self.accountBridge)
 
-        self.dbm[str(userId)] = str(accountId)
-        if getattr(self.dbm, 'sync', None):
-            self.dbm.sync()
-            callback(True)
-        else:
-            self.notify.warning('Unable to associate user %s with account %d!' % (userId, accountId))
-            callback(False)
+        callback(True)
 
     def storeNameRequest(self, username, avId, name):
         # Does nothing. Subclasses MUST override this and take appropriated action.
@@ -295,7 +299,7 @@ class RemotePORAccountDB(AccountDB):
     notify = directNotify.newCategory('RemotePORAccountDB')
     
     def __init__(self, csm):
-        self.csm = csm
+        AccountDB.__init__(self, csm)
         self.accessLevel = 100
         
     def storeNameRequest(self, username, avId, wantedName):
@@ -322,28 +326,17 @@ class RemotePORAccountDB(AccountDB):
             response = json.loads(response)
             user = response['user']
             accessLevel = int(response['access'])
-        except Exception as e:
-            import traceback
-            print traceback.format_exc()
+        except:
             return error("Couldn't contact server")
         
-        document = self.csm.air.dbAstronCursor.objects.find_one({'fields.ACCOUNT_ID': user})
-        
-        if not document:
-            accountId = 0
-        else:
-            accountId = document['_id']
+        accountId = self.lookupAccountId(user)
 
         return {'success': True, 'userId': user, 'accountId': accountId, 'accessLevel': accessLevel}
 
     def lookup(self, token, callback):
-        print 'Authenticating %s' % token
-
         try:
             data = self.decodeToken(token)
-        except Exception as e:
-            import traceback
-            print traceback.format_exc()
+        except:
             data = {'success': False, 'reason': 'Something went wrong.'}
 
         callback(data)
@@ -1060,7 +1053,6 @@ class ClientServicesManagerUD(DistributedObjectGlobalUD):
             self.notify.warning('Tried to kill connection %d for duplicate FSM, but none exists!' % connId)
             return
 
-        print str(fsm)
         self.killConnection(connId, 'An operation is already underway: ' + fsm.name)
 
     def killAccount(self, accountId, reason):
@@ -1072,8 +1064,6 @@ class ClientServicesManagerUD(DistributedObjectGlobalUD):
             self.notify.warning('Tried to kill account %d for duplicate FSM, but none exists!' % accountId)
             return
 
-        print str(fsm)
-        print 'acc'
         self.killAccount(accountId, 'An operation is already underway: ' + fsm.name)
 
     def runAccountFSM(self, fsmtype, *args):

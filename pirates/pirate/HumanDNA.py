@@ -904,7 +904,22 @@ class HumanDNA(AvatarDNA.AvatarDNA):
             self.jewelryZone8[0], self.jewelryZone8[1], self.jewelryZone8[2])
         return d
 
+
+
     def loadFromNPCDict(self, npcDict):
+        ignoreFields = [
+            "setGender",
+            'setBodyShape',
+            'setBodyColor',
+            'setBoidySkin',
+            'setHairHair',
+            'setHairBeard',
+            'setHairMustache',
+            'setHairColor',
+            'setHighLightColor',
+            'setHatIdx',
+            'setHatColor']
+
         for f in npcDict.keys():
             val = npcDict[f]
             if isinstance(val, (tuple, list)):
@@ -912,7 +927,8 @@ class HumanDNA(AvatarDNA.AvatarDNA):
             else:
                 if isinstance(val, float):
                     val = int(val)
-
+                if f.__name__ not in ignoreFields and isinstance(val, int):
+                    val = val / 100
                 f(self, val)
 
     def setTattooChest(self, tattoo, offsetX, offsetY, scale, rotate, color):

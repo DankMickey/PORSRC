@@ -171,7 +171,7 @@ class SeaPatch(Water):
         if self.shader:
             self.seamodel.setShader(self.shader)
             
-            if not hasattr(__builtin__, 'dcStream'):
+            if not base.isClientBuilt():
                 self.seamodel.setShaderAuto()
                 self.seamodel.setTransparency(True)
                 self.seamodel.setColorScale(1, 1, 1, 0.75)

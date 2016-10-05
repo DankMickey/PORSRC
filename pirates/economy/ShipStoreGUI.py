@@ -97,7 +97,7 @@ class ShipStoreGUI(GuiPanel.GuiPanel):
 
     def __init__(self, inventory, name):
         GuiPanel.GuiPanel.__init__(self, name, self.width, self.height, showClose = False)
-        self.setPos(-1.25, 0, -0.66)
+        self.setPos(-1.35, 0, -0.66)
         self.initialiseoptions(ShipStoreGUI)
         self.balance = 0
         self.purchaseInventory = [
@@ -114,13 +114,13 @@ class ShipStoreGUI(GuiPanel.GuiPanel):
         self.purchaseTitle = DirectFrame(parent = self, relief = None, text = PLocalizer.InventoryTypeNames[self.purchaseInventory[0][0]], text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleLarge, text_pos = (0.03, 0.01), text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1)
         self.purchaseTitle.setPos(self.storeInventory.width, 0, 0.707 + (self.height - 0.065) / 2.5)
         self.card = loader.loadModel('models/textureCards/shipCatalog')
-        self.shipImage = DirectFrame(parent = self, relief = DGG.FLAT, image_scale = 0.2, frameColor = (0, 0, 0, 1.0), borderWidth = PiratesGuiGlobals.BorderWidthSmall, pad = (0.01, 0.01), frameSize = (-0.26, 0.26, -0.185, 0.185), textMayChange = 1, pos = (self.width * 0.72, 0, 1))
+        self.shipImage = DirectFrame(parent = self, relief = DGG.FLAT, image_scale = 0.2, frameColor = (0, 0, 0, 1.0), borderWidth = PiratesGuiGlobals.BorderWidthSmall, pad = (0.01, 0.01), frameSize = (-0.10, 0.10, -0.170, 0.170), textMayChange = 1, pos = (self.width * 0.72, 0, 1))
         self.shipImage.setTransparency(1)
         barChartWidth = self.width - self.storeInventory.width + 0.04
         self.shipStats = BarChart.BarChart(self.statData, 0.25, barChartWidth, PLocalizer.ShipProfile, PiratesGuiGlobals.TextFG1)
         self.shipStats.reparentTo(self)
         self.shipStats.setPos(self.storeInventory.width + 0.03, 0, 0.12)
-        self.descText = DirectFrame(parent = self, relief = None, text = PLocalizer.ShipDescriptions[self.purchaseInventory[0][0]], text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleMed, text_pos = (0.03, 0.01), text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, frameColor = (0, 0, 0, 0), frameSize = (0.02, self.width - self.storeInventory.width - 0.02, 0, 0.05), textMayChange = 1, text_wordwrap = 18, pos = (self.storeInventory.width, 0, 0.75))
+        self.descText = DirectFrame(parent = self, relief = None, text = PLocalizer.ShipDescriptions[self.purchaseInventory[0][0]], text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleMed, text_pos = (0.03, 0.01), text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, frameColor = (0, 0, 0, 0), frameSize = (0.02, self.width - self.storeInventory.width - 0.02, 0, 0.05), textMayChange = 1, text_wordwrap = 18, pos = (self.storeInventory.width, 0, 0.70))
         self.balanceTitle = DirectFrame(parent = self, relief = None, text = PLocalizer.Cost, text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleLarge, text_pos = (0.31, 0.411), text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 0, pos = (self.columnWidth, 0, -0.01))
         self.goldTitle = DirectFrame(parent = self, relief = None, text = '%s:' % PLocalizer.MoneyName, text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleLarge, text_pos = (0.31, 0.411), text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 0, pos = (self.columnWidth, 0, 0.04))
         coinImage = loader.loadModel('models/gui/toplevel_gui').find('**/treasure_w_coin*')

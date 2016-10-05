@@ -9,6 +9,8 @@ class Settings:
         if os.path.exists(self.filename):
             with open(self.filename, 'r') as file:
                 return json.load(file)
+        
+        return {}
 
     def write(self, store):
         with open(self.filename, 'w') as file:

@@ -4619,6 +4619,11 @@ SkillDescriptions = {
     EnemySkills.BROADSWORD_STAB: (ComboSkill, 'A powerful finishing move!', '', ClickToLearnCombo, 0),
     EnemySkills.SABRE_HACK: (ComboSkill, 'A fast guarded attack!', '', ClickToLearnCombo, 0),
     EnemySkills.SABRE_SLASH: (ComboSkill, 'A graceful low slash!', '', ClickToLearnCombo, 0),
+    EnemySkills.DUALCUTLASS_COMBINATION: (ComboSkill, 'A combination of attacks!', '', ClickToLearnCombo, 0),
+    EnemySkills.DUALCUTLASS_SPIN: (ComboSkill, 'A sword-spinning move!', '', ClickToLearnCombo, 0),
+    EnemySkills.DUALCUTLASS_BARRAGE: (ComboSkill, 'Some call this the barrage of swords!', '', ClickToLearnCombo, 0),
+    EnemySkills.DUALCUTLASS_XSLASH: (ComboSkill, 'A slashing attack!', '', ClickToLearnCombo, 0),
+    EnemySkills.DUALCUTLASS_GORE: (ComboSkill, 'A gory attack!', '', ClickToLearnCombo, 0),
     EnemySkills.SABRE_CLEAVE: (ComboSkill, 'Rapid fire sword thrusts!', '', ClickToLearnCombo, 0),
     EnemySkills.SABRE_FLOURISH: (ComboSkill, 'A barrage of sword blows!', '', ClickToLearnCombo, 0),
     EnemySkills.SABRE_STAB: (ComboSkill, 'An impressive finishing slash!', '', ClickToLearnCombo, 0),
@@ -4888,7 +4893,7 @@ ComboReqGouge = 'Requires Gouge'
 ComboReqSlash = 'Requires Slash'
 ComboReqCleave = 'Requires Cleave'
 ComboReqFlourish = 'Requires Flourish'
-SloopDescription = 'The fastest and most maneuverable ship class, the Sloop is ideal for scouting and hit-and-run attacks.  However, Sloops tend to have weak armor and little cargo room. \n \n The strongest armor of the hull is located near the middle of the ship.'
+SloopDescription = 'The fastest and most maneuverable ship class, the Sloop is ideal for scouting and hit-and-run attacks.However, Sloops tend to have weak armor and little cargo room. \n \n The strongest armor of the hull is located near the middle of the ship.'
 MerchantDescription = 'The Galleons have the toughest armor amongst the ship classes.  They also can carry the most cargo.  \n \n Their strongest armor is near the rear of the ship, with a weakness in the front.'
 WarshipDescription = "The Frigate Class vessels pack the most firepower, sporting many cannons and strong below deck broadside capability.  \n \n The warship's strongest armor is near the front, with a weakness in the rear."
 BrigDescription = "Second best at everything the Brig is a jack of all trades, but a master of none. They are a good mix of firepower, speed, and cargo room. \n \n Their armor is the most evenly distributed without weak or strong areas."
@@ -11000,6 +11005,7 @@ CodeRedemptionScimitar48 = 'Scimitar 48'
 CodeRedemptionSummonChicken = 'Summon Chicken'
 CodeRedemptionSummonWasp = 'Summon Wasp'
 CodeRedemptionSummonDog = 'Summon Dog'
+CodeRedemptionDualCutlasses = 'DualCutlasses'
 ShipPVPQuestFrench = 'French'
 ShipPVPQuestSpanish = 'Spanish'
 ShipPVPQuestKillShip = 'ship'

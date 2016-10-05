@@ -1,9 +1,6 @@
 # ACCOUNT DB CONFIG:
-backend dev
-mongodb-url mongodb://localhost:27017
-mongodb-name test
-account-bridge-filename astron/databases/account-database.db
-account-server-token-link http://63.142.255.4/_t.php
+yaml-account-bridge-filename astron/databases/account-bridge.json
+account-server-token-link http://149.56.108.93/_t.php
 
 # SERVER SETTINGS:
 server-version por-alpha-1.0.0

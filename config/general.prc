@@ -137,8 +137,8 @@ want-enemy-ships #f
 want-enemy-ship-movement #t
 
 # Code Redemption
-want-coderedemption #f
-reject-all-redeem-codes #t
+want-coderedemption #t
+reject-all-redeem-codes #f
 
 # WATER/WAVES
 want-water-reflection #t

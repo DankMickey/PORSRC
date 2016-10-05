@@ -41,6 +41,16 @@ if base.win == None:
     print 'Unable to open window; aborting.'
     sys.exit()
 
+import PiratesLoader
+base.loader = PiratesLoader.PiratesLoader(base)
+
+for model in [
+    'phase_2/models/effects/particleMaps',
+    'phase_3/models/effects/combat_hit_spark'
+]:
+    base.loader.loadModel(model)
+
+__builtin__.loader = base.loader
 launcher.setPandaErrorCode(0)
 base.sfxPlayer.setCutoffDistance(500.0)
 
