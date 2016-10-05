@@ -18,7 +18,9 @@ class AnalyticsManager:
             'scheme': config.GetString('splunk-scheme', 'http'),
             'owner': config.GetString('splunk-owner', ''),
             'app': config.GetString('splunk-app-namespace', ''),
-            'token': config.GetString('splunk-token', ''),
+            #'token': config.GetString('splunk-token', ''),
+            'username': config.GetString('splunk-username', ''),
+            'password': config.GetString('splunk-password', ''),
             'autologin': True
         }
         self.index=AnalyticsGlobals.ANALYTICS_INDEX_NAME

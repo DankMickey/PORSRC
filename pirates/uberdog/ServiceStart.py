@@ -13,7 +13,7 @@ parser.add_argument('--stateserver', help="The control channel of this UD's desi
 parser.add_argument('--astron-ip', help="The IP address of the Astron Message Director to connect to.")
 parser.add_argument('--eventlogger-ip', help="The IP address of the Astron Event Logger to log to.")
 parser.add_argument('--mongodb-ip', help="The IP address of the MongoDB Server to connect to.")
-parser.add_argument('config', nargs='*', default=['config/general.prc', 'config/dev.prc'], help="PRC file(s) to load.")
+parser.add_argument('config', nargs='*', default=['config/general.prc', 'config/dev.prc', 'config/server.prc'], help="PRC file(s) to load.")
 args = parser.parse_args()
 
 for prc in args.config:
