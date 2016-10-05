@@ -2649,10 +2649,19 @@ ItemNames = {
     ItemGlobals.ORNATE_CUTLASS: 'Ornate Cutlass',
     ItemGlobals.GRAND_CUTLASS: 'Grand Cutlass',
     ItemGlobals.ROYAL_CUTLASS: 'Royal Cutlass',
+    ItemGlobals.RUSTY_SCIMITAR: 'Rusty Scimitar',
+    ItemGlobals.SCIMITAR_46: 'Scimitar 46',
+    ItemGlobals.SCIMITAR_47: 'Scimitar 47',        
+    ItemGlobals.SCIMITAR_48: 'Scimitar',
     ItemGlobals.DUAL_RUSTY_CUTLASS: 'Dual Rusty Cutlasses',
-    ItemGlobals.DUAL_SCIMITAR: 'Dual Schimitars',
+    ItemGlobals.DUAL_RUSTY_SCIMITAR: 'Dual Rusty Scimitars',
+    ItemGlobals.CRUDE_RAPIER: 'Crude Rapier',
     ItemGlobals.PROP_TORCH: 'Torch',
-    ItemGlobals.EPEE_1: "Maitre's Epee",
+    ItemGlobals.CRUDE_BOARDING_AXE: 'Curde Boarding Axe',
+    ItemGlobals.MAITRE_EPEE: "Maitre's Epee",
+    ItemGlobals.EPEE_2: 'Epee 2',
+    ItemGlobals.EPEE_3: 'Epee 3',
+    ItemGlobals.EPEE_4: 'Epee 4',
     ItemGlobals.RUSTY_SABRE: 'Rusty Sabre',
     ItemGlobals.LIGHT_SABRE: 'Light Sabre',
     ItemGlobals.SHARP_SABRE: 'Sharp Sabre',
@@ -11003,10 +11012,10 @@ CodeRedemptionAmmoFury = 'Ammo Fury'
 CodeRedemptionLostBladeOfLeviathan = 'Lost Blade Of Leviathan'
 CodeRedemptionLostSwordOfElPatron = 'LostSwordOfElPatron'
 CodeRedemptionBarbossaFury = 'Barbossa Fury'
-CodeRedemptionScimitar42 = 'Scimitar 42'
+CodeRedemptionRustyScimitar = 'Rusty Scimitar'
 CodeRedemptionScimitar46 = 'Scimitar 46'
 CodeRedemptionScimitar47 = 'Scimitar 47'
-CodeRedemptionScimitar48 = 'Scimitar 48'
+CodeRedemptionScimitar48 = 'Scimitar'
 CodeRedemptionSummonChicken = 'Summon Chicken'
 CodeRedemptionSummonWasp = 'Summon Wasp'
 CodeRedemptionSummonDog = 'Summon Dog'

@@ -431,6 +431,7 @@ __subtypeId2Class = {
     ItemGlobals.MUSKET: Gun.Gun,
     ItemGlobals.BAYONET: Bayonet.Bayonet,
     ItemGlobals.DUAL_CUTLASS: DualCutlass.DualCutlass,
+    ItemGlobals.DUAL_SCIMITAR: DualCutlass.DualCutlass,
     ItemGlobals.EPEE: Foil.Foil,
     ItemGlobals.RAPIER: Foil.Foil,
     ItemGlobals.QUEST_PROP_TORCH: Torch.Torch,

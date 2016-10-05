@@ -12,7 +12,14 @@ import random
 
 class Foil(Weapon.Weapon):
     modelTypes = [
-        'models/handheld/pir_m_hnd_swd_epee_a']
+        'models/handheld/pir_m_hnd_swd_epee_a',
+        'models/handheld/pir_m_hnd_swd_epee_b',
+        'models/handheld/pir_m_hnd_swd_epee_c',
+        'models/handheld/pir_m_hnd_swd_epee_d']
+        #'models/handheld/pir_m_hnd_swd_rapier_a',
+        #'models/handheld/pir_t_hnd_swd_rapier_b',
+        #'models/handheld/pir_t_hnd_swd_rapier_c',
+        #'models/handheld/pir_t_hnd_swd_rapier_d']
     models = { }
     icons = { }
     vertex_list = [

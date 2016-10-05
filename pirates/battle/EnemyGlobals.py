@@ -300,7 +300,10 @@ __enemyWeaponTable = {
     DUALCUTLASS: [
         ItemGlobals.DUAL_RUSTY_CUTLASS],
     FOIL: [
-        ItemGlobals.EPEE_1],
+        ItemGlobals.MAITRE_EPEE,
+        ItemGlobals.EPEE_2,
+        ItemGlobals.EPEE_3,
+        ItemGlobals.EPEE_4],
     BROADSWORD: [
         ItemGlobals.WORN_BROADSWORD] }
 

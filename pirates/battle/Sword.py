@@ -55,7 +55,11 @@ class Sword(Weapon.Weapon):
         'models/handheld/pir_m_hnd_swd_davyJones_g',
         'models/handheld/pir_m_hnd_swd_davyJones_h',
         'models/handheld/pir_m_hnd_swd_davyJones_i',
-        'models/handheld/pir_m_hnd_swd_davyJones_j']
+        'models/handheld/pir_m_hnd_swd_davyJones_j',
+        'models/handheld/pir_m_hnd_axe_boarding_a',
+        'models/handheld/pir_m_hnd_axe_boarding_b',
+        'models/handheld/pir_m_hnd_axe_boarding_c',
+        'models/handheld/pir_m_hnd_axe_boarding_d']
     models = { }
     icons = { }
     vertex_list = [
@@ -327,7 +331,8 @@ class Sword(Weapon.Weapon):
             ItemGlobals.SCIMITAR: (loadSfx(SoundGlobals.SFX_WEAPON_SCIMITAR_CLASHCLANG), loadSfx(SoundGlobals.SFX_WEAPON_SCIMITAR_SWIPECLANG_01), loadSfx(SoundGlobals.SFX_WEAPON_SCIMITAR_SWIPECLANG_02), loadSfx(SoundGlobals.SFX_WEAPON_SCIMITAR_SWIPECLANG_03)),
             ItemGlobals.CURSED_CUTLASS: (loadSfx(SoundGlobals.SFX_WEAPON_CUTLASS_CLASHCLANG), loadSfx(SoundGlobals.SFX_WEAPON_CUTLASS_SWIPECLANG_01), loadSfx(SoundGlobals.SFX_WEAPON_CUTLASS_SWIPECLANG_02), loadSfx(SoundGlobals.SFX_WEAPON_CUTLASS_SWIPECLANG_03)),
             ItemGlobals.CURSED_SABRE: (loadSfx(SoundGlobals.SFX_WEAPON_SABRE_CLASHCLANG), loadSfx(SoundGlobals.SFX_WEAPON_SABRE_SWIPECLANG_01), loadSfx(SoundGlobals.SFX_WEAPON_SABRE_SWIPECLANG_02), loadSfx(SoundGlobals.SFX_WEAPON_SABRE_SWIPECLANG_03)),
-            ItemGlobals.CURSED_BROADSWORD: (loadSfx(SoundGlobals.SFX_WEAPON_BROADSWORD_CLASHCLANG), loadSfx(SoundGlobals.SFX_WEAPON_BROADSWORD_SWIPECLANG_01), loadSfx(SoundGlobals.SFX_WEAPON_BROADSWORD_SWIPECLANG_02), loadSfx(SoundGlobals.SFX_WEAPON_BROADSWORD_SWIPECLANG_03)) }
+            ItemGlobals.CURSED_BROADSWORD: (loadSfx(SoundGlobals.SFX_WEAPON_BROADSWORD_CLASHCLANG), loadSfx(SoundGlobals.SFX_WEAPON_BROADSWORD_SWIPECLANG_01), loadSfx(SoundGlobals.SFX_WEAPON_BROADSWORD_SWIPECLANG_02), loadSfx(SoundGlobals.SFX_WEAPON_BROADSWORD_SWIPECLANG_03)),
+            ItemGlobals.RAPIER: (loadSfx(SoundGlobals.SFX_WEAPON_SABRE_CLASHCLANG), loadSfx(SoundGlobals.SFX_WEAPON_SABRE_SWIPECLANG_01), loadSfx(SoundGlobals.SFX_WEAPON_SABRE_SWIPECLANG_02), loadSfx(SoundGlobals.SFX_WEAPON_SABRE_SWIPECLANG_03)) }
         Sword.missSfxs = (loadSfx(SoundGlobals.SFX_WEAPON_CUTLASS_SWOOSH_01), loadSfx(SoundGlobals.SFX_WEAPON_CUTLASS_SWOOSH_02))
         Sword.mistimedHitSfxs = (loadSfx(SoundGlobals.SFX_WEAPON_CUTLASS_MISTIMEDHIT),)
         Sword.skillSfxs = {

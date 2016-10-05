@@ -53,7 +53,7 @@ class AwardTypes:
     LOST_BLADE_OF_LEVIATHAN = 25
     LOST_SWORD_OF_EL_PATRON = 26
     BARBOSSAS_FURY = 27
-    SCIMITAR_42 = 28
+    RUSTY_SCIMITAR = 28
     SCIMITAR_46 = 29
     SCIMITAR_47 = 30
     SCIMITAR_48 = 31
@@ -231,12 +231,12 @@ AWARD_ID = {
         None,
         1,
         PLocalizer.CodeRedemptionBarbossaFury],
-    AwardTypes.SCIMITAR_42: [
+    AwardTypes.RUSTY_SCIMITAR: [
         NORMAL_INVENTORY,
-        InvItem((InventoryType.ItemTypeWeapon, ItemGlobals.SCIMITAR_42, 0, [])),
+        InvItem((InventoryType.ItemTypeWeapon, ItemGlobals.RUSTY_SCIMITAR, 0, [])),
         None,
         1,
-        PLocalizer.CodeRedemptionScimitar42],
+        PLocalizer.CodeRedemptionRustyScimitar],
     AwardTypes.SCIMITAR_46: [
         NORMAL_INVENTORY,
         InvItem((InventoryType.ItemTypeWeapon, ItemGlobals.SCIMITAR_46, 0, [])),
