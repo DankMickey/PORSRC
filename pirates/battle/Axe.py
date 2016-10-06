@@ -10,16 +10,12 @@ from pirates.audio.SoundGlobals import loadSfx
 from pirates.uberdog.UberDogGlobals import InventoryType
 import random
 
-class Foil(Weapon.Weapon):
+class Axe(Weapon.Weapon):
     modelTypes = [
-        'models/handheld/pir_m_hnd_swd_epee_a',
-        'models/handheld/pir_m_hnd_swd_epee_b',
-        'models/handheld/pir_m_hnd_swd_epee_c',
-        'models/handheld/pir_m_hnd_swd_epee_d',
-        'models/handheld/pir_m_hnd_swd_rapier_a',
-        'models/handheld/pir_m_hnd_swd_rapier_b',
-        'models/handheld/pir_m_hnd_swd_rapier_c',
-        'models/handheld/pir_m_hnd_swd_rapier_d']
+        'models/handheld/pir_m_hnd_axe_boarding_a',
+        'models/handheld/pir_m_hnd_axe_boarding_b',
+        'models/handheld/pir_m_hnd_axe_boarding_c',
+        'models/handheld/pir_m_hnd_axe_boarding_d']
     models = { }
     icons = { }
     vertex_list = [
@@ -30,16 +26,41 @@ class Foil(Weapon.Weapon):
         ItemGlobals.MotionBlurDefault: [
             Vec4(0.3, 0.3, 0.3, 0.5),
             Vec4(0.3, 0.3, 0.3, 0.5),
-            Vec4(0.6, 0.6, 0.6, 0.5)] }
-    walkAnim = 'sword_advance'
-    runAnim = 'sword_advance'
-    neutralAnim = 'foil_idle'
+            Vec4(0.6, 0.6, 0.6, 0.5)],
+        ItemGlobals.MotionBlurRusty: [
+            Vec4(0.3, 0.4, 0.1, 0.5),
+            Vec4(0.3, 0.3, 0.3, 0.5),
+            Vec4(0.6, 0.6, 0.6, 0.5)],
+        ItemGlobals.MotionBlurIron: [
+            Vec4(0.1, 0.2, 0.4, 0.5),
+            Vec4(0.4, 0.5, 0.7, 0.5),
+            Vec4(0.5, 0.5, 0.9, 0.75)],
+        ItemGlobals.MotionBlurSteel: [
+            Vec4(1, 1, 0.4, 0.5),
+            Vec4(0.4, 0.5, 0.6, 0.5),
+            Vec4(0.7, 0.7, 0.8, 0.75)],
+        ItemGlobals.MotionBlurFine: [
+            Vec4(0.6, 0.6, 0.75, 1),
+            Vec4(0.6, 0.5, 0.2, 1),
+            Vec4(0.6, 0.6, 0.4, 1)],
+        ItemGlobals.MotionBlurPirate: [
+            Vec4(1, 0.2, 0.2, 0.5),
+            Vec4(0.5, 0.5, 0.5, 0.75),
+            Vec4(0.7, 0.7, 0.9, 1)],
+        ItemGlobals.MotionBlurDark: [
+            Vec4(1, 1, 0, 0.5),
+            Vec4(0.3, 0.3, 0.3, 0.5),
+            Vec4(0.1, 0.1, 0.1, 1.0)] }
+    walkAnim = 'walk'
+    runAnim = 'run_with_weapon'
+    neutralAnim = 'sword_idle'
     strafeLeftAnim = 'strafe_left'
     strafeRightAnim = 'strafe_right'
     painAnim = 'boxing_hit_head_right'
 
     def __init__(self, itemId):
-        Weapon.Weapon.__init__(self, itemId, 'foil')
+        Weapon.Weapon.__init__(self, itemId, 'axe')
+        self.leftHandWeaponNP = None
 
 
     def loadModel(self):
@@ -52,9 +73,8 @@ class Foil(Weapon.Weapon):
         self.removeTrail()
         Weapon.Weapon.delete(self)
 
-
     def getDrawIval(self, av, ammoSkillId = 0, blendInT = 0.1, blendOutT = 0):
-        track = Parallel(Func(base.playSfx, self.drawSfx, node = av), av.actorInterval('sword_draw', playRate = 1.5, endFrame = 15, blendInT = blendInT, blendOutT = blendOutT), Sequence(Wait(0.187), Func(self.attachTo, av)))
+        track = Parallel(Func(base.playSfx, self.drawSfx, node = av), av.actorInterval('dualcutlass_draw', playRate = 1, blendInT = blendInT, blendOutT = blendOutT), Sequence(Wait(0.187), Func(self.attachTo, av)))
         return track
 
 
@@ -131,22 +151,22 @@ class Foil(Weapon.Weapon):
 
 
     def setupSounds(cls):
-        Foil.hitSfxs = (loadSfx(SoundGlobals.SFX_WEAPON_FOIL_HIT_01), loadSfx(SoundGlobals.SFX_WEAPON_FOIL_HIT_02), loadSfx(SoundGlobals.SFX_WEAPON_FOIL_HIT_03), loadSfx(SoundGlobals.SFX_WEAPON_FOIL_HIT_04))
-        Foil.mistimedHitSfxs = (loadSfx(SoundGlobals.SFX_WEAPON_FOIL_HIT_01), loadSfx(SoundGlobals.SFX_WEAPON_FOIL_HIT_02), loadSfx(SoundGlobals.SFX_WEAPON_FOIL_HIT_03), loadSfx(SoundGlobals.SFX_WEAPON_FOIL_HIT_04))
-        Foil.missSfxs = (loadSfx(SoundGlobals.SFX_WEAPON_FOIL_MISS_01), loadSfx(SoundGlobals.SFX_WEAPON_FOIL_MISS_02))
-        Foil.drawSfx = loadSfx(SoundGlobals.SFX_WEAPON_FOIL_DRAW)
-        Foil.returnSfx = loadSfx(SoundGlobals.SFX_WEAPON_FOIL_SHEATHE)
+        Axe.hitSfxs = (loadSfx(SoundGlobals.SFX_WEAPON_DUALCUTLASS_HIT_01), loadSfx(SoundGlobals.SFX_WEAPON_DUALCUTLASS_HIT_02), loadSfx(SoundGlobals.SFX_WEAPON_DUALCUTLASS_HIT_03), loadSfx(SoundGlobals.SFX_WEAPON_DUALCUTLASS_HIT_04))
+        Axe.mistimedHitSfxs = (loadSfx(SoundGlobals.SFX_WEAPON_DUALCUTLASS_HIT_01), loadSfx(SoundGlobals.SFX_WEAPON_DUALCUTLASS_HIT_02), loadSfx(SoundGlobals.SFX_WEAPON_DUALCUTLASS_HIT_03), loadSfx(SoundGlobals.SFX_WEAPON_DUALCUTLASS_HIT_04))
+        Axe.missSfxs = (loadSfx(SoundGlobals.SFX_WEAPON_DUALCUTLASS_MISS_01), loadSfx(SoundGlobals.SFX_WEAPON_DUALCUTLASS_MISS_02))
+        Axe.drawSfx = loadSfx(SoundGlobals.SFX_WEAPON_DUALCUTLASS_DRAW)
+        Axe.returnSfx = loadSfx(SoundGlobals.SFX_WEAPON_DUALCUTLASS_SHEATHE)
 
     setupSounds = classmethod(setupSounds)
 
 
 def getHitSfx():
-    return Foil.hitSfxs
+    return Axe.hitSfxs
 
 
 def getMistimedHitSfx():
-    return Foil.mistimedHitSfxs
+    return DAxe.mistimedHitSfxs
 
 
 def getMissSfx():
-    return Foil.missSfxs
+    return Axe.missSfxs

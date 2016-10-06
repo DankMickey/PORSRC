@@ -125,13 +125,16 @@ class PiratesAIRepository(PiratesInternalRepository):
         return False
 
     def incrementPopulation(self, user=None):
-        if user != None and hasattr(self, 'analyticsMgr'):
-            self.analyticsMgr.track("user_joined", time=None, distinct_id=user.DISLid, accountId=user.DISLid)
+        if user != None:
+            if hasattr(self, 'analyticsMgr'):
+                self.analyticsMgr.track("user_joined", time=None, distinct_id=user.DISLid, accountId=user.DISLid)
 
         self.districtManager.district.b_setAvatarCount(self.districtManager.district.getAvatarCount() + 1)
 
     def decrementPopulation(self, user=None):
-        if user != None and hasattr(self, 'analyticsMgr'):
-            self.analyticsMgr.track("user_left", time=None, distinct_id=user.DISLid, accountId=user.DISLid)
+        if user != None:
+            self.bandManager.pirateWentOffline(user.getUniqueId())
+            if hasattr(self, 'analyticsMgr'):
+                self.analyticsMgr.track("user_left", time=None, distinct_id=user.DISLid, accountId=user.DISLid)
 
         self.districtManager.district.b_setAvatarCount(self.districtManager.district.getAvatarCount() - 1)

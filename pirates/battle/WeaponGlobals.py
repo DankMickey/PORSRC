@@ -24,6 +24,7 @@ import MonsterMelee
 import Consumable
 import Weapon
 import DualCutlass
+import Axe
 import Foil
 import FishingRod
 import Gun
@@ -419,7 +420,6 @@ __typeId2Class = {
     ItemGlobals.DAGGER: Dagger.Dagger,
     ItemGlobals.GRENADE: Grenade.Grenade,
     ItemGlobals.STAFF: Wand.Wand,
-    ItemGlobals.AXE: Sword.Sword,
     ItemGlobals.FENCING: Sword.Sword,
     ItemGlobals.POTION: Consumable.Consumable,
     ItemGlobals.FISHING: FishingRod.FishingRod,
@@ -434,6 +434,7 @@ __subtypeId2Class = {
     ItemGlobals.DUAL_SCIMITAR: DualCutlass.DualCutlass,
     ItemGlobals.EPEE: Foil.Foil,
     ItemGlobals.RAPIER: Foil.Foil,
+    ItemGlobals.AXE: Axe.Axe,
     ItemGlobals.QUEST_PROP_TORCH: Torch.Torch,
     ItemGlobals.QUEST_PROP_POWDER_KEG: PowderKeg.PowderKeg }
 __weaponClass2Key = {

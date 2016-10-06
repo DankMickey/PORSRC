@@ -62,6 +62,7 @@ class AwardTypes:
     POTION_SUMMON_DOG = 34
     TREASURE = 35
     DUAL_CUTLASSES = 36
+    BOARDING_AXE = 37
     TYPE_IDX = 0
     MALE_IDX = 1
     FEME_IDX = 2
@@ -279,6 +280,12 @@ AWARD_ID = {
         None,
         1,
         PLocalizer.CodeRedemptionDualCutlasses],
+    AwardTypes.BOARDING_AXE: [
+        NORMAL_INVENTORY,
+        InvItem((InventoryType.ItemTypeWeapon, ItemGlobals.CRUDE_BOARDING_AXE, 0, [])),
+        None,
+        1,
+        PLocalizer.CodeRedemptionBoardingAxe],
     AwardTypes.TREASURE: [
         NORMAL_INVENTORY,
         InvItem((InventoryType.ItemTypeMoney, 0)),

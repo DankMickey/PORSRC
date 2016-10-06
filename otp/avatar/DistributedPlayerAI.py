@@ -66,10 +66,10 @@ class DistributedPlayerAI(DistributedAvatarAI.DistributedAvatarAI, PlayerBase.Pl
         self.decrementPopulation()
 
     def incrementPopulation(self):
-        self.air.incrementPopulation()
+        self.air.incrementPopulation(self)
 
     def decrementPopulation(self):
-        simbase.air.decrementPopulation()
+        simbase.air.decrementPopulation(self)
 
     def d_setMaxHp(self, maxHp):
         DistributedAvatarAI.DistributedAvatarAI.d_setMaxHp(self, maxHp)

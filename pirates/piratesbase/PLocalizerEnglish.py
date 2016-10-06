@@ -2656,8 +2656,14 @@ ItemNames = {
     ItemGlobals.DUAL_RUSTY_CUTLASS: 'Dual Rusty Cutlasses',
     ItemGlobals.DUAL_RUSTY_SCIMITAR: 'Dual Rusty Scimitars',
     ItemGlobals.CRUDE_RAPIER: 'Crude Rapier',
+    ItemGlobals.RAPIER_B: 'Rapier',
+    ItemGlobals.RAPIER_C: 'Rapier',
+    ItemGlobals.RAPIER_D: 'Rapier',
     ItemGlobals.PROP_TORCH: 'Torch',
-    ItemGlobals.CRUDE_BOARDING_AXE: 'Curde Boarding Axe',
+    ItemGlobals.CRUDE_BOARDING_AXE: 'Crude Boarding Axe',
+    ItemGlobals.BOARDING_AXE_B: 'Boarding Axe',
+    ItemGlobals.STEEL_BOARDING_AXE: 'Steel Boarding Axe',
+    ItemGlobals.ROYAL_BOARDING_AXE: 'Royal Boarding Axe',
     ItemGlobals.MAITRE_EPEE: "Maitre's Epee",
     ItemGlobals.EPEE_2: 'Epee 2',
     ItemGlobals.EPEE_3: 'Epee 3',
@@ -4398,6 +4404,7 @@ ItemSubtypeNames = {
     ItemGlobals.BOARDING: 'Boarding',
     ItemGlobals.RAPIER: 'Rapier',
     ItemGlobals.EPEE: 'Epee',
+    ItemGlobals.AXE: 'Axe',
     ItemGlobals.CARRONADE: 'Carronade',
     ItemGlobals.HEALING: 'Healing',
     ItemGlobals.SPYGLASS: 'Spyglass',
@@ -11020,6 +11027,7 @@ CodeRedemptionSummonChicken = 'Summon Chicken'
 CodeRedemptionSummonWasp = 'Summon Wasp'
 CodeRedemptionSummonDog = 'Summon Dog'
 CodeRedemptionDualCutlasses = 'DualCutlasses'
+CodeRedemptionBoardingAxe = 'Boarding Axe'
 ShipPVPQuestFrench = 'French'
 ShipPVPQuestSpanish = 'Spanish'
 ShipPVPQuestKillShip = 'ship'
