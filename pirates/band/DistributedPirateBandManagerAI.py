@@ -1,6 +1,34 @@
 from direct.directnotify import DirectNotifyGlobal
 from direct.distributed.DistributedObjectAI import DistributedObjectAI
+from direct.fsm.FSM import FSM
 from pirates.band import BandConstance
+
+class LoadBandMemberFSM(FSM):
+	notify = DirectNotifyGlobal.directNotify.newCategory('LoadBandMemberFSM')
+
+	def __init__(self, mgr, pirate, callback):
+		FSM.__init__(self, 'LoadBandMemberFSM')
+		self.mgr = mgr
+		self.pirate = pirate
+		self.callback = callback
+		self.done = False
+
+	def start(self):
+		self.memberId = 0 #TODO generate id
+		if not self.memberId in self.mgr.air.doId2do:
+			#self.mgr.air.sendActivate(self.memberId, self.mgr.air.districtId, )
+			self.acceptOnce('generate-%d' % self.memberId, self.__generated)
+		else:
+			self.__generated(self.mgr.air.doId2do(self.memberId))
+
+	def __generated(self, member):
+		self.member = member
+		self.mgr.bandMembers.append(member)
+		self.demand('Off')
+
+	def enterOff(self):
+		self.done = True
+		self.callback(self.member)
 
 class DistributedPirateBandManagerAI(DistributedObjectAI):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedPirateBandManagerAI')
@@ -11,10 +39,12 @@ class DistributedPirateBandManagerAI(DistributedObjectAI):
 	def announceGenerate(self):
 		DistributedObjectAI.announceGenerate(self)
 		self.activeInvites = {}
+		self.bandMembers = {}
 
 	def delete(self):
 		DistributedObjectAI.delete(self)
 		self.activeInvites = {}
+		#TODO clear invites?
 
 	def pirateWentOffline(self, avatarId):
 		if avatarId in self.activeInvites:

@@ -1,13 +1,14 @@
-from panda3d.core import Texture, Vec4
+from panda3d.core import ColorBlendAttrib, Texture, Vec4
 import Weapon
 import WeaponGlobals
+from pirates.audio import SoundGlobals
+from pirates.audio.SoundGlobals import loadSfx
 from direct.interval.IntervalGlobal import *
+from pirates.battle.EnemySkills import *
+from pirates.uberdog.UberDogGlobals import InventoryType
 from pirates.inventory import ItemGlobals
 from pirates.piratesbase import PLocalizer
 from pirates.effects import PolyTrail
-from pirates.audio import SoundGlobals
-from pirates.audio.SoundGlobals import loadSfx
-from pirates.uberdog.UberDogGlobals import InventoryType
 import random
 
 class Axe(Weapon.Weapon):
@@ -50,7 +51,15 @@ class Axe(Weapon.Weapon):
         ItemGlobals.MotionBlurDark: [
             Vec4(1, 1, 0, 0.5),
             Vec4(0.3, 0.3, 0.3, 0.5),
-            Vec4(0.1, 0.1, 0.1, 1.0)] }
+            Vec4(0.1, 0.1, 0.1, 1.0)],
+        ItemGlobals.MotionBlurGreen: [
+            Vec4(0.5, 1, 0.1, 1.0),
+            Vec4(0.2, 1, 0.2, 1.0),
+            Vec4(0.3, 1, 0.4, 1.0)],
+        ItemGlobals.MotionBlurRed: [
+            Vec4(1, 0.5, 0.2, 1.0),
+            Vec4(1, 0.3, 0.3, 1.0),
+            Vec4(1, 0.1, 0.1, 1.0)] }
     walkAnim = 'walk'
     runAnim = 'run_with_weapon'
     neutralAnim = 'sword_idle'
@@ -60,44 +69,45 @@ class Axe(Weapon.Weapon):
 
     def __init__(self, itemId):
         Weapon.Weapon.__init__(self, itemId, 'axe')
-        self.leftHandWeaponNP = None
-
 
     def loadModel(self):
         self.prop = self.getModel(self.itemId)
         self.prop.reparentTo(self)
 
-
     def delete(self):
+        taskMgr.remove('stopSpecialEffectTask')
         self.endAttack(None)
         self.removeTrail()
         Weapon.Weapon.delete(self)
 
     def getDrawIval(self, av, ammoSkillId = 0, blendInT = 0.1, blendOutT = 0):
-        track = Parallel(Func(base.playSfx, self.drawSfx, node = av), av.actorInterval('dualcutlass_draw', playRate = 1, blendInT = blendInT, blendOutT = blendOutT), Sequence(Wait(0.187), Func(self.attachTo, av)))
+        track = Parallel(Func(base.playSfx, self.drawSfx, node = av, cutoff = 60), av.actorInterval('sword_draw', playRate = 1.5, endFrame = 15, blendInT = blendInT, blendOutT = blendOutT), Sequence(Wait(0.187), Func(self.attachTo, av)))
         return track
-
 
     def getReturnIval(self, av, blendInT = 0, blendOutT = 0.1):
-        track = Parallel(Func(base.playSfx, self.returnSfx, node = av), av.actorInterval('sword_putaway', playRate = 2, endFrame = 35, blendInT = blendInT, blendOutT = blendOutT), Sequence(Wait(0.56), Func(self.detachFrom, av)))
+        track = Parallel(Func(base.playSfx, self.returnSfx, node = av, cutoff = 60), av.actorInterval('sword_putaway', playRate = 2, endFrame = 35, blendInT = blendInT, blendOutT = blendOutT), Sequence(Wait(0.56), Func(self.detachFrom, av)))
         return track
-
 
     def attachTo(self, av):
         Weapon.Weapon.attachTo(self, av)
+        self.setOffset()
         self.createTrail(av)
 
+    def setOffset(self):
+        startPos = self.getPos()
+        endPos = startPos - (0, 0.8, 0)
+        self.setPos(endPos)
 
     def detachFrom(self, av):
         Weapon.Weapon.detachFrom(self, av)
         self.removeTrail()
-
 
     def createTrail(self, target):
         if self.isEmpty():
             return None
 
         if not self.motion_trail:
+            motion_trail_color = []
             colorId = ItemGlobals.getVfxType1(self.itemId)
             motion_trail_color = self.motion_color.get(colorId)
             if not motion_trail_color:
@@ -115,58 +125,40 @@ class Axe(Weapon.Weapon):
 
             card.remove_node()
 
-
-
     def removeTrail(self):
         if self.motion_trail:
             self.motion_trail.destroy()
             self.motion_trail = None
 
-
-
-    def hideSpinBlur(self):
-        if self.spinBlur:
-            if not self.spinBlur.isEmpty():
-                self.spinBlur.hide()
-
-
-
-
-    def showSpinBlur(self):
-        if self.spinBlur:
-            if not self.spinBlur.isEmpty():
-                self.spinBlur.setColorScale(self.getBlurColor() / 2.0)
-                self.spinBlur.show()
-
-
-
-
     def getBlurColor(self):
-        return self.motion_color.get(self.itemId)[2]
+        colorId = ItemGlobals.getVfxType1(self.itemId)
+        motion_trail_color = self.motion_color.get(colorId)
+        if not motion_trail_color:
+            motion_trail_color = self.motion_color.get(ItemGlobals.MotionBlurDefault)
 
+        return motion_trail_color[2]
 
-    def beginAttack(self, av, wantTrail = 1):
-        self.hideSpinBlur()
-        Weapon.Weapon.beginAttack(self, av, wantTrail)
+    def startSpecialEffect(self, skillId = None):
+        taskMgr.doMethodLater(1.0, self.stopSpecialEffect, 'stopSpecialEffectTask', [
+            skillId])
 
+    def stopSpecialEffect(self, skillId = None):
+        pass
 
     def setupSounds(cls):
-        Axe.hitSfxs = (loadSfx(SoundGlobals.SFX_WEAPON_DUALCUTLASS_HIT_01), loadSfx(SoundGlobals.SFX_WEAPON_DUALCUTLASS_HIT_02), loadSfx(SoundGlobals.SFX_WEAPON_DUALCUTLASS_HIT_03), loadSfx(SoundGlobals.SFX_WEAPON_DUALCUTLASS_HIT_04))
-        Axe.mistimedHitSfxs = (loadSfx(SoundGlobals.SFX_WEAPON_DUALCUTLASS_HIT_01), loadSfx(SoundGlobals.SFX_WEAPON_DUALCUTLASS_HIT_02), loadSfx(SoundGlobals.SFX_WEAPON_DUALCUTLASS_HIT_03), loadSfx(SoundGlobals.SFX_WEAPON_DUALCUTLASS_HIT_04))
-        Axe.missSfxs = (loadSfx(SoundGlobals.SFX_WEAPON_DUALCUTLASS_MISS_01), loadSfx(SoundGlobals.SFX_WEAPON_DUALCUTLASS_MISS_02))
-        Axe.drawSfx = loadSfx(SoundGlobals.SFX_WEAPON_DUALCUTLASS_DRAW)
-        Axe.returnSfx = loadSfx(SoundGlobals.SFX_WEAPON_DUALCUTLASS_SHEATHE)
+        Axe.hitSfxs = (loadSfx(SoundGlobals.SFX_WEAPON_BROADSWORD_CLASHCLANG), loadSfx(SoundGlobals.SFX_WEAPON_BROADSWORD_SWIPECLANG_01), loadSfx(SoundGlobals.SFX_WEAPON_BROADSWORD_SWIPECLANG_02), loadSfx(SoundGlobals.SFX_WEAPON_BROADSWORD_SWIPECLANG_03))
+        Axe.missSfxs = (loadSfx(SoundGlobals.SFX_WEAPON_CUTLASS_SWOOSH_01), loadSfx(SoundGlobals.SFX_WEAPON_CUTLASS_SWOOSH_02))
+        Axe.mistimedHitSfxs = (loadSfx(SoundGlobals.SFX_WEAPON_CUTLASS_MISTIMEDHIT),)
+        Axe.drawSfx = loadSfx(SoundGlobals.SFX_WEAPON_CUTLASS_DRAW)
+        Axe.returnSfx = loadSfx(SoundGlobals.SFX_WEAPON_CUTLASS_SHEATHE)
 
     setupSounds = classmethod(setupSounds)
-
 
 def getHitSfx():
     return Axe.hitSfxs
 
-
 def getMistimedHitSfx():
-    return DAxe.mistimedHitSfxs
-
+    return Axe.mistimedHitSfxs
 
 def getMissSfx():
     return Axe.missSfxs

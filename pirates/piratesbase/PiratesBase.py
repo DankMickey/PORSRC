@@ -266,7 +266,7 @@ class PiratesBase(OTPBase):
     def buildPhase4Assets(self):
         from pirates.battle import WeaponGlobals, Pistol, Sword, Dagger, Doll, Wand
         from pirates.battle import Grenade, Bayonet, Melee, DualCutlass, Foil, Gun
-        from pirates.battle import FishingRod, Torch, PowderKeg
+        from pirates.battle import Axe, FishingRod, Torch, PowderKeg
 
         if config.GetBool('want-kraken', 0):
             from pirates.kraken import Holder
@@ -299,6 +299,8 @@ class PiratesBase(OTPBase):
         DualCutlass.DualCutlass.setupAssets()
         self.loadingScreen.tick()
         Foil.Foil.setupAssets()
+        self.loadingScreen.tick()
+        Axe.Axe.setupAssets()
         self.loadingScreen.tick()
         Gun.Gun.setupAssets()
         self.loadingScreen.tick()

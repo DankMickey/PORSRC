@@ -34,7 +34,6 @@ class Weapon(NodePath):
         self.modelId = None
         if self.itemId:
             self.modelId = ItemGlobals.getModel(itemId)
-            self.notify.info("MODELID: %s" % self.modelId)
 
         self.effect = None
         self.effect2 = None
@@ -287,7 +286,6 @@ class Weapon(NodePath):
         cls.models = { }
         for item in cls.modelTypes:
             model = loader.loadModel(item)
-
             try:
                 model.flattenLight()
             except AttributeError:
