@@ -773,7 +773,7 @@ def giveGold(gold):
     #if hasattr(air, 'analyticsMgr'):
     #    data = {'command': "giveGold", 'invoker':invoker.getName(), 'target':target.getName(), 'amount':str(gold)}
     #    air.analyticsMgr.track("command-used", None, None, data)
-    return 'Given %d gold top %s! Balance: %d' % (gold, target.getName(), target.getGoldInPocket())
+    return 'Given %d gold to %s! Balance: %d' % (gold, target.getName(), target.getGoldInPocket())
 
 @magicWord(CATEGORY_GAME_MASTER, types=[int])
 def takeGold(gold):
