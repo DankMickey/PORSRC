@@ -215,7 +215,7 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
             self.__fspots += 1
             self.generateChild(genObj)
 
-        elif objType == 'Searchable Container':
+        elif objType == 'Searchable Container' and config.GetBool('want-searchables', 0):
             genObj = DistributedSearchableContainerAI.makeFromObjectKey(self.air, objKey, object)
             self.generateChild(genObj)
 

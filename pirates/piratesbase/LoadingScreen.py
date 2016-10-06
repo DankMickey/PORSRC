@@ -370,7 +370,7 @@ class LoadingScreen(DirectObject.DirectObject):
         self.hintLabel.reparentTo(aspect2dp, NO_FADE_SORT_INDEX)
         self.model.setScale(0.25, 0.25, 0.25)
         self.model.setPos(0.0, 0.0, -0.15)
-        
+
         if config.GetBool('loading-screenlogo', 0):
         	self.logo = OnscreenImage(image = 'custom/PORLogo.png', pos = (-0.12, 0, 3.5), scale = (1.4, 1.25, 1.25), parent = self.model)
         	self.logo.setTransparency(TransparencyAttrib.MAlpha)
@@ -546,10 +546,7 @@ class LoadingScreen(DirectObject.DirectObject):
         if pickapirate:
             serverVersionText = config.GetString('server-version', 'no_version_set')
             self.__setHintText(serverVersionText)
-        #else: #BROKEN
-        #    hintText = self.getGeneralHint()
-        #    self.__setHintText(hintText)
-
+            
         if targetName is None:
             return None
 
