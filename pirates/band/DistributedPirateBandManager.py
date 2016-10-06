@@ -4,6 +4,7 @@ from pirates.piratesbase import PLocalizer
 
 class DistributedPirateBandManager(DistributedObject):
     notify = directNotify.newCategory('PirateBandManager')
+    neverDisable = 1
 
     def __init__(self, cr):
         DistributedObject.__init__(self, cr)

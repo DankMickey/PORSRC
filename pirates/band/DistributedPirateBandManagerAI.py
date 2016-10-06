@@ -1,5 +1,6 @@
 from direct.directnotify import DirectNotifyGlobal
 from direct.distributed.DistributedObjectAI import DistributedObjectAI
+from pirates.band import BandConstance
 
 class DistributedPirateBandManagerAI(DistributedObjectAI):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedPirateBandManagerAI')
@@ -9,12 +10,74 @@ class DistributedPirateBandManagerAI(DistributedObjectAI):
 
 	def announceGenerate(self):
 		DistributedObjectAI.announceGenerate(self)
+		self.activeInvites = {}
 
 	def delete(self):
 		DistributedObjectAI.delete(self)
+		self.activeInvites = {}
+
+	def pirateWentOffline(self, avatarId):
+		if avatarId in self.activeInvites:
+			invites = self.activeInvites.get(avatarId)
+			for invite in invites:
+				self.sendUpdateToAvatarId(invite, "invitationCancel", [avatarId])
+			self.activeInvites.pop(avatarId, None)
+
+	def joinCrew(self, avId, managerId):
+		pass
+
+	def createInvite(self, senderId, receiverId):
+
+		sender = self.air.doId2do.get(senderId)
+		if not sender:
+			self.notify.warning("Failed to create invite. Sender is not online.")
+			return False
+
+		if not receiver:
+			self.notify.warning("Failed to create invite. Receiver is not online.")
+			return False
+
+		if senderId in self.activeInvites:
+			inviteList = self.activeInvites.get(senderId)
+			invitelist.append(receiverId)
+			self.activeInvites.pop(senderId, inviteList)
+
+		self.sendUpdateToAvatarId(receiverId, "InvitationFrom", [senderId, sender.getName()])
+
+	def hasInvite(self, senderId, receiverId):
+		if senderId not in self.activeInvites:
+			return False
+
+		invites = self.activeInvites.get(senderId)
+		if receiverId in invites:
+			return True
+
+		return False
+
+	def sendRequestOutcome(self, receiverId, avatarId, avatarName=None, responce=BandConstance.outcome_ok):
+		self.notify.info("Sending request outcome. receiverId: %s avatarId: %s avatarName: %s responce: %s" % (receiverId,avatarId, avatarName, responce))
+
+		name = "Unknown"
+		if avatarName is None:
+			avatar = self.air.doId2do.get(avatarId)
+			if not avatar:
+				name = avatar.getName()
+
+		self.sendUpdateToAvatarId(receiverId, "requestOutCome", [avatarId, name, responce])
 
 	def requestInvite(self, avId):
 		self.notify.info("requestInvite: avId(%s)" % avId)
+
+		senderId = self.air.getAvatarIdFromSender()
+
+		if not config.GetBool('want-crews', False):
+			self.sendRequestOutcome(senderId, avId, responce=BandConstance.outcome_declined)
+
+		if self.hasInvite(senderId, avId):
+			self.sendRequestOutcome(senderId, avId, responce=BandConstance.outcome_already_invited)
+			return
+
+		self.createInvite(senderId, avId)
 
 	def requestRejoin(self, avId, isManager):
 		self.notify.info("requestRejoin: avId(%s) isManager(%s)" % (avId, isManager))
