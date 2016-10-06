@@ -34,6 +34,7 @@ class Weapon(NodePath):
         self.modelId = None
         if self.itemId:
             self.modelId = ItemGlobals.getModel(itemId)
+            self.notify.info("MODELID: %s" % self.modelId)
 
         self.effect = None
         self.effect2 = None

@@ -133,7 +133,7 @@ class PiratesAIRepository(PiratesInternalRepository):
 
     def decrementPopulation(self, user=None):
         if user != None:
-            self.bandManager.pirateWentOffline(user.getUniqueId())
+            #self.bandManager.pirateWentOffline(user.getUniqueId())
             if hasattr(self, 'analyticsMgr'):
                 self.analyticsMgr.track("user_left", time=None, distinct_id=user.DISLid, accountId=user.DISLid)
 
