@@ -6,24 +6,29 @@ from pirates.band import BandConstance
 class LoadBandMemberFSM(FSM):
 	notify = DirectNotifyGlobal.directNotify.newCategory('LoadBandMemberFSM')
 
-	def __init__(self, mgr, pirate, callback):
+	def __init__(self, mgr, pirate, bandId, callback):
 		FSM.__init__(self, 'LoadBandMemberFSM')
 		self.mgr = mgr
 		self.pirate = pirate
+		self.bandId = 0
 		self.callback = callback
 		self.done = False
 
 	def start(self):
 		self.memberId = 0 #TODO generate id
 		if not self.memberId in self.mgr.air.doId2do:
-			#self.mgr.air.sendActivate(self.memberId, self.mgr.air.districtId, )
+			zoneId = 0
+			self.mgr.air.sendActivate(self.memberId, self.mgr.air.districtId, zoneId)
 			self.acceptOnce('generate-%d' % self.memberId, self.__generated)
 		else:
 			self.__generated(self.mgr.air.doId2do(self.memberId))
 
 	def __generated(self, member):
 		self.member = member
-		self.mgr.bandMembers.append(member)
+		self.member.b_setAvatarId(self.memberId)
+		self.member.b_setBandId(self.bandId)
+
+		self.mgr.bandMembers.append(self.member)
 		self.demand('Off')
 
 	def enterOff(self):

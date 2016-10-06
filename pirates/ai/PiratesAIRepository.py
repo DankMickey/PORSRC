@@ -111,6 +111,7 @@ class PiratesAIRepository(PiratesInternalRepository):
         DistributedEnemySpawnerAI.printMissingAvatarTypes()
         DistributedEnemySpawnerAI.printMissingShipTypes()
         DistributedEnemySpawnerAI.printMissingAnimalTypes()
+        
         self.accept('pirate-inventory-activate', self.__inventoryActivate)
     
     def __inventoryActivate(self, ownerId, invId):

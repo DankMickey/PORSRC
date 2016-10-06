@@ -56,6 +56,21 @@ from pirates.battle import DistributedBattleAvatar/AI
 from pirates.battle import DistributedBattleNPC/AI
 from pirates.battle import WeaponBase/AI
 from pirates.battle import Teamable
+from pirates.pvp import PVPManager/AI
+from pirates.pvp import SiegeManager/AI
+from pirates.pvp import Scoreboard/AI
+from pirates.pvp import DistributedPVPInstance/AI
+from pirates.pvp import DistributedPVPBattle/AI
+from pirates.pvp import DistributedPVPTeamBattle/AI
+from pirates.pvp import DistributedPVPShipBattle/AI
+from pirates.pvp import PVPGameBase/AI
+from pirates.pvp import PVPGameCTL/AI
+from pirates.pvp import PVPGamePirateer/AI
+from pirates.pvp import PVPGameTeamBattle/AI
+from pirates.pvp import PVPGameBattle/AI
+from pirates.pvp import PVPGameShipBattle/AI
+from pirates.pvp import DistributedBank/AI
+from pirates.pvp import DistributedWreck/AI
 from pirates.piratesbase import DistributedTimeOfDayManager/AI
 from pirates.piratesbase import DistributedGameStatManager/AI
 from pirates.uberdog import DistributedInventory/AI/UD
@@ -73,6 +88,7 @@ from pirates.world import DistributedBuildingDoor/AI
 from pirates.world import DistributedInteriorDoor/AI
 from pirates.world import DistributedCellDoor/AI
 from pirates.band import DistributedCrewMatchManager/AI/UD
+from pirates.band import DistributedBandMember/AI/OV
 from pirates.interact import DistributedSearchableContainer/AI
 from pirates.coderedemption import CodeRedemption/AI
 from pirates.minigame import DistributedGameTable/AI
@@ -1271,6 +1287,33 @@ dclass DistributedCrewMatchManager : DistributedObject {
   requestRemoveHandle(uint32);
 };
 
+dclass DistributedBandMember : DistributedObject {
+  setAvatarId(uint32) required broadcast ram;
+  setName(string) required broadcast ram;
+  setHp(uint32) required broadcast ram;
+  setMaxHp(uint32) required broadcast ram;
+  setBandId(uint32, uint32) required broadcast ram;
+  setIsManager(uint8) required broadcast ram;
+  setIsTempManager(uint8) required broadcast ram;
+  setPvp(uint8) required broadcast ram;
+  setParlor(uint8) required broadcast ram;
+  setDisconnect(uint8) required broadcast ram;
+  // setShipInfo(uint32, string, uint8, MastInfo []) required broadcast ram;
+  setShipHasSpace(bool) required broadcast ram;
+  setMessage(uint32, string) broadcast;
+  setShipDeployMessage(uint32, uint32, string, string, uint8) broadcast;
+  removeShipDeployMessage(uint32) broadcast;
+  //setCrewHUDUpdate(uint8, HUDIcon) broadcast ram;
+  setChat(string, uint8, uint32) broadcast ownsend;
+  setWLChat(string, uint8, uint32) broadcast ownsend;
+  setSpeedChat(uint32, uint16) broadcast ownsend;
+  requestDisableBandMember(uint32) airecv clsend;
+  responseDisableBandMember(uint32, uint8);
+  setSCQuestChat(uint32, uint16, uint8, uint8) broadcast ownsend;
+  teleportQuery(uint32, uint32, uint32) clsend ownrecv;
+  teleportResponse(uint32, int8, uint32, uint32, uint32) clsend ownrecv;
+};
+
 dclass DistributedSearchableContainer : DistributedInteractive {
   setSearchTime(uint16) required broadcast ram;
   setType(string) required broadcast ram;
@@ -1431,4 +1474,124 @@ dclass DistributedPirateBandManager : DistributedObject {
   requestRemove(uint32) airecv clsend;
   requestCrewIconUpdate(uint8) airecv clsend;
   receiveUpdatedCrewIcon(uint8);
+};
+
+dclass PVPManager : DistributedObject {
+  setParentingRules(string, string) broadcast ram;
+  requestChallenge(uint32) airecv clsend;
+  acceptChallenge(uint32) airecv clsend;
+  challengeAccepted(uint32);
+  challengeFrom(uint32);
+};
+
+struct teamPair {
+  uint32 avDoId;
+  uint32 avTeam;
+};
+
+struct stat {
+  uint8 type;
+  int32 value;
+};
+
+struct playerStats {
+  uint32 playerId;
+  stat stats[];
+};
+
+struct playerInfo {
+  uint32 playerId;
+  string name;
+  uint8 team;
+};
+
+dclass DistributedPVPInstance : DistributedInstanceWorld {
+  setParentingRules(string, string) broadcast ram;
+  setAvatarReady() airecv clsend;
+  setMatchPlayers(playerInfo []) broadcast ram;
+  setGameStart(int16) broadcast;
+  setPlayerStat(uint32, uint8, int32) broadcast;
+  setStats(playerStats []) broadcast ram;
+  setResults(playerStats [], uint16, uint8, bool);
+  setPVPComplete() broadcast;
+  requestLeave() airecv clsend;
+  performAILeave();
+  requestLeaveApproved();
+  setPvpEvent(uint8, uint32 []) broadcast;
+  announceInfamyReward(uint32, uint32, uint16, int8) broadcast;
+};
+
+
+dclass DistributedPVPBattle : DistributedPVPInstance {
+  setParentingRules(string, string) broadcast ram;
+  setTimeLimit(uint32) required broadcast ram;
+};
+
+dclass DistributedPVPTeamBattle : DistributedPVPInstance {
+  setParentingRules(string, string) broadcast ram;
+  setTimeLimit(uint32) required broadcast ram;
+};
+
+dclass DistributedPVPShipBattle : DistributedPVPInstance {
+  setParentingRules(string, string) broadcast ram;
+  setTimeLimit(uint32) required broadcast ram;
+  setShipDoId(DoId);
+  setBoarded() airecv clsend;
+};
+
+dclass PVPGameBase : DistributedObject {
+  setParentingRules(string, string) broadcast ram;
+  setAvatarReady() airecv clsend;
+  allPresent(uint32 []) broadcast;
+  setPlayerStat(uint32, uint8, int32) broadcast;
+  setStats(playerStats []) broadcast ram;
+  setResults(playerStats [], int32);
+  setGameStart(int16) broadcast;
+  setGameExit() broadcast;
+  setGameAbort() broadcast;
+  setInstanceId(uint32) required broadcast ram;
+  setPvpEvent(uint8, uint32 []) broadcast;
+};
+
+dclass PVPGameCTL : PVPGameBase {
+  setParentingRules(string, string) broadcast ram;
+  treasureDeposited(uint32) airecv clsend;
+  setMaxCarry(uint16) broadcast ram;
+  setMaxTeamScore(uint16) broadcast ram;
+  shipDeposit(uint32) airecv clsend;
+  shipDeposited(uint32);
+  portEntered(string, uint32) airecv clsend;
+  portExited(string, uint32) airecv clsend;
+  requestDropTreasure() airecv clsend;
+  setShipsNearBase(uint32 [], string []) broadcast ram;
+};
+
+dclass PVPGamePirateer : PVPGameBase {
+  setParentingRules(string, string) broadcast ram;
+  coinCaptured(uint32) broadcast ram;
+  displayCoins(uint32 []) broadcast ram;
+  unDisplayCoin(uint32) broadcast;
+  lootWreck(uint32, uint32) clsend airecv;
+  unLootWreck(uint32, uint32) clsend airecv;
+  setMaxCarry(uint16) broadcast ram;
+  setMaxTeamScore(uint16) broadcast ram;
+  portEntered(string, uint32) airecv clsend;
+  portExited(string, uint32) airecv clsend;
+  setShipsNearBase(uint32 [], string []) broadcast ram;
+};
+
+dclass PVPGameTeamBattle : PVPGameBase {
+  setParentingRules(string, string) broadcast ram;
+  setTimeLimit(uint32) required broadcast ram;
+};
+
+dclass PVPGameBattle : PVPGameBase {
+  setParentingRules(string, string) broadcast ram;
+  setTimeLimit(uint32) required broadcast ram;
+};
+
+dclass PVPGameShipBattle : PVPGameBase {
+  setParentingRules(string, string) broadcast ram;
+  setShipDoId(DoId);
+  setBoarded() airecv clsend;
 };
