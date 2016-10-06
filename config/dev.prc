@@ -97,5 +97,9 @@ want-seas-closed #f
 # TELEPORTATION
 teleport-all #t
 
+# WORLD
+want-searchables #t
+want-link-tunnels #t
+
 # BAN
 ban-do-ban #f
