@@ -5,7 +5,8 @@ from direct.task import Task
 from pirates.world.DistributedGameAreaAI import DistributedGameAreaAI
 from pirates.battle.Teamable import Teamable
 from pirates.piratesbase import PiratesGlobals
-import WorldGlobals
+from pirates.world import WorldGlobals
+from pirates.world.LocationConstants import *
 import random
 
 # Treasure
@@ -72,7 +73,7 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
     def __runIslandEvents(self, task=None):
         self.nextEvent -= 15
         if self.nextEvent <= 0:
-            if self.getUniqueId() == "1233100928.0akelts":
+            if self.getUniqueId() == LocationIds.DEL_FUEGO_ISLAND:
                 self.makeLavaErupt()
                 self.nextEvent = random.randint(5, 10) * 60
         return Task.again
