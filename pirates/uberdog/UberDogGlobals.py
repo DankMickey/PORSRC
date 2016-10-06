@@ -1723,18 +1723,21 @@ def prepareSwitchField(field,*self):
                 upgrades = item.getUpgrades()
                 color = item.getColor()
                 count = item.getCount(1)
-            except:
-                print "mmmm InvItem generated an error";
+            except Exception, m:
+                print ":UberDogGlobals: mmmm InvItem generated an error";
+                print ":UberDogGlobals: %s" % str(m);
         else:
             try:
+                print x
                 loc = x.getLocation()
                 cat = x.getCat()
                 id = x.getId()
                 upgrades = x.getUpgrades()
                 color = x.getColor()
                 count = x.getCount(1)
-            except:
-                print "mmmm InvItem generated an error";
+            except Exception, m:
+                print ":UberDogGlobals: mmmm InvItem generated an error";
+                print ":UberDogGlobals: %s" % str(m);
 
         return (cat, id, loc, upgrades, color, count)
     return map(formatItem, field)
