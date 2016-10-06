@@ -402,26 +402,44 @@ if config.GetBool('want-all-weapons-trained', False):
                   InventoryType.KettleToken):
         StackStartsWith[token] = 1
 
+
+# Formula for calculating max level XP recursively. Give it the level you want for maxlevel, do not pass in anything to cur_rep or level
+def level_calc(maxlevel, cur_rep=50, level=1):
+    if level==maxlevel:
+        return 0
+    if level == 1:
+        return 50 + level_calc(maxlevel, 150, level+1)
+    elif level ==2:
+        return 150 + level_calc(maxlevel, 150, level+1)
+    elif level == 3:
+        return 300 + level_calc(maxlevel, 300, level+1)
+    elif level<=16:
+        return cur_rep+200 + level_calc(maxlevel, cur_rep+200, level+1)
+    else:
+        return cur_rep+300 + level_calc(maxlevel, cur_rep+300, level+1)
+
 AccumulatorLimits = {
     InventoryType.OverallRep: 540150,
-    InventoryType.GeneralRep: 56600,
-    InventoryType.MeleeRep: 56600,
-    InventoryType.CutlassRep: 56600,
-    InventoryType.PistolRep: 56600,
-    InventoryType.MusketRep: 56600,
-    InventoryType.DaggerRep: 56600,
-    InventoryType.GrenadeRep: 56600,
-    InventoryType.WandRep: 56600,
-    InventoryType.DollRep: 56600,
-    InventoryType.KettleRep: 56600,
-    InventoryType.CannonRep: 56600,
-    InventoryType.SailingRep: 56600,
-    InventoryType.MonsterRep: 56600,
-    InventoryType.LockpickRep: 56600,
-    InventoryType.GamblingRep: 56600,
-    InventoryType.FishingRep: 33100,
-    InventoryType.PotionsRep: 56600,
-    InventoryType.OverflowRep: 56600}
+    InventoryType.GeneralRep: level_calc(30),
+    InventoryType.MeleeRep: level_calc(30),
+    InventoryType.CutlassRep: level_calc(30),
+    InventoryType.PistolRep: level_calc(30),
+    InventoryType.MusketRep: level_calc(30),
+    InventoryType.DaggerRep: level_calc(30),
+    InventoryType.GrenadeRep: level_calc(30),
+    InventoryType.WandRep: level_calc(30),
+    InventoryType.DollRep: level_calc(30),
+    InventoryType.KettleRep: level_calc(30),
+    InventoryType.CannonRep: level_calc(30),
+    InventoryType.SailingRep: level_calc(30),
+    InventoryType.MonsterRep: level_calc(30),
+    InventoryType.LockpickRep: level_calc(30),
+    InventoryType.GamblingRep: level_calc(30),
+    InventoryType.FishingRep: level_calc(20),
+    InventoryType.PotionsRep: level_calc(20),
+    InventoryType.OverflowRep: level_calc(30)
+}
+
 
 StartingGuns = [(51, 1, 1, 0, 0, 1),    # Cutlass | Originally 1
                 ]
