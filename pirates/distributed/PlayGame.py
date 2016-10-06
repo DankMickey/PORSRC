@@ -26,7 +26,6 @@ class PlayGame(StateData.StateData):
 
 
     def enter(self, hoodId, zoneId, avId):
-        self.notify.warning('need to add FSM transition here')
         state = 'teleportToShard'
         shardId = base.localAvatar.defaultShard
         if os.getenv('want_district_2'):
