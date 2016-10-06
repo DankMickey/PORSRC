@@ -173,7 +173,7 @@ class DistributedBandMemberAI(DistributedObjectAI):
 		self.d_setShipHasSpace(space)
 
 	def getShipHasSpace(self):
-		return self.shipHasSpace`
+		return self.shipHasSpace
 
 	#setMessage(uint32, string) broadcast;
 	#setShipDeployMessage(uint32, uint32, string, string, uint8) broadcast;
