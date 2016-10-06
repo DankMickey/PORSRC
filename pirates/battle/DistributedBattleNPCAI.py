@@ -265,10 +265,10 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
     def enterDeath(self):
         def doDeath(task):
             self.spawner.died()
-            self.applyRewards()
             self.requestDelete()
             return task.done
 
+        self.applyRewards()
         taskMgr.doMethodLater(5, doDeath, self.taskName('death'))
 
     def applyRewards(self):

@@ -9,6 +9,7 @@ from direct.directnotify.DirectNotifyGlobal import directNotify
 from direct.distributed.PyDatagram import *
 from direct.fsm.FSM import FSM
 from sys import platform
+import traceback
 import hashlib
 import urllib
 import urllib2
@@ -36,6 +37,7 @@ NAME_PICKED = 2
 NAME_PEN = 0
 NAME_REJ = 1
 NAME_APR = 2
+NAME_STATES = {NAME_PEN: 'PENDING', NAME_REJ: 'OPEN', NAME_APR: 'APPROVED'}
 
 def rejectConfig(issue, securityIssue=True, retarded=True):
     print
@@ -170,13 +172,9 @@ class AccountDB:
 
         callback(True)
 
-    def storeNameRequest(self, username, avId, name):
-        # Does nothing. Subclasses MUST override this and take appropriated action.
-        pass
-
     def getNameStatus(self, username, callback):
         # Returns approved. Subclasses MUST override this and return appropriated value.
-        callback({'default': NAME_APR})
+        callback(NAME_APR)
 
 class DeveloperAccountDB(AccountDB):
     notify = directNotify.newCategory('DeveloperAccountDB')
@@ -217,20 +215,6 @@ class RemoteAccountDB(AccountDB):
             error = str(e)
                 
         return (success, error), res
-        
-    def storeNameRequest(self, username, avId, wantedName):
-        self.post(self.csm.air, self.namesUrl, action='set', username=username, avId=avId, wantedName=wantedName)
-        
-    def getNameStatus(self, username, callback):
-        if self.namesUrl:
-            (success, error), result = self.post(self.csm.air, self.namesUrl, action='get', username=username)
-            if not success:
-                self.csm.notify.warning('Unhandled getNameStatus error: %s' % error)
-
-        else:
-            result = {'default': NAME_APR}
-        
-        callback(result)
 
     @staticmethod
     def decodeToken(token, maxAge=300):
@@ -301,14 +285,39 @@ class RemotePORAccountDB(AccountDB):
     def __init__(self, csm):
         AccountDB.__init__(self, csm)
         self.accessLevel = 100
-        
-    def storeNameRequest(self, username, avId, wantedName):
-        # TODO
-        return
+    
+    def getSecretToken(self):
+        return config.GetString('account-server-token', '')
 
-    def getNameStatus(self, username, callback):
-        # TODO
-        return NAME_REJ
+    def post(self, url, data):
+        data['secrettoken'] = self.getSecretToken()
+
+        headers = {'User-Agent': 'POR-ClientServicesManagerUD'}
+        data = urllib.urlencode(data)
+        response = None
+
+        try:
+            request = urllib2.Request(url, data, headers)
+            response = json.loads(urllib2.urlopen(request).read())
+        except Exception as e:
+            self.notify.warning('Exception happened in post (%s): %s' % (url, traceback.format_exc()))
+
+        return response
+    
+    def getNameStatus(self, name, callback):
+        response = self.post(config.GetString('account-server-names-link', ''), {'name': name})
+        
+        if not response:
+            self.notify.warning('No response from server while querying name %s!' % name)
+            callback(NAME_PEN)
+            return
+
+        if response['status'] == 'error':
+            self.notify.warning('Error while querying name %s from the server! %s [Code %s]' % (name, response['message'], response['code']))
+            callback(NAME_PEN)
+            return
+        
+        callback(int(response['nameStatus']))
 
     def decodeToken(self, token, maxAge=300):
         error = lambda issue: {'success': False, 'reason': 'The account server rejected your token: %s' % issue}
@@ -508,24 +517,34 @@ class CreateAvatarFSM(CSMOperation):
         self.allegiance = allegiance
 
         self.name = name.strip()
-        self.nameState = ''
-        self.wishName = ''
 
         dna = HumanDNA()
         dna.makeFromNetString(self.dna)
         judged = self._judgeName(self.name, dna.gender)
-        if judged == NAME_TYPED:
-            self.name = 'Pirate'
-            self.wishName = name
-            self.nameState = 'PENDING'
 
-        elif judged == NAME_TYPED_INVALID:
+        if judged == NAME_TYPED_INVALID:
             self.demand('Kill', 'Your name has been rejected!')
             return
 
-        # Okay, we're good to go, let's query their account.
-        self.demand('RetrieveAccount')
+        if judged == NAME_TYPED:
+            self.name = 'Pirate'
+            self.wishName = name.strip()
+            self.csm.accountDB.getNameStatus(self.wishName, self.__handleNameRetrieved)
+        else:
+            self.name = name.strip()
+            self.nameState = 'CLOSED'
+            self.wishName = ''
+            self.demand('RetrieveAccount')
 
+    def __handleNameRetrieved(self, approved):
+        self.nameState = NAME_STATES.get(approved, 'PENDING')
+        
+        if approved == NAME_APR:
+            self.name = self.wishName
+            self.wishName = ''
+        
+        self.demand('RetrieveAccount')
+    
     def enterRetrieveAccount(self):
         self.csm.air.dbInterface.queryObject(
             self.csm.air.dbId, self.target, self.__handleRetrieve)
@@ -588,10 +607,6 @@ class CreateAvatarFSM(CSMOperation):
         if fields:
             self.demand('Kill', 'Database failed to associate the new avatar to your account!')
             return
-
-        # Otherwise, we're done!
-        if self.wishName:
-            self.csm.accountDB.storeNameRequest(self.account['ACCOUNT_ID'], self.avId, self.wishName)
 
         self.csm.air.writeServerEvent('avatarCreated', self.avId, self.target, self.dna.encode('hex'), self.index)
         self.csm.sendUpdateToAccountId(self.target, 'createAvatarResp', [self.avId])
@@ -659,19 +674,44 @@ class GetAvatarsFSM(AvatarOperationFSM):
                 self.pendingAvatars.remove(avId)
 
                 if not self.pendingAvatars:
-                    self.demand('SendAvatars')
+                    self.demand('UpdateAvatarsNameState')
 
             self.csm.air.dbInterface.queryObject(
                 self.csm.air.dbId,
                 avId,
                 response)
         
-        taskMgr.doMethodLater(3, self.demand, self.getId('demand-off-timeout'), extraArgs=['SendAvatars'])
+        taskMgr.doMethodLater(5, self.demand, self.getId('demand-off-timeout'), extraArgs=['SendAvatars'])
 
+    def enterUpdateAvatarsNameState(self):
+        for avId, fields in self.avatarFields.items():
+            if fields.get('WishNameState', [''])[0] != 'PENDING':
+                continue
+            
+            wishName = fields.get('WishName', [''])[0]
+            
+            def callback(nameStatus):
+                wishNameState = NAME_STATES[nameStatus]
+                
+                if wishNameState in ('PENDING', 'CLOSED', 'OPEN'):
+                    return
+
+                self.avatarFields[avId]['WishNameState'] = (wishNameState,)
+
+                if wishNameState == 'APPROVED':
+                    self.avatarFields[avId]['setName'] = (wishName,)
+
+                self.csm.air.dbInterface.updateObject(self.csm.air.dbId, avId, self.csm.air.dclassesByName['DistributedPlayerPirateUD'], self.avatarFields[avId])
+
+            self.csm.accountDB.getNameStatus(wishName, callback)
+
+        taskMgr.doMethodLater(0, self.demand, self.getId('demand-send-avatars'), extraArgs=['SendAvatars'])
+    
     def enterSendAvatars(self):
         potentialAvs = []
         
         taskMgr.remove(self.getId('demand-off-timeout'))
+        taskMgr.remove(self.getId('demand-send-avatars'))
 
         for avId, fields in self.avatarFields.items():
             index = self.avList.index(avId)
@@ -916,11 +956,9 @@ class AcknowledgeNameFSM(AvatarOperationFSM):
             wns = ''
             name = wn
             wn = ''
-
         elif wns == 'REJECTED':
             wns = 'OPEN'
             wn = ''
-
         else:
             self.demand('Kill', 'Tried to acknowledge name on an avatar in %s state!' % wns)
             return
@@ -932,10 +970,7 @@ class AcknowledgeNameFSM(AvatarOperationFSM):
             self.csm.air.dclassesByName['DistributedPlayerPirateUD'],
             {'WishNameState': (wns,),
              'WishName': (wn,),
-             'setName': (name,)},
-            {'WishNameState': fields['WishNameState'],
-             'WishName': fields['WishName'],
-             'setName': fields['setName']})
+             'setName': (name,)})
 
         self.demand('Off')
 
@@ -962,44 +997,49 @@ class NewNameFSM(AvatarOperationFSM):
             self.demand('Kill', "One of the account's avatars is invalid!")
             return
 
-        # Process the WishNameState change.
         wns = fields['WishNameState'][0]
 
-        if wns == 'OPEN':
-            dna = HumanDNA()
-            dna.makeFromNetString(fields['setDNAString'][0])
-
-            judged = CreateAvatarFSM._judgeName(self.name, dna.gender)
-            if judged == NAME_TYPED:
-                name, wn = 'Pirate', self.name
-                wns = 'PENDING'
-
-            elif judged == NAME_TYPED_INVALID:
-                self.demand('Kill', 'Your name has been rejected!')
-                return
-
-            elif judged == NAME_PICKED:
-                name = self.name
-                wn, wns = '', ''
-
-        else:
+        if wns != 'OPEN':
             self.demand('Kill', 'Tried to update name on an avatar in %s state!' % wns)
             return
 
+        dna = HumanDNA()
+        dna.makeFromNetString(fields['setDNAString'][0])
+
+        judged = CreateAvatarFSM._judgeName(self.name, dna.gender)
+        
+        if judged == NAME_TYPED_INVALID:
+            self.demand('Kill', 'Your name has been rejected!')
+            return
+
+        if judged == NAME_TYPED:
+            self.name, self.wishName = 'Pirate', self.name
+            state = 'PENDING'
+        elif judged == NAME_PICKED:
+            self.wishName, state = '', ''
+
+        if state == 'PENDING':
+            self.csm.accountDB.getNameStatus(self.wishName, self.__gotNameResponse)
+        else:
+            self.__handleNameChange('CLOSED', '', self.name)
+    
+    def __gotNameResponse(self, status):
+        if status == NAME_REJ:
+            self.__handleNameChange('REJECTED', self.wishName, self.name)
+        elif status == NAME_APR:
+            self.__handleNameChange('CLOSED', '', self.wishName)
+        else:
+            self.__handleNameChange('PENDING', self.wishName, self.name)
+    
+    def __handleNameChange(self, nameState, wishName, name):        
         # Push the change back through:
         self.csm.air.dbInterface.updateObject(
             self.csm.air.dbId,
             self.avId,
             self.csm.air.dclassesByName['DistributedPlayerPirateUD'],
-            {'WishNameState': (wns,),
-             'WishName': (wn,),
-             'setName': (name,)},
-            {'WishNameState': fields['WishNameState'],
-             'WishName': fields['WishName'],
-             'setName': fields['setName']})
-             
-        if wn:
-            self.csm.accountDB.storeNameRequest(self.account['ACCOUNT_ID'], self.avId, wn)
+            {'WishNameState': (nameState,),
+             'WishName': (wishName,),
+             'setName': (name,)})
 
         self.csm.sendUpdateToAccountId(self.target, 'newNameResp', [])
         self.demand('Off')

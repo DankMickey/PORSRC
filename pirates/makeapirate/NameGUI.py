@@ -350,10 +350,10 @@ class NameGUI(DirectFrame, StateData.StateData):
                 self.submitButton.hide()
 
         else:
-            self.cancelButton = self._makeButton(text = PL.MakeAPirateCancel, command = self.cancel, pos = (.5, 0, -1.6))
-            self.randomButton = GuiButton.GuiButton(parent = self.bookModel, text = PL.RandomButton, text_fg = (1, 1, 1, 1), text_scale = 0.08, text_pos = (0, -0.25 * 0.100, 0), scale = 1.8, image_scale = 0.4, command = self.makeRandomName, pos = (0.050000, 0, -2.43))
+            self.cancelButton = self._makeButton(text = PL.MakeAPirateCancel, command = self.cancel, pos = (0.4, 0, -1.95))
+            self.randomButton = GuiButton.GuiButton(parent = self.bookModel, text = PL.RandomButton, text_fg = (1, 1, 1, 1), text_scale = 0.05, text_pos = (0, -0.25 * 0.100, 0), scale = 1.8, image_scale = 0.4, command = self.makeRandomName, pos = (0.050000, 0, -2.43))
             self.randomButton.hide()
-            self.submitButton = self._makeButton(text = PL.NameGUI_SubmitButtonText, command = self.complete, pos = (0, 0, -1.95))
+            self.submitButton = self._makeButton(text = PL.NameGUI_SubmitButtonText, command = self.complete, pos = (-0.4, 0, -1.95))
         self.typeANameGui.append(self.pickANameButton)
         self.typeANameGui.append(self.nameEntry)
         self.typeANameGui.append(self.nameEntryGuidelines)
@@ -444,11 +444,12 @@ class NameGUI(DirectFrame, StateData.StateData):
                     self.suffixHigh.hide()
                 self.suffixIndex = self.suffixList.index + 2
 
-            nameLength = len(self.names[0] + self.names[1] + self.names[2] + self.names[3]) 
-            if nameLength <= 10:
-                self.main.playJackDialogOnName("SHORT")
-            else:
-                self.main.playJackDialogOnName("LONG")
+            nameLength = len(self.names[0] + self.names[1] + self.names[2] + self.names[3])
+            if hasattr(self.main, 'playJackDialogOnName'):
+                if nameLength <= 10:
+                    self.main.playJackDialogOnName("SHORT")
+                else:
+                    self.main.playJackDialogOnName("LONG")
             if nameLength > 0:
                 self.updateName()
 
