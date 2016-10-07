@@ -821,16 +821,16 @@ def cursed():
         response = '%s has been cursed!' % target.getName()
     return response
 
-@magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
+@magicWord(CATEGORY_GAME_MASTER, types=[int])
 def setDoubleXP(value):
     target = spellbook.getTarget()
     target.b_setTempDoubleXPReward(value * 60)
     return "Set %s's TempDoubleXPReward to %s minutes" % (target.getName(), value)
 
-@magicWord(CATEGORY_GAME_DEVELOPER)
+@magicWord(CATEGORY_GAME_MASTER)
 def getDoubleXP():
     target = spellbook.getTarget()
-    return 'TempDoubleXPReward is %s' % str(target.getTempDoubleXPReward())
+    return '%s has %s minutes left of double xp' % (target.getName(), str(target.getTempDoubleXPReward()))
 
 @magicWord(CATEGORY_GAME_DEVELOPER, types=[int, int])
 def setBadge(title, rank):
