@@ -73,6 +73,7 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
             self.b_setDefaultShard(self.air.districtId)
         
         taskMgr.doMethodLater(10, self.__healthTask, self.taskName('healthTask'))
+        taskMgr.doMethodLater(15, self.__doubleXpTask, self.taskName('doubleXPTask'))
 
     def getInventory(self):
         return self.inventory
@@ -203,6 +204,20 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
     def getTempDoubleXPReward(self):
         return self.tempdoublexp
 
+    def hasTempDoubleXP(self):
+    	return (self.tempdoublexp > 0)
+
+    def __doubleXpTask(self, task):
+        if not self.hasTempDoubleXP():
+            return task.again
+
+        self.tempdoublexp -= 15
+        if self.tempdoublexp < 0:
+        	self.tempdoublexp = 0
+        self.b_setTempDoubleXPReward(self.tempdoublexp)
+
+        return task.again
+
     def setOnWelcomeWorld(self, state):
         self.welcomeWorld = state
 
@@ -241,6 +256,12 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
 
     def getShipIcon(self):
         return self.shipIcon
+
+    def addReputation(self, repId, amount, ignoreDouble=False):
+    	repAmount = amount
+    	if self.hasTempDoubleXP() and not ignoreDouble:
+    		repAmount = repAmount * 2
+    	self.inventory.addReputation(repId, repAmount)
     
     def repChanged(self):
         newLevel = self.calcLevel()
@@ -363,6 +384,7 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
     def delete(self):
         self.inventory = DummyInventory(self.air)
         taskMgr.remove(self.taskName('healthTask'))
+        taskMgr.remove(self.taskName('doubleXPTask'))
 
         DistributedBattleAvatarAI.delete(self)
         DistributedPlayerAI.delete(self)
@@ -802,8 +824,8 @@ def cursed():
 @magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
 def setDoubleXP(value):
     target = spellbook.getTarget()
-    target.b_setTempDoubleXPReward(value)
-    return "Set %s's TempDoubleXPReward to %s" % (target.getName(), value)
+    target.b_setTempDoubleXPReward(value * 60)
+    return "Set %s's TempDoubleXPReward to %s minutes" % (target.getName(), value)
 
 @magicWord(CATEGORY_GAME_DEVELOPER)
 def getDoubleXP():

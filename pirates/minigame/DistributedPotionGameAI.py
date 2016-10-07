@@ -66,10 +66,10 @@ class DistributedPotionGameAI(DistributedObjectAI):
         if self.__numIngredientsDone >= self.recipes[recipe]:
             print 'recipe done', recipe
             self.air.writeServerEvent('recipe-done', self.avId, recipe)
-            self.av.inventory.addReputation(InventoryType.PotionsRep, PotionGlobals.getPotionBuffXP(recipe))
+            self.av.addReputation(InventoryType.PotionsRep, PotionGlobals.getPotionBuffXP(recipe))
             self.reset()
 
-        self.av.inventory.addReputation(InventoryType.PotionsRep, 25)
+        self.av.addReputation(InventoryType.PotionsRep, 25)
 
     def completeSurvival(self, ingredientsMade, tilesUsed):
         if self.air.getAvatarIdFromSender() != self.avId:

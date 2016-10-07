@@ -35,7 +35,7 @@ class DistributedFishingSpotAI(DistributedInteractiveAI, LootableAI.LootableAI):
             return
 
         av.giveGold(fish['gold'] * weight)
-        av.inventory.addReputation(InventoryType.FishingRep, fish['experience'])
+        av.addReputation(InventoryType.FishingRep, fish['experience'])
         av.repChanged()
 
     def lostLure(self, lureId):

@@ -286,7 +286,7 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
             for repId, amount in repId2rep.items():
                 while amount > 125:
                     amount = int(amount / 1.173)
-                av.inventory.addReputation(repId, amount)
+                av.addReputation(repId, amount)
 
             av.repChanged()
 
