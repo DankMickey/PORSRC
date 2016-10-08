@@ -249,17 +249,8 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
             cell = GridParent.getCellOrigin(self, zoneId)
             pos = obj.getPos()
 
-            if obj.getUniqueId()=="1177359488.0dxschafe0":
-                print("Cell is " + str(cell))
-                print("Zone is " + str(zoneId))
-                print ("Pos is " + str(pos))
-                print("Self pos is " + str(self.getPos()))
-
             obj.reparentTo(cell)
             obj.setPos(self, pos)
-
-            if obj.getUniqueId()=="1177359488.0dxschafe0":
-                print("New pos is" + str(obj.getPos()))
 
             obj.sendUpdate('setPos', obj.getPos())
             obj.sendUpdate('setHpr', obj.getHpr())
