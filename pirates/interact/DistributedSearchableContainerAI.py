@@ -51,5 +51,10 @@ class DistributedSearchableContainerAI(DistributedInteractiveAI, DistributedObje
         obj = DistributedInteractiveAI.makeFromObjectKey(cls, air, objKey, data)
         obj.setSearchTime(int(float(data['searchTime'])))
         obj.setType(data['type'])
+
+        gridPos = data.get('GridPos')
+        if gridPos:
+            obj.setPos(gridPos)
+
         obj.setSphereScale(int(float(data['Aggro Radius'])))
         return obj

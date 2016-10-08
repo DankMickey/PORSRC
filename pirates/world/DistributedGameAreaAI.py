@@ -68,8 +68,11 @@ class DistributedGameAreaAI(DistributedNodeAI):
                 genObj.d_updateSmPos()
                 newZoneId = self.getZoneFromXYZ(genObj.getPos(self))
                 genObj.b_setLocation(genObj.parentId, newZoneId)
+                
         elif objType == 'Parlor Game'  and config.GetBool('want-parlor-games', True):
             genObj = DistributedPokerTableAI.makeFromObjectKey(self.air, objKey, object)
+            self.notify.info(genObj.getPos())
+            self.notify.info()
         else:
             nodeName =  'objNode-%s-%s' % (objType, objKey)
 

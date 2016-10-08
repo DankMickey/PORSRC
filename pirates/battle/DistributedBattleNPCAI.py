@@ -309,6 +309,10 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
         pos = (x, y, z)
         hpr = (h, p, r)
 
+        gridPos = data.get('GridPos')
+        if gridPos:
+            pos = gridPos
+
         obj.setSpawnPos(pos)
         obj.setPos(pos)
         obj.setHpr(hpr)

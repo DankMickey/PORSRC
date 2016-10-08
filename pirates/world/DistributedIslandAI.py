@@ -1,3 +1,4 @@
+from panda3d.core import NodePath
 from direct.distributed.DistributedCartesianGridAI import DistributedCartesianGridAI
 from direct.distributed.GridParent import GridParent
 from direct.directnotify import DirectNotifyGlobal
@@ -247,7 +248,19 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
         if obj.posControlledByIsland(): # This method must be defined in your AI
             cell = GridParent.getCellOrigin(self, zoneId)
             pos = obj.getPos()
+
+            if obj.getUniqueId()=="1177359488.0dxschafe0":
+                print("Cell is " + str(cell))
+                print("Zone is " + str(zoneId))
+                print ("Pos is " + str(pos))
+                print("Self pos is " + str(self.getPos()))
+
             obj.reparentTo(cell)
             obj.setPos(self, pos)
+
+            if obj.getUniqueId()=="1177359488.0dxschafe0":
+                print("New pos is" + str(obj.getPos()))
+
             obj.sendUpdate('setPos', obj.getPos())
             obj.sendUpdate('setHpr', obj.getHpr())
+
