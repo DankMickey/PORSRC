@@ -1,6 +1,5 @@
 from panda3d.core import Point3, TextNode, Vec3, Vec4
 # File: S (Python 2.4)
-
 from direct.gui.DirectGui import *
 from direct.task.Task import Task
 from pirates.piratesgui import PiratesGuiGlobals
