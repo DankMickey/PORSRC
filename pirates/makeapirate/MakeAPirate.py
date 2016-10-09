@@ -477,11 +477,13 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
             self.startCutscene(fadeIn = False)
         else:
             base.transitions.fadeIn()
+
     
     def startCutscene(self, task=None, fadeIn=True):
         if fadeIn:
             base.transitions.fadeIn()
         self.cutsceneStart(csId = 0)
+
 
     def exit(self):
         taskMgr.remove('avCreate-ZoomTask')
@@ -1326,6 +1328,7 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
         if self.wantNPCViewer:
             self.tattooGui.save()
             self.jewelryGui.save()
+
 
         if self.skipTutorial:
             newPotAv = PotentialAvatar.PotentialAvatar(0, [
