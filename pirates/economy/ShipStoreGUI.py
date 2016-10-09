@@ -112,11 +112,11 @@ class ShipStoreGUI(GuiPanel.GuiPanel):
         self.storeInventory.reparentTo(self)
         self.storeInventory.setPos(0.02, 0, 0.02)
         self.purchaseTitle = DirectFrame(parent = self, relief = None, text = PLocalizer.InventoryTypeNames[self.purchaseInventory[0][0]], text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleLarge, text_pos = (0.03, 0.01), text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1)
-        self.purchaseTitle.setPos(self.storeInventory.width, 0, 0.707 + (self.height - 0.065) / 2.5)
+        self.purchaseTitle.setPos(self.storeInventory.width, 0, 0.750 + (self.height - 0.065) / 2.5)
         self.card = loader.loadModel('models/textureCards/shipCatalog')
         self.shipImage = DirectFrame(parent = self, relief = DGG.FLAT, image_scale = 0.2, frameColor = (0, 0, 0, 1.0), borderWidth = PiratesGuiGlobals.BorderWidthSmall, pad = (0.01, 0.01), frameSize = (-0.10, 0.10, -0.170, 0.170), textMayChange = 1, pos = (self.width * 0.72, 0, 1))
         self.shipImage.setTransparency(1)
-        barChartWidth = self.width - self.storeInventory.width + 0.04
+        barChartWidth = self.width - self.storeInventory.width + 0.00
         self.shipStats = BarChart.BarChart(self.statData, 0.25, barChartWidth, PLocalizer.ShipProfile, PiratesGuiGlobals.TextFG1)
         self.shipStats.reparentTo(self)
         self.shipStats.setPos(self.storeInventory.width + 0.03, 0, 0.12)
