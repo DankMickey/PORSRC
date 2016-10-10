@@ -580,8 +580,8 @@ class FancyLoadingScreen(DirectObject.DirectObject):
         self.currentTime += min(10, (realTime - self.lastUpdateTime) * 250)
         self.lastUpdateTime = realTime
         if self.debugMode:
-            self.overallLabel['text'] = '%3.1f' % self.overallPercent / self.loadScale
-            self.tickLabel['text'] = '%3.1f' % self.currPercent * 100.0
+            self.overallLabel['text'] = '%3.1f' % (self.overallPercent / self.loadScale)
+            self.tickLabel['text'] = '%3.1f' % (self.currPercent * 100.0)
         else:
             self.percentLabel['text'] = '%d' % (self.overallPercent / self.loadScale) + '%'
         if self.currStage != 'unmapped':
