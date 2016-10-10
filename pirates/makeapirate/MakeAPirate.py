@@ -1367,22 +1367,18 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
             self.confirmTempName = None
             if self.isTutorial and self.isNPCEditor or self.wantNPCViewer:
                 base.transitions.fadeOut(finishIval = Func(sendDone))
-            elif config.GetBool('want-tutorial-cutscene', False):
+            else:
                 finishCutscene = Sequence(Func(self.cutsceneStart, csId = 1, otherLocalAvatar = self.pirate), Wait(23.3), Func(base.transitions.fadeOut, finishIval = Func(createAv)))
                 finishCutscene.start()
-            else:
-                base.transitions.fadeOut(finishIval = Func(createAv))
+
 
         if self.nameGui.customName and not (self.isNPCEditor) and not (self.confirmTempName):
             self.confirmTempName = PDialog.PDialog(text = PLocalizer.TempNameIssued, style = OTPDialog.Acknowledge, command = acknowledgeTempName)
         elif self.isTutorial and self.isNPCEditor or self.wantNPCViewer:
             base.transitions.fadeOut(finishIval = Func(sendDone))
         else:
-            if config.GetBool('want-tutorial-cutscene', False):
-                finishCutscene = Sequence(Func(self.cutsceneStart, csId = 1, otherLocalAvatar = self.pirate), Wait(23.3), Func(base.transitions.fadeOut, finishIval = Func(createAv)))
-                finishCutscene.start()
-            else:
-                base.transitions.fadeOut(finishIval = Func(createAv))
+            finishCutscene = Sequence(Func(self.cutsceneStart, csId=1, otherLocalAvatar=self.pirate), Wait(23.3), Func(base.transitions.fadeOut, finishIval=Func(createAv)))
+            finishCutscene.start()
 
 
     def toggleSlide(self):
@@ -2757,7 +2753,11 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
 
         print 'Finished writing to a file'
 
-    def cutsceneStart(self, csId=None):
+
+
+    def cutsceneStart(self, csId=None, otherLocalAvatar =None):
+        #print "cutsceneStart otherLocalAvatar = %s" % otherLocalAvatar
+        name = None
         if int(csId) >= len(CutsceneData.CutsceneNames):
             return None
 
@@ -2771,6 +2771,7 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
 
         self.cameraEnabled = False
         c = Cutscene.Cutscene(base.cr, name, DelayedFunctor(destroyCutscene, '~cutscene-destroy'))
+        c.otherLocalAvatar = c.getActor(CutsceneActor.CutJackSparrow.getActorKey())
         cs.cutscene = c
         c.play()
         destroyCutscene = None
