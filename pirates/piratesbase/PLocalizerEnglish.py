@@ -4172,7 +4172,7 @@ def getItemName(itemId):
     return ItemNames.get(itemId, 'Error, no name')
 
 ItemFlavorText = {
-    ItemGlobals.RUSTY_CUTLASS: "It's a bit crude, but it still has an edge.",
+    ItemGlobals.RUSTY_CUTLASS: "It's a bit crude, but it still has an edge.\nRight click to equip.",
     ItemGlobals.IRON_CUTLASS: 'A well crafted iron blade. A good weapon!',
     ItemGlobals.STEEL_CUTLASS: 'An ornate steel cutlass. Well balanced and sharp!',
     ItemGlobals.FINE_CUTLASS: "A Fine Cutlass. It is crafted with pride by the Caribbean's best blacksmiths.",
