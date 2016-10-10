@@ -78,7 +78,7 @@ class ShipItemGUI(InventoryItemGui.InventoryItemGui):
         self.nameTag = DirectLabel(parent = self, state = DGG.DISABLED, relief = None, text = name, text_scale = PiratesGuiGlobals.TextScaleMed * PLocalizer.getHeadingScale(2), text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 0)
         self.nameTag.setPos(0.20000000000000001, 0, 0.10000000000000001)
         self.costText = DirectLabel(parent = self, relief = None, state = DGG.DISABLED, geom = self.coinImage, geom_scale = 0.12, geom_pos = Vec3(-0.01, 0, 0.01), text = str(self.price), text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ARight, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, text_pos = (-0.029999999999999999, 0, 0), text_font = PiratesGlobals.getInterfaceFont())
-        self.costText.setPos(0.47999999999999998, 0, 0.040000000000000001)
+        self.costText.setPos(0.47999999999999998, 0, 0.060000000000000001) #4
 
     
     def showDetails(self, event):
@@ -99,9 +99,9 @@ class ShipItemGUI(InventoryItemGui.InventoryItemGui):
             repAmt = inv.getAccumulator(repId)
             if minLvl > ReputationGlobals.getLevelFromTotalReputation(repId, repAmt)[0]:
                 if not self.miscText:
-                    self.miscText = DirectLabel(parent = self, relief = None, text = '', text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.16, 0, 0.025))
+                    self.miscText = DirectLabel(parent = self, relief = None, text = '', text_scale = PiratesGuiGlobals.TextScaleSmall, text_align = TextNode.ALeft, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 11, pos = (0.19, 0, 0.025)) #16
                 
-                if not base.config.GetBool('ignore-ship-shop-levels', False):
+                if not base.config.GetBool('ignore-ship-shop-levels', True):
                     self['image_color'] = Vec4(1, 0.5, 0.25, 1)
                     self['state'] = DGG.DISABLED
                     self.miscText['text_fg'] = PiratesGuiGlobals.TextFG8
