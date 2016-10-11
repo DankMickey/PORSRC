@@ -10,7 +10,6 @@ from pirates.piratesbase import PiratesGlobals
 from pirates.piratesgui import PiratesGuiGlobals
 from pirates.economy import StoreGUI, AccessoriesStoreGUI, TattooStoreGUI, JewelryStoreGUI, BarberStoreGUI, MusicianGUI, StowawayGUI, SimpleStoreGUI
 from pirates.economy import ShipStoreGUI
-from pirates.uberdog.UberDogGlobals import *
 from pirates.uberdog.DistributedInventoryBase import DistributedInventoryBase
 from direct.interval.IntervalGlobal import *
 from pirates.piratesbase import PLocalizer
@@ -237,11 +236,9 @@ class DistributedShopKeeper(DistributedObject):
         DistributedShopKeeper.notify.debug('disable(%s)' % self.doId)
         self.finishShopping()
 
-
     def delete(self):
         DistributedObject.delete(self)
         DistributedShopKeeper.notify.debug('delete(%s)' % self.doId)
-
 
     def resumeShopping(self):
         self.accept('makeSale', self.sendRequestMakeSale)
@@ -250,7 +247,6 @@ class DistributedShopKeeper(DistributedObject):
         self.acceptOnce('purchaseAccessories', self.sendRequestAccessories)
         self.acceptOnce('requestMusic', self.sendRequestMusic)
         self.acceptOnce('requestStowaway', self.sendRequestStowaway)
-
 
     def startShopping(self, storeType):
         self.accept('makeSale', self.sendRequestMakeSale)
@@ -764,10 +760,8 @@ class DistributedShopKeeper(DistributedObject):
 
         self.confirmDialog = InventorySellConfirm.InventorySellConfirm(base.localAvatar.guiMgr.inventoryUIManager, self.finishShopping, pos = (-1.0, 0, -0.2))
 
-
     def finishSelling(self):
         pass
-
 
     def sendRequestSellItem(self, item, amount = 1):
         if item[0] == InventoryType.ItemTypeClothing:
@@ -779,8 +773,6 @@ class DistributedShopKeeper(DistributedObject):
                 item[1],
                 item[2],
                 amount])
-
-
 
     def sendRequestStowaway(self, destUID):
         self.sendUpdate('requestStowaway', [destUID])
