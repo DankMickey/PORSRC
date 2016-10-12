@@ -49,6 +49,27 @@ class DistributedGameAreaAI(DistributedNodeAI):
     def getModelPath(self):
         return self.modelPath
 
+    def generateNode(self, objType, objKey, object, parent=None, gridPos=True):
+        genObj = None
+        nodeName =  'objNode-%s-%s' % (objType, objKey)
+
+        if isinstance(parent, NodePath):
+                genObj = parent.attachNewNode(nodeName)
+
+        else:
+            genObj = NodePath(nodeName)
+
+            if 'Pos' in object:
+                genObj.setPos(object['Pos'])
+
+            if 'Hpr' in object:
+                genObj.setHpr(object['Hpr'])
+
+            if 'GridPos' in object and gridPos:
+                genObj.setPos(object['GridPos'])
+
+        return genObj
+
     def createObject(self, objType, parent, objKey, object):
         genObj = None
 
@@ -69,21 +90,16 @@ class DistributedGameAreaAI(DistributedNodeAI):
                 newZoneId = self.getZoneFromXYZ(genObj.getPos(self))
                 genObj.b_setLocation(genObj.parentId, newZoneId)
 
-        elif objType == 'Parlor Game'  and config.GetBool('want-parlor-games', True):
+        elif objType == 'Parlor Game'  and config.GetBool('want-parlor-games', False):
+            self.notify.debug("Generating Parlor Table...")
             genObj = DistributedPokerTableAI.makeFromObjectKey(self.air, objKey, object)
+            zoneId = self.getZoneFromXYZ(genObj.getPos())
+            genObj.generateWithRequiredAndId(self.air.allocateChannel(), self.doId, zoneId)
+
+        elif objType == 'Collision Barrier':
+            self.generateNode(objType, objKey, object, parent, gridPos=False)
+
         else:
-            nodeName =  'objNode-%s-%s' % (objType, objKey)
-
-            if isinstance(parent, NodePath):
-                genObj = parent.attachNewNode(nodeName)
-
-            else:
-                genObj = NodePath(nodeName)
-
-            if 'Pos' in object:
-                genObj.setPos(object['Pos'])
-
-            if 'Hpr' in object:
-                genObj.setHpr(object['Hpr'])
+            self.generateNode(objType, objKey, object, parent, gridPos=True)
 
         return genObj
