@@ -71,7 +71,7 @@ gl-check-errors #t
 hide-gui #f
 
 # FPS
-show-frame-rate-meter #t
+show-frame-rate-meter #t #make false once the checkbox option is functional
 sync-flip #f
 auto-flip #f
 sync-video #f
@@ -85,7 +85,7 @@ loading-screen-interstitial #f
 no-loading-screen #f
 
 # MAKE A PIRATE/TUTORIAL/AVATAR CHOOSER
-skip-tutorial #t
+skip-tutorial #f
 want-jail-lights-off #f
 want-new-avatars #f
 want-npc-viewer #f

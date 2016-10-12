@@ -114,6 +114,7 @@ class Options(Settings):
     SpecialEffectsLow = 0
     RadarAxisMap = 0
     RadarAxisCamera = 1
+    Frames = 0
 
     def __init__(self):
         Settings.__init__(self, 'settings.json')
@@ -354,7 +355,7 @@ class Options(Settings):
         self.hdr_factor = 1.0
         self.simple_display_option = Options.option_custom
         self.use_stereo = 0
-        self.FPS = 0
+        self.FPS = self.Frames
         self.land_map_radar_axis = self.RadarAxisMap
         self.ocean_map_radar_axis = self.RadarAxisCamera
 
@@ -444,6 +445,9 @@ class Options(Settings):
 
     def setOceanMapRadarAxis(self):
         messenger.send('oceanMapRadarAxisChanged', [self.ocean_map_radar_axis])
+
+    def setFPS(self):
+        messenger.send('FPSChanged', [self.FPS])
 
 
     def getOceanMapRadarAxis(self):

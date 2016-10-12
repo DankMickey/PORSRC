@@ -1,6 +1,7 @@
 from panda3d.core import Camera, ColorWriteAttrib, DisplayRegion, Lens, StereoDisplayRegion, TPLow, VBase4
 from direct.showbase.ShowBase import ShowBase
 import OTPRender
+import sysconfig
 import time
 import math
 import re
@@ -77,7 +78,6 @@ class OTPBase(ShowBase):
     def toggleFPS(self):
         self.FPSEnabledEnabled = not self.FPSEnabled
         if self.FPSEnabled:
-            self.show-frame-rate-meter #t
             base.setFrameRateMeter(True)
         if not self.FPSEnabled:
             base.setFrameRateMeter(False)

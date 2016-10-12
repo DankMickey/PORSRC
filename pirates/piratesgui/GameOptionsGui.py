@@ -374,7 +374,7 @@ class GameOptionsGui(DirectFrame):
         text = PLocalizer.GameOptionsFPS
         self.create_label(x, y, text, parent, sl)
         self.FPS = CheckButton(parent=parent, relief=None, scale=sc,
-                                                   pos=(x + 0.675000, 0, y + 0.0149), command=self.oceanMapRadarAxisCB) #supposed to be FPS but no attribute error occurs again
+                                                   pos=(x + 0.675000, 0, y + 0.0149), command=self.FPS1) #supposed to be FPS but no attribute error occurs again
         
     def setupLowerFrame(self):
         self.lowerFrame = DirectFrame(parent=self, relief=None,
@@ -824,7 +824,7 @@ class GameOptionsGui(DirectFrame):
         self.invertMouseCheck['value'] = self.gameOptions.options.mouse_look
         self.rotateCompassOnLandCheck['value'] = self.gameOptions.options.land_map_radar_axis
         self.rotateCompassAtSeaCheck['value'] = self.gameOptions.options.ocean_map_radar_axis
-        self.FPS['value'] = self.gameOptions.options.ocean_map_radar_axis #supposed to be FPS but once again No attribute error
+        self.FPS['value'] = self.gameOptions.options.FPS
         self.gui_scale_slider['value'] = self.gameOptions.options.gui_scale
         self.hardwareGammaCheck['value'] = self.gameOptions.options.gamma_enable
         self.gamma_slider['value'] = self.gameOptions.options.gamma
@@ -856,6 +856,13 @@ class GameOptionsGui(DirectFrame):
 
         self.gameOptions.options.ocean_map_radar_axis = val
         self.gameOptions.options.setOceanMapRadarAxis()
+
+    def FPS1(self, val):
+        if self.gameOptions is None:
+            return None
+
+        self.gameOptions.options.FPS = val
+        self.gameOptions.options.setRuntimeFPS()
 
     def windowRadioButtonCB(self, var):
         if self.gameOptions is None:
