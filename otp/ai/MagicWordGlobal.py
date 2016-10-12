@@ -83,6 +83,7 @@ class MagicWordCategory:
 
 CATEGORY_ANY = MagicWordCategory('Unrestricted commands', 0)
 CATEGORY_BASIC = MagicWordCategory('Basic commands', 100)
+CATEGORY_YOUTUBE = MagicWordCategory('Youtuber', 150)
 CATEGORY_STAFF = MagicWordCategory('Basic staff commands', 200)
 CATEGORY_MODERATION = MagicWordCategory('Moderation commands', 300)
 CATEGORY_GAME_MASTER = MagicWordCategory('Game master commands', 400)
