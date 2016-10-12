@@ -32,7 +32,6 @@ class Quest(POD):
         self._Quest__timedOut = False
         self._Quest__timeRemaining = 0
 
-
     def destroy(self):
         del self.questDNA
         del self.tasks
@@ -73,8 +72,6 @@ class Quest(POD):
     def getQuestGoalUid(self):
         for (taskState, taskDNA) in zip(self.taskStates, self.questDNA.getTasks()):
             return taskDNA.getGoalUid(taskState)
-
-
 
     def getChangeEvent(self):
         return 'Quest.questChange-%s' % self._serialNum
@@ -140,7 +137,6 @@ class Quest(POD):
 
         if modified:
             self.sendTaskStates(self.taskStates)
-
 
 
     def isDroppable(self):
@@ -330,8 +326,6 @@ class Quest(POD):
         if self.questDNA == None:
             return ''
 
-
-
     def getReturnText(self):
         if self.questDNA == None:
             return ''
@@ -469,8 +463,6 @@ class Quest(POD):
     def handleStart(self, avId):
         for currTask in self.tasks:
             currTask.handleStart(avId)
-
-
 
     def getValidRewards(self):
         if self.isComplete(bonus = True):

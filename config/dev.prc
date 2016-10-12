@@ -23,6 +23,7 @@ black-pearl-repeat-reward #f
 # CUTSCENES
 #this is a string config
 default-cutscene 1
+want-tutorial-cutscene #f #enable this
 
 # DC FILES:
 dc-file astron/dclass/pirates.dc

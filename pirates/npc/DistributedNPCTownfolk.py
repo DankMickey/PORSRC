@@ -1248,7 +1248,7 @@ class DistributedNPCTownfolk(DistributedBattleNPC.DistributedBattleNPC, Distribu
                     np = self.attachNewNode('interactCamNode')
                     np.setPos(self.headNode.getX(self) + 1, self.headNode.getY(self) + 6.5, self.headNode.getZ(self) + 1)
                 elif self.castDnaId and self.castDnaId in [
-                    'models/char/js_2000',
+                    #'models/char/js_2000',
                     'models/char/td_2000',
                     'models/char/es_2000']:
                     np = self.attachNewNode('interactCamNode')

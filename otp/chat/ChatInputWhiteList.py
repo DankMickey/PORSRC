@@ -129,9 +129,12 @@ class ChatInputWhiteList(FSM.FSM, DirectEntry):
         text = self.get(plain = True)
         if text:
             self.set('')
-            self.sendChatByMode(text)
-            if self.wantHistory:
-                self.addToHistory(text)
+            if text.startswith('/'):
+                base.talkAssistant.executeSlashCommand(text)
+            else:
+                self.sendChatByMode(text)
+                if self.wantHistory:
+                    self.addToHistory(text)
 
         else:
             localAvatar.chatMgr.deactivateChat()
