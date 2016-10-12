@@ -424,9 +424,9 @@ NPC_SPAWNABLES = {
     'Ghost T7': [
         lambda p0 = Revenant: typePassthrough(p0)],
     'Ghost T9': [
-        lambda p0 = 1, p1 = 2: pickGhost(p0, p1)],
+        lambda p0 = Revenant: typePassthrough(p0)],
     'GhostTest': [
-        lambda p0 = 1, p1 = 2: pickGhost(p0, p1)],
+        lambda p0 = Revenant: typePassthrough(p0)],
     'Ghost T10': [
         lambda p0 = TraitorGhost: typePassthrough(p0)],
     'KillerGhost T11': [
