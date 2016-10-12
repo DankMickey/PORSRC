@@ -447,7 +447,7 @@ class Options(Settings):
         messenger.send('oceanMapRadarAxisChanged', [self.ocean_map_radar_axis])
 
     def setFPS(self):
-        messenger.send('FPSChanged', [self.FPS])
+        messenger.send('FPSChanged', [self.FPS]) #
 
 
     def getOceanMapRadarAxis(self):

@@ -860,7 +860,7 @@ class GameOptionsGui(DirectFrame):
     def FPS1(self, val):
         if self.gameOptions is None:
             return None
-
+         #calls the toggleFPS
         self.gameOptions.options.FPS = val
         self.gameOptions.options.setRuntimeFPS()
 

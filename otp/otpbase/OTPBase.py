@@ -79,8 +79,10 @@ class OTPBase(ShowBase):
         self.FPSEnabledEnabled = not self.FPSEnabled
         if self.FPSEnabled:
             base.setFrameRateMeter(True)
+            #add option here
         if not self.FPSEnabled:
             base.setFrameRateMeter(False)
+            #add option here
             return
 
 
