@@ -1,6 +1,7 @@
 from panda3d.core import Filename, Light, NodePath, Texture
 from direct.directnotify.DirectNotifyGlobal import *
 from direct.showbase.Loader import Loader
+import PiratesGlobals
 import os
 
 class PiratesLoader(Loader):
@@ -20,20 +21,7 @@ class PiratesLoader(Loader):
         Loader.destroy(self)
 
     def preloadModels(self):
-        preload = [
-            'phase_2/models/effects/particleMaps',
-            'phase_3/models/effects/combat_hit_spark',
-            'phase_4/models/props/TreeBase',
-            'phase_3/models/vegetation/gen_tree_a',
-            'phase_3/models/vegetation/gen_tree_b',
-            'phase_3/models/vegetation/gen_tree_c',
-            'phase_3/models/vegetation/gen_tree_d',
-            'phase_3/models/vegetation/gen_tree_e',
-            'phase_3/models/vegetation/gen_tree_f',
-            'phase_3/models/vegetation/gen_tree_g',
-            'phase_3/models/vegetation/gen_tree_h',]
-
-        for model in preload:
+        for model in PiratesGlobals.preLoadSet:
             self.loadModel(model)
 
     def scanDirectory(self, directory, extensions=[]):
