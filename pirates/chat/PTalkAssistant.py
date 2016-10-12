@@ -97,34 +97,12 @@ class PTalkAssistant(TalkAssistant):
             avatarName = self.findName(avatarId, 0)
 
         newMessage = TalkMessage(TALK_OPEN, self.countMessage(), message, avatarId, avatarName)
-        reject = 0
-        if avatarId:
-            reject = self.addToHistoryDoId(newMessage, avatarId)
-        if reject == 1:
-            newMessage.setBody(OTPLocalizer.AntiSpamInChat)
-        if reject != 2:
-            isSpam = self.spamDictByDoId.get(avatarId) and reject
-            if not isSpam:
-                self.historyComplete.append(newMessage)
-                self.historyOpen.append(newMessage)
-                messenger.send('NewOpenMessage', [newMessage])
-            if newMessage.getBody() == OTPLocalizer.AntiSpamInChat:
-                self.spamDictByDoId[avatarId] = 1
-            else:
-                self.spamDictByDoId[avatarId] = 0
+        self.addToHistory(newMessage)
 
     def receivePartyTalk(self, fromAv, avatarName, message):
         if not self.isThought(message):
             newMessage = TalkMessage(TALK_PARTY, self.countMessage(), message, fromAv, avatarName)
-            reject = self.addToHistoryDoId(newMessage, fromAv)
-            if reject == 1:
-                newMessage.setBody(OTPLocalizer.AntiSpamInChat)
-
-            if reject != 2:
-                self.historyComplete.append(newMessage)
-                self.historyParty.append(newMessage)
-                messenger.send('NewOpenMessage', [
-                    newMessage])
+            self.addToHistory(newMessage)
 
     def receiveOpenSpeedChat(self, msgType, messageIndex, senderId, name = None):
         if not name and senderId:
@@ -152,11 +130,7 @@ class PTalkAssistant(TalkAssistant):
             return None
 
         newMessage = TalkMessage(messageType, self.countMessage(), message, senderId, name)
-        self.historyComplete.append(newMessage)
-        self.historyOpen.append(newMessage)
-        self.addToHistoryDoId(newMessage, senderId)
-        messenger.send('NewOpenMessage', [
-            newMessage])
+        self.addToHistory(newMessage)
 
     def receiveSystemMessage(self, message):
         base.localAvatar.guiMgr.messageStack.addTextMessage(message, seconds = 20, priority = 0, color = (0.5, 0, 0, 1), icon = ('admin', ''))
@@ -165,31 +139,12 @@ class PTalkAssistant(TalkAssistant):
     def receivePartyMessage(self, senderId, senderName, message):
         if not self.isThought(message):
             newMessage = TalkMessage(TALK_PARTY, self.countMessage(), message, senderId, senderName)
-            reject = self.addToHistoryDoId(newMessage, senderId)
-            if reject == 1:
-                newMessage.setBody(OTPLocalizer.AntiSpamInChat)
-
-            if reject != 2:
-                self.historyComplete.append(newMessage)
-                self.historyParty.append(newMessage)
-                messenger.send('NewOpenMessage', [
-                    newMessage])
+            self.addToHistory(newMessage)
 
     def receiveShipPVPMessage(self, senderId, senderName, teamName, message):
         if not self.isThought(message):
             newMessage = TalkMessage(TALK_PVP, self.countMessage(), message, fromAv, avatarName, extraInfo=teamName)
-            reject = 0
-            if fromAv:
-                reject = self.addToHistoryDoId(newMessage, fromAv)
-
-            if reject == 1:
-                newMessage.setBody(OTPLocalizer.AntiSpamInChat)
-
-            if reject != 2:
-                self.historyComplete.append(newMessage)
-                self.historyPVP.append(newMessage)
-                messenger.send('NewOpenMessage', [
-                    newMessage])
+            self.addToHistory(newMessage)
 
     def sendPartyTalk(self, message):
         if self.checkPartyTypedChat():
@@ -233,15 +188,9 @@ class PTalkAssistant(TalkAssistant):
         if self.logWhispers:
             receiverName = self.findName(receiverId, 0)
             newMessage = TalkMessage(TALK_WHISPER, self.countMessage(), message, localAvatar.doId, localAvatar.getName(), receiverId, receiverName)
-            self.historyComplete.append(newMessage)
-            self.addToHistoryDoId(newMessage, localAvatar.doId)
-            messenger.send('NewOpenMessage', [
-                newMessage])
+            self.addToHistory(newMessage)
 
     def receiveCannonDefenseMessage(self, senderId, senderName, message):
         if not self.isThought(message):
             newMessage = TalkMessage(CANNON_DEFENSE, self.countMessage(), message, senderId, senderName, localAvatar.doId, localAvatar.getName())
-            self.historyComplete.append(newMessage)
-            self.historyUpdates.append(newMessage)
-            messenger.send('NewOpenMessage', [
-                newMessage])
+            self.addToHistory(newMessage)
