@@ -681,7 +681,8 @@ class ChatPanel(DirectFrame, FSM):
                 continue
 
         for message in removeRendered:
-            self.renderedLineDict.pop(message)
+            if message in self.renderedLineDict:
+                self.renderedLineDict.pop(message)
 
         for key in removeIds:
             self.lineDict.pop(key)
