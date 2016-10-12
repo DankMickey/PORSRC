@@ -770,7 +770,7 @@ def allegiance(side=None):
     av.b_setAllegiance(allegiances.index(side))
     return "%s's allegiance has been set!" % av.getName()
 
-@magicWord(CATEGORY_GAME_MASTER, types=[str, str])
+@magicWord(CATEGORY_GAME_DEVELOPER, types=[str, str])
 def gm(color=None, tag=None):
     av = spellbook.getTarget()
     
