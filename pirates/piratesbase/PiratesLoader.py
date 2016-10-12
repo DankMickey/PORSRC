@@ -22,6 +22,7 @@ class PiratesLoader(Loader):
     def preloadModels(self):
         preload = [
             'phase_2/models/effects/particleMaps',
+            'phase_2/models/misc/pir_m_prp_lev_cambarrier_plane',
             'phase_3/models/effects/combat_hit_spark',
             'phase_4/models/props/TreeBase']
 
