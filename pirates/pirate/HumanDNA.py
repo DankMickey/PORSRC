@@ -918,7 +918,8 @@ class HumanDNA(AvatarDNA.AvatarDNA):
             'setHairColor',
             'setHighLightColor',
             'setHatIdx',
-            'setHatColor']
+            'setHatColor',
+            'setHeadTexture']
 
         for f in npcDict.keys():
             val = npcDict[f]
