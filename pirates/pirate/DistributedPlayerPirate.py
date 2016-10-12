@@ -2799,7 +2799,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             return None
 
         self.playEmote(emoteId)
-        base.talkAssistant.receiveEmote(self, emoteId)
+        base.talkAssistant.receiveOpenSpeedChat(ChatGlobals.SPEEDCHAT_EMOTE, emoteId, self.doId)
 
 
     def b_setSpeedChatQuest(self, questInt, msgType, taskNum):
@@ -2828,6 +2828,8 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
 
         if chatString:
             self.setChatAbsolute(chatString, CFSpeech | CFQuicktalker | CFTimeout)
+        
+        base.talkAssistant.receiveOpenTalk(self.doId, self.getName(), chatString)
 
 
     def whisperSCQuestTo(self, questInt, msgType, taskNum, sendToId):
