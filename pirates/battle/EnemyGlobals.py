@@ -3033,3 +3033,6 @@ def getBreakAttackRechargeRate(levelGrade):
     else:
         amount = 0.25
     return amount
+
+DRAWN_ANIME = [
+    'attention']
