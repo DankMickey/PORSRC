@@ -537,8 +537,13 @@ class ChatPanel(DirectFrame, FSM):
                 message.getReceiverAvatarId(),
                 useName2]
 
-        nameArray = ('\x01' + MESSAGE_COLOR_TABLE[message.getTalkType()][self.fontColorStyle] + '\x01' + useName + '\x02', '\x01' + MESSAGE_COLOR_TABLE[message.getTalkType()][self.fontColorStyle] + '\x01' + useName + '\x02', '\x01' + MESSAGE_OVER_TABLE[message.getTalkType()][self.fontColorStyle] + '\x01' + useName + '\x02', '\x01' + MESSAGE_COLOR_TABLE[message.getTalkType()][self.fontColorStyle] + '\x01' + useName + '\x02')
-        nameButton = DirectButton(parent = NodePath(), relief = None, text = nameArray, text_align = TextNode.ALeft, text_pos = (0.0, 0.0), text_shadow = self.shadowColor, text_shadowOffset = self.shadowOffset, text_font = self.nameFont, textMayChange = 0, command = buttonCommand, extraArgs = buttonArgs)
+        nameArray = (
+            '\x01' + MESSAGE_COLOR_TABLE[message.getTalkType()][self.fontColorStyle] + '\x01' + useName + '\x02',
+            '\x01' + MESSAGE_COLOR_TABLE[message.getTalkType()][self.fontColorStyle] + '\x01' + useName + '\x02',
+            '\x01' + MESSAGE_OVER_TABLE[message.getTalkType()][self.fontColorStyle] + '\x01' + useName + '\x02',
+            '\x01' + MESSAGE_COLOR_TABLE[message.getTalkType()][self.fontColorStyle] + '\x01' + useName + '\x02'
+        )
+        nameButton = DirectButton(parent=hidden, relief = None, text = nameArray, text_align = TextNode.ALeft, text_pos = (0.0, 0.0), text_shadow = self.shadowColor, text_shadowOffset = self.shadowOffset, text_font = self.nameFont, textMayChange = 0, command = buttonCommand, extraArgs = buttonArgs)
         (left, right, bottom, top) = nameButton.getBounds()
         nameGFX = TextGraphic(nameButton, left, right, 0, 1)
         tpMgr.setGraphic(useName, nameGFX)
@@ -549,12 +554,11 @@ class ChatPanel(DirectFrame, FSM):
             nameGFX2 = TextGraphic(nameButton2, left, right, 0, 1)
             tpMgr.setGraphic(useName2, nameGFX2)
 
-        del tpMgr
         self.lineDict[message.getMessageId()] = (message, nameButton, useName)
         if nameButton:
-            messageName = '' + useName + ''
+            messageName = '\x05' + useName + '\x05'
             if wantTwoNames:
-                messageName2 = '' + useName2 + ''
+                messageName2 = '\x05' + useName2 + '\x05'
 
         else:
             messageName = message.getSenderAvatarName() + ': '
@@ -677,7 +681,8 @@ class ChatPanel(DirectFrame, FSM):
                 continue
 
         for message in removeRendered:
-            self.renderedLineDict.pop(message)
+            if message in self.renderedLineDict:
+                self.renderedLineDict.pop(message)
 
         for key in removeIds:
             self.lineDict.pop(key)
