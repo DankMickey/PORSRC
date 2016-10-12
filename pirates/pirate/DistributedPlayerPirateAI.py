@@ -442,7 +442,7 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
                                      timestamp, pos, charge)
 
     def spendSkillPoint(self, skillId):
-        if 0 < self.inventory.getStackQuantity(skillId) <= 5:
+        if 0 < self.inventory.getStackQuantity(skillId) < 5:
             unspent = self.getUnspent(skillId)
             
             if not unspent:
