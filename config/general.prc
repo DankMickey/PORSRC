@@ -133,7 +133,7 @@ advanced-weather #t
 want-soft-tod-changes #t
 
 # SAILING
-want-seas-closed #f
+want-seas-closed #t
 want-enemy-ships #f
 want-enemy-ship-movement #t
 
