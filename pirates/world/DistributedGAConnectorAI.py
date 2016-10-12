@@ -56,5 +56,9 @@ class DistributedGAConnectorAI(DistributedNodeAI):
         obj.setPos(data.get('Pos', 0))
         obj.setHpr(data.get('Hpr', 0))
         obj.setModelPath(data['Visual']['Model'])
+
+        if 'GridPos' in data:
+            obj.setPos(data.get('GridPos', 0))
+
         return obj
 

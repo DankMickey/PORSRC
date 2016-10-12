@@ -8,6 +8,8 @@ class DistributedSearchableContainerAI(DistributedInteractiveAI, DistributedObje
     def __init__(self, air):
         DistributedObjectAI.__init__(self, air)
         DistributedInteractiveAI.__init__(self, air)
+        self.color = [0, 0, 0, 0]
+        self.visZone = ''
 
     def announceGenerate(self):
         DistributedObjectAI.announceGenerate(self)
@@ -28,13 +30,13 @@ class DistributedSearchableContainerAI(DistributedInteractiveAI, DistributedObje
         self.visZone = visZone
 
     def getVisZone(self):
-        return ''
+        return self.visZone
 
     def setContainerColor(self, color1, color2, color3, color4):
         self.color = [color1, color2, color3, color4]
 
     def getContainerColor(self):
-        return [0,0,0,0]
+        return self.color
 
     def setSphereScale(self, sphereScale):
         self.sphereScale = sphereScale
@@ -51,6 +53,13 @@ class DistributedSearchableContainerAI(DistributedInteractiveAI, DistributedObje
         obj = DistributedInteractiveAI.makeFromObjectKey(cls, air, objKey, data)
         obj.setSearchTime(int(float(data['searchTime'])))
         obj.setType(data['type'])
+
+        if 'VisZone' in data:
+            obj.setVisZone(data['VisZone'])
+
+        visual = data['Visual']
+        if 'Color' in visual:
+            obj.setContainerColor(*visual['Color'])
 
         gridPos = data.get('GridPos')
         if gridPos:

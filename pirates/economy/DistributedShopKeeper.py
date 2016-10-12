@@ -10,6 +10,7 @@ from pirates.piratesbase import PiratesGlobals
 from pirates.piratesgui import PiratesGuiGlobals
 from pirates.economy import StoreGUI, AccessoriesStoreGUI, TattooStoreGUI, JewelryStoreGUI, BarberStoreGUI, MusicianGUI, StowawayGUI, SimpleStoreGUI
 from pirates.economy import ShipStoreGUI
+from pirates.uberdog.UberDogGlobals import *
 from pirates.uberdog.DistributedInventoryBase import DistributedInventoryBase
 from direct.interval.IntervalGlobal import *
 from pirates.piratesbase import PLocalizer

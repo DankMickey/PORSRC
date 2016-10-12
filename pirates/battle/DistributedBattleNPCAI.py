@@ -7,7 +7,6 @@ from pirates.battle.DistributedBattleAvatarAI import *
 from pirates.piratesbase import PiratesGlobals
 from pirates.battle import WeaponGlobals
 from pirates.battle import EnemyGlobals
-
 import random
 
 class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
@@ -66,7 +65,8 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
 
         self.mainWeapon = self.weapons.keys()[0]
         if self.mainWeapon > 1:
-            self.b_setCurrentWeapon(self.mainWeapon, 0)
+            startDrawn = self.animSet in EnemyGlobals.DRAWN_ANIME
+            self.b_setCurrentWeapon(self.mainWeapon, startDrawn)
 
     def enterSpawn(self):
         self.sendUpdate('setSpawnIn', [globalClockDelta.getRealNetworkTime(bits=32)])
@@ -215,7 +215,8 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
         taskMgr.remove(self.taskName('battleTask'))
 
         if self.mainWeapon > 1:
-            self.b_setCurrentWeapon(self.mainWeapon, 0)
+            endDrawn = self.animSet in EnemyGlobals.DRAWN_ANIM
+            self.b_setCurrentWeapon(self.mainWeapon, endDrawn)
 
     # TO DO:
     # boardVehicle(uint32) broadcast ram
@@ -342,5 +343,4 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
 
         if 'Start State' in data:
             obj.setStartState(data['Start State'])
-
         return obj

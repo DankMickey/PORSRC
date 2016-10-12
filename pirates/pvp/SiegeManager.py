@@ -103,7 +103,7 @@ class SiegeManager(DistributedObject, SiegeManagerBase):
         if not self.cr.avatarFriendsManager.checkIgnored(senderId):
             teamName = self.getPVPChatTeamName(localAvatar.getSiegeTeam())
             displayMess = '%s %s %s' % (avName, teamName, message)
-            base.talkAssistant.receiveShipPVPMessage(senderId, 0, avName, teamName, message)
+            base.talkAssistant.receiveShipPVPMessage(senderId, avName, teamName, message)
 
     def getPVPChatTeamName(self, teamId):
         if teamId == 2:

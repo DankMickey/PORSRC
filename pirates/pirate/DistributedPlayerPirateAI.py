@@ -442,7 +442,7 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
                                      timestamp, pos, charge)
 
     def spendSkillPoint(self, skillId):
-        if 0 < self.inventory.getStackQuantity(skillId) < 6:
+        if 0 < self.inventory.getStackQuantity(skillId) < 5:
             unspent = self.getUnspent(skillId)
             
             if not unspent:
@@ -770,7 +770,7 @@ def allegiance(side=None):
     av.b_setAllegiance(allegiances.index(side))
     return "%s's allegiance has been set!" % av.getName()
 
-@magicWord(CATEGORY_GAME_MASTER, types=[str, str])
+@magicWord(CATEGORY_GAME_DEVELOPER, types=[str, str])
 def gm(color=None, tag=None):
     av = spellbook.getTarget()
     
