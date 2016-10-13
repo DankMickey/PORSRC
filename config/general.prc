@@ -88,7 +88,7 @@ Cannon Defence
 want-cannondefense-game 0
 
 # MAKE A PIRATE/TUTORIAL/AVATAR CHOOSER
-skip-tutorial #f
+skip-tutorial #t
 want-jail-lights-off #f
 want-new-avatars #f
 want-npc-viewer #f
