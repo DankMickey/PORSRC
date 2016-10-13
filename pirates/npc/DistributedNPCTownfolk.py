@@ -876,7 +876,7 @@ class DistributedNPCTownfolk(DistributedBattleNPC.DistributedBattleNPC, Distribu
 
         if localAvatar.style.getTutorial() < PiratesGlobals.TUT_GOT_SHIP:
             stowawayButtonState = InteractGlobals.DISABLED
-            cannonDefenseButtonState = InteractGlobals.DISABLED
+            cannonDefenseButtonState = InteractGlobals.NORMAL
 
         optionIds = InteractGlobals.getNPCInteractMenu(self.avatarType)[1]
         buttonStateDict = {

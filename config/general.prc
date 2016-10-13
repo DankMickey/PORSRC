@@ -84,6 +84,9 @@ loading-screen 0
 loading-screen-interstitial #f
 no-loading-screen #f
 
+Cannon Defence
+want-cannondefense-game 0
+
 # MAKE A PIRATE/TUTORIAL/AVATAR CHOOSER
 skip-tutorial #f
 want-jail-lights-off #f
