@@ -36,6 +36,7 @@ class BossBase:
     def loadBossDataAvatarType(self, avatarType):
         self.bossData = BOSS_NPC_LIST[''].copy()
         self.bossData['AvatarType'] = avatarType
+        print "Faction: %s Track: %s Id: %s Boss: %s" % (avatarType.faction, avatarType.track, avatarType.id, (avatarType.boss - 1))
         self.bossData['Name'] = PLocalizer.BossNames[avatarType.faction][avatarType.track][avatarType.id][avatarType.boss - 1]
 
 

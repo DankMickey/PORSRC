@@ -9,6 +9,8 @@ from pirates.npc.DistributedKillerGhostAI import DistributedKillerGhostAI
 from pirates.npc.DistributedBountyHunterAI import DistributedBountyHunterAI
 from pirates.npc.DistributedVoodooZombieAI import DistributedVoodooZombieAI
 from pirates.npc.DistributedGhostAI import DistributedGhostAI
+from pirates.npc.DistributedJollyRogerAI import DistributedJollyRogerAI
+from pirates.npc.DistributedDavyJonesAI import DistributedDavyJonesAI
 
 from pirates.battle.DistributedBattleNPCAI import *
 from pirates.creature.DistributedCreatureAI import *
@@ -65,6 +67,9 @@ class EnemySpawnNode(DirectObject.DirectObject):
             avatarClass = DistributedAnimalAI
         elif avatar.isA(AvatarTypes.SeaMonster):
             pass
+        elif avatar.isA(AvatarTypes.DavyJones):
+            self.notify.info("Davy Jones!")
+            avatarClass = DistributedDavyJonesAI
         elif avatar.isA(AvatarTypes.Undead):
             if avatar.isA(AvatarTypes.FrenchBoss) or avatar.isA(AvatarTypes.SpanishBoss):
                 #avatarClass = DistributedBossSkeletonAI
@@ -72,6 +77,8 @@ class EnemySpawnNode(DirectObject.DirectObject):
             elif avatar == AvatarTypes.BomberZombie:
                 #avatarClass = DistributeBomberZombieAI
                 pass
+            elif avatar.isA(AvatarTypes.JollyRoger):
+                avatarClass = DistributedJollyRogerAI
             else:
                 avatarClass = DistributedNPCSkeletonAI
         elif avatar.isA(AvatarTypes.Navy):

@@ -2,7 +2,7 @@ from panda3d.core import ColorBlendAttrib, GeomNode, NodePath, Plane, Point3, Te
 from direct.directnotify import DirectNotifyGlobal
 from direct.interval.IntervalGlobal import *
 from pirates.battle import DistributedBattleNPC
-from pirates.npc import JollyRoger
+from pirates.npc import DavyJones
 from pirates.npc.Boss import Boss
 from pirates.pirate import AvatarTypes
 from pirates.pirate.AvatarType import AvatarType
@@ -14,13 +14,13 @@ from pirates.effects.JRTeleportEffect import JRTeleportEffect
 import NPCSkeletonGameFSM
 import random
 
-class DistributedJollyRoger(DistributedBattleNPC.DistributedBattleNPC, JollyRoger.JollyRoger, Boss):
-    notify = DirectNotifyGlobal.directNotify.newCategory('DistributedJollyRoger')
+class DistributedDavyJones(DistributedBattleNPC.DistributedBattleNPC, DavyJones.DavyJones, Boss):
+    notify = DirectNotifyGlobal.directNotify.newCategory('DistributedDavyJones')
 
     def __init__(self, cr):
         DistributedBattleNPC.DistributedBattleNPC.__init__(self, cr)
         Boss.__init__(self, cr)
-        JollyRoger.JollyRoger.__init__(self)
+        DavyJones.DavyJones.__init__(self)
         self.recentlyPlayedDamage = False
         self.recentlyPlayedAttack = False
 
@@ -78,21 +78,21 @@ class DistributedJollyRoger(DistributedBattleNPC.DistributedBattleNPC, JollyRoge
         taskMgr.remove(self.uniqueName('restoreDamageSounds'))
         taskMgr.remove(self.uniqueName('restoreAttackSounds'))
         DistributedBattleNPC.DistributedBattleNPC.disable(self)
-        JollyRoger.JollyRoger.disable(self)
+        DavyJones.DavyJones.disable(self)
 
 
     def delete(self):
         DistributedBattleNPC.DistributedBattleNPC.delete(self)
-        JollyRoger.JollyRoger.delete(self)
+        DavyJones.DavyJones.delete(self)
 
 
     def getNameText(self):
-        return JollyRoger.JollyRoger.getNameText(self)
+        return DavyJones.DavyJones.getNameText(self)
 
 
     def setAvatarType(self, avatarType):
         avatarType = AvatarType.fromTuple(avatarType)
-        JollyRoger.JollyRoger.setAvatarType(self, avatarType)
+        DavyJones.DavyJones.setAvatarType(self, avatarType)
         DistributedBattleNPC.DistributedBattleNPC.setAvatarType(self, avatarType)
         self.loadBossData(self.getUniqueId(), avatarType)
 
@@ -102,14 +102,14 @@ class DistributedJollyRoger(DistributedBattleNPC.DistributedBattleNPC, JollyRoge
 
 
     def initializeDropShadow(self):
-        JollyRoger.JollyRoger.initializeDropShadow(self)
+        DavyJones.DavyJones.initializeDropShadow(self)
 
 
     def setSpeed(self, forwardSpeed, rotateSpeed):
         if self.gameFSM.state == 'Jump':
             return None
 
-        JollyRoger.JollyRoger.setSpeed(self, forwardSpeed, rotateSpeed)
+        DavyJones.DavyJones.setSpeed(self, forwardSpeed, rotateSpeed)
 
 
     def setHp(self, hp, quietly = 0):
@@ -148,23 +148,23 @@ class DistributedJollyRoger(DistributedBattleNPC.DistributedBattleNPC, JollyRoge
 
 
     def play(self, *args, **kwArgs):
-        JollyRoger.JollyRoger.play(self, *args, **kwArgs)
+        DavyJones.DavyJones.play(self, *args, **kwArgs)
 
 
     def loop(self, *args, **kwArgs):
-        JollyRoger.JollyRoger.loop(self, *args, **kwArgs)
+        DavyJones.DavyJones.loop(self, *args, **kwArgs)
 
 
     def pose(self, *args, **kwArgs):
-        JollyRoger.JollyRoger.pose(self, *args, **kwArgs)
+        DavyJones.DavyJones.pose(self, *args, **kwArgs)
 
 
     def pingpong(self, *args, **kwArgs):
-        JollyRoger.JollyRoger.pingpong(self, *args, **kwArgs)
+        DavyJones.DavyJones.pingpong(self, *args, **kwArgs)
 
 
     def stop(self, *args, **kwArgs):
-        JollyRoger.JollyRoger.stop(self, *args, **kwArgs)
+        DavyJones.DavyJones.stop(self, *args, **kwArgs)
 
 
     def shouldNotice(self):

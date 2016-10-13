@@ -560,7 +560,11 @@ NPC_SPAWNABLES = {
     'Seagull': [
         lambda p0 = Seagull: typePassthrough(p0)],
     'Dolphin': [
-        lambda p0 = Dolphin: typePassthrough(p0)]}
+        lambda p0 = Dolphin: typePassthrough(p0)],
+    'Jolly Roger': [
+        lambda p0 = JollyRoger: typePassthrough(p0)],
+    'Davy Jones': [
+        lambda p0 = DavyJones: typePassthrough(p0)]}
 NPC_SPAWNABLES_KEYS = [
     'Skel T0',
     'Skel T1',
@@ -670,7 +674,9 @@ NPC_SPAWNABLES_KEYS = [
     'Spanish Undead Conquistador',
     'Spanish Undead Bandido',
     'Spanish Undead Pirata',
-    'Spanish Undead Captain']
+    'Spanish Undead Captain',
+    'Jolly Roger',
+    'Davy Jones']
 
 def buildEditorSpawnableTypes():
     category = [

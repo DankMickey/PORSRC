@@ -648,7 +648,11 @@ class Skeleton(Biped.Biped):
             return None
 
         self.avatarType = AvatarType.fromTuple(avatarType)
-        self.style = AvType2style[self.avatarType.getNonBossType()]
+        try:
+            self.style = AvType2style[self.avatarType.getNonBossType()]
+        except:
+            self.notify.warning("Failed to load style for: %s. Defaulting to style 1" % self.avatarType.getNonBossType())
+            self.style = AvType2style[AvatarTypes.EarthUndead[0]]
         self.generateSkeleton()
         self.initializeDropShadow()
         self.initializeNametag3d()

@@ -23,6 +23,8 @@ from pirates.npc import DistributedBossGhost/AI
 from pirates.npc import DistributedVoodooZombie/AI
 from pirates.npc import DistributedBountyHunter/AI
 from pirates.npc import DistributedNPCTownfolk/AI
+from pirates.npc import DistributedJollyRoger/AI
+from pirates.npc import DistributedDavyJones/AI
 // from pirates.npc import DistributedBossTownfolk/AI
 from pirates.creature import DistributedCreature/AI
 from pirates.creature import DistributedAnimal/AI
@@ -81,6 +83,8 @@ from pirates.minigame import DistributedRepairBench/AI
 from pirates.minigame import DistributedRepairGame/AI
 from pirates.minigame import DistributedFishingSpot/AI
 from pirates.world import DistributedDinghy/AI
+from pirates.inventory import DistributedLootContainer/AI
+from pirates.inventory import DistributedLootManager/AI
 from pirates.inventory import Lootable/AI
 from pirates.distributed import TargetManager/AI
 from pirates.world import DistributedDoor/AI
@@ -568,6 +572,10 @@ dclass DistributedBountyHunter : DistributedBattleNPC {
 };
 
 dclass DistributedJollyRoger : DistributedBattleNPC, Boss {
+  sendInvasionTaunt(uint8) broadcast;
+};
+
+dclass DistributedDavyJones : DistributedBattleNPC, Boss {
   sendInvasionTaunt(uint8) broadcast;
 };
 
@@ -1189,6 +1197,26 @@ dclass Lootable {
   doneTaking() airecv clsend;
   requestItem(PlunderItemLocationInfo) airecv clsend;
   requestItems(PlunderItemInfo []) airecv clsend;
+};
+
+
+dclass DistributedLootContainer : DistributedInteractive, Lootable {
+  setVisZone(string) required broadcast ram;
+  setEmpty(bool) required broadcast ram;
+  setType(uint8(0-8)) required broadcast ram;
+  setCreditLocks(uint32 []) required broadcast ram;
+};
+
+struct LootContainer {
+  uint32 containerId;
+  PlunderItemInfo items[];
+};
+
+dclass DistributedLootManager : DistributedObject {
+  requestItemFromContainer(uint32, PlunderItemLocationInfo) airecv clsend;
+  requestItems(LootContainer []) airecv clsend;
+  removeLootContainerFromScoreboard(uint32);
+  warnRemoveLootContainerFromScoreboard(uint32);
 };
 
 dclass DistributedFishingSpot : DistributedInteractive, Lootable {
