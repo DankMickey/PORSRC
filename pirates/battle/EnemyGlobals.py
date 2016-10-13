@@ -3035,4 +3035,5 @@ def getBreakAttackRechargeRate(levelGrade):
     return amount
 
 DRAWN_ANIME = [
-    'attention']
+    'attention',
+    'bayonet_drill']

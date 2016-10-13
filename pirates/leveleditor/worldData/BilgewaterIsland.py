@@ -9855,7 +9855,7 @@ objectStruct = {
                     'Pos': Point3(-285.103, -58.817, 44.048),
                     'Scale': VBase3(1.0, 1.0, 1.0) } },
             'Visual': {
-                'Model': 'models/islands/bilgewater_zero' } } },
+                'Model': 'models/islands/pir_m_are_isl_rambleshack' } } },
     'Node Links': [
         [
             '1146635818.09jubutler',
