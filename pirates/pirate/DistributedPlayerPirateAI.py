@@ -46,6 +46,7 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         self.founder = False
         self.allegiance = 0
         self.gmNametag = ('', '')
+        self.storedgmNameTag = ('', '')
         self.defaultShard = 0
         self.tempdoublexp = 0
         self.zombied = (0, False)
@@ -770,7 +771,20 @@ def allegiance(side=None):
     av.b_setAllegiance(allegiances.index(side))
     return "%s's allegiance has been set!" % av.getName()
 
-@magicWord(CATEGORY_GAME_DEVELOPER, types=[str, str])
+@magicWord(CATEGORY_STAFF)
+def hideGM():
+    av = spellbook.getInvoker()
+    av.storedgmNameTag = av.gmNametag
+    av.b_setGMNametag('', '')
+    return "GM tag has been hidden."
+
+@magicWord(CATEGORY_STAFF)
+def showGM():
+    av = spellbook.getInvoker()
+    av.b_setGMNametag(*av.storedgmNameTag)
+    return "GM tag is now being shown."
+
+@magicWord(CATEGORY_GAME_DESIGNER, types=[str, str])
 def gm(color=None, tag=None):
     av = spellbook.getTarget()
     

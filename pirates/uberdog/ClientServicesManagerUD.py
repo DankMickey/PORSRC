@@ -180,7 +180,7 @@ class DeveloperAccountDB(AccountDB):
     notify = directNotify.newCategory('DeveloperAccountDB')
 
     def lookup(self, username, callback):
-        return AccountDB.lookup(self, username, 700, callback)
+        return AccountDB.lookup(self, username, 1100, callback)
 
 class RemoteAccountDB(AccountDB):
     notify = directNotify.newCategory('RemoteAccountDB')
@@ -818,14 +818,24 @@ class LoadAvatarFSM(AvatarOperationFSM):
         self.demand('LoadInventory')
 
     def __getGMTag(self, accessLevel):
-        if accessLevel == 0:
-            return ("red", "System Admin")
-        if accessLevel == 150:
-            return ("green", "POR Youtuber")
-        elif accessLevel > 100 and accessLevel <= 400:
-            return ("red", "Game Master")
-        if accessLevel > 500:
-            return ("green", "Developer")
+        gmTags = {
+            0: ("red", "System Admin"),
+            100: None,
+            200: None,
+            300: ("green" , "Youtuber"),
+            400: None,
+            500: None,
+            600: ("red", "Moderator"),
+            700: ("red", "Game Master"),
+            800: ("green", "Developer"),
+            900: ("green", "Developer"),
+            1000: ("green", "Developer"),
+            1100: ("green", "Developer")
+        }
+        if accessLevel not in gmTags:
+            self.notify.warning("Failed to get GM tag for access level: %s" % accessLevel)
+            return None
+        return gmTags[accessLevel]
 
     def enterLoadInventory(self):
         channel = self.csm.GetAccountConnectionChannel(self.target)
@@ -848,13 +858,13 @@ class LoadAvatarFSM(AvatarOperationFSM):
 
         # Activate the avatar on the DBSS:
         access = self.account.get('ACCESS_LEVEL', 100)
-        if access == 100:
+        gmTag = self.__getGMTag(access)
+        if gmTag is None:
             self.csm.air.sendActivate(
                 self.avId, 0, 0, self.csm.air.dclassesByName['DistributedPlayerPirateUD'],
                 {'setAdminAccess': [self.account.get('ACCESS_LEVEL', 100)],
                  'setName': self.avatar['setName']})
         else:
-            gmTag = self.__getGMTag(access)
             self.csm.air.sendActivate(
                 self.avId, 0, 0, self.csm.air.dclassesByName['DistributedPlayerPirateUD'],
                 {'setAdminAccess': [self.account.get('ACCESS_LEVEL', 100)],
