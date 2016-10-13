@@ -1,4 +1,3 @@
-from panda3d.core import NodePath
 from direct.distributed.DistributedCartesianGridAI import DistributedCartesianGridAI
 from direct.distributed.GridParent import GridParent
 from direct.directnotify import DirectNotifyGlobal
@@ -74,9 +73,11 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
     def __runIslandEvents(self, task=None):
         self.nextEvent -= 15
         if self.nextEvent <= 0:
-            if self.getUniqueId() == LocationIds.DEL_FUEGO_ISLAND:
+            islandId = self.getUniqueId()
+            if islandId == LocationIds.DEL_FUEGO_ISLAND:
                 self.makeLavaErupt()
                 self.nextEvent = random.randint(5, 10) * 60
+
         return Task.again
 
     def setIslandTransform(self, x, y, z, h):
@@ -231,9 +232,15 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
             genObj = DistributedHolidayObjectAI.makeFromObjectKey(self.air, objKey, object)
             self.generateChild(genObj)
 
+        elif objType == 'Connector Tunnel' and config.GetBool('want-link-tunnels', 0):
+            #genObj = DistributedGATunnelAI.makeFromObjectKey(self.air, objKey, object)
+            #self.generateChild(genObj)  
+            pass
+
         elif objType == 'Island Game Area' and config.GetBool('want-link-tunnels', 0):
-            genObj = DistributedGATunnelAI.makeFromObjectKey(self.air, objKey, object)
-            self.generateChild(genObj)
+            #genObj = DistributedGATunnelAI.makeFromObjectKey(self.air, objKey, object)
+            #self.generateChild(genObj)          
+            pass
 
         else:
             genObj = DistributedGameAreaAI.createObject(self, objType, parent, objKey, object)

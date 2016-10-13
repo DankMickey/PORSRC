@@ -64,6 +64,7 @@ want-fishing-game-debug #t
 # NPC:
 want-npcs #t
 want-enemies #t
+want-dormant-spawns #t
 want-animals #t
 npcs-auto-target #f
 want-npc-notice #f

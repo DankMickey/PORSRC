@@ -1310,7 +1310,7 @@ objectStruct = {
                 '1158366723.53dparis': {
                     'Type': 'Spawn Node',
                     'Aggro Radius': '6.0241',
-                    'AnimSet': 'default',
+                    'AnimSet': 'attention',
                     'AuraFX': 'None',
                     'Hpr': VBase3(-69.534, 0.0, 0.0),
                     'Min Population': '1',
@@ -2471,7 +2471,7 @@ objectStruct = {
                     'spawnTimeEnd': 0.0 },
                 '1178667904.0dxschafe': {
                     'Type': 'Spawn Node',
-                    'AnimSet': 'default',
+                    'AnimSet': 'attention',
                     'AuraFX': 'None',
                     'Hpr': VBase3(-177.709, 0.0, 0.0),
                     'Min Population': '1',
@@ -19200,7 +19200,7 @@ objectStruct = {
                 '1245172246.39robrusso': {
                     'Type': 'Dormant NPC Spawn Node',
                     'Aggro Radius': '6.0241',
-                    'AnimSet': 'default',
+                    'AnimSet': 'attention',
                     'AuraFX': 'None',
                     'Hpr': VBase3(254.055, 0.0, 0.0),
                     'Min Population': '1',

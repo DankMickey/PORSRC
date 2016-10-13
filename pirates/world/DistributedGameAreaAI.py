@@ -76,6 +76,10 @@ class DistributedGameAreaAI(DistributedNodeAI):
         if objType == 'Spawn Node' and config.GetBool('want-enemies', False):
             self.spawner.addEnemySpawnNode(objKey, object)
 
+        elif objType == 'Dormant NPC Spawn Node' and config.GetBool('want-enemies', False) and config.GetBool('want-dormant-spawns', False):
+            self.notify.info("Spawning %s" % objType)
+            self.spawner.addEnemySpawnNode(objKey, object)
+
         elif objType == 'Animal' and config.GetBool('want-animals', False):
             self.spawner.addAnimalSpawnNode(objKey, object)
 
