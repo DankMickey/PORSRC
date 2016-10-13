@@ -6149,7 +6149,12 @@ BossNames = {
             8: {
                 0: 'Jeremy Coldhand' },
             9: {
-                0: 'Stench' } } },
+                0: 'Stench' } },
+        5: {
+            0: {
+                -1: 'Jolly roger'            
+            }
+        } },
     1: {
         1: {
             0: {
