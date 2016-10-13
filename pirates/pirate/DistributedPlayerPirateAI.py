@@ -680,14 +680,14 @@ def suicide(reason = "kindergarten is elsewhere."):
     simbase.air.send(dg)
     return "Kicked %s from the game." % av
 
-@magicWord(CATEGORY_ADMINISTRATION)
+@magicWord(CATEGORY_GAME_DESIGNER)
 def system(text):
     """Send a whisper to the whole district (system), un-prefixed."""
     air = spellbook.getInvoker().air
     air.systemMsgAll(text)
     return "Sent system message '%s' to all pirates in the district." % text
 
-@magicWord(CATEGORY_ADMINISTRATION)
+@magicWord(CATEGORY_GAME_DESIGNER)
 def sysadmin(text):
     """Send a whisper to the whole district, prefixed with 'ADMIN:'."""
     air = spellbook.getInvoker().air
@@ -695,7 +695,7 @@ def sysadmin(text):
     air.systemMsgAll(text)
     return "Sent system message '%s' to all pirates in the district." % text
 
-@magicWord(CATEGORY_ADMINISTRATION)
+@magicWord(CATEGORY_GAME_DESIGNER)
 def sysname(text):
     """Send a whisper to the whole district, prefixed with 'ADMIN Name:'."""
     air = spellbook.getInvoker().air
@@ -703,7 +703,7 @@ def sysname(text):
     air.systemMsgAll(text)
     return "Sent system message '%s' to all pirates in the district." % text
 
-@magicWord(CATEGORY_ADMINISTRATION)
+@magicWord(CATEGORY_GAME_DESIGNER)
 def update(reason="for an update"):
     """Send a whisper to the whole gameserver, prefixed with 'ADMIN Name:'."""
     air = spellbook.getInvoker().air
