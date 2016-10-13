@@ -1951,7 +1951,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
             deathIval.append(Sequence(Wait(delay), Func(startSFX), Func(startGlow)))
             deathIval.append(Sequence(Func(stopSmooth), Func(av.disableMixing), av.actorInterval(animName, startFrame = 0.0, endFrame = frames - 1.0, blendOutT = 0.0, blendInT = 0.0), Func(av.pose, animName, frames - 2, blendT = 0.0), Func(av.setTransparency, 1), Func(startVFX), LerpColorScaleInterval(self, 1.0, Vec4(0, 0, 0, 0), startColorScale = Vec4(1.0, 1.0, 1.0, 1.0)), Func(av.nametag3d.reparentTo, av), Func(self.hide, 0, PiratesGlobals.INVIS_DEATH), Func(av.clearColorScale), Func(av.clearTransparency)))
         else:
-            deathIval = Parallel(Func(stopSmooth), Func(self.setTransparency, 1), av.actorInterval(animName, blendOutT = 0.0), Sequence(Wait(duration / 2.0), Func(self.stopGhost, 0), LerpColorScaleInterval(av, duration / 2.0, Vec4(1, 1, 1, 0), startColorScale = Vec4(1)), Func(self.hide, 0, PiratesGlobals.INVIS_DEATH), Func(self.clearColorScale), Func(self.clearTransparency)), Sequence(Wait(delay), Func(startSFX)), Sequence(Func(startGlow), Wait(3), Func(playDeath)))
+            deathIval = Parallel(Func(stopSmooth), Func(self.setTransparency, 1), av.actorInterval(animName, blendOutT = 0.0), Sequence(Wait(duration / 2.0), Func(self.stopGhost, 0), LerpColorScaleInterval(av, duration / 2.0, Vec4(1, 1, 1, 0), startColorScale = Vec4(1)), Func(self.hide, 0, PiratesGlobals.INVIS_DEATH), Func(self.clearColorScale), Func(self.clearTransparency)), Sequence(Wait(delay), Func(startSFX)), Sequence(Func(startGlow), Wait(3)))
         return deathIval
 
 

@@ -27,8 +27,6 @@ from pirates.pirate import AvatarTypes
 from pirates.pirate.AvatarType import AvatarType
 from pirates.battle import EnemyGlobals
 from pirates.effects.Immolate import Immolate
-from pirates.effects.JRDeathBlast import JRDeathBlast
-from pirates.effects.JRDeath import JRDeath
 from pirates.effects.ExplosionFlip import ExplosionFlip
 from pirates.effects.FireBat import FireBat
 from pirates.audio import SoundGlobals

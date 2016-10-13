@@ -13,9 +13,7 @@ from pirates.pirate.AvatarType import AvatarType
 from pirates.audio import SoundGlobals
 from pirates.audio.SoundGlobals import loadSfx
 from otp.otpbase import OTPRender
-from pirates.effects.JRDeathEffect import JRDeathEffect
 from pirates.effects.ShockwaveRing import ShockwaveRing
-from pirates.effects.JRSpiritEffect import JRSpiritEffect
 from pirates.battle import EnemyGlobals
 import random
 import copy

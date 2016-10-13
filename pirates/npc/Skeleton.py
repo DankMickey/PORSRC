@@ -14,9 +14,7 @@ from pirates.pirate.AvatarType import AvatarType
 from pirates.pirate.BipedAnimationMixer import BipedAnimationMixer
 from pirates.battle import EnemyGlobals
 from direct.interval.IntervalGlobal import *
-from pirates.effects.JRDeathEffect import JRDeathEffect
 from pirates.effects.ShockwaveRing import ShockwaveRing
-from pirates.effects.JRSpiritEffect import JRSpiritEffect
 from pirates.makeapirate import NPCPirate
 import random
 AvType2style = {
