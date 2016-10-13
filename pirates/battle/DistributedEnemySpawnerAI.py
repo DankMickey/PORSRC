@@ -54,13 +54,15 @@ class EnemySpawnNode(DirectObject.DirectObject):
 
     def getClassFromAvatarType(self, avatar):
         avatarClass = None
+
+        miscList = [
+        	AvatarTypes.FireBat]
+
         if avatar in NPC_CACHE:
             return NPC_CACHE[avatar]
 
         if avatar.isA(AvatarTypes.Animal):
             avatarClass = DistributedAnimalAI
-        elif avatar == AvatarTypes.Raven:
-            avatarClass = DistributedRavenAI
         elif avatar.isA(AvatarTypes.SeaMonster):
             pass
         elif avatar.isA(AvatarTypes.Undead):
@@ -84,11 +86,13 @@ class EnemySpawnNode(DirectObject.DirectObject):
             avatarClass = DistributedNPCNavySailorAI
         elif avatar.isA(AvatarTypes.VoodooZombie):
             if avatar.isA(AvatarTypes.VoodooZombieBoss):
-                pass
+             	pass
             else:
                 avatarClass = DistributedVoodooZombieAI
-        else:
+        elif avatar.isA(AvatarTypes.LandCreature):
             avatarClass = DistributedCreatureAI
+        elif avatar.isA(AvatarTypes.AirCreature):
+        	avatarClass = DistributedCreatureAI
 
         if avatar not in NPC_CACHE and avatarClass != None:
             NPC_CACHE[avatar] = avatarClass
@@ -158,6 +162,8 @@ class AnimalSpawnNode(DirectObject.DirectObject):
 
         if animal == "Raven":
             avatarClass = DistributedRavenAI
+        elif animal == "Seagull":
+            avatarClass = None #TODO
         else:
             avatarClass = DistributedAnimalAI
 
