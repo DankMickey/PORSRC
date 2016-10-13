@@ -215,7 +215,7 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
         taskMgr.remove(self.taskName('battleTask'))
 
         if self.mainWeapon > 1:
-            endDrawn = self.animSet in EnemyGlobals.DRAWN_ANIM
+            endDrawn = self.animSet in EnemyGlobals.DRAWN_ANIME
             self.b_setCurrentWeapon(self.mainWeapon, endDrawn)
 
     # TO DO:
