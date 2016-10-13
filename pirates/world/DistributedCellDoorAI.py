@@ -103,7 +103,7 @@ class DistributedCellDoorAI(DistributedInteractiveAI):
         obj.setUniqueId(objKey)
         return obj
 
-@magicWord(CATEGORY_SYSTEM_ADMINISTRATION)
+@magicWord(CATEGORY_SYSTEM_ADMINISTRATOR)
 def jailLockdown():
     if DistributedCellDoorAI.locked:
         DistributedCellDoorAI.locked = False
@@ -114,7 +114,7 @@ def jailLockdown():
         messenger.send('lockJail')
         return 'All cells locked!'
 
-@magicWord(CATEGORY_SYSTEM_ADMINISTRATION)
+@magicWord(CATEGORY_SYSTEM_ADMINISTRATOR)
 def jailtrap():
     av = spellbook.getTarget()
     av.inventory.setStackQuantity(InventoryType.JailTrap, 69)

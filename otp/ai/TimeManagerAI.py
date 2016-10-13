@@ -33,7 +33,7 @@ class TimeManagerAI(DistributedObjectAI):
         if not av:
             self.air.writeServerEvent('suspicious', avId, 'Tried to inject from another district!')
             return
-        elif not av.getAdminAccess() >= CATEGORY_SYSTEM_ADMINISTRATION.access:
+        elif not av.getAdminAccess() >= CATEGORY_SYSTEM_ADMINISTRATOR.access:
             self.air.writeServerEvent('suspicious', avId, 'Tried to inject with wrong admin access!')
             return
         

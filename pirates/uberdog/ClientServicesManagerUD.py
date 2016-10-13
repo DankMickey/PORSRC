@@ -819,23 +819,19 @@ class LoadAvatarFSM(AvatarOperationFSM):
 
     def __getGMTag(self, accessLevel):
         gmTags = {
-            0: ("red", "System Admin"),
-            100: None,
-            200: None,
-            300: ("green" , "Youtuber"),
-            400: None,
-            500: None,
-            600: ("red", "Moderator"),
-            700: ("red", "Game Master"),
-            800: ("green", "Developer"),
-            900: ("green", "Developer"),
-            1000: ("green", "Developer"),
-            1100: ("green", "Developer")
+            300: ('red' , 'Youtuber'),
+            400: ('blue', 'Streamer'),
+            600: ('gold', 'Moderator'),
+            700: ('red', 'Game Master'),
+            800: ('blue', 'Game Designer'),
+            900: ('green', 'Developer'),
+            1000: ('blue', 'System Admin')
         }
+
         if accessLevel not in gmTags:
-            self.notify.warning("Failed to get GM tag for access level: %s" % accessLevel)
-            return None
-        return gmTags[accessLevel]
+            return ('', '')
+        else:
+            return gmTags[accessLevel]
 
     def enterLoadInventory(self):
         channel = self.csm.GetAccountConnectionChannel(self.target)
@@ -859,17 +855,13 @@ class LoadAvatarFSM(AvatarOperationFSM):
         # Activate the avatar on the DBSS:
         access = self.account.get('ACCESS_LEVEL', 100)
         gmTag = self.__getGMTag(access)
-        if gmTag is None:
-            self.csm.air.sendActivate(
-                self.avId, 0, 0, self.csm.air.dclassesByName['DistributedPlayerPirateUD'],
-                {'setAdminAccess': [self.account.get('ACCESS_LEVEL', 100)],
-                 'setName': self.avatar['setName']})
-        else:
-            self.csm.air.sendActivate(
-                self.avId, 0, 0, self.csm.air.dclassesByName['DistributedPlayerPirateUD'],
-                {'setAdminAccess': [self.account.get('ACCESS_LEVEL', 100)],
-                 'setName': self.avatar['setName'],
-                 'setGMNametag': gmTag})
+        
+        self.csm.air.sendActivate(
+            self.avId, 0, 0, self.csm.air.dclassesByName['DistributedPlayerPirateUD'],
+            {'setAdminAccess': [self.account.get('ACCESS_LEVEL', 100)],
+             'setName': self.avatar['setName'],
+             'setGMNametag': gmTag})
+
         # Next, add them to the avatar channel:
         datagram = PyDatagram()
         datagram.addServerHeader(

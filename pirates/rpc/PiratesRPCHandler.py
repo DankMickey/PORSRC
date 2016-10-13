@@ -26,7 +26,7 @@ class PiratesRPCHandler(PiratesRPCHandlerBase):
         callback(data)
 
     # --- GENERAL ---
-    @rpcmethod(CATEGORY_ADMINISTRATION, args={'doId': 'int'})
+    @rpcmethod(CATEGORY_SYSTEM_ADMINISTRATOR, args={'doId': 'int'})
     def rpc_queryObject(self, callback, doId):
         """
         Summary:
@@ -47,7 +47,7 @@ class PiratesRPCHandler(PiratesRPCHandlerBase):
 
         self.air.dbInterface.queryObject(self.air.dbId, doId, _callback)
 
-    @rpcmethod(CATEGORY_SYSTEM_ADMINISTRATION, args={'doId': 'int', 'dclassName': 'string',
+    @rpcmethod(CATEGORY_SYSTEM_ADMINISTRATOR, args={'doId': 'int', 'dclassName': 'string',
                                                  'newFields': 'dict', 'oldFields': 'dict'})
     def rpc_updateObject(self, callback, doId, dclassName, newFields, oldFields=None):
         """
@@ -86,7 +86,7 @@ class PiratesRPCHandler(PiratesRPCHandlerBase):
             self.air.dbId, doId, dclass, newFields, oldFields=oldFields,
             callback=callback)
 
-    @rpcmethod(CATEGORY_SYSTEM_ADMINISTRATION, args={'doId': 'int', 'dclassName': 'string', 'args': 'list'})
+    @rpcmethod(CATEGORY_SYSTEM_ADMINISTRATOR, args={'doId': 'int', 'dclassName': 'string', 'args': 'list'})
     def rpc_setField(self, callback, doId, dclassName, fieldName, args=[]):
         """
         Summary:
@@ -158,7 +158,7 @@ class PiratesRPCHandler(PiratesRPCHandlerBase):
         callback(self.shardStatus.getShards())
 
     # --- KICK --- ###
-    @rpcmethod(CATEGORY_ADMINISTRATION, args={'channel': 'int', 'code': 'int', 'reason': 'string'})
+    @rpcmethod(CATEGORY_SYSTEM_ADMINISTRATOR, args={'channel': 'int', 'code': 'int', 'reason': 'string'})
     def rpc_kickChannel(self, callback, channel, code=155, reason="No reason has been specified."):
         """
         Summary:
@@ -184,7 +184,7 @@ class PiratesRPCHandler(PiratesRPCHandlerBase):
         """
         self.banMgr.kickAvatar(callback, avId, code, reason) # Calls callback
 
-    @rpcmethod(CATEGORY_ADMINISTRATION, args={'code': 'int', 'reason': 'string'})
+    @rpcmethod(CATEGORY_SYSTEM_ADMINISTRATOR, args={'code': 'int', 'reason': 'string'})
     def rpc_kickAll(self, callback, code=155, reason="No reason has been specified."):
         """
         Summary:
@@ -199,7 +199,7 @@ class PiratesRPCHandler(PiratesRPCHandlerBase):
         return self.rpc_kickChannel(callback, channel, code, reason) # Calls callback
 
     # --- MESSAGING --- #
-    @rpcmethod(CATEGORY_ADMINISTRATION, args={'channel': 'int', 'message': 'string'})
+    @rpcmethod(CATEGORY_SYSTEM_ADMINISTRATOR, args={'channel': 'int', 'message': 'string'})
     def rpc_messageChannel(self, callback, channel, message):
         """
         Summary:
@@ -226,7 +226,7 @@ class PiratesRPCHandler(PiratesRPCHandlerBase):
         channel = avId + (1001L << 32)
         return self.rpc_messageChannel(channel, message) # Calls callback
 
-    @rpcmethod(CATEGORY_ADMINISTRATION, args={'message': 'string'})
+    @rpcmethod(CATEGORY_SYSTEM_ADMINISTRATOR, args={'message': 'string'})
     def rpc_messageAll(self, callback, message):
         """
         Summary:
@@ -239,7 +239,7 @@ class PiratesRPCHandler(PiratesRPCHandlerBase):
         channel = 10 # The Astron "all clients" channel.
         return self.rpc_messageChannel(callback, channel, message) # Calls callback
 
-    @rpcmethod(CATEGORY_ADMINISTRATION, args={'message': 'string'})
+    @rpcmethod(CATEGORY_SYSTEM_ADMINISTRATOR, args={'message': 'string'})
     def rpc_messageAllAdmin(self, callback, message):
         """
         Summary:
@@ -252,7 +252,7 @@ class PiratesRPCHandler(PiratesRPCHandlerBase):
         message = "ADMIN: " + message
         return self.rpc_messageAll(callback, message) # Calls callback
 
-    @rpcmethod(CATEGORY_ADMINISTRATION, args={'reason': 'string'})
+    @rpcmethod(CATEGORY_SYSTEM_ADMINISTRATOR, args={'reason': 'string'})
     def rpc_update(self, callback, reason="for an update"):
         """
         Summary:

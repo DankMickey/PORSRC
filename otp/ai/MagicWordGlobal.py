@@ -83,16 +83,15 @@ class MagicWordCategory:
 
 CATEGORY_ANY = MagicWordCategory('Unrestricted commands', 0)
 CATEGORY_BASIC = MagicWordCategory('Basic commands', 100)
-CATEGORY_SPONSOR = MagicWordCategory('Game Sponsor commands', 200)
+CATEGORY_SPONSOR = MagicWordCategory('Game sponsor commands', 200)
 CATEGORY_YOUTUBER = MagicWordCategory('Youtuber commands', 300)
-CATEGORY_STREAMER = MagicWordCategory('Twitch Streamer commands', 400)
+CATEGORY_STREAMER = MagicWordCategory('Streamer commands', 400)
 CATEGORY_STAFF = MagicWordCategory('Basic staff commands', 500)
 CATEGORY_MODERATION = MagicWordCategory('Moderation commands', 600)
 CATEGORY_GAME_MASTER = MagicWordCategory('Game master commands', 700)
 CATEGORY_GAME_DESIGNER = MagicWordCategory("Game designer commands", 800)
-CATEGORY_GAME_DEVELOPER = MagicWordCategory('Game development commands', 900)
-CATEGORY_ADMINISTRATION = MagicWordCategory('Administration commands', 1000)
-CATEGORY_SYSTEM_ADMINISTRATION = MagicWordCategory('System administration commands', 1100)
+CATEGORY_GAME_DEVELOPER = MagicWordCategory('Game developer commands', 900)
+CATEGORY_SYSTEM_ADMINISTRATOR = MagicWordCategory('System administrator commands', 1000)
 
 class MagicWord:
     def __init__(self, name, func, types, access, doc):
