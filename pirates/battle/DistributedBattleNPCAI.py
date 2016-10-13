@@ -66,6 +66,8 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
         self.mainWeapon = self.weapons.keys()[0]
         if self.mainWeapon > 1:
             startDrawn = self.animSet in EnemyGlobals.DRAWN_ANIME
+            if self.mainWeapon in EnemyGlobals.DRAWN_WEAPONS:
+                startDrawn = True
             self.b_setCurrentWeapon(self.mainWeapon, startDrawn)
 
     def enterSpawn(self):
@@ -215,7 +217,7 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
         taskMgr.remove(self.taskName('battleTask'))
 
         if self.mainWeapon > 1:
-            endDrawn = self.animSet in EnemyGlobals.DRAWN_ANIME
+            endDrawn = self.animSet in EnemyGlobals.DRAWN_ANIME or self.mainWeapon in EnemyGlobals.DRAWN_WEAPONS
             self.b_setCurrentWeapon(self.mainWeapon, endDrawn)
 
     # TO DO:

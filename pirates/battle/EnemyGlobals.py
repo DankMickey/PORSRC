@@ -3037,3 +3037,6 @@ def getBreakAttackRechargeRate(levelGrade):
 DRAWN_ANIME = [
     'attention',
     'bayonet_drill']
+
+DRAWN_WEAPONS = [
+    2201]
