@@ -131,7 +131,7 @@ def accId():
     accountId = spellbook.getTarget().DISLid
     return "%s has the accountId of %d" % (spellbook.getTarget().getName(), accountId)
 
-@magicWord(CATEGORY_STAFF)
+@magicWord(CATEGORY_SPONSOR)
 def setName(nameStr):
     spellbook.getTarget().b_setName(nameStr)
     return 'Name set to %s' % nameStr
