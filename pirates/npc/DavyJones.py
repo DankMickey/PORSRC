@@ -10,7 +10,7 @@ class DavyJones(Skeleton):
     AnimList = (('idle', 'idle'), ('walk', 'walk'), ('hit', 'hit'), ('defeat', 'defeat'))
 
     class AnimationMixer(AnimationMixer):
-        notify = DirectNotifyGlobal.directNotify.newCategory('JollyRogerAnimationMixer')
+        notify = DirectNotifyGlobal.directNotify.newCategory('DavyJonesAnimationMixer')
         LOOP = BipedAnimationMixer.LOOP
         ACTION = BipedAnimationMixer.ACTION
         AnimRankings = {
