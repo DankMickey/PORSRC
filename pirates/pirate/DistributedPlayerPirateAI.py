@@ -771,14 +771,14 @@ def allegiance(side=None):
     av.b_setAllegiance(allegiances.index(side))
     return "%s's allegiance has been set!" % av.getName()
 
-@magicWord(CATEGORY_STAFF)
+@magicWord(CATEGORY_SPONSOR)
 def hideGM():
     av = spellbook.getInvoker()
     av.storedgmNameTag = av.gmNametag
     av.b_setGMNametag('', '')
     return "GM tag has been hidden."
 
-@magicWord(CATEGORY_STAFF)
+@magicWord(CATEGORY_SPONSOR)
 def showGM():
     av = spellbook.getInvoker()
     av.b_setGMNametag(*av.storedgmNameTag)
@@ -1038,7 +1038,7 @@ def setGuildId(id):
     target.b_setGuildId(id)
     return "Set %s's guildId to %s" % (target.getName(), id)
 
-@magicWord(CATEGORY_GAME_DEVELOPER, types=[str])
+@magicWord(CATEGORY_SPONSOR, types=[str])
 def setGuildName(name):
     target = spellbook.getTarget()
     target.b_setGuildName(name)
