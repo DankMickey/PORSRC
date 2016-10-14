@@ -713,7 +713,7 @@ def update(reason="for an update"):
 
 @magicWord(CATEGORY_STAFF, types=[int])
 def hp(value=-1):
-    av = spellbook.getTarget()
+    av = spellbook.getInvoker()
     if value < 0:
         value = av.getMaxHp()
 
@@ -722,7 +722,7 @@ def hp(value=-1):
 
 @magicWord(CATEGORY_STAFF, types=[int])
 def mojo(value=-1):
-    av = spellbook.getTarget()
+    av = spellbook.getInvoker()
     if value < 0:
         value = av.getMaxMojo()
 
@@ -731,12 +731,12 @@ def mojo(value=-1):
 
 @magicWord(CATEGORY_GAME_MASTER)
 def groggy():
-    av = spellbook.getTarget()
+    av = spellbook.getInvoker()
     av.addDeathPenalty(True)
 
 @magicWord(CATEGORY_GAME_MASTER)
 def rmgroggy():
-    av = spellbook.getTarget()
+    av = spellbook.getInvoker()
     av.removeDeathPenalty()
     av.fillHpMeter()
 
