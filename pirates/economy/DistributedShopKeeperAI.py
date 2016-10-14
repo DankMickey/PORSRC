@@ -325,7 +325,7 @@ class DistributedShopKeeperAI(DistributedObjectAI):
             sendResponse(0, False)
             return
 
-           self.notify.info("requestBarber: cost(%s)" % requiredGold)
+        self.notify.info("requestBarber: cost(%s)" % requiredGold)
         av.takeGold(requiredGold)
         sendResponse(2, True)
 
@@ -355,8 +355,8 @@ class DistributedShopKeeperAI(DistributedObjectAI):
 
         #av.takeGold(requiredGold)
 
-        #tpMgr = self.air.tpMgr
-        #tpMgr.initiateStowawayTeleport(locationId)
+        tpMgr = self.air.tpMgr
+        tpMgr.initiateStowawayTeleport(locationId)
     
     # responseShipRepair(uint32) ownrecv
     # responseClothingList(uint32, uint32 [][]) ownrecv

@@ -223,13 +223,13 @@ class DistributedSimpleShipAI(DistributedMovingObjectAI, Teamable, DistributedFl
         pos = (x, y, z)
         hpr = (h, p, r)
 
-           obj.setPos(pos)
-           obj.setHpr(hpr)
-           obj.setUniqueId(uid)
+        obj.setPos(pos)
+        obj.setHpr(hpr)
+        obj.setUniqueId(uid)
 
-           obj.setIsFlagship(data.get('Flagship', False))
-           obj.setLevel(int(data.get('Level', '1')))
-           obj.setShipClass(ShipGlobals.SHIP_CLASS_LIST.index(data.get('Spawnables', 'INTERCEPTORL1')))
-           obj.setTeam(ShipGlobals.getShipTeam(obj.getShipClass()))
+        obj.setIsFlagship(data.get('Flagship', False))
+        obj.setLevel(int(data.get('Level', '1')))
+        obj.setShipClass(ShipGlobals.SHIP_CLASS_LIST.index(data.get('Spawnables', 'INTERCEPTORL1')))
+        obj.setTeam(ShipGlobals.getShipTeam(obj.getShipClass()))
 
         return obj
