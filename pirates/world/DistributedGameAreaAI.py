@@ -17,6 +17,9 @@ class DistributedGameAreaAI(DistributedNodeAI):
         self.spawner = DistributedEnemySpawnerAI(self)
         self.npcs = {}
 
+        self._movementNodes = {}
+        self._movementPaths = {}
+
         self.setPythonTag('npTag-gameArea', self)
 
     def setUniqueId(self, uid):
@@ -49,7 +52,7 @@ class DistributedGameAreaAI(DistributedNodeAI):
     def getModelPath(self):
         return self.modelPath
 
-    def generateNode(self, objType, objKey, object, parent=None, gridPos=True):
+    def generateNode(self, objType, objKey, object, parent=None, gridPos=False, noLight=False):
         genObj = None
         nodeName =  'objNode-%s-%s' % (objType, objKey)
 
@@ -68,6 +71,9 @@ class DistributedGameAreaAI(DistributedNodeAI):
             if 'GridPos' in object and gridPos:
                 genObj.setPos(object['GridPos'])
 
+            if noLight:
+                genObj.setLightOff()
+
         return genObj
 
     def createObject(self, objType, parent, objKey, object):
@@ -75,10 +81,18 @@ class DistributedGameAreaAI(DistributedNodeAI):
 
         if objType == 'Spawn Node' and config.GetBool('want-enemies', False):
             self.spawner.addEnemySpawnNode(objKey, object)
+            if config.GetBool('want-spawn-debug', False):
+                genObj = self.generateNode(objType, objKey, object, parent, gridPos=True)
 
         elif objType == 'Dormant NPC Spawn Node' and config.GetBool('want-enemies', False) and config.GetBool('want-dormant-spawns', False):
-            self.notify.info("Spawning %s" % objType)
             self.spawner.addEnemySpawnNode(objKey, object)
+
+        elif objType == 'Movement Node' and config.GetBool('want-enemies', False):
+            genObj = self.generateNode(objType, objKey, object, parent)
+            self._movementNodes[objKey] = genObj
+
+            if config.GetBool('want-movement-debug', False):
+                genObj = self.generateNode(objType, objKey, object, parent, gridPos=True)
 
         elif objType == 'Animal' and config.GetBool('want-animals', False):
             self.spawner.addAnimalSpawnNode(objKey, object)
@@ -101,9 +115,12 @@ class DistributedGameAreaAI(DistributedNodeAI):
             genObj.generateWithRequiredAndId(self.air.allocateChannel(), self.doId, zoneId)
 
         elif objType == 'Collision Barrier':
-            self.generateNode(objType, objKey, object, parent, gridPos=False)
+            genObj = self.generateNode(objType, objKey, object, parent)
+
+        elif objType == 'Rock':
+            genObj = self.generateNode(objType, objKey, object, parent, noLight=True)
 
         else:
-            self.generateNode(objType, objKey, object, parent, gridPos=True)
+            genObj = self.generateNode(objType, objKey, object, parent, gridPos=True)
 
         return genObj
