@@ -906,7 +906,7 @@ def giveWeapon(itemId):
     if location == -1:
         return "Failed to give weapon. Target's inventory is full"
 
-    success = inv.addLocatable(itemId, location, 1)
+    success = inv.addLocatable(itemId, location, 1, InventoryType.ItemTypeWeapon)
     if not success:
         return "Failed to give weapon. Target's inventory is most likely full."
 
@@ -936,7 +936,7 @@ def giveClothing(itemId):
     if location == -1:
         return "Failed to give clothing item. Target's inventory is full"
 
-    success = inv.addLocatable(itemId, location, 1)
+    success = inv.addLocatable(itemId, location, 1, InventoryType.ItemTypeClothing)
     if not success:
         return "Failed to give clothing item. Target's inventory is most likely full."
 
@@ -965,7 +965,7 @@ def giveJewelry(itemId):
     if location == -1:
         return "Failed to give jewelry item. Target's inventory is full"
 
-    success = inv.addLocatable(itemId, location, 1)
+    success = inv.addLocatable(itemId, location, 1, InventoryType.ItemTypeJewelry)
     if not success:
         return "Failed to give jewelry item. Target's inventory is most likely full."
 
