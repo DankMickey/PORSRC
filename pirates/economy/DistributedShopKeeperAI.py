@@ -357,7 +357,7 @@ class DistributedShopKeeperAI(DistributedObjectAI):
 
         #tpMgr = self.air.tpMgr
         #tpMgr.initiateStowawayTeleport(locationId)
-
+    
     # responseShipRepair(uint32) ownrecv
     # responseClothingList(uint32, uint32 [][]) ownrecv
     # responseTattooList(uint32, TattooInfo []) ownrecv

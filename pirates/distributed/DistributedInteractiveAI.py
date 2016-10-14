@@ -60,10 +60,6 @@ class DistributedInteractiveAI(DistributedLocatableObjectAI, DistributedNodeAI):
     def d_offerOptions(self, optionsId, statusCodes):
         self.sendUpdateToAvatarId(self.avId, 'offerOptions', [optionIds, statusCodes])
 
-    def selectOption(self, optionId):
-        ''' Must be overwritten by subclasses '''
-        pass
-
     def addAvatar(self, avId):
         if avId in self.avIds:
             return False
