@@ -2171,7 +2171,7 @@ objectStruct = {
                 '1177358976.0dxschafe': {
                     'Type': 'Searchable Container',
                     'Aggro Radius': '5.0000',
-                    'GridPos': Point3(-40.2568, -24.292, 34.927),
+                    #'GridPos': Point3(-40.2568, -24.292, 34.927),
                     'Hpr': VBase3(-7.9370, 0.0, 0.0),
                     'Pos': Point3(-3.0790, -68.1260, 35.152),
                     'Scale': VBase3(0.761, 0.761, 0.72598),
@@ -2224,7 +2224,7 @@ objectStruct = {
                 '1177359104.0dxschafe2': {
                     'Type': 'Searchable Container',
                     'Aggro Radius': '5.0000',
-                    'GridPos': Point3(434.252, -156.128, 5.4530),
+                    #'GridPos': Point3(434.252, -156.128, 5.4530),
                     'Hpr': VBase3(-74.981, 0.0, 0.0),
                     'Pos': Point3(-183.925, 0.95896, 34.917),
                     'Scale': VBase3(0.837, 0.837, 0.837),
@@ -2917,7 +2917,7 @@ objectStruct = {
                     'Aggro Radius': '4.2169',
                     'AnimSet': 'default',
                     'AuraFX': 'None',
-                    'GridPos': Point3(-561.750, 36.149, 14.362),
+                    #'GridPos': Point3(-561.750, 36.149, 14.362),
                     'Hpr': VBase3(-153.730, -2.036, -0.97198),
                     'Level': '1',
                     'Min Population': '1',
