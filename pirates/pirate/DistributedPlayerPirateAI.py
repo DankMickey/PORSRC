@@ -1039,7 +1039,11 @@ def setGuildId(id):
     return "Set %s's guildId to %s" % (target.getName(), id)
 
 @magicWord(CATEGORY_SPONSOR, types=[str])
-def setGuildName(name):
+def setGuildName(name=None):
     target = spellbook.getTarget()
-    target.b_setGuildName(name)
-    return "Set %s's guild name to %s" % (target.getName(), name)
+    if name is None:
+    	target.b_setGuildName("Null")
+    	return "Removed %s's guild name" % target.getName()
+    else:
+    	target.b_setGuildName(name)
+    	return "Set %s's guild name to %s" % (target.getName(), name)

@@ -54,7 +54,8 @@ CastAnimDict = {
     'models/char/jg': Biped.jgCustomAnimList,
     'models/char/jr': Biped.jrCustomAnimList,
     'models/char/plf': Biped.plfCustomAnimList,
-    'models/char/pls': Biped.plsCustomAnimList }
+    'models/char/pls': Biped.plsCustomAnimList,
+    'models/char/dj': Biped.djCustomAnimList }
 NewModelDict = {
     'sf': 'sf',
     'ms': 'ms',
