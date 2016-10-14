@@ -57,9 +57,6 @@ class EnemySpawnNode(DirectObject.DirectObject):
     def getClassFromAvatarType(self, avatar):
         avatarClass = None
 
-        miscList = [
-        	AvatarTypes.FireBat]
-
         if avatar in NPC_CACHE:
             return NPC_CACHE[avatar]
 
@@ -68,8 +65,9 @@ class EnemySpawnNode(DirectObject.DirectObject):
         elif avatar.isA(AvatarTypes.SeaMonster):
             pass
         elif avatar.isA(AvatarTypes.DavyJones):
-            self.notify.info("Davy Jones!")
             avatarClass = DistributedDavyJonesAI
+        elif avatar.isA(AvatarTypes.JollyRoger):
+            avatarClass = DistributedJollyRogerAI
         elif avatar.isA(AvatarTypes.Undead):
             if avatar.isA(AvatarTypes.FrenchBoss) or avatar.isA(AvatarTypes.SpanishBoss):
                 #avatarClass = DistributedBossSkeletonAI
