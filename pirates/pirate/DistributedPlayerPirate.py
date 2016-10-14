@@ -1,4 +1,4 @@
-from panda3d.core import BitMask32, BoundingSphere, Camera, CollideMask, CollisionHandler, CollisionHandlerQueue, CollisionNode, CollisionRay, CompassEffect, DrawMask, GeomNode, LODNode, NodePath, Notify, Point2, Point3, TextGraphic, TextNode, TextProperties, TextPropertiesManager, Texture, Thread, VBase3, VBase4, Vec2, Vec3, Vec4, getModelPath, headsUp, lookAt
+from panda3d.core import BitMask32, BoundingSphere, Camera, CollideMask, CollisionHandler, CollisionHandlerQueue, CollisionNode, CollisionRay, CompassEffect, DrawMask, Fog, GeomNode, LODNode, NodePath, Notify, Point2, Point3, TextGraphic, TextNode, TextProperties, TextPropertiesManager, Texture, VBase3, VBase4, Vec2, Vec3, Vec4, getModelPath, headsUp, lookAt
 import string
 from direct.showbase.PythonUtil import Functor
 from direct.showbase.PythonUtil import report
@@ -3803,8 +3803,8 @@ class MinimapPlayerPirate(MinimapBattleAvatar):
 
     @magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
     def shipHat(shipClass):
-    	'''Client side only command to display the provided ship class id on
-    	the pirates head'''
+        '''Client side only command to display the provided ship class id on
+        the pirates head'''
         from pirates.ship import DistributedSimpleShip
 
         if hasattr(base.localAvatar, 'shipHat'):
@@ -3829,112 +3829,112 @@ class MinimapPlayerPirate(MinimapBattleAvatar):
 
     @magicWord(CATEGORY_STAFF)
     def topten():
-    	base.cr.guildManager.requestLeaderboardTopTen()
-    	return 'Displaying guild top ten'
+        base.cr.guildManager.requestLeaderboardTopTen()
+        return 'Displaying guild top ten'
 
     @magicWord(CATEGORY_STAFF)
     def watch(targetDoId):
-		if taskMgr.hasTaskNamed('lookAtDude'):
-			base.taskMgr.remove('lookAtDude')
-			base.localAvatar.guiMgr.setIgnoreAllKeys(False)
-			base.localAvatar.guiMgr.combatTray.initCombatTray()
-			base.localAvatar.unstash()
-			return 'No longer watching...'
-		else:
+        if taskMgr.hasTaskNamed('lookAtDude'):
+            base.taskMgr.remove('lookAtDude')
+            base.localAvatar.guiMgr.setIgnoreAllKeys(False)
+            base.localAvatar.guiMgr.combatTray.initCombatTray()
+            base.localAvatar.unstash()
+            return 'No longer watching...'
+        else:
 
-			def doHeadsUp(task=None):
-				targetObj = self.cr.doId2do.get(targetDoId)
-				if targetObj:
-					base.localAvatar.lookAt(targetObj)
-				return Task.cont
+            def doHeadsUp(task=None):
+                targetObj = self.cr.doId2do.get(targetDoId)
+                if targetObj:
+                    base.localAvatar.lookAt(targetObj)
+                return Task.cont
 
-			taskMgr.add(doHeadsUp, 'lookAtDude')
-			base.localAvatar.guiMgr.setIgnoreAllKeys(True)
-			base.localAvatar.guiMgr.combatTray.skillMapping.clear()
-			base.localAvatar.stash()
-			return 'Watching doId %s' %targetDoId
+            taskMgr.add(doHeadsUp, 'lookAtDude')
+            base.localAvatar.guiMgr.setIgnoreAllKeys(True)
+            base.localAvatar.guiMgr.combatTray.skillMapping.clear()
+            base.localAvatar.stash()
+            return 'Watching doId %s' %targetDoId
 
     @magicWord(CATEGORY_GAME_DEVELOPER)
     def bonfire():
-		bf = Bonfire()
-		bf.reparentTo(render)
-		bf.setPos(base.localAvatar, 0, 0, 0)
-		bf.startLoop()
-		return 'Client side only bonfire at %s, %s' % (base.localAvatar.getPos(), base.localAvatar.getHpr())    	
+        bf = Bonfire()
+        bf.reparentTo(render)
+        bf.setPos(base.localAvatar, 0, 0, 0)
+        bf.startLoop()
+        return 'Client side only bonfire at %s, %s' % (base.localAvatar.getPos(), base.localAvatar.getHpr())        
 
     @magicWord(CATEGORY_GAME_DEVELOPER)
     def swamp():
-		if hasattr(base.localAvatar, 'fireflies'):
-			base.localAvatar.fireflies.destroy()
-			base.localAvatar.fireflies = None
-			base.localAvatar.groundFog.destroy()
-			base.localAvatar.groundFog = None
-			return "Swamp effect disabled."
-		else:
-			base.localAvatar.fireflies = Fireflies()
-			base.localAvatar.fireflies.reparentTo(base.localAvatar)
-			base.localAvatar.fireflies.startLoop()
+        if hasattr(base.localAvatar, 'fireflies'):
+            base.localAvatar.fireflies.destroy()
+            base.localAvatar.fireflies = None
+            base.localAvatar.groundFog.destroy()
+            base.localAvatar.groundFog = None
+            return "Swamp effect disabled."
+        else:
+            base.localAvatar.fireflies = Fireflies()
+            base.localAvatar.fireflies.reparentTo(base.localAvatar)
+            base.localAvatar.fireflies.startLoop()
 
-			base.localAvatar.groundFog = GroundFog()
-			base.localAvatar.groundFog.reparentTo(base.localAvatar)
-			base.localAvatar.groundFog.startLoop()
-			return "Starting client side debug swamp effect."
+            base.localAvatar.groundFog = GroundFog()
+            base.localAvatar.groundFog.reparentTo(base.localAvatar)
+            base.localAvatar.groundFog.startLoop()
+            return "Starting client side debug swamp effect."
 
     @magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
     def islandShips(state):
-		try:
-			if state:
-				base.localAvatar.getParentObj().setOceanVisEnabled(1)
-				base.localAvatar.getParentObj().setFlatShips(0)		
-			else:
-				base.localAvatar.getParentObj().setOceanVisEnabled(0)
-			return "set IslandShip state to %s" % state
-		except:
-			return "Failed to set islandShip state."
+        try:
+            if state:
+                base.localAvatar.getParentObj().setOceanVisEnabled(1)
+                base.localAvatar.getParentObj().setFlatShips(0)        
+            else:
+                base.localAvatar.getParentObj().setOceanVisEnabled(0)
+            return "set IslandShip state to %s" % state
+        except:
+            return "Failed to set islandShip state."
 
     @magicWord(CATEGORY_GAME_DEVELOPER)
     def dust():
 
-    	effect = CeilingDust.getEffect()
-    	if effect:
-    		effect.reparentTo(base.localAvatar)
-    		effect.setPos(0, 0, 10)
-    		effect.play()
+        effect = CeilingDust.getEffect()
+        if effect:
+            effect.reparentTo(base.localAvatar)
+            effect.setPos(0, 0, 10)
+            effect.play()
 
-    	effect = CeilingDebris.getEffect()
-    	if effect:
-    		effect.reparentTo(base.localAvatar)
-    		effect.play()
+        effect = CeilingDebris.getEffect()
+        if effect:
+            effect.reparentTo(base.localAvatar)
+            effect.play()
 
-    	cameraShakerEffect = CameraShaker()
-    	cameraShakerEffect.reparentTo(base.localAvatar)
-    	cameraShakerEffect.setPos(0, 0, 0)
-    	cameraShakerEffect.shakeSpeed = 0.05
-    	cameraShakerEffect.shakePower = 4.5
-    	cameraShakerEffect.numShakes = 2
-    	cameraShakerEffect.scalePower = 1
-    	cameraShakerEffect.play(80.0)	
-    	return "Boom."		
+        cameraShakerEffect = CameraShaker()
+        cameraShakerEffect.reparentTo(base.localAvatar)
+        cameraShakerEffect.setPos(0, 0, 0)
+        cameraShakerEffect.shakeSpeed = 0.05
+        cameraShakerEffect.shakePower = 4.5
+        cameraShakerEffect.numShakes = 2
+        cameraShakerEffect.scalePower = 1
+        cameraShakerEffect.play(80.0)    
+        return "Boom."        
 
     @magicWord(CATEGORY_STAFF)
     def turbo():
-    	base.localAvatar.toggleTurbo()
-    	return "'Turbo' toggled."
+        base.localAvatar.toggleTurbo()
+        return "'Turbo' toggled."
 
     @magicWord(CATEGORY_STAFF)
     def joincrew():
-    	base.cr.crewManager.requestNewCrew()
-    	return 'Requesting new crew...'
+        base.cr.crewManager.requestNewCrew()
+        return 'Requesting new crew...'
 
     @magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
     def debugfireworks(showType):
-    	timestamp = 0.0
-    	if base.cr.activeWorld:
-    		shows = [HolidayGlobals.FOURTHOFJULY, HolidayGlobals.NEWYEARS, HolidayGlobals.MARDIGRAS]
-    		if not showType in shows:
-    			return "Invalid show type. Please provide a valid show type (%s)" % str(shows)
+        timestamp = 0.0
+        if base.cr.activeWorld:
+            shows = [HolidayGlobals.FOURTHOFJULY, HolidayGlobals.NEWYEARS, HolidayGlobals.MARDIGRAS]
+            if not showType in shows:
+                return "Invalid show type. Please provide a valid show type (%s)" % str(shows)
 
-    		base.localAvatar.getParentObj().fireworkShowType = showType
-    		base.localAvatar.getParentObj().beginFireworkShow(timeStamp = timestamp)
-    		return 'Activating client side debug fireworks show'
-    	return 'Failed to activate debug fireworks show. No active world'
+            base.localAvatar.getParentObj().fireworkShowType = showType
+            base.localAvatar.getParentObj().beginFireworkShow(timeStamp = timestamp)
+            return 'Activating client side debug fireworks show'
+        return 'Failed to activate debug fireworks show. No active world'

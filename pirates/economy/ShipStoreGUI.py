@@ -1,4 +1,4 @@
-from panda3d.core import TextNode
+from panda3d.core import TextNode, Texture
 from direct.directnotify.DirectNotifyGlobal import directNotify
 from direct.gui.DirectGui import *
 from pirates.piratesgui import PiratesGuiGlobals
@@ -163,8 +163,8 @@ class ShipStoreGUI(GuiPanel.GuiPanel):
         stats = ShipGlobals.getShipConfig(self.purchaseInventory[0][0])
 
         if not stats:
-        	self.notify.warning("Failed to retrieve stats for ship (%s). Defaulting to max stats." % str(self.purchaseInventory[0][0]))
-        	stats = ShipGlobals.getMaxShipStats()
+            self.notify.warning("Failed to retrieve stats for ship (%s). Defaulting to max stats." % str(self.purchaseInventory[0][0]))
+            stats = ShipGlobals.getMaxShipStats()
 
         maxStats = ShipGlobals.getMaxShipStats()
         self.statData.append([

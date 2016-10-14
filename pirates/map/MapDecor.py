@@ -244,9 +244,9 @@ class Island(PickableModel):
         if self._hasTeleportToken and self._isCurrentIsland and self._isPortOfCall and base.cr.distributedDistrict.worldCreator.isPvpIslandByUid(self.getTag('islandUid')) or config.GetBool('teleport-all', 0):
             pass
         if hasattr(base.cr, 'distributedDistrict'):
-        	self.setTag('canTeleportTo', str(bool(not base.cr.distributedDistrict.worldCreator.isMysteriousIslandByUid(self.getTag('islandUid')))))
+            self.setTag('canTeleportTo', str(bool(not base.cr.distributedDistrict.worldCreator.isMysteriousIslandByUid(self.getTag('islandUid')))))
         else:
-        	self.setTag('canTeleportTo', False)
+            self.setTag('canTeleportTo', False)
 
 
     def getCanTeleportTo(self):

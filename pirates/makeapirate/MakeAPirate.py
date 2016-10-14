@@ -1,4 +1,4 @@
-from panda3d.core import AudioSound, Camera, Filename, LODNode, Lens, Light, Point3, TextNode, Thread, VBase3, Vec3, \
+from panda3d.core import AudioSound, Camera, Filename, LODNode, Lens, Light, Point3, TextNode, VBase3, Vec3, Vec4
     Vec4
 from direct.showbase.DirectObject import DirectObject
 from direct.directnotify import DirectNotifyGlobal

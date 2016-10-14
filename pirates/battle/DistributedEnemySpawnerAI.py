@@ -1,4 +1,3 @@
-from panda3d.core import Character
 from direct.directnotify import DirectNotifyGlobal
 
 from pirates.npc.DistributedNPCTownfolkAI import DistributedNPCTownfolkAI
@@ -58,7 +57,7 @@ class EnemySpawnNode(DirectObject.DirectObject):
         avatarClass = None
 
         miscList = [
-        	AvatarTypes.FireBat]
+            AvatarTypes.FireBat]
 
         if avatar in NPC_CACHE:
             return NPC_CACHE[avatar]
@@ -93,13 +92,13 @@ class EnemySpawnNode(DirectObject.DirectObject):
             avatarClass = DistributedNPCNavySailorAI
         elif avatar.isA(AvatarTypes.VoodooZombie):
             if avatar.isA(AvatarTypes.VoodooZombieBoss):
-             	pass
+                 pass
             else:
                 avatarClass = DistributedVoodooZombieAI
         elif avatar.isA(AvatarTypes.LandCreature):
             avatarClass = DistributedCreatureAI
         elif avatar.isA(AvatarTypes.AirCreature):
-        	avatarClass = DistributedCreatureAI
+            avatarClass = DistributedCreatureAI
 
         if avatar not in NPC_CACHE and avatarClass != None:
             NPC_CACHE[avatar] = avatarClass

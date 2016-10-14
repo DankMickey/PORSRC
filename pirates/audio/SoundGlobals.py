@@ -957,31 +957,31 @@ def getAmbientFromStr(str):
         return AMBIENT_JAIL
 
 Ambient2IslandDict = {
-	LocationIds.PORT_ROYAL_ISLAND: {
-		AMBIENT_DAY: AMBIENCE_PORT_ROYAL,
-		AMBIENT_NIGHT: AMBIENCE_PORT_ROYAL_NIGHT
-	},
-	LocationIds.KINGSHEAD_ISLAND: {
-		AMBIENT_DAY: AMBIENCE_FORT
-	},
-	LocationIds.FORT_CHARLES: {
-		AMBIENT_DAY: AMBIENCE_FORT
-	},
-	LocationIds.ROWDYROOSTER_TAVERN: {
-		AMBIENT_DAY: AMBIENCE_TAVERN_INTERIOR
-	},
+    LocationIds.PORT_ROYAL_ISLAND: {
+        AMBIENT_DAY: AMBIENCE_PORT_ROYAL,
+        AMBIENT_NIGHT: AMBIENCE_PORT_ROYAL_NIGHT
+    },
+    LocationIds.KINGSHEAD_ISLAND: {
+        AMBIENT_DAY: AMBIENCE_FORT
+    },
+    LocationIds.FORT_CHARLES: {
+        AMBIENT_DAY: AMBIENCE_FORT
+    },
+    LocationIds.ROWDYROOSTER_TAVERN: {
+        AMBIENT_DAY: AMBIENCE_TAVERN_INTERIOR
+    },
     LocationIds.ROYALANCHOR_TAVERN: {
-		AMBIENT_DAY: AMBIENCE_TAVERN_INTERIOR
+        AMBIENT_DAY: AMBIENCE_TAVERN_INTERIOR
     }
 }
 
 def getIslandAmbient(locationId, night=False):
-	if locationId in Ambient2IslandDict:
-		if not night or not AMBIENT_NIGHT in Ambient2IslandDict[locationId]:
-			return Ambient2IslandDict[locationId][AMBIENT_DAY]
-		else:
-			return Ambient2IslandDict[locationId][AMBIENT_NIGHT]
-	return None
+    if locationId in Ambient2IslandDict:
+        if not night or not AMBIENT_NIGHT in Ambient2IslandDict[locationId]:
+            return Ambient2IslandDict[locationId][AMBIENT_DAY]
+        else:
+            return Ambient2IslandDict[locationId][AMBIENT_NIGHT]
+    return None
 
 SongItem2MusicLabel = {
     UberDogGlobals.InventoryType.Song_1: MUSIC_DRIFTWOOD,

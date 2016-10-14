@@ -1,5 +1,5 @@
+from panda3d.core import Point3, Vec3
 global __maxHullStats
-from pandac.PandaModules import *
 from direct.showbase.PythonUtil import Enum
 from pirates.uberdog.UberDogGlobals import *
 from pirates.uberdog.UberDogGlobals import InventoryType

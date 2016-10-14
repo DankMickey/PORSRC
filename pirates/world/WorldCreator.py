@@ -1,4 +1,4 @@
-from panda3d.core import BitMask32, CollideMask, CollisionNode, CollisionSphere, Light, ModelNode, Point3, Texture, TextureStage, Thread, VBase3
+from panda3d.core import BitMask32, CollideMask, CollisionNode, CollisionSphere, Light, ModelNode, Point3, Texture, TextureStage, VBase3
 from direct.interval.IntervalGlobal import *
 from direct.showbase import DirectObject
 from pirates.world import WorldCreatorBase

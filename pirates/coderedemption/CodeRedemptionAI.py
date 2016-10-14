@@ -45,7 +45,7 @@ class CodeRedemptionAI(DistributedObjectAI):
 
                 itemId = 0
                 if rewardType != InventoryType.ItemTypeMoney: 
-                	itemId = invItem[1] or 0
+                    itemId = invItem[1] or 0
 
                 amount = reward[3] or 0
 
@@ -58,28 +58,28 @@ class CodeRedemptionAI(DistributedObjectAI):
                     if rewardType == InventoryType.ItemTypeMoney:
                         av.giveGold(amount)
                     else:
-                    	location = inv.findAvailableLocation(rewardType, itemId=itemId, count=amount, equippable=True)
-                    	if location != -1:
-                    		inv.addLocatable(itemId, location, amount, inventoryType=rewardType)
-                    	else:
-                    		return buildResponse(CodeRedemptionGlobals.ERROR_ID_OVERFLOW)   
+                        location = inv.findAvailableLocation(rewardType, itemId=itemId, count=amount, equippable=True)
+                        if location != -1:
+                            inv.addLocatable(itemId, location, amount, inventoryType=rewardType)
+                        else:
+                            return buildResponse(CodeRedemptionGlobals.ERROR_ID_OVERFLOW)   
                 elif invType == CodeRedemptionGlobals.CLOTHING:
-    				femaleReward = invItem[2]
-    				isFemale = (av.getGender() == 'f')
-    				if femaleReward and isFemale:
-    					rewardType = femaleReward
+                    femaleReward = invItem[2]
+                    isFemale = (av.getGender() == 'f')
+                    if femaleReward and isFemale:
+                        rewardType = femaleReward
 
-    				location = inv.findAvailableLocation(InventoryType.ItemTypeClothing, itemId=itemId, count=amount, equippable=True)
-    				if location != -1:
-    					inv.addLocatable(itemId, location, amount, inventoryType=InventoryType.ItemTypeClothing)
-    				else:
-    					return buildResponse(CodeRedemptionGlobals.ERROR_ID_OVERFLOW)
+                    location = inv.findAvailableLocation(InventoryType.ItemTypeClothing, itemId=itemId, count=amount, equippable=True)
+                    if location != -1:
+                        inv.addLocatable(itemId, location, amount, inventoryType=InventoryType.ItemTypeClothing)
+                    else:
+                        return buildResponse(CodeRedemptionGlobals.ERROR_ID_OVERFLOW)
                 elif invType == CodeRedemptionGlobals.JEWELRY:
-    				location = inv.findAvailableLocation(InventoryType.ItemTypeJewelry, itemId=itemId, count=amount, equippable=True)
-    				if location != -1:
-    					inv.addLocatable(itemId, location, amount, inventoryType=InventoryType.ItemTypeJewelry)
-    				else:
-    					return buildResponse(CodeRedemptionGlobals.ERROR_ID_OVERFLOW)               
+                    location = inv.findAvailableLocation(InventoryType.ItemTypeJewelry, itemId=itemId, count=amount, equippable=True)
+                    if location != -1:
+                        inv.addLocatable(itemId, location, amount, inventoryType=InventoryType.ItemTypeJewelry)
+                    else:
+                        return buildResponse(CodeRedemptionGlobals.ERROR_ID_OVERFLOW)               
                 elif invType == CodeRedemptionGlobals.TATTOO:
                     location = inv.findAvailableLocation(InventoryType.ItemTypeTattoo, itemId=itemId, count=amount, equippable=True)
                     if location != -1:
@@ -110,7 +110,7 @@ class CodeRedemptionAI(DistributedObjectAI):
         if avId:
             response = self.attemptToRedeemCode(code, avId)
         else:
-        	self.notify.warning("Failed to find avatarId for code requester. requester username: %s" % userName)
+            self.notify.warning("Failed to find avatarId for code requester. requester username: %s" % userName)
         self.notify.debug("Sending code redemption response: %s" % str(response))
         try:
             self.sendUpdateToAvatarId(avId, 'notifyClientCodeRedeemStatus', [response[0], response[1], response[2]])

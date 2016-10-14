@@ -1,5 +1,5 @@
+from panda3d.core import TextNode, Texture, Vec3, Vec4
 from direct.gui.DirectGui import *
-from pandac.PandaModules import *
 from pirates.piratesgui import PiratesGuiGlobals
 from pirates.piratesgui import InventoryItemGui
 from pirates.piratesbase import PiratesGlobals

@@ -4,7 +4,7 @@ from direct.distributed.DistributedObjectUD import DistributedObjectUD
 class DistributedPlayerPirateUD(DistributedObjectUD):
     
     def giveGold(self, amount):
-    	pass #TODO
+        pass #TODO
 
     def getGender(self):
-    	return 'm'
+        return 'm'
