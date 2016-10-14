@@ -1418,9 +1418,9 @@ class AccessoriesStoreGUI(SimpleStoreGUI):
         allitems = self.getMerchandiseIds()
         tabItems = []
         for itemId in allitems:
-        	itemType = ItemGlobals.getType(itemId)
-        	if itemType == tabId:
-        		tabItems.append(itemId)
+            itemType = ItemGlobals.getType(itemId)
+            if itemType == tabId:
+                tabItems.append(itemId)
         return tabItems
 
     def createTabs(self):
@@ -1477,9 +1477,9 @@ class JewelryStoreGUI(SimpleStoreGUI):
         tabType = SimpleJewelryItem.itemTypeFromJewelryType(tabId)
         tabItems = []
         for itemId in allitems:
-        	itemType = ItemGlobals.getType(itemId)
-        	if itemType == tabType:
-        		tabItems.append(itemId)
+            itemType = ItemGlobals.getType(itemId)
+            if itemType == tabType:
+                tabItems.append(itemId)
         return tabItems
 
 
@@ -1531,9 +1531,9 @@ class TattooStoreGUI(SimpleStoreGUI):
         tabType = SimpleTattooItem.itemTypeFromTattooType(tabId)
         tabItems = []
         for itemId in allitems:
-        	itemType = ItemGlobals.getType(itemId)
-        	if itemType == tabType:
-        		tabItems.append(itemId)
+            itemType = ItemGlobals.getType(itemId)
+            if itemType == tabType:
+                tabItems.append(itemId)
         return tabItems
 
 

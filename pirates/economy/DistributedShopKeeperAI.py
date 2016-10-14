@@ -34,16 +34,16 @@ class DistributedShopKeeperAI(DistributedObjectAI):
         self.sendUpdate('playMusic', [music])
 
     def requestPurchaseRepair(self, shipId):
-    	pass
+        pass
 
     def requestPurchaseOverhaul(self, todo0):
-    	pass
+        pass
 
     def requestSellShip(self, shipId):
-    	pass
+        pass
 
     def requestMakeShipSale(self, buying, selling, names):
-    	self.notify.info("requestMakeShipSale: ({0}) ({1}) ({2})".format(buying, selling, names))
+        self.notify.info("requestMakeShipSale: ({0}) ({1}) ({2})".format(buying, selling, names))
 
         avId = self.air.getAvatarIdFromSender()
         av = self.air.doId2do.get(avId)
@@ -100,7 +100,7 @@ class DistributedShopKeeperAI(DistributedObjectAI):
         sendResponse(resultCode) 
 
     def requestSellItem(self, todo0, todo1, todo2, todo3):
-    	self.notify.info("requestSellItem: ({0}) ({1}) ({2}) ({3})".format(todo0, todo1, todo2, todo3))
+        self.notify.info("requestSellItem: ({0}) ({1}) ({2}) ({3})".format(todo0, todo1, todo2, todo3))
 
     def requestWeapon(self, buying, selling):
 
@@ -111,21 +111,21 @@ class DistributedShopKeeperAI(DistributedObjectAI):
             return
 
         def sendResponse(resultCode, avId=avId):
-        	self.sendUpdateToAvatarId(avId, 'makeSaleResponse', [resultCode]) 
+            self.sendUpdateToAvatarId(avId, 'makeSaleResponse', [resultCode]) 
 
         if not len(buying) > 0:
-        	self.notify.warning("Unable to process weapon sale. Received malformed 'requestWeapon' packet")
-        	sendResponse(RejectCode.TIMEOUT)
-        	return
+            self.notify.warning("Unable to process weapon sale. Received malformed 'requestWeapon' packet")
+            sendResponse(RejectCode.TIMEOUT)
+            return
 
         itemId, amount = buying[0]
         amount = max(1, amount)
 
         requiredGold = ItemGlobals.getGoldCost(itemId)
         if not requiredGold:
-        	self.notify.warning("Unable to locate price for itemId: %s" % itemId)
-        	sendResponse(RejectCode.TIMEOUT)
-        	return
+            self.notify.warning("Unable to locate price for itemId: %s" % itemId)
+            sendResponse(RejectCode.TIMEOUT)
+            return
 
         requiredGold = requiredGold * amount
         if requiredGold > av.getGoldInPocket():
@@ -134,9 +134,9 @@ class DistributedShopKeeperAI(DistributedObjectAI):
 
         inv = av.getInventory()
         if not inv:
-        	self.notify.warning("Unable to locate inventory for avatarId: %s" % avId)
-        	sendResponse(RejectCode.TIMEOUT)
-        	return
+            self.notify.warning("Unable to locate inventory for avatarId: %s" % avId)
+            sendResponse(RejectCode.TIMEOUT)
+            return
 
         resultCode = 0
         availableSlot = -1
@@ -163,12 +163,12 @@ class DistributedShopKeeperAI(DistributedObjectAI):
             return
 
         def sendResponse(resultCode, avId=avId):
-        	self.sendUpdateToAvatarId(avId, 'makeSaleResponse', [resultCode]) 
+            self.sendUpdateToAvatarId(avId, 'makeSaleResponse', [resultCode]) 
 
         if not len(buying) > 0:
-        	self.notify.warning("Unable to process accessories sale. Received malformed 'requestAccessories' packet")
-        	sendResponse(RejectCode.TIMEOUT)
-        	return
+            self.notify.warning("Unable to process accessories sale. Received malformed 'requestAccessories' packet")
+            sendResponse(RejectCode.TIMEOUT)
+            return
 
         itemId, amount, todo0, todo1 = buying[0] #TODO: figure out what todo0 and todo1 are
         amount = max(1, amount)   
@@ -216,12 +216,12 @@ class DistributedShopKeeperAI(DistributedObjectAI):
             return
 
         def sendResponse(resultCode, avId=avId):
-        	self.sendUpdateToAvatarId(avId, 'makeSaleResponse', [resultCode])
+            self.sendUpdateToAvatarId(avId, 'makeSaleResponse', [resultCode])
 
         if not len(buying) > 0:
-        	self.notify.warning("Unable to process jewelry sale. Received malformed 'requestJewelry' packet")
-        	sendResponse(RejectCode.TIMEOUT)
-        	return
+            self.notify.warning("Unable to process jewelry sale. Received malformed 'requestJewelry' packet")
+            sendResponse(RejectCode.TIMEOUT)
+            return
 
         itemId, amount = buying[0]
         amount = max(1, amount)
@@ -268,17 +268,17 @@ class DistributedShopKeeperAI(DistributedObjectAI):
             return
 
         if not len(buying) > 0:
-        	self.notify.warning("Unable to process Tattoo sale. Received malformed 'requestTattoo' packet")
-        	self.sendUpdateToAvatarId(avId, 'makeTattooResponse', [0, 0, False])
-        	self.sendUpdateToAvatarId(avId, 'makeSaleResponse', [RejectCode.TIMEOUT])
-        	return
+            self.notify.warning("Unable to process Tattoo sale. Received malformed 'requestTattoo' packet")
+            self.sendUpdateToAvatarId(avId, 'makeTattooResponse', [0, 0, False])
+            self.sendUpdateToAvatarId(avId, 'makeSaleResponse', [RejectCode.TIMEOUT])
+            return
 
         itemId, amount = buying[0]
         zone = ItemGlobals.getType(itemId)
 
         def sendResponse(resultCode, success, itemId=itemId, zone=zone, avId=avId):
-        	self.sendUpdateToAvatarId(avId, 'makeTattooResponse', [itemId, zone, success])
-        	self.sendUpdateToAvatarId(avId, 'makeSaleResponse', [resultCode])
+            self.sendUpdateToAvatarId(avId, 'makeTattooResponse', [itemId, zone, success])
+            self.sendUpdateToAvatarId(avId, 'makeSaleResponse', [resultCode])
 
         requiredGold = ItemGlobals.getGoldCost(itemId)
         if not requiredGold:
@@ -288,8 +288,8 @@ class DistributedShopKeeperAI(DistributedObjectAI):
 
         requiredGold = requiredGold * amount
         if requiredGold > av.getGoldInPocket():
-        	sendResponse(0, False)
-        	return
+            sendResponse(0, False)
+            return
 
         resultCode = 0
 
@@ -302,12 +302,12 @@ class DistributedShopKeeperAI(DistributedObjectAI):
         av = self.air.doId2do.get(avId)
 
         if not av:
-        	return
+            return
 
         def sendResponse(resultCode, success, hairId=hairId, colorId=colorId, avId=avId):
-        	self.notify.info("makeBarberResponse({0}, {1}, {2})".format(hairId, colorId, success))
-        	self.sendUpdateToAvatarId(avId, 'makeBarberResponse', [hairId, colorId, True])
-        	self.sendUpdateToAvatarId(avId, 'makeSaleResponse', [2])
+            self.notify.info("makeBarberResponse({0}, {1}, {2})".format(hairId, colorId, success))
+            self.sendUpdateToAvatarId(avId, 'makeBarberResponse', [hairId, colorId, True])
+            self.sendUpdateToAvatarId(avId, 'makeSaleResponse', [2])
 
         itemData = BarberGlobals.barber_id.get(hairId)
         if not itemData:
@@ -322,10 +322,10 @@ class DistributedShopKeeperAI(DistributedObjectAI):
             return
 
         if requiredGold > av.getGoldInPocket():
-        	sendResponse(0, False)
-        	return
+            sendResponse(0, False)
+            return
 
-       	self.notify.info("requestBarber: cost(%s)" % requiredGold)
+           self.notify.info("requestBarber: cost(%s)" % requiredGold)
         av.takeGold(requiredGold)
         sendResponse(2, True)
 
@@ -357,7 +357,7 @@ class DistributedShopKeeperAI(DistributedObjectAI):
 
         #tpMgr = self.air.tpMgr
         #tpMgr.initiateStowawayTeleport(locationId)
-
+    
     # responseShipRepair(uint32) ownrecv
     # responseClothingList(uint32, uint32 [][]) ownrecv
     # responseTattooList(uint32, TattooInfo []) ownrecv

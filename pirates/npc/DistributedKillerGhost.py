@@ -1,4 +1,4 @@
-from panda3d.core import AnimControl, Light, Thread, Vec3, Vec4
+from panda3d.core import AnimControl, Light, Vec3, Vec4
 from direct.interval.IntervalGlobal import *
 from direct.directnotify import DirectNotifyGlobal
 from direct.distributed.ClockDelta import *

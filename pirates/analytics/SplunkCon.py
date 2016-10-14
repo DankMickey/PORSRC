@@ -2,9 +2,9 @@ from direct.directnotify import DirectNotifyGlobal
 import sys, os
 from datetime import datetime
 try:
-	import splunklib.client as client
+    import splunklib.client as client
 except ImportError:
-	raise Exception(":SplunkCon: Failed to initialize Analytics. Splunk SDK not installed.")
+    raise Exception(":SplunkCon: Failed to initialize Analytics. Splunk SDK not installed.")
 import AnalyticsGlobals
 
 __all__ = [
@@ -39,15 +39,15 @@ class SplunkCon:
         return encoded
 
     def __counts(self, job, result_key):
-    	applications = []
-    	reader = results.ResultsReader(job.results())
-    	for result in reader:
-    		if isinstance(result, dict):
-    			applications.append({
-    				"name": result[result_key],
-    				"count": int(result["count"] or 0)
-    				})
-   		return applications
+        applications = []
+        reader = results.ResultsReader(job.results())
+        for result in reader:
+            if isinstance(result, dict):
+                applications.append({
+                    "name": result[result_key],
+                    "count": int(result["count"] or 0)
+                    })
+           return applications
 
     def getApplication(self, appName):
         app = None
@@ -60,7 +60,7 @@ class SplunkCon:
         job = self.splunk.jobs.create(query, exec_mode="blocking")
         return self.__counts(job, "application")
 
-    def events(self):  		
+    def events(self):          
         query = "search index=%s application=%s | stats count by event" % (self.index, self.application_name)
         job = self.splunk.jobs.create(query, exec_mode="blocking")
         return self.__counts(job, "event")

@@ -1,4 +1,4 @@
-from panda3d.core import CollideMask, ColorBlendAttrib, NodePath, TextNode, Texture, Thread, TransparencyAttrib, VBase4, Vec3, lookAt
+from panda3d.core import CollideMask, ColorBlendAttrib, NodePath, TextNode, Texture, TransparencyAttrib, VBase4, Vec3, lookAt
 import random
 import re
 from direct.interval.IntervalGlobal import *

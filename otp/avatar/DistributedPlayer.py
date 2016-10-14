@@ -140,7 +140,7 @@ class DistributedPlayer(DistributedAvatar.DistributedAvatar, PlayerBase.PlayerBa
     def whisperSCTo(self, msgIndex, sendToId):
         if sendToId not in base.cr.doId2do:
             messenger.send('wakeup')
-            base.cr.ttrFriendsManager.d_whisperSCTo(sendToId, msgIndex)
+            base.cr.piratesFriendsManager.d_whisperSCTo(sendToId, msgIndex)
         else:
             messenger.send('wakeup')
             self.sendUpdate('setWhisperSCFrom', [self.doId, msgIndex], sendToId)
@@ -164,7 +164,7 @@ class DistributedPlayer(DistributedAvatar.DistributedAvatar, PlayerBase.PlayerBa
     def whisperSCCustomTo(self, msgIndex, sendToId):
         if sendToId not in base.cr.doId2do:
             messenger.send('wakeup')
-            base.cr.ttrFriendsManager.d_whisperSCCustomTo(sendToId, msgIndex)
+            base.cr.piratesFriendsManager.d_whisperSCCustomTo(sendToId, msgIndex)
             return
         messenger.send('wakeup')
         self.sendUpdate('setWhisperSCCustomFrom', [self.doId, msgIndex], sendToId)
@@ -193,7 +193,7 @@ class DistributedPlayer(DistributedAvatar.DistributedAvatar, PlayerBase.PlayerBa
     def whisperSCEmoteTo(self, emoteId, sendToId):
         if sendToId not in base.cr.doId2do:
             messenger.send('wakeup')
-            base.cr.ttrFriendsManager.d_whisperSCEmoteTo(sendToId, emoteId)
+            base.cr.piratesFriendsManager.d_whisperSCEmoteTo(sendToId, emoteId)
             return
         messenger.send('wakeup')
         self.sendUpdate('setWhisperSCEmoteFrom', [self.doId, emoteId], sendToId)
@@ -310,7 +310,7 @@ class DistributedPlayer(DistributedAvatar.DistributedAvatar, PlayerBase.PlayerBa
             self.sendUpdate('teleportQuery', [requesterId], sendToId)
         else:
             teleportNotify.debug('sending TTRFM teleportQuery%s' % ((requesterId, sendToId),))
-            base.cr.ttrFriendsManager.d_teleportQuery(sendToId)
+            base.cr.piratesFriendsManager.d_teleportQuery(sendToId)
 
     def teleportQuery(self, requesterId):
         teleportNotify.debug('receieved teleportQuery(%s)' % requesterId)

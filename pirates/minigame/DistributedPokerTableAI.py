@@ -23,16 +23,16 @@ class DistributedPokerTableAI(DistributedGameTableAI.DistributedGameTableAI):
         return REJECT #TODO
 
     def setGameType(self, gameType):
-    	self.gameType = gameType
+        self.gameType = gameType
 
     def getGameType(self):
-    	return self.gameType
+        return self.gameType
 
     def setBetMultiplier(self, multiplier):
-    	self.betMultiplier = multiplier
+        self.betMultiplier = multiplier
 
     def getBetMultiplier(self):
-    	return self.betMultiplier
+        return self.betMultiplier
 
     def setAnteList(self, list):
         self.anteList = list

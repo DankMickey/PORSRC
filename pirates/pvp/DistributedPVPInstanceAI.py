@@ -8,9 +8,9 @@ class DistributedPVPInstanceAI(DistributedInstanceWorldAI):
         DistributedInstanceWorldAI.__init__(self, air)
 
     def setAvatarReady(self):
-    	pass
+        pass
 
     def requestLeave(self):
-    	pass
+        pass
 
 

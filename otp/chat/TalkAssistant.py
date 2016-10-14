@@ -195,6 +195,7 @@ class TalkAssistant(DirectObject.DirectObject):
     def sendWhisperTalk(self, message, receiverAvId):
         # This is Pirates specific... which goes against all things OTP. But oh well.
         # Route through the PFMUD.
+        self.addWhisperToHistory(receiverAvId, message)
         base.cr.piratesFriendsManager.sendUpdate('sendTalkWhisper', [receiverAvId, message])
 
     def sendGuildTalk(self, message):
@@ -215,24 +216,29 @@ class TalkAssistant(DirectObject.DirectObject):
             messenger.send(SCCustomChatEvent)
             base.localAvatar.b_setSCCustom(messageIndex)
 
+    def addWhisperToHistory(self, receiverId, message):
+        if not self.logWhispers:
+            return
+        
+        avatarName = ''
+        avatar = base.cr.identifyAvatar(receiverId)
+        if avatar:
+            avatarName = avatar.getName()
+        newMessage = TalkMessage(TALK_WHISPER, self.countMessage(), message, localAvatar.doId, localAvatar.getName(), receiverId, avatarName)
+        self.addToHistory(newMessage)
+    
     def sendAvatarWhisperSpeedChat(self, type, messageIndex, receiverId):
         if type == SPEEDCHAT_NORMAL:
-            base.localAvatar.whisperSCTo(messageIndex, receiverId, 0)
+            base.localAvatar.whisperSCTo(messageIndex, receiverId)
             message = self.SCDecoder.decodeSCStaticTextMsg(messageIndex)
         elif type == SPEEDCHAT_EMOTE:
-            base.localAvatar.whisperSCEmoteTo(messageIndex, receiverId, 0)
+            base.localAvatar.whisperSCEmoteTo(messageIndex, receiverId)
             message = self.SCDecoder.decodeSCEmoteWhisperMsg(messageIndex, localAvatar.getName())
         elif type == SPEEDCHAT_CUSTOM:
-            base.localAvatar.whisperSCCustomTo(messageIndex, receiverId, 0)
+            base.localAvatar.whisperSCCustomTo(messageIndex, receiverId)
             message = self.SCDecoder.decodeSCCustomMsg(messageIndex)
 
-        if self.logWhispers:
-            avatarName = None
-            avatar = base.cr.identifyAvatar(receiverId)
-            if avatar:
-                avatarName = avatar.getName()
-            newMessage = TalkMessage(TALK_WHISPER, self.countMessage(), message, localAvatar.doId, localAvatar.getName(), receiverId, avatarName)
-            self.addToHistory(newMessage)
+        self.addWhisperToHistory(receiverId, message)
 
     def sendGuildSpeedChat(self, type, msgIndex):
         if self.checkGuildSpeedChat():

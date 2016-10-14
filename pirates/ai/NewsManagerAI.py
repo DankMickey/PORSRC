@@ -1,3 +1,4 @@
+from panda3d.core import Notify
 from direct.directnotify import DirectNotifyGlobal
 from direct.task import Task
 from direct.distributed.DistributedObjectAI import DistributedObjectAI

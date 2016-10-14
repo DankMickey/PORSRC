@@ -1,4 +1,4 @@
-from panda3d.core import ColorBlendAttrib, Texture, Vec4
+from panda3d.core import Texture, Vec4
 import Weapon
 import WeaponGlobals
 from pirates.audio import SoundGlobals

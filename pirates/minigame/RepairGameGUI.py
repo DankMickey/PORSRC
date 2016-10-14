@@ -1,4 +1,4 @@
-from panda3d.core import TextNode, TextProperties, TextPropertiesManager
+from panda3d.core import TextNode
 import random
 from direct.gui.DirectGui import DirectFrame, DirectLabel
 from direct.interval.IntervalGlobal import Sequence, Func, Parallel, LerpPosInterval, Wait, LerpColorScaleInterval

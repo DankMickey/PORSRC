@@ -2170,29 +2170,25 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
 
     def displayWhisper(self, fromAvId, chatString, whisperType):
         if base.cr.avatarFriendsManager.checkIgnored(fromAvId):
-            return None
+            return
 
         sender = base.cr.identifyAvatar(fromAvId)
         if not sender:
             self.notify.warning('displayWhisper: fromAvId: %s not found' % fromAvId)
-            return None
+            return
 
         if self.soundWhisper:
             base.playSfx(self.soundWhisper)
-
 
 
     def displayTalkWhisper(self, fromId, avatarName, chatString):
         if base.cr.avatarFriendsManager.checkIgnored(fromId):
-            return None
-
-        sender = base.cr.identifyAvatar(fromId)
-        if not sender:
-            self.notify.warning('displayWhisper: fromAvId: %s not found' % fromId)
-            return None
+            return
 
         if self.soundWhisper:
             base.playSfx(self.soundWhisper)
+        
+        base.talkAssistant.receiveWhisperTalk(fromId, avatarName, chatString)
 
     def whisperTo(self, chatString, sendToId):
         recv = base.cr.identifyAvatar(sendToId)

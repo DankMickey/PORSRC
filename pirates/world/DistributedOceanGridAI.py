@@ -54,7 +54,7 @@ class DistributedOceanGridAI(DistributedCartesianGridAI, OceanGridBase):
         return il
 
     def addShipSpawn(self, objKey, object):
-    	self.spawner.addShipSpawnNode(objKey, object)
+        self.spawner.addShipSpawnNode(objKey, object)
 
     def addShipMovementNode(self, objKey, object):
         nodeName = 'objNode-ShipMovementNode-%s' % objKey

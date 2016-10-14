@@ -1,4 +1,4 @@
-from panda3d.core import BitMask32, BoundingSphere, CollideMask, CollisionHandler, CollisionHandlerFloor, CollisionHandlerGravity, CollisionNode, CollisionRay, CollisionSphere, CollisionTraverser, GeomNode, ModelNode, NodePath, Plane, Thread, Vec3, headsUp, lookAt
+from panda3d.core import BitMask32, BoundingSphere, CollideMask, CollisionHandler, CollisionHandlerFloor, CollisionHandlerGravity, CollisionNode, CollisionRay, CollisionSphere, CollisionTraverser, GeomNode, ModelNode, NodePath, Plane, Vec3, headsUp, lookAt
 from direct.interval.IntervalGlobal import *
 from direct.directnotify import DirectNotifyGlobal
 from direct.distributed.ClockDelta import *

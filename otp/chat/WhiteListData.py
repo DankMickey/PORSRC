@@ -10312,6 +10312,7 @@ disciplining
 disclaimer
 disco
 discoed
+discord
 discoing
 disconcerting
 disconnect
@@ -14371,7 +14372,6 @@ get's
 get-cha
 getaway
 getaways
-getfreshguild
 gets
 gettable
 getter
@@ -15397,6 +15397,7 @@ halibut
 haling
 hall
 hall's
+hallagon
 hallelujah
 haller
 hallmark
@@ -21246,6 +21247,7 @@ pearl
 pearls
 pearly
 pears
+pearson
 peas
 peasant
 peasants
@@ -24905,6 +24907,7 @@ skyrocketing
 skysail
 skyway
 skyway's
+skype
 slam
 slam-dunk
 slammin

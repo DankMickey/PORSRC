@@ -1,6 +1,7 @@
 from direct.directnotify import DirectNotifyGlobal
-
 from pirates.economy.DistributedShopKeeperAI import DistributedShopKeeperAI
+from pirates.distributed import InteractGlobals
+from pirates.economy import EconomyGlobals
 from pirates.battle.DistributedBattleNPCAI import *
 from pirates.piratesbase import PiratesGlobals
 
@@ -73,6 +74,42 @@ class DistributedNPCTownfolkAI(DistributedBattleNPCAI, DistributedShopKeeperAI):
 
         return DistributedBattleNPCAI.handleInteract(self, avId, interactType, instant)
 
+    def selectOption(self, option):
+        avId = self.air.getAvatarIdFromSender()
+        av = self.air.doId2do.get(avId)
+        
+        if not av:
+            return
+
+        if option == InteractGlobals.HEAL_HP:
+            hp = av.hp
+            maxHp = av.getMaxHp()
+            
+            if hp == maxHp:
+                return
+            
+            cost = EconomyGlobals.getAvatarHealHpCost(maxHp - hp)
+            
+            if cost > av.getGoldInPocket():
+                return
+            
+            av.takeGold(cost)
+            av.toonUp(maxHp - hp)
+        elif option == InteractGlobals.HEAL_MOJO:
+            mojo = av.getMojo()
+            maxMojo = av.getMaxMojo()
+            
+            if mojo == maxMojo:
+                return
+            
+            cost = EconomyGlobals.getAvatarHealMojoCost(maxMojo - mojo)
+            
+            if cost > av.getGoldInPocket():
+                return
+            
+            av.takeGold(cost)
+            av.b_setMojo(maxMojo)
+    
     @staticmethod
     def makeFromObjectKey(cls, spawner, uid, data):
         if cls is None:

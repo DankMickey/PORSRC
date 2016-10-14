@@ -1,3 +1,4 @@
+from panda3d.core import Fog
 from direct.distributed.DistributedObject import DistributedObject
 from direct.distributed.ClockDelta import globalClockDelta
 from TimeOfDayManager import TimeOfDayManager

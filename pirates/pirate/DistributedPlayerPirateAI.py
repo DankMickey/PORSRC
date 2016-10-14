@@ -206,7 +206,7 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         return self.tempdoublexp
 
     def hasTempDoubleXP(self):
-    	return (self.tempdoublexp > 0)
+        return (self.tempdoublexp > 0)
 
     def __doubleXpTask(self, task):
         if not self.hasTempDoubleXP():
@@ -214,7 +214,7 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
 
         self.tempdoublexp -= 15
         if self.tempdoublexp < 0:
-        	self.tempdoublexp = 0
+            self.tempdoublexp = 0
         self.b_setTempDoubleXPReward(self.tempdoublexp)
 
         return task.again
@@ -259,10 +259,10 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         return self.shipIcon
 
     def addReputation(self, repId, amount, ignoreDouble=False):
-    	repAmount = amount
-    	if self.hasTempDoubleXP() and not ignoreDouble:
-    		repAmount = repAmount * 2
-    	self.inventory.addReputation(repId, repAmount)
+        repAmount = amount
+        if self.hasTempDoubleXP() and not ignoreDouble:
+            repAmount = repAmount * 2
+        self.inventory.addReputation(repId, repAmount)
     
     def repChanged(self):
         newLevel = self.calcLevel()
@@ -1042,8 +1042,8 @@ def setGuildId(id):
 def setGuildName(name=None):
     target = spellbook.getTarget()
     if name is None:
-    	target.b_setGuildName("Null")
-    	return "Removed %s's guild name" % target.getName()
+        target.b_setGuildName("Null")
+        return "Removed %s's guild name" % target.getName()
     else:
-    	target.b_setGuildName(name)
-    	return "Set %s's guild name to %s" % (target.getName(), name)
+        target.b_setGuildName(name)
+        return "Set %s's guild name to %s" % (target.getName(), name)

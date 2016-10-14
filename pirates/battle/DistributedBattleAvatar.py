@@ -1,4 +1,4 @@
-from panda3d.core import AnimControl, BitMask32, Camera, CollideMask, CollisionNode, CollisionTube, ColorBlendAttrib, ColorWriteAttrib, CompassEffect, DepthTestAttrib, GeomNode, Lens, Light, NodePath, PStatCollector, Point3, RopeNode, TextNode, Texture, Thread, TransparencyAttrib, VBase3, VBase4, Vec3, Vec4, headsUp, lookAt
+from panda3d.core import AnimControl, BitMask32, Camera, CollideMask, CollisionNode, CollisionTube, ColorBlendAttrib, ColorWriteAttrib, CompassEffect, DepthTestAttrib, GeomNode, Lens, Light, NodePath, PStatCollector, Point3, RopeNode, TextNode, Texture, TransparencyAttrib, VBase3, VBase4, Vec3, Vec4, headsUp, lookAt
 import math
 import random
 import types

@@ -1,4 +1,4 @@
-from panda3d.core import Thread, VBase4
+from panda3d.core import VBase4
 from direct.interval.IntervalGlobal import *
 from direct.directnotify import DirectNotifyGlobal
 from direct.distributed.ClockDelta import *

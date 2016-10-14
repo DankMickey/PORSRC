@@ -1,4 +1,4 @@
-from panda3d.core import GeomNode, LODNode, ModelNode, NodePath, PartBundle, SceneGraphReducer, Thread, TransparencyAttrib, Vec3, autoBind
+from panda3d.core import GeomNode, LODNode, ModelNode, NodePath, PartBundle, SceneGraphReducer, TransparencyAttrib, Vec3, autoBind
 from direct.interval.IntervalGlobal import *
 from direct.actor import Actor
 from direct.task import Task
