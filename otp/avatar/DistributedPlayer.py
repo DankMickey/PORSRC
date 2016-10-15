@@ -78,9 +78,6 @@ class DistributedPlayer(DistributedAvatar.DistributedAvatar, PlayerBase.PlayerBa
         messenger.lock.release()
         messenger.send(self.GetPlayerGenerateEvent(), [self])
 
-    def getMessages(self):
-        return OTPLocalizer.ChatGarblerDefault
-    
     def setLocation(self, parentId, zoneId):
         DistributedAvatar.DistributedAvatar.setLocation(self, parentId, zoneId)
         if not (parentId in (0, None) and zoneId in (0, None)):
@@ -237,7 +234,7 @@ class DistributedPlayer(DistributedAvatar.DistributedAvatar, PlayerBase.PlayerBa
 
     def setTalkWhisper(self, fromAV, avatarName, chat):
         if base.whiteList:
-            chat = base.whiteList.processThroughAll(chat, self)
+            chat = base.whiteList.processThroughAll(chat, base.chatGarbler)
 
         self.displayTalkWhisper(fromAV, avatarName, chat)
 

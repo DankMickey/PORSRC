@@ -108,7 +108,7 @@ class GuildManager(DistributedObjectGlobal):
     def setTalkGroup(self, fromAv, avatarName, chat):
         if hasattr(base, 'localAvatar'):
             if base.whiteList:
-                chat = base.whiteList.processThroughAll(chat, base.localAvatar)
+                chat = base.whiteList.processThroughAll(chat, base.chatGarbler)
 
             base.talkAssistant.receiveGuildTalk(fromAv, avatarName, chat)
 

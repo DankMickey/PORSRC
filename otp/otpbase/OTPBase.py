@@ -7,6 +7,7 @@ import math
 import re
 from otp.ai.MagicWordGlobal import *
 from otp.otpbase import OTPGlobals
+from otp.chat.ChatGarbler import ChatGarbler
 from otp.chat import WhiteList, SequenceListData, WhiteListData
 import traceback
 
@@ -30,6 +31,8 @@ class OTPBase(ShowBase):
         self.enviroCam = None
         self.pixelZoomSetup = False
 
+        self.chatGarbler = ChatGarbler()
+        
         if base.cam:
             if self.wantEnviroDR:
                 base.cam.node().setCameraMask(OTPRender.MainCameraBitmask)
