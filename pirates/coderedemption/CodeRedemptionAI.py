@@ -25,7 +25,7 @@ class CodeRedemptionAI(DistributedObjectAI):
         try:
             reward = CodeRedemptionGlobals.getAwardFromCode(code)
         except:
-            self.notify.warning("Unexpected error has occured while retreiving award info for code '%s'. Most likely bad award formating." % code)
+            self.notify.warning("Unexpected error has occured while retreiving award info for code '%s'. Most likely bad award formatting." % code)
             return buildResponse(CodeRedemptionGlobals.ERROR_ID_BAD)
 
         try:
@@ -104,6 +104,7 @@ class CodeRedemptionAI(DistributedObjectAI):
             return buildResponse(CodeRedemptionGlobals.ERROR_ID_BAD)
 
     def sendCodeForRedemption(self, code, userName, accountId):
+        code = code.lower()
         self.notify.debug("Attempting to redeem code: %s" % code)
         response = (CodeRedemptionGlobals.ERROR_ID_BAD, -1, 0)
         avId = self.air.getAvatarIdFromSender()
