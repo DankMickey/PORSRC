@@ -711,7 +711,7 @@ def update(reason="for an update"):
     air.systemMsgAll(text)
     return "Sent maintenance warning message to all pirates in the gameserver!"
 
-@magicWord(CATEGORY_STAFF, types=[int])
+@magicWord(CATEGORY_GAME_MASTER, types=[int])
 def hp(value=-1):
     av = spellbook.getInvoker()
     if value < 0:
