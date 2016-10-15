@@ -582,7 +582,6 @@ FriendNewSecretEvent = 'friendNewSecretEvent'
 FriendRejectNewSecretEvent = 'friendRejectNewSecretEvent'
 FriendToSecretFriendEvent = 'friendToSecretFriendEvent'
 FriendRejectUseSecretEvent = 'friendRejectUseSecretEvent'
-MaxPirateFriends = 100
 PVPAcceptEvent = 'challengeAccept'
 PVPRejectEvent = 'challengeReject'
 PVPChallengeEvent = 'challengeReceived'

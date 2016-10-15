@@ -23,24 +23,20 @@ uberdogs:
       id: 1002
       anonymous: false
     
-    - class: AvatarFriendsManager
+    - class: DistributedCrewMatchManager
       id: 1003
       anonymous: false
     
-    - class: DistributedCrewMatchManager
-      id: 1004
-      anonymous: false
-    
     - class: CentralLogger
-      id: 1005
+      id: 1004
       anonymous: false
 
     - class: DistributedMatchMaker
-      id: 1006
+      id: 1005
       anonymous: false
 
     - class: DistributedGuildManager
-      id: 1007
+      id: 1006
       anonymous: false
 
 roles:

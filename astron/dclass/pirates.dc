@@ -926,14 +926,13 @@ dclass DistributedIsland : DistributedCartesianGrid, DistributedGameArea, Teamab
   setFireworkShowEnabled(bool, uint8) required broadcast ram;
 };
 
-dclass PCAvatarFriendsManager : AvatarFriendsManager {
-};
-
 struct Friend
 {
   uint32 doId;
   string name;
-  blob dna;
+  int32 hp;
+  int32 maxHp;
+  bool online;
 };
 
 dclass PiratesFriendsManager : DistributedObjectGlobal {
@@ -945,7 +944,7 @@ dclass PiratesFriendsManager : DistributedObjectGlobal {
   friendOnline(uint32);
   friendOffline(uint32);
 
-  goingOffline(uint32 avId);
+  goingOffline(uint32);
 
   getAvatarDetails(uint32) clsend;
   receiveAvatarInfo(blob, uint32, string, uint8, uint16, uint16, uint16, uint16, uint32, bool, bool, string, uint8, uint8);

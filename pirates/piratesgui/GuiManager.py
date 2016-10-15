@@ -1408,11 +1408,11 @@ class GuiManager(FSM.FSM):
 
         self.friendInviter = FriendInviter.FriendInviter(avId, avName, False)
 
-    def handleAvatarFriendInvitation(self, avId, avName = 'Unknown'):
+    def handleAvatarFriendInvitation(self, avId, avName, context):
         if self.friendInvitee:
             self.friendInvitee.destroy()
 
-        self.friendInvitee = FriendInvitee.FriendInvitee(avId, avName)
+        self.friendInvitee = FriendInvitee.FriendInvitee(avId, avName, context)
 
     def handleGuildInviteAccept(self, avid):
         if not self.guildInviter:

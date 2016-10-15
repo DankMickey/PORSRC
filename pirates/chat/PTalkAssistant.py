@@ -134,7 +134,6 @@ class PTalkAssistant(TalkAssistant):
 
     def receiveSystemMessage(self, message):
         base.localAvatar.guiMgr.messageStack.addTextMessage(message, seconds = 20, priority = 0, color = (0.5, 0, 0, 1), icon = ('admin', ''))
-        TalkAssistant.receiveSystemMessage(self, message)
 
     def receivePartyMessage(self, senderId, senderName, message):
         if not self.isThought(message):

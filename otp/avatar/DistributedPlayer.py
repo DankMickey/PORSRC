@@ -37,6 +37,7 @@ class DistributedPlayer(DistributedAvatar.DistributedAvatar, PlayerBase.PlayerBa
         self.adminAccess = 0
         self.autoRun = 0
         self.isConfused = False
+        self.online = True
 
     @staticmethod
     def GetPlayerGenerateEvent():
@@ -115,7 +116,9 @@ class DistributedPlayer(DistributedAvatar.DistributedAvatar, PlayerBase.PlayerBa
 
     def setLeftDistrict(self):
         self._districtWeAreGeneratedOn = None
-        return
+    
+    def isOnline(self):
+        return True
 
     def hasParentingRules(self):
         if self is localAvatar:
@@ -406,6 +409,9 @@ class DistributedPlayer(DistributedAvatar.DistributedAvatar, PlayerBase.PlayerBa
         self.timeFriendsListChanged = globalClock.getFrameTime()
         messenger.send('friendsListChanged')
         Avatar.reconsiderAllUnderstandable()
+    
+    def isFriend(self, doId):
+        return doId in self.friendsList
 
     def setDISLid(self, id):
         self.DISLid = id

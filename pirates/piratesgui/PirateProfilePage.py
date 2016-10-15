@@ -439,16 +439,6 @@ class PirateProfilePage(SocialPage.SocialPage):
 
     def _PirateProfilePage__handleIgnore(self):
         base.localAvatar.guiMgr.handleIgnore(self.profileId, self.profileName)
-        """
-        if base.localAvatar.isIgnored(self.profileId):
-            base.localAvatar.removeIgnore(self.profileId)
-        else:
-            base.localAvatar.addIgnore(self.profileId)
-        ignoredPirate = base.cr.doId2do.get(self.profileId, None)
-        if ignoredPirate:
-            ignoredPirate.refreshName()
-        """
-
 
 
     def _PirateProfilePage__handleReport(self):
@@ -505,12 +495,48 @@ class PirateProfilePage(SocialPage.SocialPage):
         self.determineButtonState()
 
 
-    def gotOnShard(self, onShard):
+    def gotOnShard(self, local, onShard, online):
         self.skillButton['state'] = DGG.NORMAL
         self.ignoreButton.enable()
 
-        if not onShard:
+        if local:
+            self.avatarFriendButton.disable()
+            self.whisperButton.disable()
+            self.crewButton.disable()
+            self.guildButton.disable()
+            self.challengeButton.disable()
+            self.problemButton.disable()
+            self.bootButton.disable()
+            self.reportButton.disable()
+            self.ignoreButton.disable()
             return
+        
+        self.avatarFriendButton.enable()
+        
+        if not online:
+            self.whisperButton.disable()
+            self.crewButton.disable()
+            self.guildButton.disable()
+            self.challengeButton.disable()
+            self.problemButton.disable()
+            self.bootButton.disable()
+            self.reportButton.disable()
+            self.ignoreButton.disable()
+        else:
+            if onShard:
+                self.crewButton.enable()
+                self.bootButton.enable()
+            else:
+                self.crewButton.disable()
+                self.bootButton.disable()
+
+            self.whisperButton.enable()
+            self.guildButton.enable()
+            self.challengeButton.enable()
+            self.problemButton.enable()
+            self.reportButton.enable()
+            self.ignoreButton.enable()
+        
 
         if base.localAvatar.isIgnored(self.profileId):
             self.crewButton.disable(PLocalizer.PlayerIgnoredWarning % self.profileName)
@@ -520,8 +546,6 @@ class PirateProfilePage(SocialPage.SocialPage):
             self.goToButton.hide()
             self.challengeButton.disable(PLocalizer.PlayerIgnoredWarning % self.profileName)
             return
-
-        self.crewButton.enable()
 
         if DistributedBandMember.DistributedBandMember.areSameCrew(localAvatar.doId, self.profileId):
             self.crewButton.dim()
@@ -533,15 +557,12 @@ class PirateProfilePage(SocialPage.SocialPage):
             self.crewButton.circle['helpText'] = PLocalizer.ProfilePageCrew
         
         self.testFriendsButtons()
-        self.guildButton.enable()
-        self.whisperButton.enable()
         
         if not DistributedBandMember.DistributedBandMember.areSameCrew(localAvatar.doId, self.profileId):
-            if base.cr.avatarFriendsManager.isFriend(self.profileId) or base.localAvatar.guiMgr.guildPage.membersList.getMemberByAvId(self.profileId):
+            if base.localAvatar.isFriend(self.profileId) or base.localAvatar.guiMgr.guildPage.membersList.getMemberByAvId(self.profileId):
                 if self.showGoTo:
                     self.goToButton.show()
 
-        self.challengeButton.enable()
         inPVP = base.cr.activeWorld.getType() == PiratesGlobals.INSTANCE_PVP
         inSameCrew = DistributedBandMember.DistributedBandMember.areSameCrew(localAvatar.doId, self.profileId)
         profile = base.cr.doId2do.get(self.profileId)
@@ -566,7 +587,7 @@ class PirateProfilePage(SocialPage.SocialPage):
             self.determineButtonState()
 
     def testFriendsButtons(self):
-        if base.cr.avatarFriendsManager.isFriend(self.profileId):
+        if base.localAvatar.isFriend(self.profileId):
             self.avatarFriendButton.circle['helpText'] = PLocalizer.ProfilePageRemoveFriend
             self.avatarFriendButton.enable()
             self.avatarFriendButton.dim()
@@ -608,7 +629,7 @@ class PirateProfilePage(SocialPage.SocialPage):
                 self.testFriendsButtons()
                 self.whisperButton.enable()
                 if not DistributedBandMember.DistributedBandMember.areSameCrew(localAvatar.doId, self.profileId):
-                    if base.cr.avatarFriendsManager.isFriend(self.profileId) or base.localAvatar.guiMgr.guildPage.membersList.getMemberByAvId(self.profileId):
+                    if base.localAvatar.isFriend(self.profileId) or base.localAvatar.guiMgr.guildPage.membersList.getMemberByAvId(self.profileId):
                         if self.showGoTo:
                             self.goToButton.show()
 
@@ -815,9 +836,8 @@ class PirateProfilePage(SocialPage.SocialPage):
         self.challengeButton.disable(example = True)
         self.problemButton.disable(example = True)
         
-        if localAvatar.getDoId() != self.profileId:
-            self.determineButtonState()
-            self.gotOnShard(self.shardId == localAvatar.getDefaultShard())
+        self.determineButtonState()
+        self.gotOnShard(localAvatar.getDoId() == self.profileId, self.shardId == localAvatar.getDefaultShard(), self.showGoTo)
 
     def copyAvatarShipInfo(self, crewState, friendState, guildState):
         self.locationFrame['image'] = self.profileIcons[PiratesGuiGlobals.PROFILE_ICON_OCEAN]
@@ -828,7 +848,7 @@ class PirateProfilePage(SocialPage.SocialPage):
         if localAvatar.getDoId() != self.profileId:
             if DistributedBandMember.DistributedBandMember.areSameCrew(localAvatar.doId, self.profileId) and crewState:
                 self.showGoTo = True
-            elif base.cr.avatarFriendsManager.isFriend(self.profileId) and friendState:
+            elif base.localAvatar.isFriend(self.profileId) and friendState:
                 self.showGoTo = True
             elif base.localAvatar.guiMgr.guildPage.membersList.getMemberByAvId(self.profileId) and guildState:
                 self.showGoTo = True

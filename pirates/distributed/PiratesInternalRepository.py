@@ -24,7 +24,7 @@ class PiratesInternalRepository(AstronInternalRepository):
         self.notify.warning('The usage of MongoDB is highly recommended. Please switch as soon as possible.')
 
     def handleConnected(self):
-        self.__messenger = PiratesNetMessengerAI(self)
+        self.netMessenger = PiratesNetMessengerAI(self)
         
         try:
             import pymongo
@@ -82,16 +82,16 @@ class PiratesInternalRepository(AstronInternalRepository):
             return 'dev'
 
     def prepareMessage(self, message, sentArgs=[]):
-        return self.__messenger.prepare(message, sentArgs)
+        return self.netMessenger.prepare(message, sentArgs)
 
     def sendNetEvent(self, message, sentArgs=[]):
-        self.__messenger.send(message, sentArgs)
+        self.netMessenger.send(message, sentArgs)
 
     def handleDatagram(self, di):
         msgType = self.getMsgType()
 
-        if msgType == self.__messenger.msgType:
-            self.__messenger.handle(msgType, di)
+        if msgType == self.netMessenger.msgType:
+            self.netMessenger.handle(msgType, di)
             return
 
         AstronInternalRepository.handleDatagram(self, di)

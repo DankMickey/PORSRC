@@ -1225,31 +1225,11 @@ class OTPClientRepository(ClientRepositoryBase):
     def askAvatarKnown(self, avId):
         return 0
 
-    def hashFiles(self, pyc):
-        for dir in sys.path:
-            if dir == '':
-                dir = '.'
-            if os.path.isdir(dir):
-                for filename in os.listdir(dir):
-                    if filename.endswith('.pyo') or filename.endswith('.pyc') or filename.endswith('.py') or filename == 'library.zip':
-                        pathname = Filename.fromOsSpecific(os.path.join(dir, filename))
-                        hv = HashVal()
-                        hv.hashFile(pathname)
-                        pyc.mergeWith(hv)
-
     def identifyFriend(self, doId):
         pass
 
-    def identifyPlayer(self, playerId):
-        pass
-
     def identifyAvatar(self, doId):
-        info = self.doId2do.get(doId)
-        if info:
-            return info
-        else:
-            info = self.identifyFriend(doId)
-        return info
+        pass
 
     def sendDisconnect(self):
         if self.isConnected():

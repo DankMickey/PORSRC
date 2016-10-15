@@ -13,7 +13,6 @@ from pirates.piratesgui.RequestButton import RequestButton
 from pirates.piratesgui.CheckBox import CheckBox
 from pirates.piratesgui import PiratesGuiGlobals
 from pirates.battle.DistributedBattleNPC import DistributedBattleNPC
-from otp.friends import FriendResponseCodes
 
 class FriendInviterButton(RequestButton):
 
@@ -131,10 +130,10 @@ class FriendInviter(DirectFrame):
         self.accept(self.avDisableName, self._FriendInviter__handleDisableAvatar)
         if self.avId == myId:
             self.fsm.request('self')
-        elif base.cr.avatarFriendsManager.isFriend(self.avId):
+        elif base.localAvatar.isFriend(self.avId):
             self.fsm.request('alreadyFriends')
         else:
-            tooMany = len(base.cr.avatarFriendsManager.avatarFriendsList) >= PiratesGlobals.MaxPirateFriends
+            tooMany = len(base.localAvatar.getFriendsList()) >= OTPGlobals.MaxFriends
             if tooMany:
                 self.fsm.request('tooMany')
             elif self.skipYesNo == True:
@@ -183,16 +182,17 @@ class FriendInviter(DirectFrame):
             return None
 
         self.notify.info("SENT")
-        base.cr.avatarFriendsManager.sendRequestInvite(self.avId)
+        base.cr.friendManager.up_friendQuery(self.avId)
         self.accept(OTPGlobals.AvatarFriendConsideringEvent, self._FriendInviter__friendConsidering)
         self.accept(OTPGlobals.AvatarFriendAddEvent, self._FriendInviter__friendAdded)
         self.accept(OTPGlobals.AvatarFriendRejectInviteEvent, self._FriendInviter__friendRejectInvite)
+        self.fsm.request('asking')
         self.hide()
 
 
     def _FriendInviter__friendAdded(self, avId, info):
         if self.avId == avId:
-            localAvatar.guiMgr.messageStack.addTextMessage(OTPLocalizer.FriendInviterFriendSaidYes, name = info.avatarName, avId = avId, icon = ('friends', None))
+            localAvatar.guiMgr.messageStack.addTextMessage(OTPLocalizer.FriendInviterFriendSaidYes, name = info.getName(), avId = avId, icon = ('friends', None))
             self.fsm.request('yes')
 
 
@@ -300,7 +300,7 @@ class FriendInviter(DirectFrame):
 
 
     def enterAskingNPC(self):
-        localAvatar.guiMgr.messageStack.addTextMessage(PPLocalizer.FriendInviterAskingNPC, name = self.avName, avId = self.avId, icon = ('friends', ''))
+        localAvatar.guiMgr.messageStack.addTextMessage(PLocalizer.FriendInviterAskingNPC, name = self.avName, avId = self.avId, icon = ('friends', ''))
         taskMgr.doMethodLater(2.0, self.npcReplies, 'npcFriendship')
         self.hide()
 
@@ -328,7 +328,7 @@ class FriendInviter(DirectFrame):
 
 
     def enterFriendsNoMore(self):
-        base.cr.avatarFriendsManager.sendRequestRemove(self.avId)
+        base.cr.removeFriend(self.avId)
         localAvatar.guiMgr.messageStack.addTextMessage(OTPLocalizer.FriendInviterFriendsNoMore, name = self.avName, avId = self.avId, icon = ('friends', None))
         self.context = None
         self.destroy()
@@ -473,7 +473,7 @@ class FriendInviter(DirectFrame):
             self.context = context
             self.fsm.request('asking')
         elif yesNoAlready == 0:
-            self.fsm.request('notAvailable')
+            self.fsm.request('no')
         elif yesNoAlready == 2:
             self.fsm.request('alreadyFriends')
         elif yesNoAlready == 3:
@@ -482,22 +482,18 @@ class FriendInviter(DirectFrame):
             self.fsm.request('ignored')
         elif yesNoAlready == 6:
             self.fsm.request('notAcceptingFriends')
-        elif yesNoAlready == 10:
-            self.fsm.request('no')
+        elif yesNoAlready == 11:
+            self.fsm.request('notAvailable')
+        elif yesNoAlready == 12:
+            self.fsm.request('tooMany')
         elif yesNoAlready == 13:
             self.fsm.request('otherTooMany')
         else:
             self.notify.warning('Got unexpected response to friendConsidering: %s' % yesNoAlready)
-            self.fsm.request('maybe')
+            self.fsm.request('asking')
 
 
     def _FriendInviter__friendRejectInvite(self, avId, reason):
-        if reason == RejectCode.NO_FRIENDS_LIST:
-            pass
-        1
-        if reason == RejectCode.FRIENDS_LIST_NOT_HANDY:
-            pass
-        1
         if reason == RejectCode.INVITEE_NOT_ONLINE:
             self.fsm.request('notAvailable')
         elif reason == RejectCode.ALREADY_INVITED:

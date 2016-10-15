@@ -120,7 +120,7 @@ class ReportAPlayer(GuiPanel.GuiPanel, FSM.FSM):
         self.sendReport()
         text = PLocalizer.ReportPlayerConfirmReport
         removedFriendship = False
-        if base.cr.avatarFriendsManager.isFriend(self.avId):
+        if base.localAvatar.isFriend(self.avId):
             base.cr.avatarFriendsManager.sendRequestRemove(self.avId)
             removedFriendship = True
         if removedFriendship:

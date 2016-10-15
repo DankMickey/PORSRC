@@ -336,7 +336,6 @@ GuildInvitationEvent = 'guildInvitationEvent'
 GuildAcceptInviteEvent = 'guildAcceptInviteEvent'
 GuildRejectInviteEvent = 'guildRejectInviteEvent'
 AvatarFriendAddEvent = 'avatarFriendAddEvent'
-AvatarNewFriendAddEvent = 'avatarNewFriendAddEvent'
 AvatarFriendUpdateEvent = 'avatarFriendUpdateEvent'
 AvatarFriendRemoveEvent = 'avatarFriendRemoveEvent'
 AvatarFriendConsideringEvent = 'avatarFriendConsideringEvent'
@@ -357,3 +356,15 @@ CHAT_CHANNEL_COLORS = {
  0: (1, 1, 1, 1),
  1: (1, 1, 0, 1)
 }
+
+MAX_TF_TRIES = 5
+TF_COOLDOWN_SECS = 60 * 60 * 24
+TF_EXPIRE_SECS = 3 * 60 * 60 * 24
+TF_COOLDOWN = 0
+TF_UNKNOWN_SECRET = 1
+TF_SELF_SECRET = 2
+TF_FRIENDS_LIST_FULL_YOU = 3
+TF_FRIENDS_LIST_FULL_HIM = 4
+TF_ALREADY_FRIENDS = 5
+TF_ALREADY_FRIENDS_NAME = 6
+TF_SUCCESS = 7

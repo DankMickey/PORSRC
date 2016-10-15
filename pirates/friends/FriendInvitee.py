@@ -19,12 +19,13 @@ class FriendInviteeButton(RequestButton):
 class FriendInvitee(DirectFrame):
     notify = DirectNotifyGlobal.directNotify.newCategory('FriendInvitee')
 
-    def __init__(self, avId, avName):
+    def __init__(self, avId, avName, context):
         guiMain = loader.loadModel('models/gui/gui_main')
         DirectFrame.__init__(self, relief = None, pos = (-0.6, 0, 0.47), image = guiMain.find('**/general_frame_e'), image_pos = (0.25, 0, 0.275), image_scale = 0.25)
         self.initialiseoptions(FriendInvitee)
         self.avId = avId
         self.avName = avName
+        self.context = context
         if base.localAvatar.isIgnored(self.avId):
             self._FriendInvitee__handleNo()
             return None
@@ -56,18 +57,24 @@ class FriendInvitee(DirectFrame):
         if hasattr(self, 'destroyed'):
             return None
 
+        if self.context:
+            base.cr.friendManager.up_inviteeFriendResponse(2, self.context)
+            self.context = None
+
         self.destroyed = 1
         self.ignore('cancelFriendInvitation')
         DirectFrame.destroy(self)
 
 
     def _FriendInvitee__handleOk(self):
-        base.cr.avatarFriendsManager.sendRequestInvite(self.avId)
+        base.cr.friendManager.up_inviteeFriendResponse(1, self.context)
+        self.context = None
         self.destroy()
 
 
     def _FriendInvitee__handleNo(self):
-        base.cr.avatarFriendsManager.sendRequestRemove(self.avId)
+        base.cr.friendManager.up_inviteeFriendResponse(0, self.context)
+        self.context = None
         self.destroy()
 
 

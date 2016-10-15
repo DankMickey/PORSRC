@@ -633,6 +633,7 @@ class MessageStackPanel(DirectFrame):
             x.setPos(0.167, 0, -0.0725)
 
         self.addMessage(msg)
+        base.talkAssistant.addSystemMessage(t2)
         self.lastMessage = t2
         return msg
 

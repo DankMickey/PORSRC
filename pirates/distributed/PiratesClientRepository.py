@@ -89,6 +89,7 @@ from pirates.quest.QuestChoiceDynMap import QuestChoiceDynMap
 from pirates.audio import SoundGlobals
 from pirates.audio.SoundGlobals import loadSfx
 from otp.ai.MagicWordManager import MagicWordManager
+from otp.friends.FriendHandle import FriendHandle
 
 class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
     notify = directNotify.newCategory('PiratesClientRepository')
@@ -109,7 +110,6 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
         self.matchMaker = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_PIRATES_MATCH_MAKER, 'DistributedMatchMaker')
         self.travelAgent = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_PIRATES_TRAVEL_AGENT, 'DistributedTravelAgent')
         self.crewMatchManager = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_PIRATES_CREW_MATCH_MANAGER, 'DistributedCrewMatchManager')
-        self.avatarFriendsManager = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_AVATAR_FRIENDS_MANAGER, 'AvatarFriendsManager')
         self.piratesFriendsManager = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_PIRATES_FRIENDS_MANAGER, 'PiratesFriendsManager')
         #self.shipLoader = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_PIRATES_SHIP_MANAGER, 'DistributedShipLoader')
 
@@ -129,6 +129,7 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
         self.treasureMap = None
         self.targetMgr = None
         self.newsManager = None
+        self.friendManager = None
         self.distributedDistrict = None
         self.district = None
         self.currCamParent = None
@@ -192,6 +193,7 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
             self.effectToggles = { }
 
         self.cannonballCollisionDebug = 1
+        self.clearFriendState()
 
     def gotoFirstScreen(self):
         base.loadingScreen.beginStep('PrepLogin', 9, 0.14)
@@ -271,6 +273,7 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
         self.sendSetAvatarIdMsg(0)
         self.handler = self.handleMessageType
 
+        self.clearFriendState()
         self.avChoiceDoneEvent = 'avatarChooserDone'
         self.avChoice = AvatarChooser(self.loginFSM, self.avChoiceDoneEvent)
         base.loadingScreen.tick()
@@ -414,6 +417,7 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
         self.loadingScreen.showTarget(locUID)
         self.loadingScreen.showHint(locUID)
         self.loadingScreen.endStep('LocalAvatar')
+        self.sendGetFriendsListRequest()
         self.loginFSM.request('playingGame')
 
     def enterWaitForDeleteAvatarResponse(self, potentialAvatar):
@@ -465,6 +469,7 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
         self.notify.info('exitPlayingGame')
         ivalMgr.interrupt()
         self.notify.info('sending clientLogout')
+        messenger.send('cancelFriendInvitation')
         messenger.send('clientLogout')
         if config.GetDouble('want-dev-hotkeys', 0):
             self.ignore(PiratesGlobals.KrakenHotkey)
@@ -585,11 +590,6 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
             return
 
         messenger.send('clientCleanup')
-
-        for avId, pad in self.__queryAvatarMap.items():
-            pad.delayDelete.destroy()
-
-        self.__queryAvatarMap = {}
         doIds = self.doId2do.keys()
 
         for doId in doIds:
@@ -641,6 +641,69 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
     def exitWaitForShardList(self):
         self.ignore(PiratesDistrictStats.EventName())
         OTPClientRepository.OTPClientRepository.exitWaitForShardList(self)
+    
+    def handleGetFriendsList(self, resp):
+        base.localAvatar.guiMgr.friendsPage.removeAllFriends()
+        self.friendsMap = {}
+
+        for pirate in resp:
+            doId, name, hp, maxHp, online = pirate
+            handle = FriendHandle(*pirate)
+            
+            self.friendsMap[doId] = handle
+            messenger.send(OTPGlobals.AvatarFriendUpdateEvent, [doId, handle])
+
+        self.friendsMapPending = 0
+        messenger.send('friendsMapComplete')
+    
+    def fillUpFriendsMap(self):
+        if self.isFriendsMapComplete():
+            return 1
+        if not self.friendsMapPending:
+            self.notify.warning('Friends list stale; fetching new list.')
+            self.sendGetFriendsListRequest()
+        return 0
+
+    def isFriend(self, doId):
+        if doId in base.localAvatar.friendsList:
+            self.identifyFriend(doId)
+            return 1
+
+        return 0
+
+    def isFriendOnline(self, doId):
+        friend = self.identifyFriend(doId)
+        
+        return friend is not None and friend.isOnline()
+
+    def identifyAvatar(self, doId, source=None):
+        if doId in self.doId2do:
+            return self.doId2do[doId]
+        elif doId in self.friendsMap:
+            return self.friendsMap[doId]
+        
+        self.notify.warning("Don't know who avatar %s is." % doId)
+    
+    def identifyFriend(self, doId, source=None):
+        return self.identifyAvatar(doId)
+
+    def isFriendsMapComplete(self):
+        for friendId in base.localAvatar.friendsList:
+            if self.identifyFriend(friendId) == None:
+                return 0
+        return 1
+
+    def removeFriend(self, avatarId):
+        messenger.send(OTPGlobals.AvatarFriendRemoveEvent, [avatarId])
+        self.piratesFriendsManager.d_removeFriend(avatarId)
+
+    def clearFriendState(self):
+        self.friendsMap = {}
+        self.friendsMapPending = 0
+
+    def sendGetFriendsListRequest(self, task=None):
+        self.friendsMapPending = 1
+        self.piratesFriendsManager.d_requestFriendsList()
 
     def _abandonShard(self):
         for doId, obj in self.doId2do.items():
@@ -835,3 +898,9 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
 
         self.http.setVerifySsl(HTTPClient.VSNoDateCheck)
         OTPClientRepository.OTPClientRepository.enterConnect(self, serverList)
+    
+    def handleFriendOnline(self, doId):
+        messenger.send('friendOnline', [doId])
+
+    def handleFriendOffline(self, doId):
+        messenger.send('friendOffline', [doId])

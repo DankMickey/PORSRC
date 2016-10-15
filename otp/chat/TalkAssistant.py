@@ -16,6 +16,8 @@ class TalkAssistant(DirectObject.DirectObject):
         self.clearHistory()
         self.lastWhisper = None
         self.SCDecoder = SCDecoders
+        self.accept('friendOnline', self.__friendOnline)
+        self.accept('friendOffline', self.__friendOffline)
 
     def clearHistory(self):
         self.historyComplete = []
@@ -134,7 +136,7 @@ class TalkAssistant(DirectObject.DirectObject):
             newMessage = TalkMessage(INFO_GAME, self.countMessage(), message, receiverAvatarId=localAvatar.doId, receiverAvatarName=localAvatar.getName())
             self.addToHistory(newMessage)
 
-    def receiveSystemMessage(self, message):
+    def addSystemMessage(self, message):
         if not self.isThought(message):
             newMessage = TalkMessage(INFO_SYSTEM, self.countMessage(), message, receiverAvatarId=localAvatar.doId, receiverAvatarName=localAvatar.getName())
             self.addToHistory(newMessage)
@@ -251,3 +253,14 @@ class TalkAssistant(DirectObject.DirectObject):
             return self.lastWhisper
 
         return 0
+    
+    def __friendOnline(self, doId):
+        self.__friendStatus(doId, True)
+    
+    def __friendOffline(self, doId):
+        self.__friendStatus(doId, False)
+        
+    def __friendStatus(self, doId, online):
+        friend = base.cr.identifyFriend(doId)
+        name = friend.getName() if friend else OTPLocalizer.APlayer
+        self.receiveFriendUpdate(doId, name, online)

@@ -5,6 +5,7 @@ from direct.distributed.PyDatagram import *
 from otp.ai.TimeManagerAI import TimeManagerAI
 from otp.chat.ChatAgentAI import ChatAgentAI
 from otp.distributed.OtpDoGlobals import *
+from otp.friends.FriendManagerAI import FriendManagerAI
 from otp.ai.MagicWordManagerAI import MagicWordManagerAI
 from otp.ai.BanManagerAI import BanManagerAI
 from pirates.distributed.PiratesInternalRepository import PiratesInternalRepository
@@ -42,6 +43,9 @@ class PiratesAIRepository(PiratesInternalRepository):
 
         self.newsManager = NewsManagerAI(self)
         self.newsManager.generateWithRequired(2)
+        
+        self.friendManager = FriendManagerAI(self)
+        self.friendManager.generateWithRequired(2)
 
         self.todManager = DistributedTimeOfDayManagerAI(self)
         self.todManager.generateWithRequired(2)

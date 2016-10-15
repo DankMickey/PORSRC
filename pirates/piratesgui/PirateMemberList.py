@@ -12,7 +12,6 @@ from pirates.piratesgui import PiratesGuiGlobals
 from pirates.piratesgui import TeleportConfirm
 from pirates.piratesbase import PiratesGlobals
 from otp.otpbase import OTPGlobals
-from otp.friends.FriendInfo import FriendInfo
 from pirates.band import BandConstance
 import GuiButton
 from direct.showbase.DirectObject import *
@@ -275,15 +274,19 @@ class PirateMemberButton(GuiButton.GuiButton):
         statusTextFg = self.OnlineSubtextColor
         self.ignore('Guild Status Updated')
         if self.mode == MODE_FRIEND_AVATAR:
-            friendInfo = base.cr.avatarFriendsManager.getFriendInfo(self.avId)
+            friendInfo = base.cr.identifyFriend(self.avId)
+            
+            if not friendInfo:
+                base.cr.fillUpFriendsMap()
+
             text = friendInfo.getName()
             self.avName = text
             self.statusLabel.hide()
             self.shipIcon.setPos(self.owner.memberWidth - 0.4, 0, 0.035000)
-            shipId = base.cr.avatarFriendsManager.getShipId(self.avId)
+            shipId = 0#base.cr.avatarFriendsManager.getShipId(self.avId)
             if shipId:
                 self.shipIcon.shipId = shipId
-                shipState = base.cr.avatarFriendsManager.getShipId2State(shipId)
+                shipState = None#base.cr.avatarFriendsManager.getShipId2State(shipId)
                 self.updateShip(shipId, shipState)
                 text_cap = 18
             else:
@@ -503,14 +506,15 @@ class PirateMemberList(DirectObject):
         taskMgr.remove(self.onlineCheckTaskName)
         taskMgr.remove(self.prearrangeTaskName)
         self.ignoreAll()
-        for member in self.members:
-            member.detachNode()
-            member.destroy()
-
-        self.memberAvatarDict = { }
-        self.members = []
+        self.removeAll()
         self.baseFrame.destroy()
 
+    def removeAll(self):
+        for member in self.members:
+            member.destroy()
+        
+        self.memberAvatarDict = {}
+        self.members = []
 
     def setPos(self, x, y, z):
         self.baseFrame.setPos(x, y, z)
@@ -594,7 +598,6 @@ class PirateMemberList(DirectObject):
         if tryAv and tryAv.mode == mode:
             tryAv.update(modeInfo)
             self.prearrangeMembers()
-
 
     def addMember(self, avId, mode, modeInfo = None, fromClearList = 0):
         if self.memberAvatarDict.get(avId):

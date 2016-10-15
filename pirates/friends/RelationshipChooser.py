@@ -56,7 +56,7 @@ class RelationshipChooser(GuiPanel.GuiPanel):
 
 
     def determineButtonState(self):
-        isAvatarFriend = base.cr.avatarFriendsManager.isAvatarFriend(self.avId)
+        isAvatarFriend = base.localAvatar.isFriend(self.avId)
         if isAvatarFriend:
             self.avFriendButton['text'] = PLocalizer.RelationshipChooserAvFriendsBreak
         else:

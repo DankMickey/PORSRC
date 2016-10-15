@@ -407,6 +407,7 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         taskMgr.remove(self.taskName('healthTask'))
         taskMgr.remove(self.taskName('doubleXPTask'))
 
+        self.air.netMessenger.send('goingOffline', [self.doId])
         DistributedBattleAvatarAI.delete(self)
         DistributedPlayerAI.delete(self)
 

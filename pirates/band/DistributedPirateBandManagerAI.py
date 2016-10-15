@@ -62,11 +62,13 @@ class DistributedPirateBandManagerAI(DistributedObjectAI):
         pass
 
     def createInvite(self, senderId, receiverId):
-
         sender = self.air.doId2do.get(senderId)
+
         if not sender:
             self.notify.warning("Failed to create invite. Sender is not online.")
             return False
+
+        receiver = self.air.doId2do.get(receiverId)
 
         if not receiver:
             self.notify.warning("Failed to create invite. Receiver is not online.")

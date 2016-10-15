@@ -99,16 +99,6 @@ class DistributedPlayerAI(DistributedAvatarAI.DistributedAvatarAI, PlayerBase.Pl
     def setDISLid(self, id):
         self.DISLid = id
 
-    def d_setFriendsList(self, friendsList):
-        self.sendUpdate('setFriendsList', [friendsList])
-
-    def setFriendsList(self, friendsList):
-        self.friendsList = friendsList
-        self.notify.debug('setting friends list to %s' % self.friendsList)
-
-    def getFriendsList(self):
-        return self.friendsList
-
     def setAdminAccess(self, access):
         self.adminAccess = access
 
@@ -121,10 +111,25 @@ class DistributedPlayerAI(DistributedAvatarAI.DistributedAvatarAI, PlayerBase.Pl
     def d_setTalkFrom(self, avId, channel, message):
         self.sendUpdate('setTalkFrom', [avId, channel, message])
 
-    def extendFriendsList(self, friendId):
-        if friendId not in self.friendsList:
-            self.friendsList.append(friendId)
+    def d_setFriendsList(self, friendsList):
+        self.sendUpdate('setFriendsList', [friendsList])
+
+    def setFriendsList(self, friendsList):
+        self.friendsList = friendsList
+
+    def getFriendsList(self):
+        return self.friendsList
     
+    def isFriend(self, doId):
+        return doId in self.friendsList
+
+    def extendFriendsList(self, friendId):
+        if friendId in self.friendsList:
+            return
+
+        self.friendsList.append(friendId)
+        self.d_setFriendsList(self.friendsList)
+
     def d_setIgnoredPlayers(self, ignoredPlayers):
         self.sendUpdate('setIgnoredPlayers', [ignoredPlayers])
     

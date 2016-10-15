@@ -32,8 +32,6 @@ WhisperTargetLeftVisit = '%s has gone somewhere else. Try again!'
 WhisperGiveupVisit = "%s couldn't find you because you're moving around!"
 WhisperIgnored = 'I am ignoring you!'
 TeleportGreeting = 'Hi, %s.'
-WhisperFriendComingOnline = '%s is coming online!'
-WhisperFriendLoggedOut = '%s has logged out.'
 WhisperUnavailable = 'That player is no longer available for whispers.'
 DialogSpecial = 'ooo'
 DialogExclamation = '!'
@@ -2879,6 +2877,7 @@ InjectorAIUnavailable = 'Not connected to AI server!'
 InjectorPStats = 'PStats Client'
 
 ChatChannels = {0: 'User', 1: 'Staff'}
+APlayer = 'A Player'
 
 def timeElapsedString(timeDelta):
     timeDelta = abs(timeDelta)

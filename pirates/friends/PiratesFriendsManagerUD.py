@@ -69,7 +69,7 @@ class GetAvatarOperation(OperationFSM):
         self.air.dbInterface.queryObject(self.air.dbId, self.target, self.handleRetrieve)
     
     def handleRetrieve(self, dclass, fields):
-        DetailedCache[self.target] = {'expire': time.time() + 30}
+        DetailedCache[self.target] = {'expire': time.time() + 5}
 
         if dclass != self.air.dclassesByName['DistributedPlayerPirateUD']:
             self.demand('Error', 'Distributed Class was not a Pirate.')
@@ -78,7 +78,7 @@ class GetAvatarOperation(OperationFSM):
         dna, founder, hp, maxHp, mojo, maxMojo, inventoryId, shardId, returnLocation = [fields[field][0] for field in self.getPirateFields()]
         guildId = 0
         guildName = ''
-        showGoTo = True
+        showGoTo = self.target in self.mgr.onlinePirates
         chat = True
         siege = False
         profileIcon = 0
@@ -136,12 +136,12 @@ class FriendsListOperation(OperationFSM):
 
         if dclass != self.air.dclassesByName['DistributedPlayerPirateUD']:
             self.demand('Error', 'Friend was not a Pirate')
-            BasicCache[friendId] = {'expire': time.time() + 30}
+            BasicCache[friendId] = {'expire': time.time() + 5}
             return
 
-        info = [friendId, fields['setName'][0], fields['setDNAString'][0]]
+        info = [friendId, fields['setName'][0], fields['setHp'][0], fields['setMaxHp'][0], friendId in self.mgr.onlinePirates]
 
-        BasicCache[friendId] = {'expire': time.time() + 1800, 'info': info}
+        BasicCache[friendId] = {'expire': time.time() + 5, 'info': info}
         self.addFriendInfo(info)
     
     def addFriendInfo(self, info):
@@ -199,7 +199,8 @@ class RemoveFriendOperation(OperationFSM):
             self.air.send(dclass.aiFormatUpdate('setTrueFriends', self.sender, self.sender, self.air.ourChannel, [trueFriendsList]))
         if self.alert and self.sender in self.mgr.onlinePirates:
             self.air.send(dclass.aiFormatUpdate('friendsNotify', self.sender, self.sender, self.air.ourChannel, [self.target, 1]))
-                
+
+        self.mgr.requestFriendsListFor(self.sender)
         self.demand('Off')
 
 # -- FriendsManager --
@@ -215,6 +216,7 @@ class PiratesFriendsManagerUD(DistributedObjectGlobalUD):
         self.whisperRequests = {}
         self.operations = {}
         self.delayTime = 1.0
+        self.accept('goingOffline', self.goingOffline)
 
     def checkWhisperRequest(self, fromId):
         currentTime = time.time()
@@ -244,8 +246,9 @@ class PiratesFriendsManagerUD(DistributedObjectGlobalUD):
     
     # -- Friends list --
     def requestFriendsList(self):
-        avId = self.air.getAvatarIdFromSender()
-        
+        self.requestFriendsListFor(self.air.getAvatarIdFromSender())
+    
+    def requestFriendsListFor(self, avId):
         if avId not in self.operations:
             self.addOperation(FriendsListOperation(self, self.air, avId, callback=self.sendFriendsList))
 
@@ -282,33 +285,23 @@ class PiratesFriendsManagerUD(DistributedObjectGlobalUD):
     
     # -- Pirate Online/Offline --
     def pirateOnline(self, doId, friendsList):
-        if doId not in self.onlinePirates:
-            self.onlinePirates.append(doId)
+        if doId in self.onlinePirates:
+            return
 
-        channel = self.GetPuppetConnectionChannel(doId)
-        dgcleanup = self.dclass.aiFormatUpdate('goingOffline', self.doId, self.doId, self.air.ourChannel, [doId])
-        dg = PyDatagram()
-        dg.addServerHeader(channel, self.air.ourChannel, CLIENTAGENT_ADD_POST_REMOVE)
-        dg.addString(dgcleanup.getMessage())
-        self.air.send(dg)
-
-        onlineFriends = []
-        
         for friend in friendsList:
-            friendId = friend[0]
-            
-            if friendId in self.onlinePirates:
-                self.sendUpdateToAvatarId(friendId, 'friendOnline', [doId])
-                onlineFriends.append(friendId)
+            friend = friend[0]
+
+            if friend in self.onlinePirates:
+                self.sendUpdateToAvatarId(friend, 'friendOnline', [doId])
+                self.requestFriendsListFor(friend)
         
-        self.sendUpdateToAvatarId(doId, 'friendsOnline', [onlineFriends])
+        self.onlinePirates.append(doId)
 
-    def goingOffline(self, avId):
-        self.pirateOffline(avId)
-
-    def pirateOffline(self, doId):
+    def goingOffline(self, doId):
         if doId not in self.onlinePirates:
             return
+        
+        self.onlinePirates.remove(doId)
 
         def handlePirate(dclass, fields):
             if dclass != self.air.dclassesByName['DistributedPlayerPirateUD']:
@@ -319,9 +312,7 @@ class PiratesFriendsManagerUD(DistributedObjectGlobalUD):
             for friend in friendsList:
                 if friend in self.onlinePirates:
                     self.sendUpdateToAvatarId(friend, 'friendOffline', [doId])
-
-            if doId in self.onlinePirates:
-                self.onlinePirates.remove(doId)
+                    self.requestFriendsListFor(friend)
 
         self.air.dbInterface.queryObject(self.air.dbId, doId, handlePirate)
 

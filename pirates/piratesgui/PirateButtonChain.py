@@ -10,7 +10,6 @@ from pirates.piratesgui import SocialPage
 from pirates.piratesgui import PiratesGuiGlobals
 from pirates.piratesbase import PiratesGlobals
 from otp.otpbase import OTPGlobals
-from otp.friends.FriendInfo import FriendInfo
 import GuiButton
 
 class PirateButtonChain:

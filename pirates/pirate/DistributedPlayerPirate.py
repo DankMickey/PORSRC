@@ -269,7 +269,6 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             self.skeleton = None
             self.stickyTargets = []
             self.attuneEffect = None
-            self.avatarFriendsList = set()
             self.guildName = PLocalizer.GuildNoGuild
             self.guildId = -1
             self.guildRank = -1
@@ -1445,21 +1444,6 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             return None
 
 
-    def getFriendsListId(self):
-        pass
-
-
-    def setFriendsListId(self, friendsListId):
-        pass
-
-
-    def getFriendsList(self):
-        return self.avatarFriendsList
-
-
-    def getAvatarFriendsList(self):
-        return self.avatarFriendsList
-
     def getName(self):
         return self.title + self.name
 
@@ -2626,6 +2610,15 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
 
     def getTeleportFlags(self):
         return self.teleportFlags
+    
+    def friendsNotify(self, avId, status):
+        avatar = base.cr.identifyFriend(avId)
+        if avatar != None:
+            if status == 1:
+                self.guiMgr.friendsPage.removeAvatarFriend(avatar.doId)
+                self.setSystemMessage(avId, OTPLocalizer.WhisperNoLongerFriend % avatar.getName())
+            elif status == 2:
+                self.setSystemMessage(avId, OTPLocalizer.WhisperNowSpecialFriend % avatar.getName())
 
     def sendTeleportQuery(self, sendToId, localBandMgrId, localBandId, localGuildId, localShardId):
         self.d_teleportQuery(localAvatar.doId, localBandMgrId, localBandId, localGuildId, localShardId, sendToId)

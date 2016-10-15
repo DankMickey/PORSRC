@@ -11,7 +11,6 @@ from pirates.piratesgui import SocialPage
 from pirates.piratesgui import PiratesGuiGlobals
 from pirates.piratesbase import PiratesGlobals
 from otp.otpbase import OTPGlobals
-from otp.friends.FriendInfo import FriendInfo
 import GuiButton
 from pirates.piratesgui import PirateMemberList
 from direct.task import Task
@@ -55,27 +54,21 @@ class FriendsPage(SocialPage.SocialPage):
 
 
     def addAvatarFriend(self, avId, info):
-        self.membersList.updateOrAddMember(avId, PirateMemberList.MODE_FRIEND_AVATAR, info)
-        self.startRecountMembers()
+        self.updateAvatarFriend(avId, info)
         if hasattr(base, 'localAvatar'):
             inv = base.localAvatar.getInventory()
             if inv and not inv.getStackQuantity(InventoryType.NewFriend):
                 base.localAvatar.sendRequestContext(InventoryType.NewFriend)
 
-
-
-    def addAvatarFriends(self, friendData):
-        for friendDetail in friendData:
-            avId = friendDetail[0]
-            info = friendDetail[1]
-            self.membersList.updateOrAddMember(avId, PirateMemberList.MODE_FRIEND_AVATAR, info)
-
-        self.startRecountMembers()
-
     def updateAvatarFriend(self, avId, info):
         self.membersList.updateOrAddMember(avId, PirateMemberList.MODE_FRIEND_AVATAR, info)
         self.startRecountMembers()
 
+    def removeAllFriends(self):
+        self.membersList.removeAll()
+        self.membersList.arrangeMembers()
+        self.startRecountMembers()
+    
     def removeAvatarFriend(self, avId):
         self.membersList.removeMember(avId, PirateMemberList.MODE_FRIEND_AVATAR)
         self.membersList.arrangeMembers()

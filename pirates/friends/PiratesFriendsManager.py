@@ -9,9 +9,6 @@ class PiratesFriendsManager(DistributedObjectGlobal):
     def d_requestFriendsList(self):
         self.sendUpdate('requestFriendsList', [])
 
-    def friendInfo(self, resp):
-        base.cr.handleGetFriendsListExtended(resp)
-
     def friendList(self, resp):
         base.cr.handleGetFriendsList(resp)
 

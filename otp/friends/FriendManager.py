@@ -1,49 +1,26 @@
-from direct.distributed import DistributedObject
+from direct.distributed.DistributedObject import DistributedObject
 from direct.directnotify import DirectNotifyGlobal
 from otp.otpbase import OTPGlobals
 
-class FriendManager(DistributedObject.DistributedObject):
+class FriendManager(DistributedObject):
     notify = DirectNotifyGlobal.directNotify.newCategory('FriendManager')
     neverDisable = 1
 
     def __init__(self, cr):
-        DistributedObject.DistributedObject.__init__(self, cr)
-        self.__available = 0
+        DistributedObject.__init__(self, cr)
         self.otherToon = 0
-        self.gameSpecificFunction = None
-
-    def setAvailable(self, available):
-        self.__available = available
-        if self.__available and self.gameSpecificFunction:
-            self.gameSpecificFunction()
-
-    def getAvailable(self):
-        return self.__available
-
-    def setGameSpecificFunction(self, function):
-        self.gameSpecificFunction = function
-
-    def executeGameSpecificFunction(self):
-        if self.__available and self.gameSpecificFunction:
-            self.gameSpecificFunction()
 
     def generate(self):
-        if base.cr.friendManager != None:
-            base.cr.friendManager.delete()
         base.cr.friendManager = self
-        DistributedObject.DistributedObject.generate(self)
-        return
+        DistributedObject.generate(self)
 
     def disable(self):
         base.cr.friendManager = None
-        DistributedObject.DistributedObject.disable(self)
-        return
+        DistributedObject.disable(self)
 
     def delete(self):
-        self.gameSpecificFunction = None
         base.cr.friendManager = None
-        DistributedObject.DistributedObject.delete(self)
-        return
+        DistributedObject.delete(self)
 
     def up_friendQuery(self, inviteeId):
         self.otherToon = inviteeId
@@ -60,7 +37,9 @@ class FriendManager(DistributedObject.DistributedObject):
 
     def up_inviteeFriendResponse(self, yesNoMaybe, context):
         if yesNoMaybe == 1:
-            base.cr.piratesFriendsManager.friendOnline(self.otherToon, 0, 0)
+            base.cr.piratesFriendsManager.friendOnline(self.otherToon)
+            messenger.send(OTPGlobals.AvatarFriendAddEvent, [self.otherToon, base.cr.identifyFriend(self.otherToon)])
+
         self.sendUpdate('inviteeFriendResponse', [yesNoMaybe, context])
         self.notify.debug('Client: inviteeFriendResponse(%d, %d)' % (yesNoMaybe, context))
 
@@ -70,11 +49,15 @@ class FriendManager(DistributedObject.DistributedObject):
 
     def friendConsidering(self, yesNoAlready, context):
         self.notify.info('Roger Client: friendConsidering(%d, %d)' % (yesNoAlready, context))
-        messenger.send('friendConsidering', [yesNoAlready, context])
+        messenger.send(OTPGlobals.AvatarFriendConsideringEvent, [yesNoAlready, context])
 
     def friendResponse(self, yesNoMaybe, context):
         if yesNoMaybe == 1:
-            base.cr.piratesFriendsManager.friendOnline(self.otherToon, 0, 0)
+            base.cr.piratesFriendsManager.friendOnline(self.otherToon)
+            messenger.send(OTPGlobals.AvatarFriendAddEvent, [self.otherToon, base.cr.identifyFriend(self.otherToon)])
+        else:
+            messenger.send(OTPGlobals.AvatarFriendConsideringEvent, [yesNoMaybe, context])
+
         self.notify.debug('Client: friendResponse(%d, %d)' % (yesNoMaybe, context))
         messenger.send('friendResponse', [yesNoMaybe, context])
 
@@ -83,34 +66,28 @@ class FriendManager(DistributedObject.DistributedObject):
         if not hasattr(base, 'localAvatar'):
             self.up_inviteeFriendConsidering(0, context)
             return
-        if inviterId in base.localAvatar.isIgnored(inviterId):
+        if base.localAvatar.isIgnored(inviterId):
             self.up_inviteeFriendConsidering(4, context)
             return
         if not base.localAvatar.acceptingNewFriends:
             self.up_inviteeFriendConsidering(6, context)
             return
-        self.up_inviteeFriendConsidering(self.__available, context)
+        self.up_inviteeFriendConsidering(1, context)
         self.otherToon = inviterId
-        if self.__available:
-            messenger.send('friendInvitation', [inviterId,
-             inviterName,
-             inviterDna,
-             context])
+        messenger.send(OTPGlobals.AvatarFriendInvitationEvent, [inviterId, inviterName, context])
 
     def inviteeCancelFriendQuery(self, context):
         self.notify.debug('Client: inviteeCancelFriendQuery(%d)' % context)
         messenger.send('cancelFriendInvitation', [context])
         self.up_inviteeAcknowledgeCancel(context)
-
-    def up_requestSecret(self):
-        self.notify.warning('Sending Request')
-        self.sendUpdate('requestSecret', [])
-
-    def requestSecretResponse(self, result, secret):
-        messenger.send('requestSecretResponse', [result, secret])
-
-    def up_submitSecret(self, secret):
-        self.sendUpdate('submitSecret', [secret])
-
-    def submitSecretResponse(self, result, avId):
-        messenger.send('submitSecretResponse', [result, avId])
+    
+    def requestTFCode(self, callback):
+        self.tfCallback = callback
+        self.sendUpdate('requestTFCode')
+    
+    def redeemTFCode(self, code, callback):
+        self.tfCallback = callback
+        self.sendUpdate('redeemTFCode', [code])
+    
+    def tfResponse(self, response, code):
+        self.tfCallback(response, code)
