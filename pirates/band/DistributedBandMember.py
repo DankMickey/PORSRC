@@ -228,7 +228,7 @@ class DistributedBandMember(DistributedObject, PAvatarHandle):
 
     def setTalk(self, fromAV, avatarName, chat):
         if base.whiteList:
-            chat = base.whiteList.processThroughAll(chat, base.localAvatar)
+            chat = base.whiteList.processThroughAll(chat, base.chatGarbler)
 
         base.talkAssistant.receivePartyTalk(fromAV, avatarName, chat)
 

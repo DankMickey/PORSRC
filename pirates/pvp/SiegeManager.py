@@ -67,7 +67,7 @@ class SiegeManager(DistributedObject, SiegeManagerBase):
         teamName = self.getPVPChatTeamName(localAvatar.getSiegeTeam())
         
         if base.whiteList:
-            chat = base.whiteList.processThroughAll(chat, base.localAvatar)
+            chat = base.whiteList.processThroughAll(chat, base.chatGarbler)
         
         base.talkAssistant.receiveShipPVPMessage(fromAv, avatarName, teamName, chat)
 

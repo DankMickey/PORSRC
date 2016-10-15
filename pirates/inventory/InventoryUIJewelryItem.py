@@ -17,7 +17,13 @@ class InventoryUIJewelryItem(InventoryUIItem.InventoryUIItem):
         self['relief'] = None
         jewelryGui = loader.loadModel('models/gui/gui_icons_jewelry')
         iconName = ItemGlobals.getIcon(itemTuple[1])
-        self['image'] = jewelryGui.find('**/%s' % iconName)
+        image = jewelryGui.find('**/%s' % iconName)
+        
+        if image:
+            self['image'] = image
+        else:
+            self.notify.warning('Missing image for %s!' % iconName)
+
         self['image_scale'] = 0.1 * imageScaleFactor
         iconColorIndex = ItemGlobals.getColor(itemTuple[1])
         self.iconColor = ItemConstants.COLOR_VALUES[iconColorIndex]

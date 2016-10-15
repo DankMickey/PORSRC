@@ -11,6 +11,10 @@ import time
 BasicCache = {}
 DetailedCache = {}
 
+def deleteFromBasicCache(doId):
+    if doId in BasicCache:
+        del BasicCache[doId]
+
 # -- FSMS --
 class OperationFSM(FSM):
 
@@ -136,12 +140,12 @@ class FriendsListOperation(OperationFSM):
 
         if dclass != self.air.dclassesByName['DistributedPlayerPirateUD']:
             self.demand('Error', 'Friend was not a Pirate')
-            BasicCache[friendId] = {'expire': time.time() + 5}
+            BasicCache[friendId] = {'expire': time.time() + 30}
             return
 
         info = [friendId, fields['setName'][0], fields['setHp'][0], fields['setMaxHp'][0], friendId in self.mgr.onlinePirates]
 
-        BasicCache[friendId] = {'expire': time.time() + 5, 'info': info}
+        BasicCache[friendId] = {'expire': time.time() + 30, 'info': info}
         self.addFriendInfo(info)
     
     def addFriendInfo(self, info):
@@ -200,6 +204,7 @@ class RemoveFriendOperation(OperationFSM):
         if self.alert and self.sender in self.mgr.onlinePirates:
             self.air.send(dclass.aiFormatUpdate('friendsNotify', self.sender, self.sender, self.air.ourChannel, [self.target, 1]))
 
+        deleteFromBasicCache(self.target)
         self.mgr.requestFriendsListFor(self.sender)
         self.demand('Off')
 
@@ -215,7 +220,7 @@ class PiratesFriendsManagerUD(DistributedObjectGlobalUD):
         self.tpRequests = {}
         self.whisperRequests = {}
         self.operations = {}
-        self.delayTime = 1.0
+        self.delayTime = 0.2
         self.accept('goingOffline', self.goingOffline)
 
     def checkWhisperRequest(self, fromId):
@@ -288,20 +293,22 @@ class PiratesFriendsManagerUD(DistributedObjectGlobalUD):
         if doId in self.onlinePirates:
             return
 
+        self.onlinePirates.append(doId)
+        deleteFromBasicCache(doId)
+        
         for friend in friendsList:
             friend = friend[0]
 
             if friend in self.onlinePirates:
                 self.sendUpdateToAvatarId(friend, 'friendOnline', [doId])
                 self.requestFriendsListFor(friend)
-        
-        self.onlinePirates.append(doId)
 
     def goingOffline(self, doId):
         if doId not in self.onlinePirates:
             return
         
         self.onlinePirates.remove(doId)
+        deleteFromBasicCache(doId)
 
         def handlePirate(dclass, fields):
             if dclass != self.air.dclassesByName['DistributedPlayerPirateUD']:

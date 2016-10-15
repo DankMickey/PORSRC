@@ -947,7 +947,7 @@ dclass PiratesFriendsManager : DistributedObjectGlobal {
   goingOffline(uint32);
 
   getAvatarDetails(uint32) clsend;
-  receiveAvatarInfo(blob, uint32, string, uint8, uint16, uint16, uint16, uint16, uint32, bool, bool, string, uint8, uint8);
+  receiveAvatarInfo(blob, uint32, string, uint8, int16, uint16, uint16, uint16, uint32, bool, bool, string, uint8, uint8);
   receiveAvatarSkillLevels(uint8, uint8, uint8, uint8, uint8, uint8, uint8, uint8, uint8, uint8, uint8);
   receiveAvatarShipInfo(bool, bool, bool);
 

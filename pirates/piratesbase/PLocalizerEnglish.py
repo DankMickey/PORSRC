@@ -10706,11 +10706,6 @@ CapturePointLowHealth = '%s is nearly destroyed!'
 TEMP_DOUBLE_REP = 'You earned a x2 reputation reward.\nYou currently have %s hours(s) and %s minute(s), before the reward expires. Type /x2 at the chat prompt to check the time remaining.'
 TEMP_DOUBLE_REP_CHAT = 'You earned a x2 reputation reward.\nYou currently have %s hours(s) and %s minute(s), before the reward expires.'
 NO_TEMP_DOUBLE_REP = 'You currently do not have a double reputation award'
-WhitelistScrubList = [
-    'yarr',
-    'arrr',
-    'garr',
-    'arrrrr']
 WhiteListWarning = 'Words typed in \x01WLEnter\x01red\x02 are shown in \x01WLDisplay\x01italics\x02 and may not be visible to some players.'
 EmoteCommands = {
     'coin': (EmoteGlobals.EMOTE_COIN_FLIP),

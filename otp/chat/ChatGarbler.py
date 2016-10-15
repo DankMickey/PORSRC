@@ -1,9 +1,10 @@
+from otp.otpbase import OTPLocalizer
 import random
 
 class ChatGarbler:
 
     def getMessages(self):
-        return ['']
+        return OTPLocalizer.ChatGarblerDefault
 
     def garble(self, numWords):
         wordList = self.getMessages()
