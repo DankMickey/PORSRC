@@ -11392,6 +11392,7 @@ CannonDefenseHelp = {
     'HelpHeader': 'Hide Help Overlay' }
 CannonDefenseLevelUp = '%s Level %d'
 CannonDefenseAmmoUnlocked = 'Unlocked %s Ammo'
+CannonDefenseWaitingForPlayers = 'Waiting for other players'
 CannonDefenseAmmoDesc = '%s\nCost: %d\nAmount: %s\n\n%s'
 CannonDefenseAmmoUnlockedAt = 'Unlocked at Level %d'
 NoAmmoSlot = 'No empty ammo slot available'

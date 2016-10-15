@@ -46,11 +46,14 @@ class CannonDefenseFSM(FSM):
 
 
     def enterWaitingForPlayers(self):
-        pass
+        self._CannonDefenseFSM__createWaitingPlayersLabel()
+        self._gameDO.disableCannonInput()
+
 
 
     def exitWaitingForPlayers(self):
-        pass
+        self._CannonDefenseFSM__destroyWaitingPlayersLabel()
+        self._gameDO.enableCannonFire()
 
 
     def enterTutorial(self):
@@ -188,7 +191,17 @@ class CannonDefenseFSM(FSM):
         self._CannonDefenseFSM__lblwaitingFor = OnscreenText(parent = base.a2dTopCenter, pos = (0.0, -0.13), text = PLocalizer.CannonDefense['Waiting'], font = PiratesGlobals.getPirateOutlineFont(), scale = 0.089, align = TextNode.ACenter, shadow = PiratesGuiGlobals.TextShadow, fg = PiratesGuiGlobals.TextFG1)
 
 
+    def _CannonDefenseFSM__createWaitingPlayersLabel(self):
+        self._CannonDefenseFSM__destroyWaitingLabel()
+        self._CannonDefenseFSM__lblwaitingForPlayers = OnscreenText(parent = base.a2dTopCenter, pos = (0.0, -0.13), text = PLocalizer.CannonDefenseWaitingForPlayers, font = PiratesGlobals.getPirateOutlineFont(), scale = 0.089, align = TextNode.ACenter, shadow = PiratesGuiGlobals.TextShadow, fg = PiratesGuiGlobals.TextFG1)
+
+
     def _CannonDefenseFSM__destroyWaitingLabel(self):
         if self._CannonDefenseFSM__lblwaitingFor:
             self._CannonDefenseFSM__lblwaitingFor.destroy()
             self._CannonDefenseFSM__lblwaitingFor = None
+
+    def _CannonDefenseFSM__destroyWaitingPlayersLabel(self):
+        if self._CannonDefenseFSM__lblwaitingForPlayers:
+            self._CannonDefenseFSM__lblwaitingForPlayers.destroy()
+            self._CannonDefenseFSM__lblwaitingForPlayers = None
