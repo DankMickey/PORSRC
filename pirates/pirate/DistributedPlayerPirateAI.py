@@ -360,17 +360,11 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
     def __checkCodeExploit(self, task):
         newCodes = []
         changed = False
-        warning = False
         
         for code in self.redeemedCodes:
-            if code.lower() in newCodes:
-                warning = True
-            else:
+            if code.lower() not in newCodes:
                 changed = True
                 newCodes.append(code.lower())
-        
-        if warning:
-            self.d_setSystemMessage(0, "Seems like you've been abusing that Code Redemption bug. Normally, your pirate would be rolled back... but then again, it's just open alpha. But please, next time report these bugs instead of abusing them!")
         
         if changed:
             self.b_setRedeemedCodes(newCodes)
