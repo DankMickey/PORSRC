@@ -28,7 +28,7 @@ class CrewInvitee(DirectFrame):
         self.initialiseoptions(CrewInvitee)
         self.avId = avId
         self.avName = avName
-        if base.cr.avatarFriendsManager.checkIgnored(self.avId):
+        if base.localAvatar.isIgnored(self.avId):
             self._CrewInvitee__handleNo()
             return None
 

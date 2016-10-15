@@ -29,7 +29,7 @@ class TeleportConfirm(SocialPage.SocialPage):
         self.setPos(-0.25, 0, -0.149)
         self.avId = avId
         self.avName = avName
-        if base.cr.avatarFriendsManager.checkIgnored(self.avId):
+        if base.localAvatar.isIgnored(self.avId):
             self._TeleportConfirm__handleNo()
             return None
 

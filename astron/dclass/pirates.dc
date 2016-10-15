@@ -469,12 +469,12 @@ dclass DistributedReputationAvatar : DistributedMovingObject, DistributedInterac
   setAggroRadius(int32) required broadcast ram;
   setAggroMode(uint8) required broadcast ram;*/
   
-  // DistributedAvatar
   setName(string) required broadcast db airecv ownrecv;
   checkAvOnShard(DoId) clsend airecv;
   confirmAvOnShard(DoId avId, int8 isOnShard);
   setTalk(string(0-256) chat) broadcast ram;
   setTalkFrom(uint32 avId, uint8 channel, string(0-256) chat) ownrecv;
+  setIgnoredPlayers(uint32[] = []) required ownrecv clsend airecv db;
 };
 
 dclass DistributedBattleAvatar : DistributedReputationAvatar, WeaponBase {

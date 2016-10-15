@@ -169,9 +169,8 @@ dclass DistributedPlayer : DistributedAvatar {
   setSC(uint16 msgIndex) broadcast ownsend airecv;
   setSCCustom(uint16 msgIndex) broadcast ownsend airecv;
   setFriendsList(uint32[] = []) ownrecv required db airecv;
-  setDISLname(string) broadcast ownrecv ram;
+  setIgnoredPlayers(uint32[] = []) required ownrecv clsend airecv db;
   setDISLid(uint32 = 0) broadcast ownrecv ram db airecv required;
-  OwningAccount(DoId);
   WishName(string = "") db ram;
   WishNameState(string = "OPEN") db ram;
   setAdminAccess(uint16 = 0) ownrecv required airecv;

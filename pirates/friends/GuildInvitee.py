@@ -25,7 +25,7 @@ class GuildInvitee(DirectFrame):
         self.avId = avId
         self.avName = avName
         self.guildId = guildId
-        if base.cr.avatarFriendsManager.checkIgnored(self.avId):
+        if base.localAvatar.isIgnored(self.avId):
             self._GuildInvitee__handleNo()
             return None
 

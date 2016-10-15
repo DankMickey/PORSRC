@@ -56,7 +56,7 @@ class TradePanel(GuiPanel.GuiPanel):
         self.accept(PiratesGlobals.TradeFinishedEvent, self.finishedTrade)
         self.accept(PiratesGuiGlobals.InventoryTradeEvent, self.processItem)
         self.updateTrade()
-        if base.cr.avatarFriendsManager.checkIgnored(self.trade.firstAvatarId) or base.cr.avatarFriendsManager.checkIgnored(self.trade.secondAvatarId):
+        if base.localAvatar.isIgnored(self.trade.firstAvatarId) or base.localAvatar.isIgnored(self.trade.secondAvatarId):
             self.closePanel()
             return None
 

@@ -384,7 +384,7 @@ class DistributedTeleportMgr(DistributedObject.DistributedObject):
             return None
 
         if self.cr.identifyFriend(requesterId):
-            if requesterId in localAvatar.ignoreList or self.cr.avatarFriendsManager.checkIgnored(requesterId):
+            if base.localAvatar.isIgnored(requesterId):
                 handle.sendTeleportResponse(PiratesGlobals.encodeTeleportFlag(PiratesGlobals.TFIgnore), 0, 0, 0, sendToId = requesterId)
                 return None
 

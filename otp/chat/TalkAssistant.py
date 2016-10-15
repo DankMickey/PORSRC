@@ -192,10 +192,12 @@ class TalkAssistant(DirectObject.DirectObject):
         else:
             base.cr.chatAgent.sendChatMessage(message)
 
-    def sendWhisperTalk(self, message, receiverAvId):
+    def sendWhisperTalk(self, message, receiverAvId, history=True):
         # This is Pirates specific... which goes against all things OTP. But oh well.
         # Route through the PFMUD.
-        self.addWhisperToHistory(receiverAvId, message)
+        if history:
+            self.addWhisperToHistory(receiverAvId, message)
+        
         base.cr.piratesFriendsManager.sendUpdate('sendTalkWhisper', [receiverAvId, message])
 
     def sendGuildTalk(self, message):

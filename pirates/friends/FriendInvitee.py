@@ -25,7 +25,7 @@ class FriendInvitee(DirectFrame):
         self.initialiseoptions(FriendInvitee)
         self.avId = avId
         self.avName = avName
-        if base.cr.avatarFriendsManager.checkIgnored(self.avId):
+        if base.localAvatar.isIgnored(self.avId):
             self._FriendInvitee__handleNo()
             return None
 

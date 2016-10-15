@@ -746,7 +746,6 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
             del self.currentSelection
             del self.skillDiary
             self.ignore('shipRemoved')
-            self.cr.avatarFriendsManager.reset()
             DistributedPlayerPirate.delete(self)
             taskMgr.remove(self.uniqueName('questShow'))
             taskMgr.remove(self.uniqueName('oceanCheck'))
@@ -2169,7 +2168,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
 
 
     def displayWhisper(self, fromAvId, chatString, whisperType):
-        if base.cr.avatarFriendsManager.checkIgnored(fromAvId):
+        if base.localAvatar.isIgnored(fromAvId):
             return
 
         sender = base.cr.identifyAvatar(fromAvId)
@@ -2182,12 +2181,13 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
 
 
     def displayTalkWhisper(self, fromId, avatarName, chatString):
-        if base.cr.avatarFriendsManager.checkIgnored(fromId):
+        if base.localAvatar.isIgnored(fromId):
+            self.d_setWhisperIgnored(fromId)
             return
 
         if self.soundWhisper:
             base.playSfx(self.soundWhisper)
-        
+
         base.talkAssistant.receiveWhisperTalk(fromId, avatarName, chatString)
 
     def whisperTo(self, chatString, sendToId):

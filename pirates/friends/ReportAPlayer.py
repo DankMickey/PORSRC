@@ -126,8 +126,8 @@ class ReportAPlayer(GuiPanel.GuiPanel, FSM.FSM):
         if removedFriendship:
             text += '\n\n' + PLocalizer.ReportPlayerRemovedFriend % self.avName
 
-        if not base.cr.avatarFriendsManager.checkIgnored(self.avId):
-            base.cr.avatarFriendsManager.addIgnore(self.avId)
+        if not base.localAvatar.isIgnored(self.avId):
+            base.localAvatar.addIgnore(self.avId)
             text += '\n\n' + PLocalizer.ReportPlayerIgnored % self.avName
 
         self.fieldText['text'] = text

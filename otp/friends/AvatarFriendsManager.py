@@ -15,22 +15,6 @@ class AvatarFriendsManager(DistributedObjectGlobal):
         self.avatarFriendsList = set()
         self.avatarId2Info = {}
         self.invitedAvatarsList = []
-        self.ignoredAvatarList = []
-
-    def addIgnore(self, avId):
-        if avId not in self.ignoredAvatarList:
-            self.ignoredAvatarList.append(avId)
-            base.cr.centralLogger.writeClientEvent('ignoring %s' % (avId,))
-        messenger.send('AvatarIgnoreChange')
-
-    def removeIgnore(self, avId):
-        if avId in self.ignoredAvatarList:
-            self.ignoredAvatarList.remove(avId)
-            base.cr.centralLogger.writeClientEvent('stopped ignoring %s' % (avId,))
-        messenger.send('AvatarIgnoreChange')
-
-    def checkIgnored(self, avId):
-        return avId and avId in self.ignoredAvatarList
 
     def sendRequestInvite(self, avId):
         self.notify.debugCall()

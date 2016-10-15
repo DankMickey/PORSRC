@@ -1314,7 +1314,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
                     prefix = '\x01injuredRedTimer\x01%s\x02\x01injuredRed\x01\n%s\x02\n' % PLocalizer.InjuredFlag
                 else:
                     prefix = '\x01injuredRed\x01%s\x02\n' % PLocalizer.InjuredFlag
-            elif base.cr.avatarFriendsManager.checkIgnored(self.doId):
+            elif base.localAvatar.isIgnored(self.doId):
                 prefix = '\x01ignoredPink\x01%s\x02\n' % PLocalizer.IngoredFlag
             elif self.isAFK:
                 prefix = '\x01afkGray\x01%s\x02\n' % PLocalizer.AFKFlag
@@ -2795,7 +2795,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
 
 
     def setSCEmote(self, emoteId):
-        if self.doId in base.localAvatar.ignoreList:
+        if base.localAvatar.isIgnored(self.doId):
             return None
 
         self.playEmote(emoteId)
@@ -2821,7 +2821,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
 
 
     def setSpeedChatQuest(self, questInt, msgType, taskNum, taskState):
-        if self.doId in base.localAvatar.ignoreList:
+        if base.localAvatar.isIgnored(self.doId):
             return None
 
         chatString = PSCDecoders.decodeSCQuestMsgInt(questInt, msgType, taskNum, taskState)
@@ -2842,7 +2842,8 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
 
 
     def setWhisperSCQuest(self, fromId, questInt, msgType, taskNum):
-        if fromId in base.localAvatar.ignoreList:
+        if base.localAvatar.isIgnored(fromId):
+            self.d_setWhisperIgnored(fromId)
             return None
 
         fromHandle = base.cr.identifyAvatar(fromId)
@@ -2853,7 +2854,6 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             return None
 
         chatString = PSCDecoders.decodeSCQuestMsgInt(questInt, msgType, taskNum)
-
         base.talkAssistant.receiveWhisperTalk(fromId, fromName, chatString)
         
     def setFounder(self, founder):
@@ -3634,7 +3634,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
 
 
     def playEmote(self, emoteId):
-        if base.cr.avatarFriendsManager.checkIgnored(self.doId):
+        if base.localAvatar.isIgnored(self.doId):
             return None
         else:
             DistributedBattleAvatar.playEmote(self, emoteId)

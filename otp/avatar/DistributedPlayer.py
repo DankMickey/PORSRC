@@ -21,29 +21,22 @@ class DistributedPlayer(DistributedAvatar.DistributedAvatar, PlayerBase.PlayerBa
     TeleportFailureTimeout = 60.0
 
     def __init__(self, cr):
-        try:
-            self.DistributedPlayer_initialized
-        except:
-            self.DistributedPlayer_initialized = 1
-            DistributedAvatar.DistributedAvatar.__init__(self, cr)
-            PlayerBase.PlayerBase.__init__(self)
-            TelemetryLimited.__init__(self)
-            self.__teleportAvailable = 0
-            self.inventory = None
-            self.experience = None
-            self.friendsList = []
-            self.oldFriendsList = None
-            self.timeFriendsListChanged = None
-            self.ignoreList = []
-            self.lastFailedTeleportMessage = {}
-            self._districtWeAreGeneratedOn = None
-            self.DISLname = ''
-            self.DISLid = 0
-            self.adminAccess = 0
-            self.autoRun = 0
-            self.isConfused = False
-
-        return
+        DistributedAvatar.DistributedAvatar.__init__(self, cr)
+        PlayerBase.PlayerBase.__init__(self)
+        TelemetryLimited.__init__(self)
+        self.__teleportAvailable = 0
+        self.inventory = None
+        self.experience = None
+        self.friendsList = []
+        self.ignoredPlayers = []
+        self.oldFriendsList = None
+        self.timeFriendsListChanged = None
+        self.lastFailedTeleportMessage = {}
+        self._districtWeAreGeneratedOn = None
+        self.DISLid = 0
+        self.adminAccess = 0
+        self.autoRun = 0
+        self.isConfused = False
 
     @staticmethod
     def GetPlayerGenerateEvent():
@@ -150,10 +143,7 @@ class DistributedPlayer(DistributedAvatar.DistributedAvatar, PlayerBase.PlayerBa
         handle = base.cr.identifyAvatar(fromId)
         if handle == None:
             return
-        if base.cr.avatarFriendsManager.checkIgnored(fromId):
-            self.d_setWhisperIgnored(fromId)
-            return
-        if fromId in self.ignoreList:
+        if base.localAvatar.isIgnored(fromId):
             self.d_setWhisperIgnored(fromId)
             return
         chatString = SCDecoders.decodeSCStaticTextMsg(msgIndex)
@@ -180,10 +170,7 @@ class DistributedPlayer(DistributedAvatar.DistributedAvatar, PlayerBase.PlayerBa
         if not self._isValidWhisperSource(handle):
             self.notify.warning('displayWhisper from non-toon %s' % fromId)
             return
-        if base.cr.avatarFriendsManager.checkIgnored(fromId):
-            self.d_setWhisperIgnored(fromId)
-            return
-        if fromId in self.ignoreList:
+        if base.localAvatar.isIgnored(fromId):
             self.d_setWhisperIgnored(fromId)
             return
         chatString = SCDecoders.decodeSCCustomMsg(msgIndex)
@@ -203,7 +190,7 @@ class DistributedPlayer(DistributedAvatar.DistributedAvatar, PlayerBase.PlayerBa
         handle = base.cr.identifyAvatar(fromId)
         if handle == None:
             return
-        if base.cr.avatarFriendsManager.checkIgnored(fromId):
+        if base.localAvatar.isIgnored(fromId):
             self.d_setWhisperIgnored(fromId)
             return
         chatString = SCDecoders.decodeSCEmoteWhisperMsg(emoteId, handle.getName())
@@ -212,7 +199,7 @@ class DistributedPlayer(DistributedAvatar.DistributedAvatar, PlayerBase.PlayerBa
             base.talkAssistant.receiveAvatarWhisperSpeedChat(TalkAssistant.SPEEDCHAT_EMOTE, emoteId, fromId)
 
     def d_setWhisperIgnored(self, sendToId):
-        pass
+        base.talkAssistant.sendWhisperTalk(OTPLocalizer.WhisperIgnored, sendToId, False)
 
     def setChatAbsolute(self, chatString, chatFlags, dialogue = None, interrupt = 1, quiet = 0):
         DistributedAvatar.DistributedAvatar.setChatAbsolute(self, chatString, chatFlags, dialogue, interrupt)
@@ -220,7 +207,7 @@ class DistributedPlayer(DistributedAvatar.DistributedAvatar, PlayerBase.PlayerBa
     def setTalk(self, chat):
         if not base.cr.chatAgent.verifyMessage(chat):
             return
-        if False and base.localAvatar.isIgnored(self.doId):
+        if base.localAvatar.isIgnored(self.doId):
             return
         if not self.understandable:
             chat = self.garble(len(chat.split(' ')))
@@ -263,9 +250,7 @@ class DistributedPlayer(DistributedAvatar.DistributedAvatar, PlayerBase.PlayerBa
         self.sendUpdate('setSC', [msgIndex])
 
     def setSC(self, msgIndex):
-        if base.cr.avatarFriendsManager.checkIgnored(self.doId):
-            return
-        if self.doId in base.localAvatar.ignoreList:
+        if base.localAvatar.isIgnored(self.doId):
             return
         chatString = SCDecoders.decodeSCStaticTextMsg(msgIndex)
         if chatString:
@@ -281,9 +266,7 @@ class DistributedPlayer(DistributedAvatar.DistributedAvatar, PlayerBase.PlayerBa
         self.sendUpdate('setSCCustom', [msgIndex])
 
     def setSCCustom(self, msgIndex):
-        if base.cr.avatarFriendsManager.checkIgnored(self.doId):
-            return
-        if self.doId in base.localAvatar.ignoreList:
+        if base.localAvatar.isIgnored(self.doId):
             return
         chatString = SCDecoders.decodeSCCustomMsg(msgIndex)
         if chatString:
@@ -318,12 +301,8 @@ class DistributedPlayer(DistributedAvatar.DistributedAvatar, PlayerBase.PlayerBa
         avatar = base.cr.identifyFriend(requesterId)
         if avatar != None:
             teleportNotify.debug('avatar is not None')
-            if base.cr.avatarFriendsManager.checkIgnored(requesterId):
-                teleportNotify.debug('avatar ignored via avatarFriendsManager')
-                self.d_teleportResponse(self.doId, 2, 0, 0, 0, sendToId=requesterId)
-                return
-            if requesterId in self.ignoreList:
-                teleportNotify.debug('avatar ignored via ignoreList')
+            if base.localAvatar.isIgnored(requesterId):
+                teleportNotify.debug('avatar ignored')
                 self.d_teleportResponse(self.doId, 2, 0, 0, 0, sendToId=requesterId)
                 return
             if hasattr(base, 'distributedParty'):
@@ -428,9 +407,6 @@ class DistributedPlayer(DistributedAvatar.DistributedAvatar, PlayerBase.PlayerBa
         messenger.send('friendsListChanged')
         Avatar.reconsiderAllUnderstandable()
 
-    def setDISLname(self, name):
-        self.DISLname = name
-
     def setDISLid(self, id):
         self.DISLid = id
 
@@ -447,3 +423,35 @@ class DistributedPlayer(DistributedAvatar.DistributedAvatar, PlayerBase.PlayerBa
 
     def getAutoRun(self):
         return self.autoRun
+    
+    def d_setIgnoredPlayers(self, ignoredPlayers):
+        self.sendUpdate('setIgnoredPlayers', [ignoredPlayers])
+    
+    def setIgnoredPlayers(self, ignoredPlayers):
+        self.ignoredPlayers = ignoredPlayers
+    
+    def b_setIgnoredPlayers(self, ignoredPlayers):
+        self.setIgnoredPlayers(ignoredPlayers)
+        self.d_setIgnoredPlayers(ignoredPlayers)
+    
+    def getIgnoredPlayers(self):
+        return self.ignoredPlayers
+    
+    def isIgnored(self, doId):
+        return doId in self.ignoredPlayers
+    
+    def addIgnore(self, doId):
+        if doId in self.ignoredPlayers:
+            return
+        
+        self.ignoredPlayers.append(doId)
+        self.d_setIgnoredPlayers(self.ignoredPlayers)
+        messenger.send('AvatarIgnoreChange')   
+    
+    def removeIgnore(self, doId):
+        if doId not in self.ignoredPlayers:
+            return
+        
+        self.ignoredPlayers.remove(doId)
+        self.d_setIgnoredPlayers(self.ignoredPlayers)
+        messenger.send('AvatarIgnoreChange')   

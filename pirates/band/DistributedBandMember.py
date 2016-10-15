@@ -233,14 +233,14 @@ class DistributedBandMember(DistributedObject, PAvatarHandle):
         base.talkAssistant.receivePartyTalk(fromAV, avatarName, chat)
 
     def setSpeedChat(self, senderId, msgIndex):
-        if not self.cr.avatarFriendsManager.checkIgnored(self.avatarId):
+        if not base.localAvatar.isIgnored(self.avatarId):
             displayMess = '%s %s %s' % (self.name, PLocalizer.CrewPrefix, SCDecoders.decodeSCStaticTextMsg(msgIndex))
             message = SCDecoders.decodeSCStaticTextMsg(msgIndex)
             if message:
                 base.talkAssistant.receivePartyMessage(senderId, self.name, message)
 
     def setSCQuestChat(self, senderId, questInt, msgType, taskNum):
-        if not self.cr.avatarFriendsManager.checkIgnored(self.avatarId):
+        if not base.localAvatar.isIgnored(self.avatarId):
             displayMess = '%s %s %s' % (self.name, PLocalizer.CrewPrefix, PSCDecoders.decodeSCQuestMsgInt(questInt, msgType, taskNum))
             message = PSCDecoders.decodeSCQuestMsgInt(questInt, msgType, taskNum)
             base.talkAssistant.receivePartyMessage(senderId, self.name, message)

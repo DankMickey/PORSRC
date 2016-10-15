@@ -29,7 +29,7 @@ class PiratesConfirm(DirectFrame):
         self.avId = avId
         self.tattoo = tattoo
         self.barber = barber
-        if avId is not None and base.cr.avatarFriendsManager.checkIgnored(self.avId):
+        if avId is not None and base.localAvatar.isIgnored(self.avId):
             self._PiratesConfirm__handleNo()
             return None
 

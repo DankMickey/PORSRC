@@ -1546,7 +1546,7 @@ class GuiManager(FSM.FSM):
 
 
     def handleWhisperIncoming(self, senderId, msgText):
-        if base.cr.avatarFriendsManager.checkIgnored(senderId):
+        if base.localAvatar.isIgnored(senderId):
             return None
 
         sender = base.cr.identifyAvatar(senderId)

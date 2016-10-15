@@ -13,7 +13,7 @@ class DistributedPlayerAI(DistributedAvatarAI.DistributedAvatarAI, PlayerBase.Pl
         PlayerBase.PlayerBase.__init__(self)
         ClsendTracker.__init__(self)
         self.friendsList = []
-        self.DISLname = ''
+        self.ignoredPlayers = []
         self.DISLid = 0
         self.adminAccess = 0
 
@@ -124,6 +124,19 @@ class DistributedPlayerAI(DistributedAvatarAI.DistributedAvatarAI, PlayerBase.Pl
     def extendFriendsList(self, friendId):
         if friendId not in self.friendsList:
             self.friendsList.append(friendId)
+    
+    def d_setIgnoredPlayers(self, ignoredPlayers):
+        self.sendUpdate('setIgnoredPlayers', [ignoredPlayers])
+    
+    def setIgnoredPlayers(self, ignoredPlayers):
+        self.ignoredPlayers = ignoredPlayers
+    
+    def b_setIgnoredPlayers(self, ignoredPlayers):
+        self.setIgnoredPlayers(ignoredPlayers)
+        self.d_setIgnoredPlayers(ignoredPlayers)
+    
+    def getIgnoredPlayers(self):
+        return self.ignoredPlayers
 
 @magicWord(CATEGORY_MODERATION)
 def accId():

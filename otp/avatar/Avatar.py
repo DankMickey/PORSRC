@@ -331,7 +331,7 @@ class Avatar(Actor, ShadowCaster):
         pass
 
     def displayTalk(self, chatString):
-        if not base.cr.avatarFriendsManager.checkIgnored(self.doId):
+        if not base.localAvatar.isIgnored(self.doId):
             if base.talkAssistant.isThought(chatString):
                 self.nametag.setChat(base.talkAssistant.removeThoughtPrefix(chatString), CFThought)
             else:

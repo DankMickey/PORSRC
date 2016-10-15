@@ -91,7 +91,7 @@ class IgnoreConfirm(DirectFrame):
         myId = base.localAvatar.doId
         if self.avId == myId:
             self.fsm.request('self')
-        elif base.cr.avatarFriendsManager.checkIgnored(self.avId):
+        elif base.localAvatar.isIgnored(self.avId):
             self.fsm.request('alreadyIgnored')
         else:
             self.fsm.request('notYet')
@@ -178,16 +178,20 @@ class IgnoreConfirm(DirectFrame):
 
     def _IgnoreConfirm__handleStop(self):
         if self.fsm.getCurrentState().getName() == 'alreadyIgnored':
-            base.cr.avatarFriendsManager.removeIgnore(self.avId)
+            base.localAvatar.removeIgnore(self.avId)
+            self.refreshName()
             self.fsm.request('endIgnore')
-
-
 
     def _IgnoreConfirm__handleYes(self):
         if self.fsm.getCurrentState().getName() == 'notYet':
-            base.cr.avatarFriendsManager.addIgnore(self.avId)
+            base.localAvatar.addIgnore(self.avId)
+            self.refreshName()
             self.fsm.request('startIgnore')
 
+    def refreshName(self):
+        ignoredPirate = base.cr.doId2do.get(self.avId, None)
+        if ignoredPirate:
+            ignoredPirate.refreshName()
 
 
     def _IgnoreConfirm__handleNo(self):

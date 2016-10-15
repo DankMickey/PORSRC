@@ -200,7 +200,7 @@ class GuildManager(DistributedObjectGlobal):
             self.id2BandId[id] = tuple(guy[4:6])
 
         for id, msg in self.pendingMsgs:
-            if not self.cr.avatarFriendsManager.checkIgnored(id):
+            if not base.localAvatar.isIgnored(id):
                 base.talkAssistant.receiveGuildMessage(id, self.id2Name.get(id, 'Unknown'), msg)
 
         if localAvatar.getGuildId():
@@ -251,7 +251,7 @@ class GuildManager(DistributedObjectGlobal):
     def recvSC(self, senderId, msgIndex):
         senderName = self.id2Name.get(senderId, None)
         if senderName:
-            if not self.cr.avatarFriendsManager.checkIgnored(senderId):
+            if not base.localAvatar.isIgnored(senderId):
                 displayMess = '%s %s %s' % (senderName, OTPLocalizer.GuildPrefix, OTPLocalizer.SpeedChatStaticText[msgIndex])
                 message = OTPLocalizer.SpeedChatStaticText[msgIndex]
                 base.talkAssistant.receiveGuildMessage(senderId, senderName, message)
@@ -264,7 +264,7 @@ class GuildManager(DistributedObjectGlobal):
         senderName = self.id2Name.get(senderId, None)
         message = base.talkAssistant.SCDecoder.decodeSCQuestMsgInt(questInt, msgType, taskNum)
         if senderName:
-            if not self.cr.avatarFriendsManager.checkIgnored(senderId):
+            if not base.localAvatar.isIgnored(senderId):
                 displayMess = '%s %s %s' % (senderName, OTPLocalizer.GuildPrefix, message)
                 base.talkAssistant.receiveGuildMessage(senderId, senderName, message)
         else:
@@ -275,7 +275,7 @@ class GuildManager(DistributedObjectGlobal):
     def recvAvatarOnline(self, avatarId, avatarName, bandManagerId, bandId):
         self.id2Online[avatarId] = True
         if hasattr(base, 'localAvatar') and avatarId != base.localAvatar.doId:
-            if not self.cr.avatarFriendsManager.checkIgnored(avatarId):
+            if not base.localAvatar.isIgnored(avatarId):
                 base.talkAssistant.receiveGuildUpdate(avatarId, avatarName, True)
         else:
             return
@@ -285,7 +285,7 @@ class GuildManager(DistributedObjectGlobal):
         self.id2BandId[avatarId] = (0, 0)
         self.id2Online[avatarId] = False
         if hasattr(base, 'localAvatar') and avatarId != base.localAvatar.doId:
-            if not self.cr.avatarFriendsManager.checkIgnored(avatarId):
+            if not base.localAvatar.isIgnored(avatarId):
                 base.talkAssistant.receiveGuildUpdate(avatarId, avatarName, False)
         messenger.send('guildMemberOnlineStatus', [avatarId, 0])
 

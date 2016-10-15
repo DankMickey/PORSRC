@@ -69,7 +69,7 @@ class RelationshipChooser(GuiPanel.GuiPanel):
             if av:
                 self.avFriendButton['state'] = DGG.NORMAL
 
-            if base.cr.avatarFriendsManager.checkIgnored(self.avId):
+            if base.localAvatar.isIgnored(self.avId):
                 self.avFriendButton['state'] = DGG.DISABLED
                 self.secretsButton['state'] = DGG.DISABLED
 

@@ -213,7 +213,7 @@ class PirateProfilePage(SocialPage.SocialPage):
         self.challengeButton = SocialButton(self.mainFrame, (-0.230, 0, -0.0299), topgui.find('**/lookout_win_pvp_game_icon'), self._PirateProfilePage__handleChallenge, PLocalizer.ProfilePageChallenge, 0.275)
         self.problemButton = SocialButton(self.mainFrame, (-0.640, 0, -0.13), icons.find('**/moderation'), self._PirateProfilePage__handleProblem, PLocalizer.ProfilePageProblem, 0.074)
         self.ignoreButton = SocialButton(self.mainFrame, (-0.640, 0, -0.0299), icons.find('**/icon_stickman'), self._PirateProfilePage__handleIgnore, PLocalizer.ProfilePageIgnore, (0.050000, 0, 0.0598))
-        self.ignoreButtonLabel = DirectLabel(parent = self.ignoreButton.circle, relief = None, state = DGG.DISABLED, text = PLocalizer.ProfilePageIgnore, textMayChange = 1, text_font = PiratesGlobals.getInterfaceFont(), text_scale = PiratesGuiGlobals.TextScaleMed, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 14, text_pos = (0, 0.050000, 0.0), pos = (0.0, 0.0, 0.0))
+        self.ignoreButtonLabel = DirectLabel(parent = self.ignoreButton.circle, relief = None, text = PLocalizer.ProfilePageIgnore, textMayChange = 1, text_font = PiratesGlobals.getInterfaceFont(), text_scale = PiratesGuiGlobals.TextScaleMed, text_align = TextNode.ACenter, text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_wordwrap = 14, text_pos = (0, 0.050000, 0.0), pos = (0.0, 0.0, 0.0))
         self.loadingLabel = OnscreenText(parent = self.mainFrame, text = PLocalizer.ProfilePageLoading, scale = PiratesGuiGlobals.TextScaleTitleSmall, align = TextNode.ACenter, fg = PiratesGuiGlobals.TextFG2, shadow = PiratesGuiGlobals.TextShadow, pos = (-0.44, -0.282))
         self.locationTextLabel = OnscreenText(parent = self.mainFrame, text = PLocalizer.ProfilePageLocation, scale = PiratesGuiGlobals.TextScaleMed, align = TextNode.ALeft, fg = PiratesGuiGlobals.TextFG2, font = PiratesGlobals.getPirateOutlineFont(), shadow = PiratesGuiGlobals.TextShadow, pos = (-0.685, -0.239))
         self.locationCircleFrame = DirectFrame(parent = self.mainFrame, relief = None, state = DGG.DISABLED, image = topgui.find('**/pir_t_gui_frm_base_circle'), image_scale = 0.325, pos = (-0.65, 0, -0.28498))
@@ -438,13 +438,16 @@ class PirateProfilePage(SocialPage.SocialPage):
 
 
     def _PirateProfilePage__handleIgnore(self):
-        if base.cr.avatarFriendsManager.checkIgnored(self.profileId):
-            base.cr.avatarFriendsManager.removeIgnore(self.profileId)
+        base.localAvatar.guiMgr.handleIgnore(self.profileId, self.profileName)
+        """
+        if base.localAvatar.isIgnored(self.profileId):
+            base.localAvatar.removeIgnore(self.profileId)
         else:
-            base.cr.avatarFriendsManager.addIgnore(self.profileId)
+            base.localAvatar.addIgnore(self.profileId)
         ignoredPirate = base.cr.doId2do.get(self.profileId, None)
         if ignoredPirate:
             ignoredPirate.refreshName()
+        """
 
 
 
@@ -495,7 +498,7 @@ class PirateProfilePage(SocialPage.SocialPage):
 
     def _PirateProfilePage__newIgnore(self, avId = None):
         ignoreText = PLocalizer.ProfilePageIgnore
-        if base.cr.avatarFriendsManager.checkIgnored(self.profileId):
+        if base.localAvatar.isIgnored(self.profileId):
             ignoreText = PLocalizer.ProfilePageStopIgnore
 
         self.ignoreButton.circle['helpText'] = ignoreText
@@ -504,11 +507,12 @@ class PirateProfilePage(SocialPage.SocialPage):
 
     def gotOnShard(self, onShard):
         self.skillButton['state'] = DGG.NORMAL
+        self.ignoreButton.enable()
 
         if not onShard:
             return
 
-        if base.cr.avatarFriendsManager.checkIgnored(self.profileId):
+        if base.localAvatar.isIgnored(self.profileId):
             self.crewButton.disable(PLocalizer.PlayerIgnoredWarning % self.profileName)
             self.avatarFriendButton.disable(PLocalizer.PlayerIgnoredWarning % self.profileName)
             self.guildButton.disable(PLocalizer.PlayerIgnoredWarning % self.profileName)
@@ -599,7 +603,7 @@ class PirateProfilePage(SocialPage.SocialPage):
                 pass
             inPVP = base.cr.activeWorld.getType() == PiratesGlobals.INSTANCE_PVP
             inSameCrew = DistributedBandMember.DistributedBandMember.areSameCrew(localAvatar.doId, self.profileId)
-            if not base.cr.avatarFriendsManager.checkIgnored(self.profileId):
+            if not base.localAvatar.isIgnored(self.profileId):
                 self.testOnline()
                 self.testFriendsButtons()
                 self.whisperButton.enable()

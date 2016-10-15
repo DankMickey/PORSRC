@@ -28,7 +28,7 @@ class CrewRejoin(DirectFrame):
         self.avId = avId
         self.isManager = isManager
         self.version = version
-        if base.cr.avatarFriendsManager.checkIgnored(self.avId):
+        if base.localAvatar.isIgnored(self.avId):
             self._CrewRejoin__handleNo()
             return None
 

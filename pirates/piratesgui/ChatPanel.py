@@ -648,7 +648,7 @@ class ChatPanel(DirectFrame, FSM):
         self.renderedLines = []
         messageIdList = []
         for message in messageList:
-            if base.cr.avatarFriendsManager.checkIgnored(message.getSenderAvatarId()):
+            if base.localAvatar.isIgnored(message.getSenderAvatarId()):
                 continue
 
             messageIdList.append(message.getMessageId())

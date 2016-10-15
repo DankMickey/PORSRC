@@ -73,19 +73,19 @@ class SiegeManager(DistributedObject, SiegeManagerBase):
 
     def recvChat(self, avatarId, message, chatFlags, name):
         teamName = self.getPVPChatTeamName(localAvatar.getSiegeTeam())
-        if not self.cr.avatarFriendsManager.checkIgnored(avatarId):
+        if not base.localAvatar.isIgnored(avatarId):
             displayMess = '%s %s %s' % (name, self.getPVPChatTeamName(localAvatar.getSiegeTeam()), message)
             base.talkAssistant.receiveShipPVPMessage(avatarId, name, teamName, message)
 
     def recvWLChat(self, avatarId, message, chatFlags, name):
         teamName = self.getPVPChatTeamName(localAvatar.getSiegeTeam())
-        if not self.cr.avatarFriendsManager.checkIgnored(avatarId):
+        if not base.localAvatar.isIgnored(avatarId):
             displayMess = '%s %s %s' % (name, self.getPVPChatTeamName(localAvatar.getSiegeTeam()), message)
             base.talkAssistant.receiveShipPVPMessage(avatarId, name, teamName, message)
 
     def recvSpeedChat(self, avatarId, msgIndex, name):
         print 'siege manager recvSpeedChat'
-        if not self.cr.avatarFriendsManager.checkIgnored(avatarId):
+        if not base.localAvatar.isIgnored(avatarId):
             displayMess = '%s %s %s' % (name, self.getPVPChatTeamName(localAvatar.getSiegeTeam()), SCDecoders.decodeSCStaticTextMsg(msgIndex))
             message = SCDecoders.decodeSCStaticTextMsg(msgIndex)
             teamName = self.getPVPChatTeamName(localAvatar.getSiegeTeam())
@@ -100,7 +100,7 @@ class SiegeManager(DistributedObject, SiegeManagerBase):
     def recvSCQuest(self, avName, senderId, questInt, msgType, taskNum):
         senderName = avName
         message = base.talkAssistant.SCDecoder.decodeSCQuestMsgInt(questInt, msgType, taskNum)
-        if not self.cr.avatarFriendsManager.checkIgnored(senderId):
+        if not base.localAvatar.isIgnored(senderId):
             teamName = self.getPVPChatTeamName(localAvatar.getSiegeTeam())
             displayMess = '%s %s %s' % (avName, teamName, message)
             base.talkAssistant.receiveShipPVPMessage(senderId, avName, teamName, message)
