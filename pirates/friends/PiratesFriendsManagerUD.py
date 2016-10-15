@@ -220,7 +220,7 @@ class PiratesFriendsManagerUD(DistributedObjectGlobalUD):
         self.tpRequests = {}
         self.whisperRequests = {}
         self.operations = {}
-        self.delayTime = 1.0
+        self.delayTime = 0.2
         self.accept('goingOffline', self.goingOffline)
 
     def checkWhisperRequest(self, fromId):
