@@ -793,8 +793,7 @@ class PirateMemberList(DirectObject):
                     return -1
 
                 return 1
-            else:
-                text1 = first['text']
-        else:
-            text2 = other['text']
+        
+        text1 = first['text']
+        text2 = other['text']
         return cmp(text1.lower(), text2.lower())
