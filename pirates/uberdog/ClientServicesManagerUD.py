@@ -537,11 +537,12 @@ class CreateAvatarFSM(CSMOperation):
             self.demand('RetrieveAccount')
 
     def __handleNameRetrieved(self, approved):
-        self.nameState = NAME_STATES.get(approved, 'PENDING')
-        
         if approved == NAME_APR:
             self.name = self.wishName
             self.wishName = ''
+            self.nameState = 'CLOSED'
+        else:
+            self.nameState = NAME_STATES.get(approved, 'PENDING')
         
         self.demand('RetrieveAccount')
     
