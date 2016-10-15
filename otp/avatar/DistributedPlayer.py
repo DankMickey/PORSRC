@@ -131,9 +131,10 @@ class DistributedPlayer(DistributedAvatar.DistributedAvatar, PlayerBase.PlayerBa
     def setAccountName(self, accountName):
         self.accountName = accountName
 
-    def setSystemMessage(self, aboutId, chatString, whisperType = WhisperPopup.WTSystem):
-        self.displayWhisper(aboutId, chatString, whisperType)
+    def setSystemMessage(self, aboutId, chatString):
+        base.talkAssistant.receiveSystemMessage(chatString)
 
+       
     def displayWhisper(self, fromId, chatString, whisperType):
         print 'Whisper type %s from %s: %s' % (whisperType, fromId, chatString)
 

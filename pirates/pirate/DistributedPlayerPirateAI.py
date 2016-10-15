@@ -73,6 +73,7 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         if self.defaultShard != self.air.districtId:
             self.b_setDefaultShard(self.air.districtId)
         
+        taskMgr.doMethodLater(15, self.__checkCodeExploit, self.taskName('codeTask'))
         taskMgr.doMethodLater(10, self.__healthTask, self.taskName('healthTask'))
         taskMgr.doMethodLater(15, self.__doubleXpTask, self.taskName('doubleXPTask'))
 
@@ -356,6 +357,24 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         _, mojo = self.calcHpAndMojoLimit(mojo=mojo)
         DistributedBattleAvatarAI.setMojo(self, mojo)
 
+    def __checkCodeExploit(self, task):
+        newCodes = []
+        changed = False
+        warning = False
+        
+        for code in self.redeemedCodes:
+            if code.lower() in newCodes:
+                warning = True
+            else:
+                changed = True
+                newCodes.append(code.lower())
+        
+        if warning:
+            self.d_setSystemMessage(0, "Seems like you've been abusing that Code Redemption bug. Normally, your pirate would be rolled back... but then again, it's just open alpha. But please, next time report these bugs instead of abusing them!")
+        
+        if changed:
+            self.b_setRedeemedCodes(newCodes)
+
     def __healthTask(self, task):
         if self.gameState in ('Battle', 'Injured', 'Death'):
             return task.again
@@ -384,6 +403,7 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
 
     def delete(self):
         self.inventory = DummyInventory(self.air)
+        taskMgr.remove(self.taskName('codeTask'))
         taskMgr.remove(self.taskName('healthTask'))
         taskMgr.remove(self.taskName('doubleXPTask'))
 
@@ -581,11 +601,17 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
 
     def d_setRedeemedCodes(self, codes):
         self.sendUpdate('setRedeemedCodes', [codes])
+    
+    def b_setRedeemedCodes(self, codes):
+        self.setRedeemedCodes(codes)
+        self.d_setRedeemedCodes(codes)
 
     def getRedeemedCodes(self):
         return self.redeemedCodes
 
     def addRedeemedCode(self, code):
+        if code in self.redeemedCodes:
+            return
         self.redeemedCodes.append(code)
         self.d_setRedeemedCodes(self.redeemedCodes)
 
