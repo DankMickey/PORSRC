@@ -33,7 +33,7 @@ def kick(reason='No reason has been specificed.'):
     if target == spellbook.getInvoker():
         return "You can't kick yourself!"
 
-    target.air.banMgr.kickAvatar(av.doId, reason=reason)
+    target.air.banMgr.kickAvatar(target.doId, reason=reason)
     return 'Kicked %s from the game server!' % target.getName()
 
 @magicWord(category=CATEGORY_MODERATION, types=[int, str])
