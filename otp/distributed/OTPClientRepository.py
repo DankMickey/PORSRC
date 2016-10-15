@@ -1,4 +1,4 @@
-from panda3d.core import Connection, Datagram, DatagramIterator, Filename, HTTPClient, HashVal, NodePath, Notify, ostream
+from panda3d.core import Connection, Datagram, DatagramIterator, HTTPClient, NodePath, Notify, ostream
 import sys
 import time
 import string

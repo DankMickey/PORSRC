@@ -11,5 +11,5 @@ class DistributedShipLoaderUD(DistributedObjectGlobalUD):
 
 
     def initPlayerShip(self, avId, shipId, shipName):
-    	self.notify.warning("Insert creation code here.")
+        self.notify.warning("Insert creation code here.")
 
