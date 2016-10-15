@@ -804,11 +804,6 @@ def giveGold(gold):
     target = spellbook.getTarget()
     invoker = spellbook.getInvoker()
     target.giveGold(gold)
-
-    air = invoker.air
-    #if hasattr(air, 'analyticsMgr'):
-    #    data = {'command': "giveGold", 'invoker':invoker.getName(), 'target':target.getName(), 'amount':str(gold)}
-    #    air.analyticsMgr.track("command-used", None, None, data)
     return 'Given %d gold to %s! Balance: %d' % (gold, target.getName(), target.getGoldInPocket())
 
 @magicWord(CATEGORY_GAME_MASTER, types=[int])
@@ -816,10 +811,6 @@ def takeGold(gold):
     target = spellbook.getTarget()
     invoker = spellbook.getInvoker()
     target.takeGold(gold)
-
-    air = invoker.air
-    #if hasattr(air, 'analyticsMgr'):
-    #    air.analyticsMgr.track("command-used", command="takeGold", invoker=invoker.getName(), target=target.getName(), amount=gold)
     return 'Taken %d gold from %s! Balance: %d' % (gold, target.getName(), target.getGoldInPocket())
 
 @magicWord(CATEGORY_GAME_MASTER)
@@ -881,10 +872,6 @@ def giveLocatable(type, itemId, amount):
     if not success:
         return "Failed to give locatable. Target's inventory is most likely full."
 
-    air = invoker.air
-    #if hasattr(air, 'analyticsMgr'):
-    #    air.analyticsMgr.track("command-used", command="giveLoctable", invoker=invoker.getName(), target=target.getName(), itemId=itemId, amount=amount)
-
     return "Locatable given to %s." % target.getName()
 
 @magicWord(CATEGORY_GAME_MASTER, types=[int])
@@ -909,11 +896,6 @@ def giveWeapon(itemId):
     success = inv.addLocatable(itemId, location, 1, InventoryType.ItemTypeWeapon)
     if not success:
         return "Failed to give weapon. Target's inventory is most likely full."
-
-    air = invoker.air
-    
-    #if hasattr(air, 'analyticsMgr'):
-    #    air.analyticsMgr.track("command-used", command="giveWeapon", invoker=invoker.getName(), target=target.getName(), itemId=itemId, amount=1)
 
     return "Weapon (%s) given to %s." % (itemId, target.getName())
 
@@ -941,9 +923,6 @@ def giveClothing(itemId):
         return "Failed to give clothing item. Target's inventory is most likely full."
 
     air = invoker.air
-    #if hasattr(air, 'analyticsMgr'):
-    #    air.analyticsMgr.track("command-used", command="giveClothing", invoker=invoker.getName(), target=target.getName(), itemId=itemId, amount=1)
-
     return "Clothing (%s) given to %s." % (itemId, target.getName())
 
 @magicWord(CATEGORY_GAME_MASTER, types=[int])
@@ -969,10 +948,6 @@ def giveJewelry(itemId):
     if not success:
         return "Failed to give jewelry item. Target's inventory is most likely full."
 
-    air = invoker.air
-    #if hasattr(air, 'analyticsMgr'):
-    #    air.analyticsMgr.track("command-usage", command="giveJewelry", invoker=invoker.getName(), target=target.getName(), itemId= itemid, amount=1)
-
     return "Jewelry (%s) given to %s." % (itemId, target.getName())
 
 @magicWord(CATEGORY_GAME_MASTER, types=[int])
@@ -997,11 +972,6 @@ def clearUsedCodes():
     av = spellbook.getTarget()
     av.d_setRedeemedCodes([])
     av.setRedeemedCodes([])
-
-    air = invoker.air
-    #if hasattr(air, 'analyticsMgr'):
-    #    air.analyticsMgr.track("command-usage", command="clearUsedCodes", invoker=invoker.getName(), target=av.getName())
-
     return "Cleared Redeemed codes."
 
 @magicWord(CATEGORY_GAME_MASTER, types=[str])
@@ -1011,11 +981,6 @@ def clearCode(code):
     if code not in av.getRedeemedCodes():
         return "%s has not redeemed '%s'." % (av.getName(), code)
     av.removeRedeemedCode(code)
-
-    air = invoker.air
-    #if hasattr(air,'analyticsMgr'):
-    #    air.analyticsMgr.track("command-usage", command="clearCode", invoker=invoker.getName(), target=av.getName(), code=code)
-
     return "Removed '%s'!" % code 
 
 @magicWord(CATEGORY_GAME_MASTER, types=[str])
@@ -1025,11 +990,6 @@ def registerCodeUsed(code):
     if code in av.getRedeemedCodes():
         return "%s has already redeemed '%s'." % (av.getName(), code)
     av.addRedeemedCode(code)
-
-    air = invoker.air
-    #if hasattr(air,'analyticsMgr'):
-    #    air.analyticsMgr.track("command-usage", command="registerCodeUsed", invoker=invoker.getName(), target=av.getName(), code=code)
-
     return "Registered '%s' as used for %s." % (code, av.getName())
 
 @magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
