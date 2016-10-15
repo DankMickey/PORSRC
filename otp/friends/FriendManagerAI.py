@@ -69,7 +69,7 @@ class FriendManagerAI(DistributedObjectAI):
         self.requests = {}
         self.tfFsms = {}
         self.tfDelays = {}
-        self.air.dbGlobalCursor.trueFriends.create_index('date', expireAfterSeconds=OTPGlobals.TF_EXPIRE_SECS)
+        #self.air.dbGlobalCursor.trueFriends.create_index('date', expireAfterSeconds=OTPGlobals.TF_EXPIRE_SECS)
 
     def friendQuery(self, requested):
         avId = self.air.getAvatarIdFromSender()
