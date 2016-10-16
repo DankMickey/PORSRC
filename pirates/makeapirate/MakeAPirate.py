@@ -2765,7 +2765,7 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
 
         print 'Finished writing to a file'
 
-    def cutsceneStart(self, csId=None):
+    def cutsceneStart(self, csId=None, otherLocalAvatar=None):
         if int(csId) >= len(CutsceneData.CutsceneNames):
             return None
 
@@ -2778,6 +2778,8 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
 
         self.cameraEnabled = False
         c = Cutscene.Cutscene(base.cr, name, DelayedFunctor(destroyCutscene, '~cutscene-destroy'))
+        c.otherLocalAvatar = c.getActor(CutsceneActor.CutJackSparrow.getActorKey())
+        print str(c.otherLocalAvatar)
         cs.cutscene = c
         c.play()
         destroyCutscene = None
