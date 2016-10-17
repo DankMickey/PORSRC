@@ -4,6 +4,7 @@ from pirates.distributed import InteractGlobals
 from pirates.economy import EconomyGlobals
 from pirates.battle.DistributedBattleNPCAI import *
 from pirates.piratesbase import PiratesGlobals
+from pirates.uberdog.UberDogGlobals import *
 
 class DistributedNPCTownfolkAI(DistributedBattleNPCAI, DistributedShopKeeperAI):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedNPCTownfolkAI')
@@ -74,6 +75,66 @@ class DistributedNPCTownfolkAI(DistributedBattleNPCAI, DistributedShopKeeperAI):
 
         return DistributedBattleNPCAI.handleInteract(self, avId, interactType, instant)
 
+    def processRespec(self, avId, av, respecId):
+
+        if not config.GetBool('want-respec-option', False):
+            self.air.writeServerEvent('suspicious', avId, issue="Client bypassed sanity check and used the respec DistributedNPCTownfolkAI option")
+            return
+
+        inv = av.getInventory()
+        if not inv:
+            self.notify.warning("Unable to locate inventory for avatar: %s" % av)
+            return
+
+        IGToITMap = {
+            InteractGlobals.RESPEC_CUTLASS: InventoryType.CutlassRep,
+            InteractGlobals.RESPEC_PISTOL: InventoryType.PistolRep,
+            InteractGlobals.RESPEC_DAGGER: InventoryType.DaggerRep,
+            InteractGlobals.RESPEC_DOLL: InventoryType.DollRep,
+            InteractGlobals.RESPEC_GRENADE: InventoryType.GrenadeRep,
+            InteractGlobals.RESPEC_STAFF: InventoryType.WandRep,
+            InteractGlobals.RESPEC_SAILING: InventoryType.SailingRep,
+            InteractGlobals.RESPEC_CANNON: InventoryType.CannonRep }
+
+        weaponRep = IGToITMap[respecId]
+        numRespecs = inv.getStackQuantity(getNumRespecType(weaponRep))
+        cost = EconomyGlobals.getRespecCost(numRespecs)
+
+        if cost > av.getGoldInPocket():
+            return
+
+        IGToCSMap = {} #TODO?
+
+        classSkills = IGToCSMap[respecId]
+        for skill in classSkills:
+            inv.setStackQuantity(skill, 0)
+
+        IGToIRMap = {
+            InteractGlobals.RESPEC_CUTLASS: (InventoryType.begin_WeaponSkillCutlass, InventoryType.end_WeaponSkillCutlass),
+            InteractGlobals.RESPEC_PISTOL: (InventoryType.begin_WeaponSkillPistol, InventoryType.end_WeaponSkillPistol),
+            InteractGlobals.RESPEC_DAGGER: (InventoryType.begin_WeaponSkillDagger, InventoryType.end_WeaponSkillDagger),
+            InteractGlobals.RESPEC_DOLL: (InventoryType.begin_WeaponSkillDoll, InventoryType.end_WeaponSkillDoll),
+            InteractGlobals.RESPEC_GRENADE: (InventoryType.begin_WeaponSkillGrenade, InventoryType.end_WeaponSkillGrenade),
+            InteractGlobals.RESPEC_STAFF: (InventoryType.begin_WeaponSkillWand, InventoryType.end_WeaponSkillWand),
+            InteractGlobals.RESPEC_SAILING: (InventoryType.begin_SkillSailing, InventoryType.end_SkillSailing),
+            InteractGlobals.RESPEC_CANNON: (InventoryType.begin_WeaponSkillCannon, InventoryType.end_WeaponSkillCannon)
+        }
+        startRange, endRange = IGTOIRMap[respecId]
+        amount = 0 
+        for invId in range(startRange, endRange):
+            amount += inv.getStackQuantity(invId)
+
+        if amount <= 0:
+            return
+
+        pointCount = max(min((amount - 1), 30), 0)
+        point = av.getUnspentFromRep(IGToITMap[respecId])
+        for i in range(0, pointCount):
+            inv.addStackItem(point)
+
+        av.takeGold(cost)
+        inv.setStackQuantity(getNumRespecType(weaponRep), numRespecs + 1)
+
     def selectOption(self, option):
         avId = self.air.getAvatarIdFromSender()
         av = self.air.doId2do.get(avId)
@@ -109,6 +170,13 @@ class DistributedNPCTownfolkAI(DistributedBattleNPCAI, DistributedShopKeeperAI):
             
             av.takeGold(cost)
             av.b_setMojo(maxMojo)
+
+        elif option == InteractGlobals.PLAY_CANNON_DEFENSE:
+            pass #TODO implement cannon defense
+
+        elif option in InteractGlobals.RespecOptions:
+            self.processRespec(avId, av, option)
+        
     
     @staticmethod
     def makeFromObjectKey(cls, spawner, uid, data):

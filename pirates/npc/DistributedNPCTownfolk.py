@@ -619,7 +619,8 @@ class DistributedNPCTownfolk(DistributedBattleNPC.DistributedBattleNPC, Distribu
         elif optionId == InteractGlobals.HEAL_MOJO:
             self.confirmHealMojo()
         elif optionId == InteractGlobals.RESPEC:
-            self.showRespecMenu()
+            if config.GetBool('want-respec-option', False):
+                self.showRespecMenu()
         elif optionId == InteractGlobals.UPGRADE_ROD:
             self.showUpgradeRodDialog()
         elif optionId == InteractGlobals.LAUNCH_FISHING_BOAT:

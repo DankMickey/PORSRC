@@ -137,6 +137,16 @@ InteractOptionHelpText = {
     UPGRADE_ROD: PLocalizer.InteractUpgradeRodHelp,
     PLAY_SCRIMMAGE: PLocalizer.InteractScrimmageHelp }
 wantPotionGame = getBase().config.GetBool('want-potion-game', 0)
+RespecOptions = [
+    RESPEC_CUTLASS,
+    RESPEC_PISTOL,
+    RESPEC_DAGGER,
+    RESPEC_DOLL,
+    RESPEC_GRENADE,
+    RESPEC_STAFF,
+    RESPEC_SAILING,
+    RESPEC_CANNON,
+]
 __NPCInteractMenus = {
     AvatarTypes.Townfolk: (PLocalizer.TownfolkMenuTitle, [
         QUEST,
