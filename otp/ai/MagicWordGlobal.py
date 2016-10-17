@@ -2,7 +2,7 @@ MINIMUM_MAGICWORD_ACCESS = 100
 
 class MagicError(Exception): pass
 
-def ensureAccess(access, msg='Insufficient access'):
+def ensureAccess(access, msg='Sorry! Insufficient access'):
     if spellbook.getInvokerAccess() < access:
         raise MagicError(msg)
 
