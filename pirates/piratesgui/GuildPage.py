@@ -30,21 +30,21 @@ class GuildPage(SocialPage.SocialPage):
         self.setupFlag = 0
         self.confirmBox = None
         self.crew = { }
-        self.leaveButton = 0
-        self.createButton = 0
-        self.nameEntry = 0
-        self.tokenEntry = 0
-        self.nameLabel = 0
-        self.rankLabel = 0
-        self.memberButton = 0
-        self.revertButton = 0
-        self.renameButton = 0
-        self.aboutButton = 0
-        self.inviteButton = 0
-        self.redeemInvite = 0
-        self.manageInvite = 0
-        self.codeInviteOptions = 0
-        self.aboutTokenManagement = 0
+        self.leaveButton = None
+        self.createButton = None
+        self.nameEntry = None
+        self.tokenEntry = None
+        self.nameLabel = None
+        self.rankLabel = None
+        self.memberButton = None
+        self.revertButton = None
+        self.renameButton = None
+        self.aboutButton = None
+        self.inviteButton = None
+        self.redeemInvite = None
+        self.manageInvite = None
+        self.codeInviteOptions = None
+        self.aboutTokenManagement = None
         self.clearPermToken = 0
         self.clearLimitedUseToken = 0
         self.suspendPermToken = 0
@@ -64,8 +64,8 @@ class GuildPage(SocialPage.SocialPage):
         self.membersList = PirateMemberList.PirateMemberList(5, self.membersFrame, 'FOOLIO HC', height = 0.598, memberHeight = 0.100, memberWidth = 0.598, memberOffset = 0.055, width = 0.62, sort = 1)
         self.membersList.setPos(-0.0864, 0.0, 0.11)
         self.accept(self.membersList.onlineChangeEvent, self.updateCount)
-        self.mainChain = PirateButtonChain.PirateButtonChain(0.560000, self.mainFrame, True)
-        self.mainChain.setPos(-0.0518, 0.0, -0.36)
+        self.mainChain = PirateButtonChain.PirateButtonChain(0.560000, self.mainFrame, True, True)
+        self.mainChain.setPos(-0.0518, 0.0, -0.265)
         self.memberChain = PirateButtonChain.PirateButtonChain(0.560000, self.membersFrame, True)
         self.memberChain.setPos(-0.0518, 0.0, 0.0250)
         self.membersFrame.hide()
@@ -110,28 +110,27 @@ class GuildPage(SocialPage.SocialPage):
             self.guildName = base.localAvatar.getGuildName()
             self.guildRank = base.localAvatar.getGuildRank()
 
-
         if not self.memberButton:
             self.memberButton = self.mainChain.premakeButton(PLocalizer.GuildPageShowMembers, self.showGuildMembers)
-
+        
         if not self.renameButton:
             self.renameButton = self.mainChain.premakeButton(PLocalizer.GuildPageNameGuild, self.renameGuild)
-
+        
         if not self.createButton:
             self.createButton = self.mainChain.premakeButton(PLocalizer.GuildPageCreateGuild, self.createGuild)
-
+        
         if not self.leaveButton:
             self.leaveButton = self.mainChain.premakeButton(PLocalizer.GuildPageLeaveGuild, self.leaveGuild)
-
+        
         if not self.inviteButton:
             self.inviteButton = self.mainChain.premakeButton(PLocalizer.GuildInvite, self.inviteGuild)
-
+        
         if not self.redeemInvite:
             self.redeemInvite = self.mainChain.premakeButton(PLocalizer.GuildRedeemInvite, self.redeemInviteGuild)
-
+        
         if not self.codeInviteOptions:
             self.codeInviteOptions = self.mainChain.premakeButton(PLocalizer.GuildCodeOptions, self.b_codeInviteOptions)
-
+        
         self.mainChain.makeButtons()
         self.setupFlag = 1
         self.determineButtonState()
@@ -286,7 +285,7 @@ class GuildPage(SocialPage.SocialPage):
 
 
     def leaveGuild(self):
-        if localAvatar.getGuildRank() == GUILDRANK_GM and len(base.cr.guildManager.id2Name.keys()) > 1:
+        if localAvatar.getGuildRank() == GUILDRANK_GM:
             self.confirmBox = PiratesInfo.PiratesInfo(PLocalizer.GuildPageLeaveGuild, [
                 PLocalizer.GuildAskLeaveGM])
         else:

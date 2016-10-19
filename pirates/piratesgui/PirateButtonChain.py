@@ -14,8 +14,9 @@ import GuiButton
 
 class PirateButtonChain:
 
-    def __init__(self, width, parent, fromBottom = False):
+    def __init__(self, width, parent, fromBottom = False, skipFirst = False):
         self.fromBottom = fromBottom
+        self.skipFirst = skipFirst
         self.width = width
         self.baseFrame = DirectFrame(parent = parent, relief = None)
         self.load()
@@ -102,7 +103,7 @@ class PirateButtonChain:
 
     def createButtons(self, inText, inCommand, inLast = False):
         formingButton = self.buttonList[self.buttonCount]
-        if self.buttonCount == 0:
+        if self.buttonCount == 0 and not self.skipFirst:
             formingButton.setPos(self.offX, 0, self.startZ)
             formingButton['geom'] = self.topButton
         elif inLast and not (self.fromBottom):
