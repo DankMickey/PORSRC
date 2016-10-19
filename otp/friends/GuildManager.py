@@ -52,8 +52,6 @@ class GuildManager(DistributedObjectGlobal):
         self.id2Rank = {}
         self.id2Online = {}
         self.pendingMsgs = []
-        self.emailNotification = 0
-        self.emailNotificationAddress = None
 
     def memberList(self):
         self.sendUpdate('requestMembers', [])
@@ -317,29 +315,6 @@ class GuildManager(DistributedObjectGlobal):
                 base.localAvatar.guiMgr.guildPage.receivePermTokenValue(None)
             else:
                 base.localAvatar.guiMgr.guildPage.receivePermTokenValue(token)
-        return
-
-    def requestEmailNotificationPref(self):
-        self.sendUpdate('sendRequestEmailNotificationPref', [])
-
-    def respondEmailNotificationPref(self, notify, emailAddress):
-        self.emailNotification = notify
-        if emailAddress == 'None':
-            self.emailNotificationAddress = None
-        else:
-            self.emailNotificationAddress = emailAddress
-        return
-
-    def getEmailNotificationPref(self):
-        return [self.emailNotification, self.emailNotificationAddress]
-
-    def requestEmailNotificationPrefUpdate(self, notify, emailAddress):
-        self.sendUpdate('sendEmailNotificationPrefUpdate', [notify, emailAddress])
-        self.emailNotification = notify
-        if emailAddress == 'None':
-            self.emailNotificationAddress = None
-        else:
-            self.emailNotificationAddress = emailAddress
         return
 
     def recvNonPermTokenCount(self, tCount):

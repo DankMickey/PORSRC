@@ -8160,7 +8160,6 @@ GuildInviteeIgnore = 'Ignore all guild\ninvites until logout'
 GuildInviterAskingNPC = 'Inviting %s to join your guild.'
 GuildRedeemInvite = 'Redeem Invitation'
 GuildNotifyTokenCreatorOfRedeem = '%s has redeemed a guild token, and is now a member of your guild.'
-GuildEMailInvite = 'E-Mail'
 GuildNameRequest = "Your guild name was submitted for approval. Please wait a few days for us to get back to you! In the meantime, fair winds and good plunderin'!"
 GuildNameApprove = 'Your guild name:\n\n\x01guildName\x01\x01larger\x01%s\x02\x02\n\nwas approved!'
 GuildNameApproveTitle = 'Congratulations!'
