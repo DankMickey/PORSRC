@@ -84,21 +84,12 @@ class RetrievePirateGuildOperation(RetrievePirateOperation):
 
 class UpdatePirateExtension(object):
 
-    def enterUpdatePirate(self):
-        self.changedFields = {
-            'setGuildId': [self.guildId],
-            'setGuildName': [self.name]
-        }
-
-        self.air.dbInterface.updateObject(self.air.dbId, self.sender, self.air.dclassesByName['DistributedPlayerPirateUD'], self.changedFields, callback=self.__updatedPirate)
-    
-    def __updatedPirate(self, fields):
+    def enterUpdatePirate(self, guildId, guildName, rank):
         dclass = self.air.dclassesByName['DistributedPlayerPirateUD']
-
-        for key, value in self.changedFields.iteritems():
-            self.air.send(dclass.aiFormatUpdate(key, self.sender, self.sender, self.air.ourChannel, value))
-
-        self.mgr.d_guildStatusUpdate(self.sender, self.guildId, self.name, self.rank)
+        
+        self.air.send(dclass.aiFormatUpdate('setGuildId', self.sender, self.sender, self.air.ourChannel, [guildId]))
+        self.air.send(dclass.aiFormatUpdate('setGuildName', self.sender, self.sender, self.air.ourChannel, [guildName]))
+        self.mgr.d_guildStatusUpdate(self.sender, guildId, guildName, rank)
         self.demand('Off')
 
 class CreateGuildOperation(RetrievePirateOperation, UpdatePirateExtension):
@@ -119,15 +110,14 @@ class CreateGuildOperation(RetrievePirateOperation, UpdatePirateExtension):
             self.demand('Error', "Couldn't create guild object on the database.")
             return
 
-        self.guildId = doId
-        self.demand('UpdatePirate')
+        self.demand('UpdatePirate', doId, self.name, GUILDRANK_GM)
 
 class PirateOnlineOperation(RetrievePirateGuildOperation, UpdatePirateExtension):
     HAS_DELAY = False
     
     def enterRetrievedGuild(self):
         self.name = self.guild['setName'][0]
-        self.demand('UpdatePirate')
+        self.demand('UpdatePirate', self.guildId, self.name, GUILDRANK_GM)
 
 class RemoveMemberOperation(RetrievePirateGuildOperation, UpdatePirateExtension):
     
@@ -137,10 +127,7 @@ class RemoveMemberOperation(RetrievePirateGuildOperation, UpdatePirateExtension)
             self.demand('Off')
             return
         
-        self.guildId = 0
-        self.name = ''
-        self.rank = 0
-        self.demand('UpdatePirate')
+        self.demand('UpdatePirate', 0, '', 0)
         
 class GuildManagerUD(DistributedObjectGlobalUD):
     notify = DirectNotifyGlobal.directNotify.newCategory("GuildManagerUD")
