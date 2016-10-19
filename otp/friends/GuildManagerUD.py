@@ -98,11 +98,12 @@ class UpdatePirateExtension(object):
         for key, value in self.changedFields.iteritems():
             self.air.send(dclass.aiFormatUpdate(key, self.sender, self.sender, self.air.ourChannel, value))
 
-        self.mgr.d_guildStatusUpdate(self.sender, self.guildId, self.name, GUILDRANK_GM)
+        self.mgr.d_guildStatusUpdate(self.sender, self.guildId, self.name, self.rank)
         self.demand('Off')
 
 class CreateGuildOperation(RetrievePirateOperation, UpdatePirateExtension):
     name = 'Pirate Guild'
+    rank = GUILDRANK_GM
 
     def enterRetrievedPirate(self):
         guildId = self.pirate['setGuildId'][0]
@@ -138,6 +139,7 @@ class RemoveMemberOperation(RetrievePirateGuildOperation, UpdatePirateExtension)
         
         self.guildId = 0
         self.name = ''
+        self.rank = 0
         self.demand('UpdatePirate')
         
 class GuildManagerUD(DistributedObjectGlobalUD):

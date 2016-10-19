@@ -1,6 +1,6 @@
 from direct.distributed.DistributedObject import DistributedObject
 
-class DistributedGuildUD(DistributedObject):
+class DistributedGuild(DistributedObject):
     
     def __init__(self, cr):
         DistributedObject.__init__(self, cr)
