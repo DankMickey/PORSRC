@@ -8,7 +8,13 @@ shit
 scum.*
 pussy
 ass
-ashole
+asshole
+slut
+retard
+TLOPO
+penis
+prick
+cum
 cunt
 dick
 queer
