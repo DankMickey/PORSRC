@@ -32,7 +32,7 @@ class OperationFSM(FSM):
     
     def deleteOperation(self):
         if not self.deleted:
-            taskMgr.doMethodLater(1, self.__deleteOperation, self.fsmName('deleteOperation'))
+            taskMgr.doMethodLater(0.25, self.__deleteOperation, self.fsmName('deleteOperation'))
             self.deleted = True
     
     def __deleteOperation(self, task):
@@ -66,7 +66,7 @@ class GetAvatarOperation(OperationFSM):
         return [self.getLevelFromAccumulator(accumulators, accumulator) for accumulator in self.getRequiredAccumulators()]
     
     def getPirateFields(self):
-        return ('setDNAString', 'setFounder', 'setHp', 'setMaxHp', 'setMojo', 'setMaxMojo', 'setInventoryId', 'setDefaultShard', 'setReturnLocation')
+        return ('setDNAString', 'setFounder', 'setHp', 'setMaxHp', 'setMojo', 'setMaxMojo', 'setInventoryId', 'setDefaultShard', 'setReturnLocation', 'setGuildId', 'setGuildName')
 
     def enterStart(self):
         self.air.dbInterface.queryObject(self.air.dbId, self.target, self.handleRetrieve)
@@ -78,9 +78,7 @@ class GetAvatarOperation(OperationFSM):
             self.demand('Error', 'Distributed Class was not a Pirate.')
             return
 
-        dna, founder, hp, maxHp, mojo, maxMojo, inventoryId, shardId, returnLocation = [fields[field][0] for field in self.getPirateFields()]
-        guildId = 0
-        guildName = ''
+        dna, founder, hp, maxHp, mojo, maxMojo, inventoryId, shardId, returnLocation, guildId, guildName = [fields[field][0] for field in self.getPirateFields()]
         showGoTo = self.target in self.mgr.onlinePirates
         chat = True
         siege = False
@@ -219,7 +217,7 @@ class PiratesFriendsManagerUD(DistributedObjectGlobalUD):
         self.tpRequests = {}
         self.whisperRequests = {}
         self.operations = {}
-        self.delayTime = 0.2
+        self.delayTime = 1.0
         self.accept('goingOffline', self.goingOffline)
 
     def checkWhisperRequest(self, fromId):

@@ -9,7 +9,8 @@ from otp.ai import MagicWordManager/AI
 from otp.avatar import DistributedAvatar/AI/UD
 from otp.avatar import DistributedPlayer/AI
 from otp.friends import FriendManager/AI
-from otp.friends import GuildManager/AI/UD
+from otp.friends import DistributedGuild/UD
+from otp.friends import GuildManager/UD
 from otp.distributed import DistributedDistrict/AI/UD
 from otp.distributed import DistributedDirectory/AI
 from otp.chat import ChatAgent/AI
@@ -145,7 +146,6 @@ dclass AvatarHandle : TalkPath_whisper {
 };
 
 dclass DistributedAvatar : DistributedSmoothNode, TalkPath_whisper {
-  string DcObjectType db;
   setName(string) required broadcast db airecv ownrecv;
   friendsNotify(DoId avId, int8 status) ownrecv airecv;
   checkAvOnShard(DoId) clsend airecv;
@@ -233,6 +233,10 @@ dclass LeaderBoard : LeaderBoardReceiver {
   getTopTen(string);
   getValuesRespondTo(string, uint32 [], uint32);
   getTopTenRespondTo(string, uint32);
+};
+
+dclass DistributedGuild : DistributedObject {
+  setName(string) required broadcast ram db;
 };
 
 dclass GuildManager : DistributedObject, LeaderBoardReceiver, TalkPath_group {

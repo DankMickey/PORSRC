@@ -796,9 +796,6 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
         self.accept('avatarZoneChanged', self.handleZoneChanged)
         self.invInterest = self.addInterest(2, 'localAvatar-inventory')
 
-        #if self.guildId: # TODO
-        #    self.cr.guildManager.addInterest(self.guildId, self.uniqueName('guild'))
-
         self.nametag.manage(base.marginManager)
         self.controlManager.setTag('avId', str(self.getDoId()))
         pe = PolylightEffect.make()

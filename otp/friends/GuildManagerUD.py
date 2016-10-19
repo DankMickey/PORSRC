@@ -1,9 +1,115 @@
 from direct.directnotify import DirectNotifyGlobal
-from direct.distributed.DistributedObjectUD import DistributedObjectUD
+from direct.distributed.DistributedObjectGlobalUD import DistributedObjectGlobalUD
+from direct.fsm.FSM import FSM
+from otp.otpbase import OTPUtils
 
-class GuildManagerUD(DistributedObjectUD):
+GUILDRANK_VETERAN = 4
+GUILDRANK_GM = 3
+GUILDRANK_OFFICER = 2
+GUILDRANK_MEMBER = 1
+
+class OperationFSM(FSM):
+
+    def __init__(self, mgr, sender, callback=None):
+        FSM.__init__(self, 'OperationFSM-%s' % sender)
+        self.mgr = mgr
+        self.air = mgr.air
+        self.sender = sender
+        self.callback = callback
+        self.deleted = False
+    
+    def fsmName(self, name):
+        return 'OperationFSM-%s-%s' % (id(self), name)
+    
+    def deleteOperation(self):
+        if not self.deleted:
+            taskMgr.doMethodLater(0.25, self.__deleteOperation, self.fsmName('deleteOperation'))
+            self.deleted = True
+    
+    def __deleteOperation(self, task):
+        if self.sender in self.mgr.operations:
+            del self.mgr.operations[self.sender]
+
+    def enterOff(self):
+        self.deleteOperation()
+
+    def enterError(self, message=None):
+        self.mgr.notify.warning("An error has occurred in a '%s'. Message: %s" % (self.__class__.__name__, message))
+        self.deleteOperation()
+
+class CreateGuildOperation(OperationFSM):
+    NAME = 'Pirate Guild'
+    
+    def enterStart(self):
+        self.air.dbInterface.queryObject(self.air.dbId, self.sender, self.__retrievedPirate)
+    
+    def __retrievedPirate(self, dclass, fields):
+        if dclass != self.air.dclassesByName['DistributedPlayerPirateUD']:
+            self.demand('Error', 'Sender is not a pirate.')
+            return
+
+        self.demand('RetrievedPirate', fields)
+    
+    def enterRetrievedPirate(self, fields):
+        guildId = fields['setGuildId'][0]
+
+        if False and guildId:
+            self.demand('Off')
+            return
+        
+        self.air.dbInterface.createObject(self.air.dbId, self.air.dclassesByName['DistributedGuildUD'], {'setName': [self.NAME]}, self.__createdGuild)
+    
+    def __createdGuild(self, doId):
+        if not doId:
+            self.demand('Error', "Couldn't create guild object on the database.")
+            return
+
+        self.guildId = doId
+        self.demand('CreatedGuild')
+    
+    def enterCreatedGuild(self):
+        self.changedFields = {
+            'setGuildId': [self.guildId],
+            'setGuildName': [self.NAME]
+        }
+
+        self.air.dbInterface.updateObject(self.air.dbId, self.sender, self.air.dclassesByName['DistributedPlayerPirateUD'], self.changedFields, callback=self.__updatedPirate)
+    
+    def __updatedPirate(self, fields):
+        dclass = self.air.dclassesByName['DistributedPlayerPirateUD']
+
+        for key, value in self.changedFields.iteritems():
+            self.air.send(dclass.aiFormatUpdate(key, self.sender, self.sender, self.air.ourChannel, value))
+
+        self.mgr.d_guildStatusUpdate(self.sender, self.guildId, self.NAME, GUILDRANK_GM)
+        self.demand('Off')
+
+class GuildManagerUD(DistributedObjectGlobalUD):
     notify = DirectNotifyGlobal.directNotify.newCategory("GuildManagerUD")
+    
+    def __init__(self, air):
+        DistributedObjectGlobalUD.__init__(self, air)
+        self.operations = {}
+    
+    def hasOperation(self, avId):
+        return avId in self.operations
+    
+    def addOperation(self, operation):
+        if self.hasOperation(operation.sender):
+            return
 
+        self.operations[operation.sender] = operation
+        operation.demand('Start')
+
+    def createGuild(self):
+        avId = self.air.getAvatarIdFromSender()
+        
+        if avId not in self.operations:
+            self.addOperation(CreateGuildOperation(self, avId))
+    
+    def d_guildStatusUpdate(self, avId, guildId, guildName, guildRank):
+        self.sendUpdateToAvatarId(avId, 'guildStatusUpdate', [guildId, guildName, guildRank])
+    
     def online(self):
         pass
 
@@ -17,9 +123,6 @@ class GuildManagerUD(DistributedObjectUD):
         pass
 
     def memberList(self):
-        pass
-
-    def createGuild(self):
         pass
 
     def acceptInvite(self):

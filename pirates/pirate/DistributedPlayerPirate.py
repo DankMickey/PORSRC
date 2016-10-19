@@ -3243,17 +3243,6 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             camera.setPos(cameraPos)
             localAvatar.cameraFSM.getFPSCamera().camOffset = camOff
 
-
-
-    def setClothes2(self, *dna):
-        if hasattr(self, 'clothingEquipBufferDict') and len(self.clothingEquipBufferDict.keys()) > 0:
-            return None
-        elif dna == self.getClothesComposite():
-            pass
-        else:
-            self.setClothesFromList(dna)
-
-
     def setClothes(self, *dna):
         counter = 0
         dclass = base.cr.dclassesByName['DistributedPlayerPirate']

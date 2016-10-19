@@ -1,5 +1,4 @@
-from direct.distributed.DistributedObjectGlobalUD import DistributedObjectGlobalUD
+from otp.friends.GuildManagerUD import GuildManagerUD
 
-
-class DistributedGuildManagerUD(DistributedObjectGlobalUD):
+class DistributedGuildManagerUD(GuildManagerUD):
     notify = directNotify.newCategory('DistributedGuildManagerUD')

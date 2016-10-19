@@ -39,7 +39,7 @@ from pirates.instance import DistributedTeleportZone/AI
 from pirates.instance import DistributedTeleportMgr/AI
 from pirates.instance import DistributedMatchMaker/UD
 from pirates.instance import DistributedTravelAgent/UD
-from pirates.friends import DistributedGuildManager/AI/UD
+from pirates.friends import DistributedGuildManager/UD
 from pirates.friends import PiratesFriendsManager/UD
 from pirates.ai import NewsManager/AI
 from pirates.world import DistributedGameArea/AI
@@ -770,8 +770,8 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   // setDinghyId(uint32) required broadcast ram;
   //setBandId(uint32, uint32) required broadcast ram ownrecv;
   requestLookoutInvite(uint32, string, uint32, uint32, resultPair []);
-  setGuildId(uint32 = 0) required airecv broadcast ram db;
-  setGuildName(string = "Null") required broadcast ram db;
+  setGuildId(uint32 = 0) required broadcast ram airecv db;
+  setGuildName(string = "Null") required broadcast ram airecv db;
   setBandPvp(bool) clsend airecv;
   setBandParlor(bool) clsend airecv;
   setAFK(bool) clsend airecv;
