@@ -202,18 +202,14 @@ class GuildManager(DistributedObjectGlobal):
         if hasattr(base, 'localAvatar'):
             base.localAvatar.guiMgr.handleGuildInvitation(avatarId, avatarName, guildId, guildName)
 
-    def retractInvite(self, avatarId):
-        print 'GM retraction'
-
-    def guildAcceptInvite(self, avatarId):
-        print 'sending accept event'
-        messenger.send(OTPGlobals.GuildAcceptInviteEvent, [avatarId])
+    def guildAcceptInvite(self):
+        messenger.send(OTPGlobals.GuildAcceptInviteEvent)
 
     def leaderboardTopTen(self, stuff):
         base.localAvatar.guiMgr.handleTopTen(stuff)
 
-    def guildRejectInvite(self, avatarId, reason):
-        messenger.send(OTPGlobals.GuildRejectInviteEvent, [avatarId, reason])
+    def guildRejectInvite(self, reason):
+        messenger.send(OTPGlobals.GuildRejectInviteEvent, [reason])
 
     def rejectInvite(self, avatarId, reason):
         pass

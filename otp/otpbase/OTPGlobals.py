@@ -332,7 +332,6 @@ CopyrightedNames = ('mickey',
  'pluto',
  'goofy')
 GuildUpdateMembersEvent = 'guildUpdateMembersEvent'
-GuildInvitationEvent = 'guildInvitationEvent'
 GuildAcceptInviteEvent = 'guildAcceptInviteEvent'
 GuildRejectInviteEvent = 'guildRejectInviteEvent'
 AvatarFriendAddEvent = 'avatarFriendAddEvent'
@@ -341,7 +340,6 @@ AvatarFriendRemoveEvent = 'avatarFriendRemoveEvent'
 AvatarFriendConsideringEvent = 'avatarFriendConsideringEvent'
 AvatarFriendInvitationEvent = 'avatarFriendInvitationEvent'
 AvatarFriendRejectInviteEvent = 'avatarFriendRejectInviteEvent'
-AvatarFriendRetractInviteEvent = 'avatarFriendRetractInviteEvent'
 AvatarFriendRejectRemoveEvent = 'avatarFriendRejectRemoveEvent'
 WhisperIncomingEvent = 'whisperIncomingEvent'
 AvatarSlotAvailable = -1

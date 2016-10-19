@@ -2,6 +2,7 @@ from direct.directnotify import DirectNotifyGlobal
 from direct.distributed.DistributedObjectGlobalUD import DistributedObjectGlobalUD
 from direct.fsm.FSM import FSM
 from otp.otpbase import OTPUtils
+from otp.uberdog.RejectCode import RejectCode
 
 GUILDRANK_VETERAN = 4
 GUILDRANK_GM = 3
@@ -87,6 +88,13 @@ class RetrievePirateGuildOperation(RetrievePirateOperation):
         for i, member in enumerate(self.members):
             if member[0] == avId:
                 return i, member
+    
+    def isMember(self, avId):
+        for i, member in enumerate(self.members):
+            if member[0] == avId:
+                return True
+        
+        return False
     
     def updateMembers(self, members):
         self.air.dbInterface.updateObject(self.air.dbId, self.guildId, self.air.dclassesByName['DistributedGuildUD'], {'setMembers': [members]})
@@ -211,12 +219,37 @@ class MemberListOperation(RetrievePirateGuildOperation):
         self.mgr.d_receiveMembers(self.sender, memberInfo)
         self.demand('Off')
 
+class RequestInviteOperation(RetrievePirateGuildOperation):
+    DELAY = 1.5
+    
+    def enterRetrievedGuild(self):
+        if self.isMember(self.target):
+            self.mgr.d_guildRejectInvite(self.sender, RejectCode.ALREADY_IN_GUILD)
+            self.demand('Off')
+            return
+    
+        self.air.dbInterface.queryObject(self.air.dbId, self.target, self.__retrievedPirate)
+    
+    def __retrievedPirate(self, dclass, fields):
+        if dclass != self.air.dclassesByName['DistributedPlayerPirateUD']:
+            self.demand('Error', 'Sender is not a pirate.')
+            return
+
+        if fields['setGuildId'][0]:
+            self.mgr.d_guildRejectInvite(self.sender, RejectCode.ALREADY_IN_GUILD)
+            self.demand('Off')
+            return
+        
+        self.mgr.addInvitation(self.sender, self.target, self.pirate['setName'][0], self.guildId, self.guild['setName'][0])
+        self.demand('Off')
+    
 class GuildManagerUD(DistributedObjectGlobalUD):
     notify = DirectNotifyGlobal.directNotify.newCategory("GuildManagerUD")
     
     def __init__(self, air):
         DistributedObjectGlobalUD.__init__(self, air)
         self.operations = {}
+        self.invites = {}
         self.accept('pirateOnline', self.pirateOnline)
     
     def hasOperation(self, avId):
@@ -237,6 +270,15 @@ class GuildManagerUD(DistributedObjectGlobalUD):
     def d_receiveMembers(self, avId, members):
         self.sendUpdateToAvatarId(avId, 'receiveMembers', [members])
     
+    def d_guildAcceptInvite(self, avId):
+        self.sendUpdateToAvatarId(avId, 'guildAcceptInvite', [])
+    
+    def d_guildRejectInvite(self, avId, reason):
+        self.sendUpdateToAvatarId(avId, 'guildRejectInvite', [reason])
+    
+    def d_invitationFrom(self, avId, fromId, fromName, guildId, guildName):
+        self.sendUpdateToAvatarId(avId, 'invitationFrom', [fromId, fromName, guildId, guildName])
+    
     def pirateOnline(self, doId):
         PirateOnlineOperation(self, doId).demand('Start')
     
@@ -252,155 +294,27 @@ class GuildManagerUD(DistributedObjectGlobalUD):
         if avId not in self.operations:
             MemberListOperation(self, avId).demand('Start')
     
-    def online(self):
-        pass
-
-    def guildRejectInvite(self, todo0, todo1):
-        pass
-
-    def invitationFrom(self, todo0, todo1, todo2, todo3):
-        pass
-
-    def requestInvite(self, todo0):
-        pass
-
-    def memberList(self):
-        pass
-
-    def acceptInvite(self):
-        pass
-
-    def declineInvite(self):
-        pass
-
-    def setWantName(self, todo0):
-        pass
-
-    def changeRank(self, todo0, todo1):
-        pass
-
-    def changeRankAvocate(self, todo0):
-        pass
-
-    def requestLeaderboardTopTen(self):
-        pass
-
-    def guildStatusUpdate(self, todo0, todo1, todo2):
-        pass
-
-    def guildNameReject(self, todo0):
-        pass
-
-    def guildNameChange(self, todo0, todo1):
-        pass
-
-    def guildAcceptInvite(self, todo0):
-        pass
-
-    def guildDeclineInvite(self, todo0):
-        pass
-
-    def updateRep(self, todo0, todo1):
-        pass
-
-    def leaderboardTopTen(self, todo0):
-        pass
-
-    def recvAvatarOnline(self, todo0, todo1, todo2, todo3):
-        pass
-
-    def recvAvatarOffline(self, todo0, todo1):
-        pass
-
-    def sendChat(self, todo0, todo1, todo2):
-        pass
-
-    def sendSC(self, todo0):
-        pass
-
-    def sendSCQuest(self, todo0, todo1, todo2):
-        pass
-
-    def recvChat(self, todo0, todo1, todo2, todo3):
-        pass
-
-    def recvSC(self, todo0, todo1):
-        pass
-
-    def recvSCQuest(self, todo0, todo1, todo2, todo3):
-        pass
-
-    def sendTokenRequest(self):
-        pass
-
-    def recvTokenGenerated(self, todo0):
-        pass
-
-    def recvTokenInviteValue(self, todo0, todo1):
-        pass
-
-    def sendTokenForJoinRequest(self, todo0, todo1):
-        pass
-
-    def recvTokenRedeemMessage(self, todo0):
-        pass
-
-    def recvTokenRedeemedByPlayerMessage(self, todo0):
-        pass
-
-    def sendTokenRValue(self, todo0, todo1):
-        pass
-
-    def sendPermToken(self):
-        pass
-
-    def sendNonPermTokenCount(self):
-        pass
-
-    def recvPermToken(self, todo0):
-        pass
-
-    def recvNonPermTokenCount(self, todo0):
-        pass
-
-    def sendClearTokens(self, todo0):
-        pass
-
-    def sendAvatarBandId(self, todo0, todo1, todo2):
-        pass
-
-    def recvMemberAdded(self, todo0, todo1, todo2):
-        pass
-
-    def notifyGuildKicksMaxed(self):
-        pass
-
-    def recvMemberRemoved(self, todo0, todo1, todo2, todo3):
-        pass
-
-    def recvMemberUpdateName(self, todo0, todo1):
-        pass
-
-    def recvMemberUpdateRank(self, todo0, todo1, todo2, todo3, todo4, todo5):
-        pass
-
-    def recvMemberUpdateBandId(self, todo0, todo1, todo2):
-        pass
-
-    def avatarOnline(self, todo0, todo1):
-        pass
-
-    def avatarOffline(self, todo0):
-        pass
-
-    def reflectTeleportQuery(self, todo0, todo1, todo2, todo3, todo4):
-        pass
-
-    def teleportQuery(self, todo0, todo1, todo2, todo3, todo4):
-        pass
-
-    def reflectTeleportResponse(self, todo0, todo1, todo2, todo3, todo4):
-        pass
-
-    def teleportResponse(self, todo0, todo1, todo2, todo3, todo4):
-        pass
+    def isInInvite(self, avId):
+        return avId in self.invites.keys() or avId in self.invites.values()
+    
+    def requestInvite(self, targetId):
+        avId = self.air.getAvatarIdFromSender()
+        
+        if targetId == avId or self.isInInvite(targetId):
+            self.d_guildRejectInvite(avId, RejectCode.BUSY)
+            return
+        
+        if targetId not in self.air.piratesFriendsManager.onlinePirates:
+            self.d_guildRejectInvite(avId, RejectCode.INVITEE_NOT_ONLINE)
+            return
+        
+        if self.isInInvite(avId):
+            return
+        
+        if avId not in self.operations:
+            RequestInviteOperation(self, avId, targetId).demand('Start')
+    
+    def addInvitation(self, sender, target, pirateName, guildId, guildName):
+        self.invites[sender] = target
+        self.d_invitationFrom(target, sender, pirateName, guildId, guildName)
+    

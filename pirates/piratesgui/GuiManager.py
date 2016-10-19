@@ -330,8 +330,6 @@ class GuiManager(FSM.FSM):
         self.accept(BandConstance.BandMakeEvent, self.handleCrewInvite)
         self.accept(BandConstance.BandInvitationEvent, self.handleCrewInvitation)
         self.accept(BandConstance.BandRejoinEvent, self.handleCrewRejoin)
-        self.accept(PiratesGlobals.GuildMakeEvent, self.handleGuildInvite)
-        self.accept(PiratesGlobals.GuildInvitationEvent, self.handleGuildInvitation)
         self.accept(PiratesGlobals.FriendMakeEvent, self.handleAvatarFriendInvite)
         self.accept(OTPGlobals.AvatarFriendInvitationEvent, self.handleAvatarFriendInvitation)
         self.accept(PiratesGlobals.TradeRequestEvent, self.handleTradeInvite)

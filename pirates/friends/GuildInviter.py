@@ -454,12 +454,12 @@ class GuildInviter(DirectFrame):
             self.fsm.request('maybe')
 
 
-    def _GuildInviter__handleGuildAcceptInvite(self, avId):
+    def _GuildInviter__handleGuildAcceptInvite(self):
         print 'Received accept invite event on inviter'
         self.fsm.request('yes')
 
 
-    def _GuildInviter__handleGuildRejectInvite(self, avId, reason):
+    def _GuildInviter__handleGuildRejectInvite(self, reason):
         if reason == RejectCode.INVITEE_NOT_ONLINE:
             self.fsm.request('notAvailable')
         elif reason == RejectCode.BUSY:
@@ -471,7 +471,7 @@ class GuildInviter(DirectFrame):
         elif reason == RejectCode.NO_GUILD:
             self.fsm.request('no')
         else:
-            self.notify.warning('guildRejectInvite: %s unknown reason: %s.' % (avId, reason))
+            self.notify.warning('guildRejectInvite: %s unknown reason: %s.' % reason)
 
 
     def _GuildInviter__handleDisableAvatar(self):
