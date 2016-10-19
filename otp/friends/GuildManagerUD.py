@@ -87,6 +87,9 @@ class RetrievePirateGuildOperation(RetrievePirateOperation):
         for i, member in enumerate(self.members):
             if member[0] == avId:
                 return i, member
+    
+    def updateMembers(self, members):
+        self.air.dbInterface.updateObject(self.air.dbId, self.guildId, self.air.dclassesByName['DistributedGuildUD'], {'setMembers': [members]})
 
 class UpdatePirateExtension(object):
 
@@ -128,7 +131,18 @@ class PirateOnlineOperation(RetrievePirateGuildOperation, UpdatePirateExtension)
     
     def enterRetrievedGuild(self):
         guildName = self.guild['setName'][0]
-        members = self.guild['setMembers'][0]
+        pirateName = self.pirate['setName'][0]
+        i, member = self.getMember(self.sender)
+        
+        if not member:
+            self.demand('Off')
+            return
+
+        if member[2] != pirateName:
+            member[2] = pirateName
+            self.members[i] = member
+            self.updateMembers(self.members)
+
         self.demand('UpdatePirate', self.guildId, guildName, GUILDRANK_GM)
 
 class RemoveMemberOperation(RetrievePirateGuildOperation, UpdatePirateExtension):
@@ -154,7 +168,7 @@ class RemoveMemberOperation(RetrievePirateGuildOperation, UpdatePirateExtension)
             return
 
         del self.members[i]
-        self.air.dbInterface.updateObject(self.air.dbId, self.guildId, self.air.dclassesByName['DistributedGuildUD'], {'setMembers': [self.members]})
+        self.updateMembers(self.members)
         self.demand('UpdatePirate', 0, '', 0)
         
 class GuildManagerUD(DistributedObjectGlobalUD):
