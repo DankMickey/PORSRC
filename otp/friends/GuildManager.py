@@ -4,7 +4,6 @@ from otp.distributed import OtpDoGlobals
 from otp.otpbase import OTPLocalizer
 from otp.otpbase import OTPGlobals
 from otp.avatar.AvatarHandle import AvatarHandle
-from otp.ai import AIInterestHandles
 GUILDRANK_VETERAN = 4
 GUILDRANK_GM = 3
 GUILDRANK_OFFICER = 2
@@ -84,9 +83,6 @@ class GuildManager(DistributedObjectGlobal):
 
     def changeRankAvocate(self, avatarId):
         self.sendUpdate('changeRankAvocate', [avatarId])
-
-    def statusRequest(self):
-        self.sendUpdate('statusRequest', [])
 
     def requestLeaderboardTopTen(self):
         self.sendUpdate('requestLeaderboardTopTen', [])
@@ -203,12 +199,9 @@ class GuildManager(DistributedObjectGlobal):
             if not base.localAvatar.isIgnored(id):
                 base.talkAssistant.receiveGuildMessage(id, self.id2Name.get(id, 'Unknown'), msg)
 
-        if localAvatar.getGuildId():
-            self.accept(self.cr.StopVisibilityEvent, self.handleLogout)
-        else:
-            self.ignore(self.cr.StopVisibilityEvent)
         if hasattr(base, 'localAvatar'):
             base.localAvatar.guiMgr.guildPage.receiveMembers(memberlist)
+
         messenger.send('guildMemberUpdated', sentArgs=[localAvatar.doId])
 
     def guildStatusUpdate(self, guildId, guildName, guildRank):
@@ -399,7 +392,3 @@ class GuildManager(DistributedObjectGlobal):
     def teleportResponse(self, responderId, available, shardId, instanceDoId, areaDoId):
         if self.cr.teleportMgr:
             self.cr.teleportMgr.handleAvatarTeleportResponse(responderId, available, shardId, instanceDoId, areaDoId)
-
-    @report(types=['args'], dConfigParam='guildmgr')
-    def handleLogout(self, *args, **kw):
-        self.cr.removeAIInterest(AIInterestHandles.PIRATES_GUILD)

@@ -54,12 +54,6 @@ class SiegeManager(DistributedObject, SiegeManagerBase):
             '',
             message])
 
-    def sendWLChat(self, message):
-        self.sendUpdate('sendWLChat', [
-            message,
-            0,
-            0])
-
     def sendSC(self, msgIndex):
         self.sendUpdate('sendSC', [msgIndex])
 
@@ -72,12 +66,6 @@ class SiegeManager(DistributedObject, SiegeManagerBase):
         base.talkAssistant.receiveShipPVPMessage(fromAv, avatarName, teamName, chat)
 
     def recvChat(self, avatarId, message, chatFlags, name):
-        teamName = self.getPVPChatTeamName(localAvatar.getSiegeTeam())
-        if not base.localAvatar.isIgnored(avatarId):
-            displayMess = '%s %s %s' % (name, self.getPVPChatTeamName(localAvatar.getSiegeTeam()), message)
-            base.talkAssistant.receiveShipPVPMessage(avatarId, name, teamName, message)
-
-    def recvWLChat(self, avatarId, message, chatFlags, name):
         teamName = self.getPVPChatTeamName(localAvatar.getSiegeTeam())
         if not base.localAvatar.isIgnored(avatarId):
             displayMess = '%s %s %s' % (name, self.getPVPChatTeamName(localAvatar.getSiegeTeam()), message)

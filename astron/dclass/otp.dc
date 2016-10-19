@@ -248,7 +248,6 @@ dclass GuildManager : DistributedObject, LeaderBoardReceiver, TalkPath_group {
   removeMember(uint32) airecv clsend;
   changeRank(uint32, uint8) airecv clsend;
   changeRankAvocate(uint32) airecv clsend;
-  statusRequest() airecv clsend;
   requestLeaderboardTopTen() airecv clsend;
   guildStatusUpdate(uint32, string(0-256), uint8);
   guildNameReject(uint32);
@@ -262,11 +261,9 @@ dclass GuildManager : DistributedObject, LeaderBoardReceiver, TalkPath_group {
   recvAvatarOnline(uint32, string, uint32, uint32);
   recvAvatarOffline(uint32, string);
   sendChat(string(0-256), uint8, uint32) airecv clsend;
-  sendWLChat(string(0-256), uint8, uint32) airecv clsend;
   sendSC(uint16) airecv clsend;
   sendSCQuest(uint16, uint16, uint16) airecv clsend;
   recvChat(uint32, string, uint8, uint32);
-  recvWLChat(uint32, string, uint8, uint32);
   recvSC(uint32, uint16);
   recvSCQuest(uint32, uint16, uint16, uint16);
   sendTokenRequest() airecv clsend;

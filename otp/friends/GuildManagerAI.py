@@ -40,9 +40,6 @@ class GuildManagerAI(DistributedObjectAI):
     def changeRankAvocate(self, todo0):
         pass
 
-    def statusRequest(self):
-        pass
-
     def requestLeaderboardTopTen(self):
         pass
 
@@ -82,9 +79,6 @@ class GuildManagerAI(DistributedObjectAI):
     def sendChat(self, todo0, todo1, todo2):
         pass
 
-    def sendWLChat(self, todo0, todo1, todo2):
-        pass
-
     def sendSC(self, todo0):
         pass
 
@@ -92,9 +86,6 @@ class GuildManagerAI(DistributedObjectAI):
         pass
 
     def recvChat(self, todo0, todo1, todo2, todo3):
-        pass
-
-    def recvWLChat(self, todo0, todo1, todo2, todo3):
         pass
 
     def recvSC(self, todo0, todo1):

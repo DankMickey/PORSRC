@@ -83,9 +83,6 @@ class GuildPage(SocialPage.SocialPage):
             self.nameEntry.hide()
             self.nameLabel.show()
 
-        if self.permTokenLabel:
-            pass
-        1
         if self.tokenEntry:
             self.tokenEntry.hide()
 
@@ -225,18 +222,6 @@ class GuildPage(SocialPage.SocialPage):
         self.memberChain.destroy()
         self.tokenChain.destroy()
         SocialPage.SocialPage.destroy(self)
-
-
-    def aboutGuild(self):
-        self.confirmBox = PiratesInfo.PiratesInfo(PLocalizer.GuildAbout, PLocalizer.GuildTut)
-        if self.nameEntry:
-            self.nameEntry.hide()
-            self.nameLabel.show()
-
-        if self.tokenEntry:
-            self.tokenEntry.hide()
-
-
 
     def manageInviteGuild(self):
         self.displayTokenOptionsFrame()

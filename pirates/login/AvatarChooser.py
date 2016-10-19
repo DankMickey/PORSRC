@@ -546,9 +546,6 @@ class AvatarChooser(DirectObject, StateData):
         from pirates.piratesgui.MainMenuConfirm import MainMenuConfirm
         self.areYouSureMenu = MainMenuConfirm("quit")
 
-    def __handleLogoutWithoutConfirm(self):
-        base.cr.loginFSM.request('login')
-
     def __shipRockTask(self, task):
         h = self.shipRoot.getH()
         p = 1.5 * math.sin(task.time * 0.9)
