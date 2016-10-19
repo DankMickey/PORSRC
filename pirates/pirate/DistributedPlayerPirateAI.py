@@ -1012,19 +1012,3 @@ def registerCodeUsed(code):
         return "%s has already redeemed '%s'." % (av.getName(), code)
     av.addRedeemedCode(code)
     return "Registered '%s' as used for %s." % (code, av.getName())
-
-@magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
-def setGuildId(id):
-    target = spellbook.getTarget()
-    target.b_setGuildId(id)
-    return "Set %s's guildId to %s" % (target.getName(), id)
-
-@magicWord(CATEGORY_SPONSOR, types=[str])
-def setGuildName(name=None):
-    target = spellbook.getTarget()
-    if name is None:
-        target.b_setGuildName("Null")
-        return "Removed %s's guild name" % target.getName()
-    else:
-        target.b_setGuildName(name)
-        return "Set %s's guild name to %s" % (target.getName(), name)

@@ -738,13 +738,8 @@ class PirateProfilePage(SocialPage.SocialPage):
         elif base.cr.guildManager.getBandId(localAvatar.doId) == base.cr.guildManager.getBandId(self.profileId):
             self.guildName = localAvatar.getGuildName()
 
-        if self.guildName == PLocalizer.GuildNoGuild:
-            self.guildName = ''
-
         if self.guildId == 0:
             self.guildName = ''
-        elif self.guildName == '0' or self.guildName == '':
-            self.guildName = PLocalizer.GuildDefaultName % self.guildId
 
         if returnLocation in PLocalizer.LocationNames:
             self.islandName = PLocalizer.LocationNames[returnLocation]

@@ -108,10 +108,7 @@ class GuildPage(SocialPage.SocialPage):
 
         if self.guildId:
             self.guildName = base.localAvatar.getGuildName()
-            self.guildReal = self.guildName
             self.guildRank = base.localAvatar.getGuildRank()
-            if self.guildName == '0' or self.guildName == '':
-                self.guildName = PLocalizer.GuildDefaultName % self.guildId
 
 
         if not self.memberButton:
@@ -141,8 +138,7 @@ class GuildPage(SocialPage.SocialPage):
 
 
     def determineButtonState(self):
-        self.guildName = None
-        self.guildReal = None
+        self.guildName = ''
         self.guildRank = None
         self.guildId = base.localAvatar.guildId
         if not self.setupFlag:
@@ -150,23 +146,18 @@ class GuildPage(SocialPage.SocialPage):
 
         if self.guildId:
             self.guildName = base.localAvatar.getGuildName()
-            self.guildReal = self.guildName
             self.guildRank = base.localAvatar.getGuildRank()
-            if self.guildName == '0' or self.guildName == '':
-                self.guildName = PLocalizer.GuildDefaultName % self.guildId
 
             if hasattr(base, 'localAvatar'):
                 inv = base.localAvatar.getInventory()
                 if inv and not inv.getStackQuantity(InventoryType.NewGuild):
                     base.localAvatar.sendRequestContext(InventoryType.NewGuild)
 
-
-
-        if self.nameLabel and self.guildName and self.guildName != PLocalizer.GuildNoGuild:
-            if self.guildName != '0' or self.guildName != '':
+        if self.nameLabel:
+            if self.guildName:
                 self.nameLabel.show()
                 self.nameLabel['text'] = self.guildName
-            elif self.nameLabel:
+            else:
                 self.nameLabel.hide()
 
         rank = base.localAvatar.getGuildRank()
@@ -179,13 +170,13 @@ class GuildPage(SocialPage.SocialPage):
         elif rank == 4:
             ranktxt = PLocalizer.GuildRankInviter
         else:
-            ranktxt = None
-        if self.rankLabel and rank and ranktxt:
-            self.rankLabel['text'] = ranktxt
-            self.rankLabel.show()
-        elif self.rankLabel:
-            ranktxt = PLocalizer.Loading
-            self.rankLabel.hide()
+            ranktxt = ''
+        if self.rankLabel:
+            if ranktxt:
+                self.rankLabel['text'] = ranktxt
+                self.rankLabel.show()
+            else:
+                self.rankLabel.hide()
 
         if self.memberButton:
             self.memberButton['state'] = DGG.DISABLED
@@ -197,7 +188,7 @@ class GuildPage(SocialPage.SocialPage):
         self.redeemInvite['state'] = DGG.NORMAL
         self.codeInviteOptions['state'] = DGG.DISABLED
         if self.guildRank > 2:
-            if (self.guildReal == '0' or self.guildReal == '') and not (self.recentlySentName):
+            if not self.recentlySentName:
                 self.renameButton['state'] = DGG.NORMAL
                 self.redeemInvite['state'] = DGG.DISABLED
 

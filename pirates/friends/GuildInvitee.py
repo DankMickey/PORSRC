@@ -29,10 +29,7 @@ class GuildInvitee(DirectFrame):
             self._GuildInvitee__handleNo()
             return None
 
-        if guildName == 0 and guildName == '' or guildName == '0':
-            self.guildName = PLocalizer.GuildDefaultName % self.guildId
-        else:
-            self.guildName = guildName
+        self.guildName = guildName
         nameArray = ('\x01CPOrangeHEAD\x01' + self.avName + '\x02', '\x01CPOrangeHEAD\x01' + self.avName + '\x02', '\x01CPOrangeOVER\x01' + self.avName + '\x02', '\x01CPOrangeHEAD\x01' + self.avName + '\x02')
         nameButton = DirectButton(parent = NodePath(), relief = None, text = nameArray, text_align = TextNode.ALeft, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 0, command = self.handleAvatarPress, extraArgs = [
             avId,

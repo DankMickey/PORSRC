@@ -11,11 +11,12 @@ GUILDRANK_MEMBER = 1
 class OperationFSM(FSM):
     HAS_DELAY = True
 
-    def __init__(self, mgr, sender, callback=None):
+    def __init__(self, mgr, sender, target=None, callback=None):
         FSM.__init__(self, 'OperationFSM-%s' % sender)
         self.mgr = mgr
         self.air = mgr.air
         self.sender = sender
+        self.target = target
         self.callback = callback
         self.deleted = False
         
@@ -127,6 +128,18 @@ class PirateOnlineOperation(RetrievePirateGuildOperation, UpdatePirateExtension)
         self.name = self.guild['setName'][0]
         self.demand('UpdatePirate')
 
+class RemoveMemberOperation(RetrievePirateGuildOperation, UpdatePirateExtension):
+    
+    def enterRetrievedGuild(self):
+        # TODO: Implement ranks so we can remove other members if allowed
+        if self.sender != self.target:
+            self.demand('Off')
+            return
+        
+        self.guildId = 0
+        self.name = ''
+        self.demand('UpdatePirate')
+        
 class GuildManagerUD(DistributedObjectGlobalUD):
     notify = DirectNotifyGlobal.directNotify.newCategory("GuildManagerUD")
     
@@ -150,6 +163,12 @@ class GuildManagerUD(DistributedObjectGlobalUD):
     def pirateOnline(self, doId):
         PirateOnlineOperation(self, doId).demand('Start')
     
+    def removeMember(self, targetId):
+        avId = self.air.getAvatarIdFromSender()
+        
+        if avId not in self.operations:
+            RemoveMemberOperation(self, avId, targetId).demand('Start')
+    
     def online(self):
         pass
 
@@ -172,9 +191,6 @@ class GuildManagerUD(DistributedObjectGlobalUD):
         pass
 
     def setWantName(self, todo0):
-        pass
-
-    def removeMember(self, todo0):
         pass
 
     def changeRank(self, todo0, todo1):
