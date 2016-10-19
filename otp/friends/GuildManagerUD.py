@@ -164,7 +164,11 @@ class RemoveMemberOperation(RetrievePirateGuildOperation, UpdatePirateExtension)
         targetRank = targetMember[1]
         selfKick = self.sender == self.target
         
-        if self.targetRank == GUILDRANK_GM or (not selfKick and senderRank not in (GUILDRANK_OFFICER, GUILDRANK_GM)):
+        if not selfKick and senderRank not in (GUILDRANK_OFFICER, GUILDRANK_GM):
+            self.demand('Off')
+            return
+        
+        if targetRank == GUILDRANK_GM and len(self.members) > 1:
             self.demand('Off')
             return
         
