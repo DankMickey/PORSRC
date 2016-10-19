@@ -290,6 +290,7 @@ class PiratesFriendsManagerUD(DistributedObjectGlobalUD):
         if doId in self.onlinePirates:
             return
 
+        messenger.send('pirateOnline', [doId])
         self.onlinePirates.append(doId)
         deleteFromBasicCache(doId)
         

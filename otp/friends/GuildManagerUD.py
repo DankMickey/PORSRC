@@ -9,6 +9,7 @@ GUILDRANK_OFFICER = 2
 GUILDRANK_MEMBER = 1
 
 class OperationFSM(FSM):
+    HAS_DELAY = True
 
     def __init__(self, mgr, sender, callback=None):
         FSM.__init__(self, 'OperationFSM-%s' % sender)
@@ -17,13 +18,18 @@ class OperationFSM(FSM):
         self.sender = sender
         self.callback = callback
         self.deleted = False
+        
+        if self.HAS_DELAY:
+            self.mgr.operations[self.sender] = self
     
     def fsmName(self, name):
         return 'OperationFSM-%s-%s' % (id(self), name)
     
     def deleteOperation(self):
         if not self.deleted:
-            taskMgr.doMethodLater(0.25, self.__deleteOperation, self.fsmName('deleteOperation'))
+            if self.HAS_DELAY:
+                taskMgr.doMethodLater(0.25, self.__deleteOperation, self.fsmName('deleteOperation'))
+            
             self.deleted = True
     
     def __deleteOperation(self, task):
@@ -32,13 +38,12 @@ class OperationFSM(FSM):
 
     def enterOff(self):
         self.deleteOperation()
-
+    
     def enterError(self, message=None):
         self.mgr.notify.warning("An error has occurred in a '%s'. Message: %s" % (self.__class__.__name__, message))
         self.deleteOperation()
 
-class CreateGuildOperation(OperationFSM):
-    NAME = 'Pirate Guild'
+class RetrievePirateOperation(OperationFSM):
     
     def enterStart(self):
         self.air.dbInterface.queryObject(self.air.dbId, self.sender, self.__retrievedPirate)
@@ -48,29 +53,40 @@ class CreateGuildOperation(OperationFSM):
             self.demand('Error', 'Sender is not a pirate.')
             return
 
-        self.demand('RetrievedPirate', fields)
+        self.pirate = fields
+        self.demand('RetrievedPirate')
     
-    def enterRetrievedPirate(self, fields):
-        guildId = fields['setGuildId'][0]
+    def enterRetrievedPirate(self):
+        pass
 
-        if False and guildId:
+class RetrievePirateGuildOperation(RetrievePirateOperation):
+
+    def enterRetrievedPirate(self):
+        self.guildId = self.pirate['setGuildId'][0]
+        
+        if not self.guildId:
             self.demand('Off')
             return
         
-        self.air.dbInterface.createObject(self.air.dbId, self.air.dclassesByName['DistributedGuildUD'], {'setName': [self.NAME]}, self.__createdGuild)
+        self.air.dbInterface.queryObject(self.air.dbId, self.guildId, self.__retrievedGuild)
     
-    def __createdGuild(self, doId):
-        if not doId:
-            self.demand('Error', "Couldn't create guild object on the database.")
+    def __retrievedGuild(self, dclass, fields):
+        if dclass != self.air.dclassesByName['DistributedGuildUD']:
+            self.demand('Error', 'Guild ID is not linked to a guild.')
             return
 
-        self.guildId = doId
-        self.demand('CreatedGuild')
+        self.guild = fields
+        self.demand('RetrievedGuild')
     
-    def enterCreatedGuild(self):
+    def enterRetrievedGuild(self):
+        pass
+
+class UpdatePirateExtension(object):
+
+    def enterUpdatePirate(self):
         self.changedFields = {
             'setGuildId': [self.guildId],
-            'setGuildName': [self.NAME]
+            'setGuildName': [self.name]
         }
 
         self.air.dbInterface.updateObject(self.air.dbId, self.sender, self.air.dclassesByName['DistributedPlayerPirateUD'], self.changedFields, callback=self.__updatedPirate)
@@ -81,8 +97,35 @@ class CreateGuildOperation(OperationFSM):
         for key, value in self.changedFields.iteritems():
             self.air.send(dclass.aiFormatUpdate(key, self.sender, self.sender, self.air.ourChannel, value))
 
-        self.mgr.d_guildStatusUpdate(self.sender, self.guildId, self.NAME, GUILDRANK_GM)
+        self.mgr.d_guildStatusUpdate(self.sender, self.guildId, self.name, GUILDRANK_GM)
         self.demand('Off')
+
+class CreateGuildOperation(RetrievePirateOperation, UpdatePirateExtension):
+    name = 'Pirate Guild'
+
+    def enterRetrievedPirate(self):
+        guildId = self.pirate['setGuildId'][0]
+
+        if False and guildId:
+            self.demand('Off')
+            return
+        
+        self.air.dbInterface.createObject(self.air.dbId, self.air.dclassesByName['DistributedGuildUD'], {'setName': [self.name]}, self.__createdGuild)
+    
+    def __createdGuild(self, doId):
+        if not doId:
+            self.demand('Error', "Couldn't create guild object on the database.")
+            return
+
+        self.guildId = doId
+        self.demand('UpdatePirate')
+
+class PirateOnlineOperation(RetrievePirateGuildOperation, UpdatePirateExtension):
+    HAS_DELAY = False
+    
+    def enterRetrievedGuild(self):
+        self.name = self.guild['setName'][0]
+        self.demand('UpdatePirate')
 
 class GuildManagerUD(DistributedObjectGlobalUD):
     notify = DirectNotifyGlobal.directNotify.newCategory("GuildManagerUD")
@@ -90,25 +133,22 @@ class GuildManagerUD(DistributedObjectGlobalUD):
     def __init__(self, air):
         DistributedObjectGlobalUD.__init__(self, air)
         self.operations = {}
+        self.accept('pirateOnline', self.pirateOnline)
     
     def hasOperation(self, avId):
         return avId in self.operations
-    
-    def addOperation(self, operation):
-        if self.hasOperation(operation.sender):
-            return
-
-        self.operations[operation.sender] = operation
-        operation.demand('Start')
 
     def createGuild(self):
         avId = self.air.getAvatarIdFromSender()
         
         if avId not in self.operations:
-            self.addOperation(CreateGuildOperation(self, avId))
+            CreateGuildOperation(self, avId).demand('Start')
     
     def d_guildStatusUpdate(self, avId, guildId, guildName, guildRank):
         self.sendUpdateToAvatarId(avId, 'guildStatusUpdate', [guildId, guildName, guildRank])
+    
+    def pirateOnline(self, doId):
+        PirateOnlineOperation(self, doId).demand('Start')
     
     def online(self):
         pass
