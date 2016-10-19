@@ -9,7 +9,7 @@ GUILDRANK_OFFICER = 2
 GUILDRANK_MEMBER = 1
 
 class OperationFSM(FSM):
-    HAS_DELAY = True
+    DELAY = 0.25
 
     def __init__(self, mgr, sender, target=None, callback=None):
         FSM.__init__(self, 'OperationFSM-%s' % sender)
@@ -20,7 +20,7 @@ class OperationFSM(FSM):
         self.callback = callback
         self.deleted = False
         
-        if self.HAS_DELAY:
+        if self.DELAY:
             self.mgr.operations[self.sender] = self
     
     def fsmName(self, name):
@@ -28,8 +28,8 @@ class OperationFSM(FSM):
     
     def deleteOperation(self):
         if not self.deleted:
-            if self.HAS_DELAY:
-                taskMgr.doMethodLater(0.25, self.__deleteOperation, self.fsmName('deleteOperation'))
+            if self.DELAY:
+                taskMgr.doMethodLater(self.DELAY, self.__deleteOperation, self.fsmName('deleteOperation'))
             
             self.deleted = True
     
@@ -77,10 +77,16 @@ class RetrievePirateGuildOperation(RetrievePirateOperation):
             return
 
         self.guild = fields
+        self.members = [list(member) for member in fields['setMembers'][0]]
         self.demand('RetrievedGuild')
     
     def enterRetrievedGuild(self):
         pass
+    
+    def getMember(self, avId):
+        for i, member in enumerate(self.members):
+            if member[0] == avId:
+                return i, member
 
 class UpdatePirateExtension(object):
 
@@ -103,7 +109,12 @@ class CreateGuildOperation(RetrievePirateOperation, UpdatePirateExtension):
             self.demand('Off')
             return
         
-        self.air.dbInterface.createObject(self.air.dbId, self.air.dclassesByName['DistributedGuildUD'], {'setName': [self.name]}, self.__createdGuild)
+        name = self.pirate['setName'][0]
+        fields = {
+            'setName': [self.name],
+            'setMembers': [[[self.sender, GUILDRANK_GM, name]]]
+        }
+        self.air.dbInterface.createObject(self.air.dbId, self.air.dclassesByName['DistributedGuildUD'], fields, self.__createdGuild)
     
     def __createdGuild(self, doId):
         if not doId:
@@ -113,20 +124,37 @@ class CreateGuildOperation(RetrievePirateOperation, UpdatePirateExtension):
         self.demand('UpdatePirate', doId, self.name, GUILDRANK_GM)
 
 class PirateOnlineOperation(RetrievePirateGuildOperation, UpdatePirateExtension):
-    HAS_DELAY = False
+    DELAY = 0.0
     
     def enterRetrievedGuild(self):
-        self.name = self.guild['setName'][0]
-        self.demand('UpdatePirate', self.guildId, self.name, GUILDRANK_GM)
+        guildName = self.guild['setName'][0]
+        members = self.guild['setMembers'][0]
+        self.demand('UpdatePirate', self.guildId, guildName, GUILDRANK_GM)
 
 class RemoveMemberOperation(RetrievePirateGuildOperation, UpdatePirateExtension):
     
     def enterRetrievedGuild(self):
-        # TODO: Implement ranks so we can remove other members if allowed
-        if self.sender != self.target:
+        _, senderMember = self.getMember(self.sender)
+        
+        if not senderMember:
             self.demand('Off')
             return
+
+        i, targetMember = self.getMember(self.target)
         
+        if not targetMember:
+            self.demand('Off')
+            return
+
+        senderRank = senderMember[1]
+        targetRank = targetMember[1]
+        
+        if self.targetRank == GUILDRANK_GM or (self.sender != self.target and senderRank not in (GUILDRANK_OFFICER, GUILDRANK_GM)):
+            self.demand('Off')
+            return
+
+        del self.members[i]
+        self.air.dbInterface.updateObject(self.air.dbId, self.guildId, self.air.dclassesByName['DistributedGuildUD'], {'setMembers': [self.members]})
         self.demand('UpdatePirate', 0, '', 0)
         
 class GuildManagerUD(DistributedObjectGlobalUD):

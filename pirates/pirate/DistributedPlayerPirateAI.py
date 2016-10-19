@@ -73,6 +73,8 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         if self.defaultShard != self.air.districtId:
             self.b_setDefaultShard(self.air.districtId)
         
+        self.__checkGuildName()
+        
         taskMgr.doMethodLater(15, self.__checkCodeExploit, self.taskName('codeTask'))
         taskMgr.doMethodLater(10, self.__healthTask, self.taskName('healthTask'))
         taskMgr.doMethodLater(15, self.__doubleXpTask, self.taskName('doubleXPTask'))
@@ -357,6 +359,14 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         _, mojo = self.calcHpAndMojoLimit(mojo=mojo)
         DistributedBattleAvatarAI.setMojo(self, mojo)
 
+    def d_refreshName(self):
+        self.sendUpdate('refreshName', [])
+    
+    def __checkGuildName(self):
+        if self.guildName == 'Null':
+            self.b_setGuildName('')
+            self.d_refreshName()
+    
     def __checkCodeExploit(self, task):
         newCodes = []
         changed = False

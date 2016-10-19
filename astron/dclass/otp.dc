@@ -198,15 +198,6 @@ dclass FriendManager : DistributedObject {
   tfResponse(uint8, string);
 };
 
-struct MemberInfo {
-  uint32 avatarId;
-  string avatarName;
-  uint8 avatarRank;
-  uint8 avatarOnline;
-  uint32 bandManagerId;
-  uint32 bandId;
-};
-
 struct leaderBoardRecordResponces {
   char found;
   uint32 id;
@@ -235,8 +226,24 @@ dclass LeaderBoard : LeaderBoardReceiver {
   getTopTenRespondTo(string, uint32);
 };
 
+struct MemberInfo {
+  uint32 avatarId;
+  string avatarName;
+  uint8 avatarRank;
+  uint8 avatarOnline;
+  uint32 bandManagerId;
+  uint32 bandId;
+};
+
+struct GuildMember {
+  uint32 avatarId;
+  uint8 avatarRank;
+  string name;
+};
+
 dclass DistributedGuild : DistributedObject {
   setName(string) required broadcast ram db;
+  setMembers(GuildMember[]) required broadcast ram db;
 };
 
 dclass GuildManager : DistributedObject, LeaderBoardReceiver, TalkPath_group {

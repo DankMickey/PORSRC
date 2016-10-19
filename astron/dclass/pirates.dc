@@ -697,6 +697,7 @@ dclass DistributedFort : DistributedBattleAvatar {
 };
 
 dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar {
+  refreshName() ownrecv;
   friendsNotify(DoId avId, int8 status) ownrecv airecv;
   checkAvOnShard(DoId) clsend airecv;
   confirmAvOnShard(DoId avId, int8 isOnShard);
@@ -771,7 +772,7 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   //setBandId(uint32, uint32) required broadcast ram ownrecv;
   requestLookoutInvite(uint32, string, uint32, uint32, resultPair []);
   setGuildId(uint32 = 0) required broadcast ram airecv db;
-  setGuildName(string = "Null") required broadcast ram airecv db;
+  setGuildName(string = "") required broadcast ram airecv db;
   setBandPvp(bool) clsend airecv;
   setBandParlor(bool) clsend airecv;
   setAFK(bool) clsend airecv;
