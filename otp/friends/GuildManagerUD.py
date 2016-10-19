@@ -115,7 +115,7 @@ class CreateGuildOperation(RetrievePirateOperation, UpdatePirateExtension):
         name = self.pirate['setName'][0]
         fields = {
             'setName': [self.name],
-            'setMembers': [[[self.sender, GUILDRANK_GM, name]]]
+            'setMembers': [[[self.sender, GUILDRANK_GM, name, 0, 0]]]
         }
         self.air.dbInterface.createObject(self.air.dbId, self.air.dclassesByName['DistributedGuildUD'], fields, self.__createdGuild)
     
@@ -148,13 +148,13 @@ class PirateOnlineOperation(RetrievePirateGuildOperation, UpdatePirateExtension)
 class RemoveMemberOperation(RetrievePirateGuildOperation, UpdatePirateExtension):
     
     def enterRetrievedGuild(self):
-        _, senderMember = self.getMember(self.sender)
+        i, senderMember = self.getMember(self.sender)
         
         if not senderMember:
             self.demand('Off')
             return
 
-        i, targetMember = self.getMember(self.target)
+        j, targetMember = self.getMember(self.target)
         
         if not targetMember:
             self.demand('Off')
@@ -162,12 +162,31 @@ class RemoveMemberOperation(RetrievePirateGuildOperation, UpdatePirateExtension)
 
         senderRank = senderMember[1]
         targetRank = targetMember[1]
+        selfKick = self.sender == self.target
         
-        if self.targetRank == GUILDRANK_GM or (self.sender != self.target and senderRank not in (GUILDRANK_OFFICER, GUILDRANK_GM)):
+        if self.targetRank == GUILDRANK_GM or (not selfKick and senderRank not in (GUILDRANK_OFFICER, GUILDRANK_GM)):
             self.demand('Off')
             return
+        
+        if senderRank == GUILDRANK_OFFICER and not selfKick:
+            senderTime = senderMember[3]
+            senderKickNum = senderMember[4]
+            currentTime = int(time.time())
+            
+            if senderTime != 0 and senderTime > currentTime and senderKickNum == 5:
+                self.mgr.d_notifyGuildKicksMaxed(self.sender)
+                self.demand('Off')
+                return
+            
+            if senderTime == 0 or senderTime <= currentTime:
+                senderMember[3] = currentTime + 86400 # One day
+                senderMember[4] = 1
+            else:
+                senderMember[4] += 1
 
-        del self.members[i]
+            self.members[i] = senderMember
+
+        del self.members[j]
         self.updateMembers(self.members)
         self.demand('UpdatePirate', 0, '', 0)
         
@@ -190,6 +209,9 @@ class GuildManagerUD(DistributedObjectGlobalUD):
     
     def d_guildStatusUpdate(self, avId, guildId, guildName, guildRank):
         self.sendUpdateToAvatarId(avId, 'guildStatusUpdate', [guildId, guildName, guildRank])
+    
+    def d_notifyGuildKicksMaxed(self, avId):
+        self.sendUpdateToAvatarId(avId, 'notifyGuildKicksMaxed', [])
     
     def pirateOnline(self, doId):
         PirateOnlineOperation(self, doId).demand('Start')
@@ -357,13 +379,4 @@ class GuildManagerUD(DistributedObjectGlobalUD):
         pass
 
     def teleportResponse(self, todo0, todo1, todo2, todo3, todo4):
-        pass
-
-    def requestGuildMatesList(self, todo0, todo1, todo2):
-        pass
-
-    def updateAvatarName(self, todo0, todo1):
-        pass
-
-    def avatarDeleted(self, todo0):
         pass

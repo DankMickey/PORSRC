@@ -239,6 +239,8 @@ struct GuildMember {
   uint32 avatarId;
   uint8 avatarRank;
   string name;
+  uint32 kickResetTime;
+  uint8 kickCount;
 };
 
 dclass DistributedGuild : DistributedObject {
@@ -302,9 +304,6 @@ dclass GuildManager : DistributedObject, LeaderBoardReceiver, TalkPath_group {
   teleportQuery(uint32, uint32, uint32, uint32, uint32);
   reflectTeleportResponse(uint32, int8, uint32, uint32, uint32) clsend airecv;
   teleportResponse(uint32, int8, uint32, uint32, uint32);
-  requestGuildMatesList(uint32, uint32, uint32);
-  updateAvatarName(uint32, string);
-  avatarDeleted(uint32);
 };
 
 dclass CentralLogger : DistributedObject {
