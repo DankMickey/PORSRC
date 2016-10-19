@@ -54,19 +54,9 @@ class GuildManager(DistributedObjectGlobal):
         self.pendingMsgs = []
         self.emailNotification = 0
         self.emailNotificationAddress = None
-        self.receivingNewList = False
-        self.spamGateOpen = True
-        return
-
-    def _allowMemberList(self, task):
-        self.spamGateOpen = True
-        return task.done
 
     def memberList(self):
-        if self.spamGateOpen:
-            self.sendUpdate('memberList', [])
-            self.spamGateOpen = False
-            taskMgr.doMethodLater(60.0, self._allowMemberList, 'allowMemberList')
+        self.sendUpdate('requestMembers', [])
 
     def createGuild(self):
         messenger.send('declineGuildInvitation')
@@ -168,41 +158,30 @@ class GuildManager(DistributedObjectGlobal):
     def requestClearTokens(self, type):
         self.sendUpdate('sendClearTokens', [type])
 
-    def receiveMember(self, member):
-        if not self.receivingNewList:
-            self.receivingNewList = True
-            self.newList = []
-        self.newList.append(member)
-
-    def clearMembers(self):
-        self.newList = []
-        self.receiveMembersDone()
-
-    def receiveMembersDone(self):
-        self.receivingNewList = False
-        memberlist = self.newList
+    def receiveMembers(self, members):
         self.newList = []
         self.id2Name = {}
         self.id2Rank = {}
         self.id2BandId = {}
-        for guy in memberlist:
-            id = guy[0]
-            name = guy[1]
-            rank = guy[2]
-            isOnline = guy[3]
+
+        for guy in members:
+            id, name, rank, isOnline, bandMgrId, bandId = guy
             self.id2Name[id] = name
             self.id2Rank[id] = rank
             self.id2Online[id] = isOnline
-            self.id2BandId[id] = tuple(guy[4:6])
+            self.id2BandId[id] = (bandMgrId, bandId)
 
         for id, msg in self.pendingMsgs:
             if not base.localAvatar.isIgnored(id):
                 base.talkAssistant.receiveGuildMessage(id, self.id2Name.get(id, 'Unknown'), msg)
 
         if hasattr(base, 'localAvatar'):
-            base.localAvatar.guiMgr.guildPage.receiveMembers(memberlist)
+            base.localAvatar.guiMgr.guildPage.receiveMembers(members)
 
         messenger.send('guildMemberUpdated', sentArgs=[localAvatar.doId])
+
+    def clearMembers(self):
+        self.receiveMembers([])
 
     def guildStatusUpdate(self, guildId, guildName, guildRank):
         if hasattr(base, 'localAvatar'):

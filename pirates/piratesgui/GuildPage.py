@@ -433,7 +433,7 @@ class GuildPage(SocialPage.SocialPage):
 
 
 
-    def receiveMembers(self, memlist):
+    def receiveMembers(self, members):
         self.mainFrame.hide()
         self.tokenFrame.hide()
         self.membersFrame.show()
@@ -443,16 +443,12 @@ class GuildPage(SocialPage.SocialPage):
             self.setupMemberPage = True
         else:
             self.membersFrame.show()
-        cullList = []
-        timeBefore = globalClock.getRealTime()
-        for info in memlist:
-            cullList.append(info[0])
+
+        self.membersList.removeAll()
+        for info in members:
             self.membersList.updateOrAddMember(info[0], PirateMemberList.MODE_GUILD, list(info))
 
-        self.membersList.removeNotOnAvList(cullList)
         self.startRecountMembers()
-        timeAfter = globalClock.getRealTime()
-        timeToCreate = timeAfter - timeBefore
 
 
     def updateCount(self, task = None):

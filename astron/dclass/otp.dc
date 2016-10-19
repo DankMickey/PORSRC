@@ -249,14 +249,13 @@ dclass DistributedGuild : DistributedObject {
 };
 
 dclass GuildManager : DistributedObject, LeaderBoardReceiver, TalkPath_group {
-  online();
   guildRejectInvite(uint32, uint32);
   invitationFrom(uint32, string, uint32, string);
   requestInvite(uint32) airecv clsend;
-  memberList() airecv clsend;
   createGuild() airecv clsend;
   acceptInvite() airecv clsend;
   declineInvite() airecv clsend;
+  requestMembers() airecv clsend;
   setWantName(string(0-256)) airecv clsend;
   removeMember(uint32) airecv clsend;
   changeRank(uint32, uint8) airecv clsend;
@@ -265,8 +264,7 @@ dclass GuildManager : DistributedObject, LeaderBoardReceiver, TalkPath_group {
   guildStatusUpdate(uint32, string(0-256), uint8);
   guildNameReject(uint32);
   guildNameChange(string, uint8);
-  receiveMember(MemberInfo);
-  receiveMembersDone();
+  receiveMembers(MemberInfo[]);
   guildAcceptInvite(uint32);
   guildDeclineInvite(uint32);
   updateRep(uint32, uint32);

@@ -108,7 +108,7 @@ class CreateGuildOperation(RetrievePirateOperation, UpdatePirateExtension):
     def enterRetrievedPirate(self):
         guildId = self.pirate['setGuildId'][0]
 
-        if False and guildId:
+        if guildId:
             self.demand('Off')
             return
         
@@ -193,7 +193,24 @@ class RemoveMemberOperation(RetrievePirateGuildOperation, UpdatePirateExtension)
         del self.members[j]
         self.updateMembers(self.members)
         self.demand('UpdatePirate', 0, '', 0)
+
+class MemberListOperation(RetrievePirateGuildOperation):
+    DELAY = 1.5
+    
+    def enterRetrievedGuild(self):
+        memberInfo = []
         
+        for member in self.members:
+            avId, rank, name, _, _ = member
+            online = avId in self.air.piratesFriendsManager.onlinePirates
+            bandManagerId = 0
+            bandId = 0
+            
+            memberInfo.append([avId, name, rank, online, bandManagerId, bandId])
+        
+        self.mgr.d_receiveMembers(self.sender, memberInfo)
+        self.demand('Off')
+
 class GuildManagerUD(DistributedObjectGlobalUD):
     notify = DirectNotifyGlobal.directNotify.newCategory("GuildManagerUD")
     
@@ -217,14 +234,23 @@ class GuildManagerUD(DistributedObjectGlobalUD):
     def d_notifyGuildKicksMaxed(self, avId):
         self.sendUpdateToAvatarId(avId, 'notifyGuildKicksMaxed', [])
     
+    def d_receiveMembers(self, avId, members):
+        self.sendUpdateToAvatarId(avId, 'receiveMembers', [members])
+    
     def pirateOnline(self, doId):
         PirateOnlineOperation(self, doId).demand('Start')
     
     def removeMember(self, targetId):
         avId = self.air.getAvatarIdFromSender()
         
-        if avId not in self.operations:
+        if targetId and avId not in self.operations:
             RemoveMemberOperation(self, avId, targetId).demand('Start')
+    
+    def requestMembers(self):
+        avId = self.air.getAvatarIdFromSender()
+
+        if avId not in self.operations:
+            MemberListOperation(self, avId).demand('Start')
     
     def online(self):
         pass
@@ -266,12 +292,6 @@ class GuildManagerUD(DistributedObjectGlobalUD):
         pass
 
     def guildNameChange(self, todo0, todo1):
-        pass
-
-    def receiveMember(self, todo0):
-        pass
-
-    def receiveMembersDone(self):
         pass
 
     def guildAcceptInvite(self, todo0):
