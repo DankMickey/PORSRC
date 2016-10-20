@@ -333,6 +333,13 @@ FriendNotifictation = '%s is now your friend.'
 FriendInviteeOK = lOK
 FriendInviteeNo = lNo
 You = 'You'
+LowerYou = 'you'
+GuildRankNames = {
+    1: 'Member',
+    2: 'Officer',
+    3: 'Guildmaster',
+    4: 'Veteran'
+}
 GuildKicksMaxed = 'Officers are only allowed to remove five guild members per day.'
 GuildInviterWentAway = '%s is no longer present.'
 GuildInviterAlready = '%s is already in a guild.'

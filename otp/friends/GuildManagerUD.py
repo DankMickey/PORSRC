@@ -99,8 +99,8 @@ class RetrievePirateGuildOperation(RetrievePirateOperation):
         return False
     
     def updateMembers(self, members):
-        self.air.dbInterface.updateObject(self.air.dbId, self.guildId, self.air.dclassesByName['DistributedGuildUD'], {'setMembers': [members]})
         self.mgr.addMemberList(self.guildId, members)
+        self.air.dbInterface.updateObject(self.air.dbId, self.guildId, self.air.dclassesByName['DistributedGuildUD'], {'setMembers': [members]})
     
     def convertMember(self, member):
         avId, rank, name, _, _ = member
@@ -291,11 +291,19 @@ class AddMemberOperation(RetrievePirateGuildOperation, UpdatePirateExtension):
             self.demand('Off')
             return
         
+        i, senderMember = self.getMember(self.sender)
+        
+        if not senderMember:
+            self.demand('Off')
+            return
+
         name = fields['setName'][0]
-        self.members.append([self.target, GUILDRANK_MEMBER, name, 0, 0])
+        member = [self.target, GUILDRANK_MEMBER, name, 0, 0]
+
+        self.members.append(member)
         self.updateMembers(self.members)
         self.demand('UpdatePirate', self.target, self.guildId, self.guild['setName'][0], GUILDRANK_MEMBER)
-        self.mgr.d_recvAvatarOnline(self.mgr.getMemberIds(self.guildId), self.target, name)
+        self.mgr.d_recvMemberAdded(self.mgr.getMemberIds(self.guildId), self.convertMember(member), self.sender, senderMember[2])
 
 class SendChatOperation(RetrievePirateOperation):
     DELAY = 0.5
@@ -394,6 +402,10 @@ class GuildManagerUD(DistributedObjectGlobalUD):
     def d_recvMemberRemoved(self, avIds, avatarId, senderId, avatarName, senderName):
         for avId in avIds:
             self.sendUpdateToAvatarId(avId, 'recvMemberRemoved', [avatarId, senderId, avatarName, senderName])
+    
+    def d_recvMemberAdded(self, avIds, memberInfo, inviterId, inviterName):
+        for avId in avIds:
+            self.sendUpdateToAvatarId(avId, 'recvMemberAdded', [memberInfo, inviterId, inviterName])
     
     def pirateOnline(self, doId):
         PirateOnlineOperation(self, doId).demand('Start')
