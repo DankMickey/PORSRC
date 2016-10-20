@@ -374,7 +374,7 @@ class GameOptionsGui(DirectFrame):
         text = PLocalizer.GameOptionsFPS
         self.create_label(x, y, text, parent, sl)
         self.FPS = CheckButton(parent=parent, relief=None, scale=sc,
-                                                   pos=(x + 0.675000, 0, y + 0.0149), command=self.FPS1) #supposed to be FPS but no attribute error occurs again
+                                                   pos=(x + 0.675000, 0, y + 0.0149), command=self.FPS1)
         
     def setupLowerFrame(self):
         self.lowerFrame = DirectFrame(parent=self, relief=None,
@@ -860,7 +860,6 @@ class GameOptionsGui(DirectFrame):
     def FPS1(self, val):
         if self.gameOptions is None:
             return None
-         #calls the toggleFPS
         self.gameOptions.options.FPS = val
         self.gameOptions.options.setRuntimeFPS()
 

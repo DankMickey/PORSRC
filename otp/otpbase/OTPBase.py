@@ -1,13 +1,12 @@
-from panda3d.core import Camera, ColorWriteAttrib, DisplayRegion, FrameRateMeter, Lens, StereoDisplayRegion, TPLow, VBase4
+from panda3d.core import Camera, ColorWriteAttrib, DisplayRegion, Lens, StereoDisplayRegion, TPLow, VBase4
 from direct.showbase.ShowBase import ShowBase
 import OTPRender
-import sysconfig
+from pandac.PandaModules import ConfigVariableBool
 import time
 import math
 import re
 from otp.ai.MagicWordGlobal import *
 from otp.otpbase import OTPGlobals
-from otp.chat.ChatGarbler import ChatGarbler
 from otp.chat import WhiteList, SequenceListData, WhiteListData
 import traceback
 
@@ -25,14 +24,12 @@ class OTPBase(ShowBase):
         self.fillShardsToIdealPop = self.config.GetBool('fill-shards-to-ideal-pop', 1)
 
         self.wantDynamicShadows = 1
-        self.stereoEnabled = False
+        self.stereoEnabled = None
         self.FPSEnabled = False
         self.enviroDR = None
         self.enviroCam = None
         self.pixelZoomSetup = False
 
-        self.chatGarbler = ChatGarbler()
-        
         if base.cam:
             if self.wantEnviroDR:
                 base.cam.node().setCameraMask(OTPRender.MainCameraBitmask)
@@ -79,13 +76,11 @@ class OTPBase(ShowBase):
             mainDR.setCamera(base.cam)
 
     def toggleFPS(self):
-        self.FPSEnabledEnabled = not self.FPSEnabled
+        self.FPSEnabled = not self.FPSEnabled
         if self.FPSEnabled:
             base.setFrameRateMeter(True)
-            #add option here
         if not self.FPSEnabled:
             base.setFrameRateMeter(False)
-            #add option here
             return
 
 

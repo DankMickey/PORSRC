@@ -71,10 +71,10 @@ gl-check-errors #t
 hide-gui #f
 
 # FPS
-show-frame-rate-meter #t
 sync-flip #f
 auto-flip #f
 sync-video #f
+
 
 # ISLAND
 remove-island-barriers #f

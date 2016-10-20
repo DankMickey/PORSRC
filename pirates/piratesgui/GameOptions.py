@@ -154,7 +154,7 @@ class Options(Settings):
             'oceanVisibility': self.ocean_visibility,
             'landMapRadarAxis': self.land_map_radar_axis,
             'oceanMapRadarAxis': self.ocean_map_radar_axis,
-            'FramesPerSecond': self.FPS,
+            'FramesPerSecond': bool(self.FPS),
             'simpleDisplayOption': self.simple_display_option,
             'useStereo': bool(self.use_stereo),
         }
@@ -447,7 +447,7 @@ class Options(Settings):
         messenger.send('oceanMapRadarAxisChanged', [self.ocean_map_radar_axis])
 
     def setFPS(self):
-        messenger.send('FPSChanged', [self.FPS]) #
+        messenger.send('FPSChanged', [self.FPS])
 
 
     def getOceanMapRadarAxis(self):
