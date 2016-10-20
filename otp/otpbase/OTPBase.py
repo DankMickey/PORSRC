@@ -7,6 +7,7 @@ import math
 import re
 from otp.ai.MagicWordGlobal import *
 from otp.otpbase import OTPGlobals
+from otp.chat.ChatGarbler import ChatGarbler
 from otp.chat import WhiteList, SequenceListData, WhiteListData
 import traceback
 
