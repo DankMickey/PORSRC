@@ -1,6 +1,8 @@
 from panda3d.core import BitMask32, BoundingSphere, CollideMask, CollisionHandler, CollisionHandlerFloor, CollisionHandlerGravity, CollisionNode, CollisionRay, CollisionSphere, CollisionTraverser, GeomNode, ModelNode, NodePath, Plane, Vec3, headsUp, lookAt
 from direct.interval.IntervalGlobal import *
 from direct.directnotify import DirectNotifyGlobal
+from panda3d.core import TextNode, Texture
+from direct.directnotify.DirectNotifyGlobal import directNotify
 from direct.distributed.ClockDelta import *
 from direct.task import Task
 from otp.otpbase import OTPGlobals
@@ -769,7 +771,7 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
             return None
 
         if not self.shouldNotice() and self.isMovingDontNotice or self.noticeFlag:
-            return None
+            PLocalizer.getNavyAggroPhrase()
 
         if self.getDistance(localAvatar) > self.getEffectiveNoticeDistance() + 2.0 or not self.stateOkayForNotice():
             if self.gameFSM:
@@ -966,12 +968,10 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
         if cantMove == False:
             if (self.getPos(parentObj) - oldPos).length() < 0.100:
                 self.motionFSM.motionAnimFSM.updateNPCAnimState(0, 0, 0)
-                if config.GetBool('want-npc-notice', 0) and abs(self.getH() - oldH) < 0.100:
-                    if self.moveNoticeFlag and self.lastMovedTimeStamp and globalClock.getFrameTime() - self.lastMovedTimeStamp > 0.5 and not (self.localAvatarHasBeenNoticed):
-                        self.isMovingDontNotice = 0
-                        self.firstNoticeLocalAvatar()
-                        self.noticeLocalAvatar()
-                        self.moveNoticeFlag = 0
+                if config.GetBool('want-npc-notice', 0) and abs(self.getH() - oldH) < 0.40:
+                     self.isMovingDontNotice = 0
+                     self.noticeLocalAvatar()
+                     self.moveNoticeFlag = 0
 
                 else:
                     self.lastMovedTimeStamp = globalClock.getFrameTime()
@@ -1307,6 +1307,7 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
                 self.enableReducedMixing()
             else:
                 self.enableMixing()
+
 
     def setUniqueId(self, uid):
         if self.uniqueId != '' and uid != self.uniqueId:
