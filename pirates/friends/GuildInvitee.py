@@ -29,10 +29,7 @@ class GuildInvitee(DirectFrame):
             self._GuildInvitee__handleNo()
             return None
 
-        if guildName == 0 and guildName == '' or guildName == '0':
-            self.guildName = PLocalizer.GuildDefaultName % self.guildId
-        else:
-            self.guildName = guildName
+        self.guildName = guildName
         nameArray = ('\x01CPOrangeHEAD\x01' + self.avName + '\x02', '\x01CPOrangeHEAD\x01' + self.avName + '\x02', '\x01CPOrangeOVER\x01' + self.avName + '\x02', '\x01CPOrangeHEAD\x01' + self.avName + '\x02')
         nameButton = DirectButton(parent = NodePath(), relief = None, text = nameArray, text_align = TextNode.ALeft, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 0, command = self.handleAvatarPress, extraArgs = [
             avId,
@@ -60,14 +57,8 @@ class GuildInvitee(DirectFrame):
         self.bIgnore['image_scale'] = (0.65, 1, 0.5)
         self.bIgnore.setPos(0.2, 0, 0.05)
         self.bIgnore['text_pos'] = (0.04, 0.04)
-        if hasattr(base, 'localAvatar'):
-            if not base.localAvatar.isPopulated():
-                self._GuildInvitee__handleNo()
-                return None
-
 
         self.accept('declineGuildInvitation', self._GuildInvitee__handleNo)
-        self.accept('cancelGuildInvitation', self._GuildInvitee__handleCancelFromAbove)
         if hasattr(base, 'localAvatar') and base.localAvatar.guiMgr:
             if base.localAvatar.guiMgr.ignoreGuildInvites:
                 self._GuildInvitee__handleNo()
@@ -80,7 +71,6 @@ class GuildInvitee(DirectFrame):
             return None
 
         self.destroyed = 1
-        self.ignore('cancelGuildInvitation')
         DirectFrame.destroy(self)
 
 
@@ -99,11 +89,6 @@ class GuildInvitee(DirectFrame):
             base.localAvatar.guiMgr.handleIgnoreGuildInvites()
 
         self.destroy()
-
-
-    def _GuildInvitee__handleCancelFromAbove(self):
-        self.destroy()
-
 
     def handleAvatarPress(self, avId, avName):
         if hasattr(base, 'localAvatar') and base.localAvatar.guiMgr:

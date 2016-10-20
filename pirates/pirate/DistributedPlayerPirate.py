@@ -269,7 +269,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             self.skeleton = None
             self.stickyTargets = []
             self.attuneEffect = None
-            self.guildName = PLocalizer.GuildNoGuild
+            self.guildName = ''
             self.guildId = -1
             self.guildRank = -1
             self.defaultShard = 0
@@ -1279,10 +1279,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             self.nametag.setName(self.getName())
             self.nametag.setDisplayName('        ')
 
-        if self.guildName == '0' or self.guildName == '':
-            guildName = PLocalizer.GuildDefaultName % self.guildId
-        else:
-            guildName = self.guildName
+        guildName = self.guildName
         nameText = self.getNameText()
         if nameText:
             level = self.getLevel()
@@ -1294,10 +1291,11 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             if self.tempDoubleXPStatus:
                 x2XPTempAwardIndicator = '\x05x2XPAwardIcon\x05'
 
-            if self.guildName == PLocalizer.GuildNoGuild:
-                text = '%s%s  \x01smallCaps\x01%s%s%s%s\x02\x02' % (self.title, self.name, levelColor, PLocalizer.Lv, level, x2XPTempAwardIndicator)
-            else:
-                text = '%s%s  \x01smallCaps\x01%s%s%s%s\x02\x02\n\x01guildName\x01%s\x02' % (self.title, self.name, levelColor, PLocalizer.Lv, level, x2XPTempAwardIndicator, guildName)
+            text = '%s%s  \x01smallCaps\x01%s%s%s%s\x02\x02' % (self.title, self.name, levelColor, PLocalizer.Lv, level, x2XPTempAwardIndicator)
+            
+            if guildName:
+                text += '\n\x01guildName\x01%s\x02' % guildName
+
             if self.getFounder():
                 nameText['fg'] = (1, 1, 1, 1)
                 nameText['font'] = PiratesGlobals.getPirateOutlineFont()
@@ -1448,11 +1446,8 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         return self.title + self.name
 
 
-    def setGuildName(self, newname):
-        if newname == 'Null':
-            self.guildName = PLocalizer.GuildNoGuild
-        else:
-            self.guildName = newname
+    def setGuildName(self, guildName):
+        self.guildName = guildName
         self.refreshName()
 
 
@@ -3242,17 +3237,6 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         if self.isLocal():
             camera.setPos(cameraPos)
             localAvatar.cameraFSM.getFPSCamera().camOffset = camOff
-
-
-
-    def setClothes2(self, *dna):
-        if hasattr(self, 'clothingEquipBufferDict') and len(self.clothingEquipBufferDict.keys()) > 0:
-            return None
-        elif dna == self.getClothesComposite():
-            pass
-        else:
-            self.setClothesFromList(dna)
-
 
     def setClothes(self, *dna):
         counter = 0

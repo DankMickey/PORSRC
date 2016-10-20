@@ -332,6 +332,15 @@ FriendInviteeInvitation = '%s would like to be your friend.'
 FriendNotifictation = '%s is now your friend.'
 FriendInviteeOK = lOK
 FriendInviteeNo = lNo
+You = 'You'
+LowerYou = 'you'
+GuildRankNames = {
+    1: 'Member',
+    2: 'Officer',
+    3: 'Guildmaster',
+    4: 'Veteran'
+}
+GuildKicksMaxed = 'Officers are only allowed to remove five guild members per day.'
 GuildInviterWentAway = '%s is no longer present.'
 GuildInviterAlready = '%s is already in a guild.'
 GuildInviterBusy = '%s is busy right now.'
@@ -353,6 +362,7 @@ GuildInviterFriendsNoMore = '%s has left the guild.'
 GuildInviterSelf = 'You are already in the guild!'
 GuildInviterIgnored = '%s is ignoring you.'
 GuildInviterAsking = 'Asking %s to join the guild.'
+GuildInviterFriendKickedOutSelf = 'You have left the guild.'
 GuildInviterGuildSaidYes = '%s has joined the guild!'
 GuildInviterFriendKickedOut = '%s has kicked out %s from the Guild.'
 GuildInviterFriendKickedOutP = '%s have kicked out %s from the Guild.'

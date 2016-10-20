@@ -30,21 +30,21 @@ class GuildPage(SocialPage.SocialPage):
         self.setupFlag = 0
         self.confirmBox = None
         self.crew = { }
-        self.leaveButton = 0
-        self.createButton = 0
-        self.nameEntry = 0
-        self.tokenEntry = 0
-        self.nameLabel = 0
-        self.rankLabel = 0
-        self.memberButton = 0
-        self.revertButton = 0
-        self.renameButton = 0
-        self.aboutButton = 0
-        self.inviteButton = 0
-        self.redeemInvite = 0
-        self.manageInvite = 0
-        self.codeInviteOptions = 0
-        self.aboutTokenManagement = 0
+        self.leaveButton = None
+        self.createButton = None
+        self.nameEntry = None
+        self.tokenEntry = None
+        self.nameLabel = None
+        self.rankLabel = None
+        self.memberButton = None
+        self.revertButton = None
+        self.renameButton = None
+        self.aboutButton = None
+        self.inviteButton = None
+        self.redeemInvite = None
+        self.manageInvite = None
+        self.codeInviteOptions = None
+        self.aboutTokenManagement = None
         self.clearPermToken = 0
         self.clearLimitedUseToken = 0
         self.suspendPermToken = 0
@@ -64,8 +64,8 @@ class GuildPage(SocialPage.SocialPage):
         self.membersList = PirateMemberList.PirateMemberList(5, self.membersFrame, 'FOOLIO HC', height = 0.598, memberHeight = 0.100, memberWidth = 0.598, memberOffset = 0.055, width = 0.62, sort = 1)
         self.membersList.setPos(-0.0864, 0.0, 0.11)
         self.accept(self.membersList.onlineChangeEvent, self.updateCount)
-        self.mainChain = PirateButtonChain.PirateButtonChain(0.560000, self.mainFrame, True)
-        self.mainChain.setPos(-0.0518, 0.0, -0.36)
+        self.mainChain = PirateButtonChain.PirateButtonChain(0.560000, self.mainFrame, True, True)
+        self.mainChain.setPos(-0.0518, 0.0, -0.265)
         self.memberChain = PirateButtonChain.PirateButtonChain(0.560000, self.membersFrame, True)
         self.memberChain.setPos(-0.0518, 0.0, 0.0250)
         self.membersFrame.hide()
@@ -108,41 +108,36 @@ class GuildPage(SocialPage.SocialPage):
 
         if self.guildId:
             self.guildName = base.localAvatar.getGuildName()
-            self.guildReal = self.guildName
             self.guildRank = base.localAvatar.getGuildRank()
-            if self.guildName == '0' or self.guildName == '':
-                self.guildName = PLocalizer.GuildDefaultName % self.guildId
-
 
         if not self.memberButton:
             self.memberButton = self.mainChain.premakeButton(PLocalizer.GuildPageShowMembers, self.showGuildMembers)
-
+        
         if not self.renameButton:
             self.renameButton = self.mainChain.premakeButton(PLocalizer.GuildPageNameGuild, self.renameGuild)
-
+        
         if not self.createButton:
             self.createButton = self.mainChain.premakeButton(PLocalizer.GuildPageCreateGuild, self.createGuild)
-
+        
         if not self.leaveButton:
             self.leaveButton = self.mainChain.premakeButton(PLocalizer.GuildPageLeaveGuild, self.leaveGuild)
-
+        
         if not self.inviteButton:
             self.inviteButton = self.mainChain.premakeButton(PLocalizer.GuildInvite, self.inviteGuild)
-
+        
         if not self.redeemInvite:
             self.redeemInvite = self.mainChain.premakeButton(PLocalizer.GuildRedeemInvite, self.redeemInviteGuild)
-
+        
         if not self.codeInviteOptions:
             self.codeInviteOptions = self.mainChain.premakeButton(PLocalizer.GuildCodeOptions, self.b_codeInviteOptions)
-
+        
         self.mainChain.makeButtons()
         self.setupFlag = 1
         self.determineButtonState()
 
 
     def determineButtonState(self):
-        self.guildName = None
-        self.guildReal = None
+        self.guildName = ''
         self.guildRank = None
         self.guildId = base.localAvatar.guildId
         if not self.setupFlag:
@@ -150,23 +145,18 @@ class GuildPage(SocialPage.SocialPage):
 
         if self.guildId:
             self.guildName = base.localAvatar.getGuildName()
-            self.guildReal = self.guildName
             self.guildRank = base.localAvatar.getGuildRank()
-            if self.guildName == '0' or self.guildName == '':
-                self.guildName = PLocalizer.GuildDefaultName % self.guildId
 
             if hasattr(base, 'localAvatar'):
                 inv = base.localAvatar.getInventory()
                 if inv and not inv.getStackQuantity(InventoryType.NewGuild):
                     base.localAvatar.sendRequestContext(InventoryType.NewGuild)
 
-
-
-        if self.nameLabel and self.guildName and self.guildName != PLocalizer.GuildNoGuild:
-            if self.guildName != '0' or self.guildName != '':
+        if self.nameLabel:
+            if self.guildName:
                 self.nameLabel.show()
                 self.nameLabel['text'] = self.guildName
-            elif self.nameLabel:
+            else:
                 self.nameLabel.hide()
 
         rank = base.localAvatar.getGuildRank()
@@ -179,13 +169,13 @@ class GuildPage(SocialPage.SocialPage):
         elif rank == 4:
             ranktxt = PLocalizer.GuildRankInviter
         else:
-            ranktxt = None
-        if self.rankLabel and rank and ranktxt:
-            self.rankLabel['text'] = ranktxt
-            self.rankLabel.show()
-        elif self.rankLabel:
-            ranktxt = PLocalizer.Loading
-            self.rankLabel.hide()
+            ranktxt = ''
+        if self.rankLabel:
+            if ranktxt:
+                self.rankLabel['text'] = ranktxt
+                self.rankLabel.show()
+            else:
+                self.rankLabel.hide()
 
         if self.memberButton:
             self.memberButton['state'] = DGG.DISABLED
@@ -197,7 +187,7 @@ class GuildPage(SocialPage.SocialPage):
         self.redeemInvite['state'] = DGG.NORMAL
         self.codeInviteOptions['state'] = DGG.DISABLED
         if self.guildRank > 2:
-            if (self.guildReal == '0' or self.guildReal == '') and not (self.recentlySentName):
+            if not self.recentlySentName:
                 self.renameButton['state'] = DGG.NORMAL
                 self.redeemInvite['state'] = DGG.DISABLED
 
@@ -350,11 +340,10 @@ class GuildPage(SocialPage.SocialPage):
         name = name.strip()
         name = TextEncoder().encodeWtext(name)
         self.nameEntry.enterText(name)
-        newName = name
         self.nameEntry.hide()
         self.nameLabel.show()
-        base.cr.guildManager.setWantName(newName)
-        base.localAvatar.guildNameRequest()
+        base.cr.guildManager.sendNameRequest(name)
+        base.localAvatar._LocalPirate__cleanupGuildDialog()
         self.renameButton['state'] = DGG.DISABLED
         self.recentlySentName = True
 
@@ -443,7 +432,7 @@ class GuildPage(SocialPage.SocialPage):
 
 
 
-    def receiveMembers(self, memlist):
+    def receiveMembers(self, members):
         self.mainFrame.hide()
         self.tokenFrame.hide()
         self.membersFrame.show()
@@ -453,16 +442,12 @@ class GuildPage(SocialPage.SocialPage):
             self.setupMemberPage = True
         else:
             self.membersFrame.show()
-        cullList = []
-        timeBefore = globalClock.getRealTime()
-        for info in memlist:
-            cullList.append(info[0])
+
+        self.membersList.removeAll()
+        for info in members:
             self.membersList.updateOrAddMember(info[0], PirateMemberList.MODE_GUILD, list(info))
 
-        self.membersList.removeNotOnAvList(cullList)
         self.startRecountMembers()
-        timeAfter = globalClock.getRealTime()
-        timeToCreate = timeAfter - timeBefore
 
 
     def updateCount(self, task = None):

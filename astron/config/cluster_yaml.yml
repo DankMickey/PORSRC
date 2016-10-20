@@ -35,7 +35,7 @@ uberdogs:
       id: 1005
       anonymous: false
 
-    - class: DistributedGuildManager
+    - class: GuildManager
       id: 1006
       anonymous: false
 

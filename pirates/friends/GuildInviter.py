@@ -333,14 +333,12 @@ class GuildInviter(DirectFrame):
     def enterAsking(self):
         self.accept(self.avDisableName, self._GuildInviter__handleDisableAvatar)
         localAvatar.guiMgr.messageStack.addTextMessage(OTPLocalizer.GuildInviterAsking, name = self.avName, avId = self.avId, icon = ('guild', None))
-        self.accept(OTPGlobals.GuildAcceptInviteEvent, self._GuildInviter__handleGuildAcceptInvite)
         self.accept(OTPGlobals.GuildRejectInviteEvent, self._GuildInviter__handleGuildRejectInvite)
         self.hide()
 
 
     def exitAsking(self):
         self.ignore(self.avDisableName)
-        self.ignore(OTPGlobals.GuildAcceptInviteEvent)
         self.ignore(OTPGlobals.GuildRejectInviteEvent)
         self.bCancel.hide()
 
@@ -453,13 +451,7 @@ class GuildInviter(DirectFrame):
             self.notify.warning('Got unexpected response to friendConsidering: %s' % yesNoAlready)
             self.fsm.request('maybe')
 
-
-    def _GuildInviter__handleGuildAcceptInvite(self, avId):
-        print 'Received accept invite event on inviter'
-        self.fsm.request('yes')
-
-
-    def _GuildInviter__handleGuildRejectInvite(self, avId, reason):
+    def _GuildInviter__handleGuildRejectInvite(self, reason):
         if reason == RejectCode.INVITEE_NOT_ONLINE:
             self.fsm.request('notAvailable')
         elif reason == RejectCode.BUSY:
@@ -471,7 +463,7 @@ class GuildInviter(DirectFrame):
         elif reason == RejectCode.NO_GUILD:
             self.fsm.request('no')
         else:
-            self.notify.warning('guildRejectInvite: %s unknown reason: %s.' % (avId, reason))
+            self.notify.warning('guildRejectInvite: %s unknown reason: %s.' % reason)
 
 
     def _GuildInviter__handleDisableAvatar(self):

@@ -49,15 +49,6 @@ class PiratesOffLineConfirmButton(RequestButton):
         self.initialiseoptions(PiratesOffLineConfirmButton)
 
 
-
-class PiratesOffLineEMailButton(RequestButton):
-
-    def __init__(self, text, command):
-        RequestButton.__init__(self, text, command)
-        self.initialiseoptions(PiratesOffLineEMailButton)
-
-
-
 class PiratesOffLineCheckBox(CheckBox):
 
     def __init__(self, text, command):
@@ -162,11 +153,6 @@ class PiratesOffLineRequest(GuiPanel.GuiPanel):
 
     def _PiratesOffLineRequest__handleCancelFromAbove(self):
         self.destroy()
-
-
-    def _PiratesOffLineRequest__handleEMail(self):
-        self.destroy()
-
 
     def _PiratesOffLineRequest__handleSet(self, status, extraArgs):
         if status == 1:

@@ -796,9 +796,6 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
         self.accept('avatarZoneChanged', self.handleZoneChanged)
         self.invInterest = self.addInterest(2, 'localAvatar-inventory')
 
-        #if self.guildId: # TODO
-        #    self.cr.guildManager.addInterest(self.guildId, self.uniqueName('guild'))
-
         self.nametag.manage(base.marginManager)
         self.controlManager.setTag('avId', str(self.getDoId()))
         pe = PolylightEffect.make()
@@ -2805,19 +2802,23 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
         messenger.send('Guild Status Updated')
 
     def guildNameRequest(self):
-        self.__cleanupGuildDialog()
         self.guildPopupDialog = PDialog.PDialog(text=PLocalizer.GuildNameRequest, style=OTPDialog.Acknowledge, text_align=TextNode.ACenter, command=self.__cleanupGuildDialog, destroyedCallback=self.__destroyedGuildDialog)
 
-    def guildNameReject(self, guildId):
-        self.__cleanupGuildDialog()
-        self.guildPopupDialog = PDialog.PDialog(text=PLocalizer.GuildNameDuplicate, style=OTPDialog.Acknowledge, command=self.__cleanupGuildDialog, destroyedCallback = self.__destroyedGuildDialog)
+    def guildNameReject(self, code):
+        if code == 0:
+            text = PLocalizer.GuildNameNotGM
+        elif code == 1:
+            text = PLocalizer.GuildNameAlreadySubmitted
+        elif code == 2:
+            text = PLocalizer.GuildNameDuplicate
+
+        self.guildPopupDialog = PDialog.PDialog(text=text, style=OTPDialog.Acknowledge, command=self.__cleanupGuildDialog, destroyedCallback = self.__destroyedGuildDialog)
         self.guiMgr.guildPage.resetRenameButton()
 
     def guildNameChange(self, guildName, change):
-        if change == 2:
+        if change == 1:
             title = PLocalizer.GuildNameRejectTitle
             mess = PLocalizer.GuildNameReject % guildName
-
         else:
             title = PLocalizer.GuildNameApproveTitle
             mess = PLocalizer.GuildNameApprove % guildName

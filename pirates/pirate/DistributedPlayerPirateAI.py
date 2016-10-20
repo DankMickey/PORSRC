@@ -73,6 +73,8 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         if self.defaultShard != self.air.districtId:
             self.b_setDefaultShard(self.air.districtId)
         
+        self.__checkGuildName()
+        
         taskMgr.doMethodLater(15, self.__checkCodeExploit, self.taskName('codeTask'))
         taskMgr.doMethodLater(10, self.__healthTask, self.taskName('healthTask'))
         taskMgr.doMethodLater(15, self.__doubleXpTask, self.taskName('doubleXPTask'))
@@ -357,6 +359,14 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         _, mojo = self.calcHpAndMojoLimit(mojo=mojo)
         DistributedBattleAvatarAI.setMojo(self, mojo)
 
+    def d_refreshName(self):
+        self.sendUpdate('refreshName', [])
+    
+    def __checkGuildName(self):
+        if self.guildName == 'Null':
+            self.b_setGuildName('')
+            self.d_refreshName()
+    
     def __checkCodeExploit(self, task):
         newCodes = []
         changed = False
@@ -1012,19 +1022,3 @@ def registerCodeUsed(code):
         return "%s has already redeemed '%s'." % (av.getName(), code)
     av.addRedeemedCode(code)
     return "Registered '%s' as used for %s." % (code, av.getName())
-
-@magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
-def setGuildId(id):
-    target = spellbook.getTarget()
-    target.b_setGuildId(id)
-    return "Set %s's guildId to %s" % (target.getName(), id)
-
-@magicWord(CATEGORY_SPONSOR, types=[str])
-def setGuildName(name=None):
-    target = spellbook.getTarget()
-    if name is None:
-        target.b_setGuildName("Null")
-        return "Removed %s's guild name" % target.getName()
-    else:
-        target.b_setGuildName(name)
-        return "Set %s's guild name to %s" % (target.getName(), name)

@@ -171,7 +171,7 @@ class GuildMember(DirectFrame):
 
 
     def _GuildMember__handleAvocate(self):
-        base.cr.guildManager.changeRankAvocate(self.avId)
+        base.cr.guildManager.changeRank(self.avId, GUILDRANK_GM)
         self.destroy()
 
 

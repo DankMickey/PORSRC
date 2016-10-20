@@ -37,6 +37,7 @@ NAME_PICKED = 2
 NAME_PEN = 0
 NAME_REJ = 1
 NAME_APR = 2
+NAME_EXT = 3
 NAME_STATES = {NAME_PEN: 'PENDING', NAME_REJ: 'OPEN', NAME_APR: 'APPROVED'}
 
 def rejectConfig(issue, securityIssue=True, retarded=True):
@@ -173,7 +174,9 @@ class AccountDB:
         callback(True)
 
     def getNameStatus(self, username, callback):
-        # Returns approved. Subclasses MUST override this and return appropriated value.
+        callback(NAME_APR)
+    
+    def getGuildNameStatus(self, name, callback, extraInfo=''):
         callback(NAME_APR)
 
 class DeveloperAccountDB(AccountDB):
@@ -304,8 +307,8 @@ class RemotePORAccountDB(AccountDB):
 
         return response
     
-    def getNameStatus(self, name, callback):
-        response = self.post(config.GetString('account-server-names-link', ''), {'name': name})
+    def getNameStatusFrom(self, link, name, callback, extraInfo=''):
+        response = self.post(link, {'name': name, 'extraInfo': extraInfo})
         
         if not response:
             self.notify.warning('No response from server while querying name %s!' % name)
@@ -318,7 +321,14 @@ class RemotePORAccountDB(AccountDB):
             return
         
         callback(int(response['nameStatus']))
+    
+    def getNameStatus(self, name, callback):
+        self.getNameStatusFrom(config.GetString('account-server-names-link', ''), name, callback)
+    
+    def getGuildNameStatus(self, name, callback, extraInfo=''):
+        self.getNameStatusFrom(config.GetString('account-server-guild-link', ''), name, callback, extraInfo)
 
+    
     def decodeToken(self, token, maxAge=300):
         error = lambda issue: {'success': False, 'reason': 'The account server rejected your token: %s' % issue}
 
