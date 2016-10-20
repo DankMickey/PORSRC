@@ -290,7 +290,7 @@ dclass GuildManager : DistributedObject {
   sendAvatarBandId(uint32, uint32, uint32);
   recvMemberAdded(MemberInfo, uint32, string);
   notifyGuildKicksMaxed();
-  recvMemberRemoved(uint32, uint32, string, string);
+  recvMemberRemoved(uint32, string);
   recvMemberUpdateName(uint32, string);
   recvMemberUpdateRank(uint32, uint32, string, string, uint8, bool);
   recvMemberUpdateBandId(uint32, uint32, uint32);

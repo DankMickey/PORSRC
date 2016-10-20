@@ -221,8 +221,12 @@ class RemoveMemberOperation(RetrievePirateGuildOperation, UpdatePirateExtension)
 
             self.members[i] = senderMember
 
+        name = targetMember[2]
+        memberList = self.mgr.getMemberIds(self.guildId)
+
         del self.members[j]
         self.updateMembers(self.members)
+        self.mgr.d_recvMemberRemoved(memberList, self.target, name)
         self.demand('UpdatePirate', self.target, 0, '', 0)
 
 class MemberListOperation(RetrievePirateGuildOperation):
@@ -386,6 +390,11 @@ class GuildManagerUD(DistributedObjectGlobalUD):
         for avId in avIds:
             if avId != senderId:
                 self.sendUpdateToAvatarId(avId, 'recvAvatarOffline', [senderId, senderName])
+    
+    def d_recvMemberRemoved(self, avIds, targetId, targetName):
+        for avId in avIds:
+            if avId != targetId:
+                self.sendUpdateToAvatarId(avId, 'recvMemberRemoved', [targetId, targetName])
     
     def pirateOnline(self, doId):
         PirateOnlineOperation(self, doId).demand('Start')

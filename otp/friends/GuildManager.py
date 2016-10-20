@@ -238,7 +238,7 @@ class GuildManager(DistributedObjectGlobal):
             base.localAvatar.guiMgr.guildPage.addMember(memberInfo)
         messenger.send('guildMemberUpdated', sentArgs=[avatarId])
 
-    def recvMemberRemoved(self, avatarId, senderId, avatarName, senderName):
+    def recvMemberRemoved(self, avatarId, avatarName):
         if avatarId == localAvatar.doId:
             self.clearMembers()
         else:
@@ -248,8 +248,8 @@ class GuildManager(DistributedObjectGlobal):
             self.id2Online.pop(avatarId, None)
             if hasattr(base, 'localAvatar'):
                 base.localAvatar.guiMgr.guildPage.removeMember(avatarId)
+            base.talkAssistant.receiveGuildUpdate(avatarId, avatarName, False)
         messenger.send('guildMemberUpdated', sentArgs=[avatarId])
-        return
 
     def recvMemberUpdateRank(self, avatarId, senderId, avatarName, senderName, rank, promote):
         self.id2Rank[avatarId] = rank
