@@ -63,7 +63,7 @@ class RetrievePirateOperation(OperationFSM):
 class RetrievePirateGuildOperation(RetrievePirateOperation):
 
     def enterRetrievedPirate(self):
-        self.guildId = self.pirate['setGuildId'][0]
+        self.guildId = self.pirate.get('setGuildId', [0])[0]
         
         if not self.guildId:
             self.demand('Off')
@@ -125,7 +125,7 @@ class CreateGuildOperation(RetrievePirateOperation, UpdatePirateExtension):
     rank = GUILDRANK_GM
 
     def enterRetrievedPirate(self):
-        guildId = self.pirate['setGuildId'][0]
+        guildId = self.pirate.get('setGuildId', [0])[0]
 
         if guildId:
             self.demand('Off')
@@ -206,12 +206,15 @@ class PirateOnlineOperation(RetrievePirateGuildOperation, UpdatePirateExtension)
             self.mgr.d_guildStatusUpdate(memberId, self.guildId, self.guildName, member[1])
         
         self.demand('Off')
+    
+    def enterFinish(self):
+        self.demand('UpdatePirate', self.sender, self.guildId, self.guildName, self.member[1])
 
 class PirateOfflineOperation(RetrievePirateOperation):
     DELAY = 0.0
 
     def enterRetrievedPirate(self):
-        guildId = self.pirate['setGuildId'][0]
+        guildId = self.pirate.get('setGuildId', [0])[0]
         
         if not guildId:
             self.demand('Off')
@@ -309,7 +312,7 @@ class RequestInviteOperation(RetrievePirateGuildOperation):
             self.demand('Error', 'Sender is not a pirate.')
             return
 
-        if fields['setGuildId'][0]:
+        if fields.get('setGuildId', [0])[0]:
             self.mgr.d_guildRejectInvite(self.sender, RejectCode.ALREADY_IN_GUILD)
             self.demand('Off')
             return
@@ -333,7 +336,7 @@ class AddMemberOperation(RetrievePirateGuildOperation, UpdatePirateExtension):
             self.demand('Error', 'Target is not a pirate.')
             return
 
-        if fields['setGuildId'][0]:
+        if fields.get('setGuildId', [0])[0]:
             self.mgr.d_guildRejectInvite(self.sender, RejectCode.ALREADY_IN_GUILD)
             self.demand('Off')
             return
@@ -361,7 +364,7 @@ class SendChatOperation(RetrievePirateOperation):
         self.extraArgs = extraArgs
     
     def enterRetrievedPirate(self):
-        guildId = self.pirate['setGuildId'][0]
+        guildId = self.pirate.get('setGuildId', [0])[0]
         
         if not guildId:
             self.demand('Off')

@@ -68,6 +68,9 @@ class GetAvatarOperation(OperationFSM):
     def getPirateFields(self):
         return ('setDNAString', 'setFounder', 'setHp', 'setMaxHp', 'setMojo', 'setMaxMojo', 'setInventoryId', 'setDefaultShard', 'setReturnLocation', 'setGuildId', 'setGuildName')
 
+    def getPirateDefaults(self):
+        return ('', False, 0, 0, 0, 0, 0, 0, '', 0, '')
+    
     def enterStart(self):
         self.air.dbInterface.queryObject(self.air.dbId, self.target, self.handleRetrieve)
     
@@ -78,7 +81,7 @@ class GetAvatarOperation(OperationFSM):
             self.demand('Error', 'Distributed Class was not a Pirate.')
             return
 
-        dna, founder, hp, maxHp, mojo, maxMojo, inventoryId, shardId, returnLocation, guildId, guildName = [fields[field][0] for field in self.getPirateFields()]
+        dna, founder, hp, maxHp, mojo, maxMojo, inventoryId, shardId, returnLocation, guildId, guildName = [fields.get(field, [self.getPirateDefaults()[i]])[0] for i, field in enumerate(self.getPirateFields())]
         showGoTo = self.target in self.mgr.onlinePirates
         chat = True
         siege = False
