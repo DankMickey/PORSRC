@@ -400,9 +400,12 @@ class PirateMemberButton(GuiButton.GuiButton):
 
     def handlePress(self):
         if self.mode in (MODE_FRIEND_AVATAR, MODE_GUILD, MODE_CREW):
-            messenger.send(PiratesGlobals.AvatarDetailsEvent, [
-                self.avId,
-                False])
+            options = base.cr.guildManager.getOptionsFor(self.avId)
+
+            if options[-1]:
+                base.localAvatar.guiMgr.handleGuildMember(self.avId, self.avName, localAvatar.guildId, options[0], options[1], options[2])
+            
+            self.showProfile(self.avId, self.avName)
         elif self.mode in (MODE_CREW_HUD, MODE_CREW_HUD_SEA):
             self.showProfile(self.avId, self.avName)
 

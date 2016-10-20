@@ -419,7 +419,7 @@ class PirateProfilePage(SocialPage.SocialPage):
 
     def _PirateProfilePage__handleGuild(self):
         options = base.cr.guildManager.getOptionsFor(self.profileId)
-        if options:
+        if options[-1]:
             base.localAvatar.guiMgr.handleGuildMember(self.profileId, self.profileName, localAvatar.guildId, options[0], options[1], options[2])
         else:
             base.localAvatar.guiMgr.handleGuildInvite(self.profileId, self.profileName)

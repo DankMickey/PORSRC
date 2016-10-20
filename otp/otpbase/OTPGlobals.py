@@ -332,7 +332,6 @@ CopyrightedNames = ('mickey',
  'pluto',
  'goofy')
 GuildUpdateMembersEvent = 'guildUpdateMembersEvent'
-GuildAcceptInviteEvent = 'guildAcceptInviteEvent'
 GuildRejectInviteEvent = 'guildRejectInviteEvent'
 AvatarFriendAddEvent = 'avatarFriendAddEvent'
 AvatarFriendUpdateEvent = 'avatarFriendUpdateEvent'

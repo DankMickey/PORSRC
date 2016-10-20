@@ -1412,12 +1412,6 @@ class GuiManager(FSM.FSM):
 
         self.friendInvitee = FriendInvitee.FriendInvitee(avId, avName, context)
 
-    def handleGuildInviteAccept(self, avid):
-        if not self.guildInviter:
-            return None
-
-        self.guildInviter.guildAcceptInvite(avid)
-
 
     def handleGuildInviteReject(self, avid, reason):
         if not self.guildInviter:

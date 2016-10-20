@@ -118,19 +118,13 @@ class GuildManager(DistributedObjectGlobal):
         if self.isInGuild(avId):
             myRank = self.id2Rank.get(localAvatar.doId, localAvatar.getGuildRank())
             hisRank = self.id2Rank[avId]
-            canpromote = False
-            candemote = False
-            cankick = False
+
             if myRank == GUILDRANK_GM:
-                canpromote = True
-                candemote = True
-                cankick = True
+                return (True, True, True) # Promote, demote, kick
             if myRank > GUILDRANK_MEMBER and myRank != GUILDRANK_VETERAN and (hisRank <= GUILDRANK_MEMBER or hisRank == GUILDRANK_VETERAN):
-                cankick = True
-            return (canpromote, candemote, cankick)
-        else:
-            return None
-        return None
+                return (False, False, True)
+        
+        return (False, False, False)
 
     def updateTokenRValue(self, tokenString, rValue):
         rValue = int(rValue)
@@ -191,9 +185,6 @@ class GuildManager(DistributedObjectGlobal):
     def invitationFrom(self, avatarId, avatarName, guildId, guildName):
         if hasattr(base, 'localAvatar'):
             base.localAvatar.guiMgr.handleGuildInvitation(avatarId, avatarName, guildId, guildName)
-
-    def guildAcceptInvite(self):
-        messenger.send(OTPGlobals.GuildAcceptInviteEvent)
 
     def leaderboardTopTen(self, stuff):
         base.localAvatar.guiMgr.handleTopTen(stuff)

@@ -255,7 +255,6 @@ dclass GuildManager : DistributedObject {
   declineInvite() airecv clsend;
   requestMembers() airecv clsend;
   guildRejectInvite(uint32);
-  guildAcceptInvite();
   invitationFrom(uint32, string, uint32, string);
   requestInvite(uint32) airecv clsend;
   setWantName(string(0-256)) airecv clsend;

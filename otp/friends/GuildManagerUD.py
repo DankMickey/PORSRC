@@ -287,10 +287,11 @@ class AddMemberOperation(RetrievePirateGuildOperation, UpdatePirateExtension):
             self.demand('Off')
             return
         
-        self.members.append([self.target, GUILDRANK_MEMBER, fields['setName'][0], 0, 0])
+        name = fields['setName'][0]
+        self.members.append([self.target, GUILDRANK_MEMBER, name, 0, 0])
         self.updateMembers(self.members)
         self.demand('UpdatePirate', self.target, self.guildId, self.guild['setName'][0], GUILDRANK_MEMBER)
-        self.mgr.d_guildAcceptInvite(self.target)
+        self.mgr.d_recvAvatarOnline(self.mgr.getMemberIds(self.guildId), self.target, name)
 
 class SendChatOperation(RetrievePirateOperation):
     DELAY = 0.5
@@ -357,9 +358,6 @@ class GuildManagerUD(DistributedObjectGlobalUD):
     
     def d_receiveMembers(self, avId, members):
         self.sendUpdateToAvatarId(avId, 'receiveMembers', [members])
-    
-    def d_guildAcceptInvite(self, avId):
-        self.sendUpdateToAvatarId(avId, 'guildAcceptInvite', [])
     
     def d_guildRejectInvite(self, avId, reason):
         self.sendUpdateToAvatarId(avId, 'guildRejectInvite', [reason])
@@ -448,8 +446,6 @@ class GuildManagerUD(DistributedObjectGlobalUD):
         
         if avId not in self.operations:
             AddMemberOperation(self, senderId, avId).demand('Start')
-        
-        self.d_guildAcceptInvite(senderId)
     
     def declineInvite(self):
         avId = self.air.getAvatarIdFromSender()
