@@ -245,6 +245,7 @@ struct GuildMember {
 
 dclass DistributedGuild : DistributedObject {
   setName(string) required broadcast ram db;
+  setWishName(string) required broadcast ram db;
   setMembers(GuildMember[]) required broadcast ram db;
 };
 

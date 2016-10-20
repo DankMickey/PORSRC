@@ -101,12 +101,12 @@ class RetrievePirateGuildOperation(RetrievePirateOperation):
 
 class UpdatePirateExtension(object):
 
-    def enterUpdatePirate(self, guildId, guildName, rank):
+    def enterUpdatePirate(self, avatar, guildId, guildName, rank):
         dclass = self.air.dclassesByName['DistributedPlayerPirateUD']
         
-        self.air.send(dclass.aiFormatUpdate('setGuildId', self.sender, self.sender, self.air.ourChannel, [guildId]))
-        self.air.send(dclass.aiFormatUpdate('setGuildName', self.sender, self.sender, self.air.ourChannel, [guildName]))
-        self.mgr.d_guildStatusUpdate(self.sender, guildId, guildName, rank)
+        self.air.send(dclass.aiFormatUpdate('setGuildId', avatar, avatar, self.air.ourChannel, [guildId]))
+        self.air.send(dclass.aiFormatUpdate('setGuildName', avatar, avatar, self.air.ourChannel, [guildName]))
+        self.mgr.d_guildStatusUpdate(avatar, guildId, guildName, rank)
         self.demand('Off')
 
 class CreateGuildOperation(RetrievePirateOperation, UpdatePirateExtension):
@@ -123,6 +123,7 @@ class CreateGuildOperation(RetrievePirateOperation, UpdatePirateExtension):
         name = self.pirate['setName'][0]
         fields = {
             'setName': [self.name],
+            'setWishName': [''],
             'setMembers': [[[self.sender, GUILDRANK_GM, name, 0, 0]]]
         }
         self.air.dbInterface.createObject(self.air.dbId, self.air.dclassesByName['DistributedGuildUD'], fields, self.__createdGuild)
@@ -132,7 +133,7 @@ class CreateGuildOperation(RetrievePirateOperation, UpdatePirateExtension):
             self.demand('Error', "Couldn't create guild object on the database.")
             return
 
-        self.demand('UpdatePirate', doId, self.name, GUILDRANK_GM)
+        self.demand('UpdatePirate', self.sender, doId, self.name, GUILDRANK_GM)
 
 class PirateOnlineOperation(RetrievePirateGuildOperation, UpdatePirateExtension):
     DELAY = 0.0
@@ -151,7 +152,7 @@ class PirateOnlineOperation(RetrievePirateGuildOperation, UpdatePirateExtension)
             self.members[i] = member
             self.updateMembers(self.members)
 
-        self.demand('UpdatePirate', self.guildId, guildName, GUILDRANK_GM)
+        self.demand('UpdatePirate', self.sender, self.guildId, guildName, GUILDRANK_GM)
 
 class RemoveMemberOperation(RetrievePirateGuildOperation, UpdatePirateExtension):
     
@@ -200,7 +201,7 @@ class RemoveMemberOperation(RetrievePirateGuildOperation, UpdatePirateExtension)
 
         del self.members[j]
         self.updateMembers(self.members)
-        self.demand('UpdatePirate', 0, '', 0)
+        self.demand('UpdatePirate', self.target, 0, '', 0)
 
 class MemberListOperation(RetrievePirateGuildOperation):
     DELAY = 1.5
@@ -242,7 +243,33 @@ class RequestInviteOperation(RetrievePirateGuildOperation):
         
         self.mgr.addInvitation(self.sender, self.target, self.pirate['setName'][0], self.guildId, self.guild['setName'][0])
         self.demand('Off')
+
+class AddMemberOperation(RetrievePirateGuildOperation, UpdatePirateExtension):
+    DELAY = 1.5
     
+    def enterRetrievedGuild(self):
+        if self.isMember(self.target):
+            self.mgr.d_guildRejectInvite(self.sender, RejectCode.ALREADY_IN_GUILD)
+            self.demand('Off')
+            return
+        
+        self.air.dbInterface.queryObject(self.air.dbId, self.target, self.__retrievedPirate)
+    
+    def __retrievedPirate(self, dclass, fields):
+        if dclass != self.air.dclassesByName['DistributedPlayerPirateUD']:
+            self.demand('Error', 'Target is not a pirate.')
+            return
+
+        if fields['setGuildId'][0]:
+            self.mgr.d_guildRejectInvite(self.sender, RejectCode.ALREADY_IN_GUILD)
+            self.demand('Off')
+            return
+        
+        self.members.append([self.target, GUILDRANK_MEMBER, fields['setName'][0], 0, 0])
+        self.updateMembers(self.members)
+        self.demand('UpdatePirate', self.target, self.guildId, self.guild['setName'][0], GUILDRANK_MEMBER)
+        self.mgr.d_guildAcceptInvite(self.target)
+
 class GuildManagerUD(DistributedObjectGlobalUD):
     notify = DirectNotifyGlobal.directNotify.newCategory("GuildManagerUD")
     
@@ -288,6 +315,18 @@ class GuildManagerUD(DistributedObjectGlobalUD):
         if targetId and avId not in self.operations:
             RemoveMemberOperation(self, avId, targetId).demand('Start')
     
+    def popInvite(self, avId):
+        if avId not in self.invites:
+            return
+
+        senderId = self.invites[avId]
+        del self.invites[avId]
+        
+        if senderId in self.invites:
+            del self.invites[senderId]
+        
+        return senderId
+    
     def requestMembers(self):
         avId = self.air.getAvatarIdFromSender()
 
@@ -304,7 +343,7 @@ class GuildManagerUD(DistributedObjectGlobalUD):
             self.d_guildRejectInvite(avId, RejectCode.BUSY)
             return
         
-        if targetId not in self.air.piratesFriendsManager.onlinePirates:
+        if False and targetId not in self.air.piratesFriendsManager.onlinePirates:
             self.d_guildRejectInvite(avId, RejectCode.INVITEE_NOT_ONLINE)
             return
         
@@ -314,7 +353,27 @@ class GuildManagerUD(DistributedObjectGlobalUD):
         if avId not in self.operations:
             RequestInviteOperation(self, avId, targetId).demand('Start')
     
+    def acceptInvite(self):
+        avId = self.air.getAvatarIdFromSender()
+        senderId = self.popInvite(avId)
+        
+        if not senderId:
+            return
+        
+        if avId not in self.operations:
+            AddMemberOperation(self, senderId, avId).demand('Start')
+        
+        self.d_guildAcceptInvite(senderId)
+    
+    def declineInvite(self):
+        avId = self.air.getAvatarIdFromSender()
+        senderId = self.popInvite(avId)
+        
+        if senderId:
+            self.d_guildRejectInvite(senderId, RejectCode.NO_GUILD)
+
     def addInvitation(self, sender, target, pirateName, guildId, guildName):
         self.invites[sender] = target
+        self.invites[target] = sender
         self.d_invitationFrom(target, sender, pirateName, guildId, guildName)
     
