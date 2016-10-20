@@ -214,11 +214,16 @@ class GuildManager(DistributedObjectGlobal):
 
     def recvMemberAdded(self, memberInfo, inviterId, inviterName):
         avatarId, avatarName, rank, isOnline, bandManagerId, bandId = memberInfo
+        
+        if avatarId == localAvatar.doId:
+            displayName = OTPLocalizer.LowerYou
+        else:
+            displayName = avatarName
 
         if inviterId == localAvatar.getDoId():
-            base.talkAssistant.receiveGuildUpdateMessage(OTPLocalizer.GuildInviterFriendInvitedP, inviterId, OTPLocalizer.You, avatarId, avatarName)
+            base.talkAssistant.receiveGuildUpdateMessage(OTPLocalizer.GuildInviterFriendInvitedP, inviterId, OTPLocalizer.You, avatarId, displayName)
         elif inviterId:
-            base.talkAssistant.receiveGuildUpdateMessage(OTPLocalizer.GuildInviterFriendInvited, inviterId, inviterName, avatarId, avatarName)
+            base.talkAssistant.receiveGuildUpdateMessage(OTPLocalizer.GuildInviterFriendInvited, inviterId, inviterName, avatarId, displayName)
 
         self.id2Name[avatarId] = avatarName
         self.id2Rank[avatarId] = rank
@@ -230,12 +235,17 @@ class GuildManager(DistributedObjectGlobal):
         self.memberList()
 
     def recvMemberRemoved(self, avatarId, senderId, avatarName, senderName):
+        if avatarId == localAvatar.doId:
+            displayName = OTPLocalizer.LowerYou
+        else:
+            displayName = avatarName
+
         if senderId == localAvatar.getDoId():
-            base.talkAssistant.receiveGuildUpdateMessage(OTPLocalizer.GuildInviterFriendKickedOutP, senderId, OTPLocalizer.You, avatarId, avatarName)
+            base.talkAssistant.receiveGuildUpdateMessage(OTPLocalizer.GuildInviterFriendKickedOutP, senderId, OTPLocalizer.You, avatarId, displayName)
         elif senderId == avatarId:
             base.talkAssistant.receiveGuildUpdateMessage(OTPLocalizer.GuildInviterFriendsNoMore, senderId, senderName, 0, '')
         elif senderId:
-            base.talkAssistant.receiveGuildUpdateMessage(OTPLocalizer.GuildInviterFriendKickedOut, senderId, senderName, avatarId, avatarName)
+            base.talkAssistant.receiveGuildUpdateMessage(OTPLocalizer.GuildInviterFriendKickedOut, senderId, senderName, avatarId, displayName)
 
         messenger.send('kickedFromGuild-%s' % avatarId)
 
