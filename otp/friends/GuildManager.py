@@ -132,7 +132,6 @@ class GuildManager(DistributedObjectGlobal):
         self.sendUpdate('sendClearTokens', [type])
 
     def receiveMembers(self, members):
-        self.newList = []
         self.id2Name = {}
         self.id2Rank = {}
         self.id2BandId = {}
