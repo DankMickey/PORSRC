@@ -696,8 +696,6 @@ class PirateMemberList(DirectObject):
         for member in self.members:
             if member.avId == avId:
                 member.updateGuildRank(rank)
-                continue
-
 
 
     def updateAll(self):

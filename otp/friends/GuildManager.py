@@ -59,9 +59,6 @@ class GuildManager(DistributedObjectGlobal):
     def changeRank(self, avatarId, rank):
         self.sendUpdate('changeRank', [avatarId, rank])
 
-    def changeRankAvocate(self, avatarId):
-        self.sendUpdate('changeRankAvocate', [avatarId])
-
     def requestLeaderboardTopTen(self):
         self.sendUpdate('requestLeaderboardTopTen', [])
 
@@ -239,7 +236,7 @@ class GuildManager(DistributedObjectGlobal):
         else:
             displayName = avatarName
 
-        if avatarId == localAvatar.doId:
+        if avatarId == localAvatar.doId and senderId == localAvatar.doId:
             base.talkAssistant.receiveGuildUpdateMessage(OTPLocalizer.GuildInviterFriendKickedOutSelf, 0, '', 0, '')
         elif senderId == localAvatar.getDoId():
             base.talkAssistant.receiveGuildUpdateMessage(OTPLocalizer.GuildInviterFriendKickedOutP, senderId, OTPLocalizer.You, avatarId, displayName)
@@ -269,16 +266,12 @@ class GuildManager(DistributedObjectGlobal):
         self.memberList()
 
     def recvMemberUpdateRank(self, avatarId, senderId, avatarName, senderName, rank, promote):
-        doShow = 1
         if avatarId == localAvatar.getDoId():
-            avatarName = OTPLocalizer.LowerYou
+            avatarName = OTPLocalizer.You
         elif senderId == localAvatar.getDoId():
-            senderName = OTPLocalizer.LowerYou
-
+            senderName = OTPLocalizer.You
+        
         if promote:
-            if senderId == localAvatar.getDoId():
-                senderName = OTPLocalizer.You
-
             if rank == GUILDRANK_GM:
                 if senderId == localAvatar.getDoId():
                     message = OTPLocalizer.GuildInviterFriendPromotedGMP
@@ -288,29 +281,25 @@ class GuildManager(DistributedObjectGlobal):
                 message = OTPLocalizer.GuildInviterFriendPromotedP
             else:
                 message = OTPLocalizer.GuildInviterFriendPromoted
-        elif senderId == localAvatar.getDoId():
-            senderName = OTPLocalizer.You
-
-        if self.id2Rank.get(avatarId) == GUILDRANK_GM:
-            doShow = 0
-            if senderId == localAvatar.getDoId():
-                message = OTPLocalizer.GuildInviterFriendDemotedGMP
-            else:
-                message = OTPLocalizer.GuildInviterFriendDemotedGM
-        elif senderId == localAvatar.getDoId():
-            message = OTPLocalizer.GuildInviterFriendDemotedP
         else:
-            message = OTPLocalizer.GuildInviterFriendDemoted
-        if doShow:
-            base.talkAssistant.receiveGuildUpdateMessage(message, senderId, senderName, avatarId, avatarName, [
-                OTPLocalizer.GuildRankNames[rank]])
-
+            if self.id2Rank.get(avatarId) == GUILDRANK_GM:
+                if senderId == localAvatar.getDoId():
+                    message = OTPLocalizer.GuildInviterFriendDemotedGMP
+                else:
+                    message = OTPLocalizer.GuildInviterFriendDemotedGM
+            elif senderId == localAvatar.getDoId():
+                message = OTPLocalizer.GuildInviterFriendDemotedP
+            else:
+                message = OTPLocalizer.GuildInviterFriendDemoted
+       
+        base.talkAssistant.receiveGuildUpdateMessage(message, senderId, senderName, avatarId, avatarName, [OTPLocalizer.GuildRankNames[rank]])
         self.id2Rank[avatarId] = rank
         
         if hasattr(base, 'localAvatar') and base.localAvatar.guiMgr:
             base.localAvatar.guiMgr.guildPage.updateGuildMemberRank(avatarId, rank)
-        
+
         messenger.send('guildMemberUpdated', sentArgs=[avatarId])
+        self.memberList()
 
     def recvMemberUpdateBandId(self, avatarId, bandManagerId, bandId):
         self.id2BandId[avatarId] = (bandManagerId, bandId)

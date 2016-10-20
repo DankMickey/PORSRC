@@ -261,7 +261,6 @@ dclass GuildManager : DistributedObject {
   setWantName(string(0-256)) airecv clsend;
   removeMember(uint32) airecv clsend;
   changeRank(uint32, uint8) airecv clsend;
-  changeRankAvocate(uint32) airecv clsend;
   requestLeaderboardTopTen() airecv clsend;
   guildStatusUpdate(uint32, string(0-256), uint8);
   guildNameReject(uint32);

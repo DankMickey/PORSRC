@@ -256,6 +256,12 @@ class RequestInviteOperation(RetrievePirateGuildOperation):
             self.demand('Off')
             return
     
+        _, member = self.getMember(self.sender)
+        
+        if (not member) or member[1] == GUILDRANK_MEMBER:
+            self.demand('Off')
+            return
+
         self.air.dbInterface.queryObject(self.air.dbId, self.target, self.__retrievedPirate)
     
     def __retrievedPirate(self, dclass, fields):
@@ -329,6 +335,63 @@ class SendChatOperation(RetrievePirateOperation):
         
         self.extraArgs.insert(1, self.pirate['setName'][0])
         self.callback(memberList, *self.extraArgs)
+        self.demand('Off')
+
+class ChangeRankOperation(RetrievePirateGuildOperation):
+
+    def __init__(self, mgr, sender, target, rank):
+        RetrievePirateGuildOperation.__init__(self, mgr, sender, target)
+        self.rank = rank
+
+    def enterRetrievedGuild(self):
+        guildName = self.guild['setName'][0]
+        memberList = self.mgr.getMemberIds(self.guildId)
+        i, senderMember = self.getMember(self.sender)
+        
+        if not senderMember:
+            self.demand('Off')
+            return
+        
+        senderRank = senderMember[1]
+        
+        if senderRank != GUILDRANK_GM:
+            self.demand('Off')
+            return
+
+        j, targetMember = self.getMember(self.target)
+        
+        if not targetMember:
+            self.demand('Off')
+            return
+        
+        targetRank = targetMember[1]
+        
+        if self.rank == targetRank:
+            self.demand('Off')
+            return
+
+        senderName = senderMember[2]
+        avatarName = targetMember[2]
+        
+        if self.rank == GUILDRANK_GM:
+            promote = True
+        elif self.rank == GUILDRANK_VETERAN and targetRank == GUILDRANK_MEMBER:
+            promote = True
+        elif self.rank == GUILDRANK_OFFICER and targetRank in (GUILDRANK_MEMBER, GUILDRANK_VETERAN):
+            promote = True
+        else:
+            promote = False
+
+        self.members[j][1] = self.rank
+        self.mgr.d_guildStatusUpdate(self.target, self.guildId, guildName, self.rank)
+        self.mgr.d_recvMemberUpdateRank(memberList, self.target, self.sender, avatarName, senderName, self.rank, promote)
+        
+        if self.rank == GUILDRANK_GM:
+            self.members[i][1] = GUILDRANK_OFFICER
+            self.mgr.d_guildStatusUpdate(self.sender, self.guildId, guildName, GUILDRANK_OFFICER)
+            self.mgr.d_recvMemberUpdateRank(memberList, self.sender, self.target, senderName, avatarName, GUILDRANK_OFFICER, False)
+        
+        self.updateMembers(self.members)
         self.demand('Off')
 
 class GuildManagerUD(DistributedObjectGlobalUD):
@@ -408,6 +471,10 @@ class GuildManagerUD(DistributedObjectGlobalUD):
         for avId in avIds:
             self.sendUpdateToAvatarId(avId, 'recvMemberAdded', [memberInfo, inviterId, inviterName])
     
+    def d_recvMemberUpdateRank(self, avIds, avatarId, senderId, avatarName, senderName, rank, promote):
+        for avId in avIds:
+            self.sendUpdateToAvatarId(avId, 'recvMemberUpdateRank', [avatarId, senderId, avatarName, senderName, rank, promote])
+
     def pirateOnline(self, doId):
         PirateOnlineOperation(self, doId).demand('Start')
     
@@ -419,6 +486,18 @@ class GuildManagerUD(DistributedObjectGlobalUD):
         
         if targetId and avId not in self.operations:
             RemoveMemberOperation(self, avId, targetId).demand('Start')
+    
+    def changeRank(self, targetId, targetRank):
+        if targetRank not in (GUILDRANK_GM, GUILDRANK_MEMBER, GUILDRANK_OFFICER, GUILDRANK_VETERAN):
+            return
+        
+        avId = self.air.getAvatarIdFromSender()
+        
+        if targetId == avId:
+            return
+        
+        if targetId and avId not in self.operations:
+            ChangeRankOperation(self, avId, targetId, targetRank).demand('Start')
     
     def popInvite(self, avId):
         if avId not in self.invites:
