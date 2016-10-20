@@ -24,12 +24,14 @@ class OTPBase(ShowBase):
         self.fillShardsToIdealPop = self.config.GetBool('fill-shards-to-ideal-pop', 1)
 
         self.wantDynamicShadows = 1
-        self.stereoEnabled = None
+        self.stereoEnabled = False
         self.FPSEnabled = False
         self.enviroDR = None
         self.enviroCam = None
         self.pixelZoomSetup = False
 
+        self.chatGarbler = ChatGarbler()
+        
         if base.cam:
             if self.wantEnviroDR:
                 base.cam.node().setCameraMask(OTPRender.MainCameraBitmask)

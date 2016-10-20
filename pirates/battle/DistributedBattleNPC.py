@@ -771,7 +771,7 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
             return None
 
         if not self.shouldNotice() and self.isMovingDontNotice or self.noticeFlag:
-            PLocalizer.getNavyAggroPhrase()
+            return None
 
         if self.getDistance(localAvatar) > self.getEffectiveNoticeDistance() + 2.0 or not self.stateOkayForNotice():
             if self.gameFSM:
