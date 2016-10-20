@@ -986,8 +986,6 @@ class DistributedQuestGiver(Avatar.Avatar):
                         passed = False
                         break
 
-                not base.cr.newsManager.getHoliday(holidayId)
-
             if questDNA.prereqs and passed:
                 fromQuests.append(questDNA)
                 continue
