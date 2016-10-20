@@ -159,16 +159,9 @@ class GuildManager(DistributedObjectGlobal):
             base.localAvatar.guildStatusUpdate(guildId, guildName, guildRank)
         self.memberList()
 
-    def guildNameReject(self, guildId):
-        if hasattr(base, 'localAvatar'):
-            base.localAvatar.guildNameReject(guildId)
-
     def guildNameChange(self, guildName, changeStatus):
         if hasattr(base, 'localAvatar'):
             base.localAvatar.guildNameChange(guildName, changeStatus)
-
-    def guildNameUpdate(self, avatarId, guildName):
-        print 'DEBUG - guildNameUpdate for ', avatarId, ' to ', guildName
 
     def invitationFrom(self, avatarId, avatarName, guildId, guildName):
         if hasattr(base, 'localAvatar'):

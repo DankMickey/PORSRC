@@ -2816,10 +2816,9 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
         self.guiMgr.guildPage.resetRenameButton()
 
     def guildNameChange(self, guildName, change):
-        if change == 2:
+        if change == 1:
             title = PLocalizer.GuildNameRejectTitle
             mess = PLocalizer.GuildNameReject % guildName
-
         else:
             title = PLocalizer.GuildNameApproveTitle
             mess = PLocalizer.GuildNameApprove % guildName

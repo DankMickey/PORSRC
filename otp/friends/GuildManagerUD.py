@@ -135,6 +135,7 @@ class CreateGuildOperation(RetrievePirateOperation, UpdatePirateExtension):
         fields = {
             'setName': [self.name],
             'setWishName': [''],
+            'setOldName': [''],
             'setMembers': [[[self.sender, GUILDRANK_GM, name, 0, 0]]]
         }
         self.air.dbInterface.createObject(self.air.dbId, self.air.dclassesByName['DistributedGuildUD'], fields, self.__createdGuild)
@@ -150,22 +151,61 @@ class PirateOnlineOperation(RetrievePirateGuildOperation, UpdatePirateExtension)
     DELAY = 0.0
     
     def enterRetrievedGuild(self):
-        guildName = self.guild['setName'][0]
+        self.guildName = self.guild['setName'][0]
         pirateName = self.pirate['setName'][0]
-        i, member = self.getMember(self.sender)
+        i, self.member = self.getMember(self.sender)
         
-        if not member:
+        if not self.member:
             self.demand('Off')
             return
 
-        if member[2] != pirateName:
-            member[2] = pirateName
-            self.members[i] = member
+        if self.member[2] != pirateName:
+            self.member[2] = pirateName
+            self.members[i] = self.member
             self.updateMembers(self.members)
 
         memberList = self.mgr.getMemberIds(self.guildId)
         self.mgr.d_recvAvatarOnline(memberList, self.sender, pirateName)
-        self.demand('UpdatePirate', self.sender, self.guildId, guildName, GUILDRANK_GM)
+        self.demand('CheckName')
+    
+    def enterCheckName(self):
+        if not self.guild['setWishName'][0]:
+            self.demand('Finish')
+            return
+        
+        self.wishName = self.guild['setWishName'][0]
+        self.mgr.air.csm.accountDB.getGuildNameStatus(self.wishName, self.__gotGuildNameStatus, 'Check')
+
+    def __gotGuildNameStatus(self, status):
+        if status == 0:
+            self.demand('Finish')
+            return
+        
+        memberList = self.mgr.getMemberIds(self.guildId)
+        
+        if not memberList:
+            self.demand('Finish')
+            return
+
+        if status == 1:
+            self.air.dbInterface.updateObject(self.air.dbId, self.guildId, self.air.dclassesByName['DistributedGuildUD'], {'setWishName': ['']})
+            self.mgr.d_guildNameChange(memberList, self.wishName, status)
+            self.demand('Finish')
+            return
+
+        self.guildName = self.wishName
+        self.air.dbInterface.updateObject(self.air.dbId, self.guildId, self.air.dclassesByName['DistributedGuildUD'], {'setWishName': [''], 'setName': [self.wishName]})
+        self.mgr.d_guildNameChange(memberList, self.wishName, status)
+        
+        dclass = self.air.dclassesByName['DistributedPlayerPirateUD']
+        
+        for memberId in memberList:
+            i, member = self.getMember(memberId)
+
+            self.air.send(dclass.aiFormatUpdate('setGuildName', memberId, memberId, self.air.ourChannel, [self.guildName]))
+            self.mgr.d_guildStatusUpdate(memberId, self.guildId, self.guildName, member[1])
+        
+        self.demand('Off')
 
 class PirateOfflineOperation(RetrievePirateOperation):
     DELAY = 0.0
@@ -421,7 +461,7 @@ class SendNameOperation(RetrievePirateGuildOperation):
             self.demand('Off')
             return
         
-        self.air.dbInterface.updateObject(self.air.dbId, self.guildId, self.air.dclassesByName['DistributedGuildUD'], {'setWishName': [self.name]})
+        self.air.dbInterface.updateObject(self.air.dbId, self.guildId, self.air.dclassesByName['DistributedGuildUD'], {'setWishName': [self.name], 'setOldName': [self.guild['setName'][0]]})
         self.mgr.d_recvNameRequest([self.sender], 3)
         self.demand('Off')
         
@@ -510,6 +550,10 @@ class GuildManagerUD(DistributedObjectGlobalUD):
         for avId in avIds:
             self.sendUpdateToAvatarId(avId, 'recvMemberUpdateRank', [avatarId, senderId, avatarName, senderName, rank, promote])
 
+    def d_guildNameChange(self, avIds, guildName, code):
+        for avId in avIds:
+            self.sendUpdateToAvatarId(avId, 'guildNameChange', [guildName, code])
+    
     def pirateOnline(self, doId):
         PirateOnlineOperation(self, doId).demand('Start')
     

@@ -246,6 +246,7 @@ struct GuildMember {
 dclass DistributedGuild : DistributedObject {
   setName(string) required broadcast ram db;
   setWishName(string) required broadcast ram db;
+  setOldName(string) required broadcast ram db;
   setMembers(GuildMember[]) required broadcast ram db;
 };
 
@@ -263,8 +264,6 @@ dclass GuildManager : DistributedObject {
   changeRank(uint32, uint8) airecv clsend;
   requestLeaderboardTopTen() airecv clsend;
   guildStatusUpdate(uint32, string(0-256), uint8);
-  guildNameReject(uint32);
-  guildNameChange(string, uint8);
   receiveMembers(MemberInfo[]);
   leaderboardTopTen(leaderBoardRecord []);
 
@@ -284,6 +283,7 @@ dclass GuildManager : DistributedObject {
 
   notifyGuildKicksMaxed();
   
+  guildNameChange(string, uint8);
   recvNameRequest(uint8);
   recvTokenRedeemMessage(string);
   recvTokenInviteValue(string, int8);
