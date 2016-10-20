@@ -30,6 +30,3 @@ class DistributedMatchMakerUD(DistributedObjectGlobalUD):
 
     def initiateTeleportResp(self, todo0, todo1):
         pass
-
-    def avatarOffline(self, todo0):
-        pass

@@ -160,13 +160,12 @@ class TalkAssistant(DirectObject.DirectObject):
         self.addToHistory(newMessage)
 
     def receiveGuildUpdate(self, memberId, memberName, isOnline):
-        if base.cr.identifyFriend(memberId) is None:
-            if isOnline:
-                onlineMessage = OTPLocalizer.GuildMemberOnline
-            else:
-                onlineMessage = OTPLocalizer.GuildMemberOffline
-            newMessage = TalkMessage(UPDATE_GUILD, self.countMessage(), onlineMessage, memberId, memberName)
-            self.addToHistory(newMessage)
+        if isOnline:
+            onlineMessage = OTPLocalizer.GuildMemberOnline
+        else:
+            onlineMessage = OTPLocalizer.GuildMemberOffline
+        newMessage = TalkMessage(UPDATE_GUILD, self.countMessage(), onlineMessage, memberId, memberName)
+        self.addToHistory(newMessage)
 
     def receiveAvatarWhisperSpeedChat(self, type, messageIndex, senderAvId, name = None):
         if not name and senderAvId:

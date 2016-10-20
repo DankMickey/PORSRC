@@ -33,15 +33,6 @@ class GuildMemberInfo(AvatarHandle):
     def isUnderstandable(self):
         return True
 
-    @report(types=['deltaStamp', 'args'], dConfigParam='teleport')
-    def sendTeleportQuery(self, sendToId, localBandMgrId, localBandId, localGuildId, localShardId):
-        base.cr.guildManager.d_reflectTeleportQuery(sendToId, localBandMgrId, localBandId, localGuildId, localShardId)
-
-    @report(types=['deltaStamp', 'args'], dConfigParam='teleport')
-    def sendTeleportResponse(self, available, shardId, instanceDoId, areaDoId, sendToId = None):
-        base.cr.guildManager.d_reflectTeleportResponse(available, shardId, instanceDoId, areaDoId, sendToId)
-
-
 class GuildManager(DistributedObjectGlobal):
     notify = directNotify.newCategory('GuildManager')
 
@@ -212,21 +203,19 @@ class GuildManager(DistributedObjectGlobal):
     def recvAvatarOnline(self, avatarId, avatarName):
         self.id2Online[avatarId] = True
 
-        if hasattr(base, 'localAvatar') and avatarId != base.localAvatar.doId:
-            if not base.localAvatar.isIgnored(avatarId):
-                base.talkAssistant.receiveGuildUpdate(avatarId, avatarName, True)
-            
-            messenger.send('guildMemberOnlineStatus', [avatarId, 1])
+        if not base.localAvatar.isIgnored(avatarId):
+            base.talkAssistant.receiveGuildUpdate(avatarId, avatarName, True)
+
+        messenger.send('guildMemberOnlineStatus', [avatarId, 1])
 
     def recvAvatarOffline(self, avatarId, avatarName):
         self.id2BandId[avatarId] = (0, 0)
         self.id2Online[avatarId] = False
 
-        if hasattr(base, 'localAvatar') and avatarId != base.localAvatar.doId:
-            if not base.localAvatar.isIgnored(avatarId):
-                base.talkAssistant.receiveGuildUpdate(avatarId, avatarName, False)
+        if not base.localAvatar.isIgnored(avatarId):
+            base.talkAssistant.receiveGuildUpdate(avatarId, avatarName, False)
             
-            messenger.send('guildMemberOnlineStatus', [avatarId, 0])
+        messenger.send('guildMemberOnlineStatus', [avatarId, 0])
 
     def recvMemberAdded(self, memberInfo, inviterId, inviterName):
         avatarId, avatarName, rank, isOnline, bandManagerId, bandId = memberInfo
@@ -238,17 +227,31 @@ class GuildManager(DistributedObjectGlobal):
             base.localAvatar.guiMgr.guildPage.addMember(memberInfo)
         messenger.send('guildMemberUpdated', sentArgs=[avatarId])
 
-    def recvMemberRemoved(self, avatarId, avatarName):
-        if avatarId == localAvatar.doId:
-            self.clearMembers()
-        else:
-            self.id2Name.pop(avatarId, None)
-            self.id2Rank.pop(avatarId, None)
-            self.id2BandId.pop(avatarId, None)
-            self.id2Online.pop(avatarId, None)
-            if hasattr(base, 'localAvatar'):
-                base.localAvatar.guiMgr.guildPage.removeMember(avatarId)
-            base.talkAssistant.receiveGuildUpdate(avatarId, avatarName, False)
+    def recvMemberRemoved(self, avatarId, senderId, avatarName, senderName):
+        if senderId == localAvatar.getDoId():
+            base.talkAssistant.receiveGuildUpdateMessage(OTPLocalizer.GuildInviterFriendKickedOutP, senderId, OTPLocalizer.You, avatarId, avatarName)
+        elif senderId == avatarId:
+            base.talkAssistant.receiveGuildUpdateMessage(OTPLocalizer.GuildInviterFriendsNoMore, senderId, senderName, 0, '')
+        elif senderId:
+            base.talkAssistant.receiveGuildUpdateMessage(OTPLocalizer.GuildInviterFriendKickedOut, senderId, senderName, avatarId, avatarName)
+
+        messenger.send('kickedFromGuild-%s' % avatarId)
+
+        if avatarId in self.id2Name:
+            del self.id2Name[avatarId]
+        
+        if avatarId in self.id2Rank:
+            del self.id2Rank[avatarId]
+        
+        if avatarId in self.id2BandId:
+            del self.id2BandId[avatarId]
+        
+        if avatarId in self.id2Online:
+            del self.id2Online[avatarId]
+
+        if hasattr(base, 'localAvatar'):
+            base.localAvatar.guiMgr.guildPage.removeMember(avatarId)
+
         messenger.send('guildMemberUpdated', sentArgs=[avatarId])
 
     def recvMemberUpdateRank(self, avatarId, senderId, avatarName, senderName, rank, promote):
@@ -284,34 +287,10 @@ class GuildManager(DistributedObjectGlobal):
                 base.localAvatar.guiMgr.guildPage.receivePermTokenValue(None)
             else:
                 base.localAvatar.guiMgr.guildPage.receivePermTokenValue(token)
-        return
 
     def recvNonPermTokenCount(self, tCount):
         if hasattr(base, 'localAvatar') and base.localAvatar.guiMgr:
             base.localAvatar.guiMgr.guildPage.receiveNonPermTokenCount(tCount)
-
-    @report(types=['deltaStamp', 'args'], dConfigParam='teleport')
-    def d_reflectTeleportQuery(self, sendToId, localBandMgrId, localBandId, localGuildId, localShardId):
-        self.sendUpdate('reflectTeleportQuery', [sendToId,
-         localBandMgrId,
-         localBandId,
-         localGuildId,
-         localShardId])
-
-    @report(types=['deltaStamp', 'args'], dConfigParam='teleport')
-    def teleportQuery(self, requesterId, requesterBandMgrId, requesterBandId, requesterGuildId, requesterShardId):
-        if self.cr.teleportMgr:
-            self.cr.teleportMgr.handleAvatarTeleportQuery(requesterId, requesterBandMgrId, requesterBandId, requesterGuildId, requesterShardId)
-
-    @report(types=['deltaStamp', 'args'], dConfigParam='teleport')
-    def d_reflectTeleportResponse(self, available, shardId, instanceDoId, areaDoId, sendToId):
-        self.sendUpdate('reflectTeleportResponse', [sendToId,
-         available,
-         shardId,
-         instanceDoId,
-         areaDoId])
-
-    @report(types=['deltaStamp', 'args'], dConfigParam='teleport')
-    def teleportResponse(self, responderId, available, shardId, instanceDoId, areaDoId):
-        if self.cr.teleportMgr:
-            self.cr.teleportMgr.handleAvatarTeleportResponse(responderId, available, shardId, instanceDoId, areaDoId)
+    
+    def notifyGuildKicksMaxed(self):
+        base.localAvatar.guiMgr.createWarning(OTPLocalizer.GuildKicksMaxed, (1, 0.1, 0.1, 1))

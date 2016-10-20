@@ -88,6 +88,8 @@ class RetrievePirateGuildOperation(RetrievePirateOperation):
         for i, member in enumerate(self.members):
             if member[0] == avId:
                 return i, member
+        
+        return 0, None
     
     def isMember(self, avId):
         for i, member in enumerate(self.members):
@@ -99,6 +101,14 @@ class RetrievePirateGuildOperation(RetrievePirateOperation):
     def updateMembers(self, members):
         self.air.dbInterface.updateObject(self.air.dbId, self.guildId, self.air.dclassesByName['DistributedGuildUD'], {'setMembers': [members]})
         self.mgr.addMemberList(self.guildId, members)
+    
+    def convertMember(self, member):
+        avId, rank, name, _, _ = member
+        online = avId in self.air.piratesFriendsManager.onlinePirates
+        bandManagerId = 0
+        bandId = 0
+            
+        return [avId, name, rank, online, bandManagerId, bandId]
 
 class UpdatePirateExtension(object):
 
@@ -222,27 +232,17 @@ class RemoveMemberOperation(RetrievePirateGuildOperation, UpdatePirateExtension)
             self.members[i] = senderMember
 
         name = targetMember[2]
-        memberList = self.mgr.getMemberIds(self.guildId)
 
         del self.members[j]
         self.updateMembers(self.members)
-        self.mgr.d_recvMemberRemoved(memberList, self.target, name)
+        self.mgr.d_recvMemberRemoved(self.mgr.getMemberIds(self.guildId) + [self.target], self.target, self.sender, name, senderMember[2])
         self.demand('UpdatePirate', self.target, 0, '', 0)
 
 class MemberListOperation(RetrievePirateGuildOperation):
     DELAY = 1.5
     
     def enterRetrievedGuild(self):
-        memberInfo = []
-        
-        for member in self.members:
-            avId, rank, name, _, _ = member
-            online = avId in self.air.piratesFriendsManager.onlinePirates
-            bandManagerId = 0
-            bandId = 0
-            
-            memberInfo.append([avId, name, rank, online, bandManagerId, bandId])
-        
+        memberInfo = [self.convertMember(member) for member in self.members]
         self.mgr.d_receiveMembers(self.sender, memberInfo)
         self.demand('Off')
 
@@ -391,10 +391,9 @@ class GuildManagerUD(DistributedObjectGlobalUD):
             if avId != senderId:
                 self.sendUpdateToAvatarId(avId, 'recvAvatarOffline', [senderId, senderName])
     
-    def d_recvMemberRemoved(self, avIds, targetId, targetName):
+    def d_recvMemberRemoved(self, avIds, avatarId, senderId, avatarName, senderName):
         for avId in avIds:
-            if avId != targetId:
-                self.sendUpdateToAvatarId(avId, 'recvMemberRemoved', [targetId, targetName])
+            self.sendUpdateToAvatarId(avId, 'recvMemberRemoved', [avatarId, senderId, avatarName, senderName])
     
     def pirateOnline(self, doId):
         PirateOnlineOperation(self, doId).demand('Start')

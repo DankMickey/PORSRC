@@ -39,7 +39,6 @@ from pirates.instance import DistributedTeleportZone/AI
 from pirates.instance import DistributedTeleportMgr/AI
 from pirates.instance import DistributedMatchMaker/UD
 from pirates.instance import DistributedTravelAgent/UD
-from pirates.friends import DistributedGuildManager/UD
 from pirates.friends import PiratesFriendsManager/UD
 from pirates.ai import NewsManager/AI
 from pirates.world import DistributedGameArea/AI
@@ -255,7 +254,6 @@ dclass DistributedMatchMaker : DistributedObject {
   printStatus(uint32);
   newDistrictOnline(uint32);
   initiateTeleportResp(uint32, uint32);
-  avatarOffline(uint32);
 };
 
 dclass DistributedPopulationTracker : DistributedObject {
@@ -900,11 +898,6 @@ dclass DistributedGameArea : DistributedNode {
   addSpawnTriggers(triggerSphere []) broadcast ram;
   spawnNPC(string, uint32) airecv clsend;
   requestNPCRemoval(uint32) airecv clsend;
-};
-
-dclass DistributedGuildManager : GuildManager {
-  sendSCQuest(uint16, uint8, uint16) clsend airecv;
-  recvSCQuest(uint32, uint16, uint8, uint16);
 };
 
 dclass DistributedTravelAgent : DistributedObjectGlobal {

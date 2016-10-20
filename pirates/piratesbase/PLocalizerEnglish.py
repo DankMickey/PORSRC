@@ -8166,7 +8166,6 @@ GuildNameApproveTitle = 'Congratulations!'
 GuildNameReject = 'Your desired guild name:\n\n"\x01guildName\x01\x01larger\x01%s\x02\x02"\n\nwas rejected.\n\nPlease select another.'
 GuildNameRejectTitle = 'Sorry!'
 GuildNameDuplicate = 'Desired guild name is already in use.  Please select another.'
-GuildKicksMaxed = 'Officers are only allowed to remove five guild members per day.'
 GuildInviteResponse = 'Please make note of this code and select a code type'
 GuildInviteJoinSucessful = "You're now a member of %s"
 GuildInviteTooManyTokens = 'You have too many invite codes pending. Please have your friends redeem them, or wait until they expire.'
