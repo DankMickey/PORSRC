@@ -153,7 +153,28 @@ class PirateOnlineOperation(RetrievePirateGuildOperation, UpdatePirateExtension)
             self.members[i] = member
             self.updateMembers(self.members)
 
+        memberList = self.mgr.getMemberIds(self.guildId)
+        self.mgr.d_recvAvatarOnline(memberList, self.sender, pirateName)
         self.demand('UpdatePirate', self.sender, self.guildId, guildName, GUILDRANK_GM)
+
+class PirateOfflineOperation(RetrievePirateOperation):
+    DELAY = 0.0
+
+    def enterRetrievedPirate(self):
+        guildId = self.pirate['setGuildId'][0]
+        
+        if not guildId:
+            self.demand('Off')
+            return
+        
+        memberList = self.mgr.getMemberIds(guildId)
+        
+        if not memberList:
+            self.demand('Off')
+            return
+        
+        self.mgr.d_recvAvatarOffline(memberList, self.sender, self.pirate['setName'][0])
+        self.demand('Off')
 
 class RemoveMemberOperation(RetrievePirateGuildOperation, UpdatePirateExtension):
     
@@ -283,11 +304,13 @@ class SendChatOperation(RetrievePirateOperation):
         guildId = self.pirate['setGuildId'][0]
         
         if not guildId:
+            self.demand('Off')
             return
 
         memberList = self.mgr.getMemberIds(guildId)
         
         if not memberList:
+            self.demand('Off')
             return
         
         self.extraArgs.insert(1, self.pirate['setName'][0])
@@ -303,6 +326,7 @@ class GuildManagerUD(DistributedObjectGlobalUD):
         self.invites = {}
         self.memberListCache = {}
         self.accept('pirateOnline', self.pirateOnline)
+        self.accept('goingOffline', self.goingOffline)
     
     def addMemberList(self, guildId, memberList):
         self.memberListCache[guildId] = memberList
@@ -355,8 +379,21 @@ class GuildManagerUD(DistributedObjectGlobalUD):
         for avId in avIds:
             self.sendUpdateToAvatarId(avId, 'recvSCQuest', [senderId, senderName, questInt, msgType, taskNum])
     
+    def d_recvAvatarOnline(self, avIds, senderId, senderName):
+        for avId in avIds:
+            if avId != senderId:
+                self.sendUpdateToAvatarId(avId, 'recvAvatarOnline', [senderId, senderName])
+    
+    def d_recvAvatarOffline(self, avIds, senderId, senderName):
+        for avId in avIds:
+            if avId != senderId:
+                self.sendUpdateToAvatarId(avId, 'recvAvatarOffline', [senderId, senderName])
+    
     def pirateOnline(self, doId):
         PirateOnlineOperation(self, doId).demand('Start')
+    
+    def goingOffline(self, doId):
+        PirateOfflineOperation(self, doId).demand('Start')
     
     def removeMember(self, targetId):
         avId = self.air.getAvatarIdFromSender()

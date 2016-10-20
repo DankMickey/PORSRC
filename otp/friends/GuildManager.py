@@ -218,22 +218,24 @@ class GuildManager(DistributedObjectGlobal):
         message = base.talkAssistant.SCDecoder.decodeSCQuestMsgInt(questInt, msgType, taskNum)
         self.recvChat(senderId, senderName, message, False)
 
-    def recvAvatarOnline(self, avatarId, avatarName, bandManagerId, bandId):
+    def recvAvatarOnline(self, avatarId, avatarName):
         self.id2Online[avatarId] = True
+
         if hasattr(base, 'localAvatar') and avatarId != base.localAvatar.doId:
             if not base.localAvatar.isIgnored(avatarId):
                 base.talkAssistant.receiveGuildUpdate(avatarId, avatarName, True)
-        else:
-            return
-        messenger.send('guildMemberOnlineStatus', [avatarId, 1])
+            
+            messenger.send('guildMemberOnlineStatus', [avatarId, 1])
 
     def recvAvatarOffline(self, avatarId, avatarName):
         self.id2BandId[avatarId] = (0, 0)
         self.id2Online[avatarId] = False
+
         if hasattr(base, 'localAvatar') and avatarId != base.localAvatar.doId:
             if not base.localAvatar.isIgnored(avatarId):
                 base.talkAssistant.receiveGuildUpdate(avatarId, avatarName, False)
-        messenger.send('guildMemberOnlineStatus', [avatarId, 0])
+            
+            messenger.send('guildMemberOnlineStatus', [avatarId, 0])
 
     def recvMemberAdded(self, memberInfo, inviterId, inviterName):
         avatarId, avatarName, rank, isOnline, bandManagerId, bandId = memberInfo
