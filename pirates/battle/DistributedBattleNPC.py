@@ -968,10 +968,12 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
         if cantMove == False:
             if (self.getPos(parentObj) - oldPos).length() < 0.100:
                 self.motionFSM.motionAnimFSM.updateNPCAnimState(0, 0, 0)
-                if config.GetBool('want-npc-notice', 0) and abs(self.getH() - oldH) < 0.40:
-                     self.isMovingDontNotice = 0
-                     self.noticeLocalAvatar()
-                     self.moveNoticeFlag = 0
+                if config.GetBool('want-npc-notice', 0) and abs(self.getH() - oldH) < 0.100:
+                    if self.moveNoticeFlag and self.lastMovedTimeStamp and globalClock.getFrameTime() - self.lastMovedTimeStamp > 0.5 and not (self.localAvatarHasBeenNoticed):
+                        self.isMovingDontNotice = 0
+                        self.firstNoticeLocalAvatar()
+                        self.noticeLocalAvatar()
+                        self.moveNoticeFlag = 0
 
                 else:
                     self.lastMovedTimeStamp = globalClock.getFrameTime()
