@@ -189,6 +189,7 @@ class PirateOfflineOperation(RetrievePirateOperation):
 class RemoveMemberOperation(RetrievePirateGuildOperation, UpdatePirateExtension):
     
     def enterRetrievedGuild(self):
+        memberList = self.mgr.getMemberIds(self.guildId)
         i, senderMember = self.getMember(self.sender)
         
         if not senderMember:
@@ -235,7 +236,7 @@ class RemoveMemberOperation(RetrievePirateGuildOperation, UpdatePirateExtension)
 
         del self.members[j]
         self.updateMembers(self.members)
-        self.mgr.d_recvMemberRemoved(self.mgr.getMemberIds(self.guildId) + [self.target], self.target, self.sender, name, senderMember[2])
+        self.mgr.d_recvMemberRemoved(memberList, self.target, self.sender, name, senderMember[2])
         self.demand('UpdatePirate', self.target, 0, '', 0)
 
 class MemberListOperation(RetrievePirateGuildOperation):

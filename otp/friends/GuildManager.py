@@ -239,7 +239,9 @@ class GuildManager(DistributedObjectGlobal):
         else:
             displayName = avatarName
 
-        if senderId == localAvatar.getDoId():
+        if avatarId == localAvatar.doId:
+            base.talkAssistant.receiveGuildUpdateMessage(OTPLocalizer.GuildInviterFriendKickedOutSelf, 0, '', 0, '')
+        elif senderId == localAvatar.getDoId():
             base.talkAssistant.receiveGuildUpdateMessage(OTPLocalizer.GuildInviterFriendKickedOutP, senderId, OTPLocalizer.You, avatarId, displayName)
         elif senderId == avatarId:
             base.talkAssistant.receiveGuildUpdateMessage(OTPLocalizer.GuildInviterFriendsNoMore, senderId, senderName, 0, '')
