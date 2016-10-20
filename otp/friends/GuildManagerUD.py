@@ -394,6 +394,37 @@ class ChangeRankOperation(RetrievePirateGuildOperation):
         self.updateMembers(self.members)
         self.demand('Off')
 
+class SendNameOperation(RetrievePirateGuildOperation):
+
+    def __init__(self, mgr, sender, name):
+        RetrievePirateGuildOperation.__init__(self, mgr, sender)
+        self.name = name
+    
+    def enterRetrievedGuild(self):
+        i, member = self.getMember(self.sender)
+        
+        if (not member) or member[1] != GUILDRANK_GM:
+            self.mgr.d_recvNameRequest([self.sender], 0)
+            self.demand('Off')
+            return
+        
+        if self.guild['setWishName'][0]:
+            self.mgr.d_recvNameRequest([self.sender], 1)
+            self.demand('Off')
+            return
+            
+        self.mgr.air.csm.accountDB.getGuildNameStatus(self.name, self.__gotGuildNameStatus, 'New')
+    
+    def __gotGuildNameStatus(self, status):
+        if status == 3:
+            self.mgr.d_recvNameRequest([self.sender], 2)
+            self.demand('Off')
+            return
+        
+        self.air.dbInterface.updateObject(self.air.dbId, self.guildId, self.air.dclassesByName['DistributedGuildUD'], {'setWishName': [self.name]})
+        self.mgr.d_recvNameRequest([self.sender], 3)
+        self.demand('Off')
+        
 class GuildManagerUD(DistributedObjectGlobalUD):
     notify = DirectNotifyGlobal.directNotify.newCategory("GuildManagerUD")
     
@@ -440,6 +471,10 @@ class GuildManagerUD(DistributedObjectGlobalUD):
     
     def d_invitationFrom(self, avId, fromId, fromName, guildId, guildName):
         self.sendUpdateToAvatarId(avId, 'invitationFrom', [fromId, fromName, guildId, guildName])
+    
+    def d_recvNameRequest(self, avIds, code):
+        for avId in avIds:
+            self.sendUpdateToAvatarId(avId, 'recvNameRequest', [code])
     
     def d_recvChat(self, avIds, senderId, senderName, message):
         for avId in avIds:
@@ -553,6 +588,15 @@ class GuildManagerUD(DistributedObjectGlobalUD):
         
         if senderId:
             self.d_guildRejectInvite(senderId, RejectCode.NO_GUILD)
+
+    def sendNameRequest(self, name):
+        if not name:
+            return
+
+        avId = self.air.getAvatarIdFromSender()
+        
+        if avId not in self.operations:
+            SendNameOperation(self, avId, name).demand('Start')
 
     def addInvitation(self, sender, target, pirateName, guildId, guildName):
         self.invites[sender] = target

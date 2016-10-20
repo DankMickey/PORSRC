@@ -258,7 +258,7 @@ dclass GuildManager : DistributedObject {
   guildRejectInvite(uint32);
   invitationFrom(uint32, string, uint32, string);
   requestInvite(uint32) airecv clsend;
-  setWantName(string(0-256)) airecv clsend;
+  sendNameRequest(string(0-256)) airecv clsend;
   removeMember(uint32) airecv clsend;
   changeRank(uint32, uint8) airecv clsend;
   requestLeaderboardTopTen() airecv clsend;
@@ -284,9 +284,8 @@ dclass GuildManager : DistributedObject {
 
   notifyGuildKicksMaxed();
   
+  recvNameRequest(uint8);
   recvTokenRedeemMessage(string);
-  recvTokenRedeemedByPlayerMessage(string);
-  recvTokenGenerated(string);
   recvTokenInviteValue(string, int8);
   recvPermToken(string);
   recvNonPermTokenCount(uint8);

@@ -340,11 +340,10 @@ class GuildPage(SocialPage.SocialPage):
         name = name.strip()
         name = TextEncoder().encodeWtext(name)
         self.nameEntry.enterText(name)
-        newName = name
         self.nameEntry.hide()
         self.nameLabel.show()
-        base.cr.guildManager.setWantName(newName)
-        base.localAvatar.guildNameRequest()
+        base.cr.guildManager.sendNameRequest(name)
+        base.localAvatar._LocalPirate__cleanupGuildDialog()
         self.renameButton['state'] = DGG.DISABLED
         self.recentlySentName = True
 

@@ -2802,12 +2802,17 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
         messenger.send('Guild Status Updated')
 
     def guildNameRequest(self):
-        self.__cleanupGuildDialog()
         self.guildPopupDialog = PDialog.PDialog(text=PLocalizer.GuildNameRequest, style=OTPDialog.Acknowledge, text_align=TextNode.ACenter, command=self.__cleanupGuildDialog, destroyedCallback=self.__destroyedGuildDialog)
 
-    def guildNameReject(self, guildId):
-        self.__cleanupGuildDialog()
-        self.guildPopupDialog = PDialog.PDialog(text=PLocalizer.GuildNameDuplicate, style=OTPDialog.Acknowledge, command=self.__cleanupGuildDialog, destroyedCallback = self.__destroyedGuildDialog)
+    def guildNameReject(self, code):
+        if code == 0:
+            text = PLocalizer.GuildNameNotGM
+        elif code == 1:
+            text = PLocalizer.GuildNameAlreadySubmitted
+        elif code == 2:
+            text = PLocalizer.GuildNameDuplicate
+
+        self.guildPopupDialog = PDialog.PDialog(text=text, style=OTPDialog.Acknowledge, command=self.__cleanupGuildDialog, destroyedCallback = self.__destroyedGuildDialog)
         self.guiMgr.guildPage.resetRenameButton()
 
     def guildNameChange(self, guildName, change):

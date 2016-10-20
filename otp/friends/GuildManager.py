@@ -50,8 +50,8 @@ class GuildManager(DistributedObjectGlobal):
         messenger.send('declineGuildInvitation')
         self.sendUpdate('createGuild', [])
 
-    def setWantName(self, newName):
-        self.sendUpdate('setWantName', [newName])
+    def sendNameRequest(self, newName):
+        self.sendUpdate('sendNameRequest', [newName])
 
     def removeMember(self, avatarId):
         self.sendUpdate('removeMember', [avatarId])
@@ -86,6 +86,12 @@ class GuildManager(DistributedObjectGlobal):
     def sendTokenForJoinRequest(self, token):
         name = base.localAvatar.getName()
         self.sendUpdate('sendTokenForJoinRequest', [token, name])
+    
+    def recvNameRequest(self, code):
+        if code == 3:
+            base.localAvatar.guildNameRequest()
+        else:
+            base.localAvatar.guildNameReject(code)
 
     def isInGuild(self, avId):
         return avId in self.id2Name
@@ -317,10 +323,6 @@ class GuildManager(DistributedObjectGlobal):
                 base.localAvatar.guiMgr.guildPage.displayRedeemErrorMessage(OTPLocalizer.GuildRedeemErrorGuildFull)
             else:
                 base.localAvatar.guiMgr.guildPage.displayRedeemConfirmMessage(guildName)
-
-    def recvTokenRedeemedByPlayerMessage(self, redeemerName):
-        if hasattr(base, 'localAvatar') and base.localAvatar.guiMgr:
-            base.localAvatar.guiMgr.guildPage.notifyTokenGeneratorOfRedeem(redeemerName)
 
     def recvPermToken(self, token):
         if hasattr(base, 'localAvatar') and base.localAvatar.guiMgr:
