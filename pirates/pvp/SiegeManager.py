@@ -49,10 +49,7 @@ class SiegeManager(DistributedObject, SiegeManagerBase):
 
     def sendTalk(self, message):
         print 'Seige Manager Sending Message %s' % message
-        self.sendUpdate('setTalkGroup', [
-            0,
-            '',
-            message])
+        self.sendUpdate('setTalkGroup', [message])
 
     def sendSC(self, msgIndex):
         self.sendUpdate('sendSC', [msgIndex])

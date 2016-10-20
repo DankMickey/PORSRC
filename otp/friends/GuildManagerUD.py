@@ -12,13 +12,12 @@ GUILDRANK_MEMBER = 1
 class OperationFSM(FSM):
     DELAY = 0.25
 
-    def __init__(self, mgr, sender, target=None, callback=None):
+    def __init__(self, mgr, sender, target=None):
         FSM.__init__(self, 'OperationFSM-%s' % sender)
         self.mgr = mgr
         self.air = mgr.air
         self.sender = sender
         self.target = target
-        self.callback = callback
         self.deleted = False
         
         if self.DELAY:
@@ -79,6 +78,7 @@ class RetrievePirateGuildOperation(RetrievePirateOperation):
 
         self.guild = fields
         self.members = [list(member) for member in fields['setMembers'][0]]
+        self.mgr.addMemberList(self.guildId, self.members)
         self.demand('RetrievedGuild')
     
     def enterRetrievedGuild(self):
@@ -98,6 +98,7 @@ class RetrievePirateGuildOperation(RetrievePirateOperation):
     
     def updateMembers(self, members):
         self.air.dbInterface.updateObject(self.air.dbId, self.guildId, self.air.dclassesByName['DistributedGuildUD'], {'setMembers': [members]})
+        self.mgr.addMemberList(self.guildId, members)
 
 class UpdatePirateExtension(object):
 
@@ -270,6 +271,29 @@ class AddMemberOperation(RetrievePirateGuildOperation, UpdatePirateExtension):
         self.demand('UpdatePirate', self.target, self.guildId, self.guild['setName'][0], GUILDRANK_MEMBER)
         self.mgr.d_guildAcceptInvite(self.target)
 
+class SendChatOperation(RetrievePirateOperation):
+    DELAY = 0.5
+
+    def __init__(self, mgr, sender, callback, extraArgs):
+        RetrievePirateOperation.__init__(self, mgr, sender)
+        self.callback = callback
+        self.extraArgs = extraArgs
+    
+    def enterRetrievedPirate(self):
+        guildId = self.pirate['setGuildId'][0]
+        
+        if not guildId:
+            return
+
+        memberList = self.mgr.getMemberIds(guildId)
+        
+        if not memberList:
+            return
+        
+        self.extraArgs.insert(1, self.pirate['setName'][0])
+        self.callback(memberList, *self.extraArgs)
+        self.demand('Off')
+
 class GuildManagerUD(DistributedObjectGlobalUD):
     notify = DirectNotifyGlobal.directNotify.newCategory("GuildManagerUD")
     
@@ -277,7 +301,20 @@ class GuildManagerUD(DistributedObjectGlobalUD):
         DistributedObjectGlobalUD.__init__(self, air)
         self.operations = {}
         self.invites = {}
+        self.memberListCache = {}
         self.accept('pirateOnline', self.pirateOnline)
+    
+    def addMemberList(self, guildId, memberList):
+        self.memberListCache[guildId] = memberList
+    
+    def getMemberList(self, guildId):
+        return self.memberListCache.get(guildId)
+    
+    def getMemberIds(self, guildId):
+        memberList = self.getMemberList(guildId)
+        
+        if memberList:
+            return [member[0] for member in memberList if member[0] in self.air.piratesFriendsManager.onlinePirates]
     
     def hasOperation(self, avId):
         return avId in self.operations
@@ -305,6 +342,18 @@ class GuildManagerUD(DistributedObjectGlobalUD):
     
     def d_invitationFrom(self, avId, fromId, fromName, guildId, guildName):
         self.sendUpdateToAvatarId(avId, 'invitationFrom', [fromId, fromName, guildId, guildName])
+    
+    def d_recvChat(self, avIds, senderId, senderName, message):
+        for avId in avIds:
+            self.sendUpdateToAvatarId(avId, 'recvChat', [senderId, senderName, message])
+    
+    def d_recvSC(self, avIds, senderId, senderName, msgIndex):
+        for avId in avIds:
+            self.sendUpdateToAvatarId(avId, 'recvSC', [senderId, senderName, msgIndex])
+    
+    def d_recvSCQuest(self, avIds, senderId, senderName, questInt, msgType, taskNum):
+        for avId in avIds:
+            self.sendUpdateToAvatarId(avId, 'recvSCQuest', [senderId, senderName, questInt, msgType, taskNum])
     
     def pirateOnline(self, doId):
         PirateOnlineOperation(self, doId).demand('Start')
@@ -377,3 +426,18 @@ class GuildManagerUD(DistributedObjectGlobalUD):
         self.invites[target] = sender
         self.d_invitationFrom(target, sender, pirateName, guildId, guildName)
     
+    def __addChatOperation(self, callback, extraArgs):
+        sender = self.air.getAvatarIdFromSender()
+        
+        if sender not in self.operations:
+            extraArgs.insert(0, sender)
+            SendChatOperation(self, sender, callback, extraArgs).demand('Start')
+    
+    def sendChat(self, message):
+        self.__addChatOperation(self.d_recvChat, [message])
+    
+    def sendSC(self, msgIndex):
+        self.__addChatOperation(self.d_recvSC, [msgIndex])
+    
+    def sendSCQuest(self, questInt, msgType, taskNum):
+        self.__addChatOperation(self.d_recvSCQuest, [questInt, msgType, taskNum])

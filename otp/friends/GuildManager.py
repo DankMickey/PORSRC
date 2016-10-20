@@ -85,16 +85,7 @@ class GuildManager(DistributedObjectGlobal):
         self.sendUpdate('declineInvite', [])
 
     def sendTalk(self, msgText, chatFlags = 0):
-        self.sendUpdate('setTalkGroup', [0,
-         '',
-         msgText])
-
-    def setTalkGroup(self, fromAv, avatarName, chat):
-        if hasattr(base, 'localAvatar'):
-            if base.whiteList:
-                chat = base.whiteList.processThroughAll(chat, base.chatGarbler)
-
-            base.talkAssistant.receiveGuildTalk(fromAv, avatarName, chat)
+        self.sendUpdate('sendChat', [msgText])
 
     def sendSC(self, msgIndex):
         self.sendUpdate('sendSC', [msgIndex])
@@ -198,7 +189,6 @@ class GuildManager(DistributedObjectGlobal):
         print 'DEBUG - guildNameUpdate for ', avatarId, ' to ', guildName
 
     def invitationFrom(self, avatarId, avatarName, guildId, guildName):
-        print 'GM invitationFrom %s(%d)' % (avatarName, avatarId)
         if hasattr(base, 'localAvatar'):
             base.localAvatar.guiMgr.handleGuildInvitation(avatarId, avatarName, guildId, guildName)
 
@@ -214,29 +204,19 @@ class GuildManager(DistributedObjectGlobal):
     def rejectInvite(self, avatarId, reason):
         pass
 
-    def recvSC(self, senderId, msgIndex):
-        senderName = self.id2Name.get(senderId, None)
-        if senderName:
-            if not base.localAvatar.isIgnored(senderId):
-                displayMess = '%s %s %s' % (senderName, OTPLocalizer.GuildPrefix, OTPLocalizer.SpeedChatStaticText[msgIndex])
-                message = OTPLocalizer.SpeedChatStaticText[msgIndex]
-                base.talkAssistant.receiveGuildMessage(senderId, senderName, message)
-        else:
-            self.pendingMsgs.append([senderId, OTPLocalizer.SpeedChatStaticText[msgIndex]])
-            self.memberList()
-        return
+    def recvChat(self, senderId, senderName, chat, garble=True):
+        if not base.localAvatar.isIgnored(senderId):
+            if base.whiteList and garble:
+                chat = base.whiteList.processThroughAll(chat, base.chatGarbler)
 
-    def recvSCQuest(self, senderId, questInt, msgType, taskNum):
-        senderName = self.id2Name.get(senderId, None)
+            base.talkAssistant.receiveGuildTalk(senderId, senderName, chat)
+    
+    def recvSC(self, senderId, senderName, msgIndex):
+        self.recvChat(senderId, senderName, OTPLocalizer.SpeedChatStaticText[msgIndex], False)
+
+    def recvSCQuest(self, senderId, senderName, questInt, msgType, taskNum):
         message = base.talkAssistant.SCDecoder.decodeSCQuestMsgInt(questInt, msgType, taskNum)
-        if senderName:
-            if not base.localAvatar.isIgnored(senderId):
-                displayMess = '%s %s %s' % (senderName, OTPLocalizer.GuildPrefix, message)
-                base.talkAssistant.receiveGuildMessage(senderId, senderName, message)
-        else:
-            self.pendingMsgs.append([senderId, message])
-            self.memberList()
-        return
+        self.recvChat(senderId, senderName, message, False)
 
     def recvAvatarOnline(self, avatarId, avatarName, bandManagerId, bandId):
         self.id2Online[avatarId] = True

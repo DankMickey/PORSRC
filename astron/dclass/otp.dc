@@ -138,8 +138,8 @@ dclass TalkPath_whisper {
 };
 
 dclass TalkPath_group {
-  setTalkGroup(DoId fromAv, string(0-256) avName,
-               string(0-400) chat) clsend airecv;
+  setTalkGroup(string(0-400) chat) clsend airecv;
+  recvTalkGroup(uint32 fromAv, string(0-256) avName, string(0-400) chat);
 };
 
 dclass AvatarHandle : TalkPath_whisper {
@@ -249,7 +249,7 @@ dclass DistributedGuild : DistributedObject {
   setMembers(GuildMember[]) required broadcast ram db;
 };
 
-dclass GuildManager : DistributedObject, TalkPath_group {
+dclass GuildManager : DistributedObject {
   createGuild() airecv clsend;
   acceptInvite() airecv clsend;
   declineInvite() airecv clsend;
@@ -270,12 +270,12 @@ dclass GuildManager : DistributedObject, TalkPath_group {
   leaderboardTopTen(leaderBoardRecord []);
   recvAvatarOnline(uint32, string, uint32, uint32);
   recvAvatarOffline(uint32, string);
-  sendChat(string(0-256), uint8, uint32) airecv clsend;
+  sendChat(string(0-400)) airecv clsend;
   sendSC(uint16) airecv clsend;
   sendSCQuest(uint16, uint16, uint16) airecv clsend;
-  recvChat(uint32, string, uint8, uint32);
-  recvSC(uint32, uint16);
-  recvSCQuest(uint32, uint16, uint16, uint16);
+  recvChat(uint32, string, string);
+  recvSC(uint32, string, uint16);
+  recvSCQuest(uint32, string, uint16, uint16, uint16);
   sendTokenRequest() airecv clsend;
   recvTokenGenerated(string);
   recvTokenInviteValue(string, int8);
