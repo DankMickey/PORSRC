@@ -288,6 +288,8 @@ class RemoveMemberOperation(RetrievePirateGuildOperation, UpdatePirateExtension)
         name = targetMember[2]
 
         del self.members[j]
+        self.updateMembers(self.members)
+        self.mgr.d_recvMemberRemoved(memberList, self.target, self.sender, name, senderMember[2])
     
         if len(self.members) == 0 and guildName != 'Pirate Guild':
             self.demand('RemoveName', guildName)
