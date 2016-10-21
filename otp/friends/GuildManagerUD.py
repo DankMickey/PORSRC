@@ -3,6 +3,7 @@ from direct.distributed.DistributedObjectGlobalUD import DistributedObjectGlobal
 from direct.fsm.FSM import FSM
 from otp.otpbase import OTPUtils
 from otp.uberdog.RejectCode import RejectCode
+import time
 
 GUILDRANK_VETERAN = 4
 GUILDRANK_GM = 3
