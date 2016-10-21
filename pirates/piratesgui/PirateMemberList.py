@@ -278,8 +278,10 @@ class PirateMemberButton(GuiButton.GuiButton):
             
             if not friendInfo:
                 base.cr.fillUpFriendsMap()
+                text = '???'
+            else:
+                text = friendInfo.getName()
 
-            text = friendInfo.getName()
             self.avName = text
             self.statusLabel.hide()
             self.shipIcon.setPos(self.owner.memberWidth - 0.4, 0, 0.035000)
