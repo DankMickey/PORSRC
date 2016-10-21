@@ -194,6 +194,7 @@ class PirateOnlineOperation(RetrievePirateGuildOperation, UpdatePirateExtension)
             self.demand('Finish')
             return
 
+        oldName = self.guildName
         self.guildName = self.wishName
         self.air.dbInterface.updateObject(self.air.dbId, self.guildId, self.air.dclassesByName['DistributedGuildUD'], {'setWishName': [''], 'setName': [self.wishName]})
         self.mgr.d_guildNameChange(memberList, self.wishName, status)
@@ -206,6 +207,13 @@ class PirateOnlineOperation(RetrievePirateGuildOperation, UpdatePirateExtension)
             self.air.send(dclass.aiFormatUpdate('setGuildName', memberId, memberId, self.air.ourChannel, [self.guildName]))
             self.mgr.d_guildStatusUpdate(memberId, self.guildId, self.guildName, member[1])
         
+        if oldName != 'Pirate Guild':
+            self.demand('RemoveName', oldName)
+        else:
+            self.demand('Off')
+    
+    def enterRemoveName(self, guildName):
+        self.mgr.air.csm.accountDB.getGuildNameStatus(guildName, lambda status: None, 'Remove')
         self.demand('Off')
     
     def enterFinish(self):
@@ -276,11 +284,21 @@ class RemoveMemberOperation(RetrievePirateGuildOperation, UpdatePirateExtension)
 
             self.members[i] = senderMember
 
+        guildName = self.guild['setName'][0]
         name = targetMember[2]
 
         del self.members[j]
-        self.updateMembers(self.members)
-        self.mgr.d_recvMemberRemoved(memberList, self.target, self.sender, name, senderMember[2])
+    
+        if len(self.members) == 0 and guildName != 'Pirate Guild':
+            self.demand('RemoveName', guildName)
+        else:
+            self.demand('Finish')
+    
+    def enterRemoveName(self, guildName):
+        self.mgr.air.csm.accountDB.getGuildNameStatus(guildName, lambda status: None, 'Remove')
+        self.demand('Finish')
+    
+    def enterFinish(self):
         self.demand('UpdatePirate', self.target, 0, '', 0)
 
 class MemberListOperation(RetrievePirateGuildOperation):
@@ -562,6 +580,7 @@ class GuildManagerUD(DistributedObjectGlobalUD):
         PirateOnlineOperation(self, doId).demand('Start')
     
     def goingOffline(self, doId):
+        self.popInvite(doId)
         PirateOfflineOperation(self, doId).demand('Start')
     
     def removeMember(self, targetId):
@@ -583,16 +602,7 @@ class GuildManagerUD(DistributedObjectGlobalUD):
             ChangeRankOperation(self, avId, targetId, targetRank).demand('Start')
     
     def popInvite(self, avId):
-        if avId not in self.invites:
-            return
-
-        senderId = self.invites[avId]
-        del self.invites[avId]
-        
-        if senderId in self.invites:
-            del self.invites[senderId]
-        
-        return senderId
+        return self.invites.pop(avId, None)
     
     def requestMembers(self):
         avId = self.air.getAvatarIdFromSender()
@@ -610,11 +620,8 @@ class GuildManagerUD(DistributedObjectGlobalUD):
             self.d_guildRejectInvite(avId, RejectCode.BUSY)
             return
         
-        if False and targetId not in self.air.piratesFriendsManager.onlinePirates:
+        if targetId not in self.air.piratesFriendsManager.onlinePirates:
             self.d_guildRejectInvite(avId, RejectCode.INVITEE_NOT_ONLINE)
-            return
-        
-        if self.isInInvite(avId):
             return
         
         if avId not in self.operations:
@@ -647,7 +654,6 @@ class GuildManagerUD(DistributedObjectGlobalUD):
             SendNameOperation(self, avId, name).demand('Start')
 
     def addInvitation(self, sender, target, pirateName, guildId, guildName):
-        self.invites[sender] = target
         self.invites[target] = sender
         self.d_invitationFrom(target, sender, pirateName, guildId, guildName)
     
