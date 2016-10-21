@@ -902,5 +902,5 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
     def handleFriendOnline(self, doId):
         messenger.send('friendOnline', [doId])
 
-    def handleFriendOffline(self, doId):
-        messenger.send('friendOffline', [doId])
+    def handleFriendOffline(self, doId, name):
+        messenger.send('friendOffline', [doId, name])

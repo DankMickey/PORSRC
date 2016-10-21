@@ -316,10 +316,11 @@ class PiratesFriendsManagerUD(DistributedObjectGlobalUD):
                 return
 
             friendsList = fields['setFriendsList'][0]
+            name = fields['setName'][0]
 
             for friend in friendsList:
                 if friend in self.onlinePirates:
-                    self.sendUpdateToAvatarId(friend, 'friendOffline', [doId])
+                    self.sendUpdateToAvatarId(friend, 'friendOffline', [doId, name])
                     self.requestFriendsListFor(friend)
 
         self.air.dbInterface.queryObject(self.air.dbId, doId, handlePirate)

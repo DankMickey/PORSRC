@@ -15,8 +15,8 @@ class PiratesFriendsManager(DistributedObjectGlobal):
     def friendOnline(self, id):
         base.cr.handleFriendOnline(id)
 
-    def friendOffline(self, id):
-        base.cr.handleFriendOffline(id)
+    def friendOffline(self, id, name):
+        base.cr.handleFriendOffline(id, name)
 
     def d_getAvatarDetails(self, avId):
         self.sendUpdate('getAvatarDetails', [avId])

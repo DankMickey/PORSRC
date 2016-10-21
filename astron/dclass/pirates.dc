@@ -936,7 +936,7 @@ dclass PiratesFriendsManager : DistributedObjectGlobal {
   friendList(Friend[]);
 
   friendOnline(uint32);
-  friendOffline(uint32);
+  friendOffline(uint32, string);
 
   goingOffline(uint32);
 

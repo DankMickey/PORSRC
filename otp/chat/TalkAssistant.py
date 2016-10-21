@@ -254,12 +254,9 @@ class TalkAssistant(DirectObject.DirectObject):
         return 0
     
     def __friendOnline(self, doId):
-        self.__friendStatus(doId, True)
-    
-    def __friendOffline(self, doId):
-        self.__friendStatus(doId, False)
-        
-    def __friendStatus(self, doId, online):
         friend = base.cr.identifyFriend(doId)
         name = friend.getName() if friend else OTPLocalizer.APlayer
-        self.receiveFriendUpdate(doId, name, online)
+        self.receiveFriendUpdate(doId, name, True)
+    
+    def __friendOffline(self, doId, name):
+        self.receiveFriendUpdate(doId, name, False)
