@@ -2344,9 +2344,6 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
 
 
     def generateHuman(self, *args, **kwargs):
-        if base.cr.newsManager and base.cr.newsManager.getHoliday(HolidayGlobals.APRILFOOLS) == 1:
-            self.setJewelryZone5(10)
-
         DistributedPirateBase.generateHuman(self, *args, **kwargs)
         self.getGeomNode().setScale(self.scale)
         self.setHeight(self.height)
@@ -2980,38 +2977,6 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             self.waterSplash.setX(slideSpeed / 20.0)
             self.waterSplash.setZ(offset - 0.75)
 
-
-
-    def setCompositeDNA(self, *dna):
-        counter = 0
-        dclass = base.cr.dclassesByName['DistributedPlayerPirate']
-        field = dclass.getFieldByName('setCompositeDNA').asMolecularField()
-        for i in xrange(field.getNumAtomics()):
-            subField = field.getAtomic(i)
-            args = dna[counter:counter + subField.getNumElements()]
-            counter += subField.getNumElements()
-            getattr(self.style, subField.getName())(*args)
-
-
-
-    def announceClothingChange(self, *dna):
-        if self.isLocal():
-            return None
-
-        counter = 0
-        dclass = base.cr.dclassesByName['DistributedPlayerPirate']
-        field = dclass.getFieldByName('announceClothingChange').asMolecularField()
-        for i in xrange(field.getNumAtomics()):
-            subField = field.getAtomic(i)
-            args = dna[counter:counter + subField.getNumElements()]
-            counter += subField.getNumElements()
-            getattr(self.style, subField.getName())(*args)
-
-        self.generateHuman(self.style.getGender(), self.masterHuman)
-        self.motionFSM.off()
-        self.motionFSM.on()
-
-
     def tryOnTattoo(self, tattooItem, location):
         flipIt = 0
         if location == 0:
@@ -3100,16 +3065,6 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
 
         self.doRegeneration()
 
-
-    def requestClothesList(self):
-        self.sendUpdate('requestClothesList', [])
-
-
-    def receiveClothesList(self, clothesList):
-        messenger.send('received_clothes_list', [
-            clothesList])
-
-
     def removeClothes(self, clothingType):
         gender = self.style.getGender()
         underwearTable = ClothingGlobals.UNDERWEAR.get(gender)
@@ -3179,32 +3134,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         self.getStyle().setHatColor(colorHat)
         self.getStyle().setClothesTopColor(colorShirt, colorVest, colorCoat)
         self.getStyle().setClothesBotColor(colorPant, colorSash, colorShoe)
-        self.setClothesFromList(self.getClothesComposite())
         self.doRegeneration()
-
-
-    def getClothesComposite(self):
-        clothesComposite = [
-            self.getStyle().getHatIdx(),
-            self.getStyle().getHatTexture(),
-            self.getStyle().getHatColor()] + self.getStyle().getClothesShirt() + self.getStyle().getClothesVest() + self.getStyle().getClothesCoat() + self.getStyle().getClothesBelt() + self.getStyle().getClothesPant() + self.getStyle().getClothesShoe() + self.getStyle().getClothesTopColor() + self.getStyle().getClothesBotColor()
-        return tuple(clothesComposite)
-
-
-    def setClothesFromList(self, dna):
-        counter = 0
-        '''
-        dclass = base.cr.dclassesByName['DistributedPlayerPirate']
-        field = dclass.getFieldByName('setClothes').asMolecularField()
-        for i in xrange(field.getNumAtomics()):
-            subField = field.getAtomic(i)
-            args = dna[counter:counter + subField.getNumElements()]
-            counter += subField.getNumElements()
-            getattr(self.style, subField.getName())(*args)
-        '''
-
-        messenger.send(self.uniqueName('accessoriesUpdate'))
-
 
     def cueRegenerate(self, force = 0):
         if self.gameFSM.state in [
@@ -3237,60 +3167,6 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         if self.isLocal():
             camera.setPos(cameraPos)
             localAvatar.cameraFSM.getFPSCamera().camOffset = camOff
-
-    def setClothes(self, *dna):
-        counter = 0
-        dclass = base.cr.dclassesByName['DistributedPlayerPirate']
-        field = dclass.getFieldByName('setClothes').asMolecularField()
-        for i in xrange(field.getNumAtomics()):
-            subField = field.getAtomic(i)
-            args = dna[counter:counter + subField.getNumElements()]
-            counter += subField.getNumElements()
-            getattr(self.style, subField.getName())(*args)
-
-        messenger.send(self.uniqueName('accessoriesUpdate'))
-
-
-    def setHair(self, *dna):
-        counter = 0
-        dclass = base.cr.dclassesByName['DistributedPlayerPirate']
-        field = dclass.getFieldByName('setHair').asMolecularField()
-        for i in xrange(field.getNumAtomics()):
-            subField = field.getAtomic(i)
-            args = dna[counter:counter + subField.getNumElements()]
-            counter += subField.getNumElements()
-            getattr(self.style, subField.getName())(*args)
-
-        self.generateHuman(self.style.getGender(), self.masterHuman)
-        self.motionFSM.off()
-        self.motionFSM.on()
-
-
-    def setJewelry(self, *dna):
-        counter = 0
-        dclass = base.cr.dclassesByName['DistributedPlayerPirate']
-        field = dclass.getFieldByName('setJewelry').asMolecularField()
-        for i in xrange(field.getNumAtomics()):
-            subField = field.getAtomic(i)
-            args = dna[counter:counter + subField.getNumElements()]
-            counter += subField.getNumElements()
-            getattr(self.style, subField.getName())(*args)
-
-        messenger.send(self.uniqueName('jewelryUpdate'))
-
-
-    def setTattoos(self, *dna):
-        counter = 0
-        dclass = base.cr.dclassesByName['DistributedPlayerPirate']
-        field = dclass.getFieldByName('setTattoos').asMolecularField()
-        for i in xrange(field.getNumAtomics()):
-            subField = field.getAtomic(i)
-            args = dna[counter:counter + subField.getNumElements()]
-            counter += subField.getNumElements()
-            getattr(self.style, subField.getName())(*args)
-
-        messenger.send(self.uniqueName('tattooUpdate'))
-
 
     def requestActivity(self, gameType, gameCategory, options, shipIds):
         self.sendUpdate('requestActivity', [

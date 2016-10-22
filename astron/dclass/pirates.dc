@@ -743,9 +743,8 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   requestKill(uint32) ownsend airecv;
   setAvatarViewTarget(uint32, string) ownsend airecv;
   acknowledgeViewTarget(uint32) ownrecv;
-  requestClothesList() ownsend airecv;
-  receiveClothesList(uint32[] []) ownrecv;
-  requestChangeClothes() ownsend airecv;
+  requestClothes(blob) ownsend airecv;
+  doRegeneration() broadcast;
   // requestMAPClothes(MAPClothes []) ownsend airecv;
   setOnWelcomeWorld(bool) required ownrecv airecv db;
   setFounder(uint8) required broadcast ownrecv db;

@@ -172,8 +172,6 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
                 SoundGlobals.SFX_MONSTER_JR_JOIN]
             self.jollySfx = loadSfx(random.choice(soundEffects))
             self.currCombatMusic = None
-            self.clothingUpdateTaskName = 'inventoryClothingUpdate'
-            self.clothingUpdatePending = 0
             self.sailHit = 0
             self.playersNearby = { }
             self.trackedRotation = []
@@ -360,7 +358,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
 
 
     def cueRegenerate(self, force = 0):
-        if (self.clothingUpdatePending or self.lockRegenFlag) and not force:
+        if self.lockRegenFlag and not force:
             self.needRegenFlag = 1
             return None
 
@@ -372,26 +370,19 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
             DistributedPlayerPirate.doRegeneration(self)
             messenger.send('localAv-regenerate')
 
-
-
     def wearJewelry(self, itemToWear, location, remove = None):
         if remove:
             self.tryOnJewelry(None, location)
         else:
             self.tryOnJewelry(itemToWear, location)
-        taskMgr.remove(self.clothingUpdateTaskName)
-        task = taskMgr.doMethodLater(5.0, self.sendClothingUpdate, self.clothingUpdateTaskName)
-        self.clothingUpdatePending = 1
-
+        self.t_requestClothes()
 
     def wearItem(self, itemToWear, location, remove = None):
         if remove:
             self.removeClothes(location)
         else:
             self.tryOnClothes(location, itemToWear.itemTuple)
-        taskMgr.remove(self.clothingUpdateTaskName)
-        task = taskMgr.doMethodLater(5.0, self.sendClothingUpdate, self.clothingUpdateTaskName)
-        self.clothingUpdatePending = 1
+        self.t_requestClothes()
 
 
     def wearTattoo(self, itemToWear, location, remove = None):
@@ -399,15 +390,14 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
             self.tryOnTattoo(None, location)
         else:
             self.tryOnTattoo(itemToWear, location)
-        taskMgr.remove(self.clothingUpdateTaskName)
-        task = taskMgr.doMethodLater(5.0, self.sendClothingUpdate, self.clothingUpdateTaskName)
-        self.clothingUpdatePending = 1
+        self.t_requestClothes()
 
+    def t_requestClothes(self):
+        if not taskMgr.hasTaskNamed('inventoryClothingUpdate'):
+            taskMgr.doMethodLater(0.25, self.d_requestClothes, 'inventoryClothingUpdate')
 
-    def sendClothingUpdate(self, args = None):
-        self.sendUpdate('requestChangeClothes', [])
-        self.clothingUpdatePending = 0
-
+    def d_requestClothes(self, task=None):
+        self.sendUpdate('requestClothes', [self.style.makeNetString()])
 
     def checkForWeaponInSlot(self, weaponId, slot):
         inventory = localAvatar.getInventory()
@@ -1003,7 +993,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
         self.removeInterest(self.invInterest, event = self.uniqueName('localAvatar-close-inventory'))
 
     def handleMoustache(self, moustache = 0):
-        self.sendClothingUpdate()
+        self.t_requestClothes()
 
 
     def initInventoryGui(self, inventory):

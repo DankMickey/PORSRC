@@ -1,5 +1,4 @@
 from panda3d.core import Texture
-global genderIdx
 from direct.directnotify import DirectNotifyGlobal
 from direct.showbase.ShowBaseGlobal import *
 from direct.showbase.PythonUtil import Functor
@@ -15,7 +14,6 @@ from CharGuiBase import CharGuiSlider, CharGuiPicker
 from pirates.inventory import ItemGlobals
 from pirates.inventory.ItemConstants import DYE_COLORS
 import random
-genderIdx = 0
 TOPNUMCOLOR = 6
 BOTNUMCOLOR = 6
 MALE_HAT_COLOR_SELECTIONS = [
@@ -191,17 +189,11 @@ class ClothesGUI(DirectFrame, StateData.StateData):
 
 
     def save(self):
-        if self.mode == -1:
-            pass
-        1
+        pass
 
 
     def assignAvatar(self, avatar, wantClothingChange):
-        global genderIdx
         self.avatar = avatar
-        genderIdx = 0
-        if avatar.dna.getGender() == 'f':
-            genderIdx = 1
 
         if wantClothingChange:
             if self.avatar.dna.getGender() == 'm':

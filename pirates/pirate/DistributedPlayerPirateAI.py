@@ -686,6 +686,17 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
 
     def requestKill(self, variable):
         pass
+    
+    def d_doRegeneration(self):
+        self.sendUpdate('doRegeneration', [])
+    
+    def requestClothes(self, dna):
+        style = HumanDNA()
+        style.makeFromNetString(dna)
+
+        self.style.clothes = style.clothes
+        self.d_setDNAString(self.style.makeNetString())
+        self.d_doRegeneration()
 
 @magicWord(CATEGORY_GAME_DEVELOPER)
 def suicide(reason = "kindergarten is elsewhere."):
