@@ -233,18 +233,12 @@ class DistributedNPCTownfolk(DistributedBattleNPC.DistributedBattleNPC, Distribu
     def getNoticeAnimation(self):
         if self.shouldGreetOnNotice:
             if self.greetingAnim != '':
-                reaction = self.greetingAnim
+                return self.greetingAnim
             else:
-                reaction = 'emote_wave'
+                return 'emote_wave'
         elif self.shouldTurnToNotice:
-            choiceList = [
-                'emote_yes']
-            if not self.noticeReactionList:
-                return None
-
-            reaction = random.choice(self.noticeReactionList)
-
-        return reaction
+            if self.noticeReactionList:
+                return random.choice(self.noticeReactionList)
 
 
     def stateOkayForNotice(self):
