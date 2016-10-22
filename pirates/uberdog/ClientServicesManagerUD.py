@@ -619,8 +619,14 @@ class CreateAvatarFSM(CSMOperation):
             self.demand('Kill', 'Database failed to associate the new avatar to your account!')
             return
 
-        self.csm.air.writeServerEvent('avatarCreated', self.avId, self.target, self.dna.encode('hex'), self.index)
-        self.csm.sendUpdateToAccountId(self.target, 'createAvatarResp', [self.avId])
+        self.acceptOnce('inventory-loaded-%d' % self.avId, self.gotInventory)
+        self.csm.air.inventoryMgr.initiateAvatarInventory(self.avId, 0)
+
+    def gotInventory(self, obj):
+        if obj:
+            self.csm.air.writeServerEvent('avatarCreated', self.avId, self.target, self.dna.encode('hex'), self.index)
+            self.csm.sendUpdateToAccountId(self.target, 'createAvatarResp', [self.avId])
+
         self.demand('Off')
 
     @classmethod

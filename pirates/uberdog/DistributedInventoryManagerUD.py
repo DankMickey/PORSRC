@@ -47,6 +47,7 @@ class InventoryRequest(FSM):
         inventory['setCategoryLimits'] = [InventoryInit.CategoryLimits.items()]
         inventory['setStacks'] = [InventoryInit.StackStartsWith.items()]
         inventory['setStackLimits'] = [InventoryInit.StackLimits.items()]
+        inventory['setOwnerId'] = [self.ownerId]
         return inventory
 
     def __handleCreate(self, doId):
@@ -62,8 +63,7 @@ class InventoryRequest(FSM):
                                           self.air.dclassesByName['DistributedPlayerPirateUD'],
                                           {'setInventoryId': [self.inventoryId]})
 
-        self.air.sendNetEvent('pirate-inventory-activate', [self.ownerId, self.inventoryId])
-        self.demand('Activate')
+        self.gotObject(self)
 
     def enterQuery(self):
         self.air.dbInterface.queryObject(self.air.dbId, self.inventoryId, self.__handleRetrieve)

@@ -35,7 +35,7 @@ class PChatInputEmote(DirectObject.DirectObject):
             SCCustomMenu,
             OTPLocalizer.SCMenuCustom])
         structure += scStructure
-        if config.GetInt('want-emotes', 1):
+        if config.GetBool('want-emotes', 1):
             emote_structure = None
             emote_dance_structure = None
             emote_general_structure = None
