@@ -183,7 +183,7 @@ class DeveloperAccountDB(AccountDB):
     notify = directNotify.newCategory('DeveloperAccountDB')
 
     def lookup(self, username, callback):
-        return AccountDB.lookup(self, username, 1100, callback)
+        return AccountDB.lookup(self, username, 1000, callback)
 
 class RemoteAccountDB(AccountDB):
     notify = directNotify.newCategory('RemoteAccountDB')
@@ -836,7 +836,7 @@ class LoadAvatarFSM(AvatarOperationFSM):
 
     def __getGMTag(self, accessLevel):
         gmTags = {
-            300: ('red' , 'Youtuber'),
+            300: ('red', 'Youtuber'),
             400: ('blue', 'Streamer'),
             600: ('gold', 'Moderator'),
             700: ('red', 'Game Master'),
