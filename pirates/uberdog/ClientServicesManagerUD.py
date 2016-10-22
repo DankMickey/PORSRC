@@ -492,12 +492,19 @@ class LoginAccountFSM(CSMOperation):
         self.csm.air.send(datagram)
 
         # Update the last login timestamp:
+        changeDict = {
+            'LAST_LOGIN': time.ctime(time.mktime(time.gmtime())),
+            'ACCOUNT_ID': str(self.userId)
+        }
+        
+        if config.GetBool('want-auto-founder', False):
+            changeDict['FOUNDER'] = True
+            
         self.csm.air.dbInterface.updateObject(
             self.csm.air.dbId,
             self.accountId,
             self.csm.air.dclassesByName['AccountUD'],
-            {'LAST_LOGIN': time.ctime(time.mktime(time.gmtime())),
-             'ACCOUNT_ID': str(self.userId)})
+            changeDict)
 
         # We're done.
         self.csm.air.writeServerEvent('accountLogin', self.target, self.accountId, self.userId)
@@ -871,13 +878,15 @@ class LoadAvatarFSM(AvatarOperationFSM):
 
         # Activate the avatar on the DBSS:
         access = self.account.get('ACCESS_LEVEL', 100)
+        founder = self.account.get('FOUNDER', False)
         gmTag = self.__getGMTag(access)
         
         self.csm.air.sendActivate(
             self.avId, 0, 0, self.csm.air.dclassesByName['DistributedPlayerPirateUD'],
-            {'setAdminAccess': [self.account.get('ACCESS_LEVEL', 100)],
+            {'setAdminAccess': [access],
              'setName': self.avatar['setName'],
-             'setGMNametag': gmTag})
+             'setGMNametag': gmTag,
+             'setFounder': [founder]})
 
         # Next, add them to the avatar channel:
         datagram = PyDatagram()

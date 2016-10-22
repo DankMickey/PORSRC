@@ -36,6 +36,7 @@ dclass Account {
   string LAST_LOGIN db;
   string ACCOUNT_ID db;
   uint16 ACCESS_LEVEL db;
+  bool FOUNDER db;
 };
 
 struct BarrierData {

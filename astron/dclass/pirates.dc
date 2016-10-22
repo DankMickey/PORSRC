@@ -747,7 +747,7 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   doRegeneration() broadcast;
   // requestMAPClothes(MAPClothes []) ownsend airecv;
   setOnWelcomeWorld(bool) required ownrecv airecv db;
-  setFounder(uint8) required broadcast ownrecv db;
+  setFounder(uint8) required broadcast;
   setAllegiance(uint8) required broadcast ownrecv db;
   setCrewIconIndicator(uint8) ownsend required ram broadcast airecv;
   setBadgeIcon(int8, int8) required ram broadcast db;
