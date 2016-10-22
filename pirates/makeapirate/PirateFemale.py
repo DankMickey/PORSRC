@@ -1219,35 +1219,6 @@ class PirateFemale(DirectObject.DirectObject):
         self.dnaZomb = HumanDNA.HumanDNA('f')
         self.makeZombie()
         self.loaded = 0
-        self.tattooZones = [
-            [
-                0,
-                1,
-                2,
-                3,
-                4,
-                5,
-                6,
-                9,
-                10],
-            [
-                13,
-                15,
-                31],
-            [
-                14,
-                16,
-                32],
-            [
-                -1],
-            [
-                0],
-            [
-                0],
-            [
-                0],
-            [
-                0]]
         self.tattooStage = TextureStage('tattoo')
         self.tattooStage.setTexcoordName('tattoomap')
         self.tattoos = [
@@ -1339,7 +1310,6 @@ class PirateFemale(DirectObject.DirectObject):
         for i in xrange(4):
             tattooArea = self.currentTattooZones[i]
             tattoo = self.tattoos[i]
-            zones = self.tattooZones[i]
             (tex, scale) = TattooGlobals.getTattooImage(tattoo[0])
             scaleX = tattoo[3] * scale
             scaleY = tattoo[3]

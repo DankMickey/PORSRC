@@ -79,8 +79,6 @@ class InventoryUITattooDressingContainer(InventoryUISlotContainer.InventoryUISlo
     def wearTattoo(self, cell, type, remove = None, mouseAction = MOUSE_CLICK, task = None):
         itemToWear = cell.inventoryItem
         self.manager.wearTattoo(itemToWear, type, remove)
-        if remove:
-            gui = loader.loadModel('models/gui/gui_icons_weapon')
 
 
 
@@ -147,12 +145,6 @@ class InventoryUITattooDressingContainer(InventoryUISlotContainer.InventoryUISlo
                 self.wearTattoo(cell, location)
                 cell.container.markCell(cell, MASK_FULLEQUIP)
                 cell.container.unmarkCell(cell, MASK_EMPTYEQUIP)
-
-        avInv = localAvatar.getInventory()
-        if avInv and avInv.findAvailableLocation(InventoryType.ItemTypeTattoo) in [
-            Locations.INVALID_LOCATION,
-            Locations.NON_LOCATION]:
-            localAvatar.sendRequestContext(InventoryType.InventoryFull)
 
 
 

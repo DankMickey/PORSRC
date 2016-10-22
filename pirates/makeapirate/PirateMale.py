@@ -1358,33 +1358,6 @@ class PirateMale(DirectObject.DirectObject):
             { },
             { },
             { }]
-        self.tattooZones = [
-            [
-                1,
-                2,
-                3,
-                4,
-                5],
-            [
-                9,
-                11,
-                13],
-            [
-                8,
-                10,
-                12],
-            [
-                -1],
-            [
-                0],
-            [
-                2],
-            [
-                16,
-                17],
-            [
-                18,
-                19]]
         self.tattooStage = TextureStage('tattoo')
         self.tattooStage.setTexcoordName('tattoomap')
         self.tattoos = [
@@ -1479,7 +1452,6 @@ class PirateMale(DirectObject.DirectObject):
         for i in xrange(4):
             tattooArea = self.currentTattooZones[i]
             tattoo = self.tattoos[i]
-            zones = self.tattooZones[i]
             (tex, scale) = TattooGlobals.getTattooImage(tattoo[0])
             scaleX = tattoo[3] * scale
             scaleY = tattoo[3]

@@ -577,6 +577,22 @@ class PirateClothes:
         self.sashColor = 0
         self.shoeColor = 0
         self.hatColor = 0
+        self.tattooChest = [0, 0.0, 0.0, 1, 0, 0]
+        self.tattooZone2 = [0, 0.0, 0.0, 1, 0, 0]
+        self.tattooZone3 = [0, 0.0, 0.0, 1, 0, 0]
+        self.tattooZone4 = [0, 0.0, 0.0, 1, 0, 0]
+        self.tattooZone5 = [0, 0.0, 0.0, 1, 0, 0]
+        self.tattooZone6 = [0, 0.0, 0.0, 1, 0, 0]
+        self.tattooZone7 = [0, 0.0, 0.0, 1, 0, 0]
+        self.tattooZone8 = [0, 0.0, 0.0, 1, 0, 0]
+        self.jewelryZone1 = [0, 0, 0, 0]
+        self.jewelryZone2 = [0, 0, 0, 0]
+        self.jewelryZone3 = [0, 0, 0, 0]
+        self.jewelryZone4 = [0, 0, 0, 0]
+        self.jewelryZone5 = [0, 0, 0, 0]
+        self.jewelryZone6 = [0, 0, 0, 0]
+        self.jewelryZone7 = [0, 0, 0, 0]
+        self.jewelryZone8 = [0, 0, 0, 0]
 
     def copy(self, other):
         self.shirt = other.shirt
@@ -602,6 +618,22 @@ class PirateClothes:
         self.sashColor = other.sashColor
         self.shoeColor = other.shoeColor
         self.hatColor = other.hatColor
+        self.tattooChest = other.tattooChest
+        self.tattooZone2 = other.tattooZone2
+        self.tattooZone3 = other.tattooZone3
+        self.tattooZone4 = other.tattooZone4
+        self.tattooZone5 = other.tattooZone5
+        self.tattooZone6 = other.tattooZone6
+        self.tattooZone7 = other.tattooZone7
+        self.tattooZone8 = other.tattooZone8
+        self.jewelryZone1 = other.jewelryZone1
+        self.jewelryZone2 = other.jewelryZone2
+        self.jewelryZone3 = other.jewelryZone3
+        self.jewelryZone4 = other.jewelryZone4
+        self.jewelryZone5 = other.jewelryZone5
+        self.jewelryZone6 = other.jewelryZone6
+        self.jewelryZone7 = other.jewelryZone7
+        self.jewelryZone8 = other.jewelryZone8
 
     def __str__(self):
         string = 'shirt %s:%s:%s, vest %s:%s:%s, coat %s:%s:%s, pant %s:%s:%s,%s, belt %s:%s:%s, hat %s:%s:%s, sock %s:%s, shoe %s:%s' % (
@@ -630,95 +662,6 @@ class HumanDNA(AvatarDNA.AvatarDNA):
         self.body = PirateBody(bodyIndex)
         self.head = PirateHead()
         self.clothes = PirateClothes()
-        self.tattooChest = [
-            0,
-            0.0,
-            0.0,
-            1,
-            0,
-            0]
-        self.tattooZone2 = [
-            0,
-            0.0,
-            0.0,
-            1,
-            0,
-            0]
-        self.tattooZone3 = [
-            0,
-            0.0,
-            0.0,
-            1,
-            0,
-            0]
-        self.tattooZone4 = [
-            0,
-            0.0,
-            0.0,
-            1,
-            0,
-            0]
-        self.tattooZone5 = [
-            0,
-            0.0,
-            0.0,
-            1,
-            0,
-            0]
-        self.tattooZone6 = [
-            0,
-            0.0,
-            0.0,
-            1,
-            0,
-            0]
-        self.tattooZone7 = [
-            0,
-            0.0,
-            0.0,
-            1,
-            0,
-            0]
-        self.tattooZone8 = [
-            0,
-            0.0,
-            0.0,
-            1,
-            0,
-            0]
-        self.jewelryZone1 = [
-            0,
-            0,
-            0]
-        self.jewelryZone2 = [
-            0,
-            0,
-            0]
-        self.jewelryZone3 = [
-            0,
-            0,
-            0]
-        self.jewelryZone4 = [
-            0,
-            0,
-            0]
-        self.jewelryZone5 = [
-            0,
-            0,
-            0]
-        self.jewelryZone6 = [
-            0,
-            0,
-            0]
-        self.jewelryZone7 = [
-            0,
-            0,
-            0]
-        self.jewelryZone8 = [
-            0,
-            0,
-            0]
-
 
     def makeMakeAPirate(self):
         if self.gender == 'm':
@@ -769,22 +712,6 @@ class HumanDNA(AvatarDNA.AvatarDNA):
         self.body.copy(other.body)
         self.head.copy(other.head)
         self.clothes.copy(other.clothes)
-        self.tattooChest = other.tattooChest
-        self.tattooZone2 = other.tattooZone2
-        self.tattooZone3 = other.tattooZone3
-        self.tattooZone4 = other.tattooZone4
-        self.tattooZone5 = other.tattooZone5
-        self.tattooZone6 = other.tattooZone6
-        self.tattooZone7 = other.tattooZone7
-        self.tattooZone8 = other.tattooZone8
-        self.jewelryZone1 = other.jewelryZone1
-        self.jewelryZone2 = other.jewelryZone2
-        self.jewelryZone3 = other.jewelryZone3
-        self.jewelryZone4 = other.jewelryZone4
-        self.jewelryZone5 = other.jewelryZone5
-        self.jewelryZone6 = other.jewelryZone6
-        self.jewelryZone7 = other.jewelryZone7
-        self.jewelryZone8 = other.jewelryZone8
 
     def __str__(self):
         string = 'type = %s\n' % self.type + 'name = %s\n' % self.name + 'tutorial = %s\n' % self.tutorial + 'gender = %s\n' % self.gender + 'head = %s\n' % self.head + 'body = %s\n' % self.body + 'clothes = %s\n' % self.clothes
@@ -863,45 +790,45 @@ class HumanDNA(AvatarDNA.AvatarDNA):
             self.clothes.pantColor, self.clothes.sashColor,
             self.clothes.shoeColor)
         d[HumanDNA.setTattooChest] = (
-            self.tattooChest[0], self.tattooChest[1], self.tattooChest[2],
-            self.tattooChest[3], self.tattooChest[4], self.tattooChest[5])
+            self.clothes.tattooChest[0], self.clothes.tattooChest[1], self.clothes.tattooChest[2],
+            self.clothes.tattooChest[3], self.clothes.tattooChest[4], self.clothes.tattooChest[5])
         d[HumanDNA.setTattooZone2] = (
-            self.tattooZone2[0], self.tattooZone2[1], self.tattooZone2[2],
-            self.tattooZone2[3], self.tattooZone2[4], self.tattooZone2[5])
+            self.clothes.tattooZone2[0], self.clothes.tattooZone2[1], self.clothes.tattooZone2[2],
+            self.clothes.tattooZone2[3], self.clothes.tattooZone2[4], self.clothes.tattooZone2[5])
         d[HumanDNA.setTattooZone3] = (
-            self.tattooZone3[0], self.tattooZone3[1], self.tattooZone3[2],
-            self.tattooZone3[3], self.tattooZone3[4], self.tattooZone3[5])
+            self.clothes.tattooZone3[0], self.clothes.tattooZone3[1], self.clothes.tattooZone3[2],
+            self.clothes.tattooZone3[3], self.clothes.tattooZone3[4], self.clothes.tattooZone3[5])
         d[HumanDNA.setTattooZone4] = (
-            self.tattooZone4[0], self.tattooZone4[1], self.tattooZone4[2],
-            self.tattooZone4[3], self.tattooZone4[4], self.tattooZone4[5])
+            self.clothes.tattooZone4[0], self.clothes.tattooZone4[1], self.clothes.tattooZone4[2],
+            self.clothes.tattooZone4[3], self.clothes.tattooZone4[4], self.clothes.tattooZone4[5])
         d[HumanDNA.setTattooZone5] = (
-            self.tattooZone5[0], self.tattooZone5[1], self.tattooZone5[2],
-            self.tattooZone5[3], self.tattooZone5[4], self.tattooZone5[5])
+            self.clothes.tattooZone5[0], self.clothes.tattooZone5[1], self.clothes.tattooZone5[2],
+            self.clothes.tattooZone5[3], self.clothes.tattooZone5[4], self.clothes.tattooZone5[5])
         d[HumanDNA.setTattooZone6] = (
-            self.tattooZone6[0], self.tattooZone6[1], self.tattooZone6[2],
-            self.tattooZone6[3], self.tattooZone6[4], self.tattooZone6[5])
+            self.clothes.tattooZone6[0], self.clothes.tattooZone6[1], self.clothes.tattooZone6[2],
+            self.clothes.tattooZone6[3], self.clothes.tattooZone6[4], self.clothes.tattooZone6[5])
         d[HumanDNA.setTattooZone7] = (
-            self.tattooZone7[0], self.tattooZone7[1], self.tattooZone7[2],
-            self.tattooZone7[3], self.tattooZone7[4], self.tattooZone7[5])
+            self.clothes.tattooZone7[0], self.clothes.tattooZone7[1], self.clothes.tattooZone7[2],
+            self.clothes.tattooZone7[3], self.clothes.tattooZone7[4], self.clothes.tattooZone7[5])
         d[HumanDNA.setTattooZone8] = (
-            self.tattooZone8[0], self.tattooZone8[1], self.tattooZone8[2],
-            self.tattooZone8[3], self.tattooZone8[4], self.tattooZone8[5])
+            self.clothes.tattooZone8[0], self.clothes.tattooZone8[1], self.clothes.tattooZone8[2],
+            self.clothes.tattooZone8[3], self.clothes.tattooZone8[4], self.clothes.tattooZone8[5])
         d[HumanDNA.setJewelryZone1] = (
-            self.jewelryZone1[0], self.jewelryZone1[1], self.jewelryZone1[2])
+            self.clothes.jewelryZone1[0], self.clothes.jewelryZone1[1], self.clothes.jewelryZone1[2])
         d[HumanDNA.setJewelryZone2] = (
-            self.jewelryZone2[0], self.jewelryZone2[1], self.jewelryZone2[2])
+            self.clothes.jewelryZone2[0], self.clothes.jewelryZone2[1], self.clothes.jewelryZone2[2])
         d[HumanDNA.setJewelryZone3] = (
-            self.jewelryZone3[0], self.jewelryZone3[1], self.jewelryZone3[2])
+            self.clothes.jewelryZone3[0], self.clothes.jewelryZone3[1], self.clothes.jewelryZone3[2])
         d[HumanDNA.setJewelryZone4] = (
-            self.jewelryZone4[0], self.jewelryZone4[1], self.jewelryZone4[2])
+            self.clothes.jewelryZone4[0], self.clothes.jewelryZone4[1], self.clothes.jewelryZone4[2])
         d[HumanDNA.setJewelryZone5] = (
-            self.jewelryZone5[0], self.jewelryZone5[1], self.jewelryZone5[2])
+            self.clothes.jewelryZone5[0], self.clothes.jewelryZone5[1], self.clothes.jewelryZone5[2])
         d[HumanDNA.setJewelryZone6] = (
-            self.jewelryZone6[0], self.jewelryZone6[1], self.jewelryZone6[2])
+            self.clothes.jewelryZone6[0], self.clothes.jewelryZone6[1], self.clothes.jewelryZone6[2])
         d[HumanDNA.setJewelryZone7] = (
-            self.jewelryZone7[0], self.jewelryZone7[1], self.jewelryZone7[2])
+            self.clothes.jewelryZone7[0], self.clothes.jewelryZone7[1], self.clothes.jewelryZone7[2])
         d[HumanDNA.setJewelryZone8] = (
-            self.jewelryZone8[0], self.jewelryZone8[1], self.jewelryZone8[2])
+            self.clothes.jewelryZone8[0], self.clothes.jewelryZone8[1], self.clothes.jewelryZone8[2])
         return d
 
 
@@ -928,12 +855,14 @@ class HumanDNA(AvatarDNA.AvatarDNA):
             else:
                 if isinstance(val, float):
                     val = int(val)
-                if f.__name__ not in ignoreFields and isinstance(val, int):
-                    val = val / 100
+                    
+                    if f.__name__ not in ignoreFields:
+                        val /= 100
+
                 f(self, val)
 
     def setTattooChest(self, tattoo, offsetX, offsetY, scale, rotate, color):
-        self.tattooChest = [
+        self.clothes.tattooChest = [
             tattoo,
             offsetX,
             offsetY,
@@ -942,7 +871,7 @@ class HumanDNA(AvatarDNA.AvatarDNA):
             color]
 
     def setTattooZone2(self, tattoo, offsetX, offsetY, scale, rotate, color):
-        self.tattooZone2 = [
+        self.clothes.tattooZone2 = [
             tattoo,
             offsetX,
             offsetY,
@@ -951,7 +880,7 @@ class HumanDNA(AvatarDNA.AvatarDNA):
             color]
 
     def setTattooZone3(self, tattoo, offsetX, offsetY, scale, rotate, color):
-        self.tattooZone3 = [
+        self.clothes.tattooZone3 = [
             tattoo,
             offsetX,
             offsetY,
@@ -960,7 +889,7 @@ class HumanDNA(AvatarDNA.AvatarDNA):
             color]
 
     def setTattooZone4(self, tattoo, offsetX, offsetY, scale, rotate, color):
-        self.tattooZone4 = [
+        self.clothes.tattooZone4 = [
             tattoo,
             offsetX,
             offsetY,
@@ -969,7 +898,7 @@ class HumanDNA(AvatarDNA.AvatarDNA):
             color]
 
     def setTattooZone5(self, tattoo, offsetX, offsetY, scale, rotate, color):
-        self.tattooZone5 = [
+        self.clothes.tattooZone5 = [
             tattoo,
             offsetX,
             offsetY,
@@ -978,7 +907,7 @@ class HumanDNA(AvatarDNA.AvatarDNA):
             color]
 
     def setTattooZone6(self, tattoo, offsetX, offsetY, scale, rotate, color):
-        self.tattooZone6 = [
+        self.clothes.tattooZone6 = [
             tattoo,
             offsetX,
             offsetY,
@@ -987,7 +916,7 @@ class HumanDNA(AvatarDNA.AvatarDNA):
             color]
 
     def setTattooZone7(self, tattoo, offsetX, offsetY, scale, rotate, color):
-        self.tattooZone7 = [
+        self.clothes.tattooZone7 = [
             tattoo,
             offsetX,
             offsetY,
@@ -996,7 +925,7 @@ class HumanDNA(AvatarDNA.AvatarDNA):
             color]
 
     def setTattooZone8(self, tattoo, offsetX, offsetY, scale, rotate, color):
-        self.tattooZone8 = [
+        self.clothes.tattooZone8 = [
             tattoo,
             offsetX,
             offsetY,
@@ -1005,52 +934,52 @@ class HumanDNA(AvatarDNA.AvatarDNA):
             color]
 
     def setJewelryZone1(self, idx, primaryColor=0, secondaryColor=0):
-        self.jewelryZone1 = [
+        self.clothes.jewelryZone1 = [
             idx,
             primaryColor,
             secondaryColor]
 
     def setJewelryZone2(self, idx, primaryColor=0, secondaryColor=0):
-        self.jewelryZone2 = [
+        self.clothes.jewelryZone2 = [
             idx,
             primaryColor,
             secondaryColor]
 
     def setJewelryZone3(self, idx, primaryColor=0, secondaryColor=0):
-        self.jewelryZone3 = [
+        self.clothes.jewelryZone3 = [
             idx,
             primaryColor,
             secondaryColor]
 
     def setJewelryZone4(self, idx, primaryColor=0, secondaryColor=0):
-        self.jewelryZone4 = [
+        self.clothes.jewelryZone4 = [
             idx,
             primaryColor,
             secondaryColor]
 
     def setJewelryZone5(self, idx, primaryColor=0, secondaryColor=0):
-        self.jewelryZone5 = [
+        self.clothes.jewelryZone5 = [
             idx,
             primaryColor,
             secondaryColor]
 
 
     def setJewelryZone6(self, idx, primaryColor=0, secondaryColor=0):
-        self.jewelryZone6 = [
+        self.clothes.jewelryZone6 = [
             idx,
             primaryColor,
             secondaryColor]
 
 
     def setJewelryZone7(self, idx, primaryColor=0, secondaryColor=0):
-        self.jewelryZone7 = [
+        self.clothes.jewelryZone7 = [
             idx,
             primaryColor,
             secondaryColor]
 
 
     def setJewelryZone8(self, idx, primaryColor=0, secondaryColor=0):
-        self.jewelryZone8 = [
+        self.clothes.jewelryZone8 = [
             idx,
             primaryColor,
             secondaryColor]
@@ -1365,67 +1294,67 @@ class HumanDNA(AvatarDNA.AvatarDNA):
 
 
     def getTattooChest(self):
-        return self.tattooChest
+        return self.clothes.tattooChest
 
 
     def getTattooZone2(self):
-        return self.tattooZone2
+        return self.clothes.tattooZone2
 
 
     def getTattooZone3(self):
-        return self.tattooZone3
+        return self.clothes.tattooZone3
 
 
     def getTattooZone4(self):
-        return self.tattooZone4
+        return self.clothes.tattooZone4
 
 
     def getTattooZone5(self):
-        return self.tattooZone5
+        return self.clothes.tattooZone5
 
 
     def getTattooZone6(self):
-        return self.tattooZone6
+        return self.clothes.tattooZone6
 
 
     def getTattooZone7(self):
-        return self.tattooZone7
+        return self.clothes.tattooZone7
 
 
     def getTattooZone8(self):
-        return self.tattooZone8
+        return self.clothes.tattooZone8
 
 
     def getJewelryZone1(self):
-        return self.jewelryZone1
+        return self.clothes.jewelryZone1
 
 
     def getJewelryZone2(self):
-        return self.jewelryZone2
+        return self.clothes.jewelryZone2
 
 
     def getJewelryZone3(self):
-        return self.jewelryZone3
+        return self.clothes.jewelryZone3
 
 
     def getJewelryZone4(self):
-        return self.jewelryZone4
+        return self.clothes.jewelryZone4
 
 
     def getJewelryZone5(self):
-        return self.jewelryZone5
+        return self.clothes.jewelryZone5
 
 
     def getJewelryZone6(self):
-        return self.jewelryZone6
+        return self.clothes.jewelryZone6
 
 
     def getJewelryZone7(self):
-        return self.jewelryZone7
+        return self.clothes.jewelryZone7
 
 
     def getJewelryZone8(self):
-        return self.jewelryZone8
+        return self.clothes.jewelryZone8
 
 
     def getTutorial(self):
@@ -2466,80 +2395,80 @@ class HumanDNA(AvatarDNA.AvatarDNA):
         dg.addUint8(self.clothes.shoeColor)
 
         # Tattoo
-        dg.addUint8(int(self.tattooChest[0]))
-        self.packFloat(dg, self.tattooChest[1])
-        self.packFloat(dg, self.tattooChest[2])
-        dg.addUint8(int(self.tattooChest[3]))
-        dg.addUint8(int(self.tattooChest[4]) & 0xff)
-        dg.addUint8(int(self.tattooChest[5]))
-        dg.addUint8(int(self.tattooZone2[0]))
-        self.packFloat(dg, self.tattooZone2[1])
-        self.packFloat(dg, self.tattooZone2[2])
-        dg.addUint8(int(self.tattooZone2[3]))
-        dg.addUint8(int(self.tattooZone2[4]) & 0xff)
-        dg.addUint8(int(self.tattooZone2[5]))
-        dg.addUint8(int(self.tattooZone3[0]))
-        self.packFloat(dg, self.tattooZone3[1])
-        self.packFloat(dg, self.tattooZone3[2])
-        dg.addUint8(int(self.tattooZone3[3]))
-        dg.addUint8(int(self.tattooZone3[4]) & 0xff) # FIXME: Hack-fix.
-        dg.addUint8(int(self.tattooZone3[5]))
-        dg.addUint8(int(self.tattooZone4[0]))
-        self.packFloat(dg, self.tattooZone4[1])
-        self.packFloat(dg, self.tattooZone4[2])
-        dg.addUint8(int(self.tattooZone4[3]))
-        dg.addUint8(int(self.tattooZone4[4]) & 0xff) # FIXME: Hack-fix.
-        dg.addUint8(int(self.tattooZone4[5]))
-        dg.addUint8(int(self.tattooZone5[0]))
-        self.packFloat(dg, self.tattooZone5[1])
-        self.packFloat(dg, self.tattooZone5[2])
-        dg.addUint8(int(self.tattooZone5[3]))
-        dg.addUint8(int(self.tattooZone5[4]))
-        dg.addUint8(int(self.tattooZone5[5]))
-        dg.addUint8(int(self.tattooZone6[0]))
-        self.packFloat(dg, self.tattooZone6[1])
-        self.packFloat(dg, self.tattooZone6[2])
-        dg.addUint8(int(self.tattooZone6[3]))
-        dg.addUint8(int(self.tattooZone6[4]))
-        dg.addUint8(int(self.tattooZone6[5]))
-        dg.addUint8(int(self.tattooZone7[0]))
-        self.packFloat(dg, self.tattooZone7[1])
-        self.packFloat(dg, self.tattooZone7[2])
-        dg.addUint8(int(self.tattooZone7[3]))
-        dg.addUint8(int(self.tattooZone7[4]))
-        dg.addUint8(int(self.tattooZone7[5]))
-        dg.addUint8(int(self.tattooZone8[0]))
-        self.packFloat(dg, self.tattooZone8[1])
-        self.packFloat(dg, self.tattooZone8[2])
-        dg.addUint8(int(self.tattooZone8[3]))
-        dg.addUint8(int(self.tattooZone8[4]))
-        dg.addUint8(int(self.tattooZone8[5]))
+        dg.addUint8(int(self.clothes.tattooChest[0]))
+        self.packFloat(dg, self.clothes.tattooChest[1])
+        self.packFloat(dg, self.clothes.tattooChest[2])
+        dg.addUint8(int(self.clothes.tattooChest[3]))
+        dg.addUint8(int(self.clothes.tattooChest[4]) & 0xff)
+        dg.addUint8(int(self.clothes.tattooChest[5]))
+        dg.addUint8(int(self.clothes.tattooZone2[0]))
+        self.packFloat(dg, self.clothes.tattooZone2[1])
+        self.packFloat(dg, self.clothes.tattooZone2[2])
+        dg.addUint8(int(self.clothes.tattooZone2[3]))
+        dg.addUint8(int(self.clothes.tattooZone2[4]) & 0xff)
+        dg.addUint8(int(self.clothes.tattooZone2[5]))
+        dg.addUint8(int(self.clothes.tattooZone3[0]))
+        self.packFloat(dg, self.clothes.tattooZone3[1])
+        self.packFloat(dg, self.clothes.tattooZone3[2])
+        dg.addUint8(int(self.clothes.tattooZone3[3]))
+        dg.addUint8(int(self.clothes.tattooZone3[4]) & 0xff) # FIXME: Hack-fix.
+        dg.addUint8(int(self.clothes.tattooZone3[5]))
+        dg.addUint8(int(self.clothes.tattooZone4[0]))
+        self.packFloat(dg, self.clothes.tattooZone4[1])
+        self.packFloat(dg, self.clothes.tattooZone4[2])
+        dg.addUint8(int(self.clothes.tattooZone4[3]))
+        dg.addUint8(int(self.clothes.tattooZone4[4]) & 0xff) # FIXME: Hack-fix.
+        dg.addUint8(int(self.clothes.tattooZone4[5]))
+        dg.addUint8(int(self.clothes.tattooZone5[0]))
+        self.packFloat(dg, self.clothes.tattooZone5[1])
+        self.packFloat(dg, self.clothes.tattooZone5[2])
+        dg.addUint8(int(self.clothes.tattooZone5[3]))
+        dg.addUint8(int(self.clothes.tattooZone5[4]))
+        dg.addUint8(int(self.clothes.tattooZone5[5]))
+        dg.addUint8(int(self.clothes.tattooZone6[0]))
+        self.packFloat(dg, self.clothes.tattooZone6[1])
+        self.packFloat(dg, self.clothes.tattooZone6[2])
+        dg.addUint8(int(self.clothes.tattooZone6[3]))
+        dg.addUint8(int(self.clothes.tattooZone6[4]))
+        dg.addUint8(int(self.clothes.tattooZone6[5]))
+        dg.addUint8(int(self.clothes.tattooZone7[0]))
+        self.packFloat(dg, self.clothes.tattooZone7[1])
+        self.packFloat(dg, self.clothes.tattooZone7[2])
+        dg.addUint8(int(self.clothes.tattooZone7[3]))
+        dg.addUint8(int(self.clothes.tattooZone7[4]))
+        dg.addUint8(int(self.clothes.tattooZone7[5]))
+        dg.addUint8(int(self.clothes.tattooZone8[0]))
+        self.packFloat(dg, self.clothes.tattooZone8[1])
+        self.packFloat(dg, self.clothes.tattooZone8[2])
+        dg.addUint8(int(self.clothes.tattooZone8[3]))
+        dg.addUint8(int(self.clothes.tattooZone8[4]))
+        dg.addUint8(int(self.clothes.tattooZone8[5]))
 
         # Jewelry
-        dg.addUint8(int(self.jewelryZone1[0]))
-        dg.addUint8(int(self.jewelryZone1[1]))
-        dg.addUint8(int(self.jewelryZone1[2]))
-        dg.addUint8(int(self.jewelryZone2[0]))
-        dg.addUint8(int(self.jewelryZone2[1]))
-        dg.addUint8(int(self.jewelryZone2[2]))
-        dg.addUint8(int(self.jewelryZone3[0]))
-        dg.addUint8(int(self.jewelryZone3[1]))
-        dg.addUint8(int(self.jewelryZone3[2]))
-        dg.addUint8(int(self.jewelryZone4[0]))
-        dg.addUint8(int(self.jewelryZone4[1]))
-        dg.addUint8(int(self.jewelryZone4[2]))
-        dg.addUint8(int(self.jewelryZone5[0]))
-        dg.addUint8(int(self.jewelryZone5[1]))
-        dg.addUint8(int(self.jewelryZone5[2]))
-        dg.addUint8(int(self.jewelryZone6[0]))
-        dg.addUint8(int(self.jewelryZone6[1]))
-        dg.addUint8(int(self.jewelryZone6[2]))
-        dg.addUint8(int(self.jewelryZone7[0]))
-        dg.addUint8(int(self.jewelryZone7[1]))
-        dg.addUint8(int(self.jewelryZone7[2]))
-        dg.addUint8(int(self.jewelryZone8[0]))
-        dg.addUint8(int(self.jewelryZone8[1]))
-        dg.addUint8(int(self.jewelryZone8[2]))
+        dg.addUint8(int(self.clothes.jewelryZone1[0]))
+        dg.addUint8(int(self.clothes.jewelryZone1[1]))
+        dg.addUint8(int(self.clothes.jewelryZone1[2]))
+        dg.addUint8(int(self.clothes.jewelryZone2[0]))
+        dg.addUint8(int(self.clothes.jewelryZone2[1]))
+        dg.addUint8(int(self.clothes.jewelryZone2[2]))
+        dg.addUint8(int(self.clothes.jewelryZone3[0]))
+        dg.addUint8(int(self.clothes.jewelryZone3[1]))
+        dg.addUint8(int(self.clothes.jewelryZone3[2]))
+        dg.addUint8(int(self.clothes.jewelryZone4[0]))
+        dg.addUint8(int(self.clothes.jewelryZone4[1]))
+        dg.addUint8(int(self.clothes.jewelryZone4[2]))
+        dg.addUint8(int(self.clothes.jewelryZone5[0]))
+        dg.addUint8(int(self.clothes.jewelryZone5[1]))
+        dg.addUint8(int(self.clothes.jewelryZone5[2]))
+        dg.addUint8(int(self.clothes.jewelryZone6[0]))
+        dg.addUint8(int(self.clothes.jewelryZone6[1]))
+        dg.addUint8(int(self.clothes.jewelryZone6[2]))
+        dg.addUint8(int(self.clothes.jewelryZone7[0]))
+        dg.addUint8(int(self.clothes.jewelryZone7[1]))
+        dg.addUint8(int(self.clothes.jewelryZone7[2]))
+        dg.addUint8(int(self.clothes.jewelryZone8[0]))
+        dg.addUint8(int(self.clothes.jewelryZone8[1]))
+        dg.addUint8(int(self.clothes.jewelryZone8[2]))
         return dg.getMessage()
 
     def makeFromNetString(self, netString):

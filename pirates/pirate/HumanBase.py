@@ -202,28 +202,28 @@ class HumanBase:
         self.style.setClothesBotColor(val1, val2, val3)
 
     def setTattooChest(self, tattoo, offsetX, offsetY, scale, rotate, color):
-        self.style.tattooChest = [tattoo, offsetX, offsetY, scale, rotate, color]
+        self.style.setTattooChest(tattoo, offsetX, offsetY, scale, rotate, color)
 
     def setTattooZone2(self, tattoo, offsetX, offsetY, scale, rotate, color):
-        self.style.tattooZone2 = [tattoo, offsetX, offsetY, scale, rotate, color]
+        self.style.setTattooZone2(tattoo, offsetX, offsetY, scale, rotate, color)
 
     def setTattooZone3(self, tattoo, offsetX, offsetY, scale, rotate, color):
-        self.style.tattooZone3 = [tattoo, offsetX, offsetY, scale, rotate, color]
+        self.style.setTattooZone3(tattoo, offsetX, offsetY, scale, rotate, color)
 
     def setTattooZone4(self, tattoo, offsetX, offsetY, scale, rotate, color):
-        self.style.tattooZone4 = [tattoo, offsetX, offsetY, scale, rotate, color]
+        self.style.setTattooZone4(tattoo, offsetX, offsetY, scale, rotate, color)
 
     def setTattooZone5(self, tattoo, offsetX, offsetY, scale, rotate, color):
-        self.style.tattooZone5 = [tattoo, offsetX, offsetY, scale, rotate, color]
+        self.style.setTattooZone5(tattoo, offsetX, offsetY, scale, rotate, color)
 
     def setTattooZone6(self, tattoo, offsetX, offsetY, scale, rotate, color):
-        self.style.tattooZone6 = [tattoo, offsetX, offsetY, scale, rotate, color]
+        self.style.setTattooZone6(tattoo, offsetX, offsetY, scale, rotate, color)
 
     def setTattooZone7(self, tattoo, offsetX, offsetY, scale, rotate, color):
-        self.style.tattooZone7 = [tattoo, offsetX, offsetY, scale, rotate, color]
+        self.style.setTattooZone7(tattoo, offsetX, offsetY, scale, rotate, color)
 
     def setTattooZone8(self, tattoo, offsetX, offsetY, scale, rotate, color):
-        self.style.tattooZone8 = [tattoo, offsetX, offsetY, scale, rotate, color]
+        self.style.setTattooZone8(tattoo, offsetX, offsetY, scale, rotate, color)
 
     def setJewelryZone1(self, val, primary = 0, secondary = 0):
         self.style.setJewelryZone1(val, primary, secondary)

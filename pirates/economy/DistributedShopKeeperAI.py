@@ -290,14 +290,31 @@ class DistributedShopKeeperAI(DistributedObjectAI):
         if requiredGold > av.getGoldInPocket():
             sendResponse(0, False)
             return
+        
+        inv = av.getInventory()
+        if not inv:
+            self.notify.warning("Unable to locate inventory for avatarId: %s" % avId)
+            sendResponse(RejectCode.TIMEOUT, False)
+            return
 
         resultCode = 0
+        availableSlot = -1
 
-        av.takeGold(requiredGold)
-        sendResponse(2, (resultCode == 2))
+        location = inv.findAvailableLocation(InventoryType.ItemTypeTattoo, itemId=itemId, count=amount, equippable=True)
+        if location != -1:
+            availableSlot = location
+        else:
+            resultCode = RejectCode.OVERFLOW
+
+        if availableSlot != -1:
+            success = inv.addLocatable(itemId, availableSlot, amount, inventoryType=InventoryType.ItemTypeTattoo)
+            if success:
+                av.takeGold(requiredGold)
+                resultCode = 2
+
+        sendResponse(resultCode, True)
 
     def requestBarber(self, hairId, colorId):
-
         avId = self.air.getAvatarIdFromSender()
         av = self.air.doId2do.get(avId)
 
@@ -306,8 +323,8 @@ class DistributedShopKeeperAI(DistributedObjectAI):
 
         def sendResponse(resultCode, success, hairId=hairId, colorId=colorId, avId=avId):
             self.notify.info("makeBarberResponse({0}, {1}, {2})".format(hairId, colorId, success))
-            self.sendUpdateToAvatarId(avId, 'makeBarberResponse', [hairId, colorId, True])
-            self.sendUpdateToAvatarId(avId, 'makeSaleResponse', [2])
+            self.sendUpdateToAvatarId(avId, 'makeBarberResponse', [hairId, colorId, success])
+            self.sendUpdateToAvatarId(avId, 'makeSaleResponse', [resultCode])
 
         itemData = BarberGlobals.barber_id.get(hairId)
         if not itemData:
