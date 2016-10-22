@@ -143,7 +143,7 @@ class BattleAvatarGameFSM(FSM.FSM):
 
 
     def enterOff(self, extraArgs = []):
-        self.av.askRegen()
+        pass
 
 
     def enterLandRoam(self, extraArgs = []):
@@ -157,8 +157,6 @@ class BattleAvatarGameFSM(FSM.FSM):
             self.av.motionFSM.moveLockIfOn()
         elif self.av.motionFSM.getCurrentOrNextState() != 'On':
             self.av.motionFSM.on()
-
-        self.av.askRegen()
 
 
     def exitLandRoam(self):
@@ -175,7 +173,6 @@ class BattleAvatarGameFSM(FSM.FSM):
 
         self.av.nametag3d.setZ(-3)
         self.av.motionFSM.setAllowAirborne(False)
-        self.av.askRegen()
 
 
     def exitWaterRoam(self):
@@ -341,8 +338,6 @@ class BattleAvatarGameFSM(FSM.FSM):
         self.av.setActiveShadow(1)
         if self.av.motionFSM.getCurrentOrNextState() != 'On':
             self.av.motionFSM.on()
-
-        self.av.askRegen()
 
 
     def exitBattle(self):

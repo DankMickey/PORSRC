@@ -344,7 +344,6 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             self.injuredFrame = None
             self.ghostEffect = None
             self.isGhost = 0
-            self.needRegenFlag = 0
             self.bloodFireTime = 0.0
             self.auraActivated = 0
             self.auraIval = None
@@ -3136,25 +3135,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         self.getStyle().setClothesBotColor(colorPant, colorSash, colorShoe)
         self.doRegeneration()
 
-    def cueRegenerate(self, force = 0):
-        if self.gameFSM.state in [
-            'LandRoam',
-            'Battle',
-            'WaterRoam',
-            'Off']:
-            self.doRegeneration()
-        else:
-            self.needRegenFlag = 1
-
-
-    def askRegen(self):
-        if self.needRegenFlag:
-            self.doRegeneration()
-
-
-
     def doRegeneration(self):
-        self.needRegenFlag = 0
         if self.isLocal():
             cameraPos = camera.getPos()
             camOff = localAvatar.cameraFSM.getFPSCamera().camOffset
@@ -3164,6 +3145,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         self.motionFSM.off()
         self.motionFSM.on()
         messenger.send(self.uniqueName('accessoriesUpdate'))
+
         if self.isLocal():
             camera.setPos(cameraPos)
             localAvatar.cameraFSM.getFPSCamera().camOffset = camOff

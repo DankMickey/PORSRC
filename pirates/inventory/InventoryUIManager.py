@@ -378,7 +378,6 @@ class InventoryUIManager(DirectFrame):
         locatableItems = localAvatar.getInventory().getLocatables()
         misplacedSlots = []
         itemsToTrash = []
-        base.localAvatar.lockRegen()
         for itemKey in locatableItems:
             if itemKey in self.slotToCellMap and self.slotToCellMap[itemKey]:
                 itemTuple = locatableItems[itemKey]
@@ -396,12 +395,8 @@ class InventoryUIManager(DirectFrame):
             misplacedSlots.append(itemKey)
 
         if len(itemsToTrash) > 0:
-            print 'trashing invalid items %s' % itemsToTrash
-            import pdb
-            pdb.set_trace()
             localAvatar.getInventory().trashItems(itemsToTrash)
 
-        base.localAvatar.unlockAndRegen()
         self.discoveredInventory = 1
         messenger.send('Inventory_Discovered', [
             self])

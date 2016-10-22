@@ -34,11 +34,6 @@ class DistributedTargetableObject(DistributedNode.DistributedNode):
         DistributedNode.DistributedNode.generate(self)
         self.ouchAnim = None
 
-
-    def askRegen(self):
-        pass
-
-
     def disable(self):
         DistributedNode.DistributedNode.disable(self)
         if self.ouchAnim:

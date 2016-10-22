@@ -180,7 +180,6 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
             self.levelFootStep = None
             self.wobbleList = []
             self.fovIval = None
-            self.lockRegenFlag = 0
             self.everBeenGhost = 0
             self.mistimedAttack = 0
             if config.GetBool('want-easy-combos', 0):
@@ -345,30 +344,9 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
         self.sendUpdate('requestMAPClothes', [
             clothes])
 
-
-    def lockRegen(self):
-        self.lockRegenFlag = 1
-
-
-    def unlockAndRegen(self, force = True):
-        self.lockRegenFlag = 0
-        if self.needRegenFlag or force:
-            self.cueRegenerate(force = 1)
-
-
-
-    def cueRegenerate(self, force = 0):
-        if self.lockRegenFlag and not force:
-            self.needRegenFlag = 1
-            return None
-
-        DistributedPlayerPirate.cueRegenerate(self)
-
-
     def doRegeneration(self):
-        if not self.lockRegenFlag:
-            DistributedPlayerPirate.doRegeneration(self)
-            messenger.send('localAv-regenerate')
+        DistributedPlayerPirate.doRegeneration(self)
+        messenger.send('localAv-regenerate')
 
     def wearJewelry(self, itemToWear, location, remove = None):
         if remove:

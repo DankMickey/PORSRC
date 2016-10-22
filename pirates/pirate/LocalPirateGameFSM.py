@@ -1251,7 +1251,6 @@ class LocalPirateGameFSM(PlayerPirateGameFSM):
 
     def enterFishing(self, extraArgs = []):
         self.av.stopTransformAnims()
-        self.av.lockRegen()
         self.av.guiMgr.request('Interface')
         self.av.cameraFSM.request('Control')
         self.av.b_setTeleportFlag(PiratesGlobals.TFFishing)
@@ -1291,7 +1290,6 @@ class LocalPirateGameFSM(PlayerPirateGameFSM):
     def exitFishing(self):
         self.av.b_clearTeleportFlag(PiratesGlobals.TFFishing)
         self.av.motionFSM.on(unlock = True)
-        self.av.unlockAndRegen(force = False)
         base.cr.interactionMgr.start()
         self.av.guiMgr.combatTray.show()
         if base.localAvatar.getTutorialState() >= PiratesGlobals.TUT_GOT_COMPASS:
