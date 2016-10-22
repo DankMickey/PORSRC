@@ -522,7 +522,7 @@ class Biped(UsesAnimationMixer, Avatar, UsesEffectNode):
 
         return animStrings[animNum]
 
-    def hasGMNametag(self):
+    def hasGMChat(self):
         return False
 
     def setChatAbsolute(self, chatString, chatFlags, dialogue = None, interrupt = 1):
@@ -532,7 +532,7 @@ class Biped(UsesAnimationMixer, Avatar, UsesEffectNode):
         if hasattr(self, 'doId'):
             avId = self.doId
 
-        base.talkAssistant.receiveOpenTalk(avId, self.getName(), chatString, self.hasGMNametag())
+        base.talkAssistant.receiveOpenTalk(avId, self.getName(), chatString, self.hasGMChat())
 
 
     def fadeIn(self, time):

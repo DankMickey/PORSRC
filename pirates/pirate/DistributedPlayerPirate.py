@@ -1355,10 +1355,12 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
 
     def hasGMNametag(self):
         return bool(self.gmNametag[1]) and not self.gmHidden
+    
+    def hasGMChat(self):
+        return self.hasGMNametag() and self.accessLevel >= CATEGORY_GAME_MASTER
 
     def setTutorialAck(self, tutorialAck):
         self.tutorialAck = tutorialAck
-
 
     def setEfficiency(self, efficiency):
         if self.efficiency != efficiency:
@@ -2784,7 +2786,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             return None
 
         self.playEmote(emoteId)
-        base.talkAssistant.receiveOpenSpeedChat(ChatGlobals.SPEEDCHAT_EMOTE, emoteId, self.doId, self.getName(), self.hasGMNametag())
+        base.talkAssistant.receiveOpenSpeedChat(ChatGlobals.SPEEDCHAT_EMOTE, emoteId, self.doId, self.getName(), self.hasGMChat())
 
 
     def b_setSpeedChatQuest(self, questInt, msgType, taskNum):
@@ -2814,7 +2816,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         if chatString:
             self.setChatAbsolute(chatString, CFSpeech | CFQuicktalker | CFTimeout)
         
-        base.talkAssistant.receiveOpenTalk(self.doId, self.getName(), chatString, self.hasGMNametag())
+        base.talkAssistant.receiveOpenTalk(self.doId, self.getName(), chatString, self.hasGMChat())
 
 
     def whisperSCQuestTo(self, questInt, msgType, taskNum, sendToId):
