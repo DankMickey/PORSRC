@@ -1,7 +1,6 @@
-from panda3d.core import Camera, ColorWriteAttrib, DisplayRegion, Lens, StereoDisplayRegion, TPLow, VBase4
+from panda3d.core import Camera, ColorWriteAttrib, DisplayRegion, FrameRateMeter, Lens, StereoDisplayRegion, TPLow, VBase4
 from direct.showbase.ShowBase import ShowBase
 import OTPRender
-from pandac.PandaModules import ConfigVariableBool
 import time
 import math
 import re

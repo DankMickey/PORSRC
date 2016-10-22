@@ -90,7 +90,7 @@ class Model(Item):
         if geom:
             self.geom = geom.instanceTo(self)
         else:
-			self.geom = NodePath('dummy')
+            self.geom = NodePath('dummy')
         self.geom.setScale(scale)
 
 
