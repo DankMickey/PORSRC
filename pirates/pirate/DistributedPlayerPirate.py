@@ -1357,7 +1357,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         return bool(self.gmNametag[1]) and not self.gmHidden
     
     def hasGMChat(self):
-        return self.hasGMNametag() and self.accessLevel >= CATEGORY_GAME_MASTER
+        return self.hasGMNametag() and self.adminAccess >= CATEGORY_GAME_MASTER
 
     def setTutorialAck(self, tutorialAck):
         self.tutorialAck = tutorialAck
@@ -3565,7 +3565,7 @@ class MinimapPlayerPirate(MinimapBattleAvatar):
             MinimapBattleAvatar.setIconColor(self, VBase4(0.100, 0.5, 1.0, 0.696))
 
     def setAdminAccess(self, accessLevel):
-        pass
+        self.adminAccess = adminAccess
 
     def requestEmote(self, emoteId):
         gamestate = localAvatar.getGameState()
