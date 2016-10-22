@@ -23,7 +23,6 @@ from pirates.inventory import InventoryStackSplitter
 from pirates.inventory import InventoryRemoveConfirm
 from pirates.inventory import InventoryPlunderPanel
 from pirates.inventory import ItemGlobals
-from pirates.inventory import InventoryExchange
 from pirates.inventory.InventoryUIGlobals import *
 from pirates.inventory.InventoryGlobals import Locations
 from pirates.uberdog.UberDogGlobals import InventoryType, InventoryCategory
@@ -102,7 +101,6 @@ class InventoryUIManager(DirectFrame):
         self.displayHuman.ignoreAll()
         self.displayHuman.mixingEnabled = False
         self.localDrinkingPotion = 0
-        base.iEx = InventoryExchange
 
 
     def destroy(self):
