@@ -51,9 +51,6 @@ class PiratesMagicWordManager(MagicWordManager.MagicWordManager):
 
     def doLoginMagicWords(self):
         MagicWordManager.MagicWordManager.doLoginMagicWords(self)
-        if config.GetBool('want-chat', 0):
-            self.d_setMagicWord('~chat', localAvatar.doId, 0)
-
         if config.GetBool('want-run', 0) or config.GetBool('want-pirates-run', 0):
             self.toggleRun()
 

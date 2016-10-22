@@ -58,7 +58,7 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         self.shipIcon = (0, 0)
         self.crewIcon = 0
         self.redeemedCodes = []
-        self.style = None
+        self.style = HumanDNA()
         self.dnaString = ""
         self.guildId = 0
         self.guildName = ""
@@ -152,11 +152,10 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
 
     def setDNAString(self, dna):
         self.dnaString = dna
-        if self.style is None:
-            self.buildStyle(dna)
+        self.style.makeFromNetString(dna)
 
     def d_setDNAString(self, dna):
-        self.sendUpdate("setDNAString", [dna])
+        self.sendUpdate('setDNAString', [dna])
 
     def b_setDNAString(self, dna):
         self.setDNAString(dna)
@@ -164,18 +163,6 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
 
     def getDNAString(self):
         return self.dnaString
-
-    def buildStyle(self, dna):
-        if self.style is None:
-            self.style = HumanDNA()
-        self.style.makeFromNetString(dna)
-
-    def updateDNA(self):
-        if self.style is not None:
-            dna = self.style.makeNetString()
-            self.b_setDNAString(dna)
-        else:
-            self.notify.warning("Failed to update DNA. Style returned NoneType")
 
     def getGender(self):
         if self.style != None:

@@ -395,7 +395,7 @@ class QuestPath:
 
     def getIntoIslandStep(self, questDestUid, isPrivate, avId = None):
         questStep = self.questSteps.get(questDestUid)
-        if not questStep or config.GetBool('cache-quest-step', 0) == 0:
+        if not questStep:
             path = self._getQuestPath(questDestUid, isPrivate, [], [], { }, avId)
             if path:
                 targetAreaId = self.air.doId2do[path[len(path) - 1]].getParentObj().uniqueId

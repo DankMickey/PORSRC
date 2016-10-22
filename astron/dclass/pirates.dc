@@ -710,7 +710,7 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   setSCCustom(uint16 msgIndex) broadcast ownsend airecv;
   setFriendsList(uint32[] = []) required ownrecv airecv db;
   setTrueFriends(uint32[] = []) required ownrecv airecv db;
-  setDNAString(blob) required broadcast ownrecv db;
+  setDNAString(blob) required broadcast ram db;
   WishNameState(string = "OPEN") db ram;
   WishName(string = "") db ram;
   setDISLid(uint32) ram db airecv;

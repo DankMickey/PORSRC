@@ -9,7 +9,6 @@ npc-sidestep #f
 osd-anim-blends #f
 want-splash-anims #t
 motionfsm-lag #f
-restore-initial-pose 0
 
 # Misc
 want-spooky-avatarchooser #t
@@ -22,30 +21,17 @@ want-dev-weapons #t
 
 # AUDIO
 audio-library-name p3fmod_audio
-audio-music-active #t
-low-memory-stream-audio #t
-
-# CACHE
-want-cache #t
-cache-quest-step #t
-
-# Graphics
-want-improved-graphics #f
-framebuffer-multisample 1
-multisamples 2
 
 # CHAT
 chat-history-size 10
-exec-chat #t
-want-chat #t
 want-chat-history #t
-want-emotes 1
+want-emotes #t
 want-sliding-chat #t
 want-whitelist #t
+want-sequence-list #t
 
 # COMPASS/MAP
 want-compass-task #t
-map-islands-debug #f
 want-momentary-minimap #t
 ignore-ship-shop-levels #t
 
@@ -65,7 +51,7 @@ want-special-effects #t
 want-particles #t
 
 # GLSL DEBUG
-gl-check-errors #t
+gl-check-errors #f
 
 # GUI
 hide-gui #f
@@ -75,16 +61,14 @@ sync-flip #f
 auto-flip #f
 sync-video #f
 
-
 # ISLAND
-remove-island-barriers #f
+remove-island-barriers #t
 
 # LOADING SCREEN
 loading-screen 0
 loading-screen-interstitial #f
 no-loading-screen #f
 
-Cannon Defence
 want-cannondefense-game 0
 
 # MAKE A PIRATE/TUTORIAL/AVATAR CHOOSER
@@ -103,7 +87,7 @@ disable-server-queueing #t
 want-naming-dialog #t
 
 # MULTIPLAYER
-disable-player-collisions #t
+disable-player-collisions #f
 show-total-population #t
 
 # PLAYER

@@ -89,13 +89,8 @@ class Model(Item):
             geom = loader.loadModel(modelName, okMissing = True)
         if geom:
             self.geom = geom.instanceTo(self)
-        elif __dev__ and config.GetBool('map-islands-debug', 0):
-            geom = loader.loadModel('models/misc/smiley')
-            self.geom = geom.instanceTo(self)
-            scale = 0.050000
-            self.geom.setColorScale(Vec4(1, 0, 1, 1))
         else:
-            self.geom = NodePath('dummy')
+			self.geom = NodePath('dummy')
         self.geom.setScale(scale)
 
 
@@ -294,9 +289,6 @@ class TextIsland(Island):
     def __init__(self, name, islandUid, modelName, isTeleportIsland, nodePath = NodePath(), offset = 0.0, scale = 1.0, collisionIndex = 17, stencilId = 0, *args, **kwargs):
         Island.__init__(self, name, islandUid, modelName, isTeleportIsland, scale, collisionIndex, stencilId, *args, **kwargs)
         pencil = self.geom.find('**/pencil*')
-        if not pencil.isEmpty():
-            pass
-        1
         self.name = name
         self.helpBox = None
         self.helpLabel = None

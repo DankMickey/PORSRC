@@ -19,11 +19,8 @@ class ChatInputWhiteList(FSM.FSM, DirectEntry):
         DirectEntry.__init__(self, parent = parent)
         self.initialiseoptions(ChatInputWhiteList)
         self.whisperId = None
-        wantHistory = 0
-        if __dev__:
-            wantHistory = 1
 
-        self.wantHistory = config.GetBool('want-chat-history', wantHistory)
+        self.wantHistory = config.GetBool('want-chat-history', 1)
         self.history = [
             '']
         self.historySize = config.GetInt('chat-history-size', 10)
