@@ -183,6 +183,7 @@ class DistributedNPCTownfolkAI(DistributedBattleNPCAI, DistributedShopKeeperAI):
         if cls is None:
             cls = DistributedNPCTownfolkAI
         avType = getattr(AvatarTypes, data['Category'])
+        data['GridPos'] = None
         obj = DistributedBattleNPCAI.makeFromObjectKey(cls, spawner, uid, avType, data)
 
         helpId = data.get('HelpID', 'NONE')
