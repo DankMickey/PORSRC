@@ -3564,9 +3564,11 @@ class MinimapPlayerPirate(MinimapBattleAvatar):
         elif not color:
             MinimapBattleAvatar.setIconColor(self, VBase4(0.100, 0.5, 1.0, 0.696))
 
-    def setAdminAccess(self, accessLevel):
-        self.adminAccess = adminAccess
-
+    def setAdminAccess(self, access):
+        self.adminAccess = access
+        if self.isLocal():
+            self.cr.wantMagicWords = self.adminAccess >= MINIMUM_MAGICWORD_ACCESS
+    
     def requestEmote(self, emoteId):
         gamestate = localAvatar.getGameState()
         emote = self.getEmote(emoteId)
