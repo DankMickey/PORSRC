@@ -19,7 +19,7 @@ class MusicManager(AmbientManagerBase.AmbientManagerBase):
         AmbientManagerBase.AmbientManagerBase.__init__(self)
         self.current = None
         self.playlist = []
-        self.wantMusic = config.GetBool('audio-music-active', 0)
+        self.wantMusic = config.GetBool('audio-music-active', 1)
         self.accept('PandaRestarted', self.requestCurMusicFadeIn)
 
     def delete(self):
