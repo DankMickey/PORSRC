@@ -92,11 +92,12 @@ class PTalkAssistant(TalkAssistant):
         elif comm == 'time':
             messenger.send('requestServerTime')
 
-    def receiveOpenTalk(self, avatarId, avatarName, message):
+    def receiveOpenTalk(self, avatarId, avatarName, message, gameMaster):
         if not avatarName and avatarId:
             avatarName = self.findName(avatarId, 0)
 
-        newMessage = TalkMessage(TALK_OPEN, self.countMessage(), message, avatarId, avatarName)
+        messageType = TALK_GM if gameMaster else TALK_OPEN
+        newMessage = TalkMessage(messageType, self.countMessage(), message, avatarId, avatarName)
         self.addToHistory(newMessage)
 
     def receivePartyTalk(self, fromAv, avatarName, message):
@@ -104,11 +105,8 @@ class PTalkAssistant(TalkAssistant):
             newMessage = TalkMessage(TALK_PARTY, self.countMessage(), message, fromAv, avatarName)
             self.addToHistory(newMessage)
 
-    def receiveOpenSpeedChat(self, msgType, messageIndex, senderId, name = None):
-        if not name and senderId:
-            name = self.findName(senderId, 0)
-
-        messageType = TALK_OPEN
+    def receiveOpenSpeedChat(self, msgType, messageIndex, senderId, name, gameMaster):
+        messageType = TALK_GM if gameMaster else TALK_OPEN
         message = None
 
         if msgType == SPEEDCHAT_NORMAL:

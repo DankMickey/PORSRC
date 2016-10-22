@@ -307,6 +307,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             self.tempDoubleXPStatus = 0
             self.tempDoubleXPStatusMessaged = False
             self.gmNametag = (None, None)
+            self.gmHidden = False
             self.BandId = None
             self.cursed = False
             self.injuredSetup = 0
@@ -1353,7 +1354,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
                     nameText['text'] = '\x05gmNameTagLogo\x05\n\x01%s\x01%s\x02\n%s' % (color, tag, nameText['text'])
 
     def hasGMNametag(self):
-        return bool(self.gmNametag[1])
+        return bool(self.gmNametag[1]) and not self.gmHidden
 
     def setTutorialAck(self, tutorialAck):
         self.tutorialAck = tutorialAck
@@ -2783,7 +2784,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             return None
 
         self.playEmote(emoteId)
-        base.talkAssistant.receiveOpenSpeedChat(ChatGlobals.SPEEDCHAT_EMOTE, emoteId, self.doId)
+        base.talkAssistant.receiveOpenSpeedChat(ChatGlobals.SPEEDCHAT_EMOTE, emoteId, self.doId, self.getName(), self.hasGMNametag())
 
 
     def b_setSpeedChatQuest(self, questInt, msgType, taskNum):
@@ -2813,7 +2814,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         if chatString:
             self.setChatAbsolute(chatString, CFSpeech | CFQuicktalker | CFTimeout)
         
-        base.talkAssistant.receiveOpenTalk(self.doId, self.getName(), chatString)
+        base.talkAssistant.receiveOpenTalk(self.doId, self.getName(), chatString, self.hasGMNametag())
 
 
     def whisperSCQuestTo(self, questInt, msgType, taskNum, sendToId):
@@ -3250,6 +3251,13 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
     
     def getGMNametag(self):
         return self.gmNametag
+    
+    def setGMHidden(self, gmHidden):
+        self.gmHidden = gmHidden
+        self.refreshName()
+    
+    def getGMHidden(self):
+        return self.gmHidden
 
     def nameTag3dInitialized(self):
         DistributedPirateBase.nameTag3dInitialized(self)

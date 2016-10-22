@@ -2929,12 +2929,12 @@ class CombatAnimations:
 
 
     def getBroadsideLeft(self, av, skillId, ammoSkillId, charge = 0, target = None, skillResult = None):
-        ival = Parallel(Sequence(Func(self.lockInput, av), Func(av.setChatAbsolute, PLocalizer.getLeftBroadsidePhrase(), CFSpeech | CFTimeout), Func(base.talkAssistant.receiveOpenTalk, av.doId, av.getName(), PLocalizer.getLeftBroadsidePhrase())), Sequence(Wait(1.0), Func(self.unlockInput, av)))
+        ival = Parallel(Sequence(Func(self.lockInput, av), Func(av.setChatAbsolute, PLocalizer.getLeftBroadsidePhrase(), CFSpeech | CFTimeout), Func(base.talkAssistant.receiveOpenTalk, av.doId, av.getName(), PLocalizer.getLeftBroadsidePhrase(), av.hasGMNametag())), Sequence(Wait(1.0), Func(self.unlockInput, av)))
         return ival
 
 
     def getBroadsideRight(self, av, skillId, ammoSkillId, charge = 0, target = None, skillResult = None):
-        ival = Parallel(Sequence(Func(self.lockInput, av), Func(av.setChatAbsolute, PLocalizer.getRightBroadsidePhrase(), CFSpeech | CFTimeout), Func(base.talkAssistant.receiveOpenTalk, av.doId, av.getName(), PLocalizer.getRightBroadsidePhrase())), Sequence(Wait(1.0), Func(self.unlockInput, av)))
+        ival = Parallel(Sequence(Func(self.lockInput, av), Func(av.setChatAbsolute, PLocalizer.getRightBroadsidePhrase(), CFSpeech | CFTimeout), Func(base.talkAssistant.receiveOpenTalk, av.doId, av.getName(), PLocalizer.getRightBroadsidePhrase(), av.hasGMNametag())), Sequence(Wait(1.0), Func(self.unlockInput, av)))
         return ival
 
 
@@ -2947,13 +2947,13 @@ class CombatAnimations:
             sfx = av.ship.fullsailSfx
             base.playSfx(sfx, node = av.ship, cutoff = 1500)
 
-        ival = Parallel(Sequence(Func(self.lockInput, av), Func(av.setChatAbsolute, PLocalizer.getFullSailPhrase(), CFSpeech | CFTimeout), Func(base.talkAssistant.receiveOpenTalk, av.doId, av.getName(), PLocalizer.getFullSailPhrase())), Func(playSfx), Sequence(Wait(1.0), Func(self.unlockInput, av)))
+        ival = Parallel(Sequence(Func(self.lockInput, av), Func(av.setChatAbsolute, PLocalizer.getFullSailPhrase(), CFSpeech | CFTimeout), Func(base.talkAssistant.receiveOpenTalk, av.doId, av.getName(), PLocalizer.getFullSailPhrase(), av.hasGMNametag())), Func(playSfx), Sequence(Wait(1.0), Func(self.unlockInput, av)))
         del playSfx
         return ival
 
 
     def getComeAbout(self, av, skillId, ammoSkillId, charge = 0, target = None, skillResult = None):
-        ival = Parallel(Sequence(Func(self.lockInput, av), Func(av.setChatAbsolute, PLocalizer.getComeAboutPhrase(), CFSpeech | CFTimeout), Func(base.talkAssistant.receiveOpenTalk, av.doId, av.getName(), PLocalizer.getComeAboutPhrase())), Sequence(Wait(1.0), Func(self.unlockInput, av)))
+        ival = Parallel(Sequence(Func(self.lockInput, av), Func(av.setChatAbsolute, PLocalizer.getComeAboutPhrase(), CFSpeech | CFTimeout), Func(base.talkAssistant.receiveOpenTalk, av.doId, av.getName(), PLocalizer.getComeAboutPhrase(), av.hasGMNametag())), Sequence(Wait(1.0), Func(self.unlockInput, av)))
         return ival
 
 
@@ -2966,48 +2966,48 @@ class CombatAnimations:
             sfx = av.ship.fullsailSfx
             base.playSfx(sfx, node = av.ship, cutoff = 1500)
 
-        ival = Parallel(Sequence(Func(self.lockInput, av), Func(av.setChatAbsolute, PLocalizer.RammingSpeed, CFSpeech | CFTimeout), Func(base.talkAssistant.receiveOpenTalk, av.doId, av.getName(), PLocalizer.RammingSpeed)), Func(playSfx), Sequence(Wait(1.0), Func(self.unlockInput, av)))
+        ival = Parallel(Sequence(Func(self.lockInput, av), Func(av.setChatAbsolute, PLocalizer.RammingSpeed, CFSpeech | CFTimeout), Func(base.talkAssistant.receiveOpenTalk, av.doId, av.getName(), PLocalizer.RammingSpeed, av.hasGMNametag())), Func(playSfx), Sequence(Wait(1.0), Func(self.unlockInput, av)))
         del playSfx
         return ival
 
 
     def getOpenFire(self, av, skillId, ammoSkillId, charge, target, skillResult):
-        ival = Parallel(Sequence(Func(self.lockInput, av), Func(av.setChatAbsolute, PLocalizer.getOpenFirePhrase(), CFSpeech | CFTimeout), Func(base.talkAssistant.receiveOpenTalk, av.doId, av.getName(), PLocalizer.getOpenFirePhrase())), Sequence(Wait(1.0), Func(self.unlockInput, av)))
+        ival = Parallel(Sequence(Func(self.lockInput, av), Func(av.setChatAbsolute, PLocalizer.getOpenFirePhrase(), CFSpeech | CFTimeout), Func(base.talkAssistant.receiveOpenTalk, av.doId, av.getName(), PLocalizer.getOpenFirePhrase(), av.hasGMNametag())), Sequence(Wait(1.0), Func(self.unlockInput, av)))
         return ival
 
 
     def getTakeCover(self, av, skillId, ammoSkillId, charge, target, skillResult):
-        ival = Parallel(Sequence(Func(self.lockInput, av), Func(av.setChatAbsolute, PLocalizer.getTakeCoverPhrase(), CFSpeech | CFTimeout), Func(base.talkAssistant.receiveOpenTalk, av.doId, av.getName(), PLocalizer.getTakeCoverPhrase())), Sequence(Wait(1.0), Func(self.unlockInput, av)))
+        ival = Parallel(Sequence(Func(self.lockInput, av), Func(av.setChatAbsolute, PLocalizer.getTakeCoverPhrase(), CFSpeech | CFTimeout), Func(base.talkAssistant.receiveOpenTalk, av.doId, av.getName(), PLocalizer.getTakeCoverPhrase(), av.hasGMNametag())), Sequence(Wait(1.0), Func(self.unlockInput, av)))
         return ival
 
 
     def getPowerRecharge(self, av, skillId, ammoSkillId, charge = 0, target = None, skillResult = None):
-        ival = Parallel(Sequence(Func(self.lockInput, av), Func(av.setChatAbsolute, PLocalizer.getPowerRechargePhrase(), CFSpeech | CFTimeout), Func(base.talkAssistant.receiveOpenTalk, av.doId, av.getName(), PLocalizer.getPowerRechargePhrase())), Sequence(Wait(1.0), Func(self.unlockInput, av)))
+        ival = Parallel(Sequence(Func(self.lockInput, av), Func(av.setChatAbsolute, PLocalizer.getPowerRechargePhrase(), CFSpeech | CFTimeout), Func(base.talkAssistant.receiveOpenTalk, av.doId, av.getName(), PLocalizer.getPowerRechargePhrase(), av.hasGMNametag())), Sequence(Wait(1.0), Func(self.unlockInput, av)))
         return ival
 
 
     def getWreckHull(self, av, skillId, ammoSkillId, charge, target, skillResult):
-        ival = Parallel(Sequence(Func(self.lockInput, av), Func(av.setChatAbsolute, PLocalizer.getWreckHullPhrase(), CFSpeech | CFTimeout), Func(base.talkAssistant.receiveOpenTalk, av.doId, av.getName(), PLocalizer.getWreckHullPhrase())), Sequence(Wait(1.0), Func(self.unlockInput, av)))
+        ival = Parallel(Sequence(Func(self.lockInput, av), Func(av.setChatAbsolute, PLocalizer.getWreckHullPhrase(), CFSpeech | CFTimeout), Func(base.talkAssistant.receiveOpenTalk, av.doId, av.getName(), PLocalizer.getWreckHullPhrase(), av.hasGMNametag())), Sequence(Wait(1.0), Func(self.unlockInput, av)))
         return ival
 
 
     def getWreckMasts(self, av, skillId, ammoSkillId, charge, target, skillResult):
-        ival = Parallel(Sequence(Func(self.lockInput, av), Func(av.setChatAbsolute, PLocalizer.getWreckMastsPhrase(), CFSpeech | CFTimeout), Func(base.talkAssistant.receiveOpenTalk, av.doId, av.getName(), PLocalizer.getWreckMastsPhrase())), Sequence(Wait(1.0), Func(self.unlockInput, av)))
+        ival = Parallel(Sequence(Func(self.lockInput, av), Func(av.setChatAbsolute, PLocalizer.getWreckMastsPhrase(), CFSpeech | CFTimeout), Func(base.talkAssistant.receiveOpenTalk, av.doId, av.getName(), PLocalizer.getWreckMastsPhrase(), av.hasGMNametag())), Sequence(Wait(1.0), Func(self.unlockInput, av)))
         return ival
 
 
     def getSinkHer(self, av, skillId, ammoSkillId, charge, target, skillResult):
-        ival = Parallel(Sequence(Func(self.lockInput, av), Func(av.setChatAbsolute, PLocalizer.getSinkHerPhrase(), CFSpeech | CFTimeout), Func(base.talkAssistant.receiveOpenTalk, av.doId, av.getName(), PLocalizer.getSinkHerPhrase())), Sequence(Wait(1.0), Func(self.unlockInput, av)))
+        ival = Parallel(Sequence(Func(self.lockInput, av), Func(av.setChatAbsolute, PLocalizer.getSinkHerPhrase(), CFSpeech | CFTimeout), Func(base.talkAssistant.receiveOpenTalk, av.doId, av.getName(), PLocalizer.getSinkHerPhrase(), av.hasGMNametag())), Sequence(Wait(1.0), Func(self.unlockInput, av)))
         return ival
 
 
     def getIncoming(self, av, skillId, ammoSkillId, charge, target, skillResult):
-        ival = Parallel(Sequence(Func(self.lockInput, av), Func(av.setChatAbsolute, PLocalizer.getIncomingPhrase(), CFSpeech | CFTimeout), Func(base.talkAssistant.receiveOpenTalk, av.doId, av.getName(), PLocalizer.getIncomingPhrase())), Sequence(Wait(1.0), Func(self.unlockInput, av)))
+        ival = Parallel(Sequence(Func(self.lockInput, av), Func(av.setChatAbsolute, PLocalizer.getIncomingPhrase(), CFSpeech | CFTimeout), Func(base.talkAssistant.receiveOpenTalk, av.doId, av.getName(), PLocalizer.getIncomingPhrase(), av.hasGMNametag())), Sequence(Wait(1.0), Func(self.unlockInput, av)))
         return ival
 
 
     def getFixItNow(self, av, skillId, ammoSkillId, charge, target, skillResult):
-        ival = Parallel(Sequence(Func(self.lockInput, av), Func(av.setChatAbsolute, PLocalizer.getFixItNowPhrase(), CFSpeech | CFTimeout), Func(base.talkAssistant.receiveOpenTalk, av.doId, av.getName(), PLocalizer.getFixItNowPhrase())), Sequence(Wait(1.0), Func(self.unlockInput, av)))
+        ival = Parallel(Sequence(Func(self.lockInput, av), Func(av.setChatAbsolute, PLocalizer.getFixItNowPhrase(), CFSpeech | CFTimeout), Func(base.talkAssistant.receiveOpenTalk, av.doId, av.getName(), PLocalizer.getFixItNowPhrase(), av.hasGMNametag())), Sequence(Wait(1.0), Func(self.unlockInput, av)))
         return ival
 
 

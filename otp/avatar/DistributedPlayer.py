@@ -220,7 +220,7 @@ class DistributedPlayer(DistributedAvatar.DistributedAvatar, PlayerBase.PlayerBa
             chat = base.talkAssistant.removeThoughtPrefix(chat)
             base.talkAssistant.receiveThought(self.doId, self.getName(), chat)
         else:
-            base.talkAssistant.receiveOpenTalk(self.doId, self.getName(), chat)
+            base.talkAssistant.receiveOpenTalk(self.doId, self.getName(), chat, self.hasGMNametag())
     
     def setTalkFrom(self, avId, channel, chat):
         av = self.cr.doId2do.get(avId)
@@ -241,6 +241,9 @@ class DistributedPlayer(DistributedAvatar.DistributedAvatar, PlayerBase.PlayerBa
     def displayTalkWhisper(self, fromId, avatarName, chatString):
         print 'TalkWhisper from %s: %s' % (fromId, chatString)
 
+    def hasGMNametag(self):
+        return False
+    
     def b_setSC(self, msgIndex):
         self.setSC(msgIndex)
         self.d_setSC(msgIndex)
@@ -255,7 +258,7 @@ class DistributedPlayer(DistributedAvatar.DistributedAvatar, PlayerBase.PlayerBa
         chatString = SCDecoders.decodeSCStaticTextMsg(msgIndex)
         if chatString:
             self.setChatAbsolute(chatString, CFSpeech | CFQuicktalker | CFTimeout, quiet=1)
-        base.talkAssistant.receiveOpenSpeedChat(TalkAssistant.SPEEDCHAT_NORMAL, msgIndex, self.doId)
+        base.talkAssistant.receiveOpenSpeedChat(TalkAssistant.SPEEDCHAT_NORMAL, msgIndex, self.doId, self.getName(), self.hasGMNametag())
 
     def b_setSCCustom(self, msgIndex):
         self.setSCCustom(msgIndex)
@@ -271,7 +274,7 @@ class DistributedPlayer(DistributedAvatar.DistributedAvatar, PlayerBase.PlayerBa
         chatString = SCDecoders.decodeSCCustomMsg(msgIndex)
         if chatString:
             self.setChatAbsolute(chatString, CFSpeech | CFQuicktalker | CFTimeout)
-        base.talkAssistant.receiveOpenSpeedChat(TalkAssistant.SPEEDCHAT_CUSTOM, msgIndex, self.doId)
+        base.talkAssistant.receiveOpenSpeedChat(TalkAssistant.SPEEDCHAT_CUSTOM, msgIndex, self.doId, self.getName(), self.hasGMNametag())
 
     def b_setSCEmote(self, emoteId):
         self.b_setEmoteState(emoteId, animMultiplier=self.animMultiplier)

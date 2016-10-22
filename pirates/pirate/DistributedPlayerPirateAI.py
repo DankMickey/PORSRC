@@ -46,7 +46,7 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         self.founder = False
         self.allegiance = 0
         self.gmNametag = ('', '')
-        self.storedgmNameTag = ('', '')
+        self.gmHidden = False
         self.defaultShard = 0
         self.tempdoublexp = 0
         self.zombied = (0, False)
@@ -136,6 +136,19 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
     
     def getGMNametag(self):
         return self.gmNametag
+    
+    def b_setGMHidden(self, hidden):
+        self.setGMHidden(hidden)
+        self.d_setGMHidden(hidden)
+    
+    def d_setGMHidden(self, hidden):
+        self.sendUpdate('setGMHidden', [hidden])
+    
+    def setGMHidden(self, hidden):
+        self.gmHidden = hidden
+    
+    def getGMHidden(self):
+        return self.gmHidden
     
     def b_setDefaultShard(self, defaultShard):
         self.d_setDefaultShard(defaultShard)
@@ -803,15 +816,8 @@ def allegiance(side=None):
 @magicWord(CATEGORY_SPONSOR)
 def hideGM():
     av = spellbook.getInvoker()
-    av.storedgmNameTag = av.gmNametag
-    av.b_setGMNametag('', '')
-    return "GM tag has been hidden."
-
-@magicWord(CATEGORY_SPONSOR)
-def showGM():
-    av = spellbook.getInvoker()
-    av.b_setGMNametag(*av.storedgmNameTag)
-    return "GM tag is now being shown."
+    av.b_setGMHidden(not av.getGMHidden())
+    return 'GM tag has been %s.' % ('hidden' if av.getGMHidden() else 'shown')
 
 @magicWord(CATEGORY_GAME_DESIGNER, types=[str, str])
 def gm(color=None, tag=None):
