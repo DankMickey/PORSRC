@@ -14,6 +14,8 @@ parser.add_argument('--astron-ip', help="The IP address of the Astron Message Di
 parser.add_argument('--eventlogger-ip', help="The IP address of the Astron Event Logger to log to.")
 parser.add_argument('--mongodb-ip', help="The IP address of the MongoDB Server to connect to.")
 parser.add_argument('--ud-token', help="The Uberdog token to authenticate to the website with.")
+parser.add_argument('--splunk-ip', help='The IP address of the Splunk Server to connect to.')
+parser.add_argument('--splunk-token', help='The Splunk token to authenticate to Splunk with.')
 parser.add_argument('config', nargs='*', default=['config/general.prc', 'config/dev.prc', 'config/server.prc'], help="PRC file(s) to load.")
 args = parser.parse_args()
 
@@ -31,6 +33,8 @@ if args.astron_ip: localconfig += 'air-connect %s\n' % args.astron_ip
 if args.eventlogger_ip: localconfig += 'eventlog-host %s\n' % args.eventlogger_ip
 if args.mongodb_ip: localconfig += 'mongodb-url %s\n' % args.mongodb_ip
 if args.ud_token: localconfig += 'account-server-token %s\n' % args.ud_token
+if args.splunk_ip: localconfig += 'splunk-host %s\n' % args.splunk_ip
+if args.splunk_token: localconfig += 'splunk-token %s\n' % args.splunk_token
 loadPrcFileData('Command-line', localconfig)
 
 from otp.ai.AIBaseGlobal import *
