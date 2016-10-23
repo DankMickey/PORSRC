@@ -119,14 +119,11 @@ class PiratesAIRepository(PiratesInternalRepository):
         return False
 
     def incrementPopulation(self, user=None):
-        if user != None:
-            self.analyticsMgr.track("user_joined", time=None, distinct_id=user.DISLid, accountId=user.DISLid)
-
         self.districtManager.district.b_setAvatarCount(self.districtManager.district.getAvatarCount() + 1)
 
     def decrementPopulation(self, user=None):
         if user != None:
             #self.bandManager.pirateWentOffline(user.getUniqueId())
-            self.analyticsMgr.track("user_left", time=None, distinct_id=user.DISLid, accountId=user.DISLid)
+            pass
 
         self.districtManager.district.b_setAvatarCount(self.districtManager.district.getAvatarCount() - 1)
