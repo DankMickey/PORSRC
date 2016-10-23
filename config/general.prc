@@ -87,7 +87,7 @@ disable-server-queueing #t
 want-naming-dialog #t
 
 # MULTIPLAYER
-disable-player-collisions #f
+disable-player-collisions #t
 show-total-population #t
 
 # PLAYER
