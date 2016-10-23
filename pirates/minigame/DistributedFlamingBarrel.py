@@ -1,5 +1,4 @@
 from panda3d.core import BitMask32, CollideMask, CollisionHandler, CollisionHandlerEvent, CollisionNode, CollisionSphere, NodePath, Point3, Vec3
-# File: D (Python 2.4)
 
 from direct.interval.IntervalGlobal import *
 from direct.interval.ProjectileInterval import *

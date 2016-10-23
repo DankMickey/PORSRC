@@ -1,7 +1,5 @@
 from panda3d.core import NodePath, Vec4
-# File: D (Python 2.4)
 
-from direct.fsm.StatePush import FunctionCall, StateVar
 from direct.interval.IntervalGlobal import *
 from pirates.uberdog.UberDogGlobals import InventoryType
 from pirates.distributed.DistributedInteractive import DistributedInteractive

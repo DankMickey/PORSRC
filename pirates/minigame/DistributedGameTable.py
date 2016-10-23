@@ -1,5 +1,4 @@
 from panda3d.core import NodePath, Vec3
-# File: D (Python 2.4)
 
 import random
 from direct.showbase import DirectObject

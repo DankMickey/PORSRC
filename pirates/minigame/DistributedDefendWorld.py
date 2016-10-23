@@ -1,5 +1,4 @@
 from panda3d.core import AudioSound, CullBinManager
-# File: D (Python 2.4)
 
 from direct.gui.OnscreenText import OnscreenText
 from pirates.audio import SoundGlobals

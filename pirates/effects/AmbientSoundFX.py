@@ -1,5 +1,3 @@
-# File: A (Python 2.4)
-
 from pirates.leveleditor.LevelEntity import LevelEntity
 
 class AmbientSoundFX(LevelEntity):
@@ -10,9 +8,6 @@ class AmbientSoundFX(LevelEntity):
 
 
     def setProperty(self, propertyName, propertyValue):
-        if propertyName == 'None':
-            pass
-        1
         if propertyName == 'Range':
             self.range = float(propertyValue)
         else:

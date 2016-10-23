@@ -1,6 +1,5 @@
 from panda3d.physics import BaseParticleEmitter, BaseParticleRenderer, ColorInterpolationManager
 from panda3d.core import GeomNode, ModelNode, Point3, Vec3, Vec4
-# File: A (Python 2.4)
 
 from direct.interval.IntervalGlobal import *
 from direct.particles import ParticleEffect

@@ -14,7 +14,6 @@ from pirates.piratesbase import PLocalizer
 from pirates.piratesgui import GuiButton
 from pirates.pirate import DynamicHuman
 from pirates.pirate import Human
-from pirates.pirate import HumanDNA
 from pirates.piratesgui.TabBar import LeftTab, TabBar
 from direct.interval.IntervalGlobal import *
 from pirates.makeapirate import ClothingGlobals

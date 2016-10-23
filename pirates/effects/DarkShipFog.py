@@ -1,6 +1,5 @@
 from panda3d.physics import BaseParticleEmitter, BaseParticleRenderer, ColorInterpolationManager
 from panda3d.core import Fog, ModelNode, Point3, Vec3, Vec4
-# File: D (Python 2.4)
 
 from direct.showbase.DirectObject import *
 from direct.interval.IntervalGlobal import *

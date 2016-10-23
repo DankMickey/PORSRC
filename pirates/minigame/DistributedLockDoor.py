@@ -1,5 +1,4 @@
 from panda3d.core import Vec3
-# File: D (Python 2.4)
 
 from pirates.minigame import DistributedLock
 from direct.interval.IntervalGlobal import *

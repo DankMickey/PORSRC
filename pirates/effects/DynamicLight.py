@@ -1,5 +1,4 @@
 from panda3d.core import AmbientLight, DirectionalLight, Lens, Light, NodePath, PointLight, Spotlight, VBase3, VBase4
-# File: D (Python 2.4)
 
 import random
 from direct.interval.IntervalGlobal import *

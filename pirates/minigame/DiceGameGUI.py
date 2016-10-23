@@ -1,5 +1,4 @@
 from panda3d.core import TextNode, Vec3
-# File: D (Python 2.4)
 
 from direct.directnotify import DirectNotifyGlobal
 from direct.interval.IntervalGlobal import *

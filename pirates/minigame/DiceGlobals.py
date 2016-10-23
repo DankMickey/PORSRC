@@ -1,5 +1,4 @@
 from panda3d.core import Vec3
-# File: D (Python 2.4)
 
 DICE_FACE_1 = Vec3(90, 0, 90)
 DICE_FACE_2 = Vec3(90, 90, 90)

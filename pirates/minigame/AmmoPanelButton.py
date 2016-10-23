@@ -1,5 +1,4 @@
 from panda3d.core import TextNode, VBase4
-# File: A (Python 2.4)
 
 from direct.gui.DirectGui import *
 from direct.interval.IntervalGlobal import *

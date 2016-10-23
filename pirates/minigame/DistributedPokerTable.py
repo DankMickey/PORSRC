@@ -1,5 +1,4 @@
 from panda3d.core import Lens, NodePath, Point3, Vec3, Vec4, headsUp
-# File: D (Python 2.4)
 
 from direct.directnotify import DirectNotifyGlobal
 from direct.interval.IntervalGlobal import *

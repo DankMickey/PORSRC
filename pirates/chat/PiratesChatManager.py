@@ -2,7 +2,6 @@ from panda3d.core import CollideMask, CollisionEntry
 import sys
 import string
 from direct.showbase import DirectObject
-from direct.showbase.PythonUtil import traceFunctionCall
 from direct.directnotify import DirectNotifyGlobal
 from direct.gui.DirectGui import *
 from otp.otpbase import OTPLocalizer

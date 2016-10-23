@@ -1,5 +1,4 @@
 from panda3d.core import ColorBlendAttrib, Vec4
-# File: D (Python 2.4)
 
 from direct.interval.IntervalGlobal import *
 from PooledEffect import PooledEffect
