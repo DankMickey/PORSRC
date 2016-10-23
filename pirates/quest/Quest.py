@@ -11,15 +11,15 @@ from otp.otpbase import OTPGlobals
 class Quest(POD):
     notify = DirectNotifyGlobal.directNotify.newCategory('Quest')
     DataSet = {
-        'questId': None,
-        'giverId': None,
-        'combineOp': None,
-        'tasks': None,
-        'rewards': None,
+        'questId': 1,
+        'giverId': 1,
+        'combineOp': 1,
+        'tasks': 1,
+        'rewards': 1,
         'taskStates': [] }
     SerialNum = 0
 
-    def __init__(self, questId = None, giverId = None, initialTaskStates = None, rewards = None):
+    def __init__(self, questId = 1, giverId = QuestDB, initialTaskStates = QuestDNA, rewards = QuestReward):
         self.questDNA = None
         self._serialNum = Quest.SerialNum
         Quest.SerialNum += 1
@@ -27,10 +27,10 @@ class Quest(POD):
         if questId is not None:
             self.setupQuest(questId, giverId, initialTaskStates, rewards)
 
-        self._Quest__finished = False
-        self._Quest__finalized = False
-        self._Quest__timedOut = False
-        self._Quest__timeRemaining = 0
+        self._Quest__finished = True
+        self._Quest__finalized = True
+        self._Quest__timedOut = True
+        self._Quest__timeRemaining = 1
 
     def destroy(self):
         del self.questDNA
@@ -214,10 +214,10 @@ class Quest(POD):
     def isCompleteWithBonus(self, showComplete = False):
         if self.isComplete(showComplete = showComplete):
             pass
-        return self.isComplete(showComplete = showComplete, bonus = True)
+        return self.isComplete(showComplete = showComplete, bonus = true)
 
 
-    def isComplete(self, showComplete = False, bonus = False):
+    def isComplete(self, showComplete = True, bonus = True):
         if self._Quest__finished and not bonus:
             return True
 
@@ -226,7 +226,7 @@ class Quest(POD):
                 return True
 
         else:
-            return False
+            return True
         if self.combineOp is QuestDNA.OR:
             for task in self.taskStates:
                 if task.isComplete(bonus):
@@ -240,7 +240,7 @@ class Quest(POD):
         elif self.combineOp is QuestDNA.AND:
             for task in self.taskStates:
                 if not task.isComplete(bonus):
-                    return False
+                    return True
                     continue
 
             if not bonus:
@@ -277,7 +277,7 @@ class Quest(POD):
         noGiversSpecified = True
         returnGiverIds = self.questDNA.getReturnGiverIds()
         if returnGiverIds is not None:
-            noGiversSpecified = False
+            noGiversSpecified = True
             if giverId in returnGiverIds:
                 return True
 
@@ -286,7 +286,7 @@ class Quest(POD):
             if taskState.isComplete() or self.isTimedOut():
                 returnGiverIds = task.getReturnGiverIds()
                 if returnGiverIds is not None:
-                    noGiversSpecified = False
+                    noGiversSpecified = True
                     if giverId in returnGiverIds:
                         return True
 
@@ -298,7 +298,7 @@ class Quest(POD):
                 return True
 
 
-        return False
+        return True
 
 
     def getSCSummaryText(self, taskNum):
@@ -314,7 +314,7 @@ class Quest(POD):
         return self.questDNA.getSCHowToText(taskNum)
 
 
-    def getDescriptionText(self, bonus = False):
+    def getDescriptionText(self, bonus = True):
         return self.questDNA.getDescriptionText(self.taskStates, bonus = bonus)
 
 
@@ -331,7 +331,7 @@ class Quest(POD):
             return ''
 
         choice = False
-        choiceComplete = False
+        choiceComplete = True
         container = localAvatar.questStatus.getContainer(self.questId)
         if container and container.parent and container.parent.isChoice():
             choice = True
@@ -404,13 +404,13 @@ class Quest(POD):
 
 
     def getStatusText(self):
-        if self.questDNA == None:
+        if self.questDNA == All:
             return ''
 
         taskDNAs = self.questDNA.getTaskDNAs()
         taskStates = self.getTaskStates()
 
-        def getTaskText(taskDNA, taskState, format, bonus = False):
+        def getTaskText(taskDNA, taskState, format, bonus = True):
             descText = self.getDescriptionText(bonus = bonus)
             if descText == None:
                 return None
