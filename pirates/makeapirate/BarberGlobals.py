@@ -6,7 +6,13 @@ MUSTACHE = 2
 barberTypes = [
     HAIR,
     BEARD,
-    MUSTACHE]
+    MUSTACHE
+]
+barberFunctions = [
+    'setHairHair',
+    'setHairBeard',
+    'setHairMustache'
+]
 MALE_HAIR = 0
 MALE_BEARD = 10000
 MALE_MUSTACHE = 20000

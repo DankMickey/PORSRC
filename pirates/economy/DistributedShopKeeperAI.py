@@ -321,9 +321,7 @@ class DistributedShopKeeperAI(DistributedObjectAI):
         if not av:
             return
 
-        def sendResponse(resultCode, success, hairId=hairId, colorId=colorId, avId=avId):
-            self.notify.info("makeBarberResponse({0}, {1}, {2})".format(hairId, colorId, success))
-            self.sendUpdateToAvatarId(avId, 'makeBarberResponse', [hairId, colorId, success])
+        def sendResponse(resultCode, success, avId=avId):
             self.sendUpdateToAvatarId(avId, 'makeSaleResponse', [resultCode])
 
         itemData = BarberGlobals.barber_id.get(hairId)
@@ -332,7 +330,13 @@ class DistributedShopKeeperAI(DistributedObjectAI):
             sendResponse(RejectCode.TIMEOUT, False)
             return
 
-        requiredGold = int(itemData[4])
+        hairDnaId, hairType, _, _, requiredGold, _ = itemData
+
+        if len(BarberGlobals.barberFunctions) <= hairType:
+            self.notify.warning('Invalid hair type for hairId: %s' % hairId)
+            sendResponse(RejectCode.TIMEOUT, False)
+            return
+
         if not requiredGold:
             self.notify.warning("Unable to locate price for hairId: %s" % hairId)
             sendResponse(RejectCode.TIMEOUT, False)
@@ -344,6 +348,11 @@ class DistributedShopKeeperAI(DistributedObjectAI):
 
         self.notify.info("requestBarber: cost(%s)" % requiredGold)
         av.takeGold(requiredGold)
+
+        av.style.setHairColor(colorId)
+        getattr(av.style, BarberGlobals.barberFunctions[hairType])(hairDnaId)
+        av.d_setDNAString(av.style.makeNetString())
+        av.d_doRegeneration()
         sendResponse(2, True)
 
     # requestAccessoriesList(uint32) airecv clsend
@@ -355,7 +364,6 @@ class DistributedShopKeeperAI(DistributedObjectAI):
     # requestTattoo(TattooInfo [], TattooInfo []) airecv clsend
 
     def requestStowaway(self, locationId):
-
         if not locationId in EconomyGlobals.StowawayCost:
             self.notify.warning("Unknown stowaway locationId: %s" % locationId)
             return

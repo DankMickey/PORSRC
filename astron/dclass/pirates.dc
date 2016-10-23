@@ -378,7 +378,6 @@ dclass DistributedShopKeeper : DistributedObject {
   makeSaleResponse(uint32) ownrecv;
   responseShipRepair(uint32) ownrecv;
   makeTattooResponse(uint16, uint16, bool) ownrecv;
-  makeBarberResponse(uint32, uint8, bool) ownrecv;
   responseClothingList(uint32, uint32[] []) ownrecv;
   responseTattooList(uint32, TattooInfo []) ownrecv;
   responseJewelryList(uint32, JewelryInfo []) ownrecv;

@@ -257,7 +257,7 @@ class DistributedShopKeeper(DistributedObject):
         self.acceptOnce('requestMusic', self.sendRequestMusic)
         self.acceptOnce('requestStowaway', self.sendRequestStowaway)
         self.storeType = storeType
-        useSimpleStore = getBase().config.GetBool('want-simple-stores', True)
+        useSimpleStore = config.GetBool('want-simple-stores', True)
         if storeType == InteractGlobals.STORE:
             storeItems = DropGlobals.getStoreItems(self.uniqueId)
             inventory = ItemGlobals.getLegalStoreItems(storeItems)
@@ -499,14 +499,6 @@ class DistributedShopKeeper(DistributedObject):
     def makeTattooResponse(self, tattoo, zone, success):
         if self.storeMenuGUI and success:
             self.storeMenuGUI.tattooPurchase(zone, tattoo)
-
-
-
-    def makeBarberResponse(self, uid, color, success):
-        if self.storeMenuGUI and success:
-            self.storeMenuGUI.barberPurchase(uid, color)
-
-
 
     def responseShipRepair(self, shipDoId):
         if self.pickShipGUI:

@@ -133,7 +133,7 @@ class BarberStoreGUI(DirectFrame):
         self.frontTabParent = self.panel.attachNewNode('frontTab', sort = 2)
         self.myGoldTitle = DirectFrame(parent = self.cartFrame, relief = None, text = PLocalizer.YourMoney, text_fg = PiratesGuiGlobals.TextFG2, text_align = TextNode.ALeft, text_scale = PiratesGuiGlobals.TextScaleLarge, text_shadow = PiratesGuiGlobals.TextShadow, pos = (-0.375, 0, 0.175))
         self.myGold = DirectFrame(parent = self.cartFrame, relief = None, text = str(localAvatar.getMoney()), text_fg = PiratesGuiGlobals.TextFG2, text_align = TextNode.ARight, text_scale = PiratesGuiGlobals.TextScaleLarge, text_shadow = PiratesGuiGlobals.TextShadow, textMayChange = 1, image = self.CoinImage, image_scale = 0.15, image_pos = (0.03, 0, 0.015), pos = (-0.06, 0, 0.175))
-        self.closeButton = DialogButton.DialogButton(command = self.closePanel, parent = self.cartFrame, text = PLocalizer.lClose, text_fg = PiratesGuiGlobals.TextFG2, text_pos = (0.02, -(PiratesGuiGlobals.TextScaleLarge) * 0.25), text_scale = PiratesGuiGlobals.TextScaleLarge, text_shadow = PiratesGuiGlobals.TextShadow, buttonStyle = DialogButton.DialogButton.NO)
+        self.closeButton = DialogButton.DialogButton(parent = self.cartFrame, text = PLocalizer.lClose, text_fg = PiratesGuiGlobals.TextFG2, text_pos = (0.02, -(PiratesGuiGlobals.TextScaleLarge) * 0.25), text_scale = PiratesGuiGlobals.TextScaleLarge, text_shadow = PiratesGuiGlobals.TextShadow, buttonStyle = DialogButton.DialogButton.NO, command=self.closePanel)
         self.closeButton.setPos(0, 0, 0.005)
         tGui = loader.loadModel('models/gui/triangle')
         triangle = (tGui.find('**/triangle'), tGui.find('**/triangle_down'), tGui.find('**/triangle_over'))
@@ -264,7 +264,12 @@ class BarberStoreGUI(DirectFrame):
 
         if self.alertDialog:
             self.alertDialog.destroy()
-
+            self.alertDialog = None
+        
+        if self.panel:
+            self.panel.destroy()
+            self.panel = None
+        
         if len(localAvatar.guiMgr.trackedQuestLabel['text']):
             localAvatar.guiMgr.showTrackedQuestInfo()
 
@@ -344,16 +349,13 @@ class BarberStoreGUI(DirectFrame):
 
 
     def buyItem(self, uid, button, confirmed = False):
+        if self.confirmBox: 
+            self.confirmBox.destroy()
+            self.confirmBox = None
         if confirmed:
             color = button.color
             self.npc.sendRequestBarber(uid, color)
-            if self.confirmBox:
-                self.confirmBox.destroy()
-                self.confirmBox = None
-
-        elif self.confirmBox:
-            self.confirmBox.destroy()
-            self.confirmBox = None
+            return
 
         item = BarberGlobals.barber_id.get(uid)
         if not item:
@@ -409,17 +411,6 @@ class BarberStoreGUI(DirectFrame):
 
     def purchaseConfirmation(self):
         pass
-
-
-    def barberPurchase(self, uid, color):
-        localAvatar.generateHuman(localAvatar.gender, base.cr.humanHigh)
-        localAvatar.motionFSM.off()
-        localAvatar.motionFSM.on()
-        item = BarberGlobals.barber_id.get(uid)
-        id = item[0]
-        if item:
-            self.applyItem(self.pirate, item[1], id)
-
 
 
     def unloadPirate(self):
@@ -495,7 +486,7 @@ class BarberStoreGUI(DirectFrame):
 
 
     def nextPage(self):
-        if self.itemAmount - self.buttonIndex + self.buttonsPerPage > 0:
+        if self.itemAmount - self.buttonIndex > self.buttonsPerPage:
             startIndex = self.buttonIndex + self.buttonsPerPage
             self.setPage(self.currentPage, startIndex)
         else:
@@ -759,14 +750,8 @@ class BarberStoreGUI(DirectFrame):
 
 
     def _mouseReadTask(self, task):
-        if not base.mouseWatcherNode.hasMouse():
-            pass
-        1
         winSize = (base.win.getXSize(), base.win.getYSize())
         mouseData = base.win.getPointer(0)
-        if mouseData.getX() > winSize[0] or mouseData.getY() > winSize[1]:
-            pass
-        1
         dx = mouseData.getX() - self.lastMousePos[0]
         mouseData = base.win.getPointer(0)
         self.lastMousePos = (mouseData.getX(), mouseData.getY())
