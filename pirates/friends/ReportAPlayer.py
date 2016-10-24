@@ -4,7 +4,6 @@ from direct.fsm import FSM
 from direct.directnotify import DirectNotifyGlobal
 from otp.otpbase import OTPLocalizer
 from otp.otpbase import OTPGlobals
-from otp.distributed import CentralLogger
 from pirates.piratesbase import PiratesGlobals
 from pirates.piratesbase import PLocalizer
 from pirates.piratesgui import GuiPanel
@@ -36,7 +35,7 @@ class ReportAPlayer(GuiPanel.GuiPanel, FSM.FSM):
             self.buttons.append(button)
 
         self.cancelButton = GuiButton.GuiButton(parent = self, text = PLocalizer.ReportPlayerCancel, textMayChange = 1, text_scale = PiratesGuiGlobals.TextScaleMed, text_pos = (0.035, -0.01), image_scale = (0.3, 0.22, 0.22), geom = (geomX,) * 4, geom_pos = (-0.06, 0, 0), geom_scale = 0.5, geom0_color = PiratesGuiGlobals.ButtonColor3[0], geom1_color = PiratesGuiGlobals.ButtonColor3[1], geom2_color = PiratesGuiGlobals.ButtonColor3[2], geom3_color = PiratesGuiGlobals.ButtonColor3[3], image3_color = (0.8, 0.8, 0.8, 1), pos = (self.width * 0.5, 0, 0.075), command = self.destroy)
-        if base.cr.centralLogger.hasReportedPlayer(self.avId):
+        if base.cr.timeManager.isReported(self.avId):
             self.request('AlreadyReported')
         else:
             self.request('TopMenu')
@@ -73,17 +72,13 @@ class ReportAPlayer(GuiPanel.GuiPanel, FSM.FSM):
 
     def enterChooseCategory(self):
         self.fieldText['text'] = PLocalizer.ReportPlayerChooseCategory % self.avName
-        self.buttons[0].configure(text = PLocalizer.ReportPlayerFoulLanguage, command = self.chooseCategory, extraArgs = [
-            CentralLogger.ReportFoulLanguage])
+        self.buttons[0].configure(text = PLocalizer.ReportPlayerFoulLanguage, command = self.chooseCategory, extraArgs = ['Foul Language'])
         self.buttons[0].show()
-        self.buttons[1].configure(text = PLocalizer.ReportPlayerPersonalInfo, command = self.chooseCategory, extraArgs = [
-            CentralLogger.ReportPersonalInfo])
+        self.buttons[1].configure(text = PLocalizer.ReportPlayerPersonalInfo, command = self.chooseCategory, extraArgs = ['Personal Information'])
         self.buttons[1].show()
-        self.buttons[2].configure(text = PLocalizer.ReportPlayerRudeBehavior, command = self.chooseCategory, extraArgs = [
-            CentralLogger.ReportRudeBehavior])
+        self.buttons[2].configure(text = PLocalizer.ReportPlayerRudeBehavior, command = self.chooseCategory, extraArgs = ['Rude Behaviour'])
         self.buttons[2].show()
-        self.buttons[3].configure(text = PLocalizer.ReportPlayerBadName, command = self.chooseCategory, extraArgs = [
-            CentralLogger.ReportBadName])
+        self.buttons[3].configure(text = PLocalizer.ReportPlayerBadName, command = self.chooseCategory, extraArgs = ['Bad Name'])
         self.buttons[3].show()
 
 
@@ -94,13 +89,13 @@ class ReportAPlayer(GuiPanel.GuiPanel, FSM.FSM):
 
 
     def enterConfirmCategory(self):
-        if self.category == CentralLogger.ReportFoulLanguage:
+        if self.category == 'Foul Language':
             text = PLocalizer.ReportPlayerConfirmFoulLanguage % self.avName
-        elif self.category == CentralLogger.ReportPersonalInfo:
+        elif self.category == 'Personal Info':
             text = PLocalizer.ReportPlayerConfirmPersonalInfo % self.avName
-        elif self.category == CentralLogger.ReportRudeBehavior:
+        elif self.category == 'Rude Behaviour':
             text = PLocalizer.ReportPlayerConfirmRudeBehavior % self.avName
-        elif self.category == CentralLogger.ReportBadName:
+        elif self.category == 'Bad Name':
             text = PLocalizer.ReportPlayerConfirmBadName % self.avName
 
         text += '\n\n' + PLocalizer.ReportPlayerConfirmCategory
@@ -141,7 +136,7 @@ class ReportAPlayer(GuiPanel.GuiPanel, FSM.FSM):
 
 
     def sendReport(self):
-        return base.cr.centralLogger.reportPlayer(self.category, self.avId)
+        return base.cr.timeManager.d_reportPlayer(self.avId, self.category)
 
 
     def destroy(self):

@@ -28,7 +28,7 @@ class AnalyticsManagerAI:
         data = json.dumps({
             'time': int(time.time()),
             'source': eventName,
-            'sourcetype': 'por-production',
+            'sourcetype': self.applicationName,
             'event': props
         })
         

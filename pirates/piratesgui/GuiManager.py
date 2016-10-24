@@ -336,7 +336,6 @@ class GuiManager(FSM.FSM):
         self.accept(PiratesGlobals.TradeIncomingEvent, self.handleTradeInvitation)
         self.accept(PiratesGlobals.PVPChallengedEvent, self.handlePVPInvitation)
         self.accept(PiratesGlobals.PVPAcceptedEvent, self.handlePVPAccepted)
-        self.accept(OTPGlobals.WhisperIncomingEvent, self.handleWhisperIncoming)
         self.soundWhisper = loadSfx(SoundGlobals.SFX_GUI_WHISPER)
         self.radarGui = RadarGui.RadarGui(NodePath(), self.av, sortOrder = 1)
         self.radarGui.setPos(-(self.radarGui.width), 0, -(self.radarGui.height))
@@ -1535,23 +1534,6 @@ class GuiManager(FSM.FSM):
             self.reportAPlayer.destroy()
 
         self.reportAPlayer = ReportAPlayer.ReportAPlayer(avId, avName)
-
-
-    def handleWhisperIncoming(self, senderId, msgText):
-        if base.localAvatar.isIgnored(senderId):
-            return None
-
-        sender = base.cr.identifyAvatar(senderId)
-        if sender:
-            senderName = sender.getName()
-        else:
-            self.notify.warning('handleWhisperIncoming: senderId: %s not found' % senderId)
-            senderName = 'Unknown'
-        whisperType = WhisperPopup.WTNormal
-        base.talkAssistant.receiveAvatarWhisperTypedChat(msgText, senderId)
-        if self.soundWhisper:
-            base.playSfx(self.soundWhisper)
-
 
 
     def handleContextTutorial(self, contextId, number, type, part):

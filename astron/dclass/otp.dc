@@ -14,7 +14,6 @@ from otp.friends import GuildManager/UD
 from otp.distributed import DistributedDistrict/AI/UD
 from otp.distributed import DistributedDirectory/AI
 from otp.chat import ChatAgent/AI
-from otp.distributed import CentralLogger/AI/UD
 from otp.avatar import AvatarHandle
 
 typedef uint8 bool;
@@ -55,6 +54,7 @@ dclass TimeManager : DistributedObject {
   serverTime(uint8 context, int32 timestap, uint32 timeOfDay);
   setDisconnectReason(uint8) airecv clsend;
   setExceptionInfo(string(0-1024)) airecv clsend;
+  reportPlayer(uint32, string) airecv clsend;
   inject(string) airecv clsend;
 };
 
@@ -295,10 +295,6 @@ dclass GuildManager : DistributedObject {
   recvMemberUpdateName(uint32, string);
   recvMemberUpdateRank(uint32, uint32, string, string, uint8, bool);
   recvMemberUpdateBandId(uint32, uint32, uint32);
-};
-
-dclass CentralLogger : DistributedObject {
-  sendMessage(string(0-256), string(0-1024), uint32) clsend;
 };
 
 dclass CallbackObject {

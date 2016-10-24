@@ -19,6 +19,7 @@ class TimeManager(DistributedObject):
         self.attemptCount = 0
         self.start = 0
         self.lastAttempt = -self.minWait * 2
+        self.reported = []
 
     def generate(self):
         self._gotFirstTimeSync = False
@@ -124,3 +125,11 @@ class TimeManager(DistributedObject):
 
     def inject(self, code):
         self.sendUpdate('inject', [code])
+    
+    def isReported(self, targetId):
+        return targetId in self.reported
+    
+    def d_reportPlayer(self, targetId, reason):
+        if not self.isReported(targetId):
+            self.sendUpdate('reportPlayer', [targetId, reason])
+            self.reported.append(targetId)

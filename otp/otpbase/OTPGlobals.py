@@ -340,7 +340,6 @@ AvatarFriendConsideringEvent = 'avatarFriendConsideringEvent'
 AvatarFriendInvitationEvent = 'avatarFriendInvitationEvent'
 AvatarFriendRejectInviteEvent = 'avatarFriendRejectInviteEvent'
 AvatarFriendRejectRemoveEvent = 'avatarFriendRejectRemoveEvent'
-WhisperIncomingEvent = 'whisperIncomingEvent'
 AvatarSlotAvailable = -1
 
 from otp.ai.MagicWordGlobal import *

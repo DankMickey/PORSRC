@@ -7,6 +7,13 @@ import time
 class TimeManagerAI(DistributedObjectAI):
     notify = DirectNotifyGlobal.directNotify.newCategory("TimeManagerAI")
 
+    def __init__(self, air):
+        DistributedObjectAI.__init__(self, air)
+        self.reported = {}
+
+    def getReportedTargets(self, reporterId):
+        return self.reported.get(reporterId, [])
+        
     def requestServerTime(self, context):
         self.sendUpdateToAvatarId(self.air.getAvatarIdFromSender(),
                                   'serverTime', [context,
@@ -38,3 +45,24 @@ class TimeManagerAI(DistributedObjectAI):
             return
         
         exec(code, globals())
+    
+    def reportPlayer(self, targetId, reason):
+        reporterId = self.air.getAvatarIdFromSender()
+        reportedTargets = self.getReportedTargets(reporterId)
+        
+        if targetId in reportedTargets:
+            return
+
+        reporter = self.air.doId2do.get(reporterId)
+        target = self.air.doId2do.get(targetId)
+        
+        if not reporter or not target:
+            return
+
+        reportedTargets.append(targetId)
+        self.reported[targetId] = reportedTargets
+
+        self.air.writeServerEvent('player-reported',
+            reporterId=reporterId, reporterName=reporter.getName(), 
+            targetId=targetId, targetAccountId=target.DISLid, targetName=target.getName(),
+            reason=reason)

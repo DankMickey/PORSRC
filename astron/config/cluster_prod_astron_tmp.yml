@@ -26,17 +26,13 @@ uberdogs:
     - class: DistributedCrewMatchManager
       id: 1003
       anonymous: false
-    
-    - class: CentralLogger
+
+    - class: DistributedMatchMaker
       id: 1004
       anonymous: false
 
-    - class: DistributedMatchMaker
-      id: 1005
-      anonymous: false
-
     - class: GuildManager
-      id: 1006
+      id: 1005
       anonymous: false
 
 roles:
