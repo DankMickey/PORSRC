@@ -58,7 +58,7 @@ except SystemExit:
     raise
 except Exception:
     info = describeException()
-    simbase.air.writeServerEvent('ai-exception', simbase.air.getAvatarIdFromSender(), simbase.air.getAccountIdFromSender(), info)
+    simbase.air.writeServerEvent('ai-exception', avId=simbase.air.getAvatarIdFromSender(), accountId=simbase.air.getAccountIdFromSender(), exception=info)
     with open(config.GetString('ai-crash-log-name', 'ai-crash.log'), 'w+') as file:
         # w+ empties log and writes fresh (meaning 1 exception at a time).
         file.write(info + "\n")

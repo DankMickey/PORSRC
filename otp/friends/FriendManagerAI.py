@@ -76,7 +76,7 @@ class FriendManagerAI(DistributedObjectAI):
         av = self.air.doId2do.get(avId)
 
         if not av:
-            self.air.writeServerEvent('suspicious', avId, 'Player tried to friend a player that does not exist!')
+            self.air.writeServerEvent('suspicious', avId=avId, message='Player tried to friend a player that does not exist!')
             return
 
         requestedAv = self.air.doId2do.get(requested)
@@ -108,11 +108,11 @@ class FriendManagerAI(DistributedObjectAI):
         avId = self.air.getAvatarIdFromSender()
 
         if not context in self.requests:
-            self.air.writeServerEvent('suspicious', avId, 'Player tried to cancel a request that doesn\'t exist!')
+            self.air.writeServerEvent('suspicious', avId=avId, message='Player tried to cancel a request that doesn\'t exist!')
             return
 
         if avId != self.requests[context][0][0]:
-            self.air.writeServerEvent('suspicious', avId, 'Player tried to cancel someone elses request!')
+            self.air.writeServerEvent('suspicious', avId=avId, message='Player tried to cancel someone elses request!')
             return
 
         self.requests[context][1] = 'cancelled'
@@ -122,15 +122,15 @@ class FriendManagerAI(DistributedObjectAI):
         avId = self.air.getAvatarIdFromSender()
 
         if not context in self.requests:
-            self.air.writeServerEvent('suspicious', avId, 'Player tried to consider a friend request that doesn\'t exist!')
+            self.air.writeServerEvent('suspicious', avId=avId, message='Player tried to consider a friend request that doesn\'t exist!')
             return
 
         if avId != self.requests[context][0][1]:
-            self.air.writeServerEvent('suspicious', avId, 'Player tried to consider for someone else!')
+            self.air.writeServerEvent('suspicious', avId=avId, message='Player tried to consider for someone else!')
             return
 
         if self.requests[context][1] != 'friendQuery':
-            self.air.writeServerEvent('suspicious', avId, 'Player tried to reconsider friend request!')
+            self.air.writeServerEvent('suspicious', avId=avId, message='Player tried to reconsider friend request!')
             return
 
         if yesNo != 1:
@@ -145,15 +145,15 @@ class FriendManagerAI(DistributedObjectAI):
         avId = self.air.getAvatarIdFromSender()
 
         if not context in self.requests:
-            self.air.writeServerEvent('suspicious', avId, 'Player tried to respond to a friend request that doesn\'t exist!')
+            self.air.writeServerEvent('suspicious', avId=avId, message='Player tried to respond to a friend request that doesn\'t exist!')
             return
 
         if avId != self.requests[context][0][1]:
-            self.air.writeServerEvent('suspicious', avId, 'Player tried to respond to someone else\'s request!')
+            self.air.writeServerEvent('suspicious', avId=avId, message='Player tried to respond to someone else\'s request!')
             return
 
         if self.requests[context][1] == 'cancelled':
-            self.air.writeServerEvent('suspicious', avId, 'Player tried to respond to non-active friend request!')
+            self.air.writeServerEvent('suspicious', avId=avId, message='Player tried to respond to non-active friend request!')
             return
 
         self.sendUpdateToAvatarId(self.requests[context][0][0], 'friendResponse', [response, context])
@@ -184,15 +184,15 @@ class FriendManagerAI(DistributedObjectAI):
         avId = self.air.getAvatarIdFromSender()
 
         if not context in self.requests:
-            self.air.writeServerEvent('suspicious', avId, 'Player tried to acknowledge the cancel of a friend request that doesn\'t exist!')
+            self.air.writeServerEvent('suspicious', avId=avId, message='Player tried to acknowledge the cancel of a friend request that doesn\'t exist!')
             return
 
         if avId != self.requests[context][0][1]:
-            self.air.writeServerEvent('suspicious', avId, 'Player tried to acknowledge someone else\'s cancel!')
+            self.air.writeServerEvent('suspicious', avId=avId, message='Player tried to acknowledge someone else\'s cancel!')
             return
 
         if self.requests[context][1] != 'cancelled':
-            self.air.writeServerEvent('suspicious', avId, 'Player tried to cancel non-cancelled request!')
+            self.air.writeServerEvent('suspicious', avId=avId, message='Player tried to cancel non-cancelled request!')
             return
 
         del self.requests[context]

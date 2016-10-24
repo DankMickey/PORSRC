@@ -152,7 +152,7 @@ class PiratesRPCConnection(asynchat.async_chat, FSM):
             return
 
         self.__gotResp = True
-        self.air.writeServerEvent('rpc_result', 0, method=self.__method, params=self.__params, result=json.dumps(result))
+        self.air.writeServerEvent('rpc_result', method=self.__method, params=self.__params, result=json.dumps(result))
         self.sendJSON({'jsonrpc': '2.0', 'result': result, 'id': self.id})
         self.demand('Off')
 
@@ -190,13 +190,13 @@ class PiratesRPCConnection(asynchat.async_chat, FSM):
         self.sendResponse(body, 'application/json', 200)
 
     def enterHTTPError(self, code):
-        self.air.writeServerEvent('rpc_http_error', 0, code=code)
+        self.air.writeServerEvent('rpc_http_error', code=code)
         description = httplib.responses.get(code, 'Code %d' % code)
         self.sendResponse('%d %s\n' % (code, description),
                           'text/plain', code)
 
     def enterJSONError(self, code, message):
-        self.air.writeServerEvent('rpc_json_error', 0, code=code)
+        self.air.writeServerEvent('rpc_json_error', code=code)
 
         response = {'jsonrpc': '2.0',
                     'error': {'code': code,

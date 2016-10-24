@@ -17,12 +17,6 @@ class DistributedPlayerAI(DistributedAvatarAI.DistributedAvatarAI, PlayerBase.Pl
         self.DISLid = 0
         self.adminAccess = 0
 
-    if __dev__:
-
-        def generate(self):
-            self._sentExitServerEvent = False
-            DistributedAvatarAI.DistributedAvatarAI.generate(self)
-
     def announceGenerate(self):
         DistributedAvatarAI.DistributedAvatarAI.announceGenerate(self)
         ClsendTracker.announceGenerate(self)
@@ -35,13 +29,9 @@ class DistributedPlayerAI(DistributedAvatarAI.DistributedAvatarAI, PlayerBase.Pl
         self.sendUpdate('arrivedOnDistrict', [0])
 
     def _sendExitServerEvent(self):
-        self.air.writeServerEvent('avatarExit', self.doId, '')
-        if __dev__:
-            self._sentExitServerEvent = True
+        self.air.writeServerEvent('avatarExit', avId=self.doId)
 
     def delete(self):
-        if __dev__:
-            del self._sentExitServerEvent
         self._doPlayerExit()
         ClsendTracker.destroy(self)
         DistributedAvatarAI.DistributedAvatarAI.delete(self)
@@ -54,7 +44,7 @@ class DistributedPlayerAI(DistributedAvatarAI.DistributedAvatarAI, PlayerBase.Pl
         if self.isPlayerControlled():
             if not self.air._isValidPlayerLocation(parentId, zoneId):
                 self.notify.info('booting player %s for doing setLocation to (%s, %s)' % (self.doId, parentId, zoneId))
-                self.air.writeServerEvent('suspicious', self.doId, 'invalid setLocation: (%s, %s)' % (parentId, zoneId))
+                self.air.writeServerEvent('suspicious', avId=self.doId, messae='invalid setLocation: (%s, %s)' % (parentId, zoneId))
                 self.requestDelete()
 
     def _doPlayerEnter(self):
@@ -70,10 +60,6 @@ class DistributedPlayerAI(DistributedAvatarAI.DistributedAvatarAI, PlayerBase.Pl
 
     def decrementPopulation(self):
         simbase.air.decrementPopulation(self)
-
-    def d_setMaxHp(self, maxHp):
-        DistributedAvatarAI.DistributedAvatarAI.d_setMaxHp(self, maxHp)
-        self.air.writeServerEvent('setMaxHp', self.doId, '%s' % maxHp)
 
     def d_setSystemMessage(self, aboutId, chatString):
         self.sendUpdate('setSystemMessage', [aboutId, chatString])

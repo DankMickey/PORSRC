@@ -45,7 +45,7 @@ class PirateInventoryAI(DistributedInventoryAI):
 
         if invalid:
             self.notify.warning('moveLocatables error: %s' % invalid)
-            self.air.writeServerEvent('suspicious', self.ownerId, issue=invalid)
+            self.air.writeServerEvent('suspicious', avId=self.ownerId, message=invalid)
             return
 
         # Swap
@@ -73,7 +73,7 @@ class PirateInventoryAI(DistributedInventoryAI):
         self._locatableItems[loc1] = InvItem(tuple(item2))
         self._locatableItems[loc2] = InvItem(tuple(item1))
 
-        self.air.writeServerEvent('inventory-item-moved', self.ownerId, item1=item1, item2=item2, swapping=swapping)
+        self.air.writeServerEvent('inventory-item-moved', avId=self.ownerId, item1=item1, item2=item2, swapping=swapping)
 
         # Update
         self.d_update()
@@ -93,7 +93,7 @@ class PirateInventoryAI(DistributedInventoryAI):
 
         if deleted:
             for item in deleted:
-                self.air.writeServerEvent('inventory-item-trashed', self.ownerId, item=item)
+                self.air.writeServerEvent('inventory-item-trashed', accountId=self.ownerId, item=item)
 
             self.d_update()
 

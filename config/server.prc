@@ -8,6 +8,3 @@ account-server-guild-link http://149.56.108.93/devtoolkit/_ga.php
 want-rpc-server #f
 rpc-server-endpoint http://localhost:8080/
 rpc-server-secret 7456236a45345z4545
-
-# ANALYTICS
-splunk-application por-server

@@ -78,7 +78,7 @@ class DistributedNPCTownfolkAI(DistributedBattleNPCAI, DistributedShopKeeperAI):
     def processRespec(self, avId, av, respecId):
 
         if not config.GetBool('want-respec-option', False):
-            self.air.writeServerEvent('suspicious', avId, issue="Client bypassed sanity check and used the respec DistributedNPCTownfolkAI option")
+            self.air.writeServerEvent('suspicious', avId=avId, message="Client bypassed sanity check and used the respec DistributedNPCTownfolkAI option")
             return
 
         inv = av.getInventory()

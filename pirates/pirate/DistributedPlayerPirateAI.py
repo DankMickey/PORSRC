@@ -432,7 +432,7 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         if reason != ItemConstants.REASON_NONE:
             msg += ' weapons = %r, requested = %d, reason = %d' % (weapons, currentWeapon, reason)
             self.notify.warning(msg)
-            self.air.writeServerEvent('suspicious', self.doId, issue=msg)
+            self.air.writeServerEvent('suspicious', avId=self.doId, message=msg)
             return
 
         self.b_setCurrentWeapon(currentWeapon, isWeaponDrawn)

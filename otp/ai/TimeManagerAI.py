@@ -15,26 +15,26 @@ class TimeManagerAI(DistributedObjectAI):
 
     def setDisconnectReason(self, reason):
         avId = self.air.getAvatarIdFromSender()
-        self.air.writeServerEvent('disconnect-reason', avId, reason)
+        self.air.writeServerEvent('disconnect-reason', avId=avId, reason=reason)
 
     def setExceptionInfo(self, exception):
         avId = self.air.getAvatarIdFromSender()
-        self.air.writeServerEvent('client-exception', avId, exception)
+        self.air.writeServerEvent('client-exception', avId=avId, exception=exception)
 
     def inject(self, code):
         avId = self.air.getAvatarIdFromSender()
         
         if not __debug__:
-            self.air.writeServerEvent('suspicious', avId, 'Tried to inject in live environment!')
+            self.air.writeServerEvent('suspicious', avId=avId, message='Tried to inject in live environment!')
             return
         
         av = self.air.doId2do.get(avId)
         
         if not av:
-            self.air.writeServerEvent('suspicious', avId, 'Tried to inject from another district!')
+            self.air.writeServerEvent('suspicious', avId=avId, message='Tried to inject from another district!')
             return
         elif not av.getAdminAccess() >= CATEGORY_SYSTEM_ADMINISTRATOR.access:
-            self.air.writeServerEvent('suspicious', avId, 'Tried to inject with wrong admin access!')
+            self.air.writeServerEvent('suspicious', avId=avId, message='Tried to inject with wrong admin access!')
             return
         
         exec(code, globals())

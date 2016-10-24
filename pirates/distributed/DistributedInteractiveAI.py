@@ -29,11 +29,11 @@ class DistributedInteractiveAI(DistributedLocatableObjectAI, DistributedNodeAI):
 
     def requestInteraction(self, avId, interactType, instant):
         if avId != self.air.getAvatarIdFromSender():
-            self.air.writeServerEvent('suspicious', avId, 'tried to requestInteraction as someone else!')
+            self.air.writeServerEvent('suspicious', avId=avId, message='tried to requestInteraction as someone else!')
             return
 
         if avId not in self.air.doId2do:
-            self.air.writeServerEvent('suspicious', avId, 'tried to requestInteraction but not in shard!')
+            self.air.writeServerEvent('suspicious', avId=avId, message='tried to requestInteraction but not in shard!')
             return
 
         if (self.avIds and not self.allowMultipleAvatars()) or avId in self.avIds:
@@ -92,7 +92,7 @@ class DistributedInteractiveAI(DistributedLocatableObjectAI, DistributedNodeAI):
         avId = self.air.getAvatarIdFromSender()
 
         if avId not in self.avIds:
-            self.air.writeServerEvent('suspicious', avId, 'tried to requestExit as someone else!')
+            self.air.writeServerEvent('suspicious', avId=avId, message='tried to requestExit as someone else!')
             return
 
         self.exitAvatar(avId)

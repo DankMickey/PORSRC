@@ -17,7 +17,7 @@ class DistributedDinghyAI(DistributedInteractiveAI):
         # deny them anyway.
         if config.GetBool('want-seas-closed', False):
             msg = 'Client bypassed sanity check and called DistributedDinghyAI'
-            self.air.writeServerEvent('suspicious', self.air.getAvatarIdFromSender(), issue=msg)
+            self.air.writeServerEvent('suspicious', avId=self.air.getAvatarIdFromSender(), message=msg)
 
         return REJECT # TO DO
 

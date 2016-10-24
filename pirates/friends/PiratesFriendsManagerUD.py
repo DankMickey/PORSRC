@@ -355,7 +355,7 @@ class PiratesFriendsManagerUD(DistributedObjectGlobalUD):
         if toId not in self.tpRequests:
             return
         if self.tpRequests.get(toId) != fromId:
-            self.air.writeServerEvent('suspicious', fromId, 'Pirate tried to send teleportResponse for a query that isn\'t theirs!')
+            self.air.writeServerEvent('suspicious', avId=fromId, message='Pirate tried to send teleportResponse for a query that isn\'t theirs!')
             return
 
         self.sendUpdateToAvatarId(toId, 'setTeleportResponse', [fromId, available, shardId, hoodId, zoneId])
@@ -386,7 +386,7 @@ class PiratesFriendsManagerUD(DistributedObjectGlobalUD):
             return
 
         self.sendUpdateToAvatarId(toId, 'receiveTalkWhisper', [fromId, message])
-        self.air.writeServerEvent('whisper-said', fromId, toId, message)
+        self.air.writeServerEvent('whisper-said', fromId=fromId, toId=toId, message=message)
 
     # -- Routes --
     def teleportGiveup(self, toId):

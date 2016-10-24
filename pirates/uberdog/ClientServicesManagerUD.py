@@ -374,7 +374,7 @@ class LoginAccountFSM(CSMOperation):
 
     def __handleLookup(self, result):
         if not result.get('success'):
-            self.csm.air.writeServerEvent('tokenRejected', self.target, self.token)
+            self.csm.air.writeServerEvent('tokenRejected', accountId=self.target, token=self.token)
             self.demand('Kill', result.get('reason', 'The account server rejected your token.'))
             return
 
@@ -428,7 +428,7 @@ class LoginAccountFSM(CSMOperation):
             return
 
         self.accountId = accountId
-        self.csm.air.writeServerEvent('accountCreated', accountId)
+        self.csm.air.writeServerEvent('accountCreated', accountId=accountId)
         self.demand('StoreAccountID')
 
     def enterStoreAccountID(self):
@@ -507,7 +507,7 @@ class LoginAccountFSM(CSMOperation):
             changeDict)
 
         # We're done.
-        self.csm.air.writeServerEvent('accountLogin', self.target, self.accountId, self.userId)
+        self.csm.air.writeServerEvent('accountLogin', channelId=self.target, accountId=self.accountId, userId=self.userId)
         self.csm.sendUpdateToChannel(self.target, 'acceptLogin', [self.userId])
         self.demand('Off')
 
@@ -631,7 +631,7 @@ class CreateAvatarFSM(CSMOperation):
 
     def gotInventory(self, obj):
         if obj:
-            self.csm.air.writeServerEvent('avatarCreated', self.avId, self.target, self.dna.encode('hex'), self.index)
+            self.csm.air.writeServerEvent('avatarCreated', avId=self.avId, accountId=self.target, dna=self.dna.encode('hex'), index=self.index)
             self.csm.sendUpdateToAccountId(self.target, 'createAvatarResp', [self.avId])
 
         self.demand('Off')
@@ -813,7 +813,7 @@ class UnloadAvatarFSM(CSMOperation):
         self.csm.air.send(datagram)
 
         # Done!
-        self.csm.air.writeServerEvent('avatarUnload', self.avId)
+        self.csm.air.writeServerEvent('avatarUnload', avId=self.avId)
         self.demand('Off')
 
 class LoadAvatarFSM(AvatarOperationFSM):
@@ -927,7 +927,7 @@ class LoadAvatarFSM(AvatarOperationFSM):
         datagram.addChannel(self.target<<32 | self.avId)
         self.csm.air.send(datagram)
 
-        self.csm.air.writeServerEvent('avatarChosen', self.avId, self.target)
+        self.csm.air.writeServerEvent('avatarChosen', avId=self.avId, accountId=self.target)
         self.demand('Off')
 
 class DeleteAvatarFSM(AvatarOperationFSM):
@@ -964,7 +964,7 @@ class DeleteAvatarFSM(AvatarOperationFSM):
             self.demand('Kill', 'Database failed to mark the avatar deleted!')
             return
 
-        self.csm.air.writeServerEvent('avatarDeleted', self.avId, self.target)
+        self.csm.air.writeServerEvent('avatarDeleted', avId=self.avId, accountId=self.target)
         self.csm.sendUpdateToAccountId(self.target, 'avDeleted', [self.avId])
         self.demand('Off')
 

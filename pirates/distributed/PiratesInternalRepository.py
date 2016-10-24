@@ -1,12 +1,12 @@
 from panda3d.core import Datagram
-from direct.distributed.AstronInternalRepository import AstronInternalRepository
+from direct.distributed.AstronInternalRepository import AstronInternalRepository, msgpack_encode
 from direct.distributed.PyDatagramIterator import PyDatagramIterator
 from direct.distributed.PyDatagram import PyDatagram
 from direct.distributed.MsgTypes import *
 from otp.distributed.OtpDoGlobals import *
 from PiratesNetMessengerAI import PiratesNetMessengerAI
-import urlparse, traceback, sys
-
+from pirates.ai.AnalyticsManagerAI import AnalyticsManagerAI
+import collections, urlparse, traceback, sys
 
 class PiratesInternalRepository(AstronInternalRepository):
     GameGlobalsId = OTP_DO_ID_PIRATES
@@ -25,6 +25,7 @@ class PiratesInternalRepository(AstronInternalRepository):
 
     def handleConnected(self):
         self.netMessenger = PiratesNetMessengerAI(self)
+        self.analyticsMgr = AnalyticsManagerAI()
         
         try:
             import pymongo
@@ -129,13 +130,28 @@ class PiratesInternalRepository(AstronInternalRepository):
                 dg.addString('You were disconnected to prevent a district reset.')
                 self.send(dg)
 
-            self.writeServerEvent('INTERNAL-EXCEPTION', self.getAvatarIdFromSender(), self.getAccountIdFromSender(),
-                                  repr(e), traceback.format_exc())
+            self.writeServerEvent('INTERNAL-EXCEPTION', avId=self.getAvatarIdFromSender(), accountId=self.getAccountIdFromSender(),
+                                  exception=traceback.format_exc())
             self.notify.warning('INTERNAL-EXCEPTION: %s (%s)' % (repr(e), self.getAvatarIdFromSender()))
             print traceback.format_exc()
             sys.exc_clear()
 
         return 1
+    
+    def writeServerEvent(self, logType, **kwargs):
+        log = collections.OrderedDict()
+        log['type'] = logType
+        log['sender'] = self.eventLogId
+        log.update(kwargs)
+
+        if not self.analyticsMgr.isReady():
+            if self.eventSocket is not None:
+                dg = PyDatagram()
+                msgpack_encode(dg, log)
+                self.eventSocket.Send(dg.getMessage())
+        else:
+            del log['type']
+            self.analyticsMgr.track(logType, log)
     
     def getObjectsOfExactClass(self, objClass):
         return {doId: do for doId, do in self.doId2do.items() if do.__class__ == objClass}

@@ -27,7 +27,7 @@ class ChatAgentAI(DistributedObjectAI):
         if not av:
             return
         
-        self.air.writeServerEvent('chat-said', avId, message)
+        self.air.writeServerEvent('chat-said', avId=avId, message=message)
         
         if not channel:
             av.d_setTalk(message)

@@ -533,7 +533,7 @@ class AITradeBase(AsyncRequest):
         except AITradeException:
             e = None
             self.notify.warning('trade rejected by _normalizeTrade or _checkRules %s' % (e,))
-            self.air.writeServerEvent('failedNormalizeTrade', self.inventoryId, '%s|%s|%s|%s' % (self.giving, self.taking, e, context))
+            self.air.writeServerEvent('failedNormalizeTrade', inventoryId=self.inventoryId, message='%s|%s|%s|%s' % (self.giving, self.taking, e, context))
             self.rejectApprovedTrade(None, 1)
             return None
 

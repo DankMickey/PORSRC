@@ -20,7 +20,6 @@ from pirates.distributed.TargetManagerAI import TargetManagerAI
 from pirates.battle.BattleManagerAI import BattleManagerAI
 from pirates.coderedemption.CodeRedemptionAI import CodeRedemptionAI
 from pirates.band.DistributedPirateBandManagerAI import DistributedPirateBandManagerAI
-from pirates.analytics.AnalyticsManagerAI import AnalyticsManagerAI
 import threading, sys
 
 class PiratesAIRepository(PiratesInternalRepository):
@@ -70,8 +69,6 @@ class PiratesAIRepository(PiratesInternalRepository):
 
         self.banMgr = BanManagerAI(self)
         self.battleMgr = BattleManagerAI(self)
-
-        self.analyticsMgr = AnalyticsManagerAI()
 
     def createMainWorld(self):
         self.worldCreator = WorldCreatorAI(self)

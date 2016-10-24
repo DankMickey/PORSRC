@@ -50,7 +50,6 @@ class DistributedPotionGameAI(DistributedObjectAI):
         if self.__workingRecipe == -1:
             if not self.recipes.get(recipe):
                 msg = 'recipe invalid: %d; self.recipes = %r' % (recipe, self.recipes)
-                # self.writeServerEvent('suspicious', self.avId, msg) - first of all, self.writeServerEvent returns an AttributeError, second of all this will happen even when not cheating due to the potion game being fucked and having things stuck in the air
                 self.notify.warning(msg)
                 return
 
@@ -58,14 +57,13 @@ class DistributedPotionGameAI(DistributedObjectAI):
 
         elif recipe != self.__workingRecipe:
             msg = 'tried to complete recipe they are not working on: %d (%d)' % (recipe, self.__workingRecipe)
-            # self.writeServerEvent('suspicious', self.avId, msg)
             self.notify.warning(msg)
             return
 
         self.__numIngredientsDone += 1
         if self.__numIngredientsDone >= self.recipes[recipe]:
             print 'recipe done', recipe
-            self.air.writeServerEvent('recipe-done', self.avId, recipe)
+            self.air.writeServerEvent('recipe-done', avId=self.avId, recipe=recipe)
             self.av.addReputation(InventoryType.PotionsRep, PotionGlobals.getPotionBuffXP(recipe))
             self.reset()
 

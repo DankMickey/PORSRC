@@ -1,7 +1,0 @@
-ANALYTICS_INDEX_NAME = "main"
-ANALYTICS_SOURCETYPE = "httpevent"
-APPLICATION_KEY = "application"
-EVENT_KEY = "event"
-DISTINCT_KEY = "distinct_id"
-EVENT_TERMINATOR = "\\r\\n-----end-event-----\\r\\n"
-PROPERTY_PREFIX = "analytics_prop__"

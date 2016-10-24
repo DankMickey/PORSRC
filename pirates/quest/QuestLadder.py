@@ -217,7 +217,7 @@ class QuestContainer(DirectObject.DirectObject):
 
 
     def handleQuestComplete(self, completedQuest, completedContainer, prevCompletedQuests = []):
-        simbase.air.writeServerEvent('questLadder', self.av.doId, 'handleQuestComplete(%s,%s,%s)' % (completedQuest, completedContainer, prevCompletedQuests))
+        simbase.air.writeServerEvent('questLadder', avId=self.av.doId, message='handleQuestComplete(%s,%s,%s)' % (completedQuest, completedContainer, prevCompletedQuests))
         self.notify.debug('QC.handleQuestComplete().name: %s' % self.name)
         self.notify.debug('QC.handleQuestComplete().completedQuest: %s' % completedQuest.getName())
         self.notify.debug('QC.handleQuestComplete().completedQuests: %s' % self.completedQuests)
@@ -226,24 +226,24 @@ class QuestContainer(DirectObject.DirectObject):
         self.notify.debug('QC.handleQuestComplete().prevCompletedQuests: %s' % prevCompletedQuests)
         self.notify.debug('QC.handleQuestComplete().isComplete?: %s' % self.isComplete())
         qId = completedContainer.getName()
-        simbase.air.writeServerEvent('questLadder', self.av.doId, 'ComletedContainer: %s' % qId)
+        simbase.air.writeServerEvent('questLadder', avId=self.av.doId, message='ComletedContainer: %s' % qId)
         skipIndex = 1 + QuestLinkDB.getQuestLink(qId)
         nextIndex = self.containers.index(completedContainer) + skipIndex
         if nextIndex >= len(self.containers) and not isinstance(self, QuestChoice):
             if not self.isComplete():
-                simbase.air.writeServerEvent('questLadder', self.av.doId, 'Container forced to complete!')
+                simbase.air.writeServerEvent('questLadder', avId=self.av.doId, message='Container forced to complete!')
 
             isComplete = True
         else:
             isComplete = self.isComplete()
         if isComplete:
-            simbase.air.writeServerEvent('questLadder', self.av.doId, 'Container COMPLETE: %s' % self.getName())
+            simbase.air.writeServerEvent('questLadder', avId=self.av.doId, message='Container COMPLETE: %s' % self.getName())
             self.av.questStatus.updateHistory(self)
             qEvent = QuestEvent.QuestContainerCompleted(containerId = self.getName())
             simbase.air.questMgr.handleEvent([
                 self.av], qEvent)
             if self.parent:
-                simbase.air.writeServerEvent('questLadder', self.av.doId, 'Call handleComlete on parent: %s' % self.parent.getName())
+                simbase.air.writeServerEvent('questLadder', avId=self.av.doId, message='Call handleComlete on parent: %s' % self.parent.getName())
                 self.updateCompletedQuests(completedQuest, prevCompletedQuests)
                 self.parent.handleQuestComplete(completedQuest, self, self.completedQuests)
                 self.completedQuests = []
@@ -254,8 +254,8 @@ class QuestContainer(DirectObject.DirectObject):
                 self.av._swapQuest(oldQuests = quests, giverId = None, questIds = None, rewards = None)
                 self.av.questStatus.handleLadderComplete(self)
         else:
-            simbase.air.writeServerEvent('questLadder', self.av.doId, 'Container NOT COMPLETE: %s' % self.getName())
-            simbase.air.writeServerEvent('questLadder', self.av.doId, 'Container skipIndex: %s' % skipIndex)
+            simbase.air.writeServerEvent('questLadder', avId=self.av.doId, message='Container NOT COMPLETE: %s' % self.getName())
+            simbase.air.writeServerEvent('questLadder', avId=self.av.doId, message='Container skipIndex: %s' % skipIndex)
             self.av.questStatus.updateHistory(completedContainer)
             self.updateCompletedQuests(completedQuest)
             self.advance(completedContainer, skipIndex)
@@ -272,7 +272,7 @@ class QuestContainer(DirectObject.DirectObject):
 
 
     def advance(self, completedContainer, skipIndex = 1):
-        simbase.air.writeServerEvent('questLadder', self.av.doId, 'Advance QuestLadder: %s by %s' % (completedContainer.name, skipIndex))
+        simbase.air.writeServerEvent('questLadder', avId=self.av.doId, message='Advance QuestLadder: %s by %s' % (completedContainer.name, skipIndex))
         self.notify.debug('QC.advance().name: %s' % self.name)
         self.notify.debug('QC.advance().completedContainer: %s' % completedContainer.name)
         self.notify.debug('QC.advance().completedContainer.completedQuests: %s' % completedContainer.completedQuests)
@@ -289,18 +289,18 @@ class QuestContainer(DirectObject.DirectObject):
 
 
     def assignQuest(self, quests, giverId, nextQuestIds, rewards = [], callback = None):
-        simbase.air.writeServerEvent('questLadder', self.av.doId, 'assignQuest(quests: %s, giverId: %s, nextQuestIds: %s, rewards: %s, callback: %s)' % (quests, giverId, nextQuestIds, rewards, callback))
+        simbase.air.writeServerEvent('questLadder', avId=self.av.doId, message='assignQuest(quests: %s, giverId: %s, nextQuestIds: %s, rewards: %s, callback: %s)' % (quests, giverId, nextQuestIds, rewards, callback))
         self.notify.debug('QC.assignQuest().name: %s' % self.name)
         self.notify.debug('QC.assignQuest().nextQuestIds: %s' % nextQuestIds)
 
         nextQuestId = nextQuestIds[0]
         if len(quests):
-            simbase.air.writeServerEvent('questLadder', self.av.doId, 'SWAP Quests: quests: %s, nestQuests: %s, rewards: %s' % (quests, nextQuestIds, rewards))
+            simbase.air.writeServerEvent('questLadder', avId=self.av.doId, message='SWAP Quests: quests: %s, nestQuests: %s, rewards: %s' % (quests, nextQuestIds, rewards))
             self.av._swapQuest(quests, giverId, nextQuestIds, rewards)
         elif len(nextQuestIds) > 1:
             self.notify.warning('attempted to assign multiple quests: %s' % nextQuestIds)
 
-        simbase.air.writeServerEvent('questLadder', self.av.doId, 'ACCEPT Quest: %s' % nextQuestId)
+        simbase.air.writeServerEvent('questLadder', avId=self.av.doId, message='ACCEPT Quest: %s' % nextQuestId)
         self.av._acceptQuest(nextQuestId, giverId, rewards)
 
         def handleQuestsAvailable(callback, av, quests):

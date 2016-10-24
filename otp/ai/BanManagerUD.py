@@ -97,5 +97,5 @@ class BanManagerUD(DirectObject):
 
         msg = '%s banned %s for %s hours: %s' % (fsm.banner, fsm.targetUsername, fsm.duration, fsm.banReason)
         self.notify.info(msg)
-        self.air.writeServerEvent('banned', fsm.accountId, username=fsm.targetUsername,
+        self.air.writeServerEvent('banned', accountId=fsm.accountId, username=fsm.targetUsername,
                                   moreInfo=msg)
