@@ -1411,7 +1411,6 @@ dclass DistributedFlagshipAI : DistributedObject {
 
 dclass DistributedShip: DistributedMovingObject, Teamable {
   setParentingRules(string, string) broadcast ram;
-  string DcObjectType db;
   setUniqueId(string) required broadcast ram;
 }
 

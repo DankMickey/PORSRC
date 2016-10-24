@@ -24,7 +24,6 @@ from pirates.seapatch.Water import IslandWaterParameters
 from pirates.swamp.Swamp import Swamp
 from pirates.world.LocationConstants import LocationIds, getLocationList
 from pirates.map.Mappable import MappableArea
-import time
 
 class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
     notify = directNotify.newCategory('DistributedGameArea')
@@ -35,7 +34,6 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
         MappableArea.__init__(self)
         self.uniqueId = ''
         self.geom = None
-        self.funnelDisplayName = None
         self.previousDisplayName = None
         self._DistributedGameArea__onOffState = False
         self.gameFSM = None
@@ -48,10 +46,6 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
         self.blockerColls = []
         self.islandWaterParameters = None
         self.swamp_water = None
-        self.entryTime = [
-            None,
-            0]
-        self.timeCheck = 0
         self.minimap = None
         self.footprintNode = None
         self.popupDialog = None
@@ -272,23 +266,7 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
                     self.acceptOnce('closeTutorialWindow', closeTutorialWindow)
 
         taskMgr.doMethodLater(1, self.showEnterMessage, 'showEnterMessage')
-        displayName = PLocalizer.LocationNames.get(self.uniqueId)
-        self.storeLocationTime(self.funnelDisplayName, time.time())
         self.builder.initEffects()
-
-    def storeLocationTime(self, loc, time):
-        if loc == self.entryTime[0]:
-            if self.entryTime[1] == 0:
-                self.entryTime[1] = time
-
-            return None
-        else:
-            self.entryTime = [
-                loc,
-                time]
-
-    def readLocationTime(self):
-        return self.entryTime[1]
 
     def showEnterMessage(self, task):
         displayName = PLocalizer.LocationNames.get(self.uniqueId)
@@ -297,16 +275,8 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
     def handleExitGameArea(self, collEntry = None):
         self.stopCustomEffects()
         self.previousDisplayName = None
-        displayName = str(self.funnelDisplayName)
-        timeSpent = int(time.time()) - int(self.readLocationTime())
-        if int(self.timeCheck) + 1 == int(timeSpent) and int(self.timeCheck) - 1 == int(timeSpent) or int(self.timeCheck) == int(timeSpent):
-            pass
-        1
-        base.cr.centralLogger.writeClientEvent('EXITING_AREA|%s|%d' % (displayName, timeSpent))
-        self.timeCheck = timeSpent
 
     def displayGameAreaName(self, displayName):
-        self.funnelDisplayName = displayName
         if self.previousDisplayName != displayName:
             self.previousDisplayName = displayName
             base.localAvatar.guiMgr.createTitle(displayName, PiratesGuiGlobals.TextFG2)

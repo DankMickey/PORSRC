@@ -1073,7 +1073,7 @@ class DistributedQuestGiver(Avatar.Avatar):
         if self.nametagIcon:
             self.nametagIcon.setPos(0, 0, 3.5)
             if self.getNameText() is None:
-                base.cr.centralLogger.writeClientEvent('NPC %s, %s: has no nameText, type = %s, status = %s!' % (self, self.getName(), type, status))
+                self.notify.warning('NPC %s, %s: has no nameText, type = %s, status = %s!' % (self, self.getName(), type, status))
                 if self.nametagIcon:
                     self.nametagIcon.detachNode()
 

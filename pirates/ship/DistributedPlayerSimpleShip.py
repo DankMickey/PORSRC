@@ -1,5 +1,6 @@
 from panda3d.core import CollideMask, ModelRoot, VBase4, Vec4, invert
 import direct.interval.IntervalGlobal as IG
+from direct.directnotify import DirectNotifyGlobal
 from direct.fsm.StatePush import StateVar
 from direct.task import Task
 from pirates.ship.DistributedSimpleShip import MinimapShip
@@ -18,6 +19,7 @@ from pirates.piratesgui import ShipFrameBoard
 import random
 
 class DistributedPlayerSimpleShip(DistributedSimpleShip):
+    notify = DirectNotifyGlobal.directNotify.newCategory('DistributedPlayerSimpleShip')
     RepairSpotFadeAfter = 2.0
     RepairSpotFadeDur = 3.0
 
@@ -696,7 +698,6 @@ class DistributedPlayerSimpleShip(DistributedSimpleShip):
                 doId = self.doId
             else:
                 self.badInitTeam = team
-            base.cr.centralLogger.writeClientEvent('bad ship team: %s' % doId)
             self.notify.warning('bad ship team: %s' % doId)
             return False
 
@@ -706,9 +707,9 @@ class DistributedPlayerSimpleShip(DistributedSimpleShip):
     def d_setLocation(self, parentId, zoneId):
         theStack = StackTrace(start = 1)
         if self.prevLocStack and len(theStack.trace) == len(self.prevLocStack.trace) and map(lambda x: x[1], theStack.trace) == map(lambda x: x[1], self.prevLocStack.trace):
-            base.cr.centralLogger.writeClientEvent('bad ship team: %s setLoc' % self.doId)
+            self.notify.warning('bad ship team: %s setLoc' % self.doId)
         else:
-            base.cr.centralLogger.writeClientEvent('bad ship team: %s' % self.doId + theStack.compact()[1:len(theStack.compact())])
+            self.notify.warning('bad ship team: %s' % self.doId + theStack.compact()[1:len(theStack.compact())])
             self.prevLocStack = theStack
         DistributedSimpleShip.d_setLocation(self, parentId, zoneId)
 

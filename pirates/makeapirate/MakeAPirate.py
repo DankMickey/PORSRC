@@ -536,12 +536,6 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
         self.ignore('wheel_up')
         self.ignore('wheel_down')
         self.entered = 0
-        if not self.isNPCEditor:
-            base.cr.centralLogger.writeClientEvent('CREATE_PIRATE_EXITS')
-
-        if not self.isNPCEditor:
-            base.cr.centralLogger.writeClientEvent('CUTSCENE_ONE_START')
-
         self.idleFSM = None
 
     def loadJackDialogs(self):

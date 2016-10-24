@@ -95,12 +95,6 @@ class DistributedInteriorDoor(DistributedDoorBase.DistributedDoorBase):
                 self.skipTutorialBox = SkipTutorialFrame.SkipTutorialFrame(callback = self.handleSkipTutorial)
 
             return None
-        #elif not base.launcher.getPhaseComplete(3):
-        #    if not self.doorDisableDialog:
-        #        base.cr.centralLogger.writeClientEvent('Player encountered phase 3 blocker')
-        #        self.doorDisableDialog = PDialog.PDialog(text = PLocalizer.NoRambleshack, style = OTPDialog.Acknowledge, command = self.cleanupDoorDisableDialog)
-            
-        #    return None
 
         if self.buildingUid == LocationIds.PARLOR_BUILDING:
             if avId == base.localAvatar.doId:
@@ -119,23 +113,9 @@ class DistributedInteriorDoor(DistributedDoorBase.DistributedDoorBase):
         
         if skip:
             self.skipTutorial = True
-            if not base.launcher.getPhaseComplete(4):
-                if not self.doorDisableDialog:
-                    base.cr.centralLogger.writeClientEvent('Player encountered phase 4 blocker trying to skip tutorial before PR downloaded')
-                    self.doorDisableDialog = PDialog.PDialog(text = PLocalizer.NoPortRoyal, style = OTPDialog.Acknowledge, command = self.cleanupDoorDisableDialog)
-                
-                return None
-            
             base.cr.tutorialObject.skipTutorial()
         else:
             self.askedTutorial = True
-            if not base.launcher.getPhaseComplete(3):
-                if not self.doorDisableDialog:
-                    base.cr.centralLogger.writeClientEvent('Player encountered phase 3 blocker trying to leave starting jail')
-                    self.doorDisableDialog = PDialog.PDialog(text = PLocalizer.NoRambleshack, style = OTPDialog.Acknowledge, command = self.cleanupDoorDisableDialog)
-                
-                return None
-            
             DistributedDoor.requestInteraction(self, self.avId, self.interactType)
 
     def loadExteriorFinished(self):

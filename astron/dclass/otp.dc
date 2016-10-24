@@ -29,7 +29,6 @@ struct AvatarPendingDel {
 };
 
 dclass Account {
-  string DcObjectType db;
   uint32 ACCOUNT_AV_SET[] required db;
   AvatarPendingDel ACCOUNT_AV_SET_DEL[] db;
   string CREATED db;
@@ -48,8 +47,6 @@ struct BarrierData {
 dclass DistributedObject {
   setBarrierData(BarrierData []) broadcast ram;
   setBarrierReady(uint16 barrierContext) airecv clsend;
-  execCommand(string command, DoId magicWordMgr,
-              DoId avatar, uint32 zoneId);
   broadcastMessage() broadcast;
 };
 

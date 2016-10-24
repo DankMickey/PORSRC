@@ -276,13 +276,6 @@ class PirateProfilePage(SocialPage.SocialPage):
             return
 
         self.profileId = profileId
-        avatar = base.cr.doId2do.get(self.profileId)
-        if avatar:
-            if not isinstance(avatar, DistributedPlayerPirate.DistributedPlayerPirate):
-                if isinstance(avatar, DistributedBandMember.DistributedBandMember):
-                    base.cr.centralLogger.writeClientEvent('WARNING: Tried to access profile of DistributedBandMember with id %d' % profileId + '\n' + str(StackTrace()))
-
-
 
         handle = base.cr.identifyAvatar(profileId)
         if handle:

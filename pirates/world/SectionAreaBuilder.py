@@ -261,13 +261,13 @@ class SectionAreaBuilder(AreaBuilderBase):
         try:
             self.visZoneMinimaps = eval(visZoneMaps)
         except:
-            base.cr.centralLogger.writeClientEvent('failed to load minimap zones for area %s, (%s)' % (self.master.uniqueId, visZoneMaps))
+            self.notify.warning('failed to load minimap zones for area %s, (%s)' % (self.master.uniqueId, visZoneMaps))
             self.visZoneMinimaps = { }
 
         try:
             self.visZoneTunnels = eval(visZoneTunnels)
         except:
-            base.cr.centralLogger.writeClientEvent('failed to load tunnel zones for area %s, (%s)' % (self.master.uniqueId, visZoneTunnels))
+            self.notify.warning('failed to load tunnel zones for area %s, (%s)' % (self.master.uniqueId, visZoneTunnels))
             self.visZoneTunnels = { }
 
         self.areaGeometry.clearTag('VisZoneMinimaps')

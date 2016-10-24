@@ -1875,7 +1875,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
         duration = av.getDuration(animName)
         frames = av.getNumFrames(animName)
         if duration is None or frames is None:
-            base.cr.centralLogger.writeClientEvent('Invalid Death: %s,%s' % (self, animName))
+            self.notify.warning('Invalid Death: %s,%s' % (self, animName))
             return Sequence()
 
         from pirates.pirate.Biped import Biped

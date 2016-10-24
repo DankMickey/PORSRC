@@ -551,7 +551,7 @@ class WorldCreator(WorldCreatorBase.WorldCreatorBase, DirectObject.DirectObject)
 
         objData = self.getObjectDataByUid(islandUid)
         if not objData:
-            base.cr.centralLogger.writeClientEvent('DevWarning: unknown islandUid (%s)' % (islandUid,))
+            self.notify.warning('DevWarning: unknown islandUid (%s)' % (islandUid,))
             return False
         else:
             return 'PVPTeam' in objData
@@ -562,7 +562,7 @@ class WorldCreator(WorldCreatorBase.WorldCreatorBase, DirectObject.DirectObject)
     def isMysteriousIslandByUid(self, islandUid):
         objData = self.getObjectDataByUid(islandUid)
         if not objData:
-            base.cr.centralLogger.writeClientEvent('DevWarning: unknown islandUid (%s)' % (islandUid,))
+            self.notify.warning('DevWarning: unknown islandUid (%s)' % (islandUid,))
             return False
         else:
             objects = objData.get('Objects')

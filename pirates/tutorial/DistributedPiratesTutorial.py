@@ -192,7 +192,6 @@ class DistributedPiratesTutorial(DistributedObject.DistributedObject, FSM.FSM):
         self.BoatStumpyDoId = None
         self.island = None
         self.shipWreck = None
-        self.loggingCannonDone = False
         self.debugTutorial = config.GetBool('debug-tutorial', 0)
         self.noJailLight = config.GetBool('no-jail-light', 0)
         self._leftJail = 0
@@ -390,7 +389,6 @@ class DistributedPiratesTutorial(DistributedObject.DistributedObject, FSM.FSM):
     def handleWalkedOutToIsland(self):
         if not self._leftJail:
             self._leftJail = 1
-            base.cr.centralLogger.writeClientEvent('LEAVING_JAIL')
             self._stopTutorialInteriorEffects()
             self.island.setZoneLevel(0)
             localAvatar.bindAnim([
@@ -468,7 +466,6 @@ class DistributedPiratesTutorial(DistributedObject.DistributedObject, FSM.FSM):
         self.jail = ga.find('**/*navy_jail_interior*')
         self.map.enter()
         self.accept('makeAPirateComplete', self.handleMakeAPirate)
-        base.cr.centralLogger.writeClientEvent('CREATE_PIRATE_LOADS')
 
 
     def handleMakeAPirate(self, clothing = []):
@@ -646,7 +643,6 @@ class DistributedPiratesTutorial(DistributedObject.DistributedObject, FSM.FSM):
 
 
     def enterEscapeFromLA(self):
-        base.cr.centralLogger.writeClientEvent('CUTSCENE_ONE_END')
         self.acceptOnce('startTutorialCannons', Functor(self._startTutorialInteriorEffects, False))
 
 
@@ -705,7 +701,6 @@ class DistributedPiratesTutorial(DistributedObject.DistributedObject, FSM.FSM):
         self.NPCNell.loop('tut_1_1_5_a_idle_dan')
         self.NPCNell.setInteractOptions(allowInteract = False)
         self.accept('playNellAnimationDan_a', self.playNellAnimationDan_a)
-        base.cr.centralLogger.writeClientEvent('CUTSCENE_TWO_START')
 
 
     def loopNellAnimationDan_a_idle(self):
@@ -798,7 +793,6 @@ class DistributedPiratesTutorial(DistributedObject.DistributedObject, FSM.FSM):
 
 
     def removeDanAndNell(self):
-        base.cr.centralLogger.writeClientEvent('CUTSCENE_TWO_END')
         self.notify.debug('removeDanAndNell')
         localAvatar.setTutorial(PiratesGlobals.TUT_GOT_SEACHEST)
         localAvatar.gameFSM.lockFSM = False
@@ -863,7 +857,6 @@ class DistributedPiratesTutorial(DistributedObject.DistributedObject, FSM.FSM):
         self.sendUpdate('boardedTutorialShip')
         self.acceptOnce('showCannonExitPanel', self.showCannonExitPanel)
         self.accept('targetPracticeDone', self.targetPracticeDone)
-        base.cr.centralLogger.writeClientEvent('CUTSCENE_THREE_START')
         if self.BoatStumpyDoId:
             stumpyBoat = base.cr.doId2do[self.BoatStumpyDoId]
             stumpyBoat.ignoreFloors()
@@ -883,7 +876,6 @@ class DistributedPiratesTutorial(DistributedObject.DistributedObject, FSM.FSM):
         localAvatar.guiMgr.setIgnoreMainMenuHotKey(True)
         localAvatar.guiMgr.chestTray.hide()
         self.sendUpdate('startSailingStumpy')
-        base.cr.centralLogger.writeClientEvent('CUTSCENE_THREE_END')
 
 
     def targetPracticeDone(self):
@@ -908,10 +900,6 @@ class DistributedPiratesTutorial(DistributedObject.DistributedObject, FSM.FSM):
     def cannonDoneShooting(self):
         if base.cr.gameFSM.getCurrentState().getName() != 'playGame':
             return None
-
-        if not self.loggingCannonDone:
-            base.cr.centralLogger.writeClientEvent('ACCESS_CANNON')
-            self.loggingCannonDone = True
 
         self.sendUpdate('targetPracticeDone')
         self.request('Act2TargetSunk')
@@ -947,7 +935,6 @@ class DistributedPiratesTutorial(DistributedObject.DistributedObject, FSM.FSM):
     def enterAct3IntroduceJR(self):
         self.notify.debug('Here comes Jolly Roger')
         self.accept('JRAttackShip', self.JRAttackShip)
-        base.cr.centralLogger.writeClientEvent('CUTSCENE_FOUR_START')
 
 
     def exitAct3IntroduceJR(self):
@@ -962,7 +949,6 @@ class DistributedPiratesTutorial(DistributedObject.DistributedObject, FSM.FSM):
     def JRDestroyShip(self):
         self.notify.debug('JR Destroying Ship')
         self.request('Act4BackToMain')
-        base.cr.centralLogger.writeClientEvent('CUTSCENE_FOUR_END')
 
 
     def enterAct4BackToMain(self):
@@ -1006,4 +992,3 @@ class DistributedPiratesTutorial(DistributedObject.DistributedObject, FSM.FSM):
         base.setOverrideShipVisibility(False)
         messenger.send('stopTutorial')
         localAvatar.show()
-        base.cr.centralLogger.writeClientEvent('STARTGAME_DOCK')
