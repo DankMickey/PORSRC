@@ -1,4 +1,4 @@
-MINIMUM_MAGICWORD_ACCESS = 100
+MINIMUM_MAGICWORD_ACCESS = 300
 
 class MagicError(Exception): pass
 

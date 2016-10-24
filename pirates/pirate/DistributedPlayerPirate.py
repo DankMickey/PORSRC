@@ -3567,7 +3567,7 @@ class MinimapPlayerPirate(MinimapBattleAvatar):
     def setAdminAccess(self, access):
         self.adminAccess = access
         if self.isLocal():
-            self.cr.wantMagicWords = self.adminAccess >= CATEGORY_GAME_MASTER
+            self.cr.wantMagicWords = self.adminAccess >= MINIMUM_MAGICWORD_ACCESS
     
     def requestEmote(self, emoteId):
         gamestate = localAvatar.getGameState()

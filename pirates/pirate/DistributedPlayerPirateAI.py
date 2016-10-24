@@ -719,14 +719,14 @@ def suicide(reason = "kindergarten is elsewhere."):
     simbase.air.send(dg)
     return "Kicked %s from the game." % av
 
-@magicWord(CATEGORY_GAME_DESIGNER)
+@magicWord(CATEGORY_SYSTEM_ADMINISTRATOR)
 def system(text):
     """Send a whisper to the whole district (system), un-prefixed."""
     air = spellbook.getInvoker().air
     air.systemMsgAll(text)
     return "Sent system message '%s' to all pirates in the district." % text
 
-@magicWord(CATEGORY_GAME_DESIGNER)
+@magicWord(CATEGORY_SYSTEM_ADMINISTRATOR)
 def sysadmin(text):
     """Send a whisper to the whole district, prefixed with 'ADMIN:'."""
     air = spellbook.getInvoker().air
@@ -734,7 +734,7 @@ def sysadmin(text):
     air.systemMsgAll(text)
     return "Sent system message '%s' to all pirates in the district." % text
 
-@magicWord(CATEGORY_GAME_DESIGNER)
+@magicWord(CATEGORY_SYSTEM_ADMINISTRATOR)
 def sysname(text):
     """Send a whisper to the whole district, prefixed with 'ADMIN Name:'."""
     air = spellbook.getInvoker().air
@@ -742,7 +742,7 @@ def sysname(text):
     air.systemMsgAll(text)
     return "Sent system message '%s' to all pirates in the district." % text
 
-@magicWord(CATEGORY_GAME_DESIGNER)
+@magicWord(CATEGORY_GAME_DEVELOPER)
 def update(reason="for an update"):
     """Send a whisper to the whole gameserver, prefixed with 'ADMIN Name:'."""
     air = spellbook.getInvoker().air
@@ -759,7 +759,7 @@ def hp(value=-1):
     value = min(value, av.getMaxHp())
     av.b_setHp(value)
 
-@magicWord(CATEGORY_STAFF, types=[int])
+@magicWord(CATEGORY_GAME_MASTER, types=[int])
 def mojo(value=-1):
     av = spellbook.getTarget()
     if value < 0:
@@ -788,7 +788,7 @@ def rep(amount):
 
     av.inventory.addReputation(repId, amount)
 
-@magicWord(CATEGORY_GAME_MASTER, types=[str])
+@magicWord(CATEGORY_GAME_DEVELOPER, types=[str])
 def allegiance(side=None):
     allegiances = ['pirate', 'spanish', 'french']
     side = side.lower()
@@ -800,13 +800,13 @@ def allegiance(side=None):
     av.b_setAllegiance(allegiances.index(side))
     return "%s's allegiance has been set!" % av.getName()
 
-@magicWord(CATEGORY_SPONSOR)
+@magicWord(CATEGORY_YOUTUBER)
 def hideGM():
     av = spellbook.getInvoker()
     av.b_setGMHidden(not av.getGMHidden())
     return 'GM tag has been %s.' % ('hidden' if av.getGMHidden() else 'shown')
 
-@magicWord(CATEGORY_GAME_DESIGNER, types=[str, str])
+@magicWord(CATEGORY_SYSTEM_ADMINISTRATOR, types=[str, str])
 def gm(color=None, tag=None):
     av = spellbook.getTarget()
     
@@ -821,14 +821,14 @@ def gm(color=None, tag=None):
         av.b_setGMNametag(color, tag)
         return 'GM nametag set!'
 
-@magicWord(CATEGORY_GAME_MASTER, types=[int])
+@magicWord(CATEGORY_SYSTEM_ADMINISTRATOR, types=[int])
 def giveGold(gold):
     target = spellbook.getTarget()
     invoker = spellbook.getInvoker()
     target.giveGold(gold)
     return 'Given %d gold to %s! Balance: %d' % (gold, target.getName(), target.getGoldInPocket())
 
-@magicWord(CATEGORY_GAME_MASTER, types=[int])
+@magicWord(CATEGORY_SYSTEM_ADMINISTRATOR, types=[int])
 def takeGold(gold):
     target = spellbook.getTarget()
     invoker = spellbook.getInvoker()
@@ -848,13 +848,13 @@ def cursed():
         response = '%s has been cursed!' % target.getName()
     return response
 
-@magicWord(CATEGORY_GAME_MASTER, types=[int])
+@magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
 def setDoubleXP(value):
     target = spellbook.getTarget()
     target.b_setTempDoubleXPReward(value * 60)
     return "Set %s's TempDoubleXPReward to %s minutes" % (target.getName(), value)
 
-@magicWord(CATEGORY_GAME_MASTER)
+@magicWord(CATEGORY_GAME_DEVELOPER)
 def getDoubleXP():
     target = spellbook.getTarget()
     return '%s has %s minutes left of double xp' % (target.getName(), str(target.getTempDoubleXPReward()))
@@ -871,7 +871,7 @@ def setShipBadge(title, rank):
     target.b_setShipIcon(title, rank)
     return "Set {0}'s shipBadge to ({1}, {2})".format(target.getName(), title, rank)
 
-@magicWord(CATEGORY_GAME_MASTER, types=[int, int, int])
+@magicWord(CATEGORY_GAME_DEVELOPER, types=[int, int, int])
 def giveLocatable(type, itemId, amount):
     target = spellbook.getTarget()
     invoker = spellbook.getInvoker()
@@ -896,7 +896,7 @@ def giveLocatable(type, itemId, amount):
 
     return "Locatable given to %s." % target.getName()
 
-@magicWord(CATEGORY_GAME_MASTER, types=[int])
+@magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
 def giveWeapon(itemId):
     target = spellbook.getTarget()
     invoker = spellbook.getInvoker()
@@ -921,7 +921,7 @@ def giveWeapon(itemId):
 
     return "Weapon (%s) given to %s." % (itemId, target.getName())
 
-@magicWord(CATEGORY_GAME_MASTER, types=[int])
+@magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
 def giveClothing(itemId):
     target = spellbook.getTarget()
     invoker = spellbook.getInvoker()
@@ -947,7 +947,7 @@ def giveClothing(itemId):
     air = invoker.air
     return "Clothing (%s) given to %s." % (itemId, target.getName())
 
-@magicWord(CATEGORY_GAME_MASTER, types=[int])
+@magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
 def giveJewelry(itemId):
     target = spellbook.getTarget()
     invoker = spellbook.getInvoker()
@@ -978,17 +978,17 @@ def ghost(state):
     av.b_setIsGhost((state == 1))
     return "Set %s's ghost state to %s" % (av.getName, state)
 
-@magicWord(CATEGORY_GAME_MASTER)
+@magicWord(CATEGORY_GAME_DEVELOPER)
 def mypos():
     av = spellbook.getInvoker()
     return "Pos: %s" % str(av.getPos())
 
-@magicWord(CATEGORY_GAME_MASTER)
+@magicWord(CATEGORY_GAME_DEVELOPER)
 def getUsedCodes():
     av = spellbook.getTarget()
     return "Codes: %s" % str(av.getRedeemedCodes())
 
-@magicWord(CATEGORY_GAME_MASTER)
+@magicWord(CATEGORY_GAME_DEVELOPER)
 def clearUsedCodes():
     invoker = spellbook.getInvoker()
     av = spellbook.getTarget()
@@ -996,7 +996,7 @@ def clearUsedCodes():
     av.setRedeemedCodes([])
     return "Cleared Redeemed codes."
 
-@magicWord(CATEGORY_GAME_MASTER, types=[str])
+@magicWord(CATEGORY_GAME_DEVELOPER, types=[str])
 def clearCode(code):
     invoker = spellbook.getInvoker()
     av = spellbook.getTarget()
@@ -1005,7 +1005,7 @@ def clearCode(code):
     av.removeRedeemedCode(code)
     return "Removed '%s'!" % code 
 
-@magicWord(CATEGORY_GAME_MASTER, types=[str])
+@magicWord(CATEGORY_GAME_DEVELOPER, types=[str])
 def registerCodeUsed(code):
     invoker = spellbook.getInvoker()
     av = spellbook.getTarget()
