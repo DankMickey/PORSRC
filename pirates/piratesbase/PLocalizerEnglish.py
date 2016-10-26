@@ -5337,6 +5337,7 @@ LockMechanism = 'Mechanism'
 LockpickFailed = 'Lockpick Failed'
 UnlockedBy = 'Unlocked by'
 InteractTable = 'Press %s to sit down' % InteractKey
+InteractTableClosed = 'Sorry, the tables are currently closed.'
 InteractTableBlackjack = 'Press %s to sit down and play Blackjack' % InteractKey
 InteractTablePoker = 'Press %s to sit down and play Poker' % InteractKey
 InteractTableHoldemPoker = "Press %s to sit down and play Tortuga Hold'em Poker" % InteractKey

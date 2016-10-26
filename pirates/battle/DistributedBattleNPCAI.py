@@ -137,7 +137,7 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
     def getInitZ(self):
         return self.initZ
 
-    def posControlledByIsland(self):
+    def posControlledByCell(self):
         area = self.getParentObj()
 
         cell = GridParent.getCellOrigin(area, self.zoneId)

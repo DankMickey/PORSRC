@@ -1,19 +1,25 @@
 from direct.directnotify import DirectNotifyGlobal
-from pirates.distributed import DistributedInteractiveAI
+from pirates.distributed.DistributedInteractiveAI import DistributedInteractiveAI
 from pirates.piratesbase import PiratesGlobals
 
-class DistributedGameTableAI(DistributedInteractiveAI.DistributedInteractiveAI):
+class DistributedGameTableAI(DistributedInteractiveAI):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedGameTableAI')
 
     def __init__(self, air):
         DistributedInteractiveAI.__init__(self, air)
+        self.gameVariation = PiratesGlobals.VILLAGER_TEAM
+        self.dealerType = PiratesGlobals.VILLAGER_TEAM
         self.tableType = 1
-        self.gameVariation = 1
         self.dealerName = 'Dealer'
         self.aiList = []
 
     def handleInteraction(self):
-        return ACCEPT # gonna return it as accept, will need to have checks soon
+        if config.GetBool('want-tables-closed', False):
+            msg = 'Client bypassed sanity check and called DistributedGameTableAI'
+            self.air.writeServerEvent('suspicious', avId=self.air.getAvatarIdFromSender(), message=msg)
+            return REJECT
+            
+        return ACCEPT
 
     def setTableType(self, type):
         self.tableType = type
@@ -37,7 +43,7 @@ class DistributedGameTableAI(DistributedInteractiveAI.DistributedInteractiveAI):
         self.dealerType = type
 
     def getDealerType(self):
-        return PiratesGlobals.VILLAGER_TEAM
+        return self.dealerType
 
     def setAIList(self, list):
         self.aiList = list
@@ -46,4 +52,13 @@ class DistributedGameTableAI(DistributedInteractiveAI.DistributedInteractiveAI):
         return self.aiList
 
     def requestSeat(self, todo0, todo1):
-        pass
+        self.notify.info("request Seat")
+
+    def requestExit(self):
+        self.notify.info("Request exit")
+        
+    @staticmethod
+    def makeFromObjectKey(cls, air, objKey, data):
+        obj = DistributedInteractiveAI.makeFromObjectKey(cls, air, objKey, data)
+        obj.setTableType(1)
+        return obj

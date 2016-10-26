@@ -96,6 +96,12 @@ from pirates.interact import DistributedSearchableContainer/AI
 from pirates.coderedemption import CodeRedemption/AI
 from pirates.minigame import DistributedGameTable/AI
 from pirates.minigame import DistributedPokerTable/AI
+from pirates.minigame import DistributedBlackjackTable/AI
+//from pirates.minigame import DistributedBishopsHandTable/AI
+from pirates.minigame import DistributedDiceGame/AI
+from pirates.minigame import DistributedLiarsDice/AI
+from pirates.minigame import DistributedHoldemTable/AI
+from pirates.minigame import Distributed7StudTable/AI
 from pirates.holiday import DistributedHolidayObject/AI
 from pirates.movement import DistributedMovingObject/AI
 
@@ -1396,6 +1402,61 @@ dclass DistributedPokerTable : DistributedGameTable {
   setAllHandValues(uint8 [], uint8[]) broadcast;
   playerExpired();
   showHealthLoss(int16);
+};
+
+dclass DistributedBishopsHandTable : DistributedGameTable {
+  setParentingRules(string, string) broadcast ram;
+  //setTableState(uint8, BishopsHandSeat []) broadcast ram;
+  setPendingStakes(uint32) broadcast ram;
+  setActiveStakes(uint32) broadcast ram;
+  setRunningStakes(uint32) broadcast ram;
+  //setProgressReport(BishopsHandProgressReport []) broadcast;
+  setGameTimer(uint16, int32) broadcast ram;
+  //askForClientAction(BishopsHandAction, uint16, int16) broadcast;
+  //clientAction(BishopsHandAction) airecv clsend;
+  startRound(uint8 [], uint8, int16);
+  receiveProgress(uint8, uint8, uint8, int16/100) airecv clsend;
+  leftGame();
+};
+
+dclass DistributedBlackjackTable : DistributedGameTable {
+  setBetMultiplier(uint32) required broadcast;
+  //setTableState(CardHand[] [], int32 []) required broadcast ram;
+  //setEvent(uint8, BlackjackAction) broadcast;
+  requestClientAction(uint8) airecv clsend;
+  //clientAction(BlackjackAction) airecv clsend;
+  requestCheat(uint8, uint8) airecv clsend;
+  //cheatResponse(uint8, uint8, uint8, CardHand);
+  setHandResults(int16 []) broadcast;
+};
+
+dclass DistributedHoldemTable : DistributedPokerTable {
+};
+
+dclass Distributed7StudTable : DistributedPokerTable {
+};
+
+dclass DistributedDiceGame : DistributedGameTable {
+  playerIsReady() airecv clsend;
+  yourTurn(uint8) broadcast;
+  changeDice(uint8, uint8 []) airecv clsend;
+  playerHasRolled(uint8, uint8 []) airecv clsend;
+  rollResults(uint8, uint8 []) broadcast;
+  currentTurn(uint8, uint8, string) broadcast;
+  sendChat(uint8, uint32) airecv clsend;
+};
+
+dclass DistributedLiarsDice : DistributedDiceGame {
+  tableStatus(uint8, uint8) broadcast;
+  betUpdate(uint8, uint8, uint8) airecv clsend;
+  youWin(uint32, string) broadcast;
+  newRound() broadcast;
+  cheatResult(uint8, uint8, uint8) airecv clsend;
+  incomingCheat(uint8, uint8, uint8) broadcast;
+  catchCheater(uint8) airecv clsend;
+  gotCaught(uint8, string) broadcast;
+  callBluff(uint8, uint8, uint8) airecv clsend;
+  displayChallenge(uint8, uint8, uint8, uint8, string) broadcast;
 };
 
 dclass DistributedHolidayObject : DistributedInteractive {

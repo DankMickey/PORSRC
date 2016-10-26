@@ -1,5 +1,4 @@
 from panda3d.core import Lens, Vec3
-
 from direct.directnotify import DirectNotifyGlobal
 from direct.interval.IntervalGlobal import *
 from direct.gui.DirectGui import *
@@ -11,6 +10,7 @@ from pirates.minigame import PlayingCard
 from pirates.minigame import DiceGameGUI
 from pirates.pirate import HumanDNA
 from pirates.uberdog.UberDogGlobals import *
+from pirates.piratesbase import PiratesGlobals
 from direct.task import Task
 
 class DistributedDiceGame(DistributedGameTable.DistributedGameTable):
@@ -29,28 +29,6 @@ class DistributedDiceGame(DistributedGameTable.DistributedGameTable):
         self.lastSeat = -1
         self.gameName = name
         self.dicevals = { }
-        dna = HumanDNA.HumanDNA()
-        dna.setGender('f')
-        dna.setBodyShape(2)
-        dna.setBodyHeight(-0.37676620483399997)
-        dna.setHeadSize(0.0)
-        dna.setBodySkin(5)
-        dna.setClothesShirt(1, 13)
-        dna.setClothesVest(3, 0)
-        dna.setClothesCoat(0, 0)
-        dna.setClothesPant(2, 0)
-        dna.setClothesBelt(0, 0)
-        dna.setClothesSock(0)
-        dna.setClothesShoe(3)
-        dna.setHeadWidth(-0.10465729236599999)
-        dna.setHeadHeight(0.30350607633600002)
-        dna.setHeadRoundness(0.074138462543499997)
-        dna.setJawWidth(0.0104657411575)
-        dna.setJawRoundness(-0.073260009288799999)
-        dna.setJawAngle(0.18986976146699999)
-        dna.setJawLength(0.020931422710400001)
-        self.dealer = self.createDealer('Dealer', dna, Vec3(0, 6.5, 0), Vec3(180, 0, 0))
-
 
     def generate(self):
         DistributedGameTable.DistributedGameTable.generate(self)
@@ -68,18 +46,46 @@ class DistributedDiceGame(DistributedGameTable.DistributedGameTable):
         del self.dealer
 
 
-    def getTableModel(self):
-        table = loader.loadModel('models/props/Cardtable_Pill')
-        table.setScale(2.5, 2.5, 1)
-        return table
+    def createDealer(self, type):
+        self.dealer = self._getActor(self._getAvTeamFromVariation())
+        name = self.dealerName or 'Dealer'
+        if self._getAvTeamFromVariation() == PiratesGlobals.VILLAGER_TEAM:
+            dna = HumanDNA.HumanDNA()
+            dna.setName(name)
+            dna.setGender('f')
+            dna.setBodyShape(2)
+            dna.setBodyHeight(-0.37676620483399997)
+            dna.setHeadSize(0.0)
+            dna.setBodySkin(5)
+            dna.setClothesShirt(1, 13)
+            dna.setClothesVest(3, 0)
+            dna.setClothesCoat(0, 0)
+            dna.setClothesPant(2, 0)
+            dna.setClothesBelt(0, 0)
+            dna.setClothesSock(0)
+            dna.setClothesShoe(3)
+            dna.setHeadWidth(-0.10465729236599999)
+            dna.setHeadHeight(0.30350607633600002)
+            dna.setHeadRoundness(0.074138462543499997)
+            dna.setJawWidth(0.0104657411575)
+            dna.setJawRoundness(-0.073260009288799999)
+            dna.setJawAngle(0.18986976146699999)
+            dna.setJawLength(0.020931422710400001)
+            self.dealer.setDNAString(dna)
+            self.dealer.generateHuman(dna.gender, self.cr.human)
+            self.setAiPlayerName(self.dealer, name)            
+        else:
+            self.notify.warning("Unsupported dealer team: %s" % self._getAvTeamFromVariation())
+        self.dealer.reparentTo(self.tableModel)
+        #self.dealer.setX(self.sittingOffset)
+        self.dealer.hideShadow()
+        self.dealer.disableMixing()
 
 
     def setTableState(self, round, buttonSeat):
         self.buttonSeat = buttonSeat
         if self.isLocalAvatarSeated():
             self.gui.setTableState(round, buttonSeat)
-
-
 
     def guiCallback(self, action):
         self.gui.disableAction()
@@ -188,7 +194,7 @@ class DistributedDiceGame(DistributedGameTable.DistributedGameTable):
         avId = base.localAvatar.getDoId()
         if avId == winId:
             pass
-        1
+
         self.gui.mainButton['state'] = DGG.NORMAL
         self.gui.mainButton['text'] = 'READY'
         self.gui.mainButton['command'] = self.playerIsReady

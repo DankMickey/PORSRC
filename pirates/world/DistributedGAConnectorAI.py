@@ -9,8 +9,6 @@ class DistributedGAConnectorAI(DistributedNodeAI):
 
     def __init__(self, air):
         DistributedNodeAI.__init__(self, air)
-        self.modelPath = ''
-        self.uniqueId = ''
 
     # setModelPath(string) required broadcast ram
     def setModelPath(self, modelPath):
@@ -46,7 +44,7 @@ class DistributedGAConnectorAI(DistributedNodeAI):
 
     # setPrivateArea(uint32, uint32, uint32, bool) airecv clsend
 
-    def posControlledByIsland(self):
+    def posControlledByCell(self):
         return True
 
     @staticmethod

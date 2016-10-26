@@ -51,7 +51,7 @@ class DistributedGAConnector(DistributedNode.DistributedNode):
         self.minimapObj = None
 
     def announceGenerate(self):
-        self.notify.debug('%s announceGenerate' % self.doId)
+        self.notify.info('%s announceGenerate' % self.doId)
         DistributedNode.DistributedNode.announceGenerate(self)
         self.setupConnectorNodes()
         self.setupCollisions()
@@ -127,7 +127,7 @@ class DistributedGAConnector(DistributedNode.DistributedNode):
         del self.fakeZoneId
 
     def setModelPath(self, modelPath):
-        self.notify.debug('setModelPath %s' % modelPath)
+        self.notify.info('setModelPath: %s' % modelPath)
         self.modelPath = modelPath
         self.loadModel()
 

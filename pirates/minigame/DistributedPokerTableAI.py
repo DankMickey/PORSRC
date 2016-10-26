@@ -1,26 +1,32 @@
 from direct.directnotify import DirectNotifyGlobal
 from pirates.distributed.DistributedInteractiveAI import *
-import DistributedGameTableAI
+from pirates.minigame.DistributedGameTableAI import DistributedGameTableAI
+from pirates.piratesbase import PiratesGlobals
+import random
 
-class DistributedPokerTableAI(DistributedGameTableAI.DistributedGameTableAI):
+
+class DistributedPokerTableAI(DistributedGameTableAI):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedPokerTableAI')
 
     def __init__(self, air):
-        DistributedInteractiveAI.__init__(self, air)
-        self.gameType = ''
-        self.betMultiplier = 1
+        DistributedGameTableAI.__init__(self, air)
+        self.potSize = 0
         self.anteList = []
-        self.posSize = 0
         self.tableState = (0, 0, [], [], [], [0, 0, 0, 0, 0, 0, 0, 0])
 
     def announceGenerate(self):
-        DistributedPokerTableAI.announceGenerate(self)
+        DistributedGameTableAI.announceGenerate(self)
 
     def delete(self):
-        DistributedPokerTableAI.delete(self) 
+        DistributedGameTableAI.delete(self)
 
     def handleInteract(self, avId, interactType, instant):
-        return REJECT #TODO
+        if config.GetBool('want-tables-closed', False):
+            msg = 'Client bypassed sanity check and called DistributedPokerTableAI'
+            self.air.writeServerEvent('suspicious', avId=self.air.getAvatarIdFromSender(), message=msg)
+            return REJECT
+        
+        return REJECT
 
     def setGameType(self, gameType):
         self.gameType = gameType
@@ -52,9 +58,27 @@ class DistributedPokerTableAI(DistributedGameTableAI.DistributedGameTableAI):
     def getPotSize(self):
         return self.potSize
 
+    def generatePlayers(self, seats=7, ai=3, available=[PiratesGlobals.VILLAGER_TEAM]):
+        players = [0] * seats
+
+        if (ai > seats):
+            self.notify.warning("Cannot have more ai then seats! reducing to 5")
+            ai = 5
+
+        for i in range(0, ai):
+            aiType = random.choice(available)
+            players[i] = aiType
+
+        random.shuffle(players)
+        self.setAIList(players)
+
+    def posControlledByCell(self):
+        return True
+
     @classmethod
     def makeFromObjectKey(cls, air, objKey, data):
-        obj = DistributedInteractiveAI.makeFromObjectKey(cls, air, objKey, data)
+        obj = DistributedGameTableAI.makeFromObjectKey(cls, air, objKey, data)
         obj.setGameType(data.get('Category', 'Holdem'))
         obj.setBetMultiplier(int(data.get('BetMultiplier', '1')))
+        obj.generatePlayers()
         return obj

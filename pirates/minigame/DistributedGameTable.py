@@ -188,6 +188,9 @@ class DistributedGameTable(DistributedInteractive.DistributedInteractive):
                 self.displayStacks(i, 0)
                 seat.reparentTo(self)
             self.displayStacks(self.getPotSeat(), 0)
+        elif type == 2:
+            self.tableModel = loader.loadModel('models/props/table_dice')
+            self.tableModel.setScale(2.5, 2.5, 1)
 
     def randomInteger(self, length):
         return int(random.random() * length)
@@ -219,7 +222,7 @@ class DistributedGameTable(DistributedInteractive.DistributedInteractive):
     def _getActor(self, type = PiratesGlobals.VILLAGER_TEAM):
         if type == PiratesGlobals.VILLAGER_TEAM:
             return Townfolk.Townfolk()
-        else:
+        elif type == PiratesGlobals.UNDEAD_TEAM:
             actor = Skeleton.Skeleton()
             (chosenType, self.possibleUndeadTypes) = AvatarTypes.pickPokerUndead(self.possibleUndeadTypes)
             self.possibleUndeadTypes.remove(chosenType)
@@ -228,6 +231,9 @@ class DistributedGameTable(DistributedInteractive.DistributedInteractive):
             self.possibleUndeadNames.remove(actor.name)
             actor.addActive()
             actor.nametag3d.setPos(0, 0, 0)
+        else:
+            self.notify.warning("Unknown actor team: %s" % type)
+            return Townfolk.Townfolk()
         return actor
 
     def _getAvTeamFromVariation(self):
@@ -237,8 +243,9 @@ class DistributedGameTable(DistributedInteractive.DistributedInteractive):
 
     def createDealer(self, type):
         self.dealer = self._getActor(self._getAvTeamFromVariation())
-        name = 'Dealer'
-        if self._getAvTeamFromVariation() == PiratesGlobals.VILLAGER_TEAM:
+        name = self.dealerName or 'Dealer'
+        dealerVariation = self._getAvTeamFromVariation()
+        if dealerVariation == PiratesGlobals.VILLAGER_TEAM:
             dna = HumanDNA.HumanDNA()
             dna.makeNPCTownfolk(seed = self.doId)
             dna.setName(name)
@@ -278,7 +285,7 @@ class DistributedGameTable(DistributedInteractive.DistributedInteractive):
                 dna.makeNPCPirate(seed = self.doId + i)
                 aiplayer.setDNAString(dna)
                 aiplayer.generateHuman(dna.gender, self.cr.human)
-                name = None
+                name = None            
             else:
                 name = aiplayer.getName()
             aiplayer.reparentTo(self.SeatInfo[i])
@@ -296,6 +303,11 @@ class DistributedGameTable(DistributedInteractive.DistributedInteractive):
             aiplayer.loop('sit_idle')
 
     def requestInteraction(self, avId, interactType = 0):
+        if config.GetBool("want-tables-closed", False):
+            from pirates.piratesgui import PiratesGuiGlobals
+            localAvatar.guiMgr.createWarning(PLocalizer.InteractTableClosed, PiratesGuiGlobals.TextFG6)
+            return None
+
         base.localAvatar.motionFSM.off()
         DistributedInteractive.DistributedInteractive.requestInteraction(self, avId, interactType)
 

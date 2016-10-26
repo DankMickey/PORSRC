@@ -232,10 +232,9 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
             genObj = DistributedHolidayObjectAI.makeFromObjectKey(self.air, objKey, object)
             self.generateChild(genObj)
 
-        elif objType == 'Connector Tunnel' and config.GetBool('want-link-tunnels', 0):
-            #genObj = DistributedGATunnelAI.makeFromObjectKey(self.air, objKey, object)
-            #self.generateChild(genObj)  
-            pass
+        elif objType == 'Connector Tunnel': # and config.GetBool('want-link-tunnels', 0):
+            genObj = DistributedGATunnelAI.makeFromObjectKey(self.air, objKey, object)
+            self.generateChild(genObj)   
 
         elif objType == 'Island Game Area' and config.GetBool('want-link-tunnels', 0):
             #genObj = DistributedGATunnelAI.makeFromObjectKey(self.air, objKey, object)
@@ -246,19 +245,4 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
             genObj = DistributedGameAreaAI.createObject(self, objType, parent, objKey, object)
 
         return genObj
-
-    def generateChild(self, obj, zoneId=None):
-        if zoneId is None:
-            zoneId = self.getZoneFromXYZ(obj.getPos())
-
-        obj.generateWithRequiredAndId(self.air.allocateChannel(), self.doId, zoneId)
-        if obj.posControlledByIsland(): # This method must be defined in your AI
-            cell = GridParent.getCellOrigin(self, zoneId)
-            pos = obj.getPos()
-
-            obj.reparentTo(cell)
-            obj.setPos(self, pos)
-
-            obj.sendUpdate('setPos', obj.getPos())
-            obj.sendUpdate('setHpr', obj.getHpr())
 

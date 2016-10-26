@@ -22,7 +22,7 @@ from pirates.audio import SoundGlobals
 class DistributedPokerTable(DistributedGameTable.DistributedGameTable, PokerBase.PokerBase):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedPokerTable')
 
-    def __init__(self, cr, evaluatorGame, numRounds):
+    def __init__(self, cr, evaluatorGame=None, numRounds=0):
         DistributedGameTable.DistributedGameTable.__init__(self, cr)
         self.round = 0
         self.numRounds = numRounds

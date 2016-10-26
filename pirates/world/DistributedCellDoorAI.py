@@ -93,7 +93,7 @@ class DistributedCellDoorAI(DistributedInteractiveAI):
         else:
             return REJECT
 
-    def posControlledByIsland(self):
+    def posControlledByCell(self):
         return False
 
     @classmethod

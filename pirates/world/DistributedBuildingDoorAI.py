@@ -37,7 +37,7 @@ class DistributedBuildingDoorAI(DistributedDoorAI):
                                   'setPrivateInteriorInstance',
                                   [0, 0, 0, 1])
 
-    def posControlledByIsland(self):
+    def posControlledByCell(self):
         return False
 
     @classmethod

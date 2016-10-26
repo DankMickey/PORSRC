@@ -63,7 +63,7 @@ class DistributedGAInteriorAI(DistributedGameAreaAI, DistributedCartesianGridAI)
         self.intDoors.append(intDoor)
         return intDoor
 
-    def generateChild(self, obj, zoneId = None):
+    def generateChild(self, obj, zoneId = None, cellParent = False):
         if zoneId is None:
             if self.buildingInterior:
                 zoneId = 2709
@@ -73,8 +73,8 @@ class DistributedGAInteriorAI(DistributedGameAreaAI, DistributedCartesianGridAI)
 
         obj.interior = self
         obj.generateWithRequiredAndId(self.air.allocateChannel(), self.doId, zoneId)
-        if obj.posControlledByIsland(): # This method must be defined in your AI
-            if not self.buildingInterior:
+        if obj.posControlledByCell():
+            if not self.buildingInterior or cellParent:
                 cell = GridParent.getCellOrigin(self, zoneId)
                 pos = obj.getPos()
                 obj.reparentTo(cell)

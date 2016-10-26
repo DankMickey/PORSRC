@@ -114,7 +114,7 @@ class DistributedInteractiveAI(DistributedLocatableObjectAI, DistributedNodeAI):
         self.selectOption(optionId)
         self.d_selectOption(optionId)
 
-    def posControlledByIsland(self):
+    def posControlledByCell(self):
         return True
 
     @staticmethod

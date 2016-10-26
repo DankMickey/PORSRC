@@ -70,6 +70,7 @@ preLoadSet = [
     'phase_4/models/char/dog_hi',
     'phase_4/models/char/seagull_hi',
     'phase_4/models/props/TreeBase',
+    'phase_4/models/handheld/cards_deck_high'
 ]
 INVALID_TEAM = -1
 PLAYER_TEAM = 0
