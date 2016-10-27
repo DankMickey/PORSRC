@@ -10,7 +10,6 @@ from pirates.piratesbase import PLocalizer
 from pirates.piratesgui import SocialPage
 from pirates.piratesgui import PiratesGuiGlobals
 from pirates.piratesbase import PiratesGlobals
-from pirates.uberdog.UberDogGlobals import CrewStatus
 from pirates.band import BandConstance
 from pirates.band import DistributedBandMember
 from pirates.piratesgui import PirateMemberList

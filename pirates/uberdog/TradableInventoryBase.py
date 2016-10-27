@@ -1,4 +1,4 @@
-from pirates.uberdog.UberDogGlobals import receiveSwitchField, prepareSwitchField, InventoryType, isLocatable, GiftOrigin
+from pirates.uberdog.UberDogGlobals import receiveSwitchField, prepareSwitchField, InventoryType, isLocatable
 from pirates.uberdog.DistributedInventoryBase import DistributedInventoryBase
 from pirates.inventory.InventoryGlobals import *
 from pirates.inventory import ItemGlobals

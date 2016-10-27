@@ -1,55 +1,5 @@
 from pirates.world.LocationConstants import LocationIds
 
-
-class CrewStatus:
-    ADMIRAL = 1
-    CAPTAIN = 2
-    MEMBER = 3
-
-
-class GuildStatus:
-    INVITED = -2
-    APPLICANT = -1
-    NOT_IN_GUILD = 0
-    LEADER = 1
-    MEMBER = 2
-
-
-class GiftOrigin:
-    _BEGIN_VALUE = 0
-    MAGIC_WORD = 0
-    COMBAT = 1
-    LOCKPICK = 2
-    NAVY_CREW = 3
-    TREASURE_CHEST = 4
-    BOSS = 5
-    MERCHANT_SHIP = 6
-    SKELETON_SHIP = 7
-    NAVY_SHIP = 8
-    PLAYER_SHIP = 9
-    SEA_MONSTER = 10
-    LEVEL_UP = 11
-    HIGHSEAS_ADVENTURE = 12
-    CARD_GAME = 13
-    DICE_GAME = 14
-    CANNON = 15
-    FLAG_SHOP = 16
-    SEARCHABLE_CONTAINER = 17
-    HOLIDAY_OBJECT = 18
-    INVENTORY_UI = 19
-    FISHING_GAME = 20
-    LOOT_CONTAINER = 21
-    RESERVED_MOVE = 22
-    _END_VALUE = RESERVED_MOVE + 1
-
-
-class TradeStatus:
-    ACTIVE = 1
-    APPROVED = 2
-    DISAPPROVED = 3
-    REMOVED = 3
-
-
 class InventoryCategory:
     _BEGIN_CATEGORY = 0
     BAD_CATEGORY = 0
