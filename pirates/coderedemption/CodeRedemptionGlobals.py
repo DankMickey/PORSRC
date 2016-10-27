@@ -280,12 +280,12 @@ AWARD_ID = {
         None,
         1,
         PLocalizer.CodeRedemptionDualCutlasses],
-    AwardTypes.BOARDING_AXE: [
-        NORMAL_INVENTORY,
-        InvItem((InventoryType.ItemTypeWeapon, ItemGlobals.CRUDE_BOARDING_AXE, 0, [])),
-        None,
-        1,
-        PLocalizer.CodeRedemptionBoardingAxe],
+    #AwardTypes.BOARDING_AXE: [
+    #    NORMAL_INVENTORY,
+    #    InvItem((InventoryType.ItemTypeWeapon, ItemGlobals.CRUDE_BOARDING_AXE, 0, [])),
+    #    None,
+    #    1,
+    #    PLocalizer.CodeRedemptionBoardingAxe],
     AwardTypes.TREASURE: [
         NORMAL_INVENTORY,
         InvItem((InventoryType.ItemTypeMoney, 0)),
