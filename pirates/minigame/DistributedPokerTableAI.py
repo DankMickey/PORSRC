@@ -61,15 +61,18 @@ class DistributedPokerTableAI(DistributedGameTableAI):
     def generatePlayers(self, seats=7, ai=3, available=[PiratesGlobals.VILLAGER_TEAM]):
         players = [0] * seats
 
+        randomGen = random.Random()
+        randomGen.seed(self.getUniqueId()) 
+
         if (ai > seats):
             self.notify.warning("Cannot have more ai then seats! reducing to 5")
             ai = 5
 
         for i in range(0, ai):
-            aiType = random.choice(available)
+            aiType = randomGen.choice(available)
             players[i] = aiType
 
-        random.shuffle(players)
+        randomGen.shuffle(players)
         self.setAIList(players)
 
     def posControlledByCell(self):

@@ -1890,19 +1890,71 @@ class HumanDNA(AvatarDNA.AvatarDNA):
         else:
             randomGen = random
         self.gender = 'm'
-        self.body.shape = 3
-        self.body.color = 7
+        self.body.color = randomGen.choice([
+            0,
+            2,
+            3,
+            5,
+            8])
+        self.body.shape = randomGen.choice(BodyDefs.BodyChoicesMale)
+        self.body.height = randomGen.choice([
+            -0.299,
+            0.0,
+            0.299,
+            0.598])
         self.clothes.shirt = 6
-        self.clothes.vest = 0
         self.clothes.pant = 1
+        self.clothes.vest = 0
         self.clothes.sock = 0
         self.clothes.shoe = 2
         self.clothes.belt = 1
-        self.head.hair.hair = 5
-        self.head.hair.beard = 5
-        self.head.hair.mustache = 1
-        self.head.hair.color = 2
-
+        self.head.texture = randomGen.choice([
+            0,
+            1,
+            4])
+        self.head.jawWidth = self.tossAValue(randomGen, 1.0)
+        self.head.jawLength = self.tossAValue(randomGen, 1.0)
+        self.head.jawChinSize = self.tossAValue(randomGen, 1.0)
+        self.head.jawAngle = self.tossAValue(randomGen, 1.0)
+        self.head.cheekFat = self.tossAValue(randomGen, 1.0)
+        self.head.browProtruding = self.tossAValue(randomGen, 1.0, False)
+        self.head.eyeBulge = self.tossAValue(randomGen, 1.0)
+        self.head.noseBridgeWidth = int(self.tossAValue(randomGen, 1.0))
+        self.head.noseNostrilWidth = int(self.tossAValue(randomGen, 1.0))
+        self.head.noseLength = int(self.tossAValue(randomGen, 1.0))
+        self.head.noseBump = int(self.tossAValue(randomGen))
+        self.head.noseNostrilHeight = int(self.tossAValue(randomGen, 1.0))
+        self.head.noseNostrilAngle = int(self.tossAValue(randomGen, 1.0))
+        self.head.earScale = int(self.tossAValue(randomGen))
+        self.head.earFlapAngle = int(self.tossAValue(randomGen))
+        self.head.earPosition = int(self.tossAValue(randomGen))
+        self.head.hair.hair = randomGen.choice([
+            1,
+            9])
+        self.head.hair.beard = randomGen.choice([
+            0,
+            7,
+            9])
+        self.head.hair.mustache = randomGen.choice([
+            0,
+            1,
+            2])
+        self.head.hair.color = randomGen.choice([
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7])
+        self.head.eyes.color = randomGen.choice([
+            0,
+            1,
+            2,
+            3,
+            4,
+            5])
 
     def makeNPCNavySailor(self, seed=None, gender='m'):
         if seed:

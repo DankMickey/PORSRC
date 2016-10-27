@@ -253,7 +253,6 @@ class DistributedGameTable(DistributedInteractive.DistributedInteractive):
             dna.clothes.vest = 2
             dna.clothes.vestTexture = 4
             dna.clothes.vestColor = 13
-            dna.clothes.shirt = 10
             self.dealer.setDNAString(dna)
             self.dealer.generateHuman(dna.gender, self.cr.human)
             self.setAiPlayerName(self.dealer, name)
