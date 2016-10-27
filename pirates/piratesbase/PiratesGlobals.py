@@ -9,18 +9,6 @@ from pirates.piratesbase import PLocalizer as PL
 from otp.otpbase import OTPLocalizer as OL
 from pirates.piratesbase import EmoteGlobals
 
-ShipsDatabaseChannelId = 4008
-AvatarsDatabaseChannelId = 4021
-InventoryDatabaseChannelId = 4023
-DatabaseIdFromClassName = {
-    'DistributedPlayerPirate': AvatarsDatabaseChannelId,
-    'DistributedInventory': InventoryDatabaseChannelId,
-    'PirateInventory': InventoryDatabaseChannelId,
-    'DistributedGoldReceipt': InventoryDatabaseChannelId,
-    'DistributedFlag': InventoryDatabaseChannelId,
-    'DistributedQuest': InventoryDatabaseChannelId,
-    'DistributedTreasureMap': InventoryDatabaseChannelId,
-    'DistributedPlayerSimpleShip': ShipsDatabaseChannelId }
 preLoadSet = [
     'phase_2/models/char/fp_2000',
     'phase_2/models/char/fp_1000',
