@@ -220,21 +220,30 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
                 self.gmNameTagIcon.setScale(2.5)
                 self.gmNameTagIcon.setColor(1)
                 tpMgr.setGraphic('gmNameTagLogo', self.gmNameTagIcon)
+                
                 gmGoldColor = TextProperties()
                 gmGoldColor.setTextColor(1, 0.9, 0.696, 1)
                 tpMgr.setProperties('goldGM', gmGoldColor)
+                
                 gmRedColor = TextProperties()
                 gmRedColor.setTextColor(1.0, 0.100, 0.100, 1)
                 tpMgr.setProperties('redGM', gmRedColor)
+                
                 gmGreenColor = TextProperties()
                 gmGreenColor.setTextColor(0.299, 0.696, 0.25, 1)
                 tpMgr.setProperties('greenGM', gmGreenColor)
+                
                 gmBlueColor = TextProperties()
                 gmBlueColor.setTextColor(0.348, 0.696, 1, 1)
                 tpMgr.setProperties('blueGM', gmBlueColor)
+                
                 gmWhiteColor = TextProperties()
                 gmWhiteColor.setTextColor(1, 1, 1, 1)
                 tpMgr.setProperties('whiteGM', gmWhiteColor)
+                
+                gmPurpleColor = TextProperties()
+                gmPurpleColor.setTextColor(float(204), float(0), float(255), 1)
+                tpMgr.setProperties('purpleGM', gmPurpleColor)
 
             if not self.confusedIcon:
                 self.confusedIcon = gui.find('**/pir_t_gui_but_chatIncomplete').copyTo(NodePath('confusedTop'))
