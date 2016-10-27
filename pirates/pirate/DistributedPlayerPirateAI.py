@@ -813,8 +813,8 @@ def gm(color=None, tag=None):
     if not color:
         av.b_setGMNametag('', '')
         return 'Cleared GM nametag!'
-    elif color not in ('gold', 'red', 'green', 'blue'):
-        return 'Color must be gold, red, green or blue!'
+    elif color not in ('gold', 'red', 'green', 'blue', 'purple'):
+        return 'Color must be gold, red, green, blue, or purple!'
     elif not tag:
         return 'You must specify a tag!'
     else:

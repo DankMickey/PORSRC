@@ -3257,7 +3257,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             minutes]
 
     def setGMNametag(self, color, tagString):
-        self.gmNametag = (color + 'GM' if color in ('gold', 'red', 'green', 'blue') else 'whiteGM', tagString)
+        self.gmNametag = (color + 'GM' if color in ('gold', 'red', 'green', 'blue', 'purple') else 'whiteGM', tagString)
         self.refreshName()
     
     def getGMNametag(self):
