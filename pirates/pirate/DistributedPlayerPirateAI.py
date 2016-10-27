@@ -871,7 +871,7 @@ def setShipBadge(title, rank):
     target.b_setShipIcon(title, rank)
     return "Set {0}'s shipBadge to ({1}, {2})".format(target.getName(), title, rank)
 
-@magicWord(CATEGORY_GAME_MASTER, types=[int, int, int])
+@magicWord(CATEGORY_GAME_DEVELOPER, types=[int, int, int])
 def giveLocatable(type, itemId, amount):
     target = spellbook.getTarget()
     invoker = spellbook.getInvoker()
@@ -907,22 +907,22 @@ def giveWeapon(itemId):
     if invokerAccess >= CATEGORY_GAME_DEVELOPER.access:
         target = spellbook.getTarget()
 
-    if not target:
-        return "Failed to give weapon. Unknown error has occured."
+        if not target:
+            return "Failed to give weapon. Unknown error has occured."
 
-    inv = target.getInventory()
-    if not inv:
-        return "Failed to get target's inventory."
+        inv = target.getInventory()
+        if not inv:
+            return "Failed to get target's inventory."
 
-    location = inv.findAvailableLocation(InventoryType.ItemTypeWeapon, itemId=itemId, count=1, equippable=True)
-    if location == -1:
-        return "Failed to give weapon. Target's inventory is full"
+        location = inv.findAvailableLocation(InventoryType.ItemTypeWeapon, itemId=itemId, count=1, equippable=True)
+        if location == -1:
+            return "Failed to give weapon. Target's inventory is full"
 
-    success = inv.addLocatable(itemId, location, 1, InventoryType.ItemTypeWeapon)
-    if not success:
-        return "Failed to give weapon. Target's inventory is most likely full."
+        success = inv.addLocatable(itemId, location, 1, InventoryType.ItemTypeWeapon)
+        if not success:
+            return "Failed to give weapon. Target's inventory is most likely full."
 
-    return "Weapon (%s) given to %s." % (itemId, target.getName())
+        return "Weapon (%s) given to %s." % (itemId, target.getName())
 
 @magicWord(CATEGORY_GAME_MASTER, types=[int])
 def giveClothing(itemId):
@@ -936,22 +936,22 @@ def giveClothing(itemId):
    if invokerAccess >= CATEGORY_GAME_DEVELOPER.access:
         target = spellbook.getTarget()
 
-    if not target:
-        return "Failed to give clothing Item. Unknown error has occured."
+        if not target:
+            return "Failed to give clothing Item. Unknown error has occured."
 
-    inv = target.getInventory()
-    if not inv:
-        return "Failed to get target's inventory."
+        inv = target.getInventory()
+        if not inv:
+            return "Failed to get target's inventory."
 
-    location = inv.findAvailableLocation(InventoryType.ItemTypeClothing, itemId=itemId, count=1, equippable=True)
-    if location == -1:
-        return "Failed to give clothing item. Target's inventory is full"
+        location = inv.findAvailableLocation(InventoryType.ItemTypeClothing, itemId=itemId, count=1, equippable=True)
+        if location == -1:
+            return "Failed to give clothing item. Target's inventory is full"
 
-    success = inv.addLocatable(itemId, location, 1, InventoryType.ItemTypeClothing)
-    if not success:
-        return "Failed to give clothing item. Target's inventory is most likely full."
+        success = inv.addLocatable(itemId, location, 1, InventoryType.ItemTypeClothing)
+        if not success:
+            return "Failed to give clothing item. Target's inventory is most likely full."
 
-    return "Clothing (%s) given to %s." % (itemId, target.getName())
+        return "Clothing (%s) given to %s." % (itemId, target.getName())
         
 
 @magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
@@ -966,22 +966,22 @@ def giveJewelry(itemId):
     if invokerAccess >= CATEGORY_GAME_DEVELOPER.access:
         target = spellbook.getTarget()
 
-    if not target:
-        return "Failed to give jewelry item. Unknown error has occured."
+        if not target:
+            return "Failed to give jewelry item. Unknown error has occured."
 
-    inv = target.getInventory()
-    if not inv:
-        return "Failed to get target's inventory."
+        inv = target.getInventory()
+        if not inv:
+            return "Failed to get target's inventory."
 
-    location = inv.findAvailableLocation(InventoryType.ItemTypeJewelry, itemId=itemId, count=1, equippable=True)
-    if location == -1:
-        return "Failed to give jewelry item. Target's inventory is full"
+        location = inv.findAvailableLocation(InventoryType.ItemTypeJewelry, itemId=itemId, count=1, equippable=True)
+        if location == -1:
+            return "Failed to give jewelry item. Target's inventory is full"
 
-    success = inv.addLocatable(itemId, location, 1, InventoryType.ItemTypeJewelry)
-    if not success:
-        return "Failed to give jewelry item. Target's inventory is most likely full."
+        success = inv.addLocatable(itemId, location, 1, InventoryType.ItemTypeJewelry)
+        if not success:
+            return "Failed to give jewelry item. Target's inventory is most likely full."
 
-    return "Jewelry (%s) given to %s." % (itemId, target.getName())
+        return "Jewelry (%s) given to %s." % (itemId, target.getName())
 
 @magicWord(CATEGORY_GAME_MASTER, types=[int])
 def ghost(color=None):
