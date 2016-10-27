@@ -242,7 +242,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
                 tpMgr.setProperties('whiteGM', gmWhiteColor)
                 
                 gmPurpleColor = TextProperties()
-                gmPurpleColor.setTextColor(float(204), float(0), float(255), 1)
+                gmPurpleColor.setTextColor(0.8, 0, 0.003921568627451, 1)
                 tpMgr.setProperties('purpleGM', gmPurpleColor)
 
             if not self.confusedIcon:
