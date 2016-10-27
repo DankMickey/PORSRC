@@ -979,8 +979,8 @@ def ghost(color=None):
         av.b_setIsGhost(False)
         return "Set your ghost state to false" % av.getName()
     else:
-        if color > 10 or color < 1:
-            return "Invalid ghost color. Valid range is 1-10"
+        if color > 13 or color < 1:
+            return "Invalid ghost color. Valid range is 1-13"
 
         av.b_setIsGhost(True)
         av.b_setGhostColor(color)

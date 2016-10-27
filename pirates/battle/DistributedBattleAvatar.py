@@ -939,6 +939,12 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
                 self.ghostBaseColor = VBase4(0.100, 0, 0.299, 1.0)
             elif self.ghostColor == 9:
                 self.ghostBaseColor = VBase4(0.65, 0.848, 0.100, 1.0)
+            elif self.ghostColor == 10:
+                self.ghostBaseColor = VBase4(0, 0, 1.0, 1.0)
+            elif self.ghostColor == 11: 
+                self.ghostBaseColor = VBase4(1.0, 1.0, 1.0, 1.0)
+            elif self.ghostColor == 12:
+                self.ghostBaseColor = VBase4(0, 1.0, 0, 1.0)
             elif self.ghostColor == 13:
                 self.ghostBaseColor = VBase4(1.0, 1.0, 1.0, 1.0)
                 self.ghostBaseNegative = 1
