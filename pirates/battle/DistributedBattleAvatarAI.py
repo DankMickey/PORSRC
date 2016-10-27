@@ -31,6 +31,7 @@ class DistributedBattleAvatarAI(Teamable, DistributedReputationAvatarAI, WeaponB
         self.inInvasion = False
         self.skillEffects = []
         self.isGhost = 0
+        self.ghostColor = 0
         self.hasGP = 0
         self.luck = 0
         self.maxluck = 0
@@ -75,10 +76,23 @@ class DistributedBattleAvatarAI(Teamable, DistributedReputationAvatarAI, WeaponB
 
     def b_setIsGhost(self, isGhost):
         self.setIsGhost(isGhost)
-        self.d_setIsGhost(self.isGhost)
+        self.d_setIsGhost(isGhost)
 
     def getIsGhost(self):
         return self.isGhost
+
+    def setGhostColor(self, ghostColor):
+        self.ghostColor = ghostColor
+
+    def d_setGhostColor(self, ghostColor):
+        self.sendUpdate("setGhostColor", [ghostColor])
+
+    def b_setGhostColor(self, ghostColor):
+        self.setGhostColor(ghostColor)
+        self.d_setGhostColor(ghostColor)
+
+    def getGhostColor(self):
+        return self.ghostColor
 
     def setHasGhostPowers(self, hasGP):
         self.hasGP = hasGP

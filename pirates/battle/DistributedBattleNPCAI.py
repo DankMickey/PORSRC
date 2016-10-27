@@ -41,13 +41,7 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
 
     def getSpawnPos(self):
         return self.spawnPos
-
-    def setGhostColor(self, ghostColor):
-        self.ghostColor = ghostColor
-
-    def getGhostColor(self):
-        return self.ghostColor
-
+        
     def setLevel(self, level):
         if not level:
             level = EnemyGlobals.getRandomEnemyLevel(self.avatarType)
@@ -336,7 +330,7 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
         try:
             obj.setGhostColor(int(data['GhostColor']))
         except:
-            obj.setGhostColor(None)
+            obj.setGhostColor(0)
         if 'Level' in data:
             obj.setLevel(int(data['Level']))
 

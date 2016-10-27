@@ -973,10 +973,18 @@ def giveJewelry(itemId):
     return "Jewelry (%s) given to %s." % (itemId, target.getName())
 
 @magicWord(CATEGORY_GAME_MASTER, types=[int])
-def ghost(state):
-    av = spellbook.getTarget()
-    av.b_setIsGhost((state == 1))
-    return "Set %s's ghost state to %s" % (av.getName, state)
+def ghost(color=None):
+    av = spellbook.getInvoker()
+    if color == None:
+        av.b_setIsGhost(False)
+        return "Set your ghost state to false" % av.getName()
+    else:
+        if color > 10 or color < 1:
+            return "Invalid ghost color. Valid range is 1-10"
+
+        av.b_setIsGhost(True)
+        av.b_setGhostColor(color)
+        return "Set your ghost color to %s" % color
 
 @magicWord(CATEGORY_GAME_DEVELOPER)
 def mypos():

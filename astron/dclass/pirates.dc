@@ -485,7 +485,7 @@ dclass DistributedBattleAvatar : DistributedReputationAvatar, WeaponBase {
   setName(string) required broadcast ram db ownrecv airecv;
   friendsNotify(int32, int8) ownrecv airecv;
   setGameState(string, int16) broadcast ram;
-  setGhostColor(uint8) broadcast ram;
+  setGhostColor(uint8) required broadcast ram;
   setIsGhost(uint8) required broadcast ram;
   setHasGhostPowers(uint8) required broadcast ram;
   playMotionAnim(uint8, int16) broadcast ownsend airecv;
