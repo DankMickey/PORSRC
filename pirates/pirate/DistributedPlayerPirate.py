@@ -41,7 +41,6 @@ from pirates.battle import WeaponGlobals
 from pirates.battle.EnemySkills import *
 from pirates.pirate.DistributedPirateBase import DistributedPirateBase
 from pirates.pirate import Biped
-from pirates.pirate.PAvatarHandle import PAvatarHandle
 from pirates.quest.DistributedQuestAvatar import DistributedQuestAvatar
 from pirates.world.LocationConstants import LocationIds
 from pirates.piratesbase import PLocalizer
@@ -100,7 +99,7 @@ from pirates.inventory import ItemConstants
 from pirates.uberdog.DistributedInventoryBase import DistributedInventoryBase
 from pirates.uberdog.TradableInventory import TradableInventory
 
-class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, DistributedBattleAvatar, DistributedQuestAvatar, PAvatarHandle):
+class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, DistributedBattleAvatar, DistributedQuestAvatar):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedPirate')
     wantBattle = config.GetBool('want-battle', 0)
     deferrable = True

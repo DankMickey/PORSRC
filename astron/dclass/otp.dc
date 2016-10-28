@@ -14,7 +14,6 @@ from otp.friends import GuildManager/UD
 from otp.distributed import DistributedDistrict/AI/UD
 from otp.distributed import DistributedDirectory/AI
 from otp.chat import ChatAgent/AI
-from otp.avatar import AvatarHandle
 
 typedef uint8 bool;
 typedef uint32 DoId;
@@ -135,9 +134,6 @@ dclass TalkPath_whisper {
 dclass TalkPath_group {
   setTalkGroup(string(0-400) chat) clsend airecv;
   recvTalkGroup(uint32 fromAv, string(0-256) avName, string(0-400) chat);
-};
-
-dclass AvatarHandle : TalkPath_whisper {
 };
 
 dclass DistributedAvatar : DistributedSmoothNode, TalkPath_whisper {
