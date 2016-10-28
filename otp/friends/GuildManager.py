@@ -1,37 +1,11 @@
 from direct.distributed.DistributedObjectGlobal import DistributedObjectGlobal
 from direct.directnotify.DirectNotifyGlobal import directNotify
-from otp.distributed import OtpDoGlobals
-from otp.otpbase import OTPLocalizer
-from otp.otpbase import OTPGlobals
-from otp.avatar.AvatarHandle import AvatarHandle
+from otp.otpbase import OTPLocalizer, OTPGlobals
+
 GUILDRANK_VETERAN = 4
 GUILDRANK_GM = 3
 GUILDRANK_OFFICER = 2
 GUILDRANK_MEMBER = 1
-import Queue
-
-class GuildMemberInfo(AvatarHandle):
-
-    def __init__(self, name, isOnline, rank, bandId):
-        self.name = name
-        self.rank = rank
-        self.bandId = bandId
-        self.onlineYesNo = isOnline
-
-    def getName(self):
-        return self.name
-
-    def getRank(self):
-        return self.rank
-
-    def getBandId(self):
-        return self.bandId
-
-    def isOnline(self):
-        return self.onlineYesNo
-
-    def isUnderstandable(self):
-        return True
 
 class GuildManager(DistributedObjectGlobal):
     notify = directNotify.newCategory('GuildManager')
@@ -101,11 +75,6 @@ class GuildManager(DistributedObjectGlobal):
 
     def getBandId(self, avId):
         return self.id2BandId.get(avId)
-
-    def getMemberInfo(self, avId):
-        if self.isInGuild(avId):
-            return GuildMemberInfo(self.id2Name[avId], self.id2Online[avId], self.id2Rank[avId], self.id2BandId[avId])
-        return None
 
     def getOptionsFor(self, avId):
         if self.isInGuild(avId):
