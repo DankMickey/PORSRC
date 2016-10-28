@@ -1018,24 +1018,16 @@ class DeleteAvatarFSM(AvatarOperationFSM):
 
 class GetDeletedAvatarsFSM(AvatarOperationFSM):
     notify = directNotify.newCategory('GetDeletedAvatarsFSM')
-    
+    POST_ACCOUNT_STATE = 'QueryAvatars'
+
     def enterStart(self):
-        self.csm.air.dbInterface.queryObject(self.csm.air.dbId, self.target, self.__handleRetrieve)
-
-    def __handleRetrieve(self, dclass, fields):
-        if dclass != self.csm.air.dclassesByName['AccountUD']:
-            self.demand('Kill', 'Your account object was not found in the database!')
-            return
-
-        self.account = fields
-        self.avList = self.account['ACCOUNT_AV_SET_DEL']
-        self.demand('QueryAvatars')
-
+        self.demand('RetrieveAccount')
+    
     def enterQueryAvatars(self):
         self.pendingAvatars = set()
         self.avatarFields = {}
         
-        for av in self.avList:
+        for av in self.deletedAvList:
             avId, delTime = av
             self.pendingAvatars.add(avId)
 

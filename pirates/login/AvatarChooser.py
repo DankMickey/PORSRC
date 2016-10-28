@@ -774,7 +774,11 @@ class AvatarChooser(DirectObject, StateData):
         self.deleteButton.hide()
         
         if self.deletedChoice != -1:
-            av = self.deletedAvs[self.deletedChoice]
+            av = self.getChosenAvatar()
+            
+            if not av:
+                return
+
             secondsLeft = max(0, OTPGlobals.RECOVERY_TIME - (int(time.time()) - av.position))
             
             if not secondsLeft:
@@ -795,15 +799,23 @@ class AvatarChooser(DirectObject, StateData):
         if hasattr(av, 'name'):
             return av
         elif self.deletedChoice != -1:
-            return self.deletedAvs[self.deletedChoice]
+            try:
+                return self.deletedAvs[self.deletedChoice]
+            except:
+                pass
     
     def __increaseDelIndex(self, increment):
         self.deletedChoice += increment
         
+        self.leftButton.hide()
+        self.rightButton.hide()
+        
         if self.deletedChoice == -1:
             self.showAvatar()
         else:
-            av = self.deletedAvs[self.deletedChoice]
-            self.showAvatar(av.wishState, av.name, av.defaultShard, av.dna)
+            av = self.getChosenAvatar()
+            
+            if av:
+                self.showAvatar(av.wishState, av.name, av.defaultShard, av.dna)
         
         self.decideButtons()
