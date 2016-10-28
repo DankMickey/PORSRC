@@ -436,16 +436,7 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
 
     def enterPlayingGame(self):
         OTPClientRepository.OTPClientRepository.enterPlayingGame(self)
-
-        def logout():
-            if hasattr(base, 'localAvatar') and localAvatar.getCanLogout():
-                self._userLoggingOut = True
-                self.gameFSM.request('closeShard', [
-                    'waitForAvatarList'])
-
         self._userLoggingOut = False
-        self.accept(PiratesGlobals.LogoutHotkey, logout)
-
 
         if False: # TODO: localAvatar.style.getTutorial() < PiratesGlobals.TUT_MET_JOLLY_ROGER and self.skipTutorial == 0:
             localAvatar.teleportToType = PiratesGlobals.INSTANCE_TUTORIAL
@@ -473,7 +464,6 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
         if config.GetDouble('want-dev-hotkeys', 0):
             self.ignore(PiratesGlobals.KrakenHotkey)
             self.ignore(PiratesGlobals.ShipHotkey)
-            self.ignore(PiratesGlobals.LogoutHotkey)
 
         self.uidMgr.reset()
         if self.distributedDistrict:

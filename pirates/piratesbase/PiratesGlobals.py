@@ -293,7 +293,6 @@ setPirateBoldOutlineFont(PLocalizer.PirateBoldOutlineFont)
 from pirates.piratesgui import PDialog
 setDialogClasses(PDialog.PDialog, PDialog.PGlobalDialog)
 PirateDialog = None
-LogoutHotkey = 'shift-f2'
 ScreenshotHotkeyList = [
     'f9',
     'control-f9']
