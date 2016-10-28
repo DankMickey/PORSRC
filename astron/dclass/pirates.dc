@@ -35,7 +35,6 @@ from pirates.instance import DistributedMainWorld/AI
 from pirates.instance import DistributedWelcomeWorld/AI
 from pirates.instance import DistributedInstanceWorld/AI
 from pirates.instance import DistributedTeleportHandler/AI
-from pirates.instance import DistributedTeleportZone/AI
 from pirates.instance import DistributedTeleportMgr/AI
 from pirates.instance import DistributedMatchMaker/UD
 from pirates.instance import DistributedTravelAgent/UD
@@ -1013,9 +1012,6 @@ dclass DistributedTeleportMgr : DistributedObject {
   setWelcomeShardMin(uint16);
   teleportToObjectReq(uint32) airecv clsend;
   teleportToObjectResp(uint32, uint32, uint32, uint32) airecv clsend;
-};
-
-dclass DistributedTeleportZone : DistributedInstanceBase {
 };
 
 dclass DistributedTeleportHandler : DistributedObject {
