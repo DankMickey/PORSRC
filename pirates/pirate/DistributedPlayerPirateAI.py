@@ -821,7 +821,7 @@ def gm(color=None, tag=None):
         av.b_setGMNametag(color, tag)
         return 'GM nametag set!'
 
-@magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
+@magicWord(CATEGORY_GAME_MASTER, types=[int])
 def giveGold(gold):
     target = spellbook.getTarget()
     invoker = spellbook.getInvoker()
@@ -898,16 +898,18 @@ def giveLocatable(type, itemId, amount):
 
 @magicWord(CATEGORY_GAME_MASTER, types=[int])
 def giveWeapon(itemId):
-    target = spellbook.getInvoker()
-    invokerAccess = target.getAdminAccess()
+    target = spellbook.getTarget()
+    invoker = spellbook.getInvoker()
+    #target = spellbook.getInvoker()
+    #invokerAccess = target.getAdminAccess()
     
     from pirates.uberdog.UberDogGlobals import InventoryType
     from pirates.uberdog.TradableInventoryBase import InvItem
     
-    if invokerAccess >= CATEGORY_GAME_DEVELOPER.access:
-        target = spellbook.getTarget()
+    #if invokerAccess >= CATEGORY_GAME_DEVELOPER.access:
+        #target = spellbook.getTarget()
 
-    if not target:
+    if not invoker or not target:
         return "Failed to give weapon. Unknown error has occured."
 
     inv = target.getInventory()
