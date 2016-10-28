@@ -450,19 +450,23 @@ class SkillButton(DirectFrame):
                 self.skillRingIval.pause()
                 self.skillRingIval = None
 
+            self.setGeomColor(1.0, 1.0, 1.0, 1.0)
+            
+            if not self.skillRing:
+                return
+
             self.skillRing.meterFaceHalf1.setR(0)
             self.skillRing.meterFaceHalf2.setR(180)
             self.skillRing.setScale(1.0)
             self.skillRing.clearColorScale()
-            self.setGeomColor(1.0, 1.0, 1.0, 1.0)
             self.skillRingIval = Sequence(Func(base.playSfx, SkillButton.SkillRechargedSound, volume = 0.5), Parallel(LerpScaleInterval(self.skillRing, 0.100, Vec3(1.2, 1.2, 1.2)), LerpColorScaleInterval(self.skillRing, 0.100, Vec4(0.0, 0.75, 0.0, 1.0), Vec4(1.0, 1.0, 1.0, 1.0), blendType = 'easeInOut')), Func(localAvatar.setDefenceEffect, self.skillId), LerpScaleInterval(self.skillRing, 0.200, Vec3(0.9, 0.9, 0.9)), LerpScaleInterval(self.skillRing, 0.0299, Vec3(1.10, 1.10, 1.10)), Parallel(LerpScaleInterval(self.skillRing, 0.0299, Vec3(1.0, 1.0, 1.0)), LerpColorScaleInterval(self.skillRing, 1, Vec4(1.0, 1.0, 1.0, 1.0), blendType = 'easeInOut')), Func(self.skillRing.clearColorScale))
             self.skillRingIval.start()
         elif timeSpentRecharging < self.totalRechargeTime:
             self.rechargeFilled = 0
             self.setGeomColor(0.5, 0.5, 0.5, 1.0)
-            self.skillRing.update(timeSpentRecharging, self.totalRechargeTime)
-
-
+            
+            if self.skillRing:
+                self.skillRing.update(timeSpentRecharging, self.totalRechargeTime)
 
     def updateSkillId(self, skillId):
         self.skillId = skillId
