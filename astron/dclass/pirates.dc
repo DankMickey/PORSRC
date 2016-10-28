@@ -807,7 +807,7 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   levelUpMsg(uint32, uint32, uint32) broadcast airecv;
   addQuestMsg(string, uint8) broadcast airecv;
   requestCurrentWeapon(uint16, uint8) ownsend airecv;
-  // requestCurrentAmmo(SkillId) ownsend airecv;
+  requestCurrentAmmo(SkillId) ownsend airecv;
   requestCurrentCharm(uint16) ownsend airecv;
   // requestUseSkill(SkillId, uint8) ownsend airecv;
   requestDeployShip(uint32) airecv ownsend;

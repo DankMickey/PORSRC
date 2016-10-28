@@ -436,6 +436,10 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
             return
 
         self.b_setCurrentWeapon(currentWeapon, isWeaponDrawn)
+    
+    def requestCurrentAmmo(self, currentAmmo):
+        # TODO
+        self.b_setCurrentAmmo(currentAmmo)
 
     def canUseItem(self, itemTuple):
         canUse = 1
