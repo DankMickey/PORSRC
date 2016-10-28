@@ -16,11 +16,9 @@ class OTPBase(ShowBase):
         self.wantEnviroDR = False
         ShowBase.__init__(self, windowType=windowType)
         self.idTags = config.GetBool('want-id-tags', 0)
-        if not self.idTags:
-            del self.idTags
         self.wantNametags = self.config.GetBool('want-nametags', 1)
         self.slowCloseShard = self.config.GetBool('slow-close-shard', 0)
-        self.slowCloseShardDelay = self.config.GetFloat('slow-close-shard-delay', 10.0)
+        self.slowCloseShardDelay = self.config.GetFloat('slow-close-shard-delay', 1.0)
         self.fillShardsToIdealPop = self.config.GetBool('fill-shards-to-ideal-pop', 1)
 
         self.wantDynamicShadows = 1

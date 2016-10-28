@@ -159,9 +159,6 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
         self.sailingLOD = None
         self.unloadWaterRing()
         self.removeFromMap()
-        self.ignore('docked')
-        self.ignore('toggleIslandNametag')
-        self.ignore('timeOfDayChange')
         self.stopCustomEffects()
         if self.fogTransitionIval:
             self.fogTransitionIval.pause()
@@ -171,15 +168,11 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
         DistributedGameArea.DistributedGameArea.disable(self)
         DistributedCartesianGrid.DistributedCartesianGrid.disable(self)
         self.deleteZoneCollisions()
-
-        try:
-            self.parentWorld.islands.pop(self.doId, None)
-        except:
-            pass
-
+        self.parentWorld.islands.pop(self.doId, None)
         self.parentWorld = None
         self.removeActive()
         self.deleteNametag3d()
+        self.ignoreAll()
 
     def delete(self):
         DistributedGameArea.DistributedGameArea.delete(self)
@@ -187,6 +180,7 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
         ZoneLOD.ZoneLOD.delete(self)
         self.unloadPlayerBarrier()
         self.remove_node()
+        self.ignoreAll()
         while len(self.SiegeIcons):
             icon = self.SiegeIcons.pop()
             icon.remove_node()
@@ -1260,6 +1254,8 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
     def timeOfDayChanged(self, stateId = None, stateDuration = 0.0, elapsedTime = 0.0, transitionTime = 0.0):
         if self.dockingLodFog:
             todMgr = base.cr.timeOfDayManager
+            if not todMgr:
+                return
             transitionTime = todMgr.cycleDuration * TODGlobals.getStateTransitionTime(todMgr.cycleType, todMgr.currentState)
             fromFogColor = TODGlobals.getTodEnvSetting(todMgr.lastState, todMgr.environment, 'FogColor') / 2.5 + Vec4(0, 0, 0, 1)
             toFogColor = TODGlobals.getTodEnvSetting(todMgr.currentState, todMgr.environment, 'FogColor') / 2.5 + Vec4(0, 0, 0, 1)

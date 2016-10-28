@@ -90,12 +90,14 @@ from pirates.audio import SoundGlobals
 from pirates.audio.SoundGlobals import loadSfx
 from otp.ai.MagicWordManager import MagicWordManager
 from otp.friends.FriendHandle import FriendHandle
+from direct.distributed.DoInterestManager import InterestHandle
 
 class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
     notify = directNotify.newCategory('PiratesClientRepository')
     SupportTutorial = 0
     GameGlobalsId = OTP_DO_ID_PIRATES
     StopVisibilityEvent = 'pirates-stop-visibility'
+    ClearInterestDoneEvent = 'pirates-clear-interest'
 
     def __init__(self, serverVersion, launcher = None):
         self.loadingScreen = base.loadingScreen

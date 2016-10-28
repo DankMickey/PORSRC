@@ -794,7 +794,7 @@ class MotionFSM(FSM):
             del self.motionAnimFSM
             del self.av
             self.movementKeys = { }
-
+        taskMgr.remove('localAvatarCheckUnderWater')
 
 
     def off(self, lock = False):
