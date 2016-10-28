@@ -24,11 +24,11 @@ OL.SpeedChatStaticText = OL.SpeedChatStaticTextPirates.copy()
 for key in OL.SpeedChatStaticTextCommon.iterkeys():
     OL.SpeedChatStaticText[key] = OL.SpeedChatStaticTextCommon[key]
 
-InterfaceFont = 'models/fonts/BardiT.bam'
-InterfaceOutlineFont = 'models/fonts/BardiT_outline.bam'
-PirateChippedFont = 'models/fonts/BriosoPro_chipped.bam'
-PirateChippedOutlineFont = 'models/fonts/BriosoPro_chipped_outline.bam'
-PirateBoldOutlineFont = 'models/fonts/BriosoPro_bold_outline.bam'
+InterfaceFont = 'models/fonts/BardiT'
+InterfaceOutlineFont = 'models/fonts/BardiT_outline'
+PirateChippedFont = 'models/fonts/BriosoPro_chipped'
+PirateChippedOutlineFont = 'models/fonts/BriosoPro_chipped_outline'
+PirateBoldOutlineFont = 'models/fonts/BriosoPro_bold_outline'
 SignFont = PirateChippedOutlineFont
 DialogOK = 'OK'
 DialogYes = 'Yes'

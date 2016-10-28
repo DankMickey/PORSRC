@@ -733,7 +733,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
 
 
     def createHitTrack(self, parent, explosionPoint = Point3(0)):
-        explosion = loader.loadModel('models/sea/splash.bam')
+        explosion = loader.loadModel('models/sea/splash')
         explosion.setScale(0.4)
         explosion.setColorScale(0, 1, 1, 1)
         explosion.setBillboardPointWorld()

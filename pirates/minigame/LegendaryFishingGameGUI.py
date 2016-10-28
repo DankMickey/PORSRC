@@ -247,8 +247,8 @@ class LegendaryFishingGameGUI:
         result = fish.myData['name'].split(' ')
         fileName = str(result[0]).capitalize()
         imgName = 'pir_t_gui_fsh_render%s' % fileName
-        self.actorAnim['swimIdleOpposite'] = 'models/char/pir_a_gam_fsh_%s_%s.bam' % (fish.myData['model'], 'swimIdleOpposite')
-        self.fishActor = BlendActor('models/char/pir_r_gam_fsh_%s.bam' % fish.myData['model'], self.actorAnim, FishingGlobals.defaultFishBlendTime, FishingGlobals.fishBlendTimeDict)
+        self.actorAnim['swimIdleOpposite'] = 'models/char/pir_a_gam_fsh_%s_%s' % (fish.myData['model'], 'swimIdleOpposite')
+        self.fishActor = BlendActor('models/char/pir_r_gam_fsh_%s' % fish.myData['model'], self.actorAnim, FishingGlobals.defaultFishBlendTime, FishingGlobals.fishBlendTimeDict)
         self.fishActor.setPlayRate(fish.myData['speed'] * fish.myData['swimAnimationMultiplier'], 'swimIdleOpposite')
         self.fishActor.changeAnimationTo('swimIdleOpposite')
         self.fishActor.reparentTo(self.winImagePanel)

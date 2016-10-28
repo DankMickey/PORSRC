@@ -13,7 +13,7 @@ class ExplosionFlip(PooledEffect, EffectController):
         EffectController.__init__(self)
         self.speed = 20.0
         self.explosionSequence = 0
-        self.explosion = loader.loadModel('models/effects/explosion.bam')
+        self.explosion = loader.loadModel('models/effects/explosion')
         self.explosion.setBillboardAxis()
         self.explosion.setDepthWrite(0)
         self.explosion.node().setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd))

@@ -2123,11 +2123,11 @@ class PirateMale(DirectObject.DirectObject):
             part.stash()
 
         self.currentBody = NodePathCollection()
-        self.bodyTextures = loader.loadModel('models/misc/male_body.bam')
+        self.bodyTextures = loader.loadModel('models/misc/male_body')
         self.numBodys = len(body_textures[0])
         self.bodyTextureIdx = self.pirate.style.getBodySkin()
         self.lowLODSkinColor = VBase4(0.810000, 0.685, 0.62, 1.0)
-        self.faceTextures = loader.loadModel('models/misc/male_face.bam')
+        self.faceTextures = loader.loadModel('models/misc/male_face')
         self.faceTexturesSet = []
         self.numFaces = len(face_textures)
         self.faceTextureIdx = self.pirate.style.getHeadTexture()
@@ -2327,7 +2327,7 @@ class PirateMale(DirectObject.DirectObject):
         self.partLayer['PANT'] = self.clothingsLayer1
         self.partLayer['SHOE'] = self.clothingsLayer1
         self.partLayer['HAT'] = self.clothingsLayer1
-        self.clothesTextures = loader.loadModel('models/misc/male_clothes.bam')
+        self.clothesTextures = loader.loadModel('models/misc/male_clothes')
         self.clothingsShirt.append([
             []])
         self.clothingsShirt.append([

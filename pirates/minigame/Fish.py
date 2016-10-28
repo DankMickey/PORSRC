@@ -56,9 +56,9 @@ class Fish(NodePath):
     def initActor(self):
         self.animDict = { }
         for anim in FishingGlobals.fishAnimations:
-            self.animDict[anim] = 'models/char/pir_a_gam_fsh_%s_%s.bam' % (self.myData['model'], anim)
+            self.animDict[anim] = 'models/char/pir_a_gam_fsh_%s_%s' % (self.myData['model'], anim)
 
-        self.actor = BlendActor('models/char/pir_r_gam_fsh_%s.bam' % self.myData['model'], self.animDict, FishingGlobals.defaultFishBlendTime, FishingGlobals.fishBlendTimeDict)
+        self.actor = BlendActor('models/char/pir_r_gam_fsh_%s' % self.myData['model'], self.animDict, FishingGlobals.defaultFishBlendTime, FishingGlobals.fishBlendTimeDict)
         self.actor.reparentTo(self)
         self.actor.setScale(self.adjustedScale)
         self.mouthJoint = self.actor.exposeJoint(None, 'modelRoot', 'hookAttach')

@@ -164,8 +164,8 @@ lureFlightDuration = {
     'fsh_bigCast': 0.800000,
     'fsh_smallCast': 0.4 }
 lureTypeToModel = {
-    'regular': 'models/minigames/pir_m_gam_fsh_regLure.bam',
-    'legendary': 'models/minigames/pir_m_gam_fsh_legendLure.bam' }
+    'regular': 'models/minigames/pir_m_gam_fsh_regLure',
+    'legendary': 'models/minigames/pir_m_gam_fsh_legendLure' }
 lureTypeToAttractRadius = {
     'regular': 2.0,
     'legendary': 2.0 }

@@ -350,7 +350,7 @@ class NewTutorialPanel(GuiPanel.GuiPanel):
             rightClickCard.setScale(2)
             moveCard = kbButton.copyTo(kbButton)
             skillCardRoot = NodePath('skillCardRoot')
-            skillGui = loader.loadModel('models/textureCards/skillIcons.bam')
+            skillGui = loader.loadModel('models/textureCards/skillIcons')
             sweep = skillGui.findTexture('tutorial_sweep')
             skillCard = NodePath(cm.generate())
             skillCard.setTexture(sweep)

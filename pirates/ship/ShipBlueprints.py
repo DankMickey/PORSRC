@@ -702,8 +702,8 @@ sailColors = { }
 logoTextures = { }
 
 def setupShipTextures():
-    model = loader.loadModel('models/shipparts/pir_m_shp_text_swap.bam')
-    modelQAR = loader.loadModel('models/shipparts/pir_m_shp_text_qar.bam')
+    model = loader.loadModel('models/shipparts/pir_m_shp_text_swap')
+    modelQAR = loader.loadModel('models/shipparts/pir_m_shp_text_qar')
     for i in shipStyles:
         if i != ShipGlobals.Styles.QueenAnnesRevenge:
             textures = model.find('**/%s' % shipStyles[i]).findAllTextures('*')
@@ -713,11 +713,11 @@ def setupShipTextures():
             shipTextures[i] = textures[0]
             continue
 
-    model = loader.loadModel('models/textureCards/sailColors.bam')
+    model = loader.loadModel('models/textureCards/sailColors')
     for (style, name) in ColorDict.iteritems():
         sailColors[style] = model.find('**/%s' % name).findAllTextures('*')[0]
 
-    model = loader.loadModel('models/textureCards/sailLogo.bam')
+    model = loader.loadModel('models/textureCards/sailLogo')
     for (num, name) in LogoDict.iteritems():
         logoTextures[num] = model.find('**/%s' % name).findAllTextures('*')[0]
 

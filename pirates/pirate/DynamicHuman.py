@@ -573,7 +573,7 @@ class DynamicHuman(HumanBase.HumanBase, Biped.Biped):
             'zz_spine01'])
         self.setSubpartsComplete(True)
         self.getWeaponJoints()
-        self.eyeIrisTextures = loader.loadModel('models/misc/eye_iris.bam')
+        self.eyeIrisTextures = loader.loadModel('models/misc/eye_iris')
 
 
     def refreshBody(self):

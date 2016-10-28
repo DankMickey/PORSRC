@@ -585,7 +585,7 @@ class MasterHuman(HumanBase.HumanBase, Biped.Biped):
         self.makeSubpart('legs', ['dx_root'], ['zz_spine01'])
         self.setSubpartsComplete(True)
 
-        self.eyeIrisTextures = loader.loadModel('models/misc/eye_iris.bam')
+        self.eyeIrisTextures = loader.loadModel('models/misc/eye_iris')
 
     def setLODs(self):
         self.setLODNode()

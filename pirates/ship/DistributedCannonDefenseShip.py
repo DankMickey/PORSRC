@@ -37,8 +37,8 @@ class DistributedCannonDefenseShip(DistributedNPCSimpleShip):
         self.initHealthBar()
         self.initIndicatorIcons()
         self.sinkTimeScale = CannonDefenseGlobals.SHIP_SINK_DURATION_SCALE
-        self.sharkActor = Actor('models/char/pir_r_gam_fsh_lgComTshark.bam', {
-            'attack': 'models/char/pir_a_gam_fsh_lgComTshark_attack.bam' })
+        self.sharkActor = Actor('models/char/pir_r_gam_fsh_lgComTshark', {
+            'attack': 'models/char/pir_a_gam_fsh_lgComTshark_attack' })
         self.sharkParallel = None
         self.fader = None
         if not self.coldShotHitSfx:
