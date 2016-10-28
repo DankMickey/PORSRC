@@ -443,15 +443,15 @@ dclass Teamable {
 };
 
 dclass WeaponBase : Teamable {
-  requestTargetedSkill(SkillId, SkillId, uint8, DoId, DoIdList, uint32, Pos, uint8) clsend airecv;
-  useTargetedSkill(SkillId, SkillId, uint8, DoId, DoIdList, SkillEffects, SkillEffects, SkillEffectsList, uint16 [], uint32, Pos, uint8) broadcast;
+  requestTargetedSkill(SkillId, SkillId, uint8, DoId, DoId[], uint32, Pos, uint8) clsend airecv;
+  useTargetedSkill(SkillId, SkillId, uint8, DoId, DoId[], SkillEffects, SkillEffects, SkillEffectsList, uint16 [], uint32, Pos, uint8) broadcast;
   requestShipSkill(SkillId, SkillId, uint8, DoId, uint32) clsend airecv;
   useShipSkill(SkillId, SkillId, uint8, DoId, SkillEffects, ShipEffects, uint32) broadcast;
 
   requestProjectileSkill(SkillId, SkillId, PosHpr, uint32, uint8) clsend airecv;
   useProjectileSkill(SkillId, SkillId, PosHpr, uint32, uint8) broadcast;
-  suggestProjectileSkillResult(SkillId, SkillId, uint8, DoId, DoIdList, Pos, Normal, uint8[], uint32) clsend airecv;
-  setProjectileSkillResult(SkillId, SkillId, uint8, DoId, DoIdList, SkillEffects, SkillEffects, SkillEffectsList, Pos, Normal, uint8[], DoId, uint32) broadcast;
+  suggestProjectileSkillResult(SkillId, SkillId, uint8, DoId, DoId[], Pos, Normal, uint8[], uint32) clsend airecv;
+  setProjectileSkillResult(SkillId, SkillId, uint8, DoId, DoId[], SkillEffects, SkillEffects, SkillEffectsList, Pos, Normal, uint8[], DoId, uint32) broadcast;
 };
 
 dclass DistributedMovingObject : DistributedSmoothNode {
@@ -779,10 +779,10 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   setAFK(bool) clsend airecv;
   setBandDisconnect(uint8) clsend airecv;
   // setEpicQuests(uint32) required broadcast db;
-  // setStickyTargets(DoIdList) required broadcast ram;
-  requestRemoveStickyTargets(DoIdList) ownsend airecv;
-  requestRemoveEffects(DoIdList) ownsend airecv;
-  requestAuraDetection(DoIdList) ownsend airecv;
+  // setStickyTargets(DoId[]) required broadcast ram;
+  requestRemoveStickyTargets(DoId[]) ownsend airecv;
+  requestRemoveEffects(DoId[]) ownsend airecv;
+  requestAuraDetection(DoId[]) ownsend airecv;
   requestRemoveAuraDetection() ownsend airecv;
   setDefaultShard(uint32) required broadcast ownrecv db;
   // setDefaultZone(uint32) ownrecv required db;

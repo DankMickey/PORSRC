@@ -17,10 +17,7 @@ from otp.chat import ChatAgent/AI
 from otp.avatar import AvatarHandle
 
 typedef uint8 bool;
-
 typedef uint32 DoId;
-
-typedef DoId DoIdList[];
 
 struct AvatarPendingDel {
   uint32 Avatar;
@@ -40,7 +37,7 @@ dclass Account {
 struct BarrierData {
   uint16 context;
   string name;
-  DoIdList avIds;
+  uint32[] avIds;
 };
 
 dclass DistributedObject {
