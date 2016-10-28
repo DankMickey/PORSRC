@@ -5,11 +5,10 @@ if __name__ == '__main__':
 from direct.showbase import PythonUtil
 from direct.distributed.PyDatagram import PyDatagram
 from direct.distributed.PyDatagramIterator import PyDatagramIterator
-from otp.avatar import AvatarDNA
 import FlagGlobals
 import random
 
-class FlagDNA(AvatarDNA.AvatarDNA):
+class FlagDNA(object):
     DefaultShapeData = 0
     DefaultBackgroundData = [
         0,
