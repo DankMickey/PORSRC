@@ -634,7 +634,6 @@ class AvatarChooser(DirectObject, StateData):
         potAv.wishState = 'CLOSED'
         avButton = self.avButtons[slot]
         avButton['text'] = potAv.name
-        potAv.dna.setName(potAv.wishName)
         self.allowInput()
 
     def __handleDenied(self, value):

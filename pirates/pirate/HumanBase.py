@@ -25,7 +25,7 @@ class HumanBase:
         self.style.setTutorial(val)
 
     def setName(self, val):
-        self.style.setName(val)
+        pass
 
     def setGender(self, val):
         self.style.setGender(val)

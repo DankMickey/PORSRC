@@ -51,7 +51,6 @@ class DistributedDiceGame(DistributedGameTable.DistributedGameTable):
         name = self.dealerName or 'Dealer'
         if self._getAvTeamFromVariation() == PiratesGlobals.VILLAGER_TEAM:
             dna = HumanDNA.HumanDNA()
-            dna.setName(name)
             dna.setGender('f')
             dna.setBodyShape(2)
             dna.setBodyHeight(-0.37676620483399997)

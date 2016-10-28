@@ -248,7 +248,6 @@ class DistributedGameTable(DistributedInteractive.DistributedInteractive):
         if dealerVariation == PiratesGlobals.VILLAGER_TEAM:
             dna = HumanDNA.HumanDNA()
             dna.makeNPCTownfolk(seed = self.doId)
-            dna.setName(name)
             dna.clothes.coat = 0
             dna.clothes.vest = 2
             dna.clothes.vestTexture = 4
