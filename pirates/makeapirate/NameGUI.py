@@ -155,7 +155,7 @@ class NameGUI(DirectFrame, StateData.StateData):
             self.loadPickAName()
             self.loadTypeAName()
             self.listsCreated = 1
-            name = self.getDNA().getDNAName()
+            name = self.getName()
             if name:
                 if not (self.independent) and self.main.isNPCEditor:
                     self._NameGUI__assignNameToTyped(name)
@@ -204,8 +204,6 @@ class NameGUI(DirectFrame, StateData.StateData):
 
     def exit(self):
         self.hide()
-        if self.cr:
-            self.ignore(self.cr.getWishNameResultMsg())
 
         if hasattr(self, 'self._nameCheckCallback'):
             del self._nameCheckCallback
@@ -266,26 +264,8 @@ class NameGUI(DirectFrame, StateData.StateData):
                 indices = pattern
                 self._updateGuiToPickAName(actives, indices)
 
-
-
-
-    def _sendSetWishname(self, justCheck = False):
-        return
-
-
-    def _handleSetWishnameResult(self, result, avId, name):
-        callback = self._nameCheckCallback
-        del self._nameCheckCallback
-        problem = OL.NCGeneric
-        if result in (self.cr.WishNameResult.PendingApproval, self.cr.WishNameResult.Approved):
-            problem = None
-
-        callback(problem)
-
-
     def save(self):
         return
-
 
     def loadPickAName(self):
         self.nameFrameTitle = DirectFrame(parent = self.parent, relief = None, frameColor = (0.5, 0.5, 0.5, 0.299), text = PL.NameFrameTitle, text_fg = (1, 1, 1, 1), text_scale = 0.179, text_pos = (0, 0), pos = (0, 0, 0.299), scale = 0.696)
@@ -965,3 +945,9 @@ class NameGUI(DirectFrame, StateData.StateData):
             return self.main.dna
         else:
             return self.main.pirate.style
+    
+    def getName(self):
+        if self.independent:
+            return self.main.name
+        else:
+            return self.main.pirate.name

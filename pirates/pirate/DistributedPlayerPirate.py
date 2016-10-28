@@ -351,7 +351,6 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             self.crazySkinColorIval = None
             self.transformSeqEffect = None
             self.injuredFrame = None
-            self.ghostEffect = None
             self.isGhost = 0
             self.bloodFireTime = 0.0
             self.auraActivated = 0
@@ -2501,10 +2500,6 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         self.unstashBattleCollisions()
         self.startCompassEffect()
         self.show(invisibleBits = PiratesGlobals.INVIS_DEATH)
-
-
-    def setWishName(self):
-        self.cr.sendWishName(self.doId, self.style.name)
 
 
     def canTeleport(self):

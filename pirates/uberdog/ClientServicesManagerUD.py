@@ -8,6 +8,7 @@ from direct.distributed.DistributedObjectGlobalUD import DistributedObjectGlobal
 from direct.directnotify.DirectNotifyGlobal import directNotify
 from direct.distributed.PyDatagram import *
 from direct.fsm.FSM import FSM
+from otp.otpbase import OTPGlobals
 from sys import platform
 import traceback
 import hashlib
@@ -664,9 +665,9 @@ class AvatarOperationFSM(CSMOperation):
 
         self.account = fields
 
-        self.avList = self.account['ACCOUNT_AV_SET']
-        # Sanitize:
-        self.avList = self.avList[:6]
+        self.avList = self.account['ACCOUNT_AV_SET'][:6]
+        self.deletedAvList = self.account['ACCOUNT_AV_SET_DEL'][:6]
+
         self.avList += [0] * (6-len(self.avList))
 
         self.demand(self.POST_ACCOUNT_STATE)
@@ -820,18 +821,65 @@ class LoadAvatarFSM(AvatarOperationFSM):
     notify = directNotify.newCategory('LoadAvatarFSM')
     POST_ACCOUNT_STATE = 'GetTargetAvatar'
 
-    def enterStart(self, avId):
+    def enterStart(self, avId, index):
         self.avId = avId
+        self.index = index
         self.demand('RetrieveAccount')
 
     def enterGetTargetAvatar(self):
         # Make sure the target avatar is part of the account:
+        if self.isAccountDeleted():
+            if not 0 <= self.index < 6:
+                self.demand('Kill', 'Tried to recover an avatar into an invalid slot!')
+                return
+
+            if self.avList[self.index]:
+                self.demand('Kill', 'Tried to recover an avatar into an occupied slot!')
+                return
+            
+            self.demand('RecoverAvatar')
+            return
+    
         if self.avId not in self.avList:
             self.demand('Kill', 'Tried to play an avatar not in the account!')
             return
 
         self.csm.air.dbInterface.queryObject(self.csm.air.dbId, self.avId,
                                              self.__handleAvatar)
+    
+    def isAccountDeleted(self):
+        for av in self.deletedAvList:
+            if av[0] == self.avId:
+                return True
+        
+        return False
+    
+    def enterRecoverAvatar(self):
+        for i, av in enumerate(self.deletedAvList):
+            if av[0] == self.avId:
+                del self.deletedAvList[i]
+                break
+        
+        secondsLeft = max(0, OTPGlobals.RECOVERY_TIME - (int(time.time()) - av[1]))
+        
+        if secondsLeft:
+            self.demand('Kill', 'Tried to recover an avatar before the cooldown expired!')
+            return
+
+        self.avList[self.index] = av[0]
+        self.csm.air.dbInterface.updateObject(
+            self.csm.air.dbId,
+            self.target, # i.e. the account ID
+            self.csm.air.dclassesByName['AccountUD'],
+            {'ACCOUNT_AV_SET': self.avList,
+             'ACCOUNT_AV_SET_DEL': self.deletedAvList},
+            callback=self.__handleRecover)
+    
+    def __handleRecover(self, fields):
+        if fields:
+            self.demand('Kill', 'Database failed to recover the avatar!')
+        else:
+            self.demand('GetTargetAvatar')
 
     def __handleAvatar(self, dclass, fields):
         if dclass != self.csm.air.dclassesByName['DistributedPlayerPirateUD']:
@@ -943,22 +991,21 @@ class DeleteAvatarFSM(AvatarOperationFSM):
         if self.avId not in self.avList:
             self.demand('Kill', 'Tried to delete an avatar not in the account!')
             return
+        if len(self.deletedAvList) >= 6:
+            self.demand('Kill', 'Tried to delete more avatars than allowed!')
+            return
 
         index = self.avList.index(self.avId)
         self.avList[index] = 0
-
-        avsDeleted = list(self.account.get('ACCOUNT_AV_SET_DEL', []))
-        avsDeleted.append([self.avId, int(time.time())])
+        self.deletedAvList.append([self.avId, int(time.time())])
 
         self.csm.air.dbInterface.updateObject(
             self.csm.air.dbId,
             self.target, # i.e. the account ID
             self.csm.air.dclassesByName['AccountUD'],
             {'ACCOUNT_AV_SET': self.avList,
-             'ACCOUNT_AV_SET_DEL': avsDeleted},
-            {'ACCOUNT_AV_SET': self.account['ACCOUNT_AV_SET'],
-             'ACCOUNT_AV_SET_DEL': self.account['ACCOUNT_AV_SET_DEL']},
-            self.__handleDelete)
+             'ACCOUNT_AV_SET_DEL': self.deletedAvList},
+            callback=self.__handleDelete)
 
     def __handleDelete(self, fields):
         if fields:
@@ -967,6 +1014,54 @@ class DeleteAvatarFSM(AvatarOperationFSM):
 
         self.csm.air.writeServerEvent('avatarDeleted', avId=self.avId, accountId=self.target)
         self.csm.sendUpdateToAccountId(self.target, 'avDeleted', [self.avId])
+        self.demand('Off')
+
+class GetDeletedAvatarsFSM(AvatarOperationFSM):
+    notify = directNotify.newCategory('GetDeletedAvatarsFSM')
+    
+    def enterStart(self):
+        self.csm.air.dbInterface.queryObject(self.csm.air.dbId, self.target, self.__handleRetrieve)
+
+    def __handleRetrieve(self, dclass, fields):
+        if dclass != self.csm.air.dclassesByName['AccountUD']:
+            self.demand('Kill', 'Your account object was not found in the database!')
+            return
+
+        self.account = fields
+        self.avList = self.account['ACCOUNT_AV_SET_DEL']
+        self.demand('QueryAvatars')
+
+    def enterQueryAvatars(self):
+        self.pendingAvatars = set()
+        self.avatarFields = {}
+        
+        for av in self.avList:
+            avId, delTime = av
+            self.pendingAvatars.add(avId)
+
+            def response(dclass, fields, avId=avId, delTime=delTime):
+                if self.state != 'QueryAvatars':
+                    return
+
+                if dclass != self.csm.air.dclassesByName['DistributedPlayerPirateUD']:
+                    self.demand('Kill', "One of the account's avatars is invalid!")
+                    return
+
+                fields['setTimeDeleted'] = delTime
+                self.avatarFields[avId] = fields
+                self.pendingAvatars.remove(avId)
+
+                if not self.pendingAvatars:
+                    self.demand('SendAvatars')
+
+            self.csm.air.dbInterface.queryObject(self.csm.air.dbId, avId, response)
+        
+        if not self.pendingAvatars:
+            self.demand('SendAvatars')
+
+    def enterSendAvatars(self):
+        deletedAvatars = [(avId, fields['setTimeDeleted'], fields['setName'][0], fields['setDNAString'][0]) for avId, fields in self.avatarFields.items()]
+        self.csm.sendUpdateToAccountId(self.target, 'setDeletedAvatars', [deletedAvatars])
         self.demand('Off')
 
 class AcknowledgeNameFSM(AvatarOperationFSM):
@@ -1196,6 +1291,9 @@ class ClientServicesManagerUD(DistributedObjectGlobalUD):
 
     def requestAvatars(self):
         self.runAccountFSM(GetAvatarsFSM)
+    
+    def requestDeletedAvatars(self):
+        self.runAccountFSM(GetDeletedAvatarsFSM)
 
     def createAvatar(self, dna, index, allegiance, name):
         self.runAccountFSM(CreateAvatarFSM, dna, index, allegiance, name)
@@ -1203,7 +1301,7 @@ class ClientServicesManagerUD(DistributedObjectGlobalUD):
     def deleteAvatar(self, avId):
         self.runAccountFSM(DeleteAvatarFSM, avId)
 
-    def chooseAvatar(self, avId):
+    def chooseAvatar(self, avId, index):
         currentAvId = self.air.getAvatarIdFromSender()
         accountId = self.air.getAccountIdFromSender()
         if currentAvId and avId:
@@ -1215,7 +1313,7 @@ class ClientServicesManagerUD(DistributedObjectGlobalUD):
             return
 
         if avId:
-            self.runAccountFSM(LoadAvatarFSM, avId)
+            self.runAccountFSM(LoadAvatarFSM, avId, index)
         else:
             self.runAccountFSM(UnloadAvatarFSM, currentAvId)
 

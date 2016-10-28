@@ -6,8 +6,9 @@ from direct.fsm.StateData import StateData
 from direct.interval.IntervalGlobal import *
 from direct.gui.OnscreenImage import OnscreenImage
 from otp.otpgui import OTPDialog
+from otp.otpbase import OTPGlobals, OTPLocalizer
 from pirates.piratesbase import PiratesGlobals, PLocalizer, TimeOfDayManager, TODGlobals
-from pirates.pirate import Human, HumanDNA, DynamicHuman, Pirate
+from pirates.pirate import Human, HumanDNA, DistributedDynamicHuman, DynamicHuman, Pirate
 from pirates.piratesgui.GameOptions import GameOptions
 from pirates.piratesgui import PiratesGuiGlobals, PDialog
 from pirates.piratesgui.BorderFrame import BorderFrame
@@ -64,6 +65,7 @@ class AvatarChooser(DirectObject, StateData):
         self.accept('mouse1-up', self._stopMouseReadTask)
         self.accept('mouse3', self._startMouseReadTask)
         self.accept('mouse3-up', self._stopMouseReadTask)
+        self.accept('updatedDeletedAvList', self.__updatedDeletedAvs)
         if not self.disableOptions:
             self.accept('f7', self.__handleOptions)
 
@@ -92,6 +94,7 @@ class AvatarChooser(DirectObject, StateData):
         self.ignore('mouse3')
         self.ignore('mouse3-up')
         self.ignore('f7')
+        self.ignore('updatedDeletedAvList')
         self._stopMouseReadTask()
         self.ignoreAll()
         if hasattr(self, 'fadeInterval'):
@@ -163,6 +166,7 @@ class AvatarChooser(DirectObject, StateData):
         self.ropeFrame = DirectFrame(parent = self.avatarListFrame, relief = None, image = self.model.find('**/avatar_c_A_rope'), image_scale = 0.36, pos = (0, 0, -0.015))
         self.frame = BorderFrame(parent = self.avatarListFrame, frameSize = (-0.25, 0.25, -0.04, 0.09), borderScale = 0.2, pos = (0, 0, -0.16), modelName = 'general_frame_f')
         triangleGui = loader.loadModel('models/gui/triangle')
+        triangleModel = [triangleGui.find('**/triangle' + name) for name in ('', '_down', '_over')]
         self.label = DirectLabel(parent = self.frame, relief = None, text = '', text_scale = 0.05, text_fg = (1, 0.9, 0.7, 0.9), text_pos = (0, 0.015), textMayChange = 1)
 
         self.versionLabel = DirectLabel(parent = base.a2dTopRight, relief = None, text_scale = 0.04, text_fg = (1, 1, 1, 0.5), text = '%s\n%s' % (base.cr.getServerVersion(), base.win.getPipe().getInterfaceName()), text_align = TextNode.ARight, pos = (-0.05, 0, -0.05))
@@ -203,6 +207,13 @@ class AvatarChooser(DirectObject, StateData):
 
         self.logo = OnscreenImage(image = 'custom/PORLogo.png', pos = (0, 0, 0.08), scale = (0.4, 0.25, 0.25), parent = self.avatarListFrame)
         self.logo.setTransparency(TransparencyAttrib.MAlpha)
+        
+        self.leftButton = DirectButton(self.highlightFrame, relief=None, image=triangleModel, image_scale=-0.18, pos=(-0.55, 0, -0.08), command=self.__increaseDelIndex, extraArgs=[-1])
+        self.rightButton = DirectButton(self.highlightFrame, relief=None, image=triangleModel, image_scale=0.18, pos=(0.55, 0, -0.08), command=self.__increaseDelIndex, extraArgs=[1])
+        self.leftButton.hide()
+        self.rightButton.hide()
+        
+        self.recoverLabel = DirectLabel(base.a2dBottomLeft, relief = None, text_scale = 0.065, text_fg = (1.0, 0.9, 0.3, 0.9), text_shadow = PiratesGuiGlobals.TextShadow, text = '', pos=(0.415, 0, 0.65), text_wordwrap=9)
 
         self.updateAvatarList()
         charGui.remove_node()
@@ -234,15 +245,10 @@ class AvatarChooser(DirectObject, StateData):
             
             if not hasattr(av, 'name'):
                 text = '\x01smallCaps\x01%s\x02' % PLocalizer.AvatarChooserCreate
-                command = self.__handleCreate
-                state = DGG.NORMAL
             else:
-                avName = av.dna.getDNAName()
-                text = avName
-                command = self.__handleHighlight
-                state = DGG.NORMAL
-            
-            self.avButtons.append(DirectButton(relief = None, parent = self.avFrame, state = state, text_fg = (1, 0.9, 0.7, 0.9), text_scale = 0.045, text_shadow = PiratesGuiGlobals.TextShadow, text = text, image = image, image_scale = 0.37, text_pos = textPos, pos = (0, 0, z), command = command, extraArgs = [slot]))
+                text = av.name
+
+            self.avButtons.append(DirectButton(relief = None, parent = self.avFrame, state = DGG.NORMAL, text_fg = (1, 0.9, 0.7, 0.9), text_scale = 0.045, text_shadow = PiratesGuiGlobals.TextShadow, text = text, image = image, image_scale = 0.37, text_pos = textPos, pos = (0, 0, z), command = self.__handleHighlight, extraArgs = [slot]))
 
         self.isLoaded = 1
 
@@ -300,6 +306,13 @@ class AvatarChooser(DirectObject, StateData):
         if self.deniedConfirmDialog:
             self.deniedConfirmDialog.destroy()
             self.deniedConfirmDialog = None
+        
+        self.leftButton.destroy()
+        self.leftButton = None
+        self.rightButton.destroy()
+        self.rightButton = None
+        self.recoverLabel.destroy()
+        self.recoverLabel = None
 
     def getChoice(self):
         return self.choice
@@ -312,9 +325,16 @@ class AvatarChooser(DirectObject, StateData):
         return True
     
     def __showHighlightedAvatar(self):
-        slot = self.choice
-        potAv = base.cr.avList[slot]
-
+        av = base.cr.avList[self.choice]
+        
+        if not hasattr(av, 'name'):
+            self.showAvatar()
+        else:
+            self.showAvatar(av.wishState, av.defaultShard, av.name, av.dna)
+        
+        self.__updatedDeletedAvs()
+    
+    def showAvatar(self, wishState='CLOSED', name='', defaultShard=0, dna=None):
         if self.av:
             self.av.cleanupHuman()
             self.av.delete()
@@ -323,42 +343,47 @@ class AvatarChooser(DirectObject, StateData):
             self.deleteConfirmDialog.destroy()
             self.deleteConfirmDialog = None
 
-        self.av = DynamicHuman.DynamicHuman()
-        self.av.setDNAString(potAv.dna.makeNetString())
+        self.av = DistributedDynamicHuman.DistributedDynamicHuman()
+        self.av.doId = id(self.av)
+        self.av.ghostGeomGenerated = 1
+        self.av.setDNAString(dna)
+
         self.av.loadHuman(self.av.style.gender)
         self.av.setPosHpr(-29.69, 46.35, 22.05, 180.0, 0.0, 0.0)
         self.av.reparentTo(self.scene)
         self.av.loop('idle')
         self.av.useLOD(2000)
+        
+        if not dna:
+            self.av.setGhostColor(1)
+            self.av.startGhost(2)
+            self.playButton['text'] = '\x01smallCaps\x01%s\x02' % PLocalizer.AvatarChooserCreatePirate
+            self.playButton['command'] = self.__handleCreate
+        else:
+            if hasattr(base.cr.avList[self.choice], 'name'):
+                self.playButton['text'] = '\x01smallCaps\x01%s\x02' % PLocalizer.AvatarChooserPlay
+            else:
+                self.playButton['text'] = '\x01smallCaps\x01%s\x02' % PLocalizer.AvatarChooserRecover
+
+            self.playButton['command'] = self.__handlePlay
+
         self.highlightFrame.show()
 
-        if not (potAv.online):
-            self.deleteButton['state'] = DGG.NORMAL
-
-        self.playButton['text'] = '\x01smallCaps\x01%s\x02' % PLocalizer.AvatarChooserPlay
         self.playButton['state'] = DGG.NORMAL
         self.renameButton.hide()
 
-        if potAv.wishState == 'APPROVED':
+        if wishState == 'APPROVED':
             self.blockInput()
             self.finalizeConfirmDialog = PDialog.PDialog(text = PLocalizer.AvatarChooserNameAccepted, style = OTPDialog.Acknowledge, command = self.__handleFinalize)
-        elif potAv.wishState == 'DENIED' or potAv.wishState == 'OPEN':
-            if self.notifications.get(slot, 0):
-                self.blockInput()
-                if not self.handleDialogOnScreen:
-                    self.deniedConfirmDialog = PDialog.PDialog(text = PLocalizer.AvatarChooserPleaseRename, style = OTPDialog.Acknowledge, command = self.__handleDenied)
+        elif wishState == 'DENIED' or wishState == 'OPEN':
+            self.blockInput()
+            if not self.handleDialogOnScreen:
+                self.deniedConfirmDialog = PDialog.PDialog(text = PLocalizer.AvatarChooserPleaseRename, style = OTPDialog.Acknowledge, command = self.__handleDenied)
 
-                self.handleDialogOnScreen = 1
-
+            self.handleDialogOnScreen = 1
             self.renameButton.show()
 
-        if not (potAv.lastLogout) or int(time.time() / 60) - potAv.lastLogout > 60:
-            potAv.defaultShard = 0
-            base.cr.avPlayedRecently = False
-        else:
-            base.cr.avPlayedRecently = True
-        if base.cr.defaultShard == 0:
-            self.shardPanel['preferredShard'] = potAv.defaultShard
+        self.shardPanel['preferredShard'] = defaultShard
 
     def __hideHighlightedAvatar(self):
         if self.av:
@@ -430,8 +455,7 @@ class AvatarChooser(DirectObject, StateData):
         if self.avButtons[slot]['state'] == DGG.NORMAL:
             self.__handleHighlight(slot)
 
-    def __handleCreate(self, slot):
-        self.choice = slot
+    def __handleCreate(self):
         self.__avatarSlotResponse(self.choice)
         self.blockInput()
 
@@ -445,14 +469,11 @@ class AvatarChooser(DirectObject, StateData):
 
     def __handleEnter(self):
         if self.playButton['state'] == DGG.NORMAL:
-            self.__handlePlay()
+            self.playButton['command']()
 
     def __handlePlay(self):
-        slot = self.choice
-        potAv = base.cr.avList[slot]
+        potAv = self.getChosenAvatar()
         base.emoteGender = potAv.dna.gender
-        if not hasattr(potAv, 'name'):
-            return
 
         self.accept('playAvatarResponse', self.__playAvatarResponse)
         winInfo = base.win.getProperties()
@@ -461,8 +482,7 @@ class AvatarChooser(DirectObject, StateData):
         ratio = float(x) / y
         self.fadeFrame = DirectFrame(parent = aspect2dp, frameSize = (-1.0 * ratio, 1.0 * ratio, -1.0, 1.0))
         self.fadeFrame.setTransparency(1)
-        self.fadeInterval = Sequence(Func(self.blockInput), Func(self.fadeFrame.show), LerpColorScaleInterval(self.fadeFrame, 0.3, Vec4(0.0, 0.0, 0.0, 1.0), Vec4(0.0, 0.0, 0.0, 0.0), blendType = 'easeInOut'), Func(base.transitions.fadeOut, t = 0), Func(base.cr.loginFSM.request, 'waitForSetAvatarResponse', [potAv]))
-        base.emoteGender = potAv.dna.gender
+        self.fadeInterval = Sequence(Func(self.blockInput), Func(self.fadeFrame.show), LerpColorScaleInterval(self.fadeFrame, 0.3, Vec4(0.0, 0.0, 0.0, 1.0), Vec4(0.0, 0.0, 0.0, 0.0), blendType = 'easeInOut'), Func(base.transitions.fadeOut, t = 0), Func(base.cr.loginFSM.request, 'waitForSetAvatarResponse', [potAv, self.choice]))
         self.fadeInterval.start()
 
     def __playAvatarResponse(self, avatarId):
@@ -503,19 +523,25 @@ class AvatarChooser(DirectObject, StateData):
         potAv = base.cr.avList[slot]
         name = potAv.name
         self.blockInput()
-        self.deleteConfirmDialog = PDialog.PDialog(text = PLocalizer.AvatarChooserConfirmDelete % name, style = OTPDialog.YesNo, command = self.__handleDeleteConfirmation)
+        
+        if len(self.deletedAvs) >= 6:
+            self.deleteConfirmDialog = PDialog.PDialog(text = PLocalizer.AvatarChooserCantDelete % name, style = OTPDialog.Acknowledge, command = self.__destroyDeleteConfirmation)
+        else:
+            self.deleteConfirmDialog = PDialog.PDialog(text = PLocalizer.AvatarChooserConfirmDelete % name, style = OTPDialog.YesNo, command = self.__handleDeleteConfirmation)
 
-    def __handleDeleteConfirmation(self, value):
+    def __destroyDeleteConfirmation(self, value=None):
         self.deleteConfirmDialog.destroy()
         self.deleteConfirmDialog = None
+        self.allowInput()
+
+    def __handleDeleteConfirmation(self, value):
+        self.__destroyDeleteConfirmation()
         if value == DGG.DIALOG_OK:
             slot = self.choice
             potAv = base.cr.avList[slot]
             self.accept('avDeleted', self.__removeAvatarResponse)
             base.cr.csm.sendDeleteAvatar(potAv.id)
             self.blockInput()
-        else:
-            self.allowInput()
 
     def __removeAvatarResponse(self, avatarId):
         self.ignore('avDeleted')
@@ -528,6 +554,7 @@ class AvatarChooser(DirectObject, StateData):
 
         self.showSub()
         self.choice = len(self.avButtons) - 1
+        
         self.__handleArrowDown()
 
         if not self.handleDialogOnScreen:
@@ -685,15 +712,8 @@ class AvatarChooser(DirectObject, StateData):
                 elif potAv.wishState in ('DENIED', 'OPEN'):
                     self.placeNotification(i, (0.32, 0, -0.37 - i * 0.095), DENIED)
 
-        if not self.isEmpty():
-            self.avatarListFrame.reparentTo(base.a2dTopLeft)
-            self.avatarListFrame.setPosHprScale(0.42, 0, -0.3, 0, 0, 0, 1, 1, 1)
-        else:
-            self.avatarListFrame.reparentTo(base.a2dTopCenter)
-            self.avatarListFrame.setPosHprScale(0, 0, -0.3, 0, 0, 0, 1.1, 1.1, 1.1)
-            self.renameButton.hide()
-            self.shardPanel.hide()
-            self.shardPanelBottom.hide()
+        self.avatarListFrame.reparentTo(base.a2dTopLeft)
+        self.avatarListFrame.setPosHprScale(0.42, 0, -0.3, 0, 0, 0, 1, 1, 1)
 
     def _stopMouseReadTask(self):
         taskMgr.remove('AvatarChooser-MouseRead')
@@ -706,11 +726,9 @@ class AvatarChooser(DirectObject, StateData):
 
     def _mouseReadTask(self, task):
         if not base.mouseWatcherNode.hasMouse():
-            pass
+            return task.cont
         winSize = (base.win.getXSize(), base.win.getYSize())
         mouseData = base.win.getPointer(0)
-        if mouseData.getX() > winSize[0] or mouseData.getY() > winSize[1]:
-            pass
         dx = mouseData.getX() - self.lastMousePos[0]
         mouseData = base.win.getPointer(0)
         self.lastMousePos = (mouseData.getX(), mouseData.getY())
@@ -720,3 +738,72 @@ class AvatarChooser(DirectObject, StateData):
             self.__rotateHighlightedAvatar(value)
 
         return task.cont
+    
+    def __updatedDeletedAvs(self):
+        if hasattr(base.cr, 'deletedAvList'):
+            self.deletedAvs = base.cr.deletedAvList
+        else:
+            self.deletedAvs = []
+
+        if not self.av:
+            self.__handleHighlight(0)
+
+        self.deletedChoice = -1
+        self.decideButtons()
+    
+    def decideButtons(self):
+        if self.deletedChoice == -1:
+            self.recoverLabel['text'] = ''
+
+        if hasattr(base.cr.avList[self.choice], 'name'):
+            self.leftButton.hide()
+            self.rightButton.hide()
+            self.deleteButton.show()
+            return
+        
+        if self.deletedChoice <= -1:
+            self.leftButton.hide()
+        else:
+            self.leftButton.show()
+        
+        if self.deletedChoice >= (len(self.deletedAvs) - 1):
+            self.rightButton.hide()
+        else:
+            self.rightButton.show()
+        
+        self.deleteButton.hide()
+        
+        if self.deletedChoice != -1:
+            av = self.deletedAvs[self.deletedChoice]
+            secondsLeft = max(0, OTPGlobals.RECOVERY_TIME - (int(time.time()) - av.position))
+            
+            if not secondsLeft:
+                text = PLocalizer.AvatarChooserReady
+                self.playButton['state'] = DGG.NORMAL
+                self.av.setGhostColor(2)
+            else:
+                text = PLocalizer.AvatarChooserRemaining % OTPLocalizer.getHumanTime(secondsLeft, 5)
+                self.playButton['state'] = DGG.DISABLED
+                self.av.setGhostColor(4)
+            
+            self.av.startGhost(1)
+            self.recoverLabel['text'] = '\x01smallCaps\x01%s\n\n%s\x02' % (av.name, text)
+    
+    def getChosenAvatar(self):
+        av = base.cr.avList[self.choice]
+        
+        if hasattr(av, 'name'):
+            return av
+        elif self.deletedChoice != -1:
+            return self.deletedAvs[self.deletedChoice]
+    
+    def __increaseDelIndex(self, increment):
+        self.deletedChoice += increment
+        
+        if self.deletedChoice == -1:
+            self.showAvatar()
+        else:
+            av = self.deletedAvs[self.deletedChoice]
+            self.showAvatar(av.wishState, av.name, av.defaultShard, av.dna)
+        
+        self.decideButtons()

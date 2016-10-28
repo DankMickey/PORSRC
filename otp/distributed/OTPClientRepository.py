@@ -31,16 +31,13 @@ from otp.otpbase import OTPLocalizer
 from otp.otpgui import OTPDialog
 from direct.distributed.MsgTypes import *
 from otp.margins.WhisperPopup import WhisperPopup
+from PotentialAvatar import PotentialAvatar
 
 CLIENT_ENTER_OBJECT_REQUIRED_OWNER = 172
 
 class OTPClientRepository(ClientRepositoryBase):
     notify = directNotify.newCategory('OTPClientRepository')
     avatarLimit = 6
-    WishNameResult = Enum(['Failure',
-     'PendingApproval',
-     'Approved',
-     'Rejected'])
     whiteListChatEnabled = 1 # TODO: Have server set this on localAvatar on login.
 
     def __init__(self, serverVersion, launcher = None, playGame = None):
@@ -312,7 +309,7 @@ class OTPClientRepository(ClientRepositoryBase):
 
     @report(types=['args', 'deltaStamp'], dConfigParam='teleport')
     def enterLogin(self):
-        self.sendSetAvatarIdMsg(0)
+        self.sendSetAvatarIdMsg(0, 0)
         self.loginDoneEvent = 'loginDone'
         self.accept(self.loginDoneEvent, self.__handleLoginDone)
         self.csm.performLogin(self.loginDoneEvent)
@@ -585,7 +582,7 @@ class OTPClientRepository(ClientRepositoryBase):
 
     @report(types=['args', 'deltaStamp'], dConfigParam='teleport')
     def enterAfkTimeout(self):
-        self.sendSetAvatarIdMsg(0)
+        self.sendSetAvatarIdMsg(0, 0)
         msg = OTPLocalizer.AfkForceAcknowledgeMessage
         dialogClass = OTPGlobals.getDialogClass()
         self.afkDialog = dialogClass(text=msg, command=self.__handleAfkOk, style=OTPDialog.Acknowledge)
@@ -621,6 +618,10 @@ class OTPClientRepository(ClientRepositoryBase):
     def handleAvatarsList(self, avatars):
         self.avList = avatars
         self.loginFSM.request('chooseAvatar', [self.avList])
+    
+    def handleDeletedAvatarsList(self, avatars):
+        self.deletedAvList = avatars
+        messenger.send('updatedDeletedAvList')
 
     @report(types=['args', 'deltaStamp'], dConfigParam='teleport')
     def enterChooseAvatar(self, avList):
@@ -669,8 +670,8 @@ class OTPClientRepository(ClientRepositoryBase):
         return
 
     @report(types=['args', 'deltaStamp'], dConfigParam='teleport')
-    def enterWaitForSetAvatarResponse(self, potAv):
-        self.sendSetAvatarMsg(potAv)
+    def enterWaitForSetAvatarResponse(self, potAv, index):
+        self.sendSetAvatarMsg(potAv, index)
         self.waitForDatabaseTimeout(requestName='WaitForSetAvatarResponse')
 
     @report(types=['args', 'deltaStamp'], dConfigParam='teleport')
@@ -680,15 +681,15 @@ class OTPClientRepository(ClientRepositoryBase):
         return
 
     @report(types=['args', 'deltaStamp'], dConfigParam='teleport')
-    def sendSetAvatarMsg(self, potAv):
-        self.sendSetAvatarIdMsg(potAv.id)
+    def sendSetAvatarMsg(self, potAv, index):
+        self.sendSetAvatarIdMsg(potAv.id, index)
         self.avData = potAv
 
     @report(types=['args', 'deltaStamp'], dConfigParam='teleport')
-    def sendSetAvatarIdMsg(self, avId):
+    def sendSetAvatarIdMsg(self, avId, index):
         if avId != self.__currentAvId:
             self.__currentAvId = avId
-            self.csm.sendChooseAvatar(avId)
+            self.csm.sendChooseAvatar(avId, index)
 
     @report(types=['args', 'deltaStamp'], dConfigParam='teleport')
     def handleAvatarResponseMsg(self, avatarId, di):
@@ -797,7 +798,7 @@ class OTPClientRepository(ClientRepositoryBase):
         return
 
     def _removeLocalAvFromStateServer(self):
-        self.sendSetAvatarIdMsg(0)
+        self.sendSetAvatarIdMsg(0, 0)
         self._removeAllOV()
         callback = Functor(self.loginFSM.request, self._closeShardLoginState)
         if base.slowCloseShard:
@@ -1150,48 +1151,6 @@ class OTPClientRepository(ClientRepositoryBase):
                 self.handleObjectLocation(di)
         else:
             self.handleObjectLocation(di)
-
-    def sendWishName(self, avId, name):
-        datagram = PyDatagram()
-        datagram.addUint16(CLIENT_SET_WISHNAME)
-        datagram.addUint32(avId)
-        datagram.addString(name)
-        self.send(datagram)
-
-    def sendWishNameAnonymous(self, name):
-        self.sendWishName(0, name)
-
-    def getWishNameResultMsg(self):
-        return 'OTPCR.wishNameResult'
-
-    def gotWishnameResponse(self, di):
-        avId = di.getUint32()
-        returnCode = di.getUint16()
-        pendingName = ''
-        approvedName = ''
-        rejectedName = ''
-        if returnCode == 0:
-            pendingName = di.getString()
-            approvedName = di.getString()
-            rejectedName = di.getString()
-        if approvedName:
-            name = approvedName
-        elif pendingName:
-            name = pendingName
-        elif rejectedName:
-            name = rejectedName
-        else:
-            name = ''
-        WNR = self.WishNameResult
-        if returnCode:
-            result = WNR.Failure
-        elif rejectedName:
-            result = WNR.Rejected
-        elif pendingName:
-            result = WNR.PendingApproval
-        elif approvedName:
-            result = WNR.Approved
-        messenger.send(self.getWishNameResultMsg(), [result, avId, name])
 
     def replayDeferredGenerate(self, msgType, extra):
         if msgType == CLIENT_DONE_INTEREST_RESP:

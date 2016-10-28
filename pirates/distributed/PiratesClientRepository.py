@@ -269,7 +269,7 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
 
     def enterChooseAvatar(self, avList):
         base.loadingScreen.beginStep('AvChooser', 14, 10)
-        self.sendSetAvatarIdMsg(0)
+        self.sendSetAvatarIdMsg(0, 0)
         self.handler = self.handleMessageType
 
         self.clearFriendState()
@@ -303,7 +303,7 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
             else:
                 self.tutorial = 0
             self.loadingScreen.beginStep('waitForAv')
-            self.loginFSM.request('waitForSetAvatarResponse', [av])
+            self.loginFSM.request('waitForSetAvatarResponse', [av, av.position])
         elif done == 'create':
             self.loginFSM.request('createAvatar', [self.avList, slot])
 
@@ -327,7 +327,7 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
 
     def handleAvatarCreated(self, newPotAv, avatarId):
         newPotAv.id = avatarId
-        self.loginFSM.request('waitForSetAvatarResponse', [newPotAv])
+        self.loginFSM.request('waitForSetAvatarResponse', [newPotAv, newPotAv.position])
 
     def __handleMakeAPirate(self):
         done = self.avCreate.getDoneStatus()
@@ -353,8 +353,8 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
 
     def handleCreateAvatarResponse(self, avId):
         self.avId = avId
-        newPotAv = PotentialAvatar(self.avId, [self.newName, '', '', ''], self.newDNA, self.newPosition, 1)
-        self.loginFSM.request('waitForSetAvatarResponse', [newPotAv])
+        newPotAv = PotentialAvatar(self.avId, self.newName, self.newDNA, self.newPosition)
+        self.loginFSM.request('waitForSetAvatarResponse', [newPotAv, self.newPosition])
 
     def avatarListFailed(self, reason):
         dialogClass = OTPGlobals.getGlobalDialogClass()

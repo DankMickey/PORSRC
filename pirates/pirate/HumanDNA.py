@@ -455,7 +455,6 @@ class HumanDNA(object):
 
     def __init__(self, gender='m', bodyIndex=None):
         self.tutorial = 0
-        self.name = ''
         self.gender = gender
         if bodyIndex == None:
             if BodyDefs.BodyChoiceGenderDict.get(self.gender):
@@ -509,19 +508,17 @@ class HumanDNA(object):
 
     def copy(self, other):
         self.tutorial = other.tutorial
-        self.name = other.name
         self.gender = other.gender
         self.body.copy(other.body)
         self.head.copy(other.head)
         self.clothes.copy(other.clothes)
 
     def __str__(self):
-        return 'name = %s\n' % self.name + 'tutorial = %s\n' % self.tutorial + 'gender = %s\n' % self.gender + 'head = %s\n' % self.head + 'body = %s\n' % self.body + 'clothes = %s\n' % self.clothes
+        return 'tutorial = %s\n' % self.tutorial + 'gender = %s\n' % self.gender + 'head = %s\n' % self.head + 'body = %s\n' % self.body + 'clothes = %s\n' % self.clothes
 
     def saveAsNPCDict(self):
         d = {}
         d[HumanDNA.setTutorial] = self.tutorial
-        d[HumanDNA.setName] = self.name
         d[HumanDNA.setGender] = self.gender
         d[HumanDNA.setBodyShape] = self.body.shape
         d[HumanDNA.setBodyHeight] = self.body.height
@@ -788,10 +785,6 @@ class HumanDNA(object):
 
     def setTutorial(self, val):
         self.tutorial = val
-
-
-    def setName(self, val):
-        self.name = val
 
 
     def setGender(self, val):
@@ -1162,10 +1155,6 @@ class HumanDNA(object):
         if config.GetBool('force-tutorial-finished', True):
             return PiratesGlobals.TUT_FINISHED
         return self.tutorial
-
-
-    def getDNAName(self):
-        return self.name
 
 
     def getGender(self):

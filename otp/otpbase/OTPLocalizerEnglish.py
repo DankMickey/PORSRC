@@ -2889,6 +2889,33 @@ InjectorPStats = 'PStats Client'
 ChatChannels = {0: 'User', 1: 'Staff'}
 APlayer = 'A Player'
 
+TimeIntervals = (
+ ('weeks', 604800),
+ ('days', 86400),
+ ('hours', 3600),
+ ('minutes', 60),
+ ('seconds', 1),
+)
+
+def getHumanTime(seconds, granularity=4):
+    result = []
+
+    for name, count in TimeIntervals[:granularity]:
+        value = seconds // count
+
+        if value:
+            seconds -= value * count
+
+            if value == 1:
+                name = name.rstrip('s')
+
+            result.append("{} {}".format(value, name))
+
+    if len(result) >= 2:
+        result[-1] = 'and ' + result[-1]
+
+    return ', '.join(result)
+
 def timeElapsedString(timeDelta):
     timeDelta = abs(timeDelta)
     if timeDelta.days > 0:

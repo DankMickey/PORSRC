@@ -100,7 +100,6 @@ from pirates.effects.PulseEffect import PulseEffect
 from pirates.effects.GhostGlowShadow import GhostGlowShadow
 from pirates.effects.ProtectionDome import ProtectionDome
 if config.GetBool('want-pstats', 0):
-    import profile
     import pstats
 
 class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable):

@@ -222,6 +222,12 @@ struct PlunderItemLocationInfo {
   uint8 location;
 };
 
+struct DeletedAvatar {
+  uint32 avId;
+  uint32 date;
+  string avName;
+  blob avDNA;
+};
 
 dclass DistributedObjectGlobal : DistributedObject {
 };
@@ -233,12 +239,15 @@ dclass ClientServicesManager : DistributedObjectGlobal {
   acceptLogin(string);
 
   requestAvatars() clsend;
+  requestDeletedAvatars() clsend;
+  
   setAvatars(PotentialPirate[]);
+  setDeletedAvatars(DeletedAvatar[]);
 
   createAvatar(blob dna, uint8 index, uint8 allegiance, string name) clsend;
   createAvatarResp(uint32 avId);
 
-  chooseAvatar(uint32 avId) clsend;
+  chooseAvatar(uint32 avId, uint8 index) clsend;
   avatarResponse(uint32 avId, blob avdata);
 
   acknowledgeName(uint32 avId) clsend;
