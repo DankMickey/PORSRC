@@ -985,7 +985,7 @@ def giveJewelry(itemId):
 
 @magicWord(CATEGORY_GAME_MASTER, types=[int])
 def ghost(color=None):
-    av = spellbook.getInvoker()
+    av = spellbook.getTarget()
     if color == None:
         av.b_setIsGhost(False)
         return "Set your ghost state to false" % av.getName()
