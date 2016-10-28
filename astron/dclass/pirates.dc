@@ -1306,7 +1306,6 @@ dclass DistributedCrewMatchManager : DistributedObject {
   requestTeleportResponse(uint32, int8, uint32, uint32, uint32) airecv clsend;
   teleportQuery(uint32, uint32, uint32, uint32, uint32) airecv clsend;
   teleportResponse(uint32, int8, uint32, uint32, uint32) airecv clsend;
-  requestRemoveHandle(uint32);
 };
 
 dclass DistributedBandMember : DistributedObject {
