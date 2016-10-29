@@ -37,8 +37,9 @@ class FriendManager(DistributedObject):
 
     def up_inviteeFriendResponse(self, yesNoMaybe, context):
         if yesNoMaybe == 1:
-            base.cr.piratesFriendsManager.friendOnline(self.otherToon)
-            messenger.send(OTPGlobals.AvatarFriendAddEvent, [self.otherToon, base.cr.identifyFriend(self.otherToon)])
+            friend = base.cr.identifyFriend(self.otherToon)
+            base.cr.piratesFriendsManager.friendOnline(self.otherToon, friend.getName())
+            messenger.send(OTPGlobals.AvatarFriendAddEvent, [self.otherToon, friend])
 
         self.sendUpdate('inviteeFriendResponse', [yesNoMaybe, context])
         self.notify.debug('Client: inviteeFriendResponse(%d, %d)' % (yesNoMaybe, context))
@@ -53,8 +54,9 @@ class FriendManager(DistributedObject):
 
     def friendResponse(self, yesNoMaybe, context):
         if yesNoMaybe == 1:
-            base.cr.piratesFriendsManager.friendOnline(self.otherToon)
-            messenger.send(OTPGlobals.AvatarFriendAddEvent, [self.otherToon, base.cr.identifyFriend(self.otherToon)])
+            friend = base.cr.identifyFriend(self.otherToon)
+            base.cr.piratesFriendsManager.friendOnline(self.otherToon, friend.getName())
+            messenger.send(OTPGlobals.AvatarFriendAddEvent, [self.otherToon, friend])
         else:
             messenger.send(OTPGlobals.AvatarFriendConsideringEvent, [yesNoMaybe, context])
 

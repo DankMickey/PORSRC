@@ -890,8 +890,8 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
         self.http.setVerifySsl(HTTPClient.VSNoDateCheck)
         OTPClientRepository.OTPClientRepository.enterConnect(self, serverList)
     
-    def handleFriendOnline(self, doId):
-        messenger.send('friendOnline', [doId])
+    def handleFriendOnline(self, doId, name):
+        messenger.send('friendOnline', [doId, name])
 
     def handleFriendOffline(self, doId, name):
         messenger.send('friendOffline', [doId, name])

@@ -121,13 +121,14 @@ class FriendsListOperation(OperationFSM):
             self.demand('Error', 'Distributed Class was not a Pirate.')
             return
 
-        self.demand('Retrieved', fields['setFriendsList'][0])
+        self.demand('Retrieved', fields['setName'][0], fields['setFriendsList'][0])
 
-    def enterRetrieved(self, friendsList):
+    def enterRetrieved(self, name, friendsList):
+        self.name = name
         self.friendsList = friendsList
 
         if len(self.friendsList) <= 0:
-            self.result = []
+            self.result = [[], name]
             self.demand('Off')
             return
 
@@ -152,7 +153,7 @@ class FriendsListOperation(OperationFSM):
         self.realFriendsList.append(info)
         
         if len(self.realFriendsList) >= len(self.friendsList):
-            self.result = self.realFriendsList
+            self.result = [self.realFriendsList, self.name]
             self.demand('Off')
             return
 
@@ -257,11 +258,12 @@ class PiratesFriendsManagerUD(DistributedObjectGlobalUD):
         if avId not in self.operations:
             self.addOperation(FriendsListOperation(self, self.air, avId, callback=self.sendFriendsList))
 
-    def sendFriendsList(self, sender, friendsList):
+    def sendFriendsList(self, sender, extraArgs):
+        friendsList, name = extraArgs
         self.sendUpdateToAvatarId(sender, 'friendList', [friendsList])
 
         if sender not in self.onlinePirates:
-            self.pirateOnline(sender, friendsList)
+            self.pirateOnline(sender, name, friendsList)
 
     # -- Remove Friend --
     def removeFriend(self, friendId):
@@ -289,7 +291,7 @@ class PiratesFriendsManagerUD(DistributedObjectGlobalUD):
             self.addOperation(GetAvatarOperation(self, self.air, senderId, avId))
     
     # -- Pirate Online/Offline --
-    def pirateOnline(self, doId, friendsList):
+    def pirateOnline(self, doId, name, friendsList):
         if doId in self.onlinePirates:
             return
 
@@ -301,7 +303,7 @@ class PiratesFriendsManagerUD(DistributedObjectGlobalUD):
             friend = friend[0]
 
             if friend in self.onlinePirates:
-                self.sendUpdateToAvatarId(friend, 'friendOnline', [doId])
+                self.sendUpdateToAvatarId(friend, 'friendOnline', [doId, name])
                 self.requestFriendsListFor(friend)
 
     def goingOffline(self, doId):

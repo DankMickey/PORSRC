@@ -12,8 +12,8 @@ class PiratesFriendsManager(DistributedObjectGlobal):
     def friendList(self, resp):
         base.cr.handleGetFriendsList(resp)
 
-    def friendOnline(self, id):
-        base.cr.handleFriendOnline(id)
+    def friendOnline(self, id, name):
+        base.cr.handleFriendOnline(id, name)
 
     def friendOffline(self, id, name):
         base.cr.handleFriendOffline(id, name)
