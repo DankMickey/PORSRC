@@ -892,8 +892,9 @@ class LoadAvatarFSM(AvatarOperationFSM):
     def __getGMTag(self, accessLevel):
         gmTags = {
             300: ('green', 'Youtuber'),
-            600: ('green', 'Moderator'),
+            600: ('green', 'Global Moderator'),
             700: ('red', 'Game Master'),
+            800: ('gold', 'Game Designer'),
             900: ('purple', 'Game Developer'),
             1000: ('blue', 'Administrator')
         }
