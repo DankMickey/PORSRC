@@ -579,7 +579,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             self.injuredFrame.setLightOff()
             innerFrame = DirectFrame(parent = self.injuredFrame, relief = None, pos = (0.0, -0.0299, 0.0), image = circleBase, image_scale = 1.8, sortOrder = 2)
             icon = DirectFrame(parent = self.injuredFrame, relief = None, pos = (0.0, -0.0400, 0.0), image = injuredIcon, image_scale = 2.7, sortOrder = 3)
-            knockoutLabel = DirectLabel(parent = self.injuredDial, relief = None, state = DGG.DISABLED, text = '\1injuredRed\1\n%s\n' % PLocalizer.InjuredFlag, text_scale = PiratesGuiGlobals.TextScaleLarge * 5, text_align = TextNode.ACenter, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getPirateBoldOutlineFont(), pos = (0.0, 0, -0.4), sortOrder = 4)
+            knockoutLabel = DirectLabel(parent = self.injuredDial, relief = None, state = DGG.DISABLED, text = '\x01injuredRed\x01\n%s\n' % PLocalizer.InjuredFlag, text_scale = PiratesGuiGlobals.TextScaleLarge * 5, text_align = TextNode.ACenter, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getPirateBoldOutlineFont(), pos = (0.0, 0, -0.4), sortOrder = 4)
 
         self.injuredDial.update(self.injuredTimeLeft, PiratesGlobals.REVIVE_TIME_OUT)
         self.injuredFrame.show()

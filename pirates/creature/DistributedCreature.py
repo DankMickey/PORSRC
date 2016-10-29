@@ -211,7 +211,7 @@ class DistributedCreature(DistributedBattleNPC):
             name = self.name
         elif self.level:
             color = self.cr.battleMgr.getExperienceColor(base.localAvatar, self)
-            name = '%s  %s\1smallCaps\1%s%s\2\2' % (self.name, color, PLocalizer.Lv, self.level)
+            name = '%s  %s\x01smallCaps\x01%s%s\x02\x02' % (self.name, color, PLocalizer.Lv, self.level)
         else:
             name = self.name
         self.getNameText()['text'] = name
