@@ -71,10 +71,10 @@ class ProjectileEffect:
         self.attackerId = attackerId
         self.normal = normal
         getSkillSfx()
+
         from pirates.battle.DistributedBattleAvatar import DistributedBattleAvatar
-        DistributedBattleAvatar = DistributedBattleAvatar
         from pirates.world.DistributedIsland import DistributedIsland
-        DistributedIsland = DistributedIsland
+
         self.projVelocity = ((25, 0), (0, 25), (-25, 0), (0, -25))
         if not objType:
             if isinstance(hitObject, DistributedBattleAvatar):

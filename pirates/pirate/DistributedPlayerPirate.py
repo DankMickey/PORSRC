@@ -57,7 +57,6 @@ import PlayerPirateGameFSM
 from pirates.band import BandConstance
 from pirates.band import DistributedBandMember
 from pirates.world.DistributedGameArea import DistributedGameArea
-from pirates.world.DistributedIsland import DistributedIsland
 from pirates.speedchat import PSCDecoders
 from pirates.battle import Consumable
 from pirates.uberdog.UberDogGlobals import *

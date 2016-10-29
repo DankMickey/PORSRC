@@ -11,7 +11,6 @@ from direct.directnotify import DirectNotifyGlobal
 from pirates.pirate import HumanDNA
 from pirates.piratesbase import PLocalizer
 from pirates.world.LocationConstants import LocationIds
-from pirates.world.DistributedIsland import DistributedIsland
 from pirates.piratesgui.PDialog import PDialog
 from pirates.inventory.Lootable import Lootable
 from otp.otpgui import OTPDialog

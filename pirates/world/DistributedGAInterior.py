@@ -11,7 +11,6 @@ from pirates.piratesbase import TODGlobals
 from pirates.piratesbase import PLocalizer
 from pirates.piratesgui import PiratesGuiGlobals, RadarGui
 from pirates.world.LocationConstants import LocationIds, getLocationList
-from pirates.world import DistributedIsland
 from pirates.world import DistributedGameArea
 from pirates.world import GridAreaBuilder
 from pirates.world import WorldGlobals
