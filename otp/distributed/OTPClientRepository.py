@@ -552,8 +552,8 @@ class OTPClientRepository(ClientRepositoryBase):
         reconnect = 1
         if self.bootedIndex in (152, 127):
             reconnect = 0
-        if self.bootedIndex == 152:
-            message = message % {'name': self.bootedText}
+        if self.bootedIndex in (152, 155):
+            message = message % {'reason': self.bootedText}
         style = OTPDialog.Acknowledge
         if reconnect and self.loginInterface.supportsRelogin():
             message += OTPLocalizer.CRTryConnectAgain

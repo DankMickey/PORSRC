@@ -11,8 +11,6 @@ from pirates.uberdog.ClientServicesManagerUD import RemoteAccountDB
 
 class BanFSM(FSM):
     notify = DirectNotifyGlobal.directNotify.newCategory('BanFSM')
-    BanUrl = config.GetString('ban-base-url', 'http://api.piratesonline.us/ban/')
-    DoActualBan = config.GetBool('ban-do-ban', True)
     
     def __init__(self, mgr):
         FSM.__init__(self, 'BanFSM')
@@ -26,7 +24,7 @@ class BanFSM(FSM):
         self.banReason = banReason
         
         self.demand('RetrieveBanner')
-        
+
     def enterRetrieveBanner(self):
         self.mgr.air.dbInterface.queryObject(self.mgr.air.dbId, self.bannerId, self.__handleRetrieveBanner)
 
@@ -51,20 +49,9 @@ class BanFSM(FSM):
         self.demand('Ban')
         
     def enterBan(self):
-        if not self.DoActualBan:
-            self.mgr.callback(self, True, None)
-            self.demand('Off')
-            return
-
-        (success, error), res = RemoteAccountDB.post(self.mgr.air, self.BanUrl,
-                                                     username=self.targetUsername,
-                                                     duration=self.duration,
-                                                     reason=self.banReason,
-                                                     banner=self.banner)
-        if success:
-            success = res['success']
-            error = res.get('error')
-        
+        self.mgr.air.csm.accountDB.getBannedStatus(self.targetUsername, self.duration, self.__handleBannedAccount)
+    
+    def __handleBannedAccount(self, success, error):
         self.mgr.callback(self, success, error)
     
     def enterError(self, error):
@@ -81,21 +68,25 @@ class BanManagerUD(DirectObject):
         BanFSM(self).demand('Start', bannerId, avId, accountId, duration, banReason)
         
     def callback(self, fsm, success, error):            
+        avId = self.air.csm.GetPuppetConnectionChannel(fsm.bannerId)
         if not success:
             # Better notify the banner
-            avId = self.air.csm.GetPuppetConnectionChannel(fsm.bannerId)
             msg = 'Failed to ban %s: %s' % (fsm.targetUsername, error)
-            self.air.systemMessage('BanManagerUD: ERROR: %s' % msg, avId)
+            self.air.systemMessage(msg, avId)
             self.notify.warning(msg)
             return
 
         dg = PyDatagram()
         dg.addServerHeader(self.air.csm.GetPuppetConnectionChannel(fsm.avId), self.air.ourChannel, CLIENTAGENT_EJECT)
         dg.addUint16(152)
-        dg.addString(fsm.targetUsername)
+        dg.addString(fsm.banReason)
         self.air.send(dg)
 
         msg = '%s banned %s for %s hours: %s' % (fsm.banner, fsm.targetUsername, fsm.duration, fsm.banReason)
+        
+        if fsm.duration:
+            self.air.systemMessage('You banned %s for %s hours!' % (fsm.targetUsername, fsm.duration), avId)
+        else:
+            self.air.systemMessage('You terminated %s!' % fsm.targetUsername, avId)
         self.notify.info(msg)
-        self.air.writeServerEvent('banned', accountId=fsm.accountId, username=fsm.targetUsername,
-                                  moreInfo=msg)
+        self.air.writeServerEvent('banned', accountId=fsm.accountId, username=fsm.targetUsername, moreInfo=msg)

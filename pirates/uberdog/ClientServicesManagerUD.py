@@ -128,6 +128,9 @@ class AccountDB:
 
         callback(True)
 
+    def getBannedStatus(self, user, hours, callback):
+        callback(True, None)
+
     def getNameStatus(self, username, callback):
         callback(NAME_APR)
     
@@ -173,6 +176,21 @@ class RemoteAccountDB(AccountDB):
             return
         
         callback(int(response['nameStatus']))
+    
+    def getBannedStatus(self, user, hours, callback):
+        response = self.post(config.GetString('account-server-ban-link', ''), {'account': user, 'hours': hours})
+        
+        if not response:
+            self.notify.warning('No response from server while banning user %s!' % user)
+            callback(False, 'No response from server')
+            return
+
+        if response['status'] == 'error':
+            self.notify.warning('Error while banning user %s from the server! %s [Code %s]' % (user, response['message'], response['code']))
+            callback(False, response['message'])
+            return
+        
+        callback(True, None)
     
     def getNameStatus(self, name, callback):
         self.getNameStatusFrom(config.GetString('account-server-names-link', ''), name, callback)

@@ -190,10 +190,10 @@ CRBootedReasons = {1: 'An unexpected problem has occurred.  Your connection has 
  126: 'You are not authorized to use administrator privileges.',
  127: 'A problem has occurred with your Toon.  Please contact Member Services via phone or email and reference Error Code 127.  Thank you.',
  151: 'You have been logged out by an administrator working on the servers.',
- 152: "There has been a reported violation of our Terms of Use connected to '%(name)s'. For more details, please review the message sent to the e-mail address associated with '%(name)s'.",
+ 152: "You were banned by a Moderator for:\n\n%(reason)s\n\nPlease contact us via the forums or the Discord channel for more information.",
  153: 'The district you were playing on has been reset.  Everyone who was playing on that district has been disconnected.  However, you should be able to connect again and go right back into the game.',
  154: 'Pirates Online Retribution is temporarily closing for a scheduled maintenance.\nFor more information, please visit the Pirates Online Retribution website.',
- 155: 'You were kicked by a Moderator. Behave next time!',
+ 155: 'You were kicked by a Moderator. Behave next time!\n\n%(reason)s',
  166: 'You were disconnected to prevent a district reset.',
  288: 'Sorry, you have used up all of your available minutes this month.',
  349: 'Sorry, you have used up all of your available minutes this month.'}

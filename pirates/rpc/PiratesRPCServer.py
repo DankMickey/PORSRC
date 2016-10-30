@@ -5,10 +5,6 @@ import urlparse
 import asyncore
 import socket
 
-rpc_server_keepalive = ConfigVariableInt(
-    'rpc-server-keepalive', 5,
-    'How many seconds the server will leave a Keep-Alive connection open.')
-
 class PiratesRPCServer(asyncore.dispatcher):
     notify = directNotify.newCategory('PiratesRPCServer')
 
