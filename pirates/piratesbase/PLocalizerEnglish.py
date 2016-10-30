@@ -10166,8 +10166,8 @@ ShopFemaleVestConflict = 'Your current vest selection does not allow for shirts.
 ShopOwnedBarber = 'You currently have this style.'
 ChatManagerOpenChatWarning = 'Your current chat settings do not allow chat. You can change your settings in the Account Options area of the The Pirates Online Retribution web site.'
 ChatManagerWhisperWarning = "Whispering text messages is only allowed between two paid subscribers who are adults or have their parent's permission."
-ChatManagerNoFriendsWarning = 'You need to exchange Player Friends Codes with your friends in order to use Player Friends chat. To learn more about Player Friends chat or to enable Open chat, visit www.PiratesOnline.co.'
-ChatManagerNeedParentWarning = 'Your account must be validated by a parent or guardian in order to use Player Friends chat or Open chat. To learn more about chat, visit www.PiratesOnline.co'
+ChatManagerNoFriendsWarning = 'You need to exchange Player Friends Codes with your friends in order to use Player Friends chat. To learn more about Player Friends chat or to enable Open chat, visit www.piratesonline.us.'
+ChatManagerNeedParentWarning = 'Your account must be validated by a parent or guardian in order to use Player Friends chat or Open chat. To learn more about chat, visit www.piratesonline.us'
 EnterKingsheadMessage = 'Entering Kingshead Island'
 for i in xrange(52):
     card = i

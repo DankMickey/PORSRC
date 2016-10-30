@@ -41,28 +41,6 @@ NAME_APR = 2
 NAME_EXT = 3
 NAME_STATES = {NAME_PEN: 'PENDING', NAME_REJ: 'OPEN', NAME_APR: 'APPROVED'}
 
-def rejectConfig(issue, securityIssue=True, retarded=True):
-    print
-    print
-    print 'Lemme get this straight....'
-    print 'You are trying to use remote account database type...'
-    print 'However,', issue + '!!!!'
-    if securityIssue:
-        print 'Do you want this server to get hacked?'
-    if retarded:
-        print '"Either down\'s or autism"\n  - JohnnyDaPirate, 2015'
-    print 'Go fix that!'
-    exit()
-
-def entropy(string):
-    prob = [float(string.count(c)) / len(string) for c in dict.fromkeys(list(string))]
-    entropy = -sum([p * math.log(p) / math.log(2.0) for p in prob])
-    return entropy
-
-def entropyIdeal(length):
-    prob = 1.0 / length
-    return -length * prob * math.log(prob) / math.log(2.0)
-
 # Account db type can be:
 # 1. developer - This is for general development with username as token.
 # 2. remote - This decodes the token. Used for production.
@@ -70,38 +48,9 @@ def entropyIdeal(length):
 accountDBType = config.GetString('accountdb-type', 'developer')
 
 if sys.platform == 'linux2':
-    accountDBType = 'remotePOR'
+    accountDBType = 'remote'
 
 accountServerTokenLink = config.GetString('account-server-token-link', '')
-accountServerSecret = config.GetString('account-server-secret', 'dev')
-
-__keyfile = '../deployment/site/loginsecret.key'
-if os.path.isfile(__keyfile) and config.GetBool('want-login-secret-from-file', True):
-    with open(__keyfile, 'rb') as f:
-        accountServerSecret = f.read().strip()
-
-accountServerHashAlgo = config.GetString('account-server-hash-algo', 'sha256')
-
-hashAlgo = getattr(hashlib, accountServerHashAlgo, None)
-if not hashAlgo:
-    rejectConfig('%s is not a valid hash algo' % accountServerHashAlgo, securityIssue=False)
-
-hashSize = len(hashAlgo().digest())
-
-if accountDBType == 'remote':
-    if accountServerSecret == 'dev':
-        rejectConfig('you have not changed the secret in config/local.prc')
-
-    if len(accountServerSecret) < 16:
-        rejectConfig('the secret is too small! Make it 16+ bytes', retarded=False)
-
-    secretLength = len(accountServerSecret)
-    ideal = entropyIdeal(secretLength) / 2
-    entropy = entropy(accountServerSecret)
-    if entropy < ideal:
-        rejectConfig('the secret entropy is too low! For %d bytes,'
-                     ' it should be %d. Currently it is %d' % (secretLength, ideal, entropy),
-                     retarded=False)
 
 def flip(a):
     # This is SIMPLE OBFUSCATION not ENCRYPTION
@@ -188,103 +137,6 @@ class DeveloperAccountDB(AccountDB):
 
 class RemoteAccountDB(AccountDB):
     notify = directNotify.newCategory('RemoteAccountDB')
-    namesUrl = config.GetString('account-db-names-url', 'http://api.piratesonline.co/names/')
-    
-    @staticmethod
-    def post(air, url, **data):
-        headers = {'User-Agent' : 'PiratesUberAgent'}
-        
-        innerData = json.dumps(data)
-        hmac = hashlib.sha512(innerData + air.getApiKey()).hexdigest()
-        
-        data = 'data=%s' % urllib.quote(innerData)
-        data += '&hmac=%s' % urllib.quote(hmac)
-        
-        success = True
-        error = None
-        res = {}
-        
-        try:
-            req = urllib2.Request(url, data, headers)
-            res = json.loads(urllib2.urlopen(req).read())
-            success = res['success']
-            error = res.get('error')
-            
-        except Exception as e:
-            if hasattr(e, 'read'):
-                with open('../e.html', 'wb') as f:
-                    f.write(e.read())
-                
-            success = False
-            error = str(e)
-                
-        return (success, error), res
-
-    @staticmethod
-    def decodeToken(token, maxAge=300):
-        error = lambda issue: {'success': False, 'reason': 'The account server rejected your token: %s' % issue}
-
-        if len(token) != 216:
-            return error('Invalid size')
-
-        try:
-            token = token.decode('base64')
-
-        except:
-            return error('Bad token')
-
-        size = ord(token[0])
-        token = token[1:size + 1]
-
-        if len(token) <= hashSize:
-            return error('Bad padding')
-
-        hash, data = token[:hashSize], token[hashSize:]
-
-        signature = hashAlgo(data + accountServerSecret).digest()
-        value = 0
-        for x, y in zip(signature, hash):
-            value |= ord(x) ^ ord(y)
-
-        if value:
-            return error('Bad hash')
-
-        data = flip(data)
-        try:
-            data = json.loads('{%s}' % data)
-
-        except:
-            return error('Bad data')
-
-        now = time.time()
-        ts = data.get('timestamp', -1)
-        if ts == -1:
-            if config.GetBool('token-allow-no-timestamp', False):
-                ts = now
-                
-            else:
-                return error('No timestamp')
-            
-        expiration = ts + maxAge
-        if now > expiration:
-            elapsed = now - expiration
-            return error('Token expired %.1f seconds ago' % elapsed)
-
-        data['success'] = True
-        return data
-
-    def lookup(self, token, callback):
-        data = RemoteAccountDB.decodeToken(token)
-        if not data['success']:
-            callback(data)
-            return data
-
-        return AccountDB.lookup(self, str(data['username']),
-                                data['accessLevel'],
-                                callback)
-
-class RemotePORAccountDB(AccountDB):
-    notify = directNotify.newCategory('RemotePORAccountDB')
     
     def __init__(self, csm):
         AccountDB.__init__(self, csm)
@@ -1190,8 +1042,6 @@ class ClientServicesManagerUD(DistributedObjectGlobalUD):
             self.accountDB = DeveloperAccountDB(self)
         elif accountDBType == 'remote':
             self.accountDB = RemoteAccountDB(self)
-        elif accountDBType == 'remotePOR':
-            self.accountDB = RemotePORAccountDB(self)
         else:
             self.notify.error('Invalid accountdb-type: ' + accountDBType)
 

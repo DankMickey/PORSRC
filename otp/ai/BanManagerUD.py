@@ -11,7 +11,7 @@ from pirates.uberdog.ClientServicesManagerUD import RemoteAccountDB
 
 class BanFSM(FSM):
     notify = DirectNotifyGlobal.directNotify.newCategory('BanFSM')
-    BanUrl = config.GetString('ban-base-url', 'http://api.piratesonline.co/ban/')
+    BanUrl = config.GetString('ban-base-url', 'http://api.piratesonline.us/ban/')
     DoActualBan = config.GetBool('ban-do-ban', True)
     
     def __init__(self, mgr):
