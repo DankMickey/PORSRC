@@ -16,6 +16,7 @@ parser.add_argument('--mongodb-ip', help="The IP address of the MongoDB Server t
 parser.add_argument('--ud-token', help="The Uberdog token to authenticate to the website with.")
 parser.add_argument('--splunk-ip', help='The IP address of the Splunk Server to connect to.')
 parser.add_argument('--splunk-token', help='The Splunk token to authenticate to Splunk with.')
+parser.add_argument('--rpc-ip', help='The IP address of the RPC Server to bind to.')
 parser.add_argument('config', nargs='*', default=['config/general.prc', 'config/dev.prc', 'config/server.prc'], help="PRC file(s) to load.")
 args = parser.parse_args()
 
@@ -35,6 +36,7 @@ if args.mongodb_ip: localconfig += 'mongodb-url %s\n' % args.mongodb_ip
 if args.ud_token: localconfig += 'account-server-token %s\n' % args.ud_token
 if args.splunk_ip: localconfig += 'splunk-host %s\n' % args.splunk_ip
 if args.splunk_token: localconfig += 'splunk-token %s\n' % args.splunk_token
+if args.rpc_ip: localconfig += 'rpc-host %s\n' % args.rpc_ip
 loadPrcFileData('Command-line', localconfig)
 
 from otp.ai.AIBaseGlobal import *
