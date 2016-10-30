@@ -29,12 +29,14 @@ class BanManagerAI(DistributedObjectAI):
 @magicWord(category=CATEGORY_MODERATION, types=[str])
 def kick(reason='No reason has been specificed.'):
     """Kicks the target user with an optional reason."""
+    invoker = spellbook.getInvoker()
     target = spellbook.getTarget()
 
-    if target == spellbook.getInvoker():
+    if target == invoker:
         return "You can't kick yourself!"
 
     target.air.banMgr.kickAvatar(target.doId, reason=reason)
+    target.air.writeServerEvent('kicked', kickerId=invoker.doId, kickerName=invoker.getName(), reason=reason, targetId=target.doId, targetName=target.getName())
     return 'Kicked %s from the game server!' % target.getName()
 
 @magicWord(category=CATEGORY_MODERATION, types=[int, str])
