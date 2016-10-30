@@ -52,6 +52,12 @@ if sys.platform == 'linux2':
 
 accountServerTokenLink = config.GetString('account-server-token-link', '')
 
+def createAccountDB(self):
+    if accountDBType == 'remote':
+        return RemoteAccountDB(self)
+    else:
+        return AccountDB(self)
+
 def flip(a):
     # This is SIMPLE OBFUSCATION not ENCRYPTION
     return ''.join(chr(~ord(x) & 0xFF) for x in a)
@@ -103,18 +109,17 @@ class AccountDB:
         elif user in self.accountBridge:
             return int(self.accountBridge[user])
     
-    def lookup(self, username, accessLevel, callback):
-        accountId = self.lookupAccountId(username)
+    def decodeToken(self, username):
+        return {'success': True, 'userId': username, 'accountId': self.lookupAccountId(username), 'accessLevel': 1000}
+    
+    def lookup(self, token, callback):
+        try:
+            data = self.decodeToken(token)
+        except:
+            data = {'success': False, 'reason': 'Something went wrong.'}
 
-        response = {'success': True,
-                    'userId': username,
-                    'accountId': accountId}
-
-        if accessLevel is not None:
-            response['accessLevel'] = accessLevel
-
-        callback(response)
-        return response
+        callback(data)
+        return data
 
     def storeAccountID(self, userId, accountId, callback):
         if not simbase.air.hasMongo():
@@ -128,12 +133,6 @@ class AccountDB:
     
     def getGuildNameStatus(self, name, callback, extraInfo=''):
         callback(NAME_APR)
-
-class DeveloperAccountDB(AccountDB):
-    notify = directNotify.newCategory('DeveloperAccountDB')
-
-    def lookup(self, username, callback):
-        return AccountDB.lookup(self, username, 1000, callback)
 
 class RemoteAccountDB(AccountDB):
     notify = directNotify.newCategory('RemoteAccountDB')
@@ -181,8 +180,7 @@ class RemoteAccountDB(AccountDB):
     def getGuildNameStatus(self, name, callback, extraInfo=''):
         self.getNameStatusFrom(config.GetString('account-server-guild-link', ''), name, callback, extraInfo)
 
-    
-    def decodeToken(self, token, maxAge=300):
+    def decodeToken(self, token):
         error = lambda issue: {'success': False, 'reason': 'The account server rejected your token: %s' % issue}
 
         if len(token) != 55:
@@ -200,19 +198,8 @@ class RemoteAccountDB(AccountDB):
             accessLevel = int(response['access'])
         except:
             return error("Couldn't contact server")
-        
-        accountId = self.lookupAccountId(user)
 
-        return {'success': True, 'userId': user, 'accountId': accountId, 'accessLevel': accessLevel}
-
-    def lookup(self, token, callback):
-        try:
-            data = self.decodeToken(token)
-        except:
-            data = {'success': False, 'reason': 'Something went wrong.'}
-
-        callback(data)
-        return data
+        return {'success': True, 'userId': user, 'accountId': self.lookupAccountId(user), 'accessLevel': accessLevel}
 
 class LoginAccountFSM(CSMOperation):
     notify = directNotify.newCategory('LoginAccountFSM')
@@ -1037,15 +1024,9 @@ class ClientServicesManagerUD(DistributedObjectGlobalUD):
 
         self.connection2fsm = {}
         self.account2fsm = {}
-
-        if accountDBType == 'developer':
-            self.accountDB = DeveloperAccountDB(self)
-        elif accountDBType == 'remote':
-            self.accountDB = RemoteAccountDB(self)
-        else:
-            self.notify.error('Invalid accountdb-type: ' + accountDBType)
-
         self.challenges = {}
+
+        self.accountDB = createAccountDB(self)
 
     def requestChallenge(self):
         sender = self.air.getMsgSender()
