@@ -53,12 +53,12 @@ class InventoryUIWeaponItem(InventoryUIItem.InventoryUIItem):
         modelName = ItemGlobals.getIcon(itemTuple[1])
         image = weaponIcons.find('**/%s' % modelName)
         
-        if image:
+        if image and not image.isEmpty():
             self['image'] = image
+            self['image_scale'] = 0.1 * imageScaleFactor
         else:
             self.notify.warning('Missing image for %s!' % modelName)
 
-        self['image_scale'] = 0.1 * imageScaleFactor
         self.helpFrame = None
         self.cm = CardMaker('itemCard')
         self.cm.setFrame(-0.3, 0.3, -0.09, 0.09)

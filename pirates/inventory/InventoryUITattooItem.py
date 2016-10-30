@@ -18,14 +18,20 @@ class InventoryUITattooItem(InventoryUIItem.InventoryUIItem):
         self.initialiseoptions(InventoryUITattooItem)
         self['relief'] = None
         tattooGui = loader.loadModel('models/misc/tattoos')
-        image = tattooGui.find('**/%s' % ItemGlobals.getIcon(itemTuple[1]))
+        modelName = ItemGlobals.getIcon(itemTuple[1])
+        image = tattooGui.find('**/%s' % modelName)
         if image.isEmpty():
-            image = tattooGui.find('**/tattoo_%s' % ItemGlobals.getIcon(itemTuple[1]))
+            image = tattooGui.find('**/tattoo_%s' % modelName)
 
-        self['image'] = image
-        self['image_scale'] = 0.1 * imageScaleFactor
         self.iconColor = (1.0, 1.0, 1.0, 1.0)
-        self['image_color'] = (self.iconColor[0], self.iconColor[1], self.iconColor[2], self.iconColor[3])
+        
+        if image and not image.isEmpty():
+            self['image'] = image
+            self['image_scale'] = 0.1 * imageScaleFactor
+            self['image_color'] = self.iconColor
+        else:
+            self.notify.warning('Missing image for %s!' % modelName)
+
         self.helpFrame = None
         self.cm = CardMaker('itemCard')
         self.cm.setFrame(-0.3, 0.3, -0.09, 0.09)
