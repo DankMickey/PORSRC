@@ -827,8 +827,8 @@ def gm(color=None, tag=None):
 
 @magicWord(CATEGORY_GAME_MASTER, types=[int])
 def giveGold(gold):
-    target = spellbook.getTarget()
-    invoker = spellbook.getInvoker()
+    target = spellbook.getInvoker()
+    #invoker = spellbook.getInvoker()
     target.giveGold(gold)
     return 'Given %d gold to %s! Balance: %d' % (gold, target.getName(), target.getGoldInPocket())
 
@@ -902,18 +902,18 @@ def giveLocatable(type, itemId, amount):
 
 @magicWord(CATEGORY_GAME_MASTER, types=[int])
 def giveWeapon(itemId):
-    target = spellbook.getTarget()
-    invoker = spellbook.getInvoker()
-    #target = spellbook.getInvoker()
-    #invokerAccess = target.getAdminAccess()
+    #target = spellbook.getTarget()
+    #invoker = spellbook.getInvoker()
+    target = spellbook.getInvoker()
+    invokerAccess = target.getAdminAccess()
     
     from pirates.uberdog.UberDogGlobals import InventoryType
     from pirates.uberdog.TradableInventoryBase import InvItem
     
-    #if invokerAccess >= CATEGORY_GAME_DEVELOPER.access:
-        #target = spellbook.getTarget()
+    if invokerAccess >= CATEGORY_GAME_DEVELOPER.access:
+        target = spellbook.getTarget()
 
-    if not invoker or not target:
+    if not target:
         return "Failed to give weapon. Unknown error has occured."
 
     inv = target.getInventory()
@@ -989,7 +989,7 @@ def giveJewelry(itemId):
 
 @magicWord(CATEGORY_GAME_MASTER, types=[int])
 def ghost(color=None):
-    av = spellbook.getTarget()
+    av = spellbook.getInvoker()
     if color == None:
         av.b_setIsGhost(False)
         return "Set your ghost state to false" % av.getName()
