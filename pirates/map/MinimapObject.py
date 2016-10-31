@@ -308,23 +308,23 @@ class MinimapCapturePoint(MinimapObject):
         transform = self.mapGeom.getTransform(overlayNode)
         self.hpMeter = HpMeter(width = 0.4, parent = overlayNode)
         self.hpMeter.setP(-90)
-        if self.zone != InvasionGlobals.getTotalCapturePoints(self.holidayId):
-            self.hpMeter.setPos(transform.getPos() + (50, 0, 0))
-        else:
-            self.hpMeter.setPos(InvasionGlobals.getMainCapturePointHpPos(self.holidayId))
+        #if self.zone != InvasionGlobals.getTotalCapturePoints(self.holidayId):
+        self.hpMeter.setPos(transform.getPos() + (50, 0, 0))
+        #else:
+        #    self.hpMeter.setPos(InvasionGlobals.getMainCapturePointHpPos(self.holidayId))
         self.hpMeter.setScale(transform.getScale())
         self.hpMeter['sortOrder'] = MinimapCapturePoint.SORT
         self.hpMeter.setAlphaScale(1, 1)
         self.hpMeter.categoryLabel['text_scale'] = 0.100
         self.hpMeter.update(1, 1)
         topGui = loader.loadModel('models/gui/toplevel_gui')
-        if self.zone != InvasionGlobals.getTotalCapturePoints(self.holidayId):
-            self.barricadeIcon = OnscreenImage(parent = self.mapGeom, image = topGui.find('**/pir_t_gui_gen_barricade'), scale = 1.5, hpr = (0, 90, 0), color = (1.0, 0.5, 0.0, 1))
+        #if self.zone != InvasionGlobals.getTotalCapturePoints(self.holidayId):
+        #    self.barricadeIcon = OnscreenImage(parent = self.mapGeom, image = topGui.find('**/pir_t_gui_gen_barricade'), scale = 1.5, hpr = (0, 90, 0), color = (1.0, 0.5, 0.0, 1))
 
         self.barricadeDestroyed = OnscreenImage(parent = overlayNode, image = topGui.find('**/pir_t_gui_gen_Xred'), scale = transform.getScale() * 4.0, pos = transform.getPos(), hpr = (0, -90, 0))
         self.barricadeDestroyed.hide()
         topGui.remove_node()
-        self.mouseOver = GuiButton(parent = self.hpMeter, relief = None, state = DGG.NORMAL, scale = 3.0, image = None, frameSize = (-0.100, 0.149, -0.0299, 0.0299), helpText = PLocalizer.CapturePointNames[self.holidayId][self.zone], helpPos = (0.100, 0, -0.08), helpDelay = 0, helpOpaque = True, sortOrder = MinimapShop.SORT)
+        #self.mouseOver = GuiButton(parent = self.hpMeter, relief = None, state = DGG.NORMAL, scale = 3.0, image = None, frameSize = (-0.100, 0.149, -0.0299, 0.0299), helpText = PLocalizer.CapturePointNames[self.holidayId][self.zone], helpPos = (0.100, 0, -0.08), helpDelay = 0, helpOpaque = True, sortOrder = MinimapShop.SORT)
 
 
     def _removedFromMap(self, map):

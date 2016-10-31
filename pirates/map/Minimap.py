@@ -173,9 +173,9 @@ class AreaMap(Map):
                     self.addObject(MinimapShop(uid, shop, shopType))
 
             self.map.findAllMatches('**/=Holiday').stash()
-            if base.cr.newsManager:
-                for holiday in base.cr.newsManager.getHolidayList():
-                    self.handleHolidayStarted(area, HolidayGlobals.getHolidayName(holiday))
+            #if base.cr.newsManager:
+            #    for holiday in base.cr.newsManager.getHolidayList():
+            #        self.handleHolidayStarted(area, HolidayGlobals.getHolidayName(holiday))
 
         self.zoomLevels = area.getZoomLevels()
         self.accept('landMapRadarAxisChanged', self.setRadarAxis)
