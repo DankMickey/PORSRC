@@ -9,6 +9,7 @@ class PiratesDistrictAI(DistributedDistrictAI):
     avatarCount = 0
     newAvatarCount = 0
     mainWorld = WorldGlobals.PiratesWorldSceneFileBase
+    tutorialWorld = WorldGlobals.PiratesTutorialSceneFileBase
     shardType = PiratesGlobals.SHARD_MAIN
     populationLimits = (1, 50)
 
