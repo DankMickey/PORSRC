@@ -2002,12 +2002,12 @@ class PirateFemale(DirectObject.DirectObject):
             part.stash()
 
         self.currentBody = NodePathCollection()
-        self.bodyTextures = loader.loadModel('models/misc/female_body.bam')
+        self.bodyTextures = loader.loadModel('models/misc/female_body')
         self.notify.debug('loaded body textures %s' % self.bodyTextures)
         self.numBodys = len(body_textures)
         self.bodyTextureIdx = self.pirate.style.getBodySkin()
         self.lowLODSkinColor = VBase4(0.848, 0.739, 0.680000, 1.0)
-        self.faceTextures = loader.loadModel('models/misc/female_face.bam')
+        self.faceTextures = loader.loadModel('models/misc/female_face')
         self.faceTexturesSet = []
         self.notify.debug('loaded face textures %s' % self.faceTextures)
         self.numFaces = len(face_textures)
@@ -2204,7 +2204,7 @@ class PirateFemale(DirectObject.DirectObject):
         self.partLayer['PANT'] = self.clothingsLayer1
         self.partLayer['SHOE'] = self.clothingsLayer1
         self.partLayer['HAT'] = self.clothingsLayer1
-        self.clothesTextures = loader.loadModel('models/misc/female_clothes.bam')
+        self.clothesTextures = loader.loadModel('models/misc/female_clothes')
         for type in clothes_textures.values():
             for model in type:
                 for texInfo in model:

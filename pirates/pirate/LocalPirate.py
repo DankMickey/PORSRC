@@ -92,7 +92,6 @@ else:
 
 class LocalPirate(DistributedPlayerPirate, LocalAvatar):
     notify = DirectNotifyGlobal.directNotify.newCategory('LocalPirate')
-    neverDisable = 1
     isCollisions = 1
 
     def __init__(self, cr):

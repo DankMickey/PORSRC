@@ -110,18 +110,15 @@ class MainMenu(DirectFrame):
     def logout_dialog_command(self, value):
         self.delete_dialogs()
         if value == 1:
-            try:
-                if base.cr.tutorialObject and base.cr.tutorialObject.map:
-                    base.cr.tutorialObject.map.handleCancel()
-                elif base.cr.gameFSM.getCurrentState().getName() == 'playGame':
-                    if localAvatar.getCanLogout():
-                        if localAvatar.guiMgr.crewHUD.crew:
-                            localAvatar.guiMgr.crewHUD.leaveCrew()
-                        self.hideMenuIval.start()
-                        base.cr.gameFSM.request('closeShard', [
-                            'waitForAvatarList'])
-            except Exception as e:
-                raise e
+            if base.cr.tutorialObject and base.cr.tutorialObject.map:
+                base.cr.tutorialObject.map.handleCancel()
+            elif base.cr.gameFSM.getCurrentState().getName() == 'playGame':
+                if localAvatar.getCanLogout():
+                    if localAvatar.guiMgr.crewHUD.crew:
+                        localAvatar.guiMgr.crewHUD.leaveCrew()
+                    self.hideMenuIval.start()
+                    base.cr.gameFSM.request('closeShard', [
+                        'waitForAvatarList'])
 
     def buildShowHideMenuIvals(self):
         showSequence = Sequence(Func(self.show), ProjectileInterval(self.parentFrame, duration = 0.200, endPos = Point3(0, 0, -0.100)), ProjectileInterval(self.parentFrame, duration = 0.149, endPos = Point3(0, 0, -0.050000), gravityMult = -1), ProjectileInterval(self.parentFrame, duration = 0.149, endPos = Point3(0, 0, -0.100)))

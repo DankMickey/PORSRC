@@ -41,7 +41,6 @@ from pirates.battle import WeaponGlobals
 from pirates.battle.EnemySkills import *
 from pirates.pirate.DistributedPirateBase import DistributedPirateBase
 from pirates.pirate import Biped
-from pirates.pirate.PAvatarHandle import PAvatarHandle
 from pirates.quest.DistributedQuestAvatar import DistributedQuestAvatar
 from pirates.world.LocationConstants import LocationIds
 from pirates.piratesbase import PLocalizer
@@ -58,7 +57,6 @@ import PlayerPirateGameFSM
 from pirates.band import BandConstance
 from pirates.band import DistributedBandMember
 from pirates.world.DistributedGameArea import DistributedGameArea
-from pirates.world.DistributedIsland import DistributedIsland
 from pirates.speedchat import PSCDecoders
 from pirates.battle import Consumable
 from pirates.uberdog.UberDogGlobals import *
@@ -100,7 +98,7 @@ from pirates.inventory import ItemConstants
 from pirates.uberdog.DistributedInventoryBase import DistributedInventoryBase
 from pirates.uberdog.TradableInventory import TradableInventory
 
-class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, DistributedBattleAvatar, DistributedQuestAvatar, PAvatarHandle):
+class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, DistributedBattleAvatar, DistributedQuestAvatar):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedPirate')
     wantBattle = config.GetBool('want-battle', 0)
     deferrable = True
@@ -352,7 +350,6 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             self.crazySkinColorIval = None
             self.transformSeqEffect = None
             self.injuredFrame = None
-            self.ghostEffect = None
             self.isGhost = 0
             self.bloodFireTime = 0.0
             self.auraActivated = 0
@@ -581,7 +578,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             self.injuredFrame.setLightOff()
             innerFrame = DirectFrame(parent = self.injuredFrame, relief = None, pos = (0.0, -0.0299, 0.0), image = circleBase, image_scale = 1.8, sortOrder = 2)
             icon = DirectFrame(parent = self.injuredFrame, relief = None, pos = (0.0, -0.0400, 0.0), image = injuredIcon, image_scale = 2.7, sortOrder = 3)
-            knockoutLabel = DirectLabel(parent = self.injuredDial, relief = None, state = DGG.DISABLED, text = '\1injuredRed\1\n%s\n' % PLocalizer.InjuredFlag, text_scale = PiratesGuiGlobals.TextScaleLarge * 5, text_align = TextNode.ACenter, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getPirateBoldOutlineFont(), pos = (0.0, 0, -0.4), sortOrder = 4)
+            knockoutLabel = DirectLabel(parent = self.injuredDial, relief = None, state = DGG.DISABLED, text = '\x01injuredRed\x01\n%s\n' % PLocalizer.InjuredFlag, text_scale = PiratesGuiGlobals.TextScaleLarge * 5, text_align = TextNode.ACenter, text_shadow = PiratesGuiGlobals.TextShadow, text_font = PiratesGlobals.getPirateBoldOutlineFont(), pos = (0.0, 0, -0.4), sortOrder = 4)
 
         self.injuredDial.update(self.injuredTimeLeft, PiratesGlobals.REVIVE_TIME_OUT)
         self.injuredFrame.show()
@@ -2504,10 +2501,6 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         self.show(invisibleBits = PiratesGlobals.INVIS_DEATH)
 
 
-    def setWishName(self):
-        self.cr.sendWishName(self.doId, self.style.name)
-
-
     def canTeleport(self):
         return (self.teleportFlags & PiratesGlobals.TFNoTeleportOut).isZero()
 
@@ -3257,7 +3250,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             minutes]
 
     def setGMNametag(self, color, tagString):
-        self.gmNametag = (color + 'GM' if color in ('gold', 'red', 'green', 'blue') else 'whiteGM', tagString)
+        self.gmNametag = (color + 'GM' if color in ('gold', 'red', 'green', 'blue', 'purple') else 'whiteGM', tagString)
         self.refreshName()
     
     def getGMNametag(self):

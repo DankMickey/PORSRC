@@ -27,11 +27,14 @@ preLoadSet = [
     'phase_2/models/char/fp_walk',
     'phase_2/models/char/mp_walk',
     'phase_2/models/misc/pir_m_prp_lev_cambarrier_plane',
+    'phase_2/models/misc/fade',
     'phase_2/models/effects/particleMaps',
+    'phase_2/models/textureCards/buff_icons',
     'phase_3/models/textureCards/shipTextures',
     'phase_3/models/char/fp_tread_water',
     'phase_3/models/char/mp_tread_water',
     'phase_2/models/sea/wake_zero',
+    'phase_3/models/effects/mopath_none',
     'phase_3/models/vegetation/bush_a',
     'phase_3/models/vegetation/bush_b',
     'phase_3/models/vegetation/bush_c',
@@ -49,6 +52,13 @@ preLoadSet = [
     'phase_3/models/vegetation/gen_tree_g',
     'phase_3/models/vegetation/gen_tree_h',
     'phase_3/models/effects/combat_hit_spark',
+    'phase_3/models/effects/swordtrail_effects',
+    'phase_3/models/handheld/cutlass_steel_high',
+    'phase_3/models/props/pir_m_prp_gdn_wallVine',
+    'phase_4/models/handheld/pen_high',
+    'phase_4/models/handheld/lute_high',
+    'phase_4/models/inventory/pir_m_inv_can_ram_a',
+    'phase_4/models/islands/pir_m_are_isl_rockMed_low',
     'phase_4/models/char/rooster_hi',
     'phase_4/models/char/rooster_med',
     'phase_4/models/char/rooster_low',
@@ -112,12 +122,8 @@ COLL_MODE_FLOORS_CL = 1
 COLL_MODE_INTERACT = 2
 COLL_MODE_FLOORS_AI = 4
 COLL_MODE_ALL = COLL_MODE_FLOORS_CL | COLL_MODE_INTERACT | COLL_MODE_FLOORS_AI
-TestZone = 1000
 FakeZoneId = 999999
-InstanceUberShard = 200000000
-InstanceUberZone = 10
 ShardInterestZone = 2
-InventoryZone = 2
 IslandAvailableZoneStart = 110
 IslandAvailableZoneEnd = 499
 IslandConnectorZoneStart = 100
@@ -125,7 +131,6 @@ IslandConnectorZoneEnd = 200
 IslandShipDeployerZone = 102
 IslandLocalZone = 101
 InteriorDoorZone = 100
-TeleportZone = 500
 TargetBitmask = BitMask32.bit(5)
 GoldBitmask = BitMask32.bit(6)
 ShipFloorBitmask = BitMask32.bit(7)
@@ -293,7 +298,6 @@ setPirateBoldOutlineFont(PLocalizer.PirateBoldOutlineFont)
 from pirates.piratesgui import PDialog
 setDialogClasses(PDialog.PDialog, PDialog.PGlobalDialog)
 PirateDialog = None
-LogoutHotkey = 'shift-f2'
 ScreenshotHotkeyList = [
     'f9',
     'control-f9']

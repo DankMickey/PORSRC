@@ -496,13 +496,16 @@ class BattleManagerBase:
                 tHealth /= numTargets
                 tMojo /= numTargets
 
-        #if attacker.isNpc:
-        #    aHealth *= self.getGameStatManager().getEnemyDamageNerf()
-        #    tHealth *= self.getGameStatManager().getEnemyDamageNerf()
-        #    tMojo *= self.getGameStatManager().getEnemyDamageNerf()
+        if attacker.isNpc:
+            oldTHealth = tHealth
+            aHealth *= self.getGameStatManager().getEnemyDamageNerf()
+            tHealth *= self.getGameStatManager().getEnemyDamageNerf()
+            tMojo *= self.getGameStatManager().getEnemyDamageNerf()
+            if self.wantOutput:
+                print ' N - NPC Nerf Mod - tHealth Modified from %s to %s' % (oldTHealth, tHealth)
 
         if not WeaponGlobals.isSelfUseSkill(skillId) and target and not WeaponGlobals.isFriendlyFire(skillId, ammoSkillId) and not inPVPMode:
-            if not config.GetBool('want-dev', 0) and not attacker.isInInvasion() or not target.isInInvasion():
+            if not attacker.isInInvasion() or not target.isInInvasion():
                 if not hasattr(attacker, 'inInvasion') or not attacker.isInInvasion():
                     if not hasattr(target, 'inInvasion') or not target.isInInvasion():
                         damageMod = WeaponGlobals.getComparativeLevelDamageModifier(attacker, target)
@@ -525,12 +528,6 @@ class BattleManagerBase:
             tHealth *= scale
             tMojo *= scale
             aHealth *= scale
-
-        if hasattr(target, 'founder'):
-            oldTHealth = tHealth
-            tHealth *= 0.6
-            if self.wantOutput:
-                print ' N - Pirate Immunity Mod - tHealth Modified from %s to %s' % (oldTHealth, tHealth)
 
         if target and hasattr(attacker, 'currentWeaponId'):
             if tHealth < 0:
@@ -1086,19 +1083,14 @@ class BattleManagerBase:
         if isBoss:
             targetLevel *= 1.5
 
-        if not forColor:
-            if (config.GetBool('want-dev', 0) or target.isInInvasion() or hasattr(target, 'inInvasion')) and target.isInInvasion():
-                levelGrade = EnemyGlobals.YELLOW
-            elif expLevel > targetLevel + self.getGameStatManager().getEnemyLevelThreshold():
-                levelGrade = EnemyGlobals.GREY
-            elif expLevel > targetLevel:
-                levelGrade = EnemyGlobals.GREEN
-            elif expLevel > targetLevel - self.getGameStatManager().getEnemyLevelThreshold():
-                levelGrade = EnemyGlobals.YELLOW
-            else:
-                levelGrade = EnemyGlobals.RED
-        else:
+        if expLevel > targetLevel + self.getGameStatManager().getEnemyLevelThreshold():
+            levelGrade = EnemyGlobals.GREY
+        elif expLevel > targetLevel:
             levelGrade = EnemyGlobals.GREEN
+        elif expLevel > targetLevel - self.getGameStatManager().getEnemyLevelThreshold():
+            levelGrade = EnemyGlobals.YELLOW
+        else:
+            levelGrade = EnemyGlobals.RED
         return levelGrade
 
     def getEnemyLevelThreshold(self):
@@ -1107,15 +1099,15 @@ class BattleManagerBase:
     def getExperienceColor(self, av, target):
         levelRank = self.getModifiedExperienceGrade(av, target, currentWeaponId = av.currentWeaponId, forColor = True)
         if levelRank >= EnemyGlobals.RED:
-            color = '\1red\1'
+            color = '\x01red\x01'
         elif levelRank >= EnemyGlobals.YELLOW:
-            color = '\1yellow\1'
+            color = '\x01yellow\x01'
         elif levelRank >= EnemyGlobals.GREEN:
-            color = '\1midgreen\1'
+            color = '\x01midgreen\x01'
         elif levelRank == EnemyGlobals.GREY:
-            color = '\1grey\1'
+            color = '\x01grey\x01'
         else:
-            color = '\1white\1'
+            color = '\x01white\x01'
         return color
 
     def getCannonDefenseDamage(self, attacker, target, skillId, ammoSkillId):

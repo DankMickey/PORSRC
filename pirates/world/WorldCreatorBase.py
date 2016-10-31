@@ -248,10 +248,10 @@ class WorldCreatorBase:
                         if model:
                             if type(model) is types.ListType:
                                 for currModel in model:
-                                    fileList.add(currModel + '.bam')
+                                    fileList.add(currModel)
 
                             else:
-                                fileList.add(model + '.bam')
+                                fileList.add(model)
 
             objects = fileData.get('Objects')
             if objects:
@@ -260,7 +260,7 @@ class WorldCreatorBase:
                     if visual:
                         model = visual.get('Model')
                         if model:
-                            fileList.add(model + '.bam')
+                            fileList.add(model)
 
             if not 'File' in objectInfo or objectInfo.get('File') == '':
                 break

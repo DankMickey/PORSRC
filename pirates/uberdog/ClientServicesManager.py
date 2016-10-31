@@ -42,6 +42,9 @@ class ClientServicesManager(DistributedObjectGlobal):
 
     def requestAvatars(self):
         self.sendUpdate('requestAvatars')
+    
+    def requestDeletedAvatars(self):
+        self.sendUpdate('requestDeletedAvatars')
 
     def setAvatars(self, avatars):
         avList = [PiratesGlobals.AvatarSlotAvailable] * 6
@@ -50,24 +53,32 @@ class ClientServicesManager(DistributedObjectGlobal):
             if avPosition > len(avList):
                 continue
 
-            nameOpen = int(nameState == 1)
-            names = [avName, '', '', '']
-            wishState = 'OPEN' if nameOpen else 'CLOSED'
+            wishState = 'OPEN' if int(nameState == 1) else 'CLOSED'
+
             if nameState == 2: # PENDING
-                names[1] = avName
                 wishState = 'REQUESTED'
             elif nameState == 3: # APPROVED
-                names[2] = avName
                 wishState = 'APPROVED'
             elif nameState == 4: # REJECTED
-                names[3] = avName
                 wishState = 'DENIED'
+
             dna = HumanDNA()
             dna.makeFromNetString(avDNA)
-            avList[avPosition] = PotentialAvatar(avNum, names, dna, avPosition, nameOpen,
-                                                                              wishState=wishState, wishName=wishName)
+            avList[avPosition] = PotentialAvatar(avNum, avName, dna, avPosition, wishState=wishState, wishName=wishName)
 
         self.cr.handleAvatarsList(avList)
+        self.requestDeletedAvatars()
+    
+    def setDeletedAvatars(self, avatars):
+        avList = []
+        
+        for avatar in avatars:
+            dna = HumanDNA()
+            dna.makeFromNetString(avatar[3])
+            
+            avList.append(PotentialAvatar(avatar[0], avatar[2], dna, avatar[1]))
+
+        self.cr.handleDeletedAvatarsList(avList)
 
     def sendCreateAvatar(self, avDNA, index, allegiance, name):
         self.sendUpdate('createAvatar', [avDNA.makeNetString(), index, allegiance, name])
@@ -75,8 +86,8 @@ class ClientServicesManager(DistributedObjectGlobal):
     def createAvatarResp(self, avId):
         messenger.send('createdNewAvatar', [avId])
 
-    def sendChooseAvatar(self, avId):
-        self.sendUpdate('chooseAvatar', [avId])
+    def sendChooseAvatar(self, avId, index):
+        self.sendUpdate('chooseAvatar', [avId, index])
 
     def avatarResponse(self, avId, avDetails):
         print 'Got avatarResponse: avId: %s, avDetails: %s' % (avId, avDetails)

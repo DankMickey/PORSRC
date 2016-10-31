@@ -3,7 +3,6 @@ from direct.distributed import DistributedNode
 from direct.distributed import DistributedObject
 from pirates.piratesbase import PiratesGlobals
 from pirates.world import DistributedGameArea
-from pirates.world import DistributedIsland
 from pirates.effects import EnvironmentEffects
 from pirates.tutorial import CrewTutorial
 from direct.showbase.PythonUtil import report

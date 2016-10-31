@@ -16,17 +16,26 @@ class InventoryUIClothingItem(InventoryUIItem.InventoryUIItem):
         InventoryUIItem.InventoryUIItem.__init__(self, manager, itemTuple, imageScaleFactor = imageScaleFactor)
         self.initialiseoptions(InventoryUIClothingItem)
         self['relief'] = None
+        
         tailorGui = loader.loadModel('models/gui/gui_icons_clothing')
-        iconName = ItemGlobals.getIcon(itemTuple[1])
-        self['image'] = tailorGui.find('**/%s' % iconName)
-        self['image_scale'] = 0.1 * imageScaleFactor
+        modelName = ItemGlobals.getIcon(itemTuple[1])
+        image = tailorGui.find('**/%s' % modelName)
+        
         iconColorIndex = ItemGlobals.getColor(itemTuple[1])
         dyeColor = itemTuple[3]
+
         if dyeColor:
             self.iconColor = (DYE_COLORS[dyeColor][0], DYE_COLORS[dyeColor][1], DYE_COLORS[dyeColor][2], 1.0)
         else:
             self.iconColor = (ItemConstants.COLOR_VALUES[iconColorIndex][0], ItemConstants.COLOR_VALUES[iconColorIndex][1], ItemConstants.COLOR_VALUES[iconColorIndex][2], 1.0)
-        self['image_color'] = (self.iconColor[0], self.iconColor[1], self.iconColor[2], self.iconColor[3])
+        
+        if image and not image.isEmpty():
+            self['image'] = image
+            self['image_scale'] = 0.1 * imageScaleFactor
+            self['image_color'] = self.iconColor
+        else:
+            self.notify.warning('Missing image for %s!' % modelName)
+
         self.helpFrame = None
         self.cm = CardMaker('itemCard')
         self.cm.setFrame(-0.3, 0.3, -0.09, 0.09)

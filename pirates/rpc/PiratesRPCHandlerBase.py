@@ -1,5 +1,5 @@
 from direct.directnotify.DirectNotifyGlobal import directNotify
-from pirates.uberdog.ClientServicesManagerUD import RemoteAccountDB
+from pirates.uberdog.ClientServicesManagerUD import createAccountDB
 from otp.ai.MagicWordGlobal import *
 
 class RPCMethod:
@@ -21,6 +21,7 @@ class PiratesRPCHandlerBase:
 
     def __init__(self, air):
         self.air = air
+        self.accountDB = createAccountDB(self)
 
     def authenticate(self, token, method):
         """
@@ -34,7 +35,7 @@ class PiratesRPCHandlerBase:
             # No token, but the method requires no auth
             return None
 
-        token = RemoteAccountDB.decodeToken(token, maxAge=30)
+        token = self.accountDB.decodeToken(token)
         if not token['success']:
             return (-32001, token['reason'])
 

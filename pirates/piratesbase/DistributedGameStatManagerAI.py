@@ -10,7 +10,7 @@ class DistributedGameStatManagerAI(DistributedObjectAI, GameStatManagerBase):
     def __init__(self, air):
         DistributedObjectAI.__init__(self, air)
         GameStatManagerBase.__init__(self)
-        self.aggroModelIndex = 1
+        self.aggroModelIndex = 0
 
     def getAggroModelIndex(self):
         return self.aggroModelIndex

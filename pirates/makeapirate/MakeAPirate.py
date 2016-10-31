@@ -1487,11 +1487,7 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
             self.jewelryGui.save()
 
         if self.skipTutorial:
-            newPotAv = PotentialAvatar.PotentialAvatar(0, [
-                'dbp',
-                '',
-                '',
-                ''], self.pirate.style, self.index, 0)
+            newPotAv = PotentialAvatar.PotentialAvatar(0, 'dbp', self.pirate.style, self.index)
             self.newPotAv = newPotAv
 
         if self.isNPCEditor:
@@ -1506,8 +1502,7 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
 
         def populateAv(avId):
             self.avId = avId
-            self.newPotAv = PotentialAvatar.PotentialAvatar(self.avId, self.nameGui.getNumericName(), self.pirate.style,
-                                                            self.index, True)
+            self.newPotAv = PotentialAvatar.PotentialAvatar(self.avId, self.nameGui.getNumericName(), self.pirate.style, self.index)
             messenger.send(self.doneEvent, [])
             base.transitions.fadeIn(1.0)
 

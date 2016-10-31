@@ -90,12 +90,14 @@ from pirates.audio import SoundGlobals
 from pirates.audio.SoundGlobals import loadSfx
 from otp.ai.MagicWordManager import MagicWordManager
 from otp.friends.FriendHandle import FriendHandle
+from direct.distributed.DoInterestManager import InterestHandle
 
 class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
     notify = directNotify.newCategory('PiratesClientRepository')
     SupportTutorial = 0
     GameGlobalsId = OTP_DO_ID_PIRATES
     StopVisibilityEvent = 'pirates-stop-visibility'
+    ClearInterestDoneEvent = 'pirates-clear-interest'
 
     def __init__(self, serverVersion, launcher = None):
         self.loadingScreen = base.loadingScreen
@@ -111,7 +113,6 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
         self.travelAgent = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_PIRATES_TRAVEL_AGENT, 'DistributedTravelAgent')
         self.crewMatchManager = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_PIRATES_CREW_MATCH_MANAGER, 'DistributedCrewMatchManager')
         self.piratesFriendsManager = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_PIRATES_FRIENDS_MANAGER, 'PiratesFriendsManager')
-        #self.shipLoader = self.generateGlobalObject(OtpDoGlobals.OTP_DO_ID_PIRATES_SHIP_MANAGER, 'DistributedShipLoader')
 
         self.wantSeapatch = config.GetBool('want-seapatch', 0)
         self.wantSpecialEffects = config.GetBool('want-special-effects', 0)
@@ -270,7 +271,7 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
 
     def enterChooseAvatar(self, avList):
         base.loadingScreen.beginStep('AvChooser', 14, 10)
-        self.sendSetAvatarIdMsg(0)
+        self.sendSetAvatarIdMsg(0, 0)
         self.handler = self.handleMessageType
 
         self.clearFriendState()
@@ -304,7 +305,7 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
             else:
                 self.tutorial = 0
             self.loadingScreen.beginStep('waitForAv')
-            self.loginFSM.request('waitForSetAvatarResponse', [av])
+            self.loginFSM.request('waitForSetAvatarResponse', [av, av.position])
         elif done == 'create':
             self.loginFSM.request('createAvatar', [self.avList, slot])
 
@@ -328,7 +329,7 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
 
     def handleAvatarCreated(self, newPotAv, avatarId):
         newPotAv.id = avatarId
-        self.loginFSM.request('waitForSetAvatarResponse', [newPotAv])
+        self.loginFSM.request('waitForSetAvatarResponse', [newPotAv, newPotAv.position])
 
     def __handleMakeAPirate(self):
         done = self.avCreate.getDoneStatus()
@@ -354,8 +355,8 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
 
     def handleCreateAvatarResponse(self, avId):
         self.avId = avId
-        newPotAv = PotentialAvatar(self.avId, [self.newName, '', '', ''], self.newDNA, self.newPosition, 1)
-        self.loginFSM.request('waitForSetAvatarResponse', [newPotAv])
+        newPotAv = PotentialAvatar(self.avId, self.newName, self.newDNA, self.newPosition)
+        self.loginFSM.request('waitForSetAvatarResponse', [newPotAv, self.newPosition])
 
     def avatarListFailed(self, reason):
         dialogClass = OTPGlobals.getGlobalDialogClass()
@@ -437,16 +438,7 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
 
     def enterPlayingGame(self):
         OTPClientRepository.OTPClientRepository.enterPlayingGame(self)
-
-        def logout():
-            if hasattr(base, 'localAvatar') and localAvatar.getCanLogout():
-                self._userLoggingOut = True
-                self.gameFSM.request('closeShard', [
-                    'waitForAvatarList'])
-
         self._userLoggingOut = False
-        self.accept(PiratesGlobals.LogoutHotkey, logout)
-
 
         if False: # TODO: localAvatar.style.getTutorial() < PiratesGlobals.TUT_MET_JOLLY_ROGER and self.skipTutorial == 0:
             localAvatar.teleportToType = PiratesGlobals.INSTANCE_TUTORIAL
@@ -474,7 +466,6 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
         if config.GetDouble('want-dev-hotkeys', 0):
             self.ignore(PiratesGlobals.KrakenHotkey)
             self.ignore(PiratesGlobals.ShipHotkey)
-            self.ignore(PiratesGlobals.LogoutHotkey)
 
         self.uidMgr.reset()
         if self.distributedDistrict:
@@ -899,8 +890,8 @@ class PiratesClientRepository(OTPClientRepository.OTPClientRepository):
         self.http.setVerifySsl(HTTPClient.VSNoDateCheck)
         OTPClientRepository.OTPClientRepository.enterConnect(self, serverList)
     
-    def handleFriendOnline(self, doId):
-        messenger.send('friendOnline', [doId])
+    def handleFriendOnline(self, doId, name):
+        messenger.send('friendOnline', [doId, name])
 
     def handleFriendOffline(self, doId, name):
         messenger.send('friendOffline', [doId, name])

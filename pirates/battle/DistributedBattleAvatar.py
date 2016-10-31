@@ -100,7 +100,6 @@ from pirates.effects.PulseEffect import PulseEffect
 from pirates.effects.GhostGlowShadow import GhostGlowShadow
 from pirates.effects.ProtectionDome import ProtectionDome
 if config.GetBool('want-pstats', 0):
-    import profile
     import pstats
 
 class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable):
@@ -611,14 +610,14 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
     def setMonsterNameTag(self):
         if self.level:
             color = self.cr.battleMgr.getExperienceColor(base.localAvatar, self)
-            name = '%s  %s\1smallCaps\1%s%s\2\2' % (self.name, color, PLocalizer.Lv, self.level)
+            name = '%s  %s\x01smallCaps\x01%s%s\x02\x02' % (self.name, color, PLocalizer.Lv, self.level)
         else:
             name = self.name
         if self.getNameText():
             self.getNameText()['text'] = name
 
     def getNameText(self):
-        return ''
+        return self.nameText
 
     def considerUnderstandable(self):
         DistributedReputationAvatar.considerUnderstandable(self)
@@ -734,7 +733,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
 
 
     def createHitTrack(self, parent, explosionPoint = Point3(0)):
-        explosion = loader.loadModel('models/sea/splash.bam')
+        explosion = loader.loadModel('models/sea/splash')
         explosion.setScale(0.4)
         explosion.setColorScale(0, 1, 1, 1)
         explosion.setBillboardPointWorld()

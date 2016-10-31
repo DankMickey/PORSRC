@@ -35,7 +35,6 @@ from pirates.instance import DistributedMainWorld/AI
 from pirates.instance import DistributedWelcomeWorld/AI
 from pirates.instance import DistributedInstanceWorld/AI
 from pirates.instance import DistributedTeleportHandler/AI
-from pirates.instance import DistributedTeleportZone/AI
 from pirates.instance import DistributedTeleportMgr/AI
 from pirates.instance import DistributedMatchMaker/UD
 from pirates.instance import DistributedTravelAgent/UD
@@ -223,6 +222,12 @@ struct PlunderItemLocationInfo {
   uint8 location;
 };
 
+struct DeletedAvatar {
+  uint32 avId;
+  uint32 date;
+  string avName;
+  blob avDNA;
+};
 
 dclass DistributedObjectGlobal : DistributedObject {
 };
@@ -234,12 +239,15 @@ dclass ClientServicesManager : DistributedObjectGlobal {
   acceptLogin(string);
 
   requestAvatars() clsend;
+  requestDeletedAvatars() clsend;
+  
   setAvatars(PotentialPirate[]);
+  setDeletedAvatars(DeletedAvatar[]);
 
   createAvatar(blob dna, uint8 index, uint8 allegiance, string name) clsend;
   createAvatarResp(uint32 avId);
 
-  chooseAvatar(uint32 avId) clsend;
+  chooseAvatar(uint32 avId, uint8 index) clsend;
   avatarResponse(uint32 avId, blob avdata);
 
   acknowledgeName(uint32 avId) clsend;
@@ -444,15 +452,15 @@ dclass Teamable {
 };
 
 dclass WeaponBase : Teamable {
-  requestTargetedSkill(SkillId, SkillId, uint8, DoId, DoIdList, uint32, Pos, uint8) clsend airecv;
-  useTargetedSkill(SkillId, SkillId, uint8, DoId, DoIdList, SkillEffects, SkillEffects, SkillEffectsList, uint16 [], uint32, Pos, uint8) broadcast;
+  requestTargetedSkill(SkillId, SkillId, uint8, DoId, DoId[], uint32, Pos, uint8) clsend airecv;
+  useTargetedSkill(SkillId, SkillId, uint8, DoId, DoId[], SkillEffects, SkillEffects, SkillEffectsList, uint16 [], uint32, Pos, uint8) broadcast;
   requestShipSkill(SkillId, SkillId, uint8, DoId, uint32) clsend airecv;
   useShipSkill(SkillId, SkillId, uint8, DoId, SkillEffects, ShipEffects, uint32) broadcast;
 
   requestProjectileSkill(SkillId, SkillId, PosHpr, uint32, uint8) clsend airecv;
   useProjectileSkill(SkillId, SkillId, PosHpr, uint32, uint8) broadcast;
-  suggestProjectileSkillResult(SkillId, SkillId, uint8, DoId, DoIdList, Pos, Normal, uint8[], uint32) clsend airecv;
-  setProjectileSkillResult(SkillId, SkillId, uint8, DoId, DoIdList, SkillEffects, SkillEffects, SkillEffectsList, Pos, Normal, uint8[], DoId, uint32) broadcast;
+  suggestProjectileSkillResult(SkillId, SkillId, uint8, DoId, DoId[], Pos, Normal, uint8[], uint32) clsend airecv;
+  setProjectileSkillResult(SkillId, SkillId, uint8, DoId, DoId[], SkillEffects, SkillEffects, SkillEffectsList, Pos, Normal, uint8[], DoId, uint32) broadcast;
 };
 
 dclass DistributedMovingObject : DistributedSmoothNode {
@@ -780,10 +788,10 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   setAFK(bool) clsend airecv;
   setBandDisconnect(uint8) clsend airecv;
   // setEpicQuests(uint32) required broadcast db;
-  // setStickyTargets(DoIdList) required broadcast ram;
-  requestRemoveStickyTargets(DoIdList) ownsend airecv;
-  requestRemoveEffects(DoIdList) ownsend airecv;
-  requestAuraDetection(DoIdList) ownsend airecv;
+  // setStickyTargets(DoId[]) required broadcast ram;
+  requestRemoveStickyTargets(DoId[]) ownsend airecv;
+  requestRemoveEffects(DoId[]) ownsend airecv;
+  requestAuraDetection(DoId[]) ownsend airecv;
   requestRemoveAuraDetection() ownsend airecv;
   setDefaultShard(uint32) required broadcast ownrecv db;
   // setDefaultZone(uint32) ownrecv required db;
@@ -799,7 +807,7 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   levelUpMsg(uint32, uint32, uint32) broadcast airecv;
   addQuestMsg(string, uint8) broadcast airecv;
   requestCurrentWeapon(uint16, uint8) ownsend airecv;
-  // requestCurrentAmmo(SkillId) ownsend airecv;
+  requestCurrentAmmo(SkillId) ownsend airecv;
   requestCurrentCharm(uint16) ownsend airecv;
   // requestUseSkill(SkillId, uint8) ownsend airecv;
   requestDeployShip(uint32) airecv ownsend;
@@ -940,7 +948,7 @@ dclass PiratesFriendsManager : DistributedObjectGlobal {
 
   friendList(Friend[]);
 
-  friendOnline(uint32);
+  friendOnline(uint32, string);
   friendOffline(uint32, string);
 
   goingOffline(uint32);
@@ -1013,9 +1021,6 @@ dclass DistributedTeleportMgr : DistributedObject {
   setWelcomeShardMin(uint16);
   teleportToObjectReq(uint32) airecv clsend;
   teleportToObjectResp(uint32, uint32, uint32, uint32) airecv clsend;
-};
-
-dclass DistributedTeleportZone : DistributedInstanceBase {
 };
 
 dclass DistributedTeleportHandler : DistributedObject {
@@ -1310,7 +1315,6 @@ dclass DistributedCrewMatchManager : DistributedObject {
   requestTeleportResponse(uint32, int8, uint32, uint32, uint32) airecv clsend;
   teleportQuery(uint32, uint32, uint32, uint32, uint32) airecv clsend;
   teleportResponse(uint32, int8, uint32, uint32, uint32) airecv clsend;
-  requestRemoveHandle(uint32);
 };
 
 dclass DistributedBandMember : DistributedObject {

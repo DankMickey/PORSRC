@@ -958,8 +958,6 @@ class TattooStoreGUI(DirectFrame):
                             holiday,
                             location])
 
-                holiday in TattooStoreGUI.holidayIdList
-
 
         if self.mode == SELLING:
             if self.currentWardrobe:
@@ -1026,11 +1024,7 @@ class TattooStoreGUI(DirectFrame):
                 seaInfamyLevel = ItemGlobals.getSeaInfamyRequirement(uid)
                 inventory = localAvatar.getInventory()
                 if inventory:
-                    if landInfamyLevel:
-                        pass
                     landInfamyRequired = TitleGlobals.getRank(TitleGlobals.LandPVPTitle, inventory.getStackQuantity(InventoryType.PVPTotalInfamyLand)) < landInfamyLevel
-                    if seaInfamyLevel:
-                        pass
                     seaInfamyRequired = TitleGlobals.getRank(TitleGlobals.ShipPVPTitle, inventory.getStackQuantity(InventoryType.PVPTotalInfamySea)) < seaInfamyLevel
                 else:
                     landInfamyRequired = False
@@ -1132,8 +1126,6 @@ class TattooStoreGUI(DirectFrame):
                     tattooButton.addToCart['state'] = DGG.NORMAL
                     tattooButton.addToCart['text'] = PLocalizer.TailorRemove
                     if not not (self.pvpMode):
-                        if not landInfamyRequired:
-                            pass
                         if not seaInfamyRequired:
                             tattooButton.addToCart.show()
 
@@ -1208,13 +1200,9 @@ class TattooStoreGUI(DirectFrame):
 
     def _mouseReadTask(self, task):
         if not base.mouseWatcherNode.hasMouse():
-            pass
-        1
+            return Task.cont
         winSize = (base.win.getXSize(), base.win.getYSize())
         mouseData = base.win.getPointer(0)
-        if mouseData.getX() > winSize[0] or mouseData.getY() > winSize[1]:
-            pass
-        1
         dx = mouseData.getX() - self.lastMousePos[0]
         mouseData = base.win.getPointer(0)
         self.lastMousePos = (mouseData.getX(), mouseData.getY())

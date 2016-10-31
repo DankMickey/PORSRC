@@ -25,7 +25,6 @@ from pirates.makeapirate import ClothingGlobals
 from pirates.inventory import InventorySellConfirm
 from pirates.inventory import DropGlobals
 from pirates.inventory import InventoryGlobals
-from pirates.world.DistributedIsland import DistributedIsland
 from direct.distributed.DistributedObject import DistributedObject
 
 class DistributedShopKeeper(DistributedObject):

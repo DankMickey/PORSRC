@@ -11,7 +11,6 @@ from direct.task import Task
 from otp.namepanel import NameCheck
 from otp.otpbase import OTPLocalizer as OL
 from pirates.piratesbase import PLocalizer as PL
-from pirates.pirate import HumanDNA
 from pirates.piratesbase import PiratesGlobals
 from pirates.piratesgui import GuiButton
 from pirates.piratesgui import PiratesGuiGlobals
@@ -155,7 +154,7 @@ class NameGUI(DirectFrame, StateData.StateData):
             self.loadPickAName()
             self.loadTypeAName()
             self.listsCreated = 1
-            name = self.getDNA().getDNAName()
+            name = self.getName()
             if name:
                 if not (self.independent) and self.main.isNPCEditor:
                     self._NameGUI__assignNameToTyped(name)
@@ -204,8 +203,6 @@ class NameGUI(DirectFrame, StateData.StateData):
 
     def exit(self):
         self.hide()
-        if self.cr:
-            self.ignore(self.cr.getWishNameResultMsg())
 
         if hasattr(self, 'self._nameCheckCallback'):
             del self._nameCheckCallback
@@ -220,26 +217,6 @@ class NameGUI(DirectFrame, StateData.StateData):
     def assignAvatar(self, avatar):
         self.avatar = avatar
 
-
-    def _checkNpcNames(self, name):
-
-        def match(npcName, name = name):
-            name = TextEncoder().encodeWtext(name)
-            name = name.strip()
-            return npcName.upper() == name.upper()
-
-        for npcId in NPCList.NPC_LIST.keys():
-            data = NPCList.NPC_LIST[npcId]
-            if type(data) is types.DictType and HumanDNA.HumanDNA.setName in data:
-                npcName = data[HumanDNA.HumanDNA.setName]
-                if (self.independent or not (self.main.isNPCEditor)) and match(npcName):
-                    self.notify.info('name matches NPC name "%s"' % npcName)
-                    return OL.NCGeneric
-
-            match(npcName)
-
-
-
     def getTypeANameProblem(self, callback):
         if not self.customName:
             callback(None)
@@ -250,8 +227,7 @@ class NameGUI(DirectFrame, StateData.StateData):
             name = name.strip()
             name = TextEncoder().encodeWtext(name)
             self.nameEntry.enterText(name)
-            problem = NameCheck.checkName(self.nameEntry.get(), [
-                self._checkNpcNames], font = self.nameEntry.getFont())
+            problem = NameCheck.checkName(self.nameEntry.get(), font = self.nameEntry.getFont())
             callback(problem)
 
 
@@ -266,26 +242,8 @@ class NameGUI(DirectFrame, StateData.StateData):
                 indices = pattern
                 self._updateGuiToPickAName(actives, indices)
 
-
-
-
-    def _sendSetWishname(self, justCheck = False):
-        return
-
-
-    def _handleSetWishnameResult(self, result, avId, name):
-        callback = self._nameCheckCallback
-        del self._nameCheckCallback
-        problem = OL.NCGeneric
-        if result in (self.cr.WishNameResult.PendingApproval, self.cr.WishNameResult.Approved):
-            problem = None
-
-        callback(problem)
-
-
     def save(self):
         return
-
 
     def loadPickAName(self):
         self.nameFrameTitle = DirectFrame(parent = self.parent, relief = None, frameColor = (0.5, 0.5, 0.5, 0.299), text = PL.NameFrameTitle, text_fg = (1, 1, 1, 1), text_scale = 0.179, text_pos = (0, 0), pos = (0, 0, 0.299), scale = 0.696)
@@ -825,8 +783,7 @@ class NameGUI(DirectFrame, StateData.StateData):
         name = TextEncoder().encodeWtext(name)
         self.nameEntry.enterText(name)
         print('Chosen name: %s' % self.nameEntry.get())
-        problem = NameCheck.checkName(name, [
-            self._checkNpcNames], font = self.nameEntry.getFont())
+        problem = NameCheck.checkName(name, font = self.nameEntry.getFont())
         if problem:
             print(problem)
             self.nameEntry.enterText('')
@@ -901,8 +858,7 @@ class NameGUI(DirectFrame, StateData.StateData):
         self.nameEntry.enterText(name)
         print('Chosen name: %s' % name)
         if self.customName:
-            problem = NameCheck.checkName(name, [
-                self._checkNpcNames], font = self.nameEntry.getFont())
+            problem = NameCheck.checkName(name, font = self.nameEntry.getFont())
             if problem:
                 print(problem)
                 self.nameEntry.enterText('')
@@ -965,3 +921,9 @@ class NameGUI(DirectFrame, StateData.StateData):
             return self.main.dna
         else:
             return self.main.pirate.style
+    
+    def getName(self):
+        if self.independent:
+            return self.main.name
+        else:
+            return self.main.pirate.name

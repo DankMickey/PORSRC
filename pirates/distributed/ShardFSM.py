@@ -18,9 +18,6 @@ class ShardFSM(FSM):
         if self.cr.distributedDistrict:
             self.cr.distributedDistrict.worldCreator.cleanupAllAreas()
 
-        if config.GetDouble('want-dev-hotkeys', 0):
-            self.ignore(PiratesGlobals.LogoutHotkey)
-
         self.cr._removeAllOV()
         self.cr.cache.turnOff()
         self.cr.doDataCache.flush()
@@ -39,18 +36,9 @@ class ShardFSM(FSM):
             self.cr.loadingScreen.showTarget(jail = True)
         base.graphicsEngine.renderFrame()
 
-        def logout():
-            if hasattr(base, 'localAvatar') and localAvatar.getCanLogout():
-                self.cr.logout()
-
-
         self.cr._userLoggingOut = False
-        self.cr.accept(PiratesGlobals.LogoutHotkey, self.cr.logout)
 
     def filterNoShard(self, request, args):
-        if request == 'OpenShard':
-            pass
-        1
         if request == 'ShardReady':
             return None
 

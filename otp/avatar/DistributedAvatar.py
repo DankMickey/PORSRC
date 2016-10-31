@@ -13,7 +13,6 @@ from otp.speedchat import SCDecoders
 from otp.chat import ChatManager
 import random
 from Avatar import Avatar
-import AvatarDNA
 
 class DistributedAvatar(DistributedActor, Avatar):
     HpTextGenerator = TextNode('HpTextGenerator')

@@ -7,6 +7,9 @@ class BattleManagerAI(BattleManagerBase):
 
     def __init__(self, air):
         self.air = air
+    
+    def getGameStatManager(self):
+        return self.air.gameStatManager
 
     def targetInRange(self, attacker, target, skillId, ammoSkillId, distance):
         tolerance = .5

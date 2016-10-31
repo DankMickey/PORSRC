@@ -2,13 +2,9 @@ from pirates.distributed.PiratesInternalRepository import PiratesInternalReposit
 from direct.distributed.PyDatagram import *
 from otp.distributed.DistributedDirectoryAI import DistributedDirectoryAI
 from otp.distributed.OtpDoGlobals import *
-
-if config.GetBool('want-rpc-server', False):
-    from pirates.rpc.PiratesRPCServer import PiratesRPCServer
-    from pirates.rpc.PiratesRPCHandler import PiratesRPCHandler
-
+from pirates.rpc.PiratesRPCServer import PiratesRPCServer
+from pirates.rpc.PiratesRPCHandler import PiratesRPCHandler
 from DistributedInventoryManagerUD import DistributedInventoryManagerUD
-
 from otp.ai.BanManagerUD import BanManagerUD
 
 class PiratesUberRepository(PiratesInternalRepository):
@@ -22,10 +18,15 @@ class PiratesUberRepository(PiratesInternalRepository):
 
         rootObj = DistributedDirectoryAI(self)
         rootObj.generateWithRequiredAndId(self.getGameDoId(), 0, 0)
+        
+        rpcHost = config.GetString('rpc-host', '')
 
-        if config.GetBool('want-rpc-server', False):
-            endpoint = config.GetString('rpc-server-endpoint', 'http://localhost:8080/')
-            self.rpcServer = PiratesRPCServer(endpoint, PiratesRPCHandler(self))
+        if rpcHost:
+            self.rpcServer = PiratesRPCServer(rpcHost, PiratesRPCHandler(self))
+            self.notify.info('Started RPC server.')
+        else:
+            self.rpcServer = None
+            self.notify.info('Not using RPC server.')
 
         self.createManagers()
         self.createGlobals()

@@ -171,7 +171,7 @@ class PiratesBase(OTPBase):
         self.accept('PandaRestarted', self.enableAllAudio)
         self.emoteGender = None
 
-        shadow = loader.loadModel('models/misc/drop_shadow.bam')
+        shadow = loader.loadModel('models/misc/drop_shadow')
         self.loadingScreen.tick()
         taskMgr.setupTaskChain('phasePost', numThreads = 0, threadPriority = TPHigh)
 

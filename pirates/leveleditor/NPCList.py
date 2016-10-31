@@ -23,7 +23,6 @@ setJewelryZone6 = HumanDNA.setJewelryZone6
 setJewelryZone7 = HumanDNA.setJewelryZone7
 setJewelryZone8 = HumanDNA.setJewelryZone8
 setTutorial = HumanDNA.setTutorial
-setName = HumanDNA.setName
 setGender = HumanDNA.setGender
 setBodyShape = HumanDNA.setBodyShape
 setBodyHeight = HumanDNA.setBodyHeight
@@ -90,7 +89,6 @@ def getNPCLocale(self, uid):
 
 NPC_LIST = {
     '1138399108.42dxschafe': {
-        setName: PLocalizer.NPCNames['1138399108.42dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -148,7 +146,6 @@ NPC_LIST = {
         setClothesBotColor: (9, 5, 10) },
     '1138399108.42dxschafe_type': 'Townsperson',
     '1138401436.53dxschafe': {
-        setName: PLocalizer.NPCNames['1138401436.53dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -208,7 +205,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 5, 10) },
     '1138401436.53dxschafe_type': 'Townsperson',
     '1138402195.63dxschafe': {
-        setName: PLocalizer.NPCNames['1138402195.63dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -266,7 +262,6 @@ NPC_LIST = {
         setClothesBotColor: (2, 5, 10) },
     '1138402195.63dxschafe_type': 'Townsperson',
     '1138403440.64dxschafe': {
-        setName: PLocalizer.NPCNames['1138403440.64dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -326,7 +321,6 @@ NPC_LIST = {
         setClothesBotColor: (8, 0, 10) },
     '1138403440.64dxschafe_type': 'Townsperson',
     '1138404604.47dxschafe': {
-        setName: PLocalizer.NPCNames['1138404604.47dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -386,7 +380,6 @@ NPC_LIST = {
         setClothesBotColor: (1, 5, 10) },
     '1138404604.47dxschafe_type': 'Townsperson',
     '1138664636.88dxschafe': {
-        setName: PLocalizer.NPCNames['1138664636.88dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -444,7 +437,6 @@ NPC_LIST = {
         setClothesBotColor: (1, 5, 10) },
     '1138664636.88dxschafe_type': 'Townsperson',
     '1138679435.03jubutler': {
-        setName: PLocalizer.NPCNames['1138679435.03jubutler'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -502,7 +494,6 @@ NPC_LIST = {
         setClothesBotColor: (2, 5, 10) },
     '1138679435.03jubutler_type': 'Townsperson',
     '1138933290.05jubutler': {
-        setName: PLocalizer.NPCNames['1138933290.05jubutler'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: -0.100,
@@ -562,7 +553,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 5, 10) },
     '1138933290.05jubutler_type': 'Townsperson',
     '1138936296.39jubutler': {
-        setName: PLocalizer.NPCNames['1138936296.39jubutler'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -620,7 +610,6 @@ NPC_LIST = {
         setClothesBotColor: (2, 5, 10) },
     '1138936296.39jubutler_type': 'Townsperson',
     '1138936413.47jubutler': {
-        setName: PLocalizer.NPCNames['1138936413.47jubutler'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -678,7 +667,6 @@ NPC_LIST = {
         setClothesBotColor: (1, 5, 10) },
     '1138936413.47jubutler_type': 'Townsperson',
     '1141357391.27sdnaik': {
-        setName: PLocalizer.NPCNames['1141357391.27sdnaik'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: -0.100,
@@ -736,7 +724,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 5, 10) },
     '1141357391.27sdnaik_type': 'Townsperson',
     '1141415446.44sdnaik': {
-        setName: PLocalizer.NPCNames['1141415446.44sdnaik'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -796,7 +783,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 5, 10) },
     '1141415446.44sdnaik_type': 'Townsperson',
     '1141416648.8sdnaik': {
-        setName: PLocalizer.NPCNames['1141416648.8sdnaik'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -854,7 +840,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 5, 10) },
     '1141416648.8sdnaik_type': 'Townsperson',
     '1142321958.13sdnaik': {
-        setName: PLocalizer.NPCNames['1142321958.13sdnaik'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -915,7 +900,6 @@ NPC_LIST = {
         setClothesBotColor: (3, 5, 10) },
     '1142321958.13sdnaik_type': 'Townsperson',
     '1146634932.61jubutler': {
-        setName: PLocalizer.NPCNames['1146634932.61jubutler'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.027000010013580322,
@@ -973,7 +957,6 @@ NPC_LIST = {
         setClothesBotColor: (13, 0, 0) },
     '1146634932.61jubutler_type': 'Townsperson',
     '1146635159.56jubutler': {
-        setName: PLocalizer.NPCNames['1146635159.56jubutler'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -1031,7 +1014,6 @@ NPC_LIST = {
         setClothesBotColor: (14, 0, 0) },
     '1146635159.56jubutler_type': 'Townsperson',
     '1146635362.06jubutler': {
-        setName: PLocalizer.NPCNames['1146635362.06jubutler'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -1092,7 +1074,6 @@ NPC_LIST = {
         setClothesBotColor: (17, 0, 0) },
     '1146635362.06jubutler_type': 'Townsperson',
     '1146635785.65jubutler': {
-        setName: PLocalizer.NPCNames['1146635785.65jubutler'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -1150,7 +1131,6 @@ NPC_LIST = {
         setClothesBotColor: (15, 0, 0) },
     '1146635785.65jubutler_type': 'Townsperson',
     '1149126938.35MAsaduzz': {
-        setName: PLocalizer.NPCNames['1149126938.35MAsaduzz'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -1208,7 +1188,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 5, 10) },
     '1149126938.35MAsaduzz_type': 'Townsperson',
     '1152830677.95jubutler': {
-        setName: PLocalizer.NPCNames['1152830677.95jubutler'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -1269,7 +1248,6 @@ NPC_LIST = {
         setClothesBotColor: (9, 5, 10) },
     '1152830677.95jubutler_type': 'Townsperson',
     '1152839242.37jubutler': {
-        setName: PLocalizer.NPCNames['1152839242.37jubutler'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -1329,7 +1307,6 @@ NPC_LIST = {
         setClothesBotColor: (8, 0, 0) },
     '1152839242.37jubutler_type': 'Townsperson',
     '1152840295.64jubutler': {
-        setName: PLocalizer.NPCNames['1152840295.64jubutler'],
         setGender: 'f',
         setBodyShape: 9,
         setBodyHeight: 0.081981456279754644,
@@ -1389,7 +1366,6 @@ NPC_LIST = {
         setClothesBotColor: (11, 0, 0) },
     '1152840295.64jubutler_type': 'Townsperson',
     '1152841749.39jubutler': {
-        setName: PLocalizer.NPCNames['1152841749.39jubutler'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: 0.0,
@@ -1447,7 +1423,6 @@ NPC_LIST = {
         setClothesBotColor: (9, 0, 0) },
     '1152841749.39jubutler_type': 'Townsperson',
     '1153439632.21darren': {
-        setName: PLocalizer.NPCNames['1153439632.21darren'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: 0.0,
@@ -1516,7 +1491,6 @@ NPC_LIST = {
         setTattooZone6: (0, 0.5, 0.5, 0.100, 0, 0),
         setTattooZone7: (0, 0.5, 0.5, 0.100, 0, 0),
         setTattooZone8: (0, 0.5, 0.5, 0.100, 0, 0),
-        setName: PLocalizer.NPCNames['1153441310.96darren'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -1576,7 +1550,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1153441310.96darren_type': 'Pirate',
     '1154497329.64jubutler': {
-        setName: PLocalizer.NPCNames['1154497329.64jubutler'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -1634,7 +1607,6 @@ NPC_LIST = {
         setClothesBotColor: (9, 5, 10) },
     '1154497329.64jubutler_type': 'Townsperson',
     '1154497344.0jubutler': {
-        setName: PLocalizer.NPCNames['1154497344.0jubutler'],
         setGender: 'f',
         setBodyShape: 8,
         setBodyHeight: -1.0,
@@ -1694,7 +1666,6 @@ NPC_LIST = {
         setClothesTopColor: (7, 0, 15),
         setClothesBotColor: (17, 0, 0) },
     '1154497344.0jubutlerPR': {
-        setName: PLocalizer.NPCNames['1154497344.0jubutlerPR'],
         setGender: 'f',
         setBodyShape: 8,
         setBodyHeight: -0.100,
@@ -1756,7 +1727,6 @@ NPC_LIST = {
     '1154497344.0jubutlerPR_type': 'Townsperson',
     '1154497344.0jubutler_type': 'Townsperson',
     '1154500954.5jubutler': {
-        setName: PLocalizer.NPCNames['1154500954.5jubutler'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -1814,7 +1784,6 @@ NPC_LIST = {
         setClothesBotColor: (8, 0, 0) },
     '1154500954.5jubutler_type': 'Townsperson',
     '1154574164.57jubutler': {
-        setName: PLocalizer.NPCNames['1154574164.57jubutler'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -1875,7 +1844,6 @@ NPC_LIST = {
         setClothesBotColor: (19, 0, 0) },
     '1154574164.57jubutler_type': 'Townsperson',
     '1154731709.64jubutler': {
-        setName: PLocalizer.NPCNames['1154731709.64jubutler'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.100,
@@ -1936,7 +1904,6 @@ NPC_LIST = {
         setClothesBotColor: (17, 0, 0) },
     '1154731709.64jubutler_type': 'Pirate',
     '1155773612.45fxlara': {
-        setName: PLocalizer.NPCNames['1155773612.45fxlara'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -1997,7 +1964,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1155773612.45fxlara_type': 'Building Exterior',
     '1156978503.22jasyeung': {
-        setName: PLocalizer.NPCNames['1156978503.22jasyeung'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -2055,7 +2021,6 @@ NPC_LIST = {
         setClothesBotColor: (18, 0, 0) },
     '1156978503.22jasyeung_type': 'Townsperson',
     '1156979153.83jasyeung': {
-        setName: PLocalizer.NPCNames['1156979153.83jasyeung'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -2113,7 +2078,6 @@ NPC_LIST = {
         setClothesBotColor: (2, 0, 0) },
     '1156979153.83jasyeung_type': 'Townsperson',
     '1156980166.1jasyeung': {
-        setName: PLocalizer.NPCNames['1156980166.1jasyeung'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -2173,7 +2137,6 @@ NPC_LIST = {
         setClothesBotColor: (14, 0, 0) },
     '1156980166.1jasyeung_type': 'Townsperson',
     '1156986020.6jasyeung': {
-        setName: PLocalizer.NPCNames['1156986020.6jasyeung'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -2234,7 +2197,6 @@ NPC_LIST = {
         setClothesBotColor: (14, 0, 0) },
     '1156986020.6jasyeung_type': 'Townsperson',
     '1156986071.78jasyeung': {
-        setName: PLocalizer.NPCNames['1156986071.78jasyeung'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -2294,7 +2256,6 @@ NPC_LIST = {
         setClothesBotColor: (15, 0, 0) },
     '1156986071.78jasyeung_type': 'Townsperson',
     '1156986102.42jasyeung': {
-        setName: PLocalizer.NPCNames['1156986102.42jasyeung'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -2354,7 +2315,6 @@ NPC_LIST = {
         setClothesBotColor: (16, 0, 0) },
     '1156986102.42jasyeung_type': 'Townsperson',
     '1156986135.88jasyeung': {
-        setName: PLocalizer.NPCNames['1156986135.88jasyeung'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -2414,7 +2374,6 @@ NPC_LIST = {
         setClothesBotColor: (19, 0, 0) },
     '1156986135.88jasyeung_type': 'Townsperson',
     '1156986185.83jasyeung': {
-        setName: PLocalizer.NPCNames['1156986185.83jasyeung'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -2474,7 +2433,6 @@ NPC_LIST = {
         setClothesBotColor: (18, 0, 0) },
     '1156986185.83jasyeung_type': 'Townsperson',
     '1156986248.77jasyeung': {
-        setName: PLocalizer.NPCNames['1156986248.77jasyeung'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -2534,7 +2492,6 @@ NPC_LIST = {
         setClothesBotColor: (17, 0, 0) },
     '1156986248.77jasyeung_type': 'Townsperson',
     '1157048353.58jasyeung': {
-        setName: PLocalizer.NPCNames['1157048353.58jasyeung'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: 0.10000000149011612,
@@ -2603,7 +2560,6 @@ NPC_LIST = {
         setTattooZone6: (0, 0.5, 0.5, 0.100, 0, 0),
         setTattooZone7: (0, 0.5, 0.5, 0.100, 0, 0),
         setTattooZone8: (0, 0.5, 0.5, 0.100, 0, 0),
-        setName: PLocalizer.NPCNames['1157094552.02jasyeung'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -2666,7 +2622,6 @@ NPC_LIST = {
         setTattooChest: (19, -1.0066580772399902, -2.6764154434204102, 11.863450050354004, 0.0, 0),
         setTattooZone2: (10, -13.998003959655762, 3.0501377582550049, 25.197443008422852, 271.10000610351562, 0),
         setTattooZone3: (16, -10.066378593444824, 2.8672077655792236, 12.65822696685791, 271.10000610351562, 0),
-        setName: PLocalizer.NPCNames['1157097728.52jasyeung'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -2726,7 +2681,6 @@ NPC_LIST = {
         setClothesBotColor: (6, 0, 0) },
     '1157097728.52jasyeung_type': 'Townsperson',
     '1157097816.67jasyeung': {
-        setName: PLocalizer.NPCNames['1157097816.67jasyeung'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -2787,7 +2741,6 @@ NPC_LIST = {
         setClothesBotColor: (11, 0, 0) },
     '1157097816.67jasyeung_type': 'Townsperson',
     '1157097924.52jasyeung': {
-        setName: PLocalizer.NPCNames['1157097924.52jasyeung'],
         setGender: 'f',
         setBodyShape: 5,
         setBodyHeight: 0.0,
@@ -2848,7 +2801,6 @@ NPC_LIST = {
         setClothesBotColor: (13, 0, 0) },
     '1157097924.52jasyeung_type': 'Townsperson',
     '1157097962.5jasyeung': {
-        setName: PLocalizer.NPCNames['1157097962.5jasyeung'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -2908,7 +2860,6 @@ NPC_LIST = {
         setClothesBotColor: (19, 0, 0) },
     '1157097962.5jasyeung_type': 'Townsperson',
     '1157098037.86jasyeung': {
-        setName: PLocalizer.NPCNames['1157098037.86jasyeung'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.01481696218252182,
@@ -2968,7 +2919,6 @@ NPC_LIST = {
         setClothesBotColor: (11, 0, 0) },
     '1157098037.86jasyeung_type': 'Townsperson',
     '1157098075.78jasyeung': {
-        setName: PLocalizer.NPCNames['1157098075.78jasyeung'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -3028,7 +2978,6 @@ NPC_LIST = {
         setClothesBotColor: (9, 0, 0) },
     '1157098075.78jasyeung_type': 'Townsperson',
     '1157098120.05jasyeung': {
-        setName: PLocalizer.NPCNames['1157098120.05jasyeung'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -3089,7 +3038,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1157098120.05jasyeung_type': 'Townsperson',
     '1157098184.94jasyeung': {
-        setName: PLocalizer.NPCNames['1157098184.94jasyeung'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.00028549134731292725,
@@ -3150,7 +3098,6 @@ NPC_LIST = {
         setClothesBotColor: (18, 0, 0) },
     '1157098184.94jasyeung_type': 'Townsperson',
     '1157587636.63jasyeung': {
-        setName: PLocalizer.NPCNames['1157587636.63jasyeung'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: -0.021269224584102631,
@@ -3210,7 +3157,6 @@ NPC_LIST = {
         setClothesBotColor: (3, 0, 0) },
     '1157587636.63jasyeung_type': 'Townsperson',
     '1158013224.89dparis': {
-        setName: PLocalizer.NPCNames['1158013224.89dparis'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -3268,7 +3214,6 @@ NPC_LIST = {
         setClothesBotColor: (14, 0, 0) },
     '1158013224.89dparis_type': 'Townsperson',
     '1158013639.31dparis': {
-        setName: PLocalizer.NPCNames['1158013639.31dparis'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -3328,7 +3273,6 @@ NPC_LIST = {
         setClothesBotColor: (14, 0, 0) },
     '1158013639.31dparis_type': 'Townsperson',
     '1161287533.85MAsaduzz': {
-        setName: PLocalizer.NPCNames['1161287533.85MAsaduzz'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -3389,7 +3333,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1161287533.85MAsaduzz_type': 'Townsperson',
     '1165199819.22Shochet': {
-        setName: PLocalizer.NPCNames['1165199819.22Shochet'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: -0.10000000149011612,
@@ -3450,7 +3393,6 @@ NPC_LIST = {
         setClothesBotColor: (2, 0, 0) },
     '1165199819.22Shochet_type': 'Townsperson',
     '1165199931.31Shochet': {
-        setName: PLocalizer.NPCNames['1165199931.31Shochet'],
         setGender: 'f',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -3511,7 +3453,6 @@ NPC_LIST = {
         setClothesBotColor: (2, 0, 0) },
     '1165199931.31Shochet_type': 'Townsperson',
     '1168022298.47Shochet': {
-        setName: PLocalizer.NPCNames['1168022298.47Shochet'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -3572,7 +3513,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1168022298.47Shochet_type': 'Townsperson',
     '1168022348.66Shochet': {
-        setName: PLocalizer.NPCNames['1168022348.66Shochet'],
         setGender: 'm', # CAST
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -3633,7 +3573,6 @@ NPC_LIST = {
         setClothesBotColor: (18, 0, 0) },
     '1168022348.66Shochet_type': 'Townsperson',
     '1168052247.45mike': {
-        setName: PLocalizer.NPCNames['1168052247.45mike'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -3694,7 +3633,6 @@ NPC_LIST = {
         setClothesBotColor: (18, 0, 0) },
     '1168052247.45mike_type': 'Townsperson',
     '1168748251.22joswilso': {
-        setName: PLocalizer.NPCNames['1168748251.22joswilso'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -3754,7 +3692,6 @@ NPC_LIST = {
         setClothesBotColor: (8, 0, 0) },
     '1168748251.22joswilso_type': 'Townsperson',
     '1169060460.13mike': {
-        setName: PLocalizer.NPCNames['1169060460.13mike'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -3814,7 +3751,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1169060460.13mike_type': 'Townsperson',
     '1169063296.16mike': {
-        setName: PLocalizer.NPCNames['1169063296.16mike'],
         setGender: 'f',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -3876,7 +3812,6 @@ NPC_LIST = {
     '1169063296.16mike_type': 'Townsperson',
     '1169067906.19mike': {
         setTattooChest: (5, -7.8558101654052734, -12.509154319763184, 14.993154525756836, 0.0, 0),
-        setName: PLocalizer.NPCNames['1169067906.19mike'],
         setGender: 'f',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -3936,7 +3871,6 @@ NPC_LIST = {
         setClothesBotColor: (15, 0, 0) },
     '1169067906.19mike_type': 'Townsperson',
     '1169068641.66mike': {
-        setName: PLocalizer.NPCNames['1169068641.66mike'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: 0.0,
@@ -3996,7 +3930,6 @@ NPC_LIST = {
         setClothesBotColor: (15, 0, 0) },
     '1169068641.66mike_type': 'Townsperson',
     '1169070429.72mike': {
-        setName: PLocalizer.NPCNames['1169070429.72mike'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.095933355391025543,
@@ -4056,7 +3989,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1169070429.72mike_type': 'Townsperson',
     '1169071109.22mike': {
-        setName: PLocalizer.NPCNames['1169071109.22mike'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -4117,7 +4049,6 @@ NPC_LIST = {
         setClothesBotColor: (18, 0, 0) },
     '1169071109.22mike_type': 'Townsperson',
     '1169075008.52mike': {
-        setName: PLocalizer.NPCNames['1169075008.52mike'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -4177,7 +4108,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1169075008.52mike_type': 'Townsperson',
     '1169075474.72mike': {
-        setName: PLocalizer.NPCNames['1169075474.72mike'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -4237,7 +4167,6 @@ NPC_LIST = {
         setClothesBotColor: (16, 0, 0) },
     '1169075474.72mike_type': 'Townsperson',
     '1169075683.22mike': {
-        setName: PLocalizer.NPCNames['1169075683.22mike'],
         setGender: 'f',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -4297,7 +4226,6 @@ NPC_LIST = {
         setClothesBotColor: (7, 0, 0) },
     '1169075683.22mike_type': 'Townsperson',
     '1169075869.81mike': {
-        setName: PLocalizer.NPCNames['1169075869.81mike'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -4358,7 +4286,6 @@ NPC_LIST = {
         setClothesBotColor: (4, 0, 0) },
     '1169075869.81mike_type': 'Townsperson',
     '1169076109.16mike': {
-        setName: PLocalizer.NPCNames['1169076109.16mike'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: 0.0,
@@ -4419,7 +4346,6 @@ NPC_LIST = {
         setClothesBotColor: (12, 0, 0) },
     '1169076109.16mike_type': 'Townsperson',
     '1169076368.97mike': {
-        setName: PLocalizer.NPCNames['1169076368.97mike'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.092079699039459229,
@@ -4479,7 +4405,6 @@ NPC_LIST = {
         setClothesBotColor: (4, 0, 0) },
     '1169076368.97mike_type': 'Townsperson',
     '1169076564.88mike': {
-        setName: PLocalizer.NPCNames['1169076564.88mike'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -4540,7 +4465,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1169076564.88mike_type': 'Townsperson',
     '1169077081.52mike': {
-        setName: PLocalizer.NPCNames['1169077081.52mike'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -4600,7 +4524,6 @@ NPC_LIST = {
         setClothesBotColor: (3, 0, 0) },
     '1169077081.52mike_type': 'Townsperson',
     '1169077360.47mike': {
-        setName: PLocalizer.NPCNames['1169077360.47mike'],
         setGender: 'f',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -4660,7 +4583,6 @@ NPC_LIST = {
         setClothesBotColor: (13, 0, 0) },
     '1169077360.47mike_type': 'Townsperson',
     '1169078025.53mike': {
-        setName: PLocalizer.NPCNames['1169078025.53mike'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -4721,7 +4643,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1169078025.53mike_type': 'Townsperson',
     '1169078309.55mike': {
-        setName: PLocalizer.NPCNames['1169078309.55mike'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: -0.027876485139131546,
@@ -4781,7 +4702,6 @@ NPC_LIST = {
         setClothesBotColor: (14, 0, 0) },
     '1169078309.55mike_type': 'Townsperson',
     '1169078705.84mike': {
-        setName: PLocalizer.NPCNames['1169078705.84mike'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: -0.10000000149011612,
@@ -4842,7 +4762,6 @@ NPC_LIST = {
         setClothesBotColor: (17, 0, 0) },
     '1169078705.84mike_type': 'Townsperson',
     '1169079172.34sdnaik': {
-        setName: PLocalizer.NPCNames['1169079172.34sdnaik'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -4903,7 +4822,6 @@ NPC_LIST = {
         setClothesBotColor: (11, 0, 0) },
     '1169079172.34sdnaik_type': 'Townsperson',
     '1169081503.72mike': {
-        setName: PLocalizer.NPCNames['1169081503.72mike'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.018108440563082695,
@@ -4963,7 +4881,6 @@ NPC_LIST = {
         setClothesBotColor: (8, 0, 0) },
     '1169081503.72mike_type': 'Townsperson',
     '1169081738.45mike': {
-        setName: PLocalizer.NPCNames['1169081738.45mike'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -5023,7 +4940,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1169081738.45mike_type': 'Townsperson',
     '1169083104.56sdnaik': {
-        setName: PLocalizer.NPCNames['1169083104.56sdnaik'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: 0.0,
@@ -5083,7 +4999,6 @@ NPC_LIST = {
         setClothesBotColor: (4, 0, 0) },
     '1169083104.56sdnaik_type': 'Townsperson',
     '1169088062.75mike': {
-        setName: PLocalizer.NPCNames['1169088062.75mike'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0049058198928833008,
@@ -5143,7 +5058,6 @@ NPC_LIST = {
         setClothesBotColor: (16, 0, 0) },
     '1169088062.75mike_type': 'Townsperson',
     '1169094482.66mike': {
-        setName: PLocalizer.NPCNames['1169094482.66mike'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.060558926314115524,
@@ -5203,7 +5117,6 @@ NPC_LIST = {
         setClothesBotColor: (18, 0, 0) },
     '1169094482.66mike_type': 'Townsperson',
     '1169094669.8mike': {
-        setName: PLocalizer.NPCNames['1169094669.8mike'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -5263,7 +5176,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1169094669.8mike_type': 'Townsperson',
     '1169151219.8mike': {
-        setName: PLocalizer.NPCNames['1169151219.8mike'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -5324,7 +5236,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1169151219.8mike_type': 'Townsperson',
     '1169190957.44mike': {
-        setName: PLocalizer.NPCNames['1169190957.44mike'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -5384,7 +5295,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1169190957.44mike_type': 'Townsperson',
     '1170739712.0mike': {
-        setName: PLocalizer.NPCNames['1170739712.0mike'],
         setGender: 'f',
         setBodyShape: 5,
         setBodyHeight: 0.0,
@@ -5444,7 +5354,6 @@ NPC_LIST = {
         setClothesBotColor: (9, 0, 0) },
     '1170739712.0mike_type': 'Townsperson',
     '1170739968.0mike': {
-        setName: PLocalizer.NPCNames['1170739968.0mike'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -5505,7 +5414,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1170739968.0mike_type': 'Townsperson',
     '1171238953.92MAsaduzz': {
-        setName: PLocalizer.NPCNames['1171238953.92MAsaduzz'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -5566,7 +5474,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1171238953.92MAsaduzz_type': 'Townsperson',
     '1171321221.87MAsaduzz': {
-        setName: PLocalizer.NPCNames['1171321221.87MAsaduzz'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -5627,7 +5534,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1171321221.87MAsaduzz_type': 'Townsperson',
     '1171321509.23MAsaduzz': {
-        setName: PLocalizer.NPCNames['1171321509.23MAsaduzz'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -5687,7 +5593,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1171321509.23MAsaduzz_type': 'Townsperson',
     '1172276608.0mike': {
-        setName: PLocalizer.NPCNames['1172276608.0mike'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -5748,7 +5653,6 @@ NPC_LIST = {
         setClothesBotColor: (10, 0, 0) },
     '1172276608.0mike_type': 'Townsperson',
     '1172630144.0mike': {
-        setName: PLocalizer.NPCNames['1172630144.0mike'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -5809,7 +5713,6 @@ NPC_LIST = {
         setClothesBotColor: (3, 0, 0) },
     '1172630144.0mike_type': 'Townsperson',
     '1172887552.0mike': {
-        setName: PLocalizer.NPCNames['1172887552.0mike'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: 0.0,
@@ -5868,7 +5771,6 @@ NPC_LIST = {
         setClothesTopColor: (7, 20, 18),
         setClothesBotColor: (7, 0, 0) },
     '1172887552.0mike0': {
-        setName: PLocalizer.NPCNames['1172887552.0mike0'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -5929,7 +5831,6 @@ NPC_LIST = {
     '1172887552.0mike0_type': 'Townsperson',
     '1172887552.0mike_type': 'Townsperson',
     '1173146624.0mike0': {
-        setName: PLocalizer.NPCNames['1173146624.0mike0'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -5989,7 +5890,6 @@ NPC_LIST = {
         setClothesBotColor: (5, 0, 0) },
     '1173146624.0mike0_type': 'Townsperson',
     '1173147520.0mike': {
-        setName: PLocalizer.NPCNames['1173147520.0mike'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -6050,7 +5950,6 @@ NPC_LIST = {
         setClothesBotColor: (20, 0, 0) },
     '1173147520.0mike_type': 'Townsperson',
     '1174342784.0dxschafe': {
-        setName: PLocalizer.NPCNames['1174342784.0dxschafe'],
         setGender: 'f',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -6110,7 +6009,6 @@ NPC_LIST = {
         setClothesBotColor: (19, 0, 0) },
     '1174342784.0dxschafe_type': 'Townsperson',
     '1174343680.0dxschafe': {
-        setName: PLocalizer.NPCNames['1174343680.0dxschafe'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -6171,7 +6069,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1174343680.0dxschafe_type': 'Townsperson',
     '1174344320.0dxschafe': {
-        setName: PLocalizer.NPCNames['1174344320.0dxschafe'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -6231,7 +6128,6 @@ NPC_LIST = {
         setClothesBotColor: (16, 0, 0) },
     '1174344320.0dxschafe_type': 'Townsperson',
     '1174345216.0dxschafe': {
-        setName: PLocalizer.NPCNames['1174345216.0dxschafe'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -6292,7 +6188,6 @@ NPC_LIST = {
         setClothesBotColor: (18, 0, 0) },
     '1174345216.0dxschafe_type': 'Townsperson',
     '1174345984.0dxschafe': {
-        setName: PLocalizer.NPCNames['1174345984.0dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -6353,7 +6248,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1174345984.0dxschafe_type': 'Townsperson',
     '1174350464.0dxschafe': {
-        setName: PLocalizer.NPCNames['1174350464.0dxschafe'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: 0.10000000149011612,
@@ -6414,7 +6308,6 @@ NPC_LIST = {
         setClothesBotColor: (15, 0, 0) },
     '1174350464.0dxschafe_type': 'Townsperson',
     '1174351232.0dxschafe': {
-        setName: PLocalizer.NPCNames['1174351232.0dxschafe'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -6475,7 +6368,6 @@ NPC_LIST = {
         setClothesBotColor: (15, 0, 0) },
     '1174351232.0dxschafe_type': 'Townsperson',
     '1174351616.0dxschafe': {
-        setName: PLocalizer.NPCNames['1174351616.0dxschafe'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -6536,7 +6428,6 @@ NPC_LIST = {
         setClothesBotColor: (18, 0, 0) },
     '1174351616.0dxschafe_type': 'Townsperson',
     '1174352768.0dxschafe': {
-        setName: PLocalizer.NPCNames['1174352768.0dxschafe'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.10000000149011612,
@@ -6597,7 +6488,6 @@ NPC_LIST = {
         setClothesBotColor: (4, 0, 0) },
     '1174352768.0dxschafe_type': 'Townsperson',
     '1174353792.0dxschafe': {
-        setName: PLocalizer.NPCNames['1174353792.0dxschafe'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.055462710559368134,
@@ -6657,7 +6547,6 @@ NPC_LIST = {
         setClothesBotColor: (19, 0, 0) },
     '1174353792.0dxschafe_type': 'Townsperson',
     '1174954368.0jubutler': {
-        setName: PLocalizer.NPCNames['1174954368.0jubutler'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -6718,7 +6607,6 @@ NPC_LIST = {
         setClothesBotColor: (19, 0, 0) },
     '1174954368.0jubutler_type': 'Townsperson',
     '1175101824.0dxschafe': {
-        setName: PLocalizer.NPCNames['1175101824.0dxschafe'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -6778,7 +6666,6 @@ NPC_LIST = {
         setClothesBotColor: (11, 0, 0) },
     '1175101824.0dxschafe_type': 'Townsperson',
     '1175117568.0dxschafe0': {
-        setName: PLocalizer.NPCNames['1175117568.0dxschafe0'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.00079844146966934204,
@@ -6839,7 +6726,6 @@ NPC_LIST = {
         setClothesBotColor: (4, 0, 0) },
     '1175117568.0dxschafe0_type': 'Townsperson',
     '1175118080.0dxschafe': {
-        setName: PLocalizer.NPCNames['1175118080.0dxschafe'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -6899,7 +6785,6 @@ NPC_LIST = {
         setClothesBotColor: (14, 0, 0) },
     '1175118080.0dxschafe_type': 'Townsperson',
     '1175119104.0dxschafe1': {
-        setName: PLocalizer.NPCNames['1175119104.0dxschafe1'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: -0.0026957094669342041,
@@ -6959,7 +6844,6 @@ NPC_LIST = {
         setClothesBotColor: (16, 0, 0) },
     '1175119104.0dxschafe1_type': 'Townsperson',
     '1175120896.0dxschafe0': {
-        setName: PLocalizer.NPCNames['1175120896.0dxschafe0'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -7020,7 +6904,6 @@ NPC_LIST = {
         setClothesBotColor: (9, 0, 0) },
     '1175120896.0dxschafe0_type': 'Townsperson',
     '1175282688.00MAsaduzz': {
-        setName: PLocalizer.NPCNames['1175282688.00MAsaduzz'],
         setGender: 'n',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -7081,7 +6964,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1175282688.00MAsaduzz_type': 'Townsperson',
     '1175283200.00MAsaduzz': {
-        setName: PLocalizer.NPCNames['1175283200.00MAsaduzz'],
         setGender: 'n',
         setBodyShape: 7,
         setBodyHeight: -0.035689704120159149,
@@ -7142,7 +7024,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1175283200.00MAsaduzz_type': 'Townsperson',
     '1175283328.00MAsaduzz': {
-        setName: PLocalizer.NPCNames['1175283328.00MAsaduzz'],
         setGender: 'n',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -7203,7 +7084,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1175283328.00MAsaduzz_type': 'Townsperson',
     '1175553664.0dxschafe': {
-        setName: PLocalizer.NPCNames['1175553664.0dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -7263,7 +7143,6 @@ NPC_LIST = {
         setClothesBotColor: (10, 0, 0) },
     '1175553664.0dxschafe_type': 'Townsperson',
     '1175554816.0dxschafe': {
-        setName: PLocalizer.NPCNames['1175554816.0dxschafe'],
         setGender: 'f',
         setBodyShape: 8,
         setBodyHeight: 0.10000000149011612,
@@ -7324,7 +7203,6 @@ NPC_LIST = {
     '1175554816.0dxschafe_type': 'Townsperson',
     '1175635584.0dxschafe': {
         setTattooChest: (12, -12.612568855285645, -18.98798942565918, 22.607877731323242, 0.0, 0),
-        setName: PLocalizer.NPCNames['1175635584.0dxschafe'],
         setGender: 'f',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -7384,7 +7262,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1175635584.0dxschafe_type': 'Townsperson',
     '1175650176.0dxschafe': {
-        setName: PLocalizer.NPCNames['1175650176.0dxschafe'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: -0.10000000149011612,
@@ -7445,7 +7322,6 @@ NPC_LIST = {
         setClothesBotColor: (7, 0, 0) },
     '1175650176.0dxschafe_type': 'Townsperson',
     '1175721216.0dxschafe': {
-        setName: PLocalizer.NPCNames['1175721216.0dxschafe'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -7505,7 +7381,6 @@ NPC_LIST = {
         setClothesBotColor: (10, 0, 0) },
     '1175721216.0dxschafe_type': 'Townsperson',
     '1175730944.0dxschafe': {
-        setName: PLocalizer.NPCNames['1175730944.0dxschafe'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -7566,7 +7441,6 @@ NPC_LIST = {
         setClothesBotColor: (16, 0, 0) },
     '1175730944.0dxschafe_type': 'Townsperson',
     '1175733248.0dxschafe': {
-        setName: PLocalizer.NPCNames['1175733248.0dxschafe'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -7627,7 +7501,6 @@ NPC_LIST = {
         setClothesBotColor: (8, 0, 0) },
     '1175733248.0dxschafe_type': 'Townsperson',
     '1175733376.0dxschafe': {
-        setName: PLocalizer.NPCNames['1175733376.0dxschafe'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -7688,7 +7561,6 @@ NPC_LIST = {
         setClothesBotColor: (14, 0, 0) },
     '1175733376.0dxschafe_type': 'Townsperson',
     '1175792768.0dxschafe': {
-        setName: PLocalizer.NPCNames['1175792768.0dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -7749,7 +7621,6 @@ NPC_LIST = {
         setClothesBotColor: (15, 0, 0) },
     '1175792768.0dxschafe_type': 'Townsperson',
     '1175800576.0dxschafe': {
-        setName: PLocalizer.NPCNames['1175800576.0dxschafe'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: 0.0,
@@ -7810,7 +7681,6 @@ NPC_LIST = {
         setClothesBotColor: (19, 0, 0) },
     '1175800576.0dxschafe_type': 'Townsperson',
     '1176186151.42mike': {
-        setName: PLocalizer.NPCNames['1176186151.42mike'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -7871,7 +7741,6 @@ NPC_LIST = {
         setClothesBotColor: (19, 0, 0) },
     '1176186151.42mike_type': 'Townsperson',
     '1176322304.0mike1': {
-        setName: PLocalizer.NPCNames['1176322304.0mike1'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.07409244030714035,
@@ -7932,7 +7801,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1176322304.0mike1_type': 'Townsperson',
     '1176322432.0mike': {
-        setName: PLocalizer.NPCNames['1176322432.0mike'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: -0.087694175541400909,
@@ -7991,7 +7859,6 @@ NPC_LIST = {
         setClothesTopColor: (0, 0, 0),
         setClothesBotColor: (0, 0, 0) },
     '1176322432.0mike0': {
-        setName: PLocalizer.NPCNames['1176322432.0mike0'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: 0.0,
@@ -8053,7 +7920,6 @@ NPC_LIST = {
     '1176322432.0mike0_type': 'Townsperson',
     '1176322432.0mike_type': 'Townsperson',
     '1176322560.0mike': {
-        setName: PLocalizer.NPCNames['1176322560.0mike'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: -0.099164009094238281,
@@ -8113,7 +7979,6 @@ NPC_LIST = {
         setClothesTopColor: (0, 0, 0),
         setClothesBotColor: (0, 0, 0) },
     '1176322560.0mike0': {
-        setName: PLocalizer.NPCNames['1176322560.0mike0'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: -0.023576565086841583,
@@ -8175,7 +8040,6 @@ NPC_LIST = {
     '1176322560.0mike0_type': 'Townsperson',
     '1176322560.0mike_type': 'Townsperson',
     '1176322688.0mike': {
-        setName: PLocalizer.NPCNames['1176322688.0mike'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: -0.053759407252073288,
@@ -8235,7 +8099,6 @@ NPC_LIST = {
         setClothesTopColor: (0, 0, 0),
         setClothesBotColor: (0, 0, 0) },
     '1176322688.0mike0': {
-        setName: PLocalizer.NPCNames['1176322688.0mike0'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -8297,7 +8160,6 @@ NPC_LIST = {
     '1176322688.0mike0_type': 'Townsperson',
     '1176322688.0mike_type': 'Townsperson',
     '1176322816.0mike': {
-        setName: PLocalizer.NPCNames['1176322816.0mike'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: -0.097491465508937836,
@@ -8357,7 +8219,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1176322816.0mike_type': 'Townsperson',
     '1176322944.0mike': {
-        setName: PLocalizer.NPCNames['1176322944.0mike'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.012355729937553406,
@@ -8418,7 +8279,6 @@ NPC_LIST = {
         setClothesBotColor: (19, 0, 0) },
     '1176322944.0mike_type': 'Townsperson',
     '1176334208.0mike0': {
-        setName: PLocalizer.NPCNames['1176334208.0mike0'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -8479,7 +8339,6 @@ NPC_LIST = {
         setClothesBotColor: (15, 0, 0) },
     '1176334208.0mike0_type': 'Townsperson',
     '1176744320.0dxschafe': {
-        setName: PLocalizer.NPCNames['1176744320.0dxschafe'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -8540,7 +8399,6 @@ NPC_LIST = {
         setClothesBotColor: (11, 0, 0) },
     '1176744320.0dxschafe_type': 'Townsperson',
     '1176765184.0dxschafe': {
-        setName: PLocalizer.NPCNames['1176765184.0dxschafe'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -8600,7 +8458,6 @@ NPC_LIST = {
         setClothesBotColor: (10, 0, 0) },
     '1176765184.0dxschafe_type': 'Townsperson',
     '1176836096.0dxschafe': {
-        setName: PLocalizer.NPCNames['1176836096.0dxschafe'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -8660,7 +8517,6 @@ NPC_LIST = {
         setClothesBotColor: (11, 0, 0) },
     '1176836096.0dxschafe_type': 'Townsperson',
     '1177109582.39MAsaduzz': {
-        setName: PLocalizer.NPCNames['1177109582.39MAsaduzz'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -8720,7 +8576,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1177109582.39MAsaduzz_type': 'Townsperson',
     '1177714944.0mike': {
-        setName: PLocalizer.NPCNames['1177714944.0mike'],
         setGender: 'f',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -8780,7 +8635,6 @@ NPC_LIST = {
         setClothesBotColor: (14, 0, 0) },
     '1177714944.0mike_type': 'Townsperson',
     '1178233033.58dchiappe': {
-        setName: PLocalizer.NPCNames['1178233033.58dchiappe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -8840,7 +8694,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1178233033.58dchiappe_type': 'Townsperson',
     '1178234368.0dchiappe1': {
-        setName: PLocalizer.NPCNames['1178234368.0dchiappe1'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0051543712615966797,
@@ -8901,7 +8754,6 @@ NPC_LIST = {
         setClothesBotColor: (20, 0, 0) },
     '1178234368.0dchiappe1_type': 'Townsperson',
     '1178320768.0dchiappe': {
-        setName: PLocalizer.NPCNames['1178320768.0dchiappe'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -8970,7 +8822,6 @@ NPC_LIST = {
         setTattooZone6: (0, 0.5, 0.5, 0.100, 0, 0),
         setTattooZone7: (0, 0.5, 0.5, 0.100, 0, 0),
         setTattooZone8: (0, 0.5, 0.5, 0.100, 0, 0),
-        setName: PLocalizer.NPCNames['1178654720.0dchiappe'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -9030,7 +8881,6 @@ NPC_LIST = {
         setClothesBotColor: (15, 0, 0) },
     '1178654720.0dchiappe_type': 'Townsperson',
     '1179186560.0dchiappe': {
-        setName: PLocalizer.NPCNames['1179186560.0dchiappe'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -9090,7 +8940,6 @@ NPC_LIST = {
         setClothesBotColor: (15, 0, 0) },
     '1179186560.0dchiappe_type': 'Townsperson',
     '1179267456.0dchiappe': {
-        setName: PLocalizer.NPCNames['1179267456.0dchiappe'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: -0.10000000149011612,
@@ -9150,7 +8999,6 @@ NPC_LIST = {
         setClothesBotColor: (17, 0, 0) },
     '1179267456.0dchiappe_type': 'Townsperson',
     '1179269632.0dchiappe': {
-        setName: PLocalizer.NPCNames['1179269632.0dchiappe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.10000000149011612,
@@ -9213,7 +9061,6 @@ NPC_LIST = {
         setTattooChest: (4, -0.86484432220458984, -1.6250114440917969, 8.4753217697143555, 0.0, 0),
         setTattooZone2: (10, -9.6655778884887695, 6.9069929122924805, 17.688070297241211, 271.10000610351562, 0),
         setTattooZone3: (22, -9.9904460906982422, 2.6531972885131836, 12.65822696685791, 271.10000610351562, 0),
-        setName: PLocalizer.NPCNames['1179360256.0dchiappe'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: 0.0,
@@ -9273,7 +9120,6 @@ NPC_LIST = {
         setClothesBotColor: (15, 0, 0) },
     '1179360256.0dchiappe_type': 'Townsperson',
     '1179523435.84dchiappe': {
-        setName: PLocalizer.NPCNames['1179523435.84dchiappe'],
         setGender: 'f',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -9333,7 +9179,6 @@ NPC_LIST = {
         setClothesBotColor: (8, 0, 0) },
     '1179523435.84dchiappe_type': 'Townsperson',
     '1179961216.0dchiappe': {
-        setName: PLocalizer.NPCNames['1179961216.0dchiappe'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -9394,7 +9239,6 @@ NPC_LIST = {
         setClothesBotColor: (15, 0, 0) },
     '1179961216.0dchiappe_type': 'Townsperson',
     '1179966336.0dchiappe': {
-        setName: PLocalizer.NPCNames['1179966336.0dchiappe'],
         setGender: 'f',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -9454,7 +9298,6 @@ NPC_LIST = {
         setClothesBotColor: (12, 0, 0) },
     '1179966336.0dchiappe_type': 'Townsperson',
     '1180720000.0dchiappe1': {
-        setName: PLocalizer.NPCNames['1180720000.0dchiappe1'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -9514,7 +9357,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1180720000.0dchiappe1_type': 'Townsperson',
     '1181171584.0dxschafe0': {
-        setName: PLocalizer.NPCNames['1181171584.0dxschafe0'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -9574,7 +9416,6 @@ NPC_LIST = {
         setClothesBotColor: (2, 0, 0) },
     '1181171584.0dxschafe0_type': 'Townsperson',
     '1181260288.0dxschafe': {
-        setName: PLocalizer.NPCNames['1181260288.0dxschafe'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -9635,7 +9476,6 @@ NPC_LIST = {
         setClothesBotColor: (4, 0, 0) },
     '1181260288.0dxschafe_type': 'Townsperson',
     '1181260928.0dxschafe': {
-        setName: PLocalizer.NPCNames['1181260928.0dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -9695,7 +9535,6 @@ NPC_LIST = {
         setClothesBotColor: (15, 0, 0) },
     '1181260928.0dxschafe_type': 'Townsperson',
     '1181261824.0dxschafe': {
-        setName: PLocalizer.NPCNames['1181261824.0dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -9756,7 +9595,6 @@ NPC_LIST = {
         setClothesBotColor: (15, 0, 0) },
     '1181261824.0dxschafe_type': 'Townsperson',
     '1181262976.0dxschafe': {
-        setName: PLocalizer.NPCNames['1181262976.0dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.020349904894828796,
@@ -9816,7 +9654,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1181262976.0dxschafe_type': 'Townsperson',
     '1181263360.0dxschafe': {
-        setName: PLocalizer.NPCNames['1181263360.0dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -9876,7 +9713,6 @@ NPC_LIST = {
         setClothesBotColor: (8, 0, 0) },
     '1181263360.0dxschafe_type': 'Townsperson',
     '1181264512.0dxschafe': {
-        setName: PLocalizer.NPCNames['1181264512.0dxschafe'],
         setGender: 'f',
         setBodyShape: 9,
         setBodyHeight: 0.10000000149011612,
@@ -9936,7 +9772,6 @@ NPC_LIST = {
         setClothesBotColor: (16, 0, 0) },
     '1181264512.0dxschafe_type': 'Townsperson',
     '1181267712.0dxschafe': {
-        setName: PLocalizer.NPCNames['1181267712.0dxschafe'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: 0.0,
@@ -9996,7 +9831,6 @@ NPC_LIST = {
         setClothesBotColor: (15, 0, 0) },
     '1181267712.0dxschafe_type': 'Townsperson',
     '1181267968.0dxschafe': {
-        setName: PLocalizer.NPCNames['1181267968.0dxschafe'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -10056,7 +9890,6 @@ NPC_LIST = {
         setClothesBotColor: (18, 0, 0) },
     '1181267968.0dxschafe_type': 'Townsperson',
     '1181348864.0dxschafe': {
-        setName: PLocalizer.NPCNames['1181348864.0dxschafe'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0075156241655349731,
@@ -10117,7 +9950,6 @@ NPC_LIST = {
         setClothesBotColor: (15, 0, 0) },
     '1181348864.0dxschafe_type': 'Townsperson',
     '1181593472.0dxschafe': {
-        setName: PLocalizer.NPCNames['1181593472.0dxschafe'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -10178,7 +10010,6 @@ NPC_LIST = {
         setClothesBotColor: (4, 0, 0) },
     '1181593472.0dxschafe_type': 'Townsperson',
     '1181605248.0dxschafe': {
-        setName: PLocalizer.NPCNames['1181605248.0dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.10000000149011612,
@@ -10239,7 +10070,6 @@ NPC_LIST = {
         setClothesBotColor: (4, 0, 0) },
     '1181605248.0dxschafe_type': 'Townsperson',
     '1181606272.0dxschafe': {
-        setName: PLocalizer.NPCNames['1181606272.0dxschafe'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.10000000149011612,
@@ -10299,7 +10129,6 @@ NPC_LIST = {
         setClothesBotColor: (18, 0, 0) },
     '1181606272.0dxschafe_type': 'Townsperson',
     '1181607808.0dxschafe': {
-        setName: PLocalizer.NPCNames['1181607808.0dxschafe'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: 0.10000000149011612,
@@ -10360,7 +10189,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1181607808.0dxschafe_type': 'Townsperson',
     '1181610880.0dchiappe': {
-        setName: PLocalizer.NPCNames['1181610880.0dchiappe'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -10419,7 +10247,6 @@ NPC_LIST = {
         setClothesTopColor: (2, 4, 6),
         setClothesBotColor: (4, 0, 0) },
     '1181610880.0dchiappe0': {
-        setName: PLocalizer.NPCNames['1181610880.0dchiappe0'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -10480,7 +10307,6 @@ NPC_LIST = {
     '1181610880.0dchiappe0_type': 'Townsperson',
     '1181610880.0dchiappe_type': 'Townsperson',
     '1181683840.0dchiappe0': {
-        setName: PLocalizer.NPCNames['1181683840.0dchiappe0'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: -0.10000000149011612,
@@ -10541,7 +10367,6 @@ NPC_LIST = {
         setClothesBotColor: (10, 0, 0) },
     '1181683840.0dchiappe0_type': 'Townsperson',
     '1181684480.0dchiappe0': {
-        setName: PLocalizer.NPCNames['1181684480.0dchiappe0'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -10601,7 +10426,6 @@ NPC_LIST = {
         setClothesBotColor: (17, 0, 0) },
     '1181684480.0dchiappe0_type': 'Townsperson',
     '1182823328.56MAsaduzz': {
-        setName: PLocalizer.NPCNames['1182823328.56MAsaduzz'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -10662,7 +10486,6 @@ NPC_LIST = {
         setClothesBotColor: (18, 0, 0) },
     '1182823328.56MAsaduzz_type': 'Townsperson',
     '1185244008.29MAsaduzz': {
-        setName: PLocalizer.NPCNames['1185244008.29MAsaduzz'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -10723,7 +10546,6 @@ NPC_LIST = {
         setClothesBotColor: (18, 0, 0) },
     '1185244008.29MAsaduzz_type': 'Townsperson',
     '1185831040.0dxschafe': {
-        setName: PLocalizer.NPCNames['1185831040.0dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -10783,7 +10605,6 @@ NPC_LIST = {
         setClothesBotColor: (10, 0, 0) },
     '1185831040.0dxschafe_type': 'Townsperson',
     '1185831296.0dxschafe': {
-        setName: PLocalizer.NPCNames['1185831296.0dxschafe'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -10843,7 +10664,6 @@ NPC_LIST = {
         setClothesBotColor: (13, 0, 0) },
     '1185831296.0dxschafe_type': 'Townsperson',
     '1185831680.0dxschafe0': {
-        setName: PLocalizer.NPCNames['1185831680.0dxschafe0'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -10903,7 +10723,6 @@ NPC_LIST = {
         setClothesBotColor: (7, 0, 0) },
     '1185831680.0dxschafe0_type': 'Townsperson',
     '1185832192.0dxschafe1': {
-        setName: PLocalizer.NPCNames['1185832192.0dxschafe1'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -10963,7 +10782,6 @@ NPC_LIST = {
         setClothesBotColor: (7, 0, 0) },
     '1185832192.0dxschafe1_type': 'Townsperson',
     '1185832448.0dxschafe': {
-        setName: PLocalizer.NPCNames['1185832448.0dxschafe'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -11024,7 +10842,6 @@ NPC_LIST = {
         setClothesBotColor: (16, 0, 0) },
     '1185832448.0dxschafe_type': 'Townsperson',
     '1186098688.0dxschafe': {
-        setName: PLocalizer.NPCNames['1186098688.0dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.051574967801570892,
@@ -11084,7 +10901,6 @@ NPC_LIST = {
         setClothesBotColor: (18, 0, 0) },
     '1186098688.0dxschafe_type': 'Townsperson',
     '1187219584.0dxschafe0': {
-        setName: PLocalizer.NPCNames['1187219584.0dxschafe0'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -11145,7 +10961,6 @@ NPC_LIST = {
         setClothesBotColor: (15, 0, 0) },
     '1187219584.0dxschafe0_type': 'Townsperson',
     '1187306240.0dxschafe': {
-        setName: PLocalizer.NPCNames['1187306240.0dxschafe'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.015361475758254528,
@@ -11205,7 +11020,6 @@ NPC_LIST = {
         setClothesBotColor: (10, 1, 0) },
     '1187306240.0dxschafe_type': 'Townsperson',
     '1187658240.0dxschafe': {
-        setName: PLocalizer.NPCNames['1187658240.0dxschafe'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: 0.063124917447566986,
@@ -11265,7 +11079,6 @@ NPC_LIST = {
         setClothesTopColor: (14, 6, 19),
         setClothesBotColor: (15, 0, 0) },
     '1187658240.0dxschafe0': {
-        setName: PLocalizer.NPCNames['1187658240.0dxschafe0'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: 0.0,
@@ -11326,7 +11139,6 @@ NPC_LIST = {
         setClothesBotColor: (18, 0, 0) },
     '1187658240.0dxschafe0_type': 'Townsperson',
     '1187658240.0dxschafe1': {
-        setName: PLocalizer.NPCNames['1187658240.0dxschafe1'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -11387,7 +11199,6 @@ NPC_LIST = {
     '1187658240.0dxschafe1_type': 'Townsperson',
     '1187658240.0dxschafe_type': 'Townsperson',
     '1187658368.0dxschafe': {
-        setName: PLocalizer.NPCNames['1187658368.0dxschafe'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: 0.0,
@@ -11447,7 +11258,6 @@ NPC_LIST = {
         setClothesTopColor: (14, 7, 2),
         setClothesBotColor: (15, 0, 0) },
     '1187658368.0dxschafe0': {
-        setName: PLocalizer.NPCNames['1187658368.0dxschafe0'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.061861492693424225,
@@ -11507,7 +11317,6 @@ NPC_LIST = {
         setClothesBotColor: (7, 0, 0) },
     '1187658368.0dxschafe0_type': 'Townsperson',
     '1187658368.0dxschafe1': {
-        setName: PLocalizer.NPCNames['1187658368.0dxschafe1'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -11569,7 +11378,6 @@ NPC_LIST = {
     '1187658368.0dxschafe1_type': 'Townsperson',
     '1187658368.0dxschafe_type': 'Townsperson',
     '1187658496.0dxschafe': {
-        setName: PLocalizer.NPCNames['1187658496.0dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: -0.01096101850271225,
@@ -11629,7 +11437,6 @@ NPC_LIST = {
         setClothesTopColor: (20, 14, 10),
         setClothesBotColor: (15, 0, 0) },
     '1187658496.0dxschafe0': {
-        setName: PLocalizer.NPCNames['1187658496.0dxschafe0'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -11690,7 +11497,6 @@ NPC_LIST = {
         setClothesBotColor: (17, 0, 0) },
     '1187658496.0dxschafe0_type': 'Townsperson',
     '1187658496.0dxschafe1': {
-        setName: PLocalizer.NPCNames['1187658496.0dxschafe1'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -11751,7 +11557,6 @@ NPC_LIST = {
     '1187658496.0dxschafe1_type': 'Townsperson',
     '1187658496.0dxschafe_type': 'Townsperson',
     '1189456447.08kmuller': {
-        setName: PLocalizer.NPCNames['1189456447.08kmuller'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: -0.039844799786806107,
@@ -11812,7 +11617,6 @@ NPC_LIST = {
         setClothesBotColor: (8, 0, 0) },
     '1189456447.08kmuller_type': 'Townsperson',
     '1190420608.0dxschafe1': {
-        setName: PLocalizer.NPCNames['1190420608.0dxschafe1'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -11872,7 +11676,6 @@ NPC_LIST = {
         setClothesBotColor: (5, 0, 0) },
     '1190420608.0dxschafe1_type': 'Townsperson',
     '1190420736.0dxschafe': {
-        setName: PLocalizer.NPCNames['1190420736.0dxschafe'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: -0.045085649937391281,
@@ -11933,7 +11736,6 @@ NPC_LIST = {
         setClothesBotColor: (19, 0, 0) },
     '1190420736.0dxschafe_type': 'Townsperson',
     '1190742400.0dxschafe': {
-        setName: PLocalizer.NPCNames['1190742400.0dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: -0.011516816914081573,
@@ -11994,7 +11796,6 @@ NPC_LIST = {
         setClothesBotColor: (14, 0, 0) },
     '1190742400.0dxschafe_type': 'Townsperson',
     '1190743269.78dxschafe': {
-        setName: PLocalizer.NPCNames['1190743269.78dxschafe'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.036833453923463821,
@@ -12055,7 +11856,6 @@ NPC_LIST = {
         setClothesBotColor: (10, 0, 0) },
     '1190743269.78dxschafe_type': 'Townsperson',
     '1190744085.78dxschafe': {
-        setName: PLocalizer.NPCNames['1190744085.78dxschafe'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: 0.0,
@@ -12115,7 +11915,6 @@ NPC_LIST = {
         setClothesBotColor: (19, 0, 0) },
     '1190744085.78dxschafe_type': 'Townsperson',
     '1190744501.14dxschafe': {
-        setName: PLocalizer.NPCNames['1190744501.14dxschafe'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.038428593426942825,
@@ -12175,7 +11974,6 @@ NPC_LIST = {
         setClothesBotColor: (9, 0, 0) },
     '1190744501.14dxschafe_type': 'Townsperson',
     '1190745256.48dxschafe': {
-        setName: PLocalizer.NPCNames['1190745256.48dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -12236,7 +12034,6 @@ NPC_LIST = {
         setClothesBotColor: (17, 0, 0) },
     '1190745256.48dxschafe_type': 'Townsperson',
     '1192230656.0dchiappe': {
-        setName: PLocalizer.NPCNames['1192230656.0dchiappe'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.10000000149011612,
@@ -12297,7 +12094,6 @@ NPC_LIST = {
         setClothesBotColor: (15, 0, 0) },
     '1192230656.0dchiappe_type': 'Townsperson',
     '1192233344.0dchiappe': {
-        setName: PLocalizer.NPCNames['1192233344.0dchiappe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -12357,7 +12153,6 @@ NPC_LIST = {
         setClothesTopColor: (9, 17, 14),
         setClothesBotColor: (17, 0, 0) },
     '1192233344.0dchiappe0': {
-        setName: PLocalizer.NPCNames['1192233344.0dchiappe0'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -12418,7 +12213,6 @@ NPC_LIST = {
         setClothesBotColor: (18, 0, 0) },
     '1192233344.0dchiappe0_type': 'Townsperson',
     '1192233344.0dchiappe1': {
-        setName: PLocalizer.NPCNames['1192233344.0dchiappe1'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.10000000149011612,
@@ -12480,7 +12274,6 @@ NPC_LIST = {
     '1192233344.0dchiappe1_type': 'Townsperson',
     '1192233344.0dchiappe_type': 'Townsperson',
     '1192233472.0dchiappe': {
-        setName: PLocalizer.NPCNames['1192233472.0dchiappe'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -12540,7 +12333,6 @@ NPC_LIST = {
         setClothesTopColor: (16, 5, 12),
         setClothesBotColor: (18, 0, 0) },
     '1192233472.0dchiappe0': {
-        setName: PLocalizer.NPCNames['1192233472.0dchiappe0'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -12601,7 +12393,6 @@ NPC_LIST = {
         setClothesBotColor: (20, 0, 0) },
     '1192233472.0dchiappe0_type': 'Townsperson',
     '1192233472.0dchiappe1': {
-        setName: PLocalizer.NPCNames['1192233472.0dchiappe1'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: 0.0,
@@ -12663,7 +12454,6 @@ NPC_LIST = {
     '1192233472.0dchiappe1_type': 'Townsperson',
     '1192233472.0dchiappe_type': 'Townsperson',
     '1192233600.0dchiappe': {
-        setName: PLocalizer.NPCNames['1192233600.0dchiappe'],
         setGender: 'f',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -12724,7 +12514,6 @@ NPC_LIST = {
         setClothesBotColor: (16, 0, 0) },
     '1192233600.0dchiappe_type': 'Townsperson',
     '1192472192.0dchiappe': {
-        setName: PLocalizer.NPCNames['1192472192.0dchiappe'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -12785,7 +12574,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1192472192.0dchiappe_type': 'Townsperson',
     '1192472320.0dchiappe': {
-        setName: PLocalizer.NPCNames['1192472320.0dchiappe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -12846,7 +12634,6 @@ NPC_LIST = {
         setClothesBotColor: (9, 0, 0) },
     '1192472320.0dchiappe_type': 'Townsperson',
     '1192472448.0dchiappe0': {
-        setName: PLocalizer.NPCNames['1192472448.0dchiappe0'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -12907,7 +12694,6 @@ NPC_LIST = {
         setClothesBotColor: (20, 0, 0) },
     '1192472448.0dchiappe0_type': 'Townsperson',
     '1192472576.0dchiappe0': {
-        setName: PLocalizer.NPCNames['1192472576.0dchiappe0'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.055951140820980072,
@@ -12968,7 +12754,6 @@ NPC_LIST = {
         setClothesBotColor: (10, 0, 0) },
     '1192472576.0dchiappe0_type': 'Townsperson',
     '1192474368.0dchiappe': {
-        setName: PLocalizer.NPCNames['1192474368.0dchiappe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: -0.0097855627536773682,
@@ -13029,7 +12814,6 @@ NPC_LIST = {
         setClothesBotColor: (20, 0, 0) },
     '1192474368.0dchiappe_type': 'Townsperson',
     '1192474496.0dchiappe': {
-        setName: PLocalizer.NPCNames['1192474496.0dchiappe'],
         setGender: 'f',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -13090,7 +12874,6 @@ NPC_LIST = {
         setClothesBotColor: (17, 0, 0) },
     '1192474496.0dchiappe_type': 'Townsperson',
     '1192474624.0dchiappe': {
-        setName: PLocalizer.NPCNames['1192474624.0dchiappe'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.051886849105358124,
@@ -13150,7 +12933,6 @@ NPC_LIST = {
         setClothesTopColor: (16, 9, 3),
         setClothesBotColor: (14, 0, 0) },
     '1192474624.0dchiappe0': {
-        setName: PLocalizer.NPCNames['1192474624.0dchiappe0'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -13212,7 +12994,6 @@ NPC_LIST = {
     '1192474624.0dchiappe0_type': 'Townsperson',
     '1192474624.0dchiappe_type': 'Townsperson',
     '1192491904.0dchiappe': {
-        setName: PLocalizer.NPCNames['1192491904.0dchiappe'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -13273,7 +13054,6 @@ NPC_LIST = {
         setClothesBotColor: (18, 0, 0) },
     '1192491904.0dchiappe_type': 'Townsperson',
     '1192494848.0dchiappe0': {
-        setName: PLocalizer.NPCNames['1192494848.0dchiappe0'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.029916249215602875,
@@ -13334,7 +13114,6 @@ NPC_LIST = {
         setClothesBotColor: (18, 0, 0) },
     '1192494848.0dchiappe0_type': 'Townsperson',
     '1192495488.0dchiappe': {
-        setName: PLocalizer.NPCNames['1192495488.0dchiappe'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -13394,7 +13173,6 @@ NPC_LIST = {
         setClothesTopColor: (14, 18, 14),
         setClothesBotColor: (15, 0, 0) },
     '1192495488.0dchiappe0': {
-        setName: PLocalizer.NPCNames['1192495488.0dchiappe0'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: -0.10000000149011612,
@@ -13456,7 +13234,6 @@ NPC_LIST = {
     '1192495488.0dchiappe0_type': 'Townsperson',
     '1192495488.0dchiappe_type': 'Townsperson',
     '1192495872.0dchiappe0': {
-        setName: PLocalizer.NPCNames['1192495872.0dchiappe0'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -13517,7 +13294,6 @@ NPC_LIST = {
         setClothesBotColor: (8, 0, 0) },
     '1192495872.0dchiappe0_type': 'Townsperson',
     '1192495872.0dchiappe1': {
-        setName: PLocalizer.NPCNames['1192495872.0dchiappe1'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: -0.07263357937335968,
@@ -13578,7 +13354,6 @@ NPC_LIST = {
         setClothesBotColor: (11, 0, 0) },
     '1192495872.0dchiappe1_type': 'Townsperson',
     '1192495872.0dchiappe2': {
-        setName: PLocalizer.NPCNames['1192495872.0dchiappe2'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.079776637256145477,
@@ -13639,7 +13414,6 @@ NPC_LIST = {
         setClothesBotColor: (6, 0, 0) },
     '1192495872.0dchiappe2_type': 'Townsperson',
     '1192496000.0dchiappe': {
-        setName: PLocalizer.NPCNames['1192496000.0dchiappe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -13700,7 +13474,6 @@ NPC_LIST = {
         setClothesBotColor: (20, 0, 0) },
     '1192496000.0dchiappe_type': 'Townsperson',
     '1192496640.0dchiappe': {
-        setName: PLocalizer.NPCNames['1192496640.0dchiappe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -13761,7 +13534,6 @@ NPC_LIST = {
         setClothesBotColor: (18, 0, 0) },
     '1192496640.0dchiappe_type': 'Townsperson',
     '1192558464.0dchiappe': {
-        setName: PLocalizer.NPCNames['1192558464.0dchiappe'],
         setGender: 'f',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -13821,7 +13593,6 @@ NPC_LIST = {
         setClothesTopColor: (2, 11, 12),
         setClothesBotColor: (10, 0, 0) },
     '1192558464.0dchiappe0': {
-        setName: PLocalizer.NPCNames['1192558464.0dchiappe0'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -13883,7 +13654,6 @@ NPC_LIST = {
     '1192558464.0dchiappe0_type': 'Townsperson',
     '1192558464.0dchiappe_type': 'Townsperson',
     '1192558976.0dchiappe': {
-        setName: PLocalizer.NPCNames['1192558976.0dchiappe'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: -0.031871184706687927,
@@ -13943,7 +13713,6 @@ NPC_LIST = {
         setClothesTopColor: (18, 18, 11),
         setClothesBotColor: (15, 0, 0) },
     '1192558976.0dchiappe0': {
-        setName: PLocalizer.NPCNames['1192558976.0dchiappe0'],
         setGender: 'f',
         setBodyShape: 6,
         setBodyHeight: -0.0012762844562530518,
@@ -14005,7 +13774,6 @@ NPC_LIST = {
     '1192558976.0dchiappe0_type': 'Townsperson',
     '1192558976.0dchiappe_type': 'Townsperson',
     '1192561024.0dchiappe': {
-        setName: PLocalizer.NPCNames['1192561024.0dchiappe'],
         setGender: 'n',
         setBodyShape: 8,
         setBodyHeight: -0.090796098113059998,
@@ -14066,7 +13834,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1192561024.0dchiappe_type': 'Townsperson',
     '1196893440.0dxschafe': {
-        setName: PLocalizer.NPCNames['1196893440.0dxschafe'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: 0.0,
@@ -14127,7 +13894,6 @@ NPC_LIST = {
         setClothesBotColor: (2, 0, 0) },
     '1196893440.0dxschafe_type': 'Townsperson',
     '1196894976.0dxschafe': {
-        setName: PLocalizer.NPCNames['1196894976.0dxschafe'],
         setGender: 'f',
         setBodyShape: 8,
         setBodyHeight: -0.10000000149011612,
@@ -14188,7 +13954,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1196894976.0dxschafe_type': 'Townsperson',
     '1196896512.0dxschafe': {
-        setName: PLocalizer.NPCNames['1196896512.0dxschafe'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: 0.10000000149011612,
@@ -14248,7 +14013,6 @@ NPC_LIST = {
         setClothesBotColor: (9, 0, 0) },
     '1196896512.0dxschafe_type': 'Townsperson',
     '1196897792.0dxschafe0': {
-        setName: PLocalizer.NPCNames['1196897792.0dxschafe0'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -14308,7 +14072,6 @@ NPC_LIST = {
         setClothesBotColor: (2, 0, 0) },
     '1196897792.0dxschafe0_type': 'Townsperson',
     '1196898944.0dxschafe': {
-        setName: PLocalizer.NPCNames['1196898944.0dxschafe'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -14376,7 +14139,6 @@ NPC_LIST = {
         setTattooZone6: (0, 0.5, 0.5, 0.100, 0, 0),
         setTattooZone7: (0, 0.5, 0.5, 0.100, 0, 0),
         setTattooZone8: (0, 0.5, 0.5, 0.100, 0, 0),
-        setName: PLocalizer.NPCNames['1196901888.0dxschafe'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -14436,7 +14198,6 @@ NPC_LIST = {
         setClothesBotColor: (16, 0, 0) },
     '1196901888.0dxschafe_type': 'Townsperson',
     '1196904064.0dxschafe': {
-        setName: PLocalizer.NPCNames['1196904064.0dxschafe'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -14497,7 +14258,6 @@ NPC_LIST = {
         setClothesBotColor: (2, 0, 0) },
     '1196904064.0dxschafe_type': 'Townsperson',
     '1196907776.0dxschafe0': {
-        setName: PLocalizer.NPCNames['1196907776.0dxschafe0'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: -0.10000000149011612,
@@ -14557,7 +14317,6 @@ NPC_LIST = {
         setClothesBotColor: (12, 0, 0) },
     '1196907776.0dxschafe0_type': 'Townsperson',
     '1196911744.0dxschafe0': {
-        setName: PLocalizer.NPCNames['1196911744.0dxschafe0'],
         setGender: 'f',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -14619,7 +14378,6 @@ NPC_LIST = {
     '1201025280.0dxschafe': {
         setTattooChest: (10, -17.075756072998047, -25.621212005615234, 30.303030014038086, 0.0, 0),
         setTattooZone3: (0, -1.4647408723831177, -8.984562873840332, 15.151515007019043, 0.0, 0),
-        setName: PLocalizer.NPCNames['1201025280.0dxschafe'],
         setGender: 'f',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -14687,7 +14445,6 @@ NPC_LIST = {
         setTattooZone6: (0, 0.5, 0.5, 0.100, 0, 0),
         setTattooZone7: (0, 0.5, 0.5, 0.100, 0, 0),
         setTattooZone8: (0, 0.5, 0.5, 0.100, 0, 0),
-        setName: PLocalizer.NPCNames['1201028352.0dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -14755,7 +14512,6 @@ NPC_LIST = {
         setTattooZone6: (0, 0.5, 0.5, 0.100, 0, 0),
         setTattooZone7: (0, 0.5, 0.5, 0.100, 0, 0),
         setTattooZone8: (0, 0.5, 0.5, 0.100, 0, 0),
-        setName: PLocalizer.NPCNames['1201109074.66dxschafe'],
         setGender: 'f',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -14815,7 +14571,6 @@ NPC_LIST = {
         setClothesBotColor: (16, 0, 0) },
     '1201109074.66dxschafe_type': 'Townsperson',
     '1201223902.67dxschafe': {
-        setName: PLocalizer.NPCNames['1201223902.67dxschafe'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -14876,7 +14631,6 @@ NPC_LIST = {
     '1201223902.67dxschafe_type': 'Townsperson',
     '1201224743.34dxschafe': {
         setTattooChest: (20, -7.2068619728088379, -11.891047477722168, 13.82872200012207, 0.0, 0),
-        setName: PLocalizer.NPCNames['1201224743.34dxschafe'],
         setGender: 'f',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -14936,7 +14690,6 @@ NPC_LIST = {
         setClothesBotColor: (8, 0, 0) },
     '1201224743.34dxschafe_type': 'Townsperson',
     '1201225541.73dxschafe': {
-        setName: PLocalizer.NPCNames['1201225541.73dxschafe'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -14997,7 +14750,6 @@ NPC_LIST = {
         setClothesBotColor: (2, 0, 0) },
     '1201225541.73dxschafe_type': 'Townsperson',
     '1201226462.13dxschafe': {
-        setName: PLocalizer.NPCNames['1201226462.13dxschafe'],
         setGender: 'f',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -15065,7 +14817,6 @@ NPC_LIST = {
         setTattooZone6: (0, 0.5, 0.5, 0.100, 0, 0),
         setTattooZone7: (0, 0.5, 0.5, 0.100, 0, 0),
         setTattooZone8: (0, 0.5, 0.5, 0.100, 0, 0),
-        setName: PLocalizer.NPCNames['1201227181.3dxschafe'],
         setGender: 'f',
         setBodyShape: 5,
         setBodyHeight: 0.0,
@@ -15125,7 +14876,6 @@ NPC_LIST = {
         setClothesBotColor: (17, 0, 0) },
     '1201227181.3dxschafe_type': 'Townsperson',
     '1201228098.28dxschafe': {
-        setName: PLocalizer.NPCNames['1201228098.28dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -15185,7 +14935,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1201228098.28dxschafe_type': 'Townsperson',
     '1201229350.47dxschafe': {
-        setName: PLocalizer.NPCNames['1201229350.47dxschafe'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: 0.10000000149011612,
@@ -15253,7 +15002,6 @@ NPC_LIST = {
         setTattooZone6: (0, 0.5, 0.5, 0.100, 0, 0),
         setTattooZone7: (0, 0.5, 0.5, 0.100, 0, 0),
         setTattooZone8: (0, 0.5, 0.5, 0.100, 0, 0),
-        setName: PLocalizer.NPCNames['1201230131.11dxschafe'],
         setGender: 'f',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -15313,7 +15061,6 @@ NPC_LIST = {
         setClothesBotColor: (16, 0, 0) },
     '1201230131.11dxschafe_type': 'Townsperson',
     '1201548787.04kmuller': {
-        setName: PLocalizer.NPCNames['1201548787.04kmuller'],
         setGender: 'f',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -15381,7 +15128,6 @@ NPC_LIST = {
         setTattooZone6: (0, 0.5, 0.5, 0.100, 0, 0),
         setTattooZone7: (0, 0.5, 0.5, 0.100, 0, 0),
         setTattooZone8: (0, 0.5, 0.5, 0.100, 0, 0),
-        setName: PLocalizer.NPCNames['1201821619.0dxschafe'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -15441,7 +15187,6 @@ NPC_LIST = {
         setClothesBotColor: (18, 0, 0) },
     '1201821619.0dxschafe_type': 'Townsperson',
     '1202419919.16akelts': {
-        setName: PLocalizer.NPCNames['1202419919.16akelts'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: -0.015073048882186413,
@@ -15501,7 +15246,6 @@ NPC_LIST = {
         setClothesBotColor: (10, 0, 0) },
     '1202419919.16akelts_type': 'Townsperson',
     '1202519757.13akelts': {
-        setName: PLocalizer.NPCNames['1202519757.13akelts'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.015707029029726982,
@@ -15565,7 +15309,6 @@ NPC_LIST = {
         setJewelryZone2: (12, 0, 0),
         setJewelryZone7: (4, 1, 3),
         setJewelryZone8: (2, 1, 3),
-        setName: PLocalizer.NPCNames['1203449603.97akelts'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -15627,7 +15370,6 @@ NPC_LIST = {
     '1203451028.89akelts': {
         setTattooChest: (0, 0.0, 0.0, 1, 0, 0),
         setTattooZone3: (6, -23.291034698486328, 5.0450162887573242, 27.564847946166992, 271.10000610351562, 0),
-        setName: PLocalizer.NPCNames['1203451028.89akelts'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -15689,7 +15431,6 @@ NPC_LIST = {
     '1203451240.81akelts': {
         setTattooChest: (0, -1.3168321847915649, -1.5367195606231689, 7.0842676162719727, 0.0, 0),
         setTattooZone3: (26, -10.327406883239746, 1.8938977718353271, 12.658229827880859, 276.27841186523437, 0),
-        setName: PLocalizer.NPCNames['1203451240.81akelts'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: 0.0,
@@ -15752,7 +15493,6 @@ NPC_LIST = {
         setJewelryZone1: (2, 0, 0),
         setJewelryZone7: (4, 2, 8),
         setJewelryZone8: (10, 8, 2),
-        setName: PLocalizer.NPCNames['1207073489.41mtucker'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.10000000149011612,
@@ -15819,7 +15559,6 @@ NPC_LIST = {
         setJewelryZone1: (11, 5, 3),
         setJewelryZone2: (11, 5, 3),
         setJewelryZone3: (2, 0, 0),
-        setName: PLocalizer.NPCNames['1208537612.06akelts'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.10000000149011612,
@@ -15879,7 +15618,6 @@ NPC_LIST = {
         setClothesBotColor: (14, 0, 0) },
     '1208537612.06akelts_type': 'Townsperson',
     '1208543583.91akelts': {
-        setName: PLocalizer.NPCNames['1208543583.91akelts'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -15939,7 +15677,6 @@ NPC_LIST = {
         setClothesBotColor: (20, 0, 4) },
     '1208543583.91akelts_type': 'Townsperson',
     '1208544322.67akelts': {
-        setName: PLocalizer.NPCNames['1208544322.67akelts'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -16000,7 +15737,6 @@ NPC_LIST = {
     '1208544322.67akelts_type': 'Townsperson',
     '1208544716.73akelts': {
         setTattooChest: (12, -1.1374152898788452, -2.026026725769043, 10.199753761291504, 0.0, 0),
-        setName: PLocalizer.NPCNames['1208544716.73akelts'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.10000000149011612,
@@ -16060,7 +15796,6 @@ NPC_LIST = {
         setClothesBotColor: (19, 0, 0) },
     '1208544716.73akelts_type': 'Townsperson',
     '1208545146.78akelts': {
-        setName: PLocalizer.NPCNames['1208545146.78akelts'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -16124,7 +15859,6 @@ NPC_LIST = {
         setTattooZone4: (77, 0.0066401660442352295, -0.0066397786140441895, 1.0, 0.0, 0),
         setJewelryZone4: (0, 8, 0),
         setJewelryZone5: (6, 8, 8),
-        setName: PLocalizer.NPCNames['1208546953.92akelts'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -16186,7 +15920,6 @@ NPC_LIST = {
     '1208548168.92akelts': {
         setTattooChest: (0, 0.0, 0.0, 1, 0, 0),
         setTattooZone3: (4, -18.156410217285156, 4.1354532241821289, 21.833774566650391, 271.10000610351562, 0),
-        setName: PLocalizer.NPCNames['1208548168.92akelts'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: 0.0,
@@ -16246,7 +15979,6 @@ NPC_LIST = {
         setClothesBotColor: (16, 0, 0) },
     '1208548168.92akelts_type': 'Townsperson',
     '1208548525.28akelts': {
-        setName: PLocalizer.NPCNames['1208548525.28akelts'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -16307,7 +16039,6 @@ NPC_LIST = {
     '1208548525.28akelts_type': 'Townsperson',
     '1208548943.97akelts': {
         setTattooChest: (26, -0.51925277709960938, -1.4875880479812622, 8.0256118774414062, 0.0, 0),
-        setName: PLocalizer.NPCNames['1208548943.97akelts'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: -0.10000000149011612,
@@ -16367,7 +16098,6 @@ NPC_LIST = {
         setClothesBotColor: (8, 0, 0) },
     '1208548943.97akelts_type': 'Townsperson',
     '1208549359.09akelts': {
-        setName: PLocalizer.NPCNames['1208549359.09akelts'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: -0.021106386557221413,
@@ -16427,7 +16157,6 @@ NPC_LIST = {
         setClothesBotColor: (2, 0, 0) },
     '1208549359.09akelts_type': 'Townsperson',
     '1208549913.56akelts': {
-        setName: PLocalizer.NPCNames['1208549913.56akelts'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: -0.029745770618319511,
@@ -16487,7 +16216,6 @@ NPC_LIST = {
         setClothesBotColor: (8, 0, 0) },
     '1208549913.56akelts_type': 'Townsperson',
     '1208898135.26akelts': {
-        setName: PLocalizer.NPCNames['1208898135.26akelts'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -16547,7 +16275,6 @@ NPC_LIST = {
         setClothesBotColor: (3, 0, 0) },
     '1208898135.26akelts_type': 'Townsperson',
     '1208900438.95akelts': {
-        setName: PLocalizer.NPCNames['1208900438.95akelts'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -16607,7 +16334,6 @@ NPC_LIST = {
         setClothesBotColor: (14, 0, 0) },
     '1208900438.95akelts_type': 'Townsperson',
     '1208908477.73akelts': {
-        setName: PLocalizer.NPCNames['1208908477.73akelts'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -16667,7 +16393,6 @@ NPC_LIST = {
         setClothesBotColor: (18, 0, 0) },
     '1208908477.73akelts_type': 'Townsperson',
     '1210018399.53akelts': {
-        setName: PLocalizer.NPCNames['1210018399.53akelts'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -16727,7 +16452,6 @@ NPC_LIST = {
         setClothesBotColor: (10, 0, 0) },
     '1210018399.53akelts_type': 'Townsperson',
     '1211912448.0WDIG1': {
-        setName: PLocalizer.NPCNames['1211912448.0WDIG1'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -16793,7 +16517,6 @@ NPC_LIST = {
         setJewelryZone1: (4, 0, 0),
         setJewelryZone7: (4, 0, 0),
         setJewelryZone8: (11, 0, 0),
-        setName: PLocalizer.NPCNames['1211925120.0WDIG'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -16856,7 +16579,6 @@ NPC_LIST = {
         setTattooChest: (0, 0.0, 0.0, 1, 0, 0),
         setTattooZone2: (16, -7.2022905349731445, 3.0961382389068604, 13.474042892456055, 271.10000610351562, 0),
         setTattooZone4: (131, -0.72901153564453125, -2.646763801574707, 6.3030180931091309, 21.043239593505859, 0),
-        setName: PLocalizer.NPCNames['1211926144.0WDIG'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: -0.017935790121555328,
@@ -16919,7 +16641,6 @@ NPC_LIST = {
         setJewelryZone1: (2, 1, 0),
         setJewelryZone7: (3, 0, 0),
         setJewelryZone8: (6, 0, 0),
-        setName: PLocalizer.NPCNames['1211929216.0WDIG1'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: 0.033760465681552887,
@@ -16984,7 +16705,6 @@ NPC_LIST = {
         setJewelryZone2: (13, 1, 0),
         setJewelryZone4: (2, 1, 0),
         setJewelryZone8: (3, 0, 0),
-        setName: PLocalizer.NPCNames['1211929472.0WDIG'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -17054,7 +16774,6 @@ NPC_LIST = {
         setJewelryZone6: (2, 4, 4),
         setJewelryZone7: (2, 1, 4),
         setJewelryZone8: (11, 1, 4),
-        setName: PLocalizer.NPCNames['1212432000.0WDIG1'],
         setGender: 'f',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -17116,7 +16835,6 @@ NPC_LIST = {
     '1213222099.15aapatel': {
         setTattooChest: (19, -0.2064812183380127, -0.80620527267456055, 5.5628461837768555, 0.0, 0),
         setJewelryZone1: (2, 1, 1),
-        setName: PLocalizer.NPCNames['1213222099.15aapatel'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -17176,7 +16894,6 @@ NPC_LIST = {
         setClothesBotColor: (14, 0, 0) },
     '1213222099.15aapatel_type': 'Townsperson',
     '1213290094.5aapatel': {
-        setName: PLocalizer.NPCNames['1213290094.5aapatel'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -17236,7 +16953,6 @@ NPC_LIST = {
         setClothesBotColor: (15, 0, 0) },
     '1213290094.5aapatel_type': 'Townsperson',
     '1213290386.14aapatel': {
-        setName: PLocalizer.NPCNames['1213290386.14aapatel'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -17296,7 +17012,6 @@ NPC_LIST = {
         setClothesBotColor: (16, 0, 0) },
     '1213290386.14aapatel_type': 'Townsperson',
     '1213290548.56aapatel': {
-        setName: PLocalizer.NPCNames['1213290548.56aapatel'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -17356,7 +17071,6 @@ NPC_LIST = {
         setClothesBotColor: (18, 0, 0) },
     '1213290548.56aapatel_type': 'Townsperson',
     '1213290785.14aapatel': {
-        setName: PLocalizer.NPCNames['1213290785.14aapatel'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -17417,7 +17131,6 @@ NPC_LIST = {
     '1213290785.14aapatel_type': 'Townsperson',
     '1213291115.62aapatel': {
         setTattooChest: (17, -0.44466739892959595, -1.2465840578079224, 7.4383230209350586, 0.0, 0),
-        setName: PLocalizer.NPCNames['1213291115.62aapatel'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -17477,7 +17190,6 @@ NPC_LIST = {
         setClothesBotColor: (11, 0, 0) },
     '1213291115.62aapatel_type': 'Townsperson',
     '1213737632.73aapatel': {
-        setName: PLocalizer.NPCNames['1213737632.73aapatel'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -17537,7 +17249,6 @@ NPC_LIST = {
         setClothesBotColor: (17, 0, 0) },
     '1213737632.73aapatel_type': 'Townsperson',
     '1213983053.36aapatel': {
-        setName: PLocalizer.NPCNames['1213983053.36aapatel'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -17599,7 +17310,6 @@ NPC_LIST = {
     '1214345458.84WDIG': {
         setTattooChest: (0, 0.0, 0.0, 1, 0, 0),
         setTattooZone3: (16, -7.1798195838928223, 2.2040748596191406, 9.115544319152832, 271.10000610351562, 0),
-        setName: PLocalizer.NPCNames['1214345458.84WDIG'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: -0.10000000149011612,
@@ -17659,7 +17369,6 @@ NPC_LIST = {
         setClothesBotColor: (18, 0, 0) },
     '1214345458.84WDIG_type': 'Townsperson',
     '1214345910.48WDIG': {
-        setName: PLocalizer.NPCNames['1214345910.48WDIG'],
         setGender: 'f',
         setBodyShape: 5,
         setBodyHeight: -0.10000000149011612,
@@ -17719,7 +17428,6 @@ NPC_LIST = {
         setClothesBotColor: (11, 0, 0) },
     '1214345910.48WDIG_type': 'Townsperson',
     '1216249894.26aapatel': {
-        setName: PLocalizer.NPCNames['1216249894.26aapatel'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -17779,7 +17487,6 @@ NPC_LIST = {
         setClothesBotColor: (17, 0, 0) },
     '1216249894.26aapatel_type': 'Townsperson',
     '1216766113.92aapatel': {
-        setName: PLocalizer.NPCNames['1216766113.92aapatel'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -17839,7 +17546,6 @@ NPC_LIST = {
         setClothesBotColor: (5, 0, 0) },
     '1216766113.92aapatel_type': 'Townsperson',
     '1219104942.43mtucker': {
-        setName: PLocalizer.NPCNames['1219104942.43mtucker'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -17899,7 +17605,6 @@ NPC_LIST = {
         setClothesBotColor: (18, 0, 0) },
     '1219104942.43mtucker_type': 'Townsperson',
     '1219105162.48mtucker': {
-        setName: PLocalizer.NPCNames['1219105162.48mtucker'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -17959,7 +17664,6 @@ NPC_LIST = {
         setClothesBotColor: (18, 0, 0) },
     '1219105162.48mtucker_type': 'Townsperson',
     '1219895971.52mtucker': {
-        setName: PLocalizer.NPCNames['1219895971.52mtucker'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0023149847984313965,
@@ -18020,7 +17724,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1219895971.52mtucker_type': 'Townsperson',
     '1219965016.25mtucker': {
-        setName: PLocalizer.NPCNames['1219965016.25mtucker'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.10000000149011612,
@@ -18080,7 +17783,6 @@ NPC_LIST = {
         setClothesBotColor: (16, 0, 0) },
     '1219965016.25mtucker_type': 'Townsperson',
     '1219972782.3mtucker': {
-        setName: PLocalizer.NPCNames['1219972782.3mtucker'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -18141,7 +17843,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1219972782.3mtucker_type': 'Townsperson',
     '1220039541.89mtucker': {
-        setName: PLocalizer.NPCNames['1220039541.89mtucker'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -18205,7 +17906,6 @@ NPC_LIST = {
         setTattooZone2: (26, -12.746495246887207, 5.1673126220703125, 16.789430618286133, 271.10000610351562, 0),
         setTattooZone3: (126, 2.9088277816772461, -0.48938632011413574, 3.7649850845336914, 93.152870178222656, 0),
         setTattooZone4: (29, -1.2869573831558228, 0.58809816837310791, 3.027026891708374, 318.43142700195312, 0),
-        setName: PLocalizer.NPCNames['1222295766.63WDIG'],
         setGender: 'f',
         setBodyShape: 8,
         setBodyHeight: 0.10000000149011612,
@@ -18267,7 +17967,6 @@ NPC_LIST = {
     '1225143157.81caoconno': {
         setTattooChest: (9, -12.200000762939453, -31.790332794189453, 100.0, 0.0, 0),
         setTattooZone4: (61, -1.2034240961074829, -1.8063545227050781, 3.7778835296630859, 0.0, 0),
-        setName: PLocalizer.NPCNames['1225143157.81caoconno'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -18329,7 +18028,6 @@ NPC_LIST = {
     '1225145929.75caoconno': {
         setTattooChest: (61, 0.5, 0.5, 100.0, 0.0, 0),
         setTattooZone2: (62, -4.970423698425293, 1.1332528591156006, 6.8965797424316406, 271.10000610351562, 0),
-        setName: PLocalizer.NPCNames['1225145929.75caoconno'],
         setGender: 'f',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -18389,7 +18087,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1225145929.75caoconno_type': 'Townsperson',
     '1227583229.75WDIG': {
-        setName: PLocalizer.NPCNames['1227583229.75WDIG'],
         setGender: 'f',
         setBodyShape: 5,
         setBodyHeight: -0.019936555996537209,
@@ -18449,7 +18146,6 @@ NPC_LIST = {
         setClothesBotColor: (20, 0, 0) },
     '1227583229.75WDIG_type': 'Townsperson',
     '1227674362.91WDIG': {
-        setName: PLocalizer.NPCNames['1227674362.91WDIG'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -18511,7 +18207,6 @@ NPC_LIST = {
     '1229139756.35mtucker': {
         setJewelryZone1: (6, 8, 0),
         setJewelryZone2: (7, 8, 8),
-        setName: PLocalizer.NPCNames['1229139756.35mtucker'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -18576,7 +18271,6 @@ NPC_LIST = {
         setTattooZone3: (16, -6.3924698829650879, 2.504539966583252, 8.1745948791503906, 271.10000610351562, 0),
         setJewelryZone2: (2, 0, 0),
         setJewelryZone7: (8, 8, 8),
-        setName: PLocalizer.NPCNames['1229141258.23mtucker'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.10000000149011612,
@@ -18636,7 +18330,6 @@ NPC_LIST = {
         setClothesBotColor: (11, 0, 0) },
     '1229141258.23mtucker_type': 'Townsperson',
     '1229145127.43mtucker': {
-        setName: PLocalizer.NPCNames['1229145127.43mtucker'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.10000000149011612,
@@ -18697,7 +18390,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1229145127.43mtucker_type': 'Townsperson',
     '1232061565.89WDIG': {
-        setName: PLocalizer.NPCNames['1232061565.89WDIG'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: -0.028080552816390991,
@@ -18757,7 +18449,6 @@ NPC_LIST = {
         setClothesBotColor: (4, 0, 0) },
     '1232061565.89WDIG_type': 'Townsperson',
     '1232496514.28WDIG': {
-        setName: PLocalizer.NPCNames['1232496514.28WDIG'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: -0.037681426852941513,
@@ -18817,7 +18508,6 @@ NPC_LIST = {
         setClothesBotColor: (11, 0, 0) },
     '1232496514.28WDIG_type': 'Townsperson',
     '1234556416.0ian': {
-        setName: PLocalizer.NPCNames['1234556416.0ian'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -18877,7 +18567,6 @@ NPC_LIST = {
         setClothesBotColor: (9, 0, 0) },
     '1234556416.0ian_type': 'Townsperson',
     '1234557184.0ian': {
-        setName: PLocalizer.NPCNames['1234557184.0ian'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: 0.0,
@@ -18939,7 +18628,6 @@ NPC_LIST = {
     '1237497701.52piwanow': {
         setTattooChest: (0, 20.435920715332031, -2.8861024379730225, 22.164108276367188, 98.968917846679688, 0),
         setTattooZone4: (75, -1.0130538940429687, -1.2577810287475586, 3.0261080265045166, 0.0, 0),
-        setName: PLocalizer.NPCNames['1237497701.52piwanow'],
         setGender: 'f',
         setBodyShape: 5,
         setBodyHeight: 0.088631153106689453,
@@ -19003,7 +18691,6 @@ NPC_LIST = {
         setTattooZone2: (25, -6.1797609329223633, 1.6359090805053711, 8.4262313842773437, 271.10000610351562, 0),
         setTattooZone3: (30, -7.6944770812988281, 2.3570101261138916, 13.372650146484375, 271.10000610351562, 0),
         setTattooZone4: (64, -0.79723644256591797, -0.75122058391571045, 2.5944736003875732, 0.0, 0),
-        setName: PLocalizer.NPCNames['1237499258.14piwanow'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -19065,7 +18752,6 @@ NPC_LIST = {
     '1237850626.09piwanow': {
         setTattooChest: (26, -0.084341466426849365, -0.39261627197265625, 4.6011142730712891, 0.0, 0),
         setJewelryZone1: (0, 1, 1),
-        setName: PLocalizer.NPCNames['1237850626.09piwanow'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -19125,7 +18811,6 @@ NPC_LIST = {
         setClothesBotColor: (10, 0, 0) },
     '1237850626.09piwanow_type': 'Townsperson',
     '1238705152.0akelts': {
-        setName: PLocalizer.NPCNames['1238705152.0akelts'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: -0.10000000149011612,
@@ -19186,7 +18871,6 @@ NPC_LIST = {
     '1238705152.0akelts_type': 'Townsperson',
     '1240950699.65ian': {
         setJewelryZone2: (2, 1, 0),
-        setName: PLocalizer.NPCNames['1240950699.65ian'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.049424242228269577,
@@ -19246,7 +18930,6 @@ NPC_LIST = {
         setClothesBotColor: (15, 0, 0) },
     '1240950699.65ian_type': 'Townsperson',
     '1241477820.93ian': {
-        setName: PLocalizer.NPCNames['1241477820.93ian'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.033791851252317429,
@@ -19307,7 +18990,6 @@ NPC_LIST = {
     '1241477820.93ian_type': 'Townsperson',
     '1241909300.25ian': {
         setTattooChest: (16, 1.2465535402297974, -5.1144475936889648, 17.842075347900391, 35.052688598632812, 0),
-        setName: PLocalizer.NPCNames['1241909300.25ian'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: -0.071251913905143738,
@@ -19369,7 +19051,6 @@ NPC_LIST = {
     '1241911057.44ian': {
         setTattooChest: (18, -0.71828866004943848, -1.6412186622619629, 9.5928182601928711, 0.0, 0),
         setTattooZone3: (16, 6.93377685546875, 20.739822387695313, 19.96745491027832, 197.48945617675781, 0),
-        setName: PLocalizer.NPCNames['1241911057.44ian'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -19429,7 +19110,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1241911057.44ian_type': 'Townsperson',
     '1248131584.0jloehrle': {
-        setName: PLocalizer.NPCNames['1248131584.0jloehrle'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -19489,7 +19169,6 @@ NPC_LIST = {
         setClothesBotColor: (11, 0, 0) },
     '1248131584.0jloehrle_type': 'Townsperson',
     '1248132224.0jloehrle': {
-        setName: PLocalizer.NPCNames['1248132224.0jloehrle'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -19549,7 +19228,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1248132224.0jloehrle_type': 'Townsperson',
     '1248132864.0jloehrle': {
-        setName: PLocalizer.NPCNames['1248132864.0jloehrle'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -19609,7 +19287,6 @@ NPC_LIST = {
         setClothesBotColor: (11, 0, 0) },
     '1248132864.0jloehrle_type': 'Townsperson',
     '1248133504.0jloehrle': {
-        setName: PLocalizer.NPCNames['1248133504.0jloehrle'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -19669,7 +19346,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1248133504.0jloehrle_type': 'Townsperson',
     '1248134144.0jloehrle': {
-        setName: PLocalizer.NPCNames['1248134144.0jloehrle'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: -0.0019857287406921387,
@@ -19729,7 +19405,6 @@ NPC_LIST = {
         setClothesBotColor: (11, 0, 0) },
     '1248134144.0jloehrle_type': 'Townsperson',
     '1248199552.0jloehrle': {
-        setName: PLocalizer.NPCNames['1248199552.0jloehrle'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.20000000298023224,
@@ -19789,7 +19464,6 @@ NPC_LIST = {
         setClothesBotColor: (9, 0, 0) },
     '1248199552.0jloehrle_type': 'Townsperson',
     '1248199936.0jloehrle': {
-        setName: PLocalizer.NPCNames['1248199936.0jloehrle'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: -0.20000000298023224,
@@ -19849,7 +19523,6 @@ NPC_LIST = {
         setClothesBotColor: (11, 0, 0) },
     '1248199936.0jloehrle_type': 'Townsperson',
     '1248200320.0jloehrle': {
-        setName: PLocalizer.NPCNames['1248200320.0jloehrle'],
         setGender: 'f',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -19909,7 +19582,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1248200320.0jloehrle_type': 'Townsperson',
     '1248200576.0jloehrle': {
-        setName: PLocalizer.NPCNames['1248200576.0jloehrle'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: -0.20000000298023224,
@@ -19969,7 +19641,6 @@ NPC_LIST = {
         setClothesBotColor: (18, 0, 0) },
     '1248200576.0jloehrle_type': 'Townsperson',
     '1248201216.0jloehrle': {
-        setName: PLocalizer.NPCNames['1248201216.0jloehrle'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: -0.072840318083763123,
@@ -20029,7 +19700,6 @@ NPC_LIST = {
         setClothesBotColor: (9, 0, 0) },
     '1248201216.0jloehrle_type': 'Townsperson',
     '1248201728.0jloehrle': {
-        setName: PLocalizer.NPCNames['1248201728.0jloehrle'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -20089,7 +19759,6 @@ NPC_LIST = {
         setClothesBotColor: (9, 0, 0) },
     '1248201728.0jloehrle_type': 'Townsperson',
     '1248201856.0jloehrle': {
-        setName: PLocalizer.NPCNames['1248201856.0jloehrle'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: -0.086475253105163574,
@@ -20149,7 +19818,6 @@ NPC_LIST = {
         setClothesBotColor: (6, 0, 0) },
     '1248201856.0jloehrle_type': 'Townsperson',
     '1248202112.0jloehrle': {
-        setName: PLocalizer.NPCNames['1248202112.0jloehrle'],
         setGender: 'f',
         setBodyShape: 9,
         setBodyHeight: 0.20000000298023224,
@@ -20209,7 +19877,6 @@ NPC_LIST = {
         setClothesBotColor: (9, 0, 0) },
     '1248202112.0jloehrle_type': 'Townsperson',
     '1248203967.73jloehrle': {
-        setName: PLocalizer.NPCNames['1248203967.73jloehrle'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -20274,7 +19941,6 @@ NPC_LIST = {
         setJewelryZone1: (4, 0, 0),
         setJewelryZone2: (11, 0, 0),
         setJewelryZone3: (2, 0, 0),
-        setName: PLocalizer.NPCNames['1248740960.66piwanow'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -20338,7 +20004,6 @@ NPC_LIST = {
         setTattooZone2: (9, -18.98631477355957, 9.139129638671875, 22.39173698425293, 271.10000610351562, 0),
         setTattooZone3: (0, -10.110631942749023, 5.1719670295715332, 12.65822696685791, 271.10000610351562, 0),
         setTattooZone4: (72, 0.0, 0.0, 1.0, 0.0, 0),
-        setName: PLocalizer.NPCNames['1248741261.66piwanow'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -20404,7 +20069,6 @@ NPC_LIST = {
         setTattooZone4: (21, 0.0, 0.0, 1.0, 0.0, 0),
         setJewelryZone1: (4, 1, 1),
         setJewelryZone4: (1, 1, 0),
-        setName: PLocalizer.NPCNames['1248741262.66piwanow'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -20471,7 +20135,6 @@ NPC_LIST = {
         setJewelryZone1: (4, 8, 8),
         setJewelryZone2: (13, 2, 0),
         setJewelryZone4: (1, 0, 0),
-        setName: PLocalizer.NPCNames['1248741263.66piwanow'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -20533,7 +20196,6 @@ NPC_LIST = {
     '1248741264.66piwanow': {
         setTattooChest: (20, -1.6491513252258301, -2.2497103214263916, 9.5103702545166016, 349.6502685546875, 0),
         setTattooZone4: (73, 0.0, 0.0, 1.0, 0.0, 0),
-        setName: PLocalizer.NPCNames['1248741264.66piwanow'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -20593,7 +20255,6 @@ NPC_LIST = {
         setClothesBotColor: (18, 0, 0) },
     '1248741264.66piwanow_type': 'Townsperson',
     '1249597696.0jloehrle0': {
-        setName: PLocalizer.NPCNames['1249597696.0jloehrle0'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: 0.0,
@@ -20653,7 +20314,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1249597696.0jloehrle0_type': 'Townsperson',
     '1249599104.0jloehrle': {
-        setName: PLocalizer.NPCNames['1249599104.0jloehrle'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -20713,7 +20373,6 @@ NPC_LIST = {
         setClothesBotColor: (14, 0, 0) },
     '1249599104.0jloehrle_type': 'Townsperson',
     '1249601792.0jloehrle': {
-        setName: PLocalizer.NPCNames['1249601792.0jloehrle'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -20773,7 +20432,6 @@ NPC_LIST = {
         setClothesBotColor: (2, 0, 0) },
     '1249601792.0jloehrle_type': 'Townsperson',
     '1249602048.0jloehrle': {
-        setName: PLocalizer.NPCNames['1249602048.0jloehrle'],
         setGender: 'f',
         setBodyShape: 5,
         setBodyHeight: 0.20000000298023224,
@@ -20833,7 +20491,6 @@ NPC_LIST = {
         setClothesBotColor: (9, 0, 0) },
     '1249602048.0jloehrle_type': 'Townsperson',
     '1249602432.0jloehrle': {
-        setName: PLocalizer.NPCNames['1249602432.0jloehrle'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: -0.20000000298023224,
@@ -20893,7 +20550,6 @@ NPC_LIST = {
         setClothesBotColor: (9, 0, 0) },
     '1249602432.0jloehrle_type': 'Townsperson',
     '1249602688.0jloehrle': {
-        setName: PLocalizer.NPCNames['1249602688.0jloehrle'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: -0.20000000298023224,
@@ -20953,7 +20609,6 @@ NPC_LIST = {
         setClothesBotColor: (16, 0, 0) },
     '1249602688.0jloehrle_type': 'Townsperson',
     '1249602944.0jloehrle': {
-        setName: PLocalizer.NPCNames['1249602944.0jloehrle'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -21013,7 +20668,6 @@ NPC_LIST = {
         setClothesBotColor: (16, 0, 0) },
     '1249602944.0jloehrle_type': 'Townsperson',
     '1249603200.0jloehrle': {
-        setName: PLocalizer.NPCNames['1249603200.0jloehrle'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -21073,7 +20727,6 @@ NPC_LIST = {
         setClothesBotColor: (16, 0, 0) },
     '1249603200.0jloehrle_type': 'Townsperson',
     '1249603328.0jloehrle': {
-        setName: PLocalizer.NPCNames['1249603328.0jloehrle'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: 0.0,
@@ -21134,7 +20787,6 @@ NPC_LIST = {
     '1249603328.0jloehrle_type': 'Townsperson',
     '1251756860.22dxschafe': {
         setTattooChest: (0, -0.16492146253585815, -0.51570677757263184, 5.2356019020080566, 0.0, 0),
-        setName: PLocalizer.NPCNames['1251756860.22dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.20000000298023224,
@@ -21194,7 +20846,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1251756860.22dxschafe_type': 'Townsperson',
     '1251763534.81dxschafe': {
-        setName: PLocalizer.NPCNames['1251763534.81dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -21254,7 +20905,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 8, 0) },
     '1251763534.81dxschafe_type': 'Townsperson',
     '1251763835.16dxschafe': {
-        setName: PLocalizer.NPCNames['1251763835.16dxschafe'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: -0.20000000298023224,
@@ -21314,7 +20964,6 @@ NPC_LIST = {
         setClothesBotColor: (15, 0, 0) },
     '1251763835.16dxschafe_type': 'Townsperson',
     '1251856397.47dxschafe': {
-        setName: PLocalizer.NPCNames['1251856397.47dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -21382,7 +21031,6 @@ NPC_LIST = {
         setJewelryZone6: (0, 1, 0),
         setJewelryZone7: (9, 1, 0),
         setJewelryZone8: (2, 1, 3),
-        setName: PLocalizer.NPCNames['1251857290.22dxschafe'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.20000000298023224,
@@ -21448,7 +21096,6 @@ NPC_LIST = {
         setJewelryZone2: (5, 1, 1),
         setJewelryZone3: (2, 1, 0),
         setJewelryZone5: (5, 1, 0),
-        setName: PLocalizer.NPCNames['1251913179.72dxschafe'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: -0.20000000298023224,
@@ -21512,7 +21159,6 @@ NPC_LIST = {
         setJewelryZone2: (5, 1, 1),
         setJewelryZone7: (1, 1, 0),
         setJewelryZone8: (4, 0, 4),
-        setName: PLocalizer.NPCNames['1251914925.69dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -21576,7 +21222,6 @@ NPC_LIST = {
         setJewelryZone2: (7, 1, 1),
         setJewelryZone7: (4, 0, 3),
         setJewelryZone8: (6, 7, 7),
-        setName: PLocalizer.NPCNames['1252090328.12dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.20000000298023224,
@@ -21641,7 +21286,6 @@ NPC_LIST = {
         setJewelryZone3: (2, 0, 0),
         setJewelryZone7: (8, 0, 0),
         setJewelryZone8: (2, 1, 6),
-        setName: PLocalizer.NPCNames['1252092367.79dxschafe'],
         setGender: 'f',
         setBodyShape: 5,
         setBodyHeight: 0.20000000298023224,
@@ -21701,7 +21345,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1252092367.79dxschafe_type': 'Townsperson',
     '1255029860.03dxschafe': {
-        setName: PLocalizer.NPCNames['1255029860.03dxschafe'],
         setGender: 'm',
         setBodyShape: 0,
         setBodyHeight: 0.0,
@@ -21761,7 +21404,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1255029860.03dxschafe_type': 'Townsperson',
     '1255029876.83dxschafe': {
-        setName: PLocalizer.NPCNames['1255029876.83dxschafe'],
         setGender: 'm',
         setBodyShape: 1,
         setBodyHeight: 0.0,
@@ -21821,7 +21463,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1255029876.83dxschafe_type': 'Townsperson',
     '1255029886.73dxschafe': {
-        setName: PLocalizer.NPCNames['1255029886.73dxschafe'],
         setGender: 'm',
         setBodyShape: 2,
         setBodyHeight: 0.0,
@@ -21881,7 +21522,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1255029886.73dxschafe_type': 'Townsperson',
     '1255029910.67dxschafe': {
-        setName: PLocalizer.NPCNames['1255029910.67dxschafe'],
         setGender: 'm',
         setBodyShape: 3,
         setBodyHeight: 0.0,
@@ -21941,7 +21581,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1255029910.67dxschafe_type': 'Townsperson',
     '1255029916.88dxschafe': {
-        setName: PLocalizer.NPCNames['1255029916.88dxschafe'],
         setGender: 'm',
         setBodyShape: 4,
         setBodyHeight: 0.0,
@@ -22001,7 +21640,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1255029916.88dxschafe_type': 'Townsperson',
     '1255029948.89dxschafe': {
-        setName: PLocalizer.NPCNames['1255029948.89dxschafe'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: 0.0,
@@ -22061,7 +21699,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1255029948.89dxschafe_type': 'Townsperson',
     '1255029956.77dxschafe': {
-        setName: PLocalizer.NPCNames['1255029956.77dxschafe'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -22121,7 +21758,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1255029956.77dxschafe_type': 'Townsperson',
     '1255037912.05dxschafe': {
-        setName: PLocalizer.NPCNames['1255037912.05dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -22181,7 +21817,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1255037912.05dxschafe_type': 'Townsperson',
     '1255037925.48dxschafe': {
-        setName: PLocalizer.NPCNames['1255037925.48dxschafe'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -22241,7 +21876,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1255037925.48dxschafe_type': 'Townsperson',
     '1255037932.34dxschafe': {
-        setName: PLocalizer.NPCNames['1255037932.34dxschafe'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -22301,7 +21935,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1255037932.34dxschafe_type': 'Townsperson',
     '1255038144.3dxschafe': {
-        setName: PLocalizer.NPCNames['1255038144.3dxschafe'],
         setGender: 'f',
         setBodyShape: 0,
         setBodyHeight: 0.0,
@@ -22361,7 +21994,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1255038144.3dxschafe_type': 'Townsperson',
     '1255038147.83dxschafe': {
-        setName: PLocalizer.NPCNames['1255038147.83dxschafe'],
         setGender: 'f',
         setBodyShape: 1,
         setBodyHeight: 0.0,
@@ -22421,7 +22053,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1255038147.83dxschafe_type': 'Townsperson',
     '1255038150.81dxschafe': {
-        setName: PLocalizer.NPCNames['1255038150.81dxschafe'],
         setGender: 'f',
         setBodyShape: 2,
         setBodyHeight: 0.0,
@@ -22481,7 +22112,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1255038150.81dxschafe_type': 'Townsperson',
     '1255038153.66dxschafe': {
-        setName: PLocalizer.NPCNames['1255038153.66dxschafe'],
         setGender: 'f',
         setBodyShape: 4,
         setBodyHeight: 0.0,
@@ -22541,7 +22171,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1255038153.66dxschafe_type': 'Townsperson',
     '1255038155.14dxschafe': {
-        setName: PLocalizer.NPCNames['1255038155.14dxschafe'],
         setGender: 'f',
         setBodyShape: 3,
         setBodyHeight: 0.0,
@@ -22601,7 +22230,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1255038155.14dxschafe_type': 'Townsperson',
     '1255038202.58dxschafe': {
-        setName: PLocalizer.NPCNames['1255038202.58dxschafe'],
         setGender: 'f',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -22661,7 +22289,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1255038202.58dxschafe_type': 'Townsperson',
     '1255038203.62dxschafe': {
-        setName: PLocalizer.NPCNames['1255038203.62dxschafe'],
         setGender: 'f',
         setBodyShape: 5,
         setBodyHeight: 0.0,
@@ -22721,7 +22348,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1255038203.62dxschafe_type': 'Townsperson',
     '1255038204.59dxschafe': {
-        setName: PLocalizer.NPCNames['1255038204.59dxschafe'],
         setGender: 'f',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -22781,7 +22407,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1255038204.59dxschafe_type': 'Townsperson',
     '1255038205.52dxschafe': {
-        setName: PLocalizer.NPCNames['1255038205.52dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -22841,7 +22466,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1255038205.52dxschafe_type': 'Townsperson',
     '1255038206.44dxschafe': {
-        setName: PLocalizer.NPCNames['1255038206.44dxschafe'],
         setGender: 'f',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -22901,7 +22525,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1255038206.44dxschafe_type': 'Townsperson',
     '1260979741.83Admin': {
-        setName: PLocalizer.NPCNames['1260979741.83Admin'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.075095154345035553,
@@ -22963,7 +22586,6 @@ NPC_LIST = {
     '1260985636.31Admin': {
         setTattooChest: (0, -1.6018226146697998, -7.1829071044921875, 22.698019027709961, 0.0, 0),
         setTattooZone3: (16, -10.066378593444824, 2.8672077655792236, 12.65822696685791, 271.10000610351562, 0),
-        setName: PLocalizer.NPCNames['1260985636.31Admin'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -23026,7 +22648,6 @@ NPC_LIST = {
         setTattooChest: (0, 0.0, 0.0, 1, 0, 0),
         setTattooZone2: (0, 0.55659931898117065, 23.158727645874023, 40.801422119140625, 186.61968994140625, 0),
         setJewelryZone1: (1, 8, 8),
-        setName: PLocalizer.NPCNames['1261093737.49laura'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -23089,7 +22710,6 @@ NPC_LIST = {
         setTattooChest: (0, 0.0, 0.0, 1, 0, 0),
         setTattooZone2: (0, -6.8770933151245117, 2.9284453392028809, 12.65822696685791, 271.10000610351562, 0),
         setTattooZone3: (24, -10.044642448425293, 1.7352354526519775, 12.65822696685791, 271.10000610351562, 0),
-        setName: PLocalizer.NPCNames['1261094727.21laura'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.14011962711811066,
@@ -23149,7 +22769,6 @@ NPC_LIST = {
         setClothesBotColor: (15, 4, 0) },
     '1261094727.21laura_type': 'Townsperson',
     '1261095633.48laura': {
-        setName: PLocalizer.NPCNames['1261095633.48laura'],
         setGender: 'f',
         setBodyShape: 8,
         setBodyHeight: 0.0,
@@ -23212,7 +22831,6 @@ NPC_LIST = {
         setTattooChest: (0, 0.0, 0.0, 1, 0, 0),
         setTattooZone4: (131, -2.1533420085906982, -2.7357182502746582, 7.0538125038146973, 0.0, 0),
         setJewelryZone2: (1, 8, 0),
-        setName: PLocalizer.NPCNames['1261096000.76laura'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: -0.12135009467601776,
@@ -23272,7 +22890,6 @@ NPC_LIST = {
         setClothesBotColor: (8, 16, 0) },
     '1261096000.76laura_type': 'Townsperson',
     '1271974738.71akelts': {
-        setName: PLocalizer.NPCNames['1271974738.71akelts'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.079629279673099518,
@@ -23332,7 +22949,6 @@ NPC_LIST = {
         setClothesBotColor: (4, 4, 0) },
     '1271974738.71akelts_type': 'Townsperson',
     '1271976250.93akelts': {
-        setName: PLocalizer.NPCNames['1271976250.93akelts'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.0,
@@ -23392,7 +23008,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1271976250.93akelts_type': 'Townsperson',
     '1274739846.83gcarranza': {
-        setName: PLocalizer.NPCNames['1274739846.83gcarranza'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -23455,7 +23070,6 @@ NPC_LIST = {
         setTattooChest: (0, 0.0, 0.0, 1, 0, 0),
         setTattooZone2: (102, -6.8515558242797852, 1.5984511375427246, 12.65822696685791, 271.10000610351562, 0),
         setTattooZone3: (0, -9.2830171585083008, 5.3769068717956543, 12.65822696685791, 271.10000610351562, 0),
-        setName: PLocalizer.NPCNames['1274819841.73gcarranza'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.0,
@@ -23517,7 +23131,6 @@ NPC_LIST = {
     '1274825376.01gcarranza': {
         setTattooChest: (0, 0.0, 0.0, 1, 0, 0),
         setTattooZone2: (55, 12.323816299438477, 0.12833395600318909, 20.008323669433594, 106.47589111328125, 0),
-        setName: PLocalizer.NPCNames['1274825376.01gcarranza'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.20000000298023224,
@@ -23580,7 +23193,6 @@ NPC_LIST = {
         setTattooChest: (51, 15.784311294555664, -17.624912261962891, 22.417398452758789, 73.869842529296875, 0),
         setTattooZone2: (12, 14.134038925170898, 0.033180654048919678, 18.385068893432617, 152.90830993652344, 0),
         setTattooZone3: (1, -8.9832305908203125, 12.952536582946777, 15.151515007019043, 271.10000610351562, 0),
-        setName: PLocalizer.NPCNames['1274825967.94gcarranza'],
         setGender: 'f',
         setBodyShape: 8,
         setBodyHeight: 0.20000000298023224,
@@ -23640,7 +23252,6 @@ NPC_LIST = {
         setClothesBotColor: (19, 0, 0) },
     '1274825967.94gcarranza_type': 'Townsperson',
     '1274889994.04gcarranza': {
-        setName: PLocalizer.NPCNames['1274889994.04gcarranza'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: -0.022623730823397636,
@@ -23700,7 +23311,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 15, 0) },
     '1274889994.04gcarranza_type': 'Townsperson',
     '1274890958.87gcarranza': {
-        setName: PLocalizer.NPCNames['1274890958.87gcarranza'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: -0.20000000298023224,
@@ -23760,7 +23370,6 @@ NPC_LIST = {
         setClothesBotColor: (16, 16, 0) },
     '1274890958.87gcarranza_type': 'Townsperson',
     '1274892762.3gcarranza': {
-        setName: PLocalizer.NPCNames['1274892762.3gcarranza'],
         setGender: 'f',
         setBodyShape: 5,
         setBodyHeight: 0.0,
@@ -23820,7 +23429,6 @@ NPC_LIST = {
         setClothesBotColor: (8, 0, 0) },
     '1274892762.3gcarranza_type': 'Townsperson',
     '1274894542.99gcarranza': {
-        setName: PLocalizer.NPCNames['1274894542.99gcarranza'],
         setGender: 'm',
         setBodyShape: 6,
         setBodyHeight: 0.076789908111095428,
@@ -23883,7 +23491,6 @@ NPC_LIST = {
         setTattooChest: (0, 0.0, 0.0, 1, 0, 0),
         setTattooZone2: (2, -6.5156784057617187, 1.5147409439086914, 12.65822696685791, 271.10000610351562, 0),
         setTattooZone3: (0, -10.066378593444824, 2.8672077655792236, 12.65822696685791, 271.10000610351562, 0),
-        setName: PLocalizer.NPCNames['1274906957.35gcarranza'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.20000000298023224,
@@ -23943,7 +23550,6 @@ NPC_LIST = {
         setClothesBotColor: (15, 14, 0) },
     '1274906957.35gcarranza_type': 'Townsperson',
     '1274908180.63gcarranza': {
-        setName: PLocalizer.NPCNames['1274908180.63gcarranza'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.077170424163341522,
@@ -24003,7 +23609,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 20, 0) },
     '1274908180.63gcarranza_type': 'Townsperson',
     '1274909359.61gcarranza': {
-        setName: PLocalizer.NPCNames['1274909359.61gcarranza'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.20000000298023224,
@@ -24063,7 +23668,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1274909359.61gcarranza_type': 'Townsperson',
     '1277832852.05dxschafe': {
-        setName: PLocalizer.NPCNames['1277832852.05dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -24123,7 +23727,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277832852.05dxschafe_type': 'Townsperson',
     '1277832913.08dxschafe': {
-        setName: PLocalizer.NPCNames['1277832913.08dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -24183,7 +23786,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277832913.08dxschafe_type': 'Townsperson',
     '1277832916.36dxschafe': {
-        setName: PLocalizer.NPCNames['1277832916.36dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -24243,7 +23845,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277832916.36dxschafe_type': 'Townsperson',
     '1277832917.82dxschafe': {
-        setName: PLocalizer.NPCNames['1277832917.82dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -24303,7 +23904,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277832917.82dxschafe_type': 'Townsperson',
     '1277832921.32dxschafe': {
-        setName: PLocalizer.NPCNames['1277832921.32dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -24363,7 +23963,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277832921.32dxschafe_type': 'Townsperson',
     '1277832922.44dxschafe': {
-        setName: PLocalizer.NPCNames['1277832922.44dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -24423,7 +24022,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277832922.44dxschafe_type': 'Townsperson',
     '1277832923.36dxschafe': {
-        setName: PLocalizer.NPCNames['1277832923.36dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -24483,7 +24081,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277832923.36dxschafe_type': 'Townsperson',
     '1277832924.25dxschafe': {
-        setName: PLocalizer.NPCNames['1277832924.25dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -24543,7 +24140,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277832924.25dxschafe_type': 'Townsperson',
     '1277832925.16dxschafe': {
-        setName: PLocalizer.NPCNames['1277832925.16dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -24603,7 +24199,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277832925.16dxschafe_type': 'Townsperson',
     '1277832926.05dxschafe': {
-        setName: PLocalizer.NPCNames['1277832926.05dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -24663,7 +24258,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277832926.05dxschafe_type': 'Townsperson',
     '1277832927.1dxschafe': {
-        setName: PLocalizer.NPCNames['1277832927.1dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -24723,7 +24317,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277832927.1dxschafe_type': 'Townsperson',
     '1277833028.64dxschafe': {
-        setName: PLocalizer.NPCNames['1277833028.64dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -24783,7 +24376,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277833028.64dxschafe_type': 'Townsperson',
     '1277833523.94dxschafe': {
-        setName: PLocalizer.NPCNames['1277833523.94dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -24843,7 +24435,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277833523.94dxschafe_type': 'Townsperson',
     '1277833525.66dxschafe': {
-        setName: PLocalizer.NPCNames['1277833525.66dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -24903,7 +24494,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277833525.66dxschafe_type': 'Townsperson',
     '1277833526.86dxschafe': {
-        setName: PLocalizer.NPCNames['1277833526.86dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -24963,7 +24553,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277833526.86dxschafe_type': 'Townsperson',
     '1277833527.95dxschafe': {
-        setName: PLocalizer.NPCNames['1277833527.95dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -25023,7 +24612,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277833527.95dxschafe_type': 'Townsperson',
     '1277833528.99dxschafe': {
-        setName: PLocalizer.NPCNames['1277833528.99dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -25083,7 +24671,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277833528.99dxschafe_type': 'Townsperson',
     '1277833530.07dxschafe': {
-        setName: PLocalizer.NPCNames['1277833530.07dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -25143,7 +24730,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277833530.07dxschafe_type': 'Townsperson',
     '1277833531.13dxschafe': {
-        setName: PLocalizer.NPCNames['1277833531.13dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -25203,7 +24789,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277833531.13dxschafe_type': 'Townsperson',
     '1277833532.22dxschafe': {
-        setName: PLocalizer.NPCNames['1277833532.22dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -25263,7 +24848,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277833532.22dxschafe_type': 'Townsperson',
     '1277833533.36dxschafe': {
-        setName: PLocalizer.NPCNames['1277833533.36dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -25323,7 +24907,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277833533.36dxschafe_type': 'Townsperson',
     '1277833534.42dxschafe': {
-        setName: PLocalizer.NPCNames['1277833534.42dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -25383,7 +24966,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277833534.42dxschafe_type': 'Townsperson',
     '1277833535.72dxschafe': {
-        setName: PLocalizer.NPCNames['1277833535.72dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -25443,7 +25025,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277833535.72dxschafe_type': 'Townsperson',
     '1277833536.83dxschafe': {
-        setName: PLocalizer.NPCNames['1277833536.83dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -25503,7 +25084,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277833536.83dxschafe_type': 'Townsperson',
     '1277843620.94dxschafe': {
-        setName: PLocalizer.NPCNames['1277843620.94dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -25563,7 +25143,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277843620.94dxschafe_type': 'Townsperson',
     '1277845266.38dxschafe': {
-        setName: PLocalizer.NPCNames['1277845266.38dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -25623,7 +25202,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277845266.38dxschafe_type': 'Townsperson',
     '1277849728.55dxschafe': {
-        setName: PLocalizer.NPCNames['1277849728.55dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -25683,7 +25261,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277849728.55dxschafe_type': 'Townsperson',
     '1277850061.07dxschafe': {
-        setName: PLocalizer.NPCNames['1277850061.07dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -25743,7 +25320,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277850061.07dxschafe_type': 'Townsperson',
     '1277853033.94dxschafe': {
-        setName: PLocalizer.NPCNames['1277853033.94dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -25803,7 +25379,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277853033.94dxschafe_type': 'Townsperson',
     '1277855750.58dxschafe': {
-        setName: PLocalizer.NPCNames['1277855750.58dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -25863,7 +25438,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277855750.58dxschafe_type': 'Townsperson',
     '1277924209.84dxschafe': {
-        setName: PLocalizer.NPCNames['1277924209.84dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -25923,7 +25497,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277924209.84dxschafe_type': 'Townsperson',
     '1277925110.22dxschafe': {
-        setName: PLocalizer.NPCNames['1277925110.22dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -25983,7 +25556,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277925110.22dxschafe_type': 'Townsperson',
     '1277929694.5dxschafe': {
-        setName: PLocalizer.NPCNames['1277929694.5dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -26043,7 +25615,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277929694.5dxschafe_type': 'Townsperson',
     '1277929712.11dxschafe': {
-        setName: PLocalizer.NPCNames['1277929712.11dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -26103,7 +25674,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277929712.11dxschafe_type': 'Townsperson',
     '1277929716.66dxschafe': {
-        setName: PLocalizer.NPCNames['1277929716.66dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -26163,7 +25733,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277929716.66dxschafe_type': 'Townsperson',
     '1277929721.28dxschafe': {
-        setName: PLocalizer.NPCNames['1277929721.28dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -26223,7 +25792,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277929721.28dxschafe_type': 'Townsperson',
     '1277929725.03dxschafe': {
-        setName: PLocalizer.NPCNames['1277929725.03dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -26283,7 +25851,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277929725.03dxschafe_type': 'Townsperson',
     '1277929728.64dxschafe': {
-        setName: PLocalizer.NPCNames['1277929728.64dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -26343,7 +25910,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277929728.64dxschafe_type': 'Townsperson',
     '1277931989.49dxschafe': {
-        setName: PLocalizer.NPCNames['1277931989.49dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -26403,7 +25969,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277931989.49dxschafe_type': 'Townsperson',
     '1277932006.26dxschafe': {
-        setName: PLocalizer.NPCNames['1277932006.26dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -26463,7 +26028,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277932006.26dxschafe_type': 'Townsperson',
     '1277932013.42dxschafe': {
-        setName: PLocalizer.NPCNames['1277932013.42dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -26523,7 +26087,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277932013.42dxschafe_type': 'Townsperson',
     '1277932017.96dxschafe': {
-        setName: PLocalizer.NPCNames['1277932017.96dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -26583,7 +26146,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277932017.96dxschafe_type': 'Townsperson',
     '1277932022.68dxschafe': {
-        setName: PLocalizer.NPCNames['1277932022.68dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -26643,7 +26205,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277932022.68dxschafe_type': 'Townsperson',
     '1277932025.9dxschafe': {
-        setName: PLocalizer.NPCNames['1277932025.9dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -26703,7 +26264,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277932025.9dxschafe_type': 'Townsperson',
     '1277932153.08dxschafe': {
-        setName: PLocalizer.NPCNames['1277932153.08dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -26763,7 +26323,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277932153.08dxschafe_type': 'Townsperson',
     '1277932165.46dxschafe': {
-        setName: PLocalizer.NPCNames['1277932165.46dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -26825,7 +26384,6 @@ NPC_LIST = {
     '1277932280.91gcarranza': {
         setTattooChest: (128, 0.17619666457176208, -2.7477149963378906, 9.5649833679199219, 0.0, 0),
         setJewelryZone1: (2, 2, 0),
-        setName: PLocalizer.NPCNames['1277932280.91gcarranza'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: -0.20000000298023224,
@@ -26885,7 +26443,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277932280.91gcarranza_type': 'Townsperson',
     '1277935279.66dxschafe': {
-        setName: PLocalizer.NPCNames['1277935279.66dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -26945,7 +26502,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277935279.66dxschafe_type': 'Townsperson',
     '1277935295.31dxschafe': {
-        setName: PLocalizer.NPCNames['1277935295.31dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -27005,7 +26561,6 @@ NPC_LIST = {
         setClothesBotColor: (13, 0, 0) },
     '1277935295.31dxschafe_type': 'Townsperson',
     '1277938375.9dxschafe': {
-        setName: PLocalizer.NPCNames['1277938375.9dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -27065,7 +26620,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277938375.9dxschafe_type': 'Townsperson',
     '1277938401.4dxschafe': {
-        setName: PLocalizer.NPCNames['1277938401.4dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -27125,7 +26679,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277938401.4dxschafe_type': 'Townsperson',
     '1277940155.88dxschafe': {
-        setName: PLocalizer.NPCNames['1277940155.88dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -27185,7 +26738,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277940155.88dxschafe_type': 'Townsperson',
     '1277940170.29dxschafe': {
-        setName: PLocalizer.NPCNames['1277940170.29dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -27245,7 +26797,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1277940170.29dxschafe_type': 'Townsperson',
     '1277941714.21robrusso': {
-        setName: PLocalizer.NPCNames['1277941714.21robrusso'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -27309,7 +26860,6 @@ NPC_LIST = {
         setTattooZone4: (77, -0.022581279277801514, 0.12193587422370911, 1.0, 0.0, 0),
         setJewelryZone3: (2, 2, 2),
         setJewelryZone4: (0, 2, 2),
-        setName: PLocalizer.NPCNames['1279651185.6gcarranza'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -27369,7 +26919,6 @@ NPC_LIST = {
         setClothesBotColor: (14, 14, 0) },
     '1279651185.6gcarranza_type': 'Townsperson',
     '1280875709.87dxschafe': {
-        setName: PLocalizer.NPCNames['1280875709.87dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -27429,7 +26978,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1280875709.87dxschafe_type': 'Townsperson',
     '1280875871.29dxschafe': {
-        setName: PLocalizer.NPCNames['1280875871.29dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -27489,7 +27037,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1280875871.29dxschafe_type': 'Townsperson',
     '1280876353.51dxschafe': {
-        setName: PLocalizer.NPCNames['1280876353.51dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -27549,7 +27096,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1280876353.51dxschafe_type': 'Townsperson',
     '1280876588.5dxschafe': {
-        setName: PLocalizer.NPCNames['1280876588.5dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -27609,7 +27155,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1280876588.5dxschafe_type': 'Townsperson',
     '1280877008.52dxschafe': {
-        setName: PLocalizer.NPCNames['1280877008.52dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -27669,7 +27214,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1280877008.52dxschafe_type': 'Townsperson',
     '1280877290.27dxschafe': {
-        setName: PLocalizer.NPCNames['1280877290.27dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -27729,7 +27273,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 5, 0) },
     '1280877290.27dxschafe_type': 'Townsperson',
     '1280877636.58dxschafe': {
-        setName: PLocalizer.NPCNames['1280877636.58dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -27789,7 +27332,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1280877636.58dxschafe_type': 'Townsperson',
     '1280877967.31dxschafe': {
-        setName: PLocalizer.NPCNames['1280877967.31dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -27853,7 +27395,6 @@ NPC_LIST = {
         setTattooZone2: (130, -6.6753730773925781, 1.7661997079849243, 12.65822696685791, 271.10000610351562, 0),
         setTattooZone3: (131, -10.326774597167969, 2.4137015342712402, 12.65822696685791, 271.10000610351562, 0),
         setTattooZone4: (106, -0.95190107822418213, 4.2976551055908203, 7.2596516609191895, 239.76019287109375, 0),
-        setName: PLocalizer.NPCNames['1281130350.14dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -27913,7 +27454,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1281130350.14dxschafe_type': 'Townsperson',
     '1281653252.78dxschafe': {
-        setName: PLocalizer.NPCNames['1281653252.78dxschafe'],
         setGender: 'm',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -27973,7 +27513,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1281653252.78dxschafe_type': 'Townsperson',
     '1281653262.7dxschafe': {
-        setName: PLocalizer.NPCNames['1281653262.7dxschafe'],
         setGender: 'f',
         setBodyShape: 7,
         setBodyHeight: 0.0,
@@ -28033,7 +27572,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1281653262.7dxschafe_type': 'Townsperson',
     '1285622621.56robrusso': {
-        setName: PLocalizer.NPCNames['1285622621.56robrusso'],
         setGender: 'm',
         setBodyShape: 5,
         setBodyHeight: 0.057350039482116699,
@@ -28096,7 +27634,6 @@ NPC_LIST = {
         setTattooChest: (77, -0.50373637676239014, 1.5553961992263794, 3.9126956462860107, 253.74298095703125, 0),
         setTattooZone4: (77, -0.58547019958496094, 0.06688353419303894, 1.5587131977081299, 343.67446899414062, 0),
         setJewelryZone2: (4, 6, 0),
-        setName: PLocalizer.NPCNames['1286922173.8gcarranza'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.063921928405761719,
@@ -28161,7 +27698,6 @@ NPC_LIST = {
         setTattooZone4: (65, -1.8476035594940186, -0.89847028255462646, 3.412595272064209, 0.0, 0),
         setJewelryZone1: (17, 0, 0),
         setJewelryZone4: (2, 2, 0),
-        setName: PLocalizer.NPCNames['1286984549.68gcarranza'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.20000000298023224,
@@ -28227,7 +27763,6 @@ NPC_LIST = {
         setJewelryZone2: (1, 6, 6),
         setJewelryZone4: (3, 2, 6),
         setJewelryZone5: (0, 6, 0),
-        setName: PLocalizer.NPCNames['1286991539.99gcarranza'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: -0.20000000298023224,
@@ -28290,7 +27825,6 @@ NPC_LIST = {
         setTattooChest: (63, -0.23284733295440674, -4.1225814819335938, 11.862825393676758, 0.0, 0),
         setTattooZone4: (72, -0.015034198760986328, -0.015034198760986328, 1.0, 0.0, 0),
         setJewelryZone1: (12, 6, 0),
-        setName: PLocalizer.NPCNames['1286991877.14gcarranza'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.20000000298023224,
@@ -28350,7 +27884,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1286991877.14gcarranza_type': 'Townsperson',
     '1291327895.46jloehrle': {
-        setName: PLocalizer.NPCNames['1291327895.46jloehrle'],
         setGender: 'm',
         setBodyShape: 8,
         setBodyHeight: 0.20000000298023224,
@@ -28410,7 +27943,6 @@ NPC_LIST = {
         setClothesBotColor: (0, 0, 0) },
     '1291327895.46jloehrle_type': 'Ghost',
     '1302895055.78jloehrle': {
-        setName: PLocalizer.NPCNames['1302895055.78jloehrle'],
         setGender: 'm',
         setBodyShape: 9,
         setBodyHeight: 0.40000000298023225,

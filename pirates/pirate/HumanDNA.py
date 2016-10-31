@@ -5,7 +5,6 @@ from direct.directnotify.DirectNotifyGlobal import *
 from direct.distributed.PyDatagram import PyDatagram
 from direct.distributed.PyDatagramIterator import PyDatagramIterator
 
-from otp.avatar import AvatarDNA
 from pirates.makeapirate import ClothingGlobals
 from pirates.pirate import BodyDefs
 from pirates.inventory.ItemConstants import DYE_COLORS
@@ -452,11 +451,10 @@ class PirateClothes:
         return string
 
 
-class HumanDNA(AvatarDNA.AvatarDNA):
+class HumanDNA(object):
+
     def __init__(self, gender='m', bodyIndex=None):
-        self.type = 'pirate'
         self.tutorial = 0
-        self.name = ''
         self.gender = gender
         if bodyIndex == None:
             if BodyDefs.BodyChoiceGenderDict.get(self.gender):
@@ -509,22 +507,18 @@ class HumanDNA(AvatarDNA.AvatarDNA):
             self.head.texture = 0
 
     def copy(self, other):
-        self.type = other.type
         self.tutorial = other.tutorial
-        self.name = other.name
         self.gender = other.gender
         self.body.copy(other.body)
         self.head.copy(other.head)
         self.clothes.copy(other.clothes)
 
     def __str__(self):
-        string = 'type = %s\n' % self.type + 'name = %s\n' % self.name + 'tutorial = %s\n' % self.tutorial + 'gender = %s\n' % self.gender + 'head = %s\n' % self.head + 'body = %s\n' % self.body + 'clothes = %s\n' % self.clothes
-        return string
+        return 'tutorial = %s\n' % self.tutorial + 'gender = %s\n' % self.gender + 'head = %s\n' % self.head + 'body = %s\n' % self.body + 'clothes = %s\n' % self.clothes
 
     def saveAsNPCDict(self):
         d = {}
         d[HumanDNA.setTutorial] = self.tutorial
-        d[HumanDNA.setName] = self.name
         d[HumanDNA.setGender] = self.gender
         d[HumanDNA.setBodyShape] = self.body.shape
         d[HumanDNA.setBodyHeight] = self.body.height
@@ -791,10 +785,6 @@ class HumanDNA(AvatarDNA.AvatarDNA):
 
     def setTutorial(self, val):
         self.tutorial = val
-
-
-    def setName(self, val):
-        self.name = val
 
 
     def setGender(self, val):
@@ -1167,10 +1157,6 @@ class HumanDNA(AvatarDNA.AvatarDNA):
         return self.tutorial
 
 
-    def getDNAName(self):
-        return self.name
-
-
     def getGender(self):
         return self.gender
 
@@ -1455,14 +1441,6 @@ class HumanDNA(AvatarDNA.AvatarDNA):
         self.hairColor = 1
         self.hairColor = 2
         self.skinColor = 0
-
-
-    def setNPCType(self):
-        self.type = 'npc'
-
-
-    def getType(self):
-        return self.type
 
 
     def getBuild(self):

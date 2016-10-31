@@ -296,7 +296,7 @@ class FancyLoadingScreen(DirectObject.DirectObject):
         self.root = self.topLock.attachNewNode('loadingScreenRoot')
         self.root.setZ(-1)
         self.root.stash()
-        self.model = loader.loadModel('models/gui/pir_m_gui_gen_loadScreen.bam')
+        self.model = loader.loadModel('models/gui/pir_m_gui_gen_loadScreen')
         self.model.setP(90)
         self.model.reparentTo(self.root)
         cm = CardMaker('backdrop')

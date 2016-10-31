@@ -8,6 +8,7 @@ from direct.distributed.DistributedObjectGlobalUD import DistributedObjectGlobal
 from direct.directnotify.DirectNotifyGlobal import directNotify
 from direct.distributed.PyDatagram import *
 from direct.fsm.FSM import FSM
+from otp.otpbase import OTPGlobals
 from sys import platform
 import traceback
 import hashlib
@@ -40,28 +41,6 @@ NAME_APR = 2
 NAME_EXT = 3
 NAME_STATES = {NAME_PEN: 'PENDING', NAME_REJ: 'OPEN', NAME_APR: 'APPROVED'}
 
-def rejectConfig(issue, securityIssue=True, retarded=True):
-    print
-    print
-    print 'Lemme get this straight....'
-    print 'You are trying to use remote account database type...'
-    print 'However,', issue + '!!!!'
-    if securityIssue:
-        print 'Do you want this server to get hacked?'
-    if retarded:
-        print '"Either down\'s or autism"\n  - JohnnyDaPirate, 2015'
-    print 'Go fix that!'
-    exit()
-
-def entropy(string):
-    prob = [float(string.count(c)) / len(string) for c in dict.fromkeys(list(string))]
-    entropy = -sum([p * math.log(p) / math.log(2.0) for p in prob])
-    return entropy
-
-def entropyIdeal(length):
-    prob = 1.0 / length
-    return -length * prob * math.log(prob) / math.log(2.0)
-
 # Account db type can be:
 # 1. developer - This is for general development with username as token.
 # 2. remote - This decodes the token. Used for production.
@@ -69,38 +48,15 @@ def entropyIdeal(length):
 accountDBType = config.GetString('accountdb-type', 'developer')
 
 if sys.platform == 'linux2':
-    accountDBType = 'remotePOR'
+    accountDBType = 'remote'
 
 accountServerTokenLink = config.GetString('account-server-token-link', '')
-accountServerSecret = config.GetString('account-server-secret', 'dev')
 
-__keyfile = '../deployment/site/loginsecret.key'
-if os.path.isfile(__keyfile) and config.GetBool('want-login-secret-from-file', True):
-    with open(__keyfile, 'rb') as f:
-        accountServerSecret = f.read().strip()
-
-accountServerHashAlgo = config.GetString('account-server-hash-algo', 'sha256')
-
-hashAlgo = getattr(hashlib, accountServerHashAlgo, None)
-if not hashAlgo:
-    rejectConfig('%s is not a valid hash algo' % accountServerHashAlgo, securityIssue=False)
-
-hashSize = len(hashAlgo().digest())
-
-if accountDBType == 'remote':
-    if accountServerSecret == 'dev':
-        rejectConfig('you have not changed the secret in config/local.prc')
-
-    if len(accountServerSecret) < 16:
-        rejectConfig('the secret is too small! Make it 16+ bytes', retarded=False)
-
-    secretLength = len(accountServerSecret)
-    ideal = entropyIdeal(secretLength) / 2
-    entropy = entropy(accountServerSecret)
-    if entropy < ideal:
-        rejectConfig('the secret entropy is too low! For %d bytes,'
-                     ' it should be %d. Currently it is %d' % (secretLength, ideal, entropy),
-                     retarded=False)
+def createAccountDB(self):
+    if accountDBType == 'remote':
+        return RemoteAccountDB(self)
+    else:
+        return AccountDB(self)
 
 def flip(a):
     # This is SIMPLE OBFUSCATION not ENCRYPTION
@@ -153,18 +109,17 @@ class AccountDB:
         elif user in self.accountBridge:
             return int(self.accountBridge[user])
     
-    def lookup(self, username, accessLevel, callback):
-        accountId = self.lookupAccountId(username)
+    def decodeToken(self, username):
+        return {'success': True, 'userId': username, 'accountId': self.lookupAccountId(username), 'accessLevel': 1000}
+    
+    def lookup(self, token, callback):
+        try:
+            data = self.decodeToken(token)
+        except:
+            data = {'success': False, 'reason': 'Something went wrong.'}
 
-        response = {'success': True,
-                    'userId': username,
-                    'accountId': accountId}
-
-        if accessLevel is not None:
-            response['accessLevel'] = accessLevel
-
-        callback(response)
-        return response
+        callback(data)
+        return data
 
     def storeAccountID(self, userId, accountId, callback):
         if not simbase.air.hasMongo():
@@ -173,117 +128,17 @@ class AccountDB:
 
         callback(True)
 
+    def getBannedStatus(self, user, hours, callback):
+        callback(True, None)
+
     def getNameStatus(self, username, callback):
         callback(NAME_APR)
     
     def getGuildNameStatus(self, name, callback, extraInfo=''):
         callback(NAME_APR)
 
-class DeveloperAccountDB(AccountDB):
-    notify = directNotify.newCategory('DeveloperAccountDB')
-
-    def lookup(self, username, callback):
-        return AccountDB.lookup(self, username, 1000, callback)
-
 class RemoteAccountDB(AccountDB):
     notify = directNotify.newCategory('RemoteAccountDB')
-    namesUrl = config.GetString('account-db-names-url', 'http://api.piratesonline.co/names/')
-    
-    @staticmethod
-    def post(air, url, **data):
-        headers = {'User-Agent' : 'PiratesUberAgent'}
-        
-        innerData = json.dumps(data)
-        hmac = hashlib.sha512(innerData + air.getApiKey()).hexdigest()
-        
-        data = 'data=%s' % urllib.quote(innerData)
-        data += '&hmac=%s' % urllib.quote(hmac)
-        
-        success = True
-        error = None
-        res = {}
-        
-        try:
-            req = urllib2.Request(url, data, headers)
-            res = json.loads(urllib2.urlopen(req).read())
-            success = res['success']
-            error = res.get('error')
-            
-        except Exception as e:
-            if hasattr(e, 'read'):
-                with open('../e.html', 'wb') as f:
-                    f.write(e.read())
-                
-            success = False
-            error = str(e)
-                
-        return (success, error), res
-
-    @staticmethod
-    def decodeToken(token, maxAge=300):
-        error = lambda issue: {'success': False, 'reason': 'The account server rejected your token: %s' % issue}
-
-        if len(token) != 216:
-            return error('Invalid size')
-
-        try:
-            token = token.decode('base64')
-
-        except:
-            return error('Bad token')
-
-        size = ord(token[0])
-        token = token[1:size + 1]
-
-        if len(token) <= hashSize:
-            return error('Bad padding')
-
-        hash, data = token[:hashSize], token[hashSize:]
-
-        signature = hashAlgo(data + accountServerSecret).digest()
-        value = 0
-        for x, y in zip(signature, hash):
-            value |= ord(x) ^ ord(y)
-
-        if value:
-            return error('Bad hash')
-
-        data = flip(data)
-        try:
-            data = json.loads('{%s}' % data)
-
-        except:
-            return error('Bad data')
-
-        now = time.time()
-        ts = data.get('timestamp', -1)
-        if ts == -1:
-            if config.GetBool('token-allow-no-timestamp', False):
-                ts = now
-                
-            else:
-                return error('No timestamp')
-            
-        expiration = ts + maxAge
-        if now > expiration:
-            elapsed = now - expiration
-            return error('Token expired %.1f seconds ago' % elapsed)
-
-        data['success'] = True
-        return data
-
-    def lookup(self, token, callback):
-        data = RemoteAccountDB.decodeToken(token)
-        if not data['success']:
-            callback(data)
-            return data
-
-        return AccountDB.lookup(self, str(data['username']),
-                                data['accessLevel'],
-                                callback)
-
-class RemotePORAccountDB(AccountDB):
-    notify = directNotify.newCategory('RemotePORAccountDB')
     
     def __init__(self, csm):
         AccountDB.__init__(self, csm)
@@ -322,14 +177,28 @@ class RemotePORAccountDB(AccountDB):
         
         callback(int(response['nameStatus']))
     
+    def getBannedStatus(self, user, hours, callback):
+        response = self.post(config.GetString('account-server-ban-link', ''), {'account': user, 'hours': hours})
+        
+        if not response:
+            self.notify.warning('No response from server while banning user %s!' % user)
+            callback(False, 'No response from server')
+            return
+
+        if response['status'] == 'error':
+            self.notify.warning('Error while banning user %s from the server! %s [Code %s]' % (user, response['message'], response['code']))
+            callback(False, response['message'])
+            return
+        
+        callback(True, None)
+    
     def getNameStatus(self, name, callback):
         self.getNameStatusFrom(config.GetString('account-server-names-link', ''), name, callback)
     
     def getGuildNameStatus(self, name, callback, extraInfo=''):
         self.getNameStatusFrom(config.GetString('account-server-guild-link', ''), name, callback, extraInfo)
 
-    
-    def decodeToken(self, token, maxAge=300):
+    def decodeToken(self, token):
         error = lambda issue: {'success': False, 'reason': 'The account server rejected your token: %s' % issue}
 
         if len(token) != 55:
@@ -347,19 +216,8 @@ class RemotePORAccountDB(AccountDB):
             accessLevel = int(response['access'])
         except:
             return error("Couldn't contact server")
-        
-        accountId = self.lookupAccountId(user)
 
-        return {'success': True, 'userId': user, 'accountId': accountId, 'accessLevel': accessLevel}
-
-    def lookup(self, token, callback):
-        try:
-            data = self.decodeToken(token)
-        except:
-            data = {'success': False, 'reason': 'Something went wrong.'}
-
-        callback(data)
-        return data
+        return {'success': True, 'userId': user, 'accountId': self.lookupAccountId(user), 'accessLevel': accessLevel}
 
 class LoginAccountFSM(CSMOperation):
     notify = directNotify.newCategory('LoginAccountFSM')
@@ -664,9 +522,9 @@ class AvatarOperationFSM(CSMOperation):
 
         self.account = fields
 
-        self.avList = self.account['ACCOUNT_AV_SET']
-        # Sanitize:
-        self.avList = self.avList[:6]
+        self.avList = self.account['ACCOUNT_AV_SET'][:6]
+        self.deletedAvList = self.account['ACCOUNT_AV_SET_DEL'][:6]
+
         self.avList += [0] * (6-len(self.avList))
 
         self.demand(self.POST_ACCOUNT_STATE)
@@ -820,18 +678,65 @@ class LoadAvatarFSM(AvatarOperationFSM):
     notify = directNotify.newCategory('LoadAvatarFSM')
     POST_ACCOUNT_STATE = 'GetTargetAvatar'
 
-    def enterStart(self, avId):
+    def enterStart(self, avId, index):
         self.avId = avId
+        self.index = index
         self.demand('RetrieveAccount')
 
     def enterGetTargetAvatar(self):
         # Make sure the target avatar is part of the account:
+        if self.isAccountDeleted():
+            if not 0 <= self.index < 6:
+                self.demand('Kill', 'Tried to recover an avatar into an invalid slot!')
+                return
+
+            if self.avList[self.index]:
+                self.demand('Kill', 'Tried to recover an avatar into an occupied slot!')
+                return
+            
+            self.demand('RecoverAvatar')
+            return
+    
         if self.avId not in self.avList:
             self.demand('Kill', 'Tried to play an avatar not in the account!')
             return
 
         self.csm.air.dbInterface.queryObject(self.csm.air.dbId, self.avId,
                                              self.__handleAvatar)
+    
+    def isAccountDeleted(self):
+        for av in self.deletedAvList:
+            if av[0] == self.avId:
+                return True
+        
+        return False
+    
+    def enterRecoverAvatar(self):
+        for i, av in enumerate(self.deletedAvList):
+            if av[0] == self.avId:
+                del self.deletedAvList[i]
+                break
+        
+        secondsLeft = max(0, OTPGlobals.RECOVERY_TIME - (int(time.time()) - av[1]))
+        
+        if secondsLeft:
+            self.demand('Kill', 'Tried to recover an avatar before the cooldown expired!')
+            return
+
+        self.avList[self.index] = av[0]
+        self.csm.air.dbInterface.updateObject(
+            self.csm.air.dbId,
+            self.target, # i.e. the account ID
+            self.csm.air.dclassesByName['AccountUD'],
+            {'ACCOUNT_AV_SET': self.avList,
+             'ACCOUNT_AV_SET_DEL': self.deletedAvList},
+            callback=self.__handleRecover)
+    
+    def __handleRecover(self, fields):
+        if fields:
+            self.demand('Kill', 'Database failed to recover the avatar!')
+        else:
+            self.demand('GetTargetAvatar')
 
     def __handleAvatar(self, dclass, fields):
         if dclass != self.csm.air.dclassesByName['DistributedPlayerPirateUD']:
@@ -844,8 +749,9 @@ class LoadAvatarFSM(AvatarOperationFSM):
     def __getGMTag(self, accessLevel):
         gmTags = {
             300: ('green', 'Youtuber'),
-            600: ('green', 'Moderator'),
+            600: ('green', 'Global Moderator'),
             700: ('red', 'Game Master'),
+            800: ('gold', 'Game Designer'),
             900: ('purple', 'Game Developer'),
             1000: ('blue', 'Administrator')
         }
@@ -943,22 +849,21 @@ class DeleteAvatarFSM(AvatarOperationFSM):
         if self.avId not in self.avList:
             self.demand('Kill', 'Tried to delete an avatar not in the account!')
             return
+        if len(self.deletedAvList) >= 6:
+            self.demand('Kill', 'Tried to delete more avatars than allowed!')
+            return
 
         index = self.avList.index(self.avId)
         self.avList[index] = 0
-
-        avsDeleted = list(self.account.get('ACCOUNT_AV_SET_DEL', []))
-        avsDeleted.append([self.avId, int(time.time())])
+        self.deletedAvList.append([self.avId, int(time.time())])
 
         self.csm.air.dbInterface.updateObject(
             self.csm.air.dbId,
             self.target, # i.e. the account ID
             self.csm.air.dclassesByName['AccountUD'],
             {'ACCOUNT_AV_SET': self.avList,
-             'ACCOUNT_AV_SET_DEL': avsDeleted},
-            {'ACCOUNT_AV_SET': self.account['ACCOUNT_AV_SET'],
-             'ACCOUNT_AV_SET_DEL': self.account['ACCOUNT_AV_SET_DEL']},
-            self.__handleDelete)
+             'ACCOUNT_AV_SET_DEL': self.deletedAvList},
+            callback=self.__handleDelete)
 
     def __handleDelete(self, fields):
         if fields:
@@ -967,6 +872,46 @@ class DeleteAvatarFSM(AvatarOperationFSM):
 
         self.csm.air.writeServerEvent('avatarDeleted', avId=self.avId, accountId=self.target)
         self.csm.sendUpdateToAccountId(self.target, 'avDeleted', [self.avId])
+        self.demand('Off')
+
+class GetDeletedAvatarsFSM(AvatarOperationFSM):
+    notify = directNotify.newCategory('GetDeletedAvatarsFSM')
+    POST_ACCOUNT_STATE = 'QueryAvatars'
+
+    def enterStart(self):
+        self.demand('RetrieveAccount')
+    
+    def enterQueryAvatars(self):
+        self.pendingAvatars = set()
+        self.avatarFields = {}
+        
+        for av in self.deletedAvList:
+            avId, delTime = av
+            self.pendingAvatars.add(avId)
+
+            def response(dclass, fields, avId=avId, delTime=delTime):
+                if self.state != 'QueryAvatars':
+                    return
+
+                if dclass != self.csm.air.dclassesByName['DistributedPlayerPirateUD']:
+                    self.demand('Kill', "One of the account's avatars is invalid!")
+                    return
+
+                fields['setTimeDeleted'] = delTime
+                self.avatarFields[avId] = fields
+                self.pendingAvatars.remove(avId)
+
+                if not self.pendingAvatars:
+                    self.demand('SendAvatars')
+
+            self.csm.air.dbInterface.queryObject(self.csm.air.dbId, avId, response)
+        
+        if not self.pendingAvatars:
+            self.demand('SendAvatars')
+
+    def enterSendAvatars(self):
+        deletedAvatars = [(avId, fields['setTimeDeleted'], fields['setName'][0], fields['setDNAString'][0]) for avId, fields in self.avatarFields.items()]
+        self.csm.sendUpdateToAccountId(self.target, 'setDeletedAvatars', [deletedAvatars])
         self.demand('Off')
 
 class AcknowledgeNameFSM(AvatarOperationFSM):
@@ -1097,17 +1042,9 @@ class ClientServicesManagerUD(DistributedObjectGlobalUD):
 
         self.connection2fsm = {}
         self.account2fsm = {}
-
-        if accountDBType == 'developer':
-            self.accountDB = DeveloperAccountDB(self)
-        elif accountDBType == 'remote':
-            self.accountDB = RemoteAccountDB(self)
-        elif accountDBType == 'remotePOR':
-            self.accountDB = RemotePORAccountDB(self)
-        else:
-            self.notify.error('Invalid accountdb-type: ' + accountDBType)
-
         self.challenges = {}
+
+        self.accountDB = createAccountDB(self)
 
     def requestChallenge(self):
         sender = self.air.getMsgSender()
@@ -1196,6 +1133,9 @@ class ClientServicesManagerUD(DistributedObjectGlobalUD):
 
     def requestAvatars(self):
         self.runAccountFSM(GetAvatarsFSM)
+    
+    def requestDeletedAvatars(self):
+        self.runAccountFSM(GetDeletedAvatarsFSM)
 
     def createAvatar(self, dna, index, allegiance, name):
         self.runAccountFSM(CreateAvatarFSM, dna, index, allegiance, name)
@@ -1203,7 +1143,7 @@ class ClientServicesManagerUD(DistributedObjectGlobalUD):
     def deleteAvatar(self, avId):
         self.runAccountFSM(DeleteAvatarFSM, avId)
 
-    def chooseAvatar(self, avId):
+    def chooseAvatar(self, avId, index):
         currentAvId = self.air.getAvatarIdFromSender()
         accountId = self.air.getAccountIdFromSender()
         if currentAvId and avId:
@@ -1215,7 +1155,7 @@ class ClientServicesManagerUD(DistributedObjectGlobalUD):
             return
 
         if avId:
-            self.runAccountFSM(LoadAvatarFSM, avId)
+            self.runAccountFSM(LoadAvatarFSM, avId, index)
         else:
             self.runAccountFSM(UnloadAvatarFSM, currentAvId)
 

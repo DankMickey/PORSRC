@@ -7,7 +7,6 @@ from pirates.piratesgui import CrewMatchInvitee
 from pirates.piratesgui import CrewMatchNewMemberRequest
 from pirates.piratesgui import PiratesGuiGlobals
 from pirates.piratesbase import PiratesGlobals
-from pirates.band import CrewMatchHandle
 
 class DistributedCrewMatchManager(DistributedObjectGlobal):
     notify = directNotify.newCategory('DistributedCrewMatchManager')
@@ -18,13 +17,6 @@ class DistributedCrewMatchManager(DistributedObjectGlobal):
         self.offerCurrentlyOnScreen = False
         self.crewType = 1
         self.confirmBox = None
-        self.handleDict = { }
-
-    def generate(self):
-        DistributedObjectGlobal.generate(self)
-
-    def disable(self):
-        DistributedObjectGlobal.disable(self)
 
     def addCrewToLookoutList(self, range, sailValue, cannonValue):
         if base.cr.distributedDistrict and base.localAvatar.getParentObj() and base.cr.getActiveWorld():
@@ -153,7 +145,6 @@ class DistributedCrewMatchManager(DistributedObjectGlobal):
         base.localAvatar.guiMgr.handleGotoAvatar(avId, avName)
 
     def notifyNewMemberTeleportToNewShard(self, avId, avName, shardId, locationId, instanceId):
-        base.cr.crewMatchManager.addHandle(avId, avName)
         self.stackMessage(PLocalizer.CrewMatchTeleportShard, name = avName, avId = avId)
         base.cr.teleportMgr.queryAvatarForTeleport(avId)
 
@@ -161,9 +152,6 @@ class DistributedCrewMatchManager(DistributedObjectGlobal):
         confirmBox = CrewMatchNewMemberRequest.CrewMatchNewMemberRequest(avId, avName, crewType, openCrew)
 
     def requestNewMember(self, avId, avName, response, crewType, openCrew):
-        if response:
-            base.cr.crewMatchManager.addHandle(avId, avName)
-
         self.sendUpdate('requestNewMember', [
             avId,
             response,
@@ -194,24 +182,3 @@ class DistributedCrewMatchManager(DistributedObjectGlobal):
 
     def teleportResponse(self, responderId, available, shardId, instanceDoId, areaDoId):
         self.cr.teleportMgr.handleAvatarTeleportResponse(responderId, available, shardId, instanceDoId, areaDoId)
-
-    def getHandle(self, doId):
-        return self.handleDict.get(doId)
-
-    def addHandle(self, doId, name):
-        if doId == localAvatar.doId:
-            return None
-
-        handle = self.handleDict.get(doId)
-        if not handle:
-            handle = CrewMatchHandle.CrewMatchHandle(doId, name)
-            self.handleDict[doId] = handle
-            taskMgr.doMethodLater(300, self.removeHandle, 'removeCrewMatchHandle%s' % doId, extraArgs = [
-                doId])
-
-    def removeHandle(self, doId):
-        self.handleDict.pop(doId, 0)
-
-    def requestRemoveHandle(self, doId):
-        taskMgr.remove('removeCrewMatchHandle%s' % doId)
-        self.removeHandle(doId)

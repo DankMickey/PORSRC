@@ -1,7 +1,7 @@
 from direct.directnotify import DirectNotifyGlobal
 from direct.distributed.DistributedObjectGlobalUD import DistributedObjectGlobalUD
 from direct.fsm.FSM import FSM
-from otp.otpbase import OTPUtils
+from otp.otpbase import OTPUtils, OTPGlobals
 from otp.uberdog.RejectCode import RejectCode
 import time
 
@@ -132,6 +132,15 @@ class CreateGuildOperation(RetrievePirateOperation, UpdatePirateExtension):
             self.demand('Off')
             return
         
+        gold = self.pirate['setGoldInPocket'][0]
+        
+        if gold < OTPGlobals.GUILD_COST:
+            self.demand('Off')
+            return
+
+        dclass = self.air.dclassesByName['DistributedPlayerPirateUD']
+        self.air.send(dclass.aiFormatUpdate('setGoldInPocket', self.sender, self.sender, self.air.ourChannel, [gold - OTPGlobals.GUILD_COST]))
+
         name = self.pirate['setName'][0]
         fields = {
             'setName': [self.name],
@@ -517,7 +526,7 @@ class GuildManagerUD(DistributedObjectGlobalUD):
 
     def createGuild(self):
         avId = self.air.getAvatarIdFromSender()
-        
+
         if avId not in self.operations:
             CreateGuildOperation(self, avId).demand('Start')
     

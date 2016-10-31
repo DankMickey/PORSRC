@@ -83,6 +83,4 @@ class DistributedCrewMatchManagerAI(DistributedObjectAI):
 
     # teleportResponse(uint32, int8, uint32, uint32, uint32) airecv clsend
 
-    # requestRemoveHandle(uint32)
-
 

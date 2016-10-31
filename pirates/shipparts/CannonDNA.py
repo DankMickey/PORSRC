@@ -2,7 +2,6 @@ from direct.directnotify.DirectNotifyGlobal import *
 import random
 from direct.distributed.PyDatagram import PyDatagram
 from direct.distributed.PyDatagramIterator import PyDatagramIterator
-from otp.avatar import AvatarDNA
 from otp.speedchat import ColorSpace
 from pirates.uberdog.UberDogGlobals import InventoryType
 from pirates.ship import ShipGlobals
@@ -18,7 +17,7 @@ CannonDict = {
     ShipGlobals.Cannons.Skel_L3: 'models/shipparts/GP_cannon',
     ShipGlobals.Cannons.BP: 'models/shipparts/cannon_bp' }
 
-class CannonDNA(AvatarDNA.AvatarDNA):
+class CannonDNA(object):
 
     def __init__(self):
         self.baseTeam = 0

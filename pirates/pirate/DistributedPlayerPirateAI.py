@@ -436,6 +436,10 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
             return
 
         self.b_setCurrentWeapon(currentWeapon, isWeaponDrawn)
+    
+    def requestCurrentAmmo(self, currentAmmo):
+        # TODO
+        self.b_setCurrentAmmo(currentAmmo)
 
     def canUseItem(self, itemTuple):
         canUse = 1
@@ -813,18 +817,18 @@ def gm(color=None, tag=None):
     if not color:
         av.b_setGMNametag('', '')
         return 'Cleared GM nametag!'
-    elif color not in ('gold', 'red', 'green', 'blue'):
-        return 'Color must be gold, red, green or blue!'
+    elif color not in ('gold', 'red', 'green', 'blue', 'purple'):
+        return 'Color must be gold, red, green, blue, or purple!'
     elif not tag:
         return 'You must specify a tag!'
     else:
         av.b_setGMNametag(color, tag)
         return 'GM nametag set!'
 
-@magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
+@magicWord(CATEGORY_GAME_MASTER, types=[int])
 def giveGold(gold):
-    target = spellbook.getTarget()
-    invoker = spellbook.getInvoker()
+    target = spellbook.getInvoker()
+    #invoker = spellbook.getInvoker()
     target.giveGold(gold)
     return 'Given %d gold to %s! Balance: %d' % (gold, target.getName(), target.getGoldInPocket())
 
@@ -898,6 +902,8 @@ def giveLocatable(type, itemId, amount):
 
 @magicWord(CATEGORY_GAME_MASTER, types=[int])
 def giveWeapon(itemId):
+    #target = spellbook.getTarget()
+    #invoker = spellbook.getInvoker()
     target = spellbook.getInvoker()
     invokerAccess = target.getAdminAccess()
     

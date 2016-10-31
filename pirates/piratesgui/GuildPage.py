@@ -15,6 +15,7 @@ from pirates.piratesgui import PirateButtonChain
 from pirates.piratesgui import PiratesConfirm
 from pirates.piratesgui import PiratesInfo
 from pirates.piratesgui import PiratesOffLineRequest
+from pirates.piratesgui import PDialog
 from pirates.uberdog.UberDogGlobals import InventoryType
 GUILDRANK_VETERAN = 4
 GUILDRANK_GM = 3
@@ -304,14 +305,22 @@ class GuildPage(SocialPage.SocialPage):
         if self.tokenEntry:
             self.tokenEntry.hide()
 
-        self.confirmBox = PiratesConfirm.PiratesConfirm(PLocalizer.GuildPageCreateGuild, PLocalizer.GuildAskCreate, base.cr.guildManager.createGuild)
+        cost = OTPGlobals.GUILD_COST
+        
+        if base.localAvatar.getGoldInPocket() < cost:
+            base.localAvatar.guiMgr.messageStack.addTextMessage(PLocalizer.GuildAskCreateGold % cost, icon=('guild', None))
+            return
+
+        self.confirmBox = PiratesConfirm.PiratesConfirm(PLocalizer.GuildPageCreateGuild, PLocalizer.GuildAskCreate % cost, self.sendCreateGuild)
         if self.clearPermToken:
             self.clearPermToken['state'] = DGG.DISABLED
 
         if self.clearLimitedUseToken:
             self.clearLimitedUseToken['state'] = DGG.DISABLED
 
-
+    def sendCreateGuild(self):
+        base.localAvatar.guiMgr.messageStack.addTextMessage(PLocalizer.GuildCreated, icon=('guild', None))
+        base.cr.guildManager.createGuild()
 
     def renameGuild(self):
         buttonColor = ((0.33, 0.299, 0.260, 1.0), (0.260, 0.239, 0.209, 1.0), (0.489, 0.450, 0.390, 1.0), (0.16, 0.149, 0.13, 1.0))

@@ -1,4 +1,4 @@
-from panda3d.core import AlphaTestAttrib, CollideMask, CollisionInvSphere, CollisionNode, FadeLODNode, Fog, LODNode, Light, NodePath, PandaNode, RenderAttrib, TextNode, Texture, TextureStage, VBase4, Vec3, Vec4
+from panda3d.core import TransparencyAttrib, AlphaTestAttrib, CollideMask, CollisionInvSphere, CollisionNode, FadeLODNode, Fog, LODNode, Light, NodePath, PandaNode, RenderAttrib, TextNode, Texture, TextureStage, VBase4, Vec3, Vec4
 import random
 import re
 import imp
@@ -9,8 +9,6 @@ from direct.showbase.PythonUtil import report
 from direct.interval.IntervalGlobal import *
 from direct.gui.OnscreenText import OnscreenText
 from direct.gui.DirectGui import DGG
-from otp.nametag.Nametag import Nametag
-from otp.nametag.NametagGroup import NametagGroup
 from otp.otpbase import OTPGlobals
 from otp.otpbase import OTPRender
 from pirates.ai import HolidayGlobals
@@ -64,6 +62,7 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
         self.parentWorld = None
         self.gridSphere = None
         self.nameText = None
+        self.nameNode = None
         self.geom = None
         self.dockingLOD = None
         self.dockingLodFog = None
@@ -76,8 +75,6 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
         self.islandTunnel = []
         self.hasTunnelsOnRadar = False
         self.name = 'Island Name'
-        self.nametag = None
-        self.nametag3d = None
         self.volcanoEffect = None
         self.feastFireEnabled = False
         self.feastFireEffect = None
@@ -103,7 +100,6 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
         DistributedGameArea.DistributedGameArea.announceGenerate(self)
         DistributedCartesianGrid.DistributedCartesianGrid.announceGenerate(self)
         self.accept('docked', self.resetZoneLODs)
-        self.accept('toggleIslandNametag', self.setNameVisible)
         self.loadDockingLOD()
         self.loadIslandLowLod()
         detailLevel = base.options.terrain_detail_level
@@ -143,11 +139,8 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
         self.highDetail = lodnp.attachNewNode('highDetail')
         self.lowDetail = lodnp.attachNewNode('lowDetail')
         self.parentWorld.islands[self.doId] = self
-        #self.initializeNametag3d()
-        #self.setName(self.name)
-        self.addActive()
-        self.understandable = 1
-        self.setPlayerType(NametagGroup.CCNormal)
+        self.initializeNameText()
+        self.setName(self.name)
         self.placeOnMap()
         self.accept('timeOfDayChange', self.timeOfDayChanged)
 
@@ -159,9 +152,6 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
         self.sailingLOD = None
         self.unloadWaterRing()
         self.removeFromMap()
-        self.ignore('docked')
-        self.ignore('toggleIslandNametag')
-        self.ignore('timeOfDayChange')
         self.stopCustomEffects()
         if self.fogTransitionIval:
             self.fogTransitionIval.pause()
@@ -171,15 +161,15 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
         DistributedGameArea.DistributedGameArea.disable(self)
         DistributedCartesianGrid.DistributedCartesianGrid.disable(self)
         self.deleteZoneCollisions()
-
+        
         try:
             self.parentWorld.islands.pop(self.doId, None)
         except:
             pass
 
         self.parentWorld = None
-        self.removeActive()
-        self.deleteNametag3d()
+        self.deleteNameText()
+        self.ignoreAll()
 
     def delete(self):
         DistributedGameArea.DistributedGameArea.delete(self)
@@ -187,6 +177,7 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
         ZoneLOD.ZoneLOD.delete(self)
         self.unloadPlayerBarrier()
         self.remove_node()
+        self.ignoreAll()
         while len(self.SiegeIcons):
             icon = self.SiegeIcons.pop()
             icon.remove_node()
@@ -281,8 +272,6 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
             base.loadingScreen.tick()
             self.water.updateWater(0)
             base.loadingScreen.tick()
-            messenger.send('toggleIslandNametag', [
-                0])
             if self.isDockable():
                 self.setupMinimap()
 
@@ -305,8 +294,6 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
         elif level == 1:
             localAvatar.setInterest(self.doId, PiratesGlobals.IslandShipDeployerZone, [
                 'ShipDeployer'])
-            messenger.send('toggleIslandNametag', [
-                1])
             if not self.undockable:
                 localAvatar.setPort(self.doId)
             else:
@@ -695,13 +682,8 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
 
     def setName(self, name):
         self.name = name
-        if not self.nametag:
-            self.createNametag(self.name)
-        else:
-            self.nametag.setName(name)
-        self.nametag.setDisplayName('        ')
-        if self.nameText:
-            self.nameText['text'] = name
+        if self.nameNode:
+            self.nameNode.setText(name)
             siegeTeam = self.getSiegeTeam()
             if siegeTeam and self.SiegeIcon:
                 color = VBase4(PVPGlobals.getSiegeColor(siegeTeam))
@@ -713,124 +695,43 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
                 icon.setScale(0.75)
             else:
                 color = Vec4(0.6, 0.6, 1, 0.4)
-            self.nameText['fg'] = color
-
-    def setDisplayName(self, str):
-        self.nametag.setDisplayName(str)
+            self.nameNode.setTextColor(color)
 
     def getName(self):
         return self.name
 
-    def getNameVisible(self):
-        return self._DistributedIsland__nameVisible
-
     def setNameVisible(self, bool):
-        self._DistributedIsland__nameVisible = bool
         if bool:
             self.showName()
-
-        if not bool:
+        else:
             self.hideName()
 
     def hideName(self):
-        self.nametag.getNametag3d().setContents(Nametag.CSpeech | Nametag.CThought)
+        if self.nameText:
+            self.nameText.hide()
 
     def showName(self):
-        if self._DistributedIsland__nameVisible:
-            self.nametag.getNametag3d().setContents(Nametag.CName | Nametag.CSpeech | Nametag.CThought)
-
-    def hideNametag2d(self):
-        self.nametag2dContents = 0
-        self.nametag.getNametag2d().setContents(self.nametag2dContents & self.nametag2dDist)
-
-    def showNametag2d(self):
-        self.nametag2dContents = self.nametag2dNormalContents
-        self.nametag2dContents = Nametag.CSpeech
-        self.nametag.getNametag2d().setContents(self.nametag2dContents & self.nametag2dDist)
-
-    def hideNametag3d(self):
-        self.nametag.getNametag3d().setContents(0)
-
-    def showNametag3d(self):
-        if self._DistributedIsland__nameVisible:
-            self.nametag.getNametag3d().setContents(Nametag.CName | Nametag.CSpeech | Nametag.CThought)
-        else:
-            self.nametag.getNametag3d().setContents(0)
-
-    def setPickable(self, flag):
-        self.nametag.setActive(flag)
-
-    def clickedNametag(self):
-        if self.nametag.isActive():
-            messenger.send('clickedNametag', [
-                self])
-
-    def initializeNametag3d(self):
-        self.deleteNametag3d()
-        self.nametag.setFont(PiratesGlobals.getPirateFont())
-        nametagNode = self.nametag.getNametag3d().upcastToPandaNode()
-        self.nametag3d.attachNewNode(nametagNode)
-        self.nametag3d.setFogOff()
-        self.nametag3d.setLightOff()
-        self.nametag3d.setColorScaleOff(100)
-        self.nametag3d.setDepthWrite(0)
-        self.iconNodePath = self.nametag.getNameIcon()
-        if self.iconNodePath.isEmpty():
-            self.notify.warning('empty iconNodePath in initializeNametag3d')
-            return 0
-
-        if not self.nameText:
-            self.nameText = OnscreenText(fg = Vec4(1, 1, 1, 1), bg = Vec4(0, 0, 0, 0), scale = 1.1, align = TextNode.ACenter, mayChange = 1, font = PiratesGlobals.getPirateBoldOutlineFont())
-            self.nameText.setDepthWrite(0)
-            self.nameText.reparentTo(self.iconNodePath)
-            self.nameText.setColorScaleOff(100)
-            self.nameText.setLightOff()
-            self.nameText.setFogOff()
-
-    def deleteNametag3d(self):
-        children = self.nametag3d.getChildren()
-        for i in xrange(children.getNumPaths()):
-            children[i].remove_node()
-
-    def addActive(self):
-        if base.wantNametags:
-            self.nametag.manage(base.marginManager)
-            self.accept(self.nametag.getUniqueId(), self.clickedNametag)
-
-    def removeActive(self):
-        if base.wantNametags and self.nametag:
-            self.nametag.unmanage(base.marginManager)
-            self.ignore(self.nametag.getUniqueId())
-
-    def createNametag(self, name):
-        self._DistributedIsland__nameVisible = 1
-        self.nametag = NametagGroup()
-        self.nametag.setAvatar(self)
-        self.nametag.setFont(PiratesGlobals.getPirateFont())
-        self.nametag2dContents = Nametag.CName
-        self.nametag2dDist = Nametag.CName
-        self.nametag2dNormalContents = Nametag.CName
-        self.nametag3d = self.attachNewNode('nametag3d')
-        self.nametag3d.setTag('cam', 'nametag')
-        #self.nametag.setName(name)
-        self.nametag.setNameWordwrap(PiratesGlobals.NAMETAG_WORDWRAP)
-        OTPRender.renderReflection(False, self.nametag3d, 'p_island_nametag', None)
-        self.nametag3d.setPos(0, 0, WorldGlobals.getNametagHeight(self.name))
-        self.setNametagScale(WorldGlobals.getNametagScale(self.name))
-        self.nametag3d.setFogOff()
-        self.setPickable(0)
-        self.nametag.setColorCode(1)
-
-    def getNametagScale(self):
-        return self.nametagScale
-
-    def setNametagScale(self, scale):
-        self.nametagScale = scale
-        self.nametag3d.setScale(scale)
-
-    def setPlayerType(self, playerType):
-        self.playerType = playerType
-        self.nametag.setColorCode(self.playerType)
+        if self.nameText:
+            self.nameText.show()
+    
+    def initializeNameText(self):
+        scale = WorldGlobals.getNametagScale(self.name)
+        self.nameNode = TextNode('islandText')
+        self.nameNode.setText(self.name)
+        self.nameNode.setFont(PiratesGlobals.getPirateFont())
+        self.nameNode.setWordwrap(PiratesGlobals.NAMETAG_WORDWRAP)
+        self.nameText = self.attachNewNode(self.nameNode)
+        self.nameText.setPos(0, 0, WorldGlobals.getNametagHeight(self.name))
+        self.nameText.setFogOff()
+        self.nameText.setLightOff()
+        self.nameText.setScale(WorldGlobals.getNametagScale(self.name))
+    
+    def deleteNameText(self):
+        if self.nameText:
+            self.nameText.removeNode()
+        
+        self.nameNode = None
+        self.nameText = None
 
     def setIslandWaterParameters(self, use_alpha_map):
         if self.islandWaterParameters:
@@ -1260,6 +1161,8 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
     def timeOfDayChanged(self, stateId = None, stateDuration = 0.0, elapsedTime = 0.0, transitionTime = 0.0):
         if self.dockingLodFog:
             todMgr = base.cr.timeOfDayManager
+            if not todMgr:
+                return
             transitionTime = todMgr.cycleDuration * TODGlobals.getStateTransitionTime(todMgr.cycleType, todMgr.currentState)
             fromFogColor = TODGlobals.getTodEnvSetting(todMgr.lastState, todMgr.environment, 'FogColor') / 2.5 + Vec4(0, 0, 0, 1)
             toFogColor = TODGlobals.getTodEnvSetting(todMgr.currentState, todMgr.environment, 'FogColor') / 2.5 + Vec4(0, 0, 0, 1)

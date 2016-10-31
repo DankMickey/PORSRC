@@ -2,13 +2,12 @@ from direct.distributed.DistributedObject import DistributedObject
 from pirates.band import BandConstance
 from direct.directnotify.DirectNotifyGlobal import directNotify
 from pirates.piratesbase import PLocalizer
-from pirates.pirate.PAvatarHandle import PAvatarHandle
 from otp.speedchat import SCDecoders
 from pirates.speedchat import PSCDecoders
 from pirates.piratesbase import PiratesGlobals
 from otp.otpgui import OTPDialog
 
-class DistributedBandMember(DistributedObject, PAvatarHandle):
+class DistributedBandMember(DistributedObject):
     notify = directNotify.newCategory('BandMember')
     allBandmembers = { }
     band_map = { }

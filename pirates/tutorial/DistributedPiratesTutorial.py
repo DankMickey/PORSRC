@@ -367,7 +367,7 @@ class DistributedPiratesTutorial(DistributedObject.DistributedObject, FSM.FSM):
         if localAvatar.style.getTutorial() > 0:
             self.ignore('doneJackIntro')
             localAvatar.openJailDoor()
-            localAvatar.style.setName(localAvatar.getName())
+            localAvatar.setName(localAvatar.getName())
             localAvatar.guiMgr.showTrays()
             base.transitions.fadeIn()
 
@@ -515,8 +515,6 @@ class DistributedPiratesTutorial(DistributedObject.DistributedObject, FSM.FSM):
 
 
             self.acceptOnce('avatarPopulated', self.avatarPopulated)
-            if self.map.nameGui.customName:
-                localAvatar.setWishName()
             self.map.exit()
             self.map.unload()
             self.map = 0
