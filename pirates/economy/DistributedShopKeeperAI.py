@@ -6,6 +6,7 @@ from pirates.audio import SoundGlobals
 from pirates.makeapirate import BarberGlobals
 from pirates.uberdog.TradableInventoryBase import InvItem
 from pirates.uberdog.UberDogGlobals import *
+from pirates.ai import HolidayGlobals
 from otp.uberdog.RejectCode import RejectCode
 
 class DistributedShopKeeperAI(DistributedObjectAI):
@@ -180,6 +181,10 @@ class DistributedShopKeeperAI(DistributedObjectAI):
             return
 
         requiredGold = requiredGold * amount
+
+        if self.air.newsManager.isHolidayRunning(HolidayGlobals.HALFOFFCUSTOMIZATION):
+            requiredGold = requiredGold / 2
+
         if requiredGold > av.getGoldInPocket():
             sendResponse(0)
             return
@@ -233,6 +238,9 @@ class DistributedShopKeeperAI(DistributedObjectAI):
             return
 
         requiredGold = requiredGold * amount
+        if self.air.newsManager.isHolidayRunning(HolidayGlobals.HALFOFFCUSTOMIZATION):
+            requiredGold = requiredGold / 2
+
         if requiredGold > av.getGoldInPocket():
             sendResponse(0)
             return
@@ -287,6 +295,9 @@ class DistributedShopKeeperAI(DistributedObjectAI):
             return
 
         requiredGold = requiredGold * amount
+        if self.air.newsManager.isHolidayRunning(HolidayGlobals.HALFOFFCUSTOMIZATION):
+            requiredGold = requiredGold / 2
+
         if requiredGold > av.getGoldInPocket():
             sendResponse(0, False)
             return
@@ -380,8 +391,8 @@ class DistributedShopKeeperAI(DistributedObjectAI):
 
         #av.takeGold(requiredGold)
 
-        tpMgr = self.air.tpMgr
-        tpMgr.initiateStowawayTeleport(locationId)
+        #tpMgr = self.air.tpMgr
+        #tpMgr.initiateStowawayTeleport(locationId)
     
     # responseShipRepair(uint32) ownrecv
     # responseClothingList(uint32, uint32 [][]) ownrecv

@@ -14,9 +14,6 @@ class NewsManagerAI(DistributedObjectAI):
         self.holidayIdList = []
         self.newPathList = []
 
-        if config.GetBool('want-holiday-dev', False):
-            self.forcedHolidays = []
-
     def announceGenerate(self):
         DistributedObjectAI.announceGenerate(self)
         if config.GetBool('want-holidays', False):
@@ -30,6 +27,7 @@ class NewsManagerAI(DistributedObjectAI):
 
     def __checkHolidays(self, task=None):
         holidays = HolidayGlobals.getAllHolidayIds()
+        self.notify.info("Checking Holidays...")
         for id in holidays:
             holiday = HolidayGlobals.getHolidayDates(id)
             if not hasattr(holiday, 'getCurrentDate'):
@@ -39,11 +37,7 @@ class NewsManagerAI(DistributedObjectAI):
                 continue
 
             date = holiday.getCurrentDate()
-            if hasattr(self, 'forcedHolidays'):
-                if id in self.forcedHolidays:
-                    self.notify.info("Starting forced holiday with id: %s" % id)
-                    self.startHoliday(id)
-            elif False: #TODO date check
+            if False: #TODO date check
                 if not self.isHolidayRunning(id):
                     self.startHoliday(id)
             else:
@@ -58,6 +52,7 @@ class NewsManagerAI(DistributedObjectAI):
             runnable, default = data['configs'][0]
             if not config.GetBool(runnable, default):
                 return False
+
             canStart = True
             if 'conflictingIds' in data:
                 for id in data['conflictingIds']:
@@ -80,7 +75,10 @@ class NewsManagerAI(DistributedObjectAI):
         self.notify.info("Received Holiday Notify! I have no idea what im doing. - Disney")
 
     def isHolidayRunning(self, holidayId):
-        return holidayId in self.holidayIdList
+        for id, time in self.holidayIdList:
+            if int(id) == int(holidayId):
+                return True
+        return False
 
     def getHolidayIdList(self):
         return self.holidayIdList
@@ -129,14 +127,15 @@ class NewsManagerAI(DistributedObjectAI):
     def endHoliday(self, holidayId):
         if not self.isHolidayRunning(holidayId):
             return
-        #TODO write this
 
-    @magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
-    def forceStartHoliday(holidayId):
+        self.notify.info("Stopping holiday: %s" % holidayId)
+        #self.holidayIdList.remove() #TODO write this
+        self.sendUpdate('setHolidayIdList', [self.holidayIdList])
+
+    @magicWord(CATEGORY_GAME_DEVELOPER, types=[int, int])
+    def forceStartHoliday(holidayId, time):
         """Force starts a holiday for the district"""
         air = spellbook.getInvoker().air
-        if not hasattr(air.newsManager, 'forcedHolidays'):
-            return "Sorry, holiday dev mode is not enabled on this district"
 
         if air.newsManager.isHolidayRunning(holidayId):
             return "Sorry, holiday %s is already running" % holdayId
@@ -144,20 +143,18 @@ class NewsManagerAI(DistributedObjectAI):
         if not holidayId in HolidayGlobals.getAllHolidayIds():
             return "Sorry, %s is not a valid holiday." % holidayId
 
-        air.newsManager.forcedHolidays.append(holidayId)
-        return "Force starting holiday %s for the district" % holidayId
+        air.newsManager.startHoliday(holidayId, time)
+        return "Force starting holiday %s for the district with a time of %s" % (holidayId, time)
 
     @magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
     def forceEndHoliday(holidayId):
-        """Stops a force started holiday on the district"""
+        """Stops a holiday on the district"""
         air = spellbook.getInvoker().air
-        if not hasattr(air.newsManager, 'forcedHolidays'):
-            return "Sorry, holiday dev mode is not enabled on this district" 
 
-        if holidayId not in air.newsManager.forcedHolidays:
-            return "%s is not currently being run by force." % holidayId
+        if not air.newsManager.isHolidayRunning(holidayId):
+            return "Holiday %s is not currently running on the District." % holidayId
 
-        air.newsManager.forcedHolidays.remove(holidayId)
+        air.newsManager.endHoliday(holidayId)
         return "Stopping force started holiday %s for the district" % holidayId   
 
     @magicWord(CATEGORY_GAME_DEVELOPER)
@@ -170,9 +167,14 @@ class NewsManagerAI(DistributedObjectAI):
 
         response = "Active Holidays: "
         for holiday in holidays:
-            holdayId, time = holiday
+            holidayId, time = holiday
             response = response + " {0}({1})".format(holidayId, time)
         return response
+
+    @magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
+    def isHoliday(holidayId):
+        air = spellbook.getInvoker().air
+        return air.newsManager.isHolidayRunning(holidayId)
 
     @magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
     def newsMsg(messageId):
@@ -180,7 +182,7 @@ class NewsManagerAI(DistributedObjectAI):
         air = spellbook.getInvoker().air
 
         if messageId < 0 or messageId >= 70:
-            return "Unable to send debug news message. MessageId must be between 0-69."
+            return "Unable to send debug news message. MessageId must be between 0-70."
 
         air.newsManager.displayMessage(messageId)
         return "Sent debug news message '%s' to all pirates in the district." % str(messageId)

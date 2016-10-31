@@ -525,10 +525,10 @@ MSG_BONFIRE_STARTED = 6
 MSG_PORK_RECEIVED = 7
 
 def getHolidayMsgs(holidayId):
-    import pirates.piratesbase.PLocalizer
+    from pirates.piratesbase import PLocalizer
     holidayClass = getHolidayClass(holidayId)
     holidayConfig = getHolidayConfig(holidayId)
-    holidayMsgs = holidayMessages.get(holidayClass)
+    holidayMsgs = PLocalizer.holidayMessages.get(holidayClass)
     if holidayMsgs and holidayConfig:
         holidayMsgs = holidayMsgs.get(holidayConfig, holidayMsgs.get(None))
 
