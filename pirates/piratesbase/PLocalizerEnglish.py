@@ -1541,6 +1541,7 @@ DiceText_Caught = '%s Caught Cheating'
 DiceText_FirstClaim = 'You Must Make the First Claim'
 DiceText_Call = '%s Calls Bluff'
 DiceText_Ante = 'ANTE: '
+DiceSitDownDice = 'Dice'
 DiceText_DiceUp_Chat = [
     'Higher than that',
     'Up ye vermin!',
@@ -5347,6 +5348,8 @@ InteractTableBlackjack = 'Press %s to sit down and play Blackjack' % InteractKey
 InteractTablePoker = 'Press %s to sit down and play Poker' % InteractKey
 InteractTableHoldemPoker = "Press %s to sit down and play Tortuga Hold'em Poker" % InteractKey
 InteractTable7StudPoker = 'Press %s to sit down and play 7 Stud Poker' % InteractKey
+InteractTableDice = 'Press %s to sit down and play Dice' % InteractKey
+InteractTableLiarsDice = 'Press %s to sit down and play Liars Dice' % InteractKey
 ShipAlreadyDeployedWarning = 'Already have a ship launched!'
 ShipAlreadyDeployingWarning = 'Already deploying a ship!'
 ShipReturnAdventureWarning = 'Cannot return ships during an Adventure!'

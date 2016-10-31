@@ -35,6 +35,14 @@ class DistributedDiceGame(DistributedGameTable.DistributedGameTable):
         self.reparentTo(render)
 
 
+    def getInteractText(self):
+        return PLocalizer.InteractTableDice
+
+
+    def getSitDownText(self):
+        return PLocalizer.DiceSitDownDice
+
+
     def disable(self):
         DistributedGameTable.DistributedGameTable.disable(self)
 

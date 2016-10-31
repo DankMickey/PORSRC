@@ -194,7 +194,9 @@ class DistributedGameTable(DistributedInteractive.DistributedInteractive):
             self.tableModel.setH(90)
             self.tableModel.flattenStrong()
             self.tableModel.setScale(2.5, 2.5, 1)
-            self.sittingOffset = -1.75
+            self.sittingOffset = -2.75
+            text = self.getInteractText()
+            self.setInteractOptions(proximityText = text, sphereScale = 12, diskRadius = 14)
             seatPositions = [(Vec3(-4, 6.5, 0), Vec3(180, 0, 0)), (Vec3(-11, 0, 0), Vec3(-90, 0, 0)), (Vec3(-4, -6.5, 0), Vec3(0, 0, 0)), (Vec3(0, -6.5, 0), Vec3(0, 0, 0)), (Vec3(4, -6.5, 0), Vec3(0, 0, 0)), (Vec3(11, 0, 0), Vec3(90, 0, 0)), (Vec3(4, 6.5, 0), Vec3(180, 0, 0))]
             self.SeatInfo = [None] * len(seatPositions)
             self.NumSeats = len(seatPositions)

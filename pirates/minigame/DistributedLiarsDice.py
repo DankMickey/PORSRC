@@ -17,14 +17,20 @@ class DistributedLiarsDice(DistributedDiceGame.DistributedDiceGame):
         self.animPlaying = 0
 
 
+    def getInteractText(self):
+        return PLocalizer.InteractTableLiarsDice
+
+
+    def getSitDownText(self):
+        return PLocalizer.LiarsDiceSitDownLiarsDice
+
+
     def rollResults(self, seat, dice):
         print 'DistributedLiarsDice:rollResults - seat %d' % seat
         self.dicevals[seat] = dice
         if seat == self.mySeat:
             if self.gameState == DiceGlobals.DSTATE_WAIT:
                 self.gameState = DiceGlobals.DSTATE_PLAY
-
-
 
 
     def extraGuiSetup(self):
