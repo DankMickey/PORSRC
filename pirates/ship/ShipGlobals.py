@@ -796,9 +796,9 @@ __shipConfigs = {
         'modelClass': CARRACKL1,
         'defaultStyle': Styles.Player,
         'mastConfig1': (Masts.Main_Square, 1),
-        'mastConfig2': (Masts.Main_Square, 2),
+        'mastConfig2': 0,
         'mastConfig3': 0,
-        'foremastConfig': (Masts.Fore_Multi, 2),
+        'foremastConfig': 0,
         'aftmastConfig': 0,
         'sailLogo': Logos.NoLogo,
         'cannons': [
