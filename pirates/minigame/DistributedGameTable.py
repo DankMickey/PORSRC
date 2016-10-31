@@ -13,7 +13,6 @@ from pirates.piratesbase import PLocalizer
 from pirates.piratesgui import PDialog
 from otp.otpgui import OTPDialog
 from pirates.pirate import AvatarTypes
-from pirates.minigame import TableGlobals
 from otp.nametag.NametagConstants import CFSpeech, CFTimeout
 
 class DistributedGameTable(DistributedInteractive.DistributedInteractive):
@@ -98,7 +97,7 @@ class DistributedGameTable(DistributedInteractive.DistributedInteractive):
         self.stackArray = []
         self.seatLocatorArray = []
         self.maximum_stacks = 5
-        if type == TableGlobals.CARD_TABLE:
+        if type == 1:
             self.tableModel = loader.loadModel('models/props/table_bar_round_parlor')
             self.tableModel.setH(11)
             self.tableModel.flattenStrong()
@@ -189,33 +188,9 @@ class DistributedGameTable(DistributedInteractive.DistributedInteractive):
                 self.displayStacks(i, 0)
                 seat.reparentTo(self)
             self.displayStacks(self.getPotSeat(), 0)
-        elif type == TableGlobals.DICE_TABLE:
+        elif type == 2:
             self.tableModel = loader.loadModel('models/props/table_dice')
-            self.tableModel.setH(90)
-            self.tableModel.flattenStrong()
             self.tableModel.setScale(2.5, 2.5, 1)
-            self.sittingOffset = -1.75
-            seatPositions = [(Vec3(-4, 6.5, 0), Vec3(180, 0, 0)), (Vec3(-11, 0, 0), Vec3(-90, 0, 0)), (Vec3(-4, -6.5, 0), Vec3(0, 0, 0)), (Vec3(0, -6.5, 0), Vec3(0, 0, 0)), (Vec3(4, -6.5, 0), Vec3(0, 0, 0)), (Vec3(11, 0, 0), Vec3(90, 0, 0)), (Vec3(4, 6.5, 0), Vec3(180, 0, 0))]
-            self.SeatInfo = [None] * len(seatPositions)
-            self.NumSeats = len(seatPositions)
-            for i in range(0, len(seatPositions) - 1):
-                pos, rot = seatPositions[i]
-                seatName = 'seatNode-%s-%s' % (self.doId, i)
-                seatNode = NodePath(seatName)
-                seatNode.reparentTo(self)
-                seatNode.setPos(pos)
-                seatNode.setHpr(rot)
-                self.SeatInfo[i] = seatNode
-                stool = loader.loadModel('models/props/stool_bar')
-                lod = stool.find('**/+LODNode')
-                if lod:
-                    node = lod.node()
-                    if node:
-                        self.seatLodNodeArray.append(node)
-                stool.setY(-0.9)
-                stool.setZ(0.050000)
-                stool.flattenStrong()
-                stool.reparentTo(seatNode)
 
     def randomInteger(self, length):
         return int(random.random() * length)
@@ -270,57 +245,30 @@ class DistributedGameTable(DistributedInteractive.DistributedInteractive):
         self.dealer = self._getActor(self._getAvTeamFromVariation())
         name = self.dealerName or 'Dealer'
         dealerVariation = self._getAvTeamFromVariation()
-        if self.tableType == TableGlobals.CARD_TABLE:
-            if dealerVariation == PiratesGlobals.VILLAGER_TEAM:
-                dna = HumanDNA.HumanDNA()
-                dna.makeNPCTownfolk(seed = self.doId)
-                dna.setName(name)
-                dna.clothes.coat = 0
-                dna.clothes.vest = 2
-                dna.clothes.vestTexture = 4
-                dna.clothes.vestColor = 13
-                self.dealer.setDNAString(dna)
-                self.dealer.generateHuman(dna.gender, self.cr.human)
-                self.setAiPlayerName(self.dealer, name)
-            else:
-                self.setAiPlayerName(self.dealer, name)
-            self.dealer.reparentTo(self.SeatInfo[-1])
-            self.dealer.setX(self.sittingOffset)
-            self.dealer.hideShadow()
-            self.dealer.disableMixing()
-            self.dealer.loop('deal_idle')
-            deck = loader.loadModel('models/handheld/cards_deck_high')
-            deck.flattenStrong()
-            topCard = loader.loadModel('models/handheld/cards_1_high')
-            topCard.flattenStrong()
-            deck.reparentTo(self.dealer.leftHandNode)
-            topCard.reparentTo(self.dealer.leftHandNode)
-        elif self.tableType == TableGlobals.DICE_TABLE:
-            if dealerVariation == PiratesGlobals.VILLAGER_TEAM:
-                dna = HumanDNA.HumanDNA()
-                dna.makeNPCTownfolk(seed = self.doId, gender = 'f')
-                dna.setName(name)
-                dna.setBodyHeight(0.57)
-                dna.setClothesShirt(1, 13)
-                dna.setClothesVest(3, 0)
-                dna.setClothesCoat(0, 0)
-                dna.setHat(0)
-                dna.setClothesPant(2, 0)
-                dna.setClothesBelt(0, 0)
-                dna.setClothesSock(0)
-                dna.setClothesShoe(3)
-                self.dealer.setDNAString(dna)
-                self.dealer.generateHuman(dna.gender, self.cr.human)
-                self.setAiPlayerName(self.dealer, name)
-            else:
-                self.setAiPlayerName(self.dealer, name)    
-            self.dealer.reparentTo(self.SeatInfo[0])
-            self.dealer.setX(self.sittingOffset)
-            self.dealer.hideShadow()
-            self.dealer.disableMixing()  
-            self.dealer.loop('deal_idle') #TODO find proper animation
+        if dealerVariation == PiratesGlobals.VILLAGER_TEAM:
+            dna = HumanDNA.HumanDNA()
+            dna.makeNPCTownfolk(seed = self.doId)
+            dna.setName(name)
+            dna.clothes.coat = 0
+            dna.clothes.vest = 2
+            dna.clothes.vestTexture = 4
+            dna.clothes.vestColor = 13
+            self.dealer.setDNAString(dna)
+            self.dealer.generateHuman(dna.gender, self.cr.human)
+            self.setAiPlayerName(self.dealer, name)
         else:
-            self.notify.warning("Failed to generate Dealer. Unsupported table type: %s" % self.tableType)
+            self.setAiPlayerName(self.dealer, name)
+        self.dealer.reparentTo(self.SeatInfo[-1])
+        self.dealer.setX(self.sittingOffset)
+        self.dealer.hideShadow()
+        self.dealer.disableMixing()
+        self.dealer.loop('deal_idle')
+        deck = loader.loadModel('models/handheld/cards_deck_high')
+        deck.flattenStrong()
+        topCard = loader.loadModel('models/handheld/cards_1_high')
+        topCard.flattenStrong()
+        deck.reparentTo(self.dealer.leftHandNode)
+        topCard.reparentTo(self.dealer.leftHandNode)
 
     def createAIPlayers(self, AIList):
         self.AIPlayers = [
