@@ -164,9 +164,9 @@ HullDict = {
     ShipGlobals.SKEL_WARSHIPL3: 'skl_frigate',
     ShipGlobals.SKEL_INTERCEPTORL3: 'skl_sloop',
     ShipGlobals.EL_PATRONS_SHIP: 'gal_carrack',
-    ShipGlobals.CARRACKL1: 'car_light',
-    ShipGlobals.CARRACKL2: 'gal_carrack',
-    ShipGlobals.CARRACKL3: 'car_war',
+    ShipGlobals.CARRACKL1: 'gal_carrack',#'car_light',
+    ShipGlobals.CARRACKL2: 'gal_carrack',#'car_regular',
+    ShipGlobals.CARRACKL3: 'gal_carrack',#'car_war',
     ShipGlobals.CORVETTEL1: 'gal_carrack',
     ShipGlobals.CORVETTEL2: 'gal_carrack',
     ShipGlobals.CORVETTEL3: 'gal_carrack' }
