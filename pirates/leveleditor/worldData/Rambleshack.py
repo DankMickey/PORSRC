@@ -38,6 +38,20 @@ objectStruct = {
                         'Model': 'models/buildings/shanty_tavern_exterior',
                         'SignFrame': 'models/buildings/sign1_shanty_a_frame',
                         'SignImage': 'models/buildings/sign1_eng_a_icon_storage' } },
+                '1156987584.21jubutler': { #TEMP
+                    'Type': 'Player Spawn Node',
+                    'Hpr': VBase3(-175.005, 0.0, 0.0),
+                    'Index': -1,
+                    'Min Population': '',
+                    'Pos': Point3(25.9548, 19.1, -1.5),
+                    'Priority': '',
+                    'Scale': VBase3(1.0, 1.0, 1.0),
+                    'SpawnDelay': '',
+                    'Spawnables': 'All',
+                    'Team': '0',
+                    'Visual': {
+                        'Model': 'models/misc/smiley' },
+                    'startingDepth': '' },
                 '1154414027.23sdnaik': {
                     'Type': 'Locator Node',
                     'Name': 'portal_exterior_1',
@@ -1797,6 +1811,7 @@ objectStruct = {
             '1184014152.84kmuller'] },
     'ObjectIds': {
         '1115838800a.3jubutler': '["Objects"]["1115838800a.3jubutler"]',
+        '1156987584.21jubutler': '["Objects"]["1115838800a.3jubutler"]["Objects"]["1156987584.21jubutler"]', #TEMP
         '1121212983.08Shochet': '["Objects"]["1115838800a.3jubutler"]["Objects"]["1121212983.08Shochet"]',
         '1154414027.23sdnaik': '["Objects"]["1115838800a.3jubutler"]["Objects"]["1154414027.23sdnaik"]',
         '1156204132.41sdnaik': '["Objects"]["1115838800a.3jubutler"]["Objects"]["1158195990.71jubutler"]',

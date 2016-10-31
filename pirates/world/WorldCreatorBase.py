@@ -35,6 +35,13 @@ class WorldCreatorBase:
 
         self.worldType = None
 
+    def makeTutorialWorld(self, worldFile):
+        self.worldType = PiratesGlobals.INSTANCE_TUTORIAL
+        if worldFile is not None:
+            self.loadObjectsFromFile(worldFile, self.repository)
+            
+        self.worldType = None
+
     def loadObjectsFromFile(self, filename, parent, parentIsObj = False):
         fileDict = self.openFile(filename)
         self.fileDicts[filename] = fileDict
@@ -50,6 +57,8 @@ class WorldCreatorBase:
 
     def getFieldFromUid(self, uid, field):
         objectInfo = self.getObjectDataByUid(uid, None)
+        if objectInfo is None:
+            objectInfo = {}
         return objectInfo.get(field, '')
 
     def getModelPathFromFile(self, file):
@@ -78,6 +87,8 @@ class WorldCreatorBase:
     def getObjectsOfType(self, uid, objType):
         finalObjs = []
         data = self.getObjectDataByUid(uid, None)
+        if data is None:
+            data = {}
         objRoot = LevelObject(uid, data)
         self.rGetObjects(objRoot, data.get('Objects', []), finalObjs, objType)
         fileName = data.get('File')

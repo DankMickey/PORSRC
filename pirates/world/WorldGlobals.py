@@ -176,6 +176,11 @@ class LevelObject:
     def __init__(self, uniqueId, data):
         self.uniqueId = uniqueId
         self.data = data
+        
+        if data is None:
+            self.data = {}
+            data = {}
+
         pos = data.get('Pos', Vec3(0, 0, 0))
         hpr = data.get('Hpr', Vec3(0, 0, 0))
         scale = data.get('Scale', Vec3(1, 1, 1))

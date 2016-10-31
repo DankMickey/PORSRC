@@ -26,10 +26,18 @@ class WorldCreatorAI(WorldCreatorBase):
         self.fileDicts = {}
 
         self.__loadingInterior = False
+        self.__currentWorld = None
 
     def createObject(self, object, parent, parentUid, objKey, dynamic, parentIsObj=False, fileName=None, actualParentObj=None):
         objType = WorldCreatorBase.createObject(self, object, parent, parentUid, objKey, dynamic, parentIsObj, fileName=fileName)
         if not objType:
+            return
+
+        if self.__currentWorld is None:
+            return
+
+        if not hasattr(self.__currentWorld, "oceanGrid"):
+            self.notify.warning("Failed to generate object. %s has no oceanGrid" % str(self.__currentWorld))
             return
 
         newObj = None
@@ -43,17 +51,17 @@ class WorldCreatorAI(WorldCreatorBase):
             actualParentObj = parent.getPythonTag('npTag-gameArea')
 
         if objType == 'Region':
-            self.air.mainWorld.oceanGrid.registerIslandData(object['Objects'])
+            self.__currentWorld.oceanGrid.registerIslandData(object['Objects'])
 
         elif objType == 'Island':
-            il = self.air.mainWorld.oceanGrid.createIsland(objKey)
+            il = self.__currentWorld.oceanGrid.createIsland(objKey)
             actualParentObj = il
 
         elif objType == 'Ship Spawn Node' and config.GetBool('want-enemy-ships', False):
-            self.air.mainWorld.oceanGrid.addShipSpawn(objKey, object)
+            self.__currentWorld.oceanGrid.addShipSpawn(objKey, object)
 
         elif objType == 'Ship Movement Node' and config.GetBool('want-enemy-ship-movement', False):
-            genObj = self.air.mainWorld.oceanGrid.addShipMovementNode(objKey, object)
+            genObj = self.__currentWorld.oceanGrid.addShipMovementNode(objKey, object)
 
         elif actualParentObj:
             genObj = actualParentObj.createObject(objType, parent, objKey, object)
@@ -63,6 +71,9 @@ class WorldCreatorAI(WorldCreatorBase):
                 newObj = genObj
 
         return (newObj, actualParentObj)
+
+    def setCurrentWorld(self, world):
+        self.__currentWorld = world
 
     def createBuilding(self, parent, objKey, object):
         interiorFile = object['File']

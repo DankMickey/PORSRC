@@ -20,6 +20,7 @@ from pirates.distributed.TargetManagerAI import TargetManagerAI
 from pirates.battle.BattleManagerAI import BattleManagerAI
 from pirates.coderedemption.CodeRedemptionAI import CodeRedemptionAI
 from pirates.band.DistributedPirateBandManagerAI import DistributedPirateBandManagerAI
+from pirates.tutorial.DistributedPiratesTutorialWorldAI import DistributedPiratesTutorialWorldAI
 import threading, sys
 
 class PiratesAIRepository(PiratesInternalRepository):
@@ -76,7 +77,19 @@ class PiratesAIRepository(PiratesInternalRepository):
         self.mainWorld = DistributedMainWorldAI(self)
         self.mainWorld.generateWithRequired(2)
 
+        self.worldCreator.setCurrentWorld(self.mainWorld)
         self.worldCreator.makeMainWorld(self.districtManager.district.mainWorld)
+
+    def createTutorialWorld(self):
+        if not hasattr(self, "worldCreator"):
+            self.notify.warning("No world creator found. Generating")
+            self.worldCreator = WorldCreatorAI(self)
+
+        self.tutorialWorld = DistributedPiratesTutorialWorldAI(self)
+        self.tutorialWorld.generateWithRequired(2)
+
+        self.worldCreator.setCurrentWorld(self.tutorialWorld)
+        self.worldCreator.makeTutorialWorld(self.districtManager.district.tutorialWorld)
 
     def handleConnected(self):
         PiratesInternalRepository.handleConnected(self)
@@ -101,6 +114,9 @@ class PiratesAIRepository(PiratesInternalRepository):
 
         self.notify.info('Creating the main world...')
         self.createMainWorld()
+
+        self.notify.info("Creating the tutorial world...")
+        self.createTutorialWorld()
 
         self.notify.info('Making district available...')
         self.districtManager.openDistrict()

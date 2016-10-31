@@ -85,6 +85,9 @@ from pirates.inventory import DistributedLootContainer/AI
 from pirates.inventory import DistributedLootManager/AI
 from pirates.inventory import Lootable/AI
 from pirates.distributed import TargetManager/AI
+//from pirates.tutorial import PiratesTutorialManager/AI
+//from pirates.tutorial import DistributedPiratesTutorial/AI
+from pirates.tutorial import DistributedPiratesTutorialWorld/AI
 from pirates.world import DistributedDoor/AI
 from pirates.world import DistributedBuildingDoor/AI
 from pirates.world import DistributedInteriorDoor/AI
@@ -998,6 +1001,9 @@ dclass DistributedWelcomeWorld : DistributedInstanceBase {
 };
 
 dclass DistributedInstanceWorld : DistributedInstanceBase {
+};
+
+dclass DistributedPiratesTutorialWorld : DistributedInstanceWorld {
 };
 
 typedef uint32 shipList[];
