@@ -1,6 +1,7 @@
 from direct.directnotify import DirectNotifyGlobal
 from pirates.distributed.DistributedInteractiveAI import DistributedInteractiveAI
 from pirates.piratesbase import PiratesGlobals
+import random
 
 class DistributedGameTableAI(DistributedInteractiveAI):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedGameTableAI')
@@ -56,6 +57,23 @@ class DistributedGameTableAI(DistributedInteractiveAI):
 
     def requestExit(self):
         self.notify.info("Request exit")
+
+    def generatePlayers(self, seats=7, ai=3, available=[PiratesGlobals.VILLAGER_TEAM]):
+        players = [0] * seats
+
+        randomGen = random.Random()
+        randomGen.seed(self.getUniqueId()) 
+
+        if (ai > seats):
+            self.notify.warning("Cannot have more ai then seats! reducing to 5")
+            ai = 5
+
+        for i in range(0, ai):
+            aiType = randomGen.choice(available)
+            players[i] = aiType
+
+        randomGen.shuffle(players)
+        self.setAIList(players)
         
     @staticmethod
     def makeFromObjectKey(cls, air, objKey, data):
