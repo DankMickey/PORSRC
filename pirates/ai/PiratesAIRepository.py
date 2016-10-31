@@ -115,8 +115,9 @@ class PiratesAIRepository(PiratesInternalRepository):
         self.notify.info('Creating the main world...')
         self.createMainWorld()
 
-        self.notify.info("Creating the tutorial world...")
-        self.createTutorialWorld()
+        if config.GetBool('want-tutorial', False):
+            self.notify.info("Creating the tutorial world...")
+            self.createTutorialWorld()
 
         self.notify.info('Making district available...')
         self.districtManager.openDistrict()

@@ -45,6 +45,10 @@ class NewsManagerAI(DistributedObjectAI):
                     self.endHoliday(id)
         return Task.again
 
+    def __checkRandoms(self, task=None):
+
+        return Task.again
+
     def attemptToRunRandom(self, keyword="Invasion"):
         randoms = HolidayGlobals.RandomizedSchedules
         if keyword in randoms:
@@ -123,6 +127,7 @@ class NewsManagerAI(DistributedObjectAI):
         self.notify.info("Starting holiday: %s" % holidayId)
         self.holidayIdList.append((holidayId, time))
         self.sendUpdate('setHolidayIdList', [self.holidayIdList])
+        self.processHolidayStart(holidayId, time)
 
     def endHoliday(self, holidayId):
         if not self.isHolidayRunning(holidayId):
@@ -131,6 +136,23 @@ class NewsManagerAI(DistributedObjectAI):
         self.notify.info("Stopping holiday: %s" % holidayId)
         #self.holidayIdList.remove() #TODO write this
         self.sendUpdate('setHolidayIdList', [self.holidayIdList])
+        self.processHolidayEnd(holidayId)
+
+    def processHolidayStart(self, holidayId, tinme=0):
+        if holidayId in HolidayGlobals.INVASION_HOLIDAYS:
+            pass #TODO
+
+        elif holidayId == HolidayGlobals.QUEENANNES:
+            pass #TODO
+
+        elif holidayId == HolidayGlobals.KRAKENHOLIDAY:
+            pass #TODO
+
+        elif holidayId == HolidayGlobals.FLEETHOLIDAY:
+            pass #TODO
+
+    def processHolidayEnd(self, holidayId):
+        pass
 
     @magicWord(CATEGORY_GAME_DEVELOPER, types=[int, int])
     def forceStartHoliday(holidayId, time):

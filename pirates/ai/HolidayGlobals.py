@@ -53,6 +53,10 @@ HOLIDAYS_WITH_CATALOGS = [
     NEWYEARS,
     MOTHERSDAY,
     FATHERSDAY]
+INVASION_HOLIDAYS = [
+    INVASIONPORTROYAL,
+    INVASIONTORTUGA,
+    INVASIONDELFUEGO]
 
 def getHolidayId(holidayClass, holidayConfig = None):
     holidayId = holidayClass
