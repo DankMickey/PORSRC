@@ -345,26 +345,6 @@ objectStruct = {
                     'Visual': {
                         'Color': (0.79000002145767212, 0.77999997138977051, 0.69999998807907104, 1.0),
                         'Model': 'models/props/bench_bank' } },
-                #'1167163192.37kmuller': {
-                #    'Type': 'Furniture',
-                #    'DisableCollision': False,
-                #    'Hpr': VBase3(-55.606, 0.0, 0.0),
-                #    'Objects': {
-                #        '1228178172.78kmuller': {
-                #            'Type': 'Holiday',
-                #            'DisableCollision': False,
-                #            'Holiday': 'WinterFestival',
-                #            'Hpr': VBase3(143.199, 0.0, 0.0),
-                #            'Pos': Point3(-4.298, -12.747, 10.398),
-                #            'Scale': VBase3(1.0, 1.0, 1.0),
-                #            'VisSize': '',
-                #            'Visual': {
-                #                'Model': 'models/props/pir_m_prp_hol_decoRibbon_winter08' } } },
-                #    'Pos': Point3(-31.748, 10.776, 1.0),
-                #    'Scale': VBase3(1.0, 1.0, 1.0),
-                #    'Visual': {
-                #        'Color': (0.57999998331069946, 0.56999999284744263, 0.47999998927116394, 1.0),
-                #        'Model': 'models/props/chair_shanty' } },
                 '1167163309.14kmuller': {
                     'Type': 'Furniture',
                     'DisableCollision': False,
@@ -1580,9 +1560,6 @@ objectStruct = {
         '1167163012.2kmuller': '["Objects"]["1271353423.55akelts0"]["Objects"]["1167163012.2kmuller"]',
         '1167163093.54kmuller': '["Objects"]["1271353423.55akelts0"]["Objects"]["1167163093.54kmuller"]',
         '1167163142.96kmuller': '["Objects"]["1271353423.55akelts0"]["Objects"]["1167163142.96kmuller"]',
-        #'1167163192.37kmuller': '["Objects"]["1271353423.55akelts0"]["Objects"]["1167163192.37kmuller"]',
-        #'1167163200.31kmuller': '["Objects"]["1271353423.55akelts0"]["Objects"]["1167163200.31kmuller"]',
-        #'1167163215.24kmuller': '["Objects"]["1271353423.55akelts0"]["Objects"]["1167163215.24kmuller"]',
         '1167163309.14kmuller': '["Objects"]["1271353423.55akelts0"]["Objects"]["1167163309.14kmuller"]',
         '1167163315.53kmuller': '["Objects"]["1271353423.55akelts0"]["Objects"]["1167163315.53kmuller"]',
         '1167163340.31kmuller': '["Objects"]["1271353423.55akelts0"]["Objects"]["1167163340.31kmuller"]',
@@ -1656,7 +1633,6 @@ objectStruct = {
         '1228178019.17kmuller': '["Objects"]["1271353423.55akelts0"]["Objects"]["1228178019.17kmuller"]',
         '1228178126.39kmuller': '["Objects"]["1271353423.55akelts0"]["Objects"]["1228178126.39kmuller"]',
         '1228178145.19kmuller': '["Objects"]["1271353423.55akelts0"]["Objects"]["1228178145.19kmuller"]',
-        #'1228178172.78kmuller': '["Objects"]["1271353423.55akelts0"]["Objects"]["1167163192.37kmuller"]["Objects"]["1228178172.78kmuller"]',
         '1228178227.52kmuller': '["Objects"]["1271353423.55akelts0"]["Objects"]["1228178227.52kmuller"]',
         '1228178304.08kmuller': '["Objects"]["1271353423.55akelts0"]["Objects"]["1228178304.08kmuller"]',
         '1228178396.92kmuller': '["Objects"]["1271353423.55akelts0"]["Objects"]["1228178396.92kmuller"]',
