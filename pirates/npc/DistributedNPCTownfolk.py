@@ -628,14 +628,12 @@ class DistributedNPCTownfolk(DistributedBattleNPC.DistributedBattleNPC, Distribu
 
 
     def d_setViewedPotionInstructions(self):
-        print 'viewing potion crafting tutorial'
         if self.interactGUI:
             self.interactGUI.hide()
 
         instructions = PotionInstructionPanel.PotionInstructionPanel()
         onInstructionsComplete = self.finishPotionInstructions
         instructions.show(onInstructionsComplete)
-        self.sendUpdate('setViewedPotionInstructions')
 
 
     def finishPotionInstructions(self):

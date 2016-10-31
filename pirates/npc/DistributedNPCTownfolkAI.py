@@ -59,7 +59,6 @@ class DistributedNPCTownfolkAI(DistributedBattleNPCAI, DistributedShopKeeperAI):
     # levelUpCutlass(uint32) airecv clsend
     # setQuestRewardsEarned(uint32, uint32, uint32 [])
     # setInInvasion(bool) broadcast ram
-    # setViewedPotionInstructions() airecv clsend
     # setZombie(bool) broadcast ram
     # setMovie(string, uint32) broadcast ram
     # triggerInteractShow(uint32)
