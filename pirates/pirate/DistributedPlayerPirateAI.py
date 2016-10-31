@@ -756,16 +756,16 @@ def update(reason="for an update"):
 
 @magicWord(CATEGORY_MODERATION, types=[int])
 def hp(value=-1):
-    av = spellbook.getTarget()
+    av = spellbook.getInvoker()
     if value < 0:
         value = av.getMaxHp()
 
     value = min(value, av.getMaxHp())
     av.b_setHp(value)
 
-@magicWord(CATEGORY_GAME_MASTER, types=[int])
+@magicWord(CATEGORY_MODERATION, types=[int])
 def mojo(value=-1):
-    av = spellbook.getTarget()
+    av = spellbook.getInvoker()
     if value < 0:
         value = av.getMaxMojo()
 
@@ -774,12 +774,12 @@ def mojo(value=-1):
 
 @magicWord(CATEGORY_GAME_MASTER)
 def groggy():
-    av = spellbook.getTarget()
+    av = spellbook.getInvoker()
     av.addDeathPenalty(True)
 
 @magicWord(CATEGORY_GAME_MASTER)
 def rmgroggy():
-    av = spellbook.getTarget()
+    av = spellbook.getInvoker()
     av.removeDeathPenalty()
     av.fillHpMeter()
 
@@ -825,14 +825,16 @@ def gm(color=None, tag=None):
         av.b_setGMNametag(color, tag)
         return 'GM nametag set!'
 
-@magicWord(CATEGORY_GAME_MASTER, types=[int])
+@magicWord(CATEGORY_MODERATION, types=[int])
 def giveGold(gold):
     target = spellbook.getInvoker()
-    #invoker = spellbook.getInvoker()
+    invokerAccess = target.getAdminAccess()
+    if invokerAccess >= CATEGORY_GAME_MASTER.access:
+		target = spellbook.getTarget()
     target.giveGold(gold)
     return 'Given %d gold to %s! Balance: %d' % (gold, target.getName(), target.getGoldInPocket())
 
-@magicWord(CATEGORY_SYSTEM_ADMINISTRATOR, types=[int])
+@magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
 def takeGold(gold):
     target = spellbook.getTarget()
     invoker = spellbook.getInvoker()
@@ -900,7 +902,7 @@ def giveLocatable(type, itemId, amount):
 
     return "Locatable given to %s." % target.getName()
 
-@magicWord(CATEGORY_GAME_MASTER, types=[int])
+@magicWord(CATEGORY_MODERATION, types=[int])
 def giveWeapon(itemId):
     #target = spellbook.getTarget()
     #invoker = spellbook.getInvoker()
@@ -910,7 +912,7 @@ def giveWeapon(itemId):
     from pirates.uberdog.UberDogGlobals import InventoryType
     from pirates.uberdog.TradableInventoryBase import InvItem
     
-    if invokerAccess >= CATEGORY_GAME_DEVELOPER.access:
+    if invokerAccess >= CATEGORY_GAME_MASTER.access:
         target = spellbook.getTarget()
 
     if not target:
@@ -930,7 +932,7 @@ def giveWeapon(itemId):
 
     return "Weapon (%s) given to %s." % (itemId, target.getName())
 
-@magicWord(CATEGORY_GAME_MASTER, types=[int])
+@magicWord(CATEGORY_MODERATION, types=[int])
 def giveClothing(itemId):
     target = spellbook.getInvoker()
     invokerAccess = target.getAdminAccess()
@@ -959,7 +961,7 @@ def giveClothing(itemId):
     return "Clothing (%s) given to %s." % (itemId, target.getName())
         
 
-@magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
+@magicWord(CATEGORY_MODERATION, types=[int])
 def giveJewelry(itemId):
     target = spellbook.getInvoker()
     invokerAccess = target.getAdminAccess()
@@ -987,9 +989,12 @@ def giveJewelry(itemId):
 
     return "Jewelry (%s) given to %s." % (itemId, target.getName())
 
-@magicWord(CATEGORY_GAME_MASTER, types=[int])
+@magicWord(CATEGORY_MODERATION, types=[int])
 def ghost(color=None):
     av = spellbook.getInvoker()
+    invokerAccess = av.getAdminAccess()
+    if invokerAccess >= CATEGORY_GAME_MASTER.access:
+        av = spellbook.getTarget()
     if color == None:
         av.b_setIsGhost(False)
         return "Set your ghost state to false" % av.getName()
