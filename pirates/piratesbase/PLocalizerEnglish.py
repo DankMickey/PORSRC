@@ -10991,6 +10991,7 @@ CodeRedemptionFull = 'Code Redemption Failed. Free up an appropriate inventory s
 CodeRedemptionDisabled = 'Code Redemption is currently disabled for bug fixes, Keep an eye out for its return!'
 CodeRedemptionGold = MoneyName
 CodeRedemptionTreasure = 'Treasure'
+CodeRedemptionHalloween = 'Halloween'
 CodeRedemptionFreeHat = 'Free Hat Week Hat'
 CodeRedemptionKrakenTattoo = 'Octopus Tattoo - Call of the Kraken Exclusive'
 CodeRedemptionDarkfireCutlass = 'Darkfire Cutlass'

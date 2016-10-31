@@ -63,6 +63,7 @@ class AwardTypes:
     TREASURE = 35
     DUAL_CUTLASSES = 36
     BOARDING_AXE = 37
+    HALLOWEEN = 38
     TYPE_IDX = 0
     MALE_IDX = 1
     FEME_IDX = 2
@@ -291,7 +292,13 @@ AWARD_ID = {
         InvItem((InventoryType.ItemTypeMoney, 0)),
         None,
         10000,
-        PLocalizer.CodeRedemptionTreasure] }
+        PLocalizer.CodeRedemptionTreasure],
+    AwardTypes.HALLOWEEN: [
+        NORMAL_INVENTORY,
+        InvItem((InventoryType.ItemTypeMoney, 0)),
+        None,
+        5000,
+        PLocalizer.CodeRedemptionHalloween] }
 
 def getAwardFromCode(code):
     for award in AWARD_ID:
