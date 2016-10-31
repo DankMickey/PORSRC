@@ -154,7 +154,8 @@ class DistributedGAInterior(DistributedGameArea.DistributedGameArea, Distributed
         localAvatar.clearInterestNamed(None, ['ga-interior'])
         DistributedGameArea.DistributedGameArea.handleExitGameArea(self, collEntry)
         if hasattr(self.cr, 'timeOfDayManager'):
-            self.cr.timeOfDayManager.exitIndoors()
+            if self.cr.timeOfDayManager is not None:
+                self.cr.timeOfDayManager.exitIndoors()
 
     def loadModelParts(self):
         if self.modelPath.startswith('models/islands/pir_m_are_isl_'):
