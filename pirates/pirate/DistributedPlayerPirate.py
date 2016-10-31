@@ -3601,16 +3601,6 @@ class MinimapPlayerPirate(MinimapBattleAvatar):
     def setAvatarType(self, avatarType):
         DistributedBattleAvatar.DistibutedBattleAvatar.setAvatarType(AvatarTypes.LocalPirateType if self.isLocal() else AvatarTypes.NonLocalPirateType)
 
-    @magicWord(CATEGORY_STAFF)
-    def ZombieMode():
-        if base.localAvatar.zombie == 0:
-            base.localAvatar.setZombie(1,1)
-            response = 'You are locally cursed!'
-        else:
-            base.localAvatar.setZombie(0,0)
-            response = 'The local curse has worn off...'
-        return response
-
     @magicWord(CATEGORY_STAFF, types=[int])
     def showProfile(avId):
         """Show pirate profile, given their ID."""
@@ -3659,6 +3649,7 @@ class MinimapPlayerPirate(MinimapBattleAvatar):
         if hasattr(base.localAvatar, 'shipHat'):
             base.localAvatar.shipHat.modelRoot.detachNode()
             base.localAvatar.shipHat = None
+            del base.localAvatar.shipHat
 
         if shipClass == 0:
             return 'Ship hat removed...'
@@ -3705,19 +3696,27 @@ class MinimapPlayerPirate(MinimapBattleAvatar):
 
     @magicWord(CATEGORY_GAME_DEVELOPER)
     def bonfire():
-        bf = Bonfire()
-        bf.reparentTo(render)
-        bf.setPos(base.localAvatar, 0, 0, 0)
-        bf.startLoop()
-        return 'Client side only bonfire at %s, %s' % (base.localAvatar.getPos(), base.localAvatar.getHpr())        
+        if hasattr(base.localAvatar, 'bonfire'):
+            base.localAvatar.bonfire.destroy()
+            base.localAvatar.bonfire = None
+            del base.localAvatar.bonfire
+            return "Destroying bonfire..."
+        else:
+            base.localAvatar.bonfire = Bonfire()
+            base.localAvatar.bonfire.reparentTo(render)
+            base.localAvatar.bonfire.setPos(base.localAvatar, 0, 0, 0)
+            base.localAvatar.bonfire.startLoop()
+            return 'Client side only bonfire at %s, %s' % (base.localAvatar.getPos(), base.localAvatar.getHpr())        
 
     @magicWord(CATEGORY_GAME_DEVELOPER)
     def swamp():
         if hasattr(base.localAvatar, 'fireflies'):
             base.localAvatar.fireflies.destroy()
             base.localAvatar.fireflies = None
+            del base.localAvatar.fireflies
             base.localAvatar.groundFog.destroy()
             base.localAvatar.groundFog = None
+            del base.localAvatar.groundFog
             return "Swamp effect disabled."
         else:
             base.localAvatar.fireflies = Fireflies()
@@ -3763,7 +3762,25 @@ class MinimapPlayerPirate(MinimapBattleAvatar):
         cameraShakerEffect.numShakes = 2
         cameraShakerEffect.scalePower = 1
         cameraShakerEffect.play(80.0)    
-        return "Boom."        
+        return "Boom."  
+
+    @magicWord(CATEGORY_GAME_DEVELOPER)
+    def greenBlood():
+        from pirates.effects.GreenBlood import GreenBlood
+
+        if hasattr(base.localAvatar, "greenBlood"):
+            base.localAvatar.greenBlood.destroy()
+            base.localAvatar.greenBlood = None
+            del base.localAvatar.greenBlood
+            return "Removing the Oozing Goo..."
+        else:
+            effect = GreenBlood.getEffect()
+            if effect:
+                base.localAvatar.greenBlood = effect
+                base.localAvatar.greenBlood.reparentTo(base.localAvatar)
+                base.localAvatar.greenBlood.setPos(0, 0, 0)
+                base.localAvatar.greenBlood.startLoop()
+            return "Starting the Ooozing Goo...."
 
     @magicWord(CATEGORY_STAFF)
     def turbo():
