@@ -22,7 +22,7 @@ objectStruct = {
             'Type': 'Island',
             'Name': 'Bilgewater',
             'File': '',
-            'Phase': 2,
+            'Minimap': False,
             'Objects': {
                 '1136404579.56dzlu': {
                     'Type': 'Tree',

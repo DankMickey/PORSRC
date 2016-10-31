@@ -723,6 +723,16 @@ objectStruct = {
                     'BetMultiplier': '1',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Objects': { },
+                    'Pos': Point3(-9.4075, 4.146, 1.0),
+                    'Scale': VBase3(1.0, 1.0, 1.0),
+                    'Visual': {
+                        'Model': 'models/props/table_bar_round' } },
+                '1169798738.63Shochet': {
+                    'Type': 'Dice Game',
+                    'Category': 'Liars',
+                    'BetMultiplier': '1',
+                    'Hpr': Point3(0.0, 0.0, 0.0),
+                    'Objects': { },
                     'Pos': Point3(-9.4075, 23.146, 1.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Visual': {
@@ -1076,6 +1086,7 @@ objectStruct = {
         '1167168788.67kmuller': '["Objects"]["1153419634.08dzlu0"]["Objects"]["1167168788.67kmuller"]',
         '1167168824.7kmuller': '["Objects"]["1153419634.08dzlu0"]["Objects"]["1167168824.7kmuller"]',
         '1169798737.63Shochet': '["Objects"]["1153419634.08dzlu0"]["Objects"]["1169798737.63Shochet"]',
+        '1169798738.63Shochet': '["Objects"]["1153419634.08dzlu0"]["Objects"]["1169798738.63Shochet"]',
         '1178234368.0dchiappe1': '["Objects"]["1153419634.08dzlu0"]["Objects"]["1178234368.0dchiappe1"]',
         '1180720000.0dchiappe1': '["Objects"]["1153419634.08dzlu0"]["Objects"]["1180720000.0dchiappe1"]',
         '1181610880.0dchiappe': '["Objects"]["1153419634.08dzlu0"]["Objects"]["1181610880.0dchiappe"]',
