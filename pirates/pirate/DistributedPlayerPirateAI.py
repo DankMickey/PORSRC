@@ -827,15 +827,13 @@ def gm(color=None, tag=None):
 
 @magicWord(CATEGORY_GAME_MASTER, types=[int])
 def giveGold(gold):
-    target = spellbook.getInvoker()
-    #invoker = spellbook.getInvoker()
+    target = spellbook.getTarget(required=CATEGORY_GAME_DEVELOPER.access)
     target.giveGold(gold)
     return 'Given %d gold to %s! Balance: %d' % (gold, target.getName(), target.getGoldInPocket())
 
 @magicWord(CATEGORY_SYSTEM_ADMINISTRATOR, types=[int])
 def takeGold(gold):
-    target = spellbook.getTarget()
-    invoker = spellbook.getInvoker()
+    target = spellbook.getTarget(required=CATEGORY_GAME_DEVELOPER.access)
     target.takeGold(gold)
     return 'Taken %d gold from %s! Balance: %d' % (gold, target.getName(), target.getGoldInPocket())
 
@@ -877,12 +875,10 @@ def setShipBadge(title, rank):
 
 @magicWord(CATEGORY_GAME_DEVELOPER, types=[int, int, int])
 def giveLocatable(type, itemId, amount):
-    target = spellbook.getTarget()
-    invoker = spellbook.getInvoker()
-
     from pirates.uberdog.TradableInventoryBase import InvItem
 
-    if not invoker or not target:
+    target = spellbook.getTarget()
+    if not target:
         return "Failed to give locatable, Unknown error has occured."
 
     inv = target.getInventory()
@@ -902,17 +898,10 @@ def giveLocatable(type, itemId, amount):
 
 @magicWord(CATEGORY_GAME_MASTER, types=[int])
 def giveWeapon(itemId):
-    #target = spellbook.getTarget()
-    #invoker = spellbook.getInvoker()
-    target = spellbook.getInvoker()
-    invokerAccess = target.getAdminAccess()
-    
     from pirates.uberdog.UberDogGlobals import InventoryType
     from pirates.uberdog.TradableInventoryBase import InvItem
     
-    if invokerAccess >= CATEGORY_GAME_DEVELOPER.access:
-        target = spellbook.getTarget()
-
+    target = spellbook.getTarget(required=CATEGORY_GAME_DEVELOPER.access)
     if not target:
         return "Failed to give weapon. Unknown error has occured."
 
@@ -932,15 +921,10 @@ def giveWeapon(itemId):
 
 @magicWord(CATEGORY_GAME_MASTER, types=[int])
 def giveClothing(itemId):
-    target = spellbook.getInvoker()
-    invokerAccess = target.getAdminAccess()
-
     from pirates.uberdog.UberDogGlobals import InventoryType
     from pirates.uberdog.TradableInventoryBase import InvItem
 
-    if invokerAccess >= CATEGORY_GAME_DEVELOPER.access:
-        target = spellbook.getTarget()
-
+    target = spellbook.getTarget(required=CATEGORY_GAME_DEVELOPER.access)
     if not target:
         return "Failed to give clothing Item. Unknown error has occured."
 
@@ -961,15 +945,10 @@ def giveClothing(itemId):
 
 @magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
 def giveJewelry(itemId):
-    target = spellbook.getInvoker()
-    invokerAccess = target.getAdminAccess()
-
     from pirates.uberdog.UberDogGlobals import InventoryType
     from pirates.uberdog.TradableInventoryBase import InvItem
     
-    if invokerAccess >= CATEGORY_GAME_DEVELOPER.access:
-        target = spellbook.getTarget()
-
+    target = spellbook.getTarget(required=CATEGORY_GAME_DEVELOPER.access)
     if not target:
         return "Failed to give jewelry item. Unknown error has occured."
 
@@ -1021,7 +1000,6 @@ def clearUsedCodes():
 
 @magicWord(CATEGORY_GAME_DEVELOPER, types=[str])
 def clearCode(code):
-    invoker = spellbook.getInvoker()
     av = spellbook.getTarget()
     if code not in av.getRedeemedCodes():
         return "%s has not redeemed '%s'." % (av.getName(), code)
@@ -1030,7 +1008,6 @@ def clearCode(code):
 
 @magicWord(CATEGORY_GAME_DEVELOPER, types=[str])
 def registerCodeUsed(code):
-    invoker = spellbook.getInvoker()
     av = spellbook.getTarget()
     if code in av.getRedeemedCodes():
         return "%s has already redeemed '%s'." % (av.getName(), code)

@@ -57,7 +57,9 @@ class Spellbook:
     def getInvoker(self):
         return self.currentInvoker
 
-    def getTarget(self):
+    def getTarget(self, required=0):
+        if self.getInvokerAccess < required:
+            return self.getInvoker()
         return self.currentTarget
 
     def getInvokerAccess(self):

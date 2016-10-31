@@ -105,17 +105,22 @@ class AvatarType:
 
     def getName(self):
         spec = self.howSpecific()
-        if spec is AvatarType.Id:
-            name = PLocalizer.AvatarNames[self.faction][self.track][self.id][0]
-        elif spec is AvatarType.Track:
-            name = PLocalizer.TrackAvTypeNames[self.faction][self.track][0]
-        elif spec is AvatarType.Faction:
-            name = PLocalizer.FactionAvTypeNames[self.faction][0]
-        else:
-            name = PLocalizer.AnyAvType[0]
-        if self.boss:
-            name = '%s %s' % (name, PLocalizer.Boss)
-
+        try:
+            if spec is AvatarType.Id:
+                name = PLocalizer.AvatarNames[self.faction][self.track][self.id][0]
+            elif spec is AvatarType.Track:
+                name = PLocalizer.TrackAvTypeNames[self.faction][self.track][0]
+            elif spec is AvatarType.Faction:
+                name = PLocalizer.FactionAvTypeNames[self.faction][0]
+            else:
+                name = PLocalizer.AnyAvType[0]
+            if self.boss:
+                name = '%s %s' % (name, PLocalizer.Boss)
+        except:
+            print ":AvatarType(warning): Failed to load AvatarType name. faction: %s track:%s id:%s" % (self.faction, self.track, self.id)
+            name = 'Unknown'
+            if self.boss:
+                name = '%s %s' % (name, PLocalizer.Boss)
         return name
 
     def getShortName(self):
