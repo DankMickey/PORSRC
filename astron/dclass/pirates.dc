@@ -5,6 +5,7 @@ from pirates.distributed import DistributedInteractive/AI/UD
 from pirates.treasuremap import DistributedBuriedTreasure/AI
 from pirates.distributed import PiratesDistrict/AI
 from pirates.distributed import PiratesDistrictStats/AI
+from pirates.distributed import DistributedTargetableObject/AI
 from pirates.economy import DistributedShopKeeper/AI
 from pirates.ship import DistributedSimpleShip/AI
 from pirates.ship import DistributedNPCSimpleShip/AI
@@ -56,6 +57,7 @@ from pirates.battle import DistributedBattleAvatar/AI
 from pirates.battle import DistributedBattleNPC/AI
 from pirates.battle import WeaponBase/AI
 from pirates.battle import Teamable
+from pirates.quest import DistributedQuestProp/AI
 from pirates.pvp import PVPManager/AI
 from pirates.pvp import SiegeManager/AI
 from pirates.pvp import Scoreboard/AI
@@ -95,6 +97,7 @@ from pirates.world import DistributedCellDoor/AI
 from pirates.band import DistributedCrewMatchManager/AI/UD
 from pirates.band import DistributedBandMember/AI/OV
 from pirates.interact import DistributedSearchableContainer/AI
+from pirates.interact import DistributedInteractiveProp/AI
 from pirates.coderedemption import CodeRedemption/AI
 from pirates.minigame import DistributedGameTable/AI
 from pirates.minigame import DistributedPokerTable/AI
@@ -446,6 +449,21 @@ dclass DistributedBuriedTreasure : DistributedInteractive {
   startDigging();
   stopDigging(uint16);
   setVisZone(string) required broadcast ram;
+};
+
+dclass DistributedTargetableObject : DistributedObject {
+};
+
+
+dclass DistributedInteractiveProp : DistributedInteractive, DistributedTargetableObject {
+  setModelPath(string) required broadcast ram;
+  setParentObjId(uint32) required broadcast ram;
+  setMovie(uint32, int32) broadcast ram;
+  setInteractAble(string) required broadcast ram;
+  setInteractType(string) required broadcast ram;
+  propSlashed() broadcast;
+  propSlashedBonus() broadcast;
+  inPosition() airecv clsend;
 };
 
 dclass Teamable {
@@ -1683,4 +1701,50 @@ dclass PVPGameShipBattle : PVPGameBase {
   setParentingRules(string, string) broadcast ram;
   setShipDoId(DoId);
   setBoarded() airecv clsend;
+};
+
+dclass DistributedQuestProp : Lootable {
+  setType(string) required broadcast ram;
+  setVisZone(string) required broadcast ram;
+  setCurrentTarget(uint32) broadcast ram;
+  setScale(int16/10, int16/10, int16/10) required broadcast ram;
+  setPropColor(int16/10, int16/10, int16/10, int16/10) required broadcast ram;
+  setSphereScale(int16/10) required broadcast ram;
+  setAllowInteract(bool) broadcast ram;
+  startSearching(uint16);
+  stopSearching(uint16);
+  setStartingDepth(uint16) required broadcast ram;
+  setCurrentDepth(uint16) required broadcast ram;
+  showTreasure(uint16) broadcast;
+  startDigging();
+  createDigSpot() broadcast ram;
+  stopDigging(uint16);
+  stashChest() broadcast ram;
+  setProximitySphere(uint16/10) broadcast ram;
+  requestClientProximity() clsend airecv;
+  requestClientExitProximity() clsend airecv;
+  createBattleCollisions() broadcast ram;
+  setMaxHp(int32) required broadcast ram;
+  setHp(int32, uint8) required broadcast ram;
+  setLootType(uint8);
+  disableTeleportEffect();
+  clearInteract();
+  requestCurrentWeapon(uint16);
+  putAwayCurrentWeapon();
+  requestGotSpecialReward(uint16);
+  requestSpawnFriendly(string);
+  setOnFire(uint16/10) broadcast;
+  explode() broadcast;
+  stashModel() broadcast ram;
+  unstashModel() broadcast ram;
+  stashProp() broadcast ram;
+  unstashProp() broadcast ram;
+  breakProp() broadcast ram;
+  freePlayer();
+  throwWarning();
+  //setQuestIds(QuestId []) required broadcast ram;
+  //setCompletedQuestIds(QuestId []) required broadcast ram;
+  //setNotCompletedQuestIds(QuestId []) required broadcast ram;
+  sendUpdateMessage(uint8) broadcast;
+  sendLocalSound(uint8, bool);
 };

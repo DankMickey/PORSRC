@@ -65,5 +65,5 @@ class DistributedSearchableContainerAI(DistributedInteractiveAI, DistributedObje
         if gridPos:
             obj.setPos(gridPos)
 
-        obj.setSphereScale(int(float(data['Aggro Radius'])))
+        obj.setSphereScale(int(float(data.get('Aggro Radius', 1.0))))
         return obj

@@ -1,18 +1,36 @@
 from direct.distributed import DistributedObjectAI
+from pirates.distributed.DistributedInteractiveAI import *
+from pirates.distributed.DistributedTargetableObjectAI import *
 
-class DistributedInteractivePropAI(DistributedObjectAI.DistributedObjectAI):
+class DistributedInteractivePropAI(DistributedInteractiveAI, DistributedTargetableObjectAI):
+    notify = DirectNotifyGlobal.directNotify.newCategory('DistributedInteractivePropAI')
 
     def ___init___(self, air):
-        DistributedObjectAI.DistributedObjectAI.__init__(self, air)
+        DistributedInteractiveAI.__init__(self, air)
+        DistributedTargetableObjectAI.__init__(self, air)
 
-    def announceGenerate(self):
-        DistributedObjectAI.DistributedObjectAI.announceGenerate(self)
+    def setModelPath(self, modelPath):
+        self.modelPath = modelPath
 
-    def generate(self):
-        DistributedObjectAI.DistributedObjectAI.generate(self)
+    def getModelPath(self):
+        return self.modelPath
 
-    def delete(self):
-        DistributedObjectAI.DistributedObjectAI.delete(self)
+    def setInteractAble(self, able):
+        self.able = able
 
-    def disable(self):
-        DistributedObjectAI.DistributedObjectAI.disable(self)
+    def getInteractAble(self):
+        return self.able
+
+    def setInteractType(self, type):
+        self.interactType = type
+
+    def getInteractType(self):
+        return self.interactType
+
+    @classmethod
+    def makeFromObjectKey(cls, air, objKey, data):
+        obj = DistributedInteractiveAI.makeFromObjectKey(cls, air, objKey, data)
+        obj.setModelPath(data['Visual']['Model'])
+        obj.setInteractAble(data.get('interactAble', 'npc'))
+        obj.setInteractType(data.get('interactType', 'hit'))
+        return obj

@@ -19,6 +19,8 @@ class InteriorFlags:
 
 class WorldCreatorAI(WorldCreatorBase):
     notify = directNotify.newCategory('WorldCreatorAI')
+    _missing = set() #Debug
+    _unimplemented = set() #Debug
 
     def __init__(self, air):
         WorldCreatorBase.__init__(self, air)
@@ -135,3 +137,33 @@ class WorldCreatorAI(WorldCreatorBase):
 
         for additional in additionalData:
             self.__loadInteriorFileAndAdditionalData(additional, interior)
+
+    @classmethod
+    def registerMissing(cls, objType):
+        cls._missing.add(objType)
+
+    @classmethod
+    def printMissingTypes(cls):
+        if not cls._missing:
+            return
+
+        cls.notify.warning("Missing object types: ")
+        for objType in cls._missing:
+            print '   %r' % objType
+
+        del cls._missing
+
+    @classmethod
+    def registerUnimplemented(cls, objType):
+        cls._unimplemented.add(objType)
+
+    @classmethod
+    def printUnimplemented(cls):
+        if not cls._unimplemented:
+            return
+
+        cls.notify.warning("Unable to spawn the following objects. They are not yet implemented: ")
+        for objType in cls._unimplemented:
+            print '   %r' % objType
+
+        del cls._unimplemented       

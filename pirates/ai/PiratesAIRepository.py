@@ -128,6 +128,9 @@ class PiratesAIRepository(PiratesInternalRepository):
         DistributedEnemySpawnerAI.printMissingAvatarTypes()
         DistributedEnemySpawnerAI.printMissingShipTypes()
         DistributedEnemySpawnerAI.printMissingAnimalTypes()
+        
+        WorldCreatorAI.printMissingTypes()
+        WorldCreatorAI.printUnimplemented()
 
     def getTrackClsends(self):
         return False

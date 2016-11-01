@@ -8,7 +8,6 @@ from direct.task import Task
 from direct.showbase.PythonUtil import quickProfile
 from pirates.pirate import AvatarType
 from otp.otpbase import OTPRender
-from pirates.battle import DistributedBattleable
 from pirates.inventory import Lootable
 from pirates.piratesgui import PiratesGuiGlobals
 from pirates.piratesbase import PiratesGlobals
@@ -41,7 +40,7 @@ SoundFiles = {
 UninteractableProps = [
     '1274477304.85akelts']
 
-class DistributedQuestProp(DistributedBattleable.DistributedBattleable, Lootable.Lootable):
+class DistributedQuestProp(Lootable.Lootable):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedQuestProp')
     deferrable = True
     DiskWaitingEnemyColor = (1, 0, 0, 1)
@@ -49,7 +48,6 @@ class DistributedQuestProp(DistributedBattleable.DistributedBattleable, Lootable
 
     def __init__(self, cr):
         NodePath.__init__(self, 'DistributedQuestProp')
-        DistributedBattleable.DistributedBattleable.__init__(self, cr)
         Lootable.Lootable.__init__(self)
         self.anims = None
         self.type = None

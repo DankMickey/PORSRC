@@ -10,16 +10,12 @@ from pirates.world.LocationConstants import *
 import random
 
 # Treasure
-from pirates.interact.DistributedSearchableContainerAI import DistributedSearchableContainerAI
 from pirates.treasuremap.DistributedBuriedTreasureAI import DistributedBuriedTreasureAI
 
 # Minigame
 from pirates.minigame.DistributedPotionCraftingTableAI import DistributedPotionCraftingTableAI
 from pirates.minigame.DistributedRepairBenchAI import DistributedRepairBenchAI
 from pirates.minigame.DistributedFishingSpotAI import DistributedFishingSpotAI
-
-# Holiday
-from pirates.holiday.DistributedHolidayObjectAI import DistributedHolidayObjectAI
 
 # World
 from DistributedDinghyAI import DistributedDinghyAI
@@ -217,29 +213,15 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
             self.__fspots += 1
             self.generateChild(genObj)
 
-        elif objType == 'Searchable Container' and config.GetBool('want-searchables', 0):
-            genObj = DistributedSearchableContainerAI.makeFromObjectKey(self.air, objKey, object)
-            self.generateChild(genObj)
-
-        elif objType == 'Building Exterior':
-            genObj = self.air.worldCreator.createBuilding(self, objKey, object)
-
         elif objType == 'RepairBench' and config.GetBool('want-repair-game', 0):
             genObj = DistributedRepairBenchAI.makeFromObjectKey(self.air, objKey, object)
             self.generateChild(genObj)
 
-        elif objType == 'Holiday' and config.GetBool('want-holiday-objects', 0):
-            genObj = DistributedHolidayObjectAI.makeFromObjectKey(self.air, objKey, object)
-            self.generateChild(genObj)
-
-        elif objType == 'Connector Tunnel': # and config.GetBool('want-link-tunnels', 0):
-            genObj = DistributedGATunnelAI.makeFromObjectKey(self.air, objKey, object)
-            self.generateChild(genObj)   
-
-        elif objType == 'Island Game Area' and config.GetBool('want-link-tunnels', 0):
+        elif objType == 'Connector Tunnel' and config.GetBool('want-link-tunnels', 0):
+            from pirates.world.WorldCreatorAI import WorldCreatorAI
+            WorldCreatorAI.registerUnimplemented(objType)
             #genObj = DistributedGATunnelAI.makeFromObjectKey(self.air, objKey, object)
-            #self.generateChild(genObj)          
-            pass
+            #self.generateChild(genObj)   
 
         else:
             genObj = DistributedGameAreaAI.createObject(self, objType, parent, objKey, object)
