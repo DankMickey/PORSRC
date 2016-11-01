@@ -918,17 +918,37 @@ Music2IslandDict = {
         MUSIC_ALT: None,
         MUSIC_COMBAT: MUSIC_RAVENS_COVE_CAVE_BATTLE } }
 
+HolidayMusic2IslandDict = {
+    LocationIds.PORT_ROYAL_ISLAND: {
+        MUSIC_MAIN: MUSIC_HOLIDAY_02,
+        MUSIC_ALT: MUSIC_HOLIDAY_02 },
+    LocationIds.TORTUGA_ISLAND: {
+        MUSIC_MAIN: MUSIC_HOLIDAY_02,
+        MUSIC_ALT: MUSIC_HOLIDAY_02 } }
+
 def getMainMusic(locationId):
+    song = MUSIC_DEFAULT_MAIN
     if locationId in Music2IslandDict:
         if MUSIC_MAIN in Music2IslandDict.get(locationId):
-            return Music2IslandDict.get(locationId).get(MUSIC_MAIN)
-    return MUSIC_DEFAULT_MAIN
+            song = Music2IslandDict.get(locationId).get(MUSIC_MAIN)
+        if base.cr.newsManager and base.cr.newsManager.getHoliday(17):
+            if locationId in HolidayMusic2IslandDict:
+                if MUSIC_MAIN in HolidayMusic2IslandDict.get(locationId):
+                    song = HolidayMusic2IslandDict.get(locationId).get(MUSIC_MAIN)
+    print ":SoundGlobals: got main song (%s)" % song
+    return song
 
 def getAltMusic(locationId):
+    song = MUSIC_DEFAULT_ALT
     if locationId in Music2IslandDict:
         if MUSIC_ALT in Music2IslandDict.get(locationId):
-            return Music2IslandDict.get(locationId).get(MUSIC_ALT)
-    return MUSIC_DEFAULT_ALT
+            song = Music2IslandDict.get(locationId).get(MUSIC_ALT)
+        if base.cr.newsManager and base.cr.newsManager.getHoliday(17):
+            if locationId in HolidayMusic2IslandDict:
+                if MUSIC_ALT in HolidayMusic2IslandDict.get(locationId):
+                    song = HolidayMusic2IslandDict.get(locationId).get(MUSIC_ALT)
+    print ":SoundGlobals: got alt song (%s)" % song
+    return song
 
 def getCombatMusic(locationId):
     if locationId in Music2IslandDict:
