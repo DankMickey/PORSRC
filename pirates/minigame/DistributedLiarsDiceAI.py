@@ -11,4 +11,5 @@ class DistributedLiarsDiceAI(DistributedDiceGameAI):
     def makeFromObjectKey(cls, air, objKey, data):
         obj = DistributedDiceGameAI.makeFromObjectKey(cls, air, objKey, data)
         obj.setTableType(2)
+        #obj.generatePlayers()
         return obj

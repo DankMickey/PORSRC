@@ -49,8 +49,9 @@ class DistributedDiceGame(DistributedGameTable.DistributedGameTable):
 
     def delete(self):
         DistributedGameTable.DistributedGameTable.delete(self)
-        self.dealer.delete()
-        del self.dealer
+        if hasattr(self, 'dealer'):
+            self.dealer.delete()
+            del self.dealer
 
 
     def setTableState(self, round, buttonSeat):

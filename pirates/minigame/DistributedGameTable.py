@@ -195,6 +195,7 @@ class DistributedGameTable(DistributedInteractive.DistributedInteractive):
             self.tableModel.flattenStrong()
             self.tableModel.setScale(2.5, 2.5, 1)
             self.sittingOffset = -2.75
+            self.actors = []
             text = self.getInteractText()
             self.setInteractOptions(proximityText = text, sphereScale = 12, diskRadius = 14)
             seatPositions = [(Vec3(-4, 6.5, 0), Vec3(180, 0, 0)), (Vec3(-11, 0, 0), Vec3(-90, 0, 0)), (Vec3(-4, -6.5, 0), Vec3(0, 0, 0)), (Vec3(0, -6.5, 0), Vec3(0, 0, 0)), (Vec3(4, -6.5, 0), Vec3(0, 0, 0)), (Vec3(11, 0, 0), Vec3(90, 0, 0)), (Vec3(4, 6.5, 0), Vec3(180, 0, 0))]
@@ -514,12 +515,16 @@ class DistributedGameTable(DistributedInteractive.DistributedInteractive):
                 townfolk.delete()
                 continue
         del self.AIPlayers
-        del self.actors
-        for n in self.PocketCards:
-            n.remove_node()
-        del self.PocketCards
-        del self.SeatInfo
-        del self.SeatAnim
+        if hasattr(self, 'actors'):
+            del self.actors
+        if hasattr(self, 'PocketCards'):
+            for n in self.PocketCards:
+                n.remove_node()
+            del self.PocketCards
+        if hasattr(self, 'SeatInfo'):
+            del self.SeatInfo
+        if hasattr(self, 'SeatAnim'):
+            del self.SeatAnim
 
     def delete(self):
         DistributedInteractive.DistributedInteractive.delete(self)
