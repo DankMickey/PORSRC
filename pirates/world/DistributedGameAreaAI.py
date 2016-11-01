@@ -94,9 +94,9 @@ class DistributedGameAreaAI(DistributedNodeAI):
 
         elif objType == 'Townsperson' and self.wantNPCS:
 
-            #quick hack for bad npcs
+            #quick hack to prevent holiday npcs
             holiday = object.get('Holiday', '')
-            if holiday != '':
+            if holiday != '' and config.GetBool('remove-holiday-npcs', True):
                 self.notify.info("Preventing Holiday NPC spawn.")
                 return None
 
@@ -124,9 +124,8 @@ class DistributedGameAreaAI(DistributedNodeAI):
             self.generateChild(genObj)
 
         elif objType == 'Holiday' and self.wantHolidayObjects:
-            self.__printUnimplementedNotice(objType) #TODO stuff doesnt spawn
-            #genObj = DistributedHolidayObjectAI.makeFromObjectKey(self.air, objKey, object)
-            #self.generateChild(genObj)
+            #self.__printUnimplementedNotice(objType) #TODO
+            genObj = self.generateNode(objType, objKey, object, parent, gridPos=True)
 
         elif objType == 'Holiday Object' and self.wantHolidayObjects:
             subType = object.get('SubType')

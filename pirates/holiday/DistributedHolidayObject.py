@@ -10,7 +10,6 @@ class DistributedHolidayObject(DistributedInteractive):
         self.interactRadius = 10
         self.interactMode = 0
         self.proximityText = proximityText
-        print "TADA!"
 
     def setHoliday(self, holiday):
         self.holiday = holiday
