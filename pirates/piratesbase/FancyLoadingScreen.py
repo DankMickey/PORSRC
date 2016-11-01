@@ -672,7 +672,7 @@ class FancyLoadingScreen(DirectObject.DirectObject):
             screenshot = screenShot_Weapon
         elif base.localAvatar.style.getTutorial() < PiratesGlobals.TUT_MET_JOLLY_ROGER:
             screenshot = screenShot_Cutlass
-        elif base.cr.newsManager and base.cr.newsManager.getHoliday(21):
+        elif base.cr.newsManager and base.cr.newsManager.getHoliday(17):
             screenshot = screenShots_WinterHolidayLocations.get(targetId)
             if not screenshot:
                 screenshot = screenShots_Locations.get(targetId)
