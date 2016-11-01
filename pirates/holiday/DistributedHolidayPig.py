@@ -26,7 +26,7 @@ class DistributedHolidayPig(DistributedHolidayObject):
         self.fireEffect = None
         self.pigInterval = None
         self.pigModel = None
-
+        
 
     def delete(self):
         if self.pigInterval:

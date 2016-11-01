@@ -20,7 +20,6 @@ class DistributedHolidayBonfire(DistributedHolidayObject):
         DistributedHolidayObject.__init__(self, cr, proximityText = proximityText)
         self.fireStarted = False
 
-
     def setFireStarted(self, value = False):
         self.fireStarted = value
 

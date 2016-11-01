@@ -25,7 +25,7 @@ class DistributedHolidayObjectAI(DistributedInteractiveAI):
     def getInteractMode(self):
         return self.mode
 
-    @classmethod
+    @staticmethod
     def makeFromObjectKey(cls, air, objKey, data):
         obj = DistributedInteractiveAI.makeFromObjectKey(cls, air, objKey, data)
         obj.setHoliday(data.get('Holiday', 'FoundersFeast'))
