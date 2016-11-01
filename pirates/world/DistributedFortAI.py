@@ -75,4 +75,10 @@ class DistributedFortAI(DistributedBattleAvatarAI):
 
     # hitByProjectile(SkillId, SkillId) airecv clsend
 
+    @classmethod
+    def makeFromObjectKey(cls, air, objKey, data):
+        obj = DistributedBattleAvatarAI.makeFromObjectKey(cls, air, objKey, data)
+
+        return obj
+
 

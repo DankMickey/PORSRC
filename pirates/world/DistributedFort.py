@@ -70,7 +70,7 @@ class DistributedFort(DistributedBattleAvatar.DistributedBattleAvatar):
         self.gameFSM = BattleAvatarGameFSM.BattleAvatarGameFSM(self)
 
     def announceGenerate(self):
-        self.notify.debug('announceGenerate')
+        self.notify.info('announceGenerate')
         self.battleTubeRadius = 50.0
         self.battleTubeHeight = 100.0
         DistributedBattleAvatar.DistributedBattleAvatar.announceGenerate(self)
