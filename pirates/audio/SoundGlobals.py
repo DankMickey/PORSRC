@@ -935,7 +935,6 @@ def getMainMusic(locationId):
             if locationId in HolidayMusic2IslandDict:
                 if MUSIC_MAIN in HolidayMusic2IslandDict.get(locationId):
                     song = HolidayMusic2IslandDict.get(locationId).get(MUSIC_MAIN)
-    print ":SoundGlobals: got main song (%s)" % song
     return song
 
 def getAltMusic(locationId):
@@ -947,7 +946,6 @@ def getAltMusic(locationId):
             if locationId in HolidayMusic2IslandDict:
                 if MUSIC_ALT in HolidayMusic2IslandDict.get(locationId):
                     song = HolidayMusic2IslandDict.get(locationId).get(MUSIC_ALT)
-    print ":SoundGlobals: got alt song (%s)" % song
     return song
 
 def getCombatMusic(locationId):
