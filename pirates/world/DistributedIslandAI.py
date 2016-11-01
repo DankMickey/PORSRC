@@ -60,11 +60,11 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
             self.__runIslandFireworks()
             self.runFireworks = taskMgr.doMethodLater(15, self.__runIslandFireworks, 'runFireworks')
 
-        if config.GetBool('want-auto-feast', True):
+        if config.GetBool('want-auto-feast', False):
             islandId = self.getUniqueId()
             if islandId == LocationIds.TORTUGA_ISLAND:
                 self.notify.info("Auto starting Feast...")
-                self.setFeastFireEnabled(True)
+                self.b_setFeastFireEnabled(True)
 
 
     def delete(self):
