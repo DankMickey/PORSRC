@@ -78,7 +78,8 @@ class DistributedFortAI(DistributedBattleAvatarAI):
     @classmethod
     def makeFromObjectKey(cls, air, objKey, data):
         obj = DistributedBattleAvatarAI.makeFromObjectKey(cls, air, objKey, data)
-
+        obj.setObjKey(objKey)
+        
         return obj
 
 

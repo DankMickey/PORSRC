@@ -10,7 +10,10 @@ from pirates.minigame.DistributedHoldemTableAI import DistributedHoldemTableAI
 from pirates.minigame.Distributed7StudTableAI import Distributed7StudTableAI
 from pirates.minigame.DistributedLiarsDiceAI import DistributedLiarsDiceAI
 from pirates.holiday.DistributedHolidayObjectAI import DistributedHolidayObjectAI
+from pirates.holiday.DistributedHolidayPigAI import DistributedHolidayPigAI
+from pirates.holiday.DistributedHolidayBonfireAI import DistributedHolidayBonfireAI
 from pirates.quest.DistributedQuestPropAI import DistributedQuestPropAI
+from pirates.world.DistributedFortAI import DistributedFortAI
 
 class DistributedGameAreaAI(DistributedNodeAI):
     def __init__(self, air, modelPath):
@@ -33,6 +36,7 @@ class DistributedGameAreaAI(DistributedNodeAI):
         self.wantBosses = config.GetBool('want-bosses', True)
         self.wantForts = config.GetBool('want-simple-forts', True)
         self.wantQuestProps = config.GetBool('want-quest-props', True)
+        self.wantHolidayObjects = config.GetBool('want-holiday-objects', True)
 
         self.debugPrints = config.GetBool('want-debug-world-prints', True)
 
@@ -89,6 +93,13 @@ class DistributedGameAreaAI(DistributedNodeAI):
             self.spawner.addAnimalSpawnNode(objKey, object)
 
         elif objType == 'Townsperson' and self.wantNPCS:
+
+            #quick hack for bad npcs
+            holiday = object.get('Holiday', '')
+            if holiday != '':
+                self.notify.info("Preventing Holiday NPC spawn.")
+                return None
+
             genObj = self.spawner.spawnNPC(objKey, object)
             self.npcs[genObj.doId] = genObj
 
@@ -112,10 +123,19 @@ class DistributedGameAreaAI(DistributedNodeAI):
             genObj = DistributedSearchableContainerAI.makeFromObjectKey(self.air, objKey, object)
             self.generateChild(genObj)
 
-        elif (objType == 'Holiday' or objType == 'Holiday Object') and config.GetBool('want-holiday-objects', True):
-            self.__printUnimplementedNotice(objType)
+        elif objType == 'Holiday' and self.wantHolidayObjects:
+            self.__printUnimplementedNotice(objType) #TODO stuff doesnt spawn
             #genObj = DistributedHolidayObjectAI.makeFromObjectKey(self.air, objKey, object)
             #self.generateChild(genObj)
+
+        elif objType == 'Holiday Object' and self.wantHolidayObjects:
+            subType = object.get('SubType')
+            if subType == 'Roast Pig':
+                genObj = DistributedHolidayPigAI.makeFromObjectKey(self.air, objKey, object)
+            elif subType == 'Bonfire':
+                genObj = DistributedHolidayBonfireAI.makeFromObjectKey(self.air, objKey, object)
+            else:
+                self.notify.warning("Unsupported Holiday Object SubType: %s" % subType)
 
         elif objType == 'Building Exterior':
             genObj = self.air.worldCreator.createBuilding(self, objKey, object)
@@ -136,12 +156,14 @@ class DistributedGameAreaAI(DistributedNodeAI):
             if config.GetBool('force-invasion-spawns', True):
                 self.spawner.addEnemySpawnNode(objKey, object)
 
-        elif objType == 'Simple Fort' and self.wantForts:
-            self.__printUnimplementedNotice(objType)
+        elif objType == 'Fort' and self.wantForts: #TODO find objType
+            self.notify.info("Spawning %s on %s" % (objType, self.getName()))
+            genObj = DistributedFortAI.makeFromObjectKey(self.air, objKey, object)
+            #self.__printUnimplementedNotice(objType)
 
         elif objType == 'Interactive Prop':
-            self.__printUnimplementedNotice(objType)
-            #DistributedInteractivePropAI.makeFromObjectKey(self.air, objKey, object)
+            #self.__printUnimplementedNotice(objType) #TODO object doesnt properly spawn
+            genObj = DistributedInteractivePropAI.makeFromObjectKey(self.air, objKey, object)
 
         elif objType == 'Quest Prop' and self.wantQuestProps:
             self.__printUnimplementedNotice(objType) #TODO
@@ -282,9 +304,10 @@ class DistributedGameAreaAI(DistributedNodeAI):
             'Quest Node',
             'Switch Prop',
             'Jail Cell Door',
-            'Door Locator Node',
             'Portal Node',
-            'Locator Node'
+            'Locator Node',
+            'Simple Fort',
+            'Door Locator Node'
         ]
 
         if objType in ignoreList and config.GetBool('want-debug-ignore-list', True):

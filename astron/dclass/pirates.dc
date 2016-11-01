@@ -108,6 +108,17 @@ from pirates.minigame import DistributedLiarsDice/AI
 from pirates.minigame import DistributedHoldemTable/AI
 from pirates.minigame import Distributed7StudTable/AI
 from pirates.holiday import DistributedHolidayObject/AI
+from pirates.holiday import DistributedHolidayBonfire/AI
+from pirates.holiday import DistributedHolidayPig/AI
+from pirates.invasion import DistributedInvasionObject/AI
+from pirates.invasion import DistributedInvasionPortRoyal/AI
+from pirates.invasion import DistributedInvasionTortuga/AI
+from pirates.invasion import DistributedInvasionDelFuego/AI
+from pirates.invasion import DistributedPostInvasionObject/AI
+from pirates.invasion import DistributedWreckedGovernorsMansion/AI
+from pirates.invasion import DistributedWreckedFaithfulBride/AI
+from pirates.invasion import DistributedWreckedDelFuegoTown/AI
+from pirates.invasion import DistributedCapturePoint/AI
 from pirates.movement import DistributedMovingObject/AI
 
 // A bunch of structs we need...
@@ -1491,6 +1502,16 @@ dclass DistributedHolidayObject : DistributedInteractive {
   setInteractMode(uint8) required broadcast ram;
 };
 
+dclass DistributedHolidayBonfire : DistributedHolidayObject {
+  setFireStarted(bool) required broadcast ram;
+  finishInteraction();
+};
+
+dclass DistributedHolidayPig : DistributedHolidayObject {
+  setPigRoasting(bool) required broadcast ram;
+  makeTradeResponse(uint32) ownrecv;
+};
+
 dclass DistributedFlagshipAI : DistributedObject {
   setBoarders(uint32 []) broadcast ram;
   startWave(uint8, uint8, uint8);
@@ -1747,4 +1768,27 @@ dclass DistributedQuestProp : Lootable {
   //setNotCompletedQuestIds(QuestId []) required broadcast ram;
   sendUpdateMessage(uint8) broadcast;
   sendLocalSound(uint8, bool);
+};
+
+dclass DistributedInvasionObject : DistributedObject {
+  setNextPhase(uint8, uint8) broadcast;
+  setPlayerWin(bool, uint8) broadcast;
+  //updateCapturePoints(cpInfo []) broadcast;
+  removeCapturePoint(uint8) broadcast;
+  sendAttackMessage(uint8, uint32) broadcast;
+  sendLowHealthMessage(uint8, uint8) broadcast;
+  //updateNPCMinimaps(npcInfo []) broadcast;
+  sendBossMessage(uint8, bool) broadcast;
+  spawnShip(uint8, PosHpr, PosHpr, PosHpr) broadcast;
+  placeShip(uint8, PosHpr, PosHpr) broadcast ram;
+  hideShip() broadcast;
+};
+
+dclass DistributedInvasionPortRoyal : DistributedInvasionObject {
+};
+
+dclass DistributedInvasionTortuga : DistributedInvasionObject {
+};
+
+dclass DistributedInvasionDelFuego : DistributedInvasionObject {
 };
