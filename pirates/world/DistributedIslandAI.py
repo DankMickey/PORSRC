@@ -5,21 +5,17 @@ from direct.task import Task
 from pirates.world.DistributedGameAreaAI import DistributedGameAreaAI
 from pirates.battle.Teamable import Teamable
 from pirates.piratesbase import PiratesGlobals
+from pirates.ai import HolidayGlobals
 from pirates.world import WorldGlobals
 from pirates.world.LocationConstants import *
-import random
-
-# Treasure
 from pirates.treasuremap.DistributedBuriedTreasureAI import DistributedBuriedTreasureAI
-
-# Minigame
 from pirates.minigame.DistributedPotionCraftingTableAI import DistributedPotionCraftingTableAI
 from pirates.minigame.DistributedRepairBenchAI import DistributedRepairBenchAI
 from pirates.minigame.DistributedFishingSpotAI import DistributedFishingSpotAI
-
-# World
 from DistributedDinghyAI import DistributedDinghyAI
 from DistributedGATunnelAI import DistributedGATunnelAI
+import random
+
 
 class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Teamable):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedIslandAI')
@@ -60,11 +56,17 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
             self.__runIslandEvents()
             self.runEvents = taskMgr.doMethodLater(15, self.__runIslandEvents, 'runEvents')
 
+        if config.GetBool('want-fireworks', True):
+            self.__runIslandFireworks()
+            self.runFireworks = taskMgr.doMethodLater(15, self.__runIslandFireworks(), 'runFireworks')
+
     def delete(self):
         DistributedCartesianGridAI.delete(self)
         DistributedGameAreaAI.delete(self)
         if hasattr(self, 'runEvents'):
             taskMgr.remove(self.runEvents)
+        if hasattr(self, 'runFireworks'):
+            taskMgr.remove(self.runFireworks)
 
     def __runIslandEvents(self, task=None):
         self.nextEvent -= 15
@@ -74,6 +76,24 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
                 self.makeLavaErupt()
                 self.nextEvent = random.randint(5, 10) * 60
 
+        return Task.again
+
+    def __runIslandFireworks(self, task=None):
+        if base.cr.newsManager:
+            shows = [HolidayGlobals.FOURTHOFJULY, HolidayGlobals.NEWYEARS, HolidayGlobals.MARDIGRAS]
+            hasShow = False
+            showType = 0
+
+            for show in shows:
+                if base.cr.newsManager.isHolidayRunning(show):
+                    hasShow = True
+                    showType = show
+                    break
+
+            if hasShow and showType in shows:
+                self.setFireworkShowEnabled(hasShow, showType)
+            else:
+                self.setFireworkShowEnabled(False, 0)
         return Task.again
 
     def setIslandTransform(self, x, y, z, h):
