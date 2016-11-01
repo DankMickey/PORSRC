@@ -1339,7 +1339,7 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
     def startEnvEffect(self, envNum):
         if envNum == 0:
             pass
-        1
+
         if envNum == 1:
             self.envSound = loader.loadSfx('audio/sfx_ocean_wind.ogg')
             self.envSound.setLoop(True)

@@ -5,6 +5,7 @@ from direct.distributed.DistributedObjectAI import DistributedObjectAI
 from otp.ai.MagicWordGlobal import *
 from pirates.ai import HolidayGlobals
 from pirates.ai.HolidayDates import HolidayDates
+from pirates.audio import SoundGlobals
 
 class NewsManagerAI(DistributedObjectAI):
     notify = DirectNotifyGlobal.directNotify.newCategory('NewsManagerAI')
@@ -79,10 +80,7 @@ class NewsManagerAI(DistributedObjectAI):
         self.notify.info("Received Holiday Notify! I have no idea what im doing. - Disney")
 
     def isHolidayRunning(self, holidayId):
-        for id, time in self.holidayIdList:
-            if int(id) == int(holidayId):
-                return True
-        return False
+        return False #TODO
 
     def getHolidayIdList(self):
         return self.holidayIdList
@@ -124,7 +122,7 @@ class NewsManagerAI(DistributedObjectAI):
             self.notify.warning("Failed to start holiday. %s is an invalid holiday Id" % holidayId)
             return
 
-        self.notify.info("Starting holiday: %s" % holidayId)
+        self.notify.info("Starting holiday: %s" % (HolidayGlobals.getHolidayName(holidayId) or holidayId))
         self.holidayIdList.append((holidayId, time))
         self.sendUpdate('setHolidayIdList', [self.holidayIdList])
         self.processHolidayStart(holidayId, time)
@@ -133,23 +131,36 @@ class NewsManagerAI(DistributedObjectAI):
         if not self.isHolidayRunning(holidayId):
             return
 
-        self.notify.info("Stopping holiday: %s" % holidayId)
+        self.notify.info("Stopping holiday: %s" % (HolidayGlobals.getHolidayName(holidayId) or holidayId))
         #self.holidayIdList.remove() #TODO write this
         self.sendUpdate('setHolidayIdList', [self.holidayIdList])
         self.processHolidayEnd(holidayId)
 
     def processHolidayStart(self, holidayId, tinme=0):
         if holidayId in HolidayGlobals.INVASION_HOLIDAYS:
-            pass #TODO
+            self.__logUnimplementedHoliday(holidayId)
 
         elif holidayId == HolidayGlobals.QUEENANNES:
-            pass #TODO
+            self.__logUnimplementedHoliday(holidayId)
 
         elif holidayId == HolidayGlobals.KRAKENHOLIDAY:
-            pass #TODO
+            self.__logUnimplementedHoliday(holidayId)
 
         elif holidayId == HolidayGlobals.FLEETHOLIDAY:
-            pass #TODO
+            self.__logUnimplementedHoliday(holidayId)
+
+        elif holidayId == HolidayGlobals.WINTERFESTIVAL:
+            self.playMusic([SoundGlobals.MUSIC_HOLIDAY_02, 10, 0])
+
+        else:
+            self.__logUnimplementedHoliday(holidayId)
+
+    def __logUnimplementedHoliday(self, holidayId):
+        holidayName = HolidayGlobals.getHolidayName(holidayId)
+        if holidayName is None:
+            holidayName = str(holidayId)
+
+        self.notify.warning("Failed to process Holiday start. '%s' is not yet supported in this version." % holidayName)
 
     def processHolidayEnd(self, holidayId):
         pass
@@ -160,7 +171,7 @@ class NewsManagerAI(DistributedObjectAI):
         air = spellbook.getInvoker().air
 
         if air.newsManager.isHolidayRunning(holidayId):
-            return "Sorry, holiday %s is already running" % holdayId
+            return "Sorry, holiday %s is already running" % holidayId
 
         if not holidayId in HolidayGlobals.getAllHolidayIds():
             return "Sorry, %s is not a valid holiday." % holidayId
@@ -213,7 +224,7 @@ class NewsManagerAI(DistributedObjectAI):
     def newsMusic(musicName):
         """Send a news music packet to the whole district (system)"""
         air = spellbook.getInvoker().air
-        musicInfo = ['']
+        musicInfo = ['', 10, 0]
         musicInfo[0] = musicName
         air.newsManager.playMusic(musicInfo)
         return "Sent debug news music packet '%s' to all pirates in the district." % str(musicName)     

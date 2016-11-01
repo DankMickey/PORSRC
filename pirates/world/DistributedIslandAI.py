@@ -58,7 +58,14 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
 
         if config.GetBool('want-fireworks', True):
             self.__runIslandFireworks()
-            self.runFireworks = taskMgr.doMethodLater(15, self.__runIslandFireworks(), 'runFireworks')
+            self.runFireworks = taskMgr.doMethodLater(15, self.__runIslandFireworks, 'runFireworks')
+
+        if config.GetBool('want-auto-feast', True):
+            islandId = self.getUniqueId()
+            if islandId == LocationIds.TORTUGA_ISLAND:
+                self.notify.info("Auto starting Feast...")
+                self.setFeastFireEnabled(True)
+
 
     def delete(self):
         DistributedCartesianGridAI.delete(self)
@@ -79,13 +86,13 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
         return Task.again
 
     def __runIslandFireworks(self, task=None):
-        if base.cr.newsManager:
+        if self.air.newsManager:
             shows = [HolidayGlobals.FOURTHOFJULY, HolidayGlobals.NEWYEARS, HolidayGlobals.MARDIGRAS]
             hasShow = False
             showType = 0
 
             for show in shows:
-                if base.cr.newsManager.isHolidayRunning(show):
+                if self.air.newsManager.isHolidayRunning(show):
                     hasShow = True
                     showType = show
                     break
