@@ -330,6 +330,7 @@ dclass DistributedTimeOfDayManager : DistributedObject {
   setStorm(int8) required broadcast ram;
   setBlackFog(int8) required broadcast ram;
   setClouds(int8) required broadcast ram;
+  setSnow(int8) required broadcast ram;
 };
 
 struct ItemNameHolder {

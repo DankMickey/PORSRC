@@ -477,24 +477,35 @@ CLOUD_TRANSITIONS = {NOCLOUDS, LIGHTCLOUDS, MEDIUMCLOUDS, HEAVYCLOUDS}
 WEATHER_CLEAR = 0
 WEATHER_RAIN = 1
 WEATHER_STORM = 2
+WEATHER_SNOW = 3
 WEATHER_ENVIROMENTS = {
     WEATHER_CLEAR: {
         'rain': False,
         'storm': False,
         'darkfog': False,
+        'snow': False,
         'sky': NOCLOUDS
     },
     WEATHER_RAIN: {
         'rain' : True,
         'storm': False,
         'darkfog': False,
+        'snow': False,
         'sky': MEDIUMCLOUDS
     },
     WEATHER_STORM: {
         'rain': True,
         'storm': True,
         'darkfog': True,
+        'snow': False,
         'sky': HEAVYCLOUDS
+    },
+    WEATHER_SNOW: {
+        'rain' : False,
+        'storm': False,
+        'darkfog': False,
+        'snow': True,
+        'sky': MEDIUMCLOUDS
     }
 }
 

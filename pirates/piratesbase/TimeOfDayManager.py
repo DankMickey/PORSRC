@@ -6,6 +6,7 @@ from direct.distributed.ClockDelta import globalClockDelta
 from direct.interval.IntervalGlobal import *
 from pirates.ai import HolidayGlobals
 from otp.ai.MagicWordGlobal import *
+from pirates.effects.Snowflakes import Snowflakes
 from pirates.effects.RainMist import RainMist
 from pirates.effects.RainDrops import RainDrops
 from pirates.effects.RainSplashes import RainSplashes
@@ -84,7 +85,8 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
             self.rainSplashes2 = None
             self.stormEye = None
             self.stormRing = None
-            self.groundFog = None            
+            self.groundFog = None   
+            self.snowflakes = None         
 
         self.skyGroup = SkyGroup.SkyGroup()
         self.skyGroup.reparentTo(camera)
@@ -212,6 +214,10 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
             if self.stormRing:
                 self.stormRing.stopLoop()
             del self.stormRing
+
+            if self.snowflakes:
+                self.snowflakes.stopLoop()
+            del self.snowflakes
 
     def delete(self):
         render.clearLight(self.alight)
@@ -491,7 +497,7 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
 
         if tod == 'BASE' and env == TODGlobals.ENV_DEFAULT:
             pass
-        1
+
         if TODGlobals.ENV_SETTINGS_DICT[env][tod].get(settingName):
             del TODGlobals.ENV_SETTINGS_DICT[env][tod][settingName]
 
@@ -1191,6 +1197,7 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
         self.currentState = PiratesGlobals.TOD_CUSTOM
         self.fixedSky = True
         if self.advancedWeather:
+            self.setSnowState(0)
             self.setRainState(0)
             self.setStormState(0)
             self.setDarkFog(0)
@@ -1642,6 +1649,23 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
                 self.stormEye = None
                 self.stormRing = None
 
+    def setSnowState(self, state):
+        if not self.advancedWeather:
+            return
+
+        if self.fixedWeather:
+            return
+
+        if state:
+            if self.snowflakes is None:
+                self.snowflakes = Snowflakes(base.camera)
+                self.snowflakes.reparentTo(render)
+                self.snowflakes.startLoop()
+        else:
+            if self.snowflakes:
+                self.snowflakes.stopLoop()
+                self.snowflakes = None
+
     def setRainState(self, state):
         if not self.advancedWeather:
             return
@@ -1719,6 +1743,11 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
         outputString += tab * tabs
         outputString += '}'
         return outputString
+
+    @magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
+    def snow(state):
+        base.cr.timeOfDayManager.setSnowState(state)
+        return "Setting snow state to %s" % state
 
     @magicWord(CATEGORY_GAME_DEVELOPER, types=[int, int, int])
     def alight(red, green, blue):

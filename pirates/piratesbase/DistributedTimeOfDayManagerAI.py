@@ -29,6 +29,7 @@ class DistributedTimeOfDayManagerAI(DistributedObjectAI, TimeOfDayManagerBase):
         self.isRain = 0
         self.isStorm = 0
         self.isDarkFog = 0
+        self.isSnow = 0
         self.clouds = TODGlobals.LIGHTCLOUDS
         self.weather = (TODGlobals.WEATHER_CLEAR, 0)
         self.fromCurrent = 0
@@ -70,6 +71,8 @@ class DistributedTimeOfDayManagerAI(DistributedObjectAI, TimeOfDayManagerBase):
         elif config.GetBool('want-storm-weather', False) and dice <= 75:
             return TODGlobals.WEATHER_STORM
 
+        if config.GetBool('want-snow', False) and self.air.newManager.isHolidayRunning(17):
+            return TODGlobals.WEATHER_SNOW
         return TODGlobals.WEATHER_RAIN
 
     def __runWeather(self, task=None):
@@ -114,7 +117,7 @@ class DistributedTimeOfDayManagerAI(DistributedObjectAI, TimeOfDayManagerBase):
         self.sendUpdateToAvatarId(avId, 'setStorm', [self.getStorm()])
         self.sendUpdateToAvatarId(avId, 'setBlackFog', [self.getBlackFog()])
         self.sendUpdateToAvatarId(avId, 'setMoonJolly', [self.getMoonJolly()])
-
+        self.sendUpdateToAvatarId(avId, 'setSnow', [self.getSnow()])
 
     def setEnvSubs(self, envSubEntry):
         self.envSubEntry = envSubEntry
@@ -165,6 +168,13 @@ class DistributedTimeOfDayManagerAI(DistributedObjectAI, TimeOfDayManagerBase):
 
     def getClouds(self):
         return self.clouds
+
+    def setSnow(self, isSnow):
+        self.isSnow = isSnow
+        self.sendUpdate('setSnow', [isSnow])
+
+    def getSnow(self):
+        return self.isSnow
 
 @magicWord(CATEGORY_GAME_MASTER, types=[int, int])
 def setWeather(weatherId, time=0):

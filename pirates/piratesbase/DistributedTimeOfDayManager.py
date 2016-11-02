@@ -130,3 +130,7 @@ class DistributedTimeOfDayManager(DistributedObject, TimeOfDayManager):
 
     def setClouds(self, cloudType):
         self.setCloudsType(cloudType)
+
+
+    def setSnow(self, isSnow):
+        self.setSnowState(isSnow)
