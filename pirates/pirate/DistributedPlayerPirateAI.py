@@ -970,7 +970,7 @@ def giveJewelry(itemId):
     return "Jewelry (%s) given to %s." % (itemId, target.getName())
 
 @magicWord(CATEGORY_GAME_MASTER, types=[int, int])
-def ghost(color=None, evil):
+def ghost(color=None, evil=0):
     av = spellbook.getInvoker()
     invokerAccess = av.getAdminAccess()
     if invokerAccess >= CATEGORY_GAME_MASTER.access:
