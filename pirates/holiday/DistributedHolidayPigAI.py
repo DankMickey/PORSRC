@@ -13,11 +13,9 @@ class DistributedHolidayPigAI(DistributedHolidayObjectAI):
         self.pigRoasting = False
 
     def setPigRoasting(self, value):
-        self.notify.info("Setting Roast State")
         self.pigRoasting = value
 
     def d_setPigRoasting(self, value):
-        self.notify.info("[d] Setting Roast State")
         self.sendUpdate('setPigRoasting', [value])
 
     def b_setPigRoasting(self, value):
@@ -35,5 +33,4 @@ class DistributedHolidayPigAI(DistributedHolidayObjectAI):
         if cls is None:
             cls = DistributedHolidayPigAI
         obj = DistributedHolidayObjectAI.makeFromObjectKey(cls, air, objKey, data)
-        obj.setPigRoasting(True)
         return obj
