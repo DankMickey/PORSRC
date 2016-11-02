@@ -1,4 +1,5 @@
 model-path resources
+model-path resources/phase_1
 model-path resources/phase_2
 model-path resources/phase_3
 model-path resources/phase_4
