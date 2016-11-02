@@ -6161,10 +6161,10 @@ BossNames = {
                 0: 'Stench' } },
         5: {
             0: {
-                -1: 'Jolly Roger'            
+                0: 'Jolly Roger'            
             },
             1: {
-                -1: 'Davy Jones'
+                0: 'Davy Jones'
             }
         } },
     1: {
