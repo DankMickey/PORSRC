@@ -174,7 +174,7 @@ class NewsManager(DistributedObject.DistributedObject):
             chatMessage = HolidayGlobals.getHolidayEndChatMsg(holidayId)
 
         if message:
-            base.localAvatar.guiMgr.messageStack.addModalTextMessage(message, seconds = 45, priority = 0, color = PiratesGuiGlobals.TextFG14, icon = (HolidayGlobals.getHolidayIcon(holidayId), ''), modelName = 'general_frame_f')
+            base.localAvatar.guiMgr.messageStack.addTextMessage(message, seconds = 45, priority = 0, color = PiratesGuiGlobals.TextFG14, icon = (HolidayGlobals.getHolidayIcon(holidayId), ''), modelName = 'general_frame_f')
 
         if chatMessage:
             base.talkAssistant.receiveGameMessage(chatMessage)

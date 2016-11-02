@@ -192,8 +192,9 @@ class NewsManagerAI(DistributedObjectAI):
         if not holidayId in HolidayGlobals.getAllHolidayIds():
             return "Sorry, %s is not a valid holiday." % holidayId
 
+        time = time * 60
         air.newsManager.startHoliday(holidayId, time)
-        return "Force starting holiday %s for the district with a time of %s" % (holidayId, time)
+        return "Force starting holiday %s for the district with a time of %s minutes" % (holidayId, time)
 
     @magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
     def forceEndHoliday(holidayId):
