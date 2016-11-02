@@ -26,7 +26,7 @@ class BanManagerAI(DistributedObjectAI):
     def ban(self, banner, target, time, reason):
         self.air.sendNetEvent('BANMGR_ban', [banner, target.doId, target.DISLid, time, reason])
 
-@magicWord(category=CATEGORY_MODERATION, types=[str])
+@magicWord(category=CATEGORY_GAME_MASTER, types=[str])
 def kick(reason='No reason has been specificed.'):
     """Kicks the target user with an optional reason."""
     invoker = spellbook.getInvoker()
@@ -39,7 +39,7 @@ def kick(reason='No reason has been specificed.'):
     target.air.writeServerEvent('kicked', kickerId=invoker.doId, kickerName=invoker.getName(), reason=reason, targetId=target.doId, targetName=target.getName())
     return 'Kicked %s from the game server!' % target.getName()
 
-@magicWord(category=CATEGORY_MODERATION, types=[int, str])
+@magicWord(category=CATEGORY_GAME_MASTER, types=[int, str])
 def ban(hours, reason):
     """Bans the target user with an optional reason."""
     invoker = spellbook.getInvoker()
@@ -66,7 +66,7 @@ def ban(hours, reason):
 
     target.air.banMgr.ban(invoker.doId, target, hours, reason)
 
-@magicWord(category=CATEGORY_MODERATION)
+@magicWord(category=CATEGORY_GAME_MASTER)
 def badName():
     av = spellbook.getTarget()
     oldname = av.name

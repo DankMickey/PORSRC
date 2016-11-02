@@ -757,18 +757,18 @@ def update(reason="for an update"):
     air.systemMsgAll(text)
     return "Sent maintenance warning message to all pirates in the gameserver!"
 
-@magicWord(CATEGORY_MODERATION, types=[int])
+@magicWord(CATEGORY_GAME_MASTER, types=[int])
 def hp(value=-1):
-    av = spellbook.getInvoker()
+    av = spellbook.getTarget()
     if value < 0:
         value = av.getMaxHp()
 
     value = min(value, av.getMaxHp())
     av.b_setHp(value)
 
-@magicWord(CATEGORY_MODERATION, types=[int])
+@magicWord(CATEGORY_GAME_MASTER, types=[int])
 def mojo(value=-1):
-    av = spellbook.getInvoker()
+    av = spellbook.getTarget()
     if value < 0:
         value = av.getMaxMojo()
 
@@ -777,12 +777,12 @@ def mojo(value=-1):
 
 @magicWord(CATEGORY_GAME_MASTER)
 def groggy():
-    av = spellbook.getInvoker()
+    av = spellbook.getTarget()
     av.addDeathPenalty(True)
 
 @magicWord(CATEGORY_GAME_MASTER)
 def rmgroggy():
-    av = spellbook.getInvoker()
+    av = spellbook.getTarget()
     av.removeDeathPenalty()
     av.fillHpMeter()
 
@@ -828,9 +828,9 @@ def gm(color=None, tag=None):
         av.b_setGMNametag(color, tag)
         return 'GM nametag set!'
 
-@magicWord(CATEGORY_MODERATION, types=[int])
+@magicWord(CATEGORY_GAME_MASTER, types=[int])
 def giveGold(gold):
-    target = spellbook.getTarget(required=CATEGORY_GAME_DEVELOPER.access)
+    target = spellbook.getTarget(required=CATEGORY_GAME_MASTER.access)
     target.giveGold(gold)
     return 'Given %d gold to %s! Balance: %d' % (gold, target.getName(), target.getGoldInPocket())
 
@@ -864,13 +864,13 @@ def getDoubleXP():
     target = spellbook.getTarget()
     return '%s has %s minutes left of double xp' % (target.getName(), str(target.getTempDoubleXPReward()))
 
-@magicWord(CATEGORY_GAME_DEVELOPER, types=[int, int])
+@magicWord(CATEGORY_GAME_MASTER, types=[int, int])
 def setBadge(title, rank):
     target = spellbook.getTarget()
     target.b_setBadgeIcon(title, rank)
     return "Set {0}'s badgeIcon to ({1}, {2})".format(target.getName(), title, rank)
 
-@magicWord(CATEGORY_GAME_DEVELOPER, types=[int, int])
+@magicWord(CATEGORY_GAME_MASTER, types=[int, int])
 def setShipBadge(title, rank):
     target = spellbook.getTarget()
     target.b_setShipIcon(title, rank)
@@ -899,12 +899,12 @@ def giveLocatable(type, itemId, amount):
 
     return "Locatable given to %s." % target.getName()
 
-@magicWord(CATEGORY_MODERATION, types=[int])
+@magicWord(CATEGORY_GAME_MASTER, types=[int])
 def giveWeapon(itemId):
     from pirates.uberdog.UberDogGlobals import InventoryType
     from pirates.uberdog.TradableInventoryBase import InvItem
     
-    target = spellbook.getTarget(required=CATEGORY_GAME_DEVELOPER.access)
+    target = spellbook.getTarget(required=CATEGORY_GAME_MASTER.access)
     if not target:
         return "Failed to give weapon. Unknown error has occured."
 
@@ -922,12 +922,12 @@ def giveWeapon(itemId):
 
     return "Weapon (%s) given to %s." % (itemId, target.getName())
 
-@magicWord(CATEGORY_MODERATION, types=[int])
+@magicWord(CATEGORY_GAME_MASTER, types=[int])
 def giveClothing(itemId):
     from pirates.uberdog.UberDogGlobals import InventoryType
     from pirates.uberdog.TradableInventoryBase import InvItem
 
-    target = spellbook.getTarget(required=CATEGORY_GAME_DEVELOPER.access)
+    target = spellbook.getTarget(required=CATEGORY_GAME_MASTER.access)
     if not target:
         return "Failed to give clothing Item. Unknown error has occured."
 
@@ -946,12 +946,12 @@ def giveClothing(itemId):
     return "Clothing (%s) given to %s." % (itemId, target.getName())
         
 
-@magicWord(CATEGORY_MODERATION, types=[int])
+@magicWord(CATEGORY_GAME_MASTER, types=[int])
 def giveJewelry(itemId):
     from pirates.uberdog.UberDogGlobals import InventoryType
     from pirates.uberdog.TradableInventoryBase import InvItem
     
-    target = spellbook.getTarget(required=CATEGORY_GAME_DEVELOPER.access)
+    target = spellbook.getTarget(required=CATEGORY_GAME_MASTER.access)
     if not target:
         return "Failed to give jewelry item. Unknown error has occured."
 
@@ -969,7 +969,7 @@ def giveJewelry(itemId):
 
     return "Jewelry (%s) given to %s." % (itemId, target.getName())
 
-@magicWord(CATEGORY_MODERATION, types=[int])
+@magicWord(CATEGORY_GAME_MASTER, types=[int])
 def ghost(color=None):
     av = spellbook.getInvoker()
     invokerAccess = av.getAdminAccess()
