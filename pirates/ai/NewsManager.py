@@ -119,6 +119,22 @@ class NewsManager(DistributedObject.DistributedObject):
         base.localAvatar.guiMgr.messageStack.addTextMessage(message, seconds = 45, priority = 0, color = PiratesGuiGlobals.TextFG14, icon = icon, modelName = 'general_frame_f')
         base.talkAssistant.receiveGameMessage(message)
 
+    def displayChatMessage(self, messageId):
+        if not self.inNewsWorld():
+            return None
+
+        message = None
+        if messageId not in PLocalizer.ChatNewsMessages:
+            self.notify.warning("Received invalid broadcast id: %s" % messageId)
+            return
+
+        message = PLocalizer.ChatNewsMessages[messageId]
+
+        if isinstance(message, list):
+            message = random.choice(message)
+
+        base.talkAssistant.receiveGameMessage(message)
+
     def playMusic(self, musicInfo):
         if musicInfo[-1] and not base.cr.getDo(musicInfo[-1]):
             return None
@@ -133,11 +149,11 @@ class NewsManager(DistributedObject.DistributedObject):
         if not hasattr(base, 'localAvatar'):
             return None
 
-        if base.localAvatar.getTutorialState() < PiratesGlobals.TUT_MET_JOLLY_ROGER or self.inNewsWorld() == None:
-            taskMgr.doMethodLater(15, self.showHolidayMessage, 'showHolidayMessage-holidayId:' + str(holidayId), extraArgs = [
-                holidayId,
-                msgType])
-            return None
+        #if base.localAvatar.getTutorialState() < PiratesGlobals.TUT_MET_JOLLY_ROGER or self.inNewsWorld() == None:
+        #    taskMgr.doMethodLater(15, self.showHolidayMessage, 'showHolidayMessage-holidayId:' + str(holidayId), extraArgs = [
+        #        holidayId,
+        #        msgType])
+        #    return None
 
         if msgType == 1:
             (hours, minutes) = self.getTimeRemaining(holidayId)

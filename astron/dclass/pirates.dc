@@ -931,6 +931,7 @@ dclass NewsManager : DistributedObject {
   holidayNotify() broadcast;
   setHolidayIdList(NewsItem []) broadcast ram;
   displayMessage(uint16) broadcast;
+  displayChatMessage(uint16) broadcast;
   playMusic(NewsMusicItem) broadcast;
   setNoteablePathList(NewsPathItem []) broadcast ram;
 };

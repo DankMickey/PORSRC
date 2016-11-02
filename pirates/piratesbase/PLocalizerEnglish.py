@@ -11097,6 +11097,9 @@ ShipRepaired = 'Your ship has been repaired.'
 TargetsInHere = '\n\x01questObj\x01Targets are in this area!'
 TargetsCloseBy = '\n\x01questObj\x01Targets are close by!'
 TargetsInThere = '\n\x01questObj\x01Closest targets are in %s'
+ChatNewsMessages = {
+    0: [ "Avast! Be sure to join the official Pirates Online Forums to connect with thousands of other fellow pirates and buccaneers alike by visiting piratesforums.com!"]
+}
 
 def getServerTimeString(secondsSinceEpoch):
     return 'Server Time: %s' % datetime.datetime.fromtimestamp(secondsSinceEpoch).ctime()
