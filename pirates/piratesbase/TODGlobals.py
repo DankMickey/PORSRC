@@ -487,7 +487,7 @@ WEATHER_ENVIROMENTS = {
     WEATHER_RAIN: {
         'rain' : True,
         'storm': False,
-        'darkfog': True,
+        'darkfog': False,
         'sky': MEDIUMCLOUDS
     },
     WEATHER_STORM: {
