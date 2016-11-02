@@ -74,9 +74,12 @@ class DistributedBattleAvatarAI(Teamable, DistributedReputationAvatarAI, WeaponB
     def d_setIsGhost(self, isGhost):
         self.sendUpdate('setIsGhost', [isGhost])
 
-    def b_setIsGhost(self, isGhost, evil):
+    def b_setIsGhost(self, isGhost, evil=None):
         self.setIsGhost(isGhost)
-        self.d_setIsGhost(evil)
+        self.d_setIsGhost(isGhost)
+        if evil is not None:
+            self.setIsGhost(evil)
+            self.d_setIsGhost(evil)
 
     def getIsGhost(self):
         return self.isGhost
