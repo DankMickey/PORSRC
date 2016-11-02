@@ -36,8 +36,9 @@ class BossBase:
     def loadBossDataAvatarType(self, avatarType):
         self.bossData = BOSS_NPC_LIST[''].copy()
         self.bossData['AvatarType'] = avatarType
-        print "Faction: %s Track: %s Id: %s Boss: %s" % (avatarType.faction, avatarType.track, avatarType.id, (avatarType.boss - 1))
-        self.bossData['Name'] = PLocalizer.BossNames[avatarType.faction][avatarType.track][avatarType.id][avatarType.boss - 1]
+        bossId = max(avatarType.boss - 1, 0)
+        print "Faction: %s Track: %s Id: %s Boss: %s" % (avatarType.faction, avatarType.track, avatarType.id, bossId)
+        self.bossData['Name'] = PLocalizer.BossNames[avatarType.faction][avatarType.track][avatarType.id][bossId]
 
 
     def loadBossDataHybrid(self, uniqueId, avatarType):
@@ -55,3 +56,6 @@ class BossBase:
 
     def _getBossLevel(self):
         return self.bossData['Level']
+
+    def getNameText(self):
+        return self.bossData['Name'] or 'Unknown Boss'
