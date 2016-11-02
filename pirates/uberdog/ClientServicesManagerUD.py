@@ -783,6 +783,18 @@ class LoadAvatarFSM(AvatarOperationFSM):
         # Activate the avatar on the DBSS:
         access = self.account.get('ACCESS_LEVEL', 100)
         founder = self.account.get('FOUNDER', False)
+        
+        if not founder:
+            try:
+                created = time.strptime(self.account['CREATED'])
+                founderPeriod = time.gmtime(1477600500)
+                
+                if founderPeriod >= created:
+                    founder = True
+            except:
+                # Doesn't matter.
+                pass
+        
         gmTag = self.__getGMTag(access)
         
         self.csm.air.sendActivate(
