@@ -1126,8 +1126,8 @@ class SimpleStoreGUI(DirectFrame):
 
     def getTabItemIds(self, tabId):
         allIds = self.getStockIds(self.stock)
-        tabIds = [1]
-        return tabIds
+        tabItems = [1]
+        return allIds#tabItems
 
 
     def getTabItems(self, tabId):
@@ -1183,19 +1183,35 @@ class CatalogStoreGUI(SimpleStoreGUI):
             self.previewCards.pop(id)
 
 
+    def getTabItemIds(self, tabId):
+        merchIds = self.getMerchandiseIds()
+        tabItems = []
+        for itemId in merchIds:
+            holidayTab = self.tabIdFromItemId(itemId)
+            if holidayTab == tabId:
+                tabItems.append(itemId)
+        return tabItems
+
 
     def createTabs(self):
-        stockHolidayIds = []
+        stockHolidayIds = None
+        if base.cr.newsManager:
+            stockHolidayIds = base.cr.newsManager.getActiveHolidayList()
+
         if not stockHolidayIds:
+            return None
+
+        if len(stockHolidayIds) <= 0:
             return None
 
         firstTab = max(stockHolidayIds)
         while stockHolidayIds:
             holidayId = max(stockHolidayIds)
             stockHolidayIds.remove(holidayId)
-            displayName = CatalogHoliday.getCatalogDisplayNameForHoliday(holidayId)
-            tabName = CatalogHoliday.getCatalogTabNameForHoliday(holidayId)
-            self.addTab(holidayId, displayName, tabName)
+            if holidayId in HolidayGlobals.HOLIDAYS_WITH_CATALOGS:
+                displayName = CatalogHoliday.getCatalogDisplayNameForHoliday(holidayId)
+                tabName = CatalogHoliday.getCatalogTabNameForHoliday(holidayId)
+                self.addTab(holidayId, displayName, tabName)
         self.setTab(firstTab)
 
 
@@ -1420,7 +1436,8 @@ class AccessoriesStoreGUI(SimpleStoreGUI):
         for itemId in allitems:
             itemType = ItemGlobals.getType(itemId)
             genderIds = ItemGlobals.getGenderType(itemType, localAvatar.style.getGender(), [itemId])
-            if itemType == tabId and len(genderIds) > 0:
+            neutralIds = ItemGlobals.getGenderType(itemType, 'n', [itemId])
+            if itemType == tabId and (len(genderIds) > 0 or len(neutralIds) > 0):
                 tabItems.append(itemId)
         return tabItems
 

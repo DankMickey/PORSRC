@@ -54,6 +54,7 @@ class NewsManager(DistributedObject.DistributedObject):
         DistributedObject.DistributedObject.__init__(self, cr)
         self.holidays = { }
         self.holidayIdList = []
+        self.activeHolidays = []
         self.holidayEndTimes = { }
         self.noteablePathList = set()
         base.cr.newsManager = self
@@ -189,12 +190,13 @@ class NewsManager(DistributedObject.DistributedObject):
         return self.holidays
 
     def getActiveHolidayList(self):
-        return []
+        return self.activeHolidays
 
     def startHoliday(self, holidayId):
         if holidayId not in self.holidayIdList:
             self.notify.debug('setHolidayId: Starting Holiday %s' % holidayId)
             self.holidayIdList.append(holidayId)
+            self.activeHolidays.append(holidayId)
             self.setHoliday(holidayId, 1)
             SimpleStoreGUI.SimpleStoreGUI.holidayIdList.append(holidayId)
             AccessoriesStoreGUI.AccessoriesStoreGUI.holidayIdList.append(holidayId)
@@ -224,6 +226,7 @@ class NewsManager(DistributedObject.DistributedObject):
         if holidayId in self.holidayIdList:
             self.notify.debug('setHolidayId: Ending Holiday %s' % holidayId)
             self.holidayIdList.remove(holidayId)
+            self.activeHolidays.remove(holidayId)
             self.setHoliday(holidayId, 0)
             SimpleStoreGUI.SimpleStoreGUI.holidayIdList.remove(holidayId)
             AccessoriesStoreGUI.AccessoriesStoreGUI.holidayIdList.remove(holidayId)
