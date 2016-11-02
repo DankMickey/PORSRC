@@ -46,7 +46,6 @@ class DistributedGameAreaAI(DistributedNodeAI):
 
         self.wantInvasions = config.GetBool('want-invasions', True)
         self._invasionSpawns = {}
-        self._invasionBarricades = {}
 
         self.setPythonTag('npTag-gameArea', self)
 
@@ -135,12 +134,10 @@ class DistributedGameAreaAI(DistributedNodeAI):
             self.__printUnimplementedNotice(objType)
 
         elif objType == 'Invasion Barricade' and self.wantInvasions:
-            self._invasionBarricades[objKey] = self.generateNode(objType, objKey, object, parent, gridPos=True)
-            if config.GetBool('force-invasion-barricades', False):
-                self.__printUnimplementedNotice(objType)
+            genObj = self.generateNode(objType, objKey, object, parent, gridPos=True)
 
         elif objType == 'Invasion Barrier' and self.wantInvasions:
-            self.generateNode(objType, objKey, object, parent, gridPos=True)
+            genObj = self.generateNode(objType, objKey, object, parent, gridPos=True)
 
         elif objType == 'Invasion NPC Spawn Node' and self.wantInvasions:
             self._invasionSpawns[objKey] = self.generateNode(objType, objKey, object, parent, gridPos=True)
@@ -296,8 +293,9 @@ class DistributedGameAreaAI(DistributedNodeAI):
             'Switch Prop',
             'Jail Cell Door',
             'Portal Node',
+            'Simple Fort',
             'Locator Node',
-            'Simple Fort'
+            'Door Locator Node'
         ]
 
         if objType in ignoreList and config.GetBool('want-debug-ignore-list', True):
@@ -309,9 +307,10 @@ class DistributedGameAreaAI(DistributedNodeAI):
     def handleHolidayChange(self):
         if not self.air.newsManager:
             return
-        self.processHolidayNPCs(self.air.newsManager.getRawHolidayIdList())
+        holidayList = self.air.newsManager.getRawHolidayIdList()
+        self.__processHolidayNPCs(holidayList)
 
-    def processHolidayNPCs(self, holidayIdList):
+    def __processHolidayNPCs(self, holidayIdList):
         if len(self._holidayNPCs) <= 0:
             return
 
@@ -379,7 +378,8 @@ class DistributedGameAreaAI(DistributedNodeAI):
 
     def generateChild(self, obj, zoneId=None, cellParent=False):
 
-        if not hasattr(obj, 'getPos'):
+        if not hasattr(obj, 'getPos') and zoneId is None:
+            self.notify.warning("Failed to spawn %s. Object does not have a getPos()" % type(obj).__name__)
             return
 
         if zoneId is None:

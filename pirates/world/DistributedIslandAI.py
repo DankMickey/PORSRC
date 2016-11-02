@@ -77,7 +77,7 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
                     if self.air.newsManager.isHolidayRunning(holiday):
                         feastHoliday = True
                 if feastHoliday:
-                    self.notify.info("Auto starting Tortuga feast...")
+                    self.notify.info("Auto starting %s feast..." % self.getName())
                 self.b_setFeastFireEnabled(feastHoliday)
 
         if config.GetBool('want-fireworks', True):
@@ -91,10 +91,28 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
                         fireworkTime = True
                         showType = holiday
                 if fireworkTime:
-                    self.notify.info("Starting Firework shows for '%s' using ShowType %s" % (islandId, showType))
+                    self.notify.info("Starting Firework shows for '%s' using ShowType %s" % (self.getName(), showType))
                     self.b_setFireworkShowEnabled(True, showType)
                 else:
                     self.b_setFireworkShowEnabled(False, 0)
+
+        if config.GetBool('want-invasions', True) and len(self.npcs) > 0:
+            invasionLocations = [LocationIds.PORT_ROYAL_ISLAND, LocationIds.TORTUGA_ISLAND, LocationIds.DEL_FUEGO_ISLAND]
+            invasionHolidays = {
+                LocationIds.PORT_ROYAL_ISLAND: HolidayGlobals.INVASIONPORTROYAL,
+                LocationIds.TORTUGA_ISLAND: HolidayGlobals.INVASIONTORTUGA,
+                LocationIds.DEL_FUEGO_ISLAND: HolidayGlobals.INVASIONDELFUEGO
+            }
+            validLocation = islandId in invasionLocations
+            if validLocation:
+                invasionStatus = invasionHolidays[islandId] in self.air.newsManager.getRawHolidayIdList()
+                self.notify.debug("Setting invasion status of npcs on '%s' to '%s'" % (self.getName(), invasionStatus))
+                for npcId in self.npcs:
+                    npc = self.npcs[npcId]
+                    if hasattr(npc, 'b_setInInvasion'):
+                        self.notify.info("Setting Invasion Status")
+                        npc.b_setInInvasion(invasionStatus)
+
 
     def __runIslandEvents(self, task=None):
         self.nextEvent -= 15
@@ -105,6 +123,7 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
                 self.nextEvent = random.randint(5, 10) * 60
 
         return Task.again
+
 
     def setIslandTransform(self, x, y, z, h):
         self.setXYZH(x, y, z, h)
@@ -227,7 +246,7 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
                 genObj = DistributedBuriedTreasureAI.makeFromObjectKey(self.air, objKey, object)
                 self.generateChild(genObj)
             else:
-                self.notify.warning("Unsupported Spawn Node: %s" % spawnable)
+                self.notify.warning("Unsupported %s: %s" % (objType, spawnable))
 
         elif objType == 'PotionTable' and config.GetBool('want-potion-game', 0):
             genObj = DistributedPotionCraftingTableAI.makeFromObjectKey(self.air, objKey, object)
@@ -254,7 +273,8 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
             from pirates.world.WorldCreatorAI import WorldCreatorAI
             WorldCreatorAI.registerUnimplemented(objType)
             #genObj = DistributedGATunnelAI.makeFromObjectKey(self.air, objKey, object)
-            #self.generateChild(genObj)   
+            #self.notify.info("Generating Connector Tunnel on %s at %s" % (self.getName(), genObj.getPos()))
+            #self.generateChild(genObj, cellParent=True)   
 
         else:
             genObj = DistributedGameAreaAI.createObject(self, objType, parent, objKey, object)

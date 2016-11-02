@@ -45,7 +45,7 @@ class DistributedGAConnectorAI(DistributedNodeAI):
     # setPrivateArea(uint32, uint32, uint32, bool) airecv clsend
 
     def posControlledByCell(self):
-        return True
+        return False
 
     @staticmethod
     def makeFromObjectKey(air, objKey, data):
