@@ -7,7 +7,9 @@ from pirates.ai import HolidayGlobals
 from pirates.ai.HolidayDates import HolidayDates
 from pirates.audio import SoundGlobals
 from pirates.piratesbase import PLocalizer
+from datetime import datetime
 from random import randint
+import random
 
 class NewsManagerAI(DistributedObjectAI):
     notify = DirectNotifyGlobal.directNotify.newCategory('NewsManagerAI')
@@ -17,9 +19,13 @@ class NewsManagerAI(DistributedObjectAI):
         self.holidayIdList = {}
         self.newPathList = []
 
+        self.randomsDay = {}
+        self.randomsMonth = {}
+
     def announceGenerate(self):
         DistributedObjectAI.announceGenerate(self)
-        if config.GetBool('want-holidays', True):
+        self.wantHolidays = config.GetBool('want-holidays', True)
+        if self.wantHolidays:
             self.__checkHolidays()
             self.checkHolidays = taskMgr.doMethodLater(15, self.__checkHolidays, 'holidayCheckTask')
             self.__processHolidayTime()
@@ -29,6 +35,11 @@ class NewsManagerAI(DistributedObjectAI):
             autoCycle = max(config.GetInt('auto-message-cycle', 2700), 60)
             self.autoMessages = taskMgr.doMethodLater(autoCycle, self.__runAutoMessages, 'autoMessages')
 
+        if self.wantHolidays and config.GetBool('want-random-schedules', False):
+            self.__runRandoms()
+            self.runRandoms = taskMgr.doMethodLater(15, self.__runRandoms, 'randomSchedules')
+
+
     def delete(self):
         DistributedObjectAI.delete(self)
         if hasattr(self, 'checkHolidays'):
@@ -37,6 +48,8 @@ class NewsManagerAI(DistributedObjectAI):
             taskMgr.remove(self.holidayTime)
         if hasattr(self, 'autoMessages'):
             taskMgr.remove(self.autoMessages)
+        if hasattr(self, 'runRandoms'):
+            taskMgr.remove(self.runRandoms)
 
     def __runAutoMessages(self, task=None):
         messageId = randint(0, (len(PLocalizer.ChatNewsMessages) - 1))
@@ -78,31 +91,64 @@ class NewsManagerAI(DistributedObjectAI):
                     self.startHoliday(id)
         return Task.again
 
-    def attemptToRunRandom(self, keyword="Invasion"):
-        randoms = HolidayGlobals.RandomizedSchedules
-        if keyword in randoms:
-            data = randoms[keyword]
-            runnable, default = data['configs'][0]
-            if not config.GetBool(runnable, default):
-                return False
+    def __runRandoms(self, task=None):
 
-            canStart = True
-            if 'conflictingIds' in data:
-                for id in data['conflictingIds']:
-                    if self.isHolidayRunning(id):
-                        canStart = False
+        #TODO implement counter reset
 
-            for id in data['holdayIds']:
-                if self.isHolidayRunning(id):
-                    canStart = False
+        for randomized in HolidayGlobals.RandomizedSchedules:
+            dice = randint(1, 100)
+            if dice < 50:
+                continue
 
-            if canStart:
-                start, end = data['duration']
-                holidayId = 0 #TODO finish
-                self.notify.info("Starting random '%s'" % keyword)
-                self.startHoliday(holdayId, end)
-                return True
-        return False
+            self.notify.debug("Attempting to run %s" % randomized)
+            ranType = HolidayGlobals.RandomizedSchedules[randomized]
+            configs = ranType['configs']
+
+            canRun = True
+            for configOption in configs:
+                key, default = configOption
+                if not config.GetBool(key, default):
+                    canRun = False
+                    break
+
+            conflictingIds = ranType['conflictingIds']
+            for conflict in conflictingIds:
+                if self.isHolidayRunning(conflict):
+                    canRun = False
+                    break
+
+            holidayIds = ranType['holidayIds']
+            for holiday in holidayIds:
+                if self.isHolidayRunning(holiday):
+                    canRun = False
+                    break
+
+            holidayId = random.choice(holidayIds)
+            if holidayId in self.randomsDay:
+                times = self.randomsDay[holidayId]
+                self.notify.info("Run times: %s" % times)
+                if times >= ranType['numPerDay']:
+                    canRun = False
+
+            if self.isHolidayRunning(holidayId):
+                canRun = False
+
+            start, end = ranType['duration']
+            duration = randint((max(start, 1) * 60), (max(end, 2) * 60))
+
+            if canRun:
+                if holidayId in self.randomsDay:
+                    self.randomsDay[holidayId] = self.randomsDay[holidayId] + 1
+                else:
+                    self.randomsDay[holidayId] = 1
+
+                if holidayId in self.randomsMonth:
+                    self.randomsMonth[holidayId] = self.randomsMonth[holidayId] + 1
+                else:
+                    self.randomsMonth[holidayId] = 1
+
+                self.notify.debug("Starting %s" % randomized)
+                self.startHoliday(holidayId, duration)
 
     def holidayNotify(self):
         self.notify.info("Received Holiday Notify! I have no idea what im doing. - Disney")

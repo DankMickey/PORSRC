@@ -103,6 +103,7 @@ holidayNameDict = {
     DOUBLEGOLDHOLIDAY: 'DoubleGoldHolidayAll',
     DOUBLEXPHOLIDAY: 'DoubleXPHolidayAll',
     FREEHATWEEK: 'FreeHatWeek',
+    FLIRTEMOTE: 'FlirtEmote',
     SAINTPATRICKSDAY: 'SaintPatricksDay',
     MOTHERSDAY: 'MothersDay',
     FATHERSDAY: 'FathersDay',
@@ -472,6 +473,7 @@ RandomizedSchedules = {
     'Invasions': {
         'configs': [
             ('want-random-invasions', 1),
+            ('want-invasions', 1),
             ('use-path-finding', 0)],
         'holidayIds': [
             INVASIONPORTROYAL,
