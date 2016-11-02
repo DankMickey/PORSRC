@@ -44,6 +44,7 @@ class ShipFactory:
         self.preprocessHull(ShipGlobals.SKEL_INTERCEPTORL3)
         self.preprocessHull(ShipGlobals.SKEL_WARSHIPL3)
         if not phasedLoading:
+            self.handlePhase1()
             self.handlePhase4()
             self.handlePhase5()
 
@@ -73,6 +74,14 @@ class ShipFactory:
         self.baseLayer.setCombineAlpha(TextureStage.CMModulate, TextureStage.CSTexture, TextureStage.COSrcAlpha, TextureStage.CSPrevious, TextureStage.COSrcAlpha)
 
 
+    def handlePhase1(self):
+        self.preprocessHull(ShipGlobals.CARRACKL1)
+        self.preprocessHull(ShipGlobals.CARRACKL2)
+        self.preprocessHull(ShipGlobals.CARRACKL3)
+        self.preprocessHull(ShipGlobals.CORVETTEL1)
+        self.preprocessHull(ShipGlobals.CORVETTEL2)
+        self.preprocessHull(ShipGlobals.CORVETTEL3)
+
     def handlePhase4(self):
         self.preprocessHull(ShipGlobals.INTERCEPTORL2)
         self.preprocessHull(ShipGlobals.INTERCEPTORL3)
@@ -88,12 +97,6 @@ class ShipFactory:
         self.preprocessHull(ShipGlobals.BRIGL1)
         self.preprocessHull(ShipGlobals.BRIGL2)
         self.preprocessHull(ShipGlobals.BRIGL3)
-        self.preprocessHull(ShipGlobals.CARRACKL1)
-        self.preprocessHull(ShipGlobals.CARRACKL2)
-        self.preprocessHull(ShipGlobals.CARRACKL3)
-        self.preprocessHull(ShipGlobals.CORVETTEL1)
-        self.preprocessHull(ShipGlobals.CORVETTEL2)
-        self.preprocessHull(ShipGlobals.CORVETTEL3)
         self.preprocessHull(ShipGlobals.QUEEN_ANNES_REVENGE)
         self.sprits = ShipBlueprints.preprocessSprits()
 
