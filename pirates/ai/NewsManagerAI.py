@@ -12,23 +12,43 @@ class NewsManagerAI(DistributedObjectAI):
 
     def __init__(self, air):
         DistributedObjectAI.__init__(self, air)
-        self.holidayIdList = []
+        self.holidayIdList = {}
         self.newPathList = []
 
     def announceGenerate(self):
         DistributedObjectAI.announceGenerate(self)
-        if config.GetBool('want-holidays', False):
+        if True: #config.GetBool('want-holidays', False):
             self.__checkHolidays()
             self.checkHolidays = taskMgr.doMethodLater(15, self.__checkHolidays, 'holidayCheckTask')
+            self.__processHolidayTime()
+            self.holidayTime = taskMgr.doMethodLater(15, self.__processHolidayTime, 'holidayTime')
 
     def delete(self):
         DistributedObjectAI.delete(self)
         if hasattr(self, 'checkHolidays'):
             taskMgr.remove(self.checkHolidays)
+        if hasattr(self, 'holidayTime'):
+            taskMgr.remove(self.holidayTime)
+
+    def __processHolidayTime(self, task=None):
+        garbage = []
+        for holiday in self.holidayIdList:
+            time = self.holidayIdList[holiday]
+            time = max(time - 15, 0)
+            if time <= 0:
+                garbage.append(holiday)
+            else:
+                self.holidayIdList[holiday] = time
+            self.notify.debug("Processing HolidayId: %s. Time is now %s" % (holiday, time))
+        if len(garbage) > 0:
+            self.notify.debug("Ending Holidays: %s" % garbage)
+            for trash in garbage:
+                self.endHoliday(trash)
+        self.d_setHolidayIdList(self.buildHolidayList())
+        return Task.again
 
     def __checkHolidays(self, task=None):
         holidays = HolidayGlobals.getAllHolidayIds()
-        self.notify.info("Checking Holidays...")
         for id in holidays:
             holiday = HolidayGlobals.getHolidayDates(id)
             if not hasattr(holiday, 'getCurrentDate'):
@@ -41,13 +61,6 @@ class NewsManagerAI(DistributedObjectAI):
             if False: #TODO date check
                 if not self.isHolidayRunning(id):
                     self.startHoliday(id)
-            else:
-                if self.isHolidayRunning(id):
-                    self.endHoliday(id)
-        return Task.again
-
-    def __checkRandoms(self, task=None):
-
         return Task.again
 
     def attemptToRunRandom(self, keyword="Invasion"):
@@ -80,9 +93,12 @@ class NewsManagerAI(DistributedObjectAI):
         self.notify.info("Received Holiday Notify! I have no idea what im doing. - Disney")
 
     def isHolidayRunning(self, holidayId):
-        return False #TODO
+        return holidayId in self.holidayIdList
 
     def getHolidayIdList(self):
+        return self.buildHolidayList()
+
+    def getRawHolidayIdList(self):
         return self.holidayIdList
 
     def setHolidayIdList(self, holidayIdList):
@@ -114,6 +130,15 @@ class NewsManagerAI(DistributedObjectAI):
     def getNoteablePathList(self):
         return self.newPathList
 
+    def buildHolidayList(self):
+        holidayList = []
+        if len(self.holidayIdList) <= 0:
+            return []
+        for holiday in self.holidayIdList:
+            time = max(self.holidayIdList[holiday], 0)
+            holidayList.append([holiday, time])
+        return holidayList
+
     def startHoliday(self, holidayId, time=0):
         if self.isHolidayRunning(holidayId):
             return
@@ -123,47 +148,20 @@ class NewsManagerAI(DistributedObjectAI):
             return
 
         self.notify.info("Starting holiday: %s" % (HolidayGlobals.getHolidayName(holidayId) or holidayId))
-        self.holidayIdList.append((holidayId, time))
-        self.sendUpdate('setHolidayIdList', [self.holidayIdList])
-        self.processHolidayStart(holidayId, time)
+        self.holidayIdList[holidayId] = time
+        self.d_setHolidayIdList(self.buildHolidayList())
+        messenger.send('holidayListChanged')
 
     def endHoliday(self, holidayId):
         if not self.isHolidayRunning(holidayId):
             return
 
         self.notify.info("Stopping holiday: %s" % (HolidayGlobals.getHolidayName(holidayId) or holidayId))
-        #self.holidayIdList.remove() #TODO write this
-        self.sendUpdate('setHolidayIdList', [self.holidayIdList])
-        self.processHolidayEnd(holidayId)
+        self.holidayIdList[holidayId] = 0
+        del self.holidayIdList[holidayId]
 
-    def processHolidayStart(self, holidayId, tinme=0):
-        if holidayId in HolidayGlobals.INVASION_HOLIDAYS:
-            self.__logUnimplementedHoliday(holidayId)
-
-        elif holidayId == HolidayGlobals.QUEENANNES:
-            self.__logUnimplementedHoliday(holidayId)
-
-        elif holidayId == HolidayGlobals.KRAKENHOLIDAY:
-            self.__logUnimplementedHoliday(holidayId)
-
-        elif holidayId == HolidayGlobals.FLEETHOLIDAY:
-            self.__logUnimplementedHoliday(holidayId)
-
-        elif holidayId == HolidayGlobals.WINTERFESTIVAL:
-            self.playMusic([SoundGlobals.MUSIC_HOLIDAY_02, 10, 0])
-
-        else:
-            self.__logUnimplementedHoliday(holidayId)
-
-    def __logUnimplementedHoliday(self, holidayId):
-        holidayName = HolidayGlobals.getHolidayName(holidayId)
-        if holidayName is None:
-            holidayName = str(holidayId)
-
-        self.notify.warning("Failed to process Holiday start. '%s' is not yet supported in this version." % holidayName)
-
-    def processHolidayEnd(self, holidayId):
-        pass
+        self.d_setHolidayIdList(self.buildHolidayList())
+        messenger.send('holidayListChanged')
 
     @magicWord(CATEGORY_GAME_DEVELOPER, types=[int, int])
     def forceStartHoliday(holidayId, time):
@@ -194,14 +192,14 @@ class NewsManagerAI(DistributedObjectAI):
     def getHolidays():
         """Gets the active holiday list from the district"""
         air = spellbook.getInvoker().air
-        holidays = air.newsManager.getHolidayIdList()
+        holidays = air.newsManager.getRawHolidayIdList()
         if len(holidays) <= 0:
             return "No active holidays."
 
         response = "Active Holidays: "
         for holiday in holidays:
-            holidayId, time = holiday
-            response = response + " {0}({1})".format(holidayId, time)
+            time = holidays[holiday]
+            response = response + " {0}({1})".format(HolidayGlobals.getHolidayName(holiday), time)
         return response
 
     @magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
