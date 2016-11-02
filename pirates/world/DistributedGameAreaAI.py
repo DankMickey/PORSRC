@@ -15,9 +15,13 @@ from pirates.holiday.DistributedHolidayPigAI import DistributedHolidayPigAI
 from pirates.holiday.DistributedHolidayBonfireAI import DistributedHolidayBonfireAI
 from pirates.quest.DistributedQuestPropAI import DistributedQuestPropAI
 from pirates.world.DistributedFortAI import DistributedFortAI
+from pirates.world import WorldGlobals
 from pirates.ai import HolidayGlobals
 
 class DistributedGameAreaAI(DistributedNodeAI):
+
+    BossSpawnKeys = ['Skeleton', 'NavySailor', 'Creature']
+
     def __init__(self, air, modelPath):
         DistributedNodeAI.__init__(self, air)
 
@@ -36,7 +40,7 @@ class DistributedGameAreaAI(DistributedNodeAI):
         self.wantNPCS = config.GetBool('want-npcs', False)
         self.wantEnemies = config.GetBool('want-enemies', False)
         self.wantBosses = config.GetBool('want-bosses', False)
-        self.wantForts = config.GetBool('want-simple-forts', True)
+        self.wantForts = config.GetBool('want-forts', True)
         self.wantQuestProps = config.GetBool('want-quest-props', True)
 
         self.wantHolidayObjects = config.GetBool('want-holiday-objects', True)
@@ -89,9 +93,17 @@ class DistributedGameAreaAI(DistributedNodeAI):
 
     def createObject(self, objType, parent, objKey, object):
         genObj = None
-        BossKeys = ['Skeleton', 'NavySailor', 'Creature']
 
-        if objType == 'Spawn Node' and self.wantEnemies:
+        if objType == 'Animal' and config.GetBool('want-animals', False):
+            self.spawner.addAnimalSpawnNode(objKey, object)
+
+        elif objType == 'Townsperson' and self.wantNPCS:
+            genObj = self.generateNPC(objType, objKey, object)
+
+        elif objType in self.BossSpawnKeys and self.wantBosses and self.wantEnemies:
+            genObj = self.generateBoss(objType, objKey, object)
+
+        elif objType == 'Spawn Node' and self.wantEnemies:
             self.spawner.addEnemySpawnNode(objType, objKey, object)
 
         elif objType == 'Dormant NPC Spawn Node' and self.wantEnemies and config.GetBool('want-dormant-spawns', False):
@@ -100,15 +112,6 @@ class DistributedGameAreaAI(DistributedNodeAI):
         elif objType == 'Movement Node' and self.wantEnemies:
             genObj = self.generateNode(objType, objKey, object, parent)
             self._movementNodes[objKey] = genObj
-
-        elif objType == 'Animal' and config.GetBool('want-animals', False):
-            self.spawner.addAnimalSpawnNode(objKey, object)
-
-        elif objType == 'Townsperson' and self.wantNPCS:
-            genObj = self.generateNPC(objType, objKey, object)
-
-        elif objType in BossKeys and self.wantBosses and self.wantEnemies:
-            genObj = self.generateBoss(objType, objKey, object)
 
         elif objType == 'Searchable Container' and config.GetBool('want-searchables', False):
             genObj = DistributedSearchableContainerAI.makeFromObjectKey(self.air, objKey, object)
@@ -206,8 +209,6 @@ class DistributedGameAreaAI(DistributedNodeAI):
 
         ignoreList = [
             'Port Collision Sphere',
-            'Holiday',
-            'Holiday Object',
             'Ambient SFX Node',
             'Animated Avatar - Navy',
             'Player Spawn Node',
@@ -298,6 +299,29 @@ class DistributedGameAreaAI(DistributedNodeAI):
             'Door Locator Node'
         ]
 
+        configurables = {
+            'want-npcs': [False, ['Townsperson']],
+            'want-enemies': [False, ['Spawn Node', 'Dormant NPC Spawn Node']],
+            'want-bosses': [False, self.BossSpawnKeys],
+            'want-forts': [True, ['Fort']], #TODO find proper key
+            'want-quest-props': [True, ['Quest Prop']],
+            'want-link-tunnels': [False, ['Island Game Area', 'Connector Tunnel']],
+            'want-searchables': [False, ['Searchable Container']],
+            'want-animals': [False, ['Animal']],
+            'want-parlor-games': [True, ['Parlor Game']],
+            'want-dice-games': [True, ['Dice Game']],
+            'want-holiday-objects': [True, ['Holiday', 'Holiday Object']],
+            'want-invasions': [True, ['Invasion Barricade', 'Invasion Barrier', 'Invasion NPC Spawn Node']]
+        }
+        for configKey in configurables:
+            configurableData = configurables[configKey]
+            configDefault = configurableData[0]
+            ignores = configurableData[1]
+            if not config.GetBool(configKey, configDefault) and len(ignores) > 0:
+                for item in ignores:
+                    if item not in ignoreList:
+                        ignoreList.append(item)
+
         if objType in ignoreList and config.GetBool('want-debug-ignore-list', True):
             return
 
@@ -341,8 +365,9 @@ class DistributedGameAreaAI(DistributedNodeAI):
                 holidayId = HolidayGlobals.getHolidayIdFromName(holiday)
                 holidayRunning = self.air.newsManager.isHolidayRunning(holidayId)
                 if not alwaysShow: 
-                    self.notify.debug("Storing Holiday(%s) NPC: %s " % (holiday, objKey))
+                    self.notify.info("Storing Holiday(%s) NPC: %s " % (holiday, objKey))
                     self._holidayNPCs[objKey] = [objType, object, None]
+                    self.__processHolidayNPCs([holidayId])
 
             if holiday == '' or holidayRunning or alwaysShow or forceHoliday:
 
@@ -369,6 +394,8 @@ class DistributedGameAreaAI(DistributedNodeAI):
         elif objType == 'NavySailor':
             self.__printUnimplementedNotice(objType) #TODO
         elif objType == 'Creature':
+            self.__printUnimplementedNotice(objType) #TODO
+        elif objType == 'Ghost':
             self.__printUnimplementedNotice(objType) #TODO
         elif objType == 'Townsperson':
             self.__printUnimplementedNotice(objType) #TODO
