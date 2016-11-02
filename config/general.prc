@@ -62,6 +62,9 @@ sync-flip #f
 auto-flip #f
 sync-video #f
 
+# ENEMIES
+use-path-finding #t
+
 # ISLAND
 remove-island-barriers #t
 
