@@ -39,7 +39,7 @@ class DistributedTimeOfDayManagerAI(DistributedObjectAI, TimeOfDayManagerBase):
     def announceGenerate(self):
         DistributedObjectAI.announceGenerate(self)
         if config.GetBool('advanced-weather', False):
-            self.notify.info("Enabled Advanced Weather")
+            self.notify.info("Enabled Advanced Weather.")
             self.__runWeather()
             self.runWeather = taskMgr.doMethodLater(15, self.__runWeather, 'runWeather')
 
