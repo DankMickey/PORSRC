@@ -6,14 +6,14 @@ from pirates.world.DistributedGameAreaAI import DistributedGameAreaAI
 from pirates.battle.Teamable import Teamable
 from pirates.piratesbase import PiratesGlobals
 from pirates.ai import HolidayGlobals
-from pirates.world import WorldGlobals
-from pirates.world.LocationConstants import *
 from pirates.treasuremap.DistributedBuriedTreasureAI import DistributedBuriedTreasureAI
 from pirates.minigame.DistributedPotionCraftingTableAI import DistributedPotionCraftingTableAI
 from pirates.minigame.DistributedRepairBenchAI import DistributedRepairBenchAI
 from pirates.minigame.DistributedFishingSpotAI import DistributedFishingSpotAI
-from DistributedDinghyAI import DistributedDinghyAI
-from DistributedGATunnelAI import DistributedGATunnelAI
+from pirates.world.DistributedDinghyAI import DistributedDinghyAI
+from pirates.world.DistributedGATunnelAI import DistributedGATunnelAI
+from pirates.world.LocationConstants import *
+from pirates.world import WorldGlobals
 import random
 
 
@@ -52,28 +52,50 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
     def announceGenerate(self):
         DistributedCartesianGridAI.announceGenerate(self)
         DistributedGameAreaAI.announceGenerate(self)
+        self.accept('holidayListChanged', self.__processHolidaysChange)
         if config.GetBool('want-island-events', True):
             self.__runIslandEvents()
             self.runEvents = taskMgr.doMethodLater(15, self.__runIslandEvents, 'runEvents')
-
-        if config.GetBool('want-fireworks', True):
-            self.__runIslandFireworks()
-            self.runFireworks = taskMgr.doMethodLater(15, self.__runIslandFireworks, 'runFireworks')
-
-        if config.GetBool('want-auto-feast', False):
-            islandId = self.getUniqueId()
-            if islandId == LocationIds.TORTUGA_ISLAND:
-                self.notify.info("Auto starting Feast...")
-                self.b_setFeastFireEnabled(True)
-
 
     def delete(self):
         DistributedCartesianGridAI.delete(self)
         DistributedGameAreaAI.delete(self)
         if hasattr(self, 'runEvents'):
             taskMgr.remove(self.runEvents)
-        if hasattr(self, 'runFireworks'):
-            taskMgr.remove(self.runFireworks)
+        self.ignore('holidayListChanged')
+
+    def __processHolidaysChange(self):
+        if not self.air.newsManager:
+            return
+
+        islandId = self.getUniqueId()
+        if config.GetBool('want-auto-feast', True):
+            if islandId == LocationIds.TORTUGA_ISLAND:
+                feastHoliday = False
+                feastHolidays = [HolidayGlobals.FOUNDERSFEAST, HolidayGlobals.MARDIGRAS]
+                for holiday in feastHolidays:
+                    if self.air.newsManager.isHolidayRunning(holiday):
+                        feastHoliday = True
+                if feastHoliday:
+                    self.notify.info("Auto starting Tortuga feast...")
+                self.b_setFeastFireEnabled(feastHoliday)
+
+        if config.GetBool('want-fireworks', True):
+            fireworkIslands = [LocationIds.PORT_ROYAL_ISLAND, LocationIds.TORTUGA_ISLAND, LocationIds.DEL_FUEGO_ISLAND]
+            fireworkHolidays = [HolidayGlobals.FOURTHOFJULY, HolidayGlobals.NEWYEARS, HolidayGlobals.MARDIGRAS]
+            if islandId in fireworkIslands:
+                fireworkTime = False
+                showType = 0
+                for holiday in fireworkHolidays:
+                    if self.air.newsManager.isHolidayRunning(holiday):
+                        fireworkTime = True
+                        showType = holiday
+                if fireworkTime:
+                    self.notify.info("Starting Firework shows for '%s' using ShowType %s" % (islandId, showType))
+                    self.b_setFireworkShowEnabled(True, showType)
+                else:
+                    self.b_setFireworkShowEnabled(False, 0)
+
 
     def __runIslandEvents(self, task=None):
         self.nextEvent -= 15
@@ -83,24 +105,6 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
                 self.makeLavaErupt()
                 self.nextEvent = random.randint(5, 10) * 60
 
-        return Task.again
-
-    def __runIslandFireworks(self, task=None):
-        if self.air.newsManager:
-            shows = [HolidayGlobals.FOURTHOFJULY, HolidayGlobals.NEWYEARS, HolidayGlobals.MARDIGRAS]
-            hasShow = False
-            showType = 0
-
-            for show in shows:
-                if self.air.newsManager.isHolidayRunning(show):
-                    hasShow = True
-                    showType = show
-                    break
-
-            if hasShow and showType in shows:
-                self.setFireworkShowEnabled(hasShow, showType)
-            else:
-                self.setFireworkShowEnabled(False, 0)
         return Task.again
 
     def setIslandTransform(self, x, y, z, h):
@@ -219,9 +223,12 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
         genObj = None
 
         if objType == 'Object Spawn Node':
-            if object['Spawnables'] == 'Buried Treasure':
+            spawnable = object['Spawnables']
+            if spawnable == 'Buried Treasure':
                 genObj = DistributedBuriedTreasureAI.makeFromObjectKey(self.air, objKey, object)
                 self.generateChild(genObj)
+            else:
+                self.notify.warning("Unsupported Spawn Node: %s" % spawnable)
 
         elif objType == 'PotionTable' and config.GetBool('want-potion-game', 0):
             genObj = DistributedPotionCraftingTableAI.makeFromObjectKey(self.air, objKey, object)
