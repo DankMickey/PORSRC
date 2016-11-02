@@ -245,6 +245,8 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
             if spawnable == 'Buried Treasure':
                 genObj = DistributedBuriedTreasureAI.makeFromObjectKey(self.air, objKey, object)
                 self.generateChild(genObj)
+            elif spawnable == 'Surface Treasure':
+                self.notify.warning("Unsupported %s: %s" % (objType, spawnable)) #TODO
             else:
                 self.notify.warning("Unsupported %s: %s" % (objType, spawnable))
 
