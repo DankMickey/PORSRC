@@ -1,6 +1,7 @@
 from panda3d.core import NodePath, getModelPath
 from direct.distributed.DistributedNodeAI import DistributedNodeAI
 from direct.distributed.GridParent import GridParent
+from direct.task import Task
 from pirates.battle.DistributedEnemySpawnerAI import DistributedEnemySpawnerAI
 from pirates.interact.DistributedSearchableContainerAI import DistributedSearchableContainerAI
 from pirates.interact.DistributedInteractivePropAI import DistributedInteractivePropAI
@@ -14,6 +15,7 @@ from pirates.holiday.DistributedHolidayPigAI import DistributedHolidayPigAI
 from pirates.holiday.DistributedHolidayBonfireAI import DistributedHolidayBonfireAI
 from pirates.quest.DistributedQuestPropAI import DistributedQuestPropAI
 from pirates.world.DistributedFortAI import DistributedFortAI
+from pirates.ai import HolidayGlobals
 
 class DistributedGameAreaAI(DistributedNodeAI):
     def __init__(self, air, modelPath):
@@ -33,10 +35,12 @@ class DistributedGameAreaAI(DistributedNodeAI):
 
         self.wantNPCS = config.GetBool('want-npcs', False)
         self.wantEnemies = config.GetBool('want-enemies', False)
-        self.wantBosses = config.GetBool('want-bosses', True)
+        self.wantBosses = config.GetBool('want-bosses', False)
         self.wantForts = config.GetBool('want-simple-forts', True)
         self.wantQuestProps = config.GetBool('want-quest-props', True)
+
         self.wantHolidayObjects = config.GetBool('want-holiday-objects', True)
+        self._holidayNPCs = {}
 
         self.debugPrints = config.GetBool('want-debug-world-prints', True)
 
@@ -45,6 +49,14 @@ class DistributedGameAreaAI(DistributedNodeAI):
         self._invasionBarricades = {}
 
         self.setPythonTag('npTag-gameArea', self)
+
+    def announceGenerate(self):
+        DistributedNodeAI.announceGenerate(self)
+        self.accept('holidayListChanged', self.handleHolidayChange)
+
+    def delete(self):
+        DistributedNodeAI.delete(self)
+        self.ignore('holidayListChanged')
 
     def setUniqueId(self, uid):
         self.uid = uid
@@ -78,12 +90,13 @@ class DistributedGameAreaAI(DistributedNodeAI):
 
     def createObject(self, objType, parent, objKey, object):
         genObj = None
+        BossKeys = ['Skeleton', 'NavySailor', 'Creature']
 
         if objType == 'Spawn Node' and self.wantEnemies:
-            self.spawner.addEnemySpawnNode(objKey, object)
+            self.spawner.addEnemySpawnNode(objType, objKey, object)
 
         elif objType == 'Dormant NPC Spawn Node' and self.wantEnemies and config.GetBool('want-dormant-spawns', False):
-            self.spawner.addEnemySpawnNode(objKey, object)
+            self.spawner.addEnemySpawnNode(objType, objKey, object)
 
         elif objType == 'Movement Node' and self.wantEnemies:
             genObj = self.generateNode(objType, objKey, object, parent)
@@ -93,31 +106,10 @@ class DistributedGameAreaAI(DistributedNodeAI):
             self.spawner.addAnimalSpawnNode(objKey, object)
 
         elif objType == 'Townsperson' and self.wantNPCS:
+            genObj = self.generateNPC(objType, objKey, object)
 
-            #quick hack to prevent holiday npcs
-            holiday = object.get('Holiday', '')
-            if holiday != '' and config.GetBool('remove-holiday-npcs', True):
-                self.notify.info("Preventing Holiday NPC spawn.")
-                return None
-
-            genObj = self.spawner.spawnNPC(objKey, object)
-            self.npcs[genObj.doId] = genObj
-
-            gridPos = object.get('GridPos')
-            if gridPos and isinstance(parent, NodePath):
-                genObj.setPos(self, gridPos)
-                genObj.d_updateSmPos()
-                newZoneId = self.getZoneFromXYZ(genObj.getPos(self))
-                genObj.b_setLocation(genObj.parentId, newZoneId)
-
-        elif objType == 'Skeleton' and self.wantBosses:
-            self.__printUnimplementedNotice(objType) #TODO
-
-        elif objType == 'NavySailor' and self.wantBosses:
-            self.__printUnimplementedNotice(objType) #TODO
-
-        elif objType == 'Creature' and self.wantBosses:
-            self.__printUnimplementedNotice(objType) #TODO
+        elif objType in BossKeys and self.wantBosses and self.wantEnemies:
+            genObj = self.generateBoss(objType, objKey, object)
 
         elif objType == 'Searchable Container' and config.GetBool('want-searchables', False):
             genObj = DistributedSearchableContainerAI.makeFromObjectKey(self.air, objKey, object)
@@ -153,7 +145,7 @@ class DistributedGameAreaAI(DistributedNodeAI):
         elif objType == 'Invasion NPC Spawn Node' and self.wantInvasions:
             self._invasionSpawns[objKey] = self.generateNode(objType, objKey, object, parent, gridPos=True)
             if config.GetBool('force-invasion-spawns', True):
-                self.spawner.addEnemySpawnNode(objKey, object)
+                self.spawner.addEnemySpawnNode(objType, objKey, object)
 
         elif objType == 'Fort' and self.wantForts: #TODO find objType
             self.notify.info("Spawning %s on %s" % (objType, self.getName()))
@@ -305,8 +297,7 @@ class DistributedGameAreaAI(DistributedNodeAI):
             'Jail Cell Door',
             'Portal Node',
             'Locator Node',
-            'Simple Fort',
-            'Door Locator Node'
+            'Simple Fort'
         ]
 
         if objType in ignoreList and config.GetBool('want-debug-ignore-list', True):
@@ -314,6 +305,77 @@ class DistributedGameAreaAI(DistributedNodeAI):
 
         from pirates.world.WorldCreatorAI import WorldCreatorAI
         WorldCreatorAI.registerMissing(objType)
+
+    def handleHolidayChange(self):
+        if not self.air.newsManager:
+            return
+        self.processHolidayNPCs(self.air.newsManager.getRawHolidayIdList())
+
+    def processHolidayNPCs(self, holidayIdList):
+        if len(self._holidayNPCs) <= 0:
+            return
+
+        for objKey in self._holidayNPCs:
+            npcData = self._holidayNPCs[objKey]
+            objType = npcData[0]
+            object = npcData[1]
+            currentNPC = npcData[2]
+            holidayId = HolidayGlobals.getHolidayIdFromName(object.get('Holiday', ''))
+            self.notify.debug("holidayId: %s currentNPC: %s" % (holidayId, str(currentNPC)))
+            if holidayId in holidayIdList and currentNPC is None:
+                genNPC = self.generateNPC(objType, objKey, object, forceHoliday=True)
+                self._holidayNPCs[objKey][2] = genNPC
+            else:
+                if currentNPC is not None:
+                    currentNPC.delete()
+                    self._holidayNPCs[objKey][2] = None
+
+    def generateNPC(self, objType, objKey, object, forceHoliday=False):
+        genObj = None
+        boss = object.get('Boss', False)
+        if not boss:
+            holiday = object.get('Holiday', '')
+            alwaysShow = config.GetBool('always-show-holiday-npcs', False)
+            holidayRunning = False
+
+            if holiday != '' and not forceHoliday:
+                holidayId = HolidayGlobals.getHolidayIdFromName(holiday)
+                holidayRunning = self.air.newsManager.isHolidayRunning(holidayId)
+                if not alwaysShow: 
+                    self.notify.debug("Storing Holiday(%s) NPC: %s " % (holiday, objKey))
+                    self._holidayNPCs[objKey] = [objType, object, None]
+
+            if holiday == '' or holidayRunning or alwaysShow or forceHoliday:
+
+                genObj = self.spawner.spawnNPC(objKey, object)
+                self.npcs[genObj.doId] = genObj
+
+                gridPos = object.get('GridPos')
+                if gridPos and isinstance(parent, NodePath):
+                    genObj.setPos(self, gridPos)
+                    genObj.d_updateSmPos()
+                    newZoneId = self.getZoneFromXYZ(genObj.getPos(self))
+                    genObj.b_setLocation(genObj.parentId, newZoneId)
+        else:
+            if self.wantBosses:
+                self.notify.warning("Unable to spawn %s. Boss not yet supported" % objType)
+                self.generateBoss(objType, objKey, object)
+        return genObj
+
+    def generateBoss(self, objType, objKey, object):
+        genObj = None
+        self.notify.debug("Spawning Boss on %s with type %s" % (self.getName(), objType))
+        if objType == 'Skeleton':
+            self.spawner.addEnemySpawnNode(objType, objKey, object)
+        elif objType == 'NavySailor':
+            self.__printUnimplementedNotice(objType) #TODO
+        elif objType == 'Creature':
+            self.__printUnimplementedNotice(objType) #TODO
+        elif objType == 'Townsperson':
+            self.__printUnimplementedNotice(objType) #TODO
+        else:
+            self.__printUnimplementedNotice(objType)
+        return genObj
 
     def generateChild(self, obj, zoneId=None, cellParent=False):
 
@@ -348,20 +410,22 @@ class DistributedGameAreaAI(DistributedNodeAI):
 
         if isinstance(parent, NodePath):
             genObj = parent.attachNewNode(nodeName)
-
         else:
             genObj = NodePath(nodeName)
 
-            if 'Pos' in object:
-                genObj.setPos(object['Pos'])
+        if 'Pos' in object:
+            genObj.setPos(object['Pos'])
 
-            if 'Hpr' in object:
-                genObj.setHpr(object['Hpr'])
+        if 'Hpr' in object:
+            genObj.setHpr(object['Hpr'])
 
-            if 'GridPos' in object and gridPos:
-                genObj.setPos(object['GridPos'])
+        if 'Scale' in object:
+            genObj.setScale(object['Scale'])
 
-            if noLight:
-                genObj.setLightOff()
+        if 'GridPos' in object and gridPos:
+            genObj.setPos(object['GridPos'])
+
+        if noLight:
+            genObj.setLightOff()
 
         return genObj

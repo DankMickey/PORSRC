@@ -96,7 +96,6 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
                 else:
                     self.b_setFireworkShowEnabled(False, 0)
 
-
     def __runIslandEvents(self, task=None):
         self.nextEvent -= 15
         if self.nextEvent <= 0:
