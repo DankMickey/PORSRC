@@ -974,7 +974,7 @@ def ghost(color=None, evil=1):
     av = spellbook.getInvoker()
     invokerAccess = av.getAdminAccess()
     if invokerAccess >= CATEGORY_GAME_MASTER.access:
-        av = spellbook.getTarget()
+        av = spellbook.getInvoker()
     if color == None:
         av.b_setIsGhost(False)
         return "Set your ghost state to false" % av.getName()
