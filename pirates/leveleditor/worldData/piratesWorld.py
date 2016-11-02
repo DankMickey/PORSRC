@@ -102,6 +102,30 @@ objectStruct = {
                     'VisSize': '',
                     'Visual': {
                         'Model': 'models/islands/pir_m_are_isl_mysterious_08' } },
+                '1264624291.62caoconnb': {
+                    'Type': 'Island',
+                    'Name': 'Shipwreck Cove',
+                    'File': 'ShipwreckCove',
+                    'Hpr': VBase3(-180.0, 0.0, 0.0),
+                    'Minimap': False,
+                    'Objects': {
+                        '1158214327.11sdnaik': {
+                            'Type': 'LOD Sphere',
+                            'Hpr': Point3(0.0, 0.0, 0.0),
+                            'Pos': Point3(-166.294, -732.312, 210.853),
+                            'Radi': [
+                                2700.0,
+                                3200.0,
+                                6000.0],
+                            'Scale': VBase3(1.0, 1.0, 1.0),
+                            'VisSize': '' } },
+                    'Phase': 1,
+                    'Pos': Point3(4568.492, 30760.081999999999, 0.0),
+                    'Scale': VBase3(1.0, 1.0, 1.0),
+                    'Undockable': True,
+                    'VisSize': '',
+                    'Visual': {
+                        'Model': 'models/islands/pir_m_are_isl_aztec_island' } },
                 '1156359855.24bbathen': {
                     'Type': 'Island',
                     'Name': 'Isla Cangrejos',
@@ -121,7 +145,7 @@ objectStruct = {
                             'Scale': VBase3(1.0, 1.0, 1.0),
                             'VisSize': '' } },
                     'Phase': 1,
-                    'Pos': Point3(20199.543, 24930.109, 0.0),
+                    'Pos': Point3(-199.543, 45230.109, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Undockable': False,
                     'VisSize': '',
@@ -2228,6 +2252,7 @@ objectStruct = {
         '1142029069.97sdnaik': '["Objects"]["1141410776.53sdnaik"]["Objects"]["1233100928.0akelts"]["Objects"]["1142029069.97sdnaik"]',
         '1264623757.79caoconno': '["Objects"]["1141410776.53sdnaik"]["Objects"]["1264623757.79caoconno"]',
         '1264624291.62caoconno': '["Objects"]["1141410776.53sdnaik"]["Objects"]["1264624291.62caoconno"]',
+        '1264624291.62caoconnb': '["Objects"]["1141410776.53sdnaik"]["Objects"]["1264624291.62caoconnb"]',
         '1150922126.8dzlu': '["Objects"]["1141410776.53sdnaik"]["Objects"]["1150922126.8dzlu"]',
         '1156207188.95dzlu': '["Objects"]["1141410776.53sdnaik"]["Objects"]["1156207188.95dzlu"]',
         '1156359855.24bbathen': '["Objects"]["1141410776.53sdnaik"]["Objects"]["1156359855.24bbathen"]',
