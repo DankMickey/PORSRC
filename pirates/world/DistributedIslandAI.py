@@ -110,7 +110,6 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
                 for npcId in self.npcs:
                     npc = self.npcs[npcId]
                     if hasattr(npc, 'b_setInInvasion'):
-                        self.notify.info("Setting Invasion Status")
                         npc.b_setInInvasion(invasionStatus)
 
 
