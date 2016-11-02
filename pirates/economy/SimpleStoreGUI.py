@@ -767,12 +767,12 @@ class SimpleStoreGUI(DirectFrame):
     def _mouseReadTask(self, task):
         if not base.mouseWatcherNode.hasMouse():
             pass
-        1
+
         winSize = (base.win.getXSize(), base.win.getYSize())
         mouseData = base.win.getPointer(0)
         if mouseData.getX() > winSize[0] or mouseData.getY() > winSize[1]:
             pass
-        1
+
         dx = mouseData.getX() - self.lastMousePos[0]
         mouseData = base.win.getPointer(0)
         self.lastMousePos = (mouseData.getX(), mouseData.getY())
@@ -1419,7 +1419,8 @@ class AccessoriesStoreGUI(SimpleStoreGUI):
         tabItems = []
         for itemId in allitems:
             itemType = ItemGlobals.getType(itemId)
-            if itemType == tabId:
+            genderIds = ItemGlobals.getGenderType(itemType, localAvatar.style.getGender(), [itemId])
+            if itemType == tabId and len(genderIds) > 0:
                 tabItems.append(itemId)
         return tabItems
 
