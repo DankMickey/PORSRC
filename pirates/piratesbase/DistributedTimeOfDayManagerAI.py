@@ -39,6 +39,7 @@ class DistributedTimeOfDayManagerAI(DistributedObjectAI, TimeOfDayManagerBase):
     def announceGenerate(self):
         DistributedObjectAI.announceGenerate(self)
         if config.GetBool('advanced-weather', False):
+            self.notify.info("Enabled Advanced Weather")
             self.__runWeather()
             self.runWeather = taskMgr.doMethodLater(15, self.__runWeather, 'runWeather')
 
@@ -63,8 +64,7 @@ class DistributedTimeOfDayManagerAI(DistributedObjectAI, TimeOfDayManagerBase):
             self.setClouds(weatherInfo['sky'])
 
     def pickWeather(self):
-        dice = random.random()
-        
+        dice = random.randint(1, 100)
         if dice <= 50:
             return TODGlobals.WEATHER_CLEAR
         elif config.GetBool('want-storm-weather', False) and dice <= 75:
