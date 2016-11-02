@@ -33,6 +33,7 @@ class NewsManagerAI(DistributedObjectAI):
 
         if config.GetBool('want-auto-messages', True):
             autoCycle = max(config.GetInt('auto-message-cycle', 2700), 60)
+            self.__runAutoMessages()
             self.autoMessages = taskMgr.doMethodLater(autoCycle, self.__runAutoMessages, 'autoMessages')
 
         if self.wantHolidays and config.GetBool('want-random-schedules', False):
@@ -52,9 +53,8 @@ class NewsManagerAI(DistributedObjectAI):
             taskMgr.remove(self.runRandoms)
 
     def __runAutoMessages(self, task=None):
-        messageId = randint(0, (len(PLocalizer.ChatNewsMessages) - 1))
+        messageId = randint(0, (len(PLocalizer.ChatNewsMessages) - 1)) or 0
         if messageId is not None:
-            self.notify.info("Broadcasting Message Id: %s" % messageId)
             self.displayChatMessage(messageId)
         return Task.again
 
@@ -176,6 +176,7 @@ class NewsManagerAI(DistributedObjectAI):
         self.sendUpdate('displayMessage', [messageId])
 
     def displayChatMessage(self, messageId):
+        self.notify.info("Broadcasting Message Id: %s" % messageId)
         self.sendUpdate('displayChatMessage', [messageId])
 
     def playMusic(self, musicInfo):
@@ -270,22 +271,7 @@ class NewsManagerAI(DistributedObjectAI):
     def isHoliday(holidayId):
         air = spellbook.getInvoker().air
         return air.newsManager.isHolidayRunning(holidayId)
-
-    @magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
-    def chatMsg(messageId):
-        """Send a news chat message to the whole district (system)"""
-        air = spellbook.getInvoker().air
-
-        maxId = max((len(PLocalizer.ChatNewsMessages) - 1), 0)
-        if maxId == 0:
-            return "Unable to send debug news chat message. No messages exist"
-
-        if messageId < 0 or messageId > maxId:
-            return "Unable to send debug news chat message. MessageId must be between 0-%s." % maxId
-
-        air.newsManager.displayMessage(messageId)
-        return "Sent debug news chat message '%s' to all pirates in the district." % str(messageId)        
-
+        
     @magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
     def newsMsg(messageId):
         """Send a news message to the whole district (system)"""
