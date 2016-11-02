@@ -260,7 +260,10 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
 
     def addReputation(self, repId, amount, ignoreDouble=False):
         repAmount = amount
-        if self.hasTempDoubleXP() and not ignoreDouble:
+        holidayDouble = False
+        if self.air.newsManager:
+            holidayDouble = self.air.newsManager.isHolidayRunning(1)
+        if (self.hasTempDoubleXP() or holidayDouble) and not ignoreDouble:
             repAmount = repAmount * 2
         self.inventory.addReputation(repId, repAmount)
     
