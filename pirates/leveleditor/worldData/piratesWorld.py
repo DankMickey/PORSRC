@@ -120,7 +120,7 @@ objectStruct = {
                             'Scale': VBase3(1.0, 1.0, 1.0),
                             'VisSize': '' } },
                     'Phase': 1,
-                    'Pos': Point3(-1268.492, 35760.0819, 0.0),
+                    'Pos': Point3(-3268.492, 32760.0819, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Undockable': True,
                     'VisSize': '',
