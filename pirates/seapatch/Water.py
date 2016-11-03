@@ -295,6 +295,24 @@ class Water(DirectObject):
             self.alpha_map_y_scale = value
             self.set_alpha_map_parameters_np()
 
+        if self.enable_ui:
+            self.water_r = 1
+            self.water_g = 1
+            self.water_b = 1
+            self.water_a = 1
+            self.reflection_factor = 0
+            self.px = 0
+            self.py = 0
+            self.ps = 0
+            self.map_x_origin = 0
+            self.map_y_origin = 0
+            self.map_x_scale = 1.0
+            self.map_y_scale = 1.0
+            self.alpha_map_x_origin = 0
+            self.alpha_map_y_origin = 0
+            self.alpha_map_x_scale = 1.0
+            self.alpha_map_y_scale = 1.0
+
         if self.enable_ui and self.enable_parameter_keys:
             x = -0.800000
             y = 0.800000
@@ -558,7 +576,7 @@ class Water(DirectObject):
                 self.purturb_x_slider.show()
                 self.purturb_y_slider.show()
                 self.purturb_smoothness_slider.show()
-                self.water_speed_sliderp.show()
+                self.water_speed_slider.show()
                 self.water_direction_x_slider.show()
                 self.water_direction_y_slider.show()
                 self.map_x_origin_slider.show()
