@@ -10,7 +10,7 @@ objectStruct = {
             'Undockable': False,
             'Visibility': 'Grid',
             'Visual': {
-                'Model': 'models/islands/pir_m_are_isl_mysterious_08' } } },
+                'Model': 'models/islands/pir_m_are_isl_coldwater' } } },
     'Layers': { },
     'ObjectIds': {
         '1264624291.62caoconno': '["Objects"]["1264624291.62caoconno"]' } }

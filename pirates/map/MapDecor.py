@@ -87,6 +87,7 @@ class Model(Item):
             geom = loader.loadModel(modelPath).find('**/%s' % modelName)
         else:
             geom = loader.loadModel(modelName, okMissing = True)
+
         if geom:
             self.geom = geom.instanceTo(self)
         else:

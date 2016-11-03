@@ -10,7 +10,7 @@ objectStruct = {
             'Undockable': True,
             'Visibility': 'Grid',
             'Visual': {
-                'Model': 'models/islands/pir_m_are_isl_mysterious_04' } } },
+                'Model': 'models/islands/pir_m_are_isl_mysterious' } } },
     'Layers': { },
     'ObjectIds': {
         '1264623757.79caoconno': '["Objects"]["1264623757.79caoconno"]' } }

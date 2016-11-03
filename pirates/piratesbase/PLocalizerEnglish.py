@@ -9519,8 +9519,14 @@ LocationUids = {
     "rumrunner's isle": LocationIds.RUMRUNNER_ISLE,
     'isla tormenta': LocationIds.ISLA_TORMENTA,
     'tormenta': LocationIds.ISLA_TORMENTA,
-    'tortuga': LocationIds.TORTUGA_ISLAND }
+    'tortuga': LocationIds.TORTUGA_ISLAND,
+    'mysterious isle': LocationIds.MYSTERIOUS_ISLE,
+    'coldwater isle': LocationIds.COLDWATER_ISLE,
+    'shipwreck cove': LocationIds.SHIPWRECK_COVE }
 LocationNames = {
+    LocationIds.SHIPWRECK_COVE: 'Shipwreck Cove',
+    LocationIds.COLDWATER_ISLE: 'Coldwater Isle',
+    LocationIds.MYSTERIOUS_ISLE: 'Mysterious Isle',
     LocationIds.PORT_ROYAL_ISLAND: 'Port Royal',
     LocationIds.PORT_ROYAL_PORT: 'Port Royal Town',
     LocationIds.PORT_ROYAL_CAVE_A: 'Royal Caverns',

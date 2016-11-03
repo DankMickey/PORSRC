@@ -96,17 +96,17 @@ objectStruct = {
                             'Scale': VBase3(1.0, 1.0, 1.0),
                             'VisSize': '' } },
                     'Phase': 1,
-                    'Pos': Point3(8568.492, 30760.081999999999, 0.0),
+                    'Pos': Point3(8568.492, 30760.0819, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Undockable': True,
                     'VisSize': '',
                     'Visual': {
-                        'Model': 'models/islands/pir_m_are_isl_mysterious_08' } },
+                        'Model': 'models/islands/pir_m_are_isl_coldwater' } },
                 '1264624291.62caoconnb': {
                     'Type': 'Island',
                     'Name': 'Shipwreck Cove',
                     'File': 'ShipwreckCove',
-                    'Hpr': VBase3(-180.0, 0.0, 0.0),
+                    'Hpr': VBase3(0.0, 0.0, 0.0),
                     'Minimap': False,
                     'Objects': {
                         '1158214327.11sdnaik': {
@@ -120,7 +120,7 @@ objectStruct = {
                             'Scale': VBase3(1.0, 1.0, 1.0),
                             'VisSize': '' } },
                     'Phase': 1,
-                    'Pos': Point3(4568.492, 30760.081999999999, 0.0),
+                    'Pos': Point3(-1268.492, 35760.0819, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Undockable': True,
                     'VisSize': '',
@@ -145,7 +145,7 @@ objectStruct = {
                             'Scale': VBase3(1.0, 1.0, 1.0),
                             'VisSize': '' } },
                     'Phase': 1,
-                    'Pos': Point3(-199.543, 45230.109, 0.0),
+                    'Pos': Point3(20199.543, 24930.109, 0.0),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'Undockable': False,
                     'VisSize': '',
@@ -860,7 +860,7 @@ objectStruct = {
                     'Undockable': True,
                     'VisSize': '',
                     'Visual': {
-                        'Model': 'models/islands/pir_m_are_isl_mysterious_04' } },
+                        'Model': 'models/islands/pir_m_are_isl_mysterious' } },
                 '1264194816.0kanpatel': {
                     'Type': 'Ship Movement Node',
                     'Hpr': Point3(0.0, 0.0, 0.0),
