@@ -126,7 +126,6 @@ class NewsManagerAI(DistributedObjectAI):
             holidayId = random.choice(holidayIds)
             if holidayId in self.randomsDay:
                 times = self.randomsDay[holidayId]
-                self.notify.info("Run times: %s" % times)
                 if times >= ranType['numPerDay']:
                     canRun = False
 
@@ -151,7 +150,7 @@ class NewsManagerAI(DistributedObjectAI):
                 self.startHoliday(holidayId, duration)
 
     def holidayNotify(self):
-        self.notify.info("Received Holiday Notify! I have no idea what im doing. - Disney")
+        self.sendUpdate('holidayNotify', [])
 
     def isHolidayRunning(self, holidayId):
         return holidayId in self.holidayIdList
@@ -181,6 +180,9 @@ class NewsManagerAI(DistributedObjectAI):
 
     def playMusic(self, musicInfo):
         self.sendUpdate('playMusic', [musicInfo])
+
+    def playHolidayMusic(self):
+        self.sendUpdate('playHolidayMusic', [])
 
     def setNoteablePathList(self, newPathList):
         self.newPathList = newPathList
@@ -215,7 +217,18 @@ class NewsManagerAI(DistributedObjectAI):
         self.notify.info("Starting holiday: %s" % (HolidayGlobals.getHolidayName(holidayId) or holidayId))
         self.holidayIdList[holidayId] = time
         self.d_setHolidayIdList(self.buildHolidayList())
+        self.processHolidayStart(holidayId)
+
+        if holidayId == 17:
+            self.playHolidayMusic()
+
         messenger.send('holidayListChanged')
+
+    def processHolidayStart(self, holidayId):
+        
+        if holidayId in HolidayGlobals.INVASION_HOLIDAYS:
+            if self.air.todManager:
+                self.air.todManager.setMoonJolly(True)
 
     def endHoliday(self, holidayId):
         if not self.isHolidayRunning(holidayId):
@@ -226,7 +239,18 @@ class NewsManagerAI(DistributedObjectAI):
         del self.holidayIdList[holidayId]
 
         self.d_setHolidayIdList(self.buildHolidayList())
+        self.processHolidayEnd(holidayId)
+
+        if holidayId == 17:
+            self.playHolidayMusic()
+
         messenger.send('holidayListChanged')
+
+    def processHolidayEnd(self, holidayId):
+
+        if holidayId in HolidayGlobals.INVASION_HOLIDAYS:
+            if self.air.todManager:
+                self.air.todManager.setMoonJolly(False)
 
     @magicWord(CATEGORY_GAME_DEVELOPER, types=[int, int])
     def forceStartHoliday(holidayId, time):

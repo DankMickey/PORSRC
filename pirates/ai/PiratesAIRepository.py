@@ -13,6 +13,7 @@ from pirates.instance.DistributedMainWorldAI import DistributedMainWorldAI
 from pirates.distributed.DistrictManagerAI import DistrictManagerAI
 from pirates.ai.NewsManagerAI import NewsManagerAI
 from pirates.world.WorldCreatorAI import WorldCreatorAI
+from pirates.inventory.DistributedLootManagerAI import DistributedLootManagerAI
 from pirates.piratesbase.DistributedTimeOfDayManagerAI import DistributedTimeOfDayManagerAI
 from pirates.piratesbase.DistributedGameStatManagerAI import DistributedGameStatManagerAI
 from pirates.instance.DistributedTeleportMgrAI import DistributedTeleportMgrAI
@@ -67,6 +68,9 @@ class PiratesAIRepository(PiratesInternalRepository):
 
         self.bandManager = DistributedPirateBandManagerAI(self)
         self.bandManager.generateWithRequired(2)
+
+        self.lootManager = DistributedLootManagerAI(self)
+        self.lootManager.generateWithRequired(2)
 
         self.banMgr = BanManagerAI(self)
         self.battleMgr = BattleManagerAI(self)

@@ -101,6 +101,7 @@ def getHolidayConfigDatesDict(configDefs):
 
 holidayNameDict = {
     DOUBLEGOLDHOLIDAY: 'DoubleGoldHolidayAll',
+    BLACKJACKFRIDAY: 'BlackJackFriday',
     DOUBLEXPHOLIDAY: 'DoubleXPHolidayAll',
     FREEHATWEEK: 'FreeHatWeek',
     FLIRTEMOTE: 'FlirtEmote',

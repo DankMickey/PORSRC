@@ -144,8 +144,11 @@ class NewsManager(DistributedObject.DistributedObject):
         base.musicMgr.request(musicInfo[0], priority = 2, looping = False)
         base.musicMgr.requestCurMusicFadeIn()
 
+    def playHolidayMusic(self):
+        messenger.send('requestMusicRefresh') #TODO
+
     def showHolidayMessage(self, holidayId, msgType):
-        self.notify.info('showHolidayMessage-holidayId:' + str(holidayId))
+        self.notify.debug('showHolidayMessage-holidayId:' + str(holidayId))
         taskMgr.remove('showHolidayMessage-holidayId:' + str(holidayId))
         if not hasattr(base, 'localAvatar'):
             return None
