@@ -224,6 +224,9 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         return task.again
 
     def __checkDoubleXPHoliday(self):
+        if not hasattr(self.air, 'newsManager'):
+            return
+
         if not self.air.newsManager:
             return
 
