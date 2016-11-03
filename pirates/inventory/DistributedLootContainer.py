@@ -63,6 +63,7 @@ class DistributedLootContainer(DistributedInteractive.DistributedInteractive, Lo
 
     def announceGenerate(self):
         DistributedInteractive.DistributedInteractive.announceGenerate(self)
+        self.notify.info("announceGenerate")
         self.loadContainer()
         if self.visZone != '':
             self.getParentObj().builder.addSectionObj(self.chest, self.visZone)
@@ -116,6 +117,7 @@ class DistributedLootContainer(DistributedInteractive.DistributedInteractive, Lo
             return None
 
         type = self.getType()
+        self.notify.info("Loading container: %s" % type)
         if type == PiratesGlobals.ITEM_SAC:
             self.chest = self.getContainerModel('models/props/pir_m_prp_trs_sack')
             self.chest.setScale(0.75)
@@ -156,7 +158,7 @@ class DistributedLootContainer(DistributedInteractive.DistributedInteractive, Lo
             self.openAnim = cb.bindAnim(ab, -1)
             self.openAnim.pose(0)
 
-        self.chest.setH(180)
+        #self.chest.setH(180)
         self.chest.reparentTo(self)
         self.appearSound.setVolume(0.8)
         self.openSound.setVolume(0.8)
