@@ -11,6 +11,7 @@ from pirates.battle import WeaponGlobals
 from pirates.battle.DistributedBattleAvatarAI import *
 from pirates.inventory import ItemGlobals
 from pirates.pirate.HumanDNA import HumanDNA
+from pirates.ai import HolidayGlobals
 import random
 import math
 
@@ -75,6 +76,9 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         taskMgr.doMethodLater(15, self.__checkCodeExploit, self.taskName('codeTask'))
         taskMgr.doMethodLater(10, self.__healthTask, self.taskName('healthTask'))
         taskMgr.doMethodLater(15, self.__doubleXpTask, self.taskName('doubleXPTask'))
+
+        self.accept('holidayListChanged', self.__checkDoubleXPHoliday)
+        self.__checkDoubleXPHoliday()
 
     def getInventory(self):
         return self.inventory
@@ -215,9 +219,27 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         self.tempdoublexp -= 15
         if self.tempdoublexp < 0:
             self.tempdoublexp = 0
-        self.b_setTempDoubleXPReward(self.tempdoublexp)
+        self.d_setTempDoubleXPReward(self.tempdoublexp)
 
         return task.again
+
+    def __checkDoubleXPHoliday(self):
+        if not self.air.newsManager:
+            return
+
+        holidays = self.air.newsManager.getRawHolidayIdList()
+        if HolidayGlobals.DOUBLEXPHOLIDAY not in holidays:
+            return
+
+        needsUpgrade = True
+        holidayTime = holidays[HolidayGlobals.DOUBLEXPHOLIDAY]
+        if self.hasTempDoubleXP():
+            if self.tempdoublexp >= holidayTime:
+                needsUpgrade = False
+
+        if needsUpgrade:
+            self.tempdoublexp += holidayTime
+            self.d_setTempDoubleXPReward(self.tempdoublexp)
 
     def setOnWelcomeWorld(self, state):
         self.welcomeWorld = state
@@ -260,10 +282,7 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
 
     def addReputation(self, repId, amount, ignoreDouble=False):
         repAmount = amount
-        holidayDouble = False
-        if self.air.newsManager:
-            holidayDouble = self.air.newsManager.isHolidayRunning(1)
-        if (self.hasTempDoubleXP() or holidayDouble) and not ignoreDouble:
+        if self.hasTempDoubleXP() and not ignoreDouble:
             repAmount = repAmount * 2
         self.inventory.addReputation(repId, repAmount)
     
