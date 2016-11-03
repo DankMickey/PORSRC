@@ -13,7 +13,16 @@ import random
 class DualCutlass(Weapon.Weapon):
     modelTypes = [
         'models/handheld/pir_m_hnd_swd_cutlass_a',
-        'models/handheld/pir_m_hnd_swd_scimitar_a']
+        'models/handheld/pir_m_hnd_swd_broadsword_b',
+        'models/handheld/pir_m_hnd_swd_cutlass_c',
+        'models/handheld/pir_m_hnd_swd_cutlass_d',
+        'models/handheld/pir_m_hnd_swd_broadsword_c',
+        'models/handheld/pir_m_hnd_swd_scimitar_a',
+        'models/handheld/pir_m_hnd_swd_scimitar_b',
+        'models/handheld/pir_m_hnd_swd_scimitar_c',
+        'models/handheld/pir_m_hnd_swd_scimitar_d',
+        'models/handheld/pir_m_hnd_swd_scimitar_e',
+        'models/handheld/pir_m_hnd_swd_scimitar_f']
     models = { }
     icons = { }
     vertex_list = [
