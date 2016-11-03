@@ -59,7 +59,7 @@ class DualCutlass(Weapon.Weapon):
             Vec4(0.3, 0.3, 0.3, 0.5),
             Vec4(0.1, 0.1, 0.1, 1.0)] }
     walkAnim = 'dualcutlass_walk'
-    runAnim = 'dualcutlass_walk'
+    runAnim = 'dualcutlass_run'
     neutralAnim = 'dualcutlass_idle'
     strafeLeftAnim = 'strafe_left'
     strafeRightAnim = 'strafe_right'

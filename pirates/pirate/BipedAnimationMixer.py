@@ -388,6 +388,7 @@ class BipedAnimationMixer(AnimationMixer):
         'dualcutlass_idle': (LOOP['IDLE'], LOOP['IDLE'], LOOP['IDLE']),
         'dualcutlass_hurt': (ACTION['INPLACE_0'], ACTION['INMOTION_1'], ACTION['INMOTION_1']),
         'dualcutlass_walk': (LOOP['MOTION'], LOOP['MOTION'], LOOP['MOTION']),
+        'dualcutlass_run': (LOOP['MOTION'], LOOP['MOTION'], LOOP['MOTION']),
         'hand_curse_check': (ACTION['MOVIE'], ACTION['MOVIE'], ACTION['MOVIE']),
         'hand_curse_get_sword': (ACTION['MOVIE'], ACTION['MOVIE'], ACTION['MOVIE']),
         'hand_curse_reaction': (ACTION['MOVIE'], ACTION['MOVIE'], ACTION['MOVIE']),
