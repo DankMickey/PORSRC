@@ -112,6 +112,7 @@ class ItemId:
     CUTLASS_L4 = InventoryType.CutlassWeaponL4
     CUTLASS_L5 = InventoryType.CutlassWeaponL5
     CUTLASS_L6 = InventoryType.CutlassWeaponL6
+    CUTLASS_L7 = InventoryType.CutlassWeaponL7
     PISTOL_L1 = InventoryType.PistolWeaponL1
     PISTOL_L2 = InventoryType.PistolWeaponL2
     PISTOL_L3 = InventoryType.PistolWeaponL3
@@ -154,6 +155,9 @@ class ItemId:
     BAYONET_L1 = InventoryType.BayonetWeaponL1
     BAYONET_L2 = InventoryType.BayonetWeaponL2
     BAYONET_L3 = InventoryType.BayonetWeaponL3
+    FOIL_L1 = InventoryType.FoilL1
+    FOIL_L2 = InventoryType.FoilL2
+    FOIL_L3 = InventoryType.FoilL3
     ROUNDSHOT = InventoryType.AmmoRoundShot
     CHAIN_SHOT = InventoryType.AmmoChainShot
     GRAPE_SHOT = InventoryType.AmmoGrapeShot
@@ -417,6 +421,7 @@ __itemList = {
     ItemId.CUTLASS_L4: (5000, ItemType.WEAPON, ItemType.SWORD, ItemType.COMBAT_WEAPON, 1, 15, InventoryType.CutlassToken),
     ItemId.CUTLASS_L5: (10000, ItemType.WEAPON, ItemType.SWORD, ItemType.COMBAT_WEAPON, 1, 20, InventoryType.CutlassToken),
     ItemId.CUTLASS_L6: (25000, ItemType.WEAPON, ItemType.SWORD, ItemType.COMBAT_WEAPON, 1, 25, InventoryType.CutlassToken),
+    ItemId.CUTLASS_L7: (25000, ItemType.WEAPON, ItemType.SWORD, ItemType.COMBAT_WEAPON, 1, 25, InventoryType.CutlassToken),
     ItemId.PISTOL_L1: (60, ItemType.WEAPON, ItemType.PISTOL, ItemType.RANGED_WEAPON, 1, 0, InventoryType.PistolToken),
     ItemId.PISTOL_L2: (300, ItemType.WEAPON, ItemType.PISTOL, ItemType.RANGED_WEAPON, 1, 5, InventoryType.PistolToken),
     ItemId.PISTOL_L3: (2000, ItemType.WEAPON, ItemType.PISTOL, ItemType.RANGED_WEAPON, 1, 10, InventoryType.PistolToken),
@@ -686,6 +691,7 @@ __itemIcons = {
     ItemId.CUTLASS_L4: 'pir_t_ico_swd_cutlass_d',
     ItemId.CUTLASS_L5: 'pir_t_ico_swd_broadsword_c',
     ItemId.CUTLASS_L6: 'pir_t_ico_swd_cutlass_g',
+    ItemId.CUTLASS_L7: 'pir_t_ico_swd_cutlass_a',
     ItemId.PISTOL_L1: 'pir_t_ico_gun_pistol_a',
     ItemId.PISTOL_L2: 'pir_t_ico_gun_multiBarrel_a',
     ItemId.PISTOL_L3: 'pir_t_ico_gun_multiBarrel_c',
@@ -787,6 +793,9 @@ MELEE_SHELF_L3 = [
     ItemId.CUTLASS_L6,
     ItemId.DAGGER_L5,
     ItemId.DAGGER_L6]
+MELEE_SHELF_L4 = [
+    ItemId.CUTLASS_L7
+]
 MISSILE_SHELF_L1 = []
 MISSILE_SHELF_L2 = [
     ItemId.PISTOL_L2,

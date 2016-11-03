@@ -153,7 +153,12 @@ class InventoryType:
     WandWeaponL6 = 10155
     DualCutlassL1 = 10156
     FoilL1 = 10157
-    end_Weapon = FoilL1 + 1
+    FoilL2 = 10158
+    FoilL3 = 10159
+    CutlassWeaponL7 = 10160
+    CutlassWeaponL8 = 10161
+    CutlassWeaponL9 = 10162
+    end_Weapon = CutlassWeaponL9 + 1
     begin_Ingredient = 11000
     AppleIngredient = 11000
     end_Ingredient = AppleIngredient + 1

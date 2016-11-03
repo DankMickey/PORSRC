@@ -67,7 +67,8 @@ class DistributedInventoryBase:
         def queryField(self, fieldName, callback = None):
 
             def response(context, value):
-                print '%s: %s' % (fieldName, value)
+                pass
+                #print '%s: %s' % (fieldName, value)
 
             dclassName = 'DistributedInventoryAI'
             self.air.contextToClassName[1] = dclassName
@@ -79,7 +80,8 @@ class DistributedInventoryBase:
         def queryFieldToXML(self, fieldName):
 
             def response(context, value):
-                print self.valueToXML(fieldName, value)
+                pass
+                #print self.valueToXML(fieldName, value)
 
             self.queryField(fieldName, response)
 
