@@ -4209,7 +4209,7 @@ ItemFlavorText = {
     ItemGlobals.GREAT_BROADSWORD: 'A powerful heavy blade.',
     ItemGlobals.DUAL_RUSTY_CUTLASS: "They are a bit crude, but they still has an edge.\nRight click to equip.",
     ItemGlobals.DUAL_IRON_CUTLASS: 'A set of well crafted iron blades.',
-    ItemGlobals.DUAL_STEEL_CUTLASS: 'A set ornate steel cutlasses. Well balanced and sharp!',
+    ItemGlobals.DUAL_STEEL_CUTLASS: 'A set of ornate steel cutlasses. Well balanced and sharp!',
     ItemGlobals.FLINTLOCK_PISTOL: 'A standard flintlock pistol. Fires one shot before it needs to be reloaded.',
     ItemGlobals.DOUBLE_BARREL: 'A flintlock pistol with two barrels. Each barrel can be fired separately before reloading.',
     ItemGlobals.TRI_BARREL: 'A multi-barreled pistol! This rare device can fire three times before reloading.',
