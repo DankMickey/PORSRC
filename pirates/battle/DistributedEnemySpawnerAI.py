@@ -18,7 +18,6 @@ from pirates.battle.DistributedBattleNPCAI import *
 from pirates.creature.DistributedCreatureAI import *
 from pirates.creature.DistributedAnimalAI import *
 from pirates.creature.DistributedRavenAI import *
-from pirates.creature.DistributedBossCreatureAI import DistributedBossCreatureAI
 
 from pirates.ship import ShipGlobals
 from pirates.ship.DistributedNPCSimpleShipAI import DistributedNPCSimpleShipAI
@@ -222,7 +221,11 @@ class BossSpawnNode(DirectObject.DirectObject):
 
 
     def getBossClassFromType(self, type):
+        return None
         bossClass = None
+
+        from pirates.npc.DistributedBossSkeletonAI import DistributedBossSkeletonAI
+        from pirates.creature.DistributedBossCreatureAI import DistributedBossCreatureAI
 
         if type == 'Skeleton':
             bossClass = DistributedBossSkeletonAI
