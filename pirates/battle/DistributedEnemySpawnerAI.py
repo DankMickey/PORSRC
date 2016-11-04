@@ -162,6 +162,7 @@ class BossSpawnNode(DirectObject.DirectObject):
         self.avClass = self.getBossClassFromType(type)
         if self.avClass is None:
             self.notify.warning("Attempted add spawn node for invalid boss. No boss class found for type %s" % type)
+            DistributedEnemySpawnerAI.missingBossClass(type)
             return
 
         if type != 'Creature':
@@ -265,7 +266,7 @@ class BossSpawnNode(DirectObject.DirectObject):
 
             npc.setScale(self.scale, self.scale, self.scale)
             npc.b_setName(self.bossName)
-            npc.setDamageScale(self.damageScale)
+            #npc.setDamageScale(self.damageScale)
 
         if task:
             return task.done
@@ -403,6 +404,7 @@ class DistributedEnemySpawnerAI:
     _avatarMissing = set() # Debug
     _shipMissing = set() # Debug
     _animalMissing = set() #Debug
+    _bossMissing = set() #Debug
 
     def __init__(self, gameArea):
         self.gameArea = gameArea
@@ -492,3 +494,18 @@ class DistributedEnemySpawnerAI:
             print '   %r' % avType
 
         del cls._animalMissing 
+
+    @classmethod
+    def missingBossClass(self, type):
+        cls._bossMissing.add(type)
+
+    @classmethod
+    def printMissingBossTypes(cls):
+        if not cls._bossMissing:
+            return
+
+        cls.notify.warning('Missing boss types:')
+        for avType in cls._bossMissing:
+            print '   %r' % avType
+
+        del cls._bossMissing        
