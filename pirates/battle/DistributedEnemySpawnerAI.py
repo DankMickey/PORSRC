@@ -221,12 +221,7 @@ class BossSpawnNode(DirectObject.DirectObject):
 
 
     def getBossClassFromType(self, type):
-        return None
         bossClass = None
-
-        from pirates.npc.DistributedBossSkeletonAI import DistributedBossSkeletonAI
-        from pirates.creature.DistributedBossCreatureAI import DistributedBossCreatureAI
-
         if type == 'Skeleton':
             bossClass = DistributedBossSkeletonAI
         elif type == 'Creature':
