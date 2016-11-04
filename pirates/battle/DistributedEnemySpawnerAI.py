@@ -18,6 +18,7 @@ from pirates.battle.DistributedBattleNPCAI import *
 from pirates.creature.DistributedCreatureAI import *
 from pirates.creature.DistributedAnimalAI import *
 from pirates.creature.DistributedRavenAI import *
+from pirates.creature.DistributedBossCreatureAI import DistributedBossCreatureAI
 
 from pirates.ship import ShipGlobals
 from pirates.ship.DistributedNPCSimpleShipAI import DistributedNPCSimpleShipAI
@@ -264,6 +265,7 @@ class BossSpawnNode(DirectObject.DirectObject):
 
             npc.setScale(self.scale, self.scale, self.scale)
             npc.b_setName(self.bossName)
+            npc.setDamageScale(self.damageScale)
 
         if task:
             return task.done

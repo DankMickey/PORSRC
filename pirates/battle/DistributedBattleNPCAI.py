@@ -31,6 +31,8 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
         self.uniqueId = ''
         self.dnaId = ''
 
+        self.damageScale = 1
+
         self.enemies = set()
 
     def setDNAId(self, dnaId):
@@ -203,8 +205,11 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
         self.waitForNextBattleTask()
         return task.done
 
+    def setDamageScale(self, damageScale):
+        self.damageScale = damageScale
+
     def getMonsterDmg(self):
-        return EnemyGlobals.getMonsterDmg(self.level)
+        return EnemyGlobals.getMonsterDmg(self.level) * self.damageScale
 
     def exitBattle(self):
         self.sendUpdate('setIsAlarmed', [0, 0])
