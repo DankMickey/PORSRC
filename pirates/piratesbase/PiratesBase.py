@@ -3,9 +3,6 @@ from panda3d.core import Camera, ClockObject, CollisionHandler, CollisionHandler
 import sys
 import time
 import os
-import tempfile
-import shutil
-import atexit
 from otp.nametag import NametagGlobals
 from otp.nametag.ChatBalloon import ChatBalloon
 from otp.margins.MarginManager import MarginManager
@@ -375,29 +372,14 @@ class PiratesBase(OTPBase):
         return success
 
     def setCursorAndIcon(self):
-        tempdir = tempfile.mkdtemp()
-        atexit.register(shutil.rmtree, tempdir)
-        vfs = VirtualFileSystem.getGlobalPtr()
-
-        searchPath = DSearchPath()
-        searchPath.appendDirectory(Filename('resources/phase_3/etc'))
-        searchPath.appendDirectory(Filename('./assets/phase_3/etc'))
-
-        for filename in ['cutlass.cur', 'icon256.ico', 'icon500.ico']:
-            p3filename = Filename(filename)
-            found = vfs.resolveFilename(p3filename, searchPath)
-            if not found:
-                continue # Can't do anything past this point.
-
-            with open(os.path.join(tempdir, filename), 'wb') as f:
-                f.write(vfs.readFile(p3filename, False))
-
         wp = WindowProperties()
-        if sys.platform == 'darwin':
-            wp.setIconFilename(Filename.fromOsSpecific(os.path.join(tempdir, 'icon500.ico')))
+        
+        if self.isClientBuilt():
+            wp.setIconFilename(Filename.fromOsSpecific(os.path.join(os.getcwd(), 'icon.ico')))
         else:
-            wp.setIconFilename(Filename.fromOsSpecific(os.path.join(tempdir, 'icon256.ico')))
-            self.win.requestProperties(wp)
+            wp.setIconFilename(Filename.fromOsSpecific(os.path.join(os.getcwd(), 'resources/phase_3/etc/icon.ico')))
+
+        self.win.requestProperties(wp)
 
     def postOpenWindow(self):
         NametagGlobals.setCamera(base.cam)
@@ -499,7 +481,6 @@ class PiratesBase(OTPBase):
         base.graphicsEngine.renderFrame()
         gameServer = os.environ.get('POR_GAMESERVER', '127.0.0.1')
         serverPort = config.GetInt('server-port', 7969)
-        debugQuests = config.GetBool('debug-quests', True)
         self.wantTattoos = config.GetBool('want-tattoos', 0)
         self.wantSocks = config.GetBool('want-socks', 0)
         self.wantJewelry = config.GetBool('want-jewelry', 0)
