@@ -118,7 +118,7 @@ class AvatarType:
                 name = '%s %s' % (name, PLocalizer.Boss)
         except:
             print ":AvatarType(warning): Failed to load AvatarType name. faction: %s track:%s id:%s" % (self.faction, self.track, self.id)
-            name = 'Unknown'
+            name = PLocalizer.Unknown
             if self.boss:
                 name = '%s %s' % (name, PLocalizer.Boss)
         return name

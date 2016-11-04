@@ -6027,7 +6027,7 @@ objectStruct = {
                     'PoseFrame': '',
                     'Respawns': True,
                     'Scale': VBase3(1.0, 1.0, 1.0),
-                    'Species': 'SandStalker',
+                    'Species': 'Devourer Crab',
                     'Start State': 'Idle',
                     'StartFrame': '0',
                     'VisSize': '' },

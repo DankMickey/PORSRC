@@ -28,7 +28,7 @@ class DistributedJollyRoger(DistributedBattleNPC.DistributedBattleNPC, JollyRoge
     def announceGenerate(self):
         DistributedBattleNPC.DistributedBattleNPC.announceGenerate(self)
         self.setupBoss(True, True)
-        #self.addBossEffect(AvatarTypes.Undead)
+        self.addBossEffect(AvatarTypes.Undead)
         self.attackSounds = [
             loadSfx(SoundGlobals.SFX_MONSTER_JR_ATTACK_01),
             loadSfx(SoundGlobals.SFX_MONSTER_JR_ATTACK_03),

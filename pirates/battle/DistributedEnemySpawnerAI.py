@@ -11,6 +11,7 @@ from pirates.npc.DistributedGhostAI import DistributedGhostAI
 from pirates.npc.DistributedJollyRogerAI import DistributedJollyRogerAI
 from pirates.npc.DistributedDavyJonesAI import DistributedDavyJonesAI
 from pirates.npc.DistributedBossSkeletonAI import DistributedBossSkeletonAI
+from pirates.npc.DistributedBossNavySailorAI import DistributedBossNavySailorAI
 from pirates.npc import BossNPCList
 
 from pirates.battle.DistributedBattleNPCAI import *
@@ -23,6 +24,7 @@ from pirates.ship import ShipGlobals
 from pirates.ship.DistributedNPCSimpleShipAI import DistributedNPCSimpleShipAI
 from pirates.ship.DistributedPlayerSeizeableShipAI import DistributedPlayerSeizeableShipAI
 
+from pirates.piratesbase import PLocalizer
 import random, os
 
 NPC_CACHE = {}
@@ -71,16 +73,7 @@ class EnemySpawnNode(DirectObject.DirectObject):
         elif avatar.isA(AvatarTypes.JollyRoger):
             avatarClass = DistributedJollyRogerAI
         elif avatar.isA(AvatarTypes.Undead):
-            if avatar.isA(AvatarTypes.FrenchBoss) or avatar.isA(AvatarTypes.SpanishBoss):
-                #avatarClass = DistributedBossSkeletonAI
-                pass
-            elif avatar == AvatarTypes.BomberZombie:
-                #avatarClass = DistributeBomberZombieAI
-                pass
-            elif avatar.isA(AvatarTypes.JollyRoger):
-                avatarClass = DistributedJollyRogerAI
-            else:
-                avatarClass = DistributedNPCSkeletonAI
+            avatarClass = DistributedNPCSkeletonAI
         elif avatar.isA(AvatarTypes.Navy):
             avatarClass = DistributedNPCNavySailorAI
         elif avatar.isA(AvatarTypes.GhostPirate):
@@ -92,10 +85,7 @@ class EnemySpawnNode(DirectObject.DirectObject):
         elif avatar.isA(AvatarTypes.TradingCo):
             avatarClass = DistributedNPCNavySailorAI
         elif avatar.isA(AvatarTypes.VoodooZombie):
-            if avatar.isA(AvatarTypes.VoodooZombieBoss):
-                 pass
-            else:
-                avatarClass = DistributedVoodooZombieAI
+            avatarClass = DistributedVoodooZombieAI
         elif avatar.isA(AvatarTypes.LandCreature):
             avatarClass = DistributedCreatureAI
         elif avatar.isA(AvatarTypes.AirCreature):
@@ -147,6 +137,10 @@ class BossSpawnNode(DirectObject.DirectObject):
             self.notify.warning("Attempted add spawn node for invalid boss. No boss flag found")
             return
 
+        if not data['Boss']:
+            self.notify.warning("Attmempted to add spawn node for inactive boss. Boss flag is False")
+            return
+
         if 'DNA' not in data and type != 'Creature':
             self.notify.warning("Attempted to add spawn node for invalid boss. No DNA field found")
             return
@@ -163,6 +157,7 @@ class BossSpawnNode(DirectObject.DirectObject):
                 return
 
             self.avType = AvatarTypes.NPC_SPAWNABLES[self.spawnable][0]()
+            self.avType = self.avType.getBossType()
 
         self.avClass = self.getBossClassFromType(type)
         if self.avClass is None:
@@ -179,22 +174,25 @@ class BossSpawnNode(DirectObject.DirectObject):
 
             if 'AvatarType' in self.bossData:
                 self.avType = self.bossData['AvatarType']
+                self.avType = self.avType.getBossType()
             else:
-                self.notify.warning("No AvatarType found for '%s'. Defaulting to Will Burybones" % self.dnaId)
-                self.avType = AvatarTypes.WillBurybones 
+                self.avType = self.getDefaultAvTypeFromType(type)
 
-            if 'Level' in self.bossData:
-                self.level = self.bossData['Level']
-            else:
-                self.level = 0
+            self.hpScale = self.getBossValue('HpScale')
+            self.mpScale = self.getBossValue('MpScale')
+            self.level = self.getBossValue('Level')
+            self.scale = self.getBossValue('ModelScale')
+            self.weapon = self.getBossValue('Weapon')
+            self.weaponLevel = self.getBossValue('WeaponLevel')
+            self.goldScale = self.getBossValue('GoldScale')
+            self.damageScale = self.getBossValue('DamageScale')
+            self.bossName = self.getNameFromDNAId(self.dnaId)
 
-            if 'ModelScale' in self.bossData:
-                self.scale = self.bossData['ModelScale']
-            else:
-                self.scale = 1.0
         else:
+            self.dnaId = "N/A"
             self.level = int(self.data['Level'])
-            self.scale = 1.0
+            self.scale = self.getDefaultValue('ModelScale')
+            self.bossName = self.avType.getName()
 
         self.desiredNumAvatars = 1
         self.acceptOnce('startShardActivity', self.died)
@@ -207,6 +205,22 @@ class BossSpawnNode(DirectObject.DirectObject):
 
         taskMgr.doMethodLater(random.random() * 15, self.__checkBosses, self.uniqueName('checkBosses'))
 
+    def getDefaultValue(self, key):
+        return BossNPCList.BOSS_NPC_LIST[''][key]
+
+    def getBossValue(self, key):
+        if key in self.bossData:
+            return self.bossData[key]
+        else:
+            return self.getDefaultValue(key)
+
+    def getDefaultAvTypeFromType(self, type):
+        if type == 'Skeleton':
+            return AvatarTypes.SimonButcher 
+        elif type == 'NavySailor':
+            return AvatarTypes.IanRamjaw
+
+
     def getBossClassFromType(self, type):
         bossClass = None
 
@@ -214,10 +228,17 @@ class BossSpawnNode(DirectObject.DirectObject):
             bossClass = DistributedBossSkeletonAI
         elif type == 'Creature':
             bossClass = DistributedBossCreatureAI
+        elif type == 'NavySailor':
+            bossClass = DistributedBossNavySailorAI
         else:
             self.notify.warning("Unknown boss creature class: %s" % type)
 
         return bossClass
+
+    def getNameFromDNAId(self, dnaId):
+        if dnaId in PLocalizer.BossNPCNames:
+            return PLocalizer.BossNPCNames[dnaId]
+        return "Unknown BOSS"
 
     def __checkBosses(self, task):
         deadNpcs = []
@@ -231,14 +252,20 @@ class BossSpawnNode(DirectObject.DirectObject):
         # Upkeep population
         numNpcs = len(self.npcs)
         if numNpcs < self.desiredNumAvatars:
-            self.notify.info("SPAWNING BOSS: %s" % self.avType)
+            self.notify.info("SPAWNING BOSS: %s with DNAId %s" % (self.bossName, self.dnaId))
             uid = self.uniqueName('spawned-%s' % os.urandom(4).encode('hex'))
             npc = self.avClass.makeFromObjectKey(self.avClass, self, uid,
                                                  self.avType, self.data)
-            self.spawner.spawn(npc, forceLevel = self.level)
+
+            if self.level:
+                self.spawner.spawn(npc, forceLevel = self.level)
+            else:
+                self.spawner.spawn(npc)
+
             self.npcs[npc.doId] = npc
 
             npc.setScale(self.scale, self.scale, self.scale)
+            npc.b_setName(self.bossName)
 
         if task:
             return task.done
@@ -388,7 +415,6 @@ class DistributedEnemySpawnerAI:
         if objType in regularSpawns:
             self.spawnNodes[objKey] = EnemySpawnNode(self, data)
         else:
-            self.notify.info("Spawning Boss: %s" % objType)
             self.spawnNodes[objKey] = BossSpawnNode(self, objType, data)
 
     def addAnimalSpawnNode(self, objKey, data):

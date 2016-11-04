@@ -39,9 +39,11 @@ class DistributedBossCreature(DistributedCreature, Boss):
     def setupCreature(self, avatarType):
         self.loadBossData(self.getUniqueId(), avatarType)
         DistributedCreature.setupCreature(self, avatarType)
+        self.setName(self.bossData['Name'])
 
     def announceGenerate(self):
         DistributedCreature.announceGenerate(self)
+
         if not self.isInInvasion():
             avType = CreatureTypes[self.avatarType.getNonBossType()]
             self.addBossEffect(avType)
@@ -61,3 +63,4 @@ class DistributedBossCreature(DistributedCreature, Boss):
 
     def getShortName(self):
         return Boss.getShortName(self)
+

@@ -525,7 +525,7 @@ objectStruct = {
                     'PoseFrame': '',
                     'Respawns': True,
                     'Scale': VBase3(1.0, 1.0, 1.0),
-                    'Species': 'Bowbreaker',
+                    'Species': 'Stump',
                     'Start State': 'Idle',
                     'StartFrame': '0',
                     'VisSize': '' },

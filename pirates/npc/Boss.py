@@ -103,6 +103,7 @@ class Boss(BossBase):
             self.effectIval.loop()
             self.bossEffect = BossEffect.getEffect(unlimited = True)
             if self.bossEffect:
+                print ":Boss: ADDING EFFECTS!"
                 self.bossEffect.reparentTo(self.effectsNode)
                 self.bossEffect.setEffectScale(3.0)
                 self.bossEffect.setEffectColor(color)

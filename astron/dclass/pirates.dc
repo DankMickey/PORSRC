@@ -28,6 +28,7 @@ from pirates.npc import DistributedJollyRoger/AI
 from pirates.npc import DistributedDavyJones/AI
 // from pirates.npc import DistributedBossTownfolk/AI
 from pirates.npc import DistributedBossSkeleton/AI
+from pirates.npc import DistributedBossNavySailor/AI
 from pirates.creature import DistributedCreature/AI
 from pirates.creature import DistributedAnimal/AI
 from pirates.creature import DistributedRaven/AI

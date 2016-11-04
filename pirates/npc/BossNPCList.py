@@ -141,6 +141,7 @@ BOSS_NPC_LIST = {
         'DamageScale': 2.0,
         'HighlightColor': VBase3(1, 1, 1) },
     '1303260680.08jloehrle': {
+        'AvatarType': AvatarTypes.SpanishBossA,
         'HpScale': 5,
         'MpScale': 3,
         'Level': 35,
@@ -149,6 +150,7 @@ BOSS_NPC_LIST = {
         'DamageScale': 3.0,
         'HighlightColor': VBase3(1, 1, 1) },
     '1303331892.2jloehrle': {
+        'AvatarType': AvatarTypes.FrenchBossA,
         'HpScale': 5,
         'MpScale': 3,
         'Level': 35,
