@@ -387,14 +387,13 @@ class DistributedGameAreaAI(DistributedNodeAI):
 
     def generateBoss(self, objType, objKey, object):
         genObj = None
-        self.notify.info("Spawning Boss on %s with type %s" % (self.getName(), objType))
+        self.notify.debug("Spawning Boss on %s with type %s" % (self.getName(), objType))
         if objType == 'Skeleton':
-            self.__printUnimplementedNotice(objType) #TODO
-            #self.spawner.addEnemySpawnNode(objType, objKey, object)
+            self.spawner.addEnemySpawnNode(objType, objKey, object)
         elif objType == 'NavySailor':
-            self.__printUnimplementedNotice(objType) #TODO
-        elif objType == 'Creature':
             #self.__printUnimplementedNotice(objType) #TODO
+            self.spawner.addEnemySpawnNode(objType, objKey, object)
+        elif objType == 'Creature':
             self.spawner.addEnemySpawnNode(objType, objKey, object)
         elif objType == 'Ghost':
             self.__printUnimplementedNotice(objType) #TODO
