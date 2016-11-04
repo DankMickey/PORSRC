@@ -39,7 +39,7 @@ class DistributedGameAreaAI(DistributedNodeAI):
 
         self.wantNPCS = config.GetBool('want-npcs', False)
         self.wantEnemies = config.GetBool('want-enemies', False)
-        self.wantBosses = config.GetBool('want-bosses', False)
+        self.wantBosses = config.GetBool('want-bosses', True)
         self.wantForts = config.GetBool('want-forts', True)
         self.wantQuestProps = config.GetBool('want-quest-props', True)
 
@@ -367,7 +367,6 @@ class DistributedGameAreaAI(DistributedNodeAI):
                 if not alwaysShow: 
                     self.notify.info("Storing Holiday(%s) NPC: %s " % (holiday, objKey))
                     self._holidayNPCs[objKey] = [objType, object, None]
-                    self.__processHolidayNPCs([holidayId])
 
             if holiday == '' or holidayRunning or alwaysShow or forceHoliday:
 
@@ -388,13 +387,15 @@ class DistributedGameAreaAI(DistributedNodeAI):
 
     def generateBoss(self, objType, objKey, object):
         genObj = None
-        self.notify.debug("Spawning Boss on %s with type %s" % (self.getName(), objType))
+        self.notify.info("Spawning Boss on %s with type %s" % (self.getName(), objType))
         if objType == 'Skeleton':
-            self.spawner.addEnemySpawnNode(objType, objKey, object)
+            self.__printUnimplementedNotice(objType) #TODO
+            #self.spawner.addEnemySpawnNode(objType, objKey, object)
         elif objType == 'NavySailor':
             self.__printUnimplementedNotice(objType) #TODO
         elif objType == 'Creature':
-            self.__printUnimplementedNotice(objType) #TODO
+            #self.__printUnimplementedNotice(objType) #TODO
+            self.spawner.addEnemySpawnNode(objType, objKey, object)
         elif objType == 'Ghost':
             self.__printUnimplementedNotice(objType) #TODO
         elif objType == 'Townsperson':

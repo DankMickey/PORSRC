@@ -38,7 +38,10 @@ class BossBase:
         self.bossData['AvatarType'] = avatarType
         bossId = max(avatarType.boss - 1, 0)
         print "Faction: %s Track: %s Id: %s Boss: %s" % (avatarType.faction, avatarType.track, avatarType.id, bossId)
-        self.bossData['Name'] = PLocalizer.BossNames[avatarType.faction][avatarType.track][avatarType.id][bossId]
+        try:
+            self.bossData['Name'] = PLocalizer.BossNames[avatarType.faction][avatarType.track][avatarType.id][bossId]
+        except:
+            self.bossData['Name'] = "%s %s" % (PLocalizer.Unknown, PLocalizer.Boss)
 
 
     def loadBossDataHybrid(self, uniqueId, avatarType):

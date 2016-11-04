@@ -31,6 +31,7 @@ from pirates.npc import DistributedBossSkeleton/AI
 from pirates.creature import DistributedCreature/AI
 from pirates.creature import DistributedAnimal/AI
 from pirates.creature import DistributedRaven/AI
+from pirates.creature import DistributedBossCreature/AI
 from pirates.pirate import DistributedPlayerPirate/AI/UD
 from pirates.instance import DistributedInstanceBase/AI
 from pirates.instance import DistributedMainWorld/AI
@@ -595,32 +596,28 @@ dclass DistributedBattleNPC : DistributedBattleAvatar {
   setUniqueId(string) required broadcast ram;
 };
 
-dclass Boss {
-  dummyFunc();
-};
-
 dclass DistributedNPCSkeleton : DistributedBattleNPC {
 };
 
-dclass DistributedBossSkeleton : DistributedNPCSkeleton, Boss {
+dclass DistributedBossSkeleton : DistributedNPCSkeleton {
 };
 
 dclass DistributedVoodooZombie : DistributedBattleNPC {
   setDNAId(string) required broadcast ram;
 };
 
-dclass DistributedBossVoodooZombie : DistributedVoodooZombie, Boss {
+dclass DistributedBossVoodooZombie : DistributedVoodooZombie {
 };
 
 dclass DistributedBountyHunter : DistributedBattleNPC {
   setDNAId(string) required broadcast ram;
 };
 
-dclass DistributedJollyRoger : DistributedBattleNPC, Boss {
+dclass DistributedJollyRoger : DistributedBattleNPC {
   sendInvasionTaunt(uint8) broadcast;
 };
 
-dclass DistributedDavyJones : DistributedBattleNPC, Boss {
+dclass DistributedDavyJones : DistributedBattleNPC {
   sendInvasionTaunt(uint8) broadcast;
 };
 
@@ -640,7 +637,7 @@ dclass DistributedAnimal : DistributedCreature {
 dclass DistributedRaven : DistributedCreature {
 };
 
-dclass DistributedBossCreature : DistributedCreature, Boss {
+dclass DistributedBossCreature : DistributedCreature {
 };
 
 dclass Kraken : DistributedCreature {
@@ -690,7 +687,7 @@ dclass DistributedNPCNavySailor : DistributedBattleNPC {
   setDNAId(string) required broadcast ram;
 };
 
-dclass DistributedBossNavySailor : DistributedNPCNavySailor, Boss {
+dclass DistributedBossNavySailor : DistributedNPCNavySailor {
 };
 
 dclass DistributedGhost : DistributedBattleNPC {
@@ -701,7 +698,7 @@ dclass DistributedKillerGhost : DistributedBattleNPC {
   setDNAId(string) required broadcast ram;
 };
 
-dclass DistributedBossGhost : DistributedGhost, Boss {
+dclass DistributedBossGhost : DistributedGhost {
   sendGhostKillTaunt();
   sendGhostRunawayTaunt();
 };
@@ -725,7 +722,7 @@ dclass DistributedNPCTownfolk : DistributedBattleNPC, DistributedShopKeeper {
   setZombie(bool) broadcast ram;
 };
 
-dclass DistributedBossTownfolk : DistributedNPCTownfolk, Boss {
+dclass DistributedBossTownfolk : DistributedNPCTownfolk {
 };
 
 // END NPC CLASSES

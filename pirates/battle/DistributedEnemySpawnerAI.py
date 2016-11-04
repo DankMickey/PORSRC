@@ -17,6 +17,7 @@ from pirates.battle.DistributedBattleNPCAI import *
 from pirates.creature.DistributedCreatureAI import *
 from pirates.creature.DistributedAnimalAI import *
 from pirates.creature.DistributedRavenAI import *
+from pirates.creature.DistributedBossCreatureAI import DistributedBossCreatureAI
 
 from pirates.ship import ShipGlobals
 from pirates.ship.DistributedNPCSimpleShipAI import DistributedNPCSimpleShipAI
@@ -146,7 +147,7 @@ class BossSpawnNode(DirectObject.DirectObject):
             self.notify.warning("Attempted add spawn node for invalid boss. No boss flag found")
             return
 
-        if 'DNA' not in data:
+        if 'DNA' not in data and type != 'Creature':
             self.notify.warning("Attempted to add spawn node for invalid boss. No DNA field found")
             return
 
@@ -168,13 +169,14 @@ class BossSpawnNode(DirectObject.DirectObject):
             self.notify.warning("Attempted add spawn node for invalid boss. No boss class found for type %s" % type)
             return
 
-        self.dnaId = self.data['DNA']
-        if self.dnaId not in BossNPCList.BOSS_NPC_LIST:
-            self.notify.warning("Attempted to add spawn node for invalid boss. No boss data found in BossNPCList")
-            return
-
-        self.bossData = BossNPCList.BOSS_NPC_LIST[self.dnaId]
         if type != 'Creature':
+            self.dnaId = self.data['DNA']
+            if self.dnaId not in BossNPCList.BOSS_NPC_LIST:
+                self.notify.warning("Attempted to add spawn node for invalid boss. No boss data found in BossNPCList")
+                return
+
+            self.bossData = BossNPCList.BOSS_NPC_LIST[self.dnaId]
+
             if 'AvatarType' in self.bossData:
                 self.avType = self.bossData['AvatarType']
             else:
@@ -189,12 +191,20 @@ class BossSpawnNode(DirectObject.DirectObject):
             if 'ModelScale' in self.bossData:
                 self.scale = self.bossData['ModelScale']
             else:
-                self.scale = 1
+                self.scale = 1.0
+        else:
+            self.level = int(self.data['Level'])
+            self.scale = 1.0
 
         self.desiredNumAvatars = 1
         self.acceptOnce('startShardActivity', self.died)
 
     def died(self):
+        if 'Respawns' in self.data:
+            if not self.data['Respawns']:
+                self.notify.info("Ending Boss Spawn. Respawn is disabled")
+                return
+
         taskMgr.doMethodLater(random.random() * 15, self.__checkBosses, self.uniqueName('checkBosses'))
 
     def getBossClassFromType(self, type):
@@ -202,6 +212,10 @@ class BossSpawnNode(DirectObject.DirectObject):
 
         if type == 'Skeleton':
             bossClass = DistributedBossSkeletonAI
+        elif type == 'Creature':
+            bossClass = DistributedBossCreatureAI
+        else:
+            self.notify.warning("Unknown boss creature class: %s" % type)
 
         return bossClass
 
@@ -217,6 +231,7 @@ class BossSpawnNode(DirectObject.DirectObject):
         # Upkeep population
         numNpcs = len(self.npcs)
         if numNpcs < self.desiredNumAvatars:
+            self.notify.info("SPAWNING BOSS: %s" % self.avType)
             uid = self.uniqueName('spawned-%s' % os.urandom(4).encode('hex'))
             npc = self.avClass.makeFromObjectKey(self.avClass, self, uid,
                                                  self.avType, self.data)

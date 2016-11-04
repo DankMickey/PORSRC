@@ -6954,7 +6954,7 @@ objectStruct = {
                     'PoseFrame': '',
                     'Respawns': True,
                     'Scale': VBase3(1.0, 1.0, 1.0),
-                    'Species': 'Dread Scorpion',
+                    'Species': 'Silent Stinger',
                     'Start State': 'Idle',
                     'StartFrame': '0',
                     'VisSize': '' },
