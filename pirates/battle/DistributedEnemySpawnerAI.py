@@ -206,11 +206,11 @@ class BossSpawnNode(DirectObject.DirectObject):
         taskMgr.doMethodLater(random.random() * 15, self.__checkBosses, self.uniqueName('checkBosses'))
 
     def getBossClassFromType(self, type):
-		return None
+        return None
         bossClass = None
-		
-		from pirates.npc.DistributedBossSkeletonAI import DistributedBossSkeletonAI
-		from pirates.creature.DistributedBossCreatureAI import DistributedBossCreatureAI
+
+        from pirates.npc.DistributedBossSkeletonAI import DistributedBossSkeletonAI
+        from pirates.creature.DistributedBossCreatureAI import DistributedBossCreatureAI
 
         if type == 'Skeleton':
             bossClass = DistributedBossSkeletonAI
