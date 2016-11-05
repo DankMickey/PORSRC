@@ -138,7 +138,7 @@ class EnemySpawnNode(DirectObject.DirectObject):
             bossType = self.getBossRandomFromAvatarType(self.avType)
             if bossType != None:
                 if bossType.boss:
-                    bossDice = (random.randint(0, 200) >= 180) or config.GetBool('force-random-bosses', True)
+                    bossDice = (random.randint(0, 200) >= 180) or config.GetBool('force-random-bosses', False)
                     bossSpawned = DistributedEnemySpawnerAI.isRandomBossSpawned(bossType)
 
                     if bossDice and not bossSpawned:
@@ -299,7 +299,6 @@ class BossSpawnNode(DirectObject.DirectObject):
         if numNpcs < self.desiredNumAvatars:
             self.avType.setBoss(1)
             self.notify.info("SPAWNING BOSS: %s with DNAId %s and AvatarType %s" % (self.bossName, self.dnaId, self.avType))
-            self.notify.info("Setting %s's scale to %s" % (self.bossName, self.scale))
             uid = self.uniqueName('spawned-%s' % os.urandom(4).encode('hex'))
             npc = self.avClass.makeFromObjectKey(self.avClass, self, uid,
                                                  self.avType, self.data)
