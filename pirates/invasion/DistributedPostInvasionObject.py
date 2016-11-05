@@ -1,7 +1,7 @@
 from direct.distributed import DistributedObject
 
 class DistributedPostInvasionObject(DistributedObject.DistributedObject):
-    notify = directNotify.newCategory('DistributedWreckedGovernorsMansion')
+    notify = directNotify.newCategory('DistributedPostInvasionObject')
 
     def __init__(self, cr):
         DistributedObject.DistributedObject.__init__(self, cr)
