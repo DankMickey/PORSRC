@@ -17,41 +17,39 @@ class DistributedLootManagerAI(DistributedObjectAI):
     def delete(self):
         DistributedObjectAI.delete(self)
         taskMgr.remove(self.purgeContainers)
-        if len(self.containers) > 0:
-            for containerId in self.containers:
-                self.deleteContainer(containerId)
+        
+        for containerId in self.containers:
+            self.deleteContainer(containerId)
 
-    def spawnLoot(self, avatar):
-        try: 
-            gameArea = avatar.spawner.spawner.gameArea
+    def spawnLoot(self, npc):
+        return # Temporarily disabled
+        try:
+            gameArea = npc.spawner.spawner.gameArea
+            
             if not gameArea:
-                self.notify.warning("Failed to spawn Loot. '%s' has no game area" % avatar)
+                self.notify.warning("Failed to spawn Loot. '%s' has no game area" % npc)
                 return
 
-            container = DistributedLootContainerAI.makeFromObjectData(self.air, avatar)
+            container = DistributedLootContainerAI.makeFromObjectData(self.air, npc)
             self.containers[container.getUniqueId()] = container
-            #gameArea.generateChild(container, cellParent=False)
-            #self.notify.info("Loot Spawned")
-
+            gameArea.generateChild(container)
+            self.notify.info("Loot Spawned")
         except Exception, e:
              self.notify.warning("Failed to spawn Loot. An unknown error has occured")
              self.notify.warning(e)
 
     def __removeContainers(self, task=None):
         garbage = []
-        if len(self.containers) > 0:
-            for containerId in self.containers:
-                container = self.containers[containerId]
-                if container.getEmpty():
-                    garbage.append(containerId)
 
-                container.tick()
-                if container.getTimeout() <= 0:
-                    garbage.append(containerId)
+        for containerId, container in self.containers.iteritems():
+            container.tick()
+            
+            if container.getEmpty() or container.getTimeout() <= 0:
+                garbage.append(containerId)
+        
+        for containerId in garbage:
+            self.deleteContainer(containerId)
 
-        if len(garbage) > 0:
-            for trash in garbage:
-                self.deleteContainer(trash)
         return Task.again
 
     def deleteContainer(self, containerId):

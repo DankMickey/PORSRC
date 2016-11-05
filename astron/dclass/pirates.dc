@@ -223,12 +223,6 @@ struct triggerSphere {
   string spawnPtId;
 };
 
-struct PlunderListItem {
-  uint32 category;
-  uint16 id;
-  uint16 count;
-};
-
 struct PlunderItemInfo {
   uint32 category;
   uint16 id;
@@ -1231,7 +1225,7 @@ dclass DistributedDinghy : DistributedInteractive {
 };
 
 dclass Lootable {
-  startLooting(PlunderListItem [], int8, uint8, bool);
+  startLooting(PlunderItemInfo [], int8, uint8, bool);
   stopLooting();
   doneTaking() airecv clsend;
   requestItem(PlunderItemLocationInfo) airecv clsend;

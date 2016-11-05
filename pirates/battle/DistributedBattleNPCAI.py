@@ -271,6 +271,7 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
             return task.done
 
         self.applyRewards()
+
         if self.air.lootManager:
             self.air.lootManager.spawnLoot(self)
 

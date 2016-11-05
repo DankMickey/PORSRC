@@ -192,12 +192,13 @@ class DistributedLootContainer(DistributedInteractive.DistributedInteractive, Lo
 
     def initInteractOpts(self):
         self.setInteractOptions(sphereScale = 10, diskRadius = 10, proximityText = PLocalizer.LootContainerOpen % self.typeName, exclusive = 0)
-        self.setAllowInteract(False)
+        self.setAllowInteract(base.localAvatar.doId in self.creditLocks)
 
 
     def setCreditLocks(self, creditLocks):
-        if hasattr(base, 'localAvatar') and base.localAvatar.getDoId() in creditLocks:
-            self.setAllowInteract(True)
+        self.creditLocks = creditLocks
+        
+        if hasattr(base, 'localAvatar') and base.localAvatar.doId in creditLocks:
             self.effect = LootSparks.getEffect()
             if self.effect:
                 self.effect.reparentTo(self)
@@ -211,8 +212,7 @@ class DistributedLootContainer(DistributedInteractive.DistributedInteractive, Lo
             self.effect.stopLoop()
             self.effect = None
 
-        self.setInteractOptions(sphereScale = 0, diskRadius = 0, proximityText = PLocalizer.LootContainerOpen % self.typeName, exclusive = 0)
-        self.setAllowInteract(False)
+        self.initInteractOpts()
 
 
     def startLooting(self, plunderList, itemsToTake = 0, timer = 0, autoShow = False, customName = None):
