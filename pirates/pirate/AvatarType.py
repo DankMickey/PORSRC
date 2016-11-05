@@ -103,34 +103,39 @@ class AvatarType:
 
         return True
 
-    def getName(self):
+    def getName(self, forceNormal=False):
         spec = self.howSpecific()
+        nameTable = PLocalizer.AvatarNames
+
+        if self.boss and not forceNormal:
+            nameTable = PLocalizer.BossNames
+
         try:
             if spec is AvatarType.Id:
-                name = PLocalizer.AvatarNames[self.faction][self.track][self.id][0]
+                name = nameTable[self.faction][self.track][self.id][0]
             elif spec is AvatarType.Track:
                 name = PLocalizer.TrackAvTypeNames[self.faction][self.track][0]
             elif spec is AvatarType.Faction:
                 name = PLocalizer.FactionAvTypeNames[self.faction][0]
             else:
                 name = PLocalizer.AnyAvType[0]
-            if self.boss:
-                name = '%s %s' % (name, PLocalizer.Boss)
         except:
-            print ":AvatarType(warning): Failed to load AvatarType name. faction: %s track:%s id:%s" % (self.faction, self.track, self.id)
-            name = PLocalizer.Unknown
-            if self.boss:
-                name = '%s %s' % (name, PLocalizer.Boss)
+            if not self.boss:
+                name = PLocalizer.Unknown
+            else:
+                return self.getName(forceNormal=True)
         return name
 
     def getShortName(self):
         spec = self.howSpecific()
         if spec is AvatarType.Id:
 
-            try:
-                PLocalizer.AvatarNames[self.faction][self.track][self.id]
-            except:
-                self.notify.error('getShortName(%s,%s,%s)' % (self.faction, self.track, self.id))
+            nameTable = PLocalizer.AvatarNames
+
+            if self.boss:
+                nameTable = PLocalizer.BossNames
+
+            nameTable[self.faction][self.track][self.id]
 
             if len(PLocalizer.AvatarNames[self.faction][self.track][self.id]) >= 3:
                 return PLocalizer.AvatarNames[self.faction][self.track][self.id][2]
@@ -152,7 +157,7 @@ class AvatarType:
         h = hash((self.faction, self.track, self.id))
         if hasattr(self, '_hash'):
             if h != self._hash:
-                print 'inconsistent AvatarType hash values  new: %s (%s %s %s) previous: %s (%s %s %s)' % (h, self.faction, self.track, self.id, self._hash, self._hashedValues[0], self._hashedValues[1], self._hashedValues[2])
+                print ':AvatarType(error): inconsistent AvatarType hash values  new: %s (%s %s %s) previous: %s (%s %s %s)' % (h, self.faction, self.track, self.id, self._hash, self._hashedValues[0], self._hashedValues[1], self._hashedValues[2])
                 raise 'inconsistent AvatarType hash values: %s, %s' % (h, self._hash)
 
         else:

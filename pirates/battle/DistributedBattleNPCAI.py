@@ -58,7 +58,7 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
 
         self.skills = EnemyGlobals.getEnemySkills(self.avatarType, self.level)
         self.weapons = EnemyGlobals.getEnemyWeapons(self.avatarType, self.level)
-
+        
         self.mainWeapon = self.weapons.keys()[0]
         if self.mainWeapon > 1:
             startDrawn = self.animSet in EnemyGlobals.DRAWN_ANIME

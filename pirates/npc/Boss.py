@@ -103,7 +103,6 @@ class Boss(BossBase):
             self.effectIval.loop()
             self.bossEffect = BossEffect.getEffect(unlimited = True)
             if self.bossEffect:
-                print ":Boss: ADDING EFFECTS!"
                 self.bossEffect.reparentTo(self.effectsNode)
                 self.bossEffect.setEffectScale(3.0)
                 self.bossEffect.setEffectColor(color)
@@ -115,7 +114,7 @@ class Boss(BossBase):
             else:
                 headNode = self.headNode
             self.auraEffect = BossAura.getEffect()
-            if self.auraEffect and base.useStencils:
+            if self.auraEffect and True: #base.useStencils: #TODO Fix
                 scale = self.getEnemyScale()
                 mult = EffectModifiers[avType][0]
                 offset = EffectModifiers[avType][1]

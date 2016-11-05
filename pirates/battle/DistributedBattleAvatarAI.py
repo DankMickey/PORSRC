@@ -142,6 +142,9 @@ class DistributedBattleAvatarAI(Teamable, DistributedReputationAvatarAI, WeaponB
     def getAvatarType(self):
         return self.avatarType.asTuple()
 
+    def getRawAvatarType(self):
+        return self.avatarType
+
     def isBoss(self):
         return self.avatarType.isA(AvatarTypes.BossType)
 
