@@ -83,9 +83,10 @@ BOSS_NPC_LIST = {
         'DamageScale': 1.3,
         'HighlightColor': VBase3(0, 1, 0.5) },
     '1238441187.46piwanow': {
-        'AvatarType': AvatarTypes.Blackheart,
+        'AvatarType': AvatarTypes.Cadaver,
         'HpScale': 5,
         'MpScale': 3,
+        'Level': 24,
         'GoldScale': 2,
         'ModelScale': 1.5,
         'DamageScale': 1.5,

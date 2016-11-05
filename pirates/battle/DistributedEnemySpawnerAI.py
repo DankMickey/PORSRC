@@ -97,11 +97,21 @@ class EnemySpawnNode(DirectObject.DirectObject):
         return avatarClass
 
     def getBossRandomFromAvatarType(self, avatar):
-        bossRandomTypes = [AvatarTypes.CorpseCutlass]
+        bossRandomTypes = [
+            AvatarTypes.Clod,
+            AvatarTypes.CorpseCutlass, 
+            AvatarTypes.Sludge,
+            AvatarTypes.Mire,
+            AvatarTypes.Muck,
+            AvatarTypes.Corpse,
+            AvatarTypes.Carrion,
+            AvatarTypes.CaptMudmoss,
+            AvatarTypes.Mossman]
+
         bossType = None
         for type in bossRandomTypes:
             if avatar.isA(type):
-                bossType = type.getRandomBossType()
+                bossType = type.getBossType()
                 break
         return bossType
 
@@ -128,22 +138,23 @@ class EnemySpawnNode(DirectObject.DirectObject):
             bossType = self.getBossRandomFromAvatarType(self.avType)
             if bossType != None:
                 if bossType.boss:
-                    bossDice = (random.randint(0, 200) >= 180) or config.GetBool('force-random-bosses', False)
+                    bossDice = (random.randint(0, 200) >= 180) or config.GetBool('force-random-bosses', True)
                     bossSpawned = DistributedEnemySpawnerAI.isRandomBossSpawned(bossType)
-                    if bossSpawned:
-                        self.notify.debug("'%s' is already spawned somewhere." % bossType)
 
                     if bossDice and not bossSpawned:
                         oldType = self.avType
                         self.avType = bossType
                         DistributedEnemySpawnerAI.addRandomBoss(self.avType)
-                        self.notify.info("Spawning random boss '%s' instead of '%s'" % (bossType.getName(), oldType.getName()))
+                        self.notify.info("Spawning random boss '%s' instead of '%s' at %s" % (bossType.getName(), oldType.getName(), self.spawner.gameArea.getName()))
                         del oldType
 
             uid = self.uniqueName('spawned-%s' % os.urandom(4).encode('hex'))
             npc = self.avClass.makeFromObjectKey(self.avClass, self, uid,
                                                  self.avType, self.data)
-            self.spawner.spawn(npc)
+            if hasattr(self, 'level'):
+                self.spawner.spawner(npc, forceLevel=self.level)
+            else:
+                self.spawner.spawn(npc)
             self.npcs[npc.doId] = npc
 
         if task:
@@ -206,7 +217,6 @@ class BossSpawnNode(DirectObject.DirectObject):
         self.bossName = self.getBossName(type)
 
         self.desiredNumAvatars = 1
-        self.respawnTime = random.random() * 120
         self.acceptOnce('startShardActivity', self.died)
 
     def died(self):
@@ -215,7 +225,7 @@ class BossSpawnNode(DirectObject.DirectObject):
                 self.notify.info("Ending Boss Spawn. Respawn is disabled")
                 return
 
-        taskMgr.doMethodLater(self.respawnTime, self.__checkBosses, self.uniqueName('checkBosses'))
+        taskMgr.doMethodLater(random.random() * 60, self.__checkBosses, self.uniqueName('checkBosses'))
 
     def getDefaultValue(self, key):
         return BossNPCList.BOSS_NPC_LIST[''][key]
@@ -287,7 +297,9 @@ class BossSpawnNode(DirectObject.DirectObject):
         # Upkeep population
         numNpcs = len(self.npcs)
         if numNpcs < self.desiredNumAvatars:
+            self.avType.setBoss(1)
             self.notify.info("SPAWNING BOSS: %s with DNAId %s and AvatarType %s" % (self.bossName, self.dnaId, self.avType))
+            self.notify.info("Setting %s's scale to %s" % (self.bossName, self.scale))
             uid = self.uniqueName('spawned-%s' % os.urandom(4).encode('hex'))
             npc = self.avClass.makeFromObjectKey(self.avClass, self, uid,
                                                  self.avType, self.data)
@@ -403,6 +415,7 @@ class ShipSpawnNode(DirectObject.DirectObject):
             DistributedEnemySpawnerAI.missingShipClass(self.spawnable)
             return
 
+
         self.shipClass = DistributedNPCSimpleShipAI
 
         self.desiredNumShips = 1
@@ -423,6 +436,7 @@ class ShipSpawnNode(DirectObject.DirectObject):
         # Upkeep population
         numShips = len(self.ships)
         if numShips < self.desiredNumShips:
+            self.notify.info("Spawning Ship: %s" % self.spawnable)
             uid = self.uniqueName('spawned-%s' % os.urandom(4).encode('hex'))
             ship = self.shipClass.makeFromObjectKey(self.shipClass, self, uid, self.data)
             self.spawner.spawn(ship)

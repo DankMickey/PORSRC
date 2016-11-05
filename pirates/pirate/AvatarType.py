@@ -124,6 +124,10 @@ class AvatarType:
                 name = PLocalizer.Unknown
             else:
                 return self.getName(forceNormal=True)
+
+        if self.boss and forceNormal:
+            name = "%s %s" % (name, PLocalizer.Boss)
+
         return name
 
     def getShortName(self):
