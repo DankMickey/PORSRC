@@ -12,7 +12,7 @@ class DistributedLootManagerAI(DistributedObjectAI):
 
     def announceGenerate(self):
         DistributedObjectAI.announceGenerate(self)
-        self.purgeContainers = taskMgr.doMethodLater(15, self.__removeEmptyContainers, 'purgeContainers')
+        self.purgeContainers = taskMgr.doMethodLater(15, self.__removeContainers, 'purgeContainers')
 
     def delete(self):
         DistributedObjectAI.delete(self)
@@ -30,19 +30,23 @@ class DistributedLootManagerAI(DistributedObjectAI):
 
             container = DistributedLootContainerAI.makeFromObjectData(self.air, avatar)
             self.containers[container.getUniqueId()] = container
-            gameArea.generateChild(container, cellParent=False)
-            self.notify.info("Loot Spawned")
+            #gameArea.generateChild(container, cellParent=False)
+            #self.notify.info("Loot Spawned")
 
         except Exception, e:
              self.notify.warning("Failed to spawn Loot. An unknown error has occured")
              self.notify.warning(e)
 
-    def __removeEmptyContainers(self, task=None):
+    def __removeContainers(self, task=None):
         garbage = []
         if len(self.containers) > 0:
             for containerId in self.containers:
                 container = self.containers[containerId]
                 if container.getEmpty():
+                    garbage.append(containerId)
+
+                container.tick()
+                if container.getTimeout() <= 0:
                     garbage.append(containerId)
 
         if len(garbage) > 0:
@@ -51,7 +55,8 @@ class DistributedLootManagerAI(DistributedObjectAI):
         return Task.again
 
     def deleteContainer(self, containerId):
-        pass
+        self.containers[containerId].delete()
+        del self.containers[containerId]
 
     def requestItemFromContainer(self, containerId, itemInfo):
         pass

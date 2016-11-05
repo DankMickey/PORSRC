@@ -14,6 +14,7 @@ class DistributedLootContainerAI(DistributedInteractiveAI, LootableAI):
         self.lootType = PiratesGlobals.ITEM_SAC
         self.locks = []
         self.empty = False
+        self.timeout = 0
 
     def setVisZone(self, vizZone):
         self.vizZone = vizZone
@@ -45,6 +46,15 @@ class DistributedLootContainerAI(DistributedInteractiveAI, LootableAI):
 
     def getCreditLocks(self):
         return self.locks
+
+    def setTimeout(self, timeout):
+        self.timeout = timeout
+
+    def tick(self, amount=15):
+        self.timeout -= amount
+
+    def getTimeout(self):
+        return self.timeout
 
     @staticmethod
     def makeFromObjectData(air, npc):
