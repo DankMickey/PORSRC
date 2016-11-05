@@ -98,20 +98,33 @@ class EnemySpawnNode(DirectObject.DirectObject):
 
     def getBossRandomFromAvatarType(self, avatar):
         bossRandomTypes = [
-            AvatarTypes.Clod,
+            #AvatarTypes.Clod,
             AvatarTypes.CorpseCutlass, 
             AvatarTypes.Sludge,
             AvatarTypes.Mire,
             AvatarTypes.Muck,
             AvatarTypes.Corpse,
             AvatarTypes.Carrion,
-            AvatarTypes.CaptMudmoss,
-            AvatarTypes.Mossman]
+            #AvatarTypes.CaptMudmoss,
+            AvatarTypes.Mossman,
+            #AvatarTypes.AngryWasp,
+            #AvatarTypes.Wasp,
+            AvatarTypes.VampireBat,
+            AvatarTypes.Bat,
+            #AvatarTypes.BigGator,
+            #AvatarTypes.Alligator,
+            #AvatarTypes.DreadScorpion,
+            #AvatarTypes.Scorpion,
+            AvatarTypes.FlyTrap,
+            AvatarTypes.Stump,
+            #AvatarTypes.GiantCrab,
+            AvatarTypes.RockCrab,
+            AvatarTypes.Crab]
 
         bossType = None
         for type in bossRandomTypes:
             if avatar.isA(type):
-                bossType = type.getBossType()
+                bossType = type.getRandomBossType()
                 break
         return bossType
 
@@ -136,10 +149,13 @@ class EnemySpawnNode(DirectObject.DirectObject):
         if numNpcs < self.desiredNumAvatars:
 
             bossType = self.getBossRandomFromAvatarType(self.avType)
-            if bossType != None:
+            if bossType != None and config.GetBool('want-random-bosses', True):
                 if bossType.boss:
                     bossDice = (random.randint(0, 200) >= 180) or config.GetBool('force-random-bosses', False)
                     bossSpawned = DistributedEnemySpawnerAI.isRandomBossSpawned(bossType)
+
+                    if bossSpawned:
+                        self.notify.debug("'%s' already is spawned. Returned to regular enemy" % bossType)
 
                     if bossDice and not bossSpawned:
                         oldType = self.avType
@@ -297,7 +313,6 @@ class BossSpawnNode(DirectObject.DirectObject):
         # Upkeep population
         numNpcs = len(self.npcs)
         if numNpcs < self.desiredNumAvatars:
-            self.avType.setBoss(1)
             self.notify.info("SPAWNING BOSS: %s with DNAId %s and AvatarType %s" % (self.bossName, self.dnaId, self.avType))
             uid = self.uniqueName('spawned-%s' % os.urandom(4).encode('hex'))
             npc = self.avClass.makeFromObjectKey(self.avClass, self, uid,
