@@ -271,11 +271,12 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
             self.generateChild(genObj)
 
         elif objType == 'Connector Tunnel' and config.GetBool('want-link-tunnels', 0):
-            from pirates.world.WorldCreatorAI import WorldCreatorAI
-            WorldCreatorAI.registerUnimplemented(objType)
-            #genObj = DistributedGATunnelAI.makeFromObjectKey(self.air, objKey, object)
-            #self.notify.info("Generating Connector Tunnel on %s at %s" % (self.getName(), genObj.getPos()))
-            #self.generateChild(genObj, cellParent=True)   
+            #from pirates.world.WorldCreatorAI import WorldCreatorAI
+            #WorldCreatorAI.registerUnimplemented(objType)  
+
+            genObj = DistributedGATunnelAI.makeFromObjectKey(self.air, objKey, object)
+            self.notify.info("Generating Connector Tunnel on %s at %s" % (self.getName(), genObj.getPos()))
+            self.generateChild(genObj, cellParent=True)
 
         else:
             genObj = DistributedGameAreaAI.createObject(self, objType, parent, objKey, object)

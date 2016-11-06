@@ -98,7 +98,7 @@ class DistributedGameAreaAI(DistributedNodeAI):
             self.spawner.addAnimalSpawnNode(objKey, object)
 
         elif objType == 'Townsperson' and self.wantNPCS:
-            genObj = self.generateNPC(objType, objKey, object)
+            genObj = self.generateNPC(objType, objKey, object, parent)
 
         elif objType in self.BossSpawnKeys and self.wantBosses and self.wantEnemies:
             genObj = self.generateBoss(objType, objKey, object)
@@ -295,8 +295,8 @@ class DistributedGameAreaAI(DistributedNodeAI):
             'Jail Cell Door',
             'Portal Node',
             'Simple Fort',
-            'Locator Node',
-            'Door Locator Node'
+            'Door Locator Node',
+            'Locator Node'
         ]
 
         configurables = {
@@ -353,7 +353,7 @@ class DistributedGameAreaAI(DistributedNodeAI):
                     currentNPC.delete()
                     self._holidayNPCs[objKey][2] = None
 
-    def generateNPC(self, objType, objKey, object, forceHoliday=False):
+    def generateNPC(self, objType, objKey, object, parent, forceHoliday=False):
         genObj = None
         boss = object.get('Boss', False)
         if not boss:

@@ -53,10 +53,10 @@ class DistributedGAConnectorAI(DistributedNodeAI):
         obj.setUniqueId(objKey)
         obj.setPos(data.get('Pos', 0))
         obj.setHpr(data.get('Hpr', 0))
-        obj.setModelPath(data['Visual']['Model'])
+        obj.setModelPath('models/tunnels/tunnel_jungle') #data['Visual']['Model'])
 
-        if 'GridPos' in data:
-            obj.setPos(data.get('GridPos', 0))
+        #if 'GridPos' in data:
+        #    obj.setPos(data.get('GridPos', 0))
 
         return obj
 

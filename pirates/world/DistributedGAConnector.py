@@ -126,13 +126,13 @@ class DistributedGAConnector(DistributedNode.DistributedNode):
         del self.fakeZoneId
 
     def setModelPath(self, modelPath):
-        self.notify.info('setModelPath: %s' % modelPath)
         self.modelPath = modelPath
         self.loadModel()
 
     def loadWholeModel(self):
         modelBaseName = self.modelPath
         self.geom = loader.loadModel(modelBaseName)
+        self.notify.info("Loaded '%s' into '%s'" % (modelBaseName, self.geom))
 
     def loadModelParts(self):
         modelBaseName = self.modelPath
