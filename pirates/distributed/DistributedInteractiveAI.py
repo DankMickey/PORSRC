@@ -17,6 +17,7 @@ class DistributedInteractiveAI(DistributedLocatableObjectAI, DistributedNodeAI):
         DistributedNodeAI.__init__(self, air)
         self.avIds = []
         self.uniqueId = ''
+        self.uid = ''
 
     def setUniqueId(self, uid):
         self.uid = uid

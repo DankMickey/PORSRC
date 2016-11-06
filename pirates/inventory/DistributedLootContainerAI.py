@@ -1,6 +1,7 @@
 from direct.directnotify import DirectNotifyGlobal
 from direct.distributed.DistributedObjectAI import DistributedObjectAI
-from pirates.distributed.DistributedInteractiveAI import DistributedInteractiveAI
+from direct.distributed.GridParent import GridParent
+from pirates.distributed.DistributedInteractiveAI import *
 from pirates.inventory.LootableAI import LootableAI
 from pirates.piratesbase import PiratesGlobals
 
@@ -15,6 +16,8 @@ class DistributedLootContainerAI(DistributedInteractiveAI, LootableAI):
         self.locks = []
         self.empty = False
         self.timeout = 0
+        self.avatarType = None
+        self.avatarLevel = 0
 
     def setVisZone(self, vizZone):
         self.vizZone = vizZone
@@ -55,11 +58,46 @@ class DistributedLootContainerAI(DistributedInteractiveAI, LootableAI):
 
     def getTimeout(self):
         return self.timeout
+    
+    def setAvatarType(self, avatarType):
+        self.avatarType = avatarType
+    
+    def getAvatarType(self):
+        return self.avatarType
+    
+    def setAvatarLevel(self, avatarLevel):
+        self.avatarLevel = avatarLevel
+    
+    def getAvatarLevel(self):
+        return self.avatarLevel
+    
+    def posControlledByCell(self):
+        return False
+    
+    def startLooting(self, avId, avType, avLevel):
+        # TODO
+        pass
+    
+    def handleInteract(self, avId, interactType, instant):
+        if avId not in self.locks:
+            return REJECT
+        
+        self.startLooting(avId, self.avatarType, self.avatarLevel)
+        return ACCEPT | ACCEPT_SEND_UPDATE
 
     @staticmethod
     def makeFromObjectData(air, npc):
         obj = DistributedLootContainerAI(air)
         obj.setUniqueId(npc.getUniqueId() + "-lootcontainer")
-        obj.setPos(npc.getPos())
-        obj.setHpr(npc.getHpr())
+        obj.setCreditLocks(npc.enemySkills.keys())
+        obj.setAvatarType(npc.avatarType)
+        obj.setAvatarLevel(npc.getLevel())
+        
+        area = npc.getParentObj()
+        cell = GridParent.getCellOrigin(area, npc.zoneId)
+        
+        obj.setPos(npc.getPos(cell))
+        obj.generateWithRequiredAndId(air.allocateChannel(), area.doId, npc.zoneId)
+        obj.sendUpdate('setPos', list(obj.getPos()))
+
         return obj
