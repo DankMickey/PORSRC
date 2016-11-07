@@ -153,5 +153,5 @@ class DistributedRepairGameAI(DistributedObjectAI, DistributedRepairGameBase):
     def setGoldBonus(self, goldBonus):
         self.goldBonus = goldBonus
 
-    def posControlledByIsland(self):
+    def posControlledByCell(self):
         return False
