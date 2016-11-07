@@ -4,6 +4,7 @@ from direct.distributed.GridParent import GridParent
 from pirates.distributed.DistributedInteractiveAI import *
 from pirates.inventory.LootableAI import LootableAI
 from pirates.piratesbase import PiratesGlobals
+import os
 
 class DistributedLootContainerAI(DistributedInteractiveAI, LootableAI):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedLootContainerAI')
@@ -15,9 +16,10 @@ class DistributedLootContainerAI(DistributedInteractiveAI, LootableAI):
         self.lootType = PiratesGlobals.ITEM_SAC
         self.locks = []
         self.empty = False
-        self.timeout = 0
+        self.timeout = 36000
         self.avatarType = None
         self.avatarLevel = 0
+        self.plunder = []
 
     def setVisZone(self, vizZone):
         self.vizZone = vizZone
@@ -50,6 +52,10 @@ class DistributedLootContainerAI(DistributedInteractiveAI, LootableAI):
     def getCreditLocks(self):
         return self.locks
 
+    def removePirateFromCreditLock(self, avatarId):
+        if avatarId in self.locks:
+            self.locks.remove(avatarId)
+
     def setTimeout(self, timeout):
         self.timeout = timeout
 
@@ -73,30 +79,43 @@ class DistributedLootContainerAI(DistributedInteractiveAI, LootableAI):
     
     def posControlledByCell(self):
         return False
-    
+
+    def setPlunder(self, plunder):
+        self.plunder = plunder
+
+    def getPlunder(self):
+        return self.plunder
+
     def startLooting(self, avId, avType, avLevel):
-        # TODO
-        pass
+        LootableAI.startLooting(self, avId, self.plunder, len(self.plunder), 0)
     
     def handleInteract(self, avId, interactType, instant):
         if avId not in self.locks:
+            self.air.writeServerEvent('suspicious', avId=self.air.getAvatarIdFromSender(), message='Client bypassed lock check and tried to interact with DistributedLootContainerAI')
             return REJECT
         
-        self.startLooting(avId, self.avatarType, self.avatarLevel)
-        return ACCEPT | ACCEPT_SEND_UPDATE
+        return REJECT
+        #self.startLooting(avId, self.avatarType, self.avatarLevel)
+        #return ACCEPT | ACCEPT_SEND_UPDATE
 
     @staticmethod
-    def makeFromObjectData(air, npc):
+    def makeFromObjectData(air, npc, type=PiratesGlobals.ITEM_SAC, plunder=[]):
         obj = DistributedLootContainerAI(air)
-        obj.setUniqueId(npc.getUniqueId() + "-lootcontainer")
+        obj.setUniqueId("%s-lootcontainer-%s" % (npc.getUniqueId(), os.urandom(4).encode('hex')))
         obj.setCreditLocks(npc.enemySkills.keys())
         obj.setAvatarType(npc.avatarType)
         obj.setAvatarLevel(npc.getLevel())
+        obj.setType(type)
+        obj.setPlunder(plunder)
+
+        if len(plunder) <= 0:
+            obj.setEmpty(True)
         
         area = npc.getParentObj()
         cell = GridParent.getCellOrigin(area, npc.zoneId)
         
         obj.setPos(npc.getPos(cell))
+        obj.setHpr(npc.getHpr())
         obj.generateWithRequiredAndId(air.allocateChannel(), area.doId, npc.zoneId)
         obj.sendUpdate('setPos', list(obj.getPos()))
 

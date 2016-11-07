@@ -128,14 +128,15 @@ class PiratesAIRepository(PiratesInternalRepository):
         self.notify.info('Done.')
         messenger.send('startShardActivity')
 
-        from pirates.battle.DistributedEnemySpawnerAI import DistributedEnemySpawnerAI
-        DistributedEnemySpawnerAI.printMissingAvatarTypes()
-        DistributedEnemySpawnerAI.printMissingShipTypes()
-        DistributedEnemySpawnerAI.printMissingAnimalTypes()
-        DistributedEnemySpawnerAI.printMissingBossTypes()
-        
-        WorldCreatorAI.printMissingTypes()
-        WorldCreatorAI.printUnimplemented()
+        if config.GetBool('want-missing-prints', True):
+            from pirates.battle.DistributedEnemySpawnerAI import DistributedEnemySpawnerAI
+            DistributedEnemySpawnerAI.printMissingAvatarTypes()
+            DistributedEnemySpawnerAI.printMissingShipTypes()
+            DistributedEnemySpawnerAI.printMissingAnimalTypes()
+            DistributedEnemySpawnerAI.printMissingBossTypes()
+            
+            WorldCreatorAI.printMissingTypes()
+            WorldCreatorAI.printUnimplemented()
 
     def getTrackClsends(self):
         return False
@@ -145,7 +146,8 @@ class PiratesAIRepository(PiratesInternalRepository):
 
     def decrementPopulation(self, user=None):
         if user != None:
-            #self.bandManager.pirateWentOffline(user.getUniqueId())
-            pass
+            avatarId = user.getUniqueId()
+            self.bandManager.pirateWentOffline(avatarId)
+            self.lootManager.pirateWentOffline(avatarId)
 
         self.districtManager.district.b_setAvatarCount(self.districtManager.district.getAvatarCount() - 1)

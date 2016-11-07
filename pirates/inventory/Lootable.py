@@ -8,7 +8,8 @@ class Lootable:
     def startLooting(self, plunderList, itemsToTake = 0, timer = 0, autoShow = False, customName = None):
         self.itemsToTake = itemsToTake
         localAvatar.setPlundering(self.getDoId())
-        localAvatar.guiMgr.inventoryUIManager.openPlunder(plunderList, self, customName, timer = timer, autoShow = autoShow)
+        localAvatar.guiMgr.inventoryUIManager.testPlunder() #DEBUG
+        #localAvatar.guiMgr.inventoryUIManager.openPlunder(plunderList, self, customName, timer = timer, autoShow = autoShow)
 
 
     def stopLooting(self):
@@ -42,7 +43,6 @@ class Lootable:
 
     def getRating(self):
         return -1
-
 
     def getTypeName(self):
         return ''

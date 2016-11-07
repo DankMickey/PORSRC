@@ -450,14 +450,12 @@ def getEnemyDropItemsByType(type, uniqueId):
         if not isLive(item):
             continue
 
-        if shouldUseCommonDrop and item[DROPS_FROM_ALL_ENEMIES]:
-            dropItems.append(itemId)
+        #if shouldUseCommonDrop and item[DROPS_FROM_ALL_ENEMIES]:
+        #    dropItems.append(itemId)
 
         if enemyType and enemyType < len(item):
             if item[enemyType]:
                 dropItems.append(itemId)
-
-        item[enemyType]
 
     if dropKey:
         __lootDropCache[dropKey] = dropItems

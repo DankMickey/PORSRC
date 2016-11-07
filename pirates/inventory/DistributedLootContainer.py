@@ -158,7 +158,7 @@ class DistributedLootContainer(DistributedInteractive.DistributedInteractive, Lo
             self.openAnim = cb.bindAnim(ab, -1)
             self.openAnim.pose(0)
 
-        #self.chest.setH(180)
+        self.chest.setH(180)
         self.chest.reparentTo(self)
         self.appearSound.setVolume(0.8)
         self.openSound.setVolume(0.8)

@@ -313,10 +313,15 @@ class BossSpawnNode(DirectObject.DirectObject):
         # Upkeep population
         numNpcs = len(self.npcs)
         if numNpcs < self.desiredNumAvatars:
+            self.avType.setBoss(True)
             self.notify.info("SPAWNING BOSS: %s with DNAId %s and AvatarType %s" % (self.bossName, self.dnaId, self.avType))
             uid = self.uniqueName('spawned-%s' % os.urandom(4).encode('hex'))
             npc = self.avClass.makeFromObjectKey(self.avClass, self, uid,
                                                  self.avType, self.data)
+
+            npc.setScale(self.scale, self.scale, self.scale)
+            npc.setName(self.bossName)
+            npc.setDamageScale(self.damageScale)
 
             if self.level:
                 self.spawner.spawn(npc, forceLevel = self.level)
@@ -324,11 +329,6 @@ class BossSpawnNode(DirectObject.DirectObject):
                 self.spawner.spawn(npc)
 
             self.npcs[npc.doId] = npc
-
-            npc.setScale(self.scale, self.scale, self.scale)
-            npc.b_setName(self.bossName)
-            npc.setDamageScale(self.damageScale)
-
         if task:
             return task.done
 
