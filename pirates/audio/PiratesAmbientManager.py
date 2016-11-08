@@ -14,6 +14,7 @@ class PiratesAmbientManager(AmbientManagerBase.AmbientManagerBase):
             SoundGlobals.AMBIENT_JAIL: 1.25,
             SoundGlobals.AMBIENCE_PORT_ROYAL: 0.4,
             SoundGlobals.AMBIENCE_PORT_ROYAL_NIGHT: 0.4,
+            SoundGlobals.AMBIENCE_FORT: 0.3
         }
 
     def requestFadeIn(self, name, duration = 5, finalVolume = 1.0, priority = 0, modifier = False):

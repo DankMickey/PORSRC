@@ -132,6 +132,8 @@ AMBIENCE_PORT_ROYAL_NIGHT = 'sfx_town_ambience_port_royal_night.%s' % AUDIO_EXTE
 AMBIENCE_FORT = 'sfx_fort_ambience.%s' % AUDIO_EXTENSION
 AMBIENCE_TAVERN_INTERIOR = 'sfx_town_tavern_int.%s' % AUDIO_EXTENSION
 AMBIENCE_TAVERN_EXTERIOR = 'sfx_town_tavern_ext.%s' % AUDIO_EXTENSION
+AMBIENCE_SPANISH = 'sfx_town_ambience_spanish.%s' % AUDIO_EXTENSION
+AMBIENCE_SPANISH_NIGHT = 'sfx_town_ambience_spanish_night.%s' % AUDIO_EXTENSION
 CS_1_1_A_JS = 'cs_tut_1_1_a_js.%s' % AUDIO_EXTENSION
 CS_1_1_B_JS = 'cs_tut_1_1_b_js.%s' % AUDIO_EXTENSION
 CS_1_1_5_A_DAN = 'cs_tut_1_1_5_a_dan.%s' % AUDIO_EXTENSION
@@ -850,10 +852,6 @@ Music2IslandDict = {
         MUSIC_MAIN: MUSIC_PORT_ROYAL,
         MUSIC_ALT: MUSIC_PORT_ROYAL_ALT,
         MUSIC_COMBAT: MUSIC_PORT_ROYAL_COMBAT },
-    LocationIds.FORT_CHARLES: {
-        MUSIC_MAIN: MUSIC_PORT_ROYAL,
-        MUSIC_ALT: MUSIC_PORT_ROYAL_ALT,
-        MUSIC_COMBAT: MUSIC_PORT_ROYAL_COMBAT },
     LocationIds.TORTUGA_ISLAND: {
         MUSIC_MAIN: MUSIC_TORTUGA,
         MUSIC_ALT: MUSIC_TORTUGA_ALT,
@@ -971,6 +969,10 @@ def getAmbientFromStr(str):
         return AMBIENT_SPANISH
     elif 'shanty' in str:
         return AMBIENT_SHANTY
+    elif 'tavern' in str:
+        return AMBIENCE_TAVERN_INTERIOR
+    elif 'fort' in str:
+        return AMBIENCE_FORT
     elif 'jail_interior' in str:
         return AMBIENT_JAIL
 
@@ -982,15 +984,10 @@ Ambient2IslandDict = {
     LocationIds.KINGSHEAD_ISLAND: {
         AMBIENT_DAY: AMBIENCE_FORT
     },
-    LocationIds.FORT_CHARLES: {
-        AMBIENT_DAY: AMBIENCE_FORT
-    },
-    LocationIds.ROWDYROOSTER_TAVERN: {
-        AMBIENT_DAY: AMBIENCE_TAVERN_INTERIOR
-    },
-    LocationIds.ROYALANCHOR_TAVERN: {
-        AMBIENT_DAY: AMBIENCE_TAVERN_INTERIOR
-    }
+    LocationIds.ISLA_AVARICIA: {
+        AMBIENT_DAY: AMBIENCE_SPANISH,
+        AMBIENT_NIGHT: AMBIENCE_SPANISH_NIGHT
+    },  
 }
 
 def getIslandAmbient(locationId, night=False):

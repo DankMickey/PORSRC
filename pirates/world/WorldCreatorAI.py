@@ -1,12 +1,9 @@
 from direct.directnotify.DirectNotifyGlobal import *
-
-# Base
-from pirates.piratesbase import PiratesGlobals
-
-# World
+from pirates.piratesbase import PiratesGlobals, PLocalizer
 from DistributedBuildingDoorAI import DistributedBuildingDoorAI
 from DistributedJailInteriorAI import DistributedJailInteriorAI
 from DistributedGAInteriorAI import DistributedGAInteriorAI
+from DistributedGameAreaAI import DistributedGameAreaAI
 from WorldCreatorBase import WorldCreatorBase
 import WorldGlobals
 
@@ -28,6 +25,7 @@ class WorldCreatorAI(WorldCreatorBase):
         self.fileDicts = {}
 
         self.__loadingInterior = False
+        self.__loadingIslandArea = False
         self.__currentWorld = None
 
     def createObject(self, object, parent, parentUid, objKey, dynamic, parentIsObj=False, fileName=None, actualParentObj=None):
@@ -106,6 +104,12 @@ class WorldCreatorAI(WorldCreatorBase):
         interior = self.loadInterior(interiorFile, parent.getParentObj(), extDoor, flags)
         extDoor.b_setInteriorId(interior.doId, interior.getUniqueId(), interior.parentId, interior.zoneId)
 
+        if objKey in PLocalizer.LocationNames:
+            interior.setName(PLocalizer.LocationNames[objKey])
+        else:
+            interior.setName(objKey)
+        self.notify.debug("Created interior %s %s" % (interior.getName(), objKey))
+
         return extDoor
 
     def loadInterior(self, interiorFile, parent, extDoor, flags):
@@ -120,7 +124,7 @@ class WorldCreatorAI(WorldCreatorBase):
         parent.generateChild(interior, zoneId)
 
         self.__loadingInterior = True
-        self.__loadInteriorFileAndAdditionalData(interiorFile, interior)
+        self.__loadWorldFileAndAdditionalData(interiorFile, interior)
         self.__loadingInterior = False
 
         if not interior.intDoors:
@@ -129,14 +133,44 @@ class WorldCreatorAI(WorldCreatorBase):
 
         return interior
 
-    def __loadInteriorFileAndAdditionalData(self, filename, interior):
-        ret = self.loadObjectsFromFile(filename, interior, True)[0]
+    def createIslandGameArea(self, parent, objKey, object):
+        areaFile = object['File']
+
+        if not (areaFile and 'Objects' in object):
+            return
+
+        modelPath = object['Visual']['Model']
+        area = self.loadIslandArea(areaFile, objKey, parent.getParentObj(), modelPath)
+
+        self.notify.info("Created island Area %s %s" % (area.getName(), objKey))
+
+        return area
+
+    def loadIslandArea(self, areaFile, objKey, parent, modelPath):
+        area = DistributedGameAreaAI(self.air, modelPath)
+        area.setUniqueId(objKey)
+
+        if objKey in PLocalizer.LocationNames:
+            area.setName(PLocalizer.LocationNames[objKey])
+        else:
+            area.setName(objKey)
+
+        parent.generateChild(area)
+
+        self.__loadingIslandArea = True
+        self.__loadWorldFileAndAdditionalData(areaFile, area)
+        self.__loadingIslandArea = False
+
+        return area
+
+    def __loadWorldFileAndAdditionalData(self, filename, area):
+        ret = self.loadObjectsFromFile(filename, area, True)[0]
         additionalData = []
         for obj in ret['Objects'].values():
             additionalData.extend(obj.get('AdditionalData', []))
 
         for additional in additionalData:
-            self.__loadInteriorFileAndAdditionalData(additional, interior)
+            self.__loadWorldFileAndAdditionalData(additional, area)
 
     @classmethod
     def registerMissing(cls, objType):

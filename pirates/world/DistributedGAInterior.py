@@ -404,9 +404,14 @@ class DistributedGAInterior(DistributedGameArea.DistributedGameArea, Distributed
         if self.uniqueId == LocationIds.RAMBLESHACK_INSIDE and localAvatar.getTutorialState() < 2:
             self.musicName = SoundGlobals.MUSIC_COMBAT_A
             base.musicMgr.request(self.musicName, priority = 1, volume = 0.3)
+        elif self.uniqueId == LocationIds.FORT_CHARLES:
+            self.musicName = SoundGlobals.MUSIC_KINGSHEAD_ALT
+            base.musicMgr.request(self.musicName, priority = 1, volume = 0.5) 
+            base.ambientMgr.requestFadeIn(self.ambientName, finalVolume = PiratesGlobals.DEFAULT_AMBIENT_VOLUME)
         elif 'tavern' in self.modelPath:
             self.musicName = random.choice((SoundGlobals.MUSIC_TAVERN_A, SoundGlobals.MUSIC_TAVERN_B, SoundGlobals.MUSIC_TAVERN_C))
             base.musicMgr.request(self.musicName, priority = 1, volume = 0.5)
+            base.ambientMgr.requestFadeIn(self.ambientName, finalVolume = PiratesGlobals.DEFAULT_AMBIENT_VOLUME)
 
     def fadeOutSoundAndMusic(self):
         if hasattr(self, 'ambientName'):

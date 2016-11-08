@@ -5,6 +5,7 @@ from direct.task import Task
 from pirates.battle.DistributedEnemySpawnerAI import DistributedEnemySpawnerAI
 from pirates.interact.DistributedSearchableContainerAI import DistributedSearchableContainerAI
 from pirates.interact.DistributedInteractivePropAI import DistributedInteractivePropAI
+from pirates.treasuremap.DistributedBuriedTreasureAI import DistributedBuriedTreasureAI
 from pirates.minigame.DistributedPokerTableAI import DistributedPokerTableAI
 from pirates.minigame.DistributedBlackjackTableAI import DistributedBlackjackTableAI
 from pirates.minigame.DistributedHoldemTableAI import DistributedHoldemTableAI
@@ -20,7 +21,7 @@ from pirates.ai import HolidayGlobals
 
 class DistributedGameAreaAI(DistributedNodeAI):
 
-    BossSpawnKeys = ['Skeleton', 'NavySailor', 'Creature']
+    BossSpawnKeys = ['Skeleton', 'NavySailor', 'Creature', 'Ghost', 'Townsperson']
 
     def __init__(self, air, modelPath):
         DistributedNodeAI.__init__(self, air)
@@ -94,14 +95,17 @@ class DistributedGameAreaAI(DistributedNodeAI):
     def createObject(self, objType, parent, objKey, object):
         genObj = None
 
-        if objType == 'Animal' and config.GetBool('want-animals', False):
+        if objType == 'Object Spawn Node' and config.GetBool('want-spawnables', True):
+            genObj = self.createSpawnNode(objType, objKey, object)
+
+        elif objType == 'Animal' and config.GetBool('want-animals', False):
             self.spawner.addAnimalSpawnNode(objKey, object)
 
         elif objType == 'Townsperson' and self.wantNPCS:
             genObj = self.generateNPC(objType, objKey, object, parent)
 
         elif objType in self.BossSpawnKeys and self.wantBosses and self.wantEnemies:
-            genObj = self.generateBoss(objType, objKey, object)
+            self.generateBoss(objType, objKey, object)
 
         elif objType == 'Spawn Node' and self.wantEnemies:
             self.spawner.addEnemySpawnNode(objType, objKey, object)
@@ -113,12 +117,14 @@ class DistributedGameAreaAI(DistributedNodeAI):
             genObj = self.generateNode(objType, objKey, object, parent)
             self._movementNodes[objKey] = genObj
 
+        elif objType == 'Building Exterior':
+            genObj = self.air.worldCreator.createBuilding(self, objKey, object)
+
         elif objType == 'Searchable Container' and config.GetBool('want-searchables', False):
             genObj = DistributedSearchableContainerAI.makeFromObjectKey(self.air, objKey, object)
             self.generateChild(genObj)
 
         elif objType == 'Holiday' and self.wantHolidayObjects:
-            #self.__printUnimplementedNotice(objType) #TODO
             genObj = self.generateNode(objType, objKey, object, parent, gridPos=True)
 
         elif objType == 'Holiday Object' and self.wantHolidayObjects:
@@ -129,9 +135,6 @@ class DistributedGameAreaAI(DistributedNodeAI):
                 genObj = DistributedHolidayBonfireAI.makeFromObjectKey(self.air, objKey, object)
             else:
                 self.notify.warning("Unsupported Holiday Object SubType: %s" % subType)
-
-        elif objType == 'Building Exterior':
-            genObj = self.air.worldCreator.createBuilding(self, objKey, object)
 
         elif objType == 'Island Game Area' and config.GetBool('want-link-tunnels', False):
             self.__printUnimplementedNotice(objType)
@@ -144,17 +147,14 @@ class DistributedGameAreaAI(DistributedNodeAI):
 
         elif objType == 'Invasion NPC Spawn Node' and self.wantInvasions:
             self._invasionSpawns[objKey] = self.generateNode(objType, objKey, object, parent, gridPos=True)
-            if config.GetBool('force-invasion-spawns', True):
-                self.spawner.addEnemySpawnNode(objType, objKey, object)
 
         elif objType == 'Fort' and self.wantForts: #TODO find objType
             self.notify.info("Spawning %s on %s" % (objType, self.getName()))
             genObj = DistributedFortAI.makeFromObjectKey(self.air, objKey, object)
-            #self.__printUnimplementedNotice(objType)
 
         elif objType == 'Interactive Prop':
-            #self.__printUnimplementedNotice(objType) #TODO object doesnt properly spawn
-            genObj = DistributedInteractivePropAI.makeFromObjectKey(self.air, objKey, object)
+            self.__printUnimplementedNotice(objType) #TODO object doesnt properly spawn
+            #genObj = DistributedInteractivePropAI.makeFromObjectKey(self.air, objKey, object)
 
         elif objType == 'Quest Prop' and self.wantQuestProps:
             self.__printUnimplementedNotice(objType) #TODO
@@ -199,9 +199,14 @@ class DistributedGameAreaAI(DistributedNodeAI):
         if self.debugPrints:
             self.notify.info("Type: %s Data: %s" % (objType, data))
 
-    def __printUnimplementedNotice(self, objType):
+    def __printUnimplementedNotice(self, objType, objKey=None, object=None, debugBarrel=False):
         from pirates.world.WorldCreatorAI import WorldCreatorAI
         WorldCreatorAI.registerUnimplemented(objType)
+
+        if debugBarrel and objKey is not None and object is not None:
+
+            genObj = DistributedSearchableContainerAI.makeFromObjectKey(self.air, objKey, object)
+            self.generateChild(genObj)
 
     def __logMissing(self, objType):
         if not self.debugPrints:
@@ -365,7 +370,7 @@ class DistributedGameAreaAI(DistributedNodeAI):
                 holidayId = HolidayGlobals.getHolidayIdFromName(holiday)
                 holidayRunning = self.air.newsManager.isHolidayRunning(holidayId)
                 if not alwaysShow: 
-                    self.notify.info("Storing Holiday(%s) NPC: %s " % (holiday, objKey))
+                    self.notify.debug("Storing Holiday(%s) NPC: %s " % (holiday, objKey))
                     self._holidayNPCs[objKey] = [objType, object, None]
 
             if holiday == '' or holidayRunning or alwaysShow or forceHoliday:
@@ -391,7 +396,6 @@ class DistributedGameAreaAI(DistributedNodeAI):
         if objType == 'Skeleton':
             self.spawner.addEnemySpawnNode(objType, objKey, object)
         elif objType == 'NavySailor':
-            #self.__printUnimplementedNotice(objType) #TODO
             self.spawner.addEnemySpawnNode(objType, objKey, object)
         elif objType == 'Creature':
             self.spawner.addEnemySpawnNode(objType, objKey, object)
@@ -401,6 +405,25 @@ class DistributedGameAreaAI(DistributedNodeAI):
             self.__printUnimplementedNotice(objType) #TODO
         else:
             self.__printUnimplementedNotice(objType)
+        return genObj
+
+    def createSpawnNode(self, objType, objKey, object):
+        spawnables = {'Buried Treasure': DistributedBuriedTreasureAI, 'Surface Treasure': None}
+        spawnable = object.get('Spawnables', None)
+        if spawnable is None:
+            self.notify.warning("'%s' is an invalid %s. Spawnables not defined." % (objkey, objType))
+            return
+
+        if spawnable not in spawnables:
+            self.__printUnimplementedNotice("%s (%s)" % (objType, spawnable))
+
+        spawnableClass = spawnables[spawnable]
+        genObj = None
+        if spawnableClass is not None:
+            genObj = spawnableClass.makeFromObjectKey(self.air, objKey, object)
+            self.generateChild(genObj)
+        else:
+            self.__printUnimplementedNotice("%s (%s)" % (objType, spawnable))
         return genObj
 
     def generateChild(self, obj, zoneId=None, cellParent=False):

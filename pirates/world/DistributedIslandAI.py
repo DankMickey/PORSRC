@@ -6,7 +6,6 @@ from pirates.world.DistributedGameAreaAI import DistributedGameAreaAI
 from pirates.battle.Teamable import Teamable
 from pirates.piratesbase import PiratesGlobals
 from pirates.ai import HolidayGlobals
-from pirates.treasuremap.DistributedBuriedTreasureAI import DistributedBuriedTreasureAI
 from pirates.minigame.DistributedPotionCraftingTableAI import DistributedPotionCraftingTableAI
 from pirates.minigame.DistributedRepairBenchAI import DistributedRepairBenchAI
 from pirates.minigame.DistributedFishingSpotAI import DistributedFishingSpotAI
@@ -239,17 +238,7 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
     def createObject(self, objType, parent, objKey, object):
         genObj = None
 
-        if objType == 'Object Spawn Node':
-            spawnable = object['Spawnables']
-            if spawnable == 'Buried Treasure':
-                genObj = DistributedBuriedTreasureAI.makeFromObjectKey(self.air, objKey, object)
-                self.generateChild(genObj)
-            elif spawnable == 'Surface Treasure':
-                self.notify.warning("Unsupported %s: %s" % (objType, spawnable)) #TODO
-            else:
-                self.notify.warning("Unsupported %s: %s" % (objType, spawnable))
-
-        elif objType == 'PotionTable' and config.GetBool('want-potion-game', 0):
+        if objType == 'PotionTable' and config.GetBool('want-potion-game', 0):
             genObj = DistributedPotionCraftingTableAI.makeFromObjectKey(self.air, objKey, object)
             self.generateChild(genObj)
 
@@ -270,13 +259,8 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
             genObj = DistributedRepairBenchAI.makeFromObjectKey(self.air, objKey, object)
             self.generateChild(genObj)
 
-        elif objType == 'Connector Tunnel' and config.GetBool('want-link-tunnels', 0):
-            #from pirates.world.WorldCreatorAI import WorldCreatorAI
-            #WorldCreatorAI.registerUnimplemented(objType)  
-
-            genObj = DistributedGATunnelAI.makeFromObjectKey(self.air, objKey, object)
-            self.notify.info("Generating Connector Tunnel on %s at %s" % (self.getName(), genObj.getPos()))
-            self.generateChild(genObj, cellParent=True)
+        elif objType == 'Island Game Area' and config.GetBool('want-link-tunnels', 1):
+            genObj = self.air.worldCreator.createIslandGameArea(self, objKey, object)
 
         else:
             genObj = DistributedGameAreaAI.createObject(self, objType, parent, objKey, object)

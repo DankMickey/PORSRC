@@ -57,6 +57,10 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
     def __repr__(self):
         return '%s (%s)' % (DistributedNode.DistributedNode.__repr__(self), self.getName())
 
+    def enable(self):
+        DistributedNode.DistributedNode.enable(self)
+        self.notify.info("%s ENABLED!" % self.getUniqueId())
+
     def disable(self):
         taskMgr.remove('showEnterMessage')
         DistributedNode.DistributedNode.disable(self)
@@ -294,7 +298,7 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
     def projectileWeaponHit(self, skillId, ammoSkillId, skillResult, targetEffects, pos, normal, codes, attacker, itemEffects = []):
         pass
 
-    def startCustomEffects(self, interior = True, loadIslandMusic = False):
+    def startCustomEffects(self, interior = True, loadIslandMusic = False, loadIslandAmbient = True):
         if self.envEffects:
             self.envEffects.delete()
             self.envEffects = None
@@ -324,66 +328,78 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
             self.envEffects = EnvironmentEffects.EnvironmentEffects(self, self.modelPath)
             if interior:
                 pass
-            1
+
         if loadIslandMusic:
-            if not base.localAvatar.isInInvasion():
-                base.musicMgr.requestFadeOut(SoundGlobals.MUSIC_TORMENTA)
-                base.musicMgr.requestFadeOut(SoundGlobals.MUSIC_TORMENTA_COMBAT)
+            self.playAreaAudio()
 
-            def getCurrentIslandMusic():
-                priZeros = []
-                for music in base.musicMgr.playlist:
-                    if music.priority == 0:
-                        priZeros.append(music)
-                        continue
+        if loadIslandAmbient:
+            self.playAreaAmbient()
 
-                return priZeros
+        self.builder.initEffects()
 
-            def changeMusic(music, pri):
-                for priZero in getCurrentIslandMusic():
-                    base.musicMgr.requestFadeOut(priZero.name, removeFromPlaylist = True)
+    def playAreaAudio(self):
+        if not base.localAvatar.isInInvasion():
+            base.musicMgr.requestFadeOut(SoundGlobals.MUSIC_TORMENTA)
+            base.musicMgr.requestFadeOut(SoundGlobals.MUSIC_TORMENTA_COMBAT)
 
-                base.musicMgr.request(music, priority = 0, volume = 0.6)
+        def getCurrentIslandMusic():
+            priZeros = []
+            for music in base.musicMgr.playlist:
+                if music.priority == 0:
+                    priZeros.append(music)
+                    continue
 
-            def changeAmbient(ambient, pri):
-                base.ambientMgr.silence()
-                base.ambientMgr.requestFadeIn(ambient, finalVolume=PiratesGlobals.DEFAULT_AMBIENT_VOLUME, modifier=True)
+            return priZeros
 
-            mainMusic = SoundGlobals.getMainMusic(self.uniqueId)
-            altMusic = SoundGlobals.getAltMusic(self.uniqueId)
-            if mainMusic and altMusic:
-                base.musicMgr.requestCurMusicFadeOut(removeFromPlaylist = True)
-                todMgr = base.cr.timeOfDayManager
-                todMgr.addTimeOfDayToggle('Day-Night Area Music', 6.0, 20.0, changeMusic, [
+        def changeMusic(music, pri):
+            for priZero in getCurrentIslandMusic():
+                base.musicMgr.requestFadeOut(priZero.name, removeFromPlaylist = True)
+
+            base.musicMgr.request(music, priority = 0, volume = 0.6)
+
+        mainMusic = SoundGlobals.getMainMusic(self.uniqueId)
+        altMusic = SoundGlobals.getAltMusic(self.uniqueId)
+        if mainMusic and altMusic:
+            base.musicMgr.requestCurMusicFadeOut(removeFromPlaylist = True)
+            todMgr = base.cr.timeOfDayManager
+            todMgr.addTimeOfDayToggle('Day-Night Area Music', 6.0, 20.0, changeMusic, [
                     mainMusic,
                     0], changeMusic, [
                     altMusic,
                     0])
-            elif mainMusic:
-                base.musicMgr.requestCurMusicFadeOut(removeFromPlaylist = True)
-                base.musicMgr.request(mainMusic, volume = 0.6)
-            elif altMusic:
-                base.musicMgr.requestCurMusicFadeOut(removeFromPlaylist = True)
-                base.musicMgr.request(altMusic, volume = 0.6)
-
-            if config.GetBool('want-new-ambients', False):
-                ambientDay = SoundGlobals.getIslandAmbient(self.uniqueId, False)
-                ambientNight = SoundGlobals.getIslandAmbient(self.uniqueId, True)
-
-                if ambientDay and ambientNight:
-                    base.ambientMgr.silence()
-                    todMgr = base.cr.timeOfDayManager
-                    todMgr.addTimeOfDayToggle('Day-Night Area Ambient', 6.0, 20.0, changeAmbient, [
-                        ambientDay,
-                        0], changeAmbient, [
-                        ambientNight,
-                        0])                    
-                elif ambientDay:
-                    base.ambientMgr.silence()
-                    base.ambientMgr.requestFadeIn(ambientDay, finalVolume=PiratesGlobals.DEFAULT_AMBIENT_VOLUME, modifier=True)
+        elif mainMusic:
+            base.musicMgr.requestCurMusicFadeOut(removeFromPlaylist = True)
+            base.musicMgr.request(mainMusic, volume = 0.6)
+        elif altMusic:
+            base.musicMgr.requestCurMusicFadeOut(removeFromPlaylist = True)
+            base.musicMgr.request(altMusic, volume = 0.6)
 
 
-        self.builder.initEffects()
+    def playAreaAmbient(self, ambientDay=None, ambientNight=None):
+        if not config.GetBool('want-new-ambients', False):
+            return
+
+        def changeAmbient(ambient, pri):
+            base.ambientMgr.silence()
+            base.ambientMgr.requestFadeIn(ambient, finalVolume=PiratesGlobals.DEFAULT_AMBIENT_VOLUME, modifier=True)
+
+        if ambientDay is None:
+            ambientDay = SoundGlobals.getIslandAmbient(self.uniqueId, False)
+
+        if ambientNight is None:
+            ambientNight = SoundGlobals.getIslandAmbient(self.uniqueId, True)
+
+        if ambientDay and ambientNight:
+            base.ambientMgr.silence()
+            todMgr = base.cr.timeOfDayManager
+            todMgr.addTimeOfDayToggle('Day-Night Area Ambient', 6.0, 20.0, changeAmbient, [
+                ambientDay,
+                0], changeAmbient, [
+                ambientNight,
+                0])
+        elif ambientDay:
+            base.ambientMgr.silence()
+            base.ambientMgr.requestFadeIn(ambientDay, finalVolume=PiratesGlobals.DEFAULT_AMBIENT_VOLUME, modifier=True)
 
     def stopCustomEffects(self):
         if self.envEffects:
@@ -869,7 +885,9 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
     def handleHolidayStarted(self, holiday):
         if self.minimap:
             self.minimap.handleHolidayStarted(self, holiday)
+        self.playAreaAudio()
 
     def handleHolidayEnded(self, holiday):
         if self.minimap:
             self.minimap.handleHolidayEnded(self, holiday)
+        self.playAreaAudio()
