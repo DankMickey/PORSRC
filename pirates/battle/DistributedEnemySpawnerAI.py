@@ -105,19 +105,19 @@ class EnemySpawnNode(DirectObject.DirectObject):
             AvatarTypes.Muck,
             AvatarTypes.Corpse,
             AvatarTypes.Carrion,
-            #AvatarTypes.CaptMudmoss,
+            AvatarTypes.CaptMudmoss,
             AvatarTypes.Mossman,
-            #AvatarTypes.AngryWasp,
-            #AvatarTypes.Wasp,
+            AvatarTypes.AngryWasp,
+            AvatarTypes.Wasp,
             AvatarTypes.VampireBat,
             AvatarTypes.Bat,
-            #AvatarTypes.BigGator,
-            #AvatarTypes.Alligator,
-            #AvatarTypes.DreadScorpion,
-            #AvatarTypes.Scorpion,
+            AvatarTypes.BigGator,
+            AvatarTypes.Alligator,
+            AvatarTypes.DreadScorpion,
+            AvatarTypes.Scorpion,
             AvatarTypes.FlyTrap,
             AvatarTypes.Stump,
-            #AvatarTypes.GiantCrab,
+            AvatarTypes.GiantCrab,
             AvatarTypes.RockCrab,
             AvatarTypes.Crab,
             AvatarTypes.Cadet,
@@ -171,7 +171,8 @@ class EnemySpawnNode(DirectObject.DirectObject):
                         oldType = self.avType
                         self.avType = bossType
                         DistributedEnemySpawnerAI.addRandomBoss(self.avType)
-                        self.notify.info("Spawning random boss '%s' instead of '%s' at %s" % (bossType.getName(), oldType.getName(), self.spawner.gameArea.getName()))
+                        if oldType != bossType:
+                            self.notify.info("Spawning random boss '%s' instead of '%s' at %s" % (bossType.getName(), oldType.getName(), self.spawner.gameArea.getName()))
                         del oldType
 
             uid = self.uniqueName('spawned-%s' % os.urandom(4).encode('hex'))
@@ -194,6 +195,7 @@ class BossSpawnNode(DirectObject.DirectObject):
         self.air = self.spawner.air
         self.uid = 'BossSpawnNode-%d' % self.air.allocateChannel()
         self.npcs = {}
+        self.objKey = objKey
 
         self.data = data
         if 'Boss' not in data:
@@ -204,21 +206,9 @@ class BossSpawnNode(DirectObject.DirectObject):
             self.notify.warning("Attmempted to add spawn node for inactive boss. Boss flag is False")
             return
 
-        self.bossData = []
-        self.dnaId = None
-        if 'DNA' in self.data:
-            self.dnaId = self.data['DNA']
-        else:
-            self.dnaId = objKey
-
-        if self.dnaId not in BossNPCList.BOSS_NPC_LIST:
-            self.notify.warning("Attempted to add spawn node for invalid boss. No boss data found in BossNPCList")
-            return
-        self.bossData = BossNPCList.BOSS_NPC_LIST[self.dnaId]
-
         self.avType = self.getAvTypeFromType(type)
         if self.avType is None:
-            self.notify.warning("Attempted to add spawn node for invalid boss. Boss '%s' has no AvatarType or Species" % self.dnaId)
+            self.notify.warning("Attempted to add spawn node for invalid boss. Boss '%s' has no AvatarType or Species" % objKey)
             return
 
         self.avClass = self.getBossClassFromType(type)
@@ -227,19 +217,10 @@ class BossSpawnNode(DirectObject.DirectObject):
             DistributedEnemySpawnerAI.missingBossClass(type)
             return
 
-        self.hpScale = self.getBossValue('HpScale')
-        self.mpScale = self.getBossValue('MpScale')
-        self.level = self.getBossValue('Level')
-        self.scale = self.getBossValue('ModelScale')
-        self.weapon = self.getBossValue('Weapon')
-        self.weaponLevel = self.getBossValue('WeaponLevel')
-        self.skills = self.getBossValue('Skills')
-        self.skillLevel = self.getBossValue('SkillLevel')
-        self.goldScale = self.getBossValue('GoldScale')
-        self.damageScale = self.getBossValue('DamageScale')
-        self.bossName = self.getBossName(type)
-
         self.desiredNumAvatars = 1
+        if 'Min Population' in self.data:
+            self.desiredNumAvatars = self.data['Min Population']
+
         self.acceptOnce('startShardActivity', self.died)
 
     def died(self):
@@ -250,36 +231,7 @@ class BossSpawnNode(DirectObject.DirectObject):
 
         taskMgr.doMethodLater(random.random() * 60, self.__checkBosses, self.uniqueName('checkBosses'))
 
-    def getDefaultValue(self, key):
-        return BossNPCList.BOSS_NPC_LIST[''][key]
-
-    def getBossValue(self, key):
-        if key in self.bossData:
-            return self.bossData[key]
-        else:
-            return self.getDefaultValue(key)
-
-    def getBossName(self, type):
-        bossName = '%s %s' % (PLocalizer.Unknown, PLocalizer.Boss)
-
-        if self.dnaId != None:
-            bossName = PLocalizer.BossNPCNames[self.dnaId]
-        else:
-            pass
-
-        return bossName
-
     def getAvTypeFromType(self, type):
-
-        def findFromBossData(bossData=self.bossData):
-            if 'AvatarType' in bossData:
-                return bossData['AvatarType']
-            return None
-
-        dataType = findFromBossData()
-        if dataType != None:
-            return dataType
-
         if type == 'Creature':
             if 'Species' not in self.data:
                 self.notify.warning("Attempted add spawn node for invalid Creature boss. No Species defined")
@@ -320,21 +272,12 @@ class BossSpawnNode(DirectObject.DirectObject):
         # Upkeep population
         numNpcs = len(self.npcs)
         if numNpcs < self.desiredNumAvatars:
-            self.avType.setBoss(True)
-            self.notify.info("SPAWNING BOSS: %s with DNAId %s and AvatarType %s" % (self.bossName, self.dnaId, self.avType))
+            self.data['objKey'] = self.objKey
             uid = self.uniqueName('spawned-%s' % os.urandom(4).encode('hex'))
             npc = self.avClass.makeFromObjectKey(self.avClass, self, uid,
                                                  self.avType, self.data)
-
-            npc.setScale(self.scale, self.scale, self.scale)
-            npc.setName(self.bossName)
-            npc.setDamageScale(self.damageScale)
-
-            if self.level:
-                self.spawner.spawn(npc, forceLevel = self.level)
-            else:
-                self.spawner.spawn(npc)
-
+            self.notify.info("Spawning boss '%s' with dnaId '%s' on %s" % (npc.getNameText(), self.objKey, self.spawner.gameArea.getName()))
+            self.spawner.spawn(npc, forceLevel = npc._getBossLevel())
             self.npcs[npc.doId] = npc
         if task:
             return task.done

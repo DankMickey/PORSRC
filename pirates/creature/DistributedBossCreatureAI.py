@@ -1,8 +1,17 @@
 from direct.directnotify import DirectNotifyGlobal
 from pirates.creature.DistributedCreatureAI import DistributedCreatureAI
+from pirates.npc.BossAI import BossAI
 
-class DistributedBossCreatureAI(DistributedCreatureAI):
+class DistributedBossCreatureAI(DistributedCreatureAI, BossAI):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedBossCreature')
 
     def __init__(self, air):
         DistributedCreatureAI.__init__(self, air)
+        BossAI.__init__(self, air)
+
+    @staticmethod
+    def makeFromObjectKey(cls, spawner, uid, avType, data):
+        avType.setBoss(True)
+        obj = DistributedCreatureAI.makeFromObjectKey(cls, spawner, uid, avType, data)
+        obj._setupBossValues(data['objKey'], avType) #TODO
+        return obj

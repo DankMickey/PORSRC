@@ -169,6 +169,7 @@ BOSS_NPC_LIST = {
         'DamageScale': 1.75,
         'HighlightColor': VBase3(0, 1, 0.5) },
     '1219367627.94mtucker': {
+        'AvatarType': AvatarTypes.Assassin,
         'HpScale': 10,
         'MpScale': 3,
         'GoldScale': 2,

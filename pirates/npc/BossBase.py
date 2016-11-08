@@ -37,7 +37,6 @@ class BossBase:
         self.bossData = BOSS_NPC_LIST[''].copy()
         self.bossData['AvatarType'] = avatarType
         bossId = max(avatarType.boss - 1, 0)
-        print "Faction: %s Track: %s Id: %s Boss: %s" % (avatarType.faction, avatarType.track, avatarType.id, bossId)
         try:
             self.bossData['Name'] = PLocalizer.BossNames[avatarType.faction][avatarType.track][avatarType.id][bossId]
         except:

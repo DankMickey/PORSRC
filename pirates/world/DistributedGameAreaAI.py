@@ -40,7 +40,7 @@ class DistributedGameAreaAI(DistributedNodeAI):
 
         self.wantNPCS = config.GetBool('want-npcs', False)
         self.wantEnemies = config.GetBool('want-enemies', False)
-        self.wantBosses = config.GetBool('want-bosses', True)
+        self.wantBosses = config.GetBool('want-bosses', False)
         self.wantForts = config.GetBool('want-forts', True)
         self.wantQuestProps = config.GetBool('want-quest-props', True)
 
@@ -400,9 +400,9 @@ class DistributedGameAreaAI(DistributedNodeAI):
         elif objType == 'Creature':
             self.spawner.addEnemySpawnNode(objType, objKey, object)
         elif objType == 'Ghost':
-            self.__printUnimplementedNotice(objType) #TODO
+            self.spawner.addEnemySpawnNode(objType, objKey, object)
         elif objType == 'Townsperson':
-            self.__printUnimplementedNotice(objType) #TODO
+            self.spawner.addEnemySpawnNode(objType, objKey, object)
         else:
             self.__printUnimplementedNotice(objType)
         return genObj
@@ -429,7 +429,7 @@ class DistributedGameAreaAI(DistributedNodeAI):
     def generateChild(self, obj, zoneId=None, cellParent=False):
 
         if not hasattr(obj, 'getPos') and zoneId is None:
-            self.notify.warning("Failed to spawn %s. Object does not have a getPos()" % type(obj).__name__)
+            self.notify.warning("Failed to spawn '%s'. Object does not have a getPos()" % type(obj).__name__)
             return
 
         if zoneId is None:
