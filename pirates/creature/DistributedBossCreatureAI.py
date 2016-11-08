@@ -5,9 +5,9 @@ from pirates.npc.BossAI import BossAI
 class DistributedBossCreatureAI(DistributedCreatureAI, BossAI):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedBossCreature')
 
-    def __init__(self, air):
-        DistributedCreatureAI.__init__(self, air)
-        BossAI.__init__(self, air)
+    #def __init__(self, spawner):
+    #    DistributedCreatureAI.__init__(self, spawner.air)
+    #    BossAI.__init__(self, spawner.air)
 
     @staticmethod
     def makeFromObjectKey(cls, spawner, uid, avType, data):

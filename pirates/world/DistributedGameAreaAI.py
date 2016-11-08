@@ -40,7 +40,7 @@ class DistributedGameAreaAI(DistributedNodeAI):
 
         self.wantNPCS = config.GetBool('want-npcs', False)
         self.wantEnemies = config.GetBool('want-enemies', False)
-        self.wantBosses = config.GetBool('want-bosses', False)
+        self.wantBosses = config.GetBool('want-bosses', True)
         self.wantForts = config.GetBool('want-forts', True)
         self.wantQuestProps = config.GetBool('want-quest-props', True)
 

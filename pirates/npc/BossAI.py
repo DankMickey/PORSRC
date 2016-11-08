@@ -11,11 +11,38 @@ class BossAI(BossBase):
     def _getDefaultValue(self, key):
         return BOSS_NPC_LIST[''][key]
 
+    def _getHpScale(self):
+        return self.bossData['HpScale']
+
+    def _getMpScale(self):
+        return self.bossData['MpScale']
+
+    def _getLevel(self):
+        return self.bossData['Level']
+
     def _getScale(self):
         return self.bossData['ModelScale']
 
+    def _getWeapon(self):
+        return self.bossData['Weapon']
+
+    def _getWeaponLevel(self):
+        return self.bossData['WeaponLevel']
+
+    def _getSkills(self):
+        return self.bossData['Skills']
+
+    def _getSkillLevel(self):
+        return self.bossData['SkillLevel']
+
+    def _getGoldScale(self):
+        return self.bossData['GoldScale']
+
     def _getDamageScale(self):
         return self.bossData['DamageScale']
+
+    def _getAvatarType(self):
+        return self.bossData['AvatarType']
 
     def _setupBossValues(self, uid, avType):
         self.loadBossData(uid, avType)
