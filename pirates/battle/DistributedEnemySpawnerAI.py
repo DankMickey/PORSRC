@@ -119,7 +119,17 @@ class EnemySpawnNode(DirectObject.DirectObject):
             AvatarTypes.Stump,
             #AvatarTypes.GiantCrab,
             AvatarTypes.RockCrab,
-            AvatarTypes.Crab]
+            AvatarTypes.Crab,
+            AvatarTypes.Cadet,
+            AvatarTypes.Guard,
+            AvatarTypes.Sergeant,
+            AvatarTypes.Veteran,
+            AvatarTypes.Officer,
+            AvatarTypes.Grunt,
+            AvatarTypes.Thug,
+            AvatarTypes.Hiredgun,
+            AvatarTypes.Mercenary,
+            AvatarTypes.Assassin]
 
         bossType = None
         for type in bossRandomTypes:
@@ -167,10 +177,7 @@ class EnemySpawnNode(DirectObject.DirectObject):
             uid = self.uniqueName('spawned-%s' % os.urandom(4).encode('hex'))
             npc = self.avClass.makeFromObjectKey(self.avClass, self, uid,
                                                  self.avType, self.data)
-            if hasattr(self, 'level'):
-                self.spawner.spawner(npc, forceLevel=self.level)
-            else:
-                self.spawner.spawn(npc)
+            self.spawner.spawn(npc)
             self.npcs[npc.doId] = npc
 
         if task:
