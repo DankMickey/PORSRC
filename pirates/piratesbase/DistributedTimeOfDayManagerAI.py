@@ -54,7 +54,7 @@ class DistributedTimeOfDayManagerAI(DistributedObjectAI, TimeOfDayManagerBase):
         self.weather = (type, time)
         
         if type != weather:
-            self.notify.debug("Changing weather state to %s" % type)
+            self.notify.info("Changing weather state to %s" % type)
             weatherInfo = TODGlobals.WEATHER_ENVIROMENTS[type]
             if not weatherInfo:
                 self.notify.warning("Failed to update weather state. %s is not a valid weather enviroment" % type)
@@ -70,15 +70,14 @@ class DistributedTimeOfDayManagerAI(DistributedObjectAI, TimeOfDayManagerBase):
                 self.notify.warning(e)
 
     def pickWeather(self):
-        dice = random.randint(1, 200)
-        if dice <= 100:
-            return TODGlobals.WEATHER_CLEAR
-        elif config.GetBool('want-storm-weather', False) and dice <= 175:
+        dice = random.randint(1, 100)
+        if config.GetBool('want-storm-weather', False) and dice <= 20:
             return TODGlobals.WEATHER_STORM
-
-        if config.GetBool('want-snow-weather', False) and self.air.newManager.isHolidayRunning(17):
-            return TODGlobals.WEATHER_SNOW
-        return TODGlobals.WEATHER_RAIN
+        elif dice <= 60:
+            if config.GetBool('want-snow-weather', False) and self.air.newManager.isHolidayRunning(17):
+                return TODGlobals.WEATHER_SNOW
+            return TODGlobals.WEATHER_RAIN
+        return TODGlobals.WEATHER_CLEAR
 
     def __runWeather(self, task=None):
         if self.isPaused:
@@ -192,7 +191,7 @@ def setWeather(weatherId, time=0):
         if weatherId == TODGlobals.WEATHER_STORM and not config.GetBool('want-storm-weather', False):
             return "Sorry, Storms are not enabled on this district."
 
-        if weatherId = TODGlobals.WEATHER_SNOW and not config.GetBool('want-snow-weather', False):
+        if weatherId == TODGlobals.WEATHER_SNOW and not config.GetBool('want-snow-weather', False):
             return "Sorry, Snow is not enabled on this district."
 
         simbase.air.todManager.setWeather(weatherId, time)
@@ -202,7 +201,14 @@ def setWeather(weatherId, time=0):
 @magicWord(CATEGORY_GAME_MASTER)
 def getWeather():
     weather, time = simbase.air.todManager.weather
-    return "Current district weather is set to %s for a duration of %s" % (weather, time)
+    weatherName = "Clear"
+    if weather == 1:
+        weatherName = "Rain"
+    elif weather == 2:
+        weatherName = "Storm"
+    elif weather == 3:
+        weatherName = "Snow"
+    return "Current district weather is set to '%s' (%s) for a duration of %s" % (weatherName, weather, time)
 
 @magicWord(CATEGORY_GAME_MASTER)
 def weatherReady():
