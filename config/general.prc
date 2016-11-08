@@ -120,7 +120,7 @@ air-connect localhost:29170
 # TIME AND SKY
 enable-sky #t
 prepare-scene #t
-advanced-weather #f
+advanced-weather #t
 want-soft-tod-changes #t
 
 # SAILING
