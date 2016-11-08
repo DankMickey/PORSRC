@@ -59,19 +59,24 @@ class DistributedTimeOfDayManagerAI(DistributedObjectAI, TimeOfDayManagerBase):
             if not weatherInfo:
                 self.notify.warning("Failed to update weather state. %s is not a valid weather enviroment" % type)
                 return
-            self.setRain(weatherInfo['rain'])
-            self.setStorm(weatherInfo['storm'])
-            self.setBlackFog(weatherInfo['darkfog'])
-            self.setClouds(weatherInfo['sky'])
+            try:
+                self.setRain(weatherInfo['rain'])
+                self.setStorm(weatherInfo['storm'])
+                self.setBlackFog(weatherInfo['darkfog'])
+                self.setClouds(weatherInfo['sky'])
+                self.setSnow(weatherInfo['snow'])
+            except Exception,e :
+                self.notify.warning("Failed to update weather state. An unknown error has occured")
+                self.notify.warning(e)
 
     def pickWeather(self):
-        dice = random.randint(1, 100)
-        if dice <= 50:
+        dice = random.randint(1, 200)
+        if dice <= 100:
             return TODGlobals.WEATHER_CLEAR
-        elif config.GetBool('want-storm-weather', False) and dice <= 75:
+        elif config.GetBool('want-storm-weather', False) and dice <= 175:
             return TODGlobals.WEATHER_STORM
 
-        if config.GetBool('want-snow', False) and self.air.newManager.isHolidayRunning(17):
+        if config.GetBool('want-snow-weather', False) and self.air.newManager.isHolidayRunning(17):
             return TODGlobals.WEATHER_SNOW
         return TODGlobals.WEATHER_RAIN
 
@@ -184,6 +189,12 @@ def setWeather(weatherId, time=0):
             available = TODGlobals.WEATHER_ENVIROMENTS.keys()
             return "%s is an invalid weather id. Available keys are %s " % (weatherId, available)
 
+        if weatherId == TODGlobals.WEATHER_STORM and not config.GetBool('want-storm-weather', False):
+            return "Sorry, Storms are not enabled on this district."
+
+        if weatherId = TODGlobals.WEATHER_SNOW and not config.GetBool('want-snow-weather', False):
+            return "Sorry, Snow is not enabled on this district."
+
         simbase.air.todManager.setWeather(weatherId, time)
         return "Setting weather state to %s for the district for a duration of %s." % (weatherId, time)
     return "Sorry, Weather is not enabled on this district."
@@ -232,3 +243,8 @@ def setClouds(state):
 def setJollyMoon(state):
     simbase.air.todManager.setMoonJolly((state == 1))
     return "Setting jolly moon state to %s for district." % state
+
+@magicWord(CATEGORY_GAME_MASTER, types=[int])
+def setSnow(state):
+    simbase.air.todManager.setSnow((state == 1))
+    return "Setting snow state to %s for district." % state

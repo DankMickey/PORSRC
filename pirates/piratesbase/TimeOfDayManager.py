@@ -1744,11 +1744,6 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
         outputString += '}'
         return outputString
 
-    @magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
-    def snow(state):
-        base.cr.timeOfDayManager.setSnowState(state)
-        return "Setting snow state to %s" % state
-
     @magicWord(CATEGORY_GAME_DEVELOPER, types=[int, int, int])
     def alight(red, green, blue):
         color = Vec4(float(red), float(green), float(blue), 1)
