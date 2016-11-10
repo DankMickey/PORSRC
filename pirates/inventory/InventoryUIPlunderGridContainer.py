@@ -57,6 +57,8 @@ class InventoryUIPlunderGridContainer(InventoryUIContainer.InventoryUIContainer)
             elif itemClass == InventoryCategory.WEAPON_PISTOL_AMMO:
                 itemTuple[1] = WeaponGlobals.getSkillAmmoInventoryId(itemId)
                 item = self.manager.makeAmmoItem(itemId, itemTuple, showMax = 0)
+            else:
+                continue
 
             if itemClass in (InventoryType.ItemTypeMoney, InventoryCategory.CARDS, InventoryType.TreasureCollection):
                 self.addGridCell(self.stackImage, 1.0)

@@ -96,7 +96,7 @@ class DistributedLootManagerAI(DistributedObjectAI):
                 categoryId = 1
                 typeCheck = True
 
-            if len(potentialItems) <= numItems and categoryId >= 0 and typeCheck:
+            if len(plunder) <= numItems and categoryId >= 0 and typeCheck:
                 plunderItem = [categoryId, item, extraArg]
                 plunder.append(plunderItem)
 
