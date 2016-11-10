@@ -43,6 +43,7 @@ CATALOGHOLIDAY = 35
 MESSAGEHOLIDAY = 36
 APRILFOOLS = 37
 QUEENANNES = 38
+FLYINGDUTCHMAN = 39
 DOUBLELOOTHOLIDAY = 39
 HOLIDAYS_WITH_CATALOGS = [
     SAINTPATRICKSDAY,
@@ -214,15 +215,15 @@ holidaySchedules = {
     APRILFOOLS: HolidayDates(HolidayDates.TYPE_YEARLY, [
         (Month.APRIL, 1, 0, 0, 0),
         (Month.APRIL, 2, 12, 0, 0)]),
-    MOTHERSDAY: HolidayDates(HolidayDates.TYPE_CUSTOM, [
-        (2009, Month.MAY, 6, 0, 0, 0),
-        (2009, Month.MAY, 11, 0, 0, 0)]),
+    MOTHERSDAY: HolidayDates(HolidayDates.TYPE_YEARLY, [
+        (Month.MAY, 6, 0, 0, 0),
+        (Month.MAY, 11, 0, 0, 0)]),
     QUEENANNES: HolidayDates(HolidayDates.TYPE_CUSTOM, [
         (2011, Month.MAY, 16, 0, 0, 0),
         (2011, Month.JUNE, 16, 0, 0, 0)]),
-    FATHERSDAY: HolidayDates(HolidayDates.TYPE_CUSTOM, [
-        (2009, Month.JUNE, 17, 0, 0, 0),
-        (2009, Month.JUNE, 22, 0, 0, 0)]),
+    FATHERSDAY: HolidayDates(HolidayDates.TYPE_YEARLY, [
+        (Month.JUNE, 17, 0, 0, 0),
+        (Month.JUNE, 22, 0, 0, 0)]),
     FOURTHOFJULY: HolidayDates(HolidayDates.TYPE_YEARLY, [
         (Month.JULY, 3, 18, 0, 0),
         (Month.JULY, 7, 0, 0, 0)]),
@@ -371,18 +372,18 @@ holidaySchedules = {
         (2008, Month.DECEMBER, 15, 4, 0, 0),
         (2008, Month.DECEMBER, 19, 12, 0, 0),
         (2008, Month.DECEMBER, 22, 4, 0, 0)]),
-    WINTERFESTIVAL: HolidayDates(HolidayDates.TYPE_CUSTOM, [
-        (2009, Month.DECEMBER, 17, 0, 0, 0),
-        (2010, Month.JANUARY, 2, 0, 0, 0)]),
-    NEWYEARS: HolidayDates(HolidayDates.TYPE_CUSTOM, [
-        (2009, Month.DECEMBER, 31, 0, 0, 0),
-        (2010, Month.JANUARY, 2, 0, 0, 0)]),
+    WINTERFESTIVAL: HolidayDates(HolidayDates.TYPE_YEARLY, [
+        (Month.DECEMBER, 17, 0, 0, 0),
+        (Month.JANUARY, 2, 0, 0, 0)]),
+    NEWYEARS: HolidayDates(HolidayDates.TYPE_YEARLY, [
+        (Month.DECEMBER, 31, 0, 0, 0),
+        (Month.JANUARY, 2, 0, 0, 0)]),
     VALENTINESDAY: HolidayDates(HolidayDates.TYPE_YEARLY, [
         (Month.FEBRUARY, 10, 0, 0, 0),
         (Month.FEBRUARY, 17, 0, 0, 0)]),
-    ZOMBIEEMOTE: HolidayDates(HolidayDates.TYPE_CUSTOM, [
-        (2010, Month.OCTOBER, 1, 0, 0, 0),
-        (2010, Month.NOVEMBER, 7, 0, 0, 0)]),
+    ZOMBIEEMOTE: HolidayDates(HolidayDates.TYPE_YEARLY, [
+        (Month.OCTOBER, 1, 0, 0, 0),
+        (Month.NOVEMBER, 7, 0, 0, 0)]),
     INVASIONPORTROYAL: HolidayDates(HolidayDates.TYPE_CUSTOM, []),
     WRECKEDGOVERNORSMANSION: HolidayDates(HolidayDates.TYPE_CUSTOM, []),
     INVASIONTORTUGA: HolidayDates(HolidayDates.TYPE_CUSTOM, [

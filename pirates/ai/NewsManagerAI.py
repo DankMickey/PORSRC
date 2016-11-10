@@ -88,7 +88,7 @@ class NewsManagerAI(DistributedObjectAI):
             date = holiday.getCurrentDate()
             if False: #TODO date check
                 if not self.isHolidayRunning(id):
-                    self.startHoliday(id)
+                    self.startHoliday(id, time=holiday.getEndTime(0))
         return Task.again
 
     def __runRandoms(self, task=None):
