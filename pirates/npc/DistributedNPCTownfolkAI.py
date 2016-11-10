@@ -18,6 +18,7 @@ class DistributedNPCTownfolkAI(DistributedBattleNPCAI, DistributedShopKeeperAI):
         self.isGhost = 0
         self.ghostColor = 0
         self.hasGhostPowers = 0
+        self.isZombie = 0
 
     def getDNAId(self):
         if self.customModel:
@@ -53,6 +54,19 @@ class DistributedNPCTownfolkAI(DistributedBattleNPCAI, DistributedShopKeeperAI):
 
     def getHasGhostPowers(self):
         return self.hasGhostPowers
+
+    def setZombie(self, zombie):
+        self.isZombie = zombie
+
+    def d_setZombie(self, zombie):
+        self.sendUpdate('setZombie', zombie)
+
+    def b_setZombie(self, zombie):
+        self.setZombie(zombie)
+        self.d_setZombie(zombie)
+
+    def getZombie(self):
+        return self.isZombie
 
     # requestMusic(uint32) airecv clsend
     # playMusic(uint32) broadcast
@@ -192,7 +206,9 @@ class DistributedNPCTownfolkAI(DistributedBattleNPCAI, DistributedShopKeeperAI):
         shopId = getattr(PiratesGlobals, shopId, None)
         if shopId is not None:
             obj.setShopId(shopId)
-        # TO DO: Uncomment to make cast NPCs work (currently, it crashes the client)
+            
+        obj.setZombie(data.get('Zombie', False))
+
         if 'CustomModel' in data and '/' in data['CustomModel']:
             obj.customModel = data['CustomModel']
 
