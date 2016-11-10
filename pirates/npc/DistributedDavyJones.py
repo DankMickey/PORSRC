@@ -27,8 +27,8 @@ class DistributedDavyJones(DistributedBattleNPC.DistributedBattleNPC, DavyJones.
 
     def announceGenerate(self):
         DistributedBattleNPC.DistributedBattleNPC.announceGenerate(self)
-        #self.setupBoss(True, True)
-        #self.addBossEffect(AvatarTypes.Undead)
+        self.setupBoss(True, True)
+        self.addBossEffect(AvatarTypes.Undead)
         self.attackSounds = [
             loadSfx(SoundGlobals.SFX_MONSTER_JR_ATTACK_01),
             loadSfx(SoundGlobals.SFX_MONSTER_JR_ATTACK_03),
@@ -169,7 +169,6 @@ class DistributedDavyJones(DistributedBattleNPC.DistributedBattleNPC, DavyJones.
 
     def shouldNotice(self):
         return 0
-
 
     def getEnemyScale(self):
         return Boss.getEnemyScale(self)
