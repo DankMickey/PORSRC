@@ -10,7 +10,6 @@ from pirates.minigame.DistributedPotionCraftingTableAI import DistributedPotionC
 from pirates.minigame.DistributedRepairBenchAI import DistributedRepairBenchAI
 from pirates.minigame.DistributedFishingSpotAI import DistributedFishingSpotAI
 from pirates.world.DistributedDinghyAI import DistributedDinghyAI
-from pirates.world.DistributedGATunnelAI import DistributedGATunnelAI
 from pirates.world.LocationConstants import *
 from pirates.world import WorldGlobals
 import random
@@ -235,6 +234,30 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
     def getFireworkShowEnabled(self):
         return self.fireworkShowEnabled
 
+    def generateChild(self, obj, zoneId=None, cellParent=False):
+
+        if not hasattr(obj, 'getPos') and zoneId is None:
+            self.notify.warning("Failed to spawn '%s'. Object does not have a getPos()" % type(obj).__name__)
+            return
+
+        if zoneId is None:
+            zoneId = self.getZoneFromXYZ(obj.getPos())
+
+        obj.generateWithRequiredAndId(self.air.allocateChannel(), self.doId, zoneId)
+
+        if hasattr(obj, 'posControlledByCell'):
+            cellParent = obj.posControlledByCell()
+
+        if cellParent: 
+            cell = GridParent.getCellOrigin(self, zoneId)
+            pos = obj.getPos()
+
+            obj.reparentTo(cell)
+            obj.setPos(self, pos)
+
+            obj.sendUpdate('setPos', obj.getPos())
+            obj.sendUpdate('setHpr', obj.getHpr())
+
     def createObject(self, objType, parent, objKey, object):
         genObj = None
 
@@ -258,10 +281,7 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
         elif objType == 'RepairBench' and config.GetBool('want-repair-game', 0):
             genObj = DistributedRepairBenchAI.makeFromObjectKey(self.air, objKey, object)
             self.generateChild(genObj)
-
-        elif objType == 'Island Game Area' and config.GetBool('want-link-tunnels', 1):
-            genObj = self.air.worldCreator.createIslandGameArea(self, objKey, object)
-
+            
         else:
             genObj = DistributedGameAreaAI.createObject(self, objType, parent, objKey, object)
 

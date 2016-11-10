@@ -7,7 +7,6 @@ import WorldGlobals
 from pirates.minigame.DistributedPokerTableAI import DistributedPokerTableAI
 from pirates.minigame.DistributedGameTableAI import DistributedGameTableAI
 
-# World
 from DistributedInteriorDoorAI import DistributedInteriorDoorAI
 
 class DistributedGAInteriorAI(DistributedGameAreaAI, DistributedCartesianGridAI):
@@ -35,14 +34,15 @@ class DistributedGAInteriorAI(DistributedGameAreaAI, DistributedCartesianGridAI)
     def createObject(self, objType, parent, objKey, object):
         genObj = None
 
-        if objType == 'Island Game Area' and not self.buildingInterior:
-            self.b_setUniqueId(objKey)
-            self.sendUpdate('setModelPath', [object['Visual']['Model']])
+        if objType == 'Island Game Area':
+            if not self.getUniqueId():
+                self.b_setUniqueId(objKey)
+                self.b_setModelPath(object['Visual']['Model'])
 
         elif objType == 'Building Interior':
             if not self.getUniqueId():
                 self.b_setUniqueId(objKey)
-                self.sendUpdate('setModelPath', [object['Visual']['Model']])
+                self.b_setModelPath(object['Visual']['Model'])
 
         elif objType == 'Door Locator Node':
             genObj = self.createIntDoor(objKey, object)
@@ -53,6 +53,9 @@ class DistributedGAInteriorAI(DistributedGameAreaAI, DistributedCartesianGridAI)
         return genObj
 
     def createIntDoor(self, objKey, object):
+        if not self.buildingInterior:
+            return
+
         intDoor = DistributedInteriorDoorAI.makeFromObjectKey(self.air, objKey,
                                          object, self.extDoor.getBuildingUid())
         intDoor.setOtherDoorId(self.extDoor.doId)
@@ -61,20 +64,34 @@ class DistributedGAInteriorAI(DistributedGameAreaAI, DistributedCartesianGridAI)
         return intDoor
 
     def generateChild(self, obj, zoneId = None, cellParent = False):
+        if not hasattr(obj, 'getPos') and zoneId is None:
+            self.notify.warning("Failed to spawn '%s'. Object does not have a getPos()" % type(obj).__name__)
+            return
+
         if zoneId is None:
             if self.buildingInterior:
                 zoneId = 2709
-
             else:
                 zoneId = self.getZoneFromXYZ(obj.getPos())
 
-        obj.interior = self
+        if self.buildingInterior:
+            obj.interior = self
+
         obj.generateWithRequiredAndId(self.air.allocateChannel(), self.doId, zoneId)
-        if obj.posControlledByCell():
-            if not self.buildingInterior or cellParent:
-                cell = GridParent.getCellOrigin(self, zoneId)
-                pos = obj.getPos()
-                obj.reparentTo(cell)
-                obj.setPos(self, pos)
+
+        if hasattr(obj, 'posControlledByCell'):
+            cellParent = obj.posControlledByCell()
+
+        if hasattr(obj, 'posControlledByIsland'): #LEGACY.
+            self.notify.warning("posControlledByIsland is deprecated. Please switch '%s' to posControlledByCell as soon as possible." % type(obj).__name__)
+            cellParent = obj.posControlledByIsland()
+
+        if cellParent and not self.buildingInterior:
+            cell = GridParent.getCellOrigin(self, zoneId)
+            pos = obj.getPos()
+
+            obj.reparentTo(cell)
+            obj.setPos(self, pos)
+
             obj.sendUpdate('setPos', obj.getPos())
             obj.sendUpdate('setHpr', obj.getHpr())

@@ -43,6 +43,7 @@ class DistributedGameAreaAI(DistributedNodeAI):
         self.wantBosses = config.GetBool('want-bosses', True)
         self.wantForts = config.GetBool('want-forts', True)
         self.wantQuestProps = config.GetBool('want-quest-props', True)
+        self.wantLinkTunnels = config.GetBool('want-link-tunnels', False)
 
         self.wantHolidayObjects = config.GetBool('want-holiday-objects', True)
         self._holidayNPCs = {}
@@ -89,6 +90,16 @@ class DistributedGameAreaAI(DistributedNodeAI):
     def getName(self):
         return self.name
 
+    def setModelPath(self, modelPath):
+        self.modelPath = modelPath
+
+    def d_setModelPath(self, modelPath):
+        self.sendUpdate('setModelPath', [modelPath])
+
+    def b_setModelPath(self, modelPath):
+        self.setModelPath(modelPath)
+        self.d_setModelPath(modelPath)
+ 
     def getModelPath(self):
         return self.modelPath
 
@@ -136,8 +147,12 @@ class DistributedGameAreaAI(DistributedNodeAI):
             else:
                 self.notify.warning("Unsupported Holiday Object SubType: %s" % subType)
 
-        elif objType == 'Island Game Area' and config.GetBool('want-link-tunnels', False):
-            self.__printUnimplementedNotice(objType)
+        elif objType == 'Connector Tunnel' and self.wantLinkTunnels or True:
+            genObj = self.air.worldCreator.createConnectorTunnel(self, objKey, object)
+            #self.__printUnimplementedNotice(objType)
+
+        #elif objType == 'Island Game Area' and self.wantLinkTunnels:
+        #    self.__printUnimplementedNotice(objType)
 
         elif objType == 'Invasion Barricade' and self.wantInvasions:
             genObj = self.generateNode(objType, objKey, object, parent, gridPos=True)
@@ -400,9 +415,11 @@ class DistributedGameAreaAI(DistributedNodeAI):
         elif objType == 'Creature':
             self.spawner.addEnemySpawnNode(objType, objKey, object)
         elif objType == 'Ghost':
-            self.spawner.addEnemySpawnNode(objType, objKey, object)
+            self.__printUnimplementedNotice(objType)
+            #self.spawner.addEnemySpawnNode(objType, objKey, object)
         elif objType == 'Townsperson':
-            self.spawner.addEnemySpawnNode(objType, objKey, object)
+            #self.spawner.addEnemySpawnNode(objType, objKey, object)
+            self.__printUnimplementedNotice(objType)
         else:
             self.__printUnimplementedNotice(objType)
         return genObj

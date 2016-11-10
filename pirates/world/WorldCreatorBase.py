@@ -139,9 +139,10 @@ class WorldCreatorBase:
             (newObj, newActualParent) = newObjInfo
         else:
             return None
-        # instanced = object.get('Instanced')
-        # if instanced:
-        #     self.world.setCanBePrivate(instanced)
+
+        instanced = object.get('Instanced')
+        if instanced and self.world is not None:
+            self.world.setCanBePrivate(instanced)
 
         objDict = object.get('Objects')
         if objDict:

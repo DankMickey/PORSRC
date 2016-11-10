@@ -4,6 +4,7 @@ from DistributedBuildingDoorAI import DistributedBuildingDoorAI
 from DistributedJailInteriorAI import DistributedJailInteriorAI
 from DistributedGAInteriorAI import DistributedGAInteriorAI
 from DistributedGameAreaAI import DistributedGameAreaAI
+from DistributedGATunnelAI import DistributedGATunnelAI
 from WorldCreatorBase import WorldCreatorBase
 import WorldGlobals
 
@@ -47,7 +48,7 @@ class WorldCreatorAI(WorldCreatorBase):
         if dynamic:
             objectCat = self.findObjectCategory(objType)
 
-        if self.__loadingInterior:
+        if self.__loadingInterior or self.__loadingIslandArea:
             actualParentObj = parent.getPythonTag('npTag-gameArea')
 
         if objType == 'Region':
@@ -133,29 +134,35 @@ class WorldCreatorAI(WorldCreatorBase):
 
         return interior
 
-    def createIslandGameArea(self, parent, objKey, object):
+    def createConnectorTunnel(self, parent, objKey, object):
+
+        if 'File' not in object:
+            return
+
         areaFile = object['File']
 
         if not (areaFile and 'Objects' in object):
             return
 
-        modelPath = object['Visual']['Model']
-        area = self.loadIslandArea(areaFile, objKey, parent.getParentObj(), modelPath)
-
-        self.notify.info("Created island Area %s %s" % (area.getName(), objKey))
-
-        return area
-
-    def loadIslandArea(self, areaFile, objKey, parent, modelPath):
-        area = DistributedGameAreaAI(self.air, modelPath)
-        area.setUniqueId(objKey)
+        extTunnel = DistributedGATunnelAI.makeFromObjectKey(self.air, objKey, object)
+        parent.generateChild(extTunnel)
+        area = self.loadIslandArea(areaFile, parent.getParentObj(), extTunnel)
 
         if objKey in PLocalizer.LocationNames:
             area.setName(PLocalizer.LocationNames[objKey])
         else:
             area.setName(objKey)
 
-        parent.generateChild(area)
+        self.notify.info("Created Island Game Area %s %s using file '%s'" % (area.getName(), objKey, areaFile))
+        return extTunnel
+
+    def loadIslandArea(self, areaFile, parent, extTunnel):
+        area = DistributedGAInteriorAI(self.air, None)
+
+        area.setBuildingInterior(False)
+        area.setPos(-294.841, 5786.1890000000003, 815.248)
+        zoneId = PiratesGlobals.InteriorDoorZone << 16 | extTunnel.doId & 0xFFFF
+        parent.generateChild(area, zoneId)
 
         self.__loadingIslandArea = True
         self.__loadWorldFileAndAdditionalData(areaFile, area)
