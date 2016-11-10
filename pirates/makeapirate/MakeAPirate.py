@@ -397,7 +397,7 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
             self.pirate.setH(self.initH)
             self.pirate.setZ(-1.5)
             light = DynamicLight.DynamicLight(type=DynamicLight.DYN_LIGHT_AMBIENT, parent=render,
-                                              pos=VBase3(37.912, 12.061, 0.944), hpr=VBase3(176.273, 5.678, -0.212))
+                                              pos=VBase3(37.912, 12.061, 0.944), hpr=VBase3(176.273, 5.678, -0.212), flicker=True)
             self.ambientLight = light
             newPos = light.getPos(self.pirate)
             newHpr = light.getHpr(self.pirate)
@@ -446,6 +446,8 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
             light.turnOn()
             self.pirate.setP(0)
             self.pirate.setZ(0)
+
+        
 
         self.setupJackDialogs()
         base.camLens.setMinFov(PiratesGlobals.MakeAPirateCameraFov)
