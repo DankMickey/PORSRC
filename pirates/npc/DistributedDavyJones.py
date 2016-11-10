@@ -192,10 +192,10 @@ class DistributedDavyJones(DistributedBattleNPC.DistributedBattleNPC, DavyJones.
 
 
 
-    def setMonsterNameTag(self):
-        color = '\x01red\x01'
-        name = '%s  %s\x01smallCaps\x01%s%s\x02\x02' % (self.name, color, PLocalizer.Lv, PLocalizer.InvasionLv)
-        self.getNameText()['text'] = name
+    #def setMonsterNameTag(self):
+    #    color = '\x01red\x01'
+    #    name = '%s  %s\x01smallCaps\x01%s%s\x02\x02' % (self.name, color, PLocalizer.Lv, PLocalizer.InvasionLv)
+    #    self.getNameText()['text'] = name
 
 
     def getVictoryTrack(self):

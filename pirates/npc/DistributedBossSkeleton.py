@@ -18,8 +18,8 @@ class DistributedBossSkeleton(DistributedNPCSkeleton, Boss):
 
     def announceGenerate(self):
         DistributedNPCSkeleton.announceGenerate(self)
-        #if not self.isInInvasion():
-        self.addBossEffect(AvatarTypes.Undead)
+        if not self.isInInvasion():
+            self.addBossEffect(AvatarTypes.Undead)
 
 
 

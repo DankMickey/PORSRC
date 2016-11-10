@@ -21,7 +21,7 @@ from pirates.ai import HolidayGlobals
 
 class DistributedGameAreaAI(DistributedNodeAI):
 
-    BossSpawnKeys = ['Skeleton', 'NavySailor', 'Creature', 'Ghost', 'Townsperson']
+    BossSpawnKeys = ['Skeleton', 'NavySailor', 'Creature', 'Ghost', 'Townsperson', 'DavyJones']
 
     def __init__(self, air, modelPath):
         DistributedNodeAI.__init__(self, air)
@@ -415,11 +415,12 @@ class DistributedGameAreaAI(DistributedNodeAI):
         elif objType == 'Creature':
             self.spawner.addEnemySpawnNode(objType, objKey, object)
         elif objType == 'Ghost':
-            self.__printUnimplementedNotice(objType)
-            #self.spawner.addEnemySpawnNode(objType, objKey, object)
+            self.spawner.addEnemySpawnNode(objType, objKey, object)
         elif objType == 'Townsperson':
-            #self.spawner.addEnemySpawnNode(objType, objKey, object)
-            self.__printUnimplementedNotice(objType)
+            self.spawner.addEnemySpawnNode(objType, objKey, object)
+        elif objType == 'DavyJones':
+            if config.GetBool('want-davy-jones', False):
+                self.spawner.addEnemySpawnNode(objType, objKey, object)
         else:
             self.__printUnimplementedNotice(objType)
         return genObj

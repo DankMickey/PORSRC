@@ -6283,6 +6283,7 @@ BossNPCNames = {
     NPCIds.UNDEAD_TIMOTHY_DARTAN: 'Undead Timothy Dartan',
     NPCIds.CLAUDE_DARCIS: "Claude D'Arcis",
     '1248740229.97robrusso': 'Jolly Roger',
+    '1248740301.97robrusso': 'Davy Jones',
     NPCIds.EL_PATRON: 'El Patron',
     NPCIds.KUDGEL: 'Kudgel' }
 AvatarNames = {

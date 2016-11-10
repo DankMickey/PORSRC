@@ -277,7 +277,7 @@ class BossSpawnNode(DirectObject.DirectObject):
                 return
 
             avType = AvatarTypes.NPC_SPAWNABLES[self.spawnable][0]()
-            return avType.getBossType()            
+            return avType.getBossType()        
         return None
 
 
@@ -292,7 +292,7 @@ class BossSpawnNode(DirectObject.DirectObject):
         elif type == 'Ghost':
             self.notify.warning("Boss class '%s' is not yet supported" % type)
         elif type == 'DavyJones':
-            self.notify.warning("Boss class '%s' is not yet supported" % type)
+            bossClass = DistributedDavyJonesAI
         else:
             self.notify.warning("Unknown boss creature class: %s" % type)
 
