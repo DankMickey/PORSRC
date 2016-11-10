@@ -1074,8 +1074,6 @@ dclass DistributedLocationManager : DistributedObject {
 };
 
 dclass DistributedGAInterior : DistributedGameArea {
-  // N.B. because Astron takes a shit if we add DistributedCartesianGrid
-  // to base classes, we manually add these methods
   setBuildingInterior(bool) required broadcast ram;
   setCellWidth(uint32) required broadcast ram;
   setParentingRules(string, string) required broadcast ram;
