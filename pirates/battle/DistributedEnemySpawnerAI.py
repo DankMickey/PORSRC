@@ -220,7 +220,7 @@ class BossSpawnNode(DirectObject.DirectObject):
 
         self.avType = self.getAvTypeFromType(type)
         if self.avType is None:
-            self.notify.warning("Attempted to add spawn node for invalid boss. Boss '%s' has no AvatarType or Species" % self.dnaId)
+            self.notify.warning("Attempted to add spawn node for invalid boss. Boss '%s' has no AvatarType" % self.dnaId)
             return
 
         self.avClass = self.getBossClassFromType(type)
@@ -270,11 +270,7 @@ class BossSpawnNode(DirectObject.DirectObject):
         if dataType != None:
             return dataType
 
-        if type == 'Creature':
-            if 'Species' not in self.data:
-                self.notify.warning("Attempted add spawn node for invalid Creature boss. No Species defined")
-                return
-
+        if 'Species' in self.data:
             self.spawnable = self.data['Species']
             if self.spawnable not in AvatarTypes.NPC_SPAWNABLES:
                 self.notify.warning("Unknown Boss species: %s" % self.spawnable)
@@ -293,6 +289,10 @@ class BossSpawnNode(DirectObject.DirectObject):
             bossClass = DistributedBossCreatureAI
         elif type == 'NavySailor':
             bossClass = DistributedBossNavySailorAI
+        elif type == 'Ghost':
+            self.notify.warning("Boss class '%s' is not yet supported" % type)
+        elif type == 'DavyJones':
+            self.notify.warning("Boss class '%s' is not yet supported" % type)
         else:
             self.notify.warning("Unknown boss creature class: %s" % type)
 
