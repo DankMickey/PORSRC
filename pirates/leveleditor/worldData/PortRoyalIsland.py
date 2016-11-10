@@ -1280,7 +1280,6 @@ objectStruct = {
                     'Aggro Radius': '6.0241',
                     'AnimSet': 'attention',
                     'AuraFX': 'None',
-                    #'GridPos': Point3(-80.2510, 25.329, 38.186),
                     'Hpr': VBase3(-109.325, 0.0, 0.0),
                     'Min Population': '1',
                     'Patrol Radius': '1.0000',
