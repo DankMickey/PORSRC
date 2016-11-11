@@ -220,7 +220,7 @@ class BossSpawnNode(DirectObject.DirectObject):
         self.bossData = BossNPCList.BOSS_NPC_LIST[self.dnaId]
 
         self.avType = self.getAvTypeFromType(type)
-        if self.avType is None:
+        if self.avType is None and type != 'Townsperson':
             self.notify.warning("Attempted to add spawn node for invalid boss. Boss %s (%s) has no AvatarType" % (self.getBossName(), self.dnaId))
             return
 

@@ -7,7 +7,7 @@ class DistributedBossTownfolkAI(DistributedNPCTownfolkAI, BossAI):
 
     @staticmethod
     def makeFromObjectKey(cls, spawner, uid, avType, data):
-        obj = DistributedGhostAI.makeFromObjectKey(cls, spawner, uid, avType, data)
+        obj = DistributedNPCTownfolkAI.makeFromObjectKey(cls, spawner, uid, data)
         obj._setupBossValues(data['objKey'], avType)
         obj.setDNAId(data['objKey'])
         return obj
