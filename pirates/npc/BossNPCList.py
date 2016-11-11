@@ -116,6 +116,7 @@ BOSS_NPC_LIST = {
         'DamageScale': 1,
         'HighlightColor': VBase3(0, 1, 0.5) },
     '1274906957.35gcarranza': {
+        'AvatarType': AvatarTypes.Kudgel,
         'HpScale': 3.5,
         'MpScale': 3,
         'Level': 30,
@@ -187,6 +188,7 @@ BOSS_NPC_LIST = {
         'DamageScale': 1.75,
         'HighlightColor': VBase3(0, 1, 0.5) },
     '1219339266.79mtucker': {
+        'AvatarType': AvatarTypes.Grunt,
         'HpScale': 5,
         'MpScale': 3,
         'GoldScale': 2,
