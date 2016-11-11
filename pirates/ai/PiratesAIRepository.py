@@ -134,6 +134,7 @@ class PiratesAIRepository(PiratesInternalRepository):
             DistributedEnemySpawnerAI.printMissingShipTypes()
             DistributedEnemySpawnerAI.printMissingAnimalTypes()
             DistributedEnemySpawnerAI.printMissingBossTypes()
+            DistributedEnemySpawnerAI.printBadBossTypes()
             
             WorldCreatorAI.printMissingTypes()
             WorldCreatorAI.printUnimplemented()

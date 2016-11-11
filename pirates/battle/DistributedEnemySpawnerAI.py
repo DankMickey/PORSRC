@@ -216,12 +216,14 @@ class BossSpawnNode(DirectObject.DirectObject):
 
         if self.dnaId not in BossNPCList.BOSS_NPC_LIST:
             self.notify.warning("Attempted to add spawn node for invalid boss. No boss data found in BossNPCList")
+            DistributedEnemySpawnerAI.badBossData(self.getBossName(), self.dnaId)
             return
         self.bossData = BossNPCList.BOSS_NPC_LIST[self.dnaId]
 
         self.avType = self.getAvTypeFromType(type)
         if self.avType is None and type != 'Townsperson':
             self.notify.warning("Attempted to add spawn node for invalid boss. Boss %s (%s) has no AvatarType" % (self.getBossName(), self.dnaId))
+            DistributedEnemySpawnerAI.badBossData(self.getBossName(), self.dnaId)
             return
 
         self.avClass = self.getBossClassFromType(type)
@@ -460,6 +462,7 @@ class DistributedEnemySpawnerAI:
     _shipMissing = set() # Debug
     _animalMissing = set() #Debug
     _bossMissing = set() #Debug
+    _badBosses = set() #Debug
     _randomBosses = []
 
 
@@ -565,7 +568,22 @@ class DistributedEnemySpawnerAI:
         for avType in cls._bossMissing:
             print '   %r' % avType
 
-        del cls._bossMissing      
+        del cls._bossMissing     
+
+    @classmethod
+    def badBossData(cls, name, dnaId):
+        cls._badBosses.add("%s (%s)" % (name, dnaId)) 
+
+    @classmethod
+    def printBadBossTypes(cls):
+        if not cls._badBosses:
+            return
+
+        cls.notify.warning('Failed to add the following bosses:')
+        for avType in cls._badBosses:
+            print '   %r' % avType
+
+        del cls._badBosses            
 
     @classmethod
     def addRandomBoss(cls, avatarType):
