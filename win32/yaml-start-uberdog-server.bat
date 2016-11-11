@@ -6,7 +6,6 @@ set STATESERVER=1100
 set ASTRON_IP=127.0.0.1:29170
 set EVENTLOGGER_IP=127.0.0.1:29160
 
-set /P BASE_CHANNEL="Base channel (DEFAULT: 1000000): " || ^
 set BASE_CHANNEL=1000000
 
 echo ===============================
