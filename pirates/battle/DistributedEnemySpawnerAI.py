@@ -162,7 +162,7 @@ class EnemySpawnNode(DirectObject.DirectObject):
             bossType = self.getBossRandomFromAvatarType(self.avType)
             if bossType != None and config.GetBool('want-random-bosses', True):
                 if bossType.boss:
-                    bossDice = (random.randint(0, 200) >= 180) or config.GetBool('force-random-bosses', True)
+                    bossDice = (random.randint(0, 200) >= 180) or config.GetBool('force-random-bosses', False)
                     bossSpawned = DistributedEnemySpawnerAI.isRandomBossSpawned(bossType)
 
                     if bossSpawned:
@@ -239,7 +239,7 @@ class BossSpawnNode(DirectObject.DirectObject):
                 self.notify.info("Ending Boss Spawn. Respawn is disabled")
                 return
 
-        taskMgr.doMethodLater(random.random() * 5, self.__checkBosses, self.uniqueName('checkBosses'))
+        taskMgr.doMethodLater(random.random() * 60, self.__checkBosses, self.uniqueName('checkBosses'))
 
     def getDefaultValue(self, key):
         return BossNPCList.BOSS_NPC_LIST[''][key]
