@@ -4,7 +4,6 @@ class Lootable:
     def __init__(self):
         pass
 
-
     def stopLooting(self):
         if localAvatar.getPlundering() == self.getDoId():
             localAvatar.setPlundering(0)

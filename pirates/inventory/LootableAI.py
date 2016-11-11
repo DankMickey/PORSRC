@@ -18,9 +18,7 @@ from pirates.uberdog.UberDogGlobals import *
 from pirates.battle import WeaponGlobals
 from direct.directnotify import DirectNotifyGlobal
 from direct.distributed.DistributedObjectAI import DistributedObjectAI
-#from pirates.inventory.InventoryUIPlunderGridContainer import InventoryUIPlunderGridContainer
-#import InventoryUIPlunderGridContainer
-#import Lootable
+
 from pirates.inventory import Lootable
 
 
@@ -51,25 +49,13 @@ class LootableAI(DistributedObjectAI, Lootable.Lootable):
         self.discoveredInventory = 0
         self.trashItem = None
         self.reasonNoUse = None
-     #InventoryUIPlunderGridContainer.__init__(self, air)
-	 
 
-    # startLooting(PlunderListItem [], int8, uint8, bool)
+    # (PlunderListItem array, int8, uint8, bool)
     def startLooting(self, avId, plunderInfo, itemsToTake=0, timer=0, autoShow=True):
      self.notify.info("startLooting. plunderInfo: %s itemsToTake: %s timer: %s autoShow: %s" % (plunderInfo, itemsToTake, timer, autoShow))
      self.sendUpdateToAvatarId(avId, 'startLooting', [plunderInfo, itemsToTake, timer, autoShow])
-     #self.itemsToTake = itemsToTake
      self.notify.info("niger1. ")
      self.testPlunder()
-     #localAvatar.setPlundering(self.getDoId())
-     #self.notify.info("fuck bitches 2. plunderInfo: %s itemsToTake: %s timer: %s autoShow: %s" % (plunderInfo, itemsToTake, timer, autoShow))
-     #localAvatar.guiMgr.inventoryUIManager.testPlunder()
-     #self.notify.info("i fuck ur mom spacebar kek 3. plunderInfo: %s itemsToTake: %s timer: %s autoShow: %s" % (plunderInfo, itemsToTake, timer, autoShow))
-     #Lootable.Lootable.startLooting(self, plunderInfo, itemsToTake, timer, autoShow)
-     #InventoryUIManager.testPlunder()
-	#InventoryUIPlunderGridContainer.setupPlunder(self, plunderInfo)
-
-    # stopLooting()
 	
     def testPlunder(self):
         plunderList = [(UberDogGlobals.InventoryType.ItemTypeMoney, 32)]
@@ -103,15 +89,15 @@ class LootableAI(DistributedObjectAI, Lootable.Lootable):
     def stopLooting(self):
         self.notify.info("stopLooting.")
 
-    # doneTaking() airecv clsend
+    # airecv clsend
     def doneTaking(self):
         self.notify.info("doneTaking.")
 
-    # requestItem(PlunderItemLocationInfo) airecv clsend
+    # (PlunderItemLocationInfo) airecv clsend
     def requestItem(self, plunderLocationInfo):
         self.notify.info("requestItem. plunderLocationInfo: %s" % plunderLocationInfo)
 
-    # requestItems(PlunderItemInfo []) airecv clsend
+    # (PlunderItemInfo array) airecv clsend
     def requestItems(self, pluderInfo):
         self.notify.info("requestItems. plunderInfo: %s" % plunderInfo)
 
