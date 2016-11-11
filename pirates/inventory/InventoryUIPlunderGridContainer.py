@@ -12,6 +12,7 @@ from pirates.uberdog.UberDogGlobals import *
 from pirates.battle import WeaponGlobals
 
 class InventoryUIPlunderGridContainer(InventoryUIContainer.InventoryUIContainer):
+    notify = directNotify.newCategory('InventoryUIPlunderGridContainer')
 
     def __init__(self, manager, sizeX = 1.0, sizeZ = 1.0, countX = 4, countZ = 4):
         InventoryUIContainer.InventoryUIContainer.__init__(self, manager, sizeX, sizeZ, countX, countZ)
@@ -29,6 +30,7 @@ class InventoryUIPlunderGridContainer(InventoryUIContainer.InventoryUIContainer)
         extraCell.reparentTo(cellImageStack2)
         cellImageStack2.flattenStrong()
         self.stackImage2 = cellImageStack2
+
 
 
     def setupPlunder(self, plunderList):

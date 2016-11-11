@@ -4,6 +4,7 @@ from direct.distributed.GridParent import GridParent
 from pirates.distributed.DistributedInteractiveAI import *
 from pirates.inventory.LootableAI import LootableAI
 from pirates.piratesbase import PiratesGlobals
+#from pirates.inventory.InventoryUIPlunderGridContainer import InventoryUIPlunderGridContainer
 import os
 
 class DistributedLootContainerAI(DistributedInteractiveAI, LootableAI):
@@ -12,6 +13,7 @@ class DistributedLootContainerAI(DistributedInteractiveAI, LootableAI):
     def __init__(self, air):
         DistributedInteractiveAI.__init__(self, air)
         LootableAI.__init__(self, air)
+		#InventoryUIPlunderGridContainer.__init__.(self, air)
         self.vizZone = ''
         self.lootType = PiratesGlobals.ITEM_SAC
         self.locks = []
@@ -94,9 +96,9 @@ class DistributedLootContainerAI(DistributedInteractiveAI, LootableAI):
             self.air.writeServerEvent('suspicious', avId=self.air.getAvatarIdFromSender(), message='Client bypassed lock check and tried to interact with DistributedLootContainerAI')
             return REJECT
         
-        return REJECT
-        #self.startLooting(avId, self.avatarType, self.avatarLevel)
-        #return ACCEPT | ACCEPT_SEND_UPDATE
+        #return REJECT
+        self.startLooting(avId, self.avatarType, self.avatarLevel)
+        return ACCEPT | ACCEPT_SEND_UPDATE
 
     @staticmethod
     def makeFromObjectData(air, npc, type=PiratesGlobals.ITEM_SAC, plunder=[]):
