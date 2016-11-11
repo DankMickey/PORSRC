@@ -121,6 +121,7 @@ class WorldCreatorAI(WorldCreatorBase):
             interior = DistributedGAInteriorAI(self.air, extDoor)
 
         interior.setBuildingInterior(~flags & InteriorFlags.FORT)
+        interior.setCaveInterior(False)
         zoneId = PiratesGlobals.InteriorDoorZone << 16 | extDoor.doId & 0xFFFF
         parent.generateChild(interior, zoneId)
 
@@ -156,11 +157,12 @@ class WorldCreatorAI(WorldCreatorBase):
         self.notify.info("Created Island Game Area %s %s using file '%s'" % (area.getName(), objKey, areaFile))
         return extTunnel
 
-    def loadIslandArea(self, areaFile, parent, extTunnel):
+    def loadIslandArea(self, areaFile, parent, extTunnel, cave=False):
         area = DistributedGAInteriorAI(self.air, None)
 
         area.setBuildingInterior(False)
-        area.setPos(-294.841, 5786.1890000000003, 815.248)
+        area.setCaveInterior(cave)
+
         zoneId = PiratesGlobals.InteriorDoorZone << 16 | extTunnel.doId & 0xFFFF
         parent.generateChild(area, zoneId)
 

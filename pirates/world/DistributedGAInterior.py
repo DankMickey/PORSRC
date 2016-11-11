@@ -30,9 +30,13 @@ class DistributedGAInterior(DistributedGameArea.DistributedGameArea, Distributed
         self.autoFadeIn = True
         self.musicName = None
         self.buildingInterior = False
+        self.caveInterior = False
 
     def setBuildingInterior(self, buildingInterior):
         self.buildingInterior = buildingInterior
+
+    def setCaveInterior(self, caveInterior):
+        self.caveInterior = caveInterior
 
     def announceGenerate(self):
         DistributedGameArea.DistributedGameArea.announceGenerate(self)
@@ -130,7 +134,7 @@ class DistributedGAInterior(DistributedGameArea.DistributedGameArea, Distributed
         if self.buildingInterior:
             localAvatar.setInterest(self.doId, 2709, ['ga-interior'])
         DistributedGameArea.DistributedGameArea.handleEnterGameArea(self, collEntry)
-        if hasattr(self.cr, 'timeOfDayManager'):
+        if hasattr(self.cr, 'timeOfDayManager') and self.buildingInterior or self.caveInterior:
             self.cr.timeOfDayManager.enterIndoors()
 
     def setLocation(self, parentId, zoneId, teleport = 0):
@@ -153,7 +157,7 @@ class DistributedGAInterior(DistributedGameArea.DistributedGameArea, Distributed
         localAvatar.clearInterestNamed(None, ['ga-interior'])
         DistributedGameArea.DistributedGameArea.handleExitGameArea(self, collEntry)
         if hasattr(self.cr, 'timeOfDayManager'):
-            if self.cr.timeOfDayManager is not None:
+            if self.cr.timeOfDayManager is not None and self.buildingInterior or self.caveInterior:
                 self.cr.timeOfDayManager.exitIndoors()
 
     def loadModelParts(self):

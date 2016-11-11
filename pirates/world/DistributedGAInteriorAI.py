@@ -31,6 +31,12 @@ class DistributedGAInteriorAI(DistributedGameAreaAI, DistributedCartesianGridAI)
     def getBuildingInterior(self):
         return self.buildingInterior
 
+    def setCaveInterior(self, caveInterior):
+        self.caveInterior = caveInterior
+
+    def getCaveInterior(self):
+        return self.caveInterior
+
     def createObject(self, objType, parent, objKey, object):
         genObj = None
 

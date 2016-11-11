@@ -106,7 +106,7 @@ class DistributedGameAreaAI(DistributedNodeAI):
     def createObject(self, objType, parent, objKey, object):
         genObj = None
 
-        if objType == 'Object Spawn Node' and config.GetBool('want-spawnables', True):
+        if objType == 'Object Spawn Node' and config.GetBool('want-treasure-spawnables', True):
             genObj = self.createSpawnNode(objType, objKey, object)
 
         elif objType == 'Animal' and config.GetBool('want-animals', False):
