@@ -34,12 +34,12 @@ class InventoryUIPlunderGridContainer(InventoryUIContainer.InventoryUIContainer)
 
 
     def setupPlunder(self, plunderList):
-        for (itemClass, itemId, stackAmount) in plunderList:
+        for (itemClass, itemID, stackAmount) in plunderList:
             itemTuple = [
-                itemClass,
-                itemId,
+                plunderList[0],
+                plunderList[1],
                 0,
-                stackAmount]
+                plunderList[2]]
             if itemClass == InventoryType.ItemTypeWeapon:
                 item = self.manager.makeWeaponItem(itemTuple)
             elif itemClass == InventoryType.ItemTypeCharm:
@@ -53,12 +53,12 @@ class InventoryUIPlunderGridContainer(InventoryUIContainer.InventoryUIContainer)
             elif itemClass == InventoryType.TreasureCollection:
                 item = self.manager.makeTreasureItem(itemTuple)
             elif itemClass == InventoryCategory.CARDS:
-                cardId = itemId
+                cardId = itemID
                 itemTuple[1] -= InventoryType.begin_Cards
                 item = self.manager.makeCardItem(cardId, itemTuple, imageScaleFactor = 1.9)
             elif itemClass == InventoryCategory.WEAPON_PISTOL_AMMO:
-                itemTuple[1] = WeaponGlobals.getSkillAmmoInventoryId(itemId)
-                item = self.manager.makeAmmoItem(itemId, itemTuple, showMax = 0)
+                itemTuple[1] = WeaponGlobals.getSkillAmmoInventoryId(itemID)
+                item = self.manager.makeAmmoItem(itemID, itemTuple, showMax = 0)
             else:
                 continue
 
@@ -158,7 +158,7 @@ class InventoryUIPlunderGridContainer(InventoryUIContainer.InventoryUIContainer)
         messenger.send('lootsystem-plunderContainer-Empty', [])
 
 
-    def setupCellImage(self):
+    def setupCellImage(self): 
         gui = loader.loadModel('models/gui/gui_icons_weapon')
         self.cellImage = (gui.find('**/pir_t_gui_frm_inventoryBox'), gui.find('**/pir_t_gui_frm_inventoryBox'), gui.find('**/pir_t_gui_frm_inventoryBox_over'), gui.find('**/pir_t_gui_frm_inventoryBox'))
         self.workingCellImage = (gui.find('**/pir_t_gui_frm_inventoryBox'), gui.find('**/pir_t_gui_frm_inventoryBox'), gui.find('**/pir_t_gui_frm_inventoryBox_over'), gui.find('**/pir_t_gui_frm_inventoryBox'))

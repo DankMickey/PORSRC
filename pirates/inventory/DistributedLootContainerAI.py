@@ -4,7 +4,6 @@ from direct.distributed.GridParent import GridParent
 from pirates.distributed.DistributedInteractiveAI import *
 from pirates.inventory.LootableAI import LootableAI
 from pirates.piratesbase import PiratesGlobals
-#from pirates.inventory.InventoryUIPlunderGridContainer import InventoryUIPlunderGridContainer
 import os
 
 class DistributedLootContainerAI(DistributedInteractiveAI, LootableAI):
@@ -13,7 +12,6 @@ class DistributedLootContainerAI(DistributedInteractiveAI, LootableAI):
     def __init__(self, air):
         DistributedInteractiveAI.__init__(self, air)
         LootableAI.__init__(self, air)
-		#InventoryUIPlunderGridContainer.__init__.(self, air)
         self.vizZone = ''
         self.lootType = PiratesGlobals.ITEM_SAC
         self.locks = []
@@ -96,7 +94,7 @@ class DistributedLootContainerAI(DistributedInteractiveAI, LootableAI):
             self.air.writeServerEvent('suspicious', avId=self.air.getAvatarIdFromSender(), message='Client bypassed lock check and tried to interact with DistributedLootContainerAI')
             return REJECT
         
-        #return REJECT
+        #Accept the interaction as long as invoked by valid client, send the accept update, and intiate the startLooting() method!
         self.startLooting(avId, self.avatarType, self.avatarLevel)
         return ACCEPT | ACCEPT_SEND_UPDATE
 
@@ -110,7 +108,7 @@ class DistributedLootContainerAI(DistributedInteractiveAI, LootableAI):
         obj.setType(type)
         obj.setPlunder(plunder)
 
-        if len(plunder) <= 0:
+        if len(plunder) < 0:
             obj.setEmpty(True)
         
         area = npc.getParentObj()
