@@ -9,4 +9,5 @@ class DistributedBossNavySailorAI(DistributedNPCNavySailorAI, BossAI):
     def makeFromObjectKey(cls, spawner, uid, avType, data):
         obj = DistributedNPCNavySailorAI.makeFromObjectKey(cls, spawner, uid, avType, data)
         obj._setupBossValues(data['DNA'], avType)
+        obj.setDNAId(data['DNA'])
         return obj
