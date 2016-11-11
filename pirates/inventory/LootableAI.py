@@ -54,35 +54,35 @@ class LootableAI(DistributedObjectAI, Lootable.Lootable):
     def startLooting(self, avId, plunderInfo, itemsToTake=0, timer=0, autoShow=True):
      self.notify.info("startLooting. plunderInfo: %s itemsToTake: %s timer: %s autoShow: %s" % (plunderInfo, itemsToTake, timer, autoShow))
      self.sendUpdateToAvatarId(avId, 'startLooting', [plunderInfo, itemsToTake, timer, autoShow])
-     self.notify.info("niger1. ")
-     self.testPlunder()
+     self.notify.info("Debug Message 1")
+     self.intiatePlunder()
 	
-    def testPlunder(self):
+    def intiatePlunder(self):
         plunderList = [(UberDogGlobals.InventoryType.ItemTypeMoney, 32)]
-        self.openPlunder(plunderList)
-	self.notify.info("fuck bitches 2. %s !!" % (plunderList))
+        self.buildPlunderContainer(plunderList)
+	self.notify.info("Debug Message 2 with plunderList defined as: %s" % (plunderList))
 
 
 
-    def openPlunder(self, plunderList, lootContainer = None, customName = None, timer = 0, autoShow = True):
-         self.notify.info("i fuck ur mom spacebar kek 3")
+    def buildPlunderContainer(self, plunderList, lootContainer = None, customName = None, timer = 0, autoShow = True):
+         self.notify.info("Debug Message 3.1")
          if not self.plunderPanel:
             if self.lootContainer:
-		self.notify.info("close plund 3.")
+		self.notify.info("Debug Message 3.2")
                 self.closePlunder()
 
             rating = 0
             typeName = ''
             if lootContainer:
-		self.notify.info("loot cont.")
+		self.notify.info("Debug Message 4")
                 self.lootContainer = lootContainer
                 rating = lootContainer.getRating()
                 typeName = lootContainer.getTypeName()
                 numItems = lootContainer.getItemsToTake()
             else:
-		self.notify.info("else loot cont.")
+		self.notify.info("Debug Message 5")
                 numItems = 0
-            self.plunderPanel = InventoryPlunderPanel.InventoryPlunderPanel(self, plunderList, rating, typeName, numItems, customName, timer = timer, autoShow = autoShow)
+            self.plunderPanel = InventoryPlunderPanel.InventoryPlunderPanel(self, plunderList, rating, typeName, numItems, customName, timer = timer, autoShow = autoShow) #InventoryPlunderPanel builds the scroll-like parent container which appends the child InventoryUIPlunderGridContainer which builds the item content for each loot type + their icons that are mapped to the general container made in InventoryPlunderPanel (the scroll)
             self.plunderPanel.reparentTo(self)
             self.plunderPanel.setPos(-1.1, 0.0, -0.2)
 
