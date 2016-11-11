@@ -287,18 +287,19 @@ AWARD_ID = {
     #    None,
     #    1,
     #    PLocalizer.CodeRedemptionBoardingAxe],
-    AwardTypes.TREASURE: [
-        NORMAL_INVENTORY,
-        InvItem((InventoryType.ItemTypeMoney, 0)),
-        None,
-        10000,
-        PLocalizer.CodeRedemptionTreasure],
-    AwardTypes.HALLOWEEN: [
-        NORMAL_INVENTORY,
-        InvItem((InventoryType.ItemTypeMoney, 0)),
-        None,
-        5000,
-        PLocalizer.CodeRedemptionHalloween] }
+    #AwardTypes.TREASURE: [
+    #    NORMAL_INVENTORY,
+    #    InvItem((InventoryType.ItemTypeMoney, 0)),
+    #    None,
+    #    10000,
+    #    PLocalizer.CodeRedemptionTreasure],
+    #AwardTypes.HALLOWEEN: [
+    #    NORMAL_INVENTORY,
+    #    InvItem((InventoryType.ItemTypeMoney, 0)),
+    #    None,
+    #    5000,
+    #    PLocalizer.CodeRedemptionHalloween] 
+    }
 
 def getAwardFromCode(code):
     for award in AWARD_ID:
