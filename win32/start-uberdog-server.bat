@@ -7,7 +7,6 @@ set ASTRON_IP=127.0.0.1:29170
 set EVENTLOGGER_IP=127.0.0.1:29160
 set MONGODB_IP=mongodb://127.0.0.1:27017/porgame
 
-set /P BASE_CHANNEL="Base channel (DEFAULT: 1000000): " || ^
 set BASE_CHANNEL=1000000
 
 echo ===============================
