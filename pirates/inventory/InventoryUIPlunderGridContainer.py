@@ -18,7 +18,7 @@ class InventoryUIPlunderGridContainer(InventoryUIContainer.InventoryUIContainer)
         InventoryUIContainer.InventoryUIContainer.__init__(self, manager, sizeX, sizeZ, countX, countZ)
         self.xCount = 0
         self.zCount = 0
-        self.containerType = CONTAINER_PLUNDER 
+        self.containerType = CONTAINER_PLUNDER #,= dynamic container .= based on reviewed container drop system
         self.initialiseoptions(InventoryUIPlunderGridContainer)
         SkillIcons = loader.loadModel('models/textureCards/skillIcons')
         cellImageStack = (SkillIcons.find('**/base'), SkillIcons.find('**/base_down'), SkillIcons.find('**/base_over'))

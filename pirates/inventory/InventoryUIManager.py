@@ -1111,7 +1111,7 @@ class InventoryUIManager(DirectFrame):
 
 
     def hasPlunder(self):
-        return self.plunderPanel
+        return self.plunderPanel.hide() #stay hidden until show prop. invoked
 
 
     def addScoreboard(self, scoreboard):
