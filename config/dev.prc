@@ -48,7 +48,7 @@ fake-download-duration 15.0
 test-fourth-of-july #f
 
 # INTERACTIVES:
-buried-treasure #t
+want-treasure-spawnables #t
 
 # INVENTORY:
 want-clothing-page #t

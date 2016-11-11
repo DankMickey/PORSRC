@@ -1,7 +1,6 @@
 from direct.directnotify import DirectNotifyGlobal
 
 from pirates.npc.DistributedNPCTownfolkAI import DistributedNPCTownfolkAI
-from pirates.npc.DistributedNPCTownfolkAI import DistributedNPCTownfolkAI
 from pirates.npc.DistributedNPCSkeletonAI import DistributedNPCSkeletonAI
 from pirates.npc.DistributedNPCNavySailorAI import DistributedNPCNavySailorAI
 from pirates.npc.DistributedKillerGhostAI import DistributedKillerGhostAI
@@ -12,6 +11,8 @@ from pirates.npc.DistributedJollyRogerAI import DistributedJollyRogerAI
 from pirates.npc.DistributedDavyJonesAI import DistributedDavyJonesAI
 from pirates.npc.DistributedBossSkeletonAI import DistributedBossSkeletonAI
 from pirates.npc.DistributedBossNavySailorAI import DistributedBossNavySailorAI
+from pirates.npc.DistributedBossGhostAI import DistributedBossGhostAI
+from pirates.npc.DistributedBossTownfolkAI import DistributedBossTownfolkAI
 from pirates.npc import BossNPCList
 
 from pirates.battle.DistributedBattleNPCAI import *
@@ -98,7 +99,7 @@ class EnemySpawnNode(DirectObject.DirectObject):
 
     def getBossRandomFromAvatarType(self, avatar):
         bossRandomTypes = [
-            #AvatarTypes.Clod,
+            AvatarTypes.Clod,
             AvatarTypes.CorpseCutlass, 
             AvatarTypes.Sludge,
             AvatarTypes.Mire,
@@ -161,7 +162,7 @@ class EnemySpawnNode(DirectObject.DirectObject):
             bossType = self.getBossRandomFromAvatarType(self.avType)
             if bossType != None and config.GetBool('want-random-bosses', True):
                 if bossType.boss:
-                    bossDice = (random.randint(0, 200) >= 180) or config.GetBool('force-random-bosses', False)
+                    bossDice = (random.randint(0, 200) >= 180) or config.GetBool('force-random-bosses', True)
                     bossSpawned = DistributedEnemySpawnerAI.isRandomBossSpawned(bossType)
 
                     if bossSpawned:
@@ -220,7 +221,7 @@ class BossSpawnNode(DirectObject.DirectObject):
 
         self.avType = self.getAvTypeFromType(type)
         if self.avType is None:
-            self.notify.warning("Attempted to add spawn node for invalid boss. Boss '%s' has no AvatarType" % self.dnaId)
+            self.notify.warning("Attempted to add spawn node for invalid boss. Boss %s (%s) has no AvatarType" % (self.getBossName(), self.dnaId))
             return
 
         self.avClass = self.getBossClassFromType(type)
@@ -238,7 +239,7 @@ class BossSpawnNode(DirectObject.DirectObject):
                 self.notify.info("Ending Boss Spawn. Respawn is disabled")
                 return
 
-        taskMgr.doMethodLater(random.random() * 60, self.__checkBosses, self.uniqueName('checkBosses'))
+        taskMgr.doMethodLater(random.random() * 5, self.__checkBosses, self.uniqueName('checkBosses'))
 
     def getDefaultValue(self, key):
         return BossNPCList.BOSS_NPC_LIST[''][key]
@@ -249,7 +250,7 @@ class BossSpawnNode(DirectObject.DirectObject):
         else:
             return self.getDefaultValue(key)
 
-    def getBossName(self, type):
+    def getBossName(self):
         bossName = '%s %s' % (PLocalizer.Unknown, PLocalizer.Boss)
 
         if self.dnaId != None:
@@ -290,7 +291,9 @@ class BossSpawnNode(DirectObject.DirectObject):
         elif type == 'NavySailor':
             bossClass = DistributedBossNavySailorAI
         elif type == 'Ghost':
-            self.notify.warning("Boss class '%s' is not yet supported" % type)
+            bossClass = DistributedBossGhostAI
+        elif type == 'Townsperson':
+            bossClass = DistributedBossTownfolkAI
         elif type == 'DavyJones':
             bossClass = DistributedDavyJonesAI
         else:
@@ -550,7 +553,7 @@ class DistributedEnemySpawnerAI:
         del cls._animalMissing 
 
     @classmethod
-    def missingBossClass(self, type):
+    def missingBossClass(cls, type):
         cls._bossMissing.add(type)
 
     @classmethod

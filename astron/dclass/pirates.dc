@@ -29,6 +29,7 @@ from pirates.npc import DistributedDavyJones/AI
 // from pirates.npc import DistributedBossTownfolk/AI
 from pirates.npc import DistributedBossSkeleton/AI
 from pirates.npc import DistributedBossNavySailor/AI
+from pirates.npc import DistributedBossTownfolk/AI
 from pirates.creature import DistributedCreature/AI
 from pirates.creature import DistributedAnimal/AI
 from pirates.creature import DistributedRaven/AI
@@ -1075,6 +1076,7 @@ dclass DistributedLocationManager : DistributedObject {
 
 dclass DistributedGAInterior : DistributedGameArea {
   setBuildingInterior(bool) required broadcast ram;
+  setCaveInterior(bool) required broadcast ram;
   setCellWidth(uint32) required broadcast ram;
   setParentingRules(string, string) required broadcast ram;
 };

@@ -340,6 +340,7 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
             obj.setGhostColor(int(data['GhostColor']))
         except:
             obj.setGhostColor(0)
+            
         if 'Level' in data:
             obj.setLevel(int(data['Level']))
 
