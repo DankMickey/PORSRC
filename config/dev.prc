@@ -1,6 +1,7 @@
 # SERVER SETTINGS:
 server-version por-alpha-1.0.0
 
+
 # ATTACKING:
 want-all-weapons-trained #t
 want-all-weapon-skills #t
@@ -51,6 +52,10 @@ buried-treasure #t
 
 # INVENTORY:
 want-clothing-page #t
+
+#LOOT
+always-spawn-loot #f
+want-loot #t
 
 # MINIGAMES:
 want-minigames #t
