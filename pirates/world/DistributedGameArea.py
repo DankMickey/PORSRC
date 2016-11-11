@@ -885,9 +885,9 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
     def handleHolidayStarted(self, holiday):
         if self.minimap:
             self.minimap.handleHolidayStarted(self, holiday)
-        self.playAreaAudio()
+        #self.playAreaAudio()
 
     def handleHolidayEnded(self, holiday):
         if self.minimap:
             self.minimap.handleHolidayEnded(self, holiday)
-        self.playAreaAudio()
+        #self.playAreaAudio()
