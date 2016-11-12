@@ -18,7 +18,9 @@ from pirates.uberdog.UberDogGlobals import *
 from pirates.battle import WeaponGlobals
 from direct.directnotify import DirectNotifyGlobal
 from direct.distributed.DistributedObjectAI import DistributedObjectAI
-
+#from pirates.inventory.InventoryUIPlunderGridContainer import InventoryUIPlunderGridContainer
+#import InventoryUIPlunderGridContainer
+#import Lootable
 from pirates.inventory import Lootable
 
 
@@ -49,55 +51,38 @@ class LootableAI(DistributedObjectAI, Lootable.Lootable):
         self.discoveredInventory = 0
         self.trashItem = None
         self.reasonNoUse = None
+     #InventoryUIPlunderGridContainer.__init__(self, air)
+	 
 
-    # (PlunderListItem array, int8, uint8, bool)
+    # startLooting(PlunderListItem [], int8, uint8, bool)
     def startLooting(self, avId, plunderInfo, itemsToTake=0, timer=0, autoShow=True):
      self.notify.info("startLooting. plunderInfo: %s itemsToTake: %s timer: %s autoShow: %s" % (plunderInfo, itemsToTake, timer, autoShow))
      self.sendUpdateToAvatarId(avId, 'startLooting', [plunderInfo, itemsToTake, timer, autoShow])
-     self.notify.info("Debug Message 1")
-     self.intiatePlunder()
-	
-    def intiatePlunder(self):
-        plunderList = [(UberDogGlobals.InventoryType.ItemTypeMoney, 32)]
-        self.buildPlunderContainer(plunderList)
-	self.notify.info("Debug Message 2 with plunderList defined as: %s" % (plunderList))
+     #self.itemsToTake = itemsToTake
+     self.notify.info("niger1. ")
+     Lootable.Lootable.testPlunder(self)
+     #localAvatar.setPlundering(self.getDoId())
+     #self.notify.info("fuck bitches 2. plunderInfo: %s itemsToTake: %s timer: %s autoShow: %s" % (plunderInfo, itemsToTake, timer, autoShow))
+     #localAvatar.guiMgr.inventoryUIManager.testPlunder()
+     #self.notify.info("i fuck ur mom spacebar kek 3. plunderInfo: %s itemsToTake: %s timer: %s autoShow: %s" % (plunderInfo, itemsToTake, timer, autoShow))
+     #Lootable.Lootable.startLooting(self, plunderInfo, itemsToTake, timer, autoShow)
+     #InventoryUIManager.testPlunder()
+	#InventoryUIPlunderGridContainer.setupPlunder(self, plunderInfo)
 
-
-
-    def buildPlunderContainer(self, plunderList, lootContainer = None, customName = None, timer = 0, autoShow = True):
-         self.notify.info("Debug Message 3.1")
-         if not self.plunderPanel:
-            if self.lootContainer:
-		self.notify.info("Debug Message 3.2")
-                self.closePlunder()
-
-            rating = 0
-            typeName = ''
-            if lootContainer:
-		self.notify.info("Debug Message 4")
-                self.lootContainer = lootContainer
-                rating = lootContainer.getRating()
-                typeName = lootContainer.getTypeName()
-                numItems = lootContainer.getItemsToTake()
-            else:
-		self.notify.info("Debug Message 5")
-                numItems = 0
-            self.plunderPanel = InventoryPlunderPanel.InventoryPlunderPanel(self, plunderList, rating, typeName, numItems, customName, timer = timer, autoShow = autoShow) #InventoryPlunderPanel builds the scroll-like parent container which appends the child InventoryUIPlunderGridContainer which builds the item content for each loot type + their icons that are mapped to the general container made in InventoryPlunderPanel (the scroll)
-            self.plunderPanel.reparentTo(self)
-            self.plunderPanel.setPos(-1.1, 0.0, -0.2)
+    # stopLooting()
 
     def stopLooting(self):
         self.notify.info("stopLooting.")
 
-    # airecv clsend
+    # doneTaking() airecv clsend
     def doneTaking(self):
         self.notify.info("doneTaking.")
 
-    # (PlunderItemLocationInfo) airecv clsend
+    # requestItem(PlunderItemLocationInfo) airecv clsend
     def requestItem(self, plunderLocationInfo):
         self.notify.info("requestItem. plunderLocationInfo: %s" % plunderLocationInfo)
 
-    # (PlunderItemInfo array) airecv clsend
+    # requestItems(PlunderItemInfo []) airecv clsend
     def requestItems(self, pluderInfo):
         self.notify.info("requestItems. plunderInfo: %s" % plunderInfo)
 
