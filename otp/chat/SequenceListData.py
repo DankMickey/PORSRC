@@ -1,6 +1,5 @@
 SEQUENCES = {
   'legend': ['of pirates'],
-  'of': ['pirates online'],
   'all': ['a ack bar', 'ah ack bar', 'ah ache bar', 'ah snack bar'],
   'bull': ['sheep', 'sheeps', 'ship', 'shift'],
   'neigh': ['err', 'grr', 'grrr', 'grrrrrrrl', 'grow', 'grove', 'gurl', 'girl', 'gear', 'gears', 'gross', 'ah', 'a', 'gah'],
@@ -318,7 +317,7 @@ SEQUENCES = {
   'ace': ['hole', 'whole', 'ole', 'ooo le', 'holes', 'zzz', "'s"],
   'getting': ['wasted', 'waste ed', 'hi', 'high', 'higher', 'highest', 'lay'],
   'ack': ['ools'],
-  'of': ['u kk', 'uk'],
+  'of': ['pirates online', 'sheet', 'u kk', 'uk'],
   'octopus': ['y', 'ye', 'sea', 'seas'],
   'or': ['gah some', 'gah sum', 'gg y', 'gee'],
   'ahh': ['zzz', 'sees', '$', "'s"],
