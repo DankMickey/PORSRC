@@ -1,4 +1,6 @@
 SEQUENCES = {
+  'legend': ['of pirates'],
+  'of': ['pirates online'],
   'all': ['a ack bar', 'ah ack bar', 'ah ache bar', 'ah snack bar'],
   'bull': ['sheep', 'sheeps', 'ship', 'shift'],
   'neigh': ['err', 'grr', 'grrr', 'grrrrrrrl', 'grow', 'grove', 'gurl', 'girl', 'gear', 'gears', 'gross', 'ah', 'a', 'gah'],
