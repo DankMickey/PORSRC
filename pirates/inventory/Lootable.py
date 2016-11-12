@@ -23,8 +23,6 @@ class Lootable:
     notify = directNotify.newCategory('Lootable')
 
     def __init__(self):
-        #DistributedObjectAI.__init__(self, air)
-        #Lootable.Lootable.__init__(self)
         self.heldItem = None
         self.heldFromCell = None
         self.withInCell = None
@@ -46,52 +44,33 @@ class Lootable:
         self.discoveredInventory = 0
         self.trashItem = None
         self.reasonNoUse = None
-
-
-    def startLooting(self, plunderList, itemsToTake = 0, timer = 0, autoShow = False, customName = None):
-        self.itemsToTake = itemsToTake
-        #localAvatar.setPlundering(self.getDoId())
-        #localAvatar.guiMgr.inventoryUIManager.testPlunder() #DEBUG
-        #localAvatar.guiMgr.inventoryUIManager.openPlunder(plunderList, self, customName, timer = timer, autoShow = autoShow)    def testPlunder(self):
-        #plunderList = [(UberDogGlobals.InventoryType.ItemTypeMoney, 32)]
-        #self.openPlunder(plunderList)
-	#self.notify.info("fuck bitches 2. %s !!" % (plunderList))
 	
-    def testPlunder(self):
+    def setupPlunderList(self):
         plunderList = [(UberDogGlobals.InventoryType.ItemTypeMoney, 32)]
-        self.openPlunder(plunderList)
-	self.notify.info("fuck bitches 2. %s !!" % (plunderList))
+        self.openPlunderList(plunderList)
+	self.notify.info("Debug1.2 %s !!" % (plunderList))
 	
-    def openPlunder(self, plunderList, lootContainer = None, customName = None, timer = 0, autoShow = True):
-         self.notify.info("i fuck ur mom spacebar kek 3")
+    def openPlunderList(self, plunderList, lootContainer = None, customName = None, timer = 0, autoShow = True):
+         self.notify.info("Debug1.3")
          if not self.plunderPanel:
             if self.lootContainer:
-		self.notify.info("close plund 3.")
+		self.notify.info("Debug1.4")
                 self.closePlunder()
 
             rating = 0
             typeName = ''
             if lootContainer:
-		self.notify.info("loot cont.")
+		self.notify.info("Debug1.5")
                 self.lootContainer = lootContainer
                 rating = lootContainer.getRating()
                 typeName = lootContainer.getTypeName()
                 numItems = lootContainer.getItemsToTake()
             else:
-		self.notify.info("else loot cont.")
+		self.notify.info("Debug1.6")
                 numItems = 0
             self.plunderPanel = InventoryPlunderPanel.InventoryPlunderPanel(self, plunderList, rating, typeName, numItems, customName, timer = timer, autoShow = autoShow)
             self.plunderPanel.reparentTo(self)
             self.plunderPanel.setPos(-1.1, 0.0, -0.2)
-		
-
-
-
-    def stopLooting(self):
-        #if localAvatar.getPlundering() == self.getDoId():
-           # localAvatar.setPlundering(0)
-            #localAvatar.guiMgr.inventoryUIManager.closePlunder()
-
 
 
 		def d_requestItem(self, itemInfo):

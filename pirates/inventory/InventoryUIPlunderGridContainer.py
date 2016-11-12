@@ -32,8 +32,11 @@ class InventoryUIPlunderGridContainer(InventoryUIContainer.InventoryUIContainer)
         self.stackImage2 = cellImageStack2
 
 
-
     def setupPlunder(self, plunderList):
+        self.srcInvTypeLootContentIcon(self, plunderList)
+        
+    
+    def srcInvTypeLootContentIcon(self, plunderList):
         for (itemClass, itemId, stackAmount) in plunderList:
             itemTuple = [
                 itemClass,
