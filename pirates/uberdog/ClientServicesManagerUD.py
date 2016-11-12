@@ -10,6 +10,7 @@ from direct.distributed.PyDatagram import *
 from direct.fsm.FSM import FSM
 from otp.otpbase import OTPGlobals
 from sys import platform
+from threading import Thread
 import traceback
 import hashlib
 import urllib
@@ -62,16 +63,25 @@ def flip(a):
     # This is SIMPLE OBFUSCATION not ENCRYPTION
     return ''.join(chr(~ord(x) & 0xFF) for x in a)
 
-class CSMOperation(FSM):
+class CSMOperation(FSM, Thread):
     notify = directNotify.newCategory('CSMOperation')
     TARGET_CONNECTION = False
 
     def __init__(self, csm, target):
         FSM.__init__(self, self.__class__.__name__)
+        Thread.__init__(self)
 
+        self.daemon = True
         self.target = target
         self.csm = csm
 
+    def start(self, *args):
+        self.startArgs = args
+        Thread.start(self)
+
+    def run(self):
+        self.request('Start', *self.startArgs)
+        
     def enterKill(self, reason=''):
         if self.TARGET_CONNECTION:
             self.csm.killConnection(self.target, reason)
@@ -617,12 +627,6 @@ class GetAvatarsFSM(AvatarOperationFSM):
         self.csm.sendUpdateToAccountId(self.target, 'setAvatars', [potentialAvs])
         self.demand('Off')
 
-    def enterOff(self):
-        if self.target in self.csm.connection2fsm:
-            del self.csm.connection2fsm[self.target]
-        if self.target in self.csm.account2fsm:
-            del self.csm.account2fsm[self.target]
-
 class UnloadAvatarFSM(CSMOperation):
     notify = directNotify.newCategory('UnloadAvatarFSM')
 
@@ -1110,7 +1114,7 @@ class ClientServicesManagerUD(DistributedObjectGlobalUD):
             return
 
         self.account2fsm[sender] = fsmtype(self, sender)
-        self.account2fsm[sender].request('Start', *args)
+        self.account2fsm[sender].start(*args)
 
     def login(self, resp, cookie, sig):
         sender = self.air.getMsgSender()
@@ -1141,7 +1145,7 @@ class ClientServicesManagerUD(DistributedObjectGlobalUD):
             return
 
         self.connection2fsm[sender] = LoginAccountFSM(self, sender)
-        self.connection2fsm[sender].request('Start', cookie)
+        self.connection2fsm[sender].start(cookie)
 
     def requestAvatars(self):
         self.runAccountFSM(GetAvatarsFSM)
