@@ -1,11 +1,13 @@
 from panda3d.core import Datagram
-from direct.distributed.AstronInternalRepository import AstronInternalRepository, msgpack_encode
+from direct.distributed.AstronInternalRepository import AstronInternalRepository
 from direct.distributed.PyDatagramIterator import PyDatagramIterator
 from direct.distributed.PyDatagram import PyDatagram
 from direct.distributed.MsgTypes import *
 from otp.distributed.OtpDoGlobals import *
 from PiratesNetMessengerAI import PiratesNetMessengerAI
 from pirates.ai.AnalyticsManagerAI import AnalyticsManagerAI
+from SplunkThreadAI import SplunkThreadAI
+from Queue import Queue
 import collections, urlparse, traceback, sys
 
 class PiratesInternalRepository(AstronInternalRepository):
@@ -25,6 +27,7 @@ class PiratesInternalRepository(AstronInternalRepository):
 
     def handleConnected(self):
         self.netMessenger = PiratesNetMessengerAI(self)
+        self.logQueue = Queue()
         self.analyticsMgr = AnalyticsManagerAI()
         
         try:
@@ -47,6 +50,14 @@ class PiratesInternalRepository(AstronInternalRepository):
         self.dbGlobalCursor = self.database.porGame
         self.dbAstronCursor = self.database.astron
         
+        self.logThreads = []
+        
+        for i in xrange(4):
+            thread = SplunkThreadAI()
+            thread.daemon = True
+            thread.start()
+            self.logThreads.append(thread)
+
         self.notify.info('Connected to MongoDB.')
     
     def hasMongo(self):
@@ -143,15 +154,7 @@ class PiratesInternalRepository(AstronInternalRepository):
         log['type'] = logType
         log['sender'] = self.eventLogId
         log.update(kwargs)
-
-        if not self.analyticsMgr.isReady():
-            if self.eventSocket is not None:
-                dg = PyDatagram()
-                msgpack_encode(dg, log)
-                self.eventSocket.Send(dg.getMessage())
-        else:
-            del log['type']
-            self.analyticsMgr.track(logType, log)
+        self.logQueue.put(log)
     
     def getObjectsOfExactClass(self, objClass):
         return {doId: do for doId, do in self.doId2do.items() if do.__class__ == objClass}

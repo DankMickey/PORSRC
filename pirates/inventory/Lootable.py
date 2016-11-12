@@ -44,37 +44,38 @@ class Lootable:
         self.discoveredInventory = 0
         self.trashItem = None
         self.reasonNoUse = None
-	
+    
     def setupPlunderList(self):
         plunderList = [(UberDogGlobals.InventoryType.ItemTypeMoney, 32)]
         self.openPlunderList(plunderList)
-	self.notify.info("Debug1.2 %s !!" % (plunderList))
-	
+        self.notify.info("Debug1.2 %s !!" % (plunderList))
+    
     def openPlunderList(self, plunderList, lootContainer = None, customName = None, timer = 0, autoShow = True):
-         self.notify.info("Debug1.3")
-         if not self.plunderPanel:
+        self.notify.info("Debug1.3")
+        if not self.plunderPanel:
             if self.lootContainer:
-		self.notify.info("Debug1.4")
+                self.notify.info("Debug1.4")
                 self.closePlunder()
 
-            rating = 0
-            typeName = ''
-            if lootContainer:
-		self.notify.info("Debug1.5")
-                self.lootContainer = lootContainer
-                rating = lootContainer.getRating()
-                typeName = lootContainer.getTypeName()
-                numItems = lootContainer.getItemsToTake()
-            else:
-		self.notify.info("Debug1.6")
-                numItems = 0
-            self.plunderPanel = InventoryPlunderPanel.InventoryPlunderPanel(self, plunderList, rating, typeName, numItems, customName, timer = timer, autoShow = autoShow)
-            self.plunderPanel.reparentTo(self)
-            self.plunderPanel.setPos(-1.1, 0.0, -0.2)
+        rating = 0
+        typeName = ''
+        if lootContainer:
+            self.notify.info("Debug1.5")
+            self.lootContainer = lootContainer
+            rating = lootContainer.getRating()
+            typeName = lootContainer.getTypeName()
+            numItems = lootContainer.getItemsToTake()
+        else:
+            self.notify.info("Debug1.6")
+            numItems = 0
+        
+        self.plunderPanel = InventoryPlunderPanel.InventoryPlunderPanel(self, plunderList, rating, typeName, numItems, customName, timer = timer, autoShow = autoShow)
+        self.plunderPanel.reparentTo(self)
+        self.plunderPanel.setPos(-1.1, 0.0, -0.2)
 
 
-		def d_requestItem(self, itemInfo):
-			self.sendUpdate('requestItem', [itemInfo])
+    def d_requestItem(self, itemInfo):
+        self.sendUpdate('requestItem', [itemInfo])
 
 
     def d_requestItems(self, items):
