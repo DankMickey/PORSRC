@@ -754,10 +754,10 @@ class LoadAvatarFSM(AvatarOperationFSM):
         gmTags = {
             300: ('green', 'Youtuber'),
             600: ('green', 'Game Moderator'),
-            700: ('red', 'Host GM'),
+            700: ('red', 'Game Master'),
             800: ('blue', 'Game Designer'),
             900: ('purple', 'Game Developer'),
-            1000: ('red', 'Administrator')
+            1000: ('red', 'System Admin')
         }
 
         if accessLevel not in gmTags:

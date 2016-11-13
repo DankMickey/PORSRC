@@ -817,7 +817,7 @@ def rep(amount):
 
     av.inventory.addReputation(repId, amount)
 
-@magicWord(CATEGORY_GAME_DEVELOPER, types=[str])
+@magicWord(CATEGORY_GAME_MASTER, types=[str])
 def allegiance(side=None):
     allegiances = ['pirate', 'spanish', 'french']
     side = side.lower()
