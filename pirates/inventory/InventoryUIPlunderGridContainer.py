@@ -18,7 +18,7 @@ class InventoryUIPlunderGridContainer(InventoryUIContainer.InventoryUIContainer)
         InventoryUIContainer.InventoryUIContainer.__init__(self, manager, sizeX, sizeZ, countX, countZ)
         self.xCount = 0
         self.zCount = 0
-        self.containerType = CONTAINER_PLUNDER #,= dynamic container .= based on reviewed container drop system
+        self.containerType = CONTAINER_PLUNDER
         self.initialiseoptions(InventoryUIPlunderGridContainer)
         SkillIcons = loader.loadModel('models/textureCards/skillIcons')
         cellImageStack = (SkillIcons.find('**/base'), SkillIcons.find('**/base_down'), SkillIcons.find('**/base_over'))
@@ -32,39 +32,42 @@ class InventoryUIPlunderGridContainer(InventoryUIContainer.InventoryUIContainer)
         self.stackImage2 = cellImageStack2
 
 
-
     def setupPlunder(self, plunderList):
-        for (inventoryType, itemID, itemQuantStack) in plunderList:
-            lootTuple = [
-                plunderList[0],
-                plunderList[1],
+        self.srcInvTypeLootContentIcon(self, plunderList)
+        
+    
+    def srcInvTypeLootContentIcon(self, plunderList):
+        for (itemClass, itemId, stackAmount) in plunderList:
+            itemTuple = [
+                itemClass,
+                itemId,
                 0,
-                plunderList[2]]
-            if inventoryType == InventoryType.ItemTypeWeapon:
-                item = self.manager.makeWeaponItem(lootTuple)
-            elif inventoryType == InventoryType.ItemTypeCharm:
-                item = self.manager.makeCharmItem(lootTuple)
-            elif inventoryType == InventoryType.ItemTypeConsumable:
-                item = self.manager.makeConsumableItem(lootTuple, showMax = 0)
-            elif inventoryType == InventoryType.ItemTypeClothing:
-                item = self.manager.makeClothingItem(lootTuple)
-            elif inventoryType == InventoryType.ItemTypeMoney:
-                item = self.manager.makeGoldItem(lootTuple)
-            elif inventoryType == InventoryType.TreasureCollection:
-                item = self.manager.makeTreasureItem(lootTuple)
-            elif inventoryType == InventoryCategitemQuantStackory.CARDS:
-                cardId = itemID
-                lootTuple[1] -= InventoryType.begin_Cards
-                item = self.manager.makeCardItem(cardId, lootTuple, imageScaleFactor = 1.9)
-            elif inventoryType == InventoryCategory.WEAPON_PISTOL_AMMO:
-                lootTuple[1] = WeaponGlobals.getSkillAmmoInventoryId(itemID)
-                item = self.manager.makeAmmoItem(itemID, lootTuple, showMax = 0)
+                stackAmount]
+            if itemClass == InventoryType.ItemTypeWeapon:
+                item = self.manager.makeWeaponItem(itemTuple)
+            elif itemClass == InventoryType.ItemTypeCharm:
+                item = self.manager.makeCharmItem(itemTuple)
+            elif itemClass == InventoryType.ItemTypeConsumable:
+                item = self.manager.makeConsumableItem(itemTuple, showMax = 0)
+            elif itemClass == InventoryType.ItemTypeClothing:
+                item = self.manager.makeClothingItem(itemTuple)
+            elif itemClass == InventoryType.ItemTypeMoney:
+                item = self.manager.makeGoldItem(itemTuple)
+            elif itemClass == InventoryType.TreasureCollection:
+                item = self.manager.makeTreasureItem(itemTuple)
+            elif itemClass == InventoryCategory.CARDS:
+                cardId = itemId
+                itemTuple[1] -= InventoryType.begin_Cards
+                item = self.manager.makeCardItem(cardId, itemTuple, imageScaleFactor = 1.9)
+            elif itemClass == InventoryCategory.WEAPON_PISTOL_AMMO:
+                itemTuple[1] = WeaponGlobals.getSkillAmmoInventoryId(itemId)
+                item = self.manager.makeAmmoItem(itemId, itemTuple, showMax = 0)
             else:
                 continue
 
-            if inventoryType in (InventoryType.ItemTypeMoney, InventoryCategory.CARDS, InventoryType.TreasureCollection):
+            if itemClass in (InventoryType.ItemTypeMoney, InventoryCategory.CARDS, InventoryType.TreasureCollection):
                 self.addGridCell(self.stackImage, 1.0)
-            elif inventoryType == InventoryCategory.WEAPON_PISTOL_AMMO:
+            elif itemClass == InventoryCategory.WEAPON_PISTOL_AMMO:
                 self.addGridCell(self.stackImage2, 1.0)
             else:
                 self.addGridCell()
@@ -158,7 +161,7 @@ class InventoryUIPlunderGridContainer(InventoryUIContainer.InventoryUIContainer)
         messenger.send('lootsystem-plunderContainer-Empty', [])
 
 
-    def setupCellImage(self): 
+    def setupCellImage(self):
         gui = loader.loadModel('models/gui/gui_icons_weapon')
         self.cellImage = (gui.find('**/pir_t_gui_frm_inventoryBox'), gui.find('**/pir_t_gui_frm_inventoryBox'), gui.find('**/pir_t_gui_frm_inventoryBox_over'), gui.find('**/pir_t_gui_frm_inventoryBox'))
         self.workingCellImage = (gui.find('**/pir_t_gui_frm_inventoryBox'), gui.find('**/pir_t_gui_frm_inventoryBox'), gui.find('**/pir_t_gui_frm_inventoryBox_over'), gui.find('**/pir_t_gui_frm_inventoryBox'))

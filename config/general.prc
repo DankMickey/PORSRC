@@ -75,7 +75,7 @@ no-loading-screen #f
 
 #LOOT
 always-spawn-loot #f
-want-loot #t
+want-loot #f
 
 #random negro
 want-cannondefense-game 0

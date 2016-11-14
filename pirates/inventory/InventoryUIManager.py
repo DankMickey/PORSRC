@@ -1080,6 +1080,36 @@ class InventoryUIManager(DirectFrame):
         return (givingItems, extraItems)
 
 
+    def testPlunder(self):
+        plunderList = [
+            (UberDogGlobals.InventoryType.CutlassWeaponL1, 0),
+            (UberDogGlobals.InventoryType.PistolWeaponL3, 0),
+            (UberDogGlobals.InventoryType.ItemTypeMoney, 32),
+            (UberDogGlobals.InventoryType.Collection_Set2_Part9, 0),
+            (UberDogGlobals.InventoryType.begin_Cards, 0)]
+        self.openPlunder(plunderList)
+
+
+    def openPlunder(self, plunderList, lootContainer = None, customName = None, timer = 0, autoShow = True):
+        if not self.plunderPanel:
+            if self.lootContainer:
+                self.closePlunder()
+
+            rating = 0
+            typeName = ''
+            if lootContainer:
+                self.lootContainer = lootContainer
+                rating = lootContainer.getRating()
+                typeName = lootContainer.getTypeName()
+                numItems = lootContainer.getItemsToTake()
+            else:
+                numItems = 0
+            self.plunderPanel = InventoryPlunderPanel.InventoryPlunderPanel(self, plunderList, rating, typeName, numItems, customName, timer = timer, autoShow = autoShow)
+            self.plunderPanel.reparentTo(self)
+            self.plunderPanel.setPos(-1.1, 0.0, -0.2)
+
+
+
     def closePlunder(self, closeContainer = True):
         if self.lootContainer:
             if closeContainer:
@@ -1111,7 +1141,7 @@ class InventoryUIManager(DirectFrame):
 
 
     def hasPlunder(self):
-        return self.plunderPanel.hide() #stay hidden until show prop. invoked
+        return self.plunderPanel
 
 
     def addScoreboard(self, scoreboard):

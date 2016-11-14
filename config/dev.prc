@@ -53,10 +53,6 @@ want-treasure-spawnables #t
 # INVENTORY:
 want-clothing-page #t
 
-#LOOT
-always-spawn-loot #f
-want-loot #t
-
 # MINIGAMES:
 want-minigames #t
 want-potion-game #t
