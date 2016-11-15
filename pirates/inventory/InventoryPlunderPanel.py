@@ -150,7 +150,9 @@ class InventoryPlunderPanel(DirectFrame):
             self.manager.closePlunder()
 
 
+    def giveGold(self, gold):
+     if gold > 0:
+     self.b_setGoldInPocket(min(InventoryGlobals.GOLD_CAP, self.getGoldInPocket() + gold))
 
     def takeAllLoot(self, playSound = True):
-        self.manager.takeAllLoot([
-            self.grid], playSound = playSound)
+            self.manager.takeAllLoot([self.grid], playSound = playSound)

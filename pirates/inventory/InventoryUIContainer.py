@@ -5,6 +5,9 @@ from pirates.piratesgui import GuiPanel, PiratesGuiGlobals
 from pirates.piratesbase import PiratesGlobals
 from pirates.piratesbase import PLocalizer
 from otp.otpbase import OTPLocalizer
+from pirates.piratesgui import GuiPanel, PiratesGuiGlobals
+from pirates.piratesbase import PiratesGlobals
+from pirates.piratesbase import PLocalizer
 from pirates.inventory.InventoryUIGlobals import *
 from pirates.inventory.InventoryGlobals import Locations
 from pirates.uberdog.UberDogGlobals import InventoryType
@@ -28,8 +31,9 @@ class InventoryUIContainer(DirectFrame, InventoryRequestBase.InventoryRequestBas
         self.defineoptions({ }, optiondefs)
         DirectFrame.__init__(self, parent = NodePath())
         InventoryRequestBase.InventoryRequestBase.__init__(self)
+        #self.manager = manager
         self.manager = manager
-        self.manager.addContainer(self)
+        #self.manager.addContainer(self)
         self.sizeX = sizeX
         self.sizeZ = sizeZ
         self.cellSizeX = sizeX

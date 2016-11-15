@@ -1082,11 +1082,11 @@ class InventoryUIManager(DirectFrame):
 
     def testPlunder(self):
         plunderList = [
-            (UberDogGlobals.InventoryType.CutlassWeaponL1, 0),
-            (UberDogGlobals.InventoryType.PistolWeaponL3, 0),
-            (UberDogGlobals.InventoryType.ItemTypeMoney, 32),
-            (UberDogGlobals.InventoryType.Collection_Set2_Part9, 0),
-            (UberDogGlobals.InventoryType.begin_Cards, 0)]
+        (UberDogGlobals.InventoryType.CutlassWeaponL1, 0),
+        (UberDogGlobals.InventoryType.PistolWeaponL3, 0),
+        (UberDogGlobals.InventoryType.ItemTypeMoney, 32),
+        (UberDogGlobals.InventoryType.Collection_Set2_Part9, 0),
+        (UberDogGlobals.InventoryType.begin_Cards, 0)]
         self.openPlunder(plunderList)
 
 

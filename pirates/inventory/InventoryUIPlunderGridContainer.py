@@ -9,6 +9,7 @@ from pirates.inventory import InventoryUIContainer
 from pirates.inventory import ItemGlobals
 from pirates.inventory.InventoryUIGlobals import *
 from pirates.uberdog.UberDogGlobals import *
+from pirates.uberdog import UberDogGlobals
 from pirates.battle import WeaponGlobals
 
 class InventoryUIPlunderGridContainer(InventoryUIContainer.InventoryUIContainer):
@@ -18,6 +19,8 @@ class InventoryUIPlunderGridContainer(InventoryUIContainer.InventoryUIContainer)
         InventoryUIContainer.InventoryUIContainer.__init__(self, manager, sizeX, sizeZ, countX, countZ)
         self.xCount = 0
         self.zCount = 0
+        self.manager = None
+        #self.manager = base.localAvatar.guiMgr.inventoryUIManager
         self.containerType = CONTAINER_PLUNDER
         self.initialiseoptions(InventoryUIPlunderGridContainer)
         SkillIcons = loader.loadModel('models/textureCards/skillIcons')
@@ -33,7 +36,11 @@ class InventoryUIPlunderGridContainer(InventoryUIContainer.InventoryUIContainer)
 
 
     def setupPlunder(self, plunderList):
-        self.srcInvTypeLootContentIcon(self, plunderList)
+        self.manager = base.localAvatar.guiMgr.inventoryUIManager
+        plunderList2 = [(UberDogGlobals.InventoryType.ItemTypeMoney, UberDogGlobals.InventoryType.ItemTypeMoney, 32)]
+        self.notify.info("Debug1.2 %s !!" % (plunderList))
+        self.srcInvTypeLootContentIcon(plunderList2)
+        
         
     
     def srcInvTypeLootContentIcon(self, plunderList):
@@ -75,6 +82,9 @@ class InventoryUIPlunderGridContainer(InventoryUIContainer.InventoryUIContainer)
 
 
 
+    def makeGoldItem(self, itemTuple, update = False):
+        return InventoryUIGoldItem.InventoryUIGoldItem(self, itemTuple, update = update)
+    
     def putIntoCell(self, item, cell):
         cell.showLabel = 1
         InventoryUIContainer.InventoryUIContainer.putIntoCell(self, item, cell)

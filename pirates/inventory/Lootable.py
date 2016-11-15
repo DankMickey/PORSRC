@@ -44,10 +44,28 @@ class Lootable:
         self.discoveredInventory = 0
         self.trashItem = None
         self.reasonNoUse = None
+        
+        if not hasattr(base, 'lol'):
+            base.lol = []
+        base.lol.append(self)
+	
+    def startLooting(self, plunderList, itemsToTake = 0, timer = 0, autoShow = False):
+        base.localAvatar.guiMgr.inventoryUIManager.testPlunder()
+        #print '1'
+        #self.itemsToTake = itemsToTake
+        #localAvatar.setPlundering(self.getDoId())
+        #self.setupPlunderList(self) #DEBUG
+        #print '2 %s' % (plunderList,)
+        #self.setupPlunderList(self, plunderList, itemsToTake = itemsToTake, timer = timer, autoShow = autoShow)
+        #print '3'
+        #self.notify.info("kek2 %s !!" % (plunderList))
+        #print '4'
     
-    def setupPlunderList(self):
-        plunderList = [(UberDogGlobals.InventoryType.ItemTypeMoney, 32)]
-        self.openPlunderList(plunderList)
+    def setupPlunderList(self, plunderList, itemsToTake = 0, timer = 0, autoShow = False):
+        plunderArray = [(UberDogGlobals.InventoryType.ItemTypeMoney, 32)]
+        customName = None
+        self.openPlunderList(plunderList, self, customName, timer = timer, autoShow = autoShow)
+        print '3?'
         self.notify.info("Debug1.2 %s !!" % (plunderList))
     
     def openPlunderList(self, plunderList, lootContainer = None, customName = None, timer = 0, autoShow = True):
