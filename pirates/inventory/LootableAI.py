@@ -18,7 +18,6 @@ from pirates.uberdog.UberDogGlobals import *
 from pirates.battle import WeaponGlobals
 from direct.directnotify import DirectNotifyGlobal
 from direct.distributed.DistributedObjectAI import DistributedObjectAI
-#from pirates.inventory import Lootable
 
 
 class LootableAI(DistributedObjectAI):
@@ -26,7 +25,6 @@ class LootableAI(DistributedObjectAI):
 
     def __init__(self, air):
         DistributedObjectAI.__init__(self, air)
-        #Lootable.Lootable.__init__(self)
         self.heldItem = None
         self.heldFromCell = None
         self.withInCell = None
@@ -54,8 +52,6 @@ class LootableAI(DistributedObjectAI):
     def startLooting(self, avId, plunderInfo, itemsToTake=0, timer=0, autoShow=True):
      self.notify.info("startLooting. plunderInfo: %s itemsToTake: %s timer: %s autoShow: %s" % (plunderInfo, itemsToTake, timer, autoShow))
      self.sendUpdateToAvatarId(avId, 'startLooting', [plunderInfo, itemsToTake, timer, autoShow])
-     #self.notify.info("Debug1.1")
-     #Lootable.Lootable.setupPlunderList(self)
 
     def stopLooting(self):
         self.notify.info("stopLooting Sent ")

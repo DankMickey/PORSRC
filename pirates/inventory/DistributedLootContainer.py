@@ -170,11 +170,6 @@ class DistributedLootContainer(DistributedInteractive.DistributedInteractive, Lo
         self.appearSound.setVolume(0.8)
         self.openSound.setVolume(0.8)
         self.initInteractOpts()
-        #plunderList = [(UberDogGlobals.InventoryType.ItemTypeMoney, 32)]
-        #self.notify.info("jek2 %s !!" % (plunderList))
-        #self.startLooting(self, plunderList, 0, 0, False, None) LEAVE THAT FUCK ALONE
-        # so how looting starts is that the AI gets the interaction request, says its OK, and sends a client startLooting packet
-        # we dont nee dto do this manually because its done for us oh
 
 
     def getContainerModel(self, name):
