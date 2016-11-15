@@ -20,7 +20,6 @@ class InventoryUIPlunderGridContainer(InventoryUIContainer.InventoryUIContainer)
         self.xCount = 0
         self.zCount = 0
         self.manager = None
-        #self.manager = base.localAvatar.guiMgr.inventoryUIManager
         self.containerType = CONTAINER_PLUNDER
         self.initialiseoptions(InventoryUIPlunderGridContainer)
         SkillIcons = loader.loadModel('models/textureCards/skillIcons')

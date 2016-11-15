@@ -51,15 +51,6 @@ class Lootable:
 	
     def startLooting(self, plunderList, itemsToTake = 0, timer = 0, autoShow = False):
         base.localAvatar.guiMgr.inventoryUIManager.testPlunder()
-        #print '1'
-        #self.itemsToTake = itemsToTake
-        #localAvatar.setPlundering(self.getDoId())
-        #self.setupPlunderList(self) #DEBUG
-        #print '2 %s' % (plunderList,)
-        #self.setupPlunderList(self, plunderList, itemsToTake = itemsToTake, timer = timer, autoShow = autoShow)
-        #print '3'
-        #self.notify.info("kek2 %s !!" % (plunderList))
-        #print '4'
     
     def setupPlunderList(self, plunderList, itemsToTake = 0, timer = 0, autoShow = False):
         plunderArray = [(UberDogGlobals.InventoryType.ItemTypeMoney, 32)]
