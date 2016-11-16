@@ -5,6 +5,9 @@ from pirates.piratesgui import GuiPanel, PiratesGuiGlobals
 from pirates.piratesbase import PiratesGlobals
 from pirates.piratesbase import PLocalizer
 from otp.otpbase import OTPLocalizer
+from pirates.piratesgui import GuiPanel, PiratesGuiGlobals
+from pirates.piratesbase import PiratesGlobals
+from pirates.piratesbase import PLocalizer
 from pirates.inventory.InventoryUIGlobals import *
 from pirates.inventory.InventoryGlobals import Locations
 from pirates.uberdog.UberDogGlobals import InventoryType
@@ -22,14 +25,12 @@ class InventoryUIContainer(DirectFrame, InventoryRequestBase.InventoryRequestBas
     notify = directNotify.newCategory('InventoryUIContainer')
 
     def __init__(self, manager, sizeX = 1.0, sizeZ = 1.0, countX = None, countZ = None, cellInfo = None):
-        #if not manager.hasContainerBeenAdded(self):
         self.slotCount = 0
         optiondefs = (('state', DGG.NORMAL, self.setState),)
         self.defineoptions({ }, optiondefs)
         DirectFrame.__init__(self, parent = NodePath())
         InventoryRequestBase.InventoryRequestBase.__init__(self)
         self.manager = manager
-        self.manager.addContainer(self)
         self.sizeX = sizeX
         self.sizeZ = sizeZ
         self.cellSizeX = sizeX

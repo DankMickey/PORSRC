@@ -7,15 +7,21 @@ from pirates.distributed import DistributedInteractive
 from pirates.piratesbase import PLocalizer
 from pirates.interact import InteractiveBase
 from pirates.inventory.Lootable import Lootable
+from pirates.inventory.InventoryUIPlunderGridContainer import InventoryUIPlunderGridContainer
 from pirates.piratesgui import PiratesGuiGlobals
 from pirates.piratesbase import PiratesGlobals
 from pirates.piratesgui import GuiButton
 from pirates.effects.LootSparks import LootSparks
 from pirates.audio import SoundGlobals
+from pirates.inventory import InventoryUIContainer
+from pirates.inventory import ItemGlobals
+from pirates.inventory.InventoryUIGlobals import *
+from pirates.uberdog.UberDogGlobals import *
+from pirates.battle import WeaponGlobals
 from pirates.audio.SoundGlobals import loadSfx
 containerCache = { }
 
-class DistributedLootContainer(DistributedInteractive.DistributedInteractive, Lootable):
+class DistributedLootContainer(DistributedInteractive.DistributedInteractive, Lootable, InventoryUIPlunderGridContainer):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedLootContainer')
     ratingTable = {
         PiratesGlobals.ITEM_SAC: 1,
@@ -28,6 +34,7 @@ class DistributedLootContainer(DistributedInteractive.DistributedInteractive, Lo
         NodePath.__init__(self, 'DistributedLootContainer')
         DistributedInteractive.DistributedInteractive.__init__(self, cr)
         Lootable.__init__(self)
+        InventoryUIPlunderGridContainer.__init__(self, cr)
         self.showLerp = None
         self.appearSound = None
         self.openSound = None
@@ -220,7 +227,8 @@ class DistributedLootContainer(DistributedInteractive.DistributedInteractive, Lo
         if self.openSound:
             self.openSound.play()
 
-        Lootable.startLooting(self, plunderList, itemsToTake, timer = timer, autoShow = autoShow, customName = customName)
+        Lootable.startLooting(self, plunderList, itemsToTake = itemsToTake, timer = timer, autoShow = autoShow)
+        self.notify.info("kek1 %s !!" % (plunderList))
 
 
     def stopLooting(self):

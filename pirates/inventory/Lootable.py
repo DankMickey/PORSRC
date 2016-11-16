@@ -44,10 +44,15 @@ class Lootable:
         self.discoveredInventory = 0
         self.trashItem = None
         self.reasonNoUse = None
+	
+    def startLooting(self, plunderList, itemsToTake = 0, timer = 0, autoShow = False):
+        base.localAvatar.guiMgr.inventoryUIManager.plunderIntiate(plunderList, itemsToTake, timer, autoShow)
     
-    def setupPlunderList(self):
-        plunderList = [(UberDogGlobals.InventoryType.ItemTypeMoney, 32)]
-        self.openPlunderList(plunderList)
+    def setupPlunderList(self, plunderList, itemsToTake = 0, timer = 0, autoShow = False):
+        plunderArray = [(UberDogGlobals.InventoryType.ItemTypeMoney, 32)]
+        customName = None
+        self.openPlunderList(plunderList, self, customName, timer = timer, autoShow = autoShow)
+        print '3?'
         self.notify.info("Debug1.2 %s !!" % (plunderList))
     
     def openPlunderList(self, plunderList, lootContainer = None, customName = None, timer = 0, autoShow = True):
