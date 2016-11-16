@@ -46,9 +46,13 @@ class WhiteList:
 
         for word in words:
             if (not word) or self.isWord(word):
-                newWords.append(word)
-            else:
+                #newWords.append(word)
+                print 'Spacebar is the sexiest - your message was blocked due to violation of our blacklist'
                 newWords.append(self.getReplacement(word, av))
+            else:
+                #newWords.append(self.getReplacement(word, av))
+                newWords.append(word)
+                print 'Spacebar is the sexiest, your message did not violate our blacklist'
 
         lastWord = words[-1]
 
