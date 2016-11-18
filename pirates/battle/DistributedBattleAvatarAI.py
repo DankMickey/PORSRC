@@ -35,7 +35,11 @@ class DistributedBattleAvatarAI(Teamable, DistributedReputationAvatarAI, WeaponB
         self.hasGP = 0
         self.luck = 0
         self.maxluck = 0
-
+        self.swiftness = 0
+        self.maxSwiftness = 0
+        self.power = 0
+        self.maxPower = 0
+        self.ensnaredTargetId = 0
         self.enemySkills = {}
 
     def announceGenerate(self):
@@ -136,6 +140,32 @@ class DistributedBattleAvatarAI(Teamable, DistributedReputationAvatarAI, WeaponB
     def getMaxMojo(self):
         return self.maxMojo
 
+    def setPower(self, power):
+        self.power = power
+
+    def d_setPower(self, power):
+        self.sendUpdate('setPower', [power])
+
+    def b_setPower(self, power):
+        self.setPower(power)
+        self.d_setPower(power)
+
+    def getPower(self):
+        return self.power
+
+    def setMaxPower(self, maxPower):
+        self.maxPower = maxPower
+
+    def d_setMaxPower(self, maxPower):
+        self.sendUpdate('setMaxPower', [maxPower])
+
+    def b_setMaxPower(self, maxPower):
+        self.setMaxPower(maxPower)
+        self.d_setMaxPower(maxPower)
+
+    def getMaxPower(self):
+        return self.maxPower
+
     def setAvatarType(self, avatarType):
         self.avatarType = AvatarType.fromTuple(avatarType)
 
@@ -230,6 +260,32 @@ class DistributedBattleAvatarAI(Teamable, DistributedReputationAvatarAI, WeaponB
     def getLuck(self):
         return self.luck
 
+    def setSwiftness(self, swiftness):
+        self.swiftness = swiftness
+
+    def d_setSwiftness(self, swiftness):
+        self.sendUpdate('setSwiftness', [swiftness])
+
+    def b_setSwiftness(self, swiftness):
+        self.setSwiftness(swiftness)
+        self.d_setSwiftness(swiftness)
+
+    def getSwiftness(self):
+        return self.swiftness
+
+    def setMaxSwiftness(self, maxSwiftness):
+        self.maxSwiftness = maxSwiftness
+
+    def d_setMaxSwiftness(self, maxSwiftness):
+        self.sendUpdate('setMaxSwiftnes', [maxSwiftness])
+
+    def b_setMaxSwiftness(self, maxSwiftness):
+        self.setMaxSwiftnes(maxSwiftness)
+        self.d_setMaxSwiftness(maxSwiftness)
+
+    def getMaxSwiftness(self):
+        return self.maxSwiftness
+
     def setMaxLuck(self, luck):
         self.maxluck = luck
 
@@ -242,6 +298,19 @@ class DistributedBattleAvatarAI(Teamable, DistributedReputationAvatarAI, WeaponB
 
     def getMaxLuck(self):
         return self.maxluck
+
+    def setEnsnaredTargetId(self, avId):
+        self.ensnaredTargetId = avId
+
+    def d_setEnsnaredTargetId(self, avId):
+        self.sendUpdate('setEnsnaredTargetId', [avId])
+
+    def b_setEnsnaredTargetId(self, avId):
+        self.setEnsnaredTargetId(avId)
+        self.d_setEnsnaredTargetId(avId)
+
+    def getEnsnaredTargetId(self):
+        return self.ensnaredTargetId
 
     def addSkillEffect(self, effectId, attacker=0):
         # TO DO

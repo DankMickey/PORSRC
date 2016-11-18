@@ -133,7 +133,6 @@ BOSS_NPC_LIST = {
         'DamageScale': 2.0,
         'HighlightColor': VBase3(1, 1, 1) },
     '1291327895.46jloehrle': {
-        'AvatarType': AvatarTypes.RageGhost,
         'HpScale': 50,
         'MpScale': 10,
         'Level': 50,
@@ -173,6 +172,7 @@ BOSS_NPC_LIST = {
         'DamageScale': 3.0,
         'HighlightColor': VBase3(1, 1, 1) },
     '1219352693.09mtucker': {
+        'AvatarType': AvatarTypes.Assassin,
         'HpScale': 10,
         'MpScale': 3,
         'GoldScale': 2,

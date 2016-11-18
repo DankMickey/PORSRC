@@ -99,7 +99,7 @@ class EnemySpawnNode(DirectObject.DirectObject):
 
     def getBossRandomFromAvatarType(self, avatar):
         bossRandomTypes = [
-            AvatarTypes.Clod,
+            #AvatarTypes.Clod,
             AvatarTypes.CorpseCutlass, 
             AvatarTypes.Sludge,
             AvatarTypes.Mire,
@@ -140,7 +140,7 @@ class EnemySpawnNode(DirectObject.DirectObject):
         return bossType
 
     def died(self):
-        taskMgr.doMethodLater(random.random() * 7, self.__checkCreatures, self.uniqueName('checkCreatures'))
+        taskMgr.doMethodLater(random.random() * 10, self.__checkCreatures, self.uniqueName('checkCreatures'))
 
     def __checkCreatures(self, task):
         deadNpcs = []
@@ -151,34 +151,34 @@ class EnemySpawnNode(DirectObject.DirectObject):
         for doId in deadNpcs:
             avType = self.npcs[doId].getRawAvatarType()
             if avType.boss:
+                self.notify.info("Random boss '%s' has died. " % avType.getName())
                 DistributedEnemySpawnerAI.removeRandomBoss(avType)
             del avType
             del self.npcs[doId]
 
         # Upkeep population
         numNpcs = len(self.npcs)
+        spawnedType = self.avType
         if numNpcs < self.desiredNumAvatars:
 
             bossType = self.getBossRandomFromAvatarType(self.avType)
             if bossType != None and config.GetBool('want-random-bosses', True):
                 if bossType.boss:
-                    bossDice = (random.randint(0, 200) >= 180) or config.GetBool('force-random-bosses', False)
+                    bossDice = (random.randint(0, 100) <= config.GetInt("random-boss-spawn-rate", 5)) or config.GetBool('force-random-bosses', True)
                     bossSpawned = DistributedEnemySpawnerAI.isRandomBossSpawned(bossType)
 
                     if bossSpawned:
                         self.notify.debug("'%s' already is spawned. Returned to regular enemy" % bossType)
 
                     if bossDice and not bossSpawned:
-                        oldType = self.avType
-                        self.avType = bossType
-                        DistributedEnemySpawnerAI.addRandomBoss(self.avType)
-                        if oldType != bossType:
-                            self.notify.info("Spawning random boss '%s' instead of '%s' at %s" % (bossType.getName(), oldType.getName(), self.spawner.gameArea.getName()))
-                        del oldType
+                        spawnedType = bossType
+                        DistributedEnemySpawnerAI.addRandomBoss(bossType)
+                        if self.avType != bossType:
+                            self.notify.info("Spawning random boss '%s' instead of '%s' at %s" % (bossType.getName(), self.avType.getName(), self.spawner.gameArea.getName()))
 
             uid = self.uniqueName('spawned-%s' % os.urandom(4).encode('hex'))
             npc = self.avClass.makeFromObjectKey(self.avClass, self, uid,
-                                                 self.avType, self.data)
+                                                 spawnedType, self.data)
             self.spawner.spawn(npc)
             self.npcs[npc.doId] = npc
 
@@ -280,7 +280,13 @@ class BossSpawnNode(DirectObject.DirectObject):
                 return
 
             avType = AvatarTypes.NPC_SPAWNABLES[self.spawnable][0]()
-            return avType.getBossType()        
+            return avType.getBossType()
+
+        if type == 'Ghost':
+            return AvatarTypes.RageGhost
+        elif type == 'DavyJones':
+            return AvatarTypes.DavyJones
+
         return None
 
 
@@ -320,7 +326,8 @@ class BossSpawnNode(DirectObject.DirectObject):
             uid = self.uniqueName('spawned-%s' % os.urandom(4).encode('hex'))
             npc = self.avClass.makeFromObjectKey(self.avClass, self, uid,
                                                  self.avType, self.data)
-            self.notify.info("Spawning Boss '%s' on %s" % (npc.getNameText(), self.spawner.gameArea.getName()))
+            npc.setUniqueId(self.objKey)
+            self.notify.debug("Spawning Boss '%s' on %s" % (npc.getNameText(), self.spawner.gameArea.getName()))
             self.spawner.spawn(npc, forceLevel = npc._getBossLevel())
             self.npcs[npc.doId] = npc
         if task:
