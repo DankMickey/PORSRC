@@ -66,10 +66,11 @@ class GetAvatarOperation(OperationFSM):
         return [self.getLevelFromAccumulator(accumulators, accumulator) for accumulator in self.getRequiredAccumulators()]
     
     def getPirateFields(self):
-        return ('setDNAString', 'setFounder', 'setHp', 'setMaxHp', 'setMojo', 'setMaxMojo', 'setInventoryId', 'setDefaultShard', 'setReturnLocation', 'setGuildId', 'setGuildName')
+        return ('setDNAString', 'setFounder', 'setHp', 'setMaxHp', 'setMojo', 'setMaxMojo', 'setInventoryId',
+            'setDefaultShard', 'setReturnLocation', 'setGuildId', 'setGuildName', 'setChatType')
 
     def getPirateDefaults(self):
-        return ('', False, 0, 0, 0, 0, 0, 0, '', 0, '')
+        return ('', False, 0, 0, 0, 0, 0, 0, '', 0, '', 0)
     
     def enterStart(self):
         self.air.dbInterface.queryObject(self.air.dbId, self.target, self.handleRetrieve)
@@ -81,9 +82,8 @@ class GetAvatarOperation(OperationFSM):
             self.demand('Error', 'Distributed Class was not a Pirate.')
             return
 
-        dna, founder, hp, maxHp, mojo, maxMojo, inventoryId, shardId, returnLocation, guildId, guildName = [fields.get(field, [self.getPirateDefaults()[i]])[0] for i, field in enumerate(self.getPirateFields())]
+        dna, founder, hp, maxHp, mojo, maxMojo, inventoryId, shardId, returnLocation, guildId, guildName, chat = [fields.get(field, [self.getPirateDefaults()[i]])[0] for i, field in enumerate(self.getPirateFields())]
         showGoTo = self.target in self.mgr.onlinePirates
-        chat = True
         siege = False
         profileIcon = 0
         avatar = [dna, guildId, guildName, founder, hp, maxHp, mojo, maxMojo, shardId, showGoTo, chat, returnLocation, siege, profileIcon]

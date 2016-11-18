@@ -8709,13 +8709,26 @@ PlayerNotChallengeWarning = '%s is already playing Pirate vs. Pirate!'
 PlayerSameCrewWarning = 'You should challenge people outside your crew since your crew will be on the same team!'
 PlayerNotGuildOfficerWarning = "You can't invite people to a guild unless you are an officer or veteran of the guild!"
 PlayerNotGuildRemoveWarning = "You can't remove people from a guild unless you are an officer of the guild!"
-PlayerOpenChat = 'Open Chat'
-PlayerSpeedChatPlus = 'SpeedChat Plus'
-PlayerSpeedChat = 'SpeedChat'
+PlayerChats = {
+    0: 'Whitelisted Chat',
+    1: 'Blacklisted Chat',
+    2: 'Open Chat'
+}
+PlayerUnknownChat = 'Whitelisted Chat'
+ChatTypeWarning = 'We have introduced the ability to choose your own chat filter. You are free to choose your preferred kind of offensive chat filtering.\n\nBe warned, though! Using a different chat filter other than the default Whitelist is highly discouraged. Please do not change these settings if you are under the age of 13!'
+ChatTypeLater = 'Later'
+ChatTypeNames = ['Whitelist', 'Blacklist', 'No filter at all']
+ChatTypeWarnings = [
+    '',
+    'Warning!\n\nYour chat mode will be set to Blacklist mode.\n\nThis means that all words will be processed through a blacklist, instead of a whitelist. You will encounter clever people who might find ways to interrupt your game experience by bypassing this protection.\n\nAre you sure you want to switch to this mode?',
+    "Warning!\n\nYour chat mode will be set to Unrestricted mode.\n\nThis means that you'll be receiving all communications raw, unprocessed.\n\nThere is NO PROTECTION against unbrotherly conduct.\n\nAre you sure you want to switch to this mode?"
+]
+ChatTypeUpdated = 'Your chat mode has been updated.'
 FriendInviterAvatarNotYet = 'Make Pirate Friends with the pirate named %s?\n\nThis friendship will only exist within Pirates of the Caribbean Online and is only between these two pirates.'
 FriendInviterAvatarEndFriendShip = 'Stop being Pirate Friends with the pirate named %s?\n\nThis will not break a Player Friendship, but these two pirates will no longer be friends.'
 MainMenuReturn = 'Return to Game'
 MainMenuOptions = 'Game Options'
+MainMenuChatSettings = 'Chat Settings'
 MainMenuLogout = 'Logout'
 MainMenuQuit = 'Exit Game'
 MainMenuLogoutConfirm = 'Are you sure you want to logout?'
@@ -8747,12 +8760,6 @@ InjuredGotoJail = 'Go to Jail'
 InjuredDefeated = 'You have been Defeated!'
 InjuredOrHelp = 'Wait for another Pirate to revive you or click this button to go to Jail.'
 InjuredHelped = '%s has been revived by %s'
-BodyChangeButton = 'Choose Shape'
-BodyShapeUpdate = 'Read Carefully!'
-BodyChangeText = "In order to improve animation we need to change the body shapes. Your pirate's body shape will soon be unsupported. We are sorry.\n\nYou may choose a new body shape by using this panel to do so at any time, however once you commit to a shape that choice will be final."
-BodyTypeCommit = 'Commit to new Shape'
-BodyTypeLater = 'Let me think about it'
-BodyTypeConfirm = 'Are you sure you want this new body shape? This choice is final.'
 tpMgr = TextPropertiesManager.getGlobalPtr()
 gold = TextProperties()
 gold.setTextColor(*PiratesGuiGlobals.TextFG1)

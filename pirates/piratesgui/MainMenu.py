@@ -15,6 +15,7 @@ from direct.gui.OnscreenImage import OnscreenImage
 from pirates.piratesgui import PDialog
 from pirates.piratesgui import MainMenuConfirm
 from pirates.piratesgui.GameOptions import GameOptions
+from pirates.piratesgui.ChatTypeChanger import ChatTypeChanger
 from pirates.audio import SoundGlobals
 from pirates.audio.SoundGlobals import loadSfx
 from otp.otpgui import OTPDialog
@@ -42,6 +43,9 @@ class MainMenu(DirectFrame):
         z -= 0.106
         self.optionsButton = GuiButton(parent = self.logo, relief = None, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text = PLocalizer.MainMenuOptions, image = (self.model.find('**/avatar_c_A_middle'), self.model.find('**/avatar_c_A_middle'), self.model.find('**/avatar_c_A_middle_over')), image_scale = 0.4, text_pos = (0, -0.0149), pos = (0, 0, z), command = self.handleOptions)
         self.buttons.append(self.optionsButton)
+        z -= 0.106
+        self.chatSettingsButton = GuiButton(parent = self.logo, relief = None, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text = PLocalizer.MainMenuChatSettings, image = (self.model.find('**/avatar_c_A_middle'), self.model.find('**/avatar_c_A_middle'), self.model.find('**/avatar_c_A_middle_over')), image_scale = 0.4, text_pos = (0, -0.0149), pos = (0, 0, z), command = self.handleChatSettngs)
+        self.buttons.append(self.chatSettingsButton)
         if config.GetBool('want-logout', False):
             z -= 0.106
             self.logoutButton = GuiButton(parent = self.logo, relief = None, text_scale = PiratesGuiGlobals.TextScaleExtraLarge, text_fg = PiratesGuiGlobals.TextFG2, text_shadow = PiratesGuiGlobals.TextShadow, text = PLocalizer.MainMenuLogout, image = (self.model.find('**/avatar_c_A_middle'), self.model.find('**/avatar_c_A_middle'), self.model.find('**/avatar_c_A_middle_over')), image_scale = 0.4, text_pos = (0, -0.0149), pos = (0, 0, z), command = self.handleLogout)
@@ -94,6 +98,10 @@ class MainMenu(DirectFrame):
         self.gameOptions = GameOptions('Game Options', x, y, width, height, base.options)
         self.gameOptions.show()
         base.options = self.gameOptions.options
+    
+    def handleChatSettngs(self):
+        self.gameOptions = ChatTypeChanger()
+        self.gameOptions.setPos(-0.4, 0, -0.7)
 
     def handleLogout(self):
         if self.popupDialog:
@@ -140,6 +148,7 @@ class MainMenu(DirectFrame):
     def hideMenu(self):
         self.menuSfx.play()
         self.hideMenuIval.start()
+        self.delete_dialogs()
 
     def hide(self):
         for button in self.buttons:

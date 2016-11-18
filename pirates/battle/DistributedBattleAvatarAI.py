@@ -32,7 +32,6 @@ class DistributedBattleAvatarAI(Teamable, DistributedReputationAvatarAI, WeaponB
         self.skillEffects = []
         self.isGhost = 0
         self.ghostColor = 0
-        self.hasGP = 0
         self.luck = 0
         self.maxluck = 0
         self.swiftness = 0
@@ -100,19 +99,6 @@ class DistributedBattleAvatarAI(Teamable, DistributedReputationAvatarAI, WeaponB
 
     def getGhostColor(self):
         return self.ghostColor
-
-    def setHasGhostPowers(self, hasGP):
-        self.hasGP = hasGP
-
-    def d_setHasGhostPowers(self, hasGP):
-        self.sendUpdate('setHasGhostPowers', [hasGP])
-
-    def b_setHasGhostPowers(self, hasGP):
-        self.setHasGhostPowers(hasGP)
-        self.d_setHasGhostPowers(self.hasGP)
-
-    def getHasGhostPowers(self):
-        return self.hasGP
 
     def setMojo(self, mojo):
         self.mojo = mojo

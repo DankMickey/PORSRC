@@ -7,7 +7,7 @@ import re
 from otp.ai.MagicWordGlobal import *
 from otp.otpbase import OTPGlobals
 from otp.chat.ChatGarbler import ChatGarbler
-from otp.chat import WhiteList, SequenceListData, WhiteListData
+from otp.chat import WhiteList, SequenceListData
 import traceback
 
 class OTPBase(ShowBase):
@@ -42,7 +42,6 @@ class OTPBase(ShowBase):
         
         if config.GetBool('want-whitelist', True):
             self.whiteList = WhiteList.WhiteList()
-            self.whiteList.setWords(WhiteListData.WHITELIST)
 
             if config.GetBool('want-sequence-list', True):
                 self.whiteList.setSequenceList(SequenceListData.SEQUENCES)

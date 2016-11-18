@@ -677,6 +677,23 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
 
     def getGuildName(self):
         return self.guildName
+    
+    def setChatType(self, chatType):
+        self.chatType = chatType
+
+    def d_setChatType(self, chatType):
+        self.sendUpdate('setChatType', [chatType])
+
+    def b_setChatType(self, chatType):
+        self.setChatType(chatType)
+        self.d_setChatType(chatType)
+
+    def getChatType(self):
+        return self.chatType
+    
+    def requestChatType(self, chatType):
+        if chatType in xrange(3):
+            self.b_setChatType(chatType)
 
     def setStatus(self, todo0):
         pass
@@ -691,9 +708,6 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         pass
 
     def requestInteraction(self, avId, interactType, instant):
-        pass
-
-    def submitErrorLog(self, errorString):
         pass
 
     def setCrewIconIndicator(self, iconId):
@@ -721,9 +735,6 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         pass
 
     def setAuraActivated(self, todo0):
-        pass
-
-    def requestKill(self, variable):
         pass
     
     def d_doRegeneration(self):

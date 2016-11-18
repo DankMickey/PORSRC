@@ -179,7 +179,6 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
             self.levelFootStep = None
             self.wobbleList = []
             self.fovIval = None
-            self.everBeenGhost = 0
             self.mistimedAttack = 0
             if config.GetBool('want-easy-combos', 0):
                 self.wantComboTiming = 0
@@ -337,11 +336,6 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
 
 
         DistributedPlayerPirate.playSkillMovie(self, skillId, ammoSkillId, skillResult, charge, targetId, areaIdList)
-
-
-    def sendRequestMAPClothes(self, clothes):
-        self.sendUpdate('requestMAPClothes', [
-            clothes])
 
     def doRegeneration(self):
         DistributedPlayerPirate.doRegeneration(self)
@@ -2052,60 +2046,6 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
 
 
         DistributedPlayerPirate.setCreatureTransformation(self, value, effectId, timeSince)
-
-
-    def setHasGhostPowers(self, hasPower):
-        if hasPower:
-            self.startGhostGM()
-        else:
-            self.stopGhostGM()
-
-
-    def startGhostGM(self):
-        self.accept('shift-1', self.requestGhost, [
-            1])
-        self.accept('shift-2', self.requestGhost, [
-            2])
-        self.accept('shift-3', self.requestGhost, [
-            3])
-        self.accept('shift-4', self.requestGhost, [
-            4])
-        self.accept('shift-7', self.requestGhost, [
-            7])
-        self.accept('shift-0', self.requestKill, [
-            0])
-        if not self.everBeenGhost:
-            base.talkAssistant.receiveGameMessage('Press Shift 1-4, 7 to switch modes')
-            base.talkAssistant.receiveGameMessage('Shift 1 - Ghost')
-            base.talkAssistant.receiveGameMessage('Shift 2 - Evil Ghost')
-            base.talkAssistant.receiveGameMessage('Shift 3 - Ghost Orb')
-            base.talkAssistant.receiveGameMessage('Shift 4 - Invisible Orb')
-            base.talkAssistant.receiveGameMessage('Shift 7 - Normal')
-            base.talkAssistant.receiveGameMessage('Shift 0 - Kill Pirate in Profile Panel(logged)')
-            self.everBeenGhost = 1
-
-
-
-    def stopGhostGM(self):
-        self.ignore('shift-1')
-        self.ignore('shift-2')
-        self.ignore('shift-3')
-        self.ignore('shift-4')
-        self.ignore('shift-7')
-        self.ignore('shift-0')
-
-
-    def requestKill(self, variable):
-        if localAvatar.guiMgr.profilePage and localAvatar.guiMgr.profilePage.profileId:
-            self.sendUpdate('requestKill', [
-                int(localAvatar.guiMgr.profilePage.profileId)])
-
-
-
-    def requestGhost(self, effectNumber):
-        self.sendUpdate('requestGhost', [
-            effectNumber])
-
 
     def setAvatarViewTarget(self, targetId = None):
         if localAvatar.guiMgr.profilePage and localAvatar.guiMgr.profilePage.profileId:

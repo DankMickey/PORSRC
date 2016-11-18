@@ -71,12 +71,16 @@ class DistributedTimeOfDayManagerAI(DistributedObjectAI, TimeOfDayManagerBase):
 
     def pickWeather(self):
         dice = random.randint(1, 100)
-        if config.GetBool('want-storm-weather', False) and dice <= 20:
-            return TODGlobals.WEATHER_STORM
-        elif dice <= 60:
-            if config.GetBool('want-snow-weather', False) and self.air.newManager.isHolidayRunning(17):
-                return TODGlobals.WEATHER_SNOW
-            return TODGlobals.WEATHER_RAIN
+        hasSnow = config.GetBool('want-snow-weather', False) and self.air.newManager.isHolidayRunning(17)
+        
+        if config.GetBool('want-storm-weather', False):
+            if dice <= 10:
+                return TODGlobals.WEATHER_STORM
+            elif dice <= 20:
+                return TODGlobals.WEATHER_SNOW if hasSnow else TODGlobals.WEATHER_RAIN
+        elif dice <= 10:
+            return TODGlobals.WEATHER_SNOW if hasSnow else TODGlobals.WEATHER_RAIN
+        
         return TODGlobals.WEATHER_CLEAR
 
     def __runWeather(self, task=None):

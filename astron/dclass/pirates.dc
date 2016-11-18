@@ -526,7 +526,6 @@ dclass DistributedBattleAvatar : DistributedReputationAvatar, WeaponBase {
   setGameState(string, int16) broadcast ram;
   setGhostColor(uint8) required broadcast ram;
   setIsGhost(uint8) required broadcast ram;
-  setHasGhostPowers(uint8) required broadcast ram;
   playMotionAnim(uint8, int16) broadcast ownsend airecv;
   setAirborneState(bool, int16) broadcast ownsend airecv;
   setGroundState(uint8, int16) broadcast ownsend airecv;
@@ -755,32 +754,20 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   leaveAreaSphere(string, string) clsend airecv;
   locationChange(string);
   requestInteraction(uint32, uint8, bool) clsend airecv;
-  sendCodeForRedemption(string, string, uint32) airecv clsend;
   setRedeemedCodes(string[] = []) db ram;
-
-  // SOME OF THE FIELDS BELOW ARE FROM ORIGINAL GAME
-  // ARE COMMENTED OUT FOR NOW (TO AVOID ISSUES):
-  // db AND/OR required
-  // using unknown struct
+  setChatType(uint8 = 0) required ownrecv db;
+  requestChatType(uint8) airecv ownsend;
 
   requestExit() clsend airecv;
   setParentingRules(string, string) broadcast ram;
-  cueRegenerate() broadcast;
-  submitErrorLog(string) airecv clsend;
-  requestBodyShapeTranslation(uint8) ownsend airecv;
   requestShipUpgrade(uint32, uint8, uint8) ownsend airecv;
   respondShipUpgrade(uint32, uint8) ownrecv;
   setInInvasion(bool) ownsend broadcast ram airecv;
   reportRevive(uint32) broadcast;
-  requestGhostGM(uint8) ownsend airecv;
-  requestGhost(uint8) ownsend airecv;
-  requestGhostColor(uint8) ownsend airecv;
-  requestKill(uint32) ownsend airecv;
   setAvatarViewTarget(uint32, string) ownsend airecv;
   acknowledgeViewTarget(uint32) ownrecv;
   requestClothes(blob) ownsend airecv;
   doRegeneration() broadcast;
-  // requestMAPClothes(MAPClothes []) ownsend airecv;
   setOnWelcomeWorld(bool) required ownrecv airecv db;
   setFounder(uint8) required broadcast;
   setAllegiance(uint8) required broadcast ownrecv db;
@@ -968,7 +955,7 @@ dclass PiratesFriendsManager : DistributedObjectGlobal {
   goingOffline(uint32);
 
   getAvatarDetails(uint32) clsend;
-  receiveAvatarInfo(blob, uint32, string, uint8, int16, uint16, uint16, uint16, uint32, bool, bool, string, uint8, uint8);
+  receiveAvatarInfo(blob, uint32, string, uint8, int16, uint16, uint16, uint16, uint32, bool, uint8, string, uint8, uint8);
   receiveAvatarSkillLevels(uint8, uint8, uint8, uint8, uint8, uint8, uint8, uint8, uint8, uint8, uint8);
   receiveAvatarShipInfo(bool, bool, bool);
 
