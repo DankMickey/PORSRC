@@ -164,7 +164,7 @@ class EnemySpawnNode(DirectObject.DirectObject):
             bossType = self.getBossRandomFromAvatarType(self.avType)
             if bossType != None and config.GetBool('want-random-bosses', True):
                 if bossType.boss:
-                    bossDice = (random.randint(0, 100) <= config.GetInt("random-boss-spawn-rate", 5)) or config.GetBool('force-random-bosses', True)
+                    bossDice = (random.randint(0, 100) <= config.GetInt("random-boss-spawn-rate", 5)) or config.GetBool('force-random-bosses', False)
                     bossSpawned = DistributedEnemySpawnerAI.isRandomBossSpawned(bossType)
 
                     if bossSpawned:
