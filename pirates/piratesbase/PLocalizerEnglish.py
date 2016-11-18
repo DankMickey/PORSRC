@@ -8712,13 +8712,23 @@ PlayerNotGuildRemoveWarning = "You can't remove people from a guild unless you a
 PlayerChats = {
     0: 'Whitelisted Chat',
     1: 'Blacklisted Chat',
-    2: 'Unrestricted Chat'
+    2: 'Open Chat'
 }
-PlayerUnknownChat = 'Whitelisted Chat' 
+PlayerUnknownChat = 'Whitelisted Chat'
+ChatTypeWarning = 'We have introduced the ability to choose your own chat filter. You are free to choose your preferred kind of offensive chat filtering.\n\nBe warned, though! Using a different chat filter other than the default Whitelist is highly discouraged. Please do not change these settings if you are under the age of 13!'
+ChatTypeLater = 'Later'
+ChatTypeNames = ['Whitelist', 'Blacklist', 'No filter at all']
+ChatTypeWarnings = [
+    '',
+    'Warning!\n\nYour chat mode will be set to Blacklist mode.\n\nThis means that all words will be processed through a blacklist, instead of a whitelist. You will encounter clever people who might find ways to interrupt your game experience by bypassing this protection.\n\nAre you sure you want to switch to this mode?',
+    "Warning!\n\nYour chat mode will be set to Unrestricted mode.\n\nThis means that you'll be receiving all communications raw, unprocessed.\n\nThere is NO PROTECTION against unbrotherly conduct.\n\nAre you sure you want to switch to this mode?"
+]
+ChatTypeUpdated = 'Your chat mode has been updated.'
 FriendInviterAvatarNotYet = 'Make Pirate Friends with the pirate named %s?\n\nThis friendship will only exist within Pirates of the Caribbean Online and is only between these two pirates.'
 FriendInviterAvatarEndFriendShip = 'Stop being Pirate Friends with the pirate named %s?\n\nThis will not break a Player Friendship, but these two pirates will no longer be friends.'
 MainMenuReturn = 'Return to Game'
 MainMenuOptions = 'Game Options'
+MainMenuChatSettings = 'Chat Settings'
 MainMenuLogout = 'Logout'
 MainMenuQuit = 'Exit Game'
 MainMenuLogoutConfirm = 'Are you sure you want to logout?'
