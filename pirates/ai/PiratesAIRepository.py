@@ -42,14 +42,14 @@ class PiratesAIRepository(PiratesInternalRepository):
         self.chatAgent = ChatAgentAI(self)
         self.chatAgent.generateWithRequired(2)
 
+        self.todManager = DistributedTimeOfDayManagerAI(self)
+        self.todManager.generateWithRequired(2)
+
         self.newsManager = NewsManagerAI(self)
         self.newsManager.generateWithRequired(2)
         
         self.friendManager = FriendManagerAI(self)
         self.friendManager.generateWithRequired(2)
-
-        self.todManager = DistributedTimeOfDayManagerAI(self)
-        self.todManager.generateWithRequired(2)
 
         self.tpMgr = DistributedTeleportMgrAI(self)
         self.tpMgr.generateWithRequired(2)

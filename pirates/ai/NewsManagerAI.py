@@ -37,8 +37,7 @@ class NewsManagerAI(DistributedObjectAI):
             self.autoMessages = taskMgr.doMethodLater(autoCycle, self.__runAutoMessages, 'autoMessages')
 
         if self.wantHolidays and config.GetBool('want-random-schedules', False):
-            self.__runRandoms()
-            self.runRandoms = taskMgr.doMethodLater(15, self.__runRandoms, 'randomSchedules')
+            self.runRandoms = taskMgr.doMethodLater(60, self.__runRandoms, 'randomSchedules')
 
 
     def delete(self):
@@ -77,18 +76,6 @@ class NewsManagerAI(DistributedObjectAI):
 
     def __checkHolidays(self, task=None):
         holidays = HolidayGlobals.getAllHolidayIds()
-        for id in holidays:
-            holiday = HolidayGlobals.getHolidayDates(id)
-            if not hasattr(holiday, 'getCurrentDate'):
-                continue
-
-            if len(holiday.startDates) <= 0:
-                continue
-
-            date = holiday.getCurrentDate()
-            if False: #TODO date check
-                if not self.isHolidayRunning(id):
-                    self.startHoliday(id, time=holiday.getEndTime(0))
         return Task.again
 
     def __runRandoms(self, task=None):
@@ -97,7 +84,7 @@ class NewsManagerAI(DistributedObjectAI):
 
         for randomized in HolidayGlobals.RandomizedSchedules:
             dice = randint(1, 100)
-            if dice < 50:
+            if dice < config.GetInt('random-schedule-dice', 30) and not config.GetBool('force-random-schedules', False):
                 continue
 
             self.notify.debug("Attempting to run %s" % randomized)
@@ -129,8 +116,17 @@ class NewsManagerAI(DistributedObjectAI):
                 if times >= ranType['numPerDay']:
                     canRun = False
 
+            if holidayId in self.randomsMonth:
+                times = 0
+                minTimes, maxTimes = ranType['daysPerMonth']
+                if times >= maxTimes:
+                    canRun = False
+
             if self.isHolidayRunning(holidayId):
                 canRun = False
+
+            timeWindow = ranType['timeWindows']
+            #TODO
 
             start, end = ranType['duration']
             duration = randint((max(start, 1) * 60), (max(end, 2) * 60))
@@ -146,11 +142,8 @@ class NewsManagerAI(DistributedObjectAI):
                 else:
                     self.randomsMonth[holidayId] = 1
 
-                self.notify.debug("Starting %s" % randomized)
+                self.notify.info("Starting '%s' for a duration of %s" % (randomized, duration))
                 self.startHoliday(holidayId, duration)
-
-    def holidayNotify(self):
-        self.sendUpdate('holidayNotify', [])
 
     def isHolidayRunning(self, holidayId):
         return holidayId in self.holidayIdList
@@ -219,13 +212,12 @@ class NewsManagerAI(DistributedObjectAI):
         self.d_setHolidayIdList(self.buildHolidayList())
         self.processHolidayStart(holidayId)
 
-        if holidayId == 17:
+        if holidayId == HolidayGlobals.WINTERFESTIVAL:
             self.playHolidayMusic()
 
         messenger.send('holidayListChanged')
 
     def processHolidayStart(self, holidayId):
-        
         if holidayId in HolidayGlobals.INVASION_HOLIDAYS:
             if self.air.todManager:
                 self.air.todManager.setMoonJolly(True)
@@ -241,13 +233,12 @@ class NewsManagerAI(DistributedObjectAI):
         self.d_setHolidayIdList(self.buildHolidayList())
         self.processHolidayEnd(holidayId)
 
-        if holidayId == 17:
+        if holidayId == HolidayGlobals.WINTERFESTIVAL:
             self.playHolidayMusic()
 
         messenger.send('holidayListChanged')
 
     def processHolidayEnd(self, holidayId):
-
         if holidayId in HolidayGlobals.INVASION_HOLIDAYS:
             if self.air.todManager:
                 self.air.todManager.setMoonJolly(False)

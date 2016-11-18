@@ -139,6 +139,7 @@ holidayNameDict = {
     MESSAGEHOLIDAY: getHolidayConfigNameDict('MessageHoliday', MessageHolidayConfigs),
     APRILFOOLS: 'AprilFools',
     QUEENANNES: 'QueenAnnesRevenge',
+    FLYINGDUTCHMAN: 'FlyingDutchman',
     DOUBLELOOTHOLIDAY: 'DoubleLoot' }
 holidayClassNameDict = {
     FLEETHOLIDAY: 'FleetHoliday',
@@ -196,6 +197,7 @@ def getHolidayIdFromName(holidayName):
 def getHolidayClassName(holidayClass):
     return holidayClassNameDict.get(holidayClass, holidayNameDict.get(holidayClass))
 
+"""
 holidaySchedules = {
     DOUBLEGOLDHOLIDAY: HolidayDates(HolidayDates.TYPE_CUSTOM, [
         (2008, Month.SEPTEMBER, 13, 12, 0, 0),
@@ -438,10 +440,6 @@ holidaySchedules = {
     KRAKENHOLIDAY: getHolidayConfigDatesDict(KrakenHolidayConfigs),
     CATALOGHOLIDAY: getHolidayConfigDatesDict(CatalogHolidayConfigs),
     MESSAGEHOLIDAY: getHolidayConfigDatesDict(MessageHolidayConfigs) }
-holidaysEnglish = { }
-holidaysJapanese = { }
-holidaysGerman = { }
-holidaysFrench = { }
 
 def getHolidayDates(holidayId):
     holidayClass = getHolidayClass(holidayId)
@@ -451,6 +449,7 @@ def getHolidayDates(holidayId):
         holidayDates = holidayDates.get(holidayConfig)
 
     return holidayDates
+"""
 
 
 class RandomTimeWindows:
@@ -504,7 +503,7 @@ RandomizedSchedules = {
         'duration': (1, 45) },
     'TreasureFleets': {
         'configs': [
-            ('want-random-treasurefleets', 1)],
+            ('want-random-treasurefleets', 0)],
         'holidayIds': [
             getHolidayId(FLEETHOLIDAY, FHConfigs.TF_EITC_RAND_KH_P_E_SW_S_W),
             getHolidayId(FLEETHOLIDAY, FHConfigs.TF_NAVY_RAND_KH_P_E_SW_S_W)],

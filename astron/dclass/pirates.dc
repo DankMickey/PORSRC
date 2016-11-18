@@ -531,7 +531,6 @@ dclass DistributedBattleAvatar : DistributedReputationAvatar, WeaponBase {
   setAirborneState(bool, int16) broadcast ownsend airecv;
   setGroundState(uint8, int16) broadcast ownsend airecv;
   setCurrentTarget(uint32) broadcast ram;
-
   setCurrentWeapon(uint16, uint8) required broadcast ram;
   setCurrentAmmo(SkillId) required broadcast ram;
   setCurrentCharm(uint16) required broadcast ram;
@@ -544,11 +543,11 @@ dclass DistributedBattleAvatar : DistributedReputationAvatar, WeaponBase {
   setMaxLuck(int16) required broadcast ram ownrecv;
   setMojo(int16) required broadcast ram ownrecv db;
   setMaxMojo(int16) required broadcast ram ownrecv db;
-  /*
   setSwiftness(int16) required broadcast ram ownrecv db;
   setMaxSwiftness(int16) required broadcast ram ownrecv db;
   setPower(int16) required broadcast ram ownrecv;
   setMaxPower(int16) required broadcast ram ownrecv;
+  /*
   setLuckMod(int16) required broadcast ram ownrecv;
   setMojoMod(int16) required broadcast ram ownrecv;
   setSwiftnessMod(int16/10) required broadcast ram ownrecv;
@@ -557,11 +556,8 @@ dclass DistributedBattleAvatar : DistributedReputationAvatar, WeaponBase {
   setPowerMod(int16) required broadcast ram ownrecv;
   setCombo(uint8, uint8, int16, uint32) required broadcast ram;
   */
-  
   setSkillEffects(Buff []) required broadcast ram ownrecv;
-  
-  // setEnsnaredTargetId(uint32) required broadcast ram;
-
+  setEnsnaredTargetId(uint32) required broadcast ram;
   interrupted(uint8) airecv clsend;
   setLevel(uint16) required broadcast ram ownrecv;
   battleRandomSync();
@@ -856,15 +852,6 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   sendSalvageMessage(uint32, uint16) ownrecv;
   sendFreeInventoryMessage(uint8) ownrecv;
   sendFailedLootTradeMessage(bool) ownrecv;
-  setLuck(int16) required broadcast;
-  setMaxLuck(int16) required broadcast db;
-  setMojo(int16) required broadcast ownrecv db;
-  setMaxMojo(int16) required broadcast ownrecv db;
-  // setSwiftness(int16) required broadcast;
-  // setMaxSwiftness(int16) required broadcast db;
-  // setPower(int16) required broadcast;
-  // setMaxPower(int16) required broadcast db;
-  // setQuestRewardFlags(uint32) required ownrecv db;
   setTeleportFlags(uint32) airecv ownsend ram;
   teleportQuery(uint32, uint32, uint32, uint32, uint32) clsend ownrecv;
   teleportResponse(uint32, int8, uint32, uint32, uint32) ownrecv clsend;
@@ -922,7 +909,6 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
 };
 
 dclass NewsManager : DistributedObject {
-  holidayNotify() broadcast;
   setHolidayIdList(NewsItem []) broadcast ram;
   displayMessage(uint16) broadcast;
   displayChatMessage(uint16) broadcast;

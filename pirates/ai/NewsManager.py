@@ -276,9 +276,6 @@ class NewsManager(DistributedObject.DistributedObject):
     def getHolidayIdList(self):
         return self.holidayIdList
 
-    def holidayNotify(self):
-        pass
-
     def inTutorial(self, level = PiratesGlobals.TUT_CHAPTER3_STARTED):
         if base.localAvatar.getTutorialState() <= level:
             return True
