@@ -182,7 +182,7 @@ class DistributedShopKeeperAI(DistributedObjectAI):
 
         requiredGold = requiredGold * amount
 
-        if self.air.newsManager.isHolidayRunning(HolidayGlobals.HALFOFFCUSTOMIZATION):
+        if self.air.newsManager.isHolidayRunning(HolidayGlobals.HALFOFFCUSTOMIZATION) and requiredGold > 0:
             requiredGold = requiredGold / 2
 
         if requiredGold > av.getGoldInPocket():
