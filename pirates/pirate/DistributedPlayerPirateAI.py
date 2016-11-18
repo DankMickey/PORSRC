@@ -736,9 +736,6 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
 
     def setAuraActivated(self, todo0):
         pass
-
-    def requestKill(self, variable):
-        pass
     
     def d_doRegeneration(self):
         self.sendUpdate('doRegeneration', [])

@@ -30,7 +30,6 @@ from pirates.effects.RingOfFog import RingOfFog
 from pirates.audio import SoundGlobals
 from pirates.world.LocationConstants import LocationIds
 from pirates.audio.SoundGlobals import loadSfx
-from pirates.inventory import ItemGlobals
 CannonDistance = 200
 CannonballHitEvent = 'tutorialCannonballHit'
 
@@ -469,7 +468,6 @@ class DistributedPiratesTutorial(DistributedObject.DistributedObject, FSM.FSM):
 
 
     def handleMakeAPirate(self, clothing = []):
-        self.notify.debug('done make-a-pirate')
         done = self.map.getDoneStatus()
         if done == 'cancel':
             localAvatar.b_setLocation(0, 0)
@@ -484,36 +482,6 @@ class DistributedPiratesTutorial(DistributedObject.DistributedObject, FSM.FSM):
             localAvatar.generateHuman(dna.gender, base.cr.humanHigh)
             localAvatar.motionFSM.off()
             localAvatar.motionFSM.on()
-            if clothing:
-                clothes = []
-                for clothId in clothing:
-                    clothType = None
-                    if clothId == 'HAT':
-                        clothType = ItemGlobals.HAT
-                    elif clothId == 'SHIRT':
-                        clothType = ItemGlobals.SHIRT
-                    elif clothId == 'VEST':
-                        clothType = ItemGlobals.VEST
-                    elif clothId == 'COAT':
-                        clothType = ItemGlobals.COAT
-                    elif clothId == 'PANT':
-                        clothType = ItemGlobals.PANT
-                    elif clothId == 'BELT':
-                        clothType = ItemGlobals.BELT
-                    elif clothId == 'SHOE':
-                        clothType = ItemGlobals.SHOE
-
-                    if clothType and clothing[clothId][0]:
-                        clothes.append([
-                            clothType,
-                            clothing[clothId][0],
-                            clothing[clothId][2]])
-                        continue
-
-                if clothes:
-                    localAvatar.sendRequestMAPClothes(clothes)
-
-
             self.acceptOnce('avatarPopulated', self.avatarPopulated)
             self.map.exit()
             self.map.unload()

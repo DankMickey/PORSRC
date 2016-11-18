@@ -17,7 +17,6 @@ class DistributedNPCTownfolkAI(DistributedBattleNPCAI, DistributedShopKeeperAI):
         self.helpId = 0
         self.isGhost = 0
         self.ghostColor = 0
-        self.hasGhostPowers = 0
         self.isZombie = 0
 
     def getDNAId(self):
@@ -48,12 +47,6 @@ class DistributedNPCTownfolkAI(DistributedBattleNPCAI, DistributedShopKeeperAI):
 
     def getGhostColor(self):
         return self.ghostColor
-
-    def setHasGhostPowers(self, hasGhostPowers):
-        self.hasGhostPowers = hasGhostPowers
-
-    def getHasGhostPowers(self):
-        return self.hasGhostPowers
 
     def setZombie(self, zombie):
         self.isZombie = zombie
