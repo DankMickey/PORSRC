@@ -103,7 +103,6 @@ from pirates.piratesgui import ContextualTutorialPanel
 from pirates.audio import SoundGlobals
 from pirates.audio.SoundGlobals import loadSfx
 from direct.showutil import BuildGeometry
-from pirates.pirate import BodyDefs
 from direct.distributed.ClockDelta import globalClockDelta
 from pirates.piratesgui import MessageGlobals
 from pirates.speedchat.PSCDecoders import *
@@ -174,9 +173,6 @@ class GuiManager(FSM.FSM):
         self.pvpInvitee = None
         self.ignoreConfirm = None
         self.contextTutPanel = None
-        self.bodySelectButton = None
-        self.bodyChanger = None
-        self.acceptOnce('localPirate-created', self.handleBodySelect)
         self.chatWarningBox = None
         self.accept('system message aknowledge', self.systemWarning)
         self.journalButton = None
@@ -648,9 +644,6 @@ class GuiManager(FSM.FSM):
         if self.minimap:
             del self.minimap
 
-        if self.bodySelectButton:
-            self.bodySelectButton.destroy()
-
         self.killInstructionMessageQueue()
         if self.instructionMessageText:
             self.instructionMessageText.destroy()
@@ -934,51 +927,6 @@ class GuiManager(FSM.FSM):
         self.instructionMessageBoxText.hide()
         if task:
             return task.done
-
-
-
-    def handleBodySelect(self):
-        if not config.GetBool('want-body-prompt', 0):
-            return None
-
-        gender = localAvatar.getStyle().gender
-        oldShape = localAvatar.getStyle().getBodyShape()
-        if not config.GetBool('want-body-prompt-all', 0):
-            if gender == 'f':
-                if oldShape in BodyDefs.BodyChoicesFemale:
-                    return None
-
-            elif gender == 'm':
-                if oldShape in BodyDefs.BodyChoicesMale:
-                    return None
-
-
-
-        if self.bodySelectButton:
-            return None
-
-        topGui = loader.loadModel('models/gui/toplevel_gui')
-        gui2 = loader.loadModel('models/textureCards/basic_unlimited')
-        norm_geom = gui2.find('**/but_nav')
-        over_geom = gui2.find('**/but_nav_over')
-        down_geom = gui2.find('**/but_nav_down')
-        dsbl_geom = gui2.find('**/but_nav_disabled')
-        self.bodySelectGui = DirectFrame(parent = base.a2dTopRight, relief = None, pos = (-0.2, 0, -0.45))
-        self.bodySelectButton = DirectButton(parent = self.bodySelectGui, relief = None, geom = (norm_geom, down_geom, over_geom), pos = (0.0, 0, -0.08), scale = 0.65, command = self.askForBodySelect, text = PLocalizer.BodyChangeButton, text_fg = PiratesGuiGlobals.TextFG2, text_font = PiratesGlobals.getPirateBoldOutlineFont(), text_scale = 0.07, text_wordwrap = 9, text_pos = (0, -0.02))
-
-
-    def askForBodySelect(self):
-        if localAvatar.getGameState() not in ('LandRoam', 'Battle'):
-            return None
-
-        from pirates.makeapirate import BodyShapeChanger
-        if not self.bodyChanger:
-            self.bodyChanger = BodyShapeChanger.BodyShapeChanger()
-
-        if self.bodyChanger:
-            self.bodyChanger.show()
-
-
 
     def showInjuredGui(self):
         self.chestTray.hide()

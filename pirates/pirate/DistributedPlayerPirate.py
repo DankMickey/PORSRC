@@ -350,6 +350,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             self.crazySkinColorIval = None
             self.transformSeqEffect = None
             self.injuredFrame = None
+            self.chatType = 0
             self.isGhost = 0
             self.bloodFireTime = 0.0
             self.auraActivated = 0
@@ -496,10 +497,6 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         self._showBeaconFC.pushCurrentState()
         self.useStandardInteract()
         self.setPlayerType(NametagGroup.CCNormal)
-
-    def sendAILog(self, errorString):
-        self.sendUpdate('submitErrorLog', [
-            errorString])
 
 
     def useStandardInteract(self):
@@ -1473,10 +1470,23 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
 
     def getGuildId(self):
         return self.guildId
-
-
+    
+    
     def setGuildId(self, guildId):
         self.guildId = guildId
+
+
+    def setChatType(self, chatType):
+        self.chatType = chatType
+        
+        if self == base.localAvatar:
+            base.whiteList.setChatType(chatType)
+
+    def getChatType(self):
+        return self.chatType
+    
+    def d_requestChatType(self, chatType):
+        self.sendUpdate('requestChatType', [chatType])
 
 
     def getCrewMemberId(self):

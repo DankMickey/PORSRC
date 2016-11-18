@@ -4,6 +4,7 @@ from pirates.world.SectionAreaBuilder import SectionAreaBuilder
 from pirates.leveleditor import EditorGlobals
 
 class ModularAreaBuilder(SectionAreaBuilder):
+    notify = directNotify.newCategory('ModularAreaBuilder')
 
     def __init__(self, master):
         SectionAreaBuilder.__init__(self, master)
@@ -105,8 +106,7 @@ class ModularAreaBuilder(SectionAreaBuilder):
         if parent and parent in self.areaLights:
             obj.setAttrib(self.areaLights[parent])
         elif logError:
-            errorMessage = 'Chest missing parent visZone %s location %s position %s' % (visZone, localAvatar.getLocation(), localAvatar.getPos())
-            localAvatar.sendAILog(errorMessage)
+            self.notify.warning('Chest missing parent visZone %s location %s position %s' % (visZone, localAvatar.getLocation(), localAvatar.getPos()))
         elif __dev__:
             set_trace()
 

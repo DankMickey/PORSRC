@@ -1,11 +1,22 @@
 from bisect import bisect_left
+import WhiteListData, BlackListData
 import re
 
 class WhiteList:
 
-    def __init__(self, words=[], sequenceList=[]):
-        self.setWords(words)
+    def __init__(self, sequenceList=[]):
+        self.setChatType(0)
         self.setSequenceList(sequenceList)
+
+    def setChatType(self, chatType):
+        if chatType == 0:
+            self.setWords(WhiteListData.WHITELIST)
+        elif chatType == 1:
+            self.setWords(BlackListData.BLACKLIST)
+        else:
+            self.setWords([])
+        
+        self.chatType = chatType
 
     def setWords(self, words):
         self.words = words
@@ -26,8 +37,12 @@ class WhiteList:
     def isPrefix(self, text):
         text = self.cleanText(text)
         i = bisect_left(self.words, text)
-
-        return i != self.numWords and self.words[i].startswith(text)
+        word = self.words[i]
+        
+        if self.chatType == 0:
+            return word.startswith(text)
+        elif self.chatType == 1:
+            return word != text
 
     def getReplacement(self, text, av=None):
         if not av:
@@ -45,14 +60,15 @@ class WhiteList:
         newWords = []
 
         for word in words:
-            if (not word) or self.isWord(word):
-                #newWords.append(word)
-                print 'Spacebar is the sexiest - your message was blocked due to violation of our blacklist'
+            if ((not word) or self.isWord(word)):
+                replace = self.chatType == 1
+            else:
+                replace = self.chatType == 0
+            
+            if replace:
                 newWords.append(self.getReplacement(word, av))
             else:
-                #newWords.append(self.getReplacement(word, av))
                 newWords.append(word)
-                print 'Spacebar is the sexiest, your message did not violate our blacklist'
 
         lastWord = words[-1]
 

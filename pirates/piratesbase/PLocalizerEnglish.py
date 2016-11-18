@@ -8709,9 +8709,12 @@ PlayerNotChallengeWarning = '%s is already playing Pirate vs. Pirate!'
 PlayerSameCrewWarning = 'You should challenge people outside your crew since your crew will be on the same team!'
 PlayerNotGuildOfficerWarning = "You can't invite people to a guild unless you are an officer or veteran of the guild!"
 PlayerNotGuildRemoveWarning = "You can't remove people from a guild unless you are an officer of the guild!"
-PlayerOpenChat = 'Open Chat'
-PlayerSpeedChatPlus = 'SpeedChat Plus'
-PlayerSpeedChat = 'SpeedChat'
+PlayerChats = {
+    0: 'Whitelisted Chat',
+    1: 'Blacklisted Chat',
+    2: 'Unrestricted Chat'
+}
+PlayerUnknownChat = 'Whitelisted Chat' 
 FriendInviterAvatarNotYet = 'Make Pirate Friends with the pirate named %s?\n\nThis friendship will only exist within Pirates of the Caribbean Online and is only between these two pirates.'
 FriendInviterAvatarEndFriendShip = 'Stop being Pirate Friends with the pirate named %s?\n\nThis will not break a Player Friendship, but these two pirates will no longer be friends.'
 MainMenuReturn = 'Return to Game'
@@ -8747,12 +8750,6 @@ InjuredGotoJail = 'Go to Jail'
 InjuredDefeated = 'You have been Defeated!'
 InjuredOrHelp = 'Wait for another Pirate to revive you or click this button to go to Jail.'
 InjuredHelped = '%s has been revived by %s'
-BodyChangeButton = 'Choose Shape'
-BodyShapeUpdate = 'Read Carefully!'
-BodyChangeText = "In order to improve animation we need to change the body shapes. Your pirate's body shape will soon be unsupported. We are sorry.\n\nYou may choose a new body shape by using this panel to do so at any time, however once you commit to a shape that choice will be final."
-BodyTypeCommit = 'Commit to new Shape'
-BodyTypeLater = 'Let me think about it'
-BodyTypeConfirm = 'Are you sure you want this new body shape? This choice is final.'
 tpMgr = TextPropertiesManager.getGlobalPtr()
 gold = TextProperties()
 gold.setTextColor(*PiratesGuiGlobals.TextFG1)
