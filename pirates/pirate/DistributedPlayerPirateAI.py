@@ -14,6 +14,7 @@ from pirates.pirate.HumanDNA import HumanDNA
 from pirates.ai import HolidayGlobals
 import random
 import math
+import time
 
 class DummyInventory(PirateInventoryAI):
     doId = 0
@@ -690,6 +691,15 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
 
     def getChatType(self):
         return self.chatType
+    
+    def setMutedUntil(self, mutedUntil):
+        self.mutedUntil = mutedUntil
+    
+    def getMutedUntil(self):
+        return self.mutedUntil
+    
+    def isMuted(self):
+        return self.mutedUntil == 1 or self.mutedUntil > int(time.time())
     
     def requestChatType(self, chatType):
         if chatType in xrange(3):

@@ -313,14 +313,6 @@ class LoginAccountFSM(CSMOperation):
         self.demand('SetAccount')
 
     def enterSetAccount(self):
-        # If necessary, update their account information:
-        if self.accessLevel:
-            self.csm.air.dbInterface.updateObject(
-                self.csm.air.dbId,
-                self.accountId,
-                self.csm.air.dclassesByName['AccountUD'],
-                {'ACCESS_LEVEL': self.accessLevel})
-
         # If there's anybody on the account, kill them for redundant login:
         datagram = PyDatagram()
         datagram.addServerHeader(
@@ -364,6 +356,9 @@ class LoginAccountFSM(CSMOperation):
             'LAST_LOGIN': time.ctime(time.mktime(time.gmtime())),
             'ACCOUNT_ID': str(self.userId)
         }
+        
+        if self.accessLevel:
+            changeDict['ACCESS_LEVEL'] = self.accessLevel
         
         if config.GetBool('want-auto-founder', False):
             changeDict['FOUNDER'] = True
@@ -787,6 +782,7 @@ class LoadAvatarFSM(AvatarOperationFSM):
         # Activate the avatar on the DBSS:
         access = self.account.get('ACCESS_LEVEL', 100)
         founder = self.account.get('FOUNDER', False)
+        muted = self.account.get('MUTED_UNTIL', 0)
         
         if not founder:
             try:
@@ -806,7 +802,8 @@ class LoadAvatarFSM(AvatarOperationFSM):
             {'setAdminAccess': [access],
              'setName': self.avatar['setName'],
              'setGMNametag': gmTag,
-             'setFounder': [founder]})
+             'setFounder': [founder],
+             'setMutedUntil': [muted]})
 
         # Next, add them to the avatar channel:
         datagram = PyDatagram()

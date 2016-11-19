@@ -8709,12 +8709,7 @@ PlayerNotChallengeWarning = '%s is already playing Pirate vs. Pirate!'
 PlayerSameCrewWarning = 'You should challenge people outside your crew since your crew will be on the same team!'
 PlayerNotGuildOfficerWarning = "You can't invite people to a guild unless you are an officer or veteran of the guild!"
 PlayerNotGuildRemoveWarning = "You can't remove people from a guild unless you are an officer of the guild!"
-PlayerChats = {
-    0: 'Whitelisted Chat',
-    1: 'Blacklisted Chat',
-    2: 'Open Chat'
-}
-PlayerUnknownChat = 'Whitelisted Chat'
+PlayerChats = ['Whitelisted Chat', 'Blacklisted Chat', 'Open Chat', 'Muted']
 ChatTypeWarning = 'We have introduced the ability to choose your own chat filter. You are free to choose your preferred kind of offensive chat filtering.\n\nBe warned, though! Using a different chat filter other than the default Whitelist is highly discouraged. Please do not change these settings if you are under the age of 13!'
 ChatTypeLater = 'Later'
 ChatTypeNames = ['Whitelist', 'Blacklist', 'No filter at all']

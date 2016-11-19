@@ -196,14 +196,20 @@ class TalkAssistant(DirectObject.DirectObject):
     def sendWhisperTalk(self, message, receiverAvId, history=True):
         # This is Pirates specific... which goes against all things OTP. But oh well.
         # Route through the PFMUD.
-        if history:
-            self.addWhisperToHistory(receiverAvId, message)
-        
-        base.cr.piratesFriendsManager.sendUpdate('sendTalkWhisper', [receiverAvId, message])
+        if base.localAvatar.isMuted():
+            base.localAvatar.sendMuteWarning()
+        else:
+            if history:
+                self.addWhisperToHistory(receiverAvId, message)
+
+            base.cr.piratesFriendsManager.sendUpdate('sendTalkWhisper', [receiverAvId, message])
 
     def sendGuildTalk(self, message):
         if self.checkGuildTypedChat():
-            base.cr.guildManager.sendTalk(message)
+            if base.localAvatar.isMuted():
+                base.localAvatar.sendMuteWarning()
+            else:
+                base.cr.guildManager.sendTalk(message)
 
     def sendOpenSpeedChat(self, type, messageIndex):
         if type == SPEEDCHAT_NORMAL:

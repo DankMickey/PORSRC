@@ -756,6 +756,7 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   requestInteraction(uint32, uint8, bool) clsend airecv;
   setRedeemedCodes(string[] = []) db ram;
   setChatType(uint8 = 0) required ownrecv db;
+  setMutedUntil(uint32 = 0) required airecv ownrecv db;
   requestChatType(uint8) airecv ownsend;
 
   requestExit() clsend airecv;

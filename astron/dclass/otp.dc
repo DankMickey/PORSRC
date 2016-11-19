@@ -30,6 +30,7 @@ dclass Account {
   string LAST_LOGIN db;
   string ACCOUNT_ID db;
   uint16 ACCESS_LEVEL db;
+  uint32 MUTED_UNTIL db;
   bool FOUNDER db;
 };
 
