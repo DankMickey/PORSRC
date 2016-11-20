@@ -716,7 +716,7 @@ class LoadAvatarFSM(AvatarOperationFSM):
                 del self.deletedAvList[i]
                 break
         
-        secondsLeft = max(0, OTPGlobals.RECOVERY_TIME - (int(time.time()) - av[1]))
+        secondsLeft = max(0, av[1] - int(time.time()))
         
         if secondsLeft:
             self.demand('Kill', 'Tried to recover an avatar before the cooldown expired!')
@@ -868,7 +868,7 @@ class DeleteAvatarFSM(AvatarOperationFSM):
 
         index = self.avList.index(self.avId)
         self.avList[index] = 0
-        self.deletedAvList.append([self.avId, int(time.time())])
+        self.deletedAvList.append([self.avId, int(time.time()) + OTPGlobals.RECOVERY_TIME])
 
         self.csm.air.dbInterface.updateObject(
             self.csm.air.dbId,
