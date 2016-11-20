@@ -8,7 +8,44 @@ from otp.distributed import OtpDoGlobals
 from pirates.uberdog.ClientServicesManagerUD import RemoteAccountDB
 import time
 
-class BanFSM(FSM):
+class RetrieveBannerBase(object):
+
+    def enterRetrieveBanner(self):
+        self.mgr.air.dbInterface.queryObject(self.mgr.air.dbId, self.bannerId, self.handleRetrieveBanner)
+
+    def handleRetrieveBanner(self, dclass, fields):
+        if dclass != self.mgr.air.dclassesByName['DistributedPlayerPirateUD']:
+            self.demand('Error', 'Banner object was not found in the database!')
+            return
+
+        self.bannerName = fields['setName'][0]
+        self.banner = '%s (%s)' % (self.bannerName, self.bannerId)
+        self.demand('RetrieveAccount')
+
+class BanBase(object):
+
+    def enterRetrieveAccount(self):
+        self.mgr.air.dbInterface.queryObject(self.mgr.air.dbId, self.accountId, self.handleRetrieveAccount)
+
+    def handleRetrieveAccount(self, dclass, fields):
+        if dclass != self.mgr.air.dclassesByName['AccountUD']:
+            self.demand('Error', 'Banner object was not found in the database!')
+            return
+        
+        self.targetUsername = fields['ACCOUNT_ID']
+        self.demand('Ban')
+    
+    def enterBan(self):
+        self.mgr.air.csm.accountDB.getBannedStatus(self.targetUsername, self.duration, self.handleBannedAccount)
+    
+    def kickAvatar(self):
+        dg = PyDatagram()
+        dg.addServerHeader(self.mgr.air.csm.GetPuppetConnectionChannel(self.avId), self.mgr.air.ourChannel, CLIENTAGENT_EJECT)
+        dg.addUint16(152)
+        dg.addString(self.banReason)
+        self.mgr.air.send(dg)
+
+class BanFSM(RetrieveBannerBase, BanBase, FSM):
     notify = DirectNotifyGlobal.directNotify.newCategory('BanFSM')
     
     def __init__(self, mgr):
@@ -21,42 +58,37 @@ class BanFSM(FSM):
         self.accountId = accountId
         self.duration = duration
         self.banReason = banReason
-        
         self.demand('RetrieveBanner')
-
-    def enterRetrieveBanner(self):
-        self.mgr.air.dbInterface.queryObject(self.mgr.air.dbId, self.bannerId, self.__handleRetrieveBanner)
-
-    def __handleRetrieveBanner(self, dclass, fields):
-        if dclass != self.mgr.air.dclassesByName['DistributedPlayerPirateUD']:
-            self.demand('Error', 'Banner object was not found in the database!')
-            return
-
-        self.bannerName = fields['setName'][0]
-        self.banner = '%s (%s)' % (self.bannerName, self.bannerId)
-        self.demand('RetrieveAccount')
-        
-    def enterRetrieveAccount(self):
-        self.mgr.air.dbInterface.queryObject(self.mgr.air.dbId, self.accountId, self.__handleRetrieveAccount)
-
-    def __handleRetrieveAccount(self, dclass, fields):
-        if dclass != self.mgr.air.dclassesByName['AccountUD']:
-            self.demand('Error', 'Banner object was not found in the database!')
-            return
-        
-        self.targetUsername = fields['ACCOUNT_ID']
-        self.demand('Ban')
-        
-    def enterBan(self):
-        self.mgr.air.csm.accountDB.getBannedStatus(self.targetUsername, self.duration, self.__handleBannedAccount)
     
-    def __handleBannedAccount(self, success, error):
+    def handleBannedAccount(self, success, error):
+        self.kickAvatar()
         self.mgr.banCallback(self, success, error)
     
     def enterError(self, error):
         self.mgr.banCallback(self, False, error)
 
-class MuteFSM(FSM):
+class BanAIFSM(BanBase, FSM):
+    notify = DirectNotifyGlobal.directNotify.newCategory('BanFSM')
+    
+    def __init__(self, mgr):
+        FSM.__init__(self, 'BanFSM')
+        self.mgr = mgr
+        
+    def enterStart(self, avId, accountId, duration, banReason):
+        self.avId = avId
+        self.accountId = accountId
+        self.duration = duration
+        self.banReason = banReason
+        self.demand('RetrieveAccount')
+    
+    def handleBannedAccount(self, success, error):
+        self.kickAvatar()
+        self.mgr.banAICallback(self, success, error)
+
+    def enterError(self, error):
+        self.mgr.banAICallback(self, False, error)
+
+class MuteFSM(RetrieveBannerBase, BanBase, FSM):
     notify = DirectNotifyGlobal.directNotify.newCategory('MuteFSM')
     
     def __init__(self, mgr):
@@ -68,33 +100,9 @@ class MuteFSM(FSM):
         self.avId = avId
         self.accountId = accountId
         self.duration = duration
-        
         self.demand('RetrieveBanner')
 
-    def enterRetrieveBanner(self):
-        self.mgr.air.dbInterface.queryObject(self.mgr.air.dbId, self.bannerId, self.__handleRetrieveBanner)
-
-    def __handleRetrieveBanner(self, dclass, fields):
-        if dclass != self.mgr.air.dclassesByName['DistributedPlayerPirateUD']:
-            self.demand('Error', 'Banner object was not found in the database!')
-            return
-
-        self.bannerName = fields['setName'][0]
-        self.banner = '%s (%s)' % (self.bannerName, self.bannerId)
-        self.demand('RetrieveAccount')
-        
-    def enterRetrieveAccount(self):
-        self.mgr.air.dbInterface.queryObject(self.mgr.air.dbId, self.accountId, self.__handleRetrieveAccount)
-
-    def __handleRetrieveAccount(self, dclass, fields):
-        if dclass != self.mgr.air.dclassesByName['AccountUD']:
-            self.demand('Error', 'Banner object was not found in the database!')
-            return
-        
-        self.targetUsername = fields['ACCOUNT_ID']
-        self.demand('Mute')
-        
-    def enterMute(self):
+    def enterBan(self):
         if self.duration in xrange(2):
             seconds = self.duration
         else:
@@ -104,7 +112,10 @@ class MuteFSM(FSM):
         dclassP = self.mgr.air.dclassesByName['DistributedPlayerPirateUD']
         self.mgr.air.send(dclassA.aiFormatUpdate('MUTED_UNTIL', self.accountId, self.accountId, self.mgr.air.ourChannel, seconds))
         self.mgr.air.send(dclassP.aiFormatUpdate('setMutedUntil', self.avId, self.avId, self.mgr.air.ourChannel, [seconds]))
-        self.mgr.muteCallback(self)
+        self.mgr.muteCallback(self, None)
+    
+    def enterError(self, error):
+        self.mgr.muteCallback(self, error)
 
 class BanManagerUD(DirectObject):
     notify = DirectNotifyGlobal.directNotify.newCategory('BanManagerUD')
@@ -112,10 +123,14 @@ class BanManagerUD(DirectObject):
     def __init__(self, air):
         self.air = air
         self.accept('BANMGR_ban', self.banUD)
+        self.accept('BANMGR_banAI', self.banAI)
         self.accept('BANMGR_mute', self.muteUD)
 
     def banUD(self, bannerId, avId, accountId, duration, banReason):
         BanFSM(self).demand('Start', bannerId, avId, accountId, duration, banReason)
+    
+    def banAI(self, avId, accountId, duration, banReason):
+        BanAIFSM(self).demand('Start', avId, accountId, duration, banReason)
     
     def muteUD(self, bannerId, avId, accountId, duration):
         MuteFSM(self).demand('Start', bannerId, avId, accountId, duration)
@@ -125,16 +140,10 @@ class BanManagerUD(DirectObject):
 
         if not success:
             # Better notify the banner
-            msg = 'Failed to ban %s: %s' % (fsm.targetUsername, error)
+            msg = 'Failed to ban: %s' % error
             self.air.systemMessage(msg, avId)
             self.notify.warning(msg)
             return
-
-        dg = PyDatagram()
-        dg.addServerHeader(self.air.csm.GetPuppetConnectionChannel(fsm.avId), self.air.ourChannel, CLIENTAGENT_EJECT)
-        dg.addUint16(152)
-        dg.addString(fsm.banReason)
-        self.air.send(dg)
 
         msg = '%s banned %s for %s hours: %s' % (fsm.banner, fsm.targetUsername, fsm.duration, fsm.banReason)
         
@@ -146,8 +155,27 @@ class BanManagerUD(DirectObject):
         self.notify.info(msg)
         self.air.writeServerEvent('banned', accountId=fsm.accountId, username=fsm.targetUsername, moreInfo=msg)
     
-    def muteCallback(self, fsm):
+    def banAICallback(self, fsm, success, error):
+        if not success:
+            self.notify.warning('Failed to ban with AI: %s' % error)
+            return
+        
+        if fsm.duration:
+            msg = 'AI banned %s for %s hours: %s' % (fsm.targetUsername, fsm.duration, fsm.banReason)
+        else:
+            msg = 'AI terminated %s: %s' % (fsm.targetUsername, fsm.banReason)
+        
+        self.notify.info(msg)
+        self.air.writeServerEvent('banned-ai', accountId=fsm.accountId, username=fsm.targetUsername, moreInfo=msg)
+    
+    def muteCallback(self, fsm, error):
         avId = self.air.csm.GetPuppetConnectionChannel(fsm.bannerId)
+        
+        if error:
+            msg = 'Failed to mute: %s' % error
+            self.air.systemMessage(msg, avId)
+            self.notify.warning(msg)
+            return
         
         if fsm.duration == 1:
             msg = '%s muted %s for forever' % (fsm.banner, fsm.targetUsername)

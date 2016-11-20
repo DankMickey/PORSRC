@@ -22,12 +22,15 @@ class BanManagerAI(DistributedObjectAI):
 
     def kickAvatar(self, avId, code=155, reason='No reason has been specificed.'):
         self.kickChannel(self.GetPuppetConnectionChannel(avId), code, reason)
-        
+
     def ban(self, banner, target, time, reason):
         self.air.sendNetEvent('BANMGR_ban', [banner, target.doId, target.DISLid, time, reason])
     
     def mute(self, banner, target, time):
         self.air.sendNetEvent('BANMGR_mute', [banner, target.doId, target.DISLid, time])
+    
+    def banAI(self, target, time, reason):
+        self.air.sendNetEvent('BANMGR_banAI', [target.doId, target.DISLid, time, reason])
 
 @magicWord(category=CATEGORY_GAME_MASTER, types=[str])
 def kick(reason='No reason has been specificed.'):

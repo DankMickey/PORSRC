@@ -1,5 +1,5 @@
 from panda3d.physics import AngularEulerIntegrator, AngularIntegrator, ForceNode, LinearControlForce, LinearEulerIntegrator, LinearForce, LinearFrictionForce, LinearIntegrator, PhysicsManager
-from panda3d.core import Camera, ClockObject, CollisionHandler, CollisionHandlerEvent, CollisionTraverser, CullBinEnums, CullBinManager, DSearchPath, EventHandler, ExecutionEnvironment, Filename, GeomVertexArrayData, GraphicsPipe, GraphicsPipeSelection, Lens, MouseWatcher, NodePath, PGButton, Plane, PlaneNode, Point3, TPHigh, TPLow, TextProperties, TextPropertiesManager, Texture, TextureStage, URLSpec, VBase4, Vec3, Vec4, VertexDataPage, VirtualFile, VirtualFileSystem, WindowProperties
+from panda3d.core import Camera, ClockObject, CollisionHandler, CollisionHandlerEvent, CollisionTraverser, CullBinEnums, CullBinManager, DSearchPath, EventHandler, ExecutionEnvironment, Filename, GeomVertexArrayData, GraphicsPipe, GraphicsPipeSelection, Lens, MouseWatcher, NodePath, PGButton, Plane, PlaneNode, Point3, TPHigh, TPLow, TextProperties, TextPropertiesManager, Texture, TextureStage, TrueClock, URLSpec, VBase4, Vec3, Vec4, VertexDataPage, VirtualFile, VirtualFileSystem, WindowProperties
 import sys
 import time
 import os
@@ -542,7 +542,27 @@ class PiratesBase(OTPBase):
                 base.win.setClearColor(Vec4(0.5, 0.5, 0.5, 1.0))
 
         self.accept(PiratesGlobals.HideGuiHotkey, toggleGUI)
+        self.lastSpeedHackCheck = time.time()
+        self.lastTrueClockTime = TrueClock.getGlobalPtr().getLongTime()
+        taskMgr.add(self.__speedHackCheckTick, 'speedHackCheck-tick')
 
+    def __speedHackCheckTick(self, task):
+        elapsed = time.time() - self.lastSpeedHackCheck
+        elapsed2 = TrueClock.getGlobalPtr().getLongTime() - self.lastTrueClockTime
+
+        if elapsed2 > (elapsed + 0.05):
+            if self.cr.timeManager:
+                self.cr.timeManager.d_requestSpeedHack()
+            else:
+                self.cr.stopReaderPollTask()
+                self.cr.lostConnection()
+
+            return task.done
+
+        self.lastSpeedHackCheck = time.time()
+        self.lastTrueClockTime = TrueClock.getGlobalPtr().getLongTime()
+
+        return task.cont
 
     def panda3dRenderError(self):
         if launcher:
