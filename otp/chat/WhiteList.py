@@ -13,8 +13,6 @@ class WhiteList:
             self.setWords(WhiteListData.WHITELIST)
         elif chatType == 1:
             self.setWords(BlackListData.BLACKLIST)
-        else:
-            self.setWords([])
         
         self.chatType = chatType
 

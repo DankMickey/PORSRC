@@ -88,7 +88,7 @@ class GetAvatarOperation(OperationFSM):
         profileIcon = 0
         
         if mutedUntil == 1 or mutedUntil > int(time.time()):
-            chat = 3
+            chat = 2
         
         avatar = [dna, guildId, guildName, founder, hp, maxHp, mojo, maxMojo, shardId, showGoTo, chat, returnLocation, siege, profileIcon]
 
