@@ -778,7 +778,7 @@ class AvatarChooser(DirectObject, StateData):
             if not av:
                 return
 
-            secondsLeft = max(0, OTPGlobals.RECOVERY_TIME - (int(time.time()) - av.position))
+            secondsLeft = max(0, av.position - int(time.time()))
             
             if not secondsLeft:
                 text = PLocalizer.AvatarChooserReady
