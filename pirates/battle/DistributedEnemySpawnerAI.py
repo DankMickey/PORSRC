@@ -241,7 +241,7 @@ class BossSpawnNode(DirectObject.DirectObject):
                 self.notify.info("Ending Boss Spawn. Respawn is disabled")
                 return
 
-        taskMgr.doMethodLater(random.random() * 60, self.__checkBosses, self.uniqueName('checkBosses'))
+        taskMgr.doMethodLater(random.random() * 5, self.__checkBosses, self.uniqueName('checkBosses'))
 
     def getDefaultValue(self, key):
         return BossNPCList.BOSS_NPC_LIST[''][key]
@@ -327,7 +327,7 @@ class BossSpawnNode(DirectObject.DirectObject):
             npc = self.avClass.makeFromObjectKey(self.avClass, self, uid,
                                                  self.avType, self.data)
             npc.setUniqueId(self.objKey)
-            self.notify.debug("Spawning Boss '%s' on %s" % (npc.getNameText(), self.spawner.gameArea.getName()))
+            self.notify.info("Spawning Boss '%s' on %s" % (npc.getNameText(), self.spawner.gameArea.getName()))
             self.spawner.spawn(npc, forceLevel = npc._getBossLevel())
             self.npcs[npc.doId] = npc
         if task:
