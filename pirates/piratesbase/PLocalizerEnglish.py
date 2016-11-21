@@ -10349,6 +10349,11 @@ FoundersFeastStartChat = 'Brethren Victory Feast is in progress! \nCome to the s
 FoundersFeastEnd = 'Brethren Victory Feast has ended!'
 FoundersFeastBegin = 'Let the Brethren Victory Feast begin!'
 FoundersFeastStatus = 'Brethren Victory Feast:\nTime Remaining: %s Hours, %s Minutes'
+ThanksgivingFeastStart = makeHeadingString('Brethren Thanksgiving Feast is in progress!', 2) + '\nCome to the shores of Tortuga to join the festivities.'
+ThanksgivingFeastStartChat = 'Brethren Thanksgiving Feast is in progress! \nCome to the shores of Tortuga to join the festivities. \nCome to the shores of Tortuga to join the festivities. Be sure to also join the official Pirates Forums by visiting piratesforums.com!'
+ThanksgivingFeastEnd = 'Brethren Thanksgiving Feast has ended!'
+ThanksgivingFeastBegin = 'Let the Brethren Thanksgiving Feast begin!'
+ThanksgivingFeastStatus = 'Brethren Thanksgiving Feast:\nTime Remaining: %s Hours, %s Minutes'
 FreeBandanaStartUnlimited = makeHeadingString('To all Unlimited Access Members', 2) + "\nDon't forget to pick up your exclusive golden skull bandana from any Tailor Shop before Midnight (PST), Sunday, December 7th."
 FreeBandanaStartUnlimitedChat = "Don't forget to pick up your exclusive skull bandana from any Tailor Shop before Midnight (PST), Sunday, December 7th."
 WinterFestivalStart = makeHeadingString('The Winter Holiday is in progress!', 2) + '\nPirates all over the Caribbean have decorated the streets of Port Royal, Tortuga, and Padres del Fuego in holiday cheer. Join us in celebration!'
@@ -10601,9 +10606,15 @@ holidayMessages = {
         MSG_PIG: InteractFoundersFeastPig,
         MSG_BONFIRE_STARTED: FoundersFeastBonfireAlreadyStarted,
         MSG_PORK_RECEIVED: FoundersFeastPorkChunkReceived },
-    HolidayGlobals.FREEITEMTHANKSGIVING: {
-        MSG_START_ALL: (FreeBandanaStartUnlimited, FreeBandanaStartUnlimitedChat),
-        MSG_ICON: 'hat' },
+    HolidayGlobals.THANKSGIVING: {
+        MSG_START_ALL: (ThanksgivingFeastStart, ThanksgivingFeastStartChat),
+        MSG_END_ALL: (ThanksgivingFeastEnd, ThanksgivingFeastEnd),
+        MSG_CHAT_STATUS: ThanksgivingFeastStatus,
+        MSG_ICON: 'admin',
+        MSG_BONFIRE: InteractFoundersFeastBonfire,
+        MSG_PIG: InteractFoundersFeastPig,
+        MSG_BONFIRE_STARTED: FoundersFeastBonfireAlreadyStarted,
+        MSG_PORK_RECEIVED: FoundersFeastPorkChunkReceived },
     HolidayGlobals.WINTERFESTIVAL: {
         MSG_START_ALL: (WinterFestivalStart, WinterFestivalStartChat),
         MSG_END_ALL: (WinterFestivalEnd, WinterFestivalEnd),
@@ -11038,6 +11049,7 @@ CodeRedemptionDisabled = 'Code Redemption is currently disabled for bug fixes, K
 CodeRedemptionGold = MoneyName
 CodeRedemptionTreasure = 'Treasure'
 CodeRedemptionHalloween = 'Halloween'
+CodeRedemptionThanksgiving = 'Thanksgiving'
 CodeRedemptionFreeHat = 'Free Hat Week Hat'
 CodeRedemptionKrakenTattoo = 'Octopus Tattoo - Call of the Kraken Exclusive'
 CodeRedemptionDarkfireCutlass = 'Darkfire Cutlass'

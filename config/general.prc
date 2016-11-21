@@ -133,6 +133,9 @@ want-seas-closed #t
 want-enemy-ships #f
 want-enemy-ship-movement #t
 
+# MINIGAMES
+ignore-fishing-requirements #t
+
 # Code Redemption
 want-coderedemption #t
 reject-all-redeem-codes #f
@@ -152,5 +155,5 @@ fullscreen 0
 force-firework-music #t
 
 # HOLIDAYS
-# Tortuga Fire
-forced-holiday 13 604800
+# Thanksgiving
+forced-holiday 14 604800
