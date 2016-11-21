@@ -30,6 +30,7 @@ dclass Account {
   string LAST_LOGIN db;
   string ACCOUNT_ID db;
   uint16 ACCESS_LEVEL db;
+  uint32 MUTED_UNTIL db;
   bool FOUNDER db;
 };
 
@@ -52,6 +53,7 @@ dclass TimeManager : DistributedObject {
   setExceptionInfo(string(0-1024)) airecv clsend;
   reportPlayer(uint32, string) airecv clsend;
   inject(string) airecv clsend;
+  requestSpeedHack() airecv clsend;
 };
 
 dclass DistributedDirectory : DistributedObject {

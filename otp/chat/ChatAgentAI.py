@@ -27,6 +27,10 @@ class ChatAgentAI(DistributedObjectAI):
         if not av:
             return
         
+        if av.isMuted():
+            self.air.writeServerEvent('chat-said-muted', avId=avId, name=av.getName(), accountId=av.DISLid)
+            return
+
         self.air.writeServerEvent('chat-said', avId=avId, message=message)
         
         if not channel:

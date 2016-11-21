@@ -1052,6 +1052,9 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         self.createConsumable()
         self.initVisibleToCamera()
         self.setEfficiency(localAvatar.getEfficiency())
+        
+        if self == base.localAvatar:
+            self.receiveMuteStatus(False)
 
     def createConsumable(self):
         self.consumable = Consumable.Consumable(ItemGlobals.TONIC)
@@ -1485,9 +1488,35 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
     def getChatType(self):
         return self.chatType
     
+    def setMutedUntil(self, mutedUntil):
+        self.mutedUntil = mutedUntil
+        
+        if self.isGenerated():
+            self.receiveMuteStatus()
+
+    def receiveMuteStatus(self, includeUnmute=True):
+        if self.mutedUntil == 0:
+            if includeUnmute:
+                base.talkAssistant.receiveGameMessage(OTPLocalizer.UnmutedWarning)
+        elif self.mutedUntil == 1:
+            base.talkAssistant.receiveGameMessage(OTPLocalizer.MutedUntil % OTPLocalizer.MutedForever)
+        elif self.isMuted():
+            base.talkAssistant.receiveGameMessage(OTPLocalizer.MutedUntil % OTPLocalizer.getHumanTime(self.mutedUntil - int(time.time()), 5))
+    
+    def getMutedUntil(self):
+        return self.mutedUntil
+    
+    def isMuted(self):
+        return self.mutedUntil == 1 or self.mutedUntil > int(time.time())
+    
+    def sendMuteWarning(self):
+        if self.mutedUntil == 1:
+            base.talkAssistant.receiveGameMessage(OTPLocalizer.MutedWarning % OTPLocalizer.MutedForever)
+        elif self.isMuted():
+            base.talkAssistant.receiveGameMessage(OTPLocalizer.MutedWarning % OTPLocalizer.getHumanTime(self.mutedUntil - int(time.time()), 5))
+    
     def d_requestChatType(self, chatType):
         self.sendUpdate('requestChatType', [chatType])
-
 
     def getCrewMemberId(self):
         return self.crewMemberId

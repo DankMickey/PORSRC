@@ -2889,6 +2889,11 @@ InjectorPStats = 'PStats Client'
 ChatChannels = {0: 'User', 1: 'Staff'}
 APlayer = 'A Player'
 
+MutedWarning = "Sorry, but you can't talk. You are muted for %s!"
+MutedUntil = 'You are currently muted for %s.'
+MutedForever = 'forever'
+UnmutedWarning = 'You have been unmuted!'
+
 TimeIntervals = (
  ('weeks', 604800),
  ('days', 86400),

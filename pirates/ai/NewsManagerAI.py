@@ -1,4 +1,4 @@
-from panda3d.core import Notify
+from panda3d.core import ConfigVariableList, Notify
 from direct.directnotify import DirectNotifyGlobal
 from direct.task import Task
 from direct.distributed.DistributedObjectAI import DistributedObjectAI
@@ -30,6 +30,7 @@ class NewsManagerAI(DistributedObjectAI):
             self.checkHolidays = taskMgr.doMethodLater(15, self.__checkHolidays, 'holidayCheckTask')
             self.__processHolidayTime()
             self.holidayTime = taskMgr.doMethodLater(15, self.__processHolidayTime, 'holidayTime')
+            self.__startForcedHolidays()
 
         if config.GetBool('want-auto-messages', True):
             autoCycle = max(config.GetInt('auto-message-cycle', 2700), 60)
@@ -50,6 +51,15 @@ class NewsManagerAI(DistributedObjectAI):
             taskMgr.remove(self.autoMessages)
         if hasattr(self, 'runRandoms'):
             taskMgr.remove(self.runRandoms)
+
+    def __startForcedHolidays(self):
+        holidays = ConfigVariableList('forced-holiday')
+
+        for holiday in holidays:
+            holidaySplit = holiday.split(' ')
+            holidayId = int(holidaySplit[0])
+            holidayTime = int(holidaySplit[1])
+            self.startHoliday(holidayId, holidayTime)
 
     def __runAutoMessages(self, task=None):
         messageId = randint(0, (len(PLocalizer.ChatNewsMessages) - 1)) or 0

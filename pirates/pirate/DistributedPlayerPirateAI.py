@@ -14,6 +14,7 @@ from pirates.pirate.HumanDNA import HumanDNA
 from pirates.ai import HolidayGlobals
 import random
 import math
+import time
 
 class DummyInventory(PirateInventoryAI):
     doId = 0
@@ -72,8 +73,8 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
             self.b_setDefaultShard(self.air.districtId)
         
         self.__checkGuildName()
-        
-        taskMgr.doMethodLater(15, self.__checkCodeExploit, self.taskName('codeTask'))
+        self.__checkCodeExploit()
+        self.__checkChatType()
         taskMgr.doMethodLater(10, self.__healthTask, self.taskName('healthTask'))
         taskMgr.doMethodLater(15, self.__doubleXpTask, self.taskName('doubleXPTask'))
 
@@ -389,7 +390,7 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
             self.b_setGuildName('')
             self.d_refreshName()
     
-    def __checkCodeExploit(self, task):
+    def __checkCodeExploit(self):
         newCodes = []
         changed = False
         
@@ -400,6 +401,10 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         
         if changed:
             self.b_setRedeemedCodes(newCodes)
+
+    def __checkChatType(self):
+        if self.chatType not in xrange(2):
+            self.b_setChatType(0)
 
     def __healthTask(self, task):
         if self.gameState in ('Battle', 'Injured', 'Death'):
@@ -691,8 +696,17 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
     def getChatType(self):
         return self.chatType
     
+    def setMutedUntil(self, mutedUntil):
+        self.mutedUntil = mutedUntil
+    
+    def getMutedUntil(self):
+        return self.mutedUntil
+    
+    def isMuted(self):
+        return self.mutedUntil == 1 or self.mutedUntil > int(time.time())
+    
     def requestChatType(self, chatType):
-        if chatType in xrange(3):
+        if chatType in xrange(2):
             self.b_setChatType(chatType)
 
     def setStatus(self, todo0):

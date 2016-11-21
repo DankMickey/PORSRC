@@ -150,3 +150,7 @@ fullscreen 0
 
 # TEMP PATCH
 force-firework-music #t
+
+# HOLIDAYS
+# Tortuga Fire
+forced-holiday 13 604800

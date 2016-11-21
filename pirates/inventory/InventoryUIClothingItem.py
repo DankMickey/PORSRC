@@ -26,8 +26,10 @@ class InventoryUIClothingItem(InventoryUIItem.InventoryUIItem):
 
         if dyeColor:
             self.iconColor = (DYE_COLORS[dyeColor][0], DYE_COLORS[dyeColor][1], DYE_COLORS[dyeColor][2], 1.0)
-        else:
+        elif iconColorIndex in ItemConstants.COLOR_VALUES:
             self.iconColor = (ItemConstants.COLOR_VALUES[iconColorIndex][0], ItemConstants.COLOR_VALUES[iconColorIndex][1], ItemConstants.COLOR_VALUES[iconColorIndex][2], 1.0)
+        else:
+            self.iconColor = (1, 1, 1, 1)
         
         if image and not image.isEmpty():
             self['image'] = image

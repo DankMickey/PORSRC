@@ -22,9 +22,15 @@ class BanManagerAI(DistributedObjectAI):
 
     def kickAvatar(self, avId, code=155, reason='No reason has been specificed.'):
         self.kickChannel(self.GetPuppetConnectionChannel(avId), code, reason)
-        
+
     def ban(self, banner, target, time, reason):
         self.air.sendNetEvent('BANMGR_ban', [banner, target.doId, target.DISLid, time, reason])
+    
+    def mute(self, banner, target, time):
+        self.air.sendNetEvent('BANMGR_mute', [banner, target.doId, target.DISLid, time])
+    
+    def banAI(self, target, time, reason):
+        self.air.sendNetEvent('BANMGR_banAI', [target.doId, target.DISLid, time, reason])
 
 @magicWord(category=CATEGORY_GAME_MASTER, types=[str])
 def kick(reason='No reason has been specificed.'):
@@ -65,6 +71,29 @@ def ban(hours, reason):
         return 'Reason too long (max 32 chars)!'
 
     target.air.banMgr.ban(invoker.doId, target, hours, reason)
+
+@magicWord(category=CATEGORY_GAME_MASTER, types=[int, str])
+def mute(hours):
+    """Mutes the target user."""
+    invoker = spellbook.getInvoker()
+    target = spellbook.getTarget()
+
+    if target == invoker:
+        return 'You cannot mute yourself!'
+    
+    access = invoker.getAdminAccess()
+    
+    if access >= CATEGORY_GAME_MASTER.access:
+        MAX_TIME = 24 * 60 # 60 days
+    else:
+        MAX_TIME = 24 * 7 # 7 days
+    
+    if hours == 1 and access < CATEGORY_GAME_MASTER.access:
+        return 'You cannot mute players forever!'
+    if hours > MAX_TIME:
+        return 'You can only mute up to %d hours! Consider muting forever! (hours = 1)' % MAX_TIME
+
+    target.air.banMgr.mute(invoker.doId, target, hours)
 
 @magicWord(category=CATEGORY_GAME_MASTER)
 def badName():

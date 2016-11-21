@@ -23,7 +23,10 @@ class ChatAgent(DistributedObject):
 
     def sendChatMessage(self, message):
         if self.verifyMessage(message):
-            self.sendUpdate('chatMessage', [message, self.channel])
+            if base.localAvatar.isMuted():
+                base.localAvatar.sendMuteWarning()
+            else:
+                self.sendUpdate('chatMessage', [message, self.channel])
 
 @magicWord(category=CATEGORY_MODERATION, types=[int])
 def channel(channel=-1):

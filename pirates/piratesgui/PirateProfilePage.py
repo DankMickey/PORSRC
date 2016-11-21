@@ -758,7 +758,7 @@ class PirateProfilePage(SocialPage.SocialPage):
         self.locationFrame.show()
         self.siege = siege
 
-        self.chatLabel['text'] = PLocalizer.PlayerChats.get(chat, PLocalizer.PlayerUnknownChat)
+        self.chatLabel['text'] = PLocalizer.PlayerChats[chat]
         self.guildLabel['text'] = '\x01slant\x01%s\x02' % self.guildName
         self.islandLabel['text'] = self.islandName
         self.locationLabel['text'] = '\x01slant\x01%s\x02' % self.locationName
