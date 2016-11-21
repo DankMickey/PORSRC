@@ -23,7 +23,10 @@ class CodeRedemptionAI(DistributedObjectAI):
         def buildResponse(status, type=-1, uid=0):
             return (status, type, uid)
 
-        holidayList = self.air.newsManager.getRawHolidayIdList()
+        holidayList = []
+        if config.GetBool('want-holiday-codes', True):
+            holidayList = self.air.newsManager.getRawHolidayIdList()
+
         try:
             reward = CodeRedemptionGlobals.getAwardFromCode(code, holidayList)
         except:
