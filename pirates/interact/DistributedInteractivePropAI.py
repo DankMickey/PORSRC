@@ -1,3 +1,4 @@
+from panda3d.core import getModelPath
 from direct.distributed import DistributedObjectAI
 from pirates.distributed.DistributedInteractiveAI import *
 from pirates.distributed.DistributedTargetableObjectAI import *

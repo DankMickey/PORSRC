@@ -209,4 +209,4 @@ class WorldCreatorAI(WorldCreatorBase):
         for objType in cls._unimplemented:
             print '   %r' % objType
 
-        del cls._unimplemented       
+        del cls._unimplemented

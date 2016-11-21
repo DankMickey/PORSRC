@@ -1,4 +1,4 @@
-from panda3d.core import Connection, Datagram
+from panda3d.core import Connection, Datagram, Thread
 from pirates.makeapirate.PCPickANamePattern import PCPickANamePattern
 from pirates.piratesbase import PiratesGlobals
 from pirates.pirate.HumanDNA import HumanDNA

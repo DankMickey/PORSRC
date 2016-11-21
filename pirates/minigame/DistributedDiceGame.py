@@ -1,4 +1,4 @@
-from panda3d.core import Lens, Vec3, NodePath
+from panda3d.core import Lens
 from direct.directnotify import DirectNotifyGlobal
 from direct.interval.IntervalGlobal import *
 from direct.gui.DirectGui import *

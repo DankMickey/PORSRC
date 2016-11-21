@@ -1,4 +1,4 @@
-from panda3d.core import *
+from panda3d.core import AntialiasAttrib, ConfigVariable, ConfigVariableString, Filename, Vec4, loadPrcFile, loadPrcFileData
 loadPrcFile("config/editor.prc")
 print 'EditorStart: Starting the game.'
 import __builtin__

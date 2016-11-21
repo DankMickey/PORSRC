@@ -1,3 +1,4 @@
+from panda3d.core import Datagram, Thread
 from direct.distributed.AstronInternalRepository import msgpack_encode
 from direct.distributed.PyDatagram import PyDatagram
 from direct.directnotify.DirectNotifyGlobal import directNotify

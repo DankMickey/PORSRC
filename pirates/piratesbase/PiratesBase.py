@@ -1,5 +1,5 @@
 from panda3d.physics import AngularEulerIntegrator, AngularIntegrator, ForceNode, LinearControlForce, LinearEulerIntegrator, LinearForce, LinearFrictionForce, LinearIntegrator, PhysicsManager
-from panda3d.core import Camera, ClockObject, CollisionHandler, CollisionHandlerEvent, CollisionTraverser, CullBinEnums, CullBinManager, DSearchPath, EventHandler, ExecutionEnvironment, Filename, GeomVertexArrayData, GraphicsPipe, GraphicsPipeSelection, Lens, MouseWatcher, NodePath, PGButton, Plane, PlaneNode, Point3, TPHigh, TPLow, TextProperties, TextPropertiesManager, Texture, TextureStage, TrueClock, URLSpec, VBase4, Vec3, Vec4, VertexDataPage, VirtualFile, VirtualFileSystem, WindowProperties
+from panda3d.core import Camera, ClockObject, CollisionHandler, CollisionHandlerEvent, CollisionTraverser, Connection, CullBinEnums, CullBinManager, EventHandler, ExecutionEnvironment, Filename, GeomVertexArrayData, GraphicsPipe, GraphicsPipeSelection, Lens, MouseWatcher, NodePath, PGButton, Plane, PlaneNode, Point3, TPHigh, TPLow, TextProperties, TextPropertiesManager, Texture, TextureStage, TrueClock, URLSpec, VBase4, Vec3, Vec4, VertexDataPage, WindowProperties
 import sys
 import time
 import os

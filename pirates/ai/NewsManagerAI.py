@@ -1,4 +1,4 @@
-from panda3d.core import ConfigVariableList, Notify
+from panda3d.core import ConfigVariable, ConfigVariableList
 from direct.directnotify import DirectNotifyGlobal
 from direct.task import Task
 from direct.distributed.DistributedObjectAI import DistributedObjectAI

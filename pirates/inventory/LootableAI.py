@@ -1,4 +1,3 @@
-from panda3d.core import Point3, TextNode
 from direct.gui.DirectGui import *
 from pirates.uberdog.UberDogGlobals import InventoryType, InventoryCategory
 from pirates.uberdog import UberDogGlobals
@@ -47,7 +46,7 @@ class LootableAI(DistributedObjectAI):
         self.trashItem = None
         self.reasonNoUse = None
      
-	 
+     
 
     def startLooting(self, avId, plunderInfo, itemsToTake=0, timer=0, autoShow=True):
      self.notify.info("startLooting. plunderInfo: %s itemsToTake: %s timer: %s autoShow: %s" % (plunderInfo, itemsToTake, timer, autoShow))

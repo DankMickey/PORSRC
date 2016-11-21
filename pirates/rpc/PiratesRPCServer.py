@@ -1,4 +1,4 @@
-from panda3d.core import ConfigVariable, ConfigVariableInt, Connection
+from panda3d.core import Connection
 from direct.directnotify.DirectNotifyGlobal import *
 from PiratesRPCConnection import PiratesRPCConnection
 import urlparse
