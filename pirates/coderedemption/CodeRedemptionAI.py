@@ -10,6 +10,7 @@ class CodeRedemptionAI(DistributedObjectAI):
     def __init__(self, air):
         DistributedObjectAI.__init__(self, air)
 
+
     def checkAlreadyRedeemed(self, av, code):
         used = av.getRedeemedCodes()
         if code in used or config.GetBool('reject-all-redeem-codes', False):
@@ -22,8 +23,12 @@ class CodeRedemptionAI(DistributedObjectAI):
         def buildResponse(status, type=-1, uid=0):
             return (status, type, uid)
 
+        holidayList = []
+        if config.GetBool('want-holiday-codes', True):
+            holidayList = self.air.newsManager.getRawHolidayIdList()
+
         try:
-            reward = CodeRedemptionGlobals.getAwardFromCode(code)
+            reward = CodeRedemptionGlobals.getAwardFromCode(code, holidayList)
         except:
             self.notify.warning("Unexpected error has occured while retreiving award info for code '%s'. Most likely bad award formatting." % code)
             return buildResponse(CodeRedemptionGlobals.ERROR_ID_BAD)

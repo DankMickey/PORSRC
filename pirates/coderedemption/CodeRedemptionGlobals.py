@@ -3,6 +3,7 @@ from pirates.uberdog.TradableInventoryBase import InvItem
 from pirates.uberdog.UberDogGlobals import InventoryType
 from pirates.inventory import ItemGlobals
 from pirates.piratesbase import PLocalizer
+from pirates.ai import HolidayGlobals
 NEVER_EXPIRE = 0
 EXPIRE_ON_REDEEM = 1
 EXPIRE_AFTER_N_REDEMPTIONS = 2
@@ -64,6 +65,7 @@ class AwardTypes:
     DUAL_CUTLASSES = 36
     BOARDING_AXE = 37
     HALLOWEEN = 38
+    THANKSGIVING = 39
     TYPE_IDX = 0
     MALE_IDX = 1
     FEME_IDX = 2
@@ -293,26 +295,59 @@ AWARD_ID = {
     #    None,
     #    10000,
     #    PLocalizer.CodeRedemptionTreasure],
-    #AwardTypes.HALLOWEEN: [
-    #    NORMAL_INVENTORY,
-    #    InvItem((InventoryType.ItemTypeMoney, 0)),
-    #    None,
-    #    5000,
-    #    PLocalizer.CodeRedemptionHalloween] 
-    }
+}
 
-def getAwardFromCode(code):
+HOLIDAY_AWARD_ID = {
+    HolidayGlobals.THANKSGIVING: {
+        AwardTypes.THANKSGIVING: [
+            NORMAL_INVENTORY,
+            InvItem((InventoryType.ItemTypeMoney, 0)),
+            None,
+            3000,
+            PLocalizer.CodeRedemptionThanksgiving
+        ]
+    },
+    HolidayGlobals.HALLOWEEN: {
+        AwardTypes.HALLOWEEN: [
+            NORMAL_INVENTORY,
+            InvItem((InventoryType.ItemTypeMoney, 0)),
+            None,
+            5000,
+            PLocalizer.CodeRedemptionHalloween
+        ] 
+    }
+}
+
+def getAwardFromCode(code, holidayList=None):
     for award in AWARD_ID:
         award = AWARD_ID.get(award)
         codeword = award[4].lower()
         if codeword == code.lower():
             return award
+    if holidayList != None:
+        for holiday in holidayList:
+            if holiday in HOLIDAY_AWARD_ID:
+                awards = HOLIDAY_AWARD_ID.get(holiday)
+                for award in awards:
+                    award = awards.get(award)
+                    codeword = award[4].lower()
+                    if codeword == code.lower():
+                        return award                    
     return None
 
-def getAwardIdFromCode(code):
+def getAwardIdFromCode(code, holidayList=None):
     for award in AWARD_ID:
         data = AWARD_ID.get(award)
         codeword = award[4].lower()
         if codeword == code.lower():   
             return award
+    if holidayList != None:
+        for holiday in holidayList:
+            if holiday in HOLIDAY_AWARD_ID:
+                awards = HOLIDAY_AWARD_ID.get(holiday)
+                for award in awards:
+                    award = awards.get(award)
+                    codeword = award[4].lower()
+                    if codeword == code.lower():
+                        return award   
     return -1

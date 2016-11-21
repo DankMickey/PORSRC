@@ -70,7 +70,7 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
         if config.GetBool('want-auto-feast', True):
             if islandId == LocationIds.TORTUGA_ISLAND:
                 feastHoliday = False
-                feastHolidays = [HolidayGlobals.FOUNDERSFEAST, HolidayGlobals.MARDIGRAS]
+                feastHolidays = [HolidayGlobals.FOUNDERSFEAST, HolidayGlobals.MARDIGRAS, HolidayGlobals.THANKSGIVING]
                 for holiday in feastHolidays:
                     if self.air.newsManager.isHolidayRunning(holiday):
                         feastHoliday = True
