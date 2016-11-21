@@ -33,6 +33,7 @@ class DistrictManagerAI:
 
     def openDistrict(self):
         self.district.b_setAvailable(1)
+        messenger.send('districtOpened')
 
     def increasePopulation(self):
         self.population += 1

@@ -30,7 +30,6 @@ class NewsManagerAI(DistributedObjectAI):
             self.checkHolidays = taskMgr.doMethodLater(15, self.__checkHolidays, 'holidayCheckTask')
             self.__processHolidayTime()
             self.holidayTime = taskMgr.doMethodLater(15, self.__processHolidayTime, 'holidayTime')
-            self.__startForcedHolidays()
 
         if config.GetBool('want-auto-messages', True):
             autoCycle = max(config.GetInt('auto-message-cycle', 2700), 60)
@@ -39,7 +38,8 @@ class NewsManagerAI(DistributedObjectAI):
 
         if self.wantHolidays and config.GetBool('want-random-schedules', False):
             self.runRandoms = taskMgr.doMethodLater(60, self.__runRandoms, 'randomSchedules')
-
+        
+        self.acceptOnce('districtOpened', self.startForcedHolidays)
 
     def delete(self):
         DistributedObjectAI.delete(self)
@@ -52,7 +52,7 @@ class NewsManagerAI(DistributedObjectAI):
         if hasattr(self, 'runRandoms'):
             taskMgr.remove(self.runRandoms)
 
-    def __startForcedHolidays(self):
+    def startForcedHolidays(self):
         holidays = ConfigVariableList('forced-holiday')
 
         for holiday in holidays:
