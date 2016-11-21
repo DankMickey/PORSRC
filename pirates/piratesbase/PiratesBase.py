@@ -550,7 +550,7 @@ class PiratesBase(OTPBase):
         elapsed = time.time() - self.lastSpeedHackCheck
         elapsed2 = TrueClock.getGlobalPtr().getLongTime() - self.lastTrueClockTime
 
-        if elapsed2 > (elapsed + 0.05):
+        if elapsed2 > (elapsed + 0.1):
             if self.cr.timeManager:
                 self.cr.timeManager.d_requestSpeedHack()
             else:
