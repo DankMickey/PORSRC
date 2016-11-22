@@ -60,7 +60,7 @@ class NewsManagerAI(DistributedObjectAI):
     def onDistrictOpen(self):
         self.startForcedHolidays()
 
-        if self.wantHolidays and config.GetBool('want-random-schedules', True) or True:
+        if self.wantHolidays and config.GetBool('want-random-schedules', True):
             self.notify.info("Running with random scheduled holidays.")
             self.__runRandomHolidays()
             self.runRandoms = taskMgr.doMethodLater(30, self.__runRandomHolidays, 'randomSchedules')        
