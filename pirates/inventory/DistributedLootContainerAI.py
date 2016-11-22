@@ -13,7 +13,7 @@ class DistributedLootContainerAI(DistributedInteractiveAI, LootableAI):
     def __init__(self, air):
         DistributedInteractiveAI.__init__(self, air)
         LootableAI.__init__(self, air)
-		#InventoryUIPlunderGridContainer.__init__.(self, air)
+        #InventoryUIPlunderGridContainer.__init__.(self, air)
         self.vizZone = ''
         self.lootType = PiratesGlobals.ITEM_SAC
         self.locks = []

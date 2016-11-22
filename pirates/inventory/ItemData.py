@@ -1,4 +1,4 @@
-from panda3d.core import LVector3, LVector3f
+from panda3d.core import LVector3, LVector3f, Light
 itemInfo = {1: [51, 2, 0, 1, u'Rusty Cutlass', u'RUSTY_CUTLASS', 1, 1, 1, 1, 1, 0, 0, 0, 1, u'pir_t_ico_swd_cutlass_a', u"It's a bit crude, but it still has an edge.", 0, 0, 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, u'pir_m_hnd_swd_cutlass_a', 1, 0, 6, 0, 0, 0, 1, 0, 0, 3],
             2: [51, 2, 200, 2, u'Iron Cutlass', u'IRON_CUTLASS', 1, 1, 1, 1, 0, 0, 0, 0, 1, u'pir_t_ico_swd_broadsword_b', u'A well crafted iron blade. A good weapon!', 0, 0, 0, '', 1, 103, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, u'pir_m_hnd_swd_broadsword_b', 1, 5, 9, 0, 0, 0, 2, 0, 0, 5.5],
             3: [51, 2, 1000, 3, u'Steel Cutlass', u'STEEL_CUTLASS', 1, 1, 1, 1, 0, 0, 0, 0, 1, u'pir_t_ico_swd_cutlass_c', u'An ornate steel cutlass. Well balanced and sharp!', 5, 0, 0, '', 2, 103, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, u'pir_m_hnd_swd_cutlass_c', 1, 10, 12, 0, 0, 0, 3, 0, 0, 8],

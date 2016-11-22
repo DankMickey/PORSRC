@@ -1,4 +1,3 @@
-from panda3d.core import Notify
 from direct.distributed import DistributedObject
 from direct.directnotify import DirectNotifyGlobal
 from direct.interval.IntervalGlobal import *

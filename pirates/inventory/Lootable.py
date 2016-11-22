@@ -1,4 +1,3 @@
-from panda3d.core import Point3, TextNode
 from direct.gui.DirectGui import *
 from pirates.uberdog.UberDogGlobals import InventoryType, InventoryCategory
 from pirates.uberdog import UberDogGlobals
@@ -44,7 +43,7 @@ class Lootable:
         self.discoveredInventory = 0
         self.trashItem = None
         self.reasonNoUse = None
-	
+    
     def startLooting(self, plunderList, itemsToTake = 0, timer = 0, autoShow = False):
         base.localAvatar.guiMgr.inventoryUIManager.plunderIntiate(plunderList, itemsToTake, timer, autoShow)
     

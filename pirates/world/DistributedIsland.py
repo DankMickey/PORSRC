@@ -1,4 +1,4 @@
-from panda3d.core import TransparencyAttrib, AlphaTestAttrib, CollideMask, CollisionInvSphere, CollisionNode, FadeLODNode, Fog, LODNode, Light, NodePath, PandaNode, RenderAttrib, TextNode, Texture, TextureStage, VBase4, Vec3, Vec4
+from panda3d.core import AlphaTestAttrib, CollideMask, CollisionInvSphere, CollisionNode, FadeLODNode, Fog, LODNode, Light, NodePath, RenderAttrib, TextNode, Texture, TextureStage, VBase4, Vec3, Vec4
 import random
 import re
 import imp
