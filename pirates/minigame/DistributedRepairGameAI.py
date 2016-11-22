@@ -1,4 +1,5 @@
 from direct.distributed.DistributedObjectAI import DistributedObjectAI
+from pirates.ai import HolidayGlobals
 from DistributedRepairGameBase import *
 import time
 
@@ -141,6 +142,8 @@ class DistributedRepairGameAI(DistributedObjectAI, DistributedRepairGameBase):
                     av = self.air.doId2do.get(avId)
                     
                     if av:
+                        if self.air.newsManager.isHolidayRunning(HolidayGlobals.DOUBLEGOLDHOLIDAY):
+                            reward = reward * 2
                         av.giveGold(reward)
 
                 for avId in self.avId2game.keys():
