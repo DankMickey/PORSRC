@@ -3,6 +3,7 @@ from pirates.distributed.DistributedInteractiveAI import *
 from direct.distributed.DistributedObjectAI import *
 from pirates.inventory import LootableAI
 from pirates.uberdog.UberDogGlobals import InventoryType
+from pirates.ai import HolidayGlobals
 import FishingGlobals
 
 class DistributedFishingSpotAI(DistributedInteractiveAI, LootableAI.LootableAI):
@@ -34,7 +35,11 @@ class DistributedFishingSpotAI(DistributedInteractiveAI, LootableAI.LootableAI):
         if not minWeight <= weight <= maxWeight:
             return
 
-        av.giveGold(fish['gold'] * weight)
+        reward = fish['gold']
+        if self.air.newsManager.isHolidayRunning(HolidayGlobals.DOUBLEGOLDHOLIDAY):
+            reward = reward * 2    
+
+        av.giveGold(reward * weight)
         av.addReputation(InventoryType.FishingRep, fish['experience'])
         av.repChanged()
 
