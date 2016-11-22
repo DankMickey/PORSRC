@@ -21,9 +21,9 @@ class DistributedIslandAI(DistributedCartesianGridAI, DistributedGameAreaAI, Tea
     def __init__(self, mainWorld, islandModel):
         air = mainWorld.air
 
-        cellWidth = WorldGlobals.ISLAND_TM_CELL_SIZE
+        cellWidth = WorldGlobals.GAME_AREA_CELL_SIZE
         gridSize = WorldGlobals.LARGE_ISLAND_GRID_SIZE
-        gridRadius = WorldGlobals.ISLAND_TM_GRID_RADIUS
+        gridRadius = WorldGlobals.ISLAND_GRID_RADIUS
         zoneId = WorldGlobals.ISLAND_GRID_STARTING_ZONE
 
         DistributedCartesianGridAI.__init__(self, air, zoneId, gridSize, gridRadius, cellWidth)
