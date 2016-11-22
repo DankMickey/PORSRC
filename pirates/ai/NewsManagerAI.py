@@ -365,7 +365,7 @@ class NewsManagerAI(DistributedObjectAI):
 
     @magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
     def isHoliday(holidayId):
-        air = spellbook.getInvoker().air
+        air = spellbook.getInvoker().r
         return air.newsManager.isHolidayRunning(holidayId)
         
     @magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
