@@ -7,9 +7,11 @@ from pirates.ai import HolidayGlobals
 from pirates.ai.HolidayDates import HolidayDates
 from pirates.audio import SoundGlobals
 from pirates.piratesbase import PLocalizer
+from pirates.holiday import FleetHolidayGlobals
 from datetime import datetime
 from random import randint
 import random
+import datetime
 
 class NewsManagerAI(DistributedObjectAI):
     notify = DirectNotifyGlobal.directNotify.newCategory('NewsManagerAI')
@@ -21,6 +23,7 @@ class NewsManagerAI(DistributedObjectAI):
 
         self.randomsDay = {}
         self.randomsMonth = {}
+        self.fleetCountdown = {}
 
     def announceGenerate(self):
         DistributedObjectAI.announceGenerate(self)
@@ -36,10 +39,10 @@ class NewsManagerAI(DistributedObjectAI):
             self.__runAutoMessages()
             self.autoMessages = taskMgr.doMethodLater(autoCycle, self.__runAutoMessages, 'autoMessages')
 
-        if self.wantHolidays and config.GetBool('want-random-schedules', False):
-            self.runRandoms = taskMgr.doMethodLater(60, self.__runRandoms, 'randomSchedules')
-        
-        self.acceptOnce('districtOpened', self.startForcedHolidays)
+        if config.GetBool('want-random-treasurefleets', False):
+            self.fleetMessages = taskMgr.doMethodLater(60, self.__runFleetMessages, 'fleetMessages')
+
+        self.acceptOnce('districtOpened', self.onDistrictOpen)
 
     def delete(self):
         DistributedObjectAI.delete(self)
@@ -51,6 +54,16 @@ class NewsManagerAI(DistributedObjectAI):
             taskMgr.remove(self.autoMessages)
         if hasattr(self, 'runRandoms'):
             taskMgr.remove(self.runRandoms)
+        if hasattr(self, 'fleetMessages'):
+            taskMgr.remove(self.fleetMessages)
+
+    def onDistrictOpen(self):
+        self.startForcedHolidays()
+
+        if self.wantHolidays and config.GetBool('want-random-schedules', True) or True:
+            self.notify.info("Running with random scheduled holidays.")
+            self.__runRandomHolidays()
+            self.runRandoms = taskMgr.doMethodLater(30, self.__runRandomHolidays, 'randomSchedules')        
 
     def startForcedHolidays(self):
         holidays = ConfigVariableList('forced-holiday')
@@ -59,7 +72,30 @@ class NewsManagerAI(DistributedObjectAI):
             holidaySplit = holiday.split(' ')
             holidayId = int(holidaySplit[0])
             holidayTime = int(holidaySplit[1])
-            self.startHoliday(holidayId, holidayTime)
+            self.startHoliday(holidayId, time=holidayTime)
+
+    def __runFleetMessages(self, task=None):
+        for fleetHoliday in self.fleetCountdown:
+            self.notify.debug("Performing Fleet countdown on fleet holiday: %s" % fleetHoliday)
+            countdown = self.fleetCountdown[fleetHoliday]
+            self.fleetCountdown[fleetHoliday] = countdown - 5
+            fleetData = FleetHolidayGlobals.FleetHolidayConfigs[HolidayGlobals.getHolidayConfig(fleetHoliday)]
+            if 'countdown' in fleetData:
+                msgIndex = 0
+                countdown = countdown
+                if countdown >= 10:
+                    msgIndex = 0
+                elif countdown == 5:
+                    msgIndex = 1
+                elif countdown <= 0:
+                    self.displayMessage(fleetData['launchMsg'])
+                    del self.fleetCountdown[fleetHoliday]
+                    return
+
+                messageId, increment = fleetData['countdown'][msgIndex]
+                self.displayMessage(messageId)
+                self.notify.debug("Displaying fleet countdown message: %s" % messageId)
+        return Task.again
 
     def __runAutoMessages(self, task=None):
         messageId = randint(0, (len(PLocalizer.ChatNewsMessages) - 1)) or 0
@@ -88,13 +124,13 @@ class NewsManagerAI(DistributedObjectAI):
         holidays = HolidayGlobals.getAllHolidayIds()
         return Task.again
 
-    def __runRandoms(self, task=None):
-
+    def __runRandomHolidays(self, task=None):
+        self.notify.debug("Checking Random Holidays")
         #TODO implement counter reset
 
         for randomized in HolidayGlobals.RandomizedSchedules:
             dice = randint(1, 100)
-            if dice < config.GetInt('random-schedule-dice', 30) and not config.GetBool('force-random-schedules', False):
+            if dice < config.GetInt('random-schedule-dice', 30) and not config.GetBool('force-random-schedules', True):
                 continue
 
             self.notify.debug("Attempting to run %s" % randomized)
@@ -127,7 +163,7 @@ class NewsManagerAI(DistributedObjectAI):
                     canRun = False
 
             if holidayId in self.randomsMonth:
-                times = 0
+                times = self.randomsMonth[holidayId]
                 minTimes, maxTimes = ranType['daysPerMonth']
                 if times >= maxTimes:
                     canRun = False
@@ -153,7 +189,8 @@ class NewsManagerAI(DistributedObjectAI):
                     self.randomsMonth[holidayId] = 1
 
                 self.notify.info("Starting '%s' for a duration of %s" % (randomized, duration))
-                self.startHoliday(holidayId, duration)
+                self.startHoliday(holidayId, time=duration)
+        return Task.again
 
     def isHolidayRunning(self, holidayId):
         return holidayId in self.holidayIdList
@@ -209,13 +246,16 @@ class NewsManagerAI(DistributedObjectAI):
             holidayList.append([holiday, time])
         return holidayList
 
-    def startHoliday(self, holidayId, time=0):
+    def startHoliday(self, holidayId, configId=0, time=0):
         if self.isHolidayRunning(holidayId):
             return
 
-        if not holidayId in HolidayGlobals.getAllHolidayIds():
+        if not holidayId in HolidayGlobals.getAllHolidayIds() and configId == 0:
             self.notify.warning("Failed to start holiday. %s is an invalid holiday Id" % holidayId)
             return
+
+        if configId != 0:
+            holidayId = holidayId = HolidayGlobals.getHolidayId(holidayId, configId)
 
         self.notify.info("Starting holiday: %s" % (HolidayGlobals.getHolidayName(holidayId) or holidayId))
         self.holidayIdList[holidayId] = time
@@ -232,6 +272,11 @@ class NewsManagerAI(DistributedObjectAI):
             if self.air.todManager:
                 self.air.todManager.setMoonJolly(True)
 
+
+        if HolidayGlobals.getHolidayClass(holidayId) == HolidayGlobals.FLEETHOLIDAY:
+            self.fleetCountdown[holidayId] = 10
+            fleetData = FleetHolidayGlobals.FleetHolidayConfigs[HolidayGlobals.getHolidayConfig(holidayId)]
+
     def endHoliday(self, holidayId):
         if not self.isHolidayRunning(holidayId):
             return
@@ -245,6 +290,14 @@ class NewsManagerAI(DistributedObjectAI):
 
         if holidayId == HolidayGlobals.WINTERFESTIVAL:
             self.playHolidayMusic()
+
+        if HolidayGlobals.getHolidayClass(holidayId) == HolidayGlobals.FLEETHOLIDAY:
+            if holidayId in self.fleetCountdown:
+                del self.fleetCountdown[holidayId]
+
+            fleetData = FleetHolidayGlobals.FleetHolidayConfigs[HolidayGlobals.getHolidayConfig(holidayId)]
+            if 'escapedMsg' in fleetData:
+                self.displayMessage(fleetData['escapedMsg'])
 
         messenger.send('holidayListChanged')
 
@@ -264,8 +317,23 @@ class NewsManagerAI(DistributedObjectAI):
         if not holidayId in HolidayGlobals.getAllHolidayIds():
             return "Sorry, %s is not a valid holiday." % holidayId
 
-        air.newsManager.startHoliday(holidayId, time * 60)
+        air.newsManager.startHoliday(holidayId, time=time * 60)
         return "Force starting holiday %s for the district with a time of %s minutes" % (holidayId, time)
+
+    @magicWord(CATEGORY_GAME_DEVELOPER, types=[int, int, int])
+    def forceStartConfigHoliday(holidayId, configId, time):
+        """Force starts a config holiday for the district"""
+        air = spellbook.getInvoker().air
+
+        if air.newsManager.isHolidayRunning(holidayId):
+            return "Sorry, holiday %s is already running" % holidayId
+
+        if not holidayId in HolidayGlobals.getAllHolidayIds() and holidayId < 100:
+            return "Sorry, %s is not a valid holiday." % holidayId
+
+        air.newsManager.startHoliday(holidayId, configId=configId, time=time * 60)
+        return "Force starting config holiday %s with configId %s for the district with a time of %s minutes" % (holidayId, configId, time)
+
 
     @magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
     def forceEndHoliday(holidayId):

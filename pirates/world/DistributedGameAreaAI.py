@@ -52,6 +52,7 @@ class DistributedGameAreaAI(DistributedNodeAI):
 
         self.wantInvasions = config.GetBool('want-invasions', True)
         self._invasionSpawns = {}
+        self._switchProps = {}
 
         self.setPythonTag('npTag-gameArea', self)
 
@@ -145,14 +146,14 @@ class DistributedGameAreaAI(DistributedNodeAI):
             elif subType == 'Bonfire':
                 genObj = DistributedHolidayBonfireAI.makeFromObjectKey(self.air, objKey, object)
             else:
-                self.notify.warning("Unsupported Holiday Object SubType: %s" % subType)
+                self.__printUnimplementedNotice("%s (%s)" % (objType, subType))
 
-        elif objType == 'Connector Tunnel' and self.wantLinkTunnels or True:
+        elif objType == 'Connector Tunnel' and self.wantLinkTunnels:
             genObj = self.air.worldCreator.createConnectorTunnel(self, objKey, object)
             #self.__printUnimplementedNotice(objType)
 
-        #elif objType == 'Island Game Area' and self.wantLinkTunnels:
-        #    self.__printUnimplementedNotice(objType)
+        elif objType == 'Island Game Area' and self.wantLinkTunnels:
+            self.__printUnimplementedNotice(objType)
 
         elif objType == 'Invasion Barricade' and self.wantInvasions:
             genObj = self.generateNode(objType, objKey, object, parent, gridPos=True)
@@ -162,6 +163,16 @@ class DistributedGameAreaAI(DistributedNodeAI):
 
         elif objType == 'Invasion NPC Spawn Node' and self.wantInvasions:
             self._invasionSpawns[objKey] = self.generateNode(objType, objKey, object, parent, gridPos=True)
+
+        elif objType == 'Switch Prop' and config.GetBool('want-switch-props', False):
+            switchClass = object.get('Switch Class')
+            if switchClass == 'Mansion':
+                self.__printUnimplementedNotice("%s (%s)" % (objType, switchClass))
+            else:
+                self.__printUnimplementedNotice("%s (%s)" % (objType, switchClass))
+
+            if genObj != None:
+                self._switchProps[objKey] = genObj
 
         elif objType == 'Fort' and self.wantForts: #TODO find objType
             self.notify.info("Spawning %s on %s" % (objType, self.getName()))
@@ -311,7 +322,6 @@ class DistributedGameAreaAI(DistributedNodeAI):
             'Player Boot Node',
             'Ship Wreck',
             'Quest Node',
-            'Switch Prop',
             'Jail Cell Door',
             'Portal Node',
             'Simple Fort',

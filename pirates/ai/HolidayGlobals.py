@@ -175,7 +175,7 @@ def getHolidayName(holidayId):
     holidayClass = getHolidayClass(holidayId)
     holidayConfig = getHolidayConfig(holidayId)
     holidayName = holidayNameDict.get(holidayClass)
-    if holidayConfig:
+    if holidayConfig and hasattr(holidayName, 'get'):
         holidayName = holidayName.get(holidayConfig)
 
     return holidayName
@@ -197,7 +197,6 @@ def getHolidayIdFromName(holidayName):
 def getHolidayClassName(holidayClass):
     return holidayClassNameDict.get(holidayClass, holidayNameDict.get(holidayClass))
 
-"""
 holidaySchedules = {
     DOUBLEGOLDHOLIDAY: HolidayDates(HolidayDates.TYPE_CUSTOM, [
         (2008, Month.SEPTEMBER, 13, 12, 0, 0),
@@ -363,7 +362,7 @@ holidaySchedules = {
     FOUNDERSFEAST: HolidayDates(HolidayDates.TYPE_CUSTOM, [
         (2009, Month.NOVEMBER, 21, 0, 0, 0),
         (2009, Month.NOVEMBER, 30, 0, 0, 0)]),
-    FREEITEMTHANKSGIVING: HolidayDates(HolidayDates.TYPE_CUSTOM, [
+    THANKSGIVING: HolidayDates(HolidayDates.TYPE_CUSTOM, [
         (2008, Month.NOVEMBER, 27, 3, 0, 0),
         (2008, Month.DECEMBER, 8, 0, 0, 0)]),
     CURSEDNIGHT: HolidayDates(HolidayDates.TYPE_CUSTOM, [
@@ -449,8 +448,6 @@ def getHolidayDates(holidayId):
         holidayDates = holidayDates.get(holidayConfig)
 
     return holidayDates
-"""
-
 
 class RandomTimeWindows:
     E = [
@@ -491,7 +488,9 @@ RandomizedSchedules = {
                 ((2010, 4, 1), (2010, 4, 30)),
                 ((2010, 7, 1), (2010, 7, 31))] },
         'conflictingIds': [
-            CURSEDNIGHT],
+            CURSEDNIGHT,
+            THANKSGIVING,
+            WINTERFESTIVAL],
         'conflictingClasses': [],
         'conflictingRSIds': [],
         'daysPerMonth': (5, 8),
@@ -521,7 +520,7 @@ RandomizedSchedules = {
             RandomTimeWindows.F,
             RandomTimeWindows.G,
             RandomTimeWindows.H],
-        'duration': (1, 0) } }
+        'duration': (1, 45) } } #(1, 0)
 MSG_START_ALL = 0
 MSG_END_ALL = 1
 MSG_CHAT_STATUS = 2
