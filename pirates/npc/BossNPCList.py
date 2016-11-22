@@ -68,7 +68,7 @@ BOSS_NPC_LIST = {
         'DamageScale': 1.5,
         'HighlightColor': VBase3(0, 1, 0.5) },
     '1238440501.07piwanow': {
-        #'AvatarType': AvatarTypes.Mire,
+        'AvatarType': AvatarTypes.Zombie,
         'HpScale': 5,
         'MpScale': 3,
         'GoldScale': 2,

@@ -59,5 +59,6 @@ class BossBase:
     def _getBossLevel(self):
         return self.bossData['Level']
 
+
     def getNameText(self):
-        return self.bossData['Name'] or "%s %s" % (PLocalizer.Unknown, PLocalizer.Boss)
+        return self.bossData['Name']

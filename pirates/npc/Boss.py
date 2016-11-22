@@ -73,7 +73,7 @@ class Boss(BossBase):
 
 
     def _getBossModelScale(self):
-        return self.bossData['ModelScale']
+        return max(self.bossData['ModelScale'], 1.0)
 
 
     def getEnemyScale(self):

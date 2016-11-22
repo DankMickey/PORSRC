@@ -48,6 +48,6 @@ class BossAI(BossBase):
         self.loadBossData(uid, avType)
 
         scale = self._getScale()
-        self.setScale(scale, scale, scale)
+        #self.setScale(scale, scale, scale)
         self.setName(self.getNameText())
         self.setDamageScale(self._getDamageScale())
