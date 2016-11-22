@@ -365,7 +365,7 @@ class NewsManagerAI(DistributedObjectAI):
 
     @magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
     def isHoliday(holidayId):
-        air = spellbook.getInvoker().r
+        air = spellbook.getInvoker().air
         return air.newsManager.isHolidayRunning(holidayId)
         
     @magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
@@ -387,4 +387,3 @@ class NewsManagerAI(DistributedObjectAI):
         musicInfo[0] = musicName
         air.newsManager.playMusic(musicInfo)
         return "Sent debug news music packet '%s' to all pirates in the district." % str(musicName)     
-

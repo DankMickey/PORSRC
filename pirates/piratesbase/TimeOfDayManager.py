@@ -29,10 +29,7 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
     def __init__(self):
         FSM.FSM.__init__(self, 'TimeOfDayManager')
         TimeOfDayManagerBase.TimeOfDayManagerBase.__init__(self)
-        self.lightSwitch = [
-            0,
-            0,
-            0]
+        self.lightSwitch = [0, 0, 0]
         self.cycleType = TODGlobals.TOD_REGULAR_CYCLE
         self.cycleDuration = 0
         self.currentState = -1
@@ -71,10 +68,7 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
         self.targetMoonPhase = None
         self.moonJolly = 0
         self.moonJollyIval = None
-        self.softTOD = 1
-        if config.GetBool('want-soft-tod-changes', 0):
-            self.softTOD = 1
-
+        self.softTOD = config.GetBool('want-soft-tod-changes', 1)
         self.advancedWeather = config.GetBool('advanced-weather', 1)
         if self.advancedWeather:
             self.fixedWeather = False
@@ -86,7 +80,8 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
             self.stormEye = None
             self.stormRing = None
             self.groundFog = None   
-            self.snowflakes = None         
+            self.snowflakes = None   
+            self.stormWind = None      
 
         self.skyGroup = SkyGroup.SkyGroup()
         self.skyGroup.reparentTo(camera)
@@ -113,11 +108,9 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
         self.avatarShadowCaster = None
         if config.GetBool('want-avatar-shadows', 1):
             self.enableAvatarShadows()
-
         self.isPaused = 0
-        if config.GetBool('want-shaders', 1) and base.win and base.win.getGsg():
-            pass
-        self.use_shader = base.win.getGsg().getShaderModel() >= GraphicsStateGuardian.SM20
+        self.wantShaders = config.GetBool('want-shaders', 1) and base.win and base.win.getGsg()
+        self.use_shader = base.win.getGsg().getShaderModel() >= GraphicsStateGuardian.SM20 and self.wantShaders
         self.accept('HolidayStarted', self.handleHolidayStarted)
         self.accept('HolidayEnded', self.handleHolidayEnded)
         self.forcedStateEnabled = False
@@ -219,6 +212,10 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
                 self.snowflakes.stopLoop()
             del self.snowflakes
 
+            if self.stormWind != None:
+                self.stormWind.stop()
+            del self.stormWind
+
     def delete(self):
         render.clearLight(self.alight)
         render.clearLight(self.sunLight)
@@ -262,7 +259,7 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
     def syncTimeOfDay(self, soft = 1):
         if self.environment == TODGlobals.ENV_SAILING:
             pass
-        1
+
         if self.forcedStateEnabled:
             return None
 
@@ -594,7 +591,7 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
                 self.seapatch = base.cr.activeWorld.getWater().patchNP
 
         if base.cr.newsManager and base.cr.newsManager.getHoliday(HolidayGlobals.SAINTPATRICKSDAY):
-            self.setSaintPatricksSea()
+            self.setGreenSea()
         elif self.use_shader:
             fromSeaColor = TODGlobals.getTodEnvSetting(fromState, startEnv, 'SeaColorShader')
             toSeaColor = TODGlobals.getTodEnvSetting(toState, destEnv, 'SeaColorShader')
@@ -1337,7 +1334,7 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
     def stopEnvEffect(self, envNum):
         if envNum == 0:
             pass
-        1
+
         if envNum == 1:
             self.envSound.stop()
             del self.envSound
@@ -1496,7 +1493,7 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
                 self.seapatch.modify_water_color_factor_np(self.waterColorFactor)
 
 
-    def setSaintPatricksSea(self):
+    def setGreenSea(self):
         if self.use_shader:
             self.modifyWaterColor(VBase3(0.22, 0.560000, 0.149))
             self.modifyWaterColorFactor(VBase3(0.4, 1.0, 0.299))
@@ -1507,7 +1504,6 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
 
     def handleHolidayStarted(self, holidayName):
         pass
-
 
     def handleHolidayEnded(self, holidayName):
         pass
@@ -1638,6 +1634,13 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
                 self.stormRing.reparentTo(render)
                 self.stormRing.setZ(100)
                 self.stormRing.startLoop()
+
+            if self.stormWind is None:
+                self.stormWind = loader.loadSfx('audio/sfx_ocean_wind.ogg')
+                self.stormWind.setLoop(True)
+                self.stormWind.setVolume(0.696)
+                self.stormWind.setPlayRate(1.0)
+                self.stormWind.play()
         else:
             if self.stormEye:
                 self.stormEye.stopLoop()
@@ -1648,6 +1651,10 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
 
                 self.stormEye = None
                 self.stormRing = None
+
+            if self.stormWind:
+                self.stormWind.stop()
+                self.stormWind = None
 
     def setSnowState(self, state):
         if not self.advancedWeather:

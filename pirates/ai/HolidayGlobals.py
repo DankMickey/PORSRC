@@ -45,6 +45,7 @@ APRILFOOLS = 37
 QUEENANNES = 38
 FLYINGDUTCHMAN = 39
 DOUBLELOOTHOLIDAY = 39
+WINTER = 40
 HOLIDAYS_WITH_CATALOGS = [
     SAINTPATRICKSDAY,
     VALENTINESDAY,
@@ -58,6 +59,9 @@ INVASION_HOLIDAYS = [
     INVASIONPORTROYAL,
     INVASIONTORTUGA,
     INVASIONDELFUEGO]
+HOLIDAYS_WITH_SNOW = [
+    WINTER,
+    WINTERFESTIVAL]
 
 def getHolidayId(holidayClass, holidayConfig = None):
     holidayId = holidayClass
@@ -140,7 +144,8 @@ holidayNameDict = {
     APRILFOOLS: 'AprilFools',
     QUEENANNES: 'QueenAnnesRevenge',
     FLYINGDUTCHMAN: 'FlyingDutchman',
-    DOUBLELOOTHOLIDAY: 'DoubleLoot' }
+    DOUBLELOOTHOLIDAY: 'DoubleLoot',
+    WINTER: 'Winter' }
 holidayClassNameDict = {
     FLEETHOLIDAY: 'FleetHoliday',
     KRAKENHOLIDAY: 'KrakenHoliday',

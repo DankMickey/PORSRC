@@ -5,6 +5,7 @@ from direct.directnotify import DirectNotifyGlobal
 from direct.task import Task
 from TimeOfDayManagerBase import TimeOfDayManagerBase
 from pirates.piratesbase import TODGlobals
+from pirates.ai import HolidayGlobals
 from direct.distributed.ClockDelta import globalClockDelta
 from otp.ai.MagicWordGlobal import *
 import TODGlobals
@@ -69,9 +70,17 @@ class DistributedTimeOfDayManagerAI(DistributedObjectAI, TimeOfDayManagerBase):
                 self.notify.warning("Failed to update weather state. An unknown error has occured")
                 self.notify.warning(e)
 
+    def isSnowHoliday(self):
+        canSnow = False
+        for holiday in HolidayGlobals.HOLIDAYS_WITH_SNOW:
+            if self.air.newsManager.isHolidayRunning(holiday):
+                canSnow = True
+                break
+        return canSnow
+
     def pickWeather(self):
         dice = random.randint(1, 100)
-        hasSnow = config.GetBool('want-snow-weather', False) and self.air.newManager.isHolidayRunning(17)
+        hasSnow = config.GetBool('want-snow-weather', False) and config.GetBool('want-auto-snow', False) and self.isSnowHoliday()
         
         if config.GetBool('want-storm-weather', False):
             if dice <= 10:
