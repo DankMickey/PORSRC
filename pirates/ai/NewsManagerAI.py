@@ -90,6 +90,7 @@ class NewsManagerAI(DistributedObjectAI):
                 elif countdown <= 0:
                     self.displayMessage(fleetData['launchMsg'])
                     del self.fleetCountdown[fleetHoliday]
+                    messenger.send('treasureFleetLaunch', [fleetHoliday])
                     return
 
                 messageId, increment = fleetData['countdown'][msgIndex]
@@ -262,20 +263,21 @@ class NewsManagerAI(DistributedObjectAI):
         self.d_setHolidayIdList(self.buildHolidayList())
         self.processHolidayStart(holidayId)
 
-        if holidayId == HolidayGlobals.WINTERFESTIVAL:
-            self.playHolidayMusic()
-
         messenger.send('holidayListChanged')
 
     def processHolidayStart(self, holidayId):
         if holidayId in HolidayGlobals.INVASION_HOLIDAYS:
             if self.air.todManager:
                 self.air.todManager.setMoonJolly(True)
+            messenger.send('invasionStart', [holidayId])
 
+        if holidayId == HolidayGlobals.WINTERFESTIVAL:
+            self.playHolidayMusic()
 
         if HolidayGlobals.getHolidayClass(holidayId) == HolidayGlobals.FLEETHOLIDAY:
             self.fleetCountdown[holidayId] = 10
             fleetData = FleetHolidayGlobals.FleetHolidayConfigs[HolidayGlobals.getHolidayConfig(holidayId)]
+            messenger.send('treasureFleetStart', [holidayId])
 
     def endHoliday(self, holidayId):
         if not self.isHolidayRunning(holidayId):
@@ -287,6 +289,13 @@ class NewsManagerAI(DistributedObjectAI):
 
         self.d_setHolidayIdList(self.buildHolidayList())
         self.processHolidayEnd(holidayId)
+        messenger.send('holidayListChanged')
+
+    def processHolidayEnd(self, holidayId):
+        if holidayId in HolidayGlobals.INVASION_HOLIDAYS:
+            if self.air.todManager:
+                self.air.todManager.setMoonJolly(False)
+            messenger.send('invasionEnd', [holidayId])
 
         if holidayId == HolidayGlobals.WINTERFESTIVAL:
             self.playHolidayMusic()
@@ -298,13 +307,7 @@ class NewsManagerAI(DistributedObjectAI):
             fleetData = FleetHolidayGlobals.FleetHolidayConfigs[HolidayGlobals.getHolidayConfig(holidayId)]
             if 'escapedMsg' in fleetData:
                 self.displayMessage(fleetData['escapedMsg'])
-
-        messenger.send('holidayListChanged')
-
-    def processHolidayEnd(self, holidayId):
-        if holidayId in HolidayGlobals.INVASION_HOLIDAYS:
-            if self.air.todManager:
-                self.air.todManager.setMoonJolly(False)
+            messenger.send('treasureFleetEnd', [holidayId])
 
     @magicWord(CATEGORY_GAME_DEVELOPER, types=[int, int])
     def forceStartHoliday(holidayId, time):
