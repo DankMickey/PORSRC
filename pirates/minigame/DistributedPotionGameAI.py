@@ -62,12 +62,42 @@ class DistributedPotionGameAI(DistributedObjectAI):
 
         self.__numIngredientsDone += 1
         if self.__numIngredientsDone >= self.recipes[recipe]:
-            print 'recipe done', recipe
+            self.notify.debug("recipe done %s" %  recipe)
+
+            potionGiven = self.givePotion(recipe)
+            if not potionGiven:
+                self.air.writeServerEvent('recipe-error', avId=self.avId, recipe=recipe, message='Failed to give player potion from PotionGame')
+
             self.air.writeServerEvent('recipe-done', avId=self.avId, recipe=recipe)
             self.av.addReputation(InventoryType.PotionsRep, PotionGlobals.getPotionBuffXP(recipe))
             self.reset()
 
         self.av.addReputation(InventoryType.PotionsRep, 25)
+
+    def givePotion(self, recipeId):
+        recipe = PotionRecipeData.getRecipeFromPotionId(recipeId)
+        if recipe == None:
+            self.notify.warning("Unable to give potion. PotionID (%s) not in PotionRecipeList" % recipeId)
+            return False
+
+        inv = self.av.getInventory()
+        if not inv:
+            self.notify.warning("Unable to locate inventory for avatarId: %s" % self.avId)
+            return False
+
+        if not 'potionID' in recipe:
+            self.notify.warning("Unable to give potion. No potionID defined in recipe")
+            return False
+
+        potionId = PotionGlobals.potionBuffIdToInventoryTypeId(recipe['potionID'])
+        location = inv.findAvailableLocation(InventoryType.ItemTypeConsumable, itemId=potionId, count=1)
+        if location != -1:
+            success = inv.addLocatable(potionId, location, 1)
+            if not success:
+                self.notify.warning("Failed to add potion to players inventory. AvId: %s" % self.avId)
+                return False
+            return True
+        return False
 
     def completeSurvival(self, ingredientsMade, tilesUsed):
         if self.air.getAvatarIdFromSender() != self.avId:
@@ -82,6 +112,7 @@ class DistributedPotionGameAI(DistributedObjectAI):
         if bonus >= len(PotionGlobals.BONUS_XP_AMT):
             # Trying to cheat? No bonus for ya!
             bonus = -1
+            self.air.writeServerEvent('suspisious', avId=self.avId, bonus=bonus, message="Bonus greater then BONUS_XP_AMT")
 
         self.__bonus = bonus
 

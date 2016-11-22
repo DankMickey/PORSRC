@@ -921,3 +921,9 @@ def getDisabled(potionID):
             continue
 
     return 0
+
+def getRecipeFromPotionId(potionID):
+    for potion in PotionRecipeList:
+        if potion['potionID'] == potionID:
+            return potion
+    return None
