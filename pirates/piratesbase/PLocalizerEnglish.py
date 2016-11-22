@@ -10294,8 +10294,8 @@ HOLIDAYIDS_TO_NAMES = {
     HolidayGlobals.VALENTINESDAY: "Valentine's Day",
     HolidayGlobals.MARDIGRAS: 'Mardi Gras' }
 NO_CURRENT_HOLIDAYS = 'Sorry, there are no holiday events active right now.'
-DoubleGoldStart = makeHeadingString('Double Gold Event In Progress!', 2) + '\nPlayers will earn double gold rewards from quests, battles, and minigames. %(hours)s Hours, %(minutes)s Minutes remain before the end of the event.'
-DoubleGoldStartChat = 'Double Gold Event In Progress!\nPlayers will earn double gold rewards for their quests and battles. %(hours)s Hours, %(minutes)s Minutes remain before the end of the event.'
+DoubleGoldStart = makeHeadingString('Double Gold Event In Progress!', 2) + '\nPlayers will earn double gold rewards from quests, battles, and minigames.'
+DoubleGoldStartChat = 'Double Gold Event In Progress!\nPlayers will earn double gold rewards from quests, battles, and minigames.'
 DoubleGoldEnd = 'The double gold event for all has just ended!'
 DoubleGoldStatus = 'Double Gold Event (All Players):\nTime Remaining: %s Hours, %s Minutes'
 DoubleGoldBonus = '2x Gold Bonus'
