@@ -35,7 +35,11 @@ class WhiteList:
     def isPrefix(self, text):
         text = self.cleanText(text)
         i = bisect_left(self.words, text)
-        word = self.words[i]
+
+        try:
+            word = self.words[i]
+        except:
+            return False
         
         if self.chatType == 0:
             return word.startswith(text)
