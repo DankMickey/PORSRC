@@ -518,8 +518,7 @@ class InventoryUIManager(DirectFrame):
                 reason = ItemConstants.REASON_INVENTORY
                 return (canUse, reason)
 
-            reqs = localAvatar.getInventory().getItemRequirements(itemId)
-            if reqs == None or filter(lambda x: reqs[x][1] == False, reqs):
+            if not inv.hasLevel(itemId) or not inv.hasTraining(itemId):
                 canUse = 0
                 reason = ItemConstants.REASON_LEVEL
                 return (canUse, reason)

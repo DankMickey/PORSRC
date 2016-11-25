@@ -7,6 +7,7 @@ import copy
 import types
 from direct.task.Task import Task
 from pirates.reputation import ReputationGlobals
+from pirates.battle import WeaponGlobals
 TEST_TYPE_LIMITS = 1
 TEST_TYPE_TRADES = 2
 
@@ -562,34 +563,20 @@ class TradableInventoryBase(DistributedInventoryBase):
 
         return freeLocations
 
+    def hasTraining(self, itemType):
+        if config.GetBool('want-no-training', False):
+            return True
 
-    def getItemRequirements(self, itemType, otherAdds = []):
-        if not itemType:
-            return None
+        trainingToken = EconomyGlobals.getItemTrainingReq(itemType)
+        return self.getItemQuantity(trainingToken) > 0
 
-        results = {}
-
-        itemClass = ItemGlobals.getClass(itemType)
-        if itemClass == InventoryType.ItemTypeWeapon or itemClass == InventoryType.ItemTypeCharm:
-            itemRepId = ItemGlobals.getItemRepId(itemType)
-            itemRep = self.getReputation(itemRepId)
-            itemLevel = ReputationGlobals.getLevelFromTotalReputation(itemRepId, itemRep)[0]
-            weaponReq = ItemGlobals.getWeaponRequirement(itemType)
-            trainingToken = EconomyGlobals.getItemTrainingReq(itemType)
-            trainingAmt = self.getItemQuantity(trainingToken)
-            for currAdd in otherAdds:
-                otherAdd = InvItem(currAdd)
-                if otherAdd.getCat() == trainingToken and otherAdd.getCount() > 0:
-                    trainingAmt += otherAdd.getCount()
-
-            if weaponReq is None:
-                weaponLevelPass = itemLevel >= weaponReq
-                weaponTrainPass = trainingAmt > 0
-                if weaponLevelPass:
-                    results['itemLevel'] = (weaponReq, weaponTrainPass)
-        else:
-            results['itemLevel'] = (0, True)
-        return results
+    def hasLevel(self, itemId):
+        weaponRepId = WeaponGlobals.getRepId(itemId)
+        weaponRep = self.getReputation(weaponRepId)
+        weaponLevel = ReputationGlobals.getLevelFromTotalReputation(weaponRepId, weaponRep)[0]
+        requiredLevel = ItemGlobals.getWeaponRequirement(itemId)
+        
+        return requiredLevel <= weaponLevel
 
     def clearTemps(self):
         self.tempRems = []

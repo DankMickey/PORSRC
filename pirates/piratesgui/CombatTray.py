@@ -571,7 +571,6 @@ class CombatTray(GuiTray):
                 localAvatar.currentWeaponSlotId = cell.slotId
                 self.setCurrentWeapon(localAvatar.currentWeaponId, 0)
                 break
-                continue
 
 
 

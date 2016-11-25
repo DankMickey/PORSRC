@@ -14,6 +14,7 @@ motionfsm-lag #f
 want-spooky-avatarchooser #t
 want-logout #t
 want-tables-closed #t
+want-no-training #t
 
 # WEAPONS
 want-all-weapons-trained #t

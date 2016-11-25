@@ -3056,7 +3056,6 @@ class GuiManager(FSM.FSM):
                 self.socialPanel.show()
                 self._putBackSocialPanel = 0
 
-        state == 0
         if self.tutorialStatus >= PiratesGlobals.TUT_GOT_COMPASS:
             self.radarGui.show()
             if self.tmButtonQuick:

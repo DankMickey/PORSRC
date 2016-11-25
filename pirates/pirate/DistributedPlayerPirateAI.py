@@ -453,7 +453,6 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         if currentWeapon not in weapons:
             msg = 'tried to use weapon they don\'t own!'
             reason = ItemConstants.REASON_INVENTORY
-
         else:
             canUse, reason = self.canUseItem((InventoryType.ItemTypeWeapon, currentWeapon))
             if not canUse:
@@ -479,16 +478,12 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         if itemCat == InventoryType.ItemTypeClothing:
             gender = self.style.getGender()
             if gender == 'm' and ItemGlobals.getMaleModelId(itemId) == -1:
-                canUse = 0
-                reason = ItemConstants.REASON_GENDER
-
+                return (0, ItemConstants.REASON_GENDER)
             elif gender == 'f' and ItemGlobals.getFemaleModelId(itemId) == -1:
-                canUse = 0
-                reason = ItemConstants.REASON_GENDER
+                return (0, ItemConstants.REASON_GENDER)
         elif itemCat in (InventoryType.ItemTypeWeapon, InventoryType.ItemTypeCharm):
-            reqs = self.inventory.getItemRequirements(itemId)
-            if reqs == None or filter(lambda x: reqs[x][1] == False, reqs):
-                return 0, ItemConstants.REASON_LEVEL
+            if not self.inventory.hasLevel(itemId) or not self.inventory.hasTraining(itemId):
+                return (0, ItemConstants.REASON_LEVEL)
 
         return (canUse, reason)
 
