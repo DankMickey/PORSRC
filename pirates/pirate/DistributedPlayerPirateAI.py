@@ -713,6 +713,9 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         self.b_setStickyTargets(newTargets)
     
     def addStickyTarget(self, stickyTarget):
+        if len(self.stickyTargets) >= self.inventory.getStackQuantity(InventoryType.DollAttune):
+            return
+
         if stickyTarget in self.stickyTargets:
             return
         

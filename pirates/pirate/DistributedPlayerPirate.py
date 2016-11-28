@@ -1805,7 +1805,9 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
 
 
     def putAwayCurrentWeapon(self, blendInT = 0.100, blendOutT = 0.100):
-        self.d_clearStickyTargets()
+        if self == base.localAvatar:
+            self.d_clearStickyTargets()
+        
         return DistributedBattleAvatar.putAwayCurrentWeapon(self, blendInT, blendOutT)
 
     def setStickyTargets(self, avList):
