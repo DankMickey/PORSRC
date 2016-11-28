@@ -1687,7 +1687,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
                 0,
                 0,
                 0]
-        areaIdList = None
+        areaCenter = None
         if WeaponGlobals.getIsShipSkill(skillId) or ammoSkillId == InventoryType.ShipRepairKit:
             targetId = self.ship.getDoId()
             areaCenter = self.ship
@@ -1698,7 +1698,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
                     doId = self.getDoId()
                     if areaIdList.count(doId):
                         areaIdList.remove(doId)
-        elif (WeaponGlobals.getIsDollAttackSkill(skillId) or ItemGlobals.getType(self.currentWeaponId) == ItemGlobals.DOLL) and skillId != InventoryType.DollAttune:
+        elif WeaponGlobals.getIsDollAttackSkill(skillId) and ItemGlobals.getType(self.currentWeaponId) == ItemGlobals.DOLL and skillId != InventoryType.DollAttune:
             targetId = 0
             areaIdList = copy.copy(self.stickyTargets)
             friendlySkill = WeaponGlobals.isFriendlyFire(skillId)
@@ -1720,8 +1720,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
         else:
             targetId = 0
             areaCenter = self
-
-        if areaIdList is None:
+        if areaCenter:
             areaIdList = self.getAreaList(skillId, ammoSkillId, areaCenter, Point3(*pos), self.doId)
         skillResult = self.cr.battleMgr.doAttack(self, skillId, ammoSkillId, targetId, areaIdList, Point3(*pos), combo, charge)
         if not (localAvatar.wantComboTiming) and combo == -1:

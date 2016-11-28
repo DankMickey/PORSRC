@@ -53,6 +53,14 @@ class WeaponBaseAI(DistributedObjectAI):
         if actualResult in (WeaponGlobals.RESULT_HIT,
                             WeaponGlobals.RESULT_DELAY,
                             WeaponGlobals.RESULT_REFLECTED):
+            mojo = abs(WeaponGlobals.getMojoCost(skillId))
+            
+            if mojo:
+                if self.getMojo() < mojo:
+                    return WeaponGlobals.RESULT_MISS
+                else:
+                    self.b_setMojo(self.getMojo() - mojo)
+
             if targetId:
                 target = self.air.doId2do.get(targetId)
                 if isinstance(target, WeaponBaseAI):
