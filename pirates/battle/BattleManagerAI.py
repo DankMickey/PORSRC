@@ -20,7 +20,11 @@ class BattleManagerAI(BattleManagerBase):
         return distance <= range + tolerance
 
     def doAttack(self, attacker, skillId, ammoSkillId, targetId, areaIdList, distance, combo = 0, charge = 0):
+        if (not targetId) and areaIdList:
+            targetId = areaIdList[0]
+
         weaponHit = self.__doAttack(attacker, skillId, ammoSkillId, targetId, areaIdList, distance, combo, charge)
+
         if targetId and attacker and not attacker.isNpc and weaponHit == WeaponGlobals.RESULT_HIT:
             target = self.air.doId2do.get(targetId)
             if target:
