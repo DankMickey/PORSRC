@@ -335,6 +335,9 @@ class DistributedBattleAvatarAI(Teamable, DistributedReputationAvatarAI, WeaponB
             buffIds.add(buff[0])
 
         return buffIds
+    
+    def hasSkillEffect(self, effectId):
+        return effectId in self.getSkillEffects()
 
     def getSkillRankBonus(self, skillId):
         upgradeAmt = WeaponGlobals.getAttackUpgrade(skillId)

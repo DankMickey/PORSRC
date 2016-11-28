@@ -636,8 +636,6 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
             statusTray.updateVoodoo(self.mojo, self.maxMojo, self.doId)
             statusTray.updateStatusEffects(self.skillEffects)
             statusTray.updateSkill(self.currentAttack, self.doId)
-            if localAvatar.currentTarget == self:
-                pass
             sticky = localAvatar.hasStickyTargets()
             statusTray.updateSticky(sticky)
             if self.hp > 0:
@@ -2856,12 +2854,7 @@ class DistributedBattleAvatar(DistributedReputationAvatar, WeaponBase, Teamable)
 
 
     def _addAttuneEffect(self, attackerId, duration):
-        attacker = self.cr.doId2do.get(attackerId)
         self.checkAttuneBuffEffect()
-        if (attacker or attacker.isLocal()) and not self.isInvisibleGhost():
-            attacker.addStickyTarget(self.doId)
-
-
 
     def _removeAttuneEffect(self):
         self.checkAttuneBuffEffect()

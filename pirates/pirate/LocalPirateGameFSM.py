@@ -297,8 +297,7 @@ class LocalPirateGameFSM(PlayerPirateGameFSM):
 
         self.av.stopListenAutoRun()
         base.cr.interactionMgr.stop()
-        self.av.sendRequestRemoveEffects(self.av.stickyTargets)
-        self.av.setStickyTargets([])
+        self.av.d_clearStickyTargets()
         self.av.showName()
         self.av.l_setCurrentWeapon(self.av.currentWeaponId, 0, self.av.currentWeaponSlotId)
         self.av.d_requestCurrentWeapon(self.av.currentWeaponId, 0)

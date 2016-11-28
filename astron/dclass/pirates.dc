@@ -798,9 +798,10 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   setAFK(bool) clsend airecv;
   setBandDisconnect(uint8) clsend airecv;
   // setEpicQuests(uint32) required broadcast db;
-  // setStickyTargets(DoId[]) required broadcast ram;
-  requestRemoveStickyTargets(DoId[]) ownsend airecv;
-  requestRemoveEffects(DoId[]) ownsend airecv;
+  setStickyTargets(uint32[]) required broadcast ram;
+  addStickyTarget(uint32) ownsend airecv;
+  removeStickyTargets(uint32[]) ownsend airecv;
+  clearStickyTargets() ownsend airecv;
   requestAuraDetection(DoId[]) ownsend airecv;
   requestRemoveAuraDetection() ownsend airecv;
   setDefaultShard(uint32) required broadcast ownrecv db;

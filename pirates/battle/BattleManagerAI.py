@@ -39,6 +39,8 @@ class BattleManagerAI(BattleManagerBase):
                     if WeaponGlobals.C_SPAWN in set(target.getSkillEffects()):
                         return WeaponGlobals.RESULT_MISS
 
+        elif areaIdList:
+            target = self.air.doId2do.get(areaIdList[0])
         else:
             target = None
 

@@ -59,8 +59,11 @@ class BattleManager(BattleManagerBase.BattleManagerBase):
                 if target and not TeamUtils.damageAllowed(localAvatar, target) and not WeaponGlobals.isFriendlyFire(skillId, ammoSkillId):
                     return WeaponGlobals.RESULT_NOT_AVAILABLE
 
+        elif areaIdList:
+            target = base.cr.doId2do.get(areaIdList[0])
         else:
             target = None
+
         weaponHit = self.willWeaponHit(attacker, target, skillId, ammoSkillId, charge)
         if combo == -1:
             if localAvatar.wantComboTiming:

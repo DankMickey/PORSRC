@@ -43,11 +43,11 @@ class AvatarInfoButton(GuiButton):
             try:
                 avType = self.avatar.getAvatarType()
                 if avType.isA(AvatarTypes.JollyRoger):
-                    name = '%s  \x01%s\x01smallCaps\x01%s\x02%s\x02' % (avatar.getShortName(), color, PLocalizer.Lv, PLocalizer.InvasionLv)
+                    name = '%s %s\x01smallCaps\x01%s\x02%s\x02' % (avatar.getShortName(), color, PLocalizer.Lv, PLocalizer.InvasionLv)
                 elif self.avatar.isInInvasion():
-                    name = '%s' % avatar.getShortName()
+                    name = avatar.getShortName()
                 else:
-                    name = '%s  \x01%s\x01smallCaps\x01%s\x02%s\x02' % (avatar.getShortName(), color, PLocalizer.Lv, avatar.level)
+                    name = '%s %s\x01smallCaps\x01%s\x02%s\x02' % (avatar.getShortName(), color, PLocalizer.Lv, avatar.level)
             except StandardError:
                 e = None
                 self.notify.error('updateItem(%s, %s)' % (str(avatar), str(e)))
@@ -145,14 +145,10 @@ class AttuneMenu(DirectFrame):
 
 
     def select(self, avId):
-        if avId < 0:
-            pass
-        1
         if avId == 0:
             self.unattuneAll()
         else:
-            localAvatar.sendRequestRemoveStickyTargets([
-                avId])
+            localAvatar.d_removeStickyTargets([avId])
 
 
     def destroy(self):
@@ -169,4 +165,4 @@ class AttuneMenu(DirectFrame):
 
 
     def unattuneAll(self):
-        localAvatar.sendRequestRemoveStickyTargets(self.buttons.keys())
+        localAvatar.d_removeStickyTargets(self.buttons.keys())

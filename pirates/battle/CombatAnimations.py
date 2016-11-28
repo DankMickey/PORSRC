@@ -1421,6 +1421,9 @@ class CombatAnimations:
 
 
     def getAttune(self, av, skillId, ammoSkillId, charge, target, skillResult):
+        if target and av == base.localAvatar:
+            av.d_addStickyTarget(target.doId)
+
         ival = Sequence(Func(self.lockInput, av), Func(av.attackTire), av.actorInterval('voodoo_tune', playRate = 2.0, endFrame = 35, blendInT = 0.2, blendOutT = 0.3), Func(self.unlockInput, av))
         return ival
 

@@ -1805,15 +1805,16 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
 
 
     def putAwayCurrentWeapon(self, blendInT = 0.100, blendOutT = 0.100):
-        self.setStickyTargets([])
+        self.d_clearStickyTargets()
         return DistributedBattleAvatar.putAwayCurrentWeapon(self, blendInT, blendOutT)
-
 
     def setStickyTargets(self, avList):
         self.stickyTargets = avList
         self.checkAttuneEffect()
         localAvatar.guiMgr.attuneSelection.update()
-
+    
+    def d_clearStickyTargets(self):
+        self.sendUpdate('clearStickyTargets', [])
 
     def checkAttuneEffect(self):
         if not self.isGenerated():
@@ -1837,7 +1838,6 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
                             hasEnemies = 1
                         else:
                             hasFriendly = 1
-                    TeamUtils.damageAllowed(self, target)
 
                 if hasFriendly and not hasEnemies:
                     self.attuneEffect.setEffectColor(Vec4(0.200, 0.5, 0.100, 1))
@@ -1851,59 +1851,40 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             self.attuneEffect.stopLoop()
             self.attuneEffect = None
 
-
-
     def getStickyTargets(self):
         return self.stickyTargets
 
+    def d_removeStickyTargets(self, avIds):
+        if avIds:
+            self.sendUpdate('removeStickyTargets', [avIds])
 
-    def addStickyTarget(self, avId):
+    def d_addStickyTarget(self, avId):
         if avId not in self.stickyTargets:
-            self.stickyTargets.append(avId)
-            self.setStickyTargets(self.stickyTargets)
-            localAvatar.guiMgr.attuneSelection.update()
-
-
-
-    def sendRequestRemoveStickyTargets(self, doIdList):
-        self.sendUpdate('requestRemoveEffects', [
-            doIdList])
-
-
-    def sendRequestRemoveEffects(self, doIdList):
-        self.sendUpdate('requestRemoveEffects', [
-            doIdList])
-
+            self.sendUpdate('addStickyTarget', [avId])
 
     def hasStickyTargets(self):
         return self.stickyTargets
 
-
     def getFriendlyStickyTargets(self):
-        avIdList = []
+        avIds = []
+
         for avId in self.stickyTargets:
             av = self.cr.doId2do.get(avId)
-            if av:
-                if not TeamUtils.damageAllowed(av, self):
-                    avIdList.append(avId)
+            if av and not TeamUtils.damageAllowed(av, self):
+                avIds.append(avId)
 
-            TeamUtils.damageAllowed(av, self)
-
-        return avIdList
+        return avIds
 
 
     def getHostileStickyTargets(self):
-        avIdList = []
+        avIds = []
+        
         for avId in self.stickyTargets:
             av = self.cr.doId2do.get(avId)
-            if av:
-                if TeamUtils.damageAllowed(self, av):
-                    avIdList.append(avId)
+            if av and TeamUtils.damageAllowed(self, av):
+                avIds.append(avId)
 
-            TeamUtils.damageAllowed(self, av)
-
-        return avIdList
-
+        return avIds
 
     def sendRequestAuraDetection(self, doIdList):
         self.sendUpdate('requestAuraDetection', [

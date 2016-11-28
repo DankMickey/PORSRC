@@ -15,6 +15,7 @@ from pirates.ai import HolidayGlobals
 import random
 import math
 import time
+import copy
 
 class DummyInventory(PirateInventoryAI):
     doId = 0
@@ -61,9 +62,10 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         self.crewIcon = 0
         self.redeemedCodes = []
         self.style = HumanDNA()
-        self.dnaString = ""
+        self.dnaString = ''
         self.guildId = 0
-        self.guildName = ""
+        self.guildName = ''
+        self.stickyTargets = []
 
     def announceGenerate(self):
         DistributedBattleAvatarAI.announceGenerate(self)
@@ -438,6 +440,7 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         taskMgr.remove(self.taskName('healthTask'))
         taskMgr.remove(self.taskName('doubleXPTask'))
 
+        self.clearStickyTargets()
         self.air.netMessenger.send('goingOffline', [self.doId])
         DistributedBattleAvatarAI.delete(self)
         DistributedPlayerAI.delete(self)
@@ -677,6 +680,50 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
 
     def getGuildName(self):
         return self.guildName
+    
+    def setStickyTargets(self, stickyTargets):
+        self.stickyTargets = stickyTargets
+    
+    def d_setStickyTargets(self, stickyTargets):
+        self.sendUpdate('setStickyTargets', [stickyTargets])
+    
+    def b_setStickyTargets(self, stickyTargets):
+        self.d_setStickyTargets(stickyTargets)
+        self.setStickyTargets(stickyTargets)
+    
+    def getStickyTargets(self):
+        return self.stickyTargets
+    
+    def clearStickyTargets(self):
+        if self.stickyTargets:
+            self.removeStickyTargets(self.stickyTargets)
+    
+    def removeStickyTargets(self, stickyTargets):
+        newTargets = []
+        
+        for targetId in self.stickyTargets:
+            if targetId in stickyTargets:
+                target = self.air.doId2do.get(targetId)
+                
+                if target and hasattr(target, 'removeSkillEffect'):
+                    target.removeSkillEffect(WeaponGlobals.C_ATTUNE)
+            else:
+                newTargets.append(targetId)
+        
+        self.b_setStickyTargets(newTargets)
+    
+    def addStickyTarget(self, stickyTarget):
+        if stickyTarget in self.stickyTargets:
+            return
+        
+        target = self.air.doId2do.get(stickyTarget)
+        
+        if not target or not hasattr(target, 'addSkillEffect') or target.hasSkillEffect(WeaponGlobals.C_ATTUNE):
+            return
+
+        target.addSkillEffect(WeaponGlobals.C_ATTUNE)
+        self.stickyTargets.append(stickyTarget)
+        self.d_setStickyTargets(self.stickyTargets)
     
     def setChatType(self, chatType):
         self.chatType = chatType

@@ -456,8 +456,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
             return None
 
         if self.currentWeaponId != currentWeaponId or self.isWeaponDrawn != isWeaponDrawn:
-            DistributedPlayerPirate.sendRequestRemoveEffects(self, self.stickyTargets)
-            self.setStickyTargets([])
+            self.d_clearStickyTargets()
             taskMgr.remove(self.uniqueName('runAuraDetection'))
 
         subtype = ItemGlobals.getSubtype(currentWeaponId)
@@ -1688,6 +1687,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
                 0,
                 0,
                 0]
+        areaIdList = None
         if WeaponGlobals.getIsShipSkill(skillId) or ammoSkillId == InventoryType.ShipRepairKit:
             targetId = self.ship.getDoId()
             areaCenter = self.ship
@@ -1698,10 +1698,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
                     doId = self.getDoId()
                     if areaIdList.count(doId):
                         areaIdList.remove(doId)
-
-
-
-        elif (WeaponGlobals.getIsDollAttackSkill(skillId) or ItemGlobals.getType(self.currentWeaponId) == ItemGlobals.DOLL) and skillId == EnemySkills.MISC_NOT_IN_FACE:
+        elif (WeaponGlobals.getIsDollAttackSkill(skillId) or ItemGlobals.getType(self.currentWeaponId) == ItemGlobals.DOLL) and skillId != InventoryType.DollAttune:
             targetId = 0
             areaIdList = copy.copy(self.stickyTargets)
             friendlySkill = WeaponGlobals.isFriendlyFire(skillId)
@@ -1714,9 +1711,6 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
                     elif not friendlySkill and not TeamUtils.damageAllowed(self, av):
                         toRemove.append(avId)
 
-                not TeamUtils.damageAllowed(self, av)
-                toRemove.append(avId)
-
             for currToRemove in toRemove:
                 areaIdList.remove(currToRemove)
 
@@ -1726,7 +1720,9 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
         else:
             targetId = 0
             areaCenter = self
-        areaIdList = self.getAreaList(skillId, ammoSkillId, areaCenter, Point3(*pos), self.doId)
+
+        if areaIdList is None:
+            areaIdList = self.getAreaList(skillId, ammoSkillId, areaCenter, Point3(*pos), self.doId)
         skillResult = self.cr.battleMgr.doAttack(self, skillId, ammoSkillId, targetId, areaIdList, Point3(*pos), combo, charge)
         if not (localAvatar.wantComboTiming) and combo == -1:
             if skillResult == WeaponGlobals.RESULT_HIT:
@@ -1809,9 +1805,8 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
         if task.time - self.lastTick > TICK_DELAY:
             for avId in self.stickyTargets:
                 av = base.cr.doId2do.get(avId)
-                if av is None and self.getDistance(av) > WeaponGlobals.getAttackRange(InventoryType.DollPoke) or av.isInvisibleGhost():
-                    self.sendRequestRemoveStickyTargets([
-                        avId])
+                if av is None or self.getDistance(av) > WeaponGlobals.getAttackRange(InventoryType.DollPoke) or av.isInvisibleGhost():
+                    self.d_removeStickyTargets([avId])
                     continue
 
             self.lastTick = task.time
