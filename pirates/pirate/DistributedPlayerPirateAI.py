@@ -82,6 +82,8 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
 
         self.accept('holidayListChanged', self.__checkDoubleXPHoliday)
         self.__checkDoubleXPHoliday()
+        
+        self.accept('enemyDefeated', self.__enemyDefeated)
 
     def getInventory(self):
         return self.inventory
@@ -727,6 +729,10 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         target.addSkillEffect(WeaponGlobals.C_ATTUNE)
         self.stickyTargets.append(stickyTarget)
         self.d_setStickyTargets(self.stickyTargets)
+    
+    def __enemyDefeated(self, enemy):
+        if enemy.doId in self.stickyTargets:
+            self.removeStickyTargets([enemy.doId])
     
     def setChatType(self, chatType):
         self.chatType = chatType

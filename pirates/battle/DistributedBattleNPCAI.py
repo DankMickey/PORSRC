@@ -83,6 +83,7 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
 
     def delete(self):
         self.demand('Off')
+        messenger.send('enemyDefeated', [self])
         DistributedBattleAvatarAI.delete(self)
 
     def setSpawnPos(self, spawnPos):
@@ -275,6 +276,7 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
         if self.air.lootManager:
             self.air.lootManager.spawnLoot(self)
 
+        messenger.send('enemyDefeated', [self])
         taskMgr.doMethodLater(5, doDeath, self.taskName('death'))
 
     def applyRewards(self):
