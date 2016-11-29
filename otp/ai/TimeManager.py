@@ -133,6 +133,3 @@ class TimeManager(DistributedObject):
         if not self.isReported(targetId):
             self.sendUpdate('reportPlayer', [targetId, reason])
             self.reported.append(targetId)
-    
-    def d_requestSpeedHack(self):
-        self.sendUpdate('requestSpeedHack', [])

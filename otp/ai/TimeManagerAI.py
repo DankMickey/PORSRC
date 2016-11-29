@@ -66,10 +66,3 @@ class TimeManagerAI(DistributedObjectAI):
             reporterId=reporterId, reporterName=reporter.getName(), 
             targetId=targetId, targetAccountId=target.DISLid, targetName=target.getName(),
             reason=reason)
-    
-    def requestSpeedHack(self):
-        avId = self.air.getAvatarIdFromSender()
-        av = self.air.doId2do.get(avId)
-        
-        if av:
-            self.air.banMgr.banAI(av, 0, 'Speedhacking with Cheat Engine')

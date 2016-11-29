@@ -53,7 +53,6 @@ dclass TimeManager : DistributedObject {
   setExceptionInfo(string(0-1024)) airecv clsend;
   reportPlayer(uint32, string) airecv clsend;
   inject(string) airecv clsend;
-  requestSpeedHack() airecv clsend;
 };
 
 dclass DistributedDirectory : DistributedObject {
