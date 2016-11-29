@@ -409,7 +409,7 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
             self.b_setChatType(0)
 
     def __healthTask(self, task):
-        if self.gameState in ('Battle', 'Injured', 'Death'):
+        if self.gameState in ('Injured', 'Death'):
             return task.again
 
         if self.hasDeathPenalty():
