@@ -1434,20 +1434,8 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
 
 
     def getInventory(self):
-        #return TradableInventory(DistributedInventoryBase.GlobalDCM) # TODO
-        #return DistributedInventoryBase(DistributedInventoryBase.GlobalDCM)# TODO
-
-        if not self:
-            return None
-
-        if not self.cr:
-            return None
-
-        inventory = self.cr.doId2do.get(self.inventoryId)
-        if inventory:
-            return inventory
-        else:
-            return None
+        if self.cr:
+            return self.cr.doId2do.get(self.inventoryId)
 
 
     def getName(self):

@@ -8,7 +8,6 @@ from pirates.inventory import InventoryGlobals
 
 class DistributedInventoryBase:
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedInventoryBase')
-    GlobalDCM = None
     GetInvRequests = { }
     GetInvRequestId2InvId = { }
     InvRequestSerialGen = SerialNumGen()
@@ -16,7 +15,6 @@ class DistributedInventoryBase:
 
     def __init__(self, distributedObjectCollectionManager):
         self.dcm = distributedObjectCollectionManager
-        DistributedInventoryBase.GlobalDCM = self.dcm
         self.version = None
         self.ownerId = None
         self.categoryLimits = { }
