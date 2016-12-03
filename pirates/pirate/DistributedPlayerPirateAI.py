@@ -414,6 +414,14 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         if self.gameState in ('Injured', 'Death'):
             return task.again
 
+        mult = random.randint(6, 13) / 2.0 + .5
+        tp = int(self.level * mult)
+        
+        self.b_setMojo(self.mojo + tp)
+        
+        if self.gameState == 'Battle':
+            return task.again
+
         if self.hasDeathPenalty():
             duration = self.inventory.getStackQuantity(InventoryType.Vitae_Cost) * 60
             elapsed = globalClock.getRealTime() - self.penaltyStartTime
@@ -424,15 +432,8 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
 
             elif left != self.inventory.getStackQuantity(InventoryType.Vitae_Left):
                 self.inventory.setStackQuantity(InventoryType.Vitae_Left, left)
-
         else:
-            mult = random.randint(6, 13) / 2.0 + .5
-            tp = int(self.level * mult)
             self.toonUp(tp)
-
-            # Toon up mojo
-            mojo = self.mojo + tp
-            self.b_setMojo(mojo)
 
         return task.again
 
