@@ -129,8 +129,6 @@ class ProjectileEffect:
         else:
             attacker = None
             aoeRadius = 0
-        if attacker:
-            pass
         unlimited = bool(attacker.isLocal())
         if config.GetBool('show-aoe-radius', 0):
             s = loader.loadModel('models/misc/smiley')

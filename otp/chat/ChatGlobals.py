@@ -18,7 +18,6 @@ CREW_UPDATE = 10
 GUILD_UPDATE = 11
 AVATAR_UNAVAILABLE = 12
 SHIPPVPCHAT = 13
-GMCHAT = 14
 ChatEvent = 'ChatEvent'
 NormalChatEvent = 'NormalChatEvent'
 SCChatEvent = 'SCChatEvent'

@@ -18,7 +18,6 @@ from otp.otpbase import OTPLocalizer
 from pirates.piratesbase import PLocalizer
 from pirates.piratesbase import EmoteGlobals
 from pirates.speedchat.PSpeedChatQuestMenu import PSpeedChatQuestMenu
-from otp.speedchat import SpeedChatGMHandler
 scStructure = [
     [
         OTPLocalizer.PSCMenuTesting,
@@ -281,7 +280,6 @@ class PChatInputSpeedChat(DirectObject.DirectObject):
             self.accept(eventName, handler)
 
         listenForSCEvent(SpeedChatGlobals.SCStaticTextMsgEvent, self.handleStaticTextMsg)
-        listenForSCEvent(SpeedChatGlobals.SCGMTextMsgEvent, self.handleGMTextMsg)
         listenForSCEvent(SpeedChatGlobals.SCCustomMsgEvent, self.handleCustomMsg)
         listenForSCEvent(SpeedChatGlobals.SCEmoteMsgEvent, self.handleEmoteMsg)
         listenForSCEvent(SpeedChatGlobals.SCEmoteNoAccessEvent, self.handleEmoteNoAccess)
@@ -295,7 +293,6 @@ class PChatInputSpeedChat(DirectObject.DirectObject):
         self.fsm.enterInitialState()
         self.mode = 'AllChat'
         self.whisperId = None
-        self.gmHandler = None
 
     def reparentTo(self, newParent):
         self.baseFrame.reparentTo(newParent)
@@ -364,12 +361,6 @@ class PChatInputSpeedChat(DirectObject.DirectObject):
             base.talkAssistant.sendOpenSpeedChat(msgType, textId)
             return None
 
-        if msgType == GMCHAT:
-            if self.gmHandler:
-                base.talkAssistant.sendOpenTalk(self.gmHandler.getPhrase(textId))
-
-            return None
-
         if self.mode == 'AvatarWhisper':
             if questFlag:
                 base.talkAssistant.sendAvatarWhisperQuestSpeedChat(questInt, questMsgType, taskNum, self.whisperId)
@@ -403,10 +394,6 @@ class PChatInputSpeedChat(DirectObject.DirectObject):
         else:
             self.sendChatByMode(SPEEDCHAT_NORMAL, textId)
             self.hide()
-
-    def handleGMTextMsg(self, textId):
-        self.sendChatByMode(GMCHAT, textId)
-        self.hide()
 
     def handleCustomMsg(self, textId):
         self.sendChatByMode(SPEEDCHAT_CUSTOM, textId)
@@ -468,12 +455,6 @@ class PChatInputSpeedChat(DirectObject.DirectObject):
         self.speedChat.setColorScheme(self.DefaultSCColorScheme)
         self.speedChat.finalizeAll()
         self.structure = structure
-
-    def addGMSpeedChat(self):
-        if not self.gmHandler:
-            self.gmHandler = SpeedChatGMHandler.SpeedChatGMHandler()
-            self.structure.insert(0, self.gmHandler.getStructure())
-            self.speedChat.rebuildFromStructure(self.structure)
 
     def addFactoryMenu(self):
         fMenu = PSCFactoryMenu()

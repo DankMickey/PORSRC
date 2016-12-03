@@ -317,6 +317,3 @@ class PiratesChatManager(ChatManagerV2.ChatManagerV2):
     def exitNoSecretChatWarning(self):
         self.warningDialog.destroy()
         self.warningDialog = None
-
-    def addGMSpeedChat(self):
-        self.speedEntry.addGMSpeedChat()

@@ -18,7 +18,6 @@ from otp.otpbase import OTPLocalizer
 from pirates.piratesbase import PLocalizer
 from pirates.piratesbase import EmoteGlobals
 from pirates.speedchat.PSpeedChatQuestMenu import PSpeedChatQuestMenu
-from otp.speedchat import SpeedChatGMHandler
 scStructure = []
 
 class PChatInputEmote(DirectObject.DirectObject):
@@ -191,11 +190,6 @@ class PChatInputEmote(DirectObject.DirectObject):
             base.talkAssistant.sendOpenSpeedChat(msgType, textId)
             return None
 
-        if msgType == GMCHAT:
-            gmHandler = SpeedChatGMHandler.SpeedChatGMHandler()
-            base.talkAssistant.sendOpenTalk(gmHandler.getPhrase(textId))
-            return None
-
         if self.mode == 'AvatarWhisper':
             if questFlag:
                 pass
@@ -229,10 +223,6 @@ class PChatInputEmote(DirectObject.DirectObject):
         else:
             self.sendChatByMode(SPEEDCHAT_NORMAL, textId)
             self.hide()
-
-    def handleGMTextMsg(self, textId):
-        self.sendChatByMode(GMCHAT, textId)
-        self.hide()
 
     def handleCustomMsg(self, textId):
         self.sendChatByMode(3, textId)
@@ -284,11 +274,6 @@ class PChatInputEmote(DirectObject.DirectObject):
         self.speedChat.setColorScheme(self.DefaultSCColorScheme)
         self.speedChat.finalizeAll()
         self.structure = structure
-
-    def addGMSpeedChat(self):
-        gmHandler = SpeedChatGMHandler.SpeedChatGMHandler()
-        self.structure.insert(0, gmHandler.getStructure())
-        self.speedChat.rebuildFromStructure(self.structure)
 
     def addFactoryMenu(self):
         fMenu = PSCFactoryMenu()
