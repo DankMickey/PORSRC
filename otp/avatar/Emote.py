@@ -10,8 +10,6 @@ class Emote:
         return
 
     def isEnabled(self, index):
-        if isinstance(index, types.StringType):
-            index = OTPLocalizer.EmoteFuncDict[index]
         if self.emoteFunc == None:
             return 0
         elif self.emoteFunc[index][1] == 0:

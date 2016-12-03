@@ -275,28 +275,6 @@ class PChatInputEmote(DirectObject.DirectObject):
         self.speedChat.finalizeAll()
         self.structure = structure
 
-    def addFactoryMenu(self):
-        fMenu = PSCFactoryMenu()
-        fMenuHolder = SCMenuHolder(OTPLocalizer.SCMenuFactory, menu = fMenu)
-        self.speedChat[2:2] = [
-            fMenuHolder]
-
-    def removeFactoryMenu(self):
-        fMenu = self.speedChat[2]
-        del self.speedChat[2]
-        fMenu.destroy()
-
-    def addCogMenu(self, indices):
-        fMenu = PSCCogMenu(indices)
-        fMenuHolder = SCMenuHolder(OTPLocalizer.SCMenuCog, menu = fMenu)
-        self.speedChat[2:2] = [
-            fMenuHolder]
-
-    def removeCogMenu(self):
-        fMenu = self.speedChat[2]
-        del self.speedChat[2]
-        fMenu.destroy()
-
     def addEmote(self, emoteId):
         emote = EmoteGlobals.emotes.get(emoteId)
         emote_group = EmoteGlobals.getEmoteGroup(emoteId)

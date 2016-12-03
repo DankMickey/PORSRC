@@ -334,7 +334,6 @@ GlobalDialogColor = (1, 1, 0.75, 1)
 DefaultBackgroundColor = (0.299, 0.299, 0.299, 1)
 DynamicZonesBegin = 61000
 DynamicZonesEnd = 1 << 20
-ToonStandableGround = 0.70696
 SPEED_NORMAL_INDEX = 0
 SPEED_BATTLE_INDEX = 1
 SPEED_FAST_INDEX = 2

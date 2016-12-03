@@ -50,7 +50,7 @@ class FriendSecret(GuiPanel.GuiPanel, StateData.StateData):
         GuiPanel.GuiPanel.__init__(self, 'Secret Codes!!! Arg!!', 1.6, 1.2)
         StateData.StateData.__init__(self, 'friend-secret-done')
         self.initialiseoptions(FriendSecret)
-        self.prefix = OTPGlobals.getDefaultProductPrefix()
+        self.prefix = 'POR'
         self.secretType = secretType
         self.notify.debug('### secretType = %s' % self.secretType)
         self.requestedSecretType = secretType

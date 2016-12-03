@@ -455,25 +455,3 @@ class PChatInputSpeedChat(DirectObject.DirectObject):
         self.speedChat.setColorScheme(self.DefaultSCColorScheme)
         self.speedChat.finalizeAll()
         self.structure = structure
-
-    def addFactoryMenu(self):
-        fMenu = PSCFactoryMenu()
-        fMenuHolder = SCMenuHolder(OTPLocalizer.SCMenuFactory, menu = fMenu)
-        self.speedChat[2:2] = [
-            fMenuHolder]
-
-    def removeFactoryMenu(self):
-        fMenu = self.speedChat[2]
-        del self.speedChat[2]
-        fMenu.destroy()
-
-    def addCogMenu(self, indices):
-        fMenu = PSCCogMenu(indices)
-        fMenuHolder = SCMenuHolder(OTPLocalizer.SCMenuCog, menu = fMenu)
-        self.speedChat[2:2] = [
-            fMenuHolder]
-
-    def removeCogMenu(self):
-        fMenu = self.speedChat[2]
-        del self.speedChat[2]
-        fMenu.destroy()

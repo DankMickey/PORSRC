@@ -1072,26 +1072,21 @@ InvasionNotoriety = '%s Notoriety'
 InvasionNotorietyBonus = '+%s%% Notoriety Bonus'
 CRConnecting = 'Connecting...'
 CRNoConnectTryAgain = 'Could not connect to %s:%s. Try again?'
-CRNoConnectProxyNoPort = 'Could not connect to %s:%s.\n\nYou are communicating to the internet via a proxy, but your proxy does not permit connections on port %s.\n\nYou must open up this port, or disable your proxy, in order to play.  If your proxy has been provided by your ISP, you must contact your ISP to request them to open up this port.'
 CRLostConnection = 'Your internet connection has been unexpectedly broken.'
 CRBootedReasons = {
     1: 'An unexpected problem has occurred.  Your connection has been lost, but you should be able to connect again and go right back into the game.',
     100: 'You have been disconnected because someone else just logged in using your account on another computer.',
-    120: 'You have been disconnected because of a problem with your authorization to use keyboard chat.',
     122: 'There has been an unexpected problem logging you in.  Please contact customer support.',
     125: 'Your installed files appear to be invalid.  Please use the Play button on the official website to run.',
     126: 'You are not authorized to use administrator privileges.',
     151: 'You have been logged out by an administrator working on the servers.',
-    153: 'The world you were playing on has been reset.  Everyone who was playing on that world has been disconnected.  However, you should be able to connect again and go right back into the game.',
-    288: 'Sorry, you have used up all of your available minutes this month.',
-    349: 'Sorry, you have used up all of your available minutes this month.' }
+    153: 'The world you were playing on has been reset.  Everyone who was playing on that world has been disconnected.  However, you should be able to connect again and go right back into the game.'}
 CRBootedReasonUnknownCode = 'An unexpected problem has occurred (error code %s).  Your connection has been lost, but you should be able to connect again and go right back into the game.'
 CRTryConnectAgain = '\n\nTry to connect again?'
 CRToontownUnavailable = 'Pirates appears to be temporarily unavailable, still trying...'
 CRToontownUnavailableCancel = lCancel
 CRNameCongratulations = 'CONGRATULATIONS!!'
 CRNameAccepted = 'Your name has been\napproved by the Pirate Bretheren.\n\nFrom this day forth\nyou will be named\n"%s"'
-CRServerDateTryAgain = 'Could not get server date from %s. Try again?'
 AfkForceAcknowledgeMessage = 'Your pirate got groggy and passed out.'
 CREnteringToontown = 'Entering Pirates...'
 CRAvatarListFailed = 'Failed to login and retrieve your pirates. Please restart and try again.'
@@ -7159,7 +7154,7 @@ NameGUI_EmptyNameText = ' \n '
 NameGUI_NoNameWarnings = [
     "Don't you want to have any name at all?",
     'You gotta have a first or a last name, mate!']
-NameGUI_Guidelines = 'Your name will need to be approved.  Make sure it has: \n\n  - No foul language\n  - No personal information\n  - No brand names\n'
+NameGUI_Guidelines = 'Your name will need to be approved.\nMake sure it has: \n\n  - No foul language\n  - No personal information\n  - No brand names\n'
 NameGUI_URLText = '\x01uline\x01Click here to see all naming guidelines\x02'
 PirateNames_NickNamesGeneric = [
     'Crazy',
