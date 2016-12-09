@@ -8,9 +8,6 @@ from pirates.piratesbase import PiratesGlobals
 from pirates.uberdog.UberDogGlobals import InventoryType, InventoryCategory
 import random
 
-ItemTypes = [InventoryType.ItemTypeWeapon, InventoryType.ItemTypeClothing, InventoryType.ItemTypeClothing, InventoryType.ItemTypeClothing, InventoryType.ItemTypeWeapon, InventoryType.ItemTypeWeapon]
-#ItemTypes = [InventoryType.ItemTypeWeapon, InventoryType.ItemTypeConsumable, InventoryType.ItemTypeCharm, InventoryType.ItemTypeClothing, InventoryCategory.CARDS, InventoryCategory.WEAPON_PISTOL_AMMO]
-
 class LootManagerAI(DirectObject):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedLootManagerAI')
 
@@ -38,9 +35,7 @@ class LootManagerAI(DirectObject):
                 return
 
             chestType = self.getChestTypeFromEnemyLevel(enemyLevel)
-            plunder = self.getContainerPlunder(chestType, npc)
-
-            container = DistributedLootContainerAI.makeFromObjectData(self.air, npc, type=chestType, plunder=plunder)
+            container = DistributedLootContainerAI.makeFromObjectData(self.air, npc, type=chestType)
             container.setTimeout(config.GetInt('loot-timeout', 120))
 
             self.containers[container.doId] = container
@@ -66,46 +61,6 @@ class LootManagerAI(DirectObject):
 
     def getEnemyGradeFromLevels(self, npcLevel, players):
         return EnemyGlobals.GREEN
-
-    def getRandomItem(self, enemyItems, itemRarities, itemTypes):
-        itemRarity = self.chooseFromRate(itemRarities)
-        itemType = ItemTypes[self.chooseFromRate(itemTypes)]
-
-        random.shuffle(enemyItems)
-            
-        for itemId in enemyItems:
-            if ItemGlobals.getClass(itemId) == itemType and ItemGlobals.getRarity(itemId) == itemRarity:
-                return (itemType, itemId, 1)
-    
-    def chooseFromRate(self, rates):
-        rolled = random.uniform(0, 1)
-        
-        for i, rate in enumerate(rates):
-            if rate <= rolled:
-                return i
-        
-        return 0
-        
-    def getContainerPlunder(self, containerType, npc):
-        enemyItems = DropGlobals.getEnemyDropItemsByType(npc.avatarType, npc.getUniqueId())
-
-        itemRarities = DropGlobals.getItemRarityRate(containerType)
-        itemTypes = DropGlobals.getItemTypeRate(containerType)
-        itemRate = self.chooseFromRate(DropGlobals.getNumItemsRate(containerType)) + 1
-        items = []
-        
-        if random.random() >= 0.8:
-            gold = random.randint(*DropGlobals.getItemGoldRate(containerType))
-            items.append((InventoryType.ItemTypeMoney, 0, gold))
-            itemRate -= 1
-        
-        for i in xrange(itemRate):
-            item = self.getRandomItem(enemyItems, itemRarities, itemTypes)
-            
-            if item:
-                items.append(item)
-
-        return items
 
     def __removeContainers(self, task):
         garbage = []

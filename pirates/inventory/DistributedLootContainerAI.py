@@ -3,9 +3,13 @@ from direct.distributed.DistributedObjectAI import DistributedObjectAI
 from direct.distributed.GridParent import GridParent
 from pirates.distributed.DistributedInteractiveAI import *
 from pirates.inventory.LootableAI import LootableAI
+from pirates.inventory import DropGlobals, ItemGlobals
 from pirates.piratesbase import PiratesGlobals
-from pirates.uberdog.UberDogGlobals import InventoryType
-import copy, os
+from pirates.uberdog.UberDogGlobals import InventoryType, InventoryCategory
+import random, copy, os
+
+ItemTypes = [InventoryType.ItemTypeWeapon, InventoryType.ItemTypeClothing, InventoryType.ItemTypeClothing, InventoryType.ItemTypeClothing, InventoryType.ItemTypeWeapon, InventoryType.ItemTypeWeapon]
+#ItemTypes = [InventoryType.ItemTypeWeapon, InventoryType.ItemTypeConsumable, InventoryType.ItemTypeCharm, InventoryType.ItemTypeClothing, InventoryCategory.CARDS, InventoryCategory.WEAPON_PISTOL_AMMO]
 
 class DistributedLootContainerAI(DistributedInteractiveAI, LootableAI):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedLootContainerAI')
@@ -97,14 +101,14 @@ class DistributedLootContainerAI(DistributedInteractiveAI, LootableAI):
     def getAvatarLevel(self):
         return self.avatarLevel
     
-    def posControlledByCell(self):
-        return False
-
     def setPlunder(self, plunder):
-        self.plunder = {avId: copy.deepcopy(plunder) for avId in self.locks}
-
+        self.plunder = plunder
+    
     def getPlunder(self):
         return self.plunder
+    
+    def posControlledByCell(self):
+        return False
 
     def startLooting(self, avId, timer):
         self.sendUpdateToAvatarId(avId, 'startLooting', [self.plunder[avId], timer])
@@ -177,18 +181,79 @@ class DistributedLootContainerAI(DistributedInteractiveAI, LootableAI):
         
         if location != -1:
             inv.addLocatable(itemId, location, amount, inventoryType=itemClass)
+    
+    def isGenderAlright(self, av, itemClass, itemId):
+        if itemClass != InventoryType.ItemTypeClothing:
+            return True
+        
+        gender = av.style.getGender()
+        
+        if gender == 'm' and ItemGlobals.getMaleModelId(itemId) == -1:
+            return False
+        elif gender == 'f' and ItemGlobals.getFemaleModelId(itemId) == -1:
+            return False
+        
+        return True         
+
+    def getRandomItem(self, av, enemyItems, itemRarities, itemTypes):
+        itemRarity = self.chooseFromRate(itemRarities)
+        itemType = ItemTypes[self.chooseFromRate(itemTypes)]
+
+        random.shuffle(enemyItems)
+            
+        for itemId in enemyItems:
+            itemClass = ItemGlobals.getClass(itemId)
+            
+            if itemClass == itemType and ItemGlobals.getRarity(itemId) == itemRarity and self.isGenderAlright(av, itemClass, itemId):
+                return (itemType, itemId, 1)
+    
+    def chooseFromRate(self, rates):
+        rolled = random.uniform(0, 1)
+        
+        for i, rate in enumerate(rates):
+            if rate <= rolled:
+                return i
+        
+        return 0
+        
+    def getContainerPlunder(self, av, npc):
+        enemyItems = DropGlobals.getEnemyDropItemsByType(npc.avatarType, npc.getUniqueId())
+
+        itemRarities = DropGlobals.getItemRarityRate(self.lootType)
+        itemTypes = DropGlobals.getItemTypeRate(self.lootType)
+        itemRate = self.chooseFromRate(DropGlobals.getNumItemsRate(self.lootType)) + 1
+        items = []
+        
+        if random.random() >= 0.8:
+            gold = random.randint(*DropGlobals.getItemGoldRate(self.lootType))
+            items.append((InventoryType.ItemTypeMoney, 0, gold))
+            itemRate -= 1
+        
+        for i in xrange(itemRate):
+            item = self.getRandomItem(av, enemyItems, itemRarities, itemTypes)
+            
+            if item:
+                items.append(item)
+
+        return items
+    
+    def setupPlunder(self, npc):
+        self.plunder = {}
+        
+        for avId in self.locks:
+            av = self.air.doId2do.get(avId)
+            
+            if av:
+                self.plunder[avId] = self.getContainerPlunder(av, npc)
 
     @staticmethod
-    def makeFromObjectData(air, npc, type=PiratesGlobals.ITEM_SAC, plunder=[]):
+    def makeFromObjectData(air, npc, type=PiratesGlobals.ITEM_SAC):
         obj = DistributedLootContainerAI(air)
         obj.setCreditLocks(npc.enemySkills.keys())
         obj.setAvatarType(npc.avatarType)
         obj.setAvatarLevel(npc.getLevel())
         obj.setType(type)
-        obj.setPlunder(plunder)
-
-        if not plunder:
-            obj.setEmpty(True)
+        obj.setupPlunder(npc)
         
         area = npc.getParentObj()
         cell = GridParent.getCellOrigin(area, npc.zoneId)
