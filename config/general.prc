@@ -75,7 +75,7 @@ loading-screen-interstitial #f
 no-loading-screen #f
 
 #LOOT
-always-spawn-loot #t
+always-spawn-loot #f
 want-loot #t
 
 #random negro
