@@ -103,10 +103,6 @@ class HighSeasScoreboard(GuiPanel.GuiPanel):
         self.arrangeGrids()
         self.accept('lootsystem-plunderContainer-Empty', self.onEmptyContainer, [
             False])
-        self.accept('Scoreboard-Loot-Timed-Out', self.onLootTimeout, [
-            False])
-        self.acceptOnce('Scoreboard-Loot-Timed-Out-Warning', self.warnLootTimeout, [
-            False])
         self.initFlag = 1
 
 
@@ -355,19 +351,6 @@ class HighSeasScoreboard(GuiPanel.GuiPanel):
         self.checkAllContainers()
 
 
-    def onLootTimeout(self, thing, containerId):
-        if containerId in self.grids:
-            base.localAvatar.guiMgr.queueInstructionMessageFront(PLocalizer.LootTimeoutSorry, [], None, 1.0, messageCategory = MessageGlobals.MSG_CAT_LOOT_WARNING)
-            self.closePanel()
-
-
-
-    def warnLootTimeout(self, thing, containerId):
-        if containerId in self.grids:
-            base.localAvatar.guiMgr.queueInstructionMessageFront(PLocalizer.LootTimeoutWarning, [], None, 1.0, messageCategory = MessageGlobals.MSG_CAT_LOOT_WARNING)
-
-
-
     def checkAllContainers(self, event = None):
         self.arrangeGrids()
         panelHasStuff = 0
@@ -413,12 +396,6 @@ class HighSeasScoreboard(GuiPanel.GuiPanel):
         GuiPanel.GuiPanel.closePanel(self)
         self.destroy()
         messenger.send('highSeasScoreBoardClose')
-
-
-    def removeLootContainer(self, containerId):
-        grid = self.grids.pop(containerId, None)
-        if grid:
-            grid.destroy()
 
 
 
@@ -508,37 +485,3 @@ class HighSeasScoreboard(GuiPanel.GuiPanel):
     def printIncidentalsTaken(self):
         for itemKey in self.incidentalsDict:
             pass
-
-
-
-    def requestItem(self, item):
-        (pMissionTime, pShipDamage, pSkeletonKills, pNavyKills, pCreatureKills, pSeamonsterKills, pPirateKills, pTownfolkKills, pShipKills, pRepairCost, pExp, pGold, pCargo, pLootBoxes, dummyCrew) = self.playerStats
-        for lootBox in pLootBoxes:
-            for lootInfo in lootBox[1]:
-                if item[0] == lootInfo[0] and item[1] == lootInfo[1] and item[2] == lootInfo[2]:
-                    base.cr.lootMgr.d_requestItemFromContainer(lootBox[0], item)
-                    return None
-                    continue
-
-
-
-
-    def requestItems(self, items):
-        (pMissionTime, pShipDamage, pSkeletonKills, pNavyKills, pCreatureKills, pSeamonsterKills, pPirateKills, pTownfolkKills, pShipKills, pRepairCost, pExp, pGold, pCargo, pLootBoxes, dummyCrew) = self.playerStats
-        containers = { }
-        for item in items:
-            for lootBox in pLootBoxes:
-                for lootInfo in lootBox[1]:
-                    if item[0] == lootInfo[0] and item[1] == lootInfo[1] and item[2] == lootInfo[2]:
-                        if lootBox[0] in containers:
-                            containers[lootBox[0]].append(item)
-                            continue
-                        containers[lootBox[0]] = [
-                            item]
-                        continue
-                        continue
-
-
-
-        if base.cr.lootMgr and containers:
-            base.cr.lootMgr.d_requestItems(list(containers.iteritems()))

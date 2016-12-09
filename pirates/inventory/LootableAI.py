@@ -24,33 +24,10 @@ class LootableAI(DistributedObjectAI):
 
     def __init__(self, air):
         DistributedObjectAI.__init__(self, air)
-        self.heldItem = None
-        self.heldFromCell = None
-        self.withInCell = None
-        self.withInBag = None
-        self.pickupTimedOut = 0
-        self.stackSplitter = None
-        self.removeConfirm = None
-        self.removeContainer = None
-        self.plunderPanel = None
-        self.showingItem = None
-        self.locked = 0
-        self.localInventoryOpen = 0
-        self.standardButtonSize = 0.14
-        self.pickUpTime = 0.3
-        self.scoreboard = None
-        self.lootContainer = None
-        self.containerIsGeneric = False
-        self.tradeContainer = None
-        self.discoveredInventory = 0
-        self.trashItem = None
-        self.reasonNoUse = None
      
-     
-
     def startLooting(self, avId, plunderInfo, itemsToTake=0, timer=0, autoShow=True):
-     self.notify.info("startLooting. plunderInfo: %s itemsToTake: %s timer: %s autoShow: %s" % (plunderInfo, itemsToTake, timer, autoShow))
-     self.sendUpdateToAvatarId(avId, 'startLooting', [plunderInfo, itemsToTake, timer, autoShow])
+        self.notify.info("startLooting. plunderInfo: %s itemsToTake: %s timer: %s autoShow: %s" % (plunderInfo, itemsToTake, timer, autoShow))
+        self.sendUpdateToAvatarId(avId, 'startLooting', [plunderInfo, itemsToTake, timer, autoShow])
 
     def stopLooting(self):
         self.notify.info("stopLooting Sent ")
@@ -58,8 +35,8 @@ class LootableAI(DistributedObjectAI):
     def doneTaking(self):
         self.notify.info("doneTaking Sent ")
 
-    def requestItem(self, plunderLocationInfo):
-        self.notify.info("requestItem. plunderLocationInfo: %s" % plunderLocationInfo)
+    def requestItem(self, item):
+        self.notify.info("requestItem. item: %s" % (item,))
 
-    def requestItems(self, pluderInfo):
-        self.notify.info("requestItems. plunderInfo: %s" % plunderInfo)
+    def requestItems(self):
+        self.notify.info("requestItems.")

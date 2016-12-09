@@ -75,8 +75,8 @@ loading-screen-interstitial #f
 no-loading-screen #f
 
 #LOOT
-always-spawn-loot #f
-want-loot #f
+always-spawn-loot #t
+want-loot #t
 
 #random negro
 want-cannondefense-game 0

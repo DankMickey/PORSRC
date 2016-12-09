@@ -854,9 +854,8 @@ class DistributedQuestProp(Lootable.Lootable):
             itemInfo])
 
 
-    def d_requestItems(self, items):
-        self.sendUpdate('requestItems', [
-            items])
+    def d_requestItems(self):
+        self.sendUpdate('requestItems', [])
 
 
     def getTeam(self):

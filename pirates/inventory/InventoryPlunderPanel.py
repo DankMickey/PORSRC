@@ -9,7 +9,7 @@ import InventoryUIPlunderGridContainer
 
 class InventoryPlunderPanel(DirectFrame):
 
-    def __init__(self, manager, plunderList, rating, typeName, itemsToTake, customName, timer = 0, autoShow = False):
+    def __init__(self, manager, plunderList, rating, typeName, itemsToTake, timer = 0, autoShow = False):
         self.manager = manager
         self.sizeX = 1.0
         self.sizeZ = 0.8
@@ -22,7 +22,6 @@ class InventoryPlunderPanel(DirectFrame):
         self.rating = rating
         self.typeName = typeName
         self.itemsToTake = itemsToTake
-        self.customName = customName
         self.timer = timer
         self.autoShow = autoShow
         self.timerUI = None
@@ -72,12 +71,8 @@ class InventoryPlunderPanel(DirectFrame):
         maingui = loader.loadModel('models/gui/gui_main')
         box = (maingui.find('**/exit_button'), maingui.find('**/exit_button'), maingui.find('**/exit_button_over'), maingui.find('**/exit_button'))
         x = maingui.find('**/x2')
-        titleText = PLocalizer.InventoryPlunderTitle % self.typeName
-        text = PLocalizer.InventoryPlunderTitle % self.typeName
-        if self.customName:
-            titleText = self.customName
 
-        self.titleLabel = DirectLabel(parent = self, relief = None, pos = (0.5, 0, 0.68), text = titleText, text_align = TextNode.ACenter, text_font = PiratesGlobals.getInterfaceOutlineFont(), text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_scale = PiratesGuiGlobals.TextScaleTitleSmall, text_pos = (0.0, -0.02), image = maingui.find('**/gui_inv_treasure_loot_bg'), image_scale = (0.3, 0.35, 0.35), image_pos = (0.04, 0, 0))
+        self.titleLabel = DirectLabel(parent = self, relief = None, pos = (0.5, 0, 0.68), text = PLocalizer.InventoryPlunderTitle % self.typeName, text_align = TextNode.ACenter, text_font = PiratesGlobals.getInterfaceOutlineFont(), text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_scale = PiratesGuiGlobals.TextScaleTitleSmall, text_pos = (0.0, -0.02), image = maingui.find('**/gui_inv_treasure_loot_bg'), image_scale = (0.3, 0.35, 0.35), image_pos = (0.04, 0, 0))
         self.closeButton = DirectButton(parent = self, relief = None, pos = (self.sizeX + 0.25, 0, self.sizeZ - 1.08), image = box, image_scale = 0.5, geom = x, geom_scale = 0.25, geom_pos = (-0.32, 0, 0.958), command = self.manager.closePlunder)
         if self.autoShow:
             self.closeButton.hide()

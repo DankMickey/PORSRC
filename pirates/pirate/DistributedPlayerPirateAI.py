@@ -444,6 +444,7 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         taskMgr.remove(self.taskName('doubleXPTask'))
 
         self.clearStickyTargets()
+        messenger.send('goingOffline', [self.doId])
         self.air.netMessenger.send('goingOffline', [self.doId])
         DistributedBattleAvatarAI.delete(self)
         DistributedPlayerAI.delete(self)

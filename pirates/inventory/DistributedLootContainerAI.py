@@ -4,7 +4,6 @@ from direct.distributed.GridParent import GridParent
 from pirates.distributed.DistributedInteractiveAI import *
 from pirates.inventory.LootableAI import LootableAI
 from pirates.piratesbase import PiratesGlobals
-#from pirates.inventory.InventoryUIPlunderGridContainer import InventoryUIPlunderGridContainer
 import os
 
 class DistributedLootContainerAI(DistributedInteractiveAI, LootableAI):
@@ -13,7 +12,6 @@ class DistributedLootContainerAI(DistributedInteractiveAI, LootableAI):
     def __init__(self, air):
         DistributedInteractiveAI.__init__(self, air)
         LootableAI.__init__(self, air)
-        #InventoryUIPlunderGridContainer.__init__.(self, air)
         self.vizZone = ''
         self.lootType = PiratesGlobals.ITEM_SAC
         self.locks = []
@@ -57,11 +55,14 @@ class DistributedLootContainerAI(DistributedInteractiveAI, LootableAI):
     def removePirateFromCreditLock(self, avatarId):
         if avatarId in self.locks:
             self.locks.remove(avatarId)
+            
+            if not self.locks:
+                messenger.send('containerDied', [self.doId])
 
     def setTimeout(self, timeout):
         self.timeout = timeout
 
-    def tick(self, amount=15):
+    def tick(self, amount):
         self.timeout -= amount
 
     def getTimeout(self):
@@ -95,8 +96,7 @@ class DistributedLootContainerAI(DistributedInteractiveAI, LootableAI):
         if avId not in self.locks:
             self.air.writeServerEvent('suspicious', avId=self.air.getAvatarIdFromSender(), message='Client bypassed lock check and tried to interact with DistributedLootContainerAI')
             return REJECT
-        
-        #return REJECT
+
         self.startLooting(avId, self.avatarType, self.avatarLevel)
         return ACCEPT | ACCEPT_SEND_UPDATE
 

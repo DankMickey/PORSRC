@@ -222,13 +222,12 @@ class DistributedLootContainer(DistributedInteractive.DistributedInteractive, Lo
         self.initInteractOpts()
 
 
-    def startLooting(self, plunderList, itemsToTake = 0, timer = 0, autoShow = False, customName = None):
+    def startLooting(self, plunderList, itemsToTake = 0, timer = 0, autoShow = False):
         self.acceptInteraction()
         if self.openSound:
             self.openSound.play()
 
-        Lootable.startLooting(self, plunderList, itemsToTake = itemsToTake, timer = timer, autoShow = autoShow)
-        self.notify.info("kek1 %s !!" % (plunderList))
+        base.localAvatar.guiMgr.inventoryUIManager.openPlunder(plunderList, self, timer, autoShow)
 
 
     def stopLooting(self):

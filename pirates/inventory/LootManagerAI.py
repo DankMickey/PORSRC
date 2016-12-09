@@ -1,5 +1,5 @@
 from direct.directnotify import DirectNotifyGlobal
-from direct.distributed.DistributedObjectAI import DistributedObjectAI
+from direct.showbase.DirectObject import DirectObject
 from direct.task import Task
 from pirates.inventory.DistributedLootContainerAI import DistributedLootContainerAI
 from pirates.inventory import DropGlobals
@@ -7,70 +7,68 @@ from pirates.battle import EnemyGlobals
 from pirates.piratesbase import PiratesGlobals
 import random
 
-class DistributedLootManagerAI(DistributedObjectAI):
+class LootManagerAI(DirectObject):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedLootManagerAI')
 
     def __init__(self, air):
-        DistributedObjectAI.__init__(self, air)
+        self.air = air
         self.containers = {}
-
-    def announceGenerate(self):
-        DistributedObjectAI.announceGenerate(self)
-
+        
         self.forceType = config.GetInt('force-loot-chest', 0)
+
         if self.forceType > 0:
             self.notify.info("Launching with force-loot-chest active. Forcing to type: %s" % self.forceType)
 
-        self.purgeContainers = taskMgr.doMethodLater(15, self.__removeContainers, 'purgeContainers')
-
-    def delete(self):
-        DistributedObjectAI.delete(self)
-        taskMgr.remove(self.purgeContainers)
-        
-        for containerId in self.containers:
-            self.deleteContainer(containerId)
+        self.accept('goingOffline', self.__goingOffline)
+        self.accept('containerDied', self.deleteContainer)
+        taskMgr.doMethodLater(15, self.__removeContainers, 'purgeContainers')
 
     def spawnLoot(self, npc):
         if not config.GetBool('want-loot', False):
-            return 
+            return
 
         self.notify.info("Attempting to spawn loot")
+
         try:
             enemyLevel = npc.getLevel()
             players = npc.enemySkills.keys()
             enemyGrade = self.getEnemyGradeFromLevels(enemyLevel, players)
             dropRate = DropGlobals.getContainerDropRate(enemyGrade)
+            
+            print 'Enemy level %s Players %s Enemy Grade %s Drop Rate %s' % (enemyLevel, players, enemyGrade, dropRate)
+
             if not random.randrange(100) > dropRate and not config.GetBool('always-spawn-loot', True):
+                print 'Oh well. Not spawning.'
                 return
 
             chestType = self.getChestTypeFromEnemyLevel(enemyLevel)
             plunder = self.getContainerPlunder(chestType, npc)
 
             container = DistributedLootContainerAI.makeFromObjectData(self.air, npc, type=chestType, plunder=plunder)
-            container.setTimeout(config.GetInt('loot-timeout', 600))
+            container.setTimeout(config.GetInt('loot-timeout', 120))
 
-            self.containers[container.getUniqueId()] = container
+            self.containers[container.doId] = container
             self.notify.info("Spawned Loot Container of type(%s). Contains: %s" % (chestType, plunder))
         except Exception, e:
              self.notify.warning("Failed to spawn Loot. An unknown error has occured")
              self.notify.warning(e)
 
     def getChestTypeFromEnemyLevel(self, enemyLevel):
+        if self.forceType > 0:
+            return self.forceType
+
         sacRate, chestRate, rareRate = DropGlobals.getContainerTypeRate(enemyLevel)
         rareRate = 100 - rareRate
         chestRNG = random.randrange(100)
-        chestType = PiratesGlobals.ITEM_SAC
+
         if chestRNG < sacRate:
-            chestType = PiratesGlobals.ITEM_SAC
+            return PiratesGlobals.ITEM_SAC
         elif chestRNG >= sacRate and chestRNG <= rareRate:
-            chestType = PiratesGlobals.TREASURE_CHEST
+            return PiratesGlobals.TREASURE_CHEST
         elif chestRNG >= rareRate:
-            chestType = PiratesGlobals.RARE_CHEST
-
-        if self.forceType > 0:
-            chestType = self.forceType
-
-        return chestType
+            return PiratesGlobals.RARE_CHEST
+        else:
+            return PiratesGlobals.ITEM_SAC
 
     def getEnemyGradeFromLevels(self, npcLevel, players):
         return EnemyGlobals.GREEN #TODO
@@ -102,44 +100,31 @@ class DistributedLootManagerAI(DistributedObjectAI):
 
         return plunder
 
-    def sendContainerRemoveWarning(self, containerId):
-        self.sendUpdate('warnRemoveLootContainerFromScoreboard', [containerId])
-
-    def sendContainerRemove(self, containerId):
-        self.sendUpdate('removeLootContainerFromScoreboard', [containerId])
-
-    def __removeContainers(self, task=None):
+    def __removeContainers(self, task):
         garbage = []
 
         for containerId, container in self.containers.iteritems():
-            container.tick()
+            container.tick(task.time)
             timeout = container.getTimeout()
-            
-            if timeout < 600 and timeout > 0:
-                self.sendContainerRemoveWarning(container.doId)
 
-            if container.getEmpty() or container.getTimeout() <= 0 or len(container.locks) <= 0:
+            if container.getEmpty() or container.getTimeout() <= 0 or not container.locks:
                 garbage.append(containerId)
         
         for containerId in garbage:
             self.notify.info("Deleting Loot Container: %s" % containerId)
             self.deleteContainer(containerId)
 
-        return Task.again
+        return task.again
 
     def deleteContainer(self, containerId):
-        self.sendContainerRemove(self.containers[containerId].doId)
-        self.containers[containerId].delete()
+        if containerId not in self.containers:
+            print 'Container missing?'
+            return
+
+        container = self.containers[containerId]
+        container.delete()
         del self.containers[containerId]
 
-    def requestItemFromContainer(self, containerId, itemInfo):
-        self.notify.info("requestItemFromContainer. containerId: %s itemInfo: %s" % (containerId, itemInfo))
-
-    def requestItems(self, containers): 
-        self.notify.info("requestItems. containers: %s" % containers)
-
-    def pirateWentOffline(self, avatarId): #TODO FIX
-        for containerId, container in self.containers.iteritems():
-            if avatarId in container.getCreditLocks():
-                self.notify.info("Removing %s from container: %s" % (avatarId, containerId))
-                container.removePirateFromCreditLock(avatarId)
+    def __goingOffline(self, avId):
+        for container in [container for container in self.containers.values() if avId in container.getCreditLocks()]:
+            container.removePirateFromCreditLock(avId)

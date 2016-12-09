@@ -828,22 +828,12 @@ class InventoryUIManager(DirectFrame):
 
 
     def takePlunderItemFromCell(self, cell, toCell = None, playSound = True):
-        if toCell != None:
-            pass
-        1
-        location = 0
-        if toCell and toCell.slotId:
-            location = toCell.slotId
-
         if not cell.inventoryItem:
             return False
 
         inventory = base.localAvatar.getInventory()
         if not inventory:
             return False
-
-        if location or not inventory.locationAvailable(location) or location in Locations.RANGE_EQUIP_SLOTS:
-            location = 0
 
         if cell.inventoryItem.getCategory() in (InventoryType.ItemTypeWeapon, InventoryType.ItemTypeCharm, InventoryType.ItemTypeClothing, InventoryType.ItemTypeConsumable):
             locatables = [
@@ -857,7 +847,6 @@ class InventoryUIManager(DirectFrame):
                 if locationId in (Locations.INVALID_LOCATION, Locations.NON_LOCATION):
                     base.localAvatar.guiMgr.createWarning(PLocalizer.InventoryFullWarning, PiratesGuiGlobals.TextFG6)
                     return False
-                    continue
 
 
         item = cell.container.grabCellItem(cell)
@@ -883,30 +872,14 @@ class InventoryUIManager(DirectFrame):
         else:
             id = item.getId()
             extraArg = 1
-        if self.scoreboard:
+        if self.lootContainer:
             if playSound:
                 if id == UberDogGlobals.InventoryType.ItemTypeMoney:
                     self.takeGoldSound.play()
                 else:
                     self.takeNonGoldSound.play()
 
-            self.scoreboard.requestItem([
-                category,
-                id,
-                extraArg,
-                location])
-        elif self.lootContainer:
-            if playSound:
-                if id == UberDogGlobals.InventoryType.ItemTypeMoney:
-                    self.takeGoldSound.play()
-                else:
-                    self.takeNonGoldSound.play()
-
-            self.lootContainer.d_requestItem([
-                category,
-                id,
-                extraArg,
-                location])
+            self.lootContainer.d_requestItem([category, id, extraArg])
 
         messenger.send('lootsystem-plunderContainer-Empty', [])
         return True
@@ -959,14 +932,13 @@ class InventoryUIManager(DirectFrame):
             else:
                 closeWindow = False
             (givingItems, extraItems) = self.getGivingItems(items)
+            
             if givingItems:
                 if playSound:
                     self.playTakeAllSound()
 
-                if self.scoreboard:
-                    self.scoreboard.requestItems(givingItems)
-                elif self.lootContainer:
-                    self.lootContainer.d_requestItems(givingItems)
+                if self.lootContainer:
+                    self.lootContainer.d_requestItems()
 
 
             if extraItems:
@@ -1078,30 +1050,26 @@ class InventoryUIManager(DirectFrame):
 
         return (givingItems, extraItems)
 
+    def openPlunder(self, plunderList, lootContainer = None, timer = 0, autoShow = True):
+        if self.plunderPanel:
+            return
 
-    def plunderIntiate(plunderList, itemsToTake = 0, timer = 0, autoShow = False):
-        self.lootContainer = None
-        self.customName = None
-        self.openPlunder(plunderList, lootContainer, customName, timer, autoShow)
+        if self.lootContainer:
+            self.closePlunder()
 
-
-    def openPlunder(self, plunderList, lootContainer = None, customName = None, timer = 0, autoShow = True):
-        if not self.plunderPanel:
-            if self.lootContainer:
-                self.closePlunder()
-
+        if lootContainer:
+            self.lootContainer = lootContainer
+            rating = lootContainer.getRating()
+            typeName = lootContainer.getTypeName()
+            numItems = lootContainer.getItemsToTake()
+        else:
             rating = 0
             typeName = ''
-            if lootContainer:
-                self.lootContainer = lootContainer
-                rating = lootContainer.getRating()
-                typeName = lootContainer.getTypeName()
-                numItems = lootContainer.getItemsToTake()
-            else:
-                numItems = 0
-            self.plunderPanel = InventoryPlunderPanel.InventoryPlunderPanel(self, plunderList, rating, typeName, numItems, customName, timer = timer, autoShow = autoShow)
-            self.plunderPanel.reparentTo(self)
-            self.plunderPanel.setPos(-1.1, 0.0, -0.2)
+            numItems = 0
+        
+        self.plunderPanel = InventoryPlunderPanel.InventoryPlunderPanel(self, plunderList, rating, typeName, numItems, timer = timer, autoShow = autoShow)
+        self.plunderPanel.reparentTo(self)
+        self.plunderPanel.setPos(-1.1, 0.0, -0.2)
 
 
 
