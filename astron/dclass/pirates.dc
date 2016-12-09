@@ -88,7 +88,6 @@ from pirates.minigame import DistributedRepairGame/AI
 from pirates.minigame import DistributedFishingSpot/AI
 from pirates.world import DistributedDinghy/AI
 from pirates.inventory import DistributedLootContainer/AI
-from pirates.inventory import DistributedLootManager/AI
 from pirates.inventory import Lootable/AI
 from pirates.distributed import TargetManager/AI
 //from pirates.tutorial import PiratesTutorialManager/AI
@@ -228,13 +227,6 @@ struct PlunderItemInfo {
   uint32 category;
   uint16 id;
   uint16 extraArg;
-};
-
-struct PlunderItemLocationInfo {
-  uint32 category;
-  uint16 id;
-  uint16 extraArg;
-  uint8 location;
 };
 
 struct DeletedAvatar {
@@ -1200,11 +1192,11 @@ dclass DistributedDinghy : DistributedInteractive {
 };
 
 dclass Lootable {
-  startLooting(PlunderItemInfo [], int8, uint8, bool);
+  startLooting(PlunderItemInfo[], uint8);
   stopLooting();
   doneTaking() airecv clsend;
-  requestItem(PlunderItemLocationInfo) airecv clsend;
-  requestItems(PlunderItemInfo []) airecv clsend;
+  requestItem(PlunderItemInfo) airecv clsend;
+  requestItems() airecv clsend;
 };
 
 
@@ -1213,18 +1205,6 @@ dclass DistributedLootContainer : DistributedInteractive, Lootable {
   setEmpty(bool) required broadcast ram;
   setType(uint8(0-8)) required broadcast ram;
   setCreditLocks(uint32 []) required broadcast ram;
-};
-
-struct LootContainer {
-  uint32 containerId;
-  PlunderItemInfo items[];
-};
-
-dclass DistributedLootManager : DistributedObject {
-  requestItemFromContainer(uint32, PlunderItemLocationInfo) airecv clsend;
-  requestItems(LootContainer []) airecv clsend;
-  removeLootContainerFromScoreboard(uint32);
-  warnRemoveLootContainerFromScoreboard(uint32);
 };
 
 dclass DistributedFishingSpot : DistributedInteractive, Lootable {

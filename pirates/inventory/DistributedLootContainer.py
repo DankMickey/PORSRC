@@ -222,13 +222,12 @@ class DistributedLootContainer(DistributedInteractive.DistributedInteractive, Lo
         self.initInteractOpts()
 
 
-    def startLooting(self, plunderList, itemsToTake = 0, timer = 0, autoShow = False, customName = None):
+    def startLooting(self, plunderList, timer = 0):
         self.acceptInteraction()
         if self.openSound:
             self.openSound.play()
 
-        Lootable.startLooting(self, plunderList, itemsToTake = itemsToTake, timer = timer, autoShow = autoShow)
-        self.notify.info("kek1 %s !!" % (plunderList))
+        base.localAvatar.guiMgr.inventoryUIManager.openPlunder(plunderList, self, timer)
 
 
     def stopLooting(self):
@@ -244,14 +243,14 @@ class DistributedLootContainer(DistributedInteractive.DistributedInteractive, Lo
             self.showLerp.finish()
 
         if empty:
-            self.showLerp = Sequence(Func(self.setTransparency, 1), LerpColorScaleInterval(self, 0.5, Vec4(1, 1, 1, 0)))
+            self.showLerp = Sequence(Func(self.setTransparency, 1), LerpColorScaleInterval(self, 0.5, Vec4(1, 1, 1, 0)), Func(self.hide))
             self.showLerp.start()
             if self.effect:
                 self.effect.stopLoop()
                 self.effect = None
 
         else:
-            self.showLerp = Sequence(LerpColorScaleInterval(self, 0.5, Vec4(1, 1, 1, 1)), Func(self.clearTransparency))
+            self.showLerp = Sequence(Func(self.show), LerpColorScaleInterval(self, 0.5, Vec4(1, 1, 1, 1)), Func(self.clearTransparency))
             self.showLerp.start()
 
 

@@ -1,20 +1,3 @@
-from direct.gui.DirectGui import *
-from pirates.uberdog.UberDogGlobals import InventoryType, InventoryCategory
-from pirates.uberdog import UberDogGlobals
-from pirates.uberdog.TradableInventoryBase import InvItem
-from pirates.inventory import ItemConstants
-from pirates.inventory import InventoryGlobals
-from pirates.inventory import InventoryPlunderPanel
-from direct.interval.IntervalGlobal import *
-from pirates.piratesgui import GuiPanel, PiratesGuiGlobals
-from pirates.piratesbase import PiratesGlobals
-from pirates.piratesbase import PLocalizer
-from otp.otpbase import OTPLocalizer
-from pirates.inventory import InventoryUIContainer
-from pirates.inventory import ItemGlobals
-from pirates.inventory.InventoryUIGlobals import *
-from pirates.uberdog.UberDogGlobals import *
-from pirates.battle import WeaponGlobals
 from direct.directnotify import DirectNotifyGlobal
 from direct.distributed.DistributedObjectAI import DistributedObjectAI
 
@@ -24,33 +7,10 @@ class LootableAI(DistributedObjectAI):
 
     def __init__(self, air):
         DistributedObjectAI.__init__(self, air)
-        self.heldItem = None
-        self.heldFromCell = None
-        self.withInCell = None
-        self.withInBag = None
-        self.pickupTimedOut = 0
-        self.stackSplitter = None
-        self.removeConfirm = None
-        self.removeContainer = None
-        self.plunderPanel = None
-        self.showingItem = None
-        self.locked = 0
-        self.localInventoryOpen = 0
-        self.standardButtonSize = 0.14
-        self.pickUpTime = 0.3
-        self.scoreboard = None
-        self.lootContainer = None
-        self.containerIsGeneric = False
-        self.tradeContainer = None
-        self.discoveredInventory = 0
-        self.trashItem = None
-        self.reasonNoUse = None
      
-     
-
-    def startLooting(self, avId, plunderInfo, itemsToTake=0, timer=0, autoShow=True):
-     self.notify.info("startLooting. plunderInfo: %s itemsToTake: %s timer: %s autoShow: %s" % (plunderInfo, itemsToTake, timer, autoShow))
-     self.sendUpdateToAvatarId(avId, 'startLooting', [plunderInfo, itemsToTake, timer, autoShow])
+    def startLooting(self, avId, plunderInfo, timer=0):
+        self.notify.info("startLooting. plunderInfo: %s timer: %s" % (plunderInfo, timer))
+        self.sendUpdateToAvatarId(avId, 'startLooting', [plunderInfo, timer])
 
     def stopLooting(self):
         self.notify.info("stopLooting Sent ")
@@ -58,8 +18,8 @@ class LootableAI(DistributedObjectAI):
     def doneTaking(self):
         self.notify.info("doneTaking Sent ")
 
-    def requestItem(self, plunderLocationInfo):
-        self.notify.info("requestItem. plunderLocationInfo: %s" % plunderLocationInfo)
+    def requestItem(self, item):
+        self.notify.info("requestItem. item: %s" % (item,))
 
-    def requestItems(self, pluderInfo):
-        self.notify.info("requestItems. plunderInfo: %s" % plunderInfo)
+    def requestItems(self):
+        self.notify.info("requestItems.")

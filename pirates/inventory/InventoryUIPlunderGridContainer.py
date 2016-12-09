@@ -36,9 +36,7 @@ class InventoryUIPlunderGridContainer(InventoryUIContainer.InventoryUIContainer)
 
     def setupPlunder(self, plunderList):
         self.manager = base.localAvatar.guiMgr.inventoryUIManager
-        plunderList2 = [(UberDogGlobals.InventoryType.ItemTypeMoney, UberDogGlobals.InventoryType.ItemTypeMoney, 32)]
-        self.notify.info("Debug1.2 %s !!" % (plunderList))
-        self.srcInvTypeLootContentIcon(plunderList2)
+        self.srcInvTypeLootContentIcon(plunderList)
         
         
     
