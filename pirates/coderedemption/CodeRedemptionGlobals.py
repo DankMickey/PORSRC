@@ -66,6 +66,9 @@ class AwardTypes:
     BOARDING_AXE = 37
     HALLOWEEN = 38
     THANKSGIVING = 39
+    SANTA = 40
+    WINTER = 41
+    WONDERLAND = 42
     TYPE_IDX = 0
     MALE_IDX = 1
     FEME_IDX = 2
@@ -282,7 +285,25 @@ AWARD_ID = {
         InvItem((InventoryType.ItemTypeWeapon, ItemGlobals.DUAL_RUSTY_CUTLASS, 0, [])),
         None,
         1,
-        PLocalizer.CodeRedemptionDualCutlasses],
+        PLocalizer.CodeRedemptionDualCutlasses],  
+    AwardTypes.SANTA: [
+        CLOTHING,
+        InvItem((InventoryType.ItemTypeClothing, ItemGlobals.XMAS_CAP, 0, 0)),
+        InvItem((InventoryType.ItemTypeClothing, ItemGlobals.XMAS_CAP, 0, 0)),
+        1,
+        PLocalizer.CodeRedemptionSanta],
+    AwardTypes.WINTER: [
+        NORMAL_INVENTORY,
+        InvItem((InventoryType.ItemTypeMoney, 0)),
+        None,
+        5000,
+        PLocalizer.CodeRedemptionWinter],
+    AwardTypes.WONDERLAND: [
+        NORMAL_INVENTORY,
+        InvItem((InventoryType.ItemTypeMoney, 0)),
+        None,
+        10000,
+        PLocalizer.CodeRedemptionWonderland],
     #AwardTypes.BOARDING_AXE: [
     #    NORMAL_INVENTORY,
     #    InvItem((InventoryType.ItemTypeWeapon, ItemGlobals.CRUDE_BOARDING_AXE, 0, [])),
