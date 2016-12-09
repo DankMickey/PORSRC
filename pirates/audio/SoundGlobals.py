@@ -187,7 +187,6 @@ JSD_NAME_SHORT_01 = 'jsd_name_short_1.%s' % AUDIO_EXTENSION
 JSD_NAME_SHORT_02 = 'jsd_name_short_2.%s' % AUDIO_EXTENSION
 JSD_SHOE_BARB = 'jsd_shoe_barbossa.%s' % AUDIO_EXTENSION
 JSD_SHOE_01 = 'jsd_shoe_good.%s' % AUDIO_EXTENSION
-WTD_CODE = 'dialog/will_turner_7.2.b.%s' % AUDIO_EXTENSION
 BBD_TELL_SHOOT = 'beck_cs12_4_4c_tell_to_shoot.%s' % AUDIO_EXTENSION
 BBD_GIVE_PRAISE = 'beck_cs12_5_5a_tell_praise.%s' % AUDIO_EXTENSION
 SFX_WEAPON_DAGGER_DRAW = 'sfx_dagger_draw.%s' % AUDIO_EXTENSION

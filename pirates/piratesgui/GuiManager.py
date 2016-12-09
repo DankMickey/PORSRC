@@ -2292,7 +2292,6 @@ class GuiManager(FSM.FSM):
         codeMessage1 = DirectLabel(parent = self.pirateCode, relief = None, text = PLocalizer.PirateCodeWarning1, text_fg = (1, 1, 1, 1), text_shadow = (0, 0, 0, 1), pos = (0.5, 0, 0.18), text_scale = 0.08)
         codeMessage2 = DirectLabel(parent = self.pirateCode, relief = None, text = PLocalizer.PirateCodeWarning2, text_fg = (1, 1, 1, 1), text_shadow = (0, 0, 0, 1), pos = (0.49, 0, 0.09), text_scale = 0.08)
         self.pirateCode.hide()
-        self.pirateCodeDialog = loadSfx(SoundGlobals.WTD_CODE)
 
 
     def showPirateCode(self):
@@ -2302,7 +2301,6 @@ class GuiManager(FSM.FSM):
         if not self.codeShown:
             self.codeShown = 1
             self.pirateCode.show()
-            base.playSfx(self.pirateCodeDialog)
             taskMgr.remove('hidePirateCode')
             taskMgr.doMethodLater(5.0, self.hidePirateCode, 'hidePirateCode')
 
@@ -2313,7 +2311,6 @@ class GuiManager(FSM.FSM):
             return None
 
         self.pirateCode.hide()
-        self.pirateCodeDialog.stop()
 
 
     def toggleSocialPanel(self, args = None):
