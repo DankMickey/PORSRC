@@ -920,17 +920,6 @@ class InventoryUIManager(DirectFrame):
 
 
         if items:
-            if self.lootContainer and self.lootContainer.getItemsToTake():
-                if len(items) > self.lootContainer.getItemsToTake():
-                    return None
-                else:
-                    self.lootContainer.subtractItemsToTake(len(items))
-                    if not self.lootContainer.getItemsToTake():
-                        closeWindow = True
-                    else:
-                        closeWindow = False
-            else:
-                closeWindow = False
             (givingItems, extraItems) = self.getGivingItems(items)
             
             if givingItems:
@@ -949,8 +938,6 @@ class InventoryUIManager(DirectFrame):
 
                 base.localAvatar.guiMgr.createWarning(PLocalizer.PlunderItemsLeftWarning, PiratesGuiGlobals.TextFG6)
             else:
-                self.closePlunder()
-            if closeWindow:
                 self.closePlunder()
 
 
@@ -1050,7 +1037,7 @@ class InventoryUIManager(DirectFrame):
 
         return (givingItems, extraItems)
 
-    def openPlunder(self, plunderList, lootContainer = None, timer = 0, autoShow = True):
+    def openPlunder(self, plunderList, lootContainer = None, timer = 0):
         if self.plunderPanel:
             return
 
@@ -1061,13 +1048,11 @@ class InventoryUIManager(DirectFrame):
             self.lootContainer = lootContainer
             rating = lootContainer.getRating()
             typeName = lootContainer.getTypeName()
-            numItems = lootContainer.getItemsToTake()
         else:
             rating = 0
             typeName = ''
-            numItems = 0
         
-        self.plunderPanel = InventoryPlunderPanel.InventoryPlunderPanel(self, plunderList, rating, typeName, numItems, timer = timer, autoShow = autoShow)
+        self.plunderPanel = InventoryPlunderPanel.InventoryPlunderPanel(self, plunderList, rating, typeName, timer = timer)
         self.plunderPanel.reparentTo(self)
         self.plunderPanel.setPos(-1.1, 0.0, -0.2)
 

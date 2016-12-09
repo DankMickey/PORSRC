@@ -9,7 +9,7 @@ import InventoryUIPlunderGridContainer
 
 class InventoryPlunderPanel(DirectFrame):
 
-    def __init__(self, manager, plunderList, rating, typeName, itemsToTake, timer = 0, autoShow = False):
+    def __init__(self, manager, plunderList, rating, typeName, timer = 0):
         self.manager = manager
         self.sizeX = 1.0
         self.sizeZ = 0.8
@@ -21,9 +21,7 @@ class InventoryPlunderPanel(DirectFrame):
         self.plunderList = plunderList
         self.rating = rating
         self.typeName = typeName
-        self.itemsToTake = itemsToTake
         self.timer = timer
-        self.autoShow = autoShow
         self.timerUI = None
         self.timerSound = None
         self.setup()
@@ -59,9 +57,6 @@ class InventoryPlunderPanel(DirectFrame):
         if self.takeAllButton.helpBox:
             self.takeAllButton.helpBox.setPos(0.3, 0, -0.01)
 
-        if self.itemsToTake:
-            self.takeAllButton.hide()
-
         if self.timer:
             self.timerUI = DirectLabel(parent = self, relief = None, pos = (0.64, 0, 0.21), text = str(self.timer), text_align = TextNode.ACenter, text_font = PiratesGlobals.getInterfaceOutlineFont(), text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_scale = PiratesGuiGlobals.TextScaleTitleSmall, text_pos = (0.0, -0.02))
             self.takeAllButton.setPos(Point3(0.825, 0, 0.2))
@@ -74,17 +69,10 @@ class InventoryPlunderPanel(DirectFrame):
 
         self.titleLabel = DirectLabel(parent = self, relief = None, pos = (0.5, 0, 0.68), text = PLocalizer.InventoryPlunderTitle % self.typeName, text_align = TextNode.ACenter, text_font = PiratesGlobals.getInterfaceOutlineFont(), text_fg = PiratesGuiGlobals.TextFG1, text_shadow = PiratesGuiGlobals.TextShadow, text_scale = PiratesGuiGlobals.TextScaleTitleSmall, text_pos = (0.0, -0.02), image = maingui.find('**/gui_inv_treasure_loot_bg'), image_scale = (0.3, 0.35, 0.35), image_pos = (0.04, 0, 0))
         self.closeButton = DirectButton(parent = self, relief = None, pos = (self.sizeX + 0.25, 0, self.sizeZ - 1.08), image = box, image_scale = 0.5, geom = x, geom_scale = 0.25, geom_pos = (-0.32, 0, 0.958), command = self.manager.closePlunder)
-        if self.autoShow:
-            self.closeButton.hide()
-
         self.ratingLabel = DirectLabel(parent = self, relief = None, text = PLocalizer.InventoryPlunderRating, text_align = TextNode.ALeft, text_font = PiratesGlobals.getInterfaceFont(), text_fg = PiratesGuiGlobals.TextFG16, text_scale = PiratesGuiGlobals.TextScaleLarge, pos = (self.sizeX * 0.1, 0, 0.2))
+        
         if self.rating < 0:
             self.ratingLabel.hide()
-        elif self.itemsToTake:
-            if self.itemsToTake == 1:
-                self.ratingLabel['text'] = PLocalizer.InventoryPlunderPickSingular
-            else:
-                self.ratingLabel['text'] = PLocalizer.InventoryPlunderPickPlural % self.itemsToTake
         else:
             toplevelgui = loader.loadModel('models/gui/toplevel_gui')
             rating = self.attachNewNode('rating')
@@ -122,26 +110,13 @@ class InventoryPlunderPanel(DirectFrame):
 
 
     def checkAllContainers(self, event = None):
-        if self.itemsToTake:
-            itemsExisted = True
-        else:
-            itemsExisted = False
         numItems = 0
+        
         for cell in self.grid.cellList:
             if cell.inventoryItem:
                 numItems += 1
-                continue
-            if not cell.isHidden():
-                cell.hide()
-                if self.itemsToTake:
-                    self.itemsToTake -= 1
-                    if not self.itemsToTake:
-                        self.manager.closePlunder(closeContainer = False)
-                        return None
 
-
-
-        if not itemsExisted and numItems == 0:
+        if not numItems:
             self.manager.closePlunder()
 
 
@@ -150,4 +125,4 @@ class InventoryPlunderPanel(DirectFrame):
     # self.b_setGoldInPocket(min(InventoryGlobals.GOLD_CAP, self.getGoldInPocket() + gold))
 
     def takeAllLoot(self, playSound = True):
-            self.manager.takeAllLoot([self.grid], playSound = playSound)
+        self.manager.takeAllLoot([self.grid], playSound = playSound)

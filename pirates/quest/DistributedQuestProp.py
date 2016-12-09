@@ -672,10 +672,10 @@ class DistributedQuestProp(Lootable.Lootable):
 
 
 
-    def startLooting(self, plunderList, itemsToTake = 0, timer = 0, autoShow = False, customName = None):
+    def startLooting(self, plunderList, timer = 0, customName = None):
         self.acceptInteraction()
         customName = PLocalizer.CustomQuestPropNames.get(self.uniqueId, None)
-        Lootable.Lootable.startLooting(self, plunderList, itemsToTake = itemsToTake, timer = timer, autoShow = autoShow, customName = customName)
+        Lootable.Lootable.startLooting(self, plunderList, timer = timer, customName = customName)
         if self.openAnim:
             self.openAnim.setPlayRate(1.0)
             self.openAnim.play()

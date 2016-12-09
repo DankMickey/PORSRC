@@ -321,7 +321,7 @@ class DistributedFishingSpot(DistributedInteractive.DistributedInteractive, Loot
 
 
 
-    def startLooting(self, plunderList, itemsToTake = 0, timer = 0, autoShow = False, customName = None):
-        Lootable.startLooting(self, plunderList, itemsToTake, timer = timer, autoShow = autoShow, customName = PLocalizer.FoundFishing)
+    def startLooting(self, plunderList, timer = 0, customName = None):
+        Lootable.startLooting(self, plunderList, timer = timer, customName = PLocalizer.FoundFishing)
         if self.fishingGame and not self.fishingGame.gui.resultsScreen.isHidden():
             localAvatar.guiMgr.inventoryUIManager.hidePlunder()

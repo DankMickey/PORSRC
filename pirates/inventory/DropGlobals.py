@@ -139,16 +139,16 @@ def getContainerTypeRate(enemyLevel):
         return (0, 0, 0)
 
 __numItemsRate = {
-    PiratesGlobals.ITEM_SAC: (40, 35, 20, 5, 0, 0),
-    PiratesGlobals.TREASURE_CHEST: (0, 25, 40, 25, 10, 0),
-    PiratesGlobals.RARE_CHEST: (0, 10, 25, 30, 25, 10) }
+    PiratesGlobals.ITEM_SAC: (0.4, 0.6, 0, 0),
+    PiratesGlobals.TREASURE_CHEST: (0.5, 0.3, 0.2, 0),
+    PiratesGlobals.RARE_CHEST: (0.5, 0.3, 0.15, 0.05) }
 
 def getNumItemsRate(containerType):
     numItemsRate = __numItemsRate.get(containerType)
     if numItemsRate:
         return numItemsRate
     else:
-        return (0, 0, 0, 0, 0, 0)
+        return (0, 0, 0, 0)
 
 __itemTypeRate = {
     PiratesGlobals.ITEM_SAC: (0.3, 0.2, 0.15, 0.1, 0.05, 0.08, 0.12),
@@ -174,6 +174,18 @@ def getItemRarityRate(containerType):
     else:
         return (1.0, 0, 0, 0, 0, 0, 0)
 
+__itemGoldRate = {
+    PiratesGlobals.ITEM_SAC: (1, 250),
+    PiratesGlobals.TREASURE_CHEST: (1, 500),
+    PiratesGlobals.RARE_CHEST: (1, 750)
+}
+
+def getItemGoldRate(containerType):
+    itemGoldRate = __itemGoldRate.get(containerType)
+    if itemGoldRate:
+        return itemGoldRate
+    else:
+        return (1, 250)
 
 def getAllItemIds():
     return __dropInfo.keys()
