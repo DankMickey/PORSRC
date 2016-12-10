@@ -155,6 +155,9 @@ fullscreen 0
 # TEMP PATCH
 force-firework-music #t
 
+# INTERPOLATION
+interpolate-frames #t
+
 # HOLIDAYS
 # WINTERFESTIVAL
 forced-holiday 17 604800
