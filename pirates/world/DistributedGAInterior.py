@@ -115,6 +115,11 @@ class DistributedGAInterior(DistributedGameArea.DistributedGameArea, Distributed
         self.intervals = []
         DistributedGameArea.DistributedGameArea.delete(self)
         DistributedCartesianGrid.DistributedCartesianGrid.delete(self)
+        
+        pr = self.getPortRoyal()
+        
+        if pr:
+            pr.show()
 
     def isGridParent(self):
         return 1
