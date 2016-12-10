@@ -67,6 +67,14 @@ class DistributedGAInterior(DistributedGameArea.DistributedGameArea, Distributed
         if not self.areaInterest:
             self.areaInterest = base.cr.addInterest(self.doId, 2709, 'CaveInterest')
         
+        pr = self.getPortRoyal()
+        
+        if pr:
+            pr.hide()
+        
+    def getPortRoyal(self):
+        return base.cr.doFind('GameArea (Port Royal)')
+        
     def disable(self):
         self.stopCustomEffects()
         self.builder.pauseSFX()
@@ -83,6 +91,11 @@ class DistributedGAInterior(DistributedGameArea.DistributedGameArea, Distributed
         if self.areaInterest:
             base.cr.removeInterest(self.areaInterest)
             self.areaInterest = None
+        
+        pr = self.getPortRoyal()
+        
+        if pr:
+            pr.show()
 
     def delete(self):
         del self.coll
