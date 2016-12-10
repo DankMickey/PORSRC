@@ -392,7 +392,7 @@ class InventoryUIManager(DirectFrame):
 
             misplacedSlots.append(itemKey)
 
-        if len(itemsToTrash) > 0:
+        if itemsToTrash:
             localAvatar.getInventory().trashItems(itemsToTrash)
 
         self.discoveredInventory = 1
@@ -666,7 +666,6 @@ class InventoryUIManager(DirectFrame):
 
         taskMgr.remove('stuckPendingTask')
         taskMgr.doMethodLater(20.0, self.fixStuckPending, 'stuckPendingTask')
-
 
     def unmarkSlotPending(self, slot):
         if slot in self.slotPendingActionList:
@@ -1179,9 +1178,11 @@ class InventoryUIManager(DirectFrame):
 
     def closeRemover(self):
         if self.removeConfirm:
-            self.trashItem.show()
-            self.trashItem.cell.container.unmarkCell(self.trashItem.cell, MASK_TRASH)
-            self.trashItem = None
+            if self.trashItem and not self.trashItem.isEmpty():
+                self.trashItem.show()
+                self.trashItem.cell.container.unmarkCell(self.trashItem.cell, MASK_TRASH)
+                self.trashItem = None
+            
             self.removeConfirm.destroy()
             self.removeConfirm = None
             self.removeContainer = None
@@ -1190,15 +1191,17 @@ class InventoryUIManager(DirectFrame):
 
 
     def discardFromRemover(self):
-        if self.trashItem.cell == None:
-            pass
-        1
-        self.markSlotPending(self.trashItem.cell.slotId)
-        itemToTrash = localAvatar.getInventory().getLocatables().get(self.trashItem.cell.slotId)
+        inventory = localAvatar.getInventory()
+        locatables = inventory.getLocatables()
+        slot = self.trashItem.cell.slotId
+        itemToTrash = locatables.get(slot)
+        
         if itemToTrash:
-            localAvatar.getInventory().trashItems([
-                itemToTrash])
+            inventory.trashItems([itemToTrash])
             self.trashSound.play()
+            
+            del locatables[slot]
+            self.deleteFromCellSlot(slot)
 
         self.closeRemover()
 

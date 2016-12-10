@@ -82,19 +82,18 @@ class PirateInventoryAI(DistributedInventoryAI):
         self.sendUpdate('setLocatables', [prepareSwitchField(self._locatableItems.values())])
 
     def trashLocatables(self, items):
-        deleted = []
+        deleted = False
+        
         for item in items:
             itemObj = InvItem(item)
+
             if not self.canRemoveLocatable(itemObj):
                 continue
 
             del self._locatableItems[item[self.ITEM_LOCATION_IDX]]
-            deleted.append(repr(item))
+            deleted = True
 
         if deleted:
-            for item in deleted:
-                self.air.writeServerEvent('inventory-item-trashed', accountId=self.ownerId, item=item)
-
             self.d_update()
 
     def getCategoryLevel(self, category):
