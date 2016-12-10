@@ -460,21 +460,19 @@ class TradableInventoryBase(DistributedInventoryBase):
         return overflowItems
 
 
-    def trashItems(self, items = [], count = 1):
+    def trashItems(self, items = []):
         verifiedItems = []
+        
         for currItem in items:
             if currItem:
                 currInvItem = InvItem(currItem)
                 currLocation = currInvItem.getLocation()
                 item = self._locatableItems.get(currLocation)
+
                 if item.compare(currInvItem):
                     verifiedItems.append(currInvItem)
 
-            item.compare(currInvItem)
-
-        self.notify.debug('trashLocatables %s' % str(verifiedItems))
-        self.sendUpdate('trashLocatables', [
-            prepareSwitchField(verifiedItems)])
+        self.sendUpdate('trashLocatables', [prepareSwitchField(verifiedItems)])
 
 
     def getOverflowItems(self):

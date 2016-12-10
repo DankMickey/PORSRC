@@ -210,7 +210,6 @@ class DistributedShopKeeperAI(DistributedObjectAI):
         sendResponse(resultCode)
 
     def requestJewelry(self, buying, selling):
-
         avId = self.air.getAvatarIdFromSender()
         av = self.air.doId2do.get(avId)
         
