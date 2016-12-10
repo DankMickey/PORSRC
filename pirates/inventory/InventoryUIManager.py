@@ -1197,7 +1197,7 @@ class InventoryUIManager(DirectFrame):
         itemToTrash = locatables.get(slot)
         
         if itemToTrash:
-            self.trashItem.cell.container.unmarkCell(self.trashItem.cell, MASK_TRASH)
+            self.trashItem.cell.container.unmarkAllCell(self.trashItem.cell)
             inventory.trashItems([itemToTrash])
             self.trashSound.play()
             

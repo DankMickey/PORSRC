@@ -214,6 +214,9 @@ class InventoryUIContainer(DirectFrame, InventoryRequestBase.InventoryRequestBas
         cell.statusMask.discard(maskBit)
         self.colorStatus(cell)
 
+    def unmarkAllCell(self, cell):
+        cell.statusMask = Set([])
+        self.colorStatus(cell)
 
     def colorizeCell(self, cell, color):
         cell['image_color'] = color
