@@ -46,6 +46,11 @@ class DistributedGAConnectorAI(DistributedNodeAI):
 
     def posControlledByCell(self):
         return False
+    
+    def requestPrivateArea(self, id):
+        self.sendUpdateToAvatarId(self.air.getAvatarIdFromSender(),
+                                  'setPrivateArea',
+                                  [0, 0, 0, 1])
 
     @staticmethod
     def makeFromObjectKey(air, objKey, data):

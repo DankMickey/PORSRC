@@ -43,7 +43,7 @@ class DistributedGameAreaAI(DistributedNodeAI):
         self.wantBosses = config.GetBool('want-bosses', True)
         self.wantForts = config.GetBool('want-forts', True)
         self.wantQuestProps = config.GetBool('want-quest-props', True)
-        self.wantLinkTunnels = config.GetBool('want-link-tunnels', False)
+        self.wantLinkTunnels = config.GetBool('want-link-tunnels', True)
 
         self.wantHolidayObjects = config.GetBool('want-holiday-objects', True)
         self._holidayNPCs = {}
@@ -150,10 +150,9 @@ class DistributedGameAreaAI(DistributedNodeAI):
 
         elif objType == 'Connector Tunnel' and self.wantLinkTunnels:
             genObj = self.air.worldCreator.createConnectorTunnel(self, objKey, object)
-            #self.__printUnimplementedNotice(objType)
 
         elif objType == 'Island Game Area' and self.wantLinkTunnels:
-            self.__printUnimplementedNotice(objType)
+            genObj = self.air.worldCreator.loadIslandArea(objKey, object['File'], self, True)
 
         elif objType == 'Invasion Barricade' and self.wantInvasions:
             genObj = self.generateNode(objType, objKey, object, parent, gridPos=True)

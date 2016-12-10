@@ -9,6 +9,5 @@ class DistributedGATunnelAI(DistributedGAConnectorAI):
     def __init__(self, air):
         DistributedGAConnectorAI.__init__(self, air)
 
-    # sendLeaveTunnelDone() airecv clsend
-
-
+    def sendLeaveTunnelDone(self):
+        print 'Got send leave tunnel done'

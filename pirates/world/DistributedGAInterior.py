@@ -31,6 +31,7 @@ class DistributedGAInterior(DistributedGameArea.DistributedGameArea, Distributed
         self.musicName = None
         self.buildingInterior = False
         self.caveInterior = False
+        self.areaInterest = None
 
     def setBuildingInterior(self, buildingInterior):
         self.buildingInterior = buildingInterior
@@ -62,7 +63,10 @@ class DistributedGAInterior(DistributedGameArea.DistributedGameArea, Distributed
 
         if self.buildingInterior:
             self.setZ(100)
-
+        
+        if not self.areaInterest:
+            self.areaInterest = base.cr.addInterest(self.doId, 2709, 'CaveInterest')
+        
     def disable(self):
         self.stopCustomEffects()
         self.builder.pauseSFX()
@@ -75,6 +79,10 @@ class DistributedGAInterior(DistributedGameArea.DistributedGameArea, Distributed
         DistributedGameArea.DistributedGameArea.disable(self)
         DistributedCartesianGrid.DistributedCartesianGrid.disable(self)
         del self.closeSfx
+        
+        if self.areaInterest:
+            base.cr.removeInterest(self.areaInterest)
+            self.areaInterest = None
 
     def delete(self):
         del self.coll
@@ -142,7 +150,7 @@ class DistributedGAInterior(DistributedGameArea.DistributedGameArea, Distributed
         self.reparentTo(render)
 
     def getZoneFromXYZ(self, *args):
-        if self.buildingInterior:
+        if self.buildingInterior or self.caveInterior:
             return 2709
 
         return DistributedCartesianGrid.DistributedCartesianGrid.getZoneFromXYZ(self, *args)
@@ -283,11 +291,7 @@ class DistributedGAInterior(DistributedGameArea.DistributedGameArea, Distributed
             fadeInFunc = Func(base.transitions.fadeIn, self.tOpen)
             playerStateFunc = Func(localAvatar.gameFSM.request, 'LandRoam')
         else:
-
-            def Nothing():
-                pass
-
-            fadeInFunc = Func(Nothing)
+            fadeInFunc = Sequence()
         if self.autoFadeIn:
             sf = Sequence(Func(self.requestDoorInteract), fadeInFunc, self.openDoorIval, self.closeDoorIval, Func(self.closeSfx.play), Func(self.requestPlayerStateFunc))
         else:
