@@ -16,7 +16,7 @@ class Lootable:
         self.sendUpdate('requestItems', [])
 
     def doneTaking(self):
-        self.sendUpdate('doneTaking', [])
+        pass
 
     def getRating(self):
         return -1

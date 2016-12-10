@@ -274,7 +274,6 @@ class DistributedDefendWorld(DistributedMiniGameWorld, Lootable):
         self.unloadSfx()
         localAvatar.b_clearTeleportFlag(PiratesGlobals.TFCannonDefense)
         self._DistributedDefendWorld__isGameFull = False
-        self.stopLooting()
         base.musicMgr.requestFadeOut(SoundGlobals.MUSIC_MINIGAME_CANNON)
         self.fsm.demand('Off')
         self.clearDefenseAmmo()

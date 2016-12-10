@@ -22,7 +22,11 @@ class InventoryUIClothingItem(InventoryUIItem.InventoryUIItem):
         image = tailorGui.find('**/%s' % modelName)
         
         iconColorIndex = ItemGlobals.getColor(itemTuple[1])
-        dyeColor = itemTuple[3]
+        
+        if len(itemTuple) == 4:
+            itemTuple.append(itemTuple[3])
+
+        dyeColor = itemTuple[4]
 
         if dyeColor:
             self.iconColor = (DYE_COLORS[dyeColor][0], DYE_COLORS[dyeColor][1], DYE_COLORS[dyeColor][2], 1.0)
@@ -91,11 +95,11 @@ class InventoryUIClothingItem(InventoryUIItem.InventoryUIItem):
 
 
     def setColorId(self, colorId):
-        self.itemTuple[3] = colorId
+        self.itemTuple[4] = colorId
 
 
     def getColorId(self):
-        return self.itemTuple[3]
+        return self.itemTuple[4]
 
 
     def getPlunderName(self):
@@ -301,7 +305,7 @@ class InventoryUIClothingItem(InventoryUIItem.InventoryUIItem):
         else:
             dna.setClothesVest(vestIdx, vestTex)
             dna.setClothesCoat(coatIdx, coatTex)
-        dna.setClothesByType(ClothingGlobals.CLOTHING_STRING[clothingType], modelId, texId, self.itemTuple[3])
+        dna.setClothesByType(ClothingGlobals.CLOTHING_STRING[clothingType], modelId, texId, self.itemTuple[4])
         self.displayHuman.setDNAString(dna)
         self.displayHuman.generateHuman(gender, self.masterHuman)
         self.displayHuman.stopBlink()

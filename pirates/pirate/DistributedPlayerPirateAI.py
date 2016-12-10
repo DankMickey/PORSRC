@@ -1022,8 +1022,8 @@ def giveWeapon(itemId):
 
     return "Weapon (%s) given to %s." % (itemId, target.getName())
 
-@magicWord(CATEGORY_GAME_MASTER, types=[int])
-def giveClothing(itemId):
+@magicWord(CATEGORY_GAME_MASTER, types=[int, int])
+def giveClothing(itemId, colorId=0):
     from pirates.uberdog.UberDogGlobals import InventoryType
     from pirates.uberdog.TradableInventoryBase import InvItem
 
@@ -1039,7 +1039,7 @@ def giveClothing(itemId):
     if location == -1:
         return "Failed to give clothing item. Target's inventory is full"
 
-    success = inv.addLocatable(itemId, location, 1, InventoryType.ItemTypeClothing)
+    success = inv.addLocatable(itemId, location, 1, InventoryType.ItemTypeClothing, colorId)
     if not success:
         return "Failed to give clothing item. Target's inventory is most likely full."
 

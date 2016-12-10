@@ -139,9 +139,9 @@ def getContainerTypeRate(enemyLevel):
         return (0, 0, 0)
 
 __numItemsRate = {
-    PiratesGlobals.ITEM_SAC: (0.4, 0.6, 0, 0),
-    PiratesGlobals.TREASURE_CHEST: (0.5, 0.3, 0.2, 0),
-    PiratesGlobals.RARE_CHEST: (0.5, 0.3, 0.15, 0.05) }
+    PiratesGlobals.ITEM_SAC: (0.6, 0.4, 0, 0),
+    PiratesGlobals.TREASURE_CHEST: (0.5, 0.4, 0.1, 0),
+    PiratesGlobals.RARE_CHEST: (0.5, 0.35, 0.125, 0.025) }
 
 def getNumItemsRate(containerType):
     numItemsRate = __numItemsRate.get(containerType)
@@ -424,9 +424,6 @@ __ignoreEnemyTypeList = [
     AvatarTypes.CrewGhost,
     AvatarTypes.LeaderGhost,
     AvatarTypes.VoodooZombieBoss]
-for baseStat in EnemyGlobals.__baseAvatarStats:
-    pass
-
 
 def isValidEnemy(type, uniqueId):
     if not __staticIdTypeList.get(uniqueId):
@@ -436,11 +433,9 @@ def isValidEnemy(type, uniqueId):
 
 def getEnemyDropItemsByType(type, uniqueId):
     shouldUseCommonDrop = 1
-    isStatic = 0
     dropKey = None
     if uniqueId in __staticCommonDropList:
         shouldUseCommonDrop = __staticCommonDropList[uniqueId]
-        isStatic = 1
         dropKey = uniqueId
     else:
         typeKey = (type.getFaction(), type.getTrack(), type.getId())
@@ -450,7 +445,7 @@ def getEnemyDropItemsByType(type, uniqueId):
 
     dropItems = []
     enemyType = __staticIdTypeList.get(uniqueId)
-    isBoss = 1
+
     if not enemyType:
         enemyType = __enemyTypeList.get(type)
 
@@ -459,13 +454,13 @@ def getEnemyDropItemsByType(type, uniqueId):
 
     for itemId in __dropInfo:
         item = __dropInfo[itemId]
+
         if not isLive(item):
             continue
 
-        #if shouldUseCommonDrop and item[DROPS_FROM_ALL_ENEMIES]:
-        #    dropItems.append(itemId)
-
-        if enemyType and enemyType < len(item):
+        if shouldUseCommonDrop and item[__columnHeadings['DROPS_FROM_ALL_ENEMIES']]:
+            dropItems.append(itemId)
+        elif enemyType and enemyType < len(item):
             if item[enemyType]:
                 dropItems.append(itemId)
 

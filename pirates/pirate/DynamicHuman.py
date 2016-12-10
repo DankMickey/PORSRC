@@ -206,11 +206,6 @@ FemaleHeadShapeInitialControlJointMatrix = {
     'trs_lip_right2': [],
     'trs_lip_right3': [],
     'initialized': [] }
-PlayerNames = [
-    "Cap'n Bruno Cannonballs",
-    'Bad-run Thomas',
-    'Carlos Saggingsails',
-    'Smugglin Willy Hawkins']
 
 class DynamicHuman(HumanBase.HumanBase, Biped.Biped):
     notify = DirectNotifyGlobal.directNotify.newCategory('Human')
@@ -222,10 +217,6 @@ class DynamicHuman(HumanBase.HumanBase, Biped.Biped):
         self.crazyColorSkin = False
         self.crazyColorSkinIndex = 0
         self.flattenPending = None
-        if __dev__:
-            self.optimizeLOD = config.GetBool('optimize-avatar-lod', 1)
-        else:
-            self.optimizeLOD = 0
         self.master = 0
         self.loaded = 0
         self.playingRate = None
@@ -629,11 +620,6 @@ class DynamicHuman(HumanBase.HumanBase, Biped.Biped):
         self.addLOD(2000, dist[1], dist[0])
         self.addLOD(1000, dist[2], dist[1])
         self.addLOD(500, dist[3], dist[2])
-        if self.optimizeLOD:
-            lowLOD = self.getLOD('500')
-            lowLOD.setTextureOff(1000)
-            lowLOD.setTransparency(0, 1000)
-
         self.getLODNode().setCenter(Point3(0, 0, 5))
 
 
@@ -649,8 +635,6 @@ class DynamicHuman(HumanBase.HumanBase, Biped.Biped):
 
         self.model.setFromDNA()
         self.generateEyesTexture()
-        if self.optimizeLOD:
-            self.optimizeLowLOD()
 
         self.generateColor()
 
@@ -1181,60 +1165,6 @@ class DynamicHuman(HumanBase.HumanBase, Biped.Biped):
         self.model.faces[0].unstash()
         self.model.faceZomb.stash()
         self.generateSkinTexture()
-
-
-    def takeAwayTexture(self, geoms, omitFace = False):
-        emptyRenderState = RenderState.makeEmpty()
-        eyeIrisColor = VBase4(0, 0, 0, 1)
-        for i in xrange(0, geoms.getNumPaths()):
-            element = geoms[i]
-            if 'eye_iris' in element.getName():
-                element.setColorScale(eyeIrisColor)
-            elif omitFace and 'master_face' in element.getName():
-                continue
-
-            element.setTextureOff()
-            geom = element.node()
-            for j in xrange(0, geom.getNumGeoms()):
-                geom.setGeomState(j, emptyRenderState)
-
-
-
-
-    def optimizeMedLOD(self):
-        medLOD = self.getLOD('1000')
-        geoms = medLOD.findAllMatches('**/teeth*')
-        geoms.stash()
-        self.medSkinGone = False
-        geoms = medLOD.find('**/body_forearm*')
-        if geoms.isEmpty():
-            self.medSkinGone = True
-            geoms = medLOD.findAllMatches('**/body_*')
-            self.takeAwayTexture(geoms, True)
-
-        geoms = medLOD.findAllMatches('**/hair_*')
-        self.takeAwayTexture(geoms)
-        if self.gender != 'f':
-            geoms = medLOD.findAllMatches('**/beard_*')
-            self.takeAwayTexture(geoms)
-            geoms = medLOD.findAllMatches('**/mustache_*')
-            self.takeAwayTexture(geoms)
-
-        geoms = medLOD.findAllMatches('**/eye_*')
-        self.takeAwayTexture(geoms)
-        geoms = medLOD.findAllMatches('**/clothing_layer2_belt_*')
-        self.takeAwayTexture(geoms)
-        geoms = medLOD.findAllMatches('**/clothing_layer1_shoe_*')
-        self.takeAwayTexture(geoms)
-
-
-    def optimizeLowLOD(self):
-        lowLOD = self.getLOD('500')
-        geoms = lowLOD.findAllMatches('**/teeth*')
-        geoms.stash()
-        geoms = lowLOD.findAllMatches('**/+GeomNode')
-        self.takeAwayTexture(geoms)
-
 
     def setHeadControlShapeValues(self):
         value = self.style.getHeadSize()

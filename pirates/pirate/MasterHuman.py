@@ -212,11 +212,6 @@ FemaleHeadShapeInitialControlJointMatrix = {
     'initialized': [] }
 MaleHeadInitHelper = { }
 FemaleHeadInitHelper = { }
-PlayerNames = [
-    "Cap'n Bruno Cannonballs",
-    'Bad-run Thomas',
-    'Carlos Saggingsails',
-    'Smugglin Willy Hawkins']
 
 
 class MasterHuman(HumanBase.HumanBase, Biped.Biped):
@@ -236,7 +231,6 @@ class MasterHuman(HumanBase.HumanBase, Biped.Biped):
         self.crazyColorSkinIndex = 0
 
         self.flattenPending = None
-        self.optimizeLOD = config.GetBool('optimize-avatar-lod', 1)
 
         self.master = 0
         self.loaded = 0
@@ -360,33 +354,14 @@ class MasterHuman(HumanBase.HumanBase, Biped.Biped):
         self.model.faces[0].setColorScale(skinColor)
         if self.model.newAvatars:
             self.model.currentBody.setColorScale(skinColor)
-            if self.optimizeLOD:
-                self.model.currentBody[2].setColorScale(color)
-                self.model.faces[0][2].setColorScale(color)
-
         else:
             numPaths = self.model.body.getNumPaths()
             medIdx = numPaths / 3
             lowIdx = (numPaths / 3) * 2
             if self.zombie:
                 self.model.body.setColorScale(Vec4(1, 1, 1, 1))
-                if self.optimizeLOD:
-                    color = VBase4(121 / 255.0, 124 / 255.0, 103 / 255.0, 1.0)
-                    for i in xrange(lowIdx, numPaths):
-                        self.model.body[i].setColorScale(color)
-
-                    self.model.faceZomb[2].setColorScale(color)
-
             else:
                 self.model.body.setColorScale(skinColor)
-                lowColor = self.model.lowLODSkinColor
-                if self.optimizeLOD:
-                    color = VBase4(lowColor[0] * skinColor[0], lowColor[1] * skinColor[1], lowColor[2] * skinColor[2], 1.0)
-                    for i in xrange(lowIdx, numPaths):
-                        self.model.body[i].setColorScale(color)
-
-
-
 
     def generateSkinTexture(self):
         bodyTextureIdx = self.style.body.skin
@@ -467,24 +442,9 @@ class MasterHuman(HumanBase.HumanBase, Biped.Biped):
         clothesTopColor = style.lookupClothesTopColor()
         clothesBotColor = style.lookupClothesBotColor()
         geom = self.getGeomNode()
-        if self.optimizeLOD:
-
-            def tempColorParts(parts, ct):
-                numPaths = parts.getNumPaths()
-                lowIdx = (numPaths / 3) * 2
-                for j in xrange(lowIdx):
-                    parts[j].setColorScale(ct)
-
-                for j in xrange(lowIdx, numPaths):
-                    cl = parts[j].getColorScale()
-                    compoundColor = VBase4(cl[0] * ct[0], cl[1] * ct[1], cl[2] * ct[2], 1.0)
-                    parts[j].setColorScale(compoundColor)
-
-
-        else:
-
-            def tempColorParts(parts, ct):
-                parts.setColorScale(ct)
+        
+        def tempColorParts(parts, ct):
+            parts.setColorScale(ct)
 
         colorParts = tempColorParts
         parts = geom.findAllMatches('**/clothing_layer1_shirt*')
@@ -602,10 +562,6 @@ class MasterHuman(HumanBase.HumanBase, Biped.Biped):
         self.addLOD(2000, dist[1], dist[0])
         self.addLOD(1000, dist[2], dist[1])
         self.addLOD(500, dist[3], dist[2])
-
-        if self.optimizeLOD:
-            lowLOD = self.getLOD('500')
-            lowLOD.setTransparency(0, 1000)
 
         self.getLODNode().setCenter(Point3(0, 0, 5))
 
@@ -1114,54 +1070,6 @@ class MasterHuman(HumanBase.HumanBase, Biped.Biped):
         self.model.faces[0].unstash()
         self.model.faceZomb.stash()
         self.generateSkinTexture()
-
-    def takeAwayTexture(self, geoms, omitFace = False):
-        emptyRenderState = RenderState.makeEmpty()
-        eyeIrisColor = VBase4(0, 0, 0, 1)
-        for i in xrange(0, geoms.getNumPaths()):
-            element = geoms[i]
-            if 'eye_iris' in element.getName():
-                element.setColorScale(eyeIrisColor)
-            elif omitFace and 'master_face' in element.getName():
-                continue
-
-            element.setTextureOff()
-            geom = element.node()
-            for j in xrange(0, geom.getNumGeoms()):
-                geom.setGeomState(j, emptyRenderState)
-
-    def optimizeMedLOD(self):
-        medLOD = self.getLOD('1000')
-        geoms = medLOD.findAllMatches('**/teeth*')
-        geoms.stash()
-        self.medSkinGone = False
-        geoms = medLOD.find('**/body_forearm*')
-        if geoms.isEmpty():
-            self.medSkinGone = True
-            geoms = medLOD.findAllMatches('**/body_*')
-            self.takeAwayTexture(geoms, True)
-
-        geoms = medLOD.findAllMatches('**/hair_*')
-        self.takeAwayTexture(geoms)
-        if self.gender != 'f':
-            geoms = medLOD.findAllMatches('**/beard_*')
-            self.takeAwayTexture(geoms)
-            geoms = medLOD.findAllMatches('**/mustache_*')
-            self.takeAwayTexture(geoms)
-
-        geoms = medLOD.findAllMatches('**/eye_*')
-        self.takeAwayTexture(geoms)
-        geoms = medLOD.findAllMatches('**/clothing_layer2_belt_*')
-        self.takeAwayTexture(geoms)
-        geoms = medLOD.findAllMatches('**/clothing_layer1_shoe_*')
-        self.takeAwayTexture(geoms)
-
-    def optimizeLowLOD(self):
-        lowLOD = self.getLOD('500')
-        geoms = lowLOD.findAllMatches('**/teeth*')
-        geoms.stash()
-        geoms = lowLOD.findAllMatches('**/+GeomNode')
-        self.takeAwayTexture(geoms)
 
     def setHeadControlShapeValues(self):
         value = self.style.getHeadSize()

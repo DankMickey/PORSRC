@@ -66,11 +66,6 @@ PrebuiltAnimDict = { }
 HeadPositions = BodyDefs.HeadPositions
 HeadScales = BodyDefs.HeadScales
 BodyScales = BodyDefs.BodyScales
-PlayerNames = [
-    "Cap'n Bruno Cannonballs",
-    'Bad-run Thomas',
-    'Carlos Saggingsails',
-    'Smugglin Willy Hawkins']
 
 class Human(HumanBase.HumanBase, Biped.Biped):
     notify = DirectNotifyGlobal.directNotify.newCategory('Human')
@@ -83,7 +78,6 @@ class Human(HumanBase.HumanBase, Biped.Biped):
         self.crazyColorSkinIndex = 0
         self.flattenPending = None
         self.flattenSuperLowName = None
-        self.optimizeLOD = base.config.GetBool('optimize-avatar-lod', 1)
         self.loaded = 0
         self.playingRate = None
         self.shadowFileName = 'models/misc/drop_shadow'

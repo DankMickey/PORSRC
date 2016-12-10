@@ -31,7 +31,7 @@ class LootManagerAI(DirectObject):
             enemyGrade = self.getEnemyGradeFromLevels(enemyLevel, players)
             dropRate = DropGlobals.getContainerDropRate(enemyGrade)
 
-            if not random.randrange(100) > dropRate and not config.GetBool('always-spawn-loot', True):
+            if random.randrange(100) > dropRate and not config.GetBool('always-spawn-loot', True):
                 return
 
             chestType = self.getChestTypeFromEnemyLevel(enemyLevel)
