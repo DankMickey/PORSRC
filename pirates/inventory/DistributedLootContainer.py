@@ -226,16 +226,12 @@ class DistributedLootContainer(DistributedInteractive.DistributedInteractive, Lo
         self.acceptInteraction()
         if self.openSound:
             self.openSound.play()
-
-        base.localAvatar.guiMgr.inventoryUIManager.openPlunder(plunderList, self, timer)
-
-
-    def stopLooting(self):
-        Lootable.stopLooting(self)
+        
         if self.type != PiratesGlobals.ITEM_SAC:
-            self.openAnim.setPlayRate(-1.0)
+            self.openAnim.setPlayRate(1.0)
             self.openAnim.play()
 
+        base.localAvatar.guiMgr.inventoryUIManager.openPlunder(plunderList, self, timer)
 
 
     def setEmpty(self, empty):
@@ -260,6 +256,11 @@ class DistributedLootContainer(DistributedInteractive.DistributedInteractive, Lo
 
     def doneTaking(self):
         Lootable.doneTaking(self)
+        
+        if self.type != PiratesGlobals.ITEM_SAC:
+            self.openAnim.setPlayRate(-1.0)
+            self.openAnim.play()
+        
         self.requestExit()
         localAvatar.motionFSM.on()
         self.cr.interactionMgr.start()

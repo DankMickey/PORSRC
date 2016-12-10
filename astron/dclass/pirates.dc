@@ -1193,8 +1193,6 @@ dclass DistributedDinghy : DistributedInteractive {
 
 dclass Lootable {
   startLooting(PlunderItemInfo[], uint8);
-  stopLooting();
-  doneTaking() airecv clsend;
   requestItem(PlunderItemInfo) airecv clsend;
   requestItems() airecv clsend;
 };

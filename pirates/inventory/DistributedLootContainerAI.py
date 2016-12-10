@@ -4,7 +4,7 @@ from direct.distributed.GridParent import GridParent
 from pirates.distributed.DistributedInteractiveAI import *
 from pirates.inventory.LootableAI import LootableAI
 from pirates.inventory import DropGlobals, ItemGlobals
-from pirates.piratesbase import PiratesGlobals
+from pirates.piratesbase import PiratesGlobals, PLocalizer
 from pirates.uberdog.UberDogGlobals import InventoryType, InventoryCategory
 import random, copy, os
 
@@ -195,16 +195,20 @@ class DistributedLootContainerAI(DistributedInteractiveAI, LootableAI):
         
         return True         
 
-    def getRandomItem(self, av, enemyItems, itemRarities, itemTypes):
+    def getRandomItem(self, av, npc, enemyItems, itemRarities, itemTypes):
         itemRarity = self.chooseFromRate(itemRarities)
+        
+        if itemRarity > 1 and (av.getLevel() < 30 or npc.getLevel() < 30):
+            itemRarity = 1
+
         itemType = ItemTypes[self.chooseFromRate(itemTypes)]
 
         random.shuffle(enemyItems)
-            
+
         for itemId in enemyItems:
             itemClass = ItemGlobals.getClass(itemId)
             
-            if itemClass == itemType and ItemGlobals.getRarity(itemId) == itemRarity and self.isGenderAlright(av, itemClass, itemId):
+            if itemClass == itemType and ItemGlobals.getRarity(itemId) == itemRarity and PLocalizer.hasItemName(itemId) and self.isGenderAlright(av, itemClass, itemId):
                 return (itemType, itemId, 1)
     
     def chooseFromRate(self, rates):
@@ -230,10 +234,14 @@ class DistributedLootContainerAI(DistributedInteractiveAI, LootableAI):
             itemRate -= 1
         
         for i in xrange(itemRate):
-            item = self.getRandomItem(av, enemyItems, itemRarities, itemTypes)
+            item = self.getRandomItem(av, npc, enemyItems, itemRarities, itemTypes)
             
             if item:
                 items.append(item)
+        
+        if not items:
+            gold = random.randint(*DropGlobals.getItemGoldRate(self.lootType))
+            items.append((InventoryType.ItemTypeMoney, 0, gold))
 
         return items
     

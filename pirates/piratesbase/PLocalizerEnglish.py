@@ -4188,6 +4188,9 @@ ItemNames = {
     ItemGlobals.TATTOO_FACE_COLOR_VOODOO_04: 'Voodoo Forehead Tattoo',
     ItemGlobals.TATTOO_FACE_COLOR_VOODOO_05: 'Voodoo Mask Tattoo' }
 
+def hasItemName(itemId):
+    return itemId in ItemNames
+
 def getItemName(itemId):
     return ItemNames.get(itemId, 'Error, no name')
 
