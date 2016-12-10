@@ -171,16 +171,13 @@ class DistributedShopKeeperAI(DistributedObjectAI):
             sendResponse(RejectCode.TIMEOUT)
             return
 
-        itemId, amount, todo0, todo1 = buying[0] #TODO: figure out what todo0 and todo1 are
-        amount = max(1, amount)   
+        itemId, colorId, todo0, todo1 = buying[0] #TODO: figure out what todo0 and todo1 are
 
         requiredGold = ItemGlobals.getGoldCost(itemId)
         if not requiredGold:
             self.notify.warning("Unable to locate price for itemId: %s" % itemId)
             sendResponse(RejectCode.TIMEOUT)
             return
-
-        requiredGold = requiredGold * amount
 
         if self.air.newsManager.isHolidayRunning(HolidayGlobals.HALFOFFCUSTOMIZATION) and requiredGold > 0:
             requiredGold = requiredGold / 2
@@ -198,14 +195,14 @@ class DistributedShopKeeperAI(DistributedObjectAI):
         resultCode = 0
         availableSlot = -1
 
-        location = inv.findAvailableLocation(InventoryType.ItemTypeClothing, itemId=itemId, count=amount, equippable=True)
+        location = inv.findAvailableLocation(InventoryType.ItemTypeClothing, itemId=itemId, count=1, equippable=True)
         if location != -1:
             availableSlot = location
         else:
             resultCode = RejectCode.OVERFLOW
 
         if availableSlot != -1:
-            success = inv.addLocatable(itemId, availableSlot, amount, inventoryType=InventoryType.ItemTypeClothing)
+            success = inv.addLocatable(itemId, availableSlot, 1, inventoryType=InventoryType.ItemTypeClothing, colorId=colorId)
             if success:
                 av.takeGold(requiredGold)
                 resultCode = 2
