@@ -127,10 +127,10 @@ class PirateInventoryAI(DistributedInventoryAI):
         val = max(0, oldVal + amount)
         self.setStackQuantity(item, val)
 
-    def addLocatable(self, itemId, slot, amount, inventoryType=InventoryType.ItemTypeWeapon, update=True):
+    def addLocatable(self, itemId, slot, amount, inventoryType=InventoryType.ItemTypeWeapon, colorId=0, update=True):
         if not self.locationAvailable(slot):
             return False
-        self._locatableItems[slot] = InvItem(tuple([inventoryType, itemId, slot, 0, 0, amount]))
+        self._locatableItems[slot] = InvItem(tuple([inventoryType, itemId, slot, 0, colorId, amount]))
         if update:
             self.d_update()
         return True

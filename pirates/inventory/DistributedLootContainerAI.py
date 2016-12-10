@@ -194,6 +194,12 @@ class DistributedLootContainerAI(DistributedInteractiveAI, LootableAI):
             return False
         
         return True         
+    
+    def getColor(self, itemId):
+        if (not ItemGlobals.canDyeItem(itemId)) or random.random() > 0.05:
+            return 0
+        else:
+            return random.randint(21, 30)
 
     def getRandomItem(self, av, npc, enemyItems, itemRarities, itemTypes):
         itemRarity = self.chooseFromRate(itemRarities)
@@ -209,7 +215,7 @@ class DistributedLootContainerAI(DistributedInteractiveAI, LootableAI):
             itemClass = ItemGlobals.getClass(itemId)
             
             if itemClass == itemType and ItemGlobals.getRarity(itemId) == itemRarity and PLocalizer.hasItemName(itemId) and self.isGenderAlright(av, itemClass, itemId):
-                return (itemType, itemId, 1)
+                return (itemType, itemId, self.getColor(itemId))
     
     def chooseFromRate(self, rates):
         rolled = random.uniform(0, 1)

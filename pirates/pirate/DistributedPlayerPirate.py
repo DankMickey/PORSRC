@@ -3097,7 +3097,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         else:
             modelIndex = ItemGlobals.getMaleModelId(itemTuple[1])
             textureIndex = ItemGlobals.getMaleTextureId(itemTuple[1])
-        colorIndex = itemTuple[3]
+        colorIndex = itemTuple[4]
         self.wearClothing(location, modelIndex, textureIndex, colorIndex)
 
 
