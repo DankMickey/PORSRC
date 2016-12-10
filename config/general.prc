@@ -156,5 +156,5 @@ fullscreen 0
 force-firework-music #t
 
 # HOLIDAYS
-# Thanksgiving
-forced-holiday 14 604800
+# WINTERFESTIVAL
+forced-holiday 17 604800
