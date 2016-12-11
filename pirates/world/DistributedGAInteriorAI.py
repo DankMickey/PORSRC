@@ -6,6 +6,7 @@ import WorldGlobals
 
 from pirates.minigame.DistributedPokerTableAI import DistributedPokerTableAI
 from pirates.minigame.DistributedGameTableAI import DistributedGameTableAI
+from pirates.piratesbase import PiratesGlobals
 
 from DistributedInteriorDoorAI import DistributedInteriorDoorAI
 
@@ -43,7 +44,9 @@ class DistributedGAInteriorAI(DistributedGameAreaAI, DistributedCartesianGridAI)
         if objType == 'Island Game Area':
             if not self.getUniqueId():
                 self.b_setUniqueId(objKey)
-                self.b_setModelPath(object['Visual']['Model'])
+                
+                if object['Visual']['Model']:
+                    self.b_setModelPath(object['Visual']['Model'])
 
         elif objType == 'Building Interior':
             if not self.getUniqueId():
@@ -68,6 +71,9 @@ class DistributedGAInteriorAI(DistributedGameAreaAI, DistributedCartesianGridAI)
         self.generateChild(intDoor)
         self.intDoors.append(intDoor)
         return intDoor
+    
+    def getZoneFromXYZ(self, *args):
+        return 2709
 
     def generateChild(self, obj, zoneId = None, cellParent = False):
         if not hasattr(obj, 'getPos') and zoneId is None:
@@ -75,10 +81,7 @@ class DistributedGAInteriorAI(DistributedGameAreaAI, DistributedCartesianGridAI)
             return
 
         if zoneId is None:
-            if self.buildingInterior:
-                zoneId = 2709
-            else:
-                zoneId = self.getZoneFromXYZ(obj.getPos())
+            zoneId = 2709
 
         if self.buildingInterior:
             obj.interior = self
@@ -92,7 +95,7 @@ class DistributedGAInteriorAI(DistributedGameAreaAI, DistributedCartesianGridAI)
             self.notify.warning("posControlledByIsland is deprecated. Please switch '%s' to posControlledByCell as soon as possible." % type(obj).__name__)
             cellParent = obj.posControlledByIsland()
 
-        if cellParent and not self.buildingInterior:
+        if cellParent and not self.buildingInterior and not self.caveInterior:
             cell = GridParent.getCellOrigin(self, zoneId)
             pos = obj.getPos()
 

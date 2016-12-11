@@ -54,6 +54,7 @@ BOSS_NPC_LIST = {
         'DamageScale': 1.5,
         'HighlightColor': VBase3(0, 1, 0.5) },
     '1220906480.53mtucker': {
+        'AvatarType': AvatarTypes.Zombie,
         'HpScale': 5,
         'MpScale': 3,
         'GoldScale': 2,
@@ -61,6 +62,7 @@ BOSS_NPC_LIST = {
         'DamageScale': 1.5,
         'HighlightColor': VBase3(0, 1, 0.5) },
     '1219434293.16mtucker': {
+        'AvatarType': AvatarTypes.Zombie,
         'HpScale': 5,
         'MpScale': 3,
         'GoldScale': 2,

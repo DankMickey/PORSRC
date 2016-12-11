@@ -136,40 +136,36 @@ class WorldCreatorAI(WorldCreatorBase):
         return interior
 
     def createConnectorTunnel(self, parent, objKey, object):
-
-        if 'File' not in object:
-            return
-
-        areaFile = object['File']
-
-        if not (areaFile and 'Objects' in object):
-            return
-
         extTunnel = DistributedGATunnelAI.makeFromObjectKey(self.air, objKey, object)
         parent.generateChild(extTunnel)
-        area = self.loadIslandArea(areaFile, parent.getParentObj(), extTunnel)
 
-        if objKey in PLocalizer.LocationNames:
-            area.setName(PLocalizer.LocationNames[objKey])
-        else:
-            area.setName(objKey)
-
-        self.notify.info("Created Island Game Area %s %s using file '%s'" % (area.getName(), objKey, areaFile))
         return extTunnel
 
-    def loadIslandArea(self, areaFile, parent, extTunnel, cave=False):
+    def loadIslandArea(self, areaKey, areaFile, parent, cave=True):
         area = DistributedGAInteriorAI(self.air, None)
+        
+        self.air.uid2do[areaKey] = area
+
+        if areaKey in PLocalizer.LocationNames:
+            area.setName(PLocalizer.LocationNames[areaKey])
+        else:
+            area.setName(areaKey)
 
         area.setBuildingInterior(False)
-        area.setCaveInterior(cave)
-
-        zoneId = PiratesGlobals.InteriorDoorZone << 16 | extTunnel.doId & 0xFFFF
+        area.setCaveInterior(True)
+        zoneId = PiratesGlobals.InteriorDoorZone << 16 | (sorted(self.air.doId2do.keys())[-1] + 1) & 0xFFFF
         parent.generateChild(area, zoneId)
 
-        self.__loadingIslandArea = True
-        self.__loadWorldFileAndAdditionalData(areaFile, area)
-        self.__loadingIslandArea = False
+        objects = self.loadObjectsFromFile(areaFile, area, True)[0]['Objects']
+        objKey = objects.keys()[0]
+        obj = objects[objKey]
+        
+        area.createObject(obj['Type'], area, objKey, obj)
+        
+        for objKey2, obj2 in obj['Objects'].iteritems():
+            area.createObject(obj2['Type'], area, objKey2, obj2)
 
+        self.notify.info('Created cave area %s %s' % (PLocalizer.LocationNames[areaKey], areaKey))
         return area
 
     def __loadWorldFileAndAdditionalData(self, filename, area):
@@ -177,7 +173,7 @@ class WorldCreatorAI(WorldCreatorBase):
         additionalData = []
         for obj in ret['Objects'].values():
             additionalData.extend(obj.get('AdditionalData', []))
-
+            
         for additional in additionalData:
             self.__loadWorldFileAndAdditionalData(additional, area)
 

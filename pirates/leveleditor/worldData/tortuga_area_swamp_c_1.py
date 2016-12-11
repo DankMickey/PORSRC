@@ -1403,6 +1403,7 @@ objectStruct = {
                     'Type': 'Skeleton',
                     'Aggro Radius': '5.7229',
                     'AnimSet': 'default',
+                    'DNA': '1220906480.53mtucker',
                     'AvId': 10,
                     'AvTrack': 0,
                     'Boss': True,
