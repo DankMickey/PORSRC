@@ -177,10 +177,10 @@ class DistributedLootContainerAI(DistributedInteractiveAI, LootableAI):
         if not inv:
             return
 
-        location = inv.findAvailableLocation(itemClass, itemId=itemId, count=amount, equippable=True)
+        location = inv.findAvailableLocation(itemClass, itemId=itemId, count=1, equippable=True)
         
         if location != -1:
-            inv.addLocatable(itemId, location, amount, inventoryType=itemClass)
+            inv.addLocatable(itemId, location, 1, inventoryType=itemClass, colorId=amount)
     
     def isGenderAlright(self, av, itemClass, itemId):
         if itemClass != InventoryType.ItemTypeClothing:
