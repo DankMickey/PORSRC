@@ -8714,7 +8714,7 @@ ChatTypeWarnings = [
     'Warning!\n\nYour chat mode will be set to Blacklist mode.\n\nThis means that all words will be processed through a blacklist, instead of a whitelist. You will encounter clever people who might find ways to interrupt your game experience by bypassing this protection.\n\nAre you sure you want to switch to this mode?',
 ]
 ChatTypeUpdated = 'Your chat mode has been updated.'
-FriendInviterAvatarNotYet = 'Make Pirate Friends with the pirate named %s?\n\nThis friendship will only exist within Pirates of the Caribbean Online and is only between these two pirates.'
+FriendInviterAvatarNotYet = 'Make Pirate Friends with the pirate named %s?\n\nThis friendship will only exist within Pirates Online Retribution and is only between these two pirates.'
 FriendInviterAvatarEndFriendShip = 'Stop being Pirate Friends with the pirate named %s?\n\nThis will not break a Player Friendship, but these two pirates will no longer be friends.'
 MainMenuReturn = 'Return to Game'
 MainMenuOptions = 'Game Options'
