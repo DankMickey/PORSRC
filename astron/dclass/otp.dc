@@ -138,7 +138,7 @@ dclass TalkPath_group {
 };
 
 dclass DistributedAvatar : DistributedSmoothNode, TalkPath_whisper {
-  setName(string) required broadcast db airecv ownrecv;
+  setName(string) required broadcast airecv ownrecv;
   friendsNotify(DoId avId, int8 status) ownrecv airecv;
   checkAvOnShard(DoId) clsend airecv;
   confirmAvOnShard(DoId avId, int8 isOnShard);

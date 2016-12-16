@@ -3303,24 +3303,27 @@ class PirateMale(DirectObject.DirectObject):
             'LHand': self.pirate.style.getJewelryZone7(),
             'RHand': self.pirate.style.getJewelryZone8() }
         for key in self.currentJewelry.keys():
-            primaryColor = HumanDNA.jewelryColors[jewelryDNA[key][1]]
-            secondaryColor = HumanDNA.jewelryColors[jewelryDNA[key][2]]
-            oldIdx = self.currentJewelry[key][0]
-            newIdx = jewelryDNA[key][0]
-            for np in self.jewelrySets[key][oldIdx]:
-                np.stash()
+            try:
+                primaryColor = HumanDNA.jewelryColors[jewelryDNA[key][1]]
+                secondaryColor = HumanDNA.jewelryColors[jewelryDNA[key][2]]
+                oldIdx = self.currentJewelry[key][0]
+                newIdx = jewelryDNA[key][0]
+                for np in self.jewelrySets[key][oldIdx]:
+                    np.stash()
 
-            for npIdx in xrange(len(self.jewelrySets[key][newIdx])):
-                np = self.jewelrySets[key][newIdx][npIdx]
-                np.unstash()
-                if npIdx == 0 and primaryColor:
-                    np.setColor(primaryColor)
-                    continue
-                if secondaryColor:
-                    np.setColor(secondaryColor)
-                    continue
+                for npIdx in xrange(len(self.jewelrySets[key][newIdx])):
+                    np = self.jewelrySets[key][newIdx][npIdx]
+                    np.unstash()
+                    if npIdx == 0 and primaryColor:
+                        np.setColor(primaryColor)
+                        continue
+                    if secondaryColor:
+                        np.setColor(secondaryColor)
+                        continue
 
-            self.currentJewelry[key] = jewelryDNA[key]
+                self.currentJewelry[key] = jewelryDNA[key]
+            except:
+                continue
 
 
 
