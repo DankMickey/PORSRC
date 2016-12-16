@@ -534,7 +534,7 @@ class ProjectileEffect:
                 from pirates.battle.DistributedBattleAvatar import DistributedBattleAvatar
                 
                 for doId, obj in base.cr.doId2do.iteritems():
-                    if isinstance(obj, DistributedBattleAvatar) and (not obj.isNpc) and obj.getTeam() != base.localAvatar.getTeam():
+                    if isinstance(obj, DistributedBattleAvatar) and obj.isBattleable() and obj.getTeam() != base.localAvatar.getTeam():
                         distance = (obj.getPos(render) - pos).length()
 
                         if distance <= 14:
