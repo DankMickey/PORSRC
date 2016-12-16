@@ -1,4 +1,4 @@
-from panda3d.core import Camera, Light, Vec3, Vec4
+from panda3d.core import Camera, Light, Vec3, Vec4, NodePath
 global skillSfxs
 from direct.interval.IntervalGlobal import *
 from direct.directnotify import DirectNotifyGlobal
@@ -521,7 +521,27 @@ class ProjectileEffect:
                 cameraShakerEffect.numShakes = 2
                 cameraShakerEffect.scalePower = 1
                 cameraShakerEffect.play(80.0)
+        if ammoSkillId >= InventoryType.begin_WeaponSkillGrenade and ammoSkillId < InventoryType.end_WeaponSkillGrenade:
+            if attacker == base.localAvatar:
+                node = NodePath('calculations')
+                node.reparentTo(base.effectsRoot)
+                node.setPos(hitObject, pos)
+                pos = node.getPos()
+                node.removeNode()
+                
+                targets = []
+                
+                from pirates.battle.DistributedBattleAvatar import DistributedBattleAvatar
+                
+                for doId, obj in base.cr.doId2do.iteritems():
+                    if isinstance(obj, DistributedBattleAvatar) and (not obj.isNpc) and obj.getTeam() != base.localAvatar.getTeam():
+                        distance = (obj.getPos(render) - pos).length()
 
+                        if distance <= 14:
+                            targets.append(obj)
+
+                for target in targets:
+                    base.localAvatar.sendRequestTargetedSkill(skillId, ammoSkillId, 1, target.doId, [], 0, target.getPos())
 
 
 
