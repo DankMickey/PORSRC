@@ -63,9 +63,9 @@ class NewsManager(DistributedObject.DistributedObject):
         for holidayId in HolidayGlobals.getAllHolidayIds():
             taskMgr.remove('showHolidayMessage-holidayId:' + str(holidayId))
 
-        if localAvatar and localAvatar.guiMgr and localAvatar.guiMgr.mapPage:
+        if hasattr(base, 'localAvatar') and base.localAvatar and base.localAvatar.guiMgr and base.localAvatar.guiMgr.mapPage:
             for waypointId in self.noteablePathList:
-                localAvatar.guiMgr.mapPage.removePath(waypointId)
+                base.localAvatar.guiMgr.mapPage.removePath(waypointId)
 
         self.cr.newsManager = None
         DistributedObject.DistributedObject.delete(self)
