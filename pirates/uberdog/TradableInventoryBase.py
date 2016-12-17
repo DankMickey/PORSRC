@@ -375,14 +375,13 @@ class TradableInventoryBase(DistributedInventoryBase):
             if itemId:
                 return itemCounts.get(itemId, 0)
             else:
-                # TODO: Why?
                 theSum = 0
                 
                 for count in itemCounts.values():
-                    if hasattr(count, 'getCount'):
-                        theSum += count.getCount(0)
-                    else:
+                    try:
                         theSum += count
+                    except:
+                        pass
 
                 return theSum
         else:
