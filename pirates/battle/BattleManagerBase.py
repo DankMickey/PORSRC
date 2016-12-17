@@ -39,9 +39,6 @@ class BattleManagerBase:
                 return False
 
         return True
-    
-    def isFriendlyFire(self, attacker, target):
-        return attacker.avatarType.isA(AvatarTypes.Player) and target.avatarType.isA(AvatarTypes.Player)
 
     def willWeaponHit(self, attacker, target, skillId, ammoSkillId, charge):
         if not attacker.getWorld():
@@ -54,9 +51,8 @@ class BattleManagerBase:
         if not hasattr(target, 'avatarType'):
             return WeaponGlobals.RESULT_MISS
 
-        if target:
-            if not inPVPMode and self.isFriendlyFire(attacker, target):
-                return WeaponGlobals.RESULT_MISS
+        if inPVPMode and (not WeaponGlobals.isFriendlyFire(skillId, ammoSkillId)):
+            return WeaponGlobals.RESULT_MISS
 
         chanceOfParry = 0.0
         chanceOfDodge = 0.0

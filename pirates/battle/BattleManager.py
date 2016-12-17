@@ -65,10 +65,13 @@ class BattleManager(BattleManagerBase.BattleManagerBase):
             target = None
 
         weaponHit = self.willWeaponHit(attacker, target, skillId, ammoSkillId, charge)
+        
+        if weaponHit == WeaponGlobals.RESULT_MISS:
+            return weaponHit
+        
         if combo == -1:
             if localAvatar.wantComboTiming:
                 return WeaponGlobals.RESULT_MISS
-
 
         if not WeaponGlobals.getNeedTarget(skillId, ammoSkillId):
             return WeaponGlobals.RESULT_HIT
