@@ -16,12 +16,12 @@ class BattleManagerBase:
     notify = DirectNotifyGlobal.directNotify.newCategory('BattleManager')
     SkillRechargeTimeConfig = config.GetFloat('skill-recharge-time', -1.0)
     wantOutput = config.GetBool('show-attack-calc', 0)
+    
+    def isPlayerPVPing(self, player):
+        return player and player.getTeam() == PiratesGlobals.PLAYER_TEAM and not player.getZombie()
 
     def isPVP(self, attacker, target):
-        if target and target.getTeam() == PiratesGlobals.PLAYER_TEAM and attacker and attacker.getTeam() == PiratesGlobals.PLAYER_TEAM:
-            return True
-
-        return False
+        return self.isPlayerPVPing(target) and self.isPlayerPVPing(attacker)
 
     def obeysPirateCode(self, attacker, target):
         if not hasattr(target, 'avatarType'):
