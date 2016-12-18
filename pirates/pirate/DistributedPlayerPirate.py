@@ -2498,9 +2498,6 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         if needToHide:
             self.hide()
 
-    def getZombie(self):
-        return self.zombie
-
     def isUndead(self):
         return self.zombie
 
