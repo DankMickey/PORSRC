@@ -200,6 +200,9 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
 
     def getZombie(self):
         return self.zombied
+    
+    def isUndead(self):
+        return self.zombied[0]
 
     def setTempDoubleXPReward(self, value):
         self.tempdoublexp = value

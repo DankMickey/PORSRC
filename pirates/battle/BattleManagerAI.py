@@ -25,7 +25,7 @@ class BattleManagerAI(BattleManagerBase):
 
         weaponHit = self.__doAttack(attacker, skillId, ammoSkillId, targetId, areaIdList, distance, combo, charge)
 
-        if targetId and attacker and not attacker.isNpc and weaponHit == WeaponGlobals.RESULT_HIT:
+        if targetId and attacker and (not attacker.isNpc) and weaponHit == WeaponGlobals.RESULT_HIT:
             target = self.air.doId2do.get(targetId)
             if target:
                 repId = ItemGlobals.getItemRepId(attacker.currentWeaponId)

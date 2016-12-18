@@ -17,11 +17,11 @@ class BattleManagerBase:
     SkillRechargeTimeConfig = config.GetFloat('skill-recharge-time', -1.0)
     wantOutput = config.GetBool('show-attack-calc', 0)
     
-    def isPlayerPVPing(self, player):
-        return player and player.getTeam() == PiratesGlobals.PLAYER_TEAM and not player.getZombie()
+    def isPlayer(self, player):
+        return player.getTeam() == PiratesGlobals.PLAYER_TEAM
 
     def isPVP(self, attacker, target):
-        return self.isPlayerPVPing(target) and self.isPlayerPVPing(attacker)
+        return attacker is not None and target is not None and self.isPlayer(attacker) and self.isPlayer(target) and not attacker.isUndead() and not target.isUndead()
 
     def obeysPirateCode(self, attacker, target):
         if not hasattr(target, 'avatarType'):
@@ -44,15 +44,16 @@ class BattleManagerBase:
         if not attacker.getWorld():
             return WeaponGlobals.RESULT_NOT_AVAILABLE
 
-        inPVPMode = self.isPVP(attacker, target)
-        chanceOfHit = WeaponGlobals.getAttackAccuracy(skillId, ammoSkillId)
-        weaponType = ItemGlobals.getType(attacker.currentWeaponId)
-
         if not hasattr(target, 'avatarType'):
             return WeaponGlobals.RESULT_MISS
-
+        
+        inPVPMode = self.isPVP(attacker, target)
+        
         if inPVPMode and (not WeaponGlobals.isFriendlyFire(skillId, ammoSkillId)):
             return WeaponGlobals.RESULT_MISS
+        
+        chanceOfHit = WeaponGlobals.getAttackAccuracy(skillId, ammoSkillId)
+        weaponType = ItemGlobals.getType(attacker.currentWeaponId)
 
         chanceOfParry = 0.0
         chanceOfDodge = 0.0
