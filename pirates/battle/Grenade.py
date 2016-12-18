@@ -163,10 +163,10 @@ def getHitSfx():
     return None 
 
 def getMistimedHitSfx():
-    return Grenade.mistimedHitSfxs
+    return Grenade.aimSfxs
 
 def getMissSfx():
-    return Grenade.missSfxs
+    return Grenade.aimSfxs
 
 def getAimSfx():
     return Grenade.aimSfxs
