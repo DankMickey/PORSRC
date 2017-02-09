@@ -2,33 +2,57 @@ Pirates Online Retribution Source Code
 ======================================
 This repository is the source code for Pirates Online Retribution.
 
-### Info
+## Build Instructions
+Instrutions on how to set up a development environment for POR (run server/clients locally)
 
-* Only push game code to this repository.
-* *Never* force a git push.
-* 
+#### 1) Install Git and learn the basics
 
-
+#### 2) Clone this and the 2 resource repos
 ````
 git clone https://github.com/pearson1919/Pirates-Online-Retribution.git por
 cd por
 mkdir resources
 cd resources
 git clone https://github.com/pearson1919/Resources.git .
+git clone https://github.com/pearson1919/SecureResources.git .
 ````
+#### 3) Install Panda3D
+**From this link specifically**: https://piratesonline.us/files/Panda3D-1.10.0.exe
+
+#### 4) Install MongoDB
+**From here**: https://www.mongodb.com/download-center?jmp=nav
+
+#### 5) Install requests
+Do `where python` and *make sure* that it shows `C:\Panda3D-1.10.0\python\python.exe` as the first entry.
+If it's not:
+**Fix your PATH** by adding this *at the front* of your PATH variable.
+```
+C:\Panda3D-1.10.0\python;C:\Panda3D-1.10.0\python\Scripts;C:\Panda3D-1.10.0\bin
+```
+Finally, do `python -m pip install requests` in a terminal.
+If you find out you don't have pip, install that too (for Python 2 of course).
+
+#### 6) Test the server/client
+Go in `win32` if you're on Windows and double click `start-all.bat`.
+
+
+### Rules
+
+* Only push game code to this repository.
+* *Never* force a git push.
 
 ### Production
 
 **LIVE**: In production, we will be using git tags for deployment on the master branch. When we are ready to deploy a prod build, we will merge qa into master and then create a git tag. 
 
 **QA**: Deployment is based on git commit hashes using the qa branch.
+Note: Currently unused, just push to master.
 
 
 
+---
 
-=========================================================================================================================================
-These are a list of crashlogs submitted to us by players on the public server. If a crash has been fixed/resolved, insert a (RESOLVED) following the description for the crash and the link to it. We'd like to keep all of these crashes on record, so do not remove any of them.
-=========================================================================================================================================
+**These are a list of crashlogs submitted to us by players on the public server. If a crash has been fixed/resolved, insert a (RESOLVED) following the description for the crash and the link to it. We'd like to keep all of these crashes on record, so do not remove any of them.**
 
 
 1.) Very bumpy crash, not responding, then not working, then closed program, it responds and plays for 3 seconds, then closes.

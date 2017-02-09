@@ -193,7 +193,7 @@ class DistributedTimeOfDayManagerAI(DistributedObjectAI, TimeOfDayManagerBase):
     def getSnow(self):
         return self.isSnow
 
-@magicWord(CATEGORY_GAME_MASTER, types=[int, int])
+@magicWord(CATEGORY_GAME_DEVELOPER, types=[int, int])
 def setWeather(weatherId, time=0):
     if config.GetBool('advanced-weather', False):
 
@@ -211,7 +211,7 @@ def setWeather(weatherId, time=0):
         return "Setting weather state to %s for the district for a duration of %s." % (weatherId, time)
     return "Sorry, Weather is not enabled on this district."
 
-@magicWord(CATEGORY_GAME_MASTER)
+@magicWord(CATEGORY_GAME_DEVELOPER)
 def getWeather():
     weather, time = simbase.air.todManager.weather
     weatherName = "Clear"
@@ -223,7 +223,7 @@ def getWeather():
         weatherName = "Snow"
     return "Current district weather is set to '%s' (%s) for a duration of %s" % (weatherName, weather, time)
 
-@magicWord(CATEGORY_GAME_MASTER)
+@magicWord(CATEGORY_GAME_DEVELOPER)
 def weatherReady():
     return "Weather Ready: %s" % str(config.GetBool('advanced-weather', False))
 
@@ -258,12 +258,12 @@ def setClouds(state):
         return 'Setting cloud state to %s for district.' % state
     return "Sorry, Weather is not enabled on this district."
 
-@magicWord(CATEGORY_GAME_MASTER, types=[int])
+@magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
 def setJollyMoon(state):
     simbase.air.todManager.setMoonJolly((state == 1))
     return "Setting jolly moon state to %s for district." % state
 
-@magicWord(CATEGORY_GAME_MASTER, types=[int])
+@magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
 def setSnow(state):
     simbase.air.todManager.setSnow((state == 1))
     return "Setting snow state to %s for district." % state
