@@ -898,7 +898,7 @@ def rep(amount):
 
     av.inventory.addReputation(repId, amount)
 
-@magicWord(CATEGORY_GAME_MASTER, types=[str])
+@magicWord(CATEGORY_GAME_DEVELOPER, types=[str])
 def allegiance(side=None):
     allegiances = ['pirate', 'spanish', 'french']
     side = side.lower()
@@ -967,13 +967,13 @@ def getDoubleXP():
     target = spellbook.getTarget()
     return '%s has %s minutes left of double xp' % (target.getName(), str(target.getTempDoubleXPReward()))
 
-@magicWord(CATEGORY_GAME_MASTER, types=[int, int])
+@magicWord(CATEGORY_GAME_DEVELOPER, types=[int, int])
 def setBadge(title, rank):
     target = spellbook.getTarget()
     target.b_setBadgeIcon(title, rank)
     return "Set {0}'s badgeIcon to ({1}, {2})".format(target.getName(), title, rank)
 
-@magicWord(CATEGORY_GAME_MASTER, types=[int, int])
+@magicWord(CATEGORY_GAME_DEVELOPER, types=[int, int])
 def setShipBadge(title, rank):
     target = spellbook.getTarget()
     target.b_setShipIcon(title, rank)
