@@ -69,6 +69,7 @@ class AwardTypes:
     SANTA = 40
     WINTER = 41
     WONDERLAND = 42
+    SAVVY20K = 43
     TYPE_IDX = 0
     MALE_IDX = 1
     FEME_IDX = 2
@@ -304,6 +305,13 @@ AWARD_ID = {
         None,
         10000,
         PLocalizer.CodeRedemptionWonderland],
+    AwardTypes.SAVVY20K: [
+        NORMAL_INVENTORY,
+        InvItem((InventoryType.ItemTypeMoney, 0)),
+        None,
+        20000,
+        PLocalizer.CodeRedemptionSavvy20k
+    ] 
     #AwardTypes.BOARDING_AXE: [
     #    NORMAL_INVENTORY,
     #    InvItem((InventoryType.ItemTypeWeapon, ItemGlobals.CRUDE_BOARDING_AXE, 0, [])),
@@ -335,15 +343,6 @@ HOLIDAY_AWARD_ID = {
             None,
             5000,
             PLocalizer.CodeRedemptionHalloween
-        ] 
-    },
-        HolidayGlobals.SAVVY20K: {
-        AwardTypes.SAVVY20K: [
-            NORMAL_INVENTORY,
-            InvItem((InventoryType.ItemTypeMoney, 0)),
-            None,
-            2000,
-            PLocalizer.CodeRedemptionSavvy20k
         ] 
     }
 }
