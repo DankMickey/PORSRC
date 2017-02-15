@@ -309,7 +309,7 @@ AWARD_ID = {
         NORMAL_INVENTORY,
         InvItem((InventoryType.ItemTypeMoney, 0)),
         None,
-        20000,
+        2000,
         PLocalizer.CodeRedemptionSavvy20k
     ] 
     #AwardTypes.BOARDING_AXE: [
