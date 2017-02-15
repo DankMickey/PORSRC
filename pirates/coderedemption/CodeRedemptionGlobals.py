@@ -336,6 +336,15 @@ HOLIDAY_AWARD_ID = {
             5000,
             PLocalizer.CodeRedemptionHalloween
         ] 
+    },
+        HolidayGlobals.SAVVY20K: {
+        AwardTypes.SAVVY20K: [
+            NORMAL_INVENTORY,
+            InvItem((InventoryType.ItemTypeMoney, 0)),
+            None,
+            2000,
+            PLocalizer.CodeRedemptionSavvy20k
+        ] 
     }
 }
 
