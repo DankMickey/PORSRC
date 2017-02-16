@@ -8,19 +8,25 @@ Instrutions on how to set up a development environment for POR (run server/clien
 #### 1) Install Git and learn the basics
 
 #### 2) Clone this and the 2 resource repos
-````
+```bash
 git clone https://github.com/pearson1919/Pirates-Online-Retribution.git por
 cd por
-mkdir resources
+git clone https://github.com/pearson1919/Resources.git resources
 cd resources
-git clone https://github.com/pearson1919/Resources.git .
-git clone https://github.com/pearson1919/SecureResources.git .
-````
+git clone https://github.com/pearson1919/SecureResources.git phase_1
+```
+
 #### 3) Install Panda3D
 **From this link specifically**: https://piratesonline.us/files/Panda3D-1.10.0.exe
 
 #### 4) Install MongoDB
-**From here**: https://www.mongodb.com/download-center?jmp=nav
+* **From here**: https://www.mongodb.com/download-center?jmp=nav
+* Run this to make the appropriate folder structure for it:
+```bash
+mkdir C:/data
+mkdir C:/data/db
+```
+or just make them manually.
 
 #### 5) Install requests
 Do `where python` and *make sure* that it shows `C:\Panda3D-1.10.0\python\python.exe` as the first entry.
