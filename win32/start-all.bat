@@ -9,4 +9,4 @@ ping 127.0.0.1 -n 4 > nul
 start start-astron-cluster.bat
 start start-uberdog-server.bat
 start start-ai-server.bat
-start start-clients.bat
+start start-game.bat
