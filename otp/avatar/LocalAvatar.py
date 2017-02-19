@@ -1166,14 +1166,14 @@ class LocalAvatar(DistributedAvatar.DistributedAvatar, DistributedSmoothNode.Dis
     def canChat(self):
         return 0
 
-    @magicWord(CATEGORY_STAFF)
+    @magicWord(CATEGORY_MEDIA_TEAM)
     def run():
         inputState.set('debugRunning', inputState.isSet('debugRunning') != True)
         if not inputState.isSet('debugRunning'):
             return 'Debug running disabled!'
         return 'Debug running enabled!'
 
-    @magicWord(CATEGORY_MODERATION)
+    @magicWord(CATEGORY_MEDIA_TEAM)
     def rocketman():
         if not localAvatar.rocketOn == 0:
             localAvatar.endRocketJumpMode()

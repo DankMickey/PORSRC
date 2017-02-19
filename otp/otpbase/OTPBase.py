@@ -219,7 +219,7 @@ class OTPBase(ShowBase):
             self.notify.info('Exception exit.\n')
             self.destroy()
 
-@magicWord(CATEGORY_STAFF)
+@magicWord(CATEGORY_MEDIA_TEAM)
 def oobe():
     'Toggle "out of body experience" view.'
     base.oobe()

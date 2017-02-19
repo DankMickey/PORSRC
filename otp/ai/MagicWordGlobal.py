@@ -86,7 +86,7 @@ class MagicWordCategory:
 CATEGORY_ANY = MagicWordCategory('Unrestricted commands', 0)
 CATEGORY_BASIC = MagicWordCategory('Basic commands', 100)
 CATEGORY_SPONSOR = MagicWordCategory('Game sponsor commands', 200)
-CATEGORY_YOUTUBER = MagicWordCategory('Youtuber commands', 300)
+CATEGORY_MEDIA_TEAM = MagicWordCategory('Media team commands', 300)
 CATEGORY_STREAMER = MagicWordCategory('Streamer commands', 400)
 CATEGORY_STAFF = MagicWordCategory('Basic staff commands', 500)
 CATEGORY_MODERATION = MagicWordCategory('Moderation commands', 600)
