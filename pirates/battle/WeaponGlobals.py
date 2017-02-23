@@ -2807,7 +2807,7 @@ __skillAnim = {
     EnemySkills.SABRE_STAB: ('getSabreThrust', Sword.getHitSfx, Sword.getMissSfx, 0, Sword.getMistimedHitSfx),
     EnemySkills.SABRE_FLOURISH: ('getSabreFlourish', Sword.getHitSfx, Sword.getMissSfx, 0, Sword.getMistimedHitSfx),
     EnemySkills.SABRE_CLEAVE: ('getSabreCleave', Sword.getHitSfx, Sword.getMissSfx, 0, Sword.getMistimedHitSfx),
-    InventoryType.PistolShoot: ('getPistolFireAnim', Pistol.getHitSfx, Pistol.getMissSfx, 0, Pistol.getMistimedHitSfx),
+    InventoryType.PistolShoot: ('getPistolFireAnim', None, None, 0, None),
     InventoryType.PistolTakeAim: ('getPistolTakeAimAnim', Pistol.getHitSfx, Pistol.getMissSfx, 0, Pistol.getMistimedHitSfx),
     EnemySkills.PISTOL_CHARGE: ('getPistolChargingAnim', Pistol.getAimSfx, Pistol.getAimSfx, 0, Pistol.getMistimedHitSfx),
     EnemySkills.PISTOL_RELOAD: ('getPistolReloadAnim', None, None, 0, None),
