@@ -269,7 +269,6 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
             self.water = SeaPatch(render, Reflection.getGlobalReflection(), todMgr = base.cr.timeOfDayManager)
             base.loadingScreen.tick()
             self.water.modify_water_color_factor_np(VBase3(0.043137254901961, 0.203921568627451, 0.341176470588235))
-            print 'setIslandZone colorerino kekekekekekerino kekity keke kek!!!'
             base.loadingScreen.tick()
             self.water.loadSeaPatchFile('out.spf')
             base.loadingScreen.tick()
