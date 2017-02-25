@@ -10,7 +10,8 @@ class RainDrops(EffectController, NodePath):
     def __init__(self, reference = None):
         NodePath.__init__(self, 'RainDrops')
         EffectController.__init__(self)
-        self.effectModel = loader.loadModel('models/effects/rainDrops')
+        self.effectModel = loader.loadModel('models/effects/rainDrops') #Rain Drop, Drop TOp fucking ur bitch she a thot thot
+        self.rainMusic = loader.loadSfx("models/effects/rainmusic.ogg") #Rain Music 
         self.effectModel.reparentTo(self)
         self.effectModel.setScale(80)
         self.effectModel.setZ(-10)
@@ -48,13 +49,16 @@ class RainDrops(EffectController, NodePath):
                 self.setPos(self.reference.getPos(self.getParent()))
             except:
                 pass
-
+        print 'rainMusic - play'
+        self.rainMusic.play() #Start playing the rainMusic
         self.layer1.setTexOffset(ts, 0.0, offset)
         self.layer2.setTexOffset(ts, 0.0, offset)
         self.layer3.setTexOffset(ts, 0.0, offset)
 
 
     def cleanUpEffect(self):
+        print 'rainMusic - stop'
+        self.rainMusic.stop() #Stop playing the rainMusic
         EffectController.cleanUpEffect(self)
 
 
