@@ -1,4 +1,4 @@
-from panda3d.core import NodePath, Point3, TPHigh, TPLow, TextNode, TransparencyAttrib, Vec3, Vec4, invert
+from panda3d.core import NodePath, Point3, TPHigh, VBase3, TPLow, TextNode, TransparencyAttrib, Vec3, Vec4, invert
 import math, time
 from direct.gui.DirectGui import *
 from direct.showbase.DirectObject import DirectObject
@@ -141,6 +141,8 @@ class AvatarChooser(DirectObject, StateData):
         pier2.flattenStrong()
         pier2.reparentTo(self.scene)
         self.water = SeaPatch(render, Reflection.getGlobalReflection(), todMgr = self.todManager)
+        self.water.modify_water_color_factor_np(VBase3(0.043137254901961, 0.203921568627451, 0.341176470588235))
+        #self.water.modify_water_color_factor_np(VBase3(0.05, 0.05, 0.1))
         self.water.loadSeaPatchFile('out.spf')
         self.water.updateWater(2)
         self.water.ignore('grid-detail-changed')
