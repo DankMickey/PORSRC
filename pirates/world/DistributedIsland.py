@@ -718,16 +718,19 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
             self.nameText.show()
     
     def initializeNameText(self):
-        scale = WorldGlobals.getNametagScale(self.name)
-        self.nameNode = TextNode('islandText')
-        self.nameNode.setText(self.name)
-        self.nameNode.setFont(PiratesGlobals.getPirateFont())
-        self.nameNode.setWordwrap(PiratesGlobals.NAMETAG_WORDWRAP)
-        self.nameText = self.attachNewNode(self.nameNode)
-        self.nameText.setPos(0, 0, WorldGlobals.getNametagHeight(self.name))
-        self.nameText.setFogOff()
-        self.nameText.setLightOff()
-        self.nameText.setScale(WorldGlobals.getNametagScale(self.name))
+        if config.GetBool('show-island-names', True):
+            scale = WorldGlobals.getNametagScale(self.name)
+            self.nameNode = TextNode('islandText')
+            self.nameNode.setText(self.name)
+            self.nameNode.setFont(PiratesGlobals.getPirateFont())
+            self.nameNode.setWordwrap(PiratesGlobals.NAMETAG_WORDWRAP)
+            self.nameText = self.attachNewNode(self.nameNode)
+            self.nameText.setPos(0, 0, WorldGlobals.getNametagHeight(self.name))
+            self.nameText.setFogOff()
+            self.nameText.setLightOff()
+            self.nameText.setScale(WorldGlobals.getNametagScale(self.name))
+        else:
+            pass
     
     def deleteNameText(self):
         if self.nameText:
