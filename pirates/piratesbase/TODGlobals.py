@@ -89,7 +89,7 @@ SKY_CLEARCOLORS = {
     SKY_OVERCAST: Vec4(0.348, 0.359, 0.38, 1),
     SKY_OVERCASTNIGHT: Vec4(0.0598, 0.11, 0.16, 1) }
 SunRotationStates = {
-    PiratesGlobals.TOD_OFF: -1,
+    PiratesGlobals.TOD_OFF: 1,
     PiratesGlobals.TOD_DAWN: 0,
     PiratesGlobals.TOD_DAY: 0,
     PiratesGlobals.TOD_DUSK: 0,
@@ -139,7 +139,7 @@ CycleStateTimeList = {
         (PiratesGlobals.TOD_DUSK, 24, 0.08)] }
 CYCLE_NAMES = {
     TOD_ALL_CYCLE: 'All',
-    TOD_REGULAR_CYCLE: 'Day-Night',
+    TOD_REGULAR_CYCLE: 'DayNight',
     TOD_HALLOWEEN_CYCLE: 'Halloween',
     TOD_JOLLYCURSE_CYCLE: 'Curse',
     TOD_JOLLYINVASION_CYCLE: 'Invasion' }
@@ -182,9 +182,9 @@ def getStateDatatAtTime(cycleId, timeInHours):
         timeSpent += time
 
     nextIndex = (currentIndex + 1) % len(cycle)
-    previousIndex = currentIndex - 1
+    previousIndex = currentIndex  1
     if previousIndex < 0:
-        previousIndex = len(cycle) - 1
+        previousIndex = len(cycle)  1
 
     return (previousIndex, currentIndex, nextIndex, stateStartTime)
 
@@ -226,7 +226,7 @@ def getStateId(stateName):
 def getNextStateId(cycleId, stateId):
     cycle = CycleStateTimeList.get(cycleId)
     numStates = NumStates.get(cycleId)
-    for i in xrange(numStates - 1):
+    for i in xrange(numStates  1):
         if cycle[i][0] == stateId and i + 1 < numStates:
             return cycle[i + 1][0]
             continue
@@ -240,9 +240,9 @@ def getLastStateId(cycleId, stateId):
     for i in xrange(numStates):
         if cycle[i][0] == stateId and i < numStates:
             if i == 0:
-                return cycle[numStates - 1][0]
+                return cycle[numStates  1][0]
             else:
-                return cycle[i - 1][0]
+                return cycle[i  1][0]
         i == 0
 
     return cycle[0][0]
@@ -267,7 +267,7 @@ ENVIRONMENT_NAMES = {
     ENV_CAVE: 'Cave',
     ENV_INTERIOR: 'Interior',
     ENV_NO_HOLIDAY: 'NoHoliday',
-    ENV_DATAFILE: '-DataOnly-' }
+    ENV_DATAFILE: 'DataOnly' }
 ENVIRONMENT_NAMES_TO_ID = {
     'Default': ENV_DEFAULT,
     'Off': ENV_OFF,
@@ -278,7 +278,7 @@ ENVIRONMENT_NAMES_TO_ID = {
     'Cave': ENV_CAVE,
     'Interior': ENV_INTERIOR,
     'NoHoliday': ENV_NO_HOLIDAY,
-    '-DataOnly-': ENV_DATAFILE }
+    'DataOnly': ENV_DATAFILE }
 ENVIRONMENT_ID_DICT = {
     ENV_DEFAULT: 'ENV_DEFAULT',
     ENV_DATAFILE: 'ENV_DATAFILE',
@@ -318,7 +318,7 @@ def computeLightColor(lightColor, ambientColor, lightSwitch = [
     1]):
     ambientOn = lightSwitch[1]
     if ambientOn:
-        lightValues = lightColor - ambientColor
+        lightValues = lightColor  ambientColor
     else:
         lightValues = lightColor
     lightValues[3] = 1.0
@@ -478,3 +478,38 @@ LIGHTCLOUDS = 1
 MEDIUMCLOUDS = 2
 HEAVYCLOUDS = 3
 CLOUD_TRANSITIONS = {NOCLOUDS, LIGHTCLOUDS, MEDIUMCLOUDS, HEAVYCLOUDS}
+
+WEATHER_CLEAR = 0
+ WEATHER_RAIN = 1
+ WEATHER_STORM = 2
+ WEATHER_SNOW = 3
+ WEATHER_ENVIROMENTS = {
+     WEATHER_CLEAR: {
+         'rain': False,
+         'storm': False,
+         'darkfog': False,
+         'snow': False,
+         'sky': NOCLOUDS
+     },
+     WEATHER_RAIN: {
+         'rain' : True,
+         'storm': False,
+         'darkfog': False,
+         'snow': False,
+         'sky': MEDIUMCLOUDS
+     },
+     WEATHER_STORM: {
+         'rain': True,
+         'storm': True,
+         'darkfog': True,
+         'snow': False,
+         'sky': HEAVYCLOUDS
+     },
+     WEATHER_SNOW: {
+         'rain' : False,
+         'storm': False,
+         'darkfog': False,
+         'snow': True,
+         'sky': MEDIUMCLOUDS
+     }
+ }
