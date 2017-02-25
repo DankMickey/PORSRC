@@ -39,6 +39,7 @@ class RainDrops(EffectController, NodePath):
         uvScroll = LerpFunctionInterval(self.setNewUVs, 0.598, toData = 1.0, fromData = -1.0, extraArgs = [
             textureStage])
         self.startEffect = Sequence(Func(uvScroll.loop), fadeIn)
+        self.rainMusic.play() #Start playing the rainMusic
         self.endEffect = Sequence(fadeOut, Func(uvScroll.finish), Func(self.cleanUpEffect))
         self.track = Sequence(self.startEffect, Wait(self.duration), self.endEffect)
 
@@ -49,18 +50,17 @@ class RainDrops(EffectController, NodePath):
                 self.setPos(self.reference.getPos(self.getParent()))
             except:
                 pass
-        print 'rainMusic - play'
-        self.rainMusic.play() #Start playing the rainMusic
         self.layer1.setTexOffset(ts, 0.0, offset)
         self.layer2.setTexOffset(ts, 0.0, offset)
         self.layer3.setTexOffset(ts, 0.0, offset)
 
 
     def cleanUpEffect(self):
-        print 'rainMusic - stop'
+        print 'rainMusic - cleanUp'
         self.rainMusic.stop() #Stop playing the rainMusic
         EffectController.cleanUpEffect(self)
 
 
     def destroy(self):
+        self.rainMusic.stop() #Stop playing the rainMusic
         EffectController.destroy(self)
