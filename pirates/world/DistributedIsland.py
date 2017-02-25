@@ -1,4 +1,4 @@
-from panda3d.core import AlphaTestAttrib, CollideMask, CollisionInvSphere, CollisionNode, FadeLODNode, Fog, LODNode, Light, NodePath, RenderAttrib, TextNode, Texture, TextureStage, VBase4, Vec3, Vec4
+from panda3d.core import AlphaTestAttrib, CollideMask, CollisionInvSphere, CollisionNode, FadeLODNode, Fog, LODNode, Light, NodePath, RenderAttrib, TextNode, Texture, TextureStage, VBase4, Vec3, Vec4, VBase3
 import random
 import re
 import imp
@@ -267,6 +267,9 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
             self.startCustomEffects(island = True)
             base.loadingScreen.tick()
             self.water = SeaPatch(render, Reflection.getGlobalReflection(), todMgr = base.cr.timeOfDayManager)
+            base.loadingScreen.tick()
+            self.water.modify_water_color_factor_np(VBase3(0.043137254901961, 0.203921568627451, 0.341176470588235))
+            print 'setIslandZone colorerino kekekekekekerino kekity keke kek!!!'
             base.loadingScreen.tick()
             self.water.loadSeaPatchFile('out.spf')
             base.loadingScreen.tick()
@@ -550,12 +553,12 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
                 joint = self.islandShoreWave.find('**/uvj_LavaCool1')
                 lavaCoolRoot.setTexProjector(lavaCoolRoot.findTextureStage('default'), joint, parent)
 
-            self.islandShoreWave.setPlayRate(0.800000, 'idle')
+            self.islandShoreWave.setPlayRate(0.80000000000000004, 'idle')
             OTPRender.renderReflection(False, self.islandShoreWave, 'p_island_shore', None)
             alpha_test_attrib = AlphaTestAttrib.make(RenderAttrib.MAlways, 0)
             self.islandShoreWave.setAttrib(alpha_test_attrib, 100)
             self.islandShoreWave.setTwoSided(1, 100)
-            self.islandShoreWave.setDepthWrite(0, 100)
+            #self.islandShoreWave.setDepthWrite(0, 100)
 
     def unloadIslandShoreWave(self):
         if self.islandShoreWave:
