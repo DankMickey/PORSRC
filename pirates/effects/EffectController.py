@@ -1,6 +1,3 @@
-# File: E (Python 2.4)
-
-
 class EffectController:
     particleDummy = None
 
@@ -23,18 +20,14 @@ class EffectController:
 
         self.f = None
         self.p0 = None
-        print 'destroy EffectController'
         self.detachNode()
 
 
     def cleanUpEffect(self):
-        print 'cleanUpEffect'
         self.setPosHpr(0, 0, 0, 0, 0, 0)
         if self.f:
-            print 'cleanUpEffect - f.disable'
             self.f.disable()
 
-        #self.detachNode()
         self.removeNode()
 
 
@@ -59,19 +52,13 @@ class EffectController:
 
     def stop(self):
         if self.track:
-            print 'stop-trackPause'
             self.track.pause()
-            #self.track = None
 
         if self.startEffect:
-            print 'stop-startEffect'
             self.startEffect.pause()
-            #self.startEffect = None
 
         if self.endEffect:
-            print 'stop-endEffect'
             self.endEffect.pause()
-            #self.endEffect = None
 
         self.cleanUpEffect()
 
@@ -79,18 +66,12 @@ class EffectController:
     def finish(self):
         if self.track:
             self.track.pause()
-            print 'finish-trackPause'
-            #self.track = None
 
         if self.startEffect:
             self.startEffect.pause()
-            print 'finish-startEffect'
-            #self.startEffect = None
 
         if self.endEffect:
             self.endEffect.pause()
-            print 'finish-endEffect'
-            #self.endEffect = None
 
 
 
