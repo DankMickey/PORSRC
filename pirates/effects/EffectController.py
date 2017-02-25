@@ -24,11 +24,14 @@ class EffectController:
 
 
     def cleanUpEffect(self):
+        print 'effectController - CleanUpEffect'
         self.setPosHpr(0, 0, 0, 0, 0, 0)
+        print 'effectController - CleanUpEffect - subPosHpr'
         if self.f:
             self.f.disable()
 
         self.removeNode()
+        print 'effectController - CleanUpEffect - removeNode'
 
 
     def reallyCleanUpEffect(self):
