@@ -24,7 +24,7 @@ class EffectController:
 
 
     def cleanUpEffect(self):
-        #self.setPosHpr(0, 0, 0, 0, 0, 0)
+        self.setPosHpr(0, 0, 0, 0, 0, 0)
         if self.f:
             self.f.disable()
 
