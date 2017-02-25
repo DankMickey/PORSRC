@@ -23,15 +23,19 @@ class EffectController:
 
         self.f = None
         self.p0 = None
-        self.removeNode()
+        print 'destroy EffectController'
+        self.detachNode()
 
 
     def cleanUpEffect(self):
+        print 'cleanUpEffect'
         self.setPosHpr(0, 0, 0, 0, 0, 0)
         if self.f:
+            print 'cleanUpEffect - f.disable'
             self.f.disable()
 
-        self.detachNode()
+        #self.detachNode()
+        self.removeNode()
 
 
     def reallyCleanUpEffect(self):
@@ -55,16 +59,19 @@ class EffectController:
 
     def stop(self):
         if self.track:
+            print 'stop-trackPause'
             self.track.pause()
-            self.track = None
+            #self.track = None
 
         if self.startEffect:
+            print 'stop-startEffect'
             self.startEffect.pause()
-            self.startEffect = None
+            #self.startEffect = None
 
         if self.endEffect:
+            print 'stop-endEffect'
             self.endEffect.pause()
-            self.endEffect = None
+            #self.endEffect = None
 
         self.cleanUpEffect()
 
@@ -72,15 +79,18 @@ class EffectController:
     def finish(self):
         if self.track:
             self.track.pause()
-            self.track = None
+            print 'finish-trackPause'
+            #self.track = None
 
         if self.startEffect:
             self.startEffect.pause()
-            self.startEffect = None
+            print 'finish-startEffect'
+            #self.startEffect = None
 
         if self.endEffect:
             self.endEffect.pause()
-            self.endEffect = None
+            print 'finish-endEffect'
+            #self.endEffect = None
 
 
 
