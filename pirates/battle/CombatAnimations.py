@@ -93,9 +93,9 @@ class CombatAnimations:
         if not av.currentWeapon:
             return None
 
-        delay = 0#0.625
+        delay = 0.625
         if av == localAvatar and av.guiMgr.combatTray.onLastAttack:
-            delay = 0#0.85
+            delay = 0.85
 
         wantTrail = 1
         if skillResult in MISTIMEDLIST:
@@ -109,9 +109,9 @@ class CombatAnimations:
         if not av.currentWeapon:
             return None
 
-        delay = 0#0.75
+        delay = 0.75
         if av == localAvatar and av.guiMgr.combatTray.onLastAttack:
-            delay = 0#1.3
+            delay = 1.3
 
         wantTrail = 1
         if skillResult in MISTIMEDLIST:
@@ -125,9 +125,9 @@ class CombatAnimations:
         if not av.currentWeapon:
             return None
 
-        delay = 0#1.25
+        delay = 1.25
         if av == localAvatar and av.guiMgr.combatTray.onLastAttack:
-            delay = 0#1.5
+            delay = 1.5
 
         wantTrail = 1
         if skillResult in MISTIMEDLIST:
@@ -141,9 +141,9 @@ class CombatAnimations:
         if not av.currentWeapon:
             return None
 
-        delay = 0#1.58
+        delay = 1.58
         if av == localAvatar and av.guiMgr.combatTray.onLastAttack:
-            delay = 0#2.08
+            delay = 2.08
 
         wantTrail = 1
         if skillResult in MISTIMEDLIST:
@@ -157,13 +157,12 @@ class CombatAnimations:
         if not av.currentWeapon:
             return None
 
-        delay = 0#1.8
+        delay = 1.8
         if av.isLocal() and av.guiMgr.combatTray.onLastAttack:
-            delay = 0#2.05
+            delay = 2.05
 
         wantTrail = 1
         if skillResult in MISTIMEDLIST:
-            print delay
             wantTrail = 0
 
 
@@ -608,9 +607,9 @@ class CombatAnimations:
             return None
 
         wantTrail = 1
-        delay = 0#1.0
+        delay = 1.0
         if av.isLocal() and av.guiMgr.combatTray.onLastAttack:
-            delay = 0#1.45
+            delay = 1.45
 
         if skillResult in MISTIMEDLIST:
             wantTrail = 0
@@ -692,9 +691,9 @@ class CombatAnimations:
         if not av.currentWeapon:
             return None
 
-        delay = 0#1.3
+        delay = 1.3
         if av.isLocal() and av.guiMgr.combatTray.onLastAttack:
-            delay = 0#1.55
+            delay = 1.55
 
         wantTrail = 1
         if skillResult in MISTIMEDLIST:
@@ -729,9 +728,9 @@ class CombatAnimations:
         if not av.currentWeapon:
             return None
 
-        delay = 0#0.75
+        delay = 0.75
         if av == localAvatar and av.guiMgr.combatTray.onLastAttack:
-            delay = 0#1.25
+            delay = 1.25
 
         wantTrail = 1
         if skillResult in MISTIMEDLIST:
@@ -745,9 +744,9 @@ class CombatAnimations:
         if not av.currentWeapon:
             return None
 
-        delay = 0#0.583
+        delay = 0.583
         if av == localAvatar and av.guiMgr.combatTray.onLastAttack:
-            delay = 0#1.083
+            delay = 1.083
 
         wantTrail = 1
         if skillResult in MISTIMEDLIST:
@@ -761,9 +760,9 @@ class CombatAnimations:
         if not av.currentWeapon:
             return None
 
-        delay = 0#0.958
+        delay = 0.958
         if av == localAvatar and av.guiMgr.combatTray.onLastAttack:
-            delay = 0#1.458
+            delay = 1.458
 
         wantTrail = 1
         if skillResult in MISTIMEDLIST:
@@ -777,9 +776,9 @@ class CombatAnimations:
         if not av.currentWeapon:
             return None
 
-        delay = 0#1.9
+        delay = 1.9
         if av == localAvatar and av.guiMgr.combatTray.onLastAttack:
-            delay = 0#2.4
+            delay = 2.4
 
         wantTrail = 1
         if skillResult in MISTIMEDLIST:
@@ -1556,7 +1555,7 @@ class CombatAnimations:
                 effect.reparentTo(av)
                 effect.setPos(av, 0, 0, av.getHeight() / 2.0)
                 effect.setScale(1, 1, av.getHeight() / 2.0)
-                effect.play(duration = 2.0, delay = 0)#1.5)
+                effect.play(duration = 2.0, delay = 1.5)
 
             if base.options.getSpecialEffectsSetting() >= base.options.SpecialEffectsHigh:
                 effect = HealSparks.getEffect(unlimited)
@@ -1565,7 +1564,7 @@ class CombatAnimations:
                     effect.setPos(av, 0, 0, av.getHeight() / 1.5)
                     effect.setScale(1, 1, av.getHeight() / 2.0)
                     effect.setEffectColor(Vec4(0.2, 0.2, 1.0, 1))
-                    effect.play(delay = 0)#1.5)
+                    effect.play(delay = 1.5)
 
 
             if base.options.getSpecialEffectsSetting() >= base.options.SpecialEffectsMedium:

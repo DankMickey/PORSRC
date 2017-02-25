@@ -314,11 +314,11 @@ dclass DistributedTimeOfDayManager : DistributedObject {
   requestWeather() airecv clsend;
   setEnvSubs(envSubEntry []) required broadcast ram;
   setMoonPhaseChange(int8, int16/100, int16/100, int32) required broadcast ram;
-  setMoonJolly(int8) required broadcast ram;
-  setRain(int8) required broadcast ram;
-  setStorm(int8) required broadcast ram;
-  setBlackFog(int8) required broadcast ram;
-  setClouds(int8) required broadcast ram;
+  setMoonJolly(int8) required broadcast ram;		
+  setRain(int8) required broadcast ram;		
+  setStorm(int8) required broadcast ram;		
+  setBlackFog(int8) required broadcast ram;		
+  setClouds(int8) required broadcast ram;		
   setSnow(int8) required broadcast ram;
 };
 

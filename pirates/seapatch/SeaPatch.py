@@ -1,5 +1,6 @@
 from panda3d.core import AlphaTestAttrib, CollideMask, CollisionNode, CollisionPlane, CollisionPolygon, Filename, Frustum, GraphicsStateGuardian, InternalName, Light, Mat4, NodePath, Plane, Point3, RenderAttrib, Shader, ShaderInput, StencilAttrib, Texture, TextureStage, VBase2, VBase3, VBase4, Vec2, Vec3, Vec4
 import os
+from random import randint
 import math
 from direct.gui.DirectGui import *
 from SeaPatchRoot import SeaPatchRoot
@@ -8,7 +9,7 @@ from direct.task import Task
 from pirates.seapatch.LerpSeaPatchInterval import LerpSeaPatchInterval
 from direct.directnotify.DirectNotifyGlobal import directNotify
 from direct.showbase.DirectObject import DirectObject
-from pirates.piratesbase import PiratesGlobals
+from pirates.piratesbase import PiratesGlobals, PLocalizer, TimeOfDayManager, TODGlobals
 from direct.showbase.DirectObject import DirectObject
 from otp.otpbase import OTPRender
 from pirates.seapatch.Reflection import Reflection
@@ -22,8 +23,10 @@ class SeaPatch(Water):
 
     def __init__(self, parentNP = render, reflection = None, todMgr = None):
         Water.__init__(self, 'Sea')
+        self.use_water_bin = True
         if base.win.getFbProperties().getStencilBits() == 0:
-            self.use_water_bin = False
+			self.notify.info("Disabling water bin.")
+			self.use_water_bin = False
 
         self.p3 = Point3()
         self.parentNP = parentNP
@@ -35,6 +38,8 @@ class SeaPatch(Water):
         self.patch.setSeaLevel(0)
         self.hidden = False
         self.usingFlatWater = False
+        self._qTod = False
+        self.todMgr = None
         if base.camera:
             self.setCenter(base.camera)
             self.setAnchor(render)
@@ -42,31 +47,30 @@ class SeaPatch(Water):
         patchNode = SeaPatchNode('seapatch', self.patch)
         patchNode.setWantReflect(0)
         self.patchNP = NodePath(patchNode)
-        self.patchNP.setColorScale(0.15, 0.4, 0.5, 1.0)
+
         self.patchNP.setTwoSided(True)
         self.patchNP.hide()
         shader_file_path = None
         if config.GetBool('want-shaders', 1) and base.win and base.win.getGsg() and base.win.getGsg().getShaderModel() >= GraphicsStateGuardian.SM20:
             patchNode.setWantColor(0)
             shader_directory = 'models/sea/'
-            shader_file_name_array = [
-                '',
-                'water008_11.cg',
-                'water008_20.cg',
-                'water008_2X.cg']
+            shader_file_name_array = ['water007_2X', 'water008_11', 'water008_20', 'water008_2X']
             shader_model = base.win.getGsg().getShaderModel()
             maximum_shader_model = len(shader_file_name_array) - 1
             if shader_model > maximum_shader_model:
                 shader_model = maximum_shader_model
 
-            file_name = shader_file_name_array[shader_model]
-            shader_file_path = shader_directory + file_name
-            self.shader = loader.loadShader(shader_file_path)
-            # Just so we dont forget.
-            print ":SeaPatch(warning): Cg is deprecated use GLSL instead."
-            if self.shader:
-                pass
-
+            geom_fn = shader_file_name_array[shader_model]
+            # This is needed until we fix water008_20 shader code...
+            if (geom_fn == 'water008_20'):
+                shaderModel_toLoad = 'water008_2X'
+            else:
+                shaderModel_toLoad = geom_fn
+            self.shader = Shader.load(Shader.SL_GLSL, vertex= shader_directory + shaderModel_toLoad + ".vert", fragment= shader_directory + shaderModel_toLoad + ".frag")
+            self.notify.info("Loading shader set: %s..." % (shader_directory + shaderModel_toLoad))
+            if not self.shader:
+               self.notify.warning("Failed to load shader: %s. Defaulting to shaderless water." % shaderModel_toLoad)
+               self.shader = False
 
         if self.shader:
             if base.win.getGsg().getShaderModel() == GraphicsStateGuardian.SM20:
@@ -80,14 +84,13 @@ class SeaPatch(Water):
         self.seamodel.setScale(2, 1, 1)
         self.seamodel.flattenMedium()
         mask = 0xFFFFFFFFL
-        ##if self.use_water_bin: #deanaug Always use water bin
-        if True:
+        if self.use_water_bin:
             self.seamodel.setBin('water', 0)
             stencil = StencilAttrib.makeWithClear(1, StencilAttrib.SCFAlways, StencilAttrib.SOKeep, StencilAttrib.SOKeep, StencilAttrib.SOReplace, 1, mask, mask, 1, 0)
             self.seamodel.setAttrib(stencil)
         else:
             self.seamodel.setBin('background', 200)
-        self.seamodel.hide(OTPRender.MainCameraBitmask)
+        self.seamodel.show(OTPRender.MainCameraBitmask)
         self.seamodel.showThrough(OTPRender.EnviroCameraBitmask)
         self.reflectStage = None
         self.flatSea = self.seamodel.find('**/flatsea')
@@ -108,11 +111,11 @@ class SeaPatch(Water):
 
 
         self.flatSea.flattenStrong()
-        ##if self.use_water_bin: #deanaug Always use water bin
-        if True:
+        if self.use_water_bin:
             self.patchNP.setBin('water', 10)
         else:
             self.patchNP.setBin('ground', -10)
+        
         self.todMgr = todMgr
         if self.getTodMgr():
             self.patchNP.setLightOff()
@@ -142,6 +145,7 @@ class SeaPatch(Water):
         self.patchNP.flattenLight()
         patchNode.collectGeometry()
         self.enabled = False
+        self.patchPanel = True
         self.enable()
         if self.use_alpha_map:
             if self.enable_alpha_map:
@@ -153,7 +157,7 @@ class SeaPatch(Water):
         if self.water_panel != None:
             self.water_panel.setSeaPatch(self)
 
-        if self.enable_parameter_keys:
+        if self.patchPanel == True:
 
             def showSeaPatchPanel():
                 SeaPatchPanel = SeaPatchPanel
@@ -171,11 +175,6 @@ class SeaPatch(Water):
         if self.shader:
             self.seamodel.setShader(self.shader)
             
-            if not base.isClientBuilt():
-                self.seamodel.setShaderAuto()
-                self.seamodel.setTransparency(True)
-                self.seamodel.setColorScale(1, 1, 1, 0.75)
-            
             self.seamodel.setFogOff()
             if self.use_alpha_map:
                 self.patchNP.setTransparency(1)
@@ -184,22 +183,18 @@ class SeaPatch(Water):
             self.texture_d = self.base_texture.loadRelated(InternalName.make('-d'))
             self.texture_n = self.base_texture.loadRelated(InternalName.make('-n'))
             self.texture_bb = self.base_texture.loadRelated(InternalName.make('-bb'))
+            self.texture_low2 = self.base_texture.loadRelated(InternalName.make('-low2'))
+            self.setTexture0()
             self.setting_0()
-            self.water_r = 77
-            self.water_g = 128
-            self.water_b = 179
-            self.water_a = 255
-            self.set_water_color()
             default_water_color_texture_filename = 'phase_2/maps/ocean_color_1' + self.texture_extension
             default_water_alpha_texture_filename = 'phase_2/maps/default_inv_alpha' + self.texture_extension
             self.set_water_color_texture(default_water_color_texture_filename)
-            self.set_water_alpha_texture(default_water_alpha_texture_filename)
+            self.set_water_alpha_texture(default_water_alpha_texture_filename)            
             if self.enable_water_panel:
                 self.water_panel.set_texture(default_water_color_texture_filename)
                 self.water_panel.set_shader(shader_file_path)
 
-
-        if True:
+        if config.GetBool('want-water-reflections', 1):
             if reflection:
                 self.reflection = reflection
             else:
@@ -225,6 +220,7 @@ class SeaPatch(Water):
             if False:
                 default_water_color_texture_filename = 'phase_2/maps/ocean_color_1' + self.texture_extension
                 self.set_water_color_texture(default_water_color_texture_filename)
+                print 'map1'
                 self.setup_color_map()
 
 
@@ -257,19 +253,31 @@ class SeaPatch(Water):
             self.show()
         else:
             self.hide()
-
-
+    
     def getTodMgr(self):
         if self.todMgr:
             return self.todMgr
-
 
         try:
             return base.cr.timeOfDayManager
         except:
             return None
+    
+    def update_water_r(self, value):
+        self.water_r = value
+        self.set_water_color_np()
 
+    def update_water_g(self, value):
+        self.water_g = value
+        self.set_water_color_np()
 
+    def update_water_b(self, value):
+        self.water_b = value
+        self.set_water_color_np()
+
+    def update_water_a(self, value):
+        self.water_a = value
+        self.set_water_color_np()
 
     def delete(self):
         self.ccNodePath.remove_node()
@@ -304,6 +312,7 @@ class SeaPatch(Water):
             self.enabled = True
             self.patch.enable()
             self.patchNP.show()
+            self.seamodel.show()
             taskMgr.add(self.camTask, 'seaPatchCamTask-' + str(id(self)), priority = 49)
             if self.followWater:
                 taskMgr.add(self.floatTask, 'seaFloatTask-' + str(id(self)), priority = 35)

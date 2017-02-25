@@ -148,6 +148,19 @@ want-seapatch #t
 want-water-panel #f
 flagship-wave-count 2
 
+# P3D GLSL GRAPHICS
+framebuffer-multisample 1
+multisamples 2
+allow-live-flatten #t
+stencil-bits 8
+textures-power-2 down
+framebuffer-alpha 1
+alpha-bits 8
+prefer-parasite-buffer 1
+force-parasite-buffer 1
+retransform-sprites 1
+verify-lods 0
+
 # WINDOW SETTINGS
 wide-by-default #f
 fullscreen 0

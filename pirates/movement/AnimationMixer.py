@@ -204,7 +204,7 @@ class AnimationChannel:
         if animName == None:
             wait = Wait(0)
         else:
-            wait = Wait(animTime - blendInT + blendOutT)
+            wait = Wait(animTime - blendInT)
         if animName == None:
             blendOut = Sequence(Func(self.setActive, False, animSpanId))
         else:
