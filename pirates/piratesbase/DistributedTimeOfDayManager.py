@@ -56,7 +56,10 @@ class DistributedTimeOfDayManager(DistributedObject, TimeOfDayManager):
 
     def setIsPaused(self, isPaused):
         self.isPaused = isPaused
-
+        
+    def setRain(self, isRain):
+        print 'setRain fired'
+        self.setRainState(isRain)
 
     def setEnvSubs(self, subList):
         for subEntry in subList:

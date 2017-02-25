@@ -109,6 +109,18 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
         self.greenSeas = False
         self.oldSea = VBase3(0, 0, 0)
         self.oldSeaFactor = VBase3(1, 1 , 1)
+        if self.advancedWeather:
+            self.fixedWeather = False
+            self.weatherState = 0
+            self.rainDrops = None
+            self.rainMist = None
+            self.rainSplashes = None
+            self.rainSplashes2 = None
+            self.stormEye = None
+            self.stormRing = None
+            self.groundFog = None   
+            self.snowflakes = None   
+            self.stormWind = None
 
 
     def toggleDebugMode(self):
@@ -169,6 +181,44 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
             self.moonJollyIval.pause()
 
         del self.moonJollyIval
+
+        if self.advancedWeather:
+            self.ignore('WeatherChanged')
+            if self.groundFog:
+                self.groundFog.destroy()
+            del self.groundFog
+
+            if self.rainDrops:
+                self.rainDrops.stopLoop()
+            del self.rainDrops
+
+            if self.rainSplashes:
+                self.rainSplashes.stopLoop()
+            del self.rainSplashes
+
+            if self.rainSplashes2:
+                self.rainSplashes2.stopLoop()
+            del self.rainSplashes2
+
+            if self.rainMist:
+                self.rainMist.stopLoop()
+            del self.rainMist
+
+            if self.stormEye:
+                self.stormEye.stopLoop()
+            del self.stormEye
+
+            if self.stormRing:
+                self.stormRing.stopLoop()
+            del self.stormRing
+
+            if self.snowflakes:
+                self.snowflakes.stopLoop()
+            del self.snowflakes
+
+            if self.stormWind != None:
+                self.stormWind.stop()
+            del self.stormWind
         
     def delete(self):
         render.clearLight(self.alight)
@@ -1546,7 +1596,102 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
 
         self.lerpFogIval = LerpFunctionInterval(setLinearFog, duration = lerpTime, fromData = 0.0, toData = 1.0, name = 'LerpFogIval')
         self.lerpFogIval.start()
+    
+    def setStormState(self, state, changeClouds=False):
+        if not self.advancedWeather:
+            return
+        if not config.GetBool('want-storm-weather', False):
+            return
+        if self.fixedWeather:
+            return
+        if state:
+            if changeClouds:
+                self.setCloudsType(TODGlobals.HEAVYCLOUDS)
+            if self.stormEye is None:
+                self.stormEye = StormEye()
+                self.stormEye.reparentTo(render)
+                self.stormEye.startLoop()
 
+                self.stormRing = StormRing()
+                self.stormRing.reparentTo(render)
+                self.stormRing.setZ(100)
+                self.stormRing.startLoop()
+
+            if self.stormWind is None:
+                self.stormWind = loader.loadSfx('audio/sfx_ocean_wind.ogg')
+                self.stormWind.setLoop(True)
+                self.stormWind.setVolume(0.696)
+                self.stormWind.setPlayRate(1.0)
+                self.stormWind.play()
+        else:
+            if self.stormEye:
+                self.stormEye.stopLoop()
+                self.stormRing.stopLoop()
+
+                self.stormEye.destroy()
+                self.stormRing.destroy()
+
+                self.stormEye = None
+                self.stormRing = None
+
+            if self.stormWind:
+                self.stormWind.stop()
+                self.stormWind = None
+
+    def setSnowState(self, state):
+        if not self.advancedWeather:
+            return
+
+        if self.fixedWeather:
+            return
+
+        if state:
+            if self.snowflakes is None:
+                self.snowflakes = Snowflakes(base.camera)
+                self.snowflakes.reparentTo(render)
+                self.snowflakes.startLoop()
+        else:
+            if self.snowflakes:
+                self.snowflakes.stopLoop()
+                self.snowflakes = None
+
+    def setRainState(self, state):
+        if not self.advancedWeather:
+            return
+        if state:
+            if self.rainDrops is None:
+                self.rainDrops = RainDrops(base.camera)
+                self.rainDrops.reparentTo(render)
+                self.rainDrops.startLoop()
+
+                self.rainMist = RainMist(base.camera)
+                self.rainMist.reparentTo(render)
+                self.rainMist.startLoop()
+
+                self.rainSplashes = RainSplashes(base.camera)
+                self.rainSplashes.reparentTo(render)
+                self.rainSplashes.startLoop()
+
+                self.rainSplashes2 = RainSplashes2(base.camera)
+                self.rainSplashes2.reparentTo(render)
+                self.rainSplashes2.startLoop()
+        else: 
+            if self.rainDrops:
+                self.rainDrops.stopLoop()
+                self.rainMist.stopLoop()
+                self.rainSplashes.stopLoop()
+                self.rainSplashes2.stopLoop()
+
+                self.rainDrops.destroy()
+                self.rainMist.destroy()
+                self.rainSplashes.destroy()
+                self.rainSplashes2.destroy()
+
+                self.rainDrops = None
+                self.rainMist = None
+                self.rainSplashes = None
+                self.rainSplashes2 = None 
+    
     def getEnviroDictString(self, environment = None, tabs = 0, heading = 'SettingsDict ='):
         if environment == None:
             environment = self.environment
