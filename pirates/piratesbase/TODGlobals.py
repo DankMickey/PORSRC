@@ -369,14 +369,19 @@ SETTING_TO_AREADATA = {
     'SkyType': 'SkyTypes' }
 ENV_SETTINGS_AVATARCHOOSER = {
     'BASE': {
-        'Direction': Vec3(260, 0, 15),
-        'FrontColor': Vec4(0.9, 0.696, 0.800000, 1),
-        'BackColor': Vec4(0.598, 0.800000, 1.2, 1),
-        'AmbientColor': Vec4(0.5, 0.800000, 1, 1),
-        'FogColor': Vec4(0.149, 0.200, 0.348, 0),
-        'FogExp': 0.002,
-        'SkyType': SKY_NIGHT,
-        'StarColor': Vec4(1, 1, 1, 0.25) } }
+        'Direction': Vec3(0, 40, 20),
+        'FrontColor': Vec4(0.390, 0.489, 0.91000, 1),
+        'BackColor': Vec4(0.78000, 1, 1.22, 1),
+        'AmbientColor': Vec4(0.510, 0.576, 0.815, 1),
+        'FogColor': Vec4(0, 0, 0, 0),
+        'FogExp': 0.0010000000475,
+        'SkyType': SKY_STARS,
+        'StarColor': Vec4(1, 1, 1, 1),
+        'MoonSize': 1.0,
+        'MoonOverlay': 0.0,
+        'MoonPhase': 1.0,
+        'SeaColor': Vec4(0.149, 0.348, 0.550000, 1),
+        'SeaColorShader': Vec4(0.100, 0.149, 0.100, 1) } }
 ENV_SETTINGS_DICT = {
     ENV_DEFAULT: ENV_SETTINGS_DEFAULT,
     ENV_OPENSKY: ENV_SETTINGS_OPENSKY,
@@ -473,39 +478,3 @@ LIGHTCLOUDS = 1
 MEDIUMCLOUDS = 2
 HEAVYCLOUDS = 3
 CLOUD_TRANSITIONS = {NOCLOUDS, LIGHTCLOUDS, MEDIUMCLOUDS, HEAVYCLOUDS}
-
-WEATHER_CLEAR = 0
-WEATHER_RAIN = 1
-WEATHER_STORM = 2
-WEATHER_SNOW = 3
-WEATHER_ENVIROMENTS = {
-    WEATHER_CLEAR: {
-        'rain': False,
-        'storm': False,
-        'darkfog': False,
-        'snow': False,
-        'sky': NOCLOUDS
-    },
-    WEATHER_RAIN: {
-        'rain' : True,
-        'storm': False,
-        'darkfog': False,
-        'snow': False,
-        'sky': MEDIUMCLOUDS
-    },
-    WEATHER_STORM: {
-        'rain': True,
-        'storm': True,
-        'darkfog': True,
-        'snow': False,
-        'sky': HEAVYCLOUDS
-    },
-    WEATHER_SNOW: {
-        'rain' : False,
-        'storm': False,
-        'darkfog': False,
-        'snow': True,
-        'sky': MEDIUMCLOUDS
-    }
-}
-
