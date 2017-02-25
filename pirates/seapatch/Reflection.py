@@ -44,7 +44,7 @@ class Reflection(DirectObject):
         self.reflection_state = True
         self.card_created = False
         self.reflection_card_node_path = None
-        self.black_clear_color = VBase4(0.0, 0.0, 0.0, 0.0)
+        self.black_clear_color = VBase4(0.027450980392157, 0.227450980392157, 0.384313725490196, 0.50)
         self.clear_color = self.black_clear_color
         self.reflection_texture = Texture('reflection_buffer')
         if self.reflection_texture:
@@ -54,7 +54,7 @@ class Reflection(DirectObject):
         p = PNMImage(1, 1, 4)
         p.fill(0, 0, 0)
         p.alphaFill(0)
-        t = Texture('black')
+        t = Texture('blue')
         t.load(p)
         t.setKeepRamImage(1)
         t.setCompression(t.CMOff)
