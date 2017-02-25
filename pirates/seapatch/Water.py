@@ -1,4 +1,4 @@
-from panda3d.core import Filename, InternalName, ModelPool, Shader, ShaderInput, TexGenAttrib, TextNode, Texture, TexturePool, TextureStage, Vec2, Vec3, Vec4
+from panda3d.core import Filename, InternalName, ModelPool, Shader, ShaderInput, TexGenAttrib, TextNode, Texture, TexturePool, TextureStage, Vec2, Vec3, Vec4, VBase4
 from direct.gui.DirectGui import *
 from direct.showbase.DirectObject import DirectObject
 from direct.directnotify.DirectNotifyGlobal import directNotify
@@ -15,6 +15,7 @@ class Water(DirectObject):
         self.texture_d = None
         self.texture_n = None
         self.texture_bb = None
+        self.texture_low2 = None
         try:
             self.reflect_show_through_only = base.options.reflection == 1
         except:
@@ -52,6 +53,7 @@ class Water(DirectObject):
         self.uv_increment = 0.01
         self.uv_increment2 = 0.00500
         self.clear_color = None
+        self.water_alpha = 0.3
         if self.enable_water_panel:
             from pirates.seapatch import WaterPanel
             self.water_panel = WaterPanel.WaterPanel(self.name)
@@ -77,6 +79,10 @@ class Water(DirectObject):
         self.diffusecolor_name = InternalName.make('diffusecolor')
         self.specularcolor_name = InternalName.make('specularcolor')
         self.lightparameters_name = InternalName.make('lightparameters')
+        self.texture_bb_name = InternalName.make('Texture0_bb')
+        self.texture_d_name = InternalName.make('Texture0_d')
+        self.texture_low2_name = InternalName.make('Texture0_low2')
+        self.texture_n_name = InternalName.make('Texture0_n')
         self.update_parameters = True
         self.total = 0.0
         self.total_cycles = 0.0
@@ -665,7 +671,7 @@ class Water(DirectObject):
         self.seamodel.setShaderInput(self.alphamap_name, self.vector)
 
     def set_water_color_factor_np(self):
-        self.vector.set(self.water_color_factor_r, self.water_color_factor_g, self.water_color_factor_b, 1.0)
+        self.vector.set(self.water_color_factor_r, self.water_color_factor_g, self.water_color_factor_b, 0.75)
         self.seamodel.setShaderInput(self.watercolorfactor_name, self.vector)
 
     def modify_water_color_factor_np(self, color = Vec3(0, 0, 0)):
@@ -675,10 +681,10 @@ class Water(DirectObject):
         self.set_water_color_factor_np()
 
     def set_water_color_add_np(self):
-        self.vector.set(self.water_color_add_r, self.water_color_add_g, self.water_color_add_b, 1.0)
+        self.vector.set(self.water_color_add_r, self.water_color_add_g, self.water_color_add_b, 0.50)
         self.seamodel.setShaderInput(self.watercoloradd_name, self.vector)
 
-    def modify_water_color_add_np(self, color = Vec3(0, 0, 0)):
+    def modify_water_color_add_np(self, color=Vec3(0, 0, 0)):
         self.water_color_add_r = color[0]
         self.water_color_add_g = color[1]
         self.water_color_add_b = color[2]
@@ -1079,6 +1085,12 @@ class Water(DirectObject):
         self.print_reflection_parameters()
         self.print_water_color_map_parameters()
 
+    def setTexture0(self):
+        self.seamodel.setShaderInput(self.texture_bb_name, self.texture_bb)
+        self.seamodel.setShaderInput(self.texture_d_name, self.texture_d)
+        self.seamodel.setShaderInput(self.texture_low2_name, self.texture_low2)
+        self.seamodel.setShaderInput(self.texture_n_name, self.texture_n)
+
     def setting_0(self):
         self.ds_increment = 1.0 / 128.0
         self.xyz_increment = 100.0
@@ -1389,14 +1401,9 @@ class IslandWaterParameters:
             if use_alpha_map:
                 water.set_water_color_texture(self.water_color_file_path, self.unload_previous_texture, self.water_color_texture)
                 water.set_water_alpha_texture(self.water_alpha_file_path, self.unload_previous_texture, self.water_alpha_texture)
-                if self.debug:
-                    print 'WATER ALPHA ON'
-
             else:
                 water.set_water_color_texture(self.default_water_color_file_path, self.unload_previous_texture, None)
                 water.set_water_alpha_texture(self.default_water_alpha_file_path, self.unload_previous_texture, None)
-                if self.debug:
-                    print 'WATER ALPHA OFF'
 
         if self.swamp_water:
             self.swamp_water.map_x_origin = self.swamp_map_x_origin
