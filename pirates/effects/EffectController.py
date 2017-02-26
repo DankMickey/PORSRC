@@ -20,15 +20,16 @@ class EffectController:
 
         self.f = None
         self.p0 = None
-        self.detachNode()
+        self.removeNode()
+        
 
 
     def cleanUpEffect(self):
-        #self.setPosHpr(0, 0, 0, 0, 0, 0)
+        self.setPosHpr(0, 0, 0, 0, 0, 0)
         if self.f:
             self.f.disable()
 
-        self.removeNode()
+        self.detachNode()
 
 
     def reallyCleanUpEffect(self):
