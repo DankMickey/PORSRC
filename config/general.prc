@@ -172,5 +172,5 @@ force-firework-music #t
 interpolate-frames #t
 
 # HOLIDAYS
-# WINTERFESTIVAL
-forced-holiday 17 604800
+# MARDIGRAS
+forced-holiday 29 604800

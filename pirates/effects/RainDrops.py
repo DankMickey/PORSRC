@@ -10,8 +10,8 @@ class RainDrops(EffectController, NodePath):
     def __init__(self, reference = None):
         NodePath.__init__(self, 'RainDrops')
         EffectController.__init__(self)
-        self.effectModel = loader.loadModel('models/effects/rainDrops') #Rain Drop, Drop TOp fucking ur bitch she a thot thot
-        self.rainMusic = loader.loadSfx("models/effects/rainmusic.ogg") #Rain Music 
+        self.effectModel = loader.loadModel('models/effects/rainDrops')
+        self.rainMusic = loader.loadSfx("models/effects/rainDropTop.ogg") # Rain Music 
         self.effectModel.reparentTo(self)
         self.effectModel.setScale(80)
         self.effectModel.setZ(-10)
@@ -39,7 +39,8 @@ class RainDrops(EffectController, NodePath):
         uvScroll = LerpFunctionInterval(self.setNewUVs, 0.598, toData = 1.0, fromData = -1.0, extraArgs = [
             textureStage])
         self.startEffect = Sequence(Func(uvScroll.loop), fadeIn)
-        self.rainMusic.play() #Start playing the rainMusic
+        self.rainMusic.setLoop(True)
+        self.rainMusic.play()
         self.endEffect = Sequence(fadeOut, Func(uvScroll.finish), Func(self.cleanUpEffect))
         self.track = Sequence(self.startEffect, Wait(self.duration), self.endEffect)
 
@@ -56,11 +57,10 @@ class RainDrops(EffectController, NodePath):
 
 
     def cleanUpEffect(self):
-        print 'rainMusic - cleanUp'
-        self.rainMusic.stop() #Stop playing the rainMusic
         EffectController.cleanUpEffect(self)
 
 
     def destroy(self):
+        self.rainMusic.setLoop(False)
         self.rainMusic.stop() #Stop playing the rainMusic
         EffectController.destroy(self)

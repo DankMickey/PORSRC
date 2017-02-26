@@ -269,7 +269,6 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
             self.water = SeaPatch(render, Reflection.getGlobalReflection(), todMgr = base.cr.timeOfDayManager)
             base.loadingScreen.tick()
             self.water.modify_water_color_factor_np(VBase3(0.043137254901961, 0.203921568627451, 0.341176470588235))
-            print 'setIslandZone colorerino kekekekekekerino kekity keke kek!!!'
             base.loadingScreen.tick()
             self.water.loadSeaPatchFile('out.spf')
             base.loadingScreen.tick()
@@ -718,16 +717,19 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
             self.nameText.show()
     
     def initializeNameText(self):
-        scale = WorldGlobals.getNametagScale(self.name)
-        self.nameNode = TextNode('islandText')
-        self.nameNode.setText(self.name)
-        self.nameNode.setFont(PiratesGlobals.getPirateFont())
-        self.nameNode.setWordwrap(PiratesGlobals.NAMETAG_WORDWRAP)
-        self.nameText = self.attachNewNode(self.nameNode)
-        self.nameText.setPos(0, 0, WorldGlobals.getNametagHeight(self.name))
-        self.nameText.setFogOff()
-        self.nameText.setLightOff()
-        self.nameText.setScale(WorldGlobals.getNametagScale(self.name))
+        if config.GetBool('show-island-names', True):
+            scale = WorldGlobals.getNametagScale(self.name)
+            self.nameNode = TextNode('islandText')
+            self.nameNode.setText(self.name)
+            self.nameNode.setFont(PiratesGlobals.getPirateFont())
+            self.nameNode.setWordwrap(PiratesGlobals.NAMETAG_WORDWRAP)
+            self.nameText = self.attachNewNode(self.nameNode)
+            self.nameText.setPos(0, 0, WorldGlobals.getNametagHeight(self.name))
+            self.nameText.setFogOff()
+            self.nameText.setLightOff()
+            self.nameText.setScale(WorldGlobals.getNametagScale(self.name))
+        else:
+            pass
     
     def deleteNameText(self):
         if self.nameText:
