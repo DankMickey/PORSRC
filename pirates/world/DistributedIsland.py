@@ -268,7 +268,7 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
             base.loadingScreen.tick()
             self.water = SeaPatch(render, Reflection.getGlobalReflection(), todMgr = base.cr.timeOfDayManager)
             base.loadingScreen.tick()
-            self.water.modify_water_color_factor_np(VBase3(0.043137254901961, 0.203921568627451, 0.341176470588235))
+            self.water.modify_water_color_factor_np(VBase3(0.580392156862745, 0.705882352941176, 0.858823529411765))
             base.loadingScreen.tick()
             self.water.loadSeaPatchFile('out.spf')
             base.loadingScreen.tick()

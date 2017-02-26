@@ -92,8 +92,8 @@ class RainSplashes2(EffectController, NodePath):
 
 
     def cleanUpEffect(self):
-        EffectController.cleanUpEffect(self)
+        EffectController.cleanUpEffect(self, eType="rainObj")
 
 
     def destroy(self):
-        EffectController.destroy(self)
+        EffectController.destroy(self, eType="rainObj")
