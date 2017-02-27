@@ -15,7 +15,15 @@ class EffectController:
 
     def destroy(self, eType="default"):
         if (eType == "rainObj"):
-            print 'rainObj - destroy'
+            self.finish()
+            if self.f:
+                self.f.cleanup()
+
+            self.f = None
+            self.p0 = None
+            self.removeNode()
+            '''
+            #print 'rainObj - destroy'
             self.finish()
             if self.f:
                 self.f.cleanup()
@@ -23,8 +31,9 @@ class EffectController:
             self.f = None
             self.p0 = None
             self.detachNode()
+            '''
         else:
-            print 'default - destroy'
+            #print 'default - destroy'
             self.finish()
             if self.f:
                 self.f.cleanup()
@@ -37,13 +46,20 @@ class EffectController:
 
     def cleanUpEffect(self, eType="default"):
         if (eType == "rainObj"):
-            print 'rainObj - cleanUpEffect'
+            self.setPosHpr(0, 0, 0, 0, 0, 0)
+            if self.f:
+                self.f.disable()
+
+            self.detachNode()
+            '''
+            #print 'rainObj - cleanUpEffect'
             if self.f:
                 self.f.disable()
 
             self.removeNode()
+            '''
         else:
-            print 'default - cleanUpEffect'
+            #print 'default - cleanUpEffect'
             self.setPosHpr(0, 0, 0, 0, 0, 0)
             if self.f:
                 self.f.disable()
