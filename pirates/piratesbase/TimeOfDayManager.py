@@ -106,9 +106,6 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
         self.alteratedSettingsList = []
         self.ambientMultiplier = 1.0
         self.grassMultiplier = 1.0
-        self.greenSeas = False
-        self.oldSea = VBase3(0, 0, 0)
-        self.oldSeaFactor = VBase3(1, 1 , 1)
 
 
     def toggleDebugMode(self):
@@ -511,6 +508,8 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
         if startEnv == None:
             startEnv = destEnv
 
+        print "Transitioning..."
+
         environment = self.environment
         timeLightSwitch = TODGlobals.getTodEnvSetting(toState, environment, 'LightSwitch')
         fromAmbient = TODGlobals.getTodEnvSetting(fromState, startEnv, 'AmbientColor')
@@ -543,22 +542,17 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
             else:
                 self.seapatch = base.cr.activeWorld.getWater().patchNP
 
-        if self.greenSeas:
-            toSeaColor = VBase3(0.22, 0.560000, 0.149)
-            self.newSea = toSeaColor
-            ival.append(LerpFunctionInterval(self.modifyWaterColor, duration = t, fromData = self.oldSea, toData = toSeaColor))
-            toSeaColorFactor = VBase3(0.40000000000000002, 1.0, 0.29999999999999999)
-            ival.append(LerpFunctionInterval(self.modifyWaterColorFactor, duration = t, fromData = self.oldSeaFactor, toData = toSeaColorFactor))
-        elif self.use_shader:
-            fromSeaColor = TODGlobals.getTodEnvSetting(fromState, startEnv, 'SeaColor')
-            toSeaColor = TODGlobals.getTodEnvSetting(toState, destEnv, 'SeaColor')
-            self.oldSea = fromSeaColor
-            self.newSea = toSeaColor
-            ival.append(LerpFunctionInterval(self.modifyWaterColor, duration = t, fromData = fromSeaColor, toData = toSeaColor))
-            fromSeaColorFactor = TODGlobals.getTodEnvSetting(fromState, startEnv, 'SeaFactor')
-            toSeaColorFactor = TODGlobals.getTodEnvSetting(toState, destEnv, 'SeaFactor')
-            self.oldSeaFactor = fromSeaColorFactor
-            ival.append(LerpFunctionInterval(self.modifyWaterColorFactor, duration = t, fromData = fromSeaColorFactor, toData = toSeaColorFactor))
+        if base.cr.newsManager and base.cr.newsManager.getHoliday(HolidayGlobals.SAINTPATRICKSDAY):
+            self.setGreenSea()
+        #elif self.use_shader:
+        #    fromSeaColor = TODGlobals.getTodEnvSetting(fromState, startEnv, 'SeaColor')
+        #    toSeaColor = TODGlobals.getTodEnvSetting(toState, destEnv, 'SeaColor')
+        #    self.oldSea = fromSeaColor
+        #    self.newSea = Vec4toSeaColor
+        #    #ival.append(LerpFunctionInterval(self.modifyWaterColor, duration = t, fromData = fromSeaColor, toData = toSeaColor))
+        #    fromSeaColorFactor = TODGlobals.getTodEnvSetting(fromState, startEnv, 'SeaFactor')
+        #    toSeaColorFactor = TODGlobals.getTodEnvSetting(toState, destEnv, 'SeaFactor')
+        #    #ival.append(LerpFunctionInterval(self.modifyWaterColorFactor, duration = t, fromData = fromSeaColorFactor, toData = toSeaColorFactor))
         else:
             fromSeaColor = TODGlobals.getTodEnvSetting(fromState, startEnv, 'SeaColor')
             toSeaColor = TODGlobals.getTodEnvSetting(toState, destEnv, 'SeaColor')
@@ -585,41 +579,21 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
             fromMoonOverlay = 0.5
             toMoonOverlay = 0.5
 
+        if self.moonJollyIval and self.moonJollyIval.isPlaying():
+            pass
         ival.append(LerpFunctionInterval(self.skyGroup.setMoonOverlayAlpha, duration = t, fromData = fromMoonOverlay, toData = toMoonOverlay, name = 'TOD-Trans-MoonJolly'))
         ival.append(LerpFunctionInterval(self.skyGroup.setMoonSize, duration = t, fromData = fromMoonSize, toData = toMoonSize, name = 'TOD-Trans-MoonSize'))
+        if self.moonPhaseIval and self.moonPhaseIval.isPlaying():
+            pass
         ival.append(LerpFunctionInterval(self.setMoonState, duration = t, fromData = fromMoonState, toData = toMoonState, name = 'TOD-Trans-MoonPhase'))
         return ival
 
 
     def modifyWaterColor(self, color):
-        self.lastWaterColor = color
-        if not self.seapatch:
-            return None
-
-        if self.use_shader:
-            v3Color = Vec3(color[0], color[1], color[2])
-            v3Color = v3Color * self.ambientMultiplier
-            self.notify.debug("modify_water_color_add_np(%s)" % v3Color)
-            if not self.seapatch.seamodel.isEmpty():
-                self.seapatch.modify_water_color_add_np(v3Color)
-
-        elif not self.seapatch.isEmpty():
-            self.seapatch.setColorScale(color)
-
-    def modifyWaterColorFactor(self, colorFactor = None):
-        self.lastWaterColorFactor = colorFactor
-        if not self.seapatch:
-            return None
-
-        if colorFactor == None:
-            self.waterColorFactor = Vec3(1.0, 1.0, 1.0)
-        else:
-            self.waterColorFactor = Vec3(colorFactor[0], colorFactor[1], colorFactor[2])
-        self.waterColorFactor = (self.waterColorFactor * self.ambientMultiplier) * 0.05
-        self.notify.debug("modify_water_color_factor_np(%s)" % self.waterColorFactor)
-        if self.use_shader:
-            if not self.seapatch.seamodel.isEmpty():
-                self.seapatch.modify_water_color_factor_np(self.waterColorFactor)
+        if self.seapatch:
+            self.setWColor = Vec4(color[0], color[1], color[2], 1)
+            #self.seapatch.setColor(self.setWColor)
+            self.seapatch.setWaterColor(self.setWColor)
 
 
     def setMoonState(self, moonPhase):
@@ -636,7 +610,7 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
     def animateMoon(self, fromCurrent, startPhase, phase, duration):
         if self.inTransition:
             pass
-        
+        1
         if self.moonPhaseIval:
             self.moonPhaseIval.finish()
 
@@ -723,13 +697,8 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
                 self.seapatch = base.cr.activeWorld.getWater().patchNP
 
         if self.seapatch:
-            if self.greenSeas:
-                self.modifyWaterColor(VBase3(0.22, 0.56000000000000005, 0.14999999999999999))
-                self.modifyWaterColorFactor(VBase3(0.40000000000000002, 1.0, 0.29999999999999999))                
-            else:
-                seaColor = TODGlobals.getTodEnvSetting(stateId, environment, 'SeaColorShader')
-                self.modifyWaterColor(seaColor)
-                self.modifyWaterColorFactor()
+            seaColor = TODGlobals.getTodEnvSetting(stateId, environment, 'SeaColorShader')
+            self.modifyWaterColor(seaColor)
 
         if self.avatarShadowCaster:
             self.avatarShadowCaster.setLightSrc(self.dlight)
@@ -1238,7 +1207,7 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
 
     def exitIndoors(self):
         self.notify.debug('exitIndoors')
-        messenger.send('exitIndoors', [])
+        messenger.send('exitIndoors', [todSettings])
         self.fixedSky = False
         base.positionFarCull()
 
@@ -1454,8 +1423,9 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
         self.forcedStateEnabled = False
 
 
-    def setGreenSea(self, state=False):
-        self.greenSeas = state
+    def setGreenSea(self):
+        pass
+        #self.seapatch.setWaterColor(VBase3(0.22, 0.560000, 0.149))
 
     def handleHolidayStarted(self, holidayName):
         pass
@@ -1613,21 +1583,11 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
         p = TimeOfDayPanel(tod)
         return "Opening TOD Panel"
 
-    @magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
-    def greenSeas(state=1):
+    @magicWord(CATEGORY_GAME_DEVELOPER)
+    def greenSeas():
         tod = base.cr.timeOfDayManager
-
-        if state > 1:
-            state = 1
-
-        if state < 0:
-            state = 0
-
-        tod.setGreenSea(state)
-        if state:
-            return "Seas have turned a strange green color..."
-        else:
-            return "The seas have returned to normal..."
+        tod.setGreenSea()
+        return "Seas have turned a strange green color..."
 
     @magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
     def blackout(state=1):
