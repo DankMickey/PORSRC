@@ -140,12 +140,9 @@ class AvatarChooser(DirectObject, StateData):
         pier2.setScale(0.4, 0.3, 0.4)
         pier2.flattenStrong()
         pier2.reparentTo(self.scene)
-        self.water = SeaPatch(render, Reflection.getGlobalReflection(), todMgr = self.todManager)
-        self.water.modify_water_color_factor_np(VBase3(0.043137254901961, 0.203921568627451, 0.341176470588235))
-        #self.water.modify_water_color_factor_np(VBase3(0.05, 0.05, 0.1))
-        self.water.loadSeaPatchFile('out.spf')
+        self.water = SeaPatch(render, Reflection.getGlobalReflection(), todMgr = None)
         self.water.updateWater(2)
-        self.water.ignore('grid-detail-changed')
+        self.water.enable()
         self.ship = None
         from pirates.ship import ShipGlobals
         
