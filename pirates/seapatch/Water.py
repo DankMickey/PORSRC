@@ -68,7 +68,6 @@ class Water(DirectObject):
         self.watercolortexture_name = InternalName.make('watercolortexture')
         self.wateralphatexture_name = InternalName.make('wateralphatexture')
         self.alphamap_name = InternalName.make('alphamap')
-        self.watercolorfactor_name = InternalName.make('watercolorfactor')
         self.watercoloradd_name = InternalName.make('watercoloradd')
         self.fogcolor_name = InternalName.make('fogcolor')
         self.fogexpdensity_name = InternalName.make('fogexpdensity')
@@ -88,6 +87,7 @@ class Water(DirectObject):
         self.total_cycles = 0.0
         self.color_map_texture_stage = None
         self.supports_sky_only = True
+        self.water_color = Vec4(0, 0, 0, 0)
 
     def setup_color_map(self):
         self.color_map_texture_stage = TextureStage('color_map')
@@ -226,22 +226,6 @@ class Water(DirectObject):
                 update_function]
             return slider
 
-        def update_water_r(value):
-            self.water_r = value * 255.0
-            self.set_water_color_np()
-
-        def update_water_g(value):
-            self.water_g = value * 255.0
-            self.set_water_color_np()
-
-        def update_water_b(value):
-            self.water_b = value * 255.0
-            self.set_water_color_np()
-
-        def update_water_a(value):
-            self.water_a = value * 255.0
-            self.set_water_color_np()
-
         def update_reflection_factor(value):
             self.reflection_factor = value
             self.set_reflection_parameters_np()
@@ -300,87 +284,6 @@ class Water(DirectObject):
         def update_alpha_map_y_scale(value):
             self.alpha_map_y_scale = value
             self.set_alpha_map_parameters_np()
-
-        if self.enable_ui:
-            self.water_r = 1
-            self.water_g = 1
-            self.water_b = 1
-            self.water_a = 1
-            self.reflection_factor = 0
-            self.px = 0
-            self.py = 0
-            self.ps = 0
-            self.map_x_origin = 0
-            self.map_y_origin = 0
-            self.map_x_scale = 1.0
-            self.map_y_scale = 1.0
-            self.alpha_map_x_origin = 0
-            self.alpha_map_y_origin = 0
-            self.alpha_map_x_scale = 1.0
-            self.alpha_map_y_scale = 1.0
-
-        if self.enable_ui and self.enable_parameter_keys:
-            x = -0.800000
-            y = 0.800000
-            x_increment = 1.10
-            y_increment = -0.149
-            resolution = 0.02
-            default_value = 0.5
-            self.red_slider = create_slider(update_water_r, self.water_r / 255.0, x, y, resolution, 'water red')
-            y += y_increment
-            self.green_slider = create_slider(update_water_g, self.water_g / 255.0, x, y, resolution, 'water green')
-            y += y_increment
-            self.blue_slider = create_slider(update_water_b, self.water_b / 255.0, x, y, resolution, 'water blue')
-            y += y_increment
-            self.alpha_slider = create_slider(update_water_a, self.water_a / 255.0, x, y, resolution, 'water alpha')
-            y += y_increment
-            self.reflection_factor_slider = create_slider(update_reflection_factor, self.reflection_factor, x, y, resolution, 'reflection_factor')
-            y += y_increment
-            self.purturb_x_slider = create_slider(update_water_px, self.px, x, y, resolution, 'purturb_x')
-            y += y_increment
-            self.purturb_y_slider = create_slider(update_water_py, self.py, x, y, resolution, 'purturb_y')
-            y += y_increment
-            self.purturb_smoothness_slider = create_slider(update_water_ps, self.ps, x, y, resolution, 'purturb_smoothness')
-            y += y_increment
-            self.water_speed_slider = create_slider(update_water_speed, self.water_speed / 100.0, x, y, resolution, 'water_speed')
-            y += y_increment
-            self.water_direction_x_slider = create_slider(update_water_direction_x, self.water_direction_x, x, y, resolution, 'water_direction_x')
-            self.water_direction_x_slider['range'] = (-1.0, 1.0)
-            y += y_increment
-            self.water_direction_y_slider = create_slider(update_water_direction_y, self.water_direction_y, x, y, resolution, 'water_direction_y')
-            self.water_direction_y_slider['range'] = (-1.0, 1.0)
-            y += y_increment
-            x += x_increment
-            y = 0.800000
-            map_x_range = 100000.0
-            map_y_range = 100000.0
-            map_x_scale_range = 10000.0
-            map_y_scale_range = 10000.0
-            self.map_x_origin_slider = create_slider(update_map_x_origin, self.map_x_origin, x, y, resolution, 'map_x_origin')
-            self.map_x_origin_slider['range'] = (-map_x_range, map_x_range)
-            y += y_increment
-            self.map_y_origin_slider = create_slider(update_map_y_origin, self.map_y_origin, x, y, resolution, 'map_y_origin')
-            self.map_y_origin_slider['range'] = (-map_y_range, map_y_range)
-            y += y_increment
-            self.map_x_scale_slider = create_slider(update_map_x_scale, self.map_x_scale, x, y, resolution, 'map_x_scale')
-            self.map_x_scale_slider['range'] = (-map_x_scale_range, map_x_scale_range)
-            y += y_increment
-            self.map_y_scale_slider = create_slider(update_map_y_scale, self.map_y_scale, x, y, resolution, 'map_y_scale')
-            self.map_y_scale_slider['range'] = (-map_y_scale_range, map_y_scale_range)
-            y += y_increment
-            self.alpha_map_x_origin_slider = create_slider(update_alpha_map_x_origin, self.alpha_map_x_origin, x, y, resolution, 'alpha_map_x_origin')
-            self.alpha_map_x_origin_slider['range'] = (-map_x_range, map_x_range)
-            y += y_increment
-            self.alpha_map_y_origin_slider = create_slider(update_alpha_map_y_origin, self.alpha_map_y_origin, x, y, resolution, 'alpha_map_y_origin')
-            self.alpha_map_y_origin_slider['range'] = (-map_y_range, map_y_range)
-            y += y_increment
-            self.alpha_map_x_scale_slider = create_slider(update_alpha_map_x_scale, self.alpha_map_x_scale, x, y, resolution, 'alpha_map_x_scale')
-            self.alpha_map_x_scale_slider['range'] = (-map_x_scale_range, map_x_scale_range)
-            y += y_increment
-            self.alpha_map_y_scale_slider = create_slider(update_alpha_map_y_scale, self.alpha_map_y_scale, x, y, resolution, 'alpha_map_y_scale')
-            self.alpha_map_y_scale_slider['range'] = (-map_y_scale_range, map_y_scale_range)
-            y += y_increment
-            self.toggle_ui()
 
     def toggle_show_through_only(self):
         if self.reflection:
@@ -670,26 +573,6 @@ class Water(DirectObject):
         self.vector.set(self.alpha_map_x_origin, self.alpha_map_y_origin, 1.0 / self.alpha_map_x_scale, 1.0 / self.alpha_map_y_scale)
         self.seamodel.setShaderInput(self.alphamap_name, self.vector)
 
-    def set_water_color_factor_np(self):
-        self.vector.set(self.water_color_factor_r, self.water_color_factor_g, self.water_color_factor_b, 0.75)
-        self.seamodel.setShaderInput(self.watercolorfactor_name, self.vector)
-
-    def modify_water_color_factor_np(self, color = Vec3(0, 0, 0)):
-        self.water_color_factor_r = color[0]
-        self.water_color_factor_g = color[1]
-        self.water_color_factor_b = color[2]
-        self.set_water_color_factor_np()
-
-    def set_water_color_add_np(self):
-        self.vector.set(self.water_color_add_r, self.water_color_add_g, self.water_color_add_b, 0.50)
-        self.seamodel.setShaderInput(self.watercoloradd_name, self.vector)
-
-    def modify_water_color_add_np(self, color=Vec3(0, 0, 0)):
-        self.water_color_add_r = color[0]
-        self.water_color_add_g = color[1]
-        self.water_color_add_b = color[2]
-        self.set_water_color_add_np()
-
     def set_fog_np(self):
         self.vector.set(self.fog_r, self.fog_g, self.fog_b, self.fog_a)
         self.seamodel.setShaderInput(self.fogcolor_name, self.vector)
@@ -779,71 +662,21 @@ class Water(DirectObject):
         self.set_reflection_parameters_np()
         self.print_reflection_parameters()
 
-    def print_water_color(self):
-        print 'water color: red', self.water_r, 'green', self.water_g, 'blue', self.water_b, 'alpha', self.water_a
-
     def set_water_color_np(self):
-        self.vector.set(self.water_r / 255.0, self.water_g / 255.0, self.water_b / 255.0, self.water_a / 255.0)
-        self.seamodel.setShaderInput(self.watercolor_name, self.vector)
+        self.seamodel.setShaderInput(self.watercolor_name, self.water_color)
 
-    def set_water_color(self):
+    def setWaterColorScale(self, color=Vec4(0, 0, 0, 0)):
+        self.seamodel.setColorScale(color[0] / 255.0, color[1]/ 225.0, color[2]/ 255.0, color[3] / 255.0)
+
+    def setWaterColor(self, color):
+        self.seamodel.setColor(color)
+
+    def modify_water_color_np(self, color=Vec4(0, 0, 0, 0)):
+        self.update_water_r(color[0])
+        self.update_water_g(color[1])
+        self.update_water_b(color[2])
+        self.update_water_a(color[3])
         self.set_water_color_np()
-
-    def add_water_r(self):
-        self.water_r = self.water_r + 1.0
-        if self.water_r > 255:
-            self.water_r = 255.0
-
-        self.set_water_color()
-
-    def sub_water_r(self):
-        self.water_r = self.water_r - 1.0
-        if self.water_r < 0.0:
-            self.water_r = 0.0
-
-        self.set_water_color()
-
-    def add_water_g(self):
-        self.water_g = self.water_g + 1.0
-        if self.water_g > 255:
-            self.water_g = 255.0
-
-        self.set_water_color()
-
-    def sub_water_g(self):
-        self.water_g = self.water_g - 1.0
-        if self.water_g < 0.0:
-            self.water_g = 0.0
-
-        self.set_water_color()
-
-    def add_water_b(self):
-        self.water_b = self.water_b + 1.0
-        if self.water_b > 255:
-            self.water_b = 255.0
-
-        self.set_water_color()
-
-    def sub_water_b(self):
-        self.water_b = self.water_b - 1.0
-        if self.water_b < 0.0:
-            self.water_b = 0.0
-
-        self.set_water_color()
-
-    def add_water_a(self):
-        self.water_a = self.water_a + 1.0
-        if self.water_a > 255:
-            self.water_a = 255.0
-
-        self.set_water_color()
-
-    def sub_water_a(self):
-        self.water_a = self.water_a - 1.0
-        if self.water_a < 0.0:
-            self.water_a = 0.0
-
-        self.set_water_color()
 
     def add_dr(self):
         self.dr = self.dr + 1.0
@@ -1081,7 +914,6 @@ class Water(DirectObject):
         self.print_ambient_color()
         self.print_diffuse_color()
         self.print_specular_color()
-        self.print_water_color()
         self.print_reflection_parameters()
         self.print_water_color_map_parameters()
 
@@ -1120,18 +952,7 @@ class Water(DirectObject):
         self.ps = 1.0
         self.reflection_factor = 0.200
         self.set_reflection_parameters_np()
-        if True:
-            self.water_r = 17
-            self.water_g = 55
-            self.water_b = 70
-            self.water_a = 255
-            self.set_water_color_np()
-        else:
-            self.water_r = 128
-            self.water_g = 255
-            self.water_b = 143
-            self.water_a = 255
-            self.set_water_color_np()
+        self.seamodel.setColor(Vec4(17 / 255.0, 55 / 225.0, 70 / 255.0, 10 / 255.0))
         self.u = 0.0
         self.v = 0.0
         self.u2 = 0.0
@@ -1158,14 +979,6 @@ class Water(DirectObject):
         self.alpha_map_x_scale = 1370.0
         self.alpha_map_y_scale = 1370.0
         self.set_alpha_map_parameters_np()
-        self.water_color_factor_r = 1.0
-        self.water_color_factor_g = 1.0
-        self.water_color_factor_b = 1.0
-        self.set_water_color_factor_np()
-        self.water_color_add_r = 0.0
-        self.water_color_add_g = 0.0
-        self.water_color_add_b = 0.0
-        self.set_water_color_add_np()
 
     def setting_1(self):
         self.d = 0.348
@@ -1307,8 +1120,6 @@ class Water(DirectObject):
                 self.set_specular_color_np()
                 self.set_light_position_np()
                 self.set_light_parameters_np()
-                self.set_water_color_factor_np()
-                self.set_water_color_add_np()
                 if self.reflection_enabled():
                     if self.reflection:
                         self.seamodel.setShaderInput(self.reflectiontexture_name, self.reflection.reflection_texture)
@@ -1398,9 +1209,14 @@ class IslandWaterParameters:
             water.alpha_map_x_scale = self.alpha_map_x_scale
             water.alpha_map_y_scale = self.alpha_map_y_scale
             water.set_alpha_map_parameters_np()
+            water.water_r = 255
+            water.water_g = 255
+            water.water_b = 255
+            water.set_water_color_np()
             if use_alpha_map:
                 water.set_water_color_texture(self.water_color_file_path, self.unload_previous_texture, self.water_color_texture)
                 water.set_water_alpha_texture(self.water_alpha_file_path, self.unload_previous_texture, self.water_alpha_texture)
+
             else:
                 water.set_water_color_texture(self.default_water_color_file_path, self.unload_previous_texture, None)
                 water.set_water_alpha_texture(self.default_water_alpha_file_path, self.unload_previous_texture, None)
