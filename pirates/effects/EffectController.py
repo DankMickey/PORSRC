@@ -14,7 +14,7 @@ class EffectController:
 
 
     def destroy(self):
-        print 'default - destroy'
+        #print 'default - destroy'
         self.finish()
         if self.f:
             self.f.cleanup()
@@ -24,7 +24,7 @@ class EffectController:
         self.removeNode()
         
     def destroyRain(self):
-        print 'rainObj - destroy'
+        #print 'rainObj - destroy'
         self.finish()
         if self.f:
             self.f.cleanup()
@@ -34,7 +34,7 @@ class EffectController:
         self.detachNode()
         
     def cleanUpRain(self):
-        print 'rainObj - cleanUpEffect'
+        #print 'rainObj - cleanUpEffect'
         if self.f:
             self.f.disable()
 
@@ -42,7 +42,7 @@ class EffectController:
 
 
     def cleanUpEffect(self):
-        print 'default - cleanUpEffect'
+        #print 'default - cleanUpEffect'
         self.setPosHpr(0, 0, 0, 0, 0, 0)
         if self.f:
             self.f.disable()
