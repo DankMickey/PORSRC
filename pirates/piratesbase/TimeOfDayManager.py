@@ -70,6 +70,19 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
         self.moonJollyIval = None
         self.softTOD = config.GetBool('want-soft-tod-changes', 1)
         self.advancedWeather = config.GetBool('advanced-weather', 1)
+        if self.advancedWeather:
+            self.fixedWeather = False
+            self.weatherState = 0
+            self.rainDrops = None
+            self.rainMist = None
+            self.rainSplashes = None
+            self.rainSplashes2 = None
+            self.stormEye = None
+            self.stormRing = None
+            self.groundFog = None   
+            self.snowflakes = None   
+            self.stormWind = None      
+
         self.skyGroup = SkyGroup.SkyGroup()
         self.skyGroup.reparentTo(camera)
         self.fixedSky = False
@@ -104,8 +117,6 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
         self.currentStateDuration = None
         self.debugTOD = False
         self.alteratedSettingsList = []
-        self.ambientMultiplier = 1.0
-        self.grassMultiplier = 1.0
 
 
     def toggleDebugMode(self):
@@ -166,7 +177,45 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
             self.moonJollyIval.pause()
 
         del self.moonJollyIval
-        
+
+        if self.advancedWeather:
+            self.ignore('WeatherChanged')
+            if self.groundFog:
+                self.groundFog.destroy()
+            del self.groundFog
+
+            if self.rainDrops:
+                self.rainDrops.stopLoop()
+            del self.rainDrops
+
+            if self.rainSplashes:
+                self.rainSplashes.stopLoop()
+            del self.rainSplashes
+
+            if self.rainSplashes2:
+                self.rainSplashes2.stopLoop()
+            del self.rainSplashes2
+
+            if self.rainMist:
+                self.rainMist.stopLoop()
+            del self.rainMist
+
+            if self.stormEye:
+                self.stormEye.stopLoop()
+            del self.stormEye
+
+            if self.stormRing:
+                self.stormRing.stopLoop()
+            del self.stormRing
+
+            if self.snowflakes:
+                self.snowflakes.stopLoop()
+            del self.snowflakes
+
+            if self.stormWind != None:
+                self.stormWind.stop()
+            del self.stormWind
+
     def delete(self):
         render.clearLight(self.alight)
         render.clearLight(self.sunLight)
@@ -302,11 +351,12 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
 
 
     def setFillLightColor(self, newColor):
-        self.alight.node().setColor(newColor * self.ambientMultiplier)
+        self.alight.node().setColor(newColor)
 
 
     def getFillLightColor(self):
         return self.alight.node().getColor()
+
 
     def startFlutter(self):
         self.flutterFront = 1
@@ -508,8 +558,6 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
         if startEnv == None:
             startEnv = destEnv
 
-        print "Transitioning..."
-
         environment = self.environment
         timeLightSwitch = TODGlobals.getTodEnvSetting(toState, environment, 'LightSwitch')
         fromAmbient = TODGlobals.getTodEnvSetting(fromState, startEnv, 'AmbientColor')
@@ -520,7 +568,7 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
         fromStarColor = TODGlobals.getTodEnvSetting(fromState, startEnv, 'StarColor')
         fromFrontLight = TODGlobals.getTodEnvSetting(fromState, startEnv, 'FrontColor')
         fromBackLight = TODGlobals.getTodEnvSetting(fromState, startEnv, 'BackColor')
-        ival = Parallel(LerpFunctionInterval(self.alight.node().setColor, duration = t, toData = TODGlobals.getTodEnvSetting(toState, destEnv, 'AmbientColor') * self.ambientMultiplier, fromData = fromAmbient, name = 'TOD_aLightColor-%d'), LerpFunctionInterval(self.grassLight.node().setColor, duration = t, toData = TODGlobals.getTodEnvSetting(toState, destEnv, 'AmbientColor'), fromData = fromAmbient, name = 'TOD_grassLightColor-%d'), LerpFunctionInterval(self.setFogColor, duration = t, toData = TODGlobals.getTodEnvSetting(toState, destEnv, 'FogColor'), fromData = fromFogColor, name = 'TOD_fogColor-%d'), LerpFunctionInterval(self.setFogExpDensity, duration = t, toData = TODGlobals.getTodEnvSetting(toState, destEnv, 'FogExp'), fromData = fromFogExp, name = 'TOD_fogExp-%d'), LerpFunctionInterval(self.setLinearFogOnset, duration = t, toData = TODGlobals.getTodEnvSetting(toState, destEnv, 'FogLinearRange')[0], fromData = fromFogOnset, name = 'TOD_fogExp-%d'), LerpFunctionInterval(self.setLinearFogPeak, duration = t, toData = TODGlobals.getTodEnvSetting(toState, destEnv, 'FogLinearRange')[1], fromData = fromFogPeak, name = 'TOD_fogExp-%d'), LerpFunctionInterval(self.skyGroup.stars.setColorScale, duration = t, toData = TODGlobals.getTodEnvSetting(toState, destEnv, 'StarColor'), fromData = fromStarColor, name = 'TOD_fogExp-%d'), name = 'TOD_transitionTimeOfDay')
+        ival = Parallel(LerpFunctionInterval(self.alight.node().setColor, duration = t, toData = TODGlobals.getTodEnvSetting(toState, destEnv, 'AmbientColor'), fromData = fromAmbient, name = 'TOD_aLightColor-%d'), LerpFunctionInterval(self.grassLight.node().setColor, duration = t, toData = TODGlobals.getTodEnvSetting(toState, destEnv, 'AmbientColor'), fromData = fromAmbient, name = 'TOD_grassLightColor-%d'), LerpFunctionInterval(self.setFogColor, duration = t, toData = TODGlobals.getTodEnvSetting(toState, destEnv, 'FogColor'), fromData = fromFogColor, name = 'TOD_fogColor-%d'), LerpFunctionInterval(self.setFogExpDensity, duration = t, toData = TODGlobals.getTodEnvSetting(toState, destEnv, 'FogExp'), fromData = fromFogExp, name = 'TOD_fogExp-%d'), LerpFunctionInterval(self.setLinearFogOnset, duration = t, toData = TODGlobals.getTodEnvSetting(toState, destEnv, 'FogLinearRange')[0], fromData = fromFogOnset, name = 'TOD_fogExp-%d'), LerpFunctionInterval(self.setLinearFogPeak, duration = t, toData = TODGlobals.getTodEnvSetting(toState, destEnv, 'FogLinearRange')[1], fromData = fromFogPeak, name = 'TOD_fogExp-%d'), LerpFunctionInterval(self.skyGroup.stars.setColorScale, duration = t, toData = TODGlobals.getTodEnvSetting(toState, destEnv, 'StarColor'), fromData = fromStarColor, name = 'TOD_fogExp-%d'), name = 'TOD_transitionTimeOfDay')
         if not self.fixedSky:
             fromSkyType = TODGlobals.getTodEnvSetting(fromState, startEnv, 'SkyType')
             fromSkyColor = TODGlobals.SKY_CLEARCOLORS[fromSkyType]
@@ -581,19 +629,14 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
 
         if self.moonJollyIval and self.moonJollyIval.isPlaying():
             pass
+        1
         ival.append(LerpFunctionInterval(self.skyGroup.setMoonOverlayAlpha, duration = t, fromData = fromMoonOverlay, toData = toMoonOverlay, name = 'TOD-Trans-MoonJolly'))
         ival.append(LerpFunctionInterval(self.skyGroup.setMoonSize, duration = t, fromData = fromMoonSize, toData = toMoonSize, name = 'TOD-Trans-MoonSize'))
         if self.moonPhaseIval and self.moonPhaseIval.isPlaying():
             pass
+        1
         ival.append(LerpFunctionInterval(self.setMoonState, duration = t, fromData = fromMoonState, toData = toMoonState, name = 'TOD-Trans-MoonPhase'))
         return ival
-
-
-    def modifyWaterColor(self, color):
-        if self.seapatch:
-            self.setWColor = Vec4(color[0], color[1], color[2], 1)
-            #self.seapatch.setColor(self.setWColor)
-            self.seapatch.setWaterColor(self.setWColor)
 
 
     def setMoonState(self, moonPhase):
@@ -661,6 +704,16 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
 
         lastSunDir = TODGlobals.getTodEnvSetting(self.lastState, environment, 'Direction')
         self.skyGroup.setSunTrueAngle(lastSunDir)
+        if base.cr.activeWorld and hasattr(base.cr.activeWorld, 'getWater') and base.cr.activeWorld.getWater():
+            if self.use_shader:
+                self.seapatch = base.cr.activeWorld.getWater()
+            else:
+                self.seapatch = base.cr.activeWorld.getWater().patchNP
+
+        if self.seapatch:
+            seaColor = TODGlobals.getTodEnvSetting(stateId, environment, 'SeaColorShader')
+            self.modifyWaterColor(seaColor)
+            
         fogType = TODGlobals.getTodEnvSetting(stateId, environment, 'FogType')
         self.setFogType(fogType)
         if not render.getFog():
@@ -677,7 +730,7 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
         self.setLightSwitch(lightSwitch)
         envEffect = TODGlobals.getTodEnvSetting(stateId, environment, 'EnvEffect')
         self.setEnvEffect(envEffect)
-        ambientColor = TODGlobals.getTodEnvSetting(stateId, environment, 'AmbientColor') * self.ambientMultiplier
+        ambientColor = TODGlobals.getTodEnvSetting(stateId, environment, 'AmbientColor')
         self.alight.node().setColor(ambientColor)
         self.grassLight.node().setColor(ambientColor)
         self.shadowLight = self.skyGroup.getShadowLight(stateId)
@@ -689,16 +742,6 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
         if self.shadowLight:
             shadowLightColor = TODGlobals.computeLightColor(TODGlobals.getTodEnvSetting(stateId, environment, 'BackColor'), TODGlobals.getTodEnvSetting(stateId, environment, 'AmbientColor'), lightSwitch = lightSwitch)
             self.setBackLightColor(TODGlobals.getTodEnvSetting(stateId, environment, 'BackColor'))
-
-        if base.cr.activeWorld and hasattr(base.cr.activeWorld, 'getWater') and base.cr.activeWorld.getWater():
-            if self.use_shader:
-                self.seapatch = base.cr.activeWorld.getWater()
-            else:
-                self.seapatch = base.cr.activeWorld.getWater().patchNP
-
-        if self.seapatch:
-            seaColor = TODGlobals.getTodEnvSetting(stateId, environment, 'SeaColorShader')
-            self.modifyWaterColor(seaColor)
 
         if self.avatarShadowCaster:
             self.avatarShadowCaster.setLightSrc(self.dlight)
@@ -1148,8 +1191,13 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
     def enterIndoors(self, todSettings = None):
         self.notify.debug('enterIndoors')
         self.currentState = PiratesGlobals.TOD_CUSTOM
-        messenger.send('enterIndoors', [todSettings])
         self.fixedSky = True
+        if self.advancedWeather:
+            self.setSnowState(0)
+            self.setRainState(0)
+            self.setStormState(0)
+            self.setDarkFog(0)
+            self.fixedWeather = True
         self._prepareState(self.currentState)
         sunDir = TODGlobals.getTodEnvSetting(self.currentState, self.environment, 'Direction')
         self.skyGroup.setSunTrueAngle(sunDir)
@@ -1207,8 +1255,10 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
 
     def exitIndoors(self):
         self.notify.debug('exitIndoors')
-        messenger.send('exitIndoors', [todSettings])
         self.fixedSky = False
+        if self.advancedWeather:
+            self.fixedWeather = False
+            self.requestWeather()
         base.positionFarCull()
 
 
@@ -1308,14 +1358,6 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
     def removeAmbientSFXNode(self, node):
         if node in self.ambientSFXList:
             self.ambientSFXList.remove(node)
-
-    def setWorldWetness(self, wetness=0):
-        self.notify.info("Setting Wetness...")
-        if wetness <= 0:
-            render.clearColorScale
-        else:
-            value = wetness * 0.1
-            render.setColorScale(value, value, value, 1)
 
     def runAmbientSFXTask(self, task = None):
         if not (self.inAmbTime) or self.closestNode == None:
@@ -1423,16 +1465,32 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
         self.forcedStateEnabled = False
 
 
+    def modifyWaterColor(self, color):
+        self.setWColor = Vec4(color[0], color[1], color[2], 1)
+        if not self.seapatch:
+            return None
+
+        if self.use_shader:
+            self.seapatch.setWaterColor(self.setWColor)
+
+        elif not self.seapatch.isEmpty():
+            self.seapatch.setColorScale(self.setWColor)
+
+
     def setGreenSea(self):
         pass
         #self.seapatch.setWaterColor(VBase3(0.22, 0.560000, 0.149))
+
 
     def handleHolidayStarted(self, holidayName):
         pass
 
     def handleHolidayEnded(self, holidayName):
         pass
-        
+
+    def requestWeather(self):
+        pass
+
     def setFogColor(self, fogColor):
         self.fogColor = fogColor
         if self.linearFog:
@@ -1443,6 +1501,24 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
 
     def getFogColor(self):
         return self.fogColor
+
+    def setDarkFog(self, state, parent=None):
+        if not self.advancedWeather:
+            return
+        if self.fixedWeather:
+            return
+        if not parent:
+            parent = base.localAvatar
+        if state:
+            if self.groundFog is None:
+                self.groundFog = DarkWaterFog()
+                self.groundFog.reparentTo(parent)
+                self.groundFog.startLoop()
+        else:
+            if self.groundFog:
+                self.groundFog.stopLoop()
+                self.groundFog.destroy()
+                self.groundFog = None
 
     def setFogMask(self, fogMask):
         self.fogMask = fogMask
@@ -1463,6 +1539,7 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
                     base.farCull.setPos(0, self.currFogPeak + 5, 0)
                     self.linearFog.setLinearRange(self.currFogOnset, self.currFogPeak)
                     render.setFog(self.linearFog)
+
 
 
     def setLinearFogOnset(self, onset):
@@ -1517,6 +1594,103 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
 
         self.lerpFogIval = LerpFunctionInterval(setLinearFog, duration = lerpTime, fromData = 0.0, toData = 1.0, name = 'LerpFogIval')
         self.lerpFogIval.start()
+          
+    def setStormState(self, state, changeClouds=False):
+        if not self.advancedWeather:
+            return
+        if not config.GetBool('want-storm-weather', False):
+            return
+        if self.fixedWeather:
+            return
+        if state:
+            if changeClouds:
+                self.setCloudsType(TODGlobals.HEAVYCLOUDS)
+            if self.stormEye is None:
+                self.stormEye = StormEye()
+                self.stormEye.reparentTo(render)
+                self.stormEye.startLoop()
+
+                self.stormRing = StormRing()
+                self.stormRing.reparentTo(render)
+                self.stormRing.setZ(100)
+                self.stormRing.startLoop()
+
+            if self.stormWind is None:
+                self.stormWind = loader.loadSfx('audio/sfx_ocean_wind.ogg')
+                self.stormWind.setLoop(True)
+                self.stormWind.setVolume(0.696)
+                self.stormWind.setPlayRate(1.0)
+                self.stormWind.play()
+        else:
+            if self.stormEye:
+                self.stormEye.stopLoop()
+                self.stormRing.stopLoop()
+
+                self.stormEye.destroy()
+                self.stormRing.destroy()
+
+                self.stormEye = None
+                self.stormRing = None
+
+            if self.stormWind:
+                self.stormWind.stop()
+                self.stormWind = None
+
+    def setSnowState(self, state):
+        if not self.advancedWeather:
+            return
+
+        if self.fixedWeather:
+            return
+
+        if state:
+            if self.snowflakes is None:
+                self.snowflakes = Snowflakes(base.camera)
+                self.snowflakes.reparentTo(render)
+                self.snowflakes.startLoop()
+        else:
+            if self.snowflakes:
+                self.snowflakes.stopLoop()
+                self.snowflakes = None
+
+    def setRainState(self, state):
+        if not self.advancedWeather:
+            return
+        if self.fixedWeather:
+            return
+        if state:
+            if self.rainDrops is None:
+                self.rainDrops = RainDrops(base.camera)
+                self.rainDrops.reparentTo(render)
+                self.rainDrops.startLoop()
+
+                self.rainMist = RainMist(base.camera)
+                self.rainMist.reparentTo(render)
+                self.rainMist.startLoop()
+
+                self.rainSplashes = RainSplashes(base.camera)
+                self.rainSplashes.reparentTo(render)
+                self.rainSplashes.startLoop()
+
+                self.rainSplashes2 = RainSplashes2(base.camera)
+                self.rainSplashes2.reparentTo(render)
+                self.rainSplashes2.startLoop()
+        else: 
+            if self.rainDrops:
+                self.rainDrops.stopLoop()
+                self.rainMist.stopLoop()
+                self.rainSplashes.stopLoop()
+                self.rainSplashes2.stopLoop()
+
+                self.rainDrops.destroy()
+                self.rainMist.destroy()
+                self.rainSplashes.destroy()
+                self.rainSplashes2.destroy()
+
+                self.rainDrops = None
+                self.rainMist = None
+                self.rainSplashes = None
+                self.rainSplashes2 = None  
 
     def getEnviroDictString(self, environment = None, tabs = 0, heading = 'SettingsDict ='):
         if environment == None:
@@ -1582,24 +1756,3 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
         from pirates.leveleditor.TimeOfDayPanel import TimeOfDayPanel
         p = TimeOfDayPanel(tod)
         return "Opening TOD Panel"
-
-    @magicWord(CATEGORY_GAME_DEVELOPER)
-    def greenSeas():
-        tod = base.cr.timeOfDayManager
-        tod.setGreenSea()
-        return "Seas have turned a strange green color..."
-
-    @magicWord(CATEGORY_GAME_DEVELOPER, types=[int])
-    def blackout(state=1):
-        tod = base.cr.timeOfDayManager
-        if state:
-            render.clearLight(tod.sunLight)
-            render.clearLight(tod.grassLight)
-            render.clearLight(tod.alight)
-            render.clearLight(tod.dLight)
-        else:
-            render.setLight(tod.sunLight)
-            render.setLight(tod.grassLight)
-            render.setLight(tod.alight)
-            render.setLight(tod.dLight)
-        return "Set Blackout to state: %s" % state

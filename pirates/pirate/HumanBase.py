@@ -187,6 +187,7 @@ class HumanBase:
         self.style.setClothesShoe(val1, val2)
 
     def setClothesVest(self, val1, val2):
+        print 'hb - vest'
         self.style.setClothesVest(val1, val2)
 
     def setClothesCoat(self, val1, val2):
@@ -197,6 +198,7 @@ class HumanBase:
 
     def setClothesTopColor(self, val1, val2, val3):
         self.style.setClothesTopColor(val1, val2, val3)
+        print 'hb-setClothesTopColor'
 
     def setClothesBotColor(self, val1, val2, val3):
         self.style.setClothesBotColor(val1, val2, val3)

@@ -1067,6 +1067,7 @@ class HumanDNA(object):
 
 
     def setClothesVest(self, val1, val2=0):
+        print 'hdna - vest'
         self.clothes.vest = val1
         self.clothes.vestTexture = val2
 
@@ -1082,15 +1083,19 @@ class HumanDNA(object):
 
 
     def setClothesTopColor(self, val1, val2, val3):
-        self.clothes.shirtColor = val1
-        self.clothes.vestColor = val2
-        self.clothes.coatColor = val3
+        #self.clothes.shirtColor = val1
+        #self.clothes.vestColor = val2
+        #self.clothes.coatColor = val3
+        print 'hdna - setClothesTopColor'
+        pass
 
 
     def setClothesBotColor(self, val1, val2, val3):
-        self.clothes.pantColor = val1
-        self.clothes.sashColor = val2
-        self.clothes.shoeColor = val3
+        #self.clothes.pantColor = val1
+        #self.clothes.sashColor = val2
+        #self.clothes.shoeColor = val3
+        print 'hdna - setClothesBotColor'
+        pass
 
 
     def getTattooChest(self):
@@ -2383,23 +2388,61 @@ class HumanDNA(object):
         self.setGender('m' if dgi.getUint8() else 'f')
 
         # Body
+        if (self.body.shape != dgi.getUint8()):
+            self.setBodyShape(dgi.getUint8())
+        if (self.body.height != (dgi.getInt16() / 100.0)):
+            self.setBodyHeight(dgi.getInt16() / 100.0)
+        if (self.body.color != dgi.getUint8()):
+            self.setBodyColor(dgi.getUint8())
+        if (self.body.skin != dgi.getUint8()):
+            self.setBodySkin(dgi.getUint8())
+        
+        
+        '''
         self.setBodyShape(dgi.getUint8())
         self.setBodyHeight(dgi.getInt16() / 100.0)
         self.setBodyColor(dgi.getUint8())
         self.setBodySkin(dgi.getUint8())
+        '''
 
         # Head
+        
+        if (self.body.headSize != (dgi.getInt16() / 100.0)):
+            self.setHeadSize(dgi.getInt16() / 100.0)
+        if (self.head.headWidth != (dgi.getInt16() / 100.0)):
+            self.setHeadWidth(dgi.getInt16() / 100.0)
+        if (self.head.headHeight != (dgi.getInt16() / 100.0)):
+            self.setHeadHeight(dgi.getInt16() / 100.0)
+        if (self.head.headRoundness != (dgi.getInt16() / 100.0)):
+            self.setHeadRoundness(dgi.getInt16() / 100.0)
+        
+        '''
         self.setHeadSize(dgi.getInt16() / 100.0)
         self.setHeadWidth(dgi.getInt16() / 100.0)
         self.setHeadHeight(dgi.getInt16() / 100.0)
         self.setHeadRoundness(dgi.getInt16() / 100.0)
+        '''
 
         # Jaw
+        
+        if (self.head.jawWidth != (dgi.getInt16() / 100.0)):
+            self.setJawWidth(dgi.getInt16() / 100.0)
+        if (self.head.jawRoundness != (dgi.getInt16() / 100.0)):
+            self.setJawRoundness(dgi.getInt16() / 100.0)
+        if (self.head.jawChinSize != (dgi.getInt16() / 100.0)):
+            self.setJawChinSize(dgi.getInt16() / 100.0)
+        if (self.head.jawAngle != (dgi.getInt16() / 100.0)):
+            self.setJawAngle(dgi.getInt16() / 100.0)
+        if (self.head.jawLength != (dgi.getInt16() / 100.0)):
+            self.setJawLength(dgi.getInt16() / 100.0)
+            
+        '''
         self.setJawWidth(dgi.getInt16() / 100.0)
         self.setJawRoundness(dgi.getInt16() / 100.0)
         self.setJawChinSize(dgi.getInt16() / 100.0)
         self.setJawAngle(dgi.getInt16() / 100.0)
         self.setJawLength(dgi.getInt16() / 100.0)
+        '''
 
         # Mouth
         self.setMouthWidth(dgi.getInt16() / 100.0)
@@ -2451,6 +2494,32 @@ class HumanDNA(object):
         self.setEyesColor(dgi.getUint8())
 
         # Clothes
+        if ((self.clothes.hat != dgi.getUint8()) && (self.clothes.hatTexture != dgi.getUint8())):
+            self.setClothesHat(dgi.getUint8(), dgi.getUint8())
+        
+        if ((self.clothes.shirt != dgi.getUint8()) and (self.clothes.shirtTexture != dgi.getUint8())):
+            self.setClothesShirt(dgi.getUint8(), dgi.getUint8())
+        
+        if ((self.clothes.pant != dgi.getUint8()) and (self.clothes.pantTexture != dgi.getUint8())):
+            self.setClothesPant(dgi.getUint8(), dgi.getUint8())
+            
+        if ((self.clothes.sock != dgi.getUint8()) and (self.clothes.sockTexture != dgi.getUint8())):
+            self.setClothesSock(dgi.getUint8(), dgi.getUint8())
+            
+        if ((self.clothes.shoe != dgi.getUint8()) and (self.clothes.shoeTexture != dgi.getUint8())):
+            self.setClothesShoe(dgi.getUint8(), dgi.getUint8())
+            
+        if ((self.clothes.vest != dgi.getUint8()) and (self.clothes.vestTexture != dgi.getUint8())):
+            self.setClothesVest(dgi.getUint8(), dgi.getUint8())
+            
+        if ((self.clothes.coat != dgi.getUint8()) and (self.clothes.coatTexture != dgi.getUint8())):
+            self.setClothesCoat(dgi.getUint8(), dgi.getUint8())
+            
+        if ((self.clothes.belt != dgi.getUint8()) and (self.clothes.beltTexture != dgi.getUint8())):
+            self.setClothesBelt(dgi.getUint8(), dgi.getUint8())
+        
+        
+        '''
         self.setClothesHat(dgi.getUint8(), dgi.getUint8())
         self.setClothesShirt(dgi.getUint8(), dgi.getUint8())
         self.setClothesPant(dgi.getUint8(), dgi.getUint8())
@@ -2459,7 +2528,8 @@ class HumanDNA(object):
         self.setClothesVest(dgi.getUint8(), dgi.getUint8())
         self.setClothesCoat(dgi.getUint8(), dgi.getUint8())
         self.setClothesBelt(dgi.getUint8(), dgi.getUint8())
-
+        '''
+        print 'clothes'
         # Clothes color
         self.setClothesTopColor(dgi.getUint8(), dgi.getUint8(), dgi.getUint8())
         self.setClothesBotColor(dgi.getUint8(), dgi.getUint8(), dgi.getUint8())

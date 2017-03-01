@@ -3078,6 +3078,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         self.doRegeneration()
 
     def removeClothes(self, clothingType):
+        print 'removeClothes'
         gender = self.style.getGender()
         underwearTable = ClothingGlobals.UNDERWEAR.get(gender)
         if underwearTable:
@@ -3087,6 +3088,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
 
 
     def tryOnClothes(self, location, itemTuple):
+        print 'tryOnClothes'
         gender = self.style.getGender()
         rarity = ItemGlobals.getRarity(itemTuple[1])
         if gender == 'f':
@@ -3101,6 +3103,8 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
 
     def wearClothing(self, location, modelId, texId, colorId):
         takenOff = 0
+        print 'wearClothing'
+        '''
         topColors = self.getStyle().getClothesTopColor()
         botColors = self.getStyle().getClothesBotColor()
         colorHat = self.getStyle().getHatColor()
@@ -3110,29 +3114,52 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         colorPant = botColors[0]
         colorSash = botColors[1]
         colorShoe = botColors[2]
+        '''
         if location == ClothingGlobals.HAT:
+            print 'dpp-hat'
             self.getStyle().setClothesHat(modelId, texId)
             colorHat = colorId
-        elif location == ClothingGlobals.SHIRT:
+            #self.doRegeneration()
+        
+        if location == ClothingGlobals.SHIRT:
+            print 'dpp-shirt'
             self.getStyle().setClothesShirt(modelId, texId)
             colorShirt = colorId
-        elif location == ClothingGlobals.VEST:
+            #self.doRegeneration()
+        
+        if location == ClothingGlobals.VEST:
+            print 'dpp-vest'
             self.getStyle().setClothesVest(modelId, texId)
             colorVest = colorId
-        elif location == ClothingGlobals.COAT:
+            #self.doRegeneration()
+        
+        if location == ClothingGlobals.COAT:
+            print 'dpp-coat'
             self.getStyle().setClothesCoat(modelId, texId)
             colorCoat = colorId
-        elif location == ClothingGlobals.PANT:
+            #self.doRegeneration()
+        
+        if location == ClothingGlobals.PANT:
+            print 'dpp-pant'
             self.getStyle().setClothesPant(modelId, texId)
             colorPant = colorId
-        elif location == ClothingGlobals.BELT:
+            #self.doRegeneration()
+        
+        if location == ClothingGlobals.BELT:
+            print 'dpp-belt'
             self.getStyle().setClothesBelt(modelId, texId)
             colorSash = colorId
-        elif location == ClothingGlobals.SOCK:
+            #self.doRegeneration()
+        
+        if location == ClothingGlobals.SOCK:
+            print 'dpp-sock'
             self.getStyle().setClothesSock(modelId, texId)
-        elif location == ClothingGlobals.SHOE:
+        
+        if location == ClothingGlobals.SHOE:
+            print 'dpp-shoe'
             self.getStyle().setClothesShoe(modelId, texId)
             colorShoe = colorId
+            #self.doRegeneration()
 
         if modelId == -1:
             underwearTable = ClothingGlobals.UNDERWEAR.get(gender)
@@ -3141,12 +3168,21 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
                 modelId = underwearTuple[0]
                 texId = underwearTuple[1]
                 colorId = underwearTuple[2]
-
+                
+        #self.doRegeneration()
+                
+        '''
+        if (location == ClothingGlobals.HAT):
+            self.getStyle().setHatColor(colorHat)
+            self.doRegeneration()
+            
+        if (location == ClothingGlobals.SHIRT) or (location == ClothingGlobals.VEST) or (location == ClothingGlobals.COAT) or 
 
         self.getStyle().setHatColor(colorHat)
         self.getStyle().setClothesTopColor(colorShirt, colorVest, colorCoat)
         self.getStyle().setClothesBotColor(colorPant, colorSash, colorShoe)
         self.doRegeneration()
+        '''
 
     def doRegeneration(self):
         if self.isLocal():
@@ -3155,8 +3191,9 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             localAvatar.guiMgr.combatTray.endButtonCharge()
 
         self.generateHuman(self.style.getGender(), self.masterHuman)
-        self.motionFSM.off()
-        self.motionFSM.on()
+        print 'motionFSM'
+        #self.motionFSM.off()
+        #self.motionFSM.on()
         messenger.send(self.uniqueName('accessoriesUpdate'))
 
         if self.isLocal():
