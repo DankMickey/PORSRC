@@ -365,7 +365,7 @@ class LocalPirate(DistributedPlayerPirate, LocalAvatar):
 
     def t_requestClothes(self):
         if not taskMgr.hasTaskNamed('inventoryClothingUpdate'):
-            taskMgr.doMethodLater(0, self.d_requestClothes, 'inventoryClothingUpdate')
+            taskMgr.doMethodLater(0.25, self.d_requestClothes, 'inventoryClothingUpdate')
 
     def d_requestClothes(self, task=None):
         self.sendUpdate('requestClothes', [self.style.makeNetString()])
