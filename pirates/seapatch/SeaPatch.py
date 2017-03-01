@@ -40,6 +40,7 @@ class SeaPatch(Water):
         self.usingFlatWater = False
         self._qTod = False
         self.todMgr = None
+        #self.setWaterColor(Vec4(22, 66, 115, 1))
         if base.camera:
             self.setCenter(base.camera)
             self.setAnchor(render)
@@ -64,6 +65,7 @@ class SeaPatch(Water):
             # This is needed until we fix water008_20 shader code...
             if (geom_fn == 'water008_20'):
                 shaderModel_toLoad = 'water008_2X'
+                #shaderModel_toLoad = 'water008_20'
             else:
                 shaderModel_toLoad = geom_fn
             self.shader = Shader.load(Shader.SL_GLSL, vertex= shader_directory + shaderModel_toLoad + ".vert", fragment= shader_directory + shaderModel_toLoad + ".frag")
@@ -83,6 +85,9 @@ class SeaPatch(Water):
             self.seamodel = loader.loadModel('models/sea/SeaPatch31')
         self.seamodel.setScale(2, 1, 1)
         self.seamodel.flattenMedium()
+        #self.seaAmb = config.GetFloat('dynamic-ambient-modifier', 0.2)
+        #self.seaAmbColor = self.seaAmb * Vec4(0.22, 0.560000, 0.149, 1)
+        #self.seamodel.setColor(self.seaAmbColor)
         mask = 0xFFFFFFFFL
         if self.use_water_bin:
             self.seamodel.setBin('water', 0)

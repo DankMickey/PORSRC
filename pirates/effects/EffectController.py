@@ -13,58 +13,41 @@ class EffectController:
         pass
 
 
-    def destroy(self, eType="default"):
-        if (eType == "rainObj"):
-            self.finish()
-            if self.f:
-                self.f.cleanup()
+    def destroy(self):
+        #print 'default - destroy'
+        self.finish()
+        if self.f:
+            self.f.cleanup()
 
-            self.f = None
-            self.p0 = None
-            self.removeNode()
-            '''
-            #print 'rainObj - destroy'
-            self.finish()
-            if self.f:
-                self.f.cleanup()
-
-            self.f = None
-            self.p0 = None
-            self.detachNode()
-            '''
-        else:
-            #print 'default - destroy'
-            self.finish()
-            if self.f:
-                self.f.cleanup()
-
-            self.f = None
-            self.p0 = None
-            self.removeNode()
+        self.f = None
+        self.p0 = None
+        self.removeNode()
         
+    def destroyRain(self):
+        #print 'rainObj - destroy'
+        self.finish()
+        if self.f:
+            self.f.cleanup()
+
+        self.f = None
+        self.p0 = None
+        self.detachNode()
+        
+    def cleanUpRain(self):
+        #print 'rainObj - cleanUpEffect'
+        if self.f:
+            self.f.disable()
+
+        self.removeNode()
 
 
-    def cleanUpEffect(self, eType="default"):
-        if (eType == "rainObj"):
-            self.setPosHpr(0, 0, 0, 0, 0, 0)
-            if self.f:
-                self.f.disable()
+    def cleanUpEffect(self):
+        #print 'default - cleanUpEffect'
+        self.setPosHpr(0, 0, 0, 0, 0, 0)
+        if self.f:
+            self.f.disable()
 
-            self.detachNode()
-            '''
-            #print 'rainObj - cleanUpEffect'
-            if self.f:
-                self.f.disable()
-
-            self.removeNode()
-            '''
-        else:
-            #print 'default - cleanUpEffect'
-            self.setPosHpr(0, 0, 0, 0, 0, 0)
-            if self.f:
-                self.f.disable()
-
-            self.detachNode()
+        self.detachNode()
 
 
     def reallyCleanUpEffect(self):
