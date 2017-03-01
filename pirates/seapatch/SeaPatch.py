@@ -64,8 +64,8 @@ class SeaPatch(Water):
             geom_fn = shader_file_name_array[shader_model]
             # This is needed until we fix water008_20 shader code...
             if (geom_fn == 'water008_20'):
-                #shaderModel_toLoad = 'water008_2X'
-                shaderModel_toLoad = 'water008_20'
+                shaderModel_toLoad = 'water008_2X'
+                #shaderModel_toLoad = 'water008_20'
             else:
                 shaderModel_toLoad = geom_fn
             self.shader = Shader.load(Shader.SL_GLSL, vertex= shader_directory + shaderModel_toLoad + ".vert", fragment= shader_directory + shaderModel_toLoad + ".frag")
