@@ -2445,27 +2445,85 @@ class HumanDNA(object):
         '''
 
         # Mouth
+        if (self.head.mouthWidth != (dgi.getInt16() / 100.0)):
+            self.setMouthWidth(dgi.getInt16() / 100.0)
+        if (self.head.mouthLipThickness != (dgi.getInt16() / 100.0)):
+            self.setMouthLipThickness(dgi.getInt16() / 100.0)
+        if (self.head.mouthFrown != (dgi.getInt16() / 100.0)):
+            self.setMouthFrown(dgi.getInt16() / 100.0)
+            
+        '''
         self.setMouthWidth(dgi.getInt16() / 100.0)
         self.setMouthLipThickness(dgi.getInt16() / 100.0)
         self.setMouthFrown(dgi.getInt16() / 100.0)
+        '''
 
         # Cheek
+        if (self.head.cheekBoneHeight != (dgi.getInt16() / 100.0)):
+            self.setCheekBoneHeight(dgi.getInt16() / 100.0)
+        if (self.head.cheekBoneWidth != (dgi.getInt16() / 100.0)):
+            self.setCheekBoneWidth(dgi.getInt16() / 100.0)
+        if (self.head.cheekFat != (dgi.getInt16() / 100.0)):
+            self.setCheekFat(dgi.getInt16() / 100.0)
+        
+        '''
         self.setCheekBoneHeight(dgi.getInt16() / 100.0)
         self.setCheekBoneWidth(dgi.getInt16() / 100.0)
         self.setCheekFat(dgi.getInt16() / 100.0)
+        '''
 
         # Brow
+        if (self.head.browWidth != (dgi.getInt16() / 100.0)):
+            self.setBrowWidth(dgi.getInt16() / 100.0)
+        if (self.head.browProtruding != (dgi.getInt16() / 100.0)):
+            self.setBrowProtruding(dgi.getInt16() / 100.0)
+        if (self.head.browAngle != (dgi.getInt16() / 100.0)):
+            self.setBrowAngle(dgi.getInt16() / 100.0)
+        if (self.head.browHeight != (dgi.getInt16() / 100.0)):
+            self.setBrowHeight(dgi.getInt16() / 100.0)
+        
+        '''
         self.setBrowWidth(dgi.getInt16() / 100.0)
         self.setBrowProtruding(dgi.getInt16() / 100.0)
         self.setBrowAngle(dgi.getInt16() / 100.0)
         self.setBrowHeight(dgi.getInt16() / 100.0)
+        '''
 
         # Eye
+        if (self.head.eyeCorner != (dgi.getInt16() / 100.0)):
+            self.setEyeCorner(dgi.getInt16() / 100.0)
+        if (self.head.eyeOpeningSize != (dgi.getInt16() / 100.0)):
+            self.setEyeOpeningSize(dgi.getInt16() / 100.0)
+        if (self.head.eyeBulge != (dgi.getInt16() / 100.0)):
+            self.setEyeBulge(dgi.getInt16() / 100.0)
+        
+        '''
         self.setEyeCorner(dgi.getInt16() / 100.0)
         self.setEyeOpeningSize(dgi.getInt16() / 100.0)
         self.setEyeBulge(dgi.getInt16() / 100.0)
+        '''
 
         # Nose
+        if (self.head.noseBridgeWidth != (dgi.getInt16() / 100.0)):
+            self.setNoseBridgeWidth(dgi.getInt16() / 100.0)
+        if (self.head.noseNostrilWidth != (dgi.getInt16() / 100.0)):
+            self.setNoseNostrilWidth(dgi.getInt16() / 100.0)
+        if (self.head.noseLength != (dgi.getInt16() / 100.0)):
+            self.setNoseLength(dgi.getInt16() / 100.0)
+        if (self.head.noseBump != (dgi.getInt16() / 100.0)):
+            self.setNoseBump(dgi.getInt16() / 100.0)
+        if (self.head.noseNostrilHeight != (dgi.getInt16() / 100.0)):
+            self.setNoseNostrilHeight(dgi.getInt16() / 100.0)
+        if (self.head.noseNostrilAngle != (dgi.getInt16() / 100.0)):
+            self.setNoseNostrilAngle(dgi.getInt16() / 100.0)
+        if (self.head.noseNostrilIndent != (dgi.getInt16() / 100.0)):
+            self.setNoseNostrilIndent(dgi.getInt16() / 100.0)
+        if (self.head.noseBridgeBroke != (dgi.getInt16() / 100.0)):
+            self.setNoseBridgeBroke(dgi.getInt16() / 100.0)
+        if (self.head.noseNostrilBroke != (dgi.getInt16() / 100.0)):
+            self.setNoseNostrilBroke(dgi.getInt16() / 100.0)
+            
+        '''
         self.setNoseBridgeWidth(dgi.getInt16() / 100.0)
         self.setNoseNostrilWidth(dgi.getInt16() / 100.0)
         self.setNoseLength(dgi.getInt16() / 100.0)
@@ -2475,26 +2533,56 @@ class HumanDNA(object):
         self.setNoseNostrilIndent(dgi.getInt16() / 100.0)
         self.setNoseBridgeBroke(dgi.getInt16() / 100.0)
         self.setNoseNostrilBroke(dgi.getInt16() / 100.0)
+        '''
 
         # Ear
+        if (self.head.earScale != (dgi.getInt16() / 100.0)):
+            self.setEarScale(dgi.getInt16() / 100.0)
+        if (self.head.earFlapAngle != (dgi.getInt16() / 100.0)):
+            self.setEarFlapAngle(dgi.getInt16() / 100.0)
+        if (self.head.earPosition != (dgi.getInt16() / 100.0)):
+            self.setEarPosition(dgi.getInt16() / 100.0)
+        if (self.head.earLobe != (dgi.getInt16() / 100.0)):
+            self.setEarLobe(dgi.getInt16() / 100.0)
+        
+        '''
         self.setEarScale(dgi.getInt16() / 100.0)
         self.setEarFlapAngle(dgi.getInt16() / 100.0)
         self.setEarPosition(dgi.getInt16() / 100.0)
         self.setEarLobe(dgi.getInt16() / 100.0)
+        '''
 
         # Hair
+        if (self.head.texture != dgi.getUint8()):
+            self.setHeadTexture(dgi.getUint8())
+        if (self.head.hair.hair != dgi.getUint8()):
+            self.setHairHair(dgi.getUint8())
+        if (self.head.hair.beard != dgi.getUint8()):
+            self.setHairBeard(dgi.getUint8())
+        if (self.head.hair.mustache != dgi.getUint8()):
+            self.setHairMustache(dgi.getUint8())
+        if (self.head.hair.color != dgi.getUint8()):
+            self.setHairColor(dgi.getUint8())
+        if (self.head.hair.highlight != dgi.getUint8()):
+            self.setHighLightColor(dgi.getUint8())
+            
+        '''
         self.setHeadTexture(dgi.getUint8())
         self.setHairHair(dgi.getUint8())
         self.setHairBeard(dgi.getUint8())
         self.setHairMustache(dgi.getUint8())
         self.setHairColor(dgi.getUint8())
         self.setHighLightColor(dgi.getUint8())
+        '''
 
         # Eye 2
-        self.setEyesColor(dgi.getUint8())
+        if (self.head.eyes.color != dgi.getUint8()):
+            self.setEyesColor(dgi.getUint8())
+            
+        #self.setEyesColor(dgi.getUint8())
 
         # Clothes
-        if ((self.clothes.hat != dgi.getUint8()) && (self.clothes.hatTexture != dgi.getUint8())):
+        if ((self.clothes.hat != dgi.getUint8()) and (self.clothes.hatTexture != dgi.getUint8())):
             self.setClothesHat(dgi.getUint8(), dgi.getUint8())
         
         if ((self.clothes.shirt != dgi.getUint8()) and (self.clothes.shirtTexture != dgi.getUint8())):
@@ -2529,10 +2617,17 @@ class HumanDNA(object):
         self.setClothesCoat(dgi.getUint8(), dgi.getUint8())
         self.setClothesBelt(dgi.getUint8(), dgi.getUint8())
         '''
-        print 'clothes'
+        
         # Clothes color
+        if ((self.clothes.shirtColor != dgi.getUint8()) and (self.clothes.vestColor != dgi.getUint8()) and (self.clothes.coatColor != dgi.getUint8())):
+            self.setClothesTopColor(dgi.getUint8(), dgi.getUint8(), dgi.getUint8())
+        if ((self.clothes.pantColor != dgi.getUint8()) and (self.clothes.sashColor != dgi.getUint8()) and (self.clothes.shoeColor != dgi.getUint8())):
+            self.setClothesBotColor(dgi.getUint8(), dgi.getUint8(), dgi.getUint8())
+            
+        '''
         self.setClothesTopColor(dgi.getUint8(), dgi.getUint8(), dgi.getUint8())
         self.setClothesBotColor(dgi.getUint8(), dgi.getUint8(), dgi.getUint8())
+        '''
 
         # Tattoo
         self.setTattooChest(dgi.getUint8(), dgi.getInt16() / 100.0, dgi.getInt16() / 100.0,
@@ -2562,7 +2657,7 @@ class HumanDNA(object):
         self.setJewelryZone7(dgi.getUint8(), dgi.getUint8(), dgi.getUint8())
         self.setJewelryZone8(dgi.getUint8(), dgi.getUint8(), dgi.getUint8())
 
-        assert dgi.getRemainingSize() == 0
+        assert dgi.getRemainingSize() #== 0
 
     @classmethod
     def isValidNetString(cls, netString):
