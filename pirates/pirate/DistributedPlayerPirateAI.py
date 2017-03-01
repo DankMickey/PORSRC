@@ -813,7 +813,6 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
     def requestClothes(self, dna):
         style = HumanDNA()
         style.makeFromNetString(dna)
-        print dna
 
         self.style.clothes = style.clothes
         self.d_setDNAString(self.style.makeNetString())
