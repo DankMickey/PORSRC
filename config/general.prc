@@ -53,7 +53,7 @@ want-special-effects #t
 want-particles #t
 
 # GLSL DEBUG
-gl-check-errors #f
+gl-check-errors #t
 
 # GUI
 hide-gui #f
@@ -160,6 +160,7 @@ prefer-parasite-buffer 1
 force-parasite-buffer 1
 retransform-sprites 1
 verify-lods 0
+want-dynamic-lighting #f
 
 # WINDOW SETTINGS
 wide-by-default #f

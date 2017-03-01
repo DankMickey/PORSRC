@@ -57,10 +57,10 @@ class RainDrops(EffectController, NodePath):
 
 
     def cleanUpEffect(self):
-        EffectController.cleanUpEffect(self, eType="rainObj")
+        EffectController.cleanUpRain(self)
 
 
     def destroy(self):
         self.rainMusic.setLoop(False)
         self.rainMusic.stop() #Stop playing the rainMusic
-        EffectController.destroy(self, eType="rainObj")
+        EffectController.destroyRain(self)

@@ -113,7 +113,7 @@ class Swamp(Water):
             self.water_g = 43
             self.water_b = 38
             self.water_a = 255
-        self.set_water_color()
+        self.set_water_color_np()
         self.reflection_factor = 0.34
         self.set_reflection_parameters_np()
 
@@ -141,7 +141,7 @@ class Swamp(Water):
                     self.water_g = 43
                     self.water_b = 38
                     self.water_a = 255
-                self.set_water_color()
+                self.set_water_color_np()
                 self.reflection_factor = 0.34
                 self.set_reflection_parameters_np()
 

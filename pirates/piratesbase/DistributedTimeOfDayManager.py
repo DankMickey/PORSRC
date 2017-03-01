@@ -54,6 +54,9 @@ class DistributedTimeOfDayManager(DistributedObject, TimeOfDayManager):
         if self.syncEnabled:
             self.sendUpdate('requestSync')
 
+    def requestWeather(self):
+        self.sendUpdate('requestWeather')
+
     def setIsPaused(self, isPaused):
         self.isPaused = isPaused
 
@@ -107,3 +110,27 @@ class DistributedTimeOfDayManager(DistributedObject, TimeOfDayManager):
         currentTime = globalClock.getFrameTime()
         timeStamp = globalClockDelta.networkToLocalTime(targetTime, bits = 32)
         relativeStartTime = currentTime - timeStamp
+
+
+    def setMoonJolly(self, isJolly):
+        self.switchJollyMoon(isJolly)
+
+
+    def setRain(self, isRain):
+        self.setRainState(isRain)
+
+
+    def setStorm(self, isStorm):
+        self.setStormState(isStorm)
+
+
+    def setBlackFog(self, isDarkFog):
+        self.setDarkFog(isDarkFog)
+
+
+    def setClouds(self, cloudType):
+        self.setCloudsType(cloudType)
+
+
+    def setSnow(self, isSnow):
+        self.setSnowState(isSnow)
