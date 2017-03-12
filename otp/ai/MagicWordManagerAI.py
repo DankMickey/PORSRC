@@ -16,6 +16,8 @@ class MagicWordManagerAI(DistributedObjectAI):
             self.sendUpdateToAvatarId(invokerId, 'sendMagicWordResponse', ['missing invoker'])
             return
 
+        print 'magic-word', invokerId, invoker.getName(), invoker.getAdminAccess(), '"', word, '"'
+
         if invoker.getAdminAccess() < MINIMUM_MAGICWORD_ACCESS:
             self.air.writeServerEvent('suspicious', avId=invokerId, message='Attempted to issue magic word: %s' % word)
             dg = PyDatagram()

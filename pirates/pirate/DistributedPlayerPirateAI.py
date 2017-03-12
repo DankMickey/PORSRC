@@ -852,14 +852,6 @@ def sysname(text):
     air.systemMsgAll(text)
     return "Sent system message '%s' to all pirates in the district." % text
 
-@magicWord(CATEGORY_GAME_DEVELOPER)
-def update(reason="for an update"):
-    """Send a whisper to the whole gameserver, prefixed with 'ADMIN Name:'."""
-    air = spellbook.getInvoker().air
-    text = "ADMIN: Ahoy, maties! Pirates Online Retribution will be closing momentarily " + reason + "." # Maintenance text
-    air.systemMsgAll(text)
-    return "Sent maintenance warning message to all pirates in the gameserver!"
-
 @magicWord(CATEGORY_GAME_MASTER, types=[int])
 def hp(value=-1):
     av = spellbook.getTarget()
