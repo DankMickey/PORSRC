@@ -1,4 +1,4 @@
-from panda3d.core import AlphaTestAttrib, CollideMask, CollisionInvSphere, CollisionNode, FadeLODNode, Fog, LODNode, Light, NodePath, RenderAttrib, TextNode, Texture, TextureStage, VBase4, Vec3, Vec4, VBase3
+from panda3d.core import AlphaTestAttrib, CollideMask, CollisionInvSphere, CollisionNode, FadeLODNode, Fog, LODNode, Light, NodePath, RenderAttrib, TextNode, Texture, TextureStage, VBase4, Vec3, Vec4
 import random
 import re
 import imp
@@ -266,13 +266,10 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
             base.loadingScreen.tick()
             self.startCustomEffects(island = True)
             base.loadingScreen.tick()
-            self.water = SeaPatch(render, Reflection.getGlobalReflection(), todMgr = base.cr.timeOfDayManager)
+            self.type = 'Island Zone'
             base.loadingScreen.tick()
-            #self.water.modify_water_color_factor_np(VBase3(0.580392156862745, 0.705882352941176, 0.858823529411765))
-            #base.loadingScreen.tick()
-            self.water.loadSeaPatchFile('out.spf')
-            base.loadingScreen.tick()
-            self.water.updateWater(0)
+            if self.parentWorld and self.parentWorld.getWater():
+                self.parentWorld.getWater().enable()
             base.loadingScreen.tick()
             if self.isDockable():
                 self.setupMinimap()
@@ -326,6 +323,12 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
             self.destroyMinimap()
             base.musicMgr.requestCurMusicFadeOut(removeFromPlaylist = True)
             self.showSailingLOD()
+            print self.parentWorld
+            print self.parentWorld.getWater()
+            if self.parentWorld and self.parentWorld.getWater():
+                print 'self.parentWorld.getWater()'
+                self.parentWorld.getWater().disable()
+                print 'self.parentWorld.getWater().disable'
             localAvatar.clearInterestNamed(None, [
                 'IslandLocal'])
         elif level == 1:
@@ -353,10 +356,10 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
             if not base.cr.config.GetBool('remove-island-barriers', 0):
                 self.setupPlayerBarrier()
 
-            if not base.shipsVisibleFromIsland:
-                self.parentWorld.worldGrid.stopProcessVisibility()
-            else:
-                self.parentWorld.worldGrid.startProcessVisibility(localAvatar)
+            #if not base.shipsVisibleFromIsland:
+            #    self.parentWorld.worldGrid.stopProcessVisibility()
+            #else:
+            self.parentWorld.worldGrid.startProcessVisibility(localAvatar)
             base.hideShipNametags = True
             base.loadingScreen.tick()
             messenger.send('hide-ship-nametags')
@@ -500,20 +503,17 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
             lowend = '_lowend'
 
         islandBaseName = self.modelPath.split('_zero')[0]
-        base.loadingScreen.tick()
         waveModel = loader.loadModel(islandBaseName + lowend + '_wave_none', okMissing = True)
         if lowend != '' and not waveModel:
             lowend = ''
             waveModel = loader.loadModel(islandBaseName + lowend + '_wave_none', okMissing = True)
 
         if waveModel:
-            waveModel.setBin('water', 10)
             self.islandShoreWave = Actor.Actor(waveModel)
             self.islandShoreWave.loadAnims({
                 'idle': islandBaseName + lowend + '_wave_idle' })
             self.islandShoreWave.reparentTo(parent)
             self.islandShoreWave.loop('idle')
-            self.islandShoreWave.setBin('water', 10)
             meshes = self.islandShoreWave.findAllMatches('**/mesh_tide1')
             if not meshes.isEmpty():
                 mesh = meshes[0]
@@ -521,12 +521,14 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
                 if joints.getNumPaths():
                     mesh.setTexProjector(mesh.findTextureStage('default'), joints[0], parent)
 
+
             meshes = self.islandShoreWave.findAllMatches('**/mesh_tide2')
             if not meshes.isEmpty():
                 mesh = meshes[0]
                 joints = self.islandShoreWave.findAllMatches('**/uvj_WakeWhiteTide2')
                 if joints.getNumPaths():
                     mesh.setTexProjector(mesh.findTextureStage('default'), joints[0], parent)
+
 
             lavaCombo = self.islandShoreWave.findAllMatches('**/lava_combo_*')
             if lavaCombo.getNumPaths():
@@ -552,17 +554,25 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
                 joint = self.islandShoreWave.find('**/uvj_LavaCool1')
                 lavaCoolRoot.setTexProjector(lavaCoolRoot.findTextureStage('default'), joint, parent)
 
-            self.islandShoreWave.setPlayRate(0.80000000000000004, 'idle')
-            OTPRender.renderReflection(False, self.islandShoreWave, 'p_island_shore', None)
+            #animSpeed = 0.8
+            #self.islandShoreWave.setPlayRate(animSpeed, 'idle')
+            #self.accept('windSpeedChange', self.adjustShoreWaveSpeed)
+            #OTPRender.renderReflection(False, self.islandShoreWave, 'p_island_shore', None)
             alpha_test_attrib = AlphaTestAttrib.make(RenderAttrib.MAlways, 0)
             self.islandShoreWave.setAttrib(alpha_test_attrib, 100)
             self.islandShoreWave.setTwoSided(1, 100)
-            #self.islandShoreWave.setDepthWrite(0, 100)
+            self.islandShoreWave.setDepthWrite(0, 100)
+
+    def adjustShoreWaveSpeed(self, wind):
+        if self.islandShoreWave:
+            self.islandShoreWave.setPlayRate(0.8, 'idle')
 
     def unloadIslandShoreWave(self):
-        if self.islandShoreWave:
-            self.islandShoreWave.delete()
-            self.islandShoreWave = None
+        print 'unloadIslandShoreWave'
+        #if self.islandShoreWave:
+            #self.ignore('windSpeedChange')
+        self.islandShoreWave.delete()
+        self.islandShoreWave = None
 
     def foo(self):
         collNodes = self.geom.findAllMatches('**/+CollisionNode')
@@ -717,19 +727,16 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
             self.nameText.show()
     
     def initializeNameText(self):
-        if config.GetBool('show-island-names', True):
-            scale = WorldGlobals.getNametagScale(self.name)
-            self.nameNode = TextNode('islandText')
-            self.nameNode.setText(self.name)
-            self.nameNode.setFont(PiratesGlobals.getPirateFont())
-            self.nameNode.setWordwrap(PiratesGlobals.NAMETAG_WORDWRAP)
-            self.nameText = self.attachNewNode(self.nameNode)
-            self.nameText.setPos(0, 0, WorldGlobals.getNametagHeight(self.name))
-            self.nameText.setFogOff()
-            self.nameText.setLightOff()
-            self.nameText.setScale(WorldGlobals.getNametagScale(self.name))
-        else:
-            pass
+        scale = WorldGlobals.getNametagScale(self.name)
+        self.nameNode = TextNode('islandText')
+        self.nameNode.setText(self.name)
+        self.nameNode.setFont(PiratesGlobals.getPirateFont())
+        self.nameNode.setWordwrap(PiratesGlobals.NAMETAG_WORDWRAP)
+        self.nameText = self.attachNewNode(self.nameNode)
+        self.nameText.setPos(0, 0, WorldGlobals.getNametagHeight(self.name))
+        self.nameText.setFogOff()
+        self.nameText.setLightOff()
+        self.nameText.setScale(WorldGlobals.getNametagScale(self.name))
     
     def deleteNameText(self):
         if self.nameText:

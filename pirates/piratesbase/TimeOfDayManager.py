@@ -1255,6 +1255,7 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
 
     def exitIndoors(self):
         self.notify.debug('exitIndoors')
+        messenger.send('exitIndoors', [])
         self.fixedSky = False
         if self.advancedWeather:
             self.fixedWeather = False
@@ -1659,6 +1660,7 @@ class TimeOfDayManager(FSM.FSM, TimeOfDayManagerBase.TimeOfDayManagerBase):
         if self.fixedWeather:
             return
         if state:
+            self.setCloudsType(TODGlobals.HEAVYCLOUDS)
             if self.rainDrops is None:
                 self.rainDrops = RainDrops(base.camera)
                 self.rainDrops.reparentTo(render)

@@ -103,7 +103,6 @@ teleport-all #t
 # WORLD
 want-searchables #t
 want-link-tunnels #t
-show-island-names #f
 
 # BAN
 ban-do-ban #f

@@ -240,7 +240,7 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
         connector = self.cr.doId2do.get(connectorId)
         if connector:
             self.connectors[connectorId] = connector
-            if connector.dclass.getName() == 'DistributedGATunnel':
+            if connector.dclass.getName() == 'DistributedGAConnector':
                 connector.reparentConnectorToArea(self)
 
             if self._DistributedGameArea__onOffState:
@@ -669,8 +669,8 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
 
         else:
             model_alpha = None
-        model = reference.find('**/water_color_swamp')
-        if model:
+        model = reference.find('**/swamp_water_color')
+        if model and False:
             if use_shader:
                 model.show()
                 model_texture = model.findTexture('*')

@@ -33,7 +33,6 @@ class DistributedOceanGrid(DistributedCartesianGrid, OceanGridBase, MappableGrid
         world = self.cr.doId2do.get(self.parentId)
         if parentId not in (0, self.cr.getGameDoId()):
             pass
-        1
 
     def disable(self):
         DistributedCartesianGrid.disable(self)
@@ -49,9 +48,9 @@ class DistributedOceanGrid(DistributedCartesianGrid, OceanGridBase, MappableGrid
         DistributedCartesianGrid.delete(self)
 
     def setupWater(self):
-        r = Reflection.getGlobalReflection()
-        water = SeaPatch(self, reflection = r)
+        water = SeaPatch(render, Reflection.getGlobalReflection(), todMgr = base.cr.timeOfDayManager)
         water.loadSeaPatchFile('out.spf')
+        water.updateWater(0)
         self.water = water
 
     def cleanupWater(self):

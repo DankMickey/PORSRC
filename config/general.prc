@@ -53,7 +53,7 @@ want-special-effects #t
 want-particles #t
 
 # GLSL DEBUG
-gl-check-errors #t
+gl-check-errors #f
 
 # GUI
 hide-gui #f
@@ -114,6 +114,20 @@ enable-stereo-display #t
 
 # OTHER
 text-default-font models/fonts/BardiT_outline.bam
+#smooth-lag 1
+want-water-reflections #t
+#framebuffer-stencil 1
+stencil-bits 1
+#framebuffer-alpha 1
+#alpha-bits 8
+
+#stencil-bits 0.125
+#framebuffer-alpha 1
+#alpha-bits 8
+#dx-management 0
+#dx-texture-management 0
+#prefer-parasite-buffer 1
+#force-parasite-buffer 1
 
 # RESOURCES
 default-model-extension .bam
@@ -128,6 +142,7 @@ enable-sky #t
 prepare-scene #t
 advanced-weather #t
 want-soft-tod-changes #t
+want-storm-weather #f
 
 # SAILING
 want-seas-closed #t
@@ -142,25 +157,12 @@ want-coderedemption #t
 reject-all-redeem-codes #f
 
 # WATER/WAVES
+show-island-names #f
 want-water-reflection #t
 want-water-reflection-show-through-only #f
 want-seapatch #t
 want-water-panel #f
 flagship-wave-count 2
-
-# P3D GLSL GRAPHICS
-framebuffer-multisample 1
-multisamples 2
-allow-live-flatten #t
-stencil-bits 8
-textures-power-2 down
-framebuffer-alpha 1
-alpha-bits 8
-prefer-parasite-buffer 1
-force-parasite-buffer 1
-retransform-sprites 1
-verify-lods 0
-want-dynamic-lighting #f
 
 # WINDOW SETTINGS
 wide-by-default #f
