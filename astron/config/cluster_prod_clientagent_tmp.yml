@@ -2,13 +2,13 @@ daemon:
     name: Client Agent
 
 general:
-    eventlogger: %LOGGER_IP%
+    eventlogger: [$eventLoggerIp]
     dc_files:
         - ../dclass/otp.dc
         - ../dclass/pirates.dc
 
 messagedirector:
-    connect: %MD_IP%
+    connect: [$astronIp]
 
 uberdogs:
     - class: ClientServicesManager
@@ -38,7 +38,7 @@ uberdogs:
 roles:
     - type: clientagent
       bind: 0.0.0.0:29150
-      version: "%VERSION%"
+      version: "[$version]"
       client:
           relocate: true
           add_interest: enabled

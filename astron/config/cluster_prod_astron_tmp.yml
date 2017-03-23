@@ -2,13 +2,13 @@ daemon:
     name: Production Cluster
 
 general:
-    eventlogger: 127.0.0.1:%LOGGER_PORT%
+    eventlogger: [$eventLoggerIp]
     dc_files:
         - ../dclass/otp.dc
         - ../dclass/pirates.dc
 
 messagedirector:
-    bind: 0.0.0.0:%MD_PORT%
+    bind: 0.0.0.0:[@astronIp]
 
 uberdogs:
     - class: ClientServicesManager
@@ -37,7 +37,7 @@ uberdogs:
 
 roles:
     - type: stateserver
-      control: %STATESERVER%
+      control: [$stateServer]
 
     - type: database
       control: 1101
@@ -46,7 +46,7 @@ roles:
           max: 399999999
       backend:
         type: mongodb
-        server: %MONGO_IP%
+        server: [$mongoIp]
 
     - type: dbss
       database: 1101
@@ -55,5 +55,5 @@ roles:
           - max: 399999999
 
     - type: eventlogger
-      bind: 0.0.0.0:%LOGGER_PORT%
+      bind: 0.0.0.0:[@eventLoggerIp]
       output: ../logs/events-%y%m%d_%H%M%S.log
