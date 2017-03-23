@@ -11,3 +11,6 @@ want-random-invasions #f
 
 # INVASIONS
 want-invasions #f
+
+# SPLUNK
+want-splunk #f
