@@ -26,6 +26,7 @@ class PiratesInternalRepository(AstronInternalRepository):
         self.notify.warning('The usage of MongoDB is highly recommended. Please switch as soon as possible.')
 
     def handleConnected(self):
+        self.splunkEnabled = config.GetBool('want-splunk', False)
         self.netMessenger = PiratesNetMessengerAI(self)
         self.logQueue = Queue()
         self.analyticsMgr = AnalyticsManagerAI()
@@ -52,11 +53,12 @@ class PiratesInternalRepository(AstronInternalRepository):
         
         self.logThreads = []
         
-        for i in xrange(4):
-            thread = SplunkThreadAI()
-            thread.daemon = True
-            thread.start()
-            self.logThreads.append(thread)
+        if self.splunkEnabled:
+            for i in xrange(4):
+                thread = SplunkThreadAI()
+                thread.daemon = True
+                thread.start()
+                self.logThreads.append(thread)
 
         self.notify.info('Connected to MongoDB.')
     
@@ -150,11 +152,14 @@ class PiratesInternalRepository(AstronInternalRepository):
         return 1
     
     def writeServerEvent(self, logType, **kwargs):
-        log = collections.OrderedDict()
-        log['type'] = logType
-        log['sender'] = self.eventLogId
-        log.update(kwargs)
-        self.logQueue.put(log)
+        if self.splunkEnabled:
+            log = collections.OrderedDict()
+            log['type'] = logType
+            log['sender'] = self.eventLogId
+            log.update(kwargs)
+            self.logQueue.put(log)
+        else:
+            AstronInternalRepository.writeServerEvent(self, logType, **kwargs)
     
     def getObjectsOfExactClass(self, objClass):
         return {doId: do for doId, do in self.doId2do.items() if do.__class__ == objClass}
