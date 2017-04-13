@@ -211,7 +211,7 @@ class RemoteAccountDB(AccountDB):
     def decodeToken(self, token):
         error = lambda issue: {'success': False, 'reason': 'The account server rejected your token: %s' % issue}
 
-        if len(token) != 55:
+        if len(token) != 128:
             return error('Invalid size')
 
         if not accountServerTokenLink:
