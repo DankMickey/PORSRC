@@ -654,6 +654,12 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
             
             if radius >= 0.0:
                 self.cAggro.setRadius(radius)
+                
+    def setLegState(self, anim):
+        if (anim == '1'):
+            self.loop('walk')
+        elif (anim == '0'):
+            self.loop('idle')
 
     def getIsAlarmed(self):
         return self.isAlarmed
@@ -830,6 +836,9 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
             self.doNoticeFX()
 
     def doNoticeFX(self):
+        #print 'doNoticeFX'
+        #self.startLookAt()
+        #self.loop('run', blendDelay = 0.001)
         pass
 
     def presetNoticeAnimation(self):
@@ -886,9 +895,11 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
             self.notify.error('Invalid animation %s for %s|isInInvasion = %s|isGenerated = %s|mixer = %s' % (idleAnimInfo, `self`, self.isInInvasion(), self.isGenerated(), self._UsesAnimationMixer__mixer.__class__.__name__))
 
     def startNoticeLoop(self):
+        #print 'startNoticeLoop'
         pass
 
     def endNoticeLoop(self):
+        #print 'endNoticeLoop'
         pass
 
     def playNoticeAnim(self):
