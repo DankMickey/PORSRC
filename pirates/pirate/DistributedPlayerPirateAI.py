@@ -902,7 +902,7 @@ def allegiance(side=None):
     av.b_setAllegiance(allegiances.index(side))
     return "%s's allegiance has been set!" % av.getName()
 
-@magicWord(CATEGORY_MEDIA_TEAM)
+@magicWord(CATEGORY_SPONSOR)
 def hideGM():
     av = spellbook.getInvoker()
     av.b_setGMHidden(not av.getGMHidden())
