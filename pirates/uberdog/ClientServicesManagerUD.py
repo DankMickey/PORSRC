@@ -219,7 +219,8 @@ class RemoteAccountDB(AccountDB):
 
         try:
             data = urllib.urlencode({'udtoken': token})
-            request = urllib2.Request(accountServerTokenLink, data)
+            headers = {'User-Agent': 'POR-ClientServicesManagerUD'}
+            request = urllib2.Request(accountServerTokenLink, data, headers)
             response = urllib2.urlopen(request).read()
             response = json.loads(response)
             user = response['user']
