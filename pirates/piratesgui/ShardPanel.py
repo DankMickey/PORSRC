@@ -31,7 +31,6 @@ class ShardPanel(DirectFrame):
         bounds = self.getBounds()
         self['frameSize'] = Vec4(bounds[0], bounds[1], bounds[2], bounds[3]) * 1.25
         self.shards = { }
-        self.popTrackerHandle = None
         self.stopLightButtons = { }
         self.textRolloverColor = Vec4(0.4, 0.4, 0, 1)
         self.textDownColor = Vec4(0.5, 0.9, 1, 1)
@@ -88,10 +87,6 @@ class ShardPanel(DirectFrame):
             self.shardScrolledFrame.verticalScroll['value'] += amountScroll
 
     def destroy(self):
-        if self.popTrackerHandle:
-            base.cr.removeInterest(self.popTrackerHandle)
-            self.popTrackerHandle = None
-
         self.ignore('shardSwitchComplete')
         self.cancelIval()
         self.showIval = None
@@ -113,16 +108,11 @@ class ShardPanel(DirectFrame):
         self.up = up
         if self.up:
             self['state'] = DGG.DISABLED
-            if self.popTrackerHandle:
-                base.cr.removeInterest(self.popTrackerHandle)
-                self.popTrackerHandle = None
-
             self.stopListening()
         else:
             self['state'] = DGG.NORMAL
             self.syncShardList()
             self.startListening()
-            self.popTrackerHandle = base.cr.addInterest(OtpDoGlobals.OTP_DO_ID_PIRATES, OtpDoGlobals.OTP_ZONE_ID_DISTRICTS_STATS, 'PopulationTracker')
 
     def getShowIval(self):
         if self.showIval:
@@ -326,6 +316,10 @@ class ShardPanel(DirectFrame):
     def startListening(self):
         self.accept('ShardPopulationUpdate', self.handleShardPopulationUpdate)
         self.accept('ShardPopLimitsUpdate', self.handleShardPopLimitsUpdate)
+        
+        for shardId, shard in base.cr.activeDistrictMap.iteritems():
+            self.handleShardPopulationUpdate(shardId, shard.avatarCount)
+            self.handleShardPopLimitsUpdate(shardId, *shard.populationLimits)
 
     def stopListening(self):
         self.ignore('ShardPopulationUpdate')

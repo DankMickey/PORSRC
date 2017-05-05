@@ -76,19 +76,27 @@ class PiratesDistrictStats(DistributedObject.DistributedObject):
 
     def __init__(self, cr):
         DistributedObject.DistributedObject.__init__(self, cr)
-        self.PiratesDistrictId = 0
+        self.districtId = 0
+    
+    def disable(self):
+        messenger.send('ShardPopulationUpdate', [self.districtId, -1])
+        DistributedObject.DistributedObject.disable(self)
 
     def setPiratesDistrictId(self, value):
-        self.PiratesDistrictId = value
+        self.districtId = value
 
     def setAvatarCount(self, avatarCount):
-        if self.PiratesDistrictId in self.cr.activeDistrictMap:
-            self.cr.activeDistrictMap[self.PiratesDistrictId].avatarCount = avatarCount
+        if self.districtId in self.cr.activeDistrictMap:
+            self.cr.activeDistrictMap[self.districtId].avatarCount = avatarCount
+            messenger.send('ShardPopulationUpdate', [self.districtId, avatarCount])
 
     def setNewAvatarCount(self, newAvatarCount):
-        if self.PiratesDistrictId in self.cr.activeDistrictMap:
-            self.cr.activeDistrictMap[self.PiratesDistrictId].newAvatarCount = newAvatarCount
-
-    def setStats(self, avatarCount, newAvatarCount):
-        self.setAvatarCount(avatarCount)
-        self.setNewAvatarCount(newAvatarCount)
+        if self.districtId in self.cr.activeDistrictMap:
+            self.cr.activeDistrictMap[self.districtId].newAvatarCount = newAvatarCount
+    
+    def setPopulationLimits(self, min, max):
+        limits = (min, max)
+        
+        if self.districtId in self.cr.activeDistrictMap:
+            self.cr.activeDistrictMap[self.districtId].populationLimits = limits
+            messenger.send('ShardPopLimitsUpdate', [self.districtId, min, max])

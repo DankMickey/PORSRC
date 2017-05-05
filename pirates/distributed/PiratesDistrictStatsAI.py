@@ -6,13 +6,14 @@ class PiratesDistrictStatsAI(DistributedObjectAI):
     districtId = 0
     avatarCount = 0
     newAvatarCount = 0
+    populationLimits = (1, 50)
 
     def announceGenerate(self):
         DistributedObjectAI.announceGenerate(self)
 
         # We want to handle shard status queries so that a ShardStatusReceiver
         # being created after we're generated will know where we're at:
-        self.air.netMessenger.accept('queryShardStatus', self, self.handleShardStatusQuery)
+        self.air.netMessenger.accept('queryShardStatus', self.handleShardStatusQuery)
 
     def handleShardStatusQuery(self):
         # Send a shard status update containing our population:
@@ -57,3 +58,16 @@ class PiratesDistrictStatsAI(DistributedObjectAI):
     def b_setNewAvatarCount(self, newAvCount):
         self.d_setNewAvatarCount(newAvCount)
         self.setNewAvatarCount(newAvCount)
+    
+    def setPopulationLimits(self, med, high):
+        self.populationLimits = (med, high)
+
+    def d_setPopulationLimits(self, med, high):
+        self.sendUpdate('setPopulationLimits', [med, high])
+
+    def b_setPopulationLimits(self, med, high):
+        self.setPopulationLimits(med, high)
+        self.d_setPopulationLimits(med, high)
+
+    def getPopulationLimits(self):
+        return self.populationLimits

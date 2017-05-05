@@ -142,7 +142,7 @@ class PiratesAIRepository(PiratesInternalRepository):
         return False
 
     def incrementPopulation(self, user=None):
-        self.districtManager.district.b_setAvatarCount(self.districtManager.district.getAvatarCount() + 1)
+        self.districtManager.districtStats.b_setAvatarCount(self.districtManager.districtStats.getAvatarCount() + 1)
 
     def decrementPopulation(self, user=None):
-        self.districtManager.district.b_setAvatarCount(self.districtManager.district.getAvatarCount() - 1)
+        self.districtManager.districtStats.b_setAvatarCount(self.districtManager.districtStats.getAvatarCount() - 1)

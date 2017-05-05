@@ -6,12 +6,9 @@ import time
 
 class PiratesDistrictAI(DistributedDistrictAI):
     parentingRules = ('', '')
-    avatarCount = 0
-    newAvatarCount = 0
     mainWorld = WorldGlobals.PiratesWorldSceneFileBase
     tutorialWorld = WorldGlobals.PiratesTutorialSceneFileBase
     shardType = PiratesGlobals.SHARD_MAIN
-    populationLimits = (1, 50)
 
     def announceGenerate(self):
         DistributedDistrictAI.announceGenerate(self)
@@ -27,8 +24,7 @@ class PiratesDistrictAI(DistributedDistrictAI):
         status = {
             'available': bool(self.available),
             'name': self.name,
-            'created': self.created,
-            'population': self.getAvatarCount(),
+            'created': self.created
         }
         self.air.sendNetEvent('shardStatus', [status])
 
@@ -44,33 +40,6 @@ class PiratesDistrictAI(DistributedDistrictAI):
 
     def getParentingRules(self):
         return self.parentingRules
-
-    def setAvatarCount(self, avCount):
-        self.avatarCount = avCount
-
-    def d_setAvatarCount(self, avCount):
-        self.d_updateRPCStatus()
-        self.sendUpdate('setAvatarCount', [avCount])
-
-    def b_setAvatarCount(self, avCount):
-        self.setAvatarCount(avCount)
-        self.d_setAvatarCount(avCount)
-
-    def getAvatarCount(self):
-        return self.avatarCount
-
-    def setNewAvatarCount(self, avCount):
-        self.avatarCount = avCount
-
-    def d_setNewAvatarCount(self, avCount):
-        self.sendUpdate('setNewAvatarCount', [avCount])
-
-    def b_setNewAvatarCount(self, avCount):
-        self.setNewAvatarCount(avCount)
-        self.d_setNewAvatarCount(avCount)
-
-    def getNewAvatarCount(self):
-        return self.newAvatarCount
 
     def setMainWorld(self, mainWorld):
         self.mainWorld = mainWorld
@@ -97,19 +66,6 @@ class PiratesDistrictAI(DistributedDistrictAI):
 
     def getShardType(self):
         return self.shardType
-
-    def setPopulationLimits(self, med, high):
-        self.populationLimits = (med, high)
-
-    def d_setPopulationLimits(self, med, high):
-        self.sendUpdate('setPopulationLimits', [med, high])
-
-    def b_setPopulationLimits(self, med, high):
-        self.setPopulationLimits(med, high)
-        self.d_setPopulationLimits(med, high)
-
-    def getPopulationLimits(self):
-        return self.populationLimits
 
     def d_setAvailable(self, available):
         DistributedDistrictAI.d_setAvailable(self, available)

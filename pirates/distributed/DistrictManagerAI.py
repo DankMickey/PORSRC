@@ -1,12 +1,11 @@
-from pirates.distributed.DistributedPopulationTrackerAI import DistributedPopulationTrackerAI
 from pirates.distributed.PiratesDistrictAI import PiratesDistrictAI
+from pirates.distributed.PiratesDistrictStatsAI import PiratesDistrictStatsAI
 from otp.distributed import OtpDoGlobals
 from pirates.piratesbase import PiratesGlobals
 
-
 class DistrictManagerAI:
-    POP_MIN = 50
-    POP_MAX = 100
+    POP_MIN = 1
+    POP_MAX = 50
 
     def __init__(self, air):
         self.air = air
@@ -14,7 +13,7 @@ class DistrictManagerAI:
         self.population = 0
 
         self.district = None
-        self.popTracker = None
+        self.districtStats = None
 
     def generateDistrict(self):
         self.district = PiratesDistrictAI(self.air)
@@ -22,21 +21,11 @@ class DistrictManagerAI:
         self.district.generateWithRequiredAndId(
             self.air.districtId, OtpDoGlobals.OTP_DO_ID_PIRATES, 2
         )
-
-        self.popTracker = DistributedPopulationTrackerAI(self.air)
-        self.popTracker.setShardId(self.air.districtId)
-        self.popTracker.setPopulation(self.population)
-        self.popTracker.setPopLimits([self.POP_MIN, self.POP_MAX])
-        self.popTracker.generateWithRequiredAndId(
-            self.air.allocateChannel(), OtpDoGlobals.OTP_DO_ID_PIRATES, 3
-        )
+        
+        self.districtStats = PiratesDistrictStatsAI(self.air)
+        self.districtStats.setPiratesDistrictId(self.air.districtId)
+        self.districtStats.generateWithRequiredAndId(self.air.allocateChannel(), OtpDoGlobals.OTP_DO_ID_PIRATES, 3)
 
     def openDistrict(self):
         self.district.b_setAvailable(1)
         messenger.send('districtOpened')
-
-    def increasePopulation(self):
-        self.population += 1
-
-    def decreasePopulation(self):
-        self.population -= 1

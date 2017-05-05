@@ -1,6 +1,5 @@
 from direct.distributed import DistributedObjectGlobal
 from pirates.uberdog.ClientServicesManager/UD import ClientServicesManager/UD
-from pirates.distributed import DistributedPopulationTracker/AI
 from pirates.distributed import DistributedInteractive/AI/UD
 from pirates.treasuremap import DistributedBuriedTreasure/AI
 from pirates.distributed import PiratesDistrict/AI
@@ -277,20 +276,10 @@ dclass DistributedMatchMaker : DistributedObject {
   initiateTeleportResp(uint32, uint32);
 };
 
-dclass DistributedPopulationTracker : DistributedObject {
-  setShardId(uint32) required broadcast ram;
-  setPopulation(uint16) required broadcast ram;
-  setPopLimits(uint16, uint16) required broadcast ram;
-};
-
 dclass PiratesDistrict : DistributedDistrict {
   setParentingRules(string, string) broadcast ram;
-  setAvatarCount(uint32) broadcast required;
-  setNewAvatarCount(uint32) broadcast required;
   setMainWorld(string) broadcast required;
   setShardType(uint8) broadcast required ram;
-  setStats : setAvatarCount, setNewAvatarCount;
-  setPopulationLimits(uint16, uint16);
   rpcSetAvailable(bool available) airecv;
 };
 
@@ -298,7 +287,7 @@ dclass PiratesDistrictStats : DistributedObject {
   setPiratesDistrictId(uint32) broadcast required ram;
   setAvatarCount(uint32) broadcast required ram;
   setNewAvatarCount(uint32) broadcast required ram;
-  setStats : setAvatarCount, setNewAvatarCount;
+  setPopulationLimits(uint16, uint16) broadcast required ram;
 };
 
 struct envSubEntry {
