@@ -9,6 +9,7 @@ class PiratesDistrictAI(DistributedDistrictAI):
     mainWorld = WorldGlobals.PiratesWorldSceneFileBase
     tutorialWorld = WorldGlobals.PiratesTutorialSceneFileBase
     shardType = PiratesGlobals.SHARD_MAIN
+    avatarCount = 0
 
     def __init__(self, air):
         DistributedDistrictAI.__init__(self, air)
