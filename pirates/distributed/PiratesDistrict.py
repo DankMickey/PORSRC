@@ -44,4 +44,4 @@ class PiratesDistrict(DistributedDistrict, NodePath):
         return self.minimumAdminAccess
     
     def hasAdminAccess(self):
-        return hasattr(base, 'localAvatar') and base.localAvatar.getAdminAccess() >= self.minimumAdminAccess
+        return base.getAdminAccess() >= self.minimumAdminAccess

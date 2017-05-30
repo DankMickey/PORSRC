@@ -620,7 +620,8 @@ class GetAvatarsFSM(AvatarOperationFSM):
             potentialAvs.append([avId, name, fields['setDNAString'][0],
                                  index, nameState, wishName])
 
-        self.csm.sendUpdateToAccountId(self.target, 'setAvatars', [potentialAvs])
+        adminAccess = self.account['ACCESS_LEVEL']
+        self.csm.sendUpdateToAccountId(self.target, 'setAvatars', [potentialAvs, adminAccess])
         self.demand('Off')
 
 class UnloadAvatarFSM(CSMOperation):

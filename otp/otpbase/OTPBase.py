@@ -45,6 +45,14 @@ class OTPBase(ShowBase):
 
             if config.GetBool('want-sequence-list', True):
                 self.whiteList.setSequenceList(SequenceListData.SEQUENCES)
+        
+        self.adminAccess = 0
+    
+    def setAdminAcces(self, adminAccess):
+        self.adminAccess = adminAccess
+
+    def getAdminAccess(self):
+        return self.adminAccess
 
     def setTaskChainNetThreaded(self):
         if config.GetBool('want-threaded-network', 0):

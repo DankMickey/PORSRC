@@ -44,7 +44,7 @@ class ClientServicesManager(DistributedObjectGlobal):
     def requestDeletedAvatars(self):
         self.sendUpdate('requestDeletedAvatars')
 
-    def setAvatars(self, avatars):
+    def setAvatars(self, avatars, adminAccess):
         avList = [PiratesGlobals.AvatarSlotAvailable] * 6
 
         for avNum, avName, avDNA, avPosition, nameState, wishName in avatars:
@@ -65,6 +65,7 @@ class ClientServicesManager(DistributedObjectGlobal):
             avList[avPosition] = PotentialAvatar(avNum, avName, dna, avPosition, wishState=wishState, wishName=wishName)
 
         self.cr.handleAvatarsList(avList)
+        self.setAdminAccess(adminAccess)
         self.requestDeletedAvatars()
     
     def setDeletedAvatars(self, avatars):
