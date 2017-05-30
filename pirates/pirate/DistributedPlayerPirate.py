@@ -726,7 +726,12 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
         self.dazedTextNodePath.reparentTo(base.a2dBottomCenter)
         self.dazedTextNodePath.hide()
 
-
+    def setInitialGoldGiven(self, goldGiven):
+        pass
+    
+    def setRewardGoldTimestamp(self, timestamp):
+        pass
+    
     def setPirateDazed(self, isDazedBool):
         if isDazedBool:
             if not self.isDazed:

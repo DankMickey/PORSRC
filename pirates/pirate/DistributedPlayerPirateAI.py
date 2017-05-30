@@ -81,7 +81,7 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         self.guildId = 0
         self.guildName = ''
         self.stickyTargets = []
-        self.initialGoldGiven = True
+        self.initialGoldGiven = False
         self.rewardGoldTimestamp = 0
         self.maxFriends = 200
 
@@ -317,7 +317,7 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
             self.b_setInitialGoldGiven(True)
         
         if self.adminAccess in Access2MonthlyGold:
-            if self.rewardGoldTimestamp == 0 or self.rewardGoldTimestamp >= time.time():
+            if self.rewardGoldTimestamp == 0 or self.rewardGoldTimestamp <= time.time():
                 self.giveGold(Access2MonthlyGold[self.adminAccess])
                 self.b_setRewardGoldTimestamp(int(time.time()) + 2592000)
 

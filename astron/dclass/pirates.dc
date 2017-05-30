@@ -879,8 +879,8 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   requestShowOffFish(uint32) ownsend airecv;
   showOffFish(uint32, uint16) broadcast;
   rewardNotify(uint32, uint32);
-  setInitialGoldGiven(bool = 0) required airecv db;
-  setRewardGoldTimestamp(uint32 = 0) required airecv db;
+  setInitialGoldGiven(bool = 0) required ownrecv airecv db;
+  setRewardGoldTimestamp(uint32 = 0) required ownrecv airecv db;
   setMaxFriends(uint16 = 200) ownrecv required airecv db;
 };
 
