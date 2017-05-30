@@ -22,6 +22,11 @@ args = parser.parse_args()
 for prc in args.config:
     loadPrcFile(prc)
 
+localConfig = 'config/%s.prc' % args.district_name
+
+if os.path.isfile(localConfig):
+    loadPrcFile(localConfig)
+
 if os.path.isfile('config/local.prc'):
     loadPrcFile('config/local.prc')
 
