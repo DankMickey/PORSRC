@@ -85,6 +85,11 @@ class MagicWordCategory:
 
 CATEGORY_ANY = MagicWordCategory('Unrestricted commands', 0)
 CATEGORY_BASIC = MagicWordCategory('Basic commands', 100)
+CATEGORY_SUPPORTER = MagicWordCategory('Supporter', 110)
+CATEGORY_CAPTAIN = MagicWordCategory('Captain', 120)
+CATEGORY_PIRATE_LORD = MagicWordCategory('Pirate Lord', 130)
+CATEGORY_PIRATE_KING = MagicWordCategory('Pirate King', 140)
+CATEGORY_PIRATE_GOD = MagicWordCategory('Pirate God', 150)
 CATEGORY_SPONSOR = MagicWordCategory('Game sponsor commands', 200)
 CATEGORY_MEDIA_TEAM = MagicWordCategory('Media team commands', 300)
 CATEGORY_STREAMER = MagicWordCategory('Streamer commands', 400)

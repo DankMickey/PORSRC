@@ -17,6 +17,21 @@ import math
 import time
 import copy
 
+Access2MonthlyGold = {
+    110: 5000,
+    120: 7500,
+    130: 12500,
+    140: 20000,
+    150: 25000
+}
+Access2MaxFriends = {
+    110: 300,
+    120: 375,
+    130: 450,
+    140: 600,
+    150: 750
+}
+
 class DummyInventory(PirateInventoryAI):
     doId = 0
 
@@ -66,6 +81,9 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         self.guildId = 0
         self.guildName = ''
         self.stickyTargets = []
+        self.initialGoldGiven = True
+        self.rewardGoldTimestamp = 0
+        self.maxFriends = 200
 
     def announceGenerate(self):
         DistributedBattleAvatarAI.announceGenerate(self)
@@ -82,9 +100,50 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
 
         self.accept('holidayListChanged', self.__checkDoubleXPHoliday)
         self.__checkDoubleXPHoliday()
+        self.__checkGoldRewards()
+        self.__checkMaxFriends()
         
         self.accept('enemyDefeated', self.__enemyDefeated)
 
+    def d_setInitialGoldGiven(self, goldGiven):
+        self.sendUpdate('setInitialGoldGiven', [goldGiven])
+    
+    def setInitialGoldGiven(self, goldGiven):
+        self.initialGoldGiven = goldGiven
+    
+    def b_setInitialGoldGiven(self, goldGiven):
+        self.d_setInitialGoldGiven(goldGiven)
+        self.setInitialGoldGiven(goldGiven)
+    
+    def getInitialGoldGiven(self):
+        return self.initialGoldGiven
+    
+    def d_setRewardGoldTimestamp(self, timestamp):
+        self.sendUpdate('setRewardGoldTimestamp', [timestamp])
+    
+    def setRewardGoldTimestamp(self, timestamp):
+        self.rewardGoldTimestamp = timestamp
+    
+    def b_setRewardGoldTimestamp(self, timestamp):
+        self.d_setRewardGoldTimestamp(timestamp)
+        self.setRewardGoldTimestamp(timestamp)
+    
+    def getRewardGoldTimestamp(self):
+        return self.rewardGoldTimestamp
+    
+    def d_setMaxFriends(self, maxFriends):
+        self.sendUpdate('setMaxFriends', [maxFriends])
+    
+    def setMaxFriends(self, maxFriends):
+        self.maxFriends = maxFriends
+    
+    def b_setMaxFriends(self, maxFriends):
+        self.d_setMaxFriends(maxFriends)
+        self.setMaxFriends(maxFriends)
+    
+    def getMaxFriends(self):
+        return self.maxFriends
+    
     def getInventory(self):
         return self.inventory
 
@@ -251,6 +310,23 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         if needsUpgrade:
             self.tempdoublexp += holidayTime
             self.d_setTempDoubleXPReward(self.tempdoublexp)
+    
+    def __checkGoldRewards(self):
+        if (not self.initialGoldGiven) and self.getAdminAccess() == 150:
+            self.giveGold(150000)
+            self.b_setInitialGoldGiven(True)
+        
+        if self.adminAccess in Access2MonthlyGold:
+            if self.rewardGoldTimestamp == 0 or self.rewardGoldTimestamp >= time.time():
+                self.giveGold(Access2MonthlyGold[self.adminAccess])
+                self.b_setRewardGoldTimestamp(int(time.time()) + 2592000)
+
+    def __checkMaxFriends(self):
+        if self.adminAccess in Access2MaxFriends:
+            required = Access2MaxFriends[self.adminAccess]
+            
+            if self.maxFriends < required:
+                self.b_setMaxFriends(required)
 
     def setOnWelcomeWorld(self, state):
         self.welcomeWorld = state

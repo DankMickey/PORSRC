@@ -133,7 +133,7 @@ class FriendInviter(DirectFrame):
         elif base.localAvatar.isFriend(self.avId):
             self.fsm.request('alreadyFriends')
         else:
-            tooMany = len(base.localAvatar.getFriendsList()) >= OTPGlobals.MaxFriends
+            tooMany = len(base.localAvatar.getFriendsList()) >= base.localAvatar.getMaxFriends()
             if tooMany:
                 self.fsm.request('tooMany')
             elif self.skipYesNo == True:

@@ -1,6 +1,6 @@
 from panda3d.core import Connection, Datagram, Thread
 from pirates.makeapirate.PCPickANamePattern import PCPickANamePattern
-from pirates.piratesbase import PiratesGlobals
+from pirates.piratesbase import PiratesGlobals, PLocalizer
 from pirates.pirate.HumanDNA import HumanDNA
 from otp.settings.Settings import Settings
 from otp.distributed import OtpDoGlobals
@@ -747,20 +747,10 @@ class LoadAvatarFSM(AvatarOperationFSM):
         self.demand('LoadInventory')
 
     def __getGMTag(self, accessLevel):
-        gmTags = {
-            200: ('blue', 'Sponsor'),
-            300: ('gold', 'Media Team'),
-            600: ('green', 'Game Moderator'),
-            700: ('red', 'Game Master'),
-            800: ('blue', 'Game Designer'),
-            900: ('purple', 'Game Developer'),
-            1000: ('red', 'System Admin')
-        }
-
-        if accessLevel not in gmTags:
+        if accessLevel not in PLocalizer.MasterNametags:
             return ('', '')
         else:
-            return gmTags[accessLevel]
+            return PLocalizer.MasterNametags[accessLevel]
 
     def enterLoadInventory(self):
         channel = self.csm.GetAccountConnectionChannel(self.target)

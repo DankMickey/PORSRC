@@ -100,3 +100,12 @@ class PiratesDistrictStats(DistributedObject.DistributedObject):
         if self.districtId in self.cr.activeDistrictMap:
             self.cr.activeDistrictMap[self.districtId].populationLimits = limits
             messenger.send('ShardPopLimitsUpdate', [self.districtId, min, max])
+    
+    def setMinimumAdminAccess(self, minimumAdminAccess):
+        self.minimumAdminAccess = minimumAdminAccess
+    
+    def getMinimumAdminAccess(self):
+        return self.minimumAdminAccess
+    
+    def hasAdminAccess(self):
+        return hasattr(base, 'localAvatar') and base.localAvatar.getAdminAccess() >= self.minimumAdminAccess

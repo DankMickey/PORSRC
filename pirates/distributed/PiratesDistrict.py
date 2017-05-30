@@ -13,6 +13,7 @@ class PiratesDistrict(DistributedDistrict, NodePath):
         self.mainWorldFile = None
         self.islands = { }
         self.shardType = 0
+        self.minimumAdminAccess = 0
 
     def announceGenerate(self):
         DistributedDistrict.announceGenerate(self)
@@ -35,3 +36,12 @@ class PiratesDistrict(DistributedDistrict, NodePath):
 
     def getName(self):
         return self.name
+    
+    def setMinimumAdminAccess(self, minimumAdminAccess):
+        self.minimumAdminAccess = minimumAdminAccess
+    
+    def getMinimumAdminAccess(self):
+        return self.minimumAdminAccess
+    
+    def hasAdminAccess(self):
+        return hasattr(base, 'localAvatar') and base.localAvatar.getAdminAccess() >= self.minimumAdminAccess

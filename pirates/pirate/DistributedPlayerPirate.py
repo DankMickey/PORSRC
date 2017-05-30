@@ -362,6 +362,7 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
             self.injuredTrack = None
             self._DistributedPlayerPirate__surpressedRepFlags = []
             self._DistributedPlayerPirate__tutorialEnabled = True
+            self.maxFriends = 200
 
 
 
@@ -1083,6 +1084,11 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
     def getCrewIcon(self):
         return self.hasCrewIcon
 
+    def setMaxFriends(self, maxFriends):
+        self.maxFriends = maxFriends
+
+    def getMaxFriends(self):
+        return self.maxFriends
 
     def setCrewIconIndicator(self, iconId):
         if self.getDoId() != localAvatar.getDoId() and iconId != 0:
@@ -1353,11 +1359,19 @@ class DistributedPlayerPirate(DistributedPirateBase, DistributedPlayer, Distribu
 
             if self.hasGMNametag():
                 color, tag = self.gmNametag
+                
+                if self.getAdminAccess() >= 300:
+                    logo = '\x05gmNameTagLogo\x05'
+                else:
+                    logo = ''
 
                 if self.getCrewIcon():
-                    nameText['text'] = '\x05gmNameTagLogo\x05\x01white\x01\x05crewIcon%s\x05\x02\n\x01%s\x01%s\x02\n%s' % (self.hasCrewIcon, color, tag, nameText['text'])
+                    nameText['text'] = '%s\x01white\x01\x05crewIcon%s\x05\x02\n\x01%s\x01%s\x02\n%s' % (self.hasCrewIcon, color, tag, nameText['text'])
                 else:
-                    nameText['text'] = '\x05gmNameTagLogo\x05\n\x01%s\x01%s\x02\n%s' % (color, tag, nameText['text'])
+                    if logo:
+                        logo += '\n'
+
+                    nameText['text'] = '%s\x01%s\x01%s\x02\n%s' % (logo, color, tag, nameText['text'])
 
     def hasGMNametag(self):
         return bool(self.gmNametag[1]) and not self.gmHidden

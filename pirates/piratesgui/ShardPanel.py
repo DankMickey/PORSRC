@@ -2,10 +2,11 @@ from panda3d.core import Point3, TextNode, Vec3, Vec4
 from direct.gui.DirectGui import *
 from direct.interval.IntervalGlobal import *
 from otp.distributed import OtpDoGlobals
+from otp.otpgui import OTPDialog
 from pirates.piratesbase import PiratesGlobals
-from pirates.piratesgui import PiratesGuiGlobals
+from pirates.piratesgui import PiratesGuiGlobals, PDialog
 from pirates.piratesbase import PLocalizer
-
+import webbrowser
 
 POP_COLORS = (Vec4(0.4, 0.4, 1.0, 1.0),
               Vec4(0.4, 1.0, 0.4, 1.0),
@@ -69,6 +70,14 @@ class ShardPanel(DirectFrame):
         self.shardScrolledFrame.accept('press-wheel_down-%s' % self.shardScrolledFrame.guiId, self.mouseWheelDown)
         self.refreshShardLabels()
         self.accept('shardSwitchComplete', self.refreshCurrentShard)
+        self.alertDialog = None
+
+    def removeAlertDialog(self, *args):
+        if self.alertDialog:
+            self.alertDialog.destroy()
+            webbrowser.open('https://piratesonline.us/rewards-store')
+        
+        self.alertDialog = None
 
     def mouseWheelUp(self, task = None):
         if self.shardScrolledFrame.verticalScroll.isHidden():
@@ -306,7 +315,7 @@ class ShardPanel(DirectFrame):
     def updateLabelState(self, id):
         sLabel = self.shards.get(id)
         if sLabel:
-            if sLabel.avCount < sLabel.max or self.teleportAll:
+            if sLabel.avCount < sLabel.max or self.teleportAll or (hasattr(base, 'localAvatar') and base.localAvatar.getAdminAccess() >= 110):
                 sLabel['state'] = DGG.NORMAL
                 sLabel['relief'] = DGG.RAISED
             else:
@@ -327,7 +336,6 @@ class ShardPanel(DirectFrame):
 
     def shardButtonPressed(self, shardId):
         if not self['inverted']:
-            shard = self.shards[shardId]
             for id in self.shards:
                 self.updateLabelState(id)
         else:
@@ -338,6 +346,16 @@ class ShardPanel(DirectFrame):
         if hasattr(base, 'localAvatar') and localAvatar.guiMgr.crewHUD.crew:
             localAvatar.guiMgr.handleLeaveCrewWarning(shardId)
         else:
+            shard = base.cr.activeDistrictMap[shardId]
+
+            if not shard.hasAdminAccess():
+                name = '\x01%s\x01%ss\x02' % PLocalizer.MasterNametags[shard.minimumAdminAccess]
+                self.removeAlertDialog()
+                
+                self.alertDialog = PDialog.PDialog(text = PLocalizer.VIPServerWarning % name, text_align = TextNode.ACenter, text_wordwrap=25, style = OTPDialog.Acknowledge, command = self.removeAlertDialog)
+                self.alertDialog.show()
+                return
+
             self['preferredShard'] = shardId
             self['shardSelected'](shardId)
 

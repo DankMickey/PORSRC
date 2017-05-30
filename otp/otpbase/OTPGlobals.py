@@ -14,11 +14,6 @@ DefaultCameraFov = 52.0
 DefaultCameraFar = 400.0
 DefaultCameraNear = 1.0
 
-# As of right now, 200 friends is pretty insane, especially with the current CONSTANT db querying.
-# But since we told people that we are allowing "unlimited" friends, we instead can give them a
-# high amount.
-MaxFriends = 200
-
 FriendChat = 1
 CommonChat = 1
 SuperChat = 2

@@ -24,6 +24,22 @@ OL.SpeedChatStaticText = OL.SpeedChatStaticTextPirates.copy()
 for key in OL.SpeedChatStaticTextCommon.iterkeys():
     OL.SpeedChatStaticText[key] = OL.SpeedChatStaticTextCommon[key]
 
+MasterNametags = {
+    110: ('green', 'Supporter'),
+    120: ('green', 'Pirate Captain'),
+    130: ('gold', 'Pirate Lord'),
+    140: ('gold', 'Pirate King'),
+    150: ('red', 'Pirate God'),
+    200: ('blue', 'Sponsor'),
+    300: ('gold', 'Media Team'),
+    600: ('green', 'Game Moderator'),
+    700: ('red', 'Game Master'),
+    800: ('blue', 'Game Designer'),
+    900: ('purple', 'Game Developer'),
+    1000: ('red', 'System Admin')
+}
+VIPServerWarning = 'Sorry, but only %s can join these VIP servers! Donate now at https://piratesonline.us/rewards-store!'
+
 InterfaceFont = 'models/fonts/BardiT'
 InterfaceOutlineFont = 'models/fonts/BardiT_outline'
 PirateChippedFont = 'models/fonts/BriosoPro_chipped'

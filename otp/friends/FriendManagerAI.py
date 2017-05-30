@@ -31,6 +31,11 @@ class AddTrueFriend:
             self.remove()
             return
 
+        try:
+            maxFriends = fields['setMaxFriends'][0]
+        except:
+            maxFriends = 200
+
         friendsList = fields['setFriendsList'][0]
         trueFriendsList = fields['setTrueFriends'][0]
         name = fields['setName'][0]
@@ -40,7 +45,7 @@ class AddTrueFriend:
             self.manager.sendUpdateToAvatarId(avId, 'tfResponse', [OTPGlobals.TF_ALREADY_FRIENDS_NAME, name])
             return
         elif avId not in friendsList:
-            if len(friendsList) >= OTPGlobals.MaxFriends:
+            if len(friendsList) >= maxFriends:
                 self.manager.sendUpdateToAvatarId(avId, 'tfResponse', [OTPGlobals.TF_FRIENDS_LIST_FULL_HIM, name])
                 return
             
@@ -88,10 +93,10 @@ class FriendManagerAI(DistributedObjectAI):
         context = self.currentContext
         self.currentContext += 1
         
-        if len(av.getFriendsList()) >= OTPGlobals.MaxFriends:
+        if len(av.getFriendsList()) >= av.getMaxFriends():
             self.sendUpdateToAvatarId(avId, 'friendConsidering', [12, context])
             return
-        if len(requestedAv.getFriendsList()) >= OTPGlobals.MaxFriends:
+        if len(requestedAv.getFriendsList()) >= requestedAv.getMaxFriends():
             self.sendUpdateToAvatarId(avId, 'friendConsidering', [13, context])
             return
         if requested == avId:
@@ -268,7 +273,7 @@ class FriendManagerAI(DistributedObjectAI):
         elif av.isTrueFriends(targetId):
             self.sendUpdateToAvatarId(avId, 'tfResponse', [OTPGlobals.TF_ALREADY_FRIENDS, ''])
             return
-        elif targetId not in av.getFriendsList() and len(av.getFriendsList()) >= OTPGlobals.MaxFriends:
+        elif targetId not in av.getFriendsList() and len(av.getFriendsList()) >= av.getMaxFriends():
             self.sendUpdateToAvatarId(avId, 'tfResponse', [OTPGlobals.TF_FRIENDS_LIST_FULL_YOU, ''])
             return
         

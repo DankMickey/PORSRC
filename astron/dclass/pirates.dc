@@ -281,6 +281,7 @@ dclass PiratesDistrict : DistributedDistrict {
   setMainWorld(string) broadcast required;
   setShardType(uint8) broadcast required ram;
   rpcSetAvailable(bool available) airecv;
+  setMinimumAdminAccess(uint16) broadcast required ram;
 };
 
 dclass PiratesDistrictStats : DistributedObject {
@@ -288,6 +289,7 @@ dclass PiratesDistrictStats : DistributedObject {
   setAvatarCount(uint32) broadcast required ram;
   setNewAvatarCount(uint32) broadcast required ram;
   setPopulationLimits(uint16, uint16) broadcast required ram;
+  setMinimumAdminAccess(uint16) broadcast required ram;
 };
 
 struct envSubEntry {
@@ -729,7 +731,7 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   WishNameState(string = "OPEN") db ram;
   WishName(string = "") db ram;
   setDISLid(uint32) ram db airecv;
-  setAdminAccess(uint16 = 0) ownrecv required airecv;
+  setAdminAccess(uint16 = 0) broadcast required airecv;
   requestRegionUpdate(string) clsend airecv;
   enterAreaSphere(string, string) clsend airecv;
   leaveAreaSphere(string, string) clsend airecv;
@@ -876,6 +878,9 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   requestShowOffFish(uint32) ownsend airecv;
   showOffFish(uint32, uint16) broadcast;
   rewardNotify(uint32, uint32);
+  setInitialGoldGiven(bool = 0) required airecv db;
+  setRewardGoldTimestamp(uint32 = 0) required airecv db;
+  setMaxFriends(uint16 = 200) ownrecv required airecv db;
 };
 
 dclass NewsManager : DistributedObject {

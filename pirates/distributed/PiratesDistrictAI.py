@@ -10,6 +10,10 @@ class PiratesDistrictAI(DistributedDistrictAI):
     tutorialWorld = WorldGlobals.PiratesTutorialSceneFileBase
     shardType = PiratesGlobals.SHARD_MAIN
 
+    def __init__(self, air):
+        DistributedDistrictAI.__init__(self, air)
+        self.minimumAdminAccess = config.GetInt('minimum-admin-access', 0)
+
     def announceGenerate(self):
         DistributedDistrictAI.announceGenerate(self)
 
@@ -73,3 +77,17 @@ class PiratesDistrictAI(DistributedDistrictAI):
 
     def rpcSetAvailable(self, available):
         self.b_setAvailable(available)
+    
+    def setMinimumAdminAccess(self, minimumAdminAccess):
+        self.minimumAdminAccess = minimumAdminAccess
+
+    def d_setMinimumAdminAccess(self, minimumAdminAccess):
+        self.sendUpdate('setNewAvatarCount', [minimumAdminAccess])
+
+    def b_setMinimumAdminAccess(self, minimumAdminAccess):
+        self.d_setMinimumAdminAccess(minimumAdminAccess)
+        self.setMinimumAdminAccess(minimumAdminAccess)
+    
+    def getMinimumAdminAccess(self):
+        return self.minimumAdminAccess
+
