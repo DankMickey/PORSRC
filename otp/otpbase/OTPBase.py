@@ -48,7 +48,7 @@ class OTPBase(ShowBase):
         
         self.adminAccess = 0
     
-    def setAdminAcces(self, adminAccess):
+    def setAdminAccess(self, adminAccess):
         self.adminAccess = adminAccess
 
     def getAdminAccess(self):
