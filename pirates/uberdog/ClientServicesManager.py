@@ -65,7 +65,7 @@ class ClientServicesManager(DistributedObjectGlobal):
             avList[avPosition] = PotentialAvatar(avNum, avName, dna, avPosition, wishState=wishState, wishName=wishName)
 
         self.cr.handleAvatarsList(avList)
-        self.setAdminAccess(adminAccess)
+        base.setAdminAccess(adminAccess)
         self.requestDeletedAvatars()
     
     def setDeletedAvatars(self, avatars):
