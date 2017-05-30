@@ -47,6 +47,9 @@ class PiratesDistrict(DistributedDistrict, NodePath):
         return base.getAdminAccess() >= self.minimumAdminAccess
 
     def setAvatarCount(self, avatarCount):
-        if self.districtId in self.cr.activeDistrictMap:
-            self.cr.activeDistrictMap[self.districtId].avatarCount = avatarCount
-            messenger.send('ShardPopulationUpdate', [self.districtId, avatarCount])
+        if not hasattr(self, 'doId'):
+            return
+
+        if self.doId in self.cr.activeDistrictMap:
+            self.cr.activeDistrictMap[self.doId].avatarCount = avatarCount
+            messenger.send('ShardPopulationUpdate', [self.doId, avatarCount])
