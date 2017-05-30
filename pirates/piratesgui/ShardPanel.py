@@ -11,8 +11,7 @@ import webbrowser
 POP_COLORS = (Vec4(0.4, 0.4, 1.0, 1.0),
               Vec4(0.4, 1.0, 0.4, 1.0),
               Vec4(1.0, 0.4, 0.4, 1.0))
-
-
+POP_ADMIN_ACCESS = Vec4(1.0, 0.65, 0.0, 1.0)
 
 class ShardPanel(DirectFrame):
     UPPOS = Vec3(0.550000, 0, 1.52)
@@ -219,7 +218,12 @@ class ShardPanel(DirectFrame):
         if popLimits:
             self.updatePopLimits(id, popLimits[0], popLimits[1])
 
-    def getPopColor(self, pop, min, max):
+    def getPopColor(self, id, pop, min, max):
+        shard = base.cr.activeDistrictMap.get(id)
+
+        if shard and shard.minimumAdminAccess > 0:
+            return POP_ADMIN_ACCESS
+
         if pop <= min * ShardPanel.POP_SHOWIDEAL_THRESHOLD:
             newColor = POP_COLORS[0]
         elif pop < max:
@@ -293,7 +297,7 @@ class ShardPanel(DirectFrame):
         sLabel = self.shards.get(id)
         if sLabel:
             sLabel.avCount = avatarCount
-            sLabel.popLabel['image_color'] = self.getPopColor(avatarCount, sLabel.min, sLabel.max)
+            sLabel.popLabel['image_color'] = self.getPopColor(id, avatarCount, sLabel.min, sLabel.max)
             if self.showPop:
                 sLabel.popLabel['text'] = str(avatarCount)
             else:
@@ -305,7 +309,7 @@ class ShardPanel(DirectFrame):
         if sLabel:
             sLabel.min = min
             sLabel.max = max
-            sLabel.popLabel['image_color'] = self.getPopColor(sLabel.avCount, min, max)
+            sLabel.popLabel['image_color'] = self.getPopColor(id, sLabel.avCount, min, max)
             if self.showPop:
                 sLabel.popLabel['text'] = str(sLabel.avCount)
             else:
