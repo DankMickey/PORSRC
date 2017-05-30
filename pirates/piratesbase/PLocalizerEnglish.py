@@ -38,7 +38,7 @@ MasterNametags = {
     900: ('purple', 'Game Developer'),
     1000: ('red', 'System Admin')
 }
-VIPServerWarning = 'Sorry, but only %s can join these VIP servers! Donate now at https://piratesonline.us/rewards-store!'
+VIPServerWarning = 'Sorry, but only %s can join VIP servers!\nTo unlock access to our premium-only servers, please donate by visiting https://piratesonline.us/rewards-store!'
 
 InterfaceFont = 'models/fonts/BardiT'
 InterfaceOutlineFont = 'models/fonts/BardiT_outline'
