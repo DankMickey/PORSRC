@@ -282,6 +282,7 @@ dclass PiratesDistrict : DistributedDistrict {
   setShardType(uint8) broadcast required ram;
   rpcSetAvailable(bool available) airecv;
   setMinimumAdminAccess(uint16) broadcast required ram;
+  setAvatarCount(uint32) broadcast required ram;
 };
 
 dclass PiratesDistrictStats : DistributedObject {

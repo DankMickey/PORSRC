@@ -90,4 +90,17 @@ class PiratesDistrictAI(DistributedDistrictAI):
     
     def getMinimumAdminAccess(self):
         return self.minimumAdminAccess
+    
+    def setAvatarCount(self, avCount):
+        self.avatarCount = avCount
+
+    def getAvatarCount(self):
+        return self.avatarCount
+
+    def d_setAvatarCount(self, avCount):
+        self.sendUpdate('setAvatarCount', [avCount])
+
+    def b_setAvatarCount(self, avCount):
+        self.d_setAvatarCount(avCount)
+        self.setAvatarCount(avCount)
 
