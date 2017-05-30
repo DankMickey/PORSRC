@@ -253,14 +253,22 @@ class ShardPanel(DirectFrame):
         shardButton.accept('press-wheel_down-%s' % shardButton.guiId, self.mouseWheelDown)
         return shardButton
 
+    def isShardSpecial(self, id):
+        return id in base.cr.activeDistrictMap and base.cr.activeDistrictMap[id].minimumAdminAccess > 0
+
     def refreshShardLabels(self):
         shardIds = self.shards.keys()
         shardIds.sort()
         startPos = Point3(0, 0, -0.050000)
         offset = Point3(0, 0, -0.070)
-        for (x, id) in enumerate(sorted(shardIds, key = lambda x: self.shards[x]['text'])):
+        x = 0
+        l1 = [shardId for shardId in shardIds if self.isShardSpecial(shardId)]
+        l2 = [shardId for shardId in shardIds if shardId not in l1]
+
+        for id in sorted(l1, key=lambda x: self.shards[x]['text']) + sorted(l2, key=lambda x: self.shards[x]['text']):
             dLabel = self.shards[id]
             dLabel.setPos(startPos + offset * x)
+            x += 1
 
         canvasHeight = offset * len(shardIds)
         self.shardScrolledFrame['canvasSize'] = (0, 0, canvasHeight[2] - 0.00500, 0)

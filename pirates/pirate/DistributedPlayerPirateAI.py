@@ -328,6 +328,16 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
             if self.maxFriends < required:
                 self.b_setMaxFriends(required)
 
+    def setLocation(self, parentId, zoneId):
+        DistributedPlayerAI.setLocation(self, parentId, zoneId)
+
+        if self._DOAI_requestedDelete:
+            return
+        
+        if self.getAdminAccess() < config.GetBool('minimum-admin-access', 0):
+            self.requestDelete()
+            return
+    
     def setOnWelcomeWorld(self, state):
         self.welcomeWorld = state
 
