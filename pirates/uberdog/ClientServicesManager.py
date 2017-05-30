@@ -5,15 +5,13 @@ from pirates.piratesbase import PiratesGlobals
 from pirates.pirate.HumanDNA import HumanDNA
 import hashlib, hmac, sys, os
 
-sys.path.append('../deployment')
 try:
     import challenge
-
 except ImportError:
     class challenge:
         @staticmethod
         def solve(*args):
-            return 'whatever'
+            return 'There is a simple truth to be learned here'
 
 def flip(a):
     # This is SIMPLE OBFUSCATION not ENCRYPTION

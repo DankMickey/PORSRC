@@ -30,7 +30,7 @@ except ImportError:
     class challenge:
         @staticmethod
         def solve(*args):
-            return 'whatever'
+            return 'There is a simple truth to be learned here'
 
 NAME_TYPED = 0
 NAME_TYPED_INVALID = 1
