@@ -997,6 +997,8 @@ class OTPClientRepository(ClientRepositoryBase):
 
         # Join the least populated district.
         for shard in self.activeDistrictMap.values():
+            if not shard.hasAdminAccess():
+                continue
             if district:
                 if shard.avatarCount < district.avatarCount and shard.available:
                     if shard.avatarCount < maxPop:
