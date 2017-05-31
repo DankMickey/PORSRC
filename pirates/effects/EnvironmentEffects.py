@@ -10,7 +10,6 @@ from pirates.effects.CandleFlame import CandleFlame
 from pirates.effects.TorchFire import TorchFire
 from pirates.effects.Bonfire import Bonfire
 from pirates.effects.Fire import Fire
-from pirates.effects import Grass
 from pirates.effects.SteamEffect import SteamEffect
 from pirates.effects.DarkSteamEffect import DarkSteamEffect
 from pirates.effects.SteamCloud import SteamCloud
@@ -108,13 +107,11 @@ class EnvironmentEffects(DirectObject):
         self.intervals = []
         self.lights = []
         self.colorScale = None
-        self.grass = None
         self.holidayLocators = { }
         self.holidayEffects = { }
         self.loadAnimParts()
         self.loadEffects()
         self.loadSounds()
-        self.loadGrass()
         self.accept('HolidayStarted', self.loadHolidayEffects)
         self.accept('HolidayEnded', self.stopHolidayEffects)
 
@@ -154,10 +151,6 @@ class EnvironmentEffects(DirectObject):
             del light
 
         self.lights = []
-        if self.grass:
-            self.grass.stop()
-            self.grass.destroy()
-            self.grass = None
 
 
 
@@ -392,16 +385,6 @@ class EnvironmentEffects(DirectObject):
                                 myPart.setColorScaleOff()
                                 myPart.setFogOff()
                                 continue
-
-
-
-
-
-
-    def loadGrass(self):
-        if config.GetBool('want-grass', 0) and Grass.HasGrass(self.modelPath):
-            self.grass = Grass.Grass(self.parent)
-            self.grass.reparentTo(self.parent)
 
 
 

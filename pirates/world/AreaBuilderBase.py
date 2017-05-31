@@ -3,7 +3,7 @@ import random
 import re
 import types
 import copy
-import marshal
+import json
 from direct.task.Task import Task
 from direct.showbase import DirectObject
 from direct.actor import *
@@ -206,12 +206,12 @@ class AreaBuilderBase(DirectObject.DirectObject):
         del object['Hpr']
         del object['Scale']
         nodePath.setTransform(transform)
-        nodePath.setTag('data', marshal.dumps(object))
+        nodePath.setTag('data', json.dumps(object))
         nodePath.setTag('uid', uid)
         return nodePath
 
     def setupPropAv(self, root):
-        object = marshal.loads(root.getTag('data'))
+        object = json.loads(root.getTag('data'))
         objType = object['Type']
         uid = root.getTag('uid')
 

@@ -17,7 +17,6 @@ from pirates.makeapirate import PirateFemale
 from pirates.pirate.HumanAnimationMixer import HumanAnimationMixer
 from pirates.pirate import BodyDefs
 import random
-import cPickle
 TX = 0
 TY = 1
 TZ = 2
