@@ -6,6 +6,7 @@ from DistributedGAInteriorAI import DistributedGAInteriorAI
 from DistributedGameAreaAI import DistributedGameAreaAI
 from DistributedGATunnelAI import DistributedGATunnelAI
 from WorldCreatorBase import WorldCreatorBase
+from pirates.world.LocationConstants import LocationIds
 import WorldGlobals
 
 class InteriorFlags:
@@ -28,6 +29,13 @@ class WorldCreatorAI(WorldCreatorBase):
         self.__loadingInterior = False
         self.__loadingIslandArea = False
         self.__currentWorld = None
+        self.postponedTunnels = []
+    
+    def createTunnels(self):
+        for postponedTunnel in self.postponedTunnels:
+            self.doPostponedTunnel(postponedTunnel)
+        
+        self.postponedTunnels = []
 
     def createObject(self, object, parent, parentUid, objKey, dynamic, parentIsObj=False, fileName=None, actualParentObj=None):
         objType = WorldCreatorBase.createObject(self, object, parent, parentUid, objKey, dynamic, parentIsObj, fileName=fileName)
@@ -134,15 +142,55 @@ class WorldCreatorAI(WorldCreatorBase):
             interior.createIntDoor('int%d.fakedoor' % interior.doId, {})
 
         return interior
+    
+    def createConnectorTunnel(self, objKey, object):
+        self.postponedTunnels.append([objKey, object])
+    
+    def doPostponedTunnel(self, postponedTunnel):
+        objKey, object = postponedTunnel
 
-    def createConnectorTunnel(self, parent, objKey, object):
-        extTunnel = DistributedGATunnelAI.makeFromObjectKey(self.air, objKey, object)
-        parent.generateChild(extTunnel)
+        if 'From' not in object:
+            print 'Skipping tunnel for now', objKey
+            return
 
-        return extTunnel
+        parentUid = object['From']
+        targetUid = object['To']
+        parent = self.air.uid2do[parentUid]
+        target = self.air.uid2do[targetUid]
+        
+        isExterior = False
+        
+        links = []
+        
+        for lObjKey, lObj in object['Objects'].iteritems():
+            name = lObj['Name']
+            
+            if not name.startswith('portal_connector'):
+                continue
+            
+            whichOne = int(name[-1])
+            
+            if whichOne == 2:
+                t = target
+                exteriorNode = object['Interior']
+            else:
+                t = parent
+                exteriorNode = object['Exterior']
+ 
+            links.append([name, t.doId, t.getUniqueId(), exteriorNode, t.parentId, t.zoneId])
+            isExterior = True
+
+        obj = DistributedGATunnelAI(parent.air)
+        obj.setUniqueId(objKey)
+        obj.setModelPath(object['Visual']['Model'])
+        obj.setLinks(isExterior, links)
+        parent.generateChild(obj, 2709)
+        return obj
 
     def loadIslandArea(self, areaKey, areaFile, parent, cave=True):
         area = DistributedGAInteriorAI(self.air, None)
+        print str(areaFile)
+        area.tunnelModel = parent.tunnelModel
         
         self.air.uid2do[areaKey] = area
 

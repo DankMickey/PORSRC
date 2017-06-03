@@ -207,8 +207,6 @@ struct Link {
   string node;
   uint32 linkId;
   string areaUid;
-  uint32 parentId;
-  uint32 zoneId;
   string linkNode;
   uint32 worldId;
   uint32 worldZoneId;
@@ -1046,7 +1044,7 @@ dclass DistributedGAInterior : DistributedGameArea {
 dclass DistributedGAConnector : DistributedNode {
   //setParentingRules(string, string) required broadcast ram;
   setModelPath(string) required broadcast ram;
-  setLinks(uint8, string, Link []) broadcast ram;
+  setLinks(uint8, Link []) required broadcast ram;
   setUniqueId(string) required broadcast ram;
   requestPrivateArea(uint32) airecv clsend;
   setPrivateArea(uint32, uint32, uint32, bool) airecv clsend;

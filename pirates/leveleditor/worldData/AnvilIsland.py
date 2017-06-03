@@ -1,4 +1,5 @@
 from panda3d.core import Point3, VBase3, Vec4, Vec3
+from pirates.world.LocationConstants import LocationIds
 objectStruct = {
     'Interact Links': [
         [
@@ -69,6 +70,10 @@ objectStruct = {
                     'Type': 'Connector Tunnel',
                     'File': '',
                     'Hpr': VBase3(149.405, 0.0, 0.0),
+                    'From': LocationIds.ANVIL_ISLAND,
+                    'To': LocationIds.ANVIL_CAVE_BARBOSA,
+                    'Exterior': 'portal_exterior_1',
+                    'Interior': 'portal_interior_1',
                     'Objects': {
                         '1172208953.17sdnaik': {
                             'Type': 'Locator Node',

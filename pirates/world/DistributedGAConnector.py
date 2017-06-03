@@ -38,9 +38,6 @@ class DistributedGAConnector(DistributedNode.DistributedNode):
         self.areaNode = [
             None,
             None]
-        self.areaLookupDict = [
-            base.cr.doId2do,
-            base.cr.doId2do]
         self._DistributedGAConnector__connectorLoaded = 0
         self._DistributedGAConnector__loadedArea = None
         self.areaIndexLoading = None
@@ -54,8 +51,11 @@ class DistributedGAConnector(DistributedNode.DistributedNode):
         DistributedNode.DistributedNode.announceGenerate(self)
         self.setupConnectorNodes()
         self.setupCollisions()
-        self.setupEntranceNodes()
         self.startCustomEffects()
+        self.reparentConnector()
+        self._DistributedGAConnector__connectorLoaded = 1
+        messenger.send('tunnelSetLinks', [
+            self])
 
     def setLocation(self, parentId, zoneId, teleport = 0):
         DistributedObject.DistributedObject.setLocation(self, parentId, zoneId)
@@ -122,7 +122,6 @@ class DistributedGAConnector(DistributedNode.DistributedNode):
         self.visContext = None
         self.ignoreAll()
         del self.interior
-        del self.areaLookupDict
         del self.fakeZoneId
 
     def setModelPath(self, modelPath):
@@ -173,12 +172,11 @@ class DistributedGAConnector(DistributedNode.DistributedNode):
             self.geom.flattenStrong()
             self.geom.reparentTo(self)
 
-    def setLinks(self, isExterior, exteriorUid, links):
+    def setLinks(self, isExterior, links):
         self.notify.debug('%s(%s) setLinks %s %s' % (self, self.doId, isExterior, links))
         self.isExterior = isExterior
-        self.exteriorUid = exteriorUid
         for link in links:
-            (connectorNode, areaId, areaUid, areaParent, areaZone, areaNode, areaWorldId, areaWorldZone) = link
+            (connectorNode, areaId, areaUid, areaNode, areaWorldId, areaWorldZone) = link
             if not self.visNodes.get(areaUid):
                 self.visNodes[areaUid] = NodePath('vis-%s-%s' % (self.uniqueId, areaUid))
 
@@ -189,11 +187,6 @@ class DistributedGAConnector(DistributedNode.DistributedNode):
             self.areaWorldZone[aInd] = [
                 areaWorldId,
                 areaWorldZone]
-
-        self.reparentConnector()
-        self._DistributedGAConnector__connectorLoaded = 1
-        messenger.send('tunnelSetLinks', [
-            self])
 
     def isConnectorLoaded(self):
         return self._DistributedGAConnector__connectorLoaded
@@ -211,9 +204,7 @@ class DistributedGAConnector(DistributedNode.DistributedNode):
 
     def getAreaObject(self, index):
         areaUid = self.areaUid[index]
-        areaLookupDict = self.areaLookupDict[index]
-        area = areaLookupDict.get(base.cr.uidMgr.getDoId(areaUid))
-        return area
+        return base.cr.doId2do.get(base.cr.uidMgr.getDoId(areaUid))
 
     def setupConnectorNodes(self):
         for locator in self.connectorNodes:
@@ -229,17 +220,6 @@ class DistributedGAConnector(DistributedNode.DistributedNode):
             return self.connectorNodePosHpr[index]
 
         return (Point3(0), Vec3(0))
-
-    def setupEntranceNodes(self):
-        entranceNodes = self.findAllMatches('**/entrance_locator_*')
-        #eNodeMap = [](_[1]([ node.getName() for node in entranceNodes ], entranceNodes))
-        #eNodeMapKeys = eNodeMap.keys()
-        #eNodeMapKeys.sort()
-        self.entranceNodes = [] #[ eNodeMap[key] for key in eNodeMapKeys ]
-
-    def getEntranceNode(self, index):
-        if index < len(self.entranceNodes):
-            return self.entranceNodes[index]
 
     def setupCollisions(self):
         pass
@@ -266,7 +246,8 @@ class DistributedGAConnector(DistributedNode.DistributedNode):
             self.pendingAreaUnload = area.getDoId()
             world = area.getParentObj()
             (worldLocationId, worldLocationZone) = world.getLocation()
-            world.removeWorldInterest(area)
+            if hasattr(world, 'removeWorldInterest'):
+                world.removeWorldInterest(area)
             worldEvent = 'unloadWorld-' + str(worldLocationId)
             self.acceptOnce(worldEvent, self.unloadWorldFinished, extraArgs = [
                 self.pendingAreaUnload])
@@ -283,7 +264,6 @@ class DistributedGAConnector(DistributedNode.DistributedNode):
         base.cr.loadingScreen.showTarget(locationUid)
         base.cr.loadingScreen.showHint(locationUid)
         self.notify.debug('%s loadArea %s' % (self.doId, areaIndex))
-        (worldId, worldZoneId) = self.areaWorldZone[areaIndex]
         area = self.getLoadedArea()
         if area and self.getAreaIndex(area) == areaIndex:
             self.notify.debug('%s already loaded game area %s' % (self.doId, areaIndex))
@@ -342,18 +322,26 @@ class DistributedGAConnector(DistributedNode.DistributedNode):
         self.pendingAreaUnload = None
 
     def loadAreaFinished(self, area, autoFadeIn = True):
-        self.notify.debug('loadAreaFinished %s' % area.doId)
+        self.notify.info('loadAreaFinished %s' % area.doId)
         self.pendingAreaLoad = False
+
         if isinstance(area, ZoneLOD.ZoneLOD):
             area.setZoneLevel(0)
 
         self.reparentConnector()
         localAvatar.wrtReparentTo(area)
         localAvatar.setScale(1)
+        
         world = area.getParentObj()
-        world.addWorldInterest(area)
+
+        if hasattr(world, 'addWorldInterest'):
+            world.addWorldInterest(area)
+
         messenger.send('loadAreaFinished')
-        area.getParentObj().addWorldInterest(area)
+
+        if hasattr(area.getParentObj(), 'addWorldInterest'):
+            area.getParentObj().addWorldInterest(area)
+
         area.handleEnterGameArea(None)
 
     def isExteriorIndex(self, index):

@@ -38,8 +38,6 @@ class DistributedGATunnel(DistributedGAConnector.DistributedGAConnector):
 
     def announceGenerate(self):
         DistributedGAConnector.DistributedGAConnector.announceGenerate(self)
-        self.geom.hide(OTPRender.MainCameraBitmask)
-        self.geom.showThrough(OTPRender.EnviroCameraBitmask)
 
     def disable(self):
         DistributedGAConnector.DistributedGAConnector.disable(self)
@@ -206,8 +204,8 @@ class DistributedGATunnel(DistributedGAConnector.DistributedGAConnector):
                     base.ambientMgr.requestFadeOut(ambientName)
                     continue
 
-    def setLinks(self, isExterior, exteriorUid, links):
-        DistributedGAConnector.DistributedGAConnector.setLinks(self, isExterior, exteriorUid, links)
+    def setLinks(self, exteriorUid, links):
+        DistributedGAConnector.DistributedGAConnector.setLinks(self, exteriorUid, links)
         self.calcAmbientNames()
 
     def calcOneAmbientName(self, area):

@@ -82,6 +82,7 @@ class PiratesAIRepository(PiratesInternalRepository):
 
         self.worldCreator.setCurrentWorld(self.mainWorld)
         self.worldCreator.makeMainWorld(self.districtManager.district.mainWorld)
+        self.worldCreator.createTunnels()
 
     def createTutorialWorld(self):
         if not hasattr(self, "worldCreator"):

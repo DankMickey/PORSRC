@@ -149,8 +149,7 @@ class DistributedGameAreaAI(DistributedNodeAI):
                 self.__printUnimplementedNotice("%s (%s)" % (objType, subType))
 
         elif objType == 'Connector Tunnel' and self.wantLinkTunnels:
-            genObj = self.air.worldCreator.createConnectorTunnel(self, objKey, object)
-
+            genObj = self.air.worldCreator.createConnectorTunnel(objKey, object)
         elif objType == 'Island Game Area' and self.wantLinkTunnels:
             genObj = self.air.worldCreator.loadIslandArea(objKey, object['File'], self, True)
 

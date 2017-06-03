@@ -1163,7 +1163,9 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
         if model:
             return model.copyTo(NodePath())
         else:
-            prop = loader.loadModel(propPath)
+            prop = loader.loadModel(propPath, okMissing=True)
+            if not prop:
+                return None
             motion_blur = prop.find('**/motion_blur')
             if not motion_blur.isEmpty():
                 motion_blur.stash()
