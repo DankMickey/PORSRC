@@ -1270,7 +1270,7 @@ objectStruct = {
                     'From': LocationIds.TORTUGA_ISLAND,
                     'To': LocationIds.TORTUGA_JUNGLE_C,
                     'Exterior': 'portal_exterior_2',
-                    'Interior': 'portal_interior_1',
+                    'Interior': 'portal_interior_2',
                     'Objects': {
                         '1157133806.48sdnaik': {
                             'Type': 'Locator Node',
@@ -1834,13 +1834,13 @@ objectStruct = {
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
                 '1169179178.34sdnaik': {
-                    # Thieves Den / Wildwoods
+                    # Wildwoods / Thieves Den
                     'Type': 'Connector Tunnel',
                     'File': '',
                     'Hpr': VBase3(-97.7240, 0.0, 0.0),
                     'From': LocationIds.TORTUGA_JUNGLE_C,
                     'To': LocationIds.TORTUGA_CAVE,
-                    'Exterior': 'portal_interior_2',
+                    'Exterior': 'portal_interior_1',
                     'Interior': 'portal_interior_1',
                     'VisAllowed': False,
                     'Objects': {
@@ -1896,7 +1896,7 @@ objectStruct = {
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'From': LocationIds.TORTUGA_SWAMP,
                     'To': LocationIds.TORTUGA_JUNGLE_B_SWAMPY,
-                    'Exterior': 'portal_interior_2',
+                    'Exterior': 'portal_interior_1',
                     'Interior': 'portal_interior_2',
                     'Objects': {
                         '1169179649.27sdnaik': {
@@ -1927,7 +1927,7 @@ objectStruct = {
                     'From': LocationIds.TORTUGA_ISLAND,
                     'To': LocationIds.TORTUGA_SWAMP,
                     'Exterior': 'portal_exterior_3',
-                    'Interior': 'portal_interior_1',
+                    'Interior': 'portal_interior_2',
                     'Objects': {
                         '1169179942.3sdnaik': {
                             'Type': 'Locator Node',
