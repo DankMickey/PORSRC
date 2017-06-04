@@ -83,11 +83,7 @@ class SectionAreaBuilder(AreaBuilderBase):
             return propNp
 
         model = self.getModel(objData)
-        if objData.get('DisableCollision', False):
-            collisionNodes = model.collisions.findAllMatches('**/+CollisionNode')
-            for collisionNode in collisionNodes:
-                collisionNode.remove_node()
-
+        
         if objData['Type'] == 'Collision Barrier':
             model.root.findAllMatches('**/+GeomNode').detach()
 

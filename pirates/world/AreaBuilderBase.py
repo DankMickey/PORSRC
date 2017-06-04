@@ -26,6 +26,7 @@ from pirates.effects import ObjectEffects
 from pirates.world.LocationConstants import LocationIds
 from pirates.effects import SoundFX
 from pirates.effects import AmbientSoundFX
+from pirates.effects.LanternGlow import LanternGlow
 
 AREA_CHILD_TYPE_PROP = 1
 staticLODs = [
@@ -709,11 +710,11 @@ class AreaBuilderBase(DirectObject.DirectObject):
             fire.setColorScaleOff()
             fire.reparentTo(light)
             self.fires.append(fire)
-            LanternGlowEffect = LanternGlow(light, 2)
+            effect = LanternGlow(light, 2)
             pos = plNode.getPos()
-            LanternGlowEffect.setPos(pos)
-            LanternGlowEffect.loop()
-            self.discs.append(LanternGlowEffect)
+            effect.setPos(pos)
+            effect.loop()
+            self.discs.append(effect)
 
     def unloadLights(self):
         for light in self.lights:
@@ -854,6 +855,8 @@ class AreaBuilderBase(DirectObject.DirectObject):
             self.master.setEnvironment(environment)
 
     def setupLights(self):
+        self.loadLights()
+
         for light in self.areaGeometry.findAllMatches('**/=Global Light'):
             self.addLight(light)
             OTPRender.renderReflection(False, light, 'p_light', None)
@@ -865,6 +868,7 @@ class AreaBuilderBase(DirectObject.DirectObject):
             return None
 
         self.areaLoaded = False
+        self.unloadLights()
         self.clearAnims()
         for av in self.propAvs:
             for ival in av.swordIvals:

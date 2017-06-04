@@ -122,11 +122,6 @@ class GridAreaBuilder(AreaBuilderBase.AreaBuilderBase):
             if not signLocator.isEmpty():
                 self.buildSign(objData, signLocator)
 
-            if objData.get('DisableCollision', False):
-                collisionNodes = objModel.collisions.findAllMatches('**/+CollisionNode')
-                for collisionNode in collisionNodes:
-                    collisionNode.remove_node()
-
             if objData['Type'] == 'Collision Barrier':
                 geomNodes = objModel.root.findAllMatches('**/+GeomNode')
                 for geomNode in geomNodes:
