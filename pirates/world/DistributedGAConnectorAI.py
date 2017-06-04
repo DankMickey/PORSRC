@@ -38,6 +38,20 @@ class DistributedGAConnectorAI(DistributedNodeAI):
     
     def getLinks(self):
         return self.isExterior, self.links
+    
+    # setVisAllowed(bool) required broadcast ram
+    def setVisAllowed(self, visAllowed):
+        self.visAllowed = visAllowed
+    
+    def d_setVisAllowed(self, visAllowed):
+        self.sendUpdate('setVisAllowed', [visAllowed])
+    
+    def b_setVisAllowed(self, visAllowed):
+        self.setVisAllowed(visAllowed)
+        self.d_setVisAllowed(visAllowed)
+    
+    def getVisAllowed(self):
+        return self.visAllowed
 
     # setUniqueId(string) required broadcast ram
     def setUniqueId(self, uniqueId):

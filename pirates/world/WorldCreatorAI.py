@@ -184,12 +184,14 @@ class WorldCreatorAI(WorldCreatorBase):
         obj.setUniqueId(objKey)
         obj.setModelPath(object['Visual']['Model'])
         obj.setLinks(isExterior, links)
+        obj.setVisAllowed(True)
         parent.generateChild(obj, 2710)
         
         obj2 = DistributedGATunnelAI(target.air)
         obj2.setUniqueId(objKey)
         obj2.setModelPath(object['Visual'].get('Model2', obj.getModelPath()))
         obj2.setLinks(isExterior, links)
+        obj2.setVisAllowed(object.get('VisAllowed', True))
         target.generateChild(obj2, 2710)
         return obj
 

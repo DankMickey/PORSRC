@@ -1838,10 +1838,11 @@ objectStruct = {
                     'Type': 'Connector Tunnel',
                     'File': '',
                     'Hpr': VBase3(-97.7240, 0.0, 0.0),
-                    'From': LocationIds.TORTUGA_CAVE,
-                    'To': LocationIds.TORTUGA_JUNGLE_C,
-                    'Exterior': 'portal_interior_1',
-                    'Interior': 'portal_interior_2',
+                    'From': LocationIds.TORTUGA_JUNGLE_C,
+                    'To': LocationIds.TORTUGA_CAVE,
+                    'Exterior': 'portal_interior_2',
+                    'Interior': 'portal_interior_1',
+                    'VisAllowed': False,
                     'Objects': {
                         '1169179178.36sdnaik': {
                             'Type': 'Locator Node',
@@ -2000,6 +2001,7 @@ objectStruct = {
                     'To': LocationIds.TORTUGA_CAVE,
                     'Exterior': 'portal_interior_1',
                     'Interior': 'portal_interior_2',
+                    'VisAllowed': False,
                     'Objects': {
                         '1169797457.36sdnaik0': {
                             'Type': 'Locator Node',

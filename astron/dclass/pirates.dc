@@ -1046,6 +1046,7 @@ dclass DistributedGAConnector : DistributedNode {
   setModelPath(string) required broadcast ram;
   setLinks(uint8, Link []) required broadcast ram;
   setUniqueId(string) required broadcast ram;
+  setVisAllowed(bool) required broadcast ram;
   requestPrivateArea(uint32) airecv clsend;
   setPrivateArea(uint32, uint32, uint32, bool) airecv clsend;
 };

@@ -164,9 +164,7 @@ objectStruct = {
                             'Hpr': VBase3(90.0, 0.0, 0.0),
                             'Parent Uid': '1235606321.56akelts',
                             'Pos': Point3(-0.402, -78.222, 2.3759),
-                            'Scale': VBase3(1.0, 1.0, 1.0),
-                            'VisSize': '',
-                            'VisZone': '0_1235606321.56akelts' },
+                            'Scale': VBase3(1.0, 1.0, 1.0)},
                         '1237925914.07akelts': {
                             'Type': 'Light - Modular',
                             'ConeAngle': '60.0000',
@@ -19486,8 +19484,6 @@ objectStruct = {
                             'Parent Uid': '1245948731.45akelts',
                             'Pos': Point3(-0.929000, -71.8700, 4.043),
                             'Scale': VBase3(1.0, 1.0, 1.0),
-                            'VisSize': '',
-                            'VisZone': '0_1235606761.56akelts',
                             'Visual': {
                                 'Color': (1.0, 1.0, 1.0, 1.0) } },
                         '1237926119.31akelts': {

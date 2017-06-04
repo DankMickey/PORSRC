@@ -19,6 +19,7 @@ class DistributedGAConnector(DistributedNode.DistributedNode):
         self.fakeZoneId = PiratesGlobals.FakeZoneId
         self.GridLOD = { }
         self.uniqueId = ''
+        self.visAllowed = True
         self.interior = None
         self.visNodes = { }
         self.geom = None
@@ -72,6 +73,12 @@ class DistributedGAConnector(DistributedNode.DistributedNode):
 
     def getUniqueId(self):
         return self.uniqueId
+    
+    def setVisAllowed(self, visAllowed):
+        self.visAllowed = visAllowed
+    
+    def getVisAllowed(self):
+        return self.visAllowed
 
     def reparentConnector(self):
         side0 = self.getAreaObject(0)
@@ -358,23 +365,34 @@ class DistributedGAConnector(DistributedNode.DistributedNode):
         entranceNode = self.areaNode[areaIndex]
         entryLocator = area.find('**/' + entranceNode + '*')
         if entryLocator.isEmpty():
-            return None
-
+            self.notify.warning('Failed to reparent connector.')
+            return
+        
         entryLocator.setScale(1)
         entryLocator.setP(0)
         entryLocator.setR(0)
-        rootNode = self.visNodes[area.uniqueId]
-        rootNode.reparentTo(area)
-        rootNode.setTransform(entryLocator.getTransform(area))
-        lightAttrib = entryLocator.getAttrib(LightAttrib.getClassType())
-        if lightAttrib:
-            rootNode.setAttrib(lightAttrib, 1)
 
-        area.builder.addLargeObj(rootNode, self.uniqueId)
+        if self.visAllowed:
+            rootNode = self.visNodes[area.uniqueId]
+            rootNode.reparentTo(area)
+            rootNode.setTransform(entryLocator.getTransform(area))
+            lightAttrib = entryLocator.getAttrib(LightAttrib.getClassType())
+            if lightAttrib:
+                rootNode.setAttrib(lightAttrib, 1)
+
+            area.builder.addLargeObj(rootNode, self.uniqueId)
+        else:
+            rootNode = area
+
         self.reparentTo(entryLocator)
-        (pos, hpr) = self.connectorNodePosHpr[areaIndex]
-        self.setPos(pos)
-        self.setHpr(hpr[0], 0, 0)
+        
+        try:
+            (pos, hpr) = self.connectorNodePosHpr[areaIndex]
+            self.setPos(pos)
+            self.setHpr(hpr[0], 0, 0)
+        except:
+            pass
+
         self.wrtReparentTo(rootNode)
         self.setLoadedArea(area)
         if area.showTunnelOnMinimap(self.uniqueId):
