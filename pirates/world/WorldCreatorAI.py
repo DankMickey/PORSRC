@@ -209,9 +209,6 @@ class WorldCreatorAI(WorldCreatorBase):
         obj = objects[objKey]
         
         area.createObject(obj['Type'], area, objKey, obj)
-        
-        for objKey2, obj2 in obj['Objects'].iteritems():
-            area.createObject(obj2['Type'], area, objKey2, obj2)
 
         self.notify.info('Created cave area %s %s' % (PLocalizer.LocationNames[areaKey], areaKey))
         return area
