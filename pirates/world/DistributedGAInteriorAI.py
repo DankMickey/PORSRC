@@ -9,6 +9,7 @@ from pirates.minigame.DistributedGameTableAI import DistributedGameTableAI
 from pirates.piratesbase import PiratesGlobals
 
 from DistributedInteriorDoorAI import DistributedInteriorDoorAI
+import copy
 
 class DistributedGAInteriorAI(DistributedGameAreaAI, DistributedCartesianGridAI):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedGAInteriorAI')
@@ -52,6 +53,22 @@ class DistributedGAInteriorAI(DistributedGameAreaAI, DistributedCartesianGridAI)
                 if object['Visual']['Model']:
                     self.b_setModelPath(object['Visual']['Model'])
 
+                for objKey2, obj2 in object['Objects'].iteritems():
+                    pos = obj2['Pos']
+                    hpr = obj2['Hpr']
+
+                    if obj2['Type'] == 'Cave_Pieces':
+                        for objKey3, obj3 in obj2['Objects'].iteritems():
+                            hpr2 = hpr - obj3['Hpr']
+                            hpr2 = (hpr2[0] % 360, hpr2[1] % 360, hpr2[2] % 360)
+
+                            obj4 = copy.copy(obj3)
+                            obj4['Pos'] = (pos - obj3['Pos'])
+                            obj4['Hpr'] = hpr2
+
+                            self.createObject(obj3['Type'], self, objKey3, obj4)
+                    else:
+                        self.createObject(obj2['Type'], self, objKey2, obj2)
         elif objType == 'Building Interior':
             if not self.getUniqueId():
                 self.b_setUniqueId(objKey)

@@ -1,6 +1,7 @@
 from panda3d.core import CollideMask, FadeLODNode, LODNode, ModelNode, NodePath, NodePathCollection, PandaNode, TransformState
 import random
 import re
+import json
 import types
 from direct.task.Task import Task
 from direct.actor import *
@@ -83,7 +84,11 @@ class SectionAreaBuilder(AreaBuilderBase):
             return propNp
 
         model = self.getModel(objData)
-        
+        if objData.get('DisableCollision', False):
+            collisionNodes = model.collisions.findAllMatches('**/+CollisionNode')
+            for collisionNode in collisionNodes:
+                collisionNode.remove_node()
+
         if objData['Type'] == 'Collision Barrier':
             model.root.findAllMatches('**/+GeomNode').detach()
 
@@ -218,8 +223,8 @@ class SectionAreaBuilder(AreaBuilderBase):
                 zone.lodRoot.detachNode()
                 continue
 
-        self.areaGeometry.setTag('VisZoneMinimaps', repr(self.visZoneMinimaps))
-        self.areaGeometry.setTag('VisZoneTunnels', repr(self.visZoneTunnels))
+        self.areaGeometry.setTag('VisZoneMinimaps', json.dumps(self.visZoneMinimaps))
+        self.areaGeometry.setTag('VisZoneTunnels', json.dumps(self.visZoneTunnels))
         AreaBuilderBase._postSubObjectsStep(self)
 
     def _postLoadStep(self):
@@ -255,13 +260,13 @@ class SectionAreaBuilder(AreaBuilderBase):
         visZoneTunnels = self.areaGeometry.getTag('VisZoneTunnels')
 
         try:
-            self.visZoneMinimaps = eval(visZoneMaps)
+            self.visZoneMinimaps = json.loads(visZoneMaps)
         except:
             self.notify.warning('failed to load minimap zones for area %s, (%s)' % (self.master.uniqueId, visZoneMaps))
             self.visZoneMinimaps = { }
 
         try:
-            self.visZoneTunnels = eval(visZoneTunnels)
+            self.visZoneTunnels = json.loads(visZoneTunnels)
         except:
             self.notify.warning('failed to load tunnel zones for area %s, (%s)' % (self.master.uniqueId, visZoneTunnels))
             self.visZoneTunnels = { }

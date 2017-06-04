@@ -541,7 +541,7 @@ class DistributedGameTable(DistributedInteractive.DistributedInteractive):
         if self.AIList[seat] == 0:
             return None
         else:
-            message = eval('PLocalizer.' + messageTag)
+            message = getattr(PLocalizer, messageTag)
             self.AIPlayers[seat].setChatAbsolute(message, CFSpeech | CFTimeout)
 
     def receiveAIThoughts(self, seat, message):

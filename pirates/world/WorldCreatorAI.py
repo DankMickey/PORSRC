@@ -203,7 +203,8 @@ class WorldCreatorAI(WorldCreatorBase):
         zoneId = PiratesGlobals.InteriorDoorZone << 16 | (sorted(self.air.doId2do.keys())[-1] + 1) & 0xFFFF
         parent.generateChild(area, zoneId)
 
-        objects = self.loadObjectsFromFile(areaFile, area, True)[0]['Objects']
+        loaded = self.loadObjectsFromFile(areaFile, area, True)
+        objects = loaded[0]['Objects']
         objKey = objects.keys()[0]
         obj = objects[objKey]
         

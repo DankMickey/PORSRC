@@ -95,8 +95,8 @@ class QuestReward(POD):
     def isSame(self, otherReward):
         for currVal in self.DataSet:
             getterStr = getSetterName(currVal, prefix = 'get') + '()'
-            otherVal = eval('otherReward.' + getterStr)
-            myVal = eval('self.' + getterStr)
+            otherVal = getattr(otherReward, getterStr)
+            myVal = getattr(self, getterStr)
             if otherVal != myVal:
                 return False
                 continue

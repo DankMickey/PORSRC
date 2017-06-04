@@ -122,6 +122,11 @@ class GridAreaBuilder(AreaBuilderBase.AreaBuilderBase):
             if not signLocator.isEmpty():
                 self.buildSign(objData, signLocator)
 
+            if objData.get('DisableCollision', False):
+                collisionNodes = objModel.collisions.findAllMatches('**/+CollisionNode')
+                for collisionNode in collisionNodes:
+                    collisionNode.remove_node()
+
             if objData['Type'] == 'Collision Barrier':
                 geomNodes = objModel.root.findAllMatches('**/+GeomNode')
                 for geomNode in geomNodes:
@@ -135,7 +140,7 @@ class GridAreaBuilder(AreaBuilderBase.AreaBuilderBase):
                         collNode.setTag('objType', str(PiratesGlobals.COLL_LAND))
                         currCollMask = collNode.node().getIntoCollideMask()
                         for currNewBitmask in newBitmasks:
-                            collNode.setCollideMask(currCollMask | PiratesGlobals.TargetBitmask | eval('PiratesGlobals.' + currNewBitmask))
+                            collNode.setCollideMask(currCollMask | PiratesGlobals.TargetBitmask | getattr(PiratesGlobals, currNewBitmask))
 
             if objData['Type'] == 'Invasion Barrier':
                 geomNodes = objModel.root.findAllMatches('**/+GeomNode')

@@ -1248,7 +1248,7 @@ class NPCMoviePlayer(DirectObject.DirectObject):
         avatarName = line[1]
         avatar = self.getVar(avatarName)
         print avatar
-        chatString = eval('PLocalizer.' + line[2])
+        chatString = getattr(PLocalizer, line[2])
         chatFlags = CFSpeech | CFTimeout
         (quitButton, extraChatFlags, dialogueList) = self.parseExtraChatArgs(line[3:])
         if extraChatFlags:
@@ -1272,7 +1272,7 @@ class NPCMoviePlayer(DirectObject.DirectObject):
     def parseInteractionalChat(self, line):
         lineLen = len(line)
         avatar = self.getVar(line[1])
-        text = eval('PLocalizer.' + line[2])
+        text = getattr(PLocalizer, line[2])
         audio = None
         if lineLen > 3:
             audio = self.getVar(line[3])
@@ -1318,7 +1318,7 @@ class NPCMoviePlayer(DirectObject.DirectObject):
         toonId = self.toon.getDoId()
         avatarName = line[1]
         avatar = self.getVar(avatarName)
-        chatString = eval('PLocalizer.' + line[2])
+        chatString = getattr(PLocalizer, line[2])
         (quitButton, extraChatFlags, dialogueList) = self.parseExtraChatArgs(line[3:])
         return Func(avatar.setPageChat, toonId, 0, chatString, quitButton, extraChatFlags, dialogueList)
 
@@ -1327,7 +1327,7 @@ class NPCMoviePlayer(DirectObject.DirectObject):
         lineLength = len(line)
         avatarName = line[1]
         avatar = self.getVar(avatarName)
-        chatString = eval('PLocalizer.' + line[2])
+        chatString = getattr(PLocalizer, line[2])
         (quitButton, extraChatFlags, dialogueList) = self.parseExtraChatArgs(line[3:])
         return Func(avatar.setLocalPageChat, chatString, quitButton, extraChatFlags, dialogueList)
 
@@ -1336,7 +1336,7 @@ class NPCMoviePlayer(DirectObject.DirectObject):
         lineLength = len(line)
         avatarName = line[1]
         avatar = self.getVar(avatarName)
-        chatString = eval('PLocalizer.' + line[2])
+        chatString = getattr(PLocalizer, line[2])
         (quitButton, extraChatFlags, dialogueList) = self.parseExtraChatArgs(line[3:])
         if len(dialogueList) > 0:
             dialogue = dialogueList[0]
@@ -1352,8 +1352,8 @@ class NPCMoviePlayer(DirectObject.DirectObject):
         toAvatarKey = line[2]
         toAvatar = self.getVar(toAvatarKey)
         localizerAvatarName = string.capitalize(toAvatar.getName())
-        toAvatarName = eval('PLocalizer.' + localizerAvatarName)
-        chatString = eval('PLocalizer.' + line[3])
+        toAvatarName = getattr(PLocalizer, localizerAvatarName)
+        chatString = getattr(PLocalizer, line[3])
         chatString = chatString.replace('%s', toAvatarName)
         (quitButton, extraChatFlags, dialogueList) = self.parseExtraChatArgs(line[4:])
         return Func(avatar.setLocalPageChat, chatString, quitButton, extraChatFlags, dialogueList)
@@ -1364,9 +1364,9 @@ class NPCMoviePlayer(DirectObject.DirectObject):
         avatarName = line[1]
         avatar = self.getVar(avatarName)
         if self.toon.getStyle().gender == 'm':
-            chatString = eval('PLocalizer.' + line[2] % 'Mickey')
+            chatString = getattr(PLocalizer, line[2] % 'Mickey')
         else:
-            chatString = eval('PLocalizer.' + line[2] % 'Minnie')
+            chatString = getattr(PLocalizer, line[2] % 'Minnie')
         (quitButton, extraChatFlags, dialogueList) = self.parseExtraChatArgs(line[3:])
         return Func(avatar.setLocalPageChat, chatString, quitButton, extraChatFlags, dialogueList)
 
@@ -1378,18 +1378,18 @@ class NPCMoviePlayer(DirectObject.DirectObject):
         toAvatarKey = line[2]
         toAvatar = self.getVar(toAvatarKey)
         localizerAvatarName = string.capitalize(toAvatar.getName())
-        toAvatarName = eval('PLocalizer.' + localizerAvatarName)
+        toAvatarName = getattr(PLocalizer, localizerAvatarName)
         if self.toon.getStyle().gender == 'm':
-            chatString = eval('PLocalizer.' + line[3] % 'Mickey')
+            chatString = getattr(PLocalizer, line[3] % 'Mickey')
         else:
-            chatString = eval('PLocalizer.' + line[3] % 'Minnie')
+            chatString = getattr(PLocalizer, line[3] % 'Minnie')
         chatString = chatString.replace('%s', toAvatarName)
         (quitButton, extraChatFlags, dialogueList) = self.parseExtraChatArgs(line[4:])
         return Func(avatar.setLocalPageChat, chatString, quitButton, extraChatFlags, dialogueList)
 
 
     def parseSubtitleChat(self, line):
-        chatString = eval('PLocalizer.' + line[1])
+        chatString = getattr(PLocalizer, line[1])
         if len(line) == 3:
             dialogue = self.getVar(line[2])
         else:
@@ -1409,7 +1409,7 @@ class NPCMoviePlayer(DirectObject.DirectObject):
         if funcRef:
             (funcSeq, nextEvent) = self.parseFuncDefLines(funcRef)
         else:
-            chatString = eval('PLocalizer.' + line[1])
+            chatString = getattr(PLocalizer, line[1])
             funcSeq = Func(base.localAvatar.guiMgr.subtitler.showText, chatString, None, None)
         dialogue = self.getVar(line[2])
         actor = self.getVar(line[3])
@@ -1433,7 +1433,7 @@ class NPCMoviePlayer(DirectObject.DirectObject):
 
     def parseSubtitleChatConfirm(self, line):
         lineLength = len(line)
-        chatString = eval('PLocalizer.' + line[1])
+        chatString = getattr(PLocalizer, line[1])
         if len(line) == 3:
             dialogue = self.getVar(line[2])
         else:

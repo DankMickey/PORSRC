@@ -2661,12 +2661,12 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
         if versionFilterStr == 'All':
             versionFilter = None
         else:
-            versionFilter = eval('ItemGlobals.' + versionFilterStr)
+            versionFilter = getattr(ItemGlobals, versionFilterStr)
         rarityFilterStr = self.filterRarityMenu.get()
         if rarityFilterStr == 'All':
             rarityFilter = None
         else:
-            rarityFilter = eval('ItemGlobals.' + rarityFilterStr)
+            rarityFilter = getattr(ItemGlobals, rarityFilterStr)
         isFromLoot = self.filterUsageLootButton['relief'] == DGG.SUNKEN
         if arg == 'Loot':
             isFromLoot = not isFromLoot

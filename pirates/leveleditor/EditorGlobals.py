@@ -313,7 +313,7 @@ def getShipInfo(objectData):
         shipClass = ShipGlobals.WARSHIPL3
         newShipClass = None
         if hasattr(ShipGlobals, typeStr):
-            newShipClass = eval('ShipGlobals.' + typeStr)
+            newShipClass = getattr(ShipGlobals, typeStr)
 
         if newShipClass:
             shipClass = newShipClass
