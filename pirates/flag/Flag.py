@@ -207,11 +207,9 @@ class Flag(NodePath):
 
 
     def setBgColor(self, index, val):
-        if index >= 0 and index < 4 val < len(FlagGlobals.Colors):
+        if index >= 0 and index < 4 and val < len(FlagGlobals.Colors):
             self.dna.setBackground(**{('color_%d' % index): val})
             self._Flag__setBgColor(index)
-
-
 
     def _Flag__setBgColor(self, index):
         val = self.getBgColor(index)
