@@ -1,4 +1,5 @@
 from panda3d.core import Point3, VBase3, Vec4, Vec3
+from pirates.world.LocationConstants import LocationIds
 objectStruct = {
     'Interact Links': [
         [
@@ -1210,8 +1211,13 @@ objectStruct = {
                     'Pos': Point3(-483.680, 161.717, 5.7936),
                     'Scale': VBase3(1.0, 1.0, 1.0) },
                 '1157485774.64sdnaik': {
+                    # Port Royal / King's Run
                     'Type': 'Connector Tunnel',
-                    'File': 'port_royal_tunnel_jungle_1',
+                    'File': '',
+                    'From': LocationIds.PORT_ROYAL_ISLAND,
+                    'To': LocationIds.PORT_ROYAL_JUNGLE_B,
+                    'Exterior': 'portal_exterior_1',
+                    'Interior': 'portal_interior_2',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Objects': {
                         '1157485774.69sdnaik': {
@@ -1399,9 +1405,15 @@ objectStruct = {
                     'Visual': {
                         'Model': 'models/jungles/jungle_c_zero' } },
                 '1164951373.09sdnaik': {
+                    # Kings Run / Murky Hollow
                     'Type': 'Connector Tunnel',
                     'File': '',
                     'Hpr': VBase3(-111.119, 0.0, 0.0),
+                    'From': LocationIds.PORT_ROYAL_JUNGLE_B,
+                    'To': LocationIds.PORT_ROYAL_CAVE_B,
+                    'Exterior': 'portal_interior_1',
+                    'Interior': 'portal_interior_2',
+                    'VisAllowed': False,
                     'Objects': {
                         '1164951373.11sdnaik': {
                             'Type': 'Locator Node',
@@ -1424,9 +1436,15 @@ objectStruct = {
                     'Visual': {
                         'Model': 'models/tunnels/pir_m_are_tun_cave' } },
                 '1164951656.91sdnaik': {
+                    # Governor's Garden / Royal Caverns
                     'Type': 'Connector Tunnel',
                     'File': '',
                     'Hpr': VBase3(-82.3790, 0.0, 0.0),
+                    'From': LocationIds.PORT_ROYAL_JUNGLE_A,
+                    'To': LocationIds.PORT_ROYAL_CAVE_A,
+                    'Exterior': 'portal_interior_2',
+                    'Interior': 'portal_interior_2',
+                    'VisAllowed': False,
                     'Objects': {
                         '1164951656.92sdnaik': {
                             'Type': 'Locator Node',
@@ -1449,9 +1467,15 @@ objectStruct = {
                     'Visual': {
                         'Model': 'models/tunnels/pir_m_are_tun_cave' } },
                 '1164951887.34sdnaik': {
+                    # Wicked Thicket / Royal Caverns
                     'Type': 'Connector Tunnel',
                     'File': '',
                     'Hpr': VBase3(42.972, 0.0, 0.0),
+                    'From': LocationIds.PORT_ROYAL_JUNGLE_C,
+                    'To': LocationIds.PORT_ROYAL_CAVE_A,
+                    'Exterior': 'portal_interior_1',
+                    'Interior': 'portal_interior_1',
+                    'VisAllowed': False,
                     'Objects': {
                         '1164951887.36sdnaik': {
                             'Type': 'Locator Node',
@@ -1699,8 +1723,13 @@ objectStruct = {
                     'Pos': Point3(627.903, -298.452, 4.6059),
                     'Scale': VBase3(1.0, 1.0, 1.0) },
                 '1169592497.66sdnaik': {
+                    # Port Royal / Wicked Thicket
                     'Type': 'Connector Tunnel',
-                    'File': 'port_royal_tunnel_jungle_4',
+                    'File': '',
+                    'From': LocationIds.PORT_ROYAL_ISLAND,
+                    'To': LocationIds.PORT_ROYAL_JUNGLE_C,
+                    'Exterior': 'portal_exterior_3',
+                    'Interior': 'portal_interior_2',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Objects': {
                         '1169592497.67sdnaik': {
@@ -1757,9 +1786,15 @@ objectStruct = {
                     'Visual': {
                         'Model': 'models/jungles/jungle_a_zero' } },
                 '1169593382.95sdnaik': {
+                    # Governor's Garden / Murky Hollow
                     'Type': 'Connector Tunnel',
                     'File': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
+                    'From': LocationIds.PORT_ROYAL_JUNGLE_A,
+                    'To': LocationIds.PORT_ROYAL_CAVE_B,
+                    'Exterior': 'portal_interior_1',
+                    'Interior': 'portal_interior_1',
+                    'VisAllowed': False,
                     'Objects': {
                         '1169593382.98sdnaik': {
                             'Type': 'Locator Node',
@@ -1782,8 +1817,13 @@ objectStruct = {
                     'Visual': {
                         'Model': 'models/tunnels/pir_m_are_tun_cave' } },
                 '1169596919.53sdnaik': {
+                    # Port Royal / Governor's Garden
                     'Type': 'Connector Tunnel',
-                    'File': 'port_royal_tunnel_jungle_3',
+                    'File': '',
+                    'From': LocationIds.PORT_ROYAL_ISLAND,
+                    'To': LocationIds.PORT_ROYAL_JUNGLE_A,
+                    'Exterior': 'portal_exterior_2',
+                    'Interior': 'portal_interior_3',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Objects': {
                         '1169596919.55sdnaik': {

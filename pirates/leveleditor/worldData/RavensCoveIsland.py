@@ -1,4 +1,5 @@
 from panda3d.core import Point3, VBase3, Vec4, Vec3
+from pirates.world.LocationConstants import LocationIds
 objectStruct = {
     'Adj Table': {
         '1271349069.91akelts': [],
@@ -10149,6 +10150,11 @@ objectStruct = {
                 '1276560227.64akelts': {
                     'Type': 'Connector Tunnel',
                     'File': '',
+                    'From': LocationIds.RAVENS_COVE_ISLAND,
+                    'To': LocationIds.RAVENS_COVE_MINE,
+                    'Exterior': 'portal_exterior_1',
+                    'Interior': 'portal_interior_1',
+                    'VisAllowed': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Objects': {
                         '1276560227.66akelts': {
@@ -10175,6 +10181,11 @@ objectStruct = {
                 '1276560244.86akelts': {
                     'Type': 'Connector Tunnel',
                     'File': '',
+                    'From': LocationIds.RAVENS_COVE_ISLAND,
+                    'To': LocationIds.RAVENS_COVE_MINE,
+                    'Exterior': 'portal_exterior_2',
+                    'Interior': 'portal_interior_2',
+                    'VisAllowed': False,
                     'Hpr': VBase3(0.0, 0.0, 0.0),
                     'Objects': {
                         '1276560244.92akelts': {

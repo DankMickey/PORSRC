@@ -443,7 +443,7 @@ objectStruct = {
                     'From': LocationIds.CUTTHROAT_ISLAND,
                     'To': LocationIds.CUTTHROAT_JUNGLE,
                     'Exterior': 'portal_exterior_1',
-                    'Interior': 'portal_interior_1',
+                    'Interior': 'portal_interior_2',
                     'Objects': {
                         '1183049856.0sdnaik0': {
                             'Type': 'Locator Node',
@@ -468,7 +468,7 @@ objectStruct = {
                     'From': LocationIds.CUTTHROAT_ISLAND,
                     'To': LocationIds.CUTTHROAT_JUNGLE,
                     'Exterior': 'portal_exterior_2',
-                    'Interior': 'portal_interior_2',
+                    'Interior': 'portal_interior_1',
                     'Objects': {
                         '1183051648.0sdnaik0': {
                             'Type': 'Locator Node',
