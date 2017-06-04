@@ -1,4 +1,5 @@
 from panda3d.core import Point3, VBase3, Vec4, Vec3
+from pirates.world.LocationConstants import LocationIds
 objectStruct = {
     'Interact Links': [
         [
@@ -31075,9 +31076,16 @@ objectStruct = {
                     'Visual': {
                         'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                 '1237232539.88akelts': {
+                    # Del Fuego / Becketts Quarry
                     'Type': 'Connector Tunnel',
                     'File': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
+                    'From': LocationIds.DEL_FUEGO_ISLAND,
+                    'To': LocationIds.DEL_FUEGO_CAVE_D,
+                    'Exterior': 'portal_exterior_1',
+                    'Interior': 'portal_interior_3',
+                    'VisAllowed': False,
+                    'VisAllowed_1': False,
                     'Objects': {
                         '1237232539.91akelts': {
                             'Type': 'Locator Node',
@@ -31101,9 +31109,16 @@ objectStruct = {
                     'Visual': {
                         'Model': 'models/tunnels/pir_m_are_tun_cave' } },
                 '1237232812.44akelts': {
+                    # Becketts Quarry / El Sudoron
                     'Type': 'Connector Tunnel',
                     'File': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
+                    'From': LocationIds.DEL_FUEGO_CAVE_D,
+                    'To': LocationIds.DEL_FUEGO_JUNGLE_B,
+                    'Exterior': 'portal_interior_2',
+                    'Interior': 'portal_interior_2',
+                    'VisAllowed': False,
+                    'VisAllowed_1': False,
                     'Objects': {
                         '1237232812.45akelts': {
                             'Type': 'Locator Node',
@@ -31126,9 +31141,16 @@ objectStruct = {
                     'Visual': {
                         'Model': 'models/tunnels/pir_m_are_tun_cave' } },
                 '1237232813.83akelts': {
+                    # Lava Gorge / Catacombs
                     'Type': 'Connector Tunnel',
                     'File': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
+                    'From': LocationIds.DEL_FUEGO_CAVE_C,
+                    'To': LocationIds.DEL_FUEGO_CAVE_E,
+                    'Exterior': 'portal_interior_2',
+                    'Interior': 'portal_interior_1',
+                    'VisAllowed': False,
+                    'VisAllowed_1': False,
                     'Objects': {
                         '1237232813.86akelts': {
                             'Type': 'Locator Node',
@@ -31151,9 +31173,16 @@ objectStruct = {
                     'Visual': {
                         'Model': 'models/tunnels/pir_m_are_tun_cave' } },
                 '1237232814.84akelts': {
+                    # Catacombs / Becketts Quarry
                     'Type': 'Connector Tunnel',
                     'File': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
+                    'From': LocationIds.DEL_FUEGO_CAVE_E,
+                    'To': LocationIds.DEL_FUEGO_CAVE_D,
+                    'Exterior': 'portal_interior_2',
+                    'Interior': 'portal_interior_1',
+                    'VisAllowed': False,
+                    'VisAllowed_1': False,
                     'Objects': {
                         '1237232814.88akelts': {
                             'Type': 'Locator Node',
@@ -31176,9 +31205,16 @@ objectStruct = {
                     'Visual': {
                         'Model': 'models/tunnels/pir_m_are_tun_cave' } },
                 '1237233017.52akelts': {
+                    # Del Fuego / El Sudoron
                     'Type': 'Connector Tunnel',
                     'File': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
+                    'From': LocationIds.DEL_FUEGO_ISLAND,
+                    'To': LocationIds.DEL_FUEGO_JUNGLE_B,
+                    'Exterior': 'portal_exterior_3',
+                    'Interior': 'portal_interior_1',
+                    'VisAllowed': False,
+                    'VisAllowed_1': False,
                     'Objects': {
                         '1237233017.59akelts': {
                             'Type': 'Locator Node',
@@ -31202,9 +31238,16 @@ objectStruct = {
                     'Visual': {
                         'Model': 'models/tunnels/pir_m_are_tun_cave' } },
                 '1237233202.41akelts': {
+                    # Del Fuego / Lava Gorge
                     'Type': 'Connector Tunnel',
                     'File': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
+                    'From': LocationIds.DEL_FUEGO_ISLAND,
+                    'To': LocationIds.DEL_FUEGO_CAVE_C,
+                    'Exterior': 'portal_exterior_2',
+                    'Interior': 'portal_interior_1',
+                    'VisAllowed': False,
+                    'VisAllowed_1': False,
                     'Objects': {
                         '1237233202.61akelts': {
                             'Type': 'Locator Node',
