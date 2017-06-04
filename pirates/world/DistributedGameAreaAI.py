@@ -43,7 +43,6 @@ class DistributedGameAreaAI(DistributedNodeAI):
         self.wantBosses = config.GetBool('want-bosses', True)
         self.wantForts = config.GetBool('want-forts', True)
         self.wantQuestProps = config.GetBool('want-quest-props', True)
-        self.wantLinkTunnels = config.GetBool('want-link-tunnels', True)
 
         self.wantHolidayObjects = config.GetBool('want-holiday-objects', True)
         self._holidayNPCs = {}
@@ -106,9 +105,11 @@ class DistributedGameAreaAI(DistributedNodeAI):
 
     def createObject(self, objType, parent, objKey, object):
         genObj = None
-
         if objType == 'Object Spawn Node' and config.GetBool('want-treasure-spawnables', True):
             genObj = self.createSpawnNode(objType, objKey, object)
+
+        elif objType == 'Connector Tunnel':
+            genObj = self.air.worldCreator.createConnectorTunnel(objKey, object)
 
         elif objType == 'Animal' and config.GetBool('want-animals', False):
             self.spawner.addAnimalSpawnNode(objKey, object)
@@ -147,10 +148,7 @@ class DistributedGameAreaAI(DistributedNodeAI):
                 genObj = DistributedHolidayBonfireAI.makeFromObjectKey(self.air, objKey, object)
             else:
                 self.__printUnimplementedNotice("%s (%s)" % (objType, subType))
-
-        elif objType == 'Connector Tunnel' and self.wantLinkTunnels:
-            genObj = self.air.worldCreator.createConnectorTunnel(objKey, object)
-        elif objType == 'Island Game Area' and self.wantLinkTunnels:
+        elif objType == 'Island Game Area':
             genObj = self.air.worldCreator.loadIslandArea(objKey, object['File'], self, True)
 
         elif objType == 'Invasion Barricade' and self.wantInvasions:
@@ -333,7 +331,6 @@ class DistributedGameAreaAI(DistributedNodeAI):
             'want-bosses': [False, self.BossSpawnKeys],
             'want-forts': [True, ['Fort']], #TODO find proper key
             'want-quest-props': [True, ['Quest Prop']],
-            'want-link-tunnels': [False, ['Island Game Area', 'Connector Tunnel']],
             'want-searchables': [False, ['Searchable Container']],
             'want-animals': [False, ['Animal']],
             'want-parlor-games': [True, ['Parlor Game']],

@@ -1,4 +1,5 @@
 from panda3d.core import Point3, VBase3, Vec4, Vec3
+from pirates.world.LocationConstants import LocationIds
 objectStruct = {
     'Interact Links': [
         [
@@ -1821,6 +1822,10 @@ objectStruct = {
                     'Type': 'Connector Tunnel',
                     'File': '',
                     'Hpr': VBase3(-97.7240, 0.0, 0.0),
+                    'From': LocationIds.TORTUGA_ISLAND,
+                    'To': LocationIds.TORTUGA_JUNGLE_C,
+                    'Exterior': 'portal_exterior_2', # Unsure
+                    'Interior': 'portal_interior_2', # Sure
                     'Objects': {
                         '1169179178.36sdnaik': {
                             'Type': 'Locator Node',
@@ -1868,9 +1873,14 @@ objectStruct = {
                     'Visual': {
                         'Model': 'models/swamps/pir_m_are_swm_c' } },
                 '1169179649.25sdnaik': {
+                    # Misty Mire / Rat's Nest
                     'Type': 'Connector Tunnel',
                     'File': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
+                    'From': LocationIds.TORTUGA_SWAMP,
+                    'To': LocationIds.TORTUGA_JUNGLE_B_SWAMPY,
+                    'Exterior': 'portal_interior_2',
+                    'Interior': 'portal_interior_2',
                     'Objects': {
                         '1169179649.27sdnaik': {
                             'Type': 'Locator Node',
@@ -1893,9 +1903,14 @@ objectStruct = {
                     'Visual': {
                         'Model': 'models/tunnels/tunnel_swamp_jungle' } },
                 '1169179942.28sdnaik': {
+                    # Tortuga / Misty Mire
                     'Type': 'Connector Tunnel',
                     'File': '',
                     'Hpr': VBase3(42.475, 0.0, 0.0),
+                    'From': LocationIds.TORTUGA_ISLAND,
+                    'To': LocationIds.TORTUGA_SWAMP,
+                    'Exterior': 'portal_exterior_3',
+                    'Interior': 'portal_interior_1',
                     'Objects': {
                         '1169179942.3sdnaik': {
                             'Type': 'Locator Node',
@@ -1964,6 +1979,10 @@ objectStruct = {
                     'Type': 'Connector Tunnel',
                     'File': 'tortuga_tunnel_jungle_4',
                     'Hpr': Point3(0.0, 0.0, 0.0),
+                    'From': LocationIds.TORTUGA_JUNGLE_B_SWAMPY,
+                    'To': LocationIds.TORTUGA_JUNGLE_A_GRAVEYARD,
+                    'Exterior': 'portal_interior_1',
+                    'Interior': 'portal_interior_3',
                     'Objects': {
                         '1169797457.36sdnaik0': {
                             'Type': 'Locator Node',

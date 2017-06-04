@@ -53,6 +53,7 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
         self.laMinimapObj = None
         self.footstepSound = None
         self.environment = None
+        self.connectorInterest = None
 
     def __repr__(self):
         return '%s (%s)' % (DistributedNode.DistributedNode.__repr__(self), self.getName())
@@ -74,6 +75,10 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
         self.pendingSetupConnector = { }
         self.builder.delete()
         self.builder = None
+        
+        if self.connectorInterest:
+            base.cr.removeInterest(self.connectorInterest)
+            self.connectorInterest = None
 
     def delete(self):
         if base.zoneLODTarget == self:
@@ -85,6 +90,9 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
         del self.spawnTriggers
         del self.connectors
         del self.links
+        if self.connectorInterest:
+            base.cr.removeInterest(self.connectorInterest)
+            self.connectorInterest = None
         if self.envEffects:
             self.envEffects.delete()
             self.envEffects = None
@@ -268,7 +276,10 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
 
                     self.popupDialog.setYesCommand(closeTutorialWindow)
                     self.acceptOnce('closeTutorialWindow', closeTutorialWindow)
-
+        
+        if not self.connectorInterest:
+            self.connectorInterest = base.cr.addInterest(self.doId, 2710, 'connector-interest-%d' % id(self))
+        
         taskMgr.doMethodLater(1, self.showEnterMessage, 'showEnterMessage')
         self.builder.initEffects()
 
@@ -762,6 +773,7 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
     def announceGenerate(self):
         base.loadingScreen.tick()
         DistributedNode.DistributedNode.announceGenerate(self)
+
         base.worldCreator.registerSpecialNodes(self, self.uniqueId)
         self.areaType = base.worldCreator.getFieldFromUid(self.uniqueId, 'Visibility')
         self.envSettings = base.worldCreator.getEnvSettingsByUid(self.uniqueId)

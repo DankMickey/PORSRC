@@ -26,6 +26,10 @@ class DistributedGAInteriorAI(DistributedGameAreaAI, DistributedCartesianGridAI)
         self.extDoor = extDoor
         self.intDoors = []
 
+    def announceGenerate(self):
+        DistributedGameAreaAI.announceGenerate(self)
+        DistributedCartesianGridAI.announceGenerate(self)
+    
     def setBuildingInterior(self, buildingInterior):
         self.buildingInterior = buildingInterior
 

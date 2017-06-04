@@ -184,13 +184,17 @@ class WorldCreatorAI(WorldCreatorBase):
         obj.setUniqueId(objKey)
         obj.setModelPath(object['Visual']['Model'])
         obj.setLinks(isExterior, links)
-        parent.generateChild(obj, 2709)
+        parent.generateChild(obj, 2710)
+        
+        obj2 = DistributedGATunnelAI(target.air)
+        obj2.setUniqueId(objKey)
+        obj2.setModelPath(object['Visual'].get('Model2', obj.getModelPath()))
+        obj2.setLinks(isExterior, links)
+        target.generateChild(obj2, 2710)
         return obj
 
     def loadIslandArea(self, areaKey, areaFile, parent, cave=True):
         area = DistributedGAInteriorAI(self.air, None)
-        print str(areaFile)
-        area.tunnelModel = parent.tunnelModel
         
         self.air.uid2do[areaKey] = area
 
