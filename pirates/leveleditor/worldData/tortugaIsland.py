@@ -1204,8 +1204,13 @@ objectStruct = {
                     'Pos': Point3(409.314, 130.158, 6.615),
                     'Scale': VBase3(1.0, 1.0, 1.0) },
                 '1157132484.23sdnaik': {
+                    # Tortuga / Graveyard
                     'Type': 'Connector Tunnel',
-                    'File': 'tortuga_tunnel_jungle_1',
+                    'File': '',
+                    'From': LocationIds.TORTUGA_ISLAND,
+                    'To': LocationIds.TORTUGA_JUNGLE_A_GRAVEYARD,
+                    'Exterior': 'portal_exterior_1',
+                    'Interior': 'portal_interior_3',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Objects': {
                         '1157132484.27sdnaik': {
@@ -1229,8 +1234,13 @@ objectStruct = {
                     'Visual': {
                         'Model': 'models/tunnels/tunnel_jungle' } },
                 '1157132912.58sdnaik': {
+                    # Graveyard / Rats Nest
                     'Type': 'Connector Tunnel',
                     'File': '',
+                    'From': LocationIds.TORTUGA_JUNGLE_A_GRAVEYARD,
+                    'To': LocationIds.TORTUGA_JUNGLE_B_SWAMPY,
+                    'Exterior': 'portal_interior_2',
+                    'Interior': 'portal_interior_1',
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Objects': {
                         '1157132912.61sdnaik': {
@@ -1253,9 +1263,14 @@ objectStruct = {
                     'Visual': {
                         'Model': 'models/tunnels/pir_m_are_tun_cave' } },
                 '1157133806.45sdnaik': {
+                    # Tortuga / Wildwoods
                     'Type': 'Connector Tunnel',
-                    'File': 'tortuga_tunnel_jungle_3',
+                    'File': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
+                    'From': LocationIds.TORTUGA_ISLAND,
+                    'To': LocationIds.TORTUGA_JUNGLE_C,
+                    'Exterior': 'portal_exterior_2',
+                    'Interior': 'portal_interior_1',
                     'Objects': {
                         '1157133806.48sdnaik': {
                             'Type': 'Locator Node',
@@ -1819,13 +1834,14 @@ objectStruct = {
                     'spawnTimeBegin': 0.0,
                     'spawnTimeEnd': 0.0 },
                 '1169179178.34sdnaik': {
+                    # Thieves Den / Wildwoods
                     'Type': 'Connector Tunnel',
                     'File': '',
                     'Hpr': VBase3(-97.7240, 0.0, 0.0),
-                    'From': LocationIds.TORTUGA_ISLAND,
+                    'From': LocationIds.TORTUGA_CAVE,
                     'To': LocationIds.TORTUGA_JUNGLE_C,
-                    'Exterior': 'portal_exterior_2', # Unsure
-                    'Interior': 'portal_interior_2', # Sure
+                    'Exterior': 'portal_interior_1',
+                    'Interior': 'portal_interior_2',
                     'Objects': {
                         '1169179178.36sdnaik': {
                             'Type': 'Locator Node',
@@ -1976,13 +1992,14 @@ objectStruct = {
                         'Color': (0.25, 0.40999999642372131, 0.4699999988079071, 1.0),
                         'Model': 'models/vegetation/swamp_tree_roots' } },
                 '1169797457.36sdnaik': {
+                    # Graveyard / Thieves Den
                     'Type': 'Connector Tunnel',
-                    'File': 'tortuga_tunnel_jungle_4',
+                    'File': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
-                    'From': LocationIds.TORTUGA_JUNGLE_B_SWAMPY,
-                    'To': LocationIds.TORTUGA_JUNGLE_A_GRAVEYARD,
+                    'From': LocationIds.TORTUGA_JUNGLE_A_GRAVEYARD,
+                    'To': LocationIds.TORTUGA_CAVE,
                     'Exterior': 'portal_interior_1',
-                    'Interior': 'portal_interior_3',
+                    'Interior': 'portal_interior_2',
                     'Objects': {
                         '1169797457.36sdnaik0': {
                             'Type': 'Locator Node',
