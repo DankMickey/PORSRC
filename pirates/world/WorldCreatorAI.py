@@ -148,18 +148,12 @@ class WorldCreatorAI(WorldCreatorBase):
     
     def doPostponedTunnel(self, postponedTunnel):
         objKey, object = postponedTunnel
-
-        if 'From' not in object:
-            print 'Skipping tunnel for now', objKey
-            return
-
         parentUid = object['From']
         targetUid = object['To']
         parent = self.air.uid2do[parentUid]
         target = self.air.uid2do[targetUid]
         
         isExterior = False
-        
         links = []
         
         for lObjKey, lObj in object['Objects'].iteritems():
@@ -193,7 +187,6 @@ class WorldCreatorAI(WorldCreatorBase):
         obj2.setLinks(isExterior, links)
         obj2.setVisAllowed(object.get('VisAllowed', True))
         target.generateChild(obj2, 2710)
-        return obj
 
     def loadIslandArea(self, areaKey, areaFile, parent, cave=True):
         area = DistributedGAInteriorAI(self.air, None)
