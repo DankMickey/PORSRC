@@ -1,4 +1,5 @@
 from panda3d.core import Point3, VBase3, Vec4, Vec3
+from pirates.world.LocationConstants import LocationIds
 objectStruct = {
     'Locator Links': [
         [
@@ -439,6 +440,10 @@ objectStruct = {
                     'Type': 'Connector Tunnel',
                     'File': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
+                    'From': LocationIds.CUTTHROAT_ISLAND,
+                    'To': LocationIds.CUTTHROAT_JUNGLE,
+                    'Exterior': 'portal_exterior_1',
+                    'Interior': 'portal_interior_1',
                     'Objects': {
                         '1183049856.0sdnaik0': {
                             'Type': 'Locator Node',
@@ -460,6 +465,10 @@ objectStruct = {
                     'Type': 'Connector Tunnel',
                     'File': '',
                     'Hpr': Point3(0.0, 0.0, 0.0),
+                    'From': LocationIds.CUTTHROAT_ISLAND,
+                    'To': LocationIds.CUTTHROAT_JUNGLE,
+                    'Exterior': 'portal_exterior_2',
+                    'Interior': 'portal_interior_2',
                     'Objects': {
                         '1183051648.0sdnaik0': {
                             'Type': 'Locator Node',

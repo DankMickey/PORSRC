@@ -1290,6 +1290,7 @@ objectStruct = {
                     'To': LocationIds.TORMENTA_CAVE_B,
                     'Exterior': 'portal_exterior_1',
                     'Interior': 'portal_interior_1',
+                    'VisAllowed': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Objects': {
                         '1172208232.63sdnaik': {
@@ -1319,6 +1320,7 @@ objectStruct = {
                     'To': LocationIds.TORMENTA_CAVE_B,
                     'Exterior': 'portal_exterior_2',
                     'Interior': 'portal_interior_2',
+                    'VisAllowed': False,
                     'Hpr': Point3(0.0, 0.0, 0.0),
                     'Objects': {
                         '1172208409.97sdnaik': {
