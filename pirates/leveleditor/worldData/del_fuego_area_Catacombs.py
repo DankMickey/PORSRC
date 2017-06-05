@@ -155,7 +155,7 @@ objectStruct = {
             '1235611117.31akelts'] },
     'LevelEnvironment': {
         'BASE': {
-            'AmbientColor': Vec4(0.6, 0.6, 0.6, 1),
+            'AmbientColor': Vec4(0.46, 0.46, 0.46, 1),
             'Direction': Vec3(0.0, 0.0, 270.0),
             'FogColor': Vec4(0.137254, 0.0784313, 0.0392156, 1),
             'FogExp': 0.002,
