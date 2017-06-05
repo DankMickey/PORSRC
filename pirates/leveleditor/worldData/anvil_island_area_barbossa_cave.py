@@ -34,7 +34,7 @@ objectStruct = {
                     'Notice Animation 1': '',
                     'Notice Animation 2': '',
                     'Patrol Radius': '12.0000',
-                    'Pos': Point3(-21.98, 19.6148, 6.04100),
+                    'Pos': Point3(-18.2, 19.6148, 6.04100),
                     'PoseAnim': '',
                     'PoseFrame': '',
                     'Private Status': 'All',
