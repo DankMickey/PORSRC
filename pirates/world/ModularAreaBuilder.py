@@ -28,9 +28,11 @@ class ModularAreaBuilder(SectionAreaBuilder):
         root = SectionAreaBuilder.addChildObj(self, levelObj)
         if levelObj['Type'] == 'Cave_Pieces':
             root.setTag('modular', '1')
-            if levelObj.get('OverrideFog', False):
-                root.setTag('fog-onset', str(levelObj.get('FogOnSet', 0)))
-                root.setTag('fog-peak', str(levelObj.get('FogPeak', 100)))
+            root.setTag('fog-onset', '30')
+            root.setTag('fog-peak', '80')
+            #if levelObj.get('OverrideFog', False):
+            #    root.setTag('fog-onset', str(levelObj.get('FogOnSet', 0)))
+            #    root.setTag('fog-peak', str(levelObj.get('FogPeak', 100)))
 
     def lightObjects(self):
         self.generateAdjLightSets()
