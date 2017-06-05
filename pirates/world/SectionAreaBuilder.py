@@ -67,8 +67,14 @@ class SectionAreaBuilder(AreaBuilderBase):
         transform = levelObj.transform
         objData = levelObj.data
         uid = levelObj.uniqueId
-        visZone = objData.get('VisZone')
-        size = objData.get('VisSize')
+
+        if base.visAllowed:
+            visZone = objData.get('VisZone')
+            size = objData.get('VisSize')
+        else:
+            visZone = None
+            size = None
+
         if objData['Type'] == 'Animated Avatar - Skeleton' and objData['Type'] == 'Animated Avatar - Navy' and objData['Type'] == 'Animated Avatar - Townfolk' or objData['Type'] == 'Animated Avatar':
             propNp = self.getPropAvatarNode(objData, transform, uid)
             if visZone:
@@ -246,6 +252,7 @@ class SectionAreaBuilder(AreaBuilderBase):
                 if visData:
                     if uid not in visData[1]:
                         visData[1].append(uid)
+                        self.visTable[visZone] = visData
 
         adjTable = base.worldCreator.uidAdjTables.get(self.master.uniqueId)
         if adjTable:
@@ -458,7 +465,7 @@ class SectionAreaBuilder(AreaBuilderBase):
     def addEffectObject(self, levelObj):
         visZone = levelObj.data.get('VisZone')
         visSize = levelObj.data.get('VisSize')
-        if visZone:
+        if visZone and base.visAllowed:
             effectObj = NodePath(ModelNode(levelObj.data.get('EffectName')))
             effectObj.node().setPreserveTransform(effectObj.node().PTLocal)
             section = self.tempSections.get(visZone)

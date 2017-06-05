@@ -52,6 +52,7 @@ class DistributedGameAreaAI(DistributedNodeAI):
         self.wantInvasions = config.GetBool('want-invasions', True)
         self._invasionSpawns = {}
         self._switchProps = {}
+        self.visAllowed = True
 
         self.setPythonTag('npTag-gameArea', self)
 
@@ -76,6 +77,19 @@ class DistributedGameAreaAI(DistributedNodeAI):
 
     def getUniqueId(self):
         return self.uid
+    
+    def setVisAllowed(self, visAllowed):
+        self.visAllowed = visAllowed
+    
+    def d_setVisAllowed(self, visAllowed):
+        self.sendUpdate('setVisAllowed', [visAllowed])
+    
+    def b_setVisAllowed(self, visAllowed):
+        self.setVisAllowed(visAllowed)
+        self.d_setVisAllowed(visAllowed)
+    
+    def getVisAllowed(self):
+        return self.visAllowed
 
     def setName(self, name):
         self.name = name

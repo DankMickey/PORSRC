@@ -49,6 +49,7 @@ class DistributedGAInteriorAI(DistributedGameAreaAI, DistributedCartesianGridAI)
         if objType == 'Island Game Area':
             if not self.getUniqueId():
                 self.b_setUniqueId(objKey)
+                self.b_setVisAllowed(object.get('VisAllowed', True))
                 
                 if object['Visual']['Model']:
                     self.b_setModelPath(object['Visual']['Model'])

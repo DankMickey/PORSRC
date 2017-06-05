@@ -33,6 +33,7 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
         NodePath.__init__(self, 'GameArea')
         MappableArea.__init__(self)
         self.uniqueId = ''
+        self.visAllowed = True
         self.geom = None
         self.previousDisplayName = None
         self._DistributedGameArea__onOffState = False
@@ -182,7 +183,14 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
         self.cr.uidMgr.addUid(self.uniqueId, self.getDoId())
 
     def getUniqueId(self):
-        return self.uniqueId
+        return self.uniqueId    
+    
+    def setVisAllowed(self, visAllowed):
+        self.visAllowed = visAllowed
+        base.visAllowed = visAllowed
+    
+    def getVisAllowed(self):
+        return self.visAllowed
 
     def loadModel(self):
         pass

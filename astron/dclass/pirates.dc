@@ -895,6 +895,7 @@ dclass DistributedGameArea : DistributedNode {
   setModelPath(string) required broadcast ram;
   // setLinks(Link []) required broadcast ram;
   setUniqueId(string) required broadcast ram;
+  setVisAllowed(bool) required broadcast ram;
   setName(string) required broadcast ram;
   addSpawnTriggers(triggerSphere []) broadcast ram;
   spawnNPC(string, uint32) airecv clsend;

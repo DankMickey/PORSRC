@@ -45,7 +45,7 @@ class ModularAreaBuilder(SectionAreaBuilder):
         for (uid, obj) in self.largeObjects.iteritems():
             visZone = obj.getTag('visZone')
             modular = obj.getTag('modular')
-            if modular:
+            if modular or (visZone and not base.visAllowed):
                 self.largeObjects[uid].setAttrib(self.areaLights[uid])
                 continue
             if visZone:

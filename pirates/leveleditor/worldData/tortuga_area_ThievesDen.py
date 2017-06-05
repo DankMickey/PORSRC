@@ -121,6 +121,7 @@ objectStruct = {
             'Name': 'Thieves Den',
             'File': '',
             'Environment': 'Cave',
+            'VisAllowed': False,
             'Footstep Sound': 'Cave',
             'Instanced': False,
             'Minimap': True,

@@ -1093,6 +1093,8 @@ class AreaBuilderBase(DirectObject.DirectObject):
         return model
 
     def processSmallObject(self, model):
+        if not model.lod:
+            return
         model.lod.detachNode()
         extraData = model.geomRoot.findAllMatches('*')
         node = model.geomRoot.attachNewNode('extraData')

@@ -43,6 +43,7 @@ objectStruct = {
             'Name': 'del_fuego_area_cave_d_1',
             'File': '',
             'Environment': 'Cave',
+            'VisAllowed': False,
             'Instanced': True,
             'Minimap': False,
             'Objects': {

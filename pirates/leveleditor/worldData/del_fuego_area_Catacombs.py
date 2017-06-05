@@ -172,6 +172,7 @@ objectStruct = {
             'Name': 'default',
             'File': '',
             'Environment': 'Cave',
+            'VisAllowed': False,
             'Footstep Sound': 'Sand',
             'Instanced': False,
             'Minimap': True,

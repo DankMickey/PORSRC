@@ -9,6 +9,7 @@ objectStruct = {
             'Footstep Sound': 'Sand',
             'Instanced': True,
             'Minimap': False,
+            'VisAllowed': False,
             'Objects': {
                 '1172209074.56sdnaik': {
                     'Type': 'Locator Node',

@@ -117,6 +117,7 @@ objectStruct = {
             'File': '',
             'Environment': 'Cave',
             'Footstep Sound': 'Cave',
+            'VisAllowed': False,
             'Instanced': False,
             'Minimap': True,
             'Minimap Prefix': 'minimap_LavaGorge',

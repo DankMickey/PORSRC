@@ -111,6 +111,7 @@ objectStruct = {
             'Name': 'Cursed Caverns',
             'File': '',
             'Environment': 'Cave',
+            'VisAllowed': False,
             'Footstep Sound': 'Cave',
             'Instanced': False,
             'Minimap': True,
