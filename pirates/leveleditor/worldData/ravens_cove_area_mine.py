@@ -93,7 +93,7 @@ objectStruct = {
             '1273792065.04caoconno'] },
     'LevelEnvironment': {
         'BASE': {
-            'AmbientColor': Vec4(0.66, 0.66, 0.66, 1),
+            'AmbientColor': Vec4(0.46, 0.46, 0.46, 1),
             'Direction': Vec3(0.0, 0.0, 270.0),
             'FogColor': Vec4(0.13, 0.149, 0.050000, 0),
             'FogExp': 0.00735,
