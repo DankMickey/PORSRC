@@ -1,3 +1,4 @@
+from panda3d.core import NodePath
 from direct.distributed.DistributedCartesianGridAI import DistributedCartesianGridAI
 from direct.distributed.GridParent import GridParent
 from direct.directnotify import DirectNotifyGlobal
@@ -53,23 +54,34 @@ class DistributedGAInteriorAI(DistributedGameAreaAI, DistributedCartesianGridAI)
                 
                 if object['Visual']['Model']:
                     self.b_setModelPath(object['Visual']['Model'])
+                
+                npEmpty = NodePath('npEmpty')
 
                 for objKey2, obj2 in object['Objects'].iteritems():
-                    pos = obj2['Pos']
-                    hpr = obj2['Hpr']
-
                     if obj2['Type'] == 'Cave_Pieces':
+                        np = NodePath('cavePieces')
+                        np.reparentTo(npEmpty)
+                        np.setPos(obj2['Pos'])
+                        np.setHpr(obj2['Hpr'])
+
                         for objKey3, obj3 in obj2['Objects'].iteritems():
-                            hpr2 = hpr - obj3['Hpr']
-                            hpr2 = (hpr2[0] % 360, hpr2[1] % 360, hpr2[2] % 360)
+                            np2 = NodePath('prop')
+                            np2.reparentTo(np)
+                            np2.setPos(obj3['Pos'])
+                            np2.setHpr(obj3['Hpr'])
 
                             obj4 = copy.copy(obj3)
-                            obj4['Pos'] = (pos - obj3['Pos'])
-                            obj4['Hpr'] = hpr2
+                            obj4['Pos'] = np2.getPos(npEmpty)
+                            obj4['Hpr'] = np2.getHpr(npEmpty)
 
                             self.createObject(obj3['Type'], self, objKey3, obj4)
+                            np2.removeNode()
+                        
+                        np.removeNode()
                     else:
                         self.createObject(obj2['Type'], self, objKey2, obj2)
+
+                npEmpty.removeNode()
         elif objType == 'Building Interior':
             if not self.getUniqueId():
                 self.b_setUniqueId(objKey)
