@@ -2,7 +2,7 @@ from panda3d.core import Point3, VBase3, Vec4, Vec3
 objectStruct = {
     'LevelEnvironment': {
         'Night': {
-            'AmbientColor': Vec4(0.050000, 0.200, 0.37, 1),
+            'AmbientColor': Vec4(0.3, 0.3, 0.3, 1),
             'BackColor': Vec4(1.12, 1.37, 1.49, 1),
             'Direction': Vec3(0.0, 40.0, 90.0),
             'FogColor': Vec4(0.0598, 0.089, 0.179, 0),
