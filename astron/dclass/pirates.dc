@@ -879,7 +879,7 @@ dclass DistributedPlayerPirate : DistributedSmoothNode, DistributedBattleAvatar 
   rewardNotify(uint32, uint32);
   setInitialGoldGiven(bool = 0) required ownrecv airecv db;
   setRewardGoldTimestamp(uint32 = 0) required ownrecv airecv db;
-  setMaxFriends(uint16 = 200) ownrecv required airecv db;
+  setMaxFriends(uint16 = 200) required broadcast ram db;
 };
 
 dclass NewsManager : DistributedObject {

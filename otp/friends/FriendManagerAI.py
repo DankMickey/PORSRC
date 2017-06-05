@@ -36,6 +36,9 @@ class AddTrueFriend:
         except:
             maxFriends = 200
 
+        if maxFriends < 200:
+            maxFriends = 200
+
         friendsList = fields['setFriendsList'][0]
         trueFriendsList = fields['setTrueFriends'][0]
         name = fields['setName'][0]
