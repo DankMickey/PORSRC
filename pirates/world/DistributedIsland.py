@@ -446,11 +446,6 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
         if self.parentWorld:
             self.parentWorld.worldGrid.removeIslandGrid(self)
 
-    def setLinks(self, links):
-        DistributedGameArea.DistributedGameArea.setLinks(self, links)
-        if self.lastZoneLevel == 0:
-            self.loadConnectors()
-
     def setModelPath(self, modelPath):
         self.modelPath = modelPath
 

@@ -28,7 +28,6 @@ class WorldCreator(WorldCreatorBase.WorldCreatorBase, DirectObject.DirectObject)
         self.postLoadCalls = []
         self.oceanAreas = { }
         self.waypoints = { }
-        self.links = { }
         self.allowFishingGame = config.GetBool('want-fishing-game', 0)
         self.allowRepairGame = config.GetBool('want-repair-game', 0)
         self.allowPotionGame = config.GetBool('want-potion-game', 0)
@@ -123,10 +122,6 @@ class WorldCreator(WorldCreatorBase.WorldCreatorBase, DirectObject.DirectObject)
 
         objectInfo = self.getObjectDataByUid(parentUid, fileDict)
         if not objectInfo:
-            if len(parent.master.links):
-                tunnel = base.cr.doId2do.get(parent.master.links[0][0])
-                self.notify.error('Data file not found for area. connecting tunnel uid = %s' % tunnel.uniqueId)
-
             self.notify.error('Data file not found for area being loaded: %s, make sure worldCreator.loadObjectsFromFile is being called.' % parentUid)
 
         objDict = objectInfo.get('Objects')
@@ -157,10 +152,6 @@ class WorldCreator(WorldCreatorBase.WorldCreatorBase, DirectObject.DirectObject)
 
         objectInfo = self.getObjectDataByUid(subUid, fileDict)
         if not objectInfo:
-            if len(parent.master.links):
-                tunnel = base.cr.doId2do.get(parent.master.links[0][0])
-                self.notify.error('Data file not found for area. connecting tunnel uid = %s' % tunnel.uniqueId)
-
             self.notify.error('Data file not found for area being loaded: %s, make sure worldCreator.loadObjectsFromFile is being called.' % parentUid)
 
         objDict = objectInfo.get('Objects')

@@ -129,10 +129,6 @@ class DistributedGAInterior(DistributedGameArea.DistributedGameArea, Distributed
         if av.isLocal():
             self.updateAvReturnLocation(av)
 
-    def setLinks(self, links):
-        DistributedGameArea.DistributedGameArea.setLinks(self, links)
-        self.loadConnectors()
-
     def setConnectorId(self, connectorId):
         self.connectorId = connectorId
 
@@ -353,18 +349,6 @@ class DistributedGAInterior(DistributedGameArea.DistributedGameArea, Distributed
             localAvatar.guiMgr.clearMinimap(self.minimap)
             self.destroyMinimap()
             self.fadeOutSoundAndMusic()
-
-    def loadConnectors(self):
-        if 'interior' in self.modelPath and 'fortCharles_zero' in self.modelPath and 'kingshead_zero' in self.modelPath or 'pir_m_bld_int_tavernA_oneDoor' in self.modelPath:
-            return None
-
-        DistributedGameArea.DistributedGameArea.loadConnectors(self)
-
-    def unloadConnectors(self):
-        if 'interior' in self.modelPath and 'fortCharles_zero' in self.modelPath and 'kingshead_zero' in self.modelPath or 'pir_m_bld_int_tavernA_oneDoor' in self.modelPath:
-            return None
-
-        DistributedGameArea.DistributedGameArea.unloadConnectors(self)
 
     def setAutoFadeInOnEnter(self, autoFadeIn):
         self.autoFadeIn = autoFadeIn

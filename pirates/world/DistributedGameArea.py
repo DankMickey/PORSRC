@@ -39,7 +39,6 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
         self._DistributedGameArea__onOffState = False
         self.gameFSM = None
         self.links = []
-        self.pendingSetupConnector = { }
         self.connectors = { }
         self.connectorInterests = set()
         self.envEffects = None
@@ -70,10 +69,6 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
             self.geom.remove_node()
 
         self.unloadConnectors()
-        for request in self.pendingSetupConnector.itervalues():
-            self.cr.relatedObjectMgr.abortRequest(request)
-
-        self.pendingSetupConnector = { }
         self.builder.delete()
         self.builder = None
         
@@ -194,35 +189,6 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
 
     def loadModel(self):
         pass
-
-    def setLinks(self, links):
-        for link in links:
-            (areaNode, connId, areaUid, connParent, connZone, connNode, connWorld, connWorldZone) = link
-            self.links.append([
-                connId,
-                connParent,
-                connZone,
-                connWorld,
-                connWorldZone])
-
-            def setupConnector(connector):
-                connector.interior = self
-                self.connectors[connector.doId] = connector
-                request = self.pendingSetupConnector.pop(connector.doId, None)
-
-            connector = self.cr.doId2do.get(connId)
-            if connector:
-                self.pendingSetupConnector[connId] = None
-                setupConnector(connector)
-
-            elif connId:
-                if connId in self.pendingSetupConnector:
-                    request = self.pendingSetupConnector.pop(connId)
-                    self.cr.relatedObjectMgr.abortRequest(request)
-
-                request = self.cr.relatedObjectMgr.requestObjects([
-                    connId], eachCallback = setupConnector)
-                self.pendingSetupConnector[connId] = request
 
     def loadConnectors(self):
         for link in self.links:

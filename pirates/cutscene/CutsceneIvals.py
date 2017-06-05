@@ -117,18 +117,7 @@ def forceInteract(objUid, doorIndex = None):
 
     def _forceInteractCallback(objDoId):
         objRef = base.cr.doId2do.get(objDoId)
-        if doorIndex != None:
-            if len(objRef.links) <= doorIndex:
-                print 'warning: could not find door index %s for object %s' % (doorIndex, objDoId)
-                return None
-
-            doorDoId = objRef.links[doorIndex][0]
-            doorObj = base.cr.doId2do.get(doorDoId)
-            if doorObj:
-                doorObj.handleUseKey()
-
-        else:
-            objRef.handleUseKey()
+        objRef.handleUseKey()
 
     if 'localAvatar' in __builtins__:
         base.cr.uidMgr.addUidCallback(objUid, _forceInteractCallback)

@@ -3,7 +3,6 @@ from pirates.audio import SoundGlobals
 from pirates.piratesbase import PiratesGlobals
 from pirates.world import GridAreaBuilder
 from direct.interval.IntervalGlobal import *
-from direct.showbase.PythonUtil import report
 from otp.otpbase import OTPRender
 import DistributedGAConnector
 
@@ -24,7 +23,6 @@ class DistributedGATunnel(DistributedGAConnector.DistributedGAConnector):
             None,
             None]
         self.avatarZoneContext = None
-        self.ownContext = None
         self.floorIndex = -1
         self.lastFloor = -1
         self.lastFloorTime = 0
@@ -44,9 +42,6 @@ class DistributedGATunnel(DistributedGAConnector.DistributedGAConnector):
 
     def delete(self):
         self._DistributedGATunnel__stopProcessVisibility()
-        if self.ownContext:
-            self.cr.removeInterest(self.ownContext)
-            self.ownContext = None
 
         for sphere in self.loadSphere:
             if sphere:
@@ -104,9 +99,6 @@ class DistributedGATunnel(DistributedGAConnector.DistributedGAConnector):
 
     def __handleOnFloor(self, areaIndex, collEntry):
         if (not collEntry or areaIndex in (0, 1)) and not localAvatar.testTeleportFlag(PiratesGlobals.TFInTunnel):
-            if not self.ownContext:
-                (parent, zone) = self.getLocation()
-                self.ownContext = self.cr.addInterest(parent, zone, 'tunnelSelfInterest')
 
             def enterTunnelFinished():
                 if localAvatar.getGameState() in ('EnterTunnel', 'Off', 'Dialog', 'Cutscene', 'LandRoam'):
@@ -192,10 +184,6 @@ class DistributedGATunnel(DistributedGAConnector.DistributedGAConnector):
 
     def handleChildLeave(self, childObj, zoneId):
         DistributedGAConnector.DistributedGAConnector.handleChildLeave(self, childObj, zoneId)
-        if childObj.isLocal():
-            if self.ownContext:
-                self.cr.removeInterest(self.ownContext)
-                self.ownContext = None
 
     def fadeoutAllAmbient(self):
         if self.lastFloor >= 0:

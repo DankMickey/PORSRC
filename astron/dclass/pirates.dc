@@ -1043,7 +1043,6 @@ dclass DistributedGAInterior : DistributedGameArea {
 };
 
 dclass DistributedGAConnector : DistributedNode {
-  //setParentingRules(string, string) required broadcast ram;
   setModelPath(string) required broadcast ram;
   setLinks(uint8, Link []) required broadcast ram;
   setUniqueId(string) required broadcast ram;
