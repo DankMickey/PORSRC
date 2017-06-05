@@ -710,11 +710,11 @@ class AreaBuilderBase(DirectObject.DirectObject):
             fire.setColorScaleOff()
             fire.reparentTo(light)
             self.fires.append(fire)
-            effect = LanternGlow(light, 2)
+            LanternGlowEffect = LanternGlow(light, 2)
             pos = plNode.getPos()
-            effect.setPos(pos)
-            effect.loop()
-            self.discs.append(effect)
+            LanternGlowEffect.setPos(pos)
+            LanternGlowEffect.loop()
+            self.discs.append(LanternGlowEffect)
 
     def unloadLights(self):
         for light in self.lights:
@@ -855,8 +855,6 @@ class AreaBuilderBase(DirectObject.DirectObject):
             self.master.setEnvironment(environment)
 
     def setupLights(self):
-        self.loadLights()
-
         for light in self.areaGeometry.findAllMatches('**/=Global Light'):
             self.addLight(light)
             OTPRender.renderReflection(False, light, 'p_light', None)
@@ -868,7 +866,6 @@ class AreaBuilderBase(DirectObject.DirectObject):
             return None
 
         self.areaLoaded = False
-        self.unloadLights()
         self.clearAnims()
         for av in self.propAvs:
             for ival in av.swordIvals:
