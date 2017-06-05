@@ -195,9 +195,10 @@ class DynamicLight(NodePath):
         mup = self.intensity
         
         if self.type == DYN_LIGHT_AMBIENT:
-            mup = min(1.0, mup * 1.4)
-
-        color = VBase4(self.color[0] * mup, self.color[1] * mup, self.color[2] * mup, self.color[3] * mup)
+            color = VBase4(0.7, 0.7, 0.7, 1)
+        else:
+            color = VBase4(self.color[0] * mup, self.color[1] * mup, self.color[2] * mup, self.color[3] * mup)
+        
         for currModel in self.models:
             if currModel and not currModel.isEmpty():
                 currModel.setColor(color)
