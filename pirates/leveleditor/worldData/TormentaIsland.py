@@ -2017,7 +2017,7 @@ objectStruct = {
                     'Pos': Point3(-257.668, 803.282, 1002.5),
                     'Scale': VBase3(1.0, 1.0, 1.0),
                     'VisSize': '',
-                    'Visibility': 'Grid',
+                    'Visibility': 'Modular',
                     'Visual': {
                         'Model': 'models/misc/pir_m_are_cav_startingPlane' } },
                 '1249421568.0jloehrle': {

@@ -23457,7 +23457,20 @@ objectStruct = {
                         'Model': 'models/caves/pir_m_are_cav_curveWideRampLeft' } } },
             'Visibility': 'Modular',
             'Visual': {
-                'Model': 'models/misc/pir_m_are_cav_startingPlane' } } },
+                'Model': 'models/misc/pir_m_are_cav_startingPlane' } } },    
+    'LevelEnvironment': {
+        'BASE': {
+            'AmbientColor': Vec4(0.66, 0.66, 0.66, 1),
+            'Direction': Vec3(0.0, 0.0, 270.0),
+            'FogColor': Vec4(0.239216, 0.14902, 0.101961, 1),
+            'FogExp': 0.002,
+            'FogLinearRange': (0.0, 349.0),
+            'FogType': 2,
+            'LightSwitch': [
+                0,
+                1,
+                0],
+            'SkyType': 0 } },
     'TodSettings': {
         'AmbientColors': {
             0: Vec4(0.447058, 0.529411, 0.647059, 1),
