@@ -55,7 +55,6 @@ class DistributedGAInterior(DistributedGameArea.DistributedGameArea, Distributed
         base.worldCreator.registerSpecialNodes(self, self.uniqueId)
         self.builder.loadObjects()
         self.enableFloors()
-        self.loadConnectors()
         self.initBlockers(self)
         self.startCustomEffects()
         self.builder.resumeSFX()
@@ -78,7 +77,6 @@ class DistributedGAInterior(DistributedGameArea.DistributedGameArea, Distributed
     def disable(self):
         self.stopCustomEffects()
         self.builder.pauseSFX()
-        self.unloadConnectors()
         if self.fadeInTrack:
             self.fadeInTrack.pause()
 

@@ -202,7 +202,6 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
         if av:
             self.setZoneLevel(0)
             self.addObjectToGrid(av)
-            self.loadConnectors()
             localAvatar.setInterest(self.doId, PiratesGlobals.IslandLocalZone, [
                 'IslandLocal'])
 
@@ -261,7 +260,6 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
             self.builder.loadObjects()
             base.loadingScreen.beginStep('rest', 1, 8)
             base.loadingScreen.tick()
-            self.loadConnectors()
             self.listenForLocationSphere()
             base.loadingScreen.tick()
             self.startCustomEffects(island = True)
@@ -315,7 +313,6 @@ class DistributedIsland(DistributedGameArea.DistributedGameArea, DistributedCart
         if level == 0:
             self.islandObjectsLoaded = False
             self.handleExitGameArea()
-            self.unloadConnectors()
             self.cleanupIslandData()
             self.unloadIslandShoreWave()
             self.stopListenForLocationSphere()

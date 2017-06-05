@@ -38,9 +38,6 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
         self.previousDisplayName = None
         self._DistributedGameArea__onOffState = False
         self.gameFSM = None
-        self.links = []
-        self.connectors = { }
-        self.connectorInterests = set()
         self.envEffects = None
         self.spawnTriggers = []
         self.blockerColls = []
@@ -84,8 +81,6 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
             trigger.remove_node()
 
         del self.spawnTriggers
-        del self.connectors
-        del self.links
         if self.connectorInterest:
             base.cr.removeInterest(self.connectorInterest)
             self.connectorInterest = None
@@ -191,44 +186,12 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
         pass
 
     def loadConnectors(self):
-        for link in self.links:
-            if link:
-                connectorId = link[0]
-                if connectorId not in self.connectorInterests:
-                    self.connectorInterests.add(connectorId)
-                    parentId = link[1]
-                    zoneId = link[2]
-                    connectorEvent = 'connector-%s' % connectorId
-                    self.acceptOnce(connectorEvent, self.reparentConnector, extraArgs = [
-                        connectorId])
-                    localAvatar.setInterest(parentId, zoneId, [
-                        'Connectors-%s' % self.doId], connectorEvent)
-                else:
-                    self.reparentConnector(connectorId)
+        for tunnel in base.cr.doId2do.values():
+            if hasattr(tunnel, 'reparentConnector'):
+                tunnel.reparentConnector()
 
     def unloadConnectors(self):
-        for (connectorId, connector) in self.connectors.iteritems():
-            if connector:
-                connector.setLoadedArea(None)
-                connector.turnOff()
-                continue
-
-        self.connectors = { }
-        localAvatar.clearInterestNamed('connectorInterestCleared', [
-            'Connectors-%s' % self.doId])
-        self.connectorInterests = set()
-
-    def reparentConnector(self, connectorId):
-        connector = self.cr.doId2do.get(connectorId)
-        if connector:
-            self.connectors[connectorId] = connector
-            if connector.dclass.getName() == 'DistributedGAConnector':
-                connector.reparentConnectorToArea(self)
-
-            if self._DistributedGameArea__onOffState:
-                connector.turnOn()
-            else:
-                connector.turnOff()
+        pass
 
     def handleEnterGameArea(self, collEntry = None):
         if localAvatar.style.getTutorial() == PiratesGlobals.TUT_GOT_SEACHEST:
@@ -254,6 +217,7 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
         if not self.connectorInterest:
             self.connectorInterest = base.cr.addInterest(self.doId, 2710, 'connector-interest-%d' % id(self))
         
+        self.loadConnectors()
         taskMgr.doMethodLater(1, self.showEnterMessage, 'showEnterMessage')
         self.builder.initEffects()
 
@@ -409,8 +373,8 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
         pass
 
     def quickLoadOtherSide(self):
-        connector = self.connectors.get(localAvatar.lastConnectorId)
-        if connector:
+        connector = base.cr.doId2do.get(localAvatar.lastConnectorId)
+        if connector and hasattr(connector, 'quickLoadOtherSide'):
             connector.quickLoadOtherSide()
 
     def addSpawnTriggers(self, triggerSpheres):
@@ -494,17 +458,9 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
 
     def turnOn(self, av = None):
         self._DistributedGameArea__onOffState = True
-        for (id, connector) in self.connectors.iteritems():
-            if connector:
-                connector.turnOn()
-                continue
 
     def turnOff(self):
         self._DistributedGameArea__onOffState = False
-        for (id, connector) in self.connectors.iteritems():
-            if connector:
-                connector.turnOff()
-                continue
 
     def getOnOffState(self):
         return self._DistributedGameArea__onOffState
