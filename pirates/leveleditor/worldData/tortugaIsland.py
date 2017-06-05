@@ -1270,7 +1270,7 @@ objectStruct = {
                     'From': LocationIds.TORTUGA_ISLAND,
                     'To': LocationIds.TORTUGA_JUNGLE_C,
                     'Exterior': 'portal_exterior_2',
-                    'Interior': 'portal_interior_1',
+                    'Interior': 'portal_interior_2',
                     'Objects': {
                         '1157133806.48sdnaik': {
                             'Type': 'Locator Node',
@@ -1840,7 +1840,7 @@ objectStruct = {
                     'Hpr': VBase3(-97.7240, 0.0, 0.0),
                     'From': LocationIds.TORTUGA_JUNGLE_C,
                     'To': LocationIds.TORTUGA_CAVE,
-                    'Exterior': 'portal_interior_2',
+                    'Exterior': 'portal_interior_1',
                     'Interior': 'portal_interior_1',
                     'VisAllowed': False,
                     'Objects': {

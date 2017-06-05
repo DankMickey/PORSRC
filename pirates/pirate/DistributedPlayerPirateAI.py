@@ -142,7 +142,7 @@ class DistributedPlayerPirateAI(DistributedBattleAvatarAI, DistributedPlayerAI):
         self.setMaxFriends(maxFriends)
     
     def getMaxFriends(self):
-        return self.maxFriends
+        return max(self.maxFriends, 200)
     
     def getInventory(self):
         return self.inventory
