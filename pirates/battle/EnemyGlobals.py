@@ -772,6 +772,14 @@ __baseAvatarStats = {
         2.0,
         SKELETON,
         1],
+    AvatarTypes.DavyJones: [
+        73,
+        73,
+        1.0,
+        5.0,
+        2.0,
+        SKELETON,
+        1],
     AvatarTypes.BomberZombie: [
         15,
         20,
@@ -2214,6 +2222,10 @@ __baseAvatarSkills = {
         EnemySkills.STUMP_SWAT_LEFT,
         EnemySkills.STUMP_SWAT_RIGHT,
         EnemySkills.STUMP_STOMP]),
+    AvatarTypes.DavyJones: ([
+        MONSTER], [
+        EnemySkills.STUMP_STOMP,
+        EnemySkills.DAVY_JONES_CLAW]),
     AvatarTypes.FlyTrap: ([
         MONSTER], [
         EnemySkills.FLYTRAP_WEAK_SPIT,

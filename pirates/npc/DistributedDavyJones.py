@@ -11,6 +11,7 @@ from pirates.audio.SoundGlobals import loadSfx
 from pirates.piratesbase import PLocalizer
 from pirates.piratesbase import PiratesGlobals
 from pirates.effects.JRTeleportEffect import JRTeleportEffect
+from pirates.effects.MysticFire import MysticFire
 import NPCSkeletonGameFSM
 import random
 
@@ -265,8 +266,6 @@ class DistributedDavyJones(DistributedBattleNPC.DistributedBattleNPC, DavyJones.
 
 
         def startVFX():
-            MysticFire = MysticFire
-            import pirates.effects.MysticFire
             effect = MysticFire.getEffect()
             if effect:
                 effect.reparentTo(render)

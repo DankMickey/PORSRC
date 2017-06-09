@@ -2979,6 +2979,7 @@ __skillAnim = {
     EnemySkills.CLAW_RAKE: ('getCrabAttackRight', MonsterMelee.getCrabAttackLeftSfx, MonsterMelee.getCrabAttackLeftSfx, 0, 0),
     EnemySkills.CLAW_STRIKE: ('getCrabAttackLeft', MonsterMelee.getCrabAttackLeftSfx, MonsterMelee.getCrabAttackLeftSfx, 0, 0),
     EnemySkills.DUAL_CLAW: ('getCrabAttackBoth', MonsterMelee.getCrabAttackBothSfx, MonsterMelee.getCrabAttackBothSfx, 0, 0),
+    EnemySkills.DAVY_JONES_CLAW: ('getDavyJonesClaw', MonsterMelee.getCrabAttackBothSfx, MonsterMelee.getCrabAttackBothSfx, 0, 0),
     EnemySkills.STUMP_KICK: ('getStumpKick', MonsterMelee.getMossmanAttackKickSfx, MonsterMelee.getMossmanAttackKickSfx, 0, 0),
     EnemySkills.STUMP_KICK_RIGHT: ('getStumpKickRight', MonsterMelee.getMossmanAttackKickSfx, MonsterMelee.getMossmanAttackKickSfx, 0, 0),
     EnemySkills.STUMP_SLAP_LEFT: ('getStumpSlapLeft', MonsterMelee.getMossmanAttackSlapSfx, MonsterMelee.getMossmanAttackSlapSfx, 0, 0),
@@ -3138,6 +3139,9 @@ __multiHitAttacks = {
         1.13,
         1.41],
     EnemySkills.DUAL_CLAW: [
+        0.3,
+        0.5],
+    EnemySkills.DAVY_JONES_CLAW: [
         0.3,
         0.5],
     EnemySkills.BAT_FLURRY: [

@@ -438,8 +438,7 @@ class DistributedGameAreaAI(DistributedNodeAI):
         elif objType == 'Townsperson':
             self.spawner.addEnemySpawnNode(objType, objKey, object)
         elif objType == 'DavyJones':
-            if config.GetBool('want-davy-jones', False):
-                self.spawner.addEnemySpawnNode(objType, objKey, object)
+            self.spawner.addEnemySpawnNode(objType, objKey, object)
         else:
             self.__printUnimplementedNotice(objType)
         return genObj

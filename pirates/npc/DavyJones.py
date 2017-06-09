@@ -4,10 +4,11 @@ from pirates.movement.AnimationMixer import AnimationMixer
 from pirates.pirate.BipedAnimationMixer import BipedAnimationMixer
 from pirates.pirate import AvatarTypes
 from pirates.pirate.AvatarType import AvatarType
+from pirates.pirate import Biped
 AnimDict = { }
 
 class DavyJones(Skeleton):
-    AnimList = (('idle', 'idle'), ('walk', 'walk'), ('hit', 'hit'), ('defeat', 'defeat'))
+    AnimList = Biped.djCustomAnimList
 
     class AnimationMixer(AnimationMixer):
         notify = DirectNotifyGlobal.directNotify.newCategory('DavyJonesAnimationMixer')
@@ -17,7 +18,13 @@ class DavyJones(Skeleton):
             'idle': (LOOP['IDLE'], LOOP['IDLE'], LOOP['IDLE']),
             'walk': (LOOP['MOTION'], LOOP['MOTION'], LOOP['MOTION']),
             'hit': (ACTION['INPLACE_0'], ACTION['INMOTION_1'], ACTION['INMOTION_1']),
-            'defeat': (ACTION['MOVIE'], ACTION['MOVIE'], ACTION['MOVIE']) }
+            'idle_hit': (ACTION['INPLACE_0'], ACTION['INMOTION_1'], ACTION['INMOTION_1']),
+            'attack01': (ACTION['INPLACE_0'], ACTION['INMOTION_1'], ACTION['INMOTION_1']),
+            'attack02': (ACTION['INPLACE_0'], ACTION['INMOTION_1'], ACTION['INMOTION_1']),
+            'attack03': (ACTION['INPLACE_0'], ACTION['INMOTION_1'], ACTION['INMOTION_1']),
+            'jump_attack': (ACTION['INPLACE_0'], ACTION['INMOTION_1'], ACTION['INMOTION_1']),
+            'defeat': (ACTION['MOVIE'], ACTION['MOVIE'], ACTION['MOVIE'])
+        }
 
 
     def setupAnimInfo(cls):
@@ -52,20 +59,10 @@ class DavyJones(Skeleton):
         for anim in animList:
             AnimDict[anim[0]] = animPrefix + '_' + anim[1]
 
-        lodString = '1000'
+        lodString = '2000'
         self.loadModel(filePrefix + '_' + lodString, 'modelRoot', '1000', copy)
         self.loadAnims(AnimDict, 'modelRoot', 'all')
-        if loader.loadModel(filePrefix + '_' + '1000', okMissing = True) != None:
-            lodString = '1000'
-
-        self.loadModel(filePrefix + '_' + lodString, 'modelRoot', '1000', copy)
-        if loader.loadModel(filePrefix + '_' + '500', okMissing = True) != None:
-            lodString = '500'
-
         self.loadModel(filePrefix + '_' + lodString, 'modelRoot', '500', copy)
-        if loader.loadModel(filePrefix + '_' + '250', okMissing = True) != None:
-            lodString = '250'
-
         self.loadModel(filePrefix + '_' + lodString, 'modelRoot', '250', copy)
         self.makeSubpart('head', [
             'def_head01'], [])
@@ -82,4 +79,4 @@ class DavyJones(Skeleton):
 
 
     def getDeathAnimName(self):
-        return 'death'
+        return 'defeat'

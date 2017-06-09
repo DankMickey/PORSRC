@@ -2247,6 +2247,7 @@ InventoryTypeNames = {
     EnemySkills.CLAW_RAKE: 'Claw Rake',
     EnemySkills.CLAW_STRIKE: 'Claw Strike',
     EnemySkills.DUAL_CLAW: 'Dual Claw',
+    EnemySkills.DAVY_JONES_CLAW: "Davy's Claws",
     EnemySkills.POISON_VOMIT: 'Poison Vomit',
     EnemySkills.GROUND_SLAP: 'Ground Slap',
     EnemySkills.ENSNARE: 'Ensnare',

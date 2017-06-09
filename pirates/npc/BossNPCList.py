@@ -110,7 +110,9 @@ BOSS_NPC_LIST = {
         'DamageScale': 1,
         'HighlightColor': VBase3(0, 1, 0.5) },
     '1248740301.97robrusso': {
+        'Skills': (EnemySkills.STUMP_STOMP, EnemySkills.DAVY_JONES_CLAW),
         'AvatarType': AvatarTypes.DavyJones,
+        'Level': 73,
         'HpScale': 1,
         'MpScale': 1,
         'GoldScale': 2,

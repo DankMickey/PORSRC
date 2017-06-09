@@ -2517,7 +2517,9 @@ class CombatAnimations:
 
     def getCrabAttackLeft(self, av, skillId, ammoSkillId, charge, target, skillResult):
         return av.actorInterval('attack_left', playRate = 1.0)
-
+    
+    def getDavyJonesClaw(self, av, skillId, ammoSkillId, charge, target, skillResult):
+        return av.actorInterval(random.choice(['attack01', 'attack02', 'attack03']), playRate = 1.0)
 
     def getCrabAttackRight(self, av, skillId, ammoSkillId, charge, target, skillResult):
         return av.actorInterval('attack_right', playRate = 1.0)
