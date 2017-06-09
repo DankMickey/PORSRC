@@ -194,7 +194,7 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
         skillId = random.choice(self.skills.keys())
         ammoSkillId = 0 # TO DO
         pos = self.getPos() - av.getPos()
-        self.lookAt(av)
+        self.headsUp(av)
         self.d_updateSmPos()
         result = self.attemptUseTargetedSkill(skillId, ammoSkillId, 0, av.doId, [],
                                               globalClockDelta.getRealNetworkTime(bits=32),
