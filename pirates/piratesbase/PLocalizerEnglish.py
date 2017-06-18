@@ -7957,7 +7957,16 @@ def getEnemyChat(avatarType, chatType):
     if chatType == EnemyGlobals.NO_CHAT:
         return
 
-    if avatarType.isA(AvatarTypes.Navy):
+    if avatarType.track == 3:
+        if chatType == EnemyGlobals.AGGRO_CHAT:
+            return DavyJonesGuysAggro
+        elif chatType == EnemyGlobals.TAUNT_CHAT:
+            return DavyJonesGuysTaunt
+        elif chatType == EnemyGlobals.TEAM_CHAT:
+            return DavyJonesGuysTeamTalk
+        elif chatType == EnemyGlobals.BREAK_COMBAT_CHAT:
+            return DavyJonesGuysBreakCombat
+    elif avatarType.isA(AvatarTypes.Navy):
         if chatType == EnemyGlobals.AGGRO_CHAT:
             return NavyAggro
         elif chatType == EnemyGlobals.TAUNT_CHAT:
@@ -7989,15 +7998,6 @@ def getEnemyChat(avatarType, chatType):
             return EITCTeamTalk
         elif chatType == EnemyGlobals.BREAK_COMBAT_CHAT:
             return EITCBreakCombat
-    elif avatarType.isA(AvatarTypes.Water):
-        if chatType == EnemyGlobals.AGGRO_CHAT:
-            return DavyJonesGuysAggro
-        elif chatType == EnemyGlobals.TAUNT_CHAT:
-            return DavyJonesGuysTaunt
-        elif chatType == EnemyGlobals.TEAM_CHAT:
-            return DavyJonesGuysTeamTalk
-        elif chatType == EnemyGlobals.BREAK_COMBAT_CHAT:
-            return DavyJonesGuysBreakCombat
 
 UndeadPokerCommentLose1 = "Luck of the living! But you'll be one of us eventually."
 UndeadPokerCommentLose2 = "Blasted Mortal! You'll give those coins to the boatman!"
