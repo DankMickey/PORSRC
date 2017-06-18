@@ -1512,7 +1512,6 @@ class CombatTray(GuiTray):
             logItems = (debugStrTitle, localAvatar.doId, 'invalid ammoSkillId: %s' % debugStr)
             logStr = '%s|%s|%s' % logItems
             self.notify.info(logStr)
-            printStack()
             ammoSkillId = 0
 
         return ammoSkillId

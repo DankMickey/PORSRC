@@ -315,6 +315,5 @@ class DistributedBandMember(DistributedObject):
     def setLocation(self, parentId, zoneId, teleport = 0):
         if parentId != base.cr.PirateBandManager.doId:
             self.notify.warning('DistributedBandMember.setLocation : Parent ID does not match! parentId = %s, zoneId = %s' % (parentId, zoneId))
-            printStack()
 
         DistributedObject.setLocation(self, parentId, zoneId)

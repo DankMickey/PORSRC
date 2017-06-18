@@ -1215,7 +1215,6 @@ class LookoutRequestLVL1(InventoryPage, InventoryRequestGameType):
 
     def displayLookout(self, gameType = PiratesGlobals.GAME_TYPE_TM, gameStyle = PiratesGlobals.GAME_STYLE_TM_BLACK_PEARL, inviteOptions = [
         PiratesGlobals.LOOKOUT_INVITE_NONE], additionalAvs = [], additionalOptions = []):
-        printStack()
         nextDone = self.itemSelectByValue(gameType, gameStyle)
         if nextDone == False:
             forcedGameType = None

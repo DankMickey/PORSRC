@@ -18,7 +18,6 @@ from pirates.pirate import AvatarTypes
 from pirates.pirate import Biped
 from pirates.leveleditor import CustomAnims
 from pirates.battle import EnemySkills
-from direct.showbase.PythonUtil import printStack
 import random
 import copy
 import types
@@ -1276,7 +1275,6 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
     def setChatAbsolute(self, chatString, chatFlags, dialogue = None, interrupt = 1):
         if not hasattr(self, 'nametag'):
             self.notify.warning('setChatAbsolute: no nametag, been deleted, but still trying to say something')
-            printStack()
             return None
         DistributedBattleAvatar.DistributedBattleAvatar.setChatAbsolute(self, chatString, chatFlags, dialogue, interrupt)
 
