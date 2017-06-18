@@ -390,7 +390,12 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
             obj.setGhostColor(0)
             
         if 'Level' in data:
-            obj.setLevel(int(data['Level']))
+            level = data['Level']
+            
+            if isinstance(level, list):
+                level = random.choice(level)
+
+            obj.setLevel(int(level))
 
         if 'Aggro Radius' in data:
             obj.setAggroRadius(int(float(data['Aggro Radius'])))

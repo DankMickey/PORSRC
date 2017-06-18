@@ -1,6 +1,7 @@
 from pirates.piratesbase import PLocalizer
 from pirates.battle import EnemyGlobals
 from pirates.npc.BossNPCList import BOSS_NPC_LIST
+import random
 
 class BossBase:
 
@@ -57,7 +58,12 @@ class BossBase:
 
 
     def _getBossLevel(self):
-        return self.bossData['Level']
+        level = self.bossData['Level']
+        
+        if isinstance(level, list):
+            return random.choice(level)
+        else:
+            return int(level)
 
 
     def getNameText(self):
