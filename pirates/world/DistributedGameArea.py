@@ -50,7 +50,7 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
         self.laMinimapObj = None
         self.footstepSound = None
         self.environment = None
-        self.connectorInterest = None
+        self.areaInterest = None
 
     def __repr__(self):
         return '%s (%s)' % (DistributedNode.DistributedNode.__repr__(self), self.getName())
@@ -68,10 +68,7 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
         self.unloadConnectors()
         self.builder.delete()
         self.builder = None
-        
-        if self.connectorInterest:
-            base.cr.removeInterest(self.connectorInterest)
-            self.connectorInterest = None
+        self.removeAreaInterest()
 
     def delete(self):
         if base.zoneLODTarget == self:
@@ -81,9 +78,7 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
             trigger.remove_node()
 
         del self.spawnTriggers
-        if self.connectorInterest:
-            base.cr.removeInterest(self.connectorInterest)
-            self.connectorInterest = None
+        self.removeAreaInterest()
         if self.envEffects:
             self.envEffects.delete()
             self.envEffects = None
@@ -101,6 +96,15 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
 
         del self.popupDialog
 
+    def addAreaInterest(self):
+        if not self.areaInterest:
+            self.areaInterest = base.cr.addInterest(self.doId, 2709, 'AreaInterest')
+
+    def removeAreaInterest(self):
+        if self.areaInterest:
+            base.cr.removeInterest(self.areaInterest)
+            self.areaInterest = None
+    
     def setLocation(self, parentId, zoneId, teleport = 0):
         DistributedObject.DistributedObject.setLocation(self, parentId, zoneId)
         if parentId != 0:
@@ -214,9 +218,7 @@ class DistributedGameArea(DistributedNode.DistributedNode, MappableArea):
                     self.popupDialog.setYesCommand(closeTutorialWindow)
                     self.acceptOnce('closeTutorialWindow', closeTutorialWindow)
         
-        if not self.connectorInterest:
-            self.connectorInterest = base.cr.addInterest(self.doId, 2710, 'connector-interest-%d' % id(self))
-        
+        self.addAreaInterest()
         self.loadConnectors()
         taskMgr.doMethodLater(1, self.showEnterMessage, 'showEnterMessage')
         self.builder.initEffects()

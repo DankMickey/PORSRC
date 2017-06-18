@@ -515,7 +515,8 @@ class DistributedEnemySpawnerAI:
         if forceLevel != 0:
             npc.setLevel(forceLevel)
 
-        self.gameArea.generateChild(npc)
+        npc.regularZone = self.gameArea.getZoneFromXYZ(npc.getPos())
+        self.gameArea.generateChild(npc, 2709)
 
     @classmethod
     def missingAvatarClass(cls, avType):

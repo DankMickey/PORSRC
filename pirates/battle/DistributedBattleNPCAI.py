@@ -163,6 +163,7 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
 
     def __battleTask(self, task):
         remove = set()
+        parent = self.getParentObj()
         for enemy in self.enemies:
             av = self.air.doId2do.get(enemy)
             if not av:
@@ -173,11 +174,11 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
                 remove.add(enemy)
                 continue
 
-            if av.getLocation() != self.getLocation():
+            if av.parentId != self.parentId:
                 remove.add(enemy)
                 continue
 
-            if (self.getPos() - av.getPos()).length() > EnemyGlobals.CALL_FOR_HELP_DISTANCE:
+            if (self.getPos(parent) - av.getPos(parent)).length() > EnemyGlobals.CALL_FOR_HELP_DISTANCE:
                 remove.add(enemy)
                 continue
 
@@ -193,7 +194,7 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
 
         skillId = random.choice(self.skills.keys())
         ammoSkillId = 0 # TO DO
-        pos = self.getPos() - av.getPos()
+        pos = self.getPos(parent) - av.getPos(parent)
         self.headsUp(av)
         self.d_updateSmPos()
         result = self.attemptUseTargetedSkill(skillId, ammoSkillId, 0, av.doId, [],
@@ -236,13 +237,6 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
                 av.sendUpdate('setCurrentTarget', [0])
 
         return IGNORE
-
-    def requestHostilize(self):
-        avId = self.air.getAvatarIdFromSender()
-        if not avId:
-            return
-
-        self.handleInteract(avId, PiratesGlobals.INTERACT_TYPE_HOSTILE, 0)
 
     def requestExit(self):
         avId = self.air.getAvatarIdFromSender()
@@ -304,6 +298,11 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
     def demand(self, state, *args):
         FSM.demand(self, state, *args)
         self.sendUpdate('setGameState', [state, globalClockDelta.getRealNetworkTime()])
+    
+    def requestClientAggro(self):
+        avId = self.air.getAvatarIdFromSender()
+        
+        self.handleInteract(avId, PiratesGlobals.INTERACT_TYPE_HOSTILE, 0)
 
     @staticmethod
     def makeFromObjectKey(cls, spawner, uid, avType, data):

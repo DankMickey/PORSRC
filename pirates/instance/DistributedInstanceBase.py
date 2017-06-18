@@ -392,7 +392,6 @@ class DistributedInstanceBase(DistributedObject, WorldNode):
 
             localAvatar.reparentTo(jailArea)
             localAvatar.setPos(Point3(0))
-            localAvatar.setInterest(jailArea.doId, 2709, ['ga-interior'])
             self.showDeathLoadingScreen(base.localAvatar)
             localAvatar.b_setGameState('LandRoam')
             base.cr.loadingScreen.hide()

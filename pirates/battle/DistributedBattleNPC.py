@@ -350,7 +350,7 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
         self.enableBattleCollisions()
         self.updateCollisions()
         self.setIgnoreProximity(False)
-        self.nearCallbacks.append([self.sendUpdate, ['requestHostilize']])
+        self.nearCallbacks.append([self.sendUpdate, ['requestClientAggro']])
 
     def turnFriendlyAndHide(self):
         self.hide(invisibleBits = PiratesGlobals.INVIS_QUEST)
@@ -511,7 +511,7 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
             if config.GetBool('show-aggro-radius', 0):
                 self.cAggroNodePath.show()
 
-            if config.GetBool('npcs-auto-target', 0):
+            if config.GetBool('npcs-auto-target', 1):
                 enterCollEvent = self.uniqueName('enter' + 'AggroSphere')
                 self.accept(enterCollEvent, self._handleEnterAggroSphere)
                 if base.cr.gameStatManager.aggroModelIndex == 1:
@@ -541,7 +541,7 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
             if config.GetBool('show-aggro-radius', 0):
                 self.cNoticeNodePath.show()
 
-            if config.GetBool('npcs-auto-target', 0):
+            if config.GetBool('npcs-auto-target', 1):
                 enterCollEvent = self.uniqueName('enter' + 'NoticeSphere')
                 self.accept(enterCollEvent, self._handleEnterNoticeSphere)
 

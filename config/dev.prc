@@ -67,7 +67,7 @@ want-npcs #t
 want-enemies #t
 want-dormant-spawns #t
 want-animals #t
-npcs-auto-target #f
+npcs-auto-target #t
 want-npc-notice #t
 want-easy-combos #f
 

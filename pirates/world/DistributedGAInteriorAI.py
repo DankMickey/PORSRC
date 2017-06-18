@@ -115,7 +115,7 @@ class DistributedGAInteriorAI(DistributedGameAreaAI, DistributedCartesianGridAI)
             return
 
         if zoneId is None:
-            zoneId = 2709
+            zoneId = self.getZoneFromXYZ(obj.getPos())
 
         if self.buildingInterior:
             obj.interior = self

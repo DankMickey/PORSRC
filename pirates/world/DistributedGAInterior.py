@@ -31,7 +31,6 @@ class DistributedGAInterior(DistributedGameArea.DistributedGameArea, Distributed
         self.musicName = None
         self.buildingInterior = False
         self.caveInterior = False
-        self.areaInterest = None
 
     def setBuildingInterior(self, buildingInterior):
         self.buildingInterior = buildingInterior
@@ -63,9 +62,6 @@ class DistributedGAInterior(DistributedGameArea.DistributedGameArea, Distributed
         if self.buildingInterior:
             self.setZ(100)
         
-        if not self.areaInterest:
-            self.areaInterest = base.cr.addInterest(self.doId, 2709, 'CaveInterest')
-        
         pr = self.getPortRoyal()
         
         if pr:
@@ -85,10 +81,6 @@ class DistributedGAInterior(DistributedGameArea.DistributedGameArea, Distributed
         DistributedGameArea.DistributedGameArea.disable(self)
         DistributedCartesianGrid.DistributedCartesianGrid.disable(self)
         del self.closeSfx
-        
-        if self.areaInterest:
-            base.cr.removeInterest(self.areaInterest)
-            self.areaInterest = None
         
         pr = self.getPortRoyal()
         
@@ -151,8 +143,6 @@ class DistributedGAInterior(DistributedGameArea.DistributedGameArea, Distributed
     def handleEnterGameArea(self, collEntry):
         localAvatar.interior = self
         self.addObjectToGrid(localAvatar)
-        if self.buildingInterior:
-            localAvatar.setInterest(self.doId, 2709, ['ga-interior'])
         DistributedGameArea.DistributedGameArea.handleEnterGameArea(self, collEntry)
         if hasattr(self.cr, 'timeOfDayManager') and self.buildingInterior or self.caveInterior:
             self.cr.timeOfDayManager.enterIndoors()
@@ -174,7 +164,6 @@ class DistributedGAInterior(DistributedGameArea.DistributedGameArea, Distributed
         self.removeObjectFromGrid(localAvatar)
         self.stopProcessVisibility()
         localAvatar.interior = None
-        localAvatar.clearInterestNamed(None, ['ga-interior'])
         DistributedGameArea.DistributedGameArea.handleExitGameArea(self, collEntry)
         if hasattr(self.cr, 'timeOfDayManager'):
             if self.cr.timeOfDayManager is not None and self.buildingInterior or self.caveInterior:
