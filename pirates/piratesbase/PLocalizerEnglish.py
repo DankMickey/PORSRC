@@ -7827,7 +7827,8 @@ CutSubtitle6_1__5 = 'Look upon it!'
 CutSubtitle6_1__6 = 'The learning of the doll be in the learning of its construction...'
 CutSubtitle6_1__7 = 'each must make their own.'
 CutSubtitle6_1__8 = 'We have much work to do.'
-__NavyAggro = [
+
+NavyAggro = [
     'Halt!',
     'Halt!',
     'Who goes there!?',
@@ -7838,7 +7839,7 @@ __NavyAggro = [
     "It's that pirate again!",
     'A pirate!',
     'What are you doing here!?']
-__NavyTaunt = [
+NavyTaunt = [
     "It'll be the gallows for you, pirate!",
     'You have a morning appointment with the gallows, pirate!',
     'Drop your weapons!',
@@ -7846,13 +7847,13 @@ __NavyTaunt = [
     "You don't stand a chance!",
     'Not so tough now, eh!?',
     "It's back to jail for you!"]
-__NavyTeamTalk = [
+NavyTeamTalk = [
     'Hold your fire! We want that pirate alive!',
     "You're outnumbered! Surrender!",
     'We have you surrounded!',
     'Capture that pirate!',
     'Take that pirate alive for questioning!']
-__NavyBreakCombat = [
+NavyBreakCombat = [
     "That is by far the worst pirate I've ever met.",
     'Coward!',
     'Running away again eh!?',
@@ -7862,63 +7863,35 @@ __NavyBreakCombat = [
     'Accursed pirate!',
     'I better alert the watch.']
 
-def getNavyAggroPhrase():
-    dialogue = random.choice(__NavyAggro)
-    return dialogue
-
-
-def getNavyTauntPhrase():
-    dialogue = random.choice(__NavyTaunt)
-    return dialogue
-
-
-def getNavyTeamTalkPhrase():
-    dialogue = random.choice(__NavyTeamTalk)
-    return dialogue
-
-
-def getNavyBreakCombatPhrase():
-    dialogue = random.choice(__NavyBreakCombat)
-    return dialogue
-
-__GhostAggro = [
+GhostAggro = [
     'You do not belong here!',
     'So cold...',
     'Are you a spirit?',
     'I smell fear!']
-__GhostTaunt = [
+GhostTaunt = [
     'Join us!',
     'You belong with us!',
     'We will catch you!',
     'I hunger']
 
-def getGhostAggroPhrase():
-    dialogue = random.choice(__GhostAggro)
-    return dialogue
-
-
-def getGhostTauntPhrase():
-    dialogue = random.choice(__GhostTaunt)
-    return dialogue
-
-__UndeadAggro = [
+UndeadAggro = [
     'An intruder!',
     'Trespasser!',
     'After that pirate!',
     'Take no prisoners!',
     'Leave no one alive!',
     'Death cannot stop us!']
-__UndeadTaunt = [
+UndeadTaunt = [
     'Jolly Roger will be pleased!',
     'Death comes for ye, pirate!',
     'Yer finished, pirate!',
     "See ye in Davy Jones's locker!",
     'Ye fight like a dog!']
-__UndeadTeamTalk = [
+UndeadTeamTalk = [
     'We outnumber ye, pirate!',
     'Ye cannot defeat us all, pirate!',
     'Fool! We outnumber ye!']
-__UndeadBreakCombat = [
+UndeadBreakCombat = [
     'Weakling!',
     'A waste of time!',
     'Ye cannot escape us forever!',
@@ -7927,26 +7900,7 @@ __UndeadBreakCombat = [
     'Ye run like a dog!',
     'Ye call yerself a pirate!']
 
-def getUndeadAggroPhrase():
-    dialogue = random.choice(__UndeadAggro)
-    return dialogue
-
-
-def getUndeadTauntPhrase():
-    dialogue = random.choice(__UndeadTaunt)
-    return dialogue
-
-
-def getUndeadTeamTalkPhrase():
-    dialogue = random.choice(__UndeadTeamTalk)
-    return dialogue
-
-
-def getUndeadBreakCombatPhrase():
-    dialogue = random.choice(__UndeadBreakCombat)
-    return dialogue
-
-__EITCAggro = [
+EITCAggro = [
     'An intruder!',
     'Halt!',
     "There's that pirate!",
@@ -7955,7 +7909,7 @@ __EITCAggro = [
     'Mind your own business, pirate!',
     "Don't meddle in our affairs!",
     'You will regret crossing swords with us, pirate!']
-__EITCTaunt = [
+EITCTaunt = [
     "You don't stand a chance! Surrender!",
     'Lord Beckett will reward us well for this!',
     'You are no match for us!',
@@ -7963,18 +7917,88 @@ __EITCTaunt = [
     'There is no escape!',
     "It's time to finish you off!",
     'This is the last mistake you make with us, pirate!']
-__EITCTeamTalk = [
+EITCTeamTalk = [
     "You're outnumbered! Surrender!",
     'We have you surrounded!',
     'Give it up! We outnumber you!',
     "Don't let that pirate escape!",
     'Take that pirate alive for questioning!']
-__EITCBreakCombat = [
+EITCBreakCombat = [
     'Bloody pirate!',
     'That coward ran away.',
     'I grow tired of this.',
     "Let's head him off.",
     'Alert the watch!']
+
+DavyJonesGuysAggro = [
+    'Take no prisoners!',
+    'Leave no one alive!',
+    "You don't belong here.",
+    'Part of the ship... Part of the crew...',
+    'We belong to the Flying Dutchman!',
+    'We serve Davy Jones!']
+DavyJonesGuysTaunt = [
+    'Davy Jones will be pleased!',
+    'Do you fear death, pirate!',
+    "See ye in Davy Jones's locker!"]
+DavyJonesGuysTeamTalk = [
+    'We outnumber ye, pirate!',
+    'Ye cannot stop Davy Jones, pirate!',
+    'Ye cannot defeat us all, pirate!']
+DavyJonesGuysBreakCombat = [
+    'Ye cannot escape us forever!',
+    'Ye cannot hide from us!',
+    'No one can escape Davy Jones!']
+
+def getEnemyChat(avatarType, chatType):
+    from pirates.pirate import AvatarTypes
+    from pirates.battle import EnemyGlobals
+
+    if chatType == EnemyGlobals.NO_CHAT:
+        return
+
+    if avatarType.isA(AvatarTypes.Navy):
+        if chatType == EnemyGlobals.AGGRO_CHAT:
+            return NavyAggro
+        elif chatType == EnemyGlobals.TAUNT_CHAT:
+            return NavyTaunt
+        elif chatType == EnemyGlobals.TEAM_CHAT:
+            return NavyTeamTalk
+        elif chatType == EnemyGlobals.BREAK_COMBAT_CHAT:
+            return NavyBreakCombat
+    elif avatarType.isA(AvatarTypes.Ghost):
+        if chatType == EnemyGlobals.AGGRO_CHAT:
+            return GhostAggro
+        elif chatType == EnemyGlobals.TAUNT_CHAT:
+            return GhostTaunt
+    elif avatarType.isA(AvatarTypes.Undead):
+        if chatType == EnemyGlobals.AGGRO_CHAT:
+            return UndeadAggro
+        elif chatType == EnemyGlobals.TAUNT_CHAT:
+            return UndeadTaunt
+        elif chatType == EnemyGlobals.TEAM_CHAT:
+            return UndeadTeamTalk
+        elif chatType == EnemyGlobals.BREAK_COMBAT_CHAT:
+            return UndeadBreakCombat
+    elif avatarType.isA(AvatarTypes.TradingCo):
+        if chatType == EnemyGlobals.AGGRO_CHAT:
+            return EITCAggro
+        elif chatType == EnemyGlobals.TAUNT_CHAT:
+            return EITCTaunt
+        elif chatType == EnemyGlobals.TEAM_CHAT:
+            return EITCTeamTalk
+        elif chatType == EnemyGlobals.BREAK_COMBAT_CHAT:
+            return EITCBreakCombat
+    elif avatarType.isA(AvatarTypes.Water):
+        if chatType == EnemyGlobals.AGGRO_CHAT:
+            return DavyJonesGuysAggro
+        elif chatType == EnemyGlobals.TAUNT_CHAT:
+            return DavyJonesGuysTaunt
+        elif chatType == EnemyGlobals.TEAM_CHAT:
+            return DavyJonesGuysTeamTalk
+        elif chatType == EnemyGlobals.BREAK_COMBAT_CHAT:
+            return DavyJonesGuysBreakCombat
+
 UndeadPokerCommentLose1 = "Luck of the living! But you'll be one of us eventually."
 UndeadPokerCommentLose2 = "Blasted Mortal! You'll give those coins to the boatman!"
 UndeadPokerCommentLose3 = 'Quit while you still have a head!'
@@ -8017,65 +8041,6 @@ def pickPokerUndeadName(choices = []):
         choices = UndeadPokerNPCNames
 
     return (random.choice(choices), copy.copy(choices))
-
-
-def getEITCAggroPhrase():
-    dialogue = random.choice(__EITCAggro)
-    return dialogue
-
-
-def getEITCTauntPhrase():
-    dialogue = random.choice(__EITCTaunt)
-    return dialogue
-
-
-def getEITCTeamTalkPhrase():
-    dialogue = random.choice(__EITCTeamTalk)
-    return dialogue
-
-
-def getEITCBreakCombatPhrase():
-    dialogue = random.choice(__EITCBreakCombat)
-    return dialogue
-
-__DavyJonesGuysAggro = [
-    'Take no prisoners!',
-    'Leave no one alive!',
-    "You don't belong here.",
-    'Part of the ship... Part of the crew...',
-    'We belong to the Flying Dutchman!',
-    'We serve Davy Jones!']
-__DavyJonesGuysTaunt = [
-    'Davy Jones will be pleased!',
-    'Do you fear death, pirate!',
-    "See ye in Davy Jones's locker!"]
-__DavyJonesGuysTeamTalk = [
-    'We outnumber ye, pirate!',
-    'Ye cannot stop Davy Jones, pirate!',
-    'Ye cannot defeat us all, pirate!']
-__DavyJonesGuysBreakCombat = [
-    'Ye cannot escape us forever!',
-    'Ye cannot hide from us!',
-    'No one can escape Davy Jones!']
-
-def getDavyJonesGuysAggroPhrase():
-    dialogue = random.choice(__DavyJonesGuysAggro)
-    return dialogue
-
-
-def getDavyJonesGuysTauntPhrase():
-    dialogue = random.choice(__DavyJonesGuysTaunt)
-    return dialogue
-
-
-def getDavyJonesGuysTeamTalkPhrase():
-    dialogue = random.choice(__DavyJonesGuysTeamTalk)
-    return dialogue
-
-
-def getDavyJonesGuysBreakCombatPhrase():
-    dialogue = random.choice(__DavyJonesGuysBreakCombat)
-    return dialogue
 
 RammingSpeed = 'Ramming Speed!!!'
 __LeftBroadside = [

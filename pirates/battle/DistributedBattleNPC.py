@@ -5,6 +5,7 @@ from direct.directnotify.DirectNotifyGlobal import directNotify
 from direct.distributed.ClockDelta import *
 from direct.task import Task
 from otp.otpbase import OTPGlobals
+from otp.nametag.NametagConstants import CFSpeech, CFTimeout
 from pirates.uberdog.UberDogGlobals import *
 from pirates.reputation.DistributedReputationAvatar import DistributedReputationAvatar
 from pirates.battle import DistributedBattleAvatar
@@ -447,6 +448,14 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
                 self.getNameText()['text'] = name
         else:
             DistributedBattleAvatar.DistributedBattleAvatar.setMonsterNameTag(self)
+
+    def setTaunt(self, tauntType, chatId):
+        taunts = PLocalizer.getEnemyChat(self.avatarType, tauntType)
+
+        if taunts and chatId >= 0 and chatId < len(taunts):
+            self.setChatAbsolute(taunts[chatId], CFSpeech | CFTimeout)
+        else:
+            self.clearChat()
 
     def setState(self, stateName, timeStamp):
         self.request(stateName)

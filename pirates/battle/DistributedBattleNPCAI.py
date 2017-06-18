@@ -4,10 +4,12 @@ from direct.fsm.FSM import FSM
 from direct.distributed.GridParent import GridParent
 from direct.distributed.ClockDelta import *
 from pirates.battle.DistributedBattleAvatarAI import *
-from pirates.piratesbase import PiratesGlobals
+from pirates.piratesbase import PiratesGlobals, PLocalizer
 from pirates.battle import WeaponGlobals
 from pirates.battle import EnemyGlobals
 import random
+
+AvToEnemies = {}
 
 class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedBattleNPCAI')
@@ -164,6 +166,7 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
     def __battleTask(self, task):
         remove = set()
         parent = self.getParentObj()
+
         for enemy in self.enemies:
             av = self.air.doId2do.get(enemy)
             if not av:
@@ -186,6 +189,9 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
             self.removeEnemy(r)
 
         if not self.enemies:
+            if remove:
+                self.d_setTaunt(EnemyGlobals.BREAK_COMBAT_CHAT)
+
             self.demand('Idle')
             return task.done
 
@@ -203,9 +209,18 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
 
         if result == WeaponGlobals.RESULT_OUT_OF_RANGE and not ammoSkillId:
             self.removeEnemy(av.doId)
+            self.d_setTaunt(EnemyGlobals.BREAK_COMBAT_CHAT)
+        elif random.random() > 0.75:
+            if self.isTeamTalk(av.doId):
+                self.d_setTaunt(EnemyGlobals.TEAM_CHAT)
+            else:
+                self.d_setTaunt(EnemyGlobals.TAUNT_CHAT)
 
         self.waitForNextBattleTask()
         return task.done
+    
+    def isTeamTalk(self, avId):
+        return avId in AvToEnemies and len(AvToEnemies[avId]) > 1
 
     def setDamageScale(self, damageScale):
         self.damageScale = damageScale
@@ -216,10 +231,21 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
     def exitBattle(self):
         self.sendUpdate('setIsAlarmed', [0, 0])
         taskMgr.remove(self.taskName('battleTask'))
-
+        
         if self.mainWeapon > 1:
             endDrawn = self.animSet in EnemyGlobals.DRAWN_ANIME or self.mainWeapon in EnemyGlobals.DRAWN_WEAPONS
             self.b_setCurrentWeapon(self.mainWeapon, endDrawn)
+
+    def d_setTaunt(self, tauntType):
+        taunts = PLocalizer.getEnemyChat(self.avatarType, tauntType)
+
+        if not taunts:
+            tauntType = EnemyGlobals.NO_CHAT
+            chatId = 0
+        else:
+            chatId = random.randint(0, len(taunts) - 1)
+
+        self.sendUpdate('setTaunt', [tauntType, chatId])
 
     # TO DO:
     # boardVehicle(uint32) broadcast ram
@@ -228,7 +254,16 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
 
     def handleInteract(self, avId, interactType, instant):
         if interactType == PiratesGlobals.INTERACT_TYPE_HOSTILE:
-            self.enemies.add(avId)
+            if avId not in self.enemies:
+                self.enemies.add(avId)
+                self.d_setTaunt(EnemyGlobals.AGGRO_CHAT)
+
+                enemies = AvToEnemies.get(avId, [])
+                
+                if self.getUniqueId() not in enemies:
+                    enemies.append(self.getUniqueId())
+                    AvToEnemies[avId] = enemies
+
             if self.state not in ('Battle', 'Death'):
                 self.demand('Battle')
 
@@ -245,9 +280,21 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
     def removeEnemy(self, avId):
         if avId in self.enemies:
             self.enemies.remove(avId)
+
             av = self.air.doId2do.get(avId)
+
             if av:
                 av.sendUpdate('setCurrentTarget', [0])
+
+            if avId in AvToEnemies:
+                if not av:
+                    del AvToEnemies[avId]
+                else:
+                    enemies = AvToEnemies[avId]
+                    
+                    if self.getUniqueId() in enemies:
+                        enemies.remove(self.getUniqueId())
+                        AvToEnemies[avId] = enemies
 
     def enterAmbush(self):
         self.sendUpdate('setAmbush', [1])

@@ -558,7 +558,7 @@ dclass DistributedBattleNPC : DistributedBattleAvatar {
   setSpawnPosIndex(string) required broadcast ram;
   setAssociatedQuests(uint16 []) required broadcast ram;
   setSpawnIn(int32) broadcast ram;
-  setChat(string, uint8) broadcast ownsend;
+  setTaunt(uint8, uint8) broadcast ram;
   setActorAnims(string, string, string, string) required broadcast ram;
   requestAnimSet(string) broadcast;
   setCollisionMode(uint8) required broadcast ram;
