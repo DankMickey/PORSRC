@@ -134,7 +134,7 @@ class DistributedGameAreaAI(DistributedNodeAI):
         elif objType in self.BossSpawnKeys and self.wantBosses and self.wantEnemies:
             self.generateBoss(objType, objKey, object)
 
-        elif objType == 'Spawn Node' and self.wantEnemies:
+        elif objType == 'Spawn Node' and self.wantEnemies and self.name != 'Padres Del Fuego':
             self.spawner.addEnemySpawnNode(objType, objKey, object)
 
         elif objType == 'Dormant NPC Spawn Node' and self.wantEnemies and config.GetBool('want-dormant-spawns', False):
