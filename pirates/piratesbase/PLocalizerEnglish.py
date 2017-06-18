@@ -7872,7 +7872,7 @@ GhostTaunt = [
     'Join us!',
     'You belong with us!',
     'We will catch you!',
-    'I hunger']
+    'I hunger...']
 
 UndeadAggro = [
     'An intruder!',
