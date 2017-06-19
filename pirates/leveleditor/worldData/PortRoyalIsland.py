@@ -1319,7 +1319,7 @@ objectStruct = {
                     'AuraFX': 'None',
                     'Hpr': VBase3(-69.534, 0.0, 0.0),
                     'Min Population': '1',
-                    'Patrol Radius': '-1.00',
+                    'Patrol Radius': '1.00',
                     'Pause Chance': '100',
                     'Pause Duration': '30',
                     'Pos': Point3(-160.347, -62.104, 34.939),
