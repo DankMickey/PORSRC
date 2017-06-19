@@ -61,6 +61,9 @@ class DistributedNPCTownfolkAI(DistributedBattleNPCAI, DistributedShopKeeperAI):
     def getZombie(self):
         return self.isZombie
 
+    def isBattleable(self):
+        return 0
+
     # requestMusic(uint32) airecv clsend
     # playMusic(uint32) broadcast
     # levelUpCutlass(uint32) airecv clsend

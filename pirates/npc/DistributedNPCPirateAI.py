@@ -26,6 +26,9 @@ class DistributedNPCPirateAI(DistributedBattleNPCAI):
     def getDNAString(self):
         return self.DNAString
 
+    def isBattleable(self):
+        return 0
+
     @classmethod
     def makeFromObjectKey(cls, air, objKey, data):
         obj = DistributedBattleNPCAI.makeFromObjectKey(air, objKey, data)

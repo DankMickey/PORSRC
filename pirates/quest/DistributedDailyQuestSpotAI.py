@@ -12,4 +12,5 @@ class DistributedDailyQuestSpotAI(DistributedObjectAI):
     def __init__(self, air):
         DistributedObjectAI.__init__(self, air)
 
-
+    def isBattleable(self):
+        return 0

@@ -19,6 +19,9 @@ class DistributedInteractiveAI(DistributedLocatableObjectAI, DistributedNodeAI):
         self.uniqueId = ''
         self.uid = ''
 
+    def isBattleable(self):
+        return 0
+
     def setUniqueId(self, uid):
         self.uid = uid
 

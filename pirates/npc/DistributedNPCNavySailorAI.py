@@ -18,3 +18,6 @@ class DistributedNPCNavySailorAI(DistributedBattleNPCAI):
 
     def announceGenerate(self):
         DistributedBattleNPCAI.announceGenerate(self)
+
+    def isBattleable(self):
+        return 1

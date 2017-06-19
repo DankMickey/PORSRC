@@ -7,6 +7,9 @@ class DistributedDavyJonesAI(DistributedBattleNPCAI, BossAI):
 
     def getNameText(self):
         return 'Davy Jones'
+    
+    def isBattleable(self):
+        return 1
 
     @staticmethod
     def makeFromObjectKey(cls, spawner, uid, avType, data):

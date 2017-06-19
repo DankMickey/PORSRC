@@ -1,12 +1,14 @@
 from panda3d.core import lookAt
 from direct.directnotify import DirectNotifyGlobal
 from direct.fsm.FSM import FSM
+from direct.distributed.DistributedSmoothNodeBase import DistributedSmoothNodeBase
 from direct.distributed.GridParent import GridParent
 from direct.distributed.ClockDelta import *
 from pirates.battle.DistributedBattleAvatarAI import *
 from pirates.piratesbase import PiratesGlobals, PLocalizer
 from pirates.battle import WeaponGlobals
 from pirates.battle import EnemyGlobals
+from EnemyMoverAI import EnemyMoverAI
 import random
 
 AvToEnemies = {}
@@ -34,8 +36,10 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
         self.dnaId = ''
 
         self.damageScale = 1
+        self.patrolRadius = -1
+        self.mover = None
 
-        self.enemies = set()
+        self.enemies = []
 
     def setDNAId(self, dnaId):
         self.dnaId = dnaId
@@ -54,6 +58,15 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
         self.setHp(maxHp)
         self.setMaxHp(maxHp)
 
+    def setPatrolRadius(self, patrolRadius):
+        self.patrolRadius = patrolRadius
+    
+    def getPatrolRadius(self):
+        return self.patrolRadius
+    
+    def hasPatrolRadius(self):
+        return self.patrolRadius > 0
+
     def announceGenerate(self):
         DistributedBattleAvatarAI.announceGenerate(self)
         self.demand('Spawn')
@@ -67,6 +80,9 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
             if self.mainWeapon in EnemyGlobals.DRAWN_WEAPONS:
                 startDrawn = True
             self.b_setCurrentWeapon(self.mainWeapon, startDrawn)
+    
+    def startPosHprBroadcast(self, *args):
+        DistributedBattleAvatarAI.startPosHprBroadcast(self, period=0.2, type=DistributedSmoothNodeBase.BroadcastTypes.XYH)
 
     def enterSpawn(self):
         self.sendUpdate('setSpawnIn', [globalClockDelta.getRealNetworkTime(bits=32)])
@@ -82,6 +98,13 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
         taskMgr.remove(self.uniqueName('spawned'))
         self.removeSkillEffect(WeaponGlobals.C_SPAWN)
         self.d_updateSmPos()
+    
+    def enterOff(self):
+        if self.mover:
+            self.mover.destroy()
+        
+        self.mover = None
+        self.stopPosHprBroadcast()
 
     def delete(self):
         self.demand('Off')
@@ -141,9 +164,12 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
 
         cell = GridParent.getCellOrigin(area, self.zoneId)
         pos = self.getPos()
+        parent = self.getParent()
         self.reparentTo(cell)
         self.setPos(area, pos)
+        self.wrtReparentTo(parent)
 
+        self.relativePos = self.getPos(self.getParent())
         self.d_updateSmPos()
         return False
 
@@ -152,10 +178,24 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
         self.sendUpdate('setSmPosHpr', [x, y, z, h, p, r, 0])
 
     def enterBattle(self):
+        if self.mover:
+            self.mover.demand('FollowEnemy')
+
         self.sendUpdate('setIsAlarmed', [1, self.getAggroRadius()])
         self.waitForNextBattleTask()
         if self.mainWeapon > 1:
             self.b_setCurrentWeapon(self.mainWeapon, 1)
+
+    def enterIdle(self):
+        if (not self.mover) and self.hasPatrolRadius() and self.isBattleable():
+            self.mover = EnemyMoverAI(self)
+
+        if self.mover:
+            self.mover.demand('Wander')
+    
+    def exitIdle(self):
+        if self.mover:
+            self.mover.demand('Off')
 
     def waitForNextBattleTask(self):
         dt = random.random() * 6 + .15
@@ -165,7 +205,7 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
 
     def __battleTask(self, task):
         remove = set()
-        parent = self.getParentObj()
+        parent = self.getParent()
 
         for enemy in self.enemies:
             av = self.air.doId2do.get(enemy)
@@ -181,7 +221,7 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
                 remove.add(enemy)
                 continue
 
-            if (self.getPos(parent) - av.getPos(parent)).length() > EnemyGlobals.CALL_FOR_HELP_DISTANCE:
+            if (self.relativePos - av.getPos(parent)).length() > EnemyGlobals.CALL_FOR_HELP_DISTANCE:
                 remove.add(enemy)
                 continue
 
@@ -218,7 +258,10 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
 
         self.waitForNextBattleTask()
         return task.done
-    
+
+    def isBattleable(self):
+        return 1
+        
     def isTeamTalk(self, avId):
         return avId in AvToEnemies and len(AvToEnemies[avId]) > 1
 
@@ -228,7 +271,39 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
     def getMonsterDmg(self):
         return EnemyGlobals.getMonsterDmg(self.level) * self.damageScale
 
+    def getEnemyPosition(self):
+        lastIndex = 0
+        
+        while lastIndex < len(self.enemies):
+            av = self.air.doId2do.get(self.enemies[lastIndex])
+            
+            if av and av.parentId == self.parentId:
+                pos = av.getPos(self.getParent())
+                distance = (self.relativePos - pos).length()
+                
+                if distance <= EnemyGlobals.CALL_FOR_HELP_DISTANCE:
+                    if (self.getPos(self.getParent()) - pos).length() <= 3.5:
+                        return None
+                    else:
+                        return pos
+            
+            lastIndex += 1
+
+    def getFocusingEnemy(self):
+        lastIndex = 0
+        
+        while lastIndex < len(self.enemies):
+            av = self.air.doId2do.get(self.enemies[lastIndex])
+            
+            if av:
+                return av
+            
+            lastIndex += 1
+
     def exitBattle(self):
+        if self.mover:
+            self.mover.demand('Off')
+    
         self.sendUpdate('setIsAlarmed', [0, 0])
         taskMgr.remove(self.taskName('battleTask'))
         
@@ -255,8 +330,25 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
     def handleInteract(self, avId, interactType, instant):
         if interactType == PiratesGlobals.INTERACT_TYPE_HOSTILE:
             if avId not in self.enemies:
-                self.enemies.add(avId)
+                av = self.air.doId2do.get(avId)
+                
+                if (not av):
+                    return IGNORE
+
+                pos = av.getPos(self.getParent())
+                distance = (self.relativePos - pos).length()
+                
+                if distance > EnemyGlobals.CALL_FOR_HELP_DISTANCE:
+                    return IGNORE
+
+                self.enemies.append(avId)
+
+                if len(self.enemies) == 1:  
+                    self.headsUp(av)
+                    self.d_updateSmPos()
+
                 self.d_setTaunt(EnemyGlobals.AGGRO_CHAT)
+                av.sendUpdate('setCurrentTarget', [0])
 
                 enemies = AvToEnemies.get(avId, [])
                 
@@ -267,10 +359,6 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
             if self.state not in ('Battle', 'Death'):
                 self.demand('Battle')
 
-            av = self.air.doId2do.get(avId)
-            if av:
-                av.sendUpdate('setCurrentTarget', [0])
-
         return IGNORE
 
     def requestExit(self):
@@ -278,23 +366,27 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
         self.removeEnemy(avId)
 
     def removeEnemy(self, avId):
-        if avId in self.enemies:
-            self.enemies.remove(avId)
+        if avId not in self.enemies:
+            return
 
-            av = self.air.doId2do.get(avId)
+        self.enemies.remove(avId)
 
-            if av:
-                av.sendUpdate('setCurrentTarget', [0])
+        av = self.air.doId2do.get(avId)
 
-            if avId in AvToEnemies:
-                if not av:
-                    del AvToEnemies[avId]
-                else:
-                    enemies = AvToEnemies[avId]
+        if av:
+            av.sendUpdate('setCurrentTarget', [0])
+
+        if avId not in AvToEnemies:
+            return
+
+        if not av:
+            del AvToEnemies[avId] 
+        else: 
+            enemies = AvToEnemies[avId]
                     
-                    if self.getUniqueId() in enemies:
-                        enemies.remove(self.getUniqueId())
-                        AvToEnemies[avId] = enemies
+            if self.getUniqueId() in enemies:
+                enemies.remove(self.getUniqueId())
+                AvToEnemies[avId] = enemies
 
     def enterAmbush(self):
         self.sendUpdate('setAmbush', [1])
@@ -396,10 +488,18 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
                 level = random.choice(level)
 
             obj.setLevel(int(level))
+        
+        if 'Patrol Radius' in data:
+            obj.setPatrolRadius(float(data['Patrol Radius']))
 
         if 'Aggro Radius' in data:
             obj.setAggroRadius(int(float(data['Aggro Radius'])))
 
         if 'Start State' in data:
-            obj.setStartState(data['Start State'])
+            state = data['Start State']
+
+            if state in ('Walk', 'Patrol'):
+                state = 'Idle'
+
+            obj.setStartState(state)
         return obj

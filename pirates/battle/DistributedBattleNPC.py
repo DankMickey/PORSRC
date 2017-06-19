@@ -245,6 +245,7 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
 
     def announceGenerate(self):
         self.checkQuestObjMod()
+        self.reparentTo(render)
         DistributedBattleAvatar.DistributedBattleAvatar.announceGenerate(self)
         if not self.loaded:
             self.setupStyle()
