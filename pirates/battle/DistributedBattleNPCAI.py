@@ -5,6 +5,7 @@ from direct.distributed.DistributedSmoothNodeBase import DistributedSmoothNodeBa
 from direct.distributed.GridParent import GridParent
 from direct.distributed.ClockDelta import *
 from pirates.battle.DistributedBattleAvatarAI import *
+from pirates.pirate import AvatarTypes
 from pirates.piratesbase import PiratesGlobals, PLocalizer
 from pirates.battle import WeaponGlobals
 from pirates.battle import EnemyGlobals
@@ -187,7 +188,7 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
             self.b_setCurrentWeapon(self.mainWeapon, 1)
 
     def enterIdle(self):
-        if (not self.mover) and self.hasPatrolRadius() and self.isBattleable():
+        if (not self.mover) and self.hasPatrolRadius() and self.isBattleable() and not self.avatarType.isA(AvatarTypes.FlyTrap):
             self.mover = EnemyMoverAI(self)
 
         if self.mover:
