@@ -292,7 +292,9 @@ class BossSpawnNode(DirectObject.DirectObject):
 
     def getBossClassFromType(self, type):
         bossClass = None
-        if type == 'Skeleton':
+        if 'Davy' in self.avType.getName():
+            bossClass = DistributedDavyJonesAI
+        elif type == 'Skeleton':
             bossClass = DistributedBossSkeletonAI
         elif type == 'Creature':
             bossClass = DistributedBossCreatureAI
@@ -302,8 +304,6 @@ class BossSpawnNode(DirectObject.DirectObject):
             bossClass = DistributedBossGhostAI
         elif type == 'Townsperson':
             bossClass = DistributedBossTownfolkAI
-        elif type == 'DavyJones':
-            bossClass = DistributedDavyJonesAI
         else:
             self.notify.warning("Unknown boss creature class: %s" % type)
 

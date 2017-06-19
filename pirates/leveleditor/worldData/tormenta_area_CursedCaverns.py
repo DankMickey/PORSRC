@@ -1318,7 +1318,7 @@ objectStruct = {
                             'Visual': {
                                 'Model': 'models/misc/pir_m_prp_lev_cambarrier_plane' } },
                         '1249419392.0jloehrle2': {
-                            'Type': 'Spawn Node',
+                            'Type': 'Skeleton',
                             'AnimSet': 'default',
                             'Hpr': Point3(0.0, 0.0, 0.0),
                             'Min Population': '1',
@@ -1331,7 +1331,8 @@ objectStruct = {
                             'PropLeft': 'None',
                             'PropRight': 'None',
                             'Scale': VBase3(1.0, 1.0, 1.0),
-                            'Spawnables': 'Davy Jones',
+                            'Species': 'DavyJones',
+                            'Boss': True,
                             'DNA': '1248740301.97robrusso',
                             'Start State': 'Patrol',
                             'StartFrame': '0',
