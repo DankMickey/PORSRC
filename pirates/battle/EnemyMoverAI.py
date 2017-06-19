@@ -47,7 +47,7 @@ class EnemyMoverAI(FSM):
     
     def scheduleFollow(self):
         self.unscheduleFollow()
-        taskMgr.doMethodLater(0.75, self.followEnemy, self.enemy.uniqueName('next-follow'))
+        taskMgr.doMethodLater(1.0, self.followEnemy, self.enemy.uniqueName('next-follow'))
     
     def unscheduleFollow(self):
         taskMgr.remove(self.enemy.uniqueName('next-follow'))
@@ -111,7 +111,7 @@ class EnemyMoverAI(FSM):
 
         self.endSequence()
         self.sequence = Sequence(
-            self.enemy.hprInterval(headsUpDist / self.rotSpeed, (headsUp, 0, 0), (self.enemy.getH(), 0, 0)),
+            self.enemy.hprInterval(headsUpDist / self.rotSpeed, (headsUp, 0, 0), (self.enemy.getH() % 360, 0, 0)),
             self.enemy.posInterval(dist / self.fwdSpeed, target, here),
             Func(callback)
         )
