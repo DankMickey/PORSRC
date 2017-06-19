@@ -102,8 +102,9 @@ class EnemyMoverAI(FSM):
         
         here = self.enemy.getPos()
         dist = Vec3(here - target).length()
+        heads = self.enemy.getH() % 360
         headsUp = self.getHeadsUp(target)
-        headsUpDist = abs(self.enemy.getH() - headsUp)
+        headsUpDist = abs(heads - headsUp)
         
         if not self.started:
             self.enemy.startPosHprBroadcast()
@@ -111,7 +112,7 @@ class EnemyMoverAI(FSM):
 
         self.endSequence()
         self.sequence = Sequence(
-            self.enemy.hprInterval(headsUpDist / self.rotSpeed, (headsUp, 0, 0), (self.enemy.getH() % 360, 0, 0)),
+            self.enemy.hprInterval(headsUpDist / self.rotSpeed, (headsUp, 0, 0), (heads, 0, 0)),
             self.enemy.posInterval(dist / self.fwdSpeed, target, here),
             Func(callback)
         )
