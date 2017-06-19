@@ -38,7 +38,7 @@ class EnemyMoverAI(FSM):
     def enterOff(self):
         self.endSequence()
     
-    def scheduleWander(self, min=3, max=10):
+    def scheduleWander(self, min=12, max=22):
         self.unscheduleWander()
         taskMgr.doMethodLater(random.randint(min, max), self.wanderRandomly, self.enemy.uniqueName('next-wander'))
     
