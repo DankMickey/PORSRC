@@ -204,25 +204,25 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
         taskMgr.doMethodLater(dt, self.__battleTask, self.taskName('battleTask'))
 
     def __battleTask(self, task):
-        remove = set()
+        remove = []
         parent = self.getParent()
 
         for enemy in self.enemies:
             av = self.air.doId2do.get(enemy)
             if not av:
-                remove.add(enemy)
+                remove.append(enemy)
                 continue
 
             if av.hp <= 0:
-                remove.add(enemy)
+                remove.append(enemy)
                 continue
 
             if av.parentId != self.parentId:
-                remove.add(enemy)
+                remove.append(enemy)
                 continue
 
             if (self.relativePos - av.getPos(parent)).length() > EnemyGlobals.CALL_FOR_HELP_DISTANCE:
-                remove.add(enemy)
+                remove.append(enemy)
                 continue
 
         for r in remove:
@@ -230,7 +230,7 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
 
         if not self.enemies:
             if remove:
-                self.d_setTaunt(EnemyGlobals.BREAK_COMBAT_CHAT)
+                self.d_setTaunt(EnemyGlobals.BREAK_COMBAT_CHAT, remove)
 
             self.demand('Idle')
             return task.done
@@ -249,12 +249,12 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
 
         if result == WeaponGlobals.RESULT_OUT_OF_RANGE and not ammoSkillId:
             self.removeEnemy(av.doId)
-            self.d_setTaunt(EnemyGlobals.BREAK_COMBAT_CHAT)
+            self.d_setTaunt(EnemyGlobals.BREAK_COMBAT_CHAT, [av.doId])
         elif random.random() > 0.75:
             if self.isTeamTalk(av.doId):
-                self.d_setTaunt(EnemyGlobals.TEAM_CHAT)
+                self.d_setTaunt(EnemyGlobals.TEAM_CHAT, [av.doId])
             else:
-                self.d_setTaunt(EnemyGlobals.TAUNT_CHAT)
+                self.d_setTaunt(EnemyGlobals.TAUNT_CHAT, [av.doId])
 
         self.waitForNextBattleTask()
         return task.done
@@ -311,7 +311,7 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
             endDrawn = self.animSet in EnemyGlobals.DRAWN_ANIME or self.mainWeapon in EnemyGlobals.DRAWN_WEAPONS
             self.b_setCurrentWeapon(self.mainWeapon, endDrawn)
 
-    def d_setTaunt(self, tauntType):
+    def d_setTaunt(self, tauntType, avIds):
         taunts = PLocalizer.getEnemyChat(self.avatarType, tauntType)
 
         if not taunts:
@@ -320,7 +320,7 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
         else:
             chatId = random.randint(0, len(taunts) - 1)
 
-        self.sendUpdate('setTaunt', [tauntType, chatId])
+        self.sendUpdate('setTaunt', [tauntType, chatId, avIds])
 
     # TO DO:
     # boardVehicle(uint32) broadcast ram
@@ -347,7 +347,7 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
                     self.headsUp(av)
                     self.d_updateSmPos()
 
-                self.d_setTaunt(EnemyGlobals.AGGRO_CHAT)
+                self.d_setTaunt(EnemyGlobals.AGGRO_CHAT, [avId])
                 av.sendUpdate('setCurrentTarget', [0])
 
                 enemies = AvToEnemies.get(avId, [])

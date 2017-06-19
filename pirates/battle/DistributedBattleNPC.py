@@ -450,12 +450,12 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
         else:
             DistributedBattleAvatar.DistributedBattleAvatar.setMonsterNameTag(self)
 
-    def setTaunt(self, tauntType, chatId):
+    def setTaunt(self, tauntType, chatId, avIds):
         taunts = PLocalizer.getEnemyChat(self.avatarType, tauntType)
 
         if taunts and chatId >= 0 and chatId < len(taunts):
-            if chatId == EnemyGlobals.BREAK_COMBAT_CHAT:
-                self.showHpString(PLocalizer.Disengage, 0, 5, 0.5)
+            if tauntType == EnemyGlobals.BREAK_COMBAT_CHAT and base.localAvatar.doId in avIds:
+                base.localAvatar.showHpString(PLocalizer.Disengage, 0, 5, 0.5)
 
             self.setChatAbsolute(taunts[chatId], CFSpeech | CFTimeout)
         else:
