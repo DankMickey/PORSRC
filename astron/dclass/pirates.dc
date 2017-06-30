@@ -566,6 +566,7 @@ dclass DistributedBattleNPC : DistributedBattleAvatar {
   requestClientAggro() airecv clsend;
   setIsAlarmed(bool, int16/10) broadcast ram;
   setUniqueId(string) required broadcast ram;
+  setWalkLocation(int16, int16/100, int16/100, int32/10, int32/10, int32/10, int32/10, int32/10, int32/10, int32/10, int32/10) required broadcast ram;
 };
 
 dclass DistributedNPCSkeleton : DistributedBattleNPC {

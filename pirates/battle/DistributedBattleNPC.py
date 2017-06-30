@@ -94,6 +94,7 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
         self.nearCallbacks = []
         self.skipLocalSmooth = False
         self.uniqueId = None
+        self.walkSequence = None
 
     def __repr__(self):
         return '%s (Lvl %s)' % (self.getName(), self.level)
@@ -178,6 +179,23 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
 
             if allAnims:
                 self.makeMyAnimDict(self.style.gender, allAnims)
+
+    def setWalkLocation(self, timestamp, walkTime, rotateTime, sX, sY, sZ, eX, eY, eZ, sH, eH):
+        timestamp = globalClockDelta.localElapsedTime(timestamp)
+        self.destroyWalkSequence()
+        
+        if (walkTime == 0 and rotateTime == 0) or timestamp >= (walkTime + rotateTime):
+            self.setPosHpr(eX, eY, eZ, eH, 0, 0)
+            return
+
+        self.walkSequence = Sequence(
+            Func(self.updateMyAnimState, 0, 1, 0),
+            self.hprInterval(rotateTime, (eH, 0, 0), (sH, 0, 0)),
+            Func(self.updateMyAnimState, 1, 0, 0),
+            self.posInterval(walkTime, (eX, eY, eZ), (sX, sY, sZ)),
+            Func(self.updateMyAnimState, 0, 0, 0)
+        )
+        self.walkSequence.start(timestamp)
 
     def setupStyle(self):
         if self.style:
@@ -402,9 +420,14 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
         self.spawnIvals = []
         self.nearCallbacks = []
         self.clearVisualMode()
+        self.destroyWalkSequence()
         DistributedBattleAvatar.DistributedBattleAvatar.disable(self)
 
-
+    def destroyWalkSequence(self):
+        if self.walkSequence:
+            self.walkSequence.pause()
+            self.walkSequence = None
+    
     def delete(self):
         DistributedBattleAvatar.DistributedBattleAvatar.delete(self)
 
@@ -951,19 +974,20 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
     def getSkipLocalSmooth(self):
         return self.skipLocalSmooth
 
-    def smoothPosition(self):
+    def smoothPosition(self, *args):
+        return
         if self.skipLocalSmooth:
             if self.getGameState() not in ('Injured', 'Dying', 'Healing'):
                 self.updateMyAnimState(0, 0, 0)
 
-            return None
+            return Task.cont
 
         if not (self.invisibleMask & PiratesGlobals.INVIS_QUEST).isZero():
-            return None
+            return Task.cont
 
         if self.lowEnd:
             DistributedBattleAvatar.DistributedBattleAvatar.smoothPosition(self)
-            return None
+            return Task.cont
 
         cantMove = False
         if not self.canMove:
@@ -988,7 +1012,7 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
 
                 else:
                     self.lastMovedTimeStamp = globalClock.getFrameTime()
-                return None
+                return Task.cont
             else:
                 self.lastMovedTimeStamp = globalClock.getFrameTime()
                 self.isMovingDontNotice = 1
@@ -1011,7 +1035,7 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
                 self.headingNode.setZ(oldZ)
 
             if not self.curAttackAnim:
-                return
+                return Task.cont
 
             inAttack = self.curAttackAnim.isPlaying()
             if inAttack:
@@ -1069,6 +1093,7 @@ class DistributedBattleNPC(DistributedBattleAvatar.DistributedBattleAvatar):
                 self.performQuickFloorCheck()
 
         self.trackTerrain()
+        return Task.cont
 
     def setSpawnIn(self, timestamp):
         t = globalClockDelta.localElapsedTime(timestamp, bits = 32)

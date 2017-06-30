@@ -77,10 +77,6 @@ class EnemyMoverAI(FSM):
         pos = self.enemy.getEnemyPosition()
         enemy = self.enemy.getFocusingEnemy()
         
-        if enemy:
-            self.enemy.headsUp(enemy.getPos(self.getParent()))
-            self.enemy.d_updateSmPos()
-        
         if pos:
             self.walkToPoint(pos, self.scheduleFollow)
         else:
@@ -96,24 +92,28 @@ class EnemyMoverAI(FSM):
         self.enemy.setHpr(hpr)
         return result % 360
     
-    def walkToPoint(self, target, callback=None):
+    def walkToPoint(self, targetPos, callback=None):
         if not callback:
             callback = lambda: 0
         
-        here = self.enemy.getPos()
-        dist = Vec3(here - target).length()
-        heads = self.enemy.getH() % 360
-        headsUp = self.getHeadsUp(target)
-        headsUpDist = abs(heads - headsUp)
+        currentPos = self.enemy.getPos()
+        currentH = self.enemy.getH() % 360
+        targetH = self.getHeadsUp(targetPos)
+        walkDistance = Vec3(currentPos - targetPos).length()
+        rotateDistance = abs(currentH - targetH)
         
-        if not self.started:
-            self.enemy.startPosHprBroadcast()
-            self.started = True
+        walkTime = walkDistance / self.fwdSpeed
+        rotateTime = rotateDistance / self.rotSpeed
 
+        if not self.started:
+            #self.enemy.startPosHprBroadcast()
+            self.started = True
+        self.enemy.b_setWalkLocation(walkTime, rotateTime, currentPos[0], currentPos[1], currentPos[2], targetPos[0], targetPos[1], targetPos[2], currentH, targetH)
         self.endSequence()
+        # Change if necessary...
         self.sequence = Sequence(
-            self.enemy.hprInterval(headsUpDist / self.rotSpeed, (headsUp, 0, 0), (heads, 0, 0)),
-            self.enemy.posInterval(dist / self.fwdSpeed, target, here),
+            self.enemy.hprInterval(rotateTime, (targetH, 0, 0), (currentH, 0, 0)),
+            self.enemy.posInterval(walkTime, targetPos, currentPos),
             Func(callback)
         )
         self.sequence.start()

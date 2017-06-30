@@ -39,6 +39,7 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
         self.damageScale = 1
         self.patrolRadius = -1
         self.mover = None
+        self.walkLocation = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
         self.enemies = []
 
@@ -82,8 +83,18 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
                 startDrawn = True
             self.b_setCurrentWeapon(self.mainWeapon, startDrawn)
     
-    def startPosHprBroadcast(self, *args):
-        DistributedBattleAvatarAI.startPosHprBroadcast(self, period=0.2, type=DistributedSmoothNodeBase.BroadcastTypes.XYH)
+    def b_setWalkLocation(self, walkTime, rotateTime, sX, sY, sZ, eX, eY, eZ, sH, eH):
+        self.setWalkLocation(walkTime, rotateTime, sX, sY, sZ, eX, eY, eZ, sH, eH)
+        self.d_setWalkLocation(*self.walkLocation)
+
+    def setWalkLocation(self, walkTime, rotateTime, sX, sY, sZ, eX, eY, eZ, sH, eH):
+        self.walkLocation = [globalClockDelta.getRealNetworkTime(), walkTime, rotateTime, sX, sY, sZ, eX, eY, eZ, sH, eH]
+    
+    def d_setWalkLocation(self, timestamp, walkTime, rotateTime, sX, sY, sZ, eX, eY, eZ, sH, eH):
+        self.sendUpdate('setWalkLocation', [timestamp, walkTime, rotateTime, sX, sY, sZ, eX, eY, eZ, sH, eH])
+    
+    def getWalkLocation(self):
+        return self.walkLocation
 
     def enterSpawn(self):
         self.sendUpdate('setSpawnIn', [globalClockDelta.getRealNetworkTime(bits=32)])
@@ -171,8 +182,12 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
         self.wrtReparentTo(parent)
 
         self.relativePos = self.getPos(self.getParent())
+        self.setWalkLocation(0, 0, self.getX(), self.getY(), self.getZ(), 0, 0, 0, self.getH(), 0)
         self.d_updateSmPos()
         return False
+
+    def d_updateSmHpr(self):
+        self.sendUpdate('setSmH', [self.getH(), 0])
 
     def d_updateSmPos(self):
         x, y, z, h, p, r = list(self.getPos()) + list(self.getHpr())
@@ -243,11 +258,10 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
         ammoSkillId = 0 # TO DO
         pos = self.getPos(parent) - av.getPos(parent)
         self.headsUp(av)
-        self.d_updateSmPos()
+        self.d_updateSmHpr()
         result = self.attemptUseTargetedSkill(skillId, ammoSkillId, 0, av.doId, [],
                                               globalClockDelta.getRealNetworkTime(bits=32),
                                               pos, 0)
-
         if result == WeaponGlobals.RESULT_OUT_OF_RANGE and not ammoSkillId:
             self.removeEnemy(av.doId)
             self.d_setTaunt(EnemyGlobals.BREAK_COMBAT_CHAT, [av.doId])
@@ -343,11 +357,6 @@ class DistributedBattleNPCAI(DistributedBattleAvatarAI, FSM):
                     return IGNORE
 
                 self.enemies.append(avId)
-
-                if len(self.enemies) == 1:  
-                    self.headsUp(av)
-                    self.d_updateSmPos()
-
                 self.d_setTaunt(EnemyGlobals.AGGRO_CHAT, [avId])
                 av.sendUpdate('setCurrentTarget', [0])
 
