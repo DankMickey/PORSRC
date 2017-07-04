@@ -6,7 +6,6 @@ This repository is the source code for Pirates Online Retribution.
 Instrutions on how to set up a development environment for POR (run server/clients locally)
 
 #### 1) Install Git and learn the basics
-```
 
 #### 2) Panda3D-3D
      Move the P3D from this directory to C:/
