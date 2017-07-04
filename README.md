@@ -8,7 +8,11 @@ Instrutions on how to set up a development environment for POR (run server/clien
 #### 1) Install Git and learn the basics
 
 #### 2) Panda3D
-     Move the P3D from this directory to C:/
+
+
+
+
+Move the P3D from this directory to C:/
 
 #### 3) Install MongoDB
 
@@ -22,13 +26,15 @@ mkdir C:/data
 
 
 
-#mkdir C:/data/db
+mkdir C:/data/db
 
 
 
 #### 4) Test the server/client
-Go in `win32` if you're on Windows and double click `start-all.bat`.
 
+
+
+Go in `win32` if you're on Windows and double click `start-all.bat`.
 
 ### Rules
 
