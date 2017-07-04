@@ -14,12 +14,9 @@ Instrutions on how to set up a development environment for POR (run server/clien
 #### 3) Install MongoDB
 * **From here**: https://www.mongodb.com/download-center?jmp=nav
 * Run this to make the appropriate folder structure for it:
-```bash
+* or just make them manually.
 mkdir C:/data
 mkdir C:/data/db
-```
-or just make them manually.
-```
 
 #### 4) Test the server/client
 Go in `win32` if you're on Windows and double click `start-all.bat`.
