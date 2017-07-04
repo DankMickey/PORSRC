@@ -11,10 +11,20 @@ Instrutions on how to set up a development environment for POR (run server/clien
      Move the P3D from this directory to C:/
 
 #### 3) Install MongoDB
+
 From here: https://www.mongodb.com/download-center?jmp=nav
+
+
+
 Run this to make the appropriate folder structure for it, or just make them manually.
-####mkdir C:/data
-####mkdir C:/data/db
+
+mkdir C:/data
+
+
+
+#mkdir C:/data/db
+
+
 
 #### 4) Test the server/client
 Go in `win32` if you're on Windows and double click `start-all.bat`.
