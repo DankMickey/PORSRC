@@ -1,5 +1,12 @@
 Pirates Online Retribution Source Code
 ======================================
+
+
+CANT GET RID OF THE LEAK FOR LONG CAN YOU?
+
+Why dont you just close your shit server?
+
+
 This repository is the source code for Pirates Online Retribution.
 
 ## Build Instructions
