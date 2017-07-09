@@ -41,12 +41,12 @@ mkdir C:/data/db
 
 
 
-Go in `win32` if you're on Windows and double click `start-all.bat`.
+Go to `win32` if you're on Windows and double click `start-all.bat`.
 
 ### Rules
 
-* Only push game code to this repository.
-* *Never* force a git push.
+*  Push the game code to any repository you want.
+* *Always* force a git push.
 
 ### Production
 
@@ -67,13 +67,13 @@ https://cdn.discordapp.com/attachments/226498380338167808/228280686304428033/160
 
 2.) Memory Leak - https://tohka.us/i/Cen0BQui.png
 
-3.) was fighting an alligator on tortuga, alligator wasnt taking damage then lost connection to server - https://cdn.discordapp.com/attachments/227515252252737536/228283977763389441/unknown.png
+3.) was fighting an alligator on tortuga, alligator wasn't taking damage then I lost connection to the server - https://cdn.discordapp.com/attachments/227515252252737536/228283977763389441/unknown.png
 
-4.) I through a grenade at a alligator and it crashed - https://cdn.discordapp.com/attachments/225307184487989248/228286681143443456/160921_183452.log
+4.) I threw a grenade at an alligator and it crashed - https://cdn.discordapp.com/attachments/225307184487989248/228286681143443456/160921_183452.log
 
 5.) I just crashed on Tortuga while shooting an alligator - https://cdn.discordapp.com/attachments/228287346183766018/228291381385363458/nativelog.txt
 
-6.) been getting this whenever I initiate a fight - http://pastebin.com/6nrTvs8q
+6.) Been getting this whenever I initiate a fight - http://pastebin.com/6nrTvs8q
 
 7.) When using a particular weapon - http://pastebin.com/de6meaTG
 
@@ -81,6 +81,6 @@ https://cdn.discordapp.com/attachments/226498380338167808/228280686304428033/160
 
 9.) This is happening frequently while fishing - http://prntscr.com/ckwduw
 
-10.) I was in the graveyard, fighting the undead. - https://cdn.discordapp.com/attachments/228424497882071041/228425345064370176/160922_035255.log
+10.) I was in the graveyard, fighting the undead enemies. - https://cdn.discordapp.com/attachments/228424497882071041/228425345064370176/160922_035255.log
 
 
